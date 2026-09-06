@@ -1,0 +1,18 @@
+{
+  "name": "black-hole-tde-demo",
+  "version": "1.0.0",
+  "description": "A child-friendly stellar flyby and tidal-disruption illustration with adult teaching notes",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "three": "^0.170.0"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
