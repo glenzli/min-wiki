@@ -1,0 +1,64 @@
+{
+  "categories": [
+    {
+      "id": "universe",
+      "name": "宇宙与星空",
+      "symbol": "✦",
+      "theme": "dark",
+      "description": "从恒星的旅程开始，观察引力怎样改变运动。"
+    },
+    {
+      "id": "earth",
+      "name": "地球与自然",
+      "symbol": "◒",
+      "theme": "light",
+      "description": "山川、海洋、天气，以及我们生活的这颗星球。"
+    },
+    {
+      "id": "life",
+      "name": "生命与身体",
+      "symbol": "❋",
+      "theme": "light",
+      "description": "从一片叶子到我们的身体，认识生命怎样运转。"
+    },
+    {
+      "id": "physics",
+      "name": "物质与现象",
+      "symbol": "◎",
+      "theme": "light",
+      "description": "光、声音、力与变化，藏在日常生活里的问题。"
+    },
+    {
+      "id": "engineering",
+      "name": "科技与工程",
+      "symbol": "⌘",
+      "theme": "light",
+      "description": "观察工具、机器和结构，理解它们怎样工作。"
+    }
+  ],
+  "topics": [
+    {
+      "id": "black-hole",
+      "title": "恒星路过黑洞",
+      "category": "universe",
+      "summary": "恒星会被吞掉吗？换一条路线，观察引力、瓦解与气体的不同去向。",
+      "tags": [
+        "黑洞",
+        "恒星",
+        "引力",
+        "宇宙",
+        "潮汐",
+        "吸积"
+      ],
+      "duration": "48 秒–2 分钟 / 路线",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-07"
+    }
+  ]
+}

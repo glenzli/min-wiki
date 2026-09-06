@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { orbitAt, SCENARIOS, MU, TIDAL_RADIUS, Playback, motionProgress, playbackProgress } from '../src/physics/encounter.js';
-import { STORIES, ACADEMIC, stageAt } from '../src/story.js';
+import { orbitAt, SCENARIOS, MU, TIDAL_RADIUS, Playback, motionProgress, playbackProgress } from '../physics/encounter.js';
+import { STORIES, ACADEMIC, stageAt } from '../story.js';
 
 for (const scenario of Object.keys(SCENARIOS).filter(key=>!SCENARIOS[key].noBlackHole)) {
   test(`${scenario}: continuous orbit, conserved energy and angular momentum`, () => {

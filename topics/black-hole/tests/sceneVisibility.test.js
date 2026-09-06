@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import { TdeSimulation } from '../src/physics/tdeSimulation.js';
+import { TdeSimulation } from '../physics/tdeSimulation.js';
 
 test('leaving a disruption explicitly hides the previous gas in Three.js', () => {
   // Start after route selection with an already-visible gas population. Three

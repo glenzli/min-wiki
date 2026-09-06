@@ -1,3 +1,6 @@
+import { mountTopicNavigation } from '../../src/platform/topicNavigation.js';
+import './shell.css';
+mountTopicNavigation('black-hole');
 import * as THREE from 'three';
 import { TdeSimulation } from './physics/tdeSimulation.js';
 import { Playback, SCENARIOS, orbitAt, TIDAL_RADIUS, motionProgress, playbackProgress } from './physics/encounter.js';

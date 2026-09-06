@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-content-theme="dark" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090e17" />
+  <meta name="description" content="给小朋友的太空小剧场：看一颗像太阳的恒星如何绕过黑洞，比较四种情景的不同结局。" />
+  <title>恒星路过黑洞 · 小小百科</title>
+  <script type="module" src="/src/platform/theme.js"></script>
+  <link rel="stylesheet" href="./topic.css" />
+</head>
+<body data-mode="kids">
+  <div id="encyclopedia-nav" data-topic="black-hole"></div>
+  <div class="app-shell">
+    <header class="page-header">
+      <div class="brand"><span class="brand-orbit" aria-hidden="true">✦</span><span>小小宇宙观察站<small>A LITTLE WINDOW INTO SPACE</small></span></div>
+      <div class="header-actions"><div class="mode-switch" role="group" aria-label="讲解版本"><button data-mode="kids" aria-pressed="true">儿童版<span>看故事</span></button><button data-mode="academic" aria-pressed="false">学术版<span>理解与讲述</span></button></div><button id="btn-about" class="text-button"><span aria-hidden="true">ⓘ</span> 模型与资料</button></div>
+    </header>
+    <main class="experience">
+      <aside class="story-panel">
+        <div class="eyebrow"><span></span> 太空小剧场 · 01</div>
+        <h1>恒星<br>路过黑洞<span class="title-dot">.</span></h1>
+        <p class="intro">如果一颗像太阳的恒星，<br>从黑洞身边经过，会发生什么？</p>
+        <div class="story-divider"></div><div class="academic-only model-readout" aria-label="模型读数"><span>轨道模型读数 <small>无量纲 · 非观测数据</small></span><div><span>中心距离 r / rₜ <strong id="model-distance">—</strong></span><span title="当前速率与近心点速率的比值">速率 v / vₚ <strong id="model-speed">—</strong></span><span>穿透因子 β <strong id="model-beta">—</strong></span></div></div>
+        <section id="story" aria-live="polite" aria-atomic="true">
+          <div class="chapter"><span id="phase-number">01</span><span>/ 05</span><span class="chapter-line"></span><span>一起观察</span></div>
+          <h2 id="phase-title">一颗恒星，来做客</h2>
+          <p id="phase-desc"></p>
+          <div class="academic-only formula-card"><span class="small-label">这一幕的物理关系</span><p id="phase-formula" class="formula"></p><p id="phase-terms"></p></div><div class="observation"><span class="observe-icon" aria-hidden="true">✧</span><div><span id="notice-heading" class="small-label">找一找，想一想</span><p id="phase-notice"></p></div></div>
+        </section>
+        <div class="takeaway academic-only"><span class="small-label">讲述时留意</span><p id="phase-fact"></p></div>
+        <div class="sidebar-footer"><span class="tiny-star">✳</span> 保持好奇，宇宙很大。</div>
+      </aside>
+      <section class="theater" aria-label="太空动画与播放控制">
+        <div class="scenario-bar"><span class="small-label">选一条路线</span><div class="segmented" role="group" aria-label="选择恒星路线"><button data-scenario="free" aria-pressed="false"><span class="route-dot safe"></span>没有黑洞</button><button data-scenario="flyby" aria-pressed="true"><span class="route-dot safe"></span>安全绕过</button><button data-scenario="tidal" aria-pressed="false"><span class="route-dot close"></span>瓦解后回流</button><button data-scenario="deep" aria-pressed="false"><span class="route-dot deep"></span>更深掠过</button></div></div>
+        <p class="route-description" id="route-description"></p>
+        <div id="canvas-container" class="space-scene">
+          <div class="scene-corner"><span class="live-dot"></span><span id="scene-status">准备出发</span></div>
+          <div class="gas-outcome" id="gas-outcome" hidden></div><div id="view-note" class="view-note"></div>
+          <div class="scene-loading" id="scene-loading" role="status" hidden>正在准备这条路线…</div>
+          <div class="scene-loading" id="gas-error" role="status" hidden><p>这条路线暂时没有准备好。</p><button id="btn-retry-gas" class="text-button">重新准备</button></div>
+          <span class="scene-index" aria-hidden="true">ENCOUNTER / 01</span>
+          <div id="star-label" class="object-label star-label"><span class="label-rule"></span><strong>像太阳的恒星</strong><small>自己会发光</small></div>
+          <div id="hole-label" class="object-label hole-label"><span class="label-rule"></span><strong>黑洞</strong><small>黑色内界：进入后不能返回</small></div>
+          <div class="scene-legend" id="scene-legend"><span><i class="legend-path"></i>恒星的路线</span><span id="tidal-legend"><i class="legend-tidal"></i>潮汐范围，仍在黑洞外</span></div>
+          <div class="view-controls" role="group" aria-label="观察视角"><button data-view="overview" aria-pressed="false">立体看</button><button data-view="top" aria-pressed="true">从上看</button><button data-view="free" aria-pressed="false">自由转动</button></div>
+          <div id="scene-error" class="scene-error" hidden><h2>画面暂时没有打开</h2><p>请使用支持 WebGL 的浏览器，或刷新页面再试一次。下方仍可切换步骤阅读故事。</p></div>
+        </div>
+        <div class="playback-panel">
+          <div id="stage-buttons" class="stage-buttons" role="group" aria-label="故事步骤"></div>
+          <div class="transport"><button id="btn-play" class="play-button" aria-label="开始旅行"><span id="play-icon" aria-hidden="true">▶</span><span id="play-text">开始旅行</span></button><button id="btn-restart" class="restart-button" aria-label="从头再看" title="从头再看">↺</button><div class="scrubber"><label for="progress" class="sr-only">旅行进度</label><input id="progress" type="range" min="0" max="1000" value="0" step="1" /><div class="time-labels"><span id="elapsed">00:00</span><span id="duration">00:48</span></div></div><label class="speed-label"><span class="sr-only">播放速度</span><select id="speed" aria-label="播放速度"><option value="0.5">慢慢看 · 0.5×</option><option value="1" selected>正常 · 1×</option><option value="2">快一点 · 2×</option></select></label></div>
+          <div class="player-footer"><span class="keyboard-hint">空格键暂停 · 拖动进度可以回看</span><div class="display-options"><label><input id="toggle-guides" type="checkbox" checked />辅助线</label><label><input id="toggle-sound" type="checkbox" />配乐</label></div></div>
+          <p class="observation-note" id="observation-note" hidden>末段留约一分钟慢慢看 · 暂停或播放结束后，画面仍会保留</p>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer"><span>换一条路线，比较不同的相遇。</span><span>科普示意 · 大小、颜色与时间经过调整</span></footer>
+  </div>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <button id="btn-close" class="dialog-close" aria-label="关闭说明">×</button><div class="eyebrow">陪孩子一起看</div><h2 id="about-title">这段动画在讲什么？</h2>
+    <p>可以先比较「没有黑洞」与「安全绕过」：两者共用初始位置和速度，前者匀速直行，后者受引力偏转。再比较「瓦解后回流」和「更深掠过」。问孩子：恒星的路线、形状和最后的样子，哪里不一样？这里的恒星像太阳，并不是说我们的太阳正在接近黑洞。</p>
+    <h3>路过，不一定被吞掉</h3><p>恒星的去向取决于轨道与潮汐作用。距离足够远时可以完整飞掠；非常靠近时，恒星两侧受到的引力差可能超过它自身引力的维系，造成潮汐瓦解。实际还可能部分瓦解。「更深掠过」减小最近距离，部分气体在首次经过时进入模型内边界；这不代表每次瓦解都如此。</p>
+    <h3>黑洞周围为什么会亮？</h3><p>发光的是视界外的炽热气体。部分瓦解气体可能逃离，部分可能留下，经碰撞和能量损失逐渐形成吸积盘；比例不是固定的一半。喷流并不总会出现，也不是从事件视界内部逃出的光，本动画不展示喷流。</p>
+    <h3>怎样理解画面里的线和比例？</h3><p>金色线表示路线，橙色虚线表示潮汐作用较强的参考范围，它不是真实存在的边界，也不等于事件视界。黑色核心和细亮边帮助辨认黑洞位置；亮边是视觉标记，不是计算得到的光子环。气体沿用相同的自然色系，通过内旋、数量减少和越界消失表现落入。黑色区域采用覆盖遮罩，避免柔软粒子的亮边涂进内界。侧面或自由视角下的遮挡再出现不代表越界逃出；没有求解相对论光线传播。</p><p>完整恒星采用牛顿引力下的抛物线飞掠。瓦解过程用逐渐减弱的内部支撑近似，同一批气体持续运动；后段用简化阻尼示意耗散与内移，未求解流体、磁场或广义相对论光线传播。近黑洞处仅作定性展示，内边界捕获并未求解相对论捕获阈值、红移或光传播。天体尺寸、颜色和时间均为便于观察而调整，不能读取为真实测量。两条瓦解路线均播放两分钟；末段平滑慢放，气体持续向内旋转并逐步减少，便于观察落入过程。这不是永久稳态，播放结束后画面会保留。配乐是艺术配音，太空真空中不传播这样的声音。</p>
+    <div class="sources"><span class="small-label">延伸阅读 · NASA</span><a href="https://science.nasa.gov/universe/what-happens-when-something-gets-too-close-to-a-black-hole/" target="_blank" rel="noreferrer">靠近黑洞时会发生什么 ↗</a><a href="https://science.nasa.gov/universe/black-holes/anatomy/" target="_blank" rel="noreferrer">认识黑洞与吸积盘 ↗</a></div>
+    <button id="btn-understood" class="play-button">回到小剧场</button>
+  </dialog>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
