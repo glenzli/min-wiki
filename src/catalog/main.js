@@ -6,7 +6,7 @@ const catalog=validateCatalog(catalogData);
 const $=id=>document.getElementById(id);
 let filters=readFilters(location.search,catalog), limit=PAGE_SIZE;
 const published=catalog.topics.filter(topic=>topic.status==='published');
-const covers=import.meta.glob('../../topics/*/cover.svg', { query: '?url', import: 'default', eager: true });
+const covers=import.meta.glob(['../../topics/*/cover.svg','../../topics/*/cover-v2.jpg'], { query: '?url', import: 'default', eager: true });
 mountThemeControl($('catalog-appearance'));
 $('search').value=filters.query;
 
@@ -24,7 +24,7 @@ $('categories').append(categoryButton('all','全部','▦',published.length),...
 function topicCard(topic) {
   const link=document.createElement('a'); link.className='topic-card'; link.href=topicHref(topic);
   const art=document.createElement('div'); art.className=`topic-art art-${topic.id}`; art.setAttribute('aria-hidden','true');
-  const cover=covers[`../../topics/${topic.id}/cover.svg`];
+  const cover=covers[`../../topics/${topic.id}/cover-v2.jpg`] ?? covers[`../../topics/${topic.id}/cover.svg`];
   if (cover) { const img=document.createElement('img'); img.src=cover; img.alt=''; img.loading='lazy'; art.append(img); }
   else { const mark=document.createElement('span'); mark.className='fallback-cover'; mark.textContent=catalog.categories.find(item=>item.id===topic.category).symbol; art.append(mark); }
   const body=document.createElement('div'); body.className='topic-card-body';

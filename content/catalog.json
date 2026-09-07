@@ -59,6 +59,54 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-07"
+    },
+    {
+      "id": "solar-system",
+      "title": "太阳系八大行星运转与大小比较",
+      "category": "universe",
+      "summary": "观察八大行星的公转快慢，再让太阳与行星按同一个直径尺度排队，比较它们的大小。",
+      "tags": [
+        "太阳系",
+        "八大行星",
+        "开普勒定律",
+        "大小比较",
+        "地球",
+        "木星",
+        "引力"
+      ],
+      "duration": "动态探索 / 双轨视角",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-07"
+    },
+    {
+      "id": "earth-seasons",
+      "title": "为什么会有白天黑夜与四季更迭",
+      "category": "earth",
+      "summary": "真实三维地球呈现：地球为什么一边是白昼一边是黑夜？又是什么带来了春夏秋冬？直观理解自转与地轴倾角 23.44° 的奥秘。",
+      "tags": [
+        "白天黑夜",
+        "四季",
+        "地球自转",
+        "公转",
+        "地轴倾角",
+        "太阳高度角",
+        "节气"
+      ],
+      "duration": "动态探索 / 四大情景",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-07"
     }
   ]
 }

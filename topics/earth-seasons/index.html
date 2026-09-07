@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-content-theme="dark" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#090e17" />
+  <meta name="description" content="用真实三维地球演示：为什么会有白天和黑夜？又是什么带来了春夏秋冬的更迭？直观理解地球自转、地轴倾角 23.44° 与太阳高度角。" />
+  <title>为什么会有白天黑夜与四季更迭 · 小小百科</title>
+  <script type="module" src="/src/platform/theme.js"></script>
+  <link rel="stylesheet" href="./topic.css" />
+</head>
+<body data-mode="kids">
+  <div id="encyclopedia-nav" data-topic="earth-seasons"></div>
+  <div class="app-shell">
+    <header class="page-header">
+      <div class="brand">
+        <span class="brand-orbit" aria-hidden="true">◒</span>
+        <span>小小自然探索站<small>A LITTLE WINDOW INTO EARTH</small></span>
+      </div>
+      <div class="header-actions">
+        <div class="mode-switch" role="group" aria-label="讲解版本">
+          <button data-mode="kids" aria-pressed="true">儿童版<span>看故事</span></button>
+          <button data-mode="academic" aria-pressed="false">学术版<span>理解与讲述</span></button>
+        </div>
+        <button id="btn-about" class="text-button"><span aria-hidden="true">ⓘ</span> 科学原理与模型</button>
+      </div>
+    </header>
+    <section id="daylight-lesson" aria-label="倾角与白昼长短对照实验"></section>
+    <main class="experience">
+      <aside class="story-panel">
+        <div class="eyebrow"><span></span> 地球与自然 · 01</div>
+        <h1>白天黑夜<br>与四季更迭<span class="title-dot">.</span></h1>
+        <p class="intro">地球为什么一边是白昼一边是黑夜？<br>又是什么带来了春温夏热、秋凉冬寒？</p>
+        <div class="story-divider"></div>
+        <div class="academic-only model-readout" aria-label="地日动力学读数">
+          <span>日地运行天体读数 <small>黄赤交角 ε = 23.44°</small></span>
+          <div>
+            <span>太阳直射纬度 <strong id="model-subsolar">0.0°</strong></span>
+            <span>北京正午高度角 <strong id="model-altitude">50.1°</strong></span>
+            <span>今日白昼时长 <strong id="model-daylight">12.0 小时</strong></span>
+          </div>
+        </div>
+        <section id="story" aria-live="polite" aria-atomic="true">
+          <div class="chapter"><span id="phase-number">01</span><span>/ 05</span><span class="chapter-line"></span><span>地球律动</span></div>
+          <h2 id="phase-title">地球陀螺，转呀转！</h2>
+          <p id="phase-desc"></p>
+          <div class="academic-only formula-card">
+            <span class="small-label">这一幕的物理关系</span>
+            <p id="phase-formula" class="formula"></p>
+            <p id="phase-terms"></p>
+          </div>
+          <div class="observation">
+            <span class="observe-icon" aria-hidden="true">✧</span>
+            <div>
+              <span id="notice-heading" class="small-label">找一找，想一想</span>
+              <p id="phase-notice"></p>
+            </div>
+          </div>
+        </section>
+        <div class="takeaway academic-only"><span class="small-label">讲述时留意</span><p id="phase-fact"></p></div>
+        <div class="sidebar-footer"><span class="tiny-star">✳</span> 保持好奇，理解我们生活的星球。</div>
+      </aside>
+      <section class="theater" aria-label="三维地球与四季探索控制">
+        <div class="scenario-bar">
+          <span class="small-label">探索情景</span>
+          <div class="segmented" role="group" aria-label="选择探索模式">
+            <button data-scenario="daynight" aria-pressed="true"><span class="route-dot daynight-dot"></span>昼夜交替</button>
+            <button data-scenario="seasons" aria-pressed="false"><span class="route-dot seasons-dot"></span>四季公转</button>
+            <button data-scenario="angle" aria-pressed="false"><span class="route-dot angle-dot"></span>直射与斜射</button>
+            <button data-scenario="notilt" aria-pressed="false"><span class="route-dot notilt-dot"></span>假如地轴不倾斜？</button>
+          </div>
+        </div>
+        <p class="route-description" id="route-description"></p>
+        <div class="tools-bar">
+          <div class="solstice-strip" id="solstice-strip" role="toolbar" aria-label="快速跳转节气">
+            <!-- Populated via JS -->
+          </div>
+          <div class="city-strip" id="city-strip" role="toolbar" aria-label="观察世界城市">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+        <div id="canvas-container" class="space-scene">
+          <div class="scene-corner"><span class="live-dot"></span><span id="scene-status">地球自转中 · 昼夜平滑交替</span></div>
+          <div class="view-controls" role="group" aria-label="观察视角">
+            <button data-view="default" aria-pressed="true">标准看</button>
+            <button data-view="north" aria-pressed="false">北极俯视</button>
+            <button data-view="sun" aria-pressed="false">太阳视线</button>
+          </div>
+          <div class="city-card" id="city-card" hidden>
+            <div class="city-card-header">
+              <div class="city-card-title"><span id="card-city-name">北京</span> <span id="card-city-tag" class="city-card-tag">北纬 39.9°</span></div>
+              <button id="btn-close-city" class="city-card-btn-close" aria-label="关闭城市卡片">×</button>
+            </div>
+            <div class="city-card-metrics">
+              <div class="city-metric-item">
+                <span class="city-metric-label">当前光照</span>
+                <strong id="card-city-status" class="city-metric-val">白昼正午</strong>
+              </div>
+              <div class="city-metric-item">
+                <span class="city-metric-label">此刻太阳高度</span>
+                <strong id="card-city-altitude" class="city-metric-val">73.5°</strong>
+              </div>
+              <div class="city-metric-item">
+                <span class="city-metric-label">今日白昼时长</span>
+                <strong id="card-city-daylight" class="city-metric-val">14.8 小时</strong>
+              </div>
+              <div class="city-metric-item">
+                <span class="city-metric-label">此刻日照投影</span>
+                <strong id="card-city-flux" class="city-metric-val">96% (高)</strong>
+              </div>
+            </div>
+            <p id="card-city-desc" class="city-card-desc"></p>
+          </div>
+          <div id="scene-error" class="scene-error" hidden>
+            <h2>三维场景暂时没有打开</h2>
+            <p>请使用支持 WebGL 的现代浏览器，或刷新页面重试。侧边栏故事与科学数据依然可用。</p>
+          </div>
+        </div>
+        <div class="playback-panel">
+          <div id="stage-buttons" class="stage-buttons" role="group" aria-label="故事步骤"></div>
+          <div class="transport">
+            <button id="btn-play" class="play-button" aria-label="暂停运转"><span id="play-icon" aria-hidden="true">Ⅱ</span><span id="play-text">暂停运转</span></button>
+            <button id="btn-restart" class="restart-button" aria-label="从头观察" title="从头观察">↺</button>
+            <div class="scrubber">
+              <label for="progress" class="sr-only">时间轴进度</label>
+              <input id="progress" type="range" min="0" max="1000" value="0" step="1" />
+              <div class="time-labels"><span id="elapsed">00:00 时</span><span id="duration">24:00 时</span></div>
+            </div>
+            <label class="speed-label">
+              <span class="sr-only">运行速度</span>
+              <select id="speed" aria-label="运行速度">
+                <option value="0.5">慢慢看 · 0.5×</option>
+                <option value="1" selected>正常 · 1×</option>
+                <option value="2">快一点 · 2×</option>
+                <option value="5">飞速 · 5×</option>
+              </select>
+            </label>
+          </div>
+          <div class="player-footer">
+            <span class="keyboard-hint">空格键暂停/播放 · 切换上方城市可直观查看昼夜交替</span>
+            <div class="display-options">
+              <label><input id="toggle-guides" type="checkbox" checked />地轴与纬度圈</label>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <span>真实 NASA Blue Marble 地表与城市夜景灯光渲染 · 直观展现昼夜交替与四季之美</span>
+      <span>天体力学与地球科学 · 数据源自 NASA Earth Fact Sheet & IAU 官方常数</span>
+    </footer>
+  </div>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <button id="btn-close" class="dialog-close" aria-label="关闭说明">×</button>
+    <div class="eyebrow">天体物理与自然奥秘</div>
+    <h2 id="about-title">为什么会有白天黑夜与四季更迭？</h2>
+    
+    <h3>昼夜与四季</h3>
+    <p>地球自转让大多数地点交替进入日侧和夜侧。地轴倾角约 23.44°，在一年中基本保持朝向；公转使南北半球轮流向太阳倾斜，改变太阳高度和白昼长短，这是四季的主要原因。</p>
+    <p>日地距离也会影响辐照度，但不能解释南北半球相反的季节。气温还受海洋、大气与地形影响，夏至不一定是一年最热的一天。</p>
+    <h3>本演示的范围</h3>
+    <p>采用圆轨道、固定地轴、球形地球与平行光。公转画面放大了地球，大小与轨道距离不按同一比例。四季场景一周公转仅显示八次自转，方便观察。时间轴是模拟进度，不是实际日期或当地钟表时间。</p>
+    <p>城市卡片的此刻太阳高度与昼夜贴图使用同一太阳方向。白昼时长是点太阳几何值，不含折射、地形和太阳视半径；极点在春秋分的太阳位于理想地平线，单独提示。</p>
+    <p>“假如地轴不倾斜”保留公转，将倾角设为零，用于比较倾角造成的日照变化。“光照角度”只比较几何投影，不计算天气或温度。</p>
+    <div class="sources">
+      <span class="small-label">权威资料与科学延伸</span>
+      <a href="https://science.nasa.gov/earth/facts/" target="_blank" rel="noreferrer">NASA 地球科学档案 ↗</a>
+      <a href="https://visibleearth.nasa.gov/collection/1484/blue-marble" target="_blank" rel="noreferrer">NASA Visible Earth: Blue Marble ↗</a>
+    </div>
+    <button id="btn-understood" class="play-button">返回地球探索</button>
+  </dialog>
+  <script type="module" src="./main.js"></script>
+</body>
+</html>

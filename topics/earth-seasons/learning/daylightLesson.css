@@ -1,0 +1,51 @@
+.daylight-lesson { padding:26px 0 34px; border-bottom:1px solid var(--line); }
+.lesson-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin-bottom:22px; }
+.lesson-heading h2 { font-size:clamp(23px,2.5vw,34px); line-height:1.3; margin:7px 0 9px; letter-spacing:-.03em; }
+.lesson-heading p { color:var(--muted); font-size:14px; line-height:1.7; max-width:760px; margin:0; }
+.lesson-kicker { color:var(--gold); letter-spacing:.12em; font-size:11px; }
+.lesson-reset { background:transparent; color:var(--muted); border:1px solid var(--line); border-radius:8px; padding:9px 14px; white-space:nowrap; }
+.lesson-controls { display:flex; gap:14px 26px; align-items:center; flex-wrap:wrap; margin-bottom:20px; }
+.lesson-control { display:flex; align-items:center; gap:9px; }
+.lesson-control > span { color:var(--muted); font-size:12px; }
+.lesson-control select { color:var(--ink,#ecece5); background:var(--surface,#171e27); border:1px solid var(--line); padding:9px 12px; border-radius:8px; font:inherit; font-size:13px; }
+.lesson-seasons { display:flex; gap:5px; }
+.lesson-seasons button { color:var(--muted); background:transparent; padding:8px 12px; border-radius:8px; border:1px solid var(--line); font-size:13px; }
+.lesson-seasons button[aria-pressed="true"] { color:#172431; background:#f6ce77; border-color:#f6ce77; }
+.lesson-comparison { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
+.lesson-card { overflow:hidden; border:1px solid var(--line); border-radius:16px; background:var(--surface,#171e27); }
+.lesson-card header { display:flex; align-items:center; justify-content:space-between; padding:15px 20px 9px; gap:12px; }
+.lesson-card h3 { margin:0; font-size:17px; font-weight:600; }
+.lesson-card header small { color:var(--muted); font-size:12px; }
+.lesson-canvas { display:block; width:100%; aspect-ratio:520/270; background:#0b1422; }
+.lesson-measures { padding:15px 20px 18px; }
+.lesson-figures { display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
+.lesson-figures strong { font-size:23px; font-weight:600; color:var(--gold); }
+.lesson-figures span { color:var(--muted); font-size:12px; }
+.lesson-daybar { height:9px; display:flex; overflow:hidden; border-radius:6px; background:#3e5c83; margin-top:12px; }
+.lesson-daybar span { display:block; height:100%; background:#f6ce77; }
+.lesson-barlabels { display:flex; justify-content:space-between; font-size:11px; color:var(--muted); padding-top:6px; }
+.lesson-action { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; padding:20px 0 16px; }
+.lesson-tilt { display:flex; align-items:center; flex-wrap:wrap; gap:10px; color:var(--muted); font-size:13px; }
+.lesson-tilt input { width:190px; accent-color:#f6ce77; }
+.lesson-tilt output { font-variant-numeric:tabular-nums; min-width:48px; color:var(--ink,#ecece5); }
+.lesson-play { display:flex; align-items:center; gap:15px; }
+.lesson-play button { background:#f6ce77; color:#162334; border:0; border-radius:999px; padding:11px 19px; font-size:13px; font-weight:600; }
+.lesson-turn { font-size:12px; color:var(--muted); min-width:100px; }
+.lesson-explanation { border-radius:12px; padding:17px 20px; background:rgba(230,182,97,.07); border:1px solid rgba(230,182,97,.18); }
+.lesson-explanation strong { display:block; margin-bottom:7px; font-size:16px; }
+.lesson-explanation p { margin:0; color:var(--muted); font-size:13px; line-height:1.8; }
+.lesson-read-key { display:flex; gap:18px; flex-wrap:wrap; margin:14px 0 0; color:var(--muted); font-size:11px; }
+.lesson-read-key span { display:flex; gap:6px; align-items:center; }
+.lesson-read-key i { width:9px; height:9px; border-radius:50%; background:#f6ce77; }
+.lesson-read-key span:nth-child(2) i { background:#4e72a5; }
+.lesson-read-key span:nth-child(3) i { background:#ef7c69; }
+.lesson-limit { color:var(--muted); font-size:11px; line-height:1.7; margin:12px 0 0; }
+@media(max-width:680px) {
+ .lesson-comparison { grid-template-columns:minmax(0,1fr); }
+ .lesson-heading { gap:12px; }
+ .lesson-reset { font-size:11px; padding:7px; }
+ .lesson-card header, .lesson-measures { padding-left:14px; padding-right:14px; }
+ .lesson-action { gap:15px; }
+ .lesson-tilt input { width:140px; }
+ .lesson-controls { gap:12px; }
+}

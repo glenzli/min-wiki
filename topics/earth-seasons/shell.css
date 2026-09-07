@@ -1,0 +1,18 @@
+/* 地球与四季专题遵循全站共享阅读外观规范。3D太空场景始终保持深色深空。 */
+:root { color:var(--ink); background:var(--page); color-scheme:inherit; }
+:root[data-theme="light"] { --muted:#5f7167; --line:#d7ded6; --mint:#356349; --gold:#885b25; }
+:root[data-theme="light"] .app-shell { color:var(--ink); }
+:root[data-theme="light"] :is(.intro,#phase-desc,.observation p,.takeaway p,.sidebar-footer,.text-button,.small-label,.eyebrow,.chapter,.page-footer,.route-description,.observation-note,.keyboard-hint,.time-labels,.display-options,.mode-switch button,.segmented button,.stage-buttons button,.model-readout,.model-readout small,.formula-card #phase-terms,dialog p,dialog .sources a,.city-card) { color:var(--secondary); }
+:root[data-theme="light"] :is(.mode-switch,.segmented,.observation,.formula-card,dialog,.speed-label select,.city-card) { border-color:var(--border); }
+:root[data-theme="light"] :is(.mode-switch button[aria-pressed="true"],.segmented button[aria-pressed="true"],.stage-buttons button[aria-current="step"],.city-tab.active) { color:var(--accent); background:var(--tint); }
+:root[data-theme="light"] .play-button { background:#356349; color:#fff; }
+:root[data-theme="light"] .formula-card .formula { color:#485839; }
+:root[data-theme="light"] dialog { color:var(--ink); background:var(--surface); }
+:root[data-theme="light"] .speed-label select { color:var(--ink); background:var(--surface); }
+:root[data-theme="light"] .space-scene { --muted:#82909e; --line:#ffffff12; --mint:#bce2d2; --gold:#e9b76c; color-scheme:dark; color:#ecece5; }
+:root[data-theme="light"] .space-scene :is(.text-button,.small-label) { color:#b3bebc; }
+
+:root[data-theme="light"] :is(#story h2,.model-readout strong) { color:var(--ink); }
+:root[data-theme="light"] #story p { color:var(--secondary); }
+:root[data-theme="light"] :is(.planet-tab,.city-tab,.solstice-tab) { color:var(--secondary); }
+:root[data-theme="light"] :is(.planet-tab.active,.city-tab.active,.solstice-tab.active) { color:var(--accent); background:var(--tint); }

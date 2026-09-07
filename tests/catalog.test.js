@@ -22,7 +22,7 @@ test('search combines terms and category, excludes drafts, and handles empty res
   assert.deepEqual(findTopics(fixture,{query:' 恒星  引力 '}).map(item=>item.id),['black-hole']);
   assert.equal(findTopics(fixture,{category:'life',query:'黑洞'}).length,0);
   assert.equal(findTopics(fixture,{query:'不存在的问题'}).length,0);
-  assert.equal(findTopics(fixture).length,1);
+  assert.equal(findTopics(fixture).length, catalog.topics.filter(item => item.status === 'published').length);
 });
 test('shared links recover filters and tolerate unknown categories and long input',()=>{
   assert.deepEqual(readFilters('?category=universe&q=%E9%BB%91%E6%B4%9E',catalog),{category:'universe',query:'黑洞'});
