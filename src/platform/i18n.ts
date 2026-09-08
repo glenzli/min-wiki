@@ -39,8 +39,14 @@ export function translator(namespace: string, messages?: Record<string, string>,
 export const t = translator('common');
 
 /** A language URL retains filters and anchors and works without local storage. */
-export function languageHref(href: string, locale: Language = language): string {
+export function languageHref(href: string, locale: Language = language, base = import.meta.env?.BASE_URL ?? '/'): string {
   const url = new URL(href, 'https://local.invalid');
+  // Authored links are app-root-relative; language switching can pass an
+  // already mounted URL. Never prefix the deployment base twice.
+  const prefix = `/${base.split('/').filter(Boolean).join('/')}`;
+  if (prefix !== '/' && url.pathname !== prefix && !url.pathname.startsWith(`${prefix}/`)) {
+    url.pathname = `${prefix}${url.pathname}`;
+  }
   url.searchParams.set('lang', locale === 'en' ? 'en' : 'zh');
   return url.pathname + url.search + url.hash;
 }
@@ -77,5 +83,5 @@ export function translateDocument(translate: Translate = t): void {
       if (source && /[\u3400-\u9fff]/.test(source)) element.setAttribute(attribute, translate(source));
     }
   }
-  for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]')) link.href = languageHref(link.getAttribute('href')!);
+  for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]:not([data-host-link])')) link.href = languageHref(link.getAttribute('href')!);
 }

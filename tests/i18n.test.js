@@ -35,3 +35,11 @@ test('translations interpolate, pluralize and stay scoped to their namespace and
   assert.equal(en('太阳'), '太阳');
   assert.equal(zh('小小百科'), '小小百科');
 });
+
+test('subpath hosting keeps catalog, topic and language-switch links inside the app', () => {
+  assert.equal(languageHref('/', 'en', '/encyclopedia/'), '/encyclopedia/?lang=en');
+  assert.equal(languageHref('/topics/solar-system/', 'zh-CN', '/encyclopedia/'), '/encyclopedia/topics/solar-system/?lang=zh');
+  assert.equal(languageHref('/encyclopedia/?category=earth&q=day#explore', 'en', '/encyclopedia/'), '/encyclopedia/?category=earth&q=day&lang=en#explore');
+  assert.equal(languageHref('https://example.test/encyclopedia/topics/black-hole/?lang=zh#references', 'en', '/encyclopedia/'), '/encyclopedia/topics/black-hole/?lang=en#references');
+  assert.equal(languageHref('/encyclopedia-other/', 'en', '/encyclopedia/'), '/encyclopedia/encyclopedia-other/?lang=en');
+});

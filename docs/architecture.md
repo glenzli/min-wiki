@@ -58,6 +58,12 @@
 
 ## Adding a topic and translations
 
+### 子路径托管 / Subpath hosting
+
+可使用 `npm run build -- --base=/encyclopedia/` 指定 Vite 资源前缀；运行时的目录、专题和语言切换链接也使用同一 `BASE_URL`，默认独立托管仍为 `/`。宿主注入的站外导航可标记 `data-host-link`，不参与百科内部的路径与语言转换。无 JavaScript 的链接应由托管同步工具添加同一前缀。
+
+Build with `npm run build -- --base=/encyclopedia/` to mount under a host site. Runtime catalog, topic and language links share Vite's base; standalone hosting still defaults to `/`. Host navigation may use `data-host-link` to opt out of app-link translation. The host sync tool must also prefix static fallback links for use without JavaScript.
+
 1. Add `topics/<id>/index.html`, a TypeScript entry, styles, content, references and tests. Register the topic in `content/catalog.json`; only published topics enter the production build.
 2. Create a topic-local `i18n.ts` that calls the platform's `translator('<id>', english)` with its `locales/en.json`. Chinese source messages are the fallback keys. Add English catalog metadata to the shared dictionary.
 3. Call `translateDocument(t)` before starting dynamic controllers, then mount shared navigation. Use `t()` for dynamic text, including canvas labels and accessible descriptions; keep markup in the source and interpolate only trusted local content into HTML templates.
