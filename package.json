@@ -5,14 +5,26 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "npm run typecheck && npm run check:i18n && vite build",
     "preview": "vite preview",
-    "test": "node --test"
+    "test": "node --import tsx --test",
+    "typecheck": "tsc --noEmit",
+    "check:i18n": "node scripts/check-i18n.mjs",
+    "check": "npm test && npm run build"
   },
   "dependencies": {
+    "i18next": "^26.4.2",
     "three": "^0.170.0"
   },
   "devDependencies": {
+    "@types/node": "^22.20.1",
+    "@types/three": "^0.170.0",
+    "parse5": "^8.0.1",
+    "tsx": "^4.23.13",
+    "typescript": "~5.9.3",
     "vite": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

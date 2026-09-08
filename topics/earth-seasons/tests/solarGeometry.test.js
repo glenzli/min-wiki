@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import {solarGeometry, surfaceNormal, cityIllumination} from '../physics/solarGeometry.js';
-import {calcDaylightHours} from '../data/seasonsData.js';
+import {solarGeometry, surfaceNormal, cityIllumination} from '../physics/solarGeometry.ts';
+import {calcDaylightHours} from '../data/seasonsData.ts';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,`${a} != ${b}`);
 test('render transforms and local city light agree through a full orbit and rotation',()=>{
   for (const orbit of [0,.13,.25,.5,.75,.98]) for(const spin of [0,.2,.5,.8]) {

@@ -8,7 +8,7 @@
 .lesson-control { display:flex; align-items:center; gap:9px; }
 .lesson-control > span { color:var(--muted); font-size:12px; }
 .lesson-control select { color:var(--ink,#ecece5); background:var(--surface,#171e27); border:1px solid var(--line); padding:9px 12px; border-radius:8px; font:inherit; font-size:13px; }
-.lesson-seasons { display:flex; gap:5px; }
+.lesson-seasons { display:flex; flex-wrap:wrap; gap:5px; }
 .lesson-seasons button { color:var(--muted); background:transparent; padding:8px 12px; border-radius:8px; border:1px solid var(--line); font-size:13px; }
 .lesson-seasons button[aria-pressed="true"] { color:#172431; background:#f6ce77; border-color:#f6ce77; }
 .lesson-comparison { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:18px; }
@@ -42,10 +42,12 @@
 .lesson-limit { color:var(--muted); font-size:11px; line-height:1.7; margin:12px 0 0; }
 @media(max-width:680px) {
  .lesson-comparison { grid-template-columns:minmax(0,1fr); }
- .lesson-heading { gap:12px; }
+ .lesson-heading { gap:12px; flex-direction:column; }
  .lesson-reset { font-size:11px; padding:7px; }
  .lesson-card header, .lesson-measures { padding-left:14px; padding-right:14px; }
  .lesson-action { gap:15px; }
  .lesson-tilt input { width:140px; }
  .lesson-controls { gap:12px; }
 }
+
+@media(max-width:680px){.lesson-control{max-width:100%;align-items:flex-start}.lesson-control>span{flex-shrink:0;padding-top:8px}.lesson-figures,.lesson-play{flex-wrap:wrap}.lesson-card header small{white-space:nowrap}}

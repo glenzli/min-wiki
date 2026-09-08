@@ -43,15 +43,15 @@ npm run build
 
 ## 源码
 
-- `topics/black-hole/main.js`：控件、版本切换、播放生命周期、文字和投影标签。
-- `topics/black-hole/story.js`：儿童讲解、成人教学笔记和共同阶段边界。
-- `topics/black-hole/physics/encounter.js`：轨道与播放状态。
-- `topics/black-hole/physics/stellarDisruption.js`：内部支撑、逐层瓦解、连续气体轨迹与回看采样。
-- `topics/black-hole/physics/disruptionLibrary.js` 与 `disruptionWorker.js`：后台准备、轨迹转移、固定路线缓存与释放。
-- `topics/black-hole/rendering/stellarGas.js`：贯穿完整恒星、气流与聚盘阶段的气体体积显示。
-- `topics/black-hole/physics/tdeSimulation.js`：Three.js 场景、几何、气流显示和相机。
-- `topics/black-hole/shaders/blackHoleShader.js`：恒星表面与光晕、黑洞示意材料。
-- `topics/black-hole/audio/spaceSynth.js`：可选程序配乐，非真实太空声音。
+- `topics/black-hole/main.ts`：控件、版本切换、播放生命周期、文字和投影标签。
+- `topics/black-hole/story.ts`：儿童讲解、成人教学笔记和共同阶段边界。
+- `topics/black-hole/physics/encounter.ts`：轨道与播放状态。
+- `topics/black-hole/physics/stellarDisruption.ts`：内部支撑、逐层瓦解、连续气体轨迹与回看采样。
+- `topics/black-hole/physics/disruptionLibrary.ts` 与 `disruptionWorker.ts`：后台准备、轨迹转移、固定路线缓存与释放。
+- `topics/black-hole/rendering/stellarGas.ts`：贯穿完整恒星、气流与聚盘阶段的气体体积显示。
+- `topics/black-hole/physics/tdeSimulation.ts`：Three.js 场景、几何、气流显示和相机。
+- `topics/black-hole/shaders/blackHoleShader.ts`：恒星表面与光晕、黑洞示意材料。
+- `topics/black-hole/audio/spaceSynth.ts`：可选程序配乐，非真实太空声音。
 
 ## 资料
 

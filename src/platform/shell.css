@@ -16,4 +16,6 @@
 .theme-control { display:flex; align-items:center; gap:9px; color:var(--secondary); white-space:nowrap; font-size:12px; }
 .theme-control select { font:inherit; color:var(--ink); background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:8px 25px 8px 10px; cursor:pointer; }
 .theme-control select:focus-visible, .encyclopedia-nav a:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
-@media(max-width:700px) { .encyclopedia-nav { padding:12px 18px; gap:12px; flex-wrap:wrap; } .encyclopedia-trail { order:3; flex-basis:100%; font-size:11px; } .encyclopedia-nav .theme-control { margin-left:auto; } }
+@media(max-width:700px) { .encyclopedia-nav { padding:12px 18px; gap:12px; flex-wrap:wrap; } .encyclopedia-trail { order:3; flex-basis:100%; font-size:11px; } .encyclopedia-preferences { margin-left:auto; } .encyclopedia-preferences .theme-control > span { display:none; } }
+
+.encyclopedia-preferences, #catalog-appearance { display:flex; align-items:center; flex-wrap:wrap; gap:12px; }

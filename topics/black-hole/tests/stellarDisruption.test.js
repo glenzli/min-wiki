@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { StellarDisruption, STAR_RADIUS } from '../physics/stellarDisruption.js';
-import { orbitAt } from '../physics/encounter.js';
+import { StellarDisruption, STAR_RADIUS } from '../physics/stellarDisruption.ts';
+import { orbitAt } from '../physics/encounter.ts';
 
 const model = new StellarDisruption({ count: 160, frames: 600 });
 function sample(progress, simulation = model) {

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DisruptionLibrary } from '../physics/disruptionLibrary.js';
+import { DisruptionLibrary } from '../physics/disruptionLibrary.ts';
 
 test('background preparation shares requests, keeps route identity, and releases pending work', async () => {
   const nativeWorker = globalThis.Worker;

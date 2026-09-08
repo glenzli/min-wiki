@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { findTopics, readFilters, validateCatalog, topicHref, PAGE_SIZE } from '../src/catalog/model.js';
-import { resolveTheme, themePreference } from '../src/platform/theme.js';
+import { findTopics, readFilters, validateCatalog, topicHref, PAGE_SIZE } from '../src/catalog/model.ts';
+import { resolveTheme, themePreference } from '../src/platform/theme.ts';
 const catalog=JSON.parse(readFileSync(new URL('../content/catalog.json',import.meta.url),'utf8'));
 
 test('published topics have unique safe routes, known categories and deployable pages',()=>{

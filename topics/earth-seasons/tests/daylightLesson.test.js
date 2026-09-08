@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {daylightExperiment,lightAtDayProgress} from '../learning/daylightModel.js';
+import {daylightExperiment,lightAtDayProgress} from '../learning/daylightModel.ts';
 test('the drawn daily path agrees with analytic daylight across seasons and hemispheres',()=>{
  for(const latitude of [39.9,-33.9,0,66.56]) for(const orbit of [0,.25,.5,.75]) for(const tilt of [0,12,23.44]) {
   const m=daylightExperiment(latitude,orbit,tilt);let day=0;
@@ -26,7 +26,7 @@ test('equator and poles retain their distinct boundaries in the comparison',()=>
 });
 
 test('latitude circle on the globe and expanded daily path place the city on the same side of sunlight',async()=>{
- const {latitudeCirclePoint}=await import('../learning/daylightModel.js');
+ const {latitudeCirclePoint}=await import('../learning/daylightModel.ts');
  for(const lat of [39.9,-33.9,0,66.56])for(const phase of [0,.25,.75]){
   const m=daylightExperiment(lat,phase,23.44);
   for(let i=0;i<100;i++){

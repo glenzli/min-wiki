@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {orbitalState,eccentricAnomaly} from '../physics/orbits.js';
-import {PLANETS_DATA} from '../data/planetsData.js';
+import {orbitalState,eccentricAnomaly} from '../physics/orbits.ts';
+import {PLANETS_DATA} from '../data/planetsData.ts';
 const near=(a,b,tol=1e-9)=>assert.ok(Math.abs(a-b)<tol,`${a} != ${b}`);
 test('elliptic trajectories conserve focus geometry, areal velocity and period',()=>{
  for(const p of PLANETS_DATA) {

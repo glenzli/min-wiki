@@ -7,23 +7,23 @@ import {
   getVisualPlanetRadius,
   getTrueScaleLineupRadius,
   getLineupPositionX
-} from '../data/planetsData.js';
-import { STORIES, ACADEMIC, stageAt, SCENARIO_DESCRIPTIONS } from '../story.js';
+} from '../data/planetsData.ts';
+import { STORIES, ACADEMIC, stageAt, SCENARIO_DESCRIPTIONS } from '../story.ts';
 
 test('Planetary dataset integrity', () => {
   assert.equal(PLANETS_DATA.length, 8, 'There should be exactly 8 major planets');
   assert.ok(SUN_DATA.diameterKm > 1000000, 'Sun diameter must exceed 1,000,000 km');
-  assert.equal(SUN_DATA.nameZh, '太阳');
+  assert.equal(SUN_DATA.displayName, '太阳');
 
   for (const planet of PLANETS_DATA) {
     assert.ok(planet.id, 'Planet must have an id');
-    assert.ok(planet.nameZh, 'Planet must have a Chinese name');
+    assert.ok(planet.displayName, 'Planet must have a Chinese name');
     assert.ok(planet.nameEn, 'Planet must have an English name');
-    assert.ok(planet.semiMajorAxisAU > 0, `${planet.nameZh} semiMajorAxisAU must be positive`);
-    assert.ok(planet.orbitalPeriodYears > 0, `${planet.nameZh} orbitalPeriodYears must be positive`);
-    assert.ok(planet.relativeEarthDiameter > 0, `${planet.nameZh} relativeEarthDiameter must be positive`);
-    assert.ok(planet.diameterKm > 0, `${planet.nameZh} diameterKm must be positive`);
-    assert.ok(planet.colorHex.startsWith('#'), `${planet.nameZh} colorHex must be a hex color`);
+    assert.ok(planet.semiMajorAxisAU > 0, `${planet.displayName} semiMajorAxisAU must be positive`);
+    assert.ok(planet.orbitalPeriodYears > 0, `${planet.displayName} orbitalPeriodYears must be positive`);
+    assert.ok(planet.relativeEarthDiameter > 0, `${planet.displayName} relativeEarthDiameter must be positive`);
+    assert.ok(planet.diameterKm > 0, `${planet.displayName} diameterKm must be positive`);
+    assert.ok(planet.colorHex.startsWith('#'), `${planet.displayName} colorHex must be a hex color`);
   }
 });
 
@@ -34,7 +34,7 @@ test("Kepler's Third Law (T² / a³ ≈ 1.0 AU³/yr²)", () => {
     const ratio = (T * T) / (a * a * a);
     assert.ok(
       Math.abs(ratio - 1.0) < 0.03,
-      `${planet.nameZh} must satisfy Kepler's 3rd Law (ratio was ${ratio})`
+      `${planet.displayName} must satisfy Kepler's 3rd Law (ratio was ${ratio})`
     );
   }
 });
@@ -46,11 +46,11 @@ test('Orbital distance and period monotonicity', () => {
 
     assert.ok(
       curr.semiMajorAxisAU > prev.semiMajorAxisAU,
-      `Semi-major axis must increase: ${curr.nameZh} > ${prev.nameZh}`
+      `Semi-major axis must increase: ${curr.displayName} > ${prev.displayName}`
     );
     assert.ok(
       curr.orbitalPeriodYears > prev.orbitalPeriodYears,
-      `Orbital period must increase: ${curr.nameZh} > ${prev.nameZh}`
+      `Orbital period must increase: ${curr.displayName} > ${prev.displayName}`
     );
   }
 });
@@ -94,7 +94,7 @@ test('Visual and true scale calculation functions', () => {
   let prevX = -999;
   for (const planet of PLANETS_DATA) {
     const x = getLineupPositionX(planet.index);
-    assert.ok(x > prevX, `Lineup X position must advance from left to right for ${planet.nameZh}`);
+    assert.ok(x > prevX, `Lineup X position must advance from left to right for ${planet.displayName}`);
     prevX = x;
   }
 

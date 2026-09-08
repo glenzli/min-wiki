@@ -8,8 +8,8 @@ import {
   calcNoonSolarAltitude,
   calcDaylightHours,
   calcSolarHeatFlux
-} from '../data/seasonsData.js';
-import { STORIES, ACADEMIC, stageAt, SCENARIO_DESCRIPTIONS } from '../story.js';
+} from '../data/seasonsData.ts';
+import { STORIES, ACADEMIC, stageAt, SCENARIO_DESCRIPTIONS } from '../story.ts';
 
 test('Earth constants and datasets integrity', () => {
   assert.ok(Math.abs(EARTH_CONSTANTS.axialTiltDeg - 23.44) < 0.01, 'Axial tilt must be ~23.44°');
@@ -25,7 +25,7 @@ test('Earth constants and datasets integrity', () => {
   assert.equal(SOLAR_TERMS.length, 4, 'Four key solar terms');
   assert.ok(MAJOR_CITIES.length >= 6, 'Contains at least 6 major representative locations');
   for (const city of MAJOR_CITIES) {
-    assert.ok(city.id && city.nameZh, 'City must have id and Chinese name');
+    assert.ok(city.id && city.displayName, 'City must have id and Chinese name');
     assert.ok(city.lat >= -90 && city.lat <= 90, 'Latitude must be valid [-90, 90]');
     assert.ok(city.lon >= -180 && city.lon <= 180, 'Longitude must be valid [-180, 180]');
   }
