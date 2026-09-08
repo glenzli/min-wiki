@@ -4,6 +4,7 @@ import { resolveLanguage, languageHref, translator } from '../src/platform/i18n.
 
 test('language precedence is URL, saved preference, browser, then Chinese', () => {
   assert.equal(resolveLanguage('en', 'zh-CN', 'zh-TW'), 'en');
+  assert.equal(resolveLanguage('zh', 'en', 'en-US'), 'zh-CN');
   assert.equal(resolveLanguage('zh-CN', 'en', 'en-US'), 'zh-CN');
   assert.equal(resolveLanguage('invalid', 'en', 'zh-CN'), 'en');
   assert.equal(resolveLanguage(null, null, 'en-GB'), 'en');
@@ -18,7 +19,7 @@ test('language links retain filters, encoded input and anchors', () => {
   assert.equal(url.searchParams.get('q'), 'black hole');
   assert.equal(url.searchParams.get('category'), 'universe');
   assert.equal(url.hash, '#explore');
-  assert.equal(languageHref('/topics/solar-system/', 'zh-CN'), '/topics/solar-system/?lang=zh-CN');
+  assert.equal(languageHref('/topics/solar-system/', 'zh-CN'), '/topics/solar-system/?lang=zh');
 });
 
 test('translations interpolate, pluralize and stay scoped to their namespace and language', () => {

@@ -14,7 +14,7 @@ Starting with space and Earth, with room for nature, life, physics and engineeri
 - [The solar system](topics/solar-system/): explore orbits and compare planetary sizes.
 - [Day, night and seasons](topics/earth-seasons/): discover the roles of Earth's rotation and axial tilt.
 
-Switch between 中文 and English at the top of any page, or share a link with `?lang=zh-CN` or `?lang=en`. The first visit follows your browser language; a manual choice is saved locally. Switching language reloads the current topic and restarts its animation.
+Switch between 中文 and English at the top of any page, or share a link with `?lang=zh` or `?lang=en`. The first visit follows your browser language; a manual choice is saved locally. Switching language reloads the current topic and restarts its animation.
 
 ## Local development
 

@@ -41,7 +41,7 @@ export const t = translator('common');
 /** A language URL retains filters and anchors and works without local storage. */
 export function languageHref(href: string, locale: Language = language): string {
   const url = new URL(href, 'https://local.invalid');
-  url.searchParams.set('lang', locale);
+  url.searchParams.set('lang', locale === 'en' ? 'en' : 'zh');
   return url.pathname + url.search + url.hash;
 }
 export function mountLanguageControl(host: HTMLElement): void {
