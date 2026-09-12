@@ -1,3 +1,4 @@
+import { teachingDistanceScale, updateTeachingLens, retreatPosition } from '../../../src/visuals/teachingCamera.ts';
 import { solarGeometry, cityIllumination, surfaceNormal } from './solarGeometry.ts';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
@@ -82,7 +83,8 @@ export class EarthSimulation {
 
     // Three.js Core
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(42, this.width / this.height, 0.1, 2000);
+    this.camera = new THREE.PerspectiveCamera(42, this.width / this.height, 0.1, 12000);
+    updateTeachingLens(this.camera, new THREE.Vector3());
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
     this.renderer.setSize(this.width, this.height);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -93,8 +95,8 @@ export class EarthSimulation {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.06;
-    this.controls.maxDistance = 300;
-    this.controls.minDistance = 1.8;
+    this.controls.maxDistance = 300 * teachingDistanceScale(this.camera.aspect);
+    this.controls.minDistance = 1.8 * teachingDistanceScale(this.camera.aspect);
     this.controls.addEventListener('start', () => { this.view = 'free'; this.cameraTransition = false; });
     this.view = 'standard';
     this.cameraTransition = true;
@@ -499,6 +501,7 @@ export class EarthSimulation {
         this._camLookTarget.set(0,0,0);
       }
     }
+    if (this.view !== 'free') retreatPosition(this._camPosTarget, this._camLookTarget, this.camera.aspect);
   }
 
   getCityReadout(city: (typeof MAJOR_CITIES)[number]) {
@@ -534,7 +537,9 @@ export class EarthSimulation {
     this.width = this.container.clientWidth || window.innerWidth;
     this.height = this.container.clientHeight || window.innerHeight;
     this.camera.aspect = this.width / this.height;
-    this.camera.updateProjectionMatrix();
+    updateTeachingLens(this.camera, this.controls.target);
+    this.controls.maxDistance = 300 * teachingDistanceScale(this.camera.aspect);
+    this.controls.minDistance = 1.8 * teachingDistanceScale(this.camera.aspect);
     this.renderer.setSize(this.width, this.height);
     if(this.view !== 'free') { this.updateCameraTarget(); this.cameraTransition = true; }
   }

@@ -107,6 +107,965 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-07"
+    },
+    {
+      "id": "rainbow",
+      "title": "彩虹是怎么诞生的",
+      "category": "physics",
+      "summary": "把阳光拆开，跟着光线穿过一滴雨。动手探索色散、双彩虹，以及太阳高度如何改变天空中的彩虹。",
+      "tags": [
+        "彩虹",
+        "色散",
+        "折射与反射",
+        "三棱镜",
+        "牛顿实验",
+        "双彩虹",
+        "亚历山大暗带",
+        "全圆彩虹"
+      ],
+      "duration": "互动探索 / 四大情景",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-11"
+    },
+    {
+      "id": "galactic-center",
+      "title": "黑洞与伴星",
+      "category": "universe",
+      "summary": "恒星没有一下子消失，却有气体不断流向身边的黑洞。跟着一小团气体，看懂双星中的持续吸积。",
+      "tags": [
+        "黑洞",
+        "伴星",
+        "双星",
+        "恒星",
+        "引力",
+        "洛希瓣溢流",
+        "恒星风",
+        "吸积"
+      ],
+      "duration": "互动探索 / 三大情景",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-11"
+    },
+    {
+      "id": "planet-black-hole",
+      "title": "行星遇到黑洞",
+      "category": "universe",
+      "summary": "如果路过黑洞的不是太阳，而是一颗蓝色岩石行星，或一颗条纹气态巨行星，会发生什么？",
+      "tags": [
+        "黑洞",
+        "引力",
+        "吸积",
+        "行星",
+        "潮汐",
+        "岩石与气体"
+      ],
+      "duration": "互动探索 / 三大情景",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-11"
+    },
+    {
+      "id": "leaf-colors",
+      "title": "叶子的颜色",
+      "category": "life",
+      "summary": "从一片叶子放大到细胞和叶绿体，看看绿色从哪里来，秋天的黄色和红色又藏在哪里。",
+      "tags": [
+        "叶子",
+        "叶绿素",
+        "叶绿体",
+        "细胞",
+        "秋天",
+        "花青素",
+        "类胡萝卜素",
+        "光合作用"
+      ],
+      "duration": "互动探索 / 逐层放大",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "earth-moon",
+      "title": "地球和月亮",
+      "category": "universe",
+      "summary": "月亮为什么有圆有缺？绕着地球走一圈，同时看太空中的月球和地面上看到的月相。",
+      "tags": [
+        "月球",
+        "月相",
+        "潮汐锁定"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "saturn-moons",
+      "title": "土星和它的卫星们",
+      "category": "universe",
+      "summary": "土星的身边不只有光环。认识七颗代表卫星，比较绕行快慢、真实大小和不同的冰雪世界。",
+      "tags": [
+        "土星",
+        "卫星",
+        "土卫六",
+        "土卫二"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "lunar-craters",
+      "title": "月球上的陨石坑",
+      "category": "universe",
+      "summary": "一块太空岩石撞上月球后会怎样？改变大小和速度，看岩石飞散、地面凹陷，留下一个撞击坑。",
+      "tags": [
+        "月球",
+        "陨石坑",
+        "撞击",
+        "抛射物"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "volcano-eruption",
+      "title": "火山为什么会喷发",
+      "category": "earth",
+      "summary": "打开火山的剖面，看岩浆怎样向上走。试试一个喷口和多个喷口，再比较熔岩流与火山灰喷发。",
+      "tags": [
+        "火山",
+        "岩浆",
+        "喷口",
+        "火山灰"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "volcanic-lakes",
+      "title": "火山湖是怎样形成的",
+      "category": "earth",
+      "summary": "火山喷发之后，为什么可能留下一座湖？比较火山口和破火山口，试着让雨水积起来，或从地下漏走。",
+      "tags": [
+        "火山湖",
+        "破火山口",
+        "水循环"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "typhoon",
+      "title": "台风是怎样形成的",
+      "category": "earth",
+      "summary": "暖海水怎样帮助风暴成长？改变海温、风切变和半球，看雷雨能否组织成带有螺旋云带的热带气旋。",
+      "tags": [
+        "台风",
+        "热带气旋",
+        "风切变",
+        "海洋"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "tornado",
+      "title": "龙卷风是怎样形成的",
+      "category": "earth",
+      "summary": "从不同高度的风开始，观察雷暴中的旋转怎样发展。漏斗云和触地的旋转气流，是不是同一回事？",
+      "tags": [
+        "龙卷风",
+        "雷暴",
+        "漏斗云",
+        "上升气流"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "planet-surfaces",
+      "title": "行星的表面是什么样的",
+      "category": "universe",
+      "summary": "比较六颗行星的岩石、海水和云层，看看我们说的表面究竟在哪里。",
+      "tags": [
+        "行星",
+        "岩石行星",
+        "海洋",
+        "气态巨行星",
+        "冰巨星",
+        "火星"
+      ],
+      "duration": "互动探索 / 六颗行星",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "mimosa",
+      "title": "含羞草为什么会合拢？",
+      "category": "life",
+      "summary": "触碰之后，跟着信号走进含羞草的叶枕，观察离子、水分和膨压怎样让小叶合拢。",
+      "tags": [
+        "植物",
+        "生物学",
+        "细胞"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "hydrangea",
+      "title": "绣球花为什么有不同颜色？",
+      "category": "life",
+      "summary": "从土壤到萼片细胞，观察酸度、铝和品种如何共同影响绣球花的蓝、紫、粉与白。",
+      "tags": [
+        "植物",
+        "花朵",
+        "化学"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "rain-formation",
+      "title": "雨是怎样形成的",
+      "category": "earth",
+      "summary": "云里的小水滴，怎样变成落到地面的雨？走进云中，比较暖云、冰晶和干燥空气带来的不同结果。",
+      "tags": [
+        "云",
+        "水循环",
+        "降雨"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "lightning-thunder",
+      "title": "闪电和雷声是怎样形成的",
+      "category": "earth",
+      "summary": "云里怎样积累电荷？闪电为什么会分叉，为什么总是先看见闪电再听见雷声？把一次放电放慢，看清光与声音各自的旅程。",
+      "tags": [
+        "雷电",
+        "电荷",
+        "声波"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "buoyancy",
+      "title": "水为什么能托住小船？",
+      "category": "physics",
+      "summary": "从一块木头、一团橡皮泥开始，亲眼看看水向上托的力。",
+      "tags": [
+        "浮力",
+        "浮沉",
+        "排水量",
+        "橡皮泥小船"
+      ],
+      "duration": "互动探索 / 三个实验",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "shadows",
+      "title": "影子为什么变长变短？",
+      "category": "physics",
+      "summary": "移动小灯，看看小木偶的影子躲到了哪一边。",
+      "tags": [
+        "光与影"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "water-states",
+      "title": "冰变成水，水又去哪儿了？",
+      "category": "physics",
+      "summary": "给同一杯水换个环境，观察结冰、融化、蒸发和凝结。",
+      "tags": [
+        "水的变化",
+        "日常生活"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "magnets",
+      "title": "磁铁会吸住什么？",
+      "category": "physics",
+      "summary": "先挑一个物品，再让磁铁靠近。换成另一块磁铁，还能试试“推开”。",
+      "tags": [
+        "磁铁",
+        "材料"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "sound-vibrations",
+      "title": "声音是怎样出来的？",
+      "category": "physics",
+      "summary": "拨一下橡皮筋，看它来回振动。把它绷紧一点，再听听声音。",
+      "tags": [
+        "声音",
+        "振动"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "friction",
+      "title": "滑出去的玩具为什么会停？",
+      "category": "physics",
+      "summary": "三块一样的木头，从一样快的速度出发。看看哪条路让它滑得更远。",
+      "tags": [
+        "摩擦",
+        "运动"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "butterfly-life",
+      "title": "毛毛虫怎样变成蝴蝶？",
+      "category": "life",
+      "summary": "从卵到成虫，看见毛毛虫的成长和蛹里面的变化。",
+      "tags": [
+        "蝴蝶",
+        "生命周期",
+        "变态发育"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "frog-life",
+      "title": "蝌蚪怎样变成青蛙？",
+      "category": "life",
+      "summary": "推着时间向前，看腿长出来、尾巴逐渐被身体吸收。",
+      "tags": [
+        "青蛙",
+        "蝌蚪",
+        "生命周期"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "ant-trails",
+      "title": "蚂蚁为什么排着队走？",
+      "category": "life",
+      "summary": "显示看不见的气味路线，观察断点和新路线怎样影响蚂蚁。",
+      "tags": [
+        "蚂蚁",
+        "气味",
+        "动物行为"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "fish-gills",
+      "title": "鱼在水里怎样呼吸？",
+      "category": "life",
+      "summary": "跟随水流经过鱼鳃，看溶在水里的氧气进入血液。",
+      "tags": [
+        "鱼",
+        "鳃",
+        "呼吸",
+        "氧气"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "duck-feet",
+      "title": "鸭子的脚为什么像船桨？",
+      "category": "life",
+      "summary": "放大鸭子的蹼足，观察向后推水和收脚回程的不同形状。",
+      "tags": [
+        "鸭子",
+        "蹼",
+        "游泳",
+        "力"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "camouflage",
+      "title": "谁藏在树叶和树枝里？",
+      "category": "life",
+      "summary": "在树林里寻找三只动物，换背景比较保护色和拟态。",
+      "tags": [
+        "保护色",
+        "拟态",
+        "昆虫",
+        "观察"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "seed-sprouting",
+      "title": "一粒豆子怎样发芽？",
+      "summary": "给豆子一点水、一点空气和合适的温度，再翻开成长相册。",
+      "category": "life",
+      "tags": [
+        "植物",
+        "种子",
+        "发芽"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "seed-travel",
+      "title": "种子怎样去远方？",
+      "summary": "轻轻的绒毛、小小的钩子，都能帮种子离开妈妈身边。选一种，再送它一程。",
+      "category": "life",
+      "tags": [
+        "植物",
+        "种子",
+        "传播"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "plant-water",
+      "title": "根喝到的水怎样到叶子里？",
+      "summary": "一起跟着蓝色水滴，从土里出发，走过根和茎，最后来到叶子。",
+      "category": "life",
+      "tags": [
+        "植物",
+        "水",
+        "蒸腾"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "flower-fruit",
+      "title": "花为什么会变成果实？",
+      "summary": "让蜜蜂把合适的花粉带到樱桃花上，再看花里面慢慢发生什么。",
+      "category": "life",
+      "tags": [
+        "植物",
+        "授粉",
+        "果实"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "cactus-water",
+      "title": "仙人掌怎样留住水？",
+      "summary": "给沙漠下一场雨，看看胖胖的茎怎样储水，再打开白天和夜晚的窗口。",
+      "category": "life",
+      "tags": [
+        "植物",
+        "仙人掌",
+        "沙漠"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "rain-cycle",
+      "title": "一滴水的旅行",
+      "category": "earth",
+      "summary": "从地面的水，到云里的小水滴，再回到河流和大海。",
+      "tags": [
+        "水循环",
+        "蒸发",
+        "凝结"
+      ],
+      "duration": "互动探索 / 四步观察",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "river-paths",
+      "title": "小河为什么弯弯曲曲？",
+      "category": "earth",
+      "summary": "让水从山坡流下来，看看它怎样绕开石头，又怎样改变河岸。",
+      "tags": [
+        "河流",
+        "冲刷",
+        "沉积"
+      ],
+      "duration": "互动探索 / 四步观察",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "sand-journey",
+      "title": "沙滩上的沙子从哪里来？",
+      "category": "earth",
+      "summary": "跟着一粒小沙子，看岩石和贝壳怎样留下海边的颗粒。",
+      "tags": [
+        "沙滩",
+        "沙子",
+        "风化"
+      ],
+      "duration": "互动探索 / 四步观察",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "ground-water",
+      "title": "雨水落到地上以后呢？",
+      "category": "earth",
+      "summary": "给不同的地面下一场雨，看看水流走了、渗下去了，还是留下来了。",
+      "tags": [
+        "雨水",
+        "入渗",
+        "地表径流"
+      ],
+      "duration": "互动探索 / 四步观察",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "sun-star",
+      "title": "太阳也是一颗星星吗？",
+      "category": "universe",
+      "summary": "把观察者带远一些：太阳看起来变小了，它本身有变小吗？",
+      "tags": [
+        "恒星",
+        "太阳",
+        "远近"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "meteors",
+      "title": "流星是星星掉下来了吗？",
+      "category": "universe",
+      "summary": "跟着一小块太空碎片，看看它进入大气时发生什么。",
+      "tags": [
+        "流星",
+        "陨石",
+        "太空"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "cells",
+      "title": "细胞是什么？",
+      "category": "life",
+      "summary": "切换动物、叶肉植物和细菌细胞，找一找膜、DNA 与细胞核。",
+      "tags": [
+        "细胞",
+        "细菌",
+        "DNA",
+        "微观世界"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "bacteria",
+      "title": "细菌是什么？都会让人生病吗？",
+      "category": "life",
+      "summary": "放大一颗细菌，看看身体结构，再去酸奶、土壤和肠道里找它们的不同角色。",
+      "tags": [
+        "细菌",
+        "微生物",
+        "细胞",
+        "发酵"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "viruses",
+      "title": "病毒是什么？为什么需要细胞？",
+      "category": "life",
+      "summary": "换一个宿主，逐步看噬菌体如何借助细菌制造新的病毒。",
+      "tags": [
+        "病毒",
+        "噬菌体",
+        "宿主",
+        "微生物"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "microbes-everywhere",
+      "title": "微生物为什么几乎无处不在？",
+      "category": "life",
+      "summary": "换着看土壤、池水、皮肤和空气，分清被带到、活下来与长出更多。",
+      "tags": [
+        "微生物",
+        "栖息地",
+        "传播",
+        "细菌",
+        "病毒"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "tap-water",
+      "title": "自来水里有什么？",
+      "category": "engineering",
+      "summary": "放大一杯水，比较煮沸前后：病原体、矿物质和化学污染，并不会发生同样的变化。",
+      "tags": [
+        "饮水",
+        "自来水",
+        "煮沸",
+        "卫生",
+        "矿物质",
+        "安全",
+        "生活安全"
+      ],
+      "duration": "亲子探索 / 5–8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "handwashing",
+      "title": "肥皂为什么能帮忙洗手？",
+      "category": "life",
+      "summary": "沿着掌心、手背和指尖找一找：肥皂、搓洗与流动清水怎样合作，把污物带走？",
+      "tags": [
+        "洗手",
+        "卫生",
+        "肥皂",
+        "微生物",
+        "生活安全"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
+    },
+    {
+      "id": "car-safety",
+      "title": "刹车了，为什么还要系安全带？",
+      "category": "engineering",
+      "summary": "汽车停下需要一段路，身体也需要一起慢下来。看看轮胎、刹车和儿童座椅怎样接力保护我们。",
+      "tags": [
+        "交通安全",
+        "刹车",
+        "摩擦",
+        "惯性",
+        "安全带",
+        "儿童安全座椅",
+        "生活安全"
+      ],
+      "duration": "慢慢玩 · 约 6—9 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12"
     }
   ]
 }

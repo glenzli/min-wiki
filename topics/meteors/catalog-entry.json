@@ -1,0 +1,20 @@
+{
+  "id": "meteors",
+  "title": "流星是星星掉下来了吗？",
+  "category": "universe",
+  "summary": "跟着一小块太空碎片，看看它进入大气时发生什么。",
+  "tags": [
+    "流星",
+    "陨石",
+    "太空"
+  ],
+  "duration": "慢慢玩 · 约 5—8 分钟",
+  "modes": [
+    "儿童版",
+    "家长深入版"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-12"
+}

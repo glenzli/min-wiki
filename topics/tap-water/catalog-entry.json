@@ -1,0 +1,13 @@
+{
+  "id": "tap-water",
+  "title": "自来水里有什么？",
+  "category": "engineering",
+  "summary": "放大一杯水，比较煮沸前后：病原体、矿物质和化学污染，并不会发生同样的变化。",
+  "tags": ["饮水", "自来水", "煮沸", "卫生", "矿物质", "安全"],
+  "duration": "亲子探索 / 5–8 分钟",
+  "modes": ["儿童版", "家长版"],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-12"
+}

@@ -2,9 +2,33 @@
 
 - `content/catalog.json`: lightweight category and topic registry; no simulation state or imports.
 - `src/catalog/`: encyclopedia discovery, URL filters, bounded list projection and generic covers. `model.ts` is the build/runtime metadata contract.
+- `src/visuals/`: content-free rendering utilities. `blackHoleOptics.ts` owns camera-dependent ray integration and material disposal; `canvasSurface.ts` owns Canvas sizing and drawing primitives. `cloudTexture.ts` owns cached procedural cloud density and lighting textures; topic dynamics remain local. `teachingCamera.ts` owns the content-free narrow-lens projection and distance compensation. These utilities do not own topic dynamics, controls or language.
 - `src/platform/`: language selection and URL propagation (`i18n.ts`), shared English messages (`locales/en.json`), appearance preferences, semantic color tokens and topic navigation. No topic renderer dependencies.
 - `topics/<id>/`: complete independent topic, including HTML entry, renderer, content, references, styles, cover and focused tests. Full-page navigation owns the document lifetime.
 - `topics/black-hole/`: migrated black-hole experience. Physics, worker, rendering and audio retain their previous boundaries; `main.ts` composes topic controls and shared navigation.
+- `topics/galactic-center/`: companion binary with detached, overflowing and wind-fed scenarios; barycenter, gas paths and Three.js scene stay here. The old URL is retained.
+- `topics/planet-black-hole/`: independent density comparison and continuous parcel encounter; deterministic frame buffers belong to its model, Three.js rendering and bounded cache to its scene.
+- `topics/leaf-colors/`: leaf-to-pigment-compartment teaching illustrations, seasonal pigment state and distinct yellow/red pathways; the topic owns its Canvas renderer and bilingual explanations.
+- `topics/earth-moon/`: phase geometry, synchronous-facing Moon and independent true-scale comparison, with a Three.js orbit view and Earth-view inset.
+- `topics/saturn-moons/`: seven selected satellites, sourced physical/orbital data, moon selection and Three.js orbit/close-up/size views.
+- `topics/lunar-craters/`: impact energy, ballistic ejecta and illustrative simple-crater excavation.
+- `topics/volcano-eruption/`: magma paths, single/multiple vents and qualitative gas/viscosity-dependent eruption styles.
+- `topics/volcanic-lakes/`: crater/caldera geometry and bounded illustrative water balance.
+- `topics/typhoon/`: ocean/shear/hemisphere conditions and broad tropical-cyclone circulation.
+- `topics/tornado/`: a supercell-related vorticity pathway with condensation visibility independent of near-ground circulation.
+- `topics/planet-surfaces/`: selected planetary compositions, surface/fluid encounters and procedural surface illustrations, with model limits distinct from geography.
+- `topics/mimosa/`: touch propagation, pulvinus turgor and reversible leaf movement.
+- `topics/hydrangea/`: cultivar-dependent aluminum uptake and later sepal color, distinct from immediate recoloring.
+- `topics/rain-formation/`: cloud droplets, warm/ice growth pathways and subcloud evaporation.
+- `topics/lightning-thunder/`: charge separation, branching discharge and light/sound arrival timing.
+- `topics/buoyancy/`: displacement, floating balance, clay hull capacity and immersion comparison, with a topic-owned static water tank and focused force tests.
+- `topics/shadows/`, `water-states/`, `magnets/`, `sound-vibrations/`, `friction/`: independent everyday-object experiments; each owns its controls, illustration, scientific qualifications and translations.
+- `topics/butterfly-life/`, `frog-life/`, `ant-trails/`, `fish-gills/`, `duck-feet/`, `camouflage/`: animal life cycles, structures and behavior through independent illustrated explorations.
+- `topics/seed-sprouting/`, `seed-travel/`, `plant-water/`, `flower-fruit/`, `cactus-water/`: plant growth conditions, transport, reproduction and dry-habitat adaptations.
+- `topics/rain-cycle/`, `river-paths/`, `sand-journey/`, `ground-water/`: water journeys and landscape changes, with qualitative process illustrations and water partition conservation tests.
+- `topics/sun-star/`, `meteors/`: apparent solar size versus distance and distinct meteoroid, meteor and meteorite stages.
+- `topics/cells/`, `bacteria/`, `viruses/`, `microbes-everywhere/`: cell structure, bacterial roles, host-dependent viral replication and microbial habitats; each owns its bilingual explanations and event-driven SVG exploration.
+- `topics/tap-water/`, `car-safety/`, `handwashing/`: water composition and boiling limits, braking and passenger restraints, and soap-assisted handwashing; each owns its everyday-safety illustrations, bounded interactions, bilingual explanations and primary references.
 - `topics/<id>/i18n.ts` and `locales/en.json`: topic-owned translations, loaded only with that topic. Chinese source messages are the fallback; do not import another topic to reuse its text.
 - `scripts/check-i18n.mjs`: source/HTML/metadata translation coverage, interpolation and template-contract checks.
 - `tsconfig.json`: strict TypeScript for browser code, simulations, workers and build configuration; Vite emits the static site.
@@ -12,3 +36,5 @@
 - `vite.config.ts`: registered published topics become actual multi-page build entries. `dist/` is generated, not versioned.
 
 Start with `docs/architecture.md` when adding a topic. Do not move simulation engines or scientific content into the catalog or platform merely to reuse a layout.
+
+- `src/platform/readingMode.ts`: content-free reading-mode controls for step-based topics; each topic selects its own deeper notes. Switching preserves experiment state and sources remain accessible.

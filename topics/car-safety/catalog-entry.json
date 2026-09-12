@@ -1,0 +1,13 @@
+{
+  "id": "car-safety",
+  "title": "刹车了，为什么还要系安全带？",
+  "category": "engineering",
+  "summary": "汽车停下需要一段路，身体也需要一起慢下来。看看轮胎、刹车和儿童座椅怎样接力保护我们。",
+  "tags": ["交通安全", "刹车", "摩擦", "惯性", "安全带", "儿童安全座椅"],
+  "duration": "慢慢玩 · 约 6—9 分钟",
+  "modes": ["儿童版", "家长深入版"],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-12"
+}

@@ -1,3 +1,4 @@
+import { teachingDistanceScale, updateTeachingLens } from '../../../src/visuals/teachingCamera.ts';
 import { t } from '../i18n.ts';
 import * as THREE from 'three';
 import { StellarGas } from '../rendering/stellarGas.ts';
@@ -16,7 +17,7 @@ export class TdeSimulation {
   controls!: OrbitControls;
   view!: string;
   guidesVisible!: boolean;
-  blackHole!: THREE.Group<THREE.Object3DEventMap>;
+  blackHole!: ReturnType<typeof createBlackHole>;
   star!: { group: THREE.Group<THREE.Object3DEventMap>; surface: THREE.Mesh<THREE.SphereGeometry, THREE.ShaderMaterial, THREE.Object3DEventMap>; corona: THREE.Sprite<THREE.Object3DEventMap>; };
   focus!: THREE.Vector3;
   projected!: THREE.Vector3;
@@ -34,11 +35,13 @@ export class TdeSimulation {
   lastProgress!: number | null;
   starVisible!: boolean;
   disposed!: boolean;
+  private needsRender = true;
+  private lastGuides?: boolean;
 
   constructor(container: HTMLElement) {
     this.container = container;
     this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(42, 1, 0.1, 1500);
+    this.camera = new THREE.PerspectiveCamera(42, 1, 0.1, 12000);
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
     this.renderer.setClearColor(0x000000, 0);
@@ -48,12 +51,13 @@ export class TdeSimulation {
     this.renderer.domElement.setAttribute('role', 'img');
     container.prepend(this.renderer.domElement);
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
+    this.controls.addEventListener("change", () => { this.needsRender = true; });
     this.controls.enabled = false;
     this.controls.enablePan = false;
     this.controls.minDistance = 38;
     this.controls.maxDistance = 300;
     this.controls.maxPolarAngle = Math.PI * 0.9;
-    this.view = 'top';
+    this.view = 'overview';
     this.guidesVisible = true;
     this.blackHole = createBlackHole();
     this.scene.add(this.blackHole);
@@ -152,6 +156,7 @@ export class TdeSimulation {
 
   update(progress: number, scenario: string) {
     if (scenario !== this.scenario) this.selectScenario(scenario);
+    if (progress === this.lastProgress && this.lastGuides === this.guidesVisible && !this.needsRender) return;
     if (progress !== this.lastProgress) {
       this.lastProgress = progress;
       const p = orbitAt(progress, scenario);
@@ -175,13 +180,18 @@ export class TdeSimulation {
       this.future.geometry.setDrawRange(Math.floor(clamp(progress/max)*240), 241);
       if (this.view !== 'free') this.frameCamera();
     }
+    this.blackHole?.setEmissionMap(this.stellarGas.emission, this.stellarGas.emissionExtent);
+    this.blackHole?.setAccretion(progress*48, SCENARIOS[scenario].disrupted && this.gasStatus === 'ready' ? 1 : 0);
     this.guides.visible = this.guidesVisible;
     if (this.view === 'free') this.controls.update();
     this.camera.updateMatrixWorld();
     this.renderer.render(this.scene, this.camera);
+    this.needsRender = false;
+    this.lastGuides = this.guidesVisible;
   }
 
   setView(view: string) {
+    this.needsRender = true;
     this.view=view;
     this.controls.enabled=view==='free';
     if(view!=='free') this.frameCamera();
@@ -193,19 +203,40 @@ export class TdeSimulation {
     // Free orbit is never changed by this automatic framing.
     const close=SCENARIOS[this.scenario]?.disrupted?smooth(0.18,0.43,this.lastProgress??0):0;
     const comparison=this.scenario==='free'||this.scenario==='flyby';
-    const height=comparison?112:68-28*close, width=142-72*close, targetY=comparison?28:-7*(1-close);
-    const distance=Math.max(height/2/Math.tan(21*Math.PI/180), width/2/Math.tan(21*Math.PI/180)/aspect);
-    this.controls.target.set(0,targetY,0);
-    if(this.view==='top') this.camera.position.set(0,targetY,distance);
-    else this.camera.position.set(0,targetY-distance*0.44,distance*0.90);
+    let height=comparison?112:68-28*close, width=142-72*close, targetY=comparison?28:-7*(1-close), targetX=0;
+    const progress=this.lastProgress??0;
+    const includeReturn=smooth(0.43,0.51,progress)*(1-smooth(0.74,0.88,progress));
+    if(!comparison&&this.gasStatus==='ready'&&includeReturn>0&&this.stellarGas.model){
+      const attributes=this.stellarGas.points.geometry.attributes;
+      const positions=attributes.position.array, states=attributes.state.array, bound=attributes.bound.array;
+      let minX=0,maxX=0,minY=0,maxY=0;
+      for(let i=0;i<bound.length;i+=4){
+        if(!bound[i]||states[i*2+1]<0.01)continue;
+        const x=positions[i*3],y=positions[i*3+1];
+        if(Math.hypot(x,y)>110)continue;
+        minX=Math.min(minX,x);maxX=Math.max(maxX,x);minY=Math.min(minY,y);maxY=Math.max(maxY,y);
+      }
+      width=Math.max(width,(maxX-minX+16)*includeReturn);
+      height=Math.max(height,(maxY-minY+18)*(this.view==='top'?1:.65)*includeReturn);
+      targetX=(minX+maxX)*.5*includeReturn;
+      targetY=targetY*(1-includeReturn)+(minY+maxY)*.5*includeReturn;
+    }
+    const distance=Math.max(height/2/Math.tan(this.camera.fov*Math.PI/360), width/2/Math.tan(this.camera.fov*Math.PI/360)/aspect);
+    this.controls.target.set(targetX,targetY,0);
+    if(this.view==='top') this.camera.position.set(targetX,targetY,distance);
+    else this.camera.position.set(targetX,targetY-distance*0.94,distance*0.34);
     this.camera.lookAt(this.controls.target);
     this.controls.update();
   }
   resize() {
+    this.needsRender = true;
     const width=this.container.clientWidth, height=this.container.clientHeight;
     if(!width||!height) return;
     this.camera.aspect=width/height;
-    this.camera.updateProjectionMatrix();
+    updateTeachingLens(this.camera, this.controls.target);
+    const lensScale = teachingDistanceScale(this.camera.aspect);
+    this.controls.minDistance = 38 * lensScale;
+    this.controls.maxDistance = 500 * lensScale;
     this.renderer.setSize(width,height);
     this.stellarGas.points.material.uniforms.uHeight.value = height;
     if(this.view!=='free') this.frameCamera();
@@ -217,6 +248,7 @@ export class TdeSimulation {
   dispose() {
     this.disposed = true;
     this.library.dispose();
+    this.stellarGas.emission.dispose();
     this.resizeObserver.disconnect(); this.controls.dispose();
     this.scene.traverse(object=>{
       if (object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Points || object instanceof THREE.Sprite) {

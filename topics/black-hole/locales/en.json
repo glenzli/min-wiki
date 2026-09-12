@@ -300,5 +300,10 @@
   "延伸阅读 · NASA": "Further reading · NASA",
   "靠近黑洞时会发生什么 ↗": "What happens near a black hole ↗",
   "认识黑洞与吸积盘 ↗": "Black holes and accretion disks ↗",
-  "回到小剧场": "Back to the space theatre"
+  "回到小剧场": "Back to the space theatre",
+  "金色线表示路线，橙色虚线表示潮汐作用较强的参考范围，不等于事件视界。气体动力学的吸收边界与黑洞光学暗区使用独立显示尺度。晚期吸积盘采用无自旋黑洞、薄盘假设下的简化光线积分：后方盘面的一些光绕过黑洞，形成上方、下方的弯曲亮带。选择立体或自由视角观察它；从上方看则更容易辨认气体轨道。": "The gold line marks the route; the dashed orange circle is a tidal reference, not the event horizon. The dynamical absorption boundary and optical shadow use separate display scales. The late disk uses simplified ray integration for a non-spinning black hole and thin disk: some light from the far side bends around the hole into upper and lower bands. Use 3D or free orbit to inspect them; the top view clarifies gas trajectories.",
+  "完整恒星采用牛顿引力下的抛物线飞掠。瓦解过程用逐渐减弱的内部支撑近似，同一批气体持续运动；后段用简化阻尼示意耗散与内移。光学亮带是独立的薄盘近似，不求解流体、磁场、自旋黑洞或真实辐射谱，也不改变粒子的捕获规则。天体尺寸、颜色和时间经过调整，不能读取为真实测量。两条瓦解路线均播放两分钟，末段慢放，结束后保留画面。配乐是艺术配音，真空不传播这样的声音。": "The intact star follows a Newtonian parabolic flyby. Disruption uses gradually weakening internal support, one continuous gas population and simplified late damping. Optical bands use an independent thin-disk approximation; they do not solve fluid dynamics, magnetic fields, rotating black holes or real radiation spectra, and do not alter particle capture. Sizes, colors and time are adjusted. Both disruption routes last two minutes, with a slow final section and a retained end frame. Music is artistic; such sound does not travel through vacuum.",
+  "黑色区域显示黑洞暗影；虚线是潮汐参考范围": "The dark area shows the black hole shadow; the dashed circle is a tidal reference.",
+  "晚期亮带会随视角弯曲；切换「从上看」可看清气体轨道": "Late bright bands bend with the view; switch to the top view to follow gas trajectories.",
+  "中央暗区：黑洞的光学暗影": "Central dark area: the black hole shadow"
 }

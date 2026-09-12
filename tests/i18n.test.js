@@ -28,11 +28,11 @@ test('translations interpolate, pluralize and stay scoped to their namespace and
   assert.equal(en('{{count}} 个演示', { count: 1 }), '1 demo');
   assert.equal(en('{{count}} 个演示', { count: 3 }), '3 demos');
   assert.equal(zh('{{count}} 个演示', { count: 1 }), '1 个演示');
-  const topic = translator('test-topic', { '太阳': 'Sun', '第{{step}}步：{{label}}': 'Step {{step}}: {{label}}' }, 'en');
-  assert.equal(topic('太阳'), 'Sun');
+  const topic = translator('test-topic', { '仅供隔离测试的恒星': 'Fixture star', '第{{step}}步：{{label}}': 'Step {{step}}: {{label}}' }, 'en');
+  assert.equal(topic('仅供隔离测试的恒星'), 'Fixture star');
   assert.equal(topic('第{{step}}步：{{label}}', { step: 2, label: 'Earth' }), 'Step 2: Earth');
   assert.equal(topic('小小百科'), 'Little Encyclopedia');
-  assert.equal(en('太阳'), '太阳');
+  assert.equal(en('仅供隔离测试的恒星'), '仅供隔离测试的恒星');
   assert.equal(zh('小小百科'), '小小百科');
 });
 

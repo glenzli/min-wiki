@@ -1,0 +1,19 @@
+{
+  "id": "friction",
+  "title": "滑出去的玩具为什么会停？",
+  "category": "physics",
+  "summary": "三块一样的木头，从一样快的速度出发。看看哪条路让它滑得更远。",
+  "tags": [
+    "摩擦",
+    "运动"
+  ],
+  "duration": "慢慢玩 · 约 5—8 分钟",
+  "modes": [
+    "儿童版",
+    "家长深入版"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-12"
+}

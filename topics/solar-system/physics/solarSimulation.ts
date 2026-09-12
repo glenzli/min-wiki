@@ -1,3 +1,4 @@
+import { teachingDistanceScale, updateTeachingLens, retreatPosition } from '../../../src/visuals/teachingCamera.ts';
 interface PlanetNode {
   data: Planet; group: THREE.Group; tiltGroup: THREE.Group;
   mesh: THREE.Mesh<THREE.SphereGeometry, THREE.ShaderMaterial>;
@@ -72,8 +73,9 @@ export class SolarSimulation {
 
     // Three.js Core
     this.scene = new THREE.Scene();
-    this.perspectiveCamera = new THREE.PerspectiveCamera(45, this.width / this.height, 0.5, 3000);
+    this.perspectiveCamera = new THREE.PerspectiveCamera(45, this.width / this.height, 0.5, 16000);
     this.lineupCamera = new THREE.OrthographicCamera(-170,170,110,-110,.1,3000);
+    updateTeachingLens(this.perspectiveCamera, new THREE.Vector3());
     this.camera = this.perspectiveCamera;
     this.cameraTransition = true;
     this.lineupHalfHeight = 110;
@@ -87,8 +89,8 @@ export class SolarSimulation {
     this.controls = new OrbitControls(this.camera, this.renderer.domElement);
     this.controls.enableDamping = true;
     this.controls.dampingFactor = 0.06;
-    this.controls.maxDistance = 600;
-    this.controls.minDistance = 4;
+    this.controls.maxDistance = 600 * teachingDistanceScale(this.perspectiveCamera.aspect, 45);
+    this.controls.minDistance = 4 * teachingDistanceScale(this.perspectiveCamera.aspect, 45);
     this.controls.minZoom = .4;
     this.controls.maxZoom = 20;
     this.controls.addEventListener('start', () => { this.activeView = 'free'; this.cameraTransition = false; });
@@ -445,6 +447,7 @@ export class SolarSimulation {
       this._camPosTarget.set(-35,170,335);
       this._camLookTarget.set(0,0,0);
     }
+    if (this.viewMode !== 'lineup') retreatPosition(this._camPosTarget, this._camLookTarget, this.perspectiveCamera.aspect, 45);
   }
 
   fitLineupProjection() {
@@ -492,7 +495,10 @@ export class SolarSimulation {
     this.width = this.container.clientWidth || window.innerWidth;
     this.height = this.container.clientHeight || window.innerHeight;
     this.perspectiveCamera.aspect = this.width / this.height;
-    this.perspectiveCamera.updateProjectionMatrix();
+    updateTeachingLens(this.perspectiveCamera, this.controls.target);
+    this.controls.maxDistance = 600 * teachingDistanceScale(this.perspectiveCamera.aspect, 45);
+    this.controls.minDistance = 4 * teachingDistanceScale(this.perspectiveCamera.aspect, 45);
+    if (this.viewMode !== 'lineup' && this.activeView !== 'free') { this.setCameraView(this.activeView); }
     this.fitLineupProjection();
     this.renderer.setSize(this.width, this.height);
   }
@@ -585,6 +591,7 @@ export class SolarSimulation {
         const dist = Math.max(9.5, targetNode.mesh.scale.x * 5.2);
         this._camPosTarget.copy(targetNode.currentPos).add(new THREE.Vector3(dist * 0.7, dist * 0.45, dist * 0.95));
         this._camLookTarget.copy(targetNode.currentPos);
+        retreatPosition(this._camPosTarget, this._camLookTarget, this.perspectiveCamera.aspect, 45);
       }
     }
 

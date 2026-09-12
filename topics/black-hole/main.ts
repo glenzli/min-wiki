@@ -194,8 +194,8 @@ class App {
     const absent=!!SCENARIOS[scenario].noBlackHole;
     $('view-note').hidden=absent;
     const viewNote=this.simulation?.view==='top'
-      ? t("黑色区域是内界；虚线范围仍在黑洞外面")
-      : t("外部气流可能被前后遮挡；切换「从上看」可看清绕行");
+      ? t("黑色区域显示黑洞暗影；虚线是潮汐参考范围")
+      : t("晚期亮带会随视角弯曲；切换「从上看」可看清气体轨道");
     if ($('view-note').textContent!==viewNote) $('view-note').textContent=viewNote;
     const gasStatus = this.simulation?.gasStatus ?? 'error';
     $('scene-loading').hidden=gasStatus!=='loading';

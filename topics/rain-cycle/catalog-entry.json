@@ -1,0 +1,19 @@
+{
+  "id": "rain-cycle",
+  "title": "一滴水的旅行",
+  "category": "earth",
+  "summary": "从地面的水，到云里的小水滴，再回到河流和大海。",
+  "tags": [
+    "水循环",
+    "蒸发",
+    "凝结"
+  ],
+  "duration": "互动探索 / 四步观察",
+  "modes": [
+    "儿童探索"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-12"
+}

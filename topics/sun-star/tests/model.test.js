@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {angularRatio} from '../model.ts';test('fixed-size Sun angular diameter falls with distance',()=>{assert.equal(angularRatio(1),1);assert.ok(Math.abs(angularRatio(2)-.5)<.00001);assert.ok(angularRatio(1000)<.00101);assert.throws(()=>angularRatio(.1));});

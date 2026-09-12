@@ -1,0 +1,20 @@
+{
+  "id": "buoyancy",
+  "title": "水为什么能托住小船？",
+  "category": "physics",
+  "summary": "从一块木头、一团橡皮泥开始，亲眼看看水向上托的力。",
+  "tags": [
+    "浮力",
+    "浮沉",
+    "排水量",
+    "橡皮泥小船"
+  ],
+  "duration": "互动探索 / 三个实验",
+  "modes": [
+    "儿童探索"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-12"
+}

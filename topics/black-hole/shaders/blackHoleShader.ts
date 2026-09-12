@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { BlackHoleOptics } from '../../../src/visuals/blackHoleOptics.ts';
 import { HORIZON_RADIUS } from '../physics/encounter.ts';
 
 export function glowTexture(stops: [number,string][]) {
@@ -14,21 +15,7 @@ export function glowTexture(stops: [number,string][]) {
 }
 
 export function createBlackHole() {
-  const group = new THREE.Group();
-  const core = new THREE.Mesh(new THREE.SphereGeometry(HORIZON_RADIUS, 48, 32),
-    new THREE.MeshBasicMaterial({ color: 0x000000, depthTest: false, transparent: true }));
-  // Teaching silhouette: no soft gas sprite may paint across the black interior.
-  // This is a visibility mask, not relativistic ray tracing. The default top
-  // view separates surviving streams from this silhouette geometrically.
-  core.renderOrder=100;
-  group.add(core);
-  const halo = new THREE.Sprite(new THREE.SpriteMaterial({
-    map: glowTexture([[0, '#00000000'], [.45, '#00000000'], [.51, '#b2ab9d90'], [.54, '#b1a08730'], [.7, '#6579800b'], [1, '#00000000']]),
-    transparent: true, depthWrite: false,
-  }));
-  halo.scale.setScalar(HORIZON_RADIUS * 4);
-  group.add(halo);
-  return group;
+  return new BlackHoleOptics(HORIZON_RADIUS);
 }
 
 export function createStar() {

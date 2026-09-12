@@ -1,0 +1,21 @@
+{
+  "蚂蚁为什么排着队走？": "Why do ants walk in a line?",
+  "地上有一条我们看不见的气味小路。试着擦掉一小段，再帮侦察蚁找到绕行路线。": "There is an invisible scent trail on the ground. Wipe away a small part, then help a scout find a way around.",
+  "把“显示气味”关掉：蚂蚁还能跟着走吗？气味看不见，不等于不存在。": "Turn off “Show scent”. Can the ants still follow it? Invisible does not mean absent.",
+  "展示部分蚂蚁利用踪迹信息素招募觅食伙伴的机制，并非所有蚂蚁都用同一种方式。紫色点不是真实可见物；路线、速度、断点处停留和绕行由教学步骤控制，不是蚁群预测模拟。新路线不会凭空出现，按钮代表侦察蚁已搜索并留下新线索。不要实际擦除野外蚁路或投放食物。": "This shows trail-pheromone recruitment used by some ants; not all ants forage in the same way. Purple dots are not visible in nature. Routes, speeds, the paused search and the detour are teaching steps, not a colony prediction model. A new trail does not appear from nowhere: the button represents a scout having searched and left a new cue. Observe wild ants without erasing trails or putting out food.",
+  "一起观察 · 4–6 岁": "Explore together · Ages 4–6",
+  "给大人的说明与来源": "For grown-ups: explanation and sources",
+  "先猜一猜，再动手试一试。": "Make a guess, then try it.",
+  "互动观察图": "Interactive observation scene",
+  "向前走一步": "Take a step",
+  "擦掉一段气味": "Wipe a scent patch",
+  "侦察蚁找到新路": "Scout finds a new route",
+  "重新开始": "Start again",
+  "显示气味": "Show scent",
+  "跟着气味走": "Following a scent",
+  "一些蚂蚁找到食物后会留下气味痕迹。伙伴用触角探测气味，沿着路线前进。紫色点只是帮我们看见气味。": "Some ants leave scent trails after finding food. Other ants detect the scent with their antennae and follow it. Purple dots help us visualize the scent.",
+  "咦，气味小路断了": "The scent trail has a gap",
+  "失去气味线索时，蚂蚁可能在附近寻找。这里把寻找过程停下来，让你看清缺口。": "Without the scent clue, ants may search nearby. We pause that search here so you can see the gap.",
+  "找到绕行的小路": "A new route around",
+  "侦察蚁找到食物后，沿着新路线留下气味。伙伴可能逐渐跟上新路线。": "After finding food, a scout leaves scent on a new route. Other ants may gradually follow it."
+}

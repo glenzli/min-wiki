@@ -19,7 +19,7 @@ test('published topics have unique safe routes, known categories and deployable 
 });
 test('search combines terms and category, excludes drafts, and handles empty results',()=>{
   const fixture=structuredClone(catalog);fixture.topics.push({...fixture.topics[0],id:'draft-example',status:'draft'});
-  assert.deepEqual(findTopics(fixture,{query:' 恒星  引力 '}).map(item=>item.id),['black-hole']);
+  assert.deepEqual(findTopics(fixture,{query:' 恒星  引力 '}).map(item=>item.id),['black-hole','galactic-center']);
   assert.equal(findTopics(fixture,{category:'life',query:'黑洞'}).length,0);
   assert.equal(findTopics(fixture,{query:'不存在的问题'}).length,0);
   assert.equal(findTopics(fixture).length, catalog.topics.filter(item => item.status === 'published').length);

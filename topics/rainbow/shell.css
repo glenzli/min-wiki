@@ -1,0 +1,17 @@
+/* Rainbow defaults to a white reading surface. Explicit dark reading preference
+   remains supported; the optical diagrams keep their white laboratory background. */
+:root[data-theme="light"] {
+  --page: #fff;
+  --surface: #fcfcfe;
+  --ink: #293246;
+  --secondary: #606a7b;
+  --quiet: #788294;
+  --border: #e6e8ef;
+  --accent: #756091;
+  --tint: #f2eef8;
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --accent: #cbb7e4;
+  --tint: #302b3a;
+}

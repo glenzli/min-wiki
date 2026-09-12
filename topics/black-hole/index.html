@@ -41,9 +41,9 @@
           <div class="scene-loading" id="gas-error" role="status" hidden><p>这条路线暂时没有准备好。</p><button id="btn-retry-gas" class="text-button">重新准备</button></div>
           <span class="scene-index" aria-hidden="true">ENCOUNTER / 01</span>
           <div id="star-label" class="object-label star-label"><span class="label-rule"></span><strong>像太阳的恒星</strong><small>自己会发光</small></div>
-          <div id="hole-label" class="object-label hole-label"><span class="label-rule"></span><strong>黑洞</strong><small>黑色内界：进入后不能返回</small></div>
+          <div id="hole-label" class="object-label hole-label"><span class="label-rule"></span><strong>黑洞</strong><small>中央暗区：黑洞的光学暗影</small></div>
           <div class="scene-legend" id="scene-legend"><span><i class="legend-path"></i>恒星的路线</span><span id="tidal-legend"><i class="legend-tidal"></i>潮汐范围，仍在黑洞外</span></div>
-          <div class="view-controls" role="group" aria-label="观察视角"><button data-view="overview" aria-pressed="false">立体看</button><button data-view="top" aria-pressed="true">从上看</button><button data-view="free" aria-pressed="false">自由转动</button></div>
+          <div class="view-controls" role="group" aria-label="观察视角"><button data-view="overview" aria-pressed="true">立体看</button><button data-view="top" aria-pressed="false">从上看</button><button data-view="free" aria-pressed="false">自由转动</button></div>
           <div id="scene-error" class="scene-error" hidden><h2>画面暂时没有打开</h2><p>请使用支持 WebGL 的浏览器，或刷新页面再试一次。下方仍可切换步骤阅读故事。</p></div>
         </div>
         <div class="playback-panel">
@@ -61,7 +61,7 @@
     <p>可以先比较「没有黑洞」与「安全绕过」：两者共用初始位置和速度，前者匀速直行，后者受引力偏转。再比较「瓦解后回流」和「更深掠过」。问孩子：恒星的路线、形状和最后的样子，哪里不一样？这里的恒星像太阳，并不是说我们的太阳正在接近黑洞。</p>
     <h3>路过，不一定被吞掉</h3><p>恒星的去向取决于轨道与潮汐作用。距离足够远时可以完整飞掠；非常靠近时，恒星两侧受到的引力差可能超过它自身引力的维系，造成潮汐瓦解。实际还可能部分瓦解。「更深掠过」减小最近距离，部分气体在首次经过时进入模型内边界；这不代表每次瓦解都如此。</p>
     <h3>黑洞周围为什么会亮？</h3><p>发光的是视界外的炽热气体。部分瓦解气体可能逃离，部分可能留下，经碰撞和能量损失逐渐形成吸积盘；比例不是固定的一半。喷流并不总会出现，也不是从事件视界内部逃出的光，本动画不展示喷流。</p>
-    <h3>怎样理解画面里的线和比例？</h3><p>金色线表示路线，橙色虚线表示潮汐作用较强的参考范围，它不是真实存在的边界，也不等于事件视界。黑色核心和细亮边帮助辨认黑洞位置；亮边是视觉标记，不是计算得到的光子环。气体沿用相同的自然色系，通过内旋、数量减少和越界消失表现落入。黑色区域采用覆盖遮罩，避免柔软粒子的亮边涂进内界。侧面或自由视角下的遮挡再出现不代表越界逃出；没有求解相对论光线传播。</p><p>完整恒星采用牛顿引力下的抛物线飞掠。瓦解过程用逐渐减弱的内部支撑近似，同一批气体持续运动；后段用简化阻尼示意耗散与内移，未求解流体、磁场或广义相对论光线传播。近黑洞处仅作定性展示，内边界捕获并未求解相对论捕获阈值、红移或光传播。天体尺寸、颜色和时间均为便于观察而调整，不能读取为真实测量。两条瓦解路线均播放两分钟；末段平滑慢放，气体持续向内旋转并逐步减少，便于观察落入过程。这不是永久稳态，播放结束后画面会保留。配乐是艺术配音，太空真空中不传播这样的声音。</p>
+    <h3>怎样理解画面里的线和比例？</h3><p>金色线表示路线，橙色虚线表示潮汐作用较强的参考范围，不等于事件视界。气体动力学的吸收边界与黑洞光学暗区使用独立显示尺度。晚期吸积盘采用无自旋黑洞、薄盘假设下的简化光线积分：后方盘面的一些光绕过黑洞，形成上方、下方的弯曲亮带。选择立体或自由视角观察它；从上方看则更容易辨认气体轨道。</p><p>完整恒星采用牛顿引力下的抛物线飞掠。瓦解过程用逐渐减弱的内部支撑近似，同一批气体持续运动；后段用简化阻尼示意耗散与内移。光学亮带是独立的薄盘近似，不求解流体、磁场、自旋黑洞或真实辐射谱，也不改变粒子的捕获规则。天体尺寸、颜色和时间经过调整，不能读取为真实测量。两条瓦解路线均播放两分钟，末段慢放，结束后保留画面。配乐是艺术配音，真空不传播这样的声音。</p>
     <div class="sources"><span class="small-label">延伸阅读 · NASA</span><a href="https://science.nasa.gov/universe/what-happens-when-something-gets-too-close-to-a-black-hole/" target="_blank" rel="noreferrer">靠近黑洞时会发生什么 ↗</a><a href="https://science.nasa.gov/universe/black-holes/anatomy/" target="_blank" rel="noreferrer">认识黑洞与吸积盘 ↗</a></div>
     <button id="btn-understood" class="play-button">回到小剧场</button>
   </dialog>

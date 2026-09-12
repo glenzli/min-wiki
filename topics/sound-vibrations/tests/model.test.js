@@ -1,0 +1,1 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {frequency} from '../model.ts';test('quadruple ideal tension doubles pitch and zero tension is rejected',()=>{assert.equal(frequency(4),2*frequency(1));assert.throws(()=>frequency(0));});

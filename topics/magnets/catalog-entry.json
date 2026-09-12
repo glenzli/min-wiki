@@ -1,0 +1,19 @@
+{
+  "id": "magnets",
+  "title": "磁铁会吸住什么？",
+  "category": "physics",
+  "summary": "先挑一个物品，再让磁铁靠近。换成另一块磁铁，还能试试“推开”。",
+  "tags": [
+    "磁铁",
+    "材料"
+  ],
+  "duration": "慢慢玩 · 约 5—8 分钟",
+  "modes": [
+    "儿童版",
+    "家长深入版"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-12"
+}

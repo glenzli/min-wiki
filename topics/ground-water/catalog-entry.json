@@ -1,0 +1,19 @@
+{
+  "id": "ground-water",
+  "title": "雨水落到地上以后呢？",
+  "category": "earth",
+  "summary": "给不同的地面下一场雨，看看水流走了、渗下去了，还是留下来了。",
+  "tags": [
+    "雨水",
+    "入渗",
+    "地表径流"
+  ],
+  "duration": "互动探索 / 四步观察",
+  "modes": [
+    "儿童探索"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-12"
+}

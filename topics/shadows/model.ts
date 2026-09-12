@@ -1,0 +1,1 @@
+export function shadowTip(lightX:number, lightHeight:number, objectX=450, objectHeight=120){if(lightHeight<=objectHeight)throw new RangeError('light must be above object');return objectX+(objectX-lightX)*objectHeight/(lightHeight-objectHeight);}

@@ -1,0 +1,1 @@
+Maps: Solar System Scope / INOVE, https://www.solarsystemscope.com/textures/ . CC BY 4.0, https://creativecommons.org/licenses/by/4.0/ . Reused unchanged from the existing local solar-system assets downloaded 2026-09-08. These are static educational maps; they are not live imagery. Other moon surface details are procedural illustrations.

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-content-theme="light" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ffffff" />
+  <meta name="description" content="探索白光色散、雨滴折射与反射，理解双彩虹和全圆彩虹的形成条件。" />
+  <title>彩虹的诞生：从三棱镜到天空之桥 · 小小百科</title>
+  <script type="module" src="/src/platform/theme.ts"></script>
+  <link rel="stylesheet" href="./topic.css" />
+</head>
+<body data-mode="kids">
+  <div id="encyclopedia-nav" data-topic="rainbow"></div>
+  <div class="app-shell">
+    <header class="page-header">
+      <div class="brand">
+        <span class="brand-orbit" aria-hidden="true">◒</span>
+        <span>光与颜色实验室<small>A LITTLE WINDOW INTO OPTICS</small></span>
+      </div>
+      <div class="header-actions">
+        <div class="mode-switch" role="group" aria-label="讲解版本">
+          <button data-mode="kids" aria-pressed="true">儿童版<span>看故事</span></button>
+          <button data-mode="academic" aria-pressed="false">学术版<span>理解与讲述</span></button>
+        </div>
+        <button id="btn-about" class="text-button"><span aria-hidden="true">ⓘ</span> 光学原理与实验</button>
+      </div>
+    </header>
+    <main class="experience">
+      <aside class="story-panel">
+        <div class="eyebrow"><span></span> 物质与现象 · 01</div>
+        <h1>彩虹从哪里来？<br><span class="title-sub">跟着一束光去旅行</span></h1>
+        <p class="intro">把阳光拆开，钻进一滴雨，再回到天空。<br>一步一步，看见彩虹形成的过程。</p>
+        <div class="story-divider"></div>
+        <div id="model-readout" class="academic-only model-readout" aria-label="几何光学读数">
+          <span>水滴模型参考值 <small>由折射率计算</small></span>
+          <div>
+            <span>水的折射率 n <strong id="model-index">1.333</strong></span>
+            <span>红光出射极值角 <strong id="model-red-angle">42.3°</strong></span>
+            <span>紫光出射极值角 <strong id="model-violet-angle">40.3°</strong></span>
+          </div>
+        </div>
+        <section id="story" aria-live="polite" aria-atomic="true">
+          <div class="chapter"><span id="phase-number">01</span><span>/ 05</span><span class="chapter-line"></span><span>光学奇境</span></div>
+          <h2 id="phase-title">看似透明的阳光，藏着一整道彩虹</h2>
+          <p id="phase-desc"></p>
+          <div class="academic-only formula-card">
+            <span class="small-label">这一幕的物理关系</span>
+            <p id="phase-formula" class="formula"></p>
+            <p id="phase-terms"></p>
+          </div>
+          <div class="observation">
+            <span class="observe-icon" aria-hidden="true">✧</span>
+            <div>
+              <span id="notice-heading" class="small-label">找一找，想一想</span>
+              <p id="phase-notice"></p>
+            </div>
+          </div>
+        </section>
+        <div class="sidebar-footer"><span class="tiny-star">✳</span> 每个颜色，都有自己的路线。</div>
+      </aside>
+      <section class="theater" aria-label="光路与彩虹互动示意">
+        <div class="scenario-bar">
+          <span class="small-label">探索情景</span>
+          <div class="segmented" role="group" aria-label="选择探索情景">
+            <button aria-label="三棱镜色散" data-scenario="prism" aria-pressed="true"><span class="route-dot prism-dot"></span>三棱镜色散</button>
+            <button aria-label="雨滴内部光路" data-scenario="raindrop" aria-pressed="false"><span class="route-dot raindrop-dot"></span>雨滴内部光路</button>
+            <button aria-label="双彩虹与暗带" data-scenario="double" aria-pressed="false"><span class="route-dot double-dot"></span>双彩虹与暗带</button>
+            <button aria-label="天空全圆彩虹" data-scenario="sky" aria-pressed="false"><span class="route-dot sky-dot"></span>天空全圆彩虹</button>
+          </div>
+        </div>
+        <p class="route-description" id="route-description"></p>
+        <label id="sun-control" class="sun-control" hidden>
+          <span>太阳高度</span><input id="sun-altitude" type="range" min="0" max="60" value="12" step="1" /><output id="sun-value">12°</output>
+        </label>
+        <div id="canvas-container" class="space-scene">
+          <div class="scene-corner"><span class="live-dot"></span><span id="scene-status">白光入射 · 准备进入三棱镜</span></div>
+          <div id="scene-error" class="scene-error" hidden>
+            <h2>光路示意暂时没有打开</h2>
+            <p>请刷新页面重试。故事讲解与光学数据仍可阅读。</p>
+          </div>
+        </div>
+        <div class="tools-bar">
+          <div class="spectrum-strip" id="spectrum-strip" role="toolbar" aria-label="选择要追踪的颜色">
+            <!-- Populated via JS -->
+          </div>
+          <button id="btn-toggle-recombine" class="feature-toggle-btn" aria-pressed="false">汇聚光谱</button>
+          <div class="segmented" id="sky-view-modes" hidden>
+            <button data-skyview="ground" aria-pressed="true" class="view-mode-btn active">地面视野</button>
+            <button data-skyview="unobstructed" aria-pressed="false" class="view-mode-btn">无遮挡全圆</button>
+          </div>
+        </div>
+          <div class="optic-card" id="optic-card" hidden>
+            <div class="optic-card-header">
+              <div class="optic-card-title"><span id="card-color-name">红光</span> <span id="card-color-tag" class="optic-card-tag">λ = 680 nm</span></div>
+              <button id="btn-close-card" class="optic-card-btn-close" aria-label="关闭详情卡片">×</button>
+            </div>
+            <div class="optic-card-metrics">
+              <div class="optic-metric-item">
+                <span class="optic-metric-label">真空中波长</span>
+                <strong id="card-wavelength" class="optic-metric-val">680 nm</strong>
+              </div>
+              <div class="optic-metric-item">
+                <span class="optic-metric-label">水中折射率 n</span>
+                <strong id="card-index" class="optic-metric-val">1.3312</strong>
+              </div>
+              <div class="optic-metric-item">
+                <span class="optic-metric-label">主虹角半径</span>
+                <strong id="card-primary-angle" class="optic-metric-val">42.3° (外圈)</strong>
+              </div>
+              <div class="optic-metric-item">
+                <span class="optic-metric-label">副虹角半径</span>
+                <strong id="card-secondary-angle" class="optic-metric-val">50.4° (内圈)</strong>
+              </div>
+            </div>
+            <p id="card-desc" class="optic-card-desc"></p>
+          </div>
+        <div class="playback-panel">
+          <div id="stage-buttons" class="stage-buttons" role="group" aria-label="演示步骤"></div>
+          <div class="transport">
+            <button id="btn-play" class="play-button" aria-label="暂停演示"><span id="play-icon" aria-hidden="true">Ⅱ</span><span id="play-text">暂停演示</span></button>
+            <button id="btn-restart" class="restart-button" aria-label="从头观察" title="从头观察">↺</button>
+            <div class="scrubber">
+              <label for="progress" class="sr-only">光路演进进度</label>
+              <input id="progress" type="range" min="0" max="1000" value="0" step="1" />
+              <div class="time-labels"><span id="elapsed">0.0 秒</span><span id="duration">20.0 秒</span></div>
+            </div>
+            <label class="speed-label">
+              <span class="sr-only">运行速度</span>
+              <select id="speed" aria-label="运行速度">
+                <option value="0.5">慢慢看 · 0.5×</option>
+                <option value="1" selected>正常 · 1×</option>
+                <option value="2">快一点 · 2×</option>
+              </select>
+            </label>
+          </div>
+          <div class="player-footer">
+            <span class="keyboard-hint">空格键播放 / 暂停 · 点选颜色追踪光线</span>
+            <div class="display-options">
+              <label><input id="toggle-guides" type="checkbox" checked />显示光路标注</label>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer class="page-footer">
+      <span>光路为教学示意，棱镜色散间距经过放大；光带连续渐变。</span>
+      <span>一束光，四次探索。</span>
+    </footer>
+  </div>
+  <dialog id="about-dialog" aria-labelledby="about-title">
+    <button id="btn-close" class="dialog-close" aria-label="关闭说明">×</button>
+    <div class="eyebrow">光学与大气现象</div>
+    <h2 id="about-title">这些画面说明了什么？</h2>
+    <h3>白光与色散</h3>
+    <p>阳光包含连续的可见光谱。不同波长在玻璃中的折射率不同，棱镜把它们分开。演示使用连续渐变光带，并放大色散间距，让光路容易观察。“汇聚光谱”展示用透镜将颜色重新叠加的示意，不是精确的实验装置图。</p>
+    <h3>一滴雨中的光路</h3>
+    <p>水滴按球形截面处理。主虹光线经过两次折射和一次内反射，副虹多一次内反射。反射仅带走部分能量；反射率随入射角和偏振变化，并不是固定的百分数。</p>
+    <h3>角度与暗带</h3>
+    <p>约 42° 和 51° 是相对反太阳方向的角半径。本页按各色折射率计算角度。主虹和副虹之间缺少这两类光路送来的光，因此较暗，但并不是没有任何光。</p>
+    <h3>全圆彩虹的条件</h3>
+    <p>彩虹围绕反太阳点。地面视图假定平坦、不透明的地面；太阳越高，露出的弧越少。“无遮挡全圆”假定相应方向都有雨雾，而且下方视野未被挡住。登高有助于满足条件，但不能保证看到全圆。</p>
+    <div class="sources">
+      <span class="small-label">资料与延伸阅读</span>
+      <a href="https://weather.metoffice.gov.uk/learn-about/weather/optical-effects/rainbows" target="_blank" rel="noreferrer">英国气象局：彩虹与双彩虹 ↗</a>
+      <a href="https://www.animations.physics.unsw.edu.au/jw/light/Newtons-prisms.htm" target="_blank" rel="noreferrer">新南威尔士大学：棱镜与光谱 ↗</a>
+    </div>
+    <button id="btn-understood" class="play-button">返回光学探索</button>
+  </dialog>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>
