@@ -8,7 +8,17 @@ import './style.css';
 translateDocument(t);
 mountTopicNavigation("rain-cycle");
 const el=(id:string)=>document.getElementById(id)!;
-let progress=0,condition=0;
+let progress=0,condition=0,transitionFrame=0;
+function cancelTransition(){cancelAnimationFrame(transitionFrame);transitionFrame=0;}
+function goTo(target:number){
+ cancelTransition();
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches){progress=target;update();return;}
+ const start=performance.now(),from=progress;
+ const tick=(now:number)=>{const f=Math.min(1,(now-start)/1100);progress=from+(target-from)*(f*f*(3-2*f));update();if(f<1)transitionFrame=requestAnimationFrame(tick);else transitionFrame=0;};
+ transitionFrame=requestAnimationFrame(tick);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)cancelTransition();});
+window.addEventListener('pagehide',cancelTransition);
 function update(){
  const stage=Math.min(3,Math.floor(progress*4));
  el('story-title').textContent=stages[stage];el('story').textContent=stories[stage];
@@ -20,11 +30,11 @@ function update(){
  el('scene').innerHTML=result.scene;
  el('metrics').replaceChildren(...result.labels.map(label=>{const span=document.createElement('span');span.textContent=label;return span;}));
 }
-el('stages').replaceChildren(...stages.map((label,i)=>{const b=document.createElement('button');b.textContent=label;b.dataset.number=String(i+1);b.addEventListener('click',()=>{progress=i/3;update();});return b;}));
-el('progress').addEventListener('input',()=>{progress=Number((el('progress') as HTMLInputElement).value)/1000;update();});
-el('condition').addEventListener('change',()=>{condition=Number((el('condition') as HTMLSelectElement).value);update();});
-el('next').addEventListener('click',()=>{progress=Math.min(1,(Math.floor(progress*4)+1)/3);update();});
-el('reset').addEventListener('click',()=>{progress=0;condition=0;(el('condition') as HTMLSelectElement).value='0';update();});
+el('stages').replaceChildren(...stages.map((label,i)=>{const b=document.createElement('button');b.textContent=label;b.dataset.number=String(i+1);b.addEventListener('click',()=>{goTo(i/3);});return b;}));
+el('progress').addEventListener('input',()=>{cancelTransition();progress=Number((el('progress') as HTMLInputElement).value)/1000;update();});
+el('condition').addEventListener('change',()=>{cancelTransition();condition=Number((el('condition') as HTMLSelectElement).value);update();});
+el('next').addEventListener('click',()=>{goTo(Math.min(1,(Math.floor(progress*4)+1)/3));});
+el('reset').addEventListener('click',()=>{cancelTransition();progress=0;condition=0;(el('condition') as HTMLSelectElement).value='0';update();});
 update();
 
 mountReadingMode('details:not(.references)');

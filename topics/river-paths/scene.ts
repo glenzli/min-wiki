@@ -9,7 +9,7 @@ export function draw(p:number,condition:number){
  const points=Array.from({length:161},(_,i)=>point(i/160));
  const lengths=[0];for(let i=1;i<points.length;i++)lengths.push(lengths[i-1]!+Math.hypot(points[i]![0]!-points[i-1]![0]!,points[i]![1]!-points[i-1]![1]!));
  const atLength=(q:number)=>{const length=q*lengths.at(-1)!;let i=1;while(i<lengths.length-1&&lengths[i]!<length)i++;const a=points[i-1]!,b=points[i]!,f=(length-lengths[i-1]!)/(lengths[i]!-lengths[i-1]!);return [a[0]!+(b[0]!-a[0]!)*f,a[1]!+(b[1]!-a[1]!)*f];};
- const sediment=stage>=2?Array.from({length:23},(_,i)=>{const [x,y]=atLength((i+1)/25*(.2+.8*p));return `<circle cx="${x}" cy="${y}" r="${2+i%3}" fill="#d2a45c"/>`;}).join(''):'';
+ const sediment=Array.from({length:23},(_,i)=>{const [x,y]=atLength((i+1)/25*(.2+.8*p));return `<circle cx="${x}" cy="${y}" r="${2+i%3}" fill="#d2a45c" opacity="${Math.max(0,Math.min(1,(p-.4)/.2))}"/>`;}).join('');
  // Offset each bank from the local centerline normal and curvature.
  const center=point(.28),before=point(.26),after=point(.30);
  const tangent=[after[0]!-before[0]!,after[1]!-before[1]!],norm=Math.hypot(...tangent);
@@ -20,14 +20,14 @@ export function draw(p:number,condition:number){
  const outerRight=outer[0]!>inner[0]!,outerLabel=outerRight?665:167,innerLabel=outerRight?167:665;
 
  const rock=condition===2?'':`<g transform="translate(${condition===0?384:290} 217)"><ellipse cx="10" cy="33" rx="61" ry="18" fill="#4e6d54" opacity=".18"/><path d="M-48 10L-29-35L9-49L49-22L58 16L24 42L-27 35Z" fill="#a1afa1" stroke="#6f8578" stroke-width="3"/><path d="M-29-35L-5 5L49-22M-5 5L24 42M-5 5L-48 10" stroke="#c5cdb9" stroke-width="2" fill="none"/></g>`;
- const tree=(x:number,y:number,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><ellipse cy="28" rx="24" ry="8" fill="#527b5822"/><path d="M0 2v28" stroke="#8b7650" stroke-width="6"/><circle cy="-12" r="24" fill="#739967"/><circle cx="-11" cy="-18" r="17" fill="#92ac78"/></g>`;
- return {labels:[t('蓝色：水流'),t('金色：泥沙'),t('坡度与过程已放大')],scene:`<defs><linearGradient id="land" x2="0" y2="1"><stop stop-color="#d9e3c4"/><stop offset="1" stop-color="#abc694"/></linearGradient><marker id="flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#e9f9eb"/></marker></defs>
+ const tree=(x:number,y:number,s=1)=>`<g transform="translate(${x} ${y}) scale(${s})"><ellipse cy="28" rx="24" ry="8" fill="#527b5822"/><path d="M0 2v28" stroke="#8b7650" stroke-width="6"/><circle cy="-12" r="24" fill="url(#foliage)"/><circle cx="-11" cy="-18" r="17" fill="#92ac78"/></g>`;
+ return {labels:[t('蓝色：水流'),t('金色：泥沙'),t('坡度与过程已放大')],scene:`<defs><radialGradient id="foliage" cx=".3" cy=".2"><stop stop-color="#b4c78e"/><stop offset=".6" stop-color="#82a36e"/><stop offset="1" stop-color="#5f855e"/></radialGradient><linearGradient id="stream" x2="1" y2=".4"><stop stop-color="#77b8bc"/><stop offset=".5" stop-color="#4e939f"/><stop offset="1" stop-color="#88c5bf"/></linearGradient><linearGradient id="land" x2="0" y2="1"><stop stop-color="#d9e3c4"/><stop offset="1" stop-color="#abc694"/></linearGradient><marker id="flow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#e9f9eb"/></marker></defs>
  <rect x="25" y="23" width="800" height="484" rx="27" fill="url(#land)"/>
  ${Array.from({length:6},(_,i)=>`<path d="M${75+i*9} ${100+i*58}Q240 ${80+i*58} 320 ${105+i*58}T770 ${100+i*58}" stroke="#7d9f6a" stroke-width="2" fill="none" opacity=".16"/>`).join('')}
  ${tree(157,135,1.3)}${tree(680,170,1.1)}${tree(174,379,1)}${tree(657,395,.9)}${tree(732,337,.65)}
  <path d="${curve}" fill="none" stroke="#78966e" stroke-width="86" opacity=".35"/>
- ${stage===3?`<ellipse cx="${outer[0]}" cy="${outer[1]}" rx="27" ry="42" fill="#c58c53" opacity=".8"/><ellipse cx="${inner[0]}" cy="${inner[1]}" rx="27" ry="33" fill="#e0bb76"/>`:''}
- <path d="${curve}" fill="none" stroke="#dce9cc" stroke-width="69" stroke-linecap="round"/><path d="${curve}" fill="none" stroke="#65adb2" stroke-width="55" stroke-linecap="round" pathLength="100" stroke-dasharray="${20+p*80} 100"/>
+ ${`<g opacity="${Math.max(0,Math.min(1,(p-.65)/.3))}"><ellipse cx="${outer[0]}" cy="${outer[1]}" rx="27" ry="42" fill="#c58c53" opacity=".8"/><ellipse cx="${inner[0]}" cy="${inner[1]}" rx="27" ry="33" fill="#e0bb76"/></g>`}
+ <path d="${curve}" fill="none" stroke="#dce9cc" stroke-width="69" stroke-linecap="round"/><path d="${curve}" fill="none" stroke="url(#stream)" stroke-width="55" stroke-linecap="round" pathLength="100" stroke-dasharray="${20+p*80} 100"/>
  <path d="${curve}" fill="none" stroke="#a8e0da" stroke-width="10" stroke-linecap="round" pathLength="100" stroke-dasharray="5 10" opacity=".7"/>
  ${sediment}${rock}
  <path d="M410 106L419 143M411 135L419 143L425 133M410 414L438 446M424 444L438 446L437 432" fill="none" stroke="#f1f9df" stroke-width="4" stroke-linecap="round"/>
