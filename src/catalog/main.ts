@@ -1,7 +1,7 @@
 import { t, translateDocument, languageHref, mountLanguageControl } from '../platform/i18n.ts';
 import type { Topic } from './model.ts';
 import catalogData from '../../content/catalog.json';
-import { findTopics, readFilters, topicHref, validateCatalog, PAGE_SIZE } from './model.ts';
+import { findTopics, readFilters, topicHref, validateCatalog, paginate, readPage } from './model.ts';
 import { mountThemeControl, setContentTheme } from '../platform/theme.ts';
 import '../platform/shell.css';
 translateDocument();
@@ -32,7 +32,7 @@ function $(id: string): HTMLElement {
   if (!element) throw new Error(`Missing page element: ${id}`);
   return element;
 }
-let filters=readFilters(location.search,catalog), limit=PAGE_SIZE;
+let filters=readFilters(location.search,catalog), page=readPage(location.search);
 const published=catalog.topics.filter(topic=>topic.status==='published');
 const covers=import.meta.glob<string>(['../../topics/*/cover.svg','../../topics/*/cover-v2.jpg','../../topics/*/cover-v3.jpg'], { query: '?url', import: 'default', eager: true });
 mountThemeControl($('catalog-appearance'));
@@ -45,7 +45,7 @@ function categoryButton(id: string,name: string,symbol: string,count: number) {
   const title=document.createElement('span'); title.textContent=name;
   const total=document.createElement('small'); total.textContent=String(count);
   button.append(icon,title,total); button.setAttribute('aria-pressed',String(filters.category===id));
-  button.addEventListener('click',()=>{ filters.category=id; limit=PAGE_SIZE; render(); });
+  button.addEventListener('click',()=>{ filters.category=id; page=1; render(); });
   return button;
 }
 $('categories').append(categoryButton('all',t("全部"),'▦',published.length),...catalog.categories.map(category=>categoryButton(category.id,category.name,category.symbol,published.filter(topic=>topic.category===category.id).length)));
@@ -75,16 +75,43 @@ function render(syncUrl=true) {
   for(const button of Array.from($('categories').children) as HTMLElement[]) button.setAttribute('aria-pressed',String(button.dataset.category===filters.category));
   const matches=findTopics(catalog,filters);
   $('result-count').textContent=t("{{count}} 个演示", {count: matches.length});
+  const paging = paginate(matches.length, page); page = paging.page;
   $('topic-grid').classList.toggle('single-topic',matches.length===1);
-  $('topic-grid').replaceChildren(...matches.slice(0,limit).map(topicCard));
+  $('topic-grid').replaceChildren(...matches.slice(paging.start,paging.end).map(topicCard));
   $('empty-state').hidden=matches.length>0;
   $('empty-title').textContent=filters.query.trim()?t("还没有找到这个问题"):t("这片知识花园，等着慢慢生长。");
   $('empty-description').textContent=filters.query.trim()?t("试试“恒星”“黑洞”或“引力”，也可以清除筛选。"):t("这个分类暂时还没有演示。先去看看恒星的旅程吧。");
-  $('load-more').hidden=matches.length<=limit;
-  if(syncUrl) {const url=new URL(location.href);url.search='';url.searchParams.set('lang',document.documentElement.lang === 'en' ? 'en' : 'zh');if(filters.category!=='all')url.searchParams.set('category',filters.category);if(filters.query)url.searchParams.set('q',filters.query);history.replaceState(null,'',url);}
+  for (const id of ['pagination-top', 'pagination-bottom']) {
+    const nav = $(id); nav.hidden = paging.pages <= 1; nav.replaceChildren();
+    const link = (number: number, label: string) => {
+      const a = document.createElement('a'); a.textContent = label;
+      const url = new URL(location.href); url.search = ''; url.hash = 'collection-title';
+      url.searchParams.set('lang', document.documentElement.lang === 'en' ? 'en' : 'zh');
+      if (filters.category !== 'all') url.searchParams.set('category', filters.category);
+      if (filters.query) url.searchParams.set('q', filters.query);
+      if (number > 1) url.searchParams.set('page', String(number));
+      a.href = url.pathname + url.search + url.hash;
+      if (number === page) a.setAttribute('aria-current', 'page');
+      return a;
+    };
+    const direction = (number: number, label: string) => {
+      if (number < 1 || number > paging.pages) {
+        const span = document.createElement('span'); span.className = 'unavailable'; span.textContent = label;
+        span.setAttribute('aria-disabled', 'true'); return span;
+      }
+      return link(number, label);
+    };
+    nav.append(direction(page - 1, t('上一页')));
+    let previous = 0;
+    for (const number of paging.visible) {
+      if (previous && number - previous > 1) { const dots = document.createElement('span'); dots.className = 'page-gap'; dots.textContent = '…'; nav.append(dots); }
+      const a = link(number, String(number)); a.setAttribute('aria-label', t('第 {{page}} 页', {page: number})); nav.append(a); previous = number;
+    }
+    nav.append(direction(page + 1, t('下一页')));
+  }
+  if(syncUrl) {const url=new URL(location.href);url.search='';url.searchParams.set('lang',document.documentElement.lang === 'en' ? 'en' : 'zh');if(filters.category!=='all')url.searchParams.set('category',filters.category);if(filters.query)url.searchParams.set('q',filters.query);if(page>1)url.searchParams.set('page',String(page));history.replaceState(null,'',url);}
 }
-$('search').addEventListener('input',()=>{filters.query=$('search').value;limit=PAGE_SIZE;render();});
-$('clear-filters').addEventListener('click',()=>{filters={category:'all',query:''};$('search').value='';limit=PAGE_SIZE;render();$('search').focus();});
-$('load-more').addEventListener('click',()=>{limit+=PAGE_SIZE;render();});
-window.addEventListener('popstate',()=>{filters=readFilters(location.search,catalog);$('search').value=filters.query;limit=PAGE_SIZE;render(false);});
+$('search').addEventListener('input',()=>{filters.query=$('search').value;page=1;render();});
+$('clear-filters').addEventListener('click',()=>{filters={category:'all',query:''};$('search').value='';page=1;render();$('search').focus();});
+window.addEventListener('popstate',()=>{filters=readFilters(location.search,catalog);$('search').value=filters.query;page=readPage(location.search);render(false);});
 render(false);

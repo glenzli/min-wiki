@@ -43,3 +43,15 @@ export function findTopics(catalog: Catalog, {category = 'all', query = ''} = {}
     return terms.every(term => searchable.includes(term));
   });
 }
+
+export function paginate(total: number, requested: number, size = PAGE_SIZE) {
+  const pages = Math.max(1, Math.ceil(total / size));
+  const page = Math.min(pages, Math.max(1, Number.isSafeInteger(requested) ? requested : 1));
+  const visible = Array.from({length: pages}, (_, i) => i + 1)
+    .filter(n => n === 1 || n === pages || Math.abs(n - page) <= 1);
+  return { page, pages, start: (page - 1) * size, end: page * size, visible };
+}
+export function readPage(search: string) {
+  const raw = new URLSearchParams(search).get('page') ?? '1';
+  return /^\d+$/.test(raw) && Number.isSafeInteger(Number(raw)) ? Math.max(1, Number(raw)) : 1;
+}

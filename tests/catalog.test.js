@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { findTopics, readFilters, validateCatalog, topicHref, PAGE_SIZE } from '../src/catalog/model.ts';
+import { findTopics, readFilters, validateCatalog, topicHref, PAGE_SIZE, paginate, readPage } from '../src/catalog/model.ts';
 import { resolveTheme, themePreference } from '../src/platform/theme.ts';
 const catalog=JSON.parse(readFileSync(new URL('../content/catalog.json',import.meta.url),'utf8'));
 
@@ -44,4 +44,14 @@ test('appearance preference overrides content and invalid saved values fall back
   assert.equal(resolveTheme('dark','light'),'dark');
   assert.equal(resolveTheme('invalid','dark'),'dark');
   assert.equal(themePreference(null),'auto');
+});
+
+test('pagination clamps invalid URLs and returns adjacent pages with endpoints', () => {
+  assert.equal(readPage('?page=-3'), 1);
+  assert.equal(readPage('?page=2.5'), 1);
+  assert.equal(readPage('?page=2'), 2);
+  assert.equal(paginate(49, 999).page, 3);
+  assert.deepEqual(paginate(49, 2), {page:2,pages:3,start:24,end:48,visible:[1,2,3]});
+  assert.deepEqual(paginate(240, 5).visible, [1,4,5,6,10]);
+  assert.equal(paginate(0, 5).page, 1);
 });

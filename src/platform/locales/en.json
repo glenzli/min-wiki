@@ -340,5 +340,9 @@
   "慢慢玩 · 约 6—9 分钟": "Explore at your pace · About 6–9 minutes",
   "讲解方式": "Reading mode",
   "先动手观察，再说说你发现了什么。": "Try the experiment, then describe what you notice.",
-  "深入说明已展开：继续往下看原理、模型边界与来源。": "Deeper notes are open below: explore the explanation, model limits and sources."
+  "深入说明已展开：继续往下看原理、模型边界与来源。": "Deeper notes are open below: explore the explanation, model limits and sources.",
+  "目录分页": "Catalog pages",
+  "上一页": "Previous",
+  "下一页": "Next",
+  "第 {{page}} 页": "Page {{page}}"
 }
