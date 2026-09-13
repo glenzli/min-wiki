@@ -37,5 +37,22 @@
   "水不用烧开，也会从表面慢慢变成看不见的水蒸气。水蒸气遇冷可以凝结成小水滴；冷杯外的水珠来自空气里的水蒸气。": "Water can slowly become invisible water vapor at its surface without boiling. When cooled, vapor can condense into droplets. Droplets on the outside of a cold glass come from water vapor in the air.",
   "先看融化，再把过程换成结冰。水变少的时候，是不是一定要烧开？摸一摸冷饮杯外侧，水珠从哪里来？": "Watch melting, then try freezing. Does water need to boil before it can evaporate? Where do droplets on the outside of a cold drink come from?",
   "蒸发可以发生在沸点以下；温度、空气流动、湿度和暴露面积影响快慢。凝结发生在空气或表面冷到露点等适当条件下。壶口附近可见的白雾是悬浮小液滴，不是可见的气态水。本图的冷盖子表示凝结，杯中水位并不表示空气中全部水的总量。": "Evaporation occurs below the boiling point. Temperature, airflow, humidity and exposed area affect its rate. Condensation occurs under suitable conditions, such as air or a surface cooling to the dew point. Visible white mist near a kettle consists of suspended liquid droplets, not visible gaseous water. The cold lid here represents condensation; the cup’s level does not represent all water in the surrounding air.",
-  "进度是人为压缩的观察顺序，不是温度计或钟表。冰块形状、水面和滴数为示意，不模拟潜热、冰的体积膨胀、对流或具体蒸发速率；蒸发时故意不画“水蒸气云”。由成人操作冷冻容器，日常观察不需要沸水。": "Progress compresses the observation sequence; it is neither a thermometer nor a clock. Ice shapes, levels and droplet counts are illustrative. Latent heat, ice expansion, convection and quantitative evaporation rates are omitted. No vapor cloud is drawn during evaporation because vapor is invisible. Adults should handle freezing containers; this activity does not require boiling water."
+  "进度是人为压缩的观察顺序，不是温度计或钟表。冰块形状、水面和滴数为示意，不模拟潜热、冰的体积膨胀、对流或具体蒸发速率；蒸发时故意不画“水蒸气云”。由成人操作冷冻容器，日常观察不需要沸水。": "Progress compresses the observation sequence; it is neither a thermometer nor a clock. Ice shapes, levels and droplet counts are illustrative. Latent heat, ice expansion, convection and quantitative evaporation rates are omitted. No vapor cloud is drawn during evaporation because vapor is invisible. Adults should handle freezing containers; this activity does not require boiling water.",
+  "杯子里的变化": "Inside the cup",
+  "放大看水分子": "A closer look at molecules",
+  "示意": "Model",
+  "分子小到肉眼看不见；这里放大画给你看。": "Molecules are too small to see. They are drawn much larger here.",
+  "放大后的水分子示意": "Enlarged model of water molecules",
+  "每一个“小三球”都是一个水分子。": "Each group of three little spheres is one water molecule.",
+  "慢慢播放": "Watch slowly",
+  "暂停": "Pause",
+  "连成一体的冰慢慢融化，液态水越来越多。": "The connected body of ice gradually melts, leaving more liquid water.",
+  "水面先出现薄冰，冰层逐渐向里面长厚。不是凭空冒出几个冰块。": "A thin layer of ice forms at the surface and grows deeper into the water.",
+  "看，水分子从水面离开，散到空气里。它们还是水；真实的水蒸气看不见。": "Water molecules leave the surface and spread into the air. They are still water; real water vapor is invisible.",
+  "分散的水分子遇到冷表面，聚在一起成为小水滴。": "Dispersed water molecules gather at the cold surface, forming little liquid droplets.",
+  "在冰中有序排列，在液态水中彼此靠近、位置会变。": "Ordered in ice; close together but changing positions in liquid water.",
+  "从水面离开后，分子之间的距离变大。": "After leaving the surface, molecules spread farther apart.",
+  "气态分子靠近冷表面，逐渐聚成液态水。": "Gas molecules gather near the cold surface and become liquid water.",
+  "进度不是温度计或钟表。这里选取从表面向内结冰的简化剖面；实际结冰也可能从杯壁等处开始。冰的体积增大仅作示意，不计算潜热和具体速率。分子大小、间距、运动与二维排列均经过简化；图中的气态分子不是可见白雾。由成人操作冷冻容器，日常观察不需要沸水。": "Progress is not a thermometer or clock. This simplified section shows freezing inward from the surface; real freezing can also begin at the container walls. Ice expansion is illustrative; latent heat and rates are not calculated. Molecular sizes, distances, motion and two-dimensional arrangements are simplified. The gas molecules shown are not visible white mist. Adults should handle freezing containers; boiling water is not needed.",
+  "水面先出现薄冰，冰层逐渐向里面长厚，最后整杯水结成冰。": "A thin layer of ice forms at the surface, grows deeper, and eventually freezes the whole cup."
 }
