@@ -5,4 +5,4 @@
 - [Natural History Museum · Frogspawn, tadpoles and froglets](https://www.nhm.ac.uk/discover/frogspawn-tadpoles-and-froglets.html)
 - [Australian Museum · Frog life cycle](https://australian.museum/learn/teachers/learning/frog-life-cycle/)
 
-Original SVG illustrations; no external media or runtime dependencies. Controls use native buttons and ranges. No background animation or audio.
+Original SVG illustrations; no external media or runtime dependencies. Controls use native buttons and ranges. A single animal morphs continuously through overlapping limb growth and tail absorption. The fine-grained slider is reversible; optional playback compresses developmental time and pauses when the page is hidden. No audio.
