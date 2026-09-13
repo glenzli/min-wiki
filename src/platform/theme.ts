@@ -10,7 +10,7 @@ export function applyTheme() {
   const theme = resolveTheme(preference, root.dataset.contentTheme);
   root.dataset.theme = theme;
   root.dataset.themePreference = preference;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#10151c' : '#f7f6f2');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0f0f10' : '#ffffff');
   for (const select of document.querySelectorAll<HTMLSelectElement>('[data-theme-select]')) select.value = preference;
 }
 export function setContentTheme(theme: string) {

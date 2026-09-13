@@ -18,5 +18,6 @@ export function mountTopicNavigation(id: string) {
   const preferences = document.createElement('div'); preferences.className = 'encyclopedia-preferences';
   mountThemeControl(preferences); mountLanguageControl(preferences);
   nav.append(home,trail,preferences); host.replaceChildren(nav);
+  document.documentElement.dataset.topicUi = '';
   setContentTheme(topic.theme);
 }

@@ -1,12 +1,12 @@
 :root, :root[data-theme="light"] {
   color-scheme: light;
-  --page: #f7f6f2; --surface: #fffefa; --ink: #253830; --secondary: #57675e;
-  --quiet: #6d7871; --border: #d9dfd6; --accent: #356349; --tint: #e9eee4;
+  --page: #ffffff; --surface: #ffffff; --ink: #18181b; --secondary: #5f6368;
+  --quiet: #71717a; --border: #e4e4e7; --accent: #3f3f46; --tint: #f4f4f5;
 }
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --page: #10151c; --surface: #171e26; --ink: #ecece5; --secondary: #b3bebc;
-  --quiet: #9ba8a5; --border: #303d43; --accent: #bfdbc8; --tint: #232f2e;
+  --page: #0f0f10; --surface: #171719; --ink: #f4f4f5; --secondary: #a1a1aa;
+  --quiet: #a1a1aa; --border: #303033; --accent: #d4d4d8; --tint: #242427;
 }
 .encyclopedia-nav { display:flex; gap:24px; align-items:center; min-height:64px; padding:12px 36px; color:var(--ink); background:var(--page); border-bottom:1px solid var(--border); font:13px/1.5 Inter,'PingFang SC',sans-serif; }
 .encyclopedia-nav a { color:inherit; text-decoration:none; }
@@ -19,3 +19,28 @@
 @media(max-width:700px) { .encyclopedia-nav { padding:12px 18px; gap:12px; flex-wrap:wrap; } .encyclopedia-trail { order:3; flex-basis:100%; font-size:11px; } .encyclopedia-preferences { margin-left:auto; } .encyclopedia-preferences .theme-control > span { display:none; } }
 
 .encyclopedia-preferences, #catalog-appearance { display:flex; align-items:center; flex-wrap:wrap; gap:12px; }
+
+/* Shared UI follows dev-site/src/styles/global.css; scientific scenes own their colors. */
+:root { --ui-font: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; }
+html body { font-family:var(--ui-font); -webkit-font-smoothing:antialiased; }
+.encyclopedia-nav { min-height:68px; padding:14px max(16px, calc((100% - 1120px)/2)); gap:24px; font-family:var(--ui-font); }
+.encyclopedia-home { font-size:16px; font-weight:650; letter-spacing:-.02em; }
+.encyclopedia-trail { font-size:12px; min-width:0; flex-wrap:wrap; gap:8px; }
+.theme-control select { border-radius:6px; min-height:36px; }
+html[data-topic-ui] body { background:var(--page); color:var(--ink); }
+html[data-topic-ui] main { max-width:1200px; }
+html[data-topic-ui] .hero h1 { font-size:clamp(30px,3.6vw,46px); line-height:1.2; font-weight:700; letter-spacing:-.035em; }
+html[data-topic-ui] :is(.explorer,.observation,.formula-card) { border-radius:8px; }
+html[data-topic-ui] :is(.controls,.modes,.steps,.toolbar,.settings,.leaf-types,.season-controls) button,
+html[data-topic-ui] :is(.controls,.settings) select { border-radius:6px; }
+html[data-topic-ui] .hero .intro { line-height:1.8; }
+html[data-topic-ui] :is(.modes,.reading-mode) button[aria-pressed=true] { background:var(--accent); color:var(--page); border-color:var(--accent); }
+html[data-topic-ui] .reading-mode { background:var(--tint); border-color:var(--border); border-radius:8px; }
+html[data-topic-ui] .reading-mode button { border-radius:6px; }
+@media(max-width:700px) { .encyclopedia-nav { padding:12px 16px; gap:12px; } .encyclopedia-trail { font-size:11px; } }
+html[data-topic-ui] .page-header .mode-switch { border-color:var(--border); border-radius:8px; background:var(--tint); }
+html[data-topic-ui] .page-header .mode-switch button { border-radius:6px; color:var(--secondary); }
+html[data-topic-ui] .page-header .mode-switch button[aria-pressed=true] { background:var(--accent); color:var(--page); }
+html[data-topic-ui] .hero h1 span { color:inherit; }
+html[data-topic-ui] .season-controls .primary,
+html[data-topic-ui] #journey[aria-pressed=true] { background:var(--accent); color:var(--page); border-color:var(--accent); }

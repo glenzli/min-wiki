@@ -13,3 +13,48 @@
 .catalog-pagination .unavailable{opacity:.4}.catalog-pagination .page-gap{padding:0 3px;color:var(--quiet)}
 .pagination-top{margin:0 0 22px;justify-content:flex-end}#collection-title{scroll-margin-top:24px}
 @media(max-width:600px){.catalog-pagination{gap:5px}.catalog-pagination a,.catalog-pagination .unavailable{padding:8px 10px;min-width:38px}.pagination-top{justify-content:center}}
+
+/* Catalog geometry and type match the glenzli.com encyclopedia host. */
+html .catalog-shell { width:min(1120px, calc(100% - 32px)); max-width:none; padding:0; }
+.catalog-header { min-height:68px; height:auto; padding:16px 0; gap:20px; }
+.catalog-brand { font-size:16px; font-weight:650; letter-spacing:-.02em; gap:9px; }
+.brand-symbol { display:grid; place-items:center; width:34px; height:34px; font-size:25px; border:1px solid var(--border); border-radius:6px; }
+.catalog-brand small { font-size:9px; letter-spacing:.07em; margin-top:4px; }
+.catalog-intro { min-height:280px; padding:48px 0; }
+.intro-copy h1 { font-size:clamp(30px,3.6vw,44px); font-weight:700; letter-spacing:-.035em; line-height:1.28; margin-bottom:20px; }
+.intro-copy>p:last-child { font-size:15px; line-height:1.8; }
+.eyeline { letter-spacing:.08em; }
+.sketch-dot { background:var(--quiet); }
+.catalog-search,.category-list button,.reading-note,.empty-state,.empty-state button { border-radius:6px; }
+.catalog-search input { font-size:14px; }
+.category-list button { font-size:13px; padding:10px 14px; }
+.category-list button[aria-pressed=true] { color:var(--page); background:var(--accent); border-color:var(--accent); }
+.category-list button[aria-pressed=true] small { color:inherit; }
+.explore-heading h2 { font-weight:650; letter-spacing:-.025em; }
+.collection-heading h3 { font-size:17px; font-weight:600; }
+.topic-grid { gap:24px; }
+.topic-card { border-radius:8px; transition:border-color .18s,box-shadow .18s; }
+.topic-card:hover { transform:none; border-color:var(--quiet); box-shadow:0 12px 30px #18181b0d; }
+.topic-card-body { padding:22px; }
+.topic-card h3 { font-size:22px; line-height:1.45; font-weight:620; letter-spacing:-.025em; margin-bottom:12px; }
+.card-summary { font-size:14px; line-height:1.8; }
+.card-category { letter-spacing:.06em; font-size:11px; }
+.card-modes span { border-radius:4px; background:var(--tint); border-color:transparent; font-size:11px; }
+.card-bottom { font-size:12px; }
+.card-bottom strong { font-weight:600; }
+.reading-note { border:1px solid var(--border); background:var(--tint); }
+.reading-note h2 { font-weight:600; font-size:16px; }
+.reading-note p { font-size:13px; }
+.catalog-footer { font-size:12px; line-height:1.7; }
+.catalog-pagination a,.catalog-pagination .unavailable { border-radius:6px; }
+:root[data-theme=dark] .topic-card:hover { box-shadow:none; }
+@media(max-width:650px) {
+ .catalog-intro { padding:36px 0; min-height:0; }
+ .intro-copy h1 { font-size:32px; }
+ .intro-copy>p:last-child { font-size:14px; }
+ .catalog-header { gap:12px; }
+ #catalog-appearance { gap:8px; }
+ .category-list button { font-size:12px; padding:10px; }
+ .reading-note { padding:20px 16px; }
+ .catalog-footer { font-size:11px; }
+}
