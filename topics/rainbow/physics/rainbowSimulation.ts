@@ -1,4 +1,4 @@
-import { SPECTRUM_COLORS, traceDropRay, type Point } from '../data/rainbowData.ts';
+import { SPECTRUM_COLORS, traceDropRay, traceDropBranches, type Point } from '../data/rainbowData.ts';
 import { t } from '../i18n.ts';
 export type Scenario = 'prism' | 'raindrop' | 'double' | 'sky';
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
@@ -95,7 +95,7 @@ export class RainbowSimulation {
         c.stroke();
         c.restore();
     }
-    path(points: readonly Point[], color: string, fraction: number, width = 3, alpha = 1) {
+    path(points: readonly Point[], color: string, fraction: number, width = 3, alpha = 1, showTip = true) {
         // Equal time per optical segment makes entry, reflection and exit inspectable.
         const f = clamp(fraction) * (points.length - 1), whole = Math.floor(f);
         const drawn: Point[] = points.slice(0, whole + 1);
@@ -112,7 +112,7 @@ export class RainbowSimulation {
         this.line(drawn, color, width, alpha);
         if (color === '#fff')
             this.ctx.restore();
-        if (drawn.length > 1 && fraction > 0 && color !== '#fff') {
+        if (showTip && drawn.length > 1 && fraction > 0 && color !== '#fff') {
             const tip = drawn[drawn.length - 1];
             this.ctx.save();
             this.ctx.globalAlpha = alpha;
@@ -123,59 +123,20 @@ export class RainbowSimulation {
             this.ctx.restore();
         }
     }
-    /** Fill the space between neighbouring wavelength paths. Subdividing across
-     * wavelength, rather than drawing seven strokes, makes colour boundaries fan
-     * out with the rays. Beam width is exaggerated for legibility, not ray angles. */
+    /** Each wavelength is one joined polyline, including its boundary vertices.
+     * No per-segment rectangles or per-sample blur surfaces are allocated. */
     spectrum(paths: Point[][], fraction: number, beamWidth = 14) {
-        const c = this.ctx, segments = paths[0].length - 1;
-        const pointAt = (position: number, segment: number): Point => {
-            const f = position * 6, index = Math.min(5, Math.floor(f));
-            return mixPoint(paths[index][segment], paths[index + 1][segment], f - index);
-        };
-        const fill = (progress: number, alpha: number) => {
-            c.save();
-            c.globalAlpha = alpha;
-            for (let segment = 0; segment < segments; segment++) {
-                const portion = clamp(progress * segments - segment);
-                if (!portion)
-                    continue;
-                const middleA = pointAt(.5, segment), middleB = pointAt(.5, segment + 1);
-                const dx = middleB[0] - middleA[0], dy = middleB[1] - middleA[1], length = Math.hypot(dx, dy);
-                let nx = -dy / length, ny = dx / length;
-                const red = pointAt(0, segment + 1), violet = pointAt(1, segment + 1);
-                if ((violet[0] - red[0]) * nx + (violet[1] - red[1]) * ny < 0) {
-                    nx *= -1;
-                    ny *= -1;
-                }
-                const edge = (position: number, end: boolean): Point => {
-                    const a = pointAt(position, segment), b = pointAt(position, segment + 1);
-                    const p = end ? mixPoint(a, b, portion) : a;
-                    return [p[0] + nx * (position - .5) * beamWidth, p[1] + ny * (position - .5) * beamWidth];
-                };
-                for (let sample = 0; sample < 160; sample++) {
-                    const lo = sample / 160, hi = (sample + 1) / 160;
-                    const points = [edge(lo, false), edge(lo, true), edge(hi, true), edge(hi, false)];
-                    c.beginPath();
-                    points.forEach(([x, y], i) => i ? c.lineTo(x, y) : c.moveTo(x, y));
-                    c.closePath();
-                    c.fillStyle = c.strokeStyle = spectrumColour((lo + hi) / 2);
-                    c.fill();
-                    c.lineWidth = .6;
-                    c.stroke();
-                }
-            }
-            c.restore();
-        };
-        // A soft luminous envelope keeps the teaching rays from reading as opaque ribbons.
-        c.save();
-        c.filter = 'blur(5px)';
-        fill(clamp(fraction), .3);
-        c.restore();
-        fill(clamp(fraction), .78);
+        const count = this.scenario === 'prism' ? 49 : 7;
+        for (let sample = 0; sample < count; sample++) {
+            const position = sample / (count - 1), f = position * 6;
+            const index = Math.min(5, Math.floor(f));
+            const points = paths[index].map((point, j) => mixPoint(point, paths[index + 1][j], f-index));
+            this.path(points, spectrumColour(position), fraction, this.scenario === 'prism' ? beamWidth / 6 : 1.2, .85, false);
+        }
         const selected = SPECTRUM_COLORS.findIndex(color => color.id === this.selectedColorId);
         if (selected >= 0) {
-            this.path(paths[selected], '#fff', fraction, 10, .95);
-            this.path(paths[selected], SPECTRUM_COLORS[selected].hex, fraction, 6, 1);
+            this.path(paths[selected], '#fff', fraction, 4, .75);
+            this.path(paths[selected], SPECTRUM_COLORS[selected].hex, fraction, 2, 1);
         }
     }
     polygon(points: Point[], fill: string | CanvasGradient, stroke: string) {
@@ -268,7 +229,7 @@ export class RainbowSimulation {
         this.line([[305, 134], [199, 337], [410, 337]], '#ffffff', 2, .8);
         this.line([[333, 115], [438, 320]], '#ffffff', 1.5, .85);
         const incoming: Point[] = [[55, 235], [250, 235]];
-        this.path(incoming, '#fff', clamp(.35 + p / .125 * .65), 18);
+        this.path(incoming, '#fff', clamp(.35 + p / .125 * .65), 3);
         this.text(t('白光'), 60, 207, 16, '#697b8e');
         this.text(t('玻璃三棱镜'), 305, 399, 16, '#697b8e', 'center');
         const endX = this.recombinationEnabled ? 615 : 785;
@@ -316,7 +277,16 @@ export class RainbowSimulation {
         // Sunlight is white before entering the drop. Only the refracted portion
         // receives the continuous wavelength ribbon.
         const whitePath: Point[] = [mixPoint(paths[0][0], paths[6][0], .5), mixPoint(paths[0][1], paths[6][1], .5)];
-        this.path(whitePath, '#fff', clamp(travelled), detail ? 17 : 11);
+        this.path(whitePath, '#fff', clamp(travelled), detail ? 3 : 2);
+        // Secondary routes remain visible even with explanatory labels hidden.
+        SPECTRUM_COLORS.forEach(colour => {
+            for (const branch of traceDropBranches(colour.waterIndex, reflections)) {
+                const fraction = clamp(travelled - branch.surfaceIndex);
+                if (!fraction) continue;
+                const points = branch.points.map(([x,y]): Point => [cx+x*radius, cy-y*radius]);
+                this.line([points[0], mixPoint(points[0], points[1], fraction)], colour.hex, detail ? 1.5 : 1, .28, true);
+            }
+        });
         this.spectrum(paths.map(path => path.slice(1)), clamp((travelled - 1) / (segmentCount - 1)), detail ? 16 : 10);
     }
     raindrop() {
@@ -328,6 +298,7 @@ export class RainbowSimulation {
             this.text(t('③ 再次折射'), 625, 369, 15, '#697b8e');
             this.line([[640, 166], [667, 166]], '#9aafc1', 1);
             this.line([[540, 335], [600, 363]], '#9aafc1', 1);
+            this.text(t('虚线：分出去的光；亮度为示意'), 505, 458, 14, '#697b8e', 'center');
             this.text(t('球形雨滴的放大剖面'), 505, 486, 14, '#8494a5', 'center');
         }
     }

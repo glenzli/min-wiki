@@ -14,6 +14,7 @@ class RainbowApp {
     scenario: 'prism' | 'raindrop' | 'double' | 'sky' = 'prism';
     selectedColorId: string = 'red';
     lastFrame = performance.now();
+    private lastProgress = -1;
     phaseKey = '';
     dialog: HTMLDialogElement;
     simulation?: RainbowSimulation;
@@ -306,8 +307,11 @@ class RainbowApp {
         if (!document.hidden && this.simulation) {
             this.simulation.update(delta);
             this.syncPlayButton();
-            this.syncScrubber();
-            this.updateStory();
+            if (this.lastProgress !== this.simulation.progress) {
+                this.lastProgress = this.simulation.progress;
+                this.syncScrubber();
+                this.updateStory();
+            }
         }
         this.animationFrame = requestAnimationFrame(this.animate);
     }

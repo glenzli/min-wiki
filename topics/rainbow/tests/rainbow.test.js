@@ -129,3 +129,46 @@ test('Rendered water paths meet the sphere, obey Snell at exit and match rainbow
     }
   }
 });
+
+test('complementary drop branches share interfaces and obey Snell or reflection', async () => {
+  const { traceDropRay, traceDropBranches } = await import('../data/rainbowData.ts');
+  const unit = ([x,y]) => { const m=Math.hypot(x,y); return [x/m,y/m]; };
+  const direction = (a,b) => unit([b[0]-a[0],b[1]-a[1]]);
+  const cross = (a,b) => a[0]*b[1]-a[1]*b[0];
+  for (const color of SPECTRUM_COLORS) for (const reflections of [1,2]) {
+    const path=traceDropRay(color.waterIndex,reflections);
+    const branches=traceDropBranches(color.waterIndex,reflections);
+    assert.equal(branches.filter(b=>b.kind==='transmission').length,reflections);
+    for(const branch of branches) {
+      const [point,end]=branch.points, j=branch.surfaceIndex;
+      assert.deepEqual(point,path[j]);
+      const incoming=direction(path[j-1],point), outgoing=direction(point,end);
+      const dot=incoming[0]*point[0]+incoming[1]*point[1];
+      if(branch.kind==='transmission') {
+        assert.ok(Math.abs(color.waterIndex*cross(incoming,point)-cross(outgoing,point))<1e-10);
+        assert.ok(outgoing[0]*point[0]+outgoing[1]*point[1]>0);
+      } else {
+        assert.ok(Math.hypot(outgoing[0]-incoming[0]+2*dot*point[0],outgoing[1]-incoming[1]+2*dot*point[1])<1e-10);
+      }
+    }
+  }
+});
+
+test('spectrum uses a bounded number of continuous strokes without filtered tiles', async () => {
+  const { RainbowSimulation } = await import('../physics/rainbowSimulation.ts');
+  const simulation=Object.create(RainbowSimulation.prototype);
+  simulation.scenario='prism';
+  simulation.selectedColorId=null;
+  const traces=[];
+  simulation.path=(points,...args)=>traces.push({points,args});
+  const paths=SPECTRUM_COLORS.map((_,i)=>[[0,0],[100,30+i],[200,60+i*20]]);
+  simulation.spectrum(paths,0.7);
+  assert.equal(traces.length,49);
+  for(const trace of traces) {
+    assert.equal(trace.points.length,3,'every wavelength includes its joint in one stroke');
+    assert.deepEqual(trace.points[0],[0,0]);
+    assert.equal(trace.args[1],0.7);
+  }
+  assert.deepEqual(traces[0].points,paths[0]);
+  assert.deepEqual(traces.at(-1).points,paths.at(-1));
+});

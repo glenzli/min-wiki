@@ -279,5 +279,6 @@
   "视线与反太阳轴夹角 ≈ 42°": "Angle(view direction, antisolar axis) ≈ 42°",
   "主虹最高点 ≈ 42° − 太阳高度": "Top of primary bow ≈ 42° − solar altitude",
   "全圆：合适雨雾 + 无遮挡视线": "Full circle: suitable mist + unobstructed sightlines",
-  "观察者位置 → 供光雨滴集合": "Observer position → contributing raindrops"
+  "观察者位置 → 供光雨滴集合": "Observer position → contributing raindrops",
+  "虚线：分出去的光；亮度为示意": "Dashed: other light paths; brightness is illustrative"
 }

@@ -234,3 +234,29 @@ for (const color of SPECTRUM_COLORS) {
   color.primaryAngleDeg = calcPrimaryRainbowAngle(calcDescartesImpactParameter(color.waterIndex), color.waterIndex);
   color.secondaryAngleDeg = calcSecondaryRainbowAngle(Math.sqrt((9 - color.waterIndex ** 2) / 8), color.waterIndex);
 }
+
+/** The complementary branch at each interface of the selected rainbow path.
+ * Brightness in the diagram is illustrative; directions obey Snell/reflection. */
+export function traceDropBranches(n: number, reflections: 1 | 2 = 1) {
+  const path = traceDropRay(n, reflections);
+  return path.slice(1, -1).map((point, offset) => {
+    const surfaceIndex = offset + 1;
+    const previous = path[surfaceIndex - 1];
+    const dx = point[0] - previous[0], dy = point[1] - previous[1];
+    const length = Math.hypot(dx, dy);
+    const incoming: Point = [dx / length, dy / length];
+    const dot = incoming[0]*point[0] + incoming[1]*point[1];
+    const reflect = surfaceIndex === 1 || surfaceIndex === path.length - 2;
+    let direction: Point;
+    if (reflect) {
+      direction = [incoming[0]-2*dot*point[0], incoming[1]-2*dot*point[1]];
+    } else {
+      const tangent: Point = [n*(incoming[0]-dot*point[0]), n*(incoming[1]-dot*point[1])];
+      const normal = Math.sqrt(Math.max(0, 1-tangent[0]**2-tangent[1]**2));
+      direction = [tangent[0]+normal*point[0], tangent[1]+normal*point[1]];
+    }
+    const distance = reflect && surfaceIndex > 1 ? -2*(direction[0]*point[0]+direction[1]*point[1]) : 1.25;
+    const end: Point = [point[0]+distance*direction[0], point[1]+distance*direction[1]];
+    return { surfaceIndex, kind: reflect ? 'reflection' : 'transmission', points: [point, end] as Point[] };
+  });
+}
