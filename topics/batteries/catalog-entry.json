@@ -1,0 +1,22 @@
+{
+  "id": "batteries",
+  "title": "电池怎样让玩具动起来？",
+  "category": "engineering",
+  "summary": "合上玩具回路，放大电芯和马达，分清电子、离子与化学能的去向。",
+  "tags": [
+    "电池",
+    "电路",
+    "能量",
+    "玩具",
+    "日常科学"
+  ],
+  "duration": "自由探索 / 4–6 分钟",
+  "modes": [
+    "儿童版",
+    "学术版"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-17"
+}

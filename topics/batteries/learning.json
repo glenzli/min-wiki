@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "batteries",
+  "zh": {
+    "question": "电池明明还有能量，为什么开关打开时玩具仍不能持续转动？",
+    "observe": "先找开关缺口，合上后点“运行一次”；中途断开，观察能量条和蓝点是否停止前进。重新合上并切“电芯内部”“马达内部”，比较金色离子、外部电子和线圈。",
+    "academic": [
+      {
+        "title": "闭合的是完整输运路径",
+        "body": "正常放电需要外电路和电芯内部的输运共同配合。金属导线里本来有可移动电子，闭合后电场的变化使各处电荷响应，并不是等电池发出的一颗电子跑完一圈才启动马达。外电路电子的平均运动方向从负极到正极，与约定电流方向相反。断开开关破坏持续导通条件，但不使电池的化学能或导线中的电子消失。"
+      },
+      {
+        "title": "两种载流粒子与化学能",
+        "body": "本图采用锂离子电芯放电的例子：负极氧化过程释放电子，正极还原过程接收电子，锂离子经过电解质和多孔隔膜迁移。隔膜减少两极直接接触造成内部短路的风险，同时允许离子输运。可利用化学自由能减少，向外提供电能；电解质中还有其他离子和扩散。其他电池的材料与反应不同，不能照搬所有微观细节。"
+      },
+      {
+        "title": "马达、损耗与能否充电",
+        "body": "电流通过马达线圈时，线圈在磁场中受力并产生转矩，换向结构帮助维持转动，真实传动系统再带动轮子。能量除机械作用外也转为热。可充电电池必须由适配充电器提供外部能量，推动设计允许的反应向回进行，且循环并不完全无损。一次电池不为反复充电设计，外形相同不能作为可充电的证据。"
+      }
+    ],
+    "misconception": "电池不是装满电子、用完就变空的罐子。电子是电荷载体；放电改变的是材料的化学状态。开关断开与电池耗尽也是两种不同情况。",
+    "boundary": "这是正常低压玩具回路的定性模型。粒子尺寸、速度、转角、能量条和热分配为教学选择，不表示真实电量或效率；忽略内阻、反电动势、开关瞬态与自放电。只示意锂离子净迁移。拖动回放、重置屏幕不是实际充电，剖面也不是拆电池的操作指导。",
+    "narration": [
+      {
+        "label": "先找开关的小缺口",
+        "text": "小玩具里装着电池，轮子就一定会转吗？看一看，导线连着电池、开关和马达，可是开关这里还有一个小缺口。路没有接完整，电池就不能这样一直给玩具供电。先在屏幕上合上开关，再点运行。我们只按屏幕按钮，真实的电池交给大人保管。",
+        "cue": "初始开路画面，指向开关缺口；闭合完成后点击运行一次。"
+      },
+      {
+        "label": "外面和里面，各走各的路",
+        "text": "现在蓝色小点动起来啦。它们代表导线里的电子。再看看电池的放大图：金色带加号的小点走的是里面的路，它们叫锂离子。两种小伙伴不是同一种东西。电池里的材料发生化学变化，把能量交出来；并不是把一罐蓝色小点倒进马达里，倒完就没有了。",
+        "cue": "运行到约30%，保留主回路参照并观察电芯内部；分别指向蓝色电子和金色锂离子。"
+      },
+      {
+        "label": "停一下，看看发生什么",
+        "text": "先猜猜看，如果现在打开开关，轮子还会一直转吗？点一下，留一点时间自己看看。蓝点不再继续前进，能量条也停住了，轮子慢慢停下来。电池里剩下的能量并没有一下子消失。再把开关合上，我们还能接着观察，刚才用过的那一段也没有被忘掉。",
+        "cue": "在运行中断开，留出观察停顿；确认进度与能量保持，再重新闭合。"
+      },
+      {
+        "label": "马达转动，也要记住电池的规则",
+        "text": "靠近马达，里面有磁体和绕起来的线圈。通电以后，它们相互作用，让转轴带着轮子动起来；有些能量还会变成热。电池用久了，里面材料的状态会改变。有的电池可以用合适设备充电，有的一次电池不能。我们不拆、不加热电池，小小的按钮电池更不能放进嘴里。",
+        "cue": "切马达内部并继续运行；结束后对照一次电池与可充电卡片，不演示真实接线或拆解。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If a battery still has energy, why can the toy not keep turning with the switch open?",
+    "observe": "Find the switch gap, close it, then choose “Run once.” Open it during the run and watch whether energy and blue-dot progress stop. Close it again, compare the cell and motor views, and distinguish ions, external electrons and the coil.",
+    "academic": [
+      {
+        "title": "A complete transport path",
+        "body": "Normal discharge requires transport through both the external circuit and the cell. Metal wires already contain mobile electrons. On closure, changing electric fields cause charges around the circuit to respond; the motor need not wait for one electron to finish a lap. Average external electron motion is from negative to positive, opposite conventional current. Opening the switch prevents a sustained conducting path without making stored chemical energy or electrons disappear."
+      },
+      {
+        "title": "Two charge carriers and chemical energy",
+        "body": "This example follows lithium-ion discharge: oxidation at the negative electrode supplies electrons, reduction at the positive electrode accepts them, and lithium ions move through electrolyte and a porous separator. The separator reduces direct contact between electrodes while permitting ionic transport. Available chemical free energy decreases as electrical energy is supplied externally. Other ions and diffusion also contribute in the electrolyte. Different battery chemistries must not be assumed to share every microscopic detail shown here."
+      },
+      {
+        "title": "Motor work, losses and rechargeability",
+        "body": "A current-carrying motor coil experiences magnetic forces that produce torque. Commutation helps sustain rotation, and a real transmission drives the wheels. Energy also becomes heat. A compatible charger supplies external energy to drive the designed reversible reactions back in a rechargeable cell, and cycling is not lossless. Primary cells are not designed for repeated recharging; a similar shape is not evidence that a cell is rechargeable."
+      }
+    ],
+    "misconception": "A battery is not a jar of electrons that becomes empty. Electrons carry charge; discharge changes the chemical state of materials. An open switch and a depleted battery are different conditions.",
+    "boundary": "This is a qualitative normal low-voltage toy circuit. Particle size, speed, rotation, energy bars and heat allocation are teaching choices, not charge or efficiency measurements. Internal resistance, back EMF, switching transients and self-discharge are omitted. Only net lithium-ion transport is emphasized. Scrubbing and reset do not physically recharge a cell, and the cutaway is not a disassembly guide.",
+    "narration": [
+      {
+        "label": "Find the little switch gap",
+        "text": "Will a toy always turn just because it has a battery inside? Look at the wire connecting the battery, switch and motor. There is still a little gap at the switch. With that path incomplete, the battery cannot keep supplying the toy this way. Close the switch on the screen, then choose Run. We only use the screen controls. A grown-up looks after real batteries.",
+        "cue": "Begin with the open circuit, point to the gap, then close it fully before choosing Run once."
+      },
+      {
+        "label": "Different paths outside and inside",
+        "text": "Now the blue dots are moving. They stand for electrons in the wire. Look closer inside our battery drawing: the gold dots with plus signs follow an inside path. These are called lithium ions. They are different from electrons. Changes in the battery materials provide energy. The battery is not pouring a jar of blue dots into the motor until the jar becomes empty.",
+        "cue": "Run to about 30%; keep the whole circuit as a reference and point to external blue electrons and internal gold lithium ions."
+      },
+      {
+        "label": "Pause and see what changes",
+        "text": "Make a guess. If you open the switch now, will the wheels keep turning forever? Try it and take a little time to look. The blue dots stop progressing, the energy bars stop changing, and the wheels settle. The battery’s remaining energy has not suddenly vanished. Close the switch again and we can continue. The part we already used has not been forgotten.",
+        "cue": "Open the switch during a run and leave an observation pause. Check preserved progress and energy, then close it again."
+      },
+      {
+        "label": "A turning motor and battery rules",
+        "text": "Move closer to the motor. It has magnets and a coil of wire. With current, they interact to turn a shaft and the wheels; some energy also becomes heat. As a battery is used, the materials inside change. Some batteries can be recharged with suitable equipment, and primary batteries cannot. We never open or heat a battery, and a tiny button battery must never go into our mouths.",
+        "cue": "Choose the motor view and continue. Then compare the primary and rechargeable cards without demonstrating real wiring or disassembly."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "U.S. DOE · DOE Explains…Batteries",
+      "url": "https://www.energy.gov/science/doe-explainsbatteries"
+    },
+    {
+      "title": "U.S. DOE · Electrical Science, Vol. 2, Modules 4 and 6",
+      "url": "https://www.energy.gov/sites/default/files/2026-04/DOE-HDBK-1011-92_VOL2.pdf"
+    },
+    {
+      "title": "U.S. CPSC · Button Cell and Coin Batteries",
+      "url": "https://www.cpsc.gov/Safety-Education/Safety-Education-Centers/Button-Cell-Coin-Battery-Information-Center"
+    }
+  ]
+}

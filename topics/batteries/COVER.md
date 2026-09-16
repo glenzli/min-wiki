@@ -1,0 +1,1 @@
+Original vector illustration of a closed toy circuit, enclosed battery pack, switch and wooden toy mechanism. Natural wood, brushed metal and muted conductor colors match the topic. It is a teaching diagram, not a wiring or battery-disassembly instruction. No external illustration is reproduced.
