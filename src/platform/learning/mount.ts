@@ -1,10 +1,15 @@
 import { language, t } from '../i18n.ts';
 import { enhanceDisclosure, setDisclosureOpen } from '../disclosure.ts';
-import { narrationStoryboard, narrationText, type TopicLearning } from './model.ts';
+import { narrationStoryboard, narrationText } from './model.ts';
+import type { LocalizedTopicLearning } from './buildProjection.ts';
 import './style.css';
 
-// Lazy content chunks keep every other topic's prose out of the current page.
-const resources = import.meta.glob<TopicLearning>('../../../topics/*/learning.json', { import: 'default' });
+// The build projects the authored JSON before bundling. Only the current topic
+// and language are fetched; changing language already opens a new document.
+const resources = {
+  zh: import.meta.glob<LocalizedTopicLearning>('../../../topics/*/learning.json', { import: 'default', query: { 'learning-locale': 'zh' } }),
+  en: import.meta.glob<LocalizedTopicLearning>('../../../topics/*/learning.json', { import: 'default', query: { 'learning-locale': 'en' } }),
+};
 
 function element<K extends keyof HTMLElementTagNameMap>(tag: K, className: string, text?: string): HTMLElementTagNameMap[K] {
   const node = document.createElement(tag);
@@ -23,10 +28,10 @@ function downloadLink(name: string, content: string, label: string): HTMLAnchorE
 }
 
 export async function mountTopicLearning(id: string): Promise<void> {
-  const load = resources[`../../../topics/${id}/learning.json`];
+  const load = resources[language === 'en' ? 'en' : 'zh'][`../../../topics/${id}/learning.json`];
   if (!load || document.getElementById('learning-companion')) return;
   const data = await load();
-  const content = language === 'en' ? data.en : data.zh;
+  const content = data.content;
   const main = document.querySelector('main');
   if (!main) return;
   const section = element('section', 'learning-companion');
