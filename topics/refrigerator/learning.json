@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "topicId": "refrigerator",
+  "zh": {
+    "question": "食物在冰箱里变凉了，它原来的热去了哪里？把门一直开着，房间会变凉吗？",
+    "observe": "先在“透视箱体”观察关门冷却，再选择“中途开门，再关上”并慢慢播放；比较空气与食物的温度线，留意开门和关门前后。切换“沿管路看”，让金色圆框走完一圈，找出吸热、压缩、放热和降压的位置。",
+    "academic": [
+      {
+        "title": "制冷是搬热，电功也进入热收支",
+        "body": "热量可以自发从较热处传向较冷处；把热从冷藏空间持续送向更暖的房间，需要外界做功。对完成一个循环的制冷系统，箱外放出的热等于箱内吸收的热加输入功，即 Qh = Qc + W。制冷性能系数 Qc/W 可以大于一，它描述搬热效率，不表示能量增加。若门敞开、吸热端与放热端都作用于同一房间，机器输入的电能最终还会转为室内热量。"
+      },
+      {
+        "title": "密闭管路利用压力与相变",
+        "body": "在低压蒸发器中，冷媒吸热并汽化；压缩机吸入蒸气、提高其压力与温度。较热冷媒在冷凝器向室内放热，凝结为液体，再经毛细管或其他节流装置降压，部分闪蒸后返回蒸发器。热通过管壁传递，冷媒没有进入食品的路径。具体制冷剂、管路位置和节流方式因机型而异，图中的颜色只是辨认位置的工具。"
+      },
+      {
+        "title": "温度由热负荷与控制共同决定",
+        "body": "箱壁传热、开门换气、放入较暖食物都会增加热负荷。空气和内胆先响应，食品内部降温还受质量、形状、导热和表面对流影响。本页以两个热容和两个启停阈值示意这种延迟；定速压缩机达到较低温度后暂停，回升后重启，变速机型还可调节能力。读数曲线能说明变化方向，不能预测某份食品何时达到安全储存条件。"
+      }
+    ],
+    "misconception": "冰箱不会制造一种流进食物的“冷”；冷媒在管内循环，热量穿过管壁被搬走。",
+    "boundary": "只画一个冷藏空间，使用固定环境温度、简化热容、恒定工作功率和启停控制。省略湿气、除霜、复杂风道和真实制冷剂状态方程；管路展开、时间压缩、温度及功率不对应某台冰箱，也不能作为食品储存或维修指南。",
+    "narration": [
+      {
+        "label": "热去了哪里",
+        "text": "我们把一碗食物放进冰箱，过一会儿，它慢慢变凉了。咦，原来让它暖暖的热，跑到哪里去了？冰箱像一位搬运工，把里面的热搬到外面的房间。先看看整台冰箱，再轻轻按下透视按钮。门没有真的拆掉，我们只是借画面看见了里面。",
+        "cue": "停在厨房外观两秒，再切到透视箱体。"
+      },
+      {
+        "label": "食物慢慢变凉",
+        "text": "这里有食物，也有围着食物的空气。开始观察吧：空气先凉下来，食物的里面要慢一些。我们先停一停，找找两条线，哪一条变化得快？再选一次开门的情景。外面较暖的空气进来了，冰箱又要多搬一些热。把门关好后，它还得慢慢工作。",
+        "cue": "播放关门情景后暂停，切换开门情景，观察两条温度线。"
+      },
+      {
+        "label": "管子里的一圈",
+        "text": "现在跟着金色圆圈，走进弯弯的管路。管子里面有一种帮忙搬热的流体，叫冷媒。它先在箱内吸收热，变成气体；压缩机用电来帮忙，让它变得更热。来到箱外，它把热交给房间，又变成液体。再经过细细的管子降压，它就能回来继续帮忙。",
+        "cue": "切到沿管路看，慢放一圈，在四个编号处分别停留。"
+      },
+      {
+        "label": "门开着会怎样",
+        "text": "冷媒一直待在密闭管子里，不会跑进你的饭菜。房间得到的热，比从食物搬出来的还多一些，因为机器用的电也要算进去。所以把冰箱门一直开着，不能让整个房间凉下来。观察结束啦！现在你能指一指，热从哪里出发，最后到了哪里吗？",
+        "cue": "停在放热管，沿箱内到室内回指一次，留三秒回答。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Where does the heat go when food cools in a refrigerator? Would leaving its door open cool the room?",
+    "observe": "Use “See inside” to watch cooling with the door shut. Then choose “Open midway, then close” and play slowly, comparing the air and food lines before and after the door moves. Choose “Follow the pipes” and follow the gold circle through heat absorption, compression, heat release and pressure reduction.",
+    "academic": [
+      {
+        "title": "Moving heat requires work",
+        "body": "Heat can flow spontaneously from warmer to cooler matter. Moving it continuously from a cold cabinet into a warmer room requires work. Over a complete cycle, heat rejected equals heat absorbed plus input work: Qh = Qc + W. A cooling coefficient Qc/W above one measures heat moved per unit of work, not energy creation. With the door open and both sides acting on the same room, the electrical input ultimately adds heat to that room."
+      },
+      {
+        "title": "Pressure and phase change in a sealed circuit",
+        "body": "Refrigerant absorbs heat and vaporizes in the low-pressure evaporator. The compressor raises vapor pressure and temperature. The condenser releases heat into the room and condenses the refrigerant. A capillary tube or another throttling device reduces pressure; some liquid flashes into vapor before returning to the evaporator. Heat crosses the pipe wall, but refrigerant has no route into the food. Fluids, component locations and metering devices differ among designs; colors only identify parts."
+      },
+      {
+        "title": "Heat load and temperature control",
+        "body": "Wall conduction, door air exchange and warm food increase the load. Air and lining respond before the food interior, whose cooling also depends on mass, shape, conduction and convection. Two lumped heat capacities and separate start/stop thresholds illustrate delay here. A fixed-speed compressor stops after sufficient cooling and restarts as temperature rises; variable-speed designs can adjust capacity. The curves show trends, not when a particular food reaches safe storage conditions."
+      }
+    ],
+    "misconception": "A refrigerator does not make a substance called cold that enters food. Refrigerant stays in pipes while heat crosses their walls.",
+    "boundary": "One refrigerated space is represented using a fixed room temperature, simplified heat capacities, constant running power and on/off control. Moisture, defrosting, complex airflow and refrigerant equations of state are omitted. The expanded pipes, compressed times, temperatures and powers do not represent a measured appliance or provide food-storage or repair guidance.",
+    "narration": [
+      {
+        "label": "Where did the heat go?",
+        "text": "We put a bowl of food in the refrigerator. After a while, it slowly feels cooler. Where did the heat that kept it warm go? The refrigerator is like a helper that carries heat from inside to the room outside. Look at the whole refrigerator first, then gently choose See inside. We have not taken off a real door. The picture is helping us look through it.",
+        "cue": "Hold the kitchen view for two seconds, then choose See inside."
+      },
+      {
+        "label": "Food cools slowly",
+        "text": "There is food here, and air all around it. Start watching. The air cools first, but the middle of the food takes longer. Pause and find the two lines. Which changes faster? Now choose the scene with the opening door. Warmer room air comes in, giving the refrigerator more heat to carry away. After the door closes, cooling still takes time.",
+        "cue": "Play and pause the closed-door scene, then compare both lines during the opening-door scene."
+      },
+      {
+        "label": "Around the pipes",
+        "text": "Follow the gold circle into the winding pipes. Inside is a fluid that helps carry heat, called refrigerant. First it takes in heat inside the cabinet and becomes gas. The compressor uses electricity to help, making it hotter. Outside the cabinet, it gives heat to the room and becomes liquid again. A narrow tube then lowers its pressure, and it can come back to help again.",
+        "cue": "Choose Follow the pipes, play one circuit slowly and pause at each numbered part."
+      },
+      {
+        "label": "What if the door stays open?",
+        "text": "The refrigerant stays inside its sealed pipes. It does not run into your dinner. The room gets a little more heat than the refrigerator took from the food, because the electricity the machine uses counts too. Leaving the door open cannot make the whole room cooler. Our observation is finished. Can you point to where the heat started and where it ended up?",
+        "cue": "Pause at the heat-releasing pipe, trace from cabinet to room and allow three seconds to answer."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "US Department of Energy · Consumer Guide to Kitchen Appliances",
+      "url": "https://www.energy.gov/sites/default/files/2021-08/ES-KitchenAppliances_080221.pdf"
+    },
+    {
+      "title": "Danfoss · Compressors and heat exchangers",
+      "url": "https://www.danfoss.com/en-us/service-and-support/case-stories/dcs/walk-in-coolers-compressors-and-heat-exchangers/"
+    },
+    {
+      "title": "Rice University / OpenStax · Refrigerators and Heat Pumps",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/4-3-refrigerators-and-heat-pumps"
+    },
+    {
+      "title": "Danfoss · Temperature controls",
+      "url": "https://www.danfoss.com/en-us/service-and-support/case-stories/dcs/walk-in-coolers-temperature-controls/"
+    }
+  ]
+}

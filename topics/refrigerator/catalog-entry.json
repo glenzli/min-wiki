@@ -1,0 +1,23 @@
+{
+  "id": "refrigerator",
+  "title": "冰箱怎样让食物变凉？",
+  "category": "engineering",
+  "summary": "透视冰箱，跟着密闭管路里的冷媒，把热量从食物送到房间。",
+  "tags": [
+    "冰箱",
+    "热量",
+    "制冷",
+    "能量",
+    "家用电器",
+    "日常科学"
+  ],
+  "duration": "自由探索 / 4–6 分钟",
+  "modes": [
+    "儿童版",
+    "学术版"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-17"
+}
