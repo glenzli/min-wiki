@@ -3,7 +3,7 @@
   "topicId": "meteors",
   "zh": {
     "question": "天空里出现一条亮亮的流星，是远处的恒星掉下来了吗？每条亮迹都会留下陨石吗？",
-    "observe": "选择小碎片，把旅程从太空推进到亮迹消失；再选择能留下残块的示例，观察停止发光以后是否还在下落。",
+    "observe": "先点“看发光的一段”，把进度往前拖一点，观察亮头前进、余迹留在原处。再点“亮光消失以后”，保持进度切换两种旅程，比较空中消散与残块继续下落。",
     "academic": [
       {
         "title": "三个名称指向不同对象或阶段",
@@ -11,7 +11,7 @@
       },
       {
         "title": "发光、烧蚀与破碎同时发生",
-        "body": "高速入射使流星体与空气强烈相互作用，激波后的气体、受激发的原子与被剥离物质参与发光。受热导致熔化、汽化等烧蚀过程，也可能伴随机械破碎。亮度受速度、质量、成分和大气环境影响，不只是石块大小；将成因简单说成普通物体擦地那样的摩擦，会遗漏高速气流压缩和能量交换。"
+        "body": "高速入射使流星体与空气强烈相互作用，受激发气体与脱落物质参与发光，同时发生熔化、汽化和可能的破碎。向前运动的亮头与留在后方空气中的余迹不同；余迹可扩散并受风扰动。有些流星留下较长久的自发光余迹，大气化学反应也能维持发光，不能把它当成始终跟随石头的火尾。亮度还受速度、质量、成分和大气环境影响，不只由大小决定。"
       },
       {
         "title": "亮迹结束后可能还有暗飞行",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "流星不是恒星从天上掉下来；发光停止也不一定表示物质全都不见了。陨石是留下并到达地面的固体。",
-    "boundary": "路线、高度、时间、光晕和残块大小都是示意，未计算真实大气密度、烧蚀、阻力与碎裂；两种选项不是按尺寸预测幸存的判据。",
+    "boundary": "轨迹、减速、物质损失与余迹扩散采用预设教学曲线，未求解气动力、烧蚀或化学反应。尺寸、高度与各阶段时长均不按比例；选用有可见余迹的例子不表示每颗流星都有持久余迹，两种结局也不是按尺寸预测幸存或落点的判据。",
     "narration": [
       {
         "label": "一条亮线是什么",
@@ -28,13 +28,13 @@
       },
       {
         "label": "进入空气以后",
-        "text": "小碎片很快地冲进地球的大气，和空气强烈相遇，就可能出现亮光，还会失去身上的物质。现在先暂停，找找它从哪里开始变亮。亮亮的一段是我们看到的流星，不是后面拖着一串真正的小星星。再接着看，亮光会怎样变化。",
-        "cue": "入射阶段停顿约四秒，再继续发光段。"
+        "text": "小碎片很快地冲进地球的大气，和空气强烈相遇，就可能出现亮光，还会失去身上的物质。现在先暂停，找找它从哪里开始变亮。再往前一点：亮点走了，后面的余迹还留在刚才经过的空气里，慢慢散开。它不是一串跟着石头跑的小星星。",
+        "cue": "点击“看发光的一段”，停顿约四秒；再缓慢拖动进度，比较亮头与留在后方的余迹。"
       },
       {
         "label": "不是每次都有落地礼物",
         "text": "有些碎片在途中就已经消散，没有石头落到地面。另一些会剩下一块，减慢速度，先不再明显发光，却还在继续往下走。把两种例子都看一遍，留意亮光消失的那一刻：碎片是真的没有了，还是只是变得不亮了？",
-        "cue": "对照消散示例与幸存残块的暗飞行。"
+        "cue": "点击“亮光消失以后”，在相同进度切换两种旅程，对照消散与暗飞行。"
       },
       {
         "label": "三个名字串成旅程",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Is a meteor a distant star falling down, and does every bright streak leave a meteorite?",
-    "observe": "Follow the small-fragment example until the streak disappears. Then choose the surviving-fragment example and check whether it keeps falling after it stops glowing.",
+    "observe": "Choose “See the glowing stage” and move progress a little farther: the head advances while the wake stays behind. Choose “After the glow”, then switch journeys at the same progress to compare disappearance with a surviving piece that continues falling.",
     "academic": [
       {
         "title": "Three names distinguish objects and phenomena",
@@ -53,7 +53,7 @@
       },
       {
         "title": "Light, ablation, and fragmentation",
-        "body": "Fast entry causes intense interaction with air. Shock-heated gas, excited atoms, and removed material contribute to emission. Heating can cause melting and vaporization, collectively part of ablation, alongside mechanical fragmentation. Brightness depends on speed, mass, composition, and atmosphere. Ordinary rubbing friction alone is an incomplete explanation because hypersonic gas compression and energy exchange matter."
+        "body": "Fast entry produces strong interaction with air. Excited gas and removed material emit light, while melting, vaporization and sometimes fragmentation remove mass. The moving luminous head differs from the wake left in the air behind it, which can disperse and respond to winds. Some meteors leave longer-lasting self-emitting trains, with atmospheric chemistry helping sustain emission. A train is not a fiery tail permanently attached to a rock. Brightness depends on speed, mass, composition and atmosphere, not size alone."
       },
       {
         "title": "Dark flight may continue after the glow",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "A meteor is not a star falling. Losing its glow does not necessarily mean all material has vanished. A meteorite is surviving solid material that reaches the ground.",
-    "boundary": "Path, altitude, time, glow, and fragment size are illustrative, without a calibrated atmospheric, drag, ablation, or fragmentation calculation. The options are examples, not survival predictions.",
+    "boundary": "Path, slowing, material loss and wake spreading use prescribed teaching curves, without solving aerodynamics, ablation or chemistry. Sizes, altitudes and stage durations are not to scale. The visible-wake examples do not imply every meteor has a persistent train, and the two endings do not predict survival or landing location from size.",
     "narration": [
       {
         "label": "What makes that bright line?",
@@ -70,13 +70,13 @@
       },
       {
         "label": "Meeting the air",
-        "text": "The fragment rushes into Earth’s atmosphere and interacts strongly with the air. It can glow while losing some of its material. Pause and find where the light begins. That bright part is the meteor we see, not a string of tiny stars trailing behind. Keep watching to see how the light changes.",
-        "cue": "Pause four seconds near entry, then follow the glowing stage."
+        "text": "The fragment rushes into Earth’s atmosphere and meets the air very strongly. It can glow while losing some of its material. Pause and find where the light begins. Now move a little farther. The bright head has moved on, but the wake stays in the air it just passed through and slowly spreads. It is not a string of little stars following the rock.",
+        "cue": "Choose “See the glowing stage”, pause for four seconds, then slowly advance progress to compare the head with its wake."
       },
       {
         "label": "Not every trip reaches the ground",
         "text": "Some fragments disappear along the way and leave no rock on the ground. Others leave a piece that slows down, stops glowing brightly, and keeps falling. Try both examples. When the light disappears, has the fragment really gone, or has it simply stopped shining? Look carefully for the remaining piece.",
-        "cue": "Compare disappearance with the surviving fragment’s dark flight."
+        "cue": "Choose “After the glow” and switch journeys at the same progress to compare disappearance with dark flight."
       },
       {
         "label": "Three names for the journey",
@@ -91,12 +91,12 @@
       "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/"
     },
     {
-      "title": "American Meteor Society · Fireball FAQs",
-      "url": "https://www.amsmeteors.org/fireballs/faqf/"
+      "title": "Towner et al. · Darkflight estimates of meteorite fall positions",
+      "url": "https://arxiv.org/abs/2108.04397"
     },
     {
-      "title": "American Meteor Society · Meteor FAQs",
-      "url": "https://www.amsmeteors.org/meteor-showers/meteor-faq/"
+      "title": "Cordonnier et al. · Not So Fast: A New Catalog of Meteor Persistent Trains",
+      "url": "https://arxiv.org/abs/2407.18344"
     }
   ]
 }
