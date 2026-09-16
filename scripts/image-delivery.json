@@ -1,0 +1,1292 @@
+{
+  "version": 1,
+  "encoder": "sharp 0.35.4 / webp 1.6.0",
+  "files": [
+    {
+      "source": "topics/black-hole/cover-v3.jpg",
+      "output": "topics/black-hole/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "17a14c83cd84ea00af4da704edcd553600cc099d447085bc038dd0e9c1e8daea",
+      "sha256": "e635f652b52c00881f724b8c3bc88a23092164d74ed50faa408ae60bd90f7e82",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 13746
+    },
+    {
+      "source": "topics/black-hole/cover-v3.jpg",
+      "output": "topics/black-hole/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "17a14c83cd84ea00af4da704edcd553600cc099d447085bc038dd0e9c1e8daea",
+      "sha256": "ed3ae3ae9666792c1b9829a26a0777d177c9b85a2cc0849859f557aaba4bf646",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 42594
+    },
+    {
+      "source": "topics/solar-system/cover-v2.jpg",
+      "output": "topics/solar-system/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "5337b6e7efdec91579cca45699fa2af19250bc8e0b44b2868434aeb2ef851113",
+      "sha256": "5b77fc2196b94230ad56983688f62da39c0c5e24ea31a682ca7d3629b00da8bb",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 13452
+    },
+    {
+      "source": "topics/solar-system/cover-v2.jpg",
+      "output": "topics/solar-system/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "5337b6e7efdec91579cca45699fa2af19250bc8e0b44b2868434aeb2ef851113",
+      "sha256": "ecc9f37f51dba54e2456ab6f06ffda1fb8c85a6fc7d3d54c46010e731fe5e8ef",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 46166
+    },
+    {
+      "source": "topics/earth-seasons/cover-v2.jpg",
+      "output": "topics/earth-seasons/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "2065b214c6de03081fdd361ef2f2cb19ca8de9c55a60498513d35814ce0aa0ea",
+      "sha256": "1b54095479f668255b373915b97517605070ffae8601efd39b83f4fbab57be9e",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 25006
+    },
+    {
+      "source": "topics/earth-seasons/cover-v2.jpg",
+      "output": "topics/earth-seasons/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "2065b214c6de03081fdd361ef2f2cb19ca8de9c55a60498513d35814ce0aa0ea",
+      "sha256": "9a778d3c5f2d171757b4144a8f062041896695b5c1828b37f4ae6f08d23887ba",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 82764
+    },
+    {
+      "source": "topics/rainbow/cover-v3.jpg",
+      "output": "topics/rainbow/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "31984415a69d6bd827f07492a1fc84f4177f867590d3c24d1ea96e1084c8553d",
+      "sha256": "0abb1e8a9f1643163b77f781c49bfb3ca39d55aa53dbd97a28f7da064640719c",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 27358
+    },
+    {
+      "source": "topics/rainbow/cover-v3.jpg",
+      "output": "topics/rainbow/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "31984415a69d6bd827f07492a1fc84f4177f867590d3c24d1ea96e1084c8553d",
+      "sha256": "f965834c5ae2c31ecd5125fc55bc313e0316c947eaaeaee36e85d208b9f5c9a2",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 91760
+    },
+    {
+      "source": "topics/galactic-center/cover-v2.jpg",
+      "output": "topics/galactic-center/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "fa9857d9bfee7b14620f7fd1452d2b255c21a64df190a3afa2f0fd5ba2187583",
+      "sha256": "09f693f2c33010af65c5485cf961313339332d669ead89b8aea721881742031a",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 29386
+    },
+    {
+      "source": "topics/galactic-center/cover-v2.jpg",
+      "output": "topics/galactic-center/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "fa9857d9bfee7b14620f7fd1452d2b255c21a64df190a3afa2f0fd5ba2187583",
+      "sha256": "4291454d83131037f521fae3e2f6678a2ae752cf9c208e18063a0427b696c26e",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 97934
+    },
+    {
+      "source": "topics/planet-black-hole/cover-v2.jpg",
+      "output": "topics/planet-black-hole/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "1f196b21580bd71db48411e2c2f2b6370ffcc2861e1d6fc5b904bbdf91550e81",
+      "sha256": "66b58207774d305c5c7a3de585ce7b2ce5d5adcabfb5527babed6cfa7b3a8495",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 31984
+    },
+    {
+      "source": "topics/planet-black-hole/cover-v2.jpg",
+      "output": "topics/planet-black-hole/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "1f196b21580bd71db48411e2c2f2b6370ffcc2861e1d6fc5b904bbdf91550e81",
+      "sha256": "e427ca162db2a70149eee839a6e30d6942c04594c181f0e30091c793f773487b",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 108764
+    },
+    {
+      "source": "topics/leaf-colors/cover-v3.jpg",
+      "output": "topics/leaf-colors/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "4ec80afbd84a839e0df3db8d755b400a63f737d9c0659dce56cacfd4bc4e0aae",
+      "sha256": "a1ef470546b597f08fe07dfebb7354ed9ba09c7d989cd508fcf1c5f4674d292e",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 21710
+    },
+    {
+      "source": "topics/leaf-colors/cover-v3.jpg",
+      "output": "topics/leaf-colors/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "4ec80afbd84a839e0df3db8d755b400a63f737d9c0659dce56cacfd4bc4e0aae",
+      "sha256": "eab21364d5db814078868f2d67857e46df04f9c5ccd29408812bd7874b517382",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 65710
+    },
+    {
+      "source": "topics/earth-moon/cover-v2.jpg",
+      "output": "topics/earth-moon/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "545eaa4da9f861b5e848c40fffe7e5fb1dbfc684ec300b7b678af73cd6dc7e63",
+      "sha256": "ae431fe2731087b6b0dd8bd000086809c4fd5e33573287e2bb3a3e8ff26cf1b1",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 38032
+    },
+    {
+      "source": "topics/earth-moon/cover-v2.jpg",
+      "output": "topics/earth-moon/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "545eaa4da9f861b5e848c40fffe7e5fb1dbfc684ec300b7b678af73cd6dc7e63",
+      "sha256": "c3b87cbd6cf7867418cbf21dd5ee1834372be0571fc782c35b7af8b5f6550ca5",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 137728
+    },
+    {
+      "source": "topics/saturn-moons/cover-v2.jpg",
+      "output": "topics/saturn-moons/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "39530226f6b5d860a5206858c6b8fa113c28f72c6512cf94783b2cbf6289a1e3",
+      "sha256": "d5db8013d6e82c80e9c6c99a2daa9ab3f331860954129620a1221a94166e76fd",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 13096
+    },
+    {
+      "source": "topics/saturn-moons/cover-v2.jpg",
+      "output": "topics/saturn-moons/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "39530226f6b5d860a5206858c6b8fa113c28f72c6512cf94783b2cbf6289a1e3",
+      "sha256": "eb7edfa29057146dfbde8b67c6312648648f69cefe15704c06e17b327183cfb9",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 39308
+    },
+    {
+      "source": "topics/lunar-craters/cover-v2.jpg",
+      "output": "topics/lunar-craters/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "7eb05868b21c00a535e813abffb60ca1c67838c9ba66f885f4beea378e5e2b4c",
+      "sha256": "c377bc88fb1585be7c34aaff94906f758c51773d9f1d8d9063916a691895bafd",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 56828
+    },
+    {
+      "source": "topics/lunar-craters/cover-v2.jpg",
+      "output": "topics/lunar-craters/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "7eb05868b21c00a535e813abffb60ca1c67838c9ba66f885f4beea378e5e2b4c",
+      "sha256": "43f358b11d29f3338a92c03db9455efff2ea021a700e79fb77c01fd0639acff2",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 216132
+    },
+    {
+      "source": "topics/volcano-eruption/cover-v2.jpg",
+      "output": "topics/volcano-eruption/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "29e74fa371bf2e5176da7530beb7a8aa3697b2ee5ea7aa1cde100d29aa4cb680",
+      "sha256": "6dcb14ed9c5ac44d59fdbcd404c65ff077d1282d1eacb80f9b43e9112f342546",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 30978
+    },
+    {
+      "source": "topics/volcano-eruption/cover-v2.jpg",
+      "output": "topics/volcano-eruption/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "29e74fa371bf2e5176da7530beb7a8aa3697b2ee5ea7aa1cde100d29aa4cb680",
+      "sha256": "368019ad54bf4b00e339faf5505349e6dc5eb45f11a1162e94feaa0c1983f7fa",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 98366
+    },
+    {
+      "source": "topics/volcanic-lakes/cover-v2.jpg",
+      "output": "topics/volcanic-lakes/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "978448ed0feea621b4cbfe96c095d91035368ee2dabccd77b93e51f9604bd71c",
+      "sha256": "91f297e74f45fce0e14bb5d57da0c249e2844f2b7081db198f15d9bbea60b40c",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 42348
+    },
+    {
+      "source": "topics/volcanic-lakes/cover-v2.jpg",
+      "output": "topics/volcanic-lakes/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "978448ed0feea621b4cbfe96c095d91035368ee2dabccd77b93e51f9604bd71c",
+      "sha256": "b6edfe81a5e5895e33dd2d571098af2cdba18226e590bd9529b2d7ac1af6f95e",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 136122
+    },
+    {
+      "source": "topics/typhoon/cover-v2.jpg",
+      "output": "topics/typhoon/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "a2342010c7197eacfba9ce1dd013e409109c9990505cd01a2f58b364f0a40938",
+      "sha256": "68221d9b29cb38c4c1bbfdb4326e27bfbb0721fbc3b699cdf1cd9528eb3b73c6",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 54892
+    },
+    {
+      "source": "topics/typhoon/cover-v2.jpg",
+      "output": "topics/typhoon/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "a2342010c7197eacfba9ce1dd013e409109c9990505cd01a2f58b364f0a40938",
+      "sha256": "0717b4f530233afc411b20415d3fc5e62d9b0cb2e0c75fec2fb7a641cc329099",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 168304
+    },
+    {
+      "source": "topics/tornado/cover-v2.jpg",
+      "output": "topics/tornado/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "7929f43748c5afda95aae6ea0b28a4d373b5312d3194b7db37525e0f26851171",
+      "sha256": "bfc7964f5b8794b06fc2454096a321d136358bb53334fc123b976ee212da1605",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 32366
+    },
+    {
+      "source": "topics/tornado/cover-v2.jpg",
+      "output": "topics/tornado/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "7929f43748c5afda95aae6ea0b28a4d373b5312d3194b7db37525e0f26851171",
+      "sha256": "1678bab8f7b2e4f0a35a905a95fbb891bdd47615c924b6bd479a9a479be6911f",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 104450
+    },
+    {
+      "source": "topics/planet-surfaces/cover-v2.jpg",
+      "output": "topics/planet-surfaces/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "d91aeeb4075c5ccddd8561b4e56228fca51eb8e2e431c55b371be0f615764a0f",
+      "sha256": "2516c1a4c05fddb1cfc575b262e14a994e733fe74031aecc320064935b46bd9b",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 18838
+    },
+    {
+      "source": "topics/planet-surfaces/cover-v2.jpg",
+      "output": "topics/planet-surfaces/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "d91aeeb4075c5ccddd8561b4e56228fca51eb8e2e431c55b371be0f615764a0f",
+      "sha256": "c38124a2af68f51c9b726e2c58361662093c701b9543f3b90846ae36dd9ce141",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 61480
+    },
+    {
+      "source": "topics/mimosa/cover-v2.jpg",
+      "output": "topics/mimosa/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "766a5b3ed37d6e1f673584bb5ece2e096bbd7aec666fb6b3130d97c20287caf8",
+      "sha256": "5b4b6b32a653c1044008bff6a3ce810dd571a72b674737b35c40b7b2cc1ef572",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 40148
+    },
+    {
+      "source": "topics/mimosa/cover-v2.jpg",
+      "output": "topics/mimosa/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "766a5b3ed37d6e1f673584bb5ece2e096bbd7aec666fb6b3130d97c20287caf8",
+      "sha256": "bd619c06ab9b632c0268b00d6ee957fea3bd94e3ab2d660187029c6c7de1a985",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 109348
+    },
+    {
+      "source": "topics/hydrangea/cover-v2.jpg",
+      "output": "topics/hydrangea/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "4adf66935a8ccc0906a4d890f437b2f16fb4a72c4f96b3a594e5db189524f685",
+      "sha256": "7e5a31d059463c6f981d1d71c3d1bbe174a59d81ca3a045450945c3aa77f56fc",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 52440
+    },
+    {
+      "source": "topics/hydrangea/cover-v2.jpg",
+      "output": "topics/hydrangea/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "4adf66935a8ccc0906a4d890f437b2f16fb4a72c4f96b3a594e5db189524f685",
+      "sha256": "9a7864e0872c39551414892390bec9607d11f739d084e95b10f878f8a4c4318f",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 145384
+    },
+    {
+      "source": "topics/rain-formation/cover-v2.jpg",
+      "output": "topics/rain-formation/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "bfc2500a4d9c058652fefc4b875c641842bca1829c8151a5b07a25251daad846",
+      "sha256": "77cb50d1297064197258ef74286c278295f5d160f0c6301f5e07cd62bdfdd93b",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 44538
+    },
+    {
+      "source": "topics/rain-formation/cover-v2.jpg",
+      "output": "topics/rain-formation/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "bfc2500a4d9c058652fefc4b875c641842bca1829c8151a5b07a25251daad846",
+      "sha256": "21e163ff163d0310dfc5ebd258b6e3decf4846acc53deca20a0c433c17a04667",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 146810
+    },
+    {
+      "source": "topics/lightning-thunder/cover-v2.jpg",
+      "output": "topics/lightning-thunder/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "3b347c19cd08e6c7089f2c9c279a6cbb7fef8c8afcdf8909d795f2f049c08dc3",
+      "sha256": "fbd7acba4e4ffb4b8e0546119d423506760600055825865ac8647d33ca84fa40",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 32372
+    },
+    {
+      "source": "topics/lightning-thunder/cover-v2.jpg",
+      "output": "topics/lightning-thunder/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "3b347c19cd08e6c7089f2c9c279a6cbb7fef8c8afcdf8909d795f2f049c08dc3",
+      "sha256": "a2d3a0ecea5ccbba568445cece3411aaa02100e9d0dd3cb525ab4c145ed344bf",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 103840
+    },
+    {
+      "source": "topics/buoyancy/cover-v2.jpg",
+      "output": "topics/buoyancy/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "a62b9af0bf97d6fac06de1d6df972e331f31d37021961606786ebc1f68f0cc80",
+      "sha256": "c528bb28a5b35db04b24333a4f1909f019585a2583b1486cb4564f7df6741eb1",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 29016
+    },
+    {
+      "source": "topics/buoyancy/cover-v2.jpg",
+      "output": "topics/buoyancy/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "a62b9af0bf97d6fac06de1d6df972e331f31d37021961606786ebc1f68f0cc80",
+      "sha256": "e5cea60e8961ddb4e8352a1ebd2cc5c17ffc4cc42053f15364cf1d9c25510f16",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 74892
+    },
+    {
+      "source": "topics/shadows/cover-v2.jpg",
+      "output": "topics/shadows/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "a82235abd7739a9bfda84d80e9fa232d12efb70acd06b1d6f3ab56ad32b391fe",
+      "sha256": "89085c38def224d7038085b7d87193673b64ecdc5857ed85233f897bc8b12f58",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 19030
+    },
+    {
+      "source": "topics/shadows/cover-v2.jpg",
+      "output": "topics/shadows/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "a82235abd7739a9bfda84d80e9fa232d12efb70acd06b1d6f3ab56ad32b391fe",
+      "sha256": "7776f160e205f0adf24464d290cca7116a4cffbe2276b98fb377bfec1dfbd7a9",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 49154
+    },
+    {
+      "source": "topics/water-states/cover-v2.jpg",
+      "output": "topics/water-states/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "1978dbc34ea70053d2cafef3203b9745b0a6da00e6f9c89d2a2406ee79e0a6a1",
+      "sha256": "41773088093d725713ab58e86d6018659cbc205fb9d1e9026cfce39749bee9c7",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 31740
+    },
+    {
+      "source": "topics/water-states/cover-v2.jpg",
+      "output": "topics/water-states/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "1978dbc34ea70053d2cafef3203b9745b0a6da00e6f9c89d2a2406ee79e0a6a1",
+      "sha256": "4f727718ba4effa6190b679c53701577c3ae2c7d38126bee84d368368b5262dd",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 94138
+    },
+    {
+      "source": "topics/magnets/cover-v2.jpg",
+      "output": "topics/magnets/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "7e614a24ceb690cd36c2c12be0ef89b019d19c74f0e5295572816e99703d4e8f",
+      "sha256": "17c507c1f381c6412bd3329741c6208d6ac2be10e31476fea4a67ca4bc65e422",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 33818
+    },
+    {
+      "source": "topics/magnets/cover-v2.jpg",
+      "output": "topics/magnets/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "7e614a24ceb690cd36c2c12be0ef89b019d19c74f0e5295572816e99703d4e8f",
+      "sha256": "c0c364c6a8471a0f26605fa8ac30732df925bb327d2956d1b499480252841ad1",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 102168
+    },
+    {
+      "source": "topics/sound-vibrations/cover-v2.jpg",
+      "output": "topics/sound-vibrations/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "9b735f71bf68a3a22cbe753aaffc6a7898d1a3560a7d161372661ff05fa77024",
+      "sha256": "01fa099154205252e0225f92f92e74ef960e815bb0dc476b96c2b4aa0e973a1d",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 36574
+    },
+    {
+      "source": "topics/sound-vibrations/cover-v2.jpg",
+      "output": "topics/sound-vibrations/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "9b735f71bf68a3a22cbe753aaffc6a7898d1a3560a7d161372661ff05fa77024",
+      "sha256": "8ec161a5c0f5f66bb1a7262a8170b92fc15705b41a8b1a9a003683caeff19660",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 104862
+    },
+    {
+      "source": "topics/friction/cover-v2.jpg",
+      "output": "topics/friction/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "7756b7a7b2feb75fca4fd0224b6faf49032d352d5b685a716ec549f0e2722533",
+      "sha256": "07341d2282876f6490b53eaeb7ef2db915a667554352142f35b3f2c7a118437b",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 43826
+    },
+    {
+      "source": "topics/friction/cover-v2.jpg",
+      "output": "topics/friction/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "7756b7a7b2feb75fca4fd0224b6faf49032d352d5b685a716ec549f0e2722533",
+      "sha256": "d5588596f696c56781592673af2c36b37c5f42eae37c188c4a12f9d416958550",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 125074
+    },
+    {
+      "source": "topics/butterfly-life/cover-v2.jpg",
+      "output": "topics/butterfly-life/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "441578dcb68f152a8d36bbe913aa289a26e1dd2e0a48283dd329151a7b9364b3",
+      "sha256": "628b8d6fcdd2bbbe242d0a5ebe35281293c1bc73e01e8840caf4e4c7f68dcff2",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 40672
+    },
+    {
+      "source": "topics/butterfly-life/cover-v2.jpg",
+      "output": "topics/butterfly-life/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "441578dcb68f152a8d36bbe913aa289a26e1dd2e0a48283dd329151a7b9364b3",
+      "sha256": "65340a165643b1f9e8227f950b93c1ac436950dd1d99956c04a93ccd2e431769",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 111906
+    },
+    {
+      "source": "topics/frog-life/cover-v2.jpg",
+      "output": "topics/frog-life/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "08497caa81466d2625a672bfa8b49ce85717776b026421907faee11042fff3dc",
+      "sha256": "fe34922ce732a147c1d060a60f36e17901aa7f6521c21d8c3adaf9e50bce74e8",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 47928
+    },
+    {
+      "source": "topics/frog-life/cover-v2.jpg",
+      "output": "topics/frog-life/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "08497caa81466d2625a672bfa8b49ce85717776b026421907faee11042fff3dc",
+      "sha256": "3e37045bf7b78932a51d74542db6ed0305d4250326647aa5b83a54e2ba7b6484",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 126880
+    },
+    {
+      "source": "topics/ant-trails/cover-v2.jpg",
+      "output": "topics/ant-trails/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "aaa882a0a9e35e8480cda6a71649fbd5bdfc6ba836e885fa9f2bc89cd63a169c",
+      "sha256": "18d3a1578f8a83b91eac27b748f3ced1273c2d3d37b8fa8a4c30acbedee56e5f",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 43488
+    },
+    {
+      "source": "topics/ant-trails/cover-v2.jpg",
+      "output": "topics/ant-trails/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "aaa882a0a9e35e8480cda6a71649fbd5bdfc6ba836e885fa9f2bc89cd63a169c",
+      "sha256": "e67383a463d5ae36a09f7a114e2f8947f8dd4a34563ed2d9d73aaab8cad39756",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 114808
+    },
+    {
+      "source": "topics/fish-gills/cover-v2.jpg",
+      "output": "topics/fish-gills/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "ccf6318d13c6c1535770ae05d3f71bbcbb41c6d4ce25da9b405025002b37af3a",
+      "sha256": "3410a17a6b8ada2331848339137b490da1123565795904194aa784dff289b8d6",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 35774
+    },
+    {
+      "source": "topics/fish-gills/cover-v2.jpg",
+      "output": "topics/fish-gills/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "ccf6318d13c6c1535770ae05d3f71bbcbb41c6d4ce25da9b405025002b37af3a",
+      "sha256": "82adb3cff03f9a58eba624d9a8c757450c2926a45db64a8333182d9a8a20fadf",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 100658
+    },
+    {
+      "source": "topics/duck-feet/cover-v2.jpg",
+      "output": "topics/duck-feet/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "2bd933c8b5f3ab4354f11ba4cd484b3fd691abe750cb3cd00d9fbe84184a1da0",
+      "sha256": "95157a11e52bec595c280b349944eb33cfccbde631c29db1ea7fd2d8b7c6a63c",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 43260
+    },
+    {
+      "source": "topics/duck-feet/cover-v2.jpg",
+      "output": "topics/duck-feet/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "2bd933c8b5f3ab4354f11ba4cd484b3fd691abe750cb3cd00d9fbe84184a1da0",
+      "sha256": "b35283888b2701f0132c0bb59da28c1d767d77e3f297d6b21702429c749d88e0",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 119376
+    },
+    {
+      "source": "topics/camouflage/cover-v2.jpg",
+      "output": "topics/camouflage/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "ddc1290fa8a3f341ed5348ab92ab029d54813edeb1dcfd21549bde787723f12b",
+      "sha256": "7164cbda6f89b41c2a64b6d158d776ffb605ca7496e812743f7eea97e55f44b0",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 38516
+    },
+    {
+      "source": "topics/camouflage/cover-v2.jpg",
+      "output": "topics/camouflage/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "ddc1290fa8a3f341ed5348ab92ab029d54813edeb1dcfd21549bde787723f12b",
+      "sha256": "04f50f4b4c64b4b864cee2a7a6689fe715bbce3bc9dd3f79b80d53b551359a07",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 105996
+    },
+    {
+      "source": "topics/seed-sprouting/cover-v2.jpg",
+      "output": "topics/seed-sprouting/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "8e09b7d4c8833d9b096bb65af7c8d8b86d7391e0c0017d4521891fe2ae341997",
+      "sha256": "0bd3924f74bcfa8fdb1cf7f5ecc6c5c9c66ac16859953617ad47fa0f51bdd2ba",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 53242
+    },
+    {
+      "source": "topics/seed-sprouting/cover-v2.jpg",
+      "output": "topics/seed-sprouting/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "8e09b7d4c8833d9b096bb65af7c8d8b86d7391e0c0017d4521891fe2ae341997",
+      "sha256": "41112e317df98a4f5a7d17cc77a1b8685f29cb6a9fae6b8710387f7d4fb139b7",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 159482
+    },
+    {
+      "source": "topics/seed-travel/cover-v2.jpg",
+      "output": "topics/seed-travel/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "03419db9ff8e1deceefb07e7c301ec810bbb37acca3ce6215c521788c7e017fe",
+      "sha256": "61338f1cba4feefc1ef902cab5e3a44b7b018e1c7817a51a123f23709630ca8b",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 30886
+    },
+    {
+      "source": "topics/seed-travel/cover-v2.jpg",
+      "output": "topics/seed-travel/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "03419db9ff8e1deceefb07e7c301ec810bbb37acca3ce6215c521788c7e017fe",
+      "sha256": "bd00ee292296668216113819bc2d13d5d5af4aebde7ccddcdc6f1039d24628d4",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 85196
+    },
+    {
+      "source": "topics/plant-water/cover-v2.jpg",
+      "output": "topics/plant-water/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "764e3812f144220212048e006c9ab3376b757b4dcefbcf80d37f03dc0ade968a",
+      "sha256": "0a5d3bdb2843279398e76271c752f7b1457e33f32321abe054741816a2e0c975",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 54600
+    },
+    {
+      "source": "topics/plant-water/cover-v2.jpg",
+      "output": "topics/plant-water/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "764e3812f144220212048e006c9ab3376b757b4dcefbcf80d37f03dc0ade968a",
+      "sha256": "b9b858b9d39207e6578d2561d442224e794d48959591e2cce0e4a722a7c00ed4",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 168620
+    },
+    {
+      "source": "topics/flower-fruit/cover-v2.jpg",
+      "output": "topics/flower-fruit/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "9c41186a7cd6f223b70606b601393576a11180976efb26cd863ca9147f2519be",
+      "sha256": "1c98a1d1ba7c9d105de9067eec1d0f8f5be10fb1d1db8200d340056353ce55d5",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 37210
+    },
+    {
+      "source": "topics/flower-fruit/cover-v2.jpg",
+      "output": "topics/flower-fruit/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "9c41186a7cd6f223b70606b601393576a11180976efb26cd863ca9147f2519be",
+      "sha256": "13698e0aa998eafd85b6efea62fee47860aae2c8ad1a07af84471a82e58feeab",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 96344
+    },
+    {
+      "source": "topics/cactus-water/cover-v2.jpg",
+      "output": "topics/cactus-water/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "15e092ca4647b4e54a3fbd0f6722b1152e72972de01360854db0ff377dd173c5",
+      "sha256": "2b9dcad1cff4e1d09f2fce1c45f96a568b805d10e977d274c829bc903d692941",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 46682
+    },
+    {
+      "source": "topics/cactus-water/cover-v2.jpg",
+      "output": "topics/cactus-water/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "15e092ca4647b4e54a3fbd0f6722b1152e72972de01360854db0ff377dd173c5",
+      "sha256": "149f36b3f88e2392976c71da53c250598913582aedb44387fa0074b40118dac1",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 143506
+    },
+    {
+      "source": "topics/rain-cycle/cover-v2.jpg",
+      "output": "topics/rain-cycle/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "ac5a162ae0f6144ab7313aac89efd061b73764eec68aa4a2b2c90d7add36f325",
+      "sha256": "214bb1f8a28add56b41a69179ebb1b9ef29740eab9f4d1c9a78f9dc5bd43b748",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 47344
+    },
+    {
+      "source": "topics/rain-cycle/cover-v2.jpg",
+      "output": "topics/rain-cycle/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "ac5a162ae0f6144ab7313aac89efd061b73764eec68aa4a2b2c90d7add36f325",
+      "sha256": "07d9be3afbfb53ef8b2eb289b717310f556b3a0db566ce5edf45ea4cb945079f",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 159068
+    },
+    {
+      "source": "topics/river-paths/cover-v2.jpg",
+      "output": "topics/river-paths/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "ae4cc7f817ddf5f09b0f3d03085b12efe0603abc5fc269f060436bb0eb69c8a7",
+      "sha256": "f33cacb2c3fa286372182a0619a7666d5415442474685a1dd2e76b32100d9b77",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 66062
+    },
+    {
+      "source": "topics/river-paths/cover-v2.jpg",
+      "output": "topics/river-paths/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "ae4cc7f817ddf5f09b0f3d03085b12efe0603abc5fc269f060436bb0eb69c8a7",
+      "sha256": "aa1b9c9b0b6a7e97da5d7b04ecef750e0f1f97922de582fbb2daad042dd29359",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 238200
+    },
+    {
+      "source": "topics/sand-journey/cover-v2.jpg",
+      "output": "topics/sand-journey/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "69126f73485e32775ea935a9a5131054f0a55b1292810599cc6399b019a7269d",
+      "sha256": "25a1eea8bb67f96f2f86e7dbf766d70ea5953289a5c9b211c63c9b803593efc9",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 46558
+    },
+    {
+      "source": "topics/sand-journey/cover-v2.jpg",
+      "output": "topics/sand-journey/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "69126f73485e32775ea935a9a5131054f0a55b1292810599cc6399b019a7269d",
+      "sha256": "014e17b657310017b46fa6c795a865ba4d550ef15215636239534e902d9bba0f",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 123004
+    },
+    {
+      "source": "topics/ground-water/cover-v2.jpg",
+      "output": "topics/ground-water/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "7c08c1c7a4d172a68bbc3ca9f586aa488d8fc7b7831e471caafa0fa094d4520d",
+      "sha256": "2f149090fb76434a8d07be607e64be1ee2352000eb70cf36f0b21592aed9bb68",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 61790
+    },
+    {
+      "source": "topics/ground-water/cover-v2.jpg",
+      "output": "topics/ground-water/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "7c08c1c7a4d172a68bbc3ca9f586aa488d8fc7b7831e471caafa0fa094d4520d",
+      "sha256": "6cab6711b4fde4ecff0449e4d775a834f4a886da348f1589a344dc711a244a6d",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 203494
+    },
+    {
+      "source": "topics/sun-star/cover-v2.jpg",
+      "output": "topics/sun-star/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "5adce3ce36bda4d7cc5ed288a141dda2e254a4a0d5369a9b8afec785335eb7f0",
+      "sha256": "b330500ccbcee870efa62e98b52d579368a428c2ef83302f44c04f0997b7df5f",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 24866
+    },
+    {
+      "source": "topics/sun-star/cover-v2.jpg",
+      "output": "topics/sun-star/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "5adce3ce36bda4d7cc5ed288a141dda2e254a4a0d5369a9b8afec785335eb7f0",
+      "sha256": "cc57369eecc18046f7e73cc4a2dc980d0d30314d39829fdd407d87b7a14f7ceb",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 77376
+    },
+    {
+      "source": "topics/meteors/cover-v2.jpg",
+      "output": "topics/meteors/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "03ffccb92a5f9c4bbe11b524579c799213b8041f845717261cedb33ca84ed65e",
+      "sha256": "6dc0ac6d1b811737e54380ccfcc748d01cb8970ff63c9fe323ad6278f44cffa5",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 10536
+    },
+    {
+      "source": "topics/meteors/cover-v2.jpg",
+      "output": "topics/meteors/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "03ffccb92a5f9c4bbe11b524579c799213b8041f845717261cedb33ca84ed65e",
+      "sha256": "ae5a0ecbcda0aaee73d2f74b1e9173663478310b14e7d2b1f2b9428442eb31b4",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 35934
+    },
+    {
+      "source": "topics/cells/cover-v2.jpg",
+      "output": "topics/cells/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "360c98e14ecbd801ad9bf8a88265c7f31541dc4444aeaad741087cb88573b4df",
+      "sha256": "65f4d02335dc3a66fc5caf901c75b5637ff247ec713d87a1bcadbac195be0621",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 28554
+    },
+    {
+      "source": "topics/cells/cover-v2.jpg",
+      "output": "topics/cells/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "360c98e14ecbd801ad9bf8a88265c7f31541dc4444aeaad741087cb88573b4df",
+      "sha256": "637d1250948436be36d7f25599538bbbd2fce2b61a8f9b6b3cdf0d5c0ef4299f",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 81626
+    },
+    {
+      "source": "topics/bacteria/cover-v2.jpg",
+      "output": "topics/bacteria/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "ad46c188addb94e1f86607e12e02114bbf77d37912fb2648906afa83afa1e60c",
+      "sha256": "8eb854df104d46f9a4458ae7bcc77148edb8bede39d9f8ffd090f445f5277fa5",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 30212
+    },
+    {
+      "source": "topics/bacteria/cover-v2.jpg",
+      "output": "topics/bacteria/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "ad46c188addb94e1f86607e12e02114bbf77d37912fb2648906afa83afa1e60c",
+      "sha256": "66466ed60ec147cf2f0c2137d4d83ea1bb61990477fb254207a405edc7b29246",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 83502
+    },
+    {
+      "source": "topics/viruses/cover-v2.jpg",
+      "output": "topics/viruses/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "291334b1a1af7dafe9e980adfa86cd7e486fd8c8add7b9fef074dcfb576fb260",
+      "sha256": "7a9a54308a8566137029def2da69932f84ea7f68262d9df6a61fa6d6caf68751",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 27440
+    },
+    {
+      "source": "topics/viruses/cover-v2.jpg",
+      "output": "topics/viruses/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "291334b1a1af7dafe9e980adfa86cd7e486fd8c8add7b9fef074dcfb576fb260",
+      "sha256": "f8933a43ea3b8da26a6cb27ba91c0191ce73242ae0b66d691c2d7005265b0c2b",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 75650
+    },
+    {
+      "source": "topics/microbes-everywhere/cover-v2.jpg",
+      "output": "topics/microbes-everywhere/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "f494ad9107604c6e0cf39b764b8d5316c4d5b254166e86da69100d7f66f98417",
+      "sha256": "dd887f8c0e260fac6966d9e2c98fbb8eb26b654b26706f93e6461c3c5640cb3c",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 51442
+    },
+    {
+      "source": "topics/microbes-everywhere/cover-v2.jpg",
+      "output": "topics/microbes-everywhere/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "f494ad9107604c6e0cf39b764b8d5316c4d5b254166e86da69100d7f66f98417",
+      "sha256": "0941517e3d9679a050737e5434cc10695d4f00231a08ff51521dfdc5cc84d683",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 136522
+    },
+    {
+      "source": "topics/tap-water/cover-v2.jpg",
+      "output": "topics/tap-water/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "a0a29199deb461197e99a41569c5aec92f30d5be2e45aa47017192e4e1c84fe0",
+      "sha256": "79b2d8f01a772ca08d4fa83dff87f715ffa30f97b2422a5c6b3c6f6fef2713b4",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 25326
+    },
+    {
+      "source": "topics/tap-water/cover-v2.jpg",
+      "output": "topics/tap-water/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "a0a29199deb461197e99a41569c5aec92f30d5be2e45aa47017192e4e1c84fe0",
+      "sha256": "ce9c0db4b1446d60752c0fdeb1a63f018f37f3813cc4a12a0b459051713e2a22",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 67814
+    },
+    {
+      "source": "topics/handwashing/cover-v2.jpg",
+      "output": "topics/handwashing/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "17aa1de767f500c642c239ce8557b36b23765cd80d568e56147658e475ac8d92",
+      "sha256": "42014617a899961c29ea3a24bf7199b8a6be8cfd169a660301992cd71b72d3c1",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 27480
+    },
+    {
+      "source": "topics/handwashing/cover-v2.jpg",
+      "output": "topics/handwashing/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "17aa1de767f500c642c239ce8557b36b23765cd80d568e56147658e475ac8d92",
+      "sha256": "6f0d02f4d89f57c7a77a7683abfe9c4dc4d002af70781e0d5987667355457005",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 71968
+    },
+    {
+      "source": "topics/car-safety/cover-v2.jpg",
+      "output": "topics/car-safety/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "c421b193718c4170af643f3b4dd860c8115a1e9669856d2f4ac8e81c94730d31",
+      "sha256": "82e3de4305a2a39813428f21ae61878601de37a687636d019675a3309c4d02fb",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 36740
+    },
+    {
+      "source": "topics/car-safety/cover-v2.jpg",
+      "output": "topics/car-safety/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "c421b193718c4170af643f3b4dd860c8115a1e9669856d2f4ac8e81c94730d31",
+      "sha256": "0a66bc595cc9b964a73f010b2e4bc5f6474f8f1f3762592ee9ea742a42362464",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 110678
+    },
+    {
+      "source": "topics/rainbow/assets/rain-afterglow.png",
+      "output": "topics/rainbow/assets/rain-afterglow.webp",
+      "quality": 90,
+      "sourceSha256": "a888cc30f4d2de6246983f5c8302b93fabe03a5358ae23685129124146694b3c",
+      "sha256": "91b1d8044bd20eace85b87c6254ef037166b01ff9966e85141ef7f3c1d25db96",
+      "pixels": [
+        1672,
+        941
+      ],
+      "bytes": 345064
+    }
+  ]
+}

@@ -36,7 +36,7 @@ export class RainbowSimulation {
         this.resizeObserver = new ResizeObserver(() => this.render());
         this.resizeObserver.observe(container);
         this.environment.onload = () => { this.lastRenderKey = ''; this.render(); };
-        this.environment.src = new URL('../assets/rain-afterglow.png', import.meta.url).href;
+        this.environment.src = new URL('../assets/rain-afterglow.webp', import.meta.url).href;
         this.render();
     }
     selectScenario(sc: Scenario) { this.scenario = sc; this.progress = 0; this.isPlaying = false; this.render(); }

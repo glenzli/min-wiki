@@ -5,11 +5,14 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "npm run typecheck && npm run check:i18n && vite build",
+    "build": "npm run typecheck && npm run check:i18n && npm run check:images && vite build",
     "preview": "vite preview",
     "test": "node --import tsx --test",
     "typecheck": "tsc --noEmit",
     "check:i18n": "node scripts/check-i18n.mjs",
+    "optimize:images": "node scripts/optimize-images.mjs",
+    "check:images": "node scripts/optimize-images.mjs --check",
+    "report:payload": "node scripts/report-payload.mjs",
     "check": "npm test && npm run build"
   },
   "dependencies": {
@@ -20,6 +23,7 @@
     "@types/node": "^22.20.1",
     "@types/three": "^0.170.0",
     "parse5": "^8.0.1",
+    "sharp": "0.35.4",
     "tsx": "^4.23.13",
     "typescript": "~5.9.3",
     "vite": "^6.0.0"

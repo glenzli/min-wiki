@@ -34,7 +34,7 @@ function $(id: string): HTMLElement {
 }
 let filters=readFilters(location.search,catalog), page=readPage(location.search);
 const published=catalog.topics.filter(topic=>topic.status==='published');
-const covers=import.meta.glob<string>(['../../topics/*/cover.svg','../../topics/*/cover-v2.jpg','../../topics/*/cover-v3.jpg'], { query: '?url', import: 'default', eager: true });
+const covers=import.meta.glob<string>(['../../topics/*/cover.svg','../../topics/*/cover-480.webp','../../topics/*/cover-960.webp'], { query: '?url', import: 'default', eager: true });
 mountThemeControl($('catalog-appearance'));
 mountLanguageControl($('catalog-appearance'));
 $('search').value=filters.query;
@@ -50,11 +50,22 @@ function categoryButton(id: string,name: string,symbol: string,count: number) {
 }
 $('categories').append(categoryButton('all',t("全部"),'▦',published.length),...catalog.categories.map(category=>categoryButton(category.id,category.name,category.symbol,published.filter(topic=>topic.category===category.id).length)));
 
-function topicCard(topic: Topic) {
+function topicCard(topic: Topic, single: boolean) {
   const link=document.createElement('a'); link.className='topic-card'; link.href=languageHref(topicHref(topic));
   const art=document.createElement('div'); art.className=`topic-art art-${topic.id}`; art.setAttribute('aria-hidden','true');
-  const cover=covers[`../../topics/${topic.id}/cover-v3.jpg`] ?? covers[`../../topics/${topic.id}/cover-v2.jpg`] ?? covers[`../../topics/${topic.id}/cover.svg`];
-  if (cover) { const img=document.createElement('img'); img.src=cover; img.alt=''; img.loading='lazy'; img.decoding='async'; art.append(img); }
+  const small=covers[`../../topics/${topic.id}/cover-480.webp`], large=covers[`../../topics/${topic.id}/cover-960.webp`];
+  const cover=small ?? covers[`../../topics/${topic.id}/cover.svg`];
+  if (cover) {
+    const img=document.createElement('img'); img.alt=''; img.loading='lazy'; img.decoding='async';
+    img.width=960; img.height=640;
+    if (small && large) {
+      img.srcset=`${small} 480w, ${large} 960w`;
+      img.sizes=single
+        ? '(max-width: 650px) calc(100vw - 34px), min(calc((100vw - 34px) * .48), 537px)'
+        : '(max-width: 650px) calc(100vw - 34px), (max-width: 1000px) calc((100vw - 60px) / 2), min(calc((100vw - 86px) / 3), 356px)';
+    }
+    img.src=cover; art.append(img);
+  }
   else { const mark=document.createElement('span'); mark.className='fallback-cover'; mark.textContent=catalog.categories.find(item=>item.id===topic.category)!.symbol; art.append(mark); }
   const body=document.createElement('div'); body.className='topic-card-body';
   const category=document.createElement('p'); category.className='card-category'; category.textContent=catalog.categories.find(item=>item.id===topic.category)!.name+t(" · 互动演示");
@@ -77,7 +88,7 @@ function render(syncUrl=true) {
   $('result-count').textContent=t("{{count}} 个演示", {count: matches.length});
   const paging = paginate(matches.length, page); page = paging.page;
   $('topic-grid').classList.toggle('single-topic',matches.length===1);
-  $('topic-grid').replaceChildren(...matches.slice(paging.start,paging.end).map(topicCard));
+  $('topic-grid').replaceChildren(...matches.slice(paging.start,paging.end).map(topic => topicCard(topic, matches.length === 1)));
   $('empty-state').hidden=matches.length>0;
   $('empty-title').textContent=filters.query.trim()?t("还没有找到这个问题"):t("这片知识花园，等着慢慢生长。");
   $('empty-description').textContent=filters.query.trim()?t("试试“恒星”“黑洞”或“引力”，也可以清除筛选。"):t("这个分类暂时还没有演示。先去看看恒星的旅程吧。");
