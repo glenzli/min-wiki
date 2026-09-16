@@ -3,11 +3,11 @@
   "topicId": "earth-moon",
   "zh": {
     "question": "月亮变成细弯时，是地球的影子把它遮住了吗？",
-    "observe": "在月相视图中，从新月移到上弦和满月；同时看太阳光方向、月球的位置与地面所见亮面，再切换真实比例。",
+    "observe": "先选上弦月，再点“放大地球视角”，比较右侧亮面与月海斑纹；转到下弦月，亮侧变了，斑纹不翻转。回到地月轨道，看蓝色观察箭头与朝地标记，最后切换真实比例。",
     "academic": [
       {
         "title": "月相来自看见受光半球的角度",
-        "body": "月球自己不发出像太阳那样的可见光，主要反射太阳光。除食等特殊情形外，总有约一半月面被太阳照亮，但我们从地球看到这半球的比例不断改变。相位角α是月球处指向太阳和观察者两方向的夹角，理想球体的可见受光比例k=(1+cosα)/2。这里的比例是投影圆面上的几何面积，不等于整颗月球的发光强弱。"
+        "body": "月球自己不发出像太阳那样的可见光，主要反射太阳光。除食等特殊情形外，总有约一半月面被太阳照亮，但我们从地球看到这半球的比例不断改变。相位角α是月球处指向太阳和观察者两方向的夹角，理想球体的可见受光比例k=(1+cosα)/2。这里的比例是投影圆面上的几何面积，不等于整颗月球的发光强弱。画面固定月球北方朝上，因此上弦右亮、下弦左亮；实际月盘相对地平线的倾斜还随观察地点与时刻改变，并非所有人眼前都按同一方向摆放。"
       },
       {
         "title": "两个周期为什么不一样",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "普通月相不是地球影子造成的。地球遮住照向月球的阳光才可能发生月食，而且并非每次满月都有月食。",
-    "boundary": "月相采用简化圆轨道与固定光照方向，没有完整表现轨道倾角、偏心率、天平动与食。真实比例视图只比较平均距离与大小，不代表当前月相位置。",
+    "boundary": "两种观察画面使用同一月面与光照方向。地球视角采用北朝上的地心近似，月盘放大、暗面亮度增强，未计算地照光或具体地点的地平线方向。圆轨道省略倾角、偏心率、天平动与食；真实比例视图只比较平均距离与大小，不代表当前月相位置。",
     "narration": [
       {
         "label": "一半照亮，一半背光",
@@ -28,8 +28,8 @@
       },
       {
         "label": "跟着月亮绕一圈",
-        "text": "慢慢移动月球，从新月走到半个月亮，再走到满月。先暂停想一想：是亮的那一半不见了，还是我们看的角度变了？给自己一点时间，同时看看太空里的月球和小窗里的月亮。两个画面说的是同一个月球，只是观察的位置不同。",
-        "cue": "新月、上弦、满月各停留；提问后停顿约四秒。"
+        "text": "慢慢移动月球，从新月走到半个月亮，再走到满月。先暂停想一想：是亮的那一半不见了，还是我们看的角度变了？给自己一点时间，再把地球视角放大，找找月亮上的深色斑纹。亮面在变，斑纹没有换一张。两个画面说的是同一个月球，只是观察的位置不同。",
+        "cue": "新月、上弦、满月各停留；提问后停顿约四秒。在上弦终态点“放大地球视角”，再转到满月比较月海。"
       },
       {
         "label": "它也在转身",
@@ -45,11 +45,11 @@
   },
   "en": {
     "question": "When the Moon becomes a crescent, is Earth’s shadow covering it?",
-    "observe": "Move from new moon to first quarter and full moon. Compare sunlight, orbital position, and the Earth-view disk; then inspect the true-scale view.",
+    "observe": "Choose first quarter and “Enlarge Earth view”. Compare the right-hand light with the lunar maria. At last quarter the bright side changes, but the markings do not flip. Return to the orbit to inspect the blue viewing arrow and Earth-facing marker, then compare true scale.",
     "academic": [
       {
         "title": "Phase depends on the illuminated hemisphere we see",
-        "body": "Moonlight is mainly reflected sunlight. Apart from eclipses and special geometry, approximately half the Moon is sunlit, while the fraction visible from Earth changes. The phase angle α is measured at the Moon between directions to Sun and observer. For an ideal sphere, the illuminated fraction of its projected disk is k=(1+cosα)/2; it is a geometric area, not total luminous output."
+        "body": "Moonlight is mainly reflected sunlight. Apart from eclipses and special geometry, approximately half the Moon is sunlit, while the fraction visible from Earth changes. The phase angle α is measured at the Moon between directions to Sun and observer. For an ideal sphere, the illuminated fraction of its projected disk is k=(1+cosα)/2; it is a geometric area, not total luminous output. The display holds lunar north up, so first quarter is lit on the right and last quarter on the left. The disk’s tilt relative to a real horizon also varies with location and time; this is not a universal sky orientation."
       },
       {
         "title": "Why two lunar periods differ",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Ordinary phases are not Earth’s shadow. A lunar eclipse occurs when Earth blocks sunlight from reaching the Moon, and does not happen at every full moon.",
-    "boundary": "A simplified circular orbit omits full inclination, eccentricity, libration, and eclipse geometry. The scale view compares average sizes and distance, not the current phase arrangement.",
+    "boundary": "Both views use the same surface and lighting geometry. The enlarged Earth view is a north-up geocentric approximation, with enhanced night-side visibility and no earthshine or local-horizon calculation. The circular orbit omits inclination, eccentricity, libration and eclipses. True scale compares average sizes and distance, not the current phase arrangement.",
     "narration": [
       {
         "label": "One half in sunlight",
@@ -70,8 +70,8 @@
       },
       {
         "label": "Follow it around",
-        "text": "Move slowly from new moon to a half-lit disk and then full moon. Pause and think: has the illuminated half disappeared, or has our viewing angle changed? Take your time and compare the Moon in space with the small Earth-view window. Both show the same Moon from different places.",
-        "cue": "Pause at new, quarter, and full phases; allow four seconds for the question."
+        "text": "Move slowly from new Moon to a half-lit disk and then full Moon. Pause and think: has the bright half disappeared, or has our viewing angle changed? Take your time, then enlarge the Earth view and find the dark markings. The light changes, but the surface has not been replaced. Both pictures show the same Moon from different places.",
+        "cue": "Pause at new, quarter and full phases, allowing four seconds for the question. After reaching first quarter, enlarge the Earth view, then compare its maria at full Moon."
       },
       {
         "label": "It turns too",
@@ -86,6 +86,10 @@
     ]
   },
   "references": [
+    {
+      "title": "NASA · Moon Phases",
+      "url": "https://science.nasa.gov/moon/moon-phases/"
+    },
     {
       "title": "NASA · Moon Facts",
       "url": "https://science.nasa.gov/moon/facts/"

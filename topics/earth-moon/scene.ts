@@ -5,7 +5,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import earthURL from './assets/2k_earth_daymap.jpg';
 import moonURL from './assets/2k_moon.jpg';
 import cloudURL from './assets/2k_earth_clouds.jpg';
-import { moonPosition, DISTANCE_EARTH_RADII, MOON_EARTH_RADIUS_RATIO, SYNODIC_DAYS, phaseIndex } from './model.ts';
+import { moonPosition, DISTANCE_EARTH_RADII, MOON_EARTH_RADIUS_RATIO, SYNODIC_DAYS, phaseIndex, LUNAR_MAP_ROTATION } from './model.ts';
+import { MoonObserver } from './observer.ts';
 import type { Settings } from './model.ts';
 import { t } from './i18n.ts';
 
@@ -30,9 +31,8 @@ export class TopicScene {
   private textures: THREE.Texture[] = [];
   private labels: HTMLDivElement[] = [];
   private phaseCanvas: HTMLCanvasElement;
-  private phaseContext: CanvasRenderingContext2D;
-  private phasePixels: ImageData;
-  private phaseBase = new Float32Array(192 * 192);
+  private moonObserver: MoonObserver;
+  private sightline = new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(), 7.65, '#82c8d7', .5, .24);
   private progress = 0;
   private settings: Settings = { guides: true };
   private view = '';
@@ -48,7 +48,7 @@ export class TopicScene {
     const sun = new THREE.DirectionalLight('#fff0cf', 3.1); sun.position.set(-100, 0, 0); this.world.add(sun);
     const sphere = new THREE.SphereGeometry(1, 64, 40);
     const load = (url: string, color = true) => {
-      const texture = new THREE.TextureLoader().load(url, () => { if (this.disposed) texture.dispose(); else this.render(); });
+      const texture = new THREE.TextureLoader().load(url, () => { if (this.disposed) texture.dispose(); else { this.render(); this.moonObserver?.render(); } });
       texture.colorSpace = color ? THREE.SRGBColorSpace : THREE.NoColorSpace;
       this.textures.push(texture); return texture;
     };
@@ -56,7 +56,9 @@ export class TopicScene {
     const clouds = new THREE.Mesh(sphere, new THREE.MeshStandardMaterial({ color: '#ffffff', alphaMap: load(cloudURL, false), transparent: true, opacity: .42, depthWrite: false }));
     clouds.scale.setScalar(1.007); this.earth.add(earth, clouds);
     const atmosphere = new THREE.Mesh(sphere, new THREE.MeshBasicMaterial({ color: '#72b7e8', transparent: true, opacity: .06, side: THREE.BackSide })); atmosphere.scale.setScalar(1.04); this.earth.add(atmosphere);
-    this.moon.add(new THREE.Mesh(sphere, new THREE.MeshStandardMaterial({ map: load(moonURL), roughness: 1 })), this.marker);
+    const lunarSurface = new THREE.Mesh(sphere, new THREE.MeshStandardMaterial({ map: load(moonURL), roughness: 1 }));
+    lunarSurface.rotation.y = LUNAR_MAP_ROTATION;
+    this.moon.add(lunarSurface, this.marker);
     this.marker.position.set(0, 0, 1.035);
     const points = Array.from({ length: 200 }, (_, i) => new THREE.Vector3(...moonPosition(i / 200, 1)));
     this.orbit = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color: '#577994', transparent: true, opacity: .55 }));
@@ -64,7 +66,7 @@ export class TopicScene {
       const outline = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(Array.from({ length: 48 }, (_, j) => new THREE.Vector3(Math.cos(j / 48 * Math.PI * 2), Math.sin(j / 48 * Math.PI * 2), 0))), new THREE.LineBasicMaterial({ color: '#4c677c', transparent: true, opacity: .45 }));
       outline.position.x = -DISTANCE_EARTH_RADII / 2 + i * 2; this.sizes.add(outline);
     }
-    this.world.add(this.earth, this.moon, this.orbit, this.sizes);
+    this.world.add(this.earth, this.moon, this.orbit, this.sizes, this.sightline);
     const sunlight = new THREE.Group();
     for (const z of [-4, 0, 4]) sunlight.add(new THREE.ArrowHelper(new THREE.Vector3(1, 0, 0), new THREE.Vector3(-18, 0, z), 5, '#cdb47c', .7, .35));
     sunlight.name = 'sunlight'; this.world.add(sunlight);
@@ -77,17 +79,7 @@ export class TopicScene {
     for (const text of [t('地球'), t('月球')]) { const label = document.createElement('div'); label.className = 'object-label'; label.textContent = text; canvas.parentElement!.append(label); this.labels.push(label); }
     this.caption.className = 'scene-caption'; canvas.parentElement!.append(this.caption);
     this.phaseCanvas = document.getElementById('phase') as HTMLCanvasElement;
-    this.phaseContext = this.phaseCanvas.getContext('2d')!;
-    this.phasePixels = this.phaseContext.createImageData(192, 192);
-    for (let y = 0; y < 192; y++) for (let x = 0; x < 192; x++) {
-      let value = 178 + 6 * Math.sin(x * 12.9898 + y * 78.233);
-      for (let i = 0; i < 22; i++) {
-        const cx = 30 + (Math.sin(i * 7.17) * .5 + .5) * 132, cy = 25 + (Math.cos(i * 4.37) * .5 + .5) * 142;
-        const radius = i < 6 ? 16 + i * 3 : 3 + i % 5, distance = Math.hypot(x - cx, y - cy) / radius;
-        value -= (i < 6 ? 27 : 12) * Math.exp(-distance * distance * 2);
-      }
-      this.phaseBase[y * 192 + x] = value;
-    }
+    this.moonObserver = new MoonObserver(this.phaseCanvas, lunarSurface, this.marker);
     this.observer = new ResizeObserver(() => this.resize()); this.observer.observe(canvas); this.resize();
   }
   private resize() { this.cancelViewMotion(); this.viewBlend = 1;
@@ -103,15 +95,24 @@ export class TopicScene {
   }
   draw(progress: number, settings: Settings, view: string) {
     this.progress = progress; this.settings = settings;
-    const changed = view !== this.view, animate = changed && this.view !== '';
-    if (changed) {
+    const changed = view !== this.view;
+    const physicalChanged = changed && (this.view === '' || (view === 'scale') !== (this.view === 'scale'));
+    const animate = physicalChanged && this.view !== '';
+    if (physicalChanged) {
       this.cancelViewMotion();
       this.fromBodies = [this.earth, this.moon].map(body => ({ position: body.position.clone(), scale: body.scale.clone(), rotation: body.quaternion.clone() }));
       this.fromCamera.copy(this.camera.position); this.fromTarget.copy(this.controls.target);
       this.view = view; this.setCamera();
       this.toCamera.copy(this.camera.position); this.toTarget.copy(this.controls.target); this.viewBlend = animate ? 0 : 1;
     }
-    const real = view === 'scale';
+    this.view = view;
+    const real = view === 'scale', earthView = view === 'earth';
+    this.canvas.parentElement!.classList.toggle('observer-focus', earthView);
+    this.controls.enabled = !earthView;
+    this.canvas.setAttribute('aria-hidden', String(earthView));
+    const observerToggle = document.getElementById('observer-toggle')!;
+    observerToggle.textContent = earthView ? t('回到地月轨道') : t('放大地球视角');
+    observerToggle.setAttribute('aria-expanded', String(earthView));
     this.earth.position.set(real ? -DISTANCE_EARTH_RADII / 2 : 0, 0, 0); this.earth.scale.setScalar(real ? 1 : 2.2);
     this.earth.rotation.y = progress * SYNODIC_DAYS * Math.PI * 2;
     this.moon.scale.setScalar(real ? MOON_EARTH_RADIUS_RATIO : .95);
@@ -119,7 +120,10 @@ export class TopicScene {
     this.moon.lookAt(this.earth.position); this.marker.visible = settings.guides;
     this.orbit.visible = !real && settings.guides; this.orbit.scale.setScalar(11); this.sizes.visible = real && settings.guides;
     this.world.getObjectByName('sunlight')!.visible = !real;
-    this.caption.textContent = real ? t('平均中心距离约为 30 个地球直径') : t('金色箭头表示太阳光方向');
+    this.caption.textContent = real ? t('平均中心距离约为 30 个地球直径') : t('金色：阳光 · 蓝色：从地球看月球');
+    const sight = new THREE.Vector3(...moonPosition(progress, 1));
+    this.sightline.position.copy(sight).multiplyScalar(2.25); this.sightline.setDirection(sight);
+    this.sightline.visible = !real && settings.guides;
     this.phaseCanvas.parentElement!.hidden = real; this.drawPhase(progress);
     if (this.viewBlend < 1) {
       [this.earth, this.moon].forEach((body, i) => { const from = this.fromBodies[i]; body.position.lerpVectors(from.position, body.position.clone(), this.viewBlend); body.scale.lerpVectors(from.scale, body.scale.clone(), this.viewBlend); body.quaternion.slerpQuaternions(from.rotation, body.quaternion.clone(), this.viewBlend); });
@@ -133,14 +137,7 @@ export class TopicScene {
     } });
   }
   private drawPhase(p: number) {
-    const pixels = this.phasePixels.data, a = p * Math.PI * 2, lx = Math.sin(a), lz = -Math.cos(a);
-    for (let y = 0; y < 192; y++) for (let x = 0; x < 192; x++) {
-      const xx = (x - 95.5) / 85, yy = (y - 95.5) / 85, r2 = xx * xx + yy * yy, i = (y * 192 + x) * 4;
-      if (r2 > 1) { pixels[i + 3] = 0; continue; }
-      const z = Math.sqrt(1 - r2), illumination = Math.max(0, xx * lx + z * lz), v = this.phaseBase[y * 192 + x] * (.025 + .975 * Math.sqrt(illumination));
-      pixels[i] = v; pixels[i + 1] = v; pixels[i + 2] = v * 1.025; pixels[i + 3] = 255;
-    }
-    this.phaseContext.putImageData(this.phasePixels, 0, 0);
+    this.moonObserver.draw(p, this.settings.guides);
     const names = [t('新月'), t('娥眉月'), t('上弦月'), t('盈凸月'), t('满月'), t('亏凸月'), t('下弦月'), t('残月')];
     document.getElementById('phase-title')!.textContent = names[phaseIndex(p)];
   }
@@ -148,10 +145,10 @@ export class TopicScene {
     if (this.disposed) return;
     this.renderer.render(this.world, this.camera);
     if (!this.labels.length) return;
-    [this.earth, this.moon].forEach((body, i) => { const v = body.position.clone().add(new THREE.Vector3(0, -body.scale.x - .6, 0)).project(this.camera); const label = this.labels[i]; label.style.left = `${Math.max(30, Math.min(this.width - 35, (v.x + 1) * .5 * this.width))}px`; label.style.top = `${(1 - v.y) * .5 * this.height}px`; label.hidden = v.z > 1 || v.z < -1; });
+    [this.earth, this.moon].forEach((body, i) => { const v = body.position.clone().add(new THREE.Vector3(0, -body.scale.x - .6, 0)).project(this.camera); const label = this.labels[i]; label.style.left = `${Math.max(30, Math.min(this.width - 35, (v.x + 1) * .5 * this.width))}px`; label.style.top = `${(1 - v.y) * .5 * this.height}px`; label.hidden = this.view === 'earth' || v.z > 1 || v.z < -1; });
   }
   dispose() {
-    this.cancelViewMotion(); this.disposed = true; this.observer.disconnect(); this.controls.dispose(); this.textures.forEach(t => t.dispose()); this.labels.forEach(l => l.remove()); this.caption.remove();
+    this.cancelViewMotion(); this.disposed = true; this.observer.disconnect(); this.moonObserver.dispose(); this.controls.dispose(); this.textures.forEach(t => t.dispose()); this.labels.forEach(l => l.remove()); this.caption.remove();
     this.world.traverse(object => { if (object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Points) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(m => m.dispose()); } }); this.renderer.dispose();
   }
 }

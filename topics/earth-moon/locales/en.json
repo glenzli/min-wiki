@@ -109,5 +109,20 @@
   "平均中心距离约为 30 个地球直径": "Mean center distance: about 30 Earth diameters",
   "{{days}} / 29.5 天": "{{days}} / 29.5 days",
   "眼前月盘的受光比例": "Illuminated fraction of the visible lunar disk",
-  "大图从太空看，小图从地球看；大小与距离为教学调整。拖动画面可转动。": "Main view: from space. Inset: from Earth. Sizes and distances adjusted for teaching. Drag to orbit."
+  "大图从太空看，小图从地球看；大小与距离为教学调整。拖动画面可转动。": "Main view: from space. Inset: from Earth. Sizes and distances adjusted for teaching. Drag to orbit.",
+  "先找满月，再放大地球视角。月面的斑纹会跟着明暗换位置吗？": "Find full Moon, then enlarge the Earth view. Do the surface markings move when the lighting changes?",
+  "大图可拖动转看；蓝色箭头是从地球看月球的方向。小窗可放大，大小与距离为教学调整。": "Drag the space view to turn it. The blue arrow points from Earth toward the Moon. Enlarge the inset to inspect it; sizes and distances are adjusted for teaching.",
+  "轨道与月相是简化几何，不是实时星历。地球视角沿地心方向、月球北方朝上，月盘放大且暗面微光增强；这不是地照光模型，也不预报某地天空中的倾斜方向。大小与距离默认分开缩放；真实比例另作比较。未模拟轨道倾角、天平动、椭圆轨道和食，贴图与云层为静态。": "Orbit and phase use simplified geometry, not a live ephemeris. The Earth view uses the geocentric direction with lunar north up, an enlarged disk and enhanced night-side visibility. It neither models earthshine nor predicts the disk’s tilt in a local sky. Size and distance are scaled separately by default, with a separate true-scale comparison. Inclination, libration, eccentricity and eclipses are omitted; maps and clouds are static.",
+  "明亮的一面主要背对地球。从地球视角看，月亮很暗；它仍然是一整个球。": "The bright hemisphere faces mainly away from Earth. The Earth view looks dark, but the Moon is still a whole sphere.",
+  "先点上弦月，再放大地球视角：右半边亮。换到下弦月，左半边亮，但月面的斑纹没有翻转。": "Choose first quarter and enlarge the Earth view: the right half is lit. At last quarter the left half is lit, while the surface markings stay in place.",
+  "受光面积比例不等于亮度比例；月面反射特性会影响实际亮度。地球视角固定月球北方朝上，未按观察者纬度、时间计算月盘相对地平线的旋转。普通月相也不是地球影子造成的。": "Illuminated area is not the same as brightness; lunar reflectance matters. The Earth view holds lunar north up, without calculating the disk’s rotation relative to a local horizon from observer latitude and time. Ordinary phases are not caused by Earth’s shadow.",
+  "从地球方向看 · 北朝上": "Viewed from Earth · North up",
+  "同一月面从地球方向看到的明暗": "The same lunar surface illuminated as viewed from Earth",
+  "月面没有换一张，改变的是我们看见的亮面。": "The same lunar face remains; the visible sunlit area changes.",
+  "放大地球视角": "Enlarge Earth view",
+  "回到地月轨道": "Back to the orbit",
+  "地球视角": "Earth view",
+  "金色：阳光 · 蓝色：从地球看月球": "Gold: sunlight · Blue: Earth’s viewing direction",
+  "以地心方向为近似，月球北方朝上；月盘已放大，暗面微光为辨认轮廓而增强。": "Geocentric approximation with lunar north up. The disk is enlarged, and faint night-side light is enhanced to reveal its outline.",
+  "下一月相": "Next phase"
 }
