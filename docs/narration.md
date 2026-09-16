@@ -1,6 +1,6 @@
 # 解说稿与配音准备
 
-56 个专题各自维护一份 `topics/<id>/learning.json`。`zh` 和 `en` 是两种语言的独立成稿，不是逐句拼接的翻译片段。网页顶部的「解说稿」入口可以展开正文；「显示画面提示」用于查看分镜。
+59 个专题各自维护一份 `topics/<id>/learning.json`。`zh` 和 `en` 是两种语言的独立成稿，不是逐句拼接的翻译片段。网页顶部的「解说稿」入口可以展开正文；「显示画面提示」用于查看分镜。
 
 每份讲稿分成四段，每段包含三个字段：
 
@@ -20,7 +20,7 @@
 node --import tsx scripts/export-narration.mjs /tmp/mini-wiki-narration
 ```
 
-将生成 112 份纯口播文本、112 份分镜文本，以及按专题和语言排列的 `index.json`。例如：`seed-sprouting.zh.txt` 是中文口播，`seed-sprouting.en.storyboard.txt` 是英文分镜。批量导出与网页下载共用生成函数。修订时先改专题原稿，再重新导出，避免两处内容漂移。
+将生成 118 份纯口播文本、118 份分镜文本，以及按专题和语言排列的 `index.json`。例如：`seed-sprouting.zh.txt` 是中文口播，`seed-sprouting.en.storyboard.txt` 是英文分镜。批量导出与网页下载共用生成函数。修订时先改专题原稿，再重新导出，避免两处内容漂移。
 
 ## 配音时的约定
 

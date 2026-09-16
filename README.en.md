@@ -4,7 +4,7 @@
 
 A growing collection of small science demos in Chinese and English. Each page explores a question through interaction, animation, explanations and references. Made for children and parents to explore together, and for anyone who is curious.
 
-The collection currently contains 56 topics across space, Earth, life, physics and engineering.
+The collection currently contains 59 topics across space, Earth, life, physics and engineering.
 
 ![Solar-system demo: eight planets at one diameter scale](docs/images/solar-system.png)
 
@@ -18,7 +18,7 @@ Browse by category, search by keyword, or navigate numbered pages with up to 24 
 | Earth & Nature | 11 | [Seasons](topics/earth-seasons/), [Rain formation](topics/rain-formation/), [Water cycle](topics/rain-cycle/) |
 | Life & the Body | 25 | [Leaf colors](topics/leaf-colors/), [Tadpole to frog](topics/frog-life/), [Handwashing](topics/handwashing/), [Pain signals](topics/pain-signals/), [Taste and smell](topics/taste-smell/), [Blood cells](topics/blood-cells/), [Body cells](topics/body-cells/), [Hearing](topics/hearing/), [Digestion](topics/digestion/) |
 | Physics & Matter | 8 | [Rainbows](topics/rainbow/), [Buoyancy](topics/buoyancy/), [Magnets](topics/magnets/), [Water states](topics/water-states/), [Sound](topics/sound-vibrations/), [Soap bubbles](topics/soap-bubbles/) |
-| Technology & Engineering | 2 | [Tap water](topics/tap-water/), [Car safety](topics/car-safety/) |
+| Technology & Engineering | 5 | [Tap water](topics/tap-water/), [Car safety](topics/car-safety/), [Air conditioning](topics/air-conditioner/), [Refrigerators](topics/refrigerator/), [Batteries](topics/batteries/) |
 
 ## Reading and interaction
 

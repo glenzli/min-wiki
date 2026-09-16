@@ -50,3 +50,7 @@ Start with `docs/architecture.md` when adding a topic. Do not move simulation en
 - `topics/hearing/`: air-conduction mechanics, cochlear place comparison and inner-hair-cell transduction; continuous ear/detail observation windows preserve the same journey.
 - `topics/soap-bubbles/`: fixed-volume shape comparison, spherical-film drainage and two-interface interference; whole-bubble and enlarged-film views share the selected patch and thickness.
 - `topics/digestion/`: connected digestive-tract journey, intestinal peristalsis and epithelial absorption; whole-body and villus observation windows distinguish bloodstream and lymphatic transport.
+
+- `topics/air-conditioner/`: one closed refrigerant path, qualitative phase and pressure changes, cooling/fan-only and condensate comparisons; room, circuit and indoor-unit views share state.
+- `topics/refrigerator/`: cabinet/food heat balances, thermostat cycling and door-load comparisons, with topic-owned refrigerant and cabinet observation views.
+- `topics/batteries/`: a closed toy circuit, lithium-ion discharge illustration, chemical-energy accounting and independent electron/ion paths; the topic owns circuit, cell and motor views.

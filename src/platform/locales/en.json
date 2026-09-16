@@ -399,5 +399,21 @@
   "消化": "Digestion",
   "营养": "Nutrients",
   "肠道": "Intestines",
-  "自由探索 / 5–7 分钟": "Free exploration / 5–7 min"
+  "自由探索 / 5–7 分钟": "Free exploration / 5–7 min",
+  "空调怎样让房间凉下来？": "How does an air conditioner cool a room?",
+  "透视空调里的冷媒回路，分清空气、冷媒和冷凝水，比较制冷与只送风。": "Look inside a refrigerant circuit, distinguish air, refrigerant and condensate, and compare cooling with fan-only mode.",
+  "空调": "Air conditioning",
+  "热量": "Heat",
+  "家用电器": "Home appliances",
+  "日常科学": "Everyday science",
+  "冰箱怎样让食物变凉？": "How does a refrigerator cool food?",
+  "透视冰箱，跟着密闭管路里的冷媒，把热量从食物送到房间。": "Look inside a refrigerator and follow its sealed refrigerant circuit as heat moves from food into the room.",
+  "冰箱": "Refrigerator",
+  "制冷": "Refrigeration",
+  "能量": "Energy",
+  "电池怎样让玩具动起来？": "How does a battery make a toy move?",
+  "合上玩具回路，放大电芯和马达，分清电子、离子与化学能的去向。": "Close a toy circuit and explore its cell and motor to distinguish electrons, ions and chemical energy.",
+  "电池": "Batteries",
+  "电路": "Circuits",
+  "玩具": "Toys"
 }
