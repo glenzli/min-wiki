@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { teachingDistanceScale, updateTeachingLens, retreatPosition } from '../../src/visuals/teachingCamera.ts';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -9,6 +10,13 @@ import type { Settings } from './model.ts';
 import { t } from './i18n.ts';
 
 export class TopicScene {
+  private cancelViewMotion = () => {};
+  private viewBlend = 1;
+  private fromBodies: { position: THREE.Vector3; scale: THREE.Vector3; rotation: THREE.Quaternion }[] = [];
+  private fromCamera = new THREE.Vector3();
+  private toCamera = new THREE.Vector3();
+  private fromTarget = new THREE.Vector3();
+  private toTarget = new THREE.Vector3();
   private renderer: THREE.WebGLRenderer;
   private world = new THREE.Scene();
   private camera = new THREE.PerspectiveCamera(42, 1, .1, 12000);
@@ -65,6 +73,7 @@ export class TopicScene {
     const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.BufferAttribute(stars, 3)); this.world.add(new THREE.Points(sg, new THREE.PointsMaterial({ color: '#b5cfeb', size: 1, sizeAttenuation: false, transparent: true, opacity: .6 })));
     this.controls = new OrbitControls(this.camera, canvas); this.controls.enablePan = false; this.controls.enableDamping = false; this.controls.minDistance = 8; this.controls.maxDistance = 200;
     this.controls.addEventListener('change', () => this.render());
+    this.controls.addEventListener('start', () => { this.cancelViewMotion(); this.viewBlend = 1; });
     for (const text of [t('地球'), t('月球')]) { const label = document.createElement('div'); label.className = 'object-label'; label.textContent = text; canvas.parentElement!.append(label); this.labels.push(label); }
     this.caption.className = 'scene-caption'; canvas.parentElement!.append(this.caption);
     this.phaseCanvas = document.getElementById('phase') as HTMLCanvasElement;
@@ -81,7 +90,7 @@ export class TopicScene {
     }
     this.observer = new ResizeObserver(() => this.resize()); this.observer.observe(canvas); this.resize();
   }
-  private resize() {
+  private resize() { this.cancelViewMotion(); this.viewBlend = 1;
     this.width = this.canvas.clientWidth; this.height = this.canvas.clientHeight;
     this.renderer.setSize(this.width, this.height, false); this.camera.aspect = this.width / this.height; updateTeachingLens(this.camera, this.controls.target); const lensScale = teachingDistanceScale(this.camera.aspect, 42); this.controls.minDistance = 8 * lensScale; this.controls.maxDistance = 200 * lensScale;
     this.setCamera(); this.render();
@@ -94,7 +103,14 @@ export class TopicScene {
   }
   draw(progress: number, settings: Settings, view: string) {
     this.progress = progress; this.settings = settings;
-    if (view !== this.view) { this.view = view; this.setCamera(); }
+    const changed = view !== this.view, animate = changed && this.view !== '';
+    if (changed) {
+      this.cancelViewMotion();
+      this.fromBodies = [this.earth, this.moon].map(body => ({ position: body.position.clone(), scale: body.scale.clone(), rotation: body.quaternion.clone() }));
+      this.fromCamera.copy(this.camera.position); this.fromTarget.copy(this.controls.target);
+      this.view = view; this.setCamera();
+      this.toCamera.copy(this.camera.position); this.toTarget.copy(this.controls.target); this.viewBlend = animate ? 0 : 1;
+    }
     const real = view === 'scale';
     this.earth.position.set(real ? -DISTANCE_EARTH_RADII / 2 : 0, 0, 0); this.earth.scale.setScalar(real ? 1 : 2.2);
     this.earth.rotation.y = progress * SYNODIC_DAYS * Math.PI * 2;
@@ -104,7 +120,17 @@ export class TopicScene {
     this.orbit.visible = !real && settings.guides; this.orbit.scale.setScalar(11); this.sizes.visible = real && settings.guides;
     this.world.getObjectByName('sunlight')!.visible = !real;
     this.caption.textContent = real ? t('平均中心距离约为 30 个地球直径') : t('金色箭头表示太阳光方向');
-    this.phaseCanvas.parentElement!.hidden = real; this.drawPhase(progress); this.render();
+    this.phaseCanvas.parentElement!.hidden = real; this.drawPhase(progress);
+    if (this.viewBlend < 1) {
+      [this.earth, this.moon].forEach((body, i) => { const from = this.fromBodies[i]; body.position.lerpVectors(from.position, body.position.clone(), this.viewBlend); body.scale.lerpVectors(from.scale, body.scale.clone(), this.viewBlend); body.quaternion.slerpQuaternions(from.rotation, body.quaternion.clone(), this.viewBlend); });
+      this.camera.position.lerpVectors(this.fromCamera, this.toCamera, this.viewBlend);
+      this.controls.target.lerpVectors(this.fromTarget, this.toTarget, this.viewBlend); this.controls.update();
+    }
+    this.render();
+    if (animate) this.cancelViewMotion = animateValue({ from: 0, to: 1, duration: 1000, onUpdate: blend => {
+      this.viewBlend = blend; if (blend === 1) { this.camera.position.copy(this.toCamera); this.controls.target.copy(this.toTarget); this.controls.update(); }
+      this.draw(this.progress, this.settings, this.view);
+    } });
   }
   private drawPhase(p: number) {
     const pixels = this.phasePixels.data, a = p * Math.PI * 2, lx = Math.sin(a), lz = -Math.cos(a);
@@ -125,7 +151,7 @@ export class TopicScene {
     [this.earth, this.moon].forEach((body, i) => { const v = body.position.clone().add(new THREE.Vector3(0, -body.scale.x - .6, 0)).project(this.camera); const label = this.labels[i]; label.style.left = `${Math.max(30, Math.min(this.width - 35, (v.x + 1) * .5 * this.width))}px`; label.style.top = `${(1 - v.y) * .5 * this.height}px`; label.hidden = v.z > 1 || v.z < -1; });
   }
   dispose() {
-    this.disposed = true; this.observer.disconnect(); this.controls.dispose(); this.textures.forEach(t => t.dispose()); this.labels.forEach(l => l.remove()); this.caption.remove();
+    this.cancelViewMotion(); this.disposed = true; this.observer.disconnect(); this.controls.dispose(); this.textures.forEach(t => t.dispose()); this.labels.forEach(l => l.remove()); this.caption.remove();
     this.world.traverse(object => { if (object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Points) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(m => m.dispose()); } }); this.renderer.dispose();
   }
 }

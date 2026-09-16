@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "plant-water",
+  "zh": {
+    "question": "植物没有水泵，水为什么能从根走到高处的叶子？",
+    "observe": "按下一站跟随水从根、木质部到叶脉，最后通过气孔进入空气。注意最后一段表示水汽，比较运输水的通道和气孔放大图。",
+    "academic": [
+      {
+        "title": "吸水由水势差驱动",
+        "body": "根与土壤接触的表面，尤其许多幼根的根毛，提供吸水界面。水可以沿细胞壁间隙或穿过细胞移动，进入运输组织前还受到根部选择性屏障的影响。水流方向与水势差有关，不能仅用“根把水喝进去”代替机制。湿土也并非任何情况下都容易供水：盐分增加或根系受损，都可能让水分吸收受到限制。"
+      },
+      {
+        "title": "蒸腾与连续水柱相联系",
+        "body": "叶片细胞壁表面的水蒸发并经气孔扩散到空气，会使叶部水势降低，在木质部形成拉力。水分子间的内聚与水对管壁的作用，有助于维持连续水柱，把这种作用连接到下面的根。根压和毛细现象也可参与特定情境，但仅靠细管毛细上升，不能完整解释高大植物中持续的大量水分运输。"
+      },
+      {
+        "title": "气孔同时管理交换与失水",
+        "body": "气孔的开闭由保卫细胞状态调节。开放有利于二氧化碳进入进行光合作用，却也让水汽逸出，所以植物面临碳获取与保水的权衡。温度、湿度、风、光照和土壤供水都会影响蒸腾，不能把热天固定等同于气孔更大；缺水时许多植物反而关闭气孔。本页蓝色路线只突出水，不能看成糖运输路线。"
+      }
+    ],
+    "misconception": "木质部运水不是根里的机械水泵在抽水；高大植物的水分运输要联系叶部蒸腾和水势差来理解。",
+    "boundary": "单个蓝点只是追踪标记，水实际上大量同时流动；未展示全部组织通路、空穴或动态气孔控制，水汽本身通常不可见。",
+    "narration": [
+      {
+        "label": "跟着水去旅行",
+        "text": "给小植物浇过水之后，水去了哪里？我们从土里出发，跟一小份水去看看。根没有嘴巴，却能让水经过表面进入植物。图里的蓝点是我们的旅行记号，真的水可没有这样一颗大大的蓝色球。先找到根，再用手指指向上面的茎。",
+        "cue": "停在根部，介绍追踪标记。"
+      },
+      {
+        "label": "走进细小通道",
+        "text": "往下一站，水沿着茎里的细小通道向上走。这种运水组织叫木质部。停一停，看看路线是不是连到了叶子。这里没有一台藏起来的小电泵。叶子那边不断有水离开，也能帮助拉动下面相连的水，让根、茎和叶一起参与这段旅行。",
+        "cue": "连续移动到茎和叶脉，停三秒看连接。"
+      },
+      {
+        "label": "叶子的小门",
+        "text": "到叶子里了。水能帮助细胞撑起身体，也参与植物制造糖的过程，还有许多水会在叶里变成水汽，从很小的气孔出去。看看放大图，气孔周围的细胞可以调节开口。门开着的时候，空气中的二氧化碳能进来，水汽也更容易离开，植物得兼顾这两件事。",
+        "cue": "显示气孔放大图与离叶的虚线水汽。"
+      },
+      {
+        "label": "看不见的离开",
+        "text": "水汽很小，我们通常看不见，不是叶子喷出了蓝色的大水珠。不同的天气、不同的植物，离开的水量也不同。现在从根到空气，再慢慢指一次整条路线吧。你刚刚看到的，不只是一次浇水后的故事，也是植物把土里的水送回空气、参与水循环的一小段旅程。",
+        "cue": "回顾根到空气的四站，末端蓝点淡出。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How can water reach a leaf above the roots without a mechanical pump?",
+    "observe": "Use the next-stop button to follow water from roots through xylem and leaf veins, then out through stomata. The last segment represents vapour; compare the transport route with the enlarged pore.",
+    "academic": [
+      {
+        "title": "Water potential drives uptake",
+        "body": "Root surfaces, including root hairs on young regions, provide uptake interfaces. Water moves through walls and cells and encounters selective root barriers before entering transport tissue. Direction depends on water-potential differences. Even moist soil can supply water poorly when salinity is high or roots are damaged."
+      },
+      {
+        "title": "Transpiration is linked to a continuous water column",
+        "body": "Evaporation from internal leaf surfaces and vapour diffusion through stomata lower leaf water potential and create tension in xylem. Cohesion between water molecules and interaction with conduit walls help maintain a connected column. Root pressure and capillarity can contribute, but capillarity alone does not explain sustained transport in tall plants."
+      },
+      {
+        "title": "Stomata mediate a water–carbon trade-off",
+        "body": "Guard cells regulate pore opening. Open pores allow carbon dioxide entry but also water loss. Light, wind, humidity, temperature and soil supply influence transpiration. A hot day does not invariably mean wider pores: drought may trigger closure. The blue route represents water, not the transport of sugars."
+      }
+    ],
+    "misconception": "Xylem flow is not driven by a mechanical pump in the root; transpiration and water-potential gradients are central to the explanation.",
+    "boundary": "The single blue dot is a tracking aid; many water molecules move at once. Tissue routes, cavitation and dynamic stomatal control are simplified, and water vapour is normally invisible.",
+    "narration": [
+      {
+        "label": "Travel with water",
+        "text": "After watering a plant, where does the water go? Begin in the soil and follow a little of it. Roots have no mouth, but water can pass through their surfaces into the plant. Our blue dot is a tracking symbol, not a giant blue ball inside a real root.",
+        "cue": "Begin at the root and introduce the tracking symbol."
+      },
+      {
+        "label": "Enter the narrow routes",
+        "text": "At the next stop, water moves upward through xylem, the plant’s water-carrying tissue. Pause and trace the connection to a leaf. There is no hidden electric pump. Water leaving the leaf helps pull on connected water below, linking roots, stem and leaves in the journey.",
+        "cue": "Move continuously through stem and vein and pause."
+      },
+      {
+        "label": "The leaf’s tiny openings",
+        "text": "Water helps support cells and participates in making sugars. Much of it evaporates inside leaves and leaves through tiny stomatal pores. Cells around each pore adjust its opening. Open pores let carbon dioxide in, but also let water vapour out, so the plant must balance both needs.",
+        "cue": "Show the enlarged pore and dotted vapour route."
+      },
+      {
+        "label": "An invisible departure",
+        "text": "Water vapour is normally invisible; leaves are not spraying large blue drops. The amount lost varies with plant and weather. Trace the whole route once more, from root to air. You have followed one small part of how plants return soil water to the atmosphere in the water cycle.",
+        "cue": "Review all four stops and fade the marker into the air."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "U.S. Geological Survey — Evapotranspiration and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/evapotranspiration-and-water-cycle"
+    },
+    {
+      "title": "OpenStax — Transport of Water and Solutes in Plants",
+      "url": "https://openstax.org/books/biology-2e/pages/30-5-transport-of-water-and-solutes-in-plants"
+    }
+  ]
+}

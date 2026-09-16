@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
@@ -35,8 +36,13 @@ function update() {
   el('steps').querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String(i === s.stage)));
   scene?.draw(progress, planted, view);
 }
+let cancelSeek: () => void = () => {};
+function seek(target: number) {
+  stop();
+  cancelSeek = animateValue({from: progress, to: target, duration: 800, onUpdate: value => { progress = value; update(); }});
+}
 function cancel() { cancelAnimationFrame(frame); frame = 0; }
-function stop() { playing = false; cancel(); }
+function stop() { cancelSeek(); playing = false; cancel(); }
 function tick(now: number) {
   frame = 0; if (!playing || document.hidden) return;
   progress = Math.min(1, progress + Math.min((now - last) / 1000, .1) / 14); last = now;
@@ -44,13 +50,13 @@ function tick(now: number) {
 }
 function resume() { playing = true; last = performance.now(); if (!frame) frame = requestAnimationFrame(tick); }
 el('grow').addEventListener('click', () => { stop(); planted = newBloom(settings()); progress = 0; resume(); update(); });
-el('pause').addEventListener('click', () => { if (playing) stop(); else resume(); update(); });
+el('pause').addEventListener('click', () => { cancelSeek(); if (playing) stop(); else resume(); update(); });
 el('reset').addEventListener('click', () => { stop(); input('ph').value = '5.3'; input('aluminum').value = '80'; select('cultivar').value = 'pigmented'; planted = newBloom(settings()); progress = 1; update(); });
 el('progress').addEventListener('input', () => { stop(); progress = Number(input('progress').value) / 1000; update(); });
 for (const id of ['ph', 'aluminum', 'cultivar']) el(id).addEventListener('input', update);
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-view]')) b.addEventListener('click', () => { view = b.dataset.view!; update(); });
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });
-el('steps').replaceChildren(...steps.map((label, i) => { const b = document.createElement('button'); b.textContent = label; b.addEventListener('click', () => { stop(); progress = [.08, .32, .61, 1][i]; update(); }); return b; }));
+el('steps').replaceChildren(...steps.map((label, i) => { const b = document.createElement('button'); b.textContent = label; b.addEventListener('click', () => { seek([.08, .32, .61, 1][i]!); }); return b; }));
 document.addEventListener('visibilitychange', () => { if (document.hidden) cancel(); else if (playing) resume(); });
 window.addEventListener('pagehide', e => { cancel(); if (!e.persisted) { stop(); scene?.dispose(); } });
 window.addEventListener('pageshow', () => { if (playing && !frame) resume(); });

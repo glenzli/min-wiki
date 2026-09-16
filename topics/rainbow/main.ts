@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { SCIENCE_EXPLANATIONS } from './science.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import './shell.css';
@@ -10,6 +11,7 @@ import { translateDocument } from '../../src/platform/i18n.ts';
 translateDocument(t);
 const $ = (id: string) => document.getElementById(id) as HTMLElement;
 class RainbowApp {
+  private cancelStageMotion = () => {};
     mode: 'kids' | 'academic' = 'kids';
     scenario: 'prism' | 'raindrop' | 'double' | 'sky' = 'prism';
     selectedColorId: string = 'red';
@@ -21,6 +23,7 @@ class RainbowApp {
     resumePlayAfterDialog = false;
     private animationFrame = 0;
     constructor() {
+    for (const type of ["click", "input", "keydown"]) document.addEventListener(type, () => this.cancelStageMotion(), { capture: true });
         this.dialog = $('about-dialog') as HTMLDialogElement;
         try {
             this.simulation = new RainbowSimulation($('canvas-container'));
@@ -227,11 +230,9 @@ class RainbowApp {
             button.setAttribute('aria-label', `${t('第{{step}}步', { step: i + 1 })}：${phase.label}`);
             button.addEventListener('click', () => {
                 if (this.simulation) {
-                    this.simulation.progress = phase.at;
-                    this.simulation.isPlaying = false;
-                    this.syncPlayButton();
-                    this.syncScrubber();
-                    this.updateStory();
+                    this.simulation.isPlaying = false; this.syncPlayButton();
+                    this.cancelStageMotion = animateValue({ from: this.simulation.progress, to: phase.at, duration: 1000,
+                      onUpdate: value => { if (!this.simulation) return; this.simulation.progress = value; this.syncScrubber(); this.updateStory(); } });
                 }
             });
             return button;

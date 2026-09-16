@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "handwashing",
+  "zh": {
+    "question": "只冲一下水，和用皂认真搓洗后冲净，会有什么不同？",
+    "observe": "按打湿、用皂、搓洗、冲净、擦干推进；搓洗时逐一选择掌心、手背、指缝、拇指、指尖，观察位置环和污物示意。",
+    "academic": [
+      {
+        "title": "肥皂帮助水接近油污",
+        "body": "许多表面活性剂分子具有亲水部分和亲油部分，能够帮助油污在水中分散并从皮肤表面移走。机械搓洗配合用皂，使附着物松动；流动清水再将它们带走。肥皂也可能破坏某些微生物的结构，但不能把洗手概括成泡泡杀死全部微生物，更不能用泡沫多少判断清洁程度。"
+      },
+      {
+        "title": "时间与覆盖范围共同重要",
+        "body": "日常洗手建议用皂搓洗至少二十秒，并覆盖双手的掌心、手背、指缝、拇指、指尖与指甲周围，再冲净和擦干。二十秒是操作建议，不是一到时刻所有微生物同时消失的化学开关。只搓掌心很久也会遗漏其他区域；页面点击过五处只说明已阅读五处，不能代替真实动作或计时。"
+      },
+      {
+        "title": "把微生物传播机会降下来",
+        "body": "手可把一些微生物带到眼、鼻、口或食物上。饭前、如厕后等适当时机洗手，能够减少传播机会。洗过的皮肤并非无菌，也不需要追求把所有常驻微生物清零。干燥同样是流程的一部分；真实效果还受到用水条件、实际动作和再次接触的影响，因此本演示不提供虚构的洗净百分比。"
+      }
+    ],
+    "misconception": "泡泡多不等于洗得干净；在屏幕上点完五个部位，也不等于真的洗了二十秒。",
+    "boundary": "图形是分子和微生物的放大符号，移动不是实测速度或去除比例；本页是操作学习，不能评价一双手的卫生状况。",
+    "narration": [
+      {
+        "label": "小手去过很多地方",
+        "text": "小手每天都很忙，会摸玩具、翻书、碰门把手，也会拿食物。手上有些东西看得见，有些微生物却小得看不见。我们不用害怕所有小东西，但可以学会认真洗手，减少把有害微生物带进嘴里、眼睛和鼻子的机会。先用干净的流动水打湿双手。",
+        "cue": "停在打湿阶段，突出双手。"
+      },
+      {
+        "label": "肥皂来帮忙",
+        "text": "接下来涂上肥皂，或者水洗型洗手液。肥皂能帮助水把一些油污带走，再配合来回搓洗，附着的东西更容易松动。画面里的小圆头和短线表示分子，不是真的大泡泡。我们先停一下，看看污物怎样从紧贴着皮肤，变得松动起来。",
+        "cue": "推进用皂与搓洗，留三秒观察。"
+      },
+      {
+        "label": "照顾每个角落",
+        "text": "两只手都要认真洗。掌心搓一搓，手背换着搓，指缝也要照顾到；拇指转一转，指尖和指甲周围别漏掉。用皂搓洗至少二十秒，慢慢做完整。屏幕上的按钮只帮我们记住位置，点得再快，也不能代替你的小手真正做这些动作。",
+        "cue": "逐个选择五个部位，定位环随之移动。"
+      },
+      {
+        "label": "冲净，再擦干",
+        "text": "最后用干净的流动水冲去肥皂和松动的污物，再用干净毛巾或合适的干手设备弄干。洗过的手不是一颗微生物都没有，但我们已经减少了一些传播的机会。记住这个顺序，饭前、上厕所后这些时候，请大人陪你把真正的洗手认真做一遍。",
+        "cue": "推进冲净和擦干，停在完整顺序。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How does a quick rinse differ from rubbing with soap and then rinsing thoroughly?",
+    "observe": "Follow wet, soap, rub, rinse and dry. During rubbing, select palms, backs, spaces between fingers, thumbs and fingertips and compare the marker with the dirt illustration.",
+    "academic": [
+      {
+        "title": "Soap helps remove oily material",
+        "body": "Surfactants have water-attracting and oil-attracting regions that help disperse oily material and detach it from skin. Rubbing loosens contamination, and running water carries it away. Soap can also disrupt some microbes, but bubbles do not mean every microbe has been killed, and foam quantity is not a cleanliness score."
+      },
+      {
+        "title": "Duration and coverage both matter",
+        "body": "Everyday guidance recommends scrubbing with soap for at least twenty seconds, covering both palms, backs, fingers, thumbs and nail areas, then rinsing and drying. Twenty seconds is practical guidance, not an instant chemical switch. Reviewing five buttons records learning, not real hand coverage or elapsed washing time."
+      },
+      {
+        "title": "Reduce opportunities for transmission",
+        "body": "Hands can transfer some microbes to eyes, nose, mouth or food. Washing at appropriate times, such as before eating and after using the toilet, reduces opportunities for spread. Skin need not become sterile. Drying and avoiding immediate recontamination also matter, so the demonstration does not invent a cleanliness percentage."
+      }
+    ],
+    "misconception": "More foam does not prove better cleaning, and tapping five regions is not twenty seconds of real washing.",
+    "boundary": "The enlarged symbols do not show measured motion or removal rates. This is practice for the sequence, not a hygiene assessment of real hands.",
+    "narration": [
+      {
+        "label": "Busy little hands",
+        "text": "Hands have busy days: touching toys, turning pages, opening doors and holding food. Some things on them are visible, while microbes are too small to see. We do not need to fear every tiny thing, but careful washing reduces the chance of moving harmful microbes to our mouth, eyes or nose. Start with clean running water.",
+        "cue": "Hold the wet stage and show both hands."
+      },
+      {
+        "label": "Soap helps",
+        "text": "Apply soap or wash-off liquid hand soap. Soap helps water carry away oily material, while rubbing helps loosen what is attached. The little heads and tails in our picture represent molecules, not giant bubbles. Pause and watch the model dirt change from sticking to the skin to becoming loosened.",
+        "cue": "Advance soap and rubbing, then pause for three seconds."
+      },
+      {
+        "label": "Reach every area",
+        "text": "Wash both hands carefully. Rub the palms and backs, reach between fingers, turn around each thumb, and include fingertips and nail areas. Scrub with soap for at least twenty seconds and cover everything. Our buttons help you remember places; however quickly you tap them, they cannot do the real washing for your hands.",
+        "cue": "Select all five regions while the marker moves between them."
+      },
+      {
+        "label": "Rinse and dry",
+        "text": "Rinse away soap and loosened dirt with clean running water, then dry with a clean towel or suitable hand-drying equipment. Washed hands are not completely microbe-free, but washing reduces opportunities for spread. Remember the sequence and practice it with an adult before eating and after using the toilet.",
+        "cue": "Advance rinsing and drying, then hold the complete sequence."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "CDC · About Handwashing",
+      "url": "https://www.cdc.gov/handwashing/"
+    },
+    {
+      "title": "CDC · Handwashing Facts",
+      "url": "https://www.cdc.gov/clean-hands/data-research/facts-stats/"
+    },
+    {
+      "title": "CDC · Hand Hygiene FAQ",
+      "url": "https://www.cdc.gov/clean-hands/faq/index.html"
+    }
+  ]
+}

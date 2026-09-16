@@ -597,7 +597,7 @@ export class SolarSimulation {
 
     const tracking = this.viewMode !== 'lineup' && this.activeView === 'follow';
     if(this.cameraTransition || tracking) {
-      const blend = 1 - Math.exp(-dt * 7);
+      const blend = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 1 - Math.exp(-dt * 7);
       this.camera.position.lerp(this._camPosTarget,blend);
       this.controls.target.lerp(this._camLookTarget,blend);
       if(!tracking && this.camera.position.distanceTo(this._camPosTarget)<.005) this.cameraTransition = false;

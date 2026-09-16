@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "black-hole",
+  "zh": {
+    "question": "同一颗恒星从更远处经过黑洞，还会被拉成细长气流吗？",
+    "observe": "先播放远距离经过，再切换近距离遭遇；暂停在最靠近黑洞时，比较外层、核心与气流的去向。",
+    "academic": [
+      {
+        "title": "拉扯来自引力差",
+        "body": "潮汐作用比较的是天体两侧的引力差，而不是只看中心处引力有多强。当恒星半径远小于中心距离时，沿径向的差分加速度约为 2GMR/r³。距离缩短会迅速增强这种差异。把它与恒星自身引力比较，可估计潮汐半径 rₜ≈R(M/m)^(1/3)；这只是量级条件，实际破坏还取决于轨道与内部结构。"
+      },
+      {
+        "title": "碎裂不等于全部落入",
+        "body": "恒星最接近黑洞时，不同部分获得不同的轨道能量和角动量。被释放的物质可能逃离，也可能仍受引力束缚，经过较长路径后回返。回返气流通过碰撞和耗散逐步改变轨道；并非全部物质立刻构成整齐圆盘。外层先脱离、核心稍后松散是本页所选模型的连续过程，不是所有遭遇必然相同的顺序。"
+      },
+      {
+        "title": "我们怎样知道发生了什么",
+        "body": "潮汐瓦解事件可表现为突然增强、随后演化的辐射，研究者结合光谱、亮度随时间的变化及宿主星系环境判断来源。发光物质位于事件视界之外；黑洞阴影和视界也不是同一个可见圆边。演示中的颜色帮助追踪物质与受热程度，不是直接观测到的温度图，单凭一个亮环不能证明恒星正在被撕碎。"
+      }
+    ],
+    "misconception": "黑洞不是把周围一切都吸走的吸尘器；是否碎裂取决于经过距离、轨道和天体结构，发光的通常是视界外的气体。",
+    "boundary": "粒子沿连续轨迹展示潮汐拉伸和回流；没有求解完整流体、磁场、辐射输运或数值广义相对论。大小、亮度与演示时间不能直接换算成一次真实事件。",
+    "narration": [
+      {
+        "label": "先认清主角",
+        "text": "我们来跟着一颗恒星旅行。恒星原本是一大团靠自己的引力聚在一起的热气体。旁边的黑洞很特别：越过它的一道边界，连光也不能再逃出来。不过，只是从旁边经过，不一定会掉进去。先看看离得比较远的那条路，恒星能不能继续走。",
+        "cue": "显示远距离轨道；等待恒星接近。"
+      },
+      {
+        "label": "近处和远处",
+        "text": "现在把经过的路线挪近一些。恒星朝向黑洞的一侧受到的拉力，和另一侧不一样。差别足够大时，恒星就可能被拉散。请暂停一下，找一找：是整颗星一起消失，还是先有一些外层气体离开？给自己一点时间，沿着气流慢慢看。",
+        "cue": "切近距离；在外层初次脱离时停顿约四秒。"
+      },
+      {
+        "label": "继续跟着气体",
+        "text": "继续播放，原来聚在一起的物质变成了弯弯的长流。有些往远处走，有些还会绕回来。绕回来也不等于立刻掉进去，它们要继续运动、相遇和改变路线。画面里一直跟着的，仍然是刚才那批物质，并不是黑洞突然变出了新的彩带。",
+        "cue": "跟随同一批物质经过拉伸、回返阶段。"
+      },
+      {
+        "label": "亮光在哪里",
+        "text": "最后，看看黑洞旁边的亮光。光来自外面的热气体，不是已经掉进黑洞的光又跑出来了。这段画面把很难看到的过程放大、放慢，好让我们观察。你可以再比较两条路线：同样遇到黑洞，离得不同，故事的结尾也可能不同。",
+        "cue": "拉回全景，比较远距离和近距离结果。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Would the same star become a long stream if it passed farther from the black hole?",
+    "observe": "Play a distant pass, then a close encounter. Pause near the closest approach and compare the outer layers, the core, and the outgoing material.",
+    "academic": [
+      {
+        "title": "Tides measure a difference",
+        "body": "A tide is the difference in gravity across an object, rather than the gravitational acceleration at its center. For a star much smaller than its distance from the black hole, the radial difference is approximately 2GMR/r³. Comparing this with the star’s self-gravity gives the order-of-magnitude tidal radius rₜ≈R(M/m)^(1/3). Orbit and internal structure affect the actual outcome."
+      },
+      {
+        "title": "Disruption is not complete capture",
+        "body": "Different pieces acquire different orbital energies and angular momenta. Some can escape while bound material returns along extended paths. Collisions and dissipation can change the returning stream’s orbit; an orderly disk does not appear instantly. Outer-layer release followed by core dispersal belongs to this chosen illustration, rather than a universal sequence for every encounter."
+      },
+      {
+        "title": "Evidence beyond an illustration",
+        "body": "Researchers investigate candidate tidal disruptions using changing brightness, spectra, and the host environment. Emission comes from outside the event horizon. A black-hole shadow is not identical to the horizon’s visible outline. The colors here help track material and heating; they are not an observed temperature map, and a bright ring alone does not establish that a star is being disrupted."
+      }
+    ],
+    "misconception": "A black hole does not vacuum up everything nearby. Distance, orbit, and internal structure affect disruption; the glowing gas is outside the horizon.",
+    "boundary": "The continuous particle model illustrates stretching and fallback. It does not solve complete hydrodynamics, magnetic fields, radiation transport, or numerical general relativity; displayed scale and time are not calibrated to a real event.",
+    "narration": [
+      {
+        "label": "Meet the travelers",
+        "text": "Let’s travel with a star. A star is a huge ball of hot gas held together by its own gravity. The black hole nearby has a special boundary: once something crosses it inward, even light cannot escape. But passing nearby does not always mean falling in. First watch the farther route and see whether the star continues on its way.",
+        "cue": "Show the distant pass and wait for approach."
+      },
+      {
+        "label": "Different pulls",
+        "text": "Now bring the route closer. The side facing the black hole feels a different pull from the far side. A large enough difference can pull the star apart. Pause for a moment. Does the whole star vanish together, or do some outer layers leave first? Take your time and follow the flowing material.",
+        "cue": "Pause for about four seconds when outer layers first detach."
+      },
+      {
+        "label": "Follow the same material",
+        "text": "Keep watching. Material that was together becomes a long, curving stream. Some travels away and some returns. Returning does not mean falling straight in: it keeps moving, meeting other material, and changing its route. We are following the same material as before. The black hole has not suddenly made a brand-new ribbon.",
+        "cue": "Follow the same parcels through stretching and fallback."
+      },
+      {
+        "label": "Where the light comes from",
+        "text": "Finally, look at the glow nearby. It comes from hot gas outside the black hole, not light escaping after falling inside. This picture enlarges and slows the process so we can inspect it. Try comparing the two routes again. Passing the same black hole at different distances can lead to different endings.",
+        "cue": "Return to the overview and compare outcomes."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Anatomy of a Black Hole",
+      "url": "https://science.nasa.gov/universe/black-holes/anatomy/"
+    },
+    {
+      "title": "NASA · What Happens When Something Gets Too Close to a Black Hole?",
+      "url": "https://science.nasa.gov/universe/what-happens-when-something-gets-too-close-to-a-black-hole/"
+    },
+    {
+      "title": "NASA/Hubble · Tidal disruption illustration",
+      "url": "https://science.nasa.gov/asset/hubble/six-panel-illustration-of-black-hole-tde-at2024tvd/"
+    }
+  ]
+}

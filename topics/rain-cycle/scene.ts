@@ -27,7 +27,7 @@ export function draw(p:number,condition:number){
  ${[0,1,2,3].map(i=>`<path d="M${548+i*7} ${393+i*24}q28-8 55 0t55 0t55 0" stroke="#cceee6" stroke-width="3" fill="none" opacity=".7"/>`).join('')}
  <g opacity="${.25+.75*smooth(.12,.4,p)}">${cloud(385,147,1+.08*smooth(.12,.4,p))}${cloud(570,164,.48)}</g>
  <path d="M635 366C698 263 681 203 580 161" fill="none" stroke="#c5a552" stroke-width="3" stroke-dasharray="5 10" opacity="${1-.76*smooth(.2,.35,p)}" marker-end="url(#a)"/>
- ${dots}${drops}<path d="M308 348C322 399 409 420 482 428" fill="none" stroke="#e8f5d9" stroke-width="4" stroke-dasharray="8 12" opacity="${.2+.8*smooth(.7,.85,p)}" marker-end="url(#a)"/>
+ ${dots}${drops}<path d="M635 366C698 263 681 203 580 161Q440 110 300 170L265 305Q307 354 287 375T365 415Q419 409 457 442H601" fill="none" stroke="#fff9d5" stroke-width="3" pathLength="100" stroke-dasharray="${p*100} 100" opacity=".7"/><path d="M308 348C322 399 409 420 482 428" fill="none" stroke="#e8f5d9" stroke-width="4" stroke-dasharray="8 12" opacity="${.2+.8*smooth(.7,.85,p)}" marker-end="url(#a)"/>
  <g opacity="${smooth(.2,.35,p)*(1-smooth(.45,.6,p))}">${Array.from({length:14},(_,i)=>`<circle cx="${322+(i%7)*22}" cy="${122+Math.floor(i/7)*21}" r="${3+i%3}" fill="#7abcca"/>`).join('')}</g>
  <g transform="translate(${pos[0]} ${pos[1]})"><circle r="20" fill="#fffceec9" stroke="#c7a465" stroke-width="2"/><g opacity="${1-smooth(.24,.42,p)}">${molecule(-7,-5,.75)}${molecule(7,-3,.75)}${molecule(0,7,.75)}</g><ellipse cy="1" rx="8" ry="10" fill="#6db4c6" stroke="#e2f6ef" opacity="${smooth(.24,.42,p)}"/></g>
  ${label(639,286,t('蒸发'))}${label(385,71,t('凝结成云'))}${label(209,312,t('降雨'))}${label(370,467,t('河流'))}${label(727,474,t('海洋'))}`};

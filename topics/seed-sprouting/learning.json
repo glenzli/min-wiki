@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "seed-sprouting",
+  "zh": {
+    "question": "种子还没有叶子，最初长大的能量从哪里来？",
+    "observe": "先用湿润、有空气、温暖的条件推进阶段，观察根先出现；再改变一个条件，比较成长受阻的原因。条件改变不会把已有幼苗变回种子。",
+    "academic": [
+      {
+        "title": "吸水启动，但不等于完成萌发",
+        "body": "干种子吸水后膨胀，细胞代谢逐步恢复，酶参与动员储藏物质。胚根突破种皮通常作为萌发完成的可见标志，吸胀本身却不能证明种子一定能成苗。种子是否存活、是否处于休眠，以及种皮和胚的状态也影响结果。有些种子即使水和温度合适，仍需特定处理打破休眠；本页选择不强调休眠的豆类例子。"
+      },
+      {
+        "title": "储藏物质和呼吸支持早期生长",
+        "body": "幼苗尚未形成有效光合叶片时，依靠种子中的储藏物质提供原料和可利用能量；细胞呼吸通常需要足够氧气。土壤孔隙若长期被水充满，气体供应会受限，所以湿润并不等于泡在水里。适宜温度影响代谢速度，过冷常使过程变慢，过热或持续缺氧可能造成损伤，不能把所有失败都归为“水不够”。"
+      },
+      {
+        "title": "同一株幼苗具有发育历史",
+        "body": "本例根先伸出，随后胚轴伸长、子叶位置改变、真叶展开。子叶与真叶不是同一种结构，根系也并非只是一条直线。长成后再改变条件，会影响后续生长或存活，而不会把既有器官倒回种子形态。比较实验应使用相近批次的新种子、固定观察时间并记录多个个体；四个阶段不是统一的日历刻度。"
+      }
+    ],
+    "misconception": "种子先靠储藏物质起步；水越多并不越好，已有幼苗也不会因条件改变而倒长成种子。",
+    "boundary": "代表常见豆类的萌发次序，条件选项是定性分类；未模拟休眠、品种温度阈值或损伤累积，四阶段不对应固定天数。",
+    "narration": [
+      {
+        "label": "小豆子里藏着什么",
+        "text": "一颗干干的小豆子，看起来安安静静。可是种子里面有幼小的植物，还有给它起步用的储备。现在给它湿润的环境、合适的温暖，也留出空气。它会先吸水，慢慢开始变化。你先猜一猜，最早从种皮里探出来的，会是一片叶子，还是一条小根？",
+        "cue": "设置湿润、有空气、温暖；展示种子。"
+      },
+      {
+        "label": "根先伸出来",
+        "text": "往下一步看，小根先出来了。我们停一停，顺着小根找找它伸向哪里。接着，嫩芽往上长，慢慢来到土面上。还没有张开叶子的时候，小植物先用种子里储存的东西帮助自己长大，不是从泥土里直接吃下做好的饭。根也在继续长出更多细小的分支。",
+        "cue": "展示根后暂停三秒，再观察芽出土。"
+      },
+      {
+        "label": "水多了也会困难",
+        "text": "现在比较一下不同条件。太干时，种子难以吸够水；水把空隙都填满时，氧气又可能不够。种子里面的细胞也需要进行让能量可用的活动，空气很重要。太冷还会让许多豆子长得更慢。我们一次只改一个条件，这样更容易发现，究竟是什么影响了它。",
+        "cue": "依次比较干燥、积水和寒冷，每次只改一项。"
+      },
+      {
+        "label": "真叶慢慢展开",
+        "text": "环境合适时，真叶逐渐展开，小苗可以借助光来制造糖。注意，已经长出来的小苗不会因为我们改了条件，就缩回成一颗豆子；它只会受到新的影响。画面帮我们回看成长阶段，真实的成长要等待。可以和大人观察几颗豆子，画下每天的新发现，给每一株一点耐心。",
+        "cue": "恢复适宜条件，展示真叶并回顾顺序。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Where does a seed get energy before it has leaves?",
+    "observe": "Advance through the stages under damp, aerated, warm conditions and notice the root appearing first. Change one condition and compare why growth is restricted; an existing seedling does not turn back into a seed.",
+    "academic": [
+      {
+        "title": "Water uptake starts a process, not a guarantee",
+        "body": "A dry seed absorbs water and swells as metabolism resumes and stored materials are mobilised. Radicle emergence is a visible germination milestone, but swelling alone does not guarantee a seedling. Viability, dormancy and seed-coat properties also matter. This bean example sets aside additional dormancy requirements."
+      },
+      {
+        "title": "Reserves and respiration support early growth",
+        "body": "Before effective photosynthetic leaves develop, stored seed material supplies carbon and energy. Respiration generally requires adequate oxygen. Water-filled soil pores restrict gas supply, so damp and flooded are different conditions. Temperature affects metabolism; excessive heat or prolonged oxygen shortage may damage tissues rather than merely pause development."
+      },
+      {
+        "title": "A seedling retains its developmental history",
+        "body": "In this example, the root appears before shoot emergence and true leaves. Cotyledons and true leaves are distinct structures. Later poor conditions affect subsequent growth or survival; they do not reverse organ development. A fair experiment compares similar fresh seeds over matched intervals and includes multiple individuals."
+      }
+    ],
+    "misconception": "Seeds initially use stored reserves. More water is not always better, and changed conditions do not reverse a seedling into a seed.",
+    "boundary": "This represents common bean-like development with qualitative conditions. Dormancy, cultivar-specific thresholds and accumulated damage are omitted; stages do not equal fixed days.",
+    "narration": [
+      {
+        "label": "What is inside a little bean?",
+        "text": "A dry bean seems quiet, but inside is a young plant and stored supplies. Give it moisture, suitable warmth and air. It takes up water and starts changing. Guess which part will emerge first: a little leaf or a little root?",
+        "cue": "Set damp, aerated and warm conditions."
+      },
+      {
+        "label": "The root comes first",
+        "text": "Move ahead and find the little root. Pause and follow its direction. Next the shoot grows upward towards the surface. Before leaves open, the plant uses stored seed supplies rather than taking ready-made food from the soil. Meanwhile, more fine branches develop in its root system.",
+        "cue": "Pause at root emergence, then show the shoot."
+      },
+      {
+        "label": "Too much water can cause trouble",
+        "text": "Compare the conditions. A dry seed cannot take up enough water, but flooded spaces may supply too little oxygen. Cells need processes that make energy available, and air matters. Cold can slow many beans too. Change one condition at a time to make the cause easier to understand.",
+        "cue": "Compare dry, flooded and cold settings separately."
+      },
+      {
+        "label": "True leaves open",
+        "text": "Under suitable conditions, true leaves open and use light to help make sugars. An existing seedling cannot shrink back into a bean when conditions change; it experiences their effects from then on. Real growth takes time. With a grown-up, observe several beans and draw what changes each day.",
+        "cue": "Show true leaves and review the sequence."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "University of Minnesota — Seed Physiology",
+      "url": "https://open.lib.umn.edu/horticulture/chapter/9-2-seed-physiology/"
+    },
+    {
+      "title": "University of Minnesota Extension — Soybean germination and emergence",
+      "url": "https://blog-nwcrops.extension.umn.edu/2023/05/its-magic-neat-process-of-soybean.html"
+    }
+  ]
+}

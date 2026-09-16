@@ -1066,6 +1066,92 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12"
+    },
+    {
+      "id": "pain-signals",
+      "title": "为什么会感觉疼？",
+      "category": "life",
+      "summary": "跟随皮肤到脊髓的信号，比较缩回反射与向脑传递的两条路径。",
+      "tags": [
+        "疼痛",
+        "神经",
+        "反射",
+        "身体"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-16"
+    },
+    {
+      "id": "taste-smell",
+      "title": "为什么会尝到味道？",
+      "category": "life",
+      "summary": "放大舌乳头与味蕾，比较味觉和后鼻嗅觉怎样共同参与风味。",
+      "tags": [
+        "味觉",
+        "嗅觉",
+        "味蕾",
+        "身体"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-16"
+    },
+    {
+      "id": "blood-cells",
+      "title": "红细胞和白细胞在做什么？",
+      "category": "life",
+      "summary": "放大看血液中的分工：运氧气、参与防御，以及一起帮助止血。",
+      "tags": [
+        "红细胞",
+        "白细胞",
+        "血小板",
+        "氧气运输",
+        "身体"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-16"
+    },
+    {
+      "id": "body-cells",
+      "title": "身体里的细胞为什么长得不一样？",
+      "category": "life",
+      "summary": "比较皮肤、肌肉与神经元，观察形状怎样帮助它们保护、运动和传递信息。",
+      "tags": [
+        "细胞分工",
+        "皮肤",
+        "肌肉",
+        "神经元",
+        "组织"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-16"
     }
   ]
 }

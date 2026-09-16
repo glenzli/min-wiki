@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "topicId": "pain-signals",
+  "zh": {
+    "question": "皮肤发出信号以后，缩回动作一定要等大脑先作出决定吗？",
+    "observe": "播放一次，在“脊髓分路”与“缩回动作”处停下。轮流强调反射支路和向脑通路，比较绿色支路到达肌肉时紫色信号的位置；放大皮肤，找自由神经末梢。",
+    "academic": [
+      {
+        "title": "伤害性感受：把刺激编码为神经活动",
+        "body": "皮肤中的一些自由神经末梢属于伤害性感受器，可对足以威胁组织的机械、热或化学刺激作出反应。膜上的受体与离子通道参与转换，神经电活动随后沿传入纤维传播。不同纤维的感受特性与传导速度并不相同，炎症也可能改变其敏感性。这个编码过程称为伤害性感受；单凭末梢或神经元正在活动，不能直接判定一个人体验到了怎样的疼痛。"
+      },
+      {
+        "title": "脊髓分路：反射与向脑传递并行",
+        "body": "来自身体的传入信号到达脊髓后，可以通过中间神经元联系运动神经元，协调屈肌与相关肌群，参与缩回反射；这条回路不需要先等一次有意识的决定。同时，其他神经元把信息向脑的多个中继与网络传递。图里用两条线说明分工，并不意味着神经只有一个分岔、没有突触，也不规定缩回与主观感觉在所有情形下都具有同样的时间间隔。"
+      },
+      {
+        "title": "疼痛体验：不等于组织损伤刻度",
+        "body": "疼痛是一种包含感觉和情绪的个人体验，与身体状态、注意、记忆、预期和情境等因素有关。外表伤口的大小不能单独解释疼痛强弱；神经系统病变或持续的敏感性变化，也可能让疼痛在没有明显新伤时出现或延续。尊重一个人报告的疼痛，与寻找其原因同样重要。本页展示急性保护反应的例子，不用动画亮度计算伤害量，也不推断个体病因。"
+      }
+    ],
+    "misconception": "“手缩回来”不证明此前已经清楚体验到疼痛；“看不见伤口”也不证明没有疼痛。反射、伤害性感受和疼痛体验需要分别理解。",
+    "boundary": "不同部位被并排放大，线路、细胞和突触高度简化，省略神经交叉与下行调节。进度只服务于观察，不是真实潜伏期、诊断、疼痛评分或伤害实验。回拖进度是回看画面。",
+    "narration": [
+      {
+        "label": "从一条小消息开始",
+        "text": "你有没有碰到过东西，手一下子缩了回来？今天我们不用真的碰热东西，也不用把自己弄疼。只在屏幕里，跟着一条小消息看看。先把皮肤放大。里面细细的神经末梢，能对一些可能伤害身体的变化作出反应。它们传出的，是神经信号，不是一颗会跑的疼痛小球。",
+        "cue": "初始全景后，点击放大皮肤末梢，指向表皮中的末梢，再返回全景。"
+      },
+      {
+        "label": "走到分路的地方",
+        "text": "现在让画面慢慢前进。暖色的小点沿着神经走，到了一处叫脊髓的地方。先暂停，找找这里分出了哪两条路。绿色这条经过身体里的小回路，联系上运动神经和肌肉。紫色那条还在向脑传消息。你可以轮流点亮它们，但变淡的那条其实也在工作，没有真的关掉。",
+        "cue": "推进至脊髓分路并暂停；切换两种路径强调，保留两路同时存在。"
+      },
+      {
+        "label": "身体可以先保护自己",
+        "text": "继续看，绿色支路到达了肌肉，画里的手缩回了一些。这种保护动作叫反射。有时候，我们还没来得及想好要做什么，身体已经先动起来了。再看看紫色路线，它还在继续传递。缩手和清楚地感觉到疼，是有关联却不完全相同的两件事，不能当成同一个按钮。",
+        "cue": "推进至缩回动作；停留，比较肌肉变化与尚在前进的向脑路径。"
+      },
+      {
+        "label": "认真听一听身体",
+        "text": "消息到了脑，也会和身体的情况、注意到的事情和过去的经历一起被处理。疼痛能提醒我们需要保护和照顾，但它不是一把量伤口的尺子。一个伤口看起来小，也可能很疼；看不见伤口，也不代表疼痛是假的。如果你不舒服，要告诉照顾你的大人。我们可以一起认真听身体在说什么。",
+        "cue": "推进至终点，显示多个脑内加工节点，停在完整路线与关怀说明。"
+      }
+    ]
+  },
+  "en": {
+    "question": "After a signal starts in the skin, must withdrawal wait for a conscious decision in the brain?",
+    "observe": "Play once and pause at the spinal branch and withdrawal stages. Emphasize each route in turn. Compare the purple signal’s position when the green route reaches muscle, then zoom into the skin to find free nerve endings.",
+    "academic": [
+      {
+        "title": "Nociception: encoding a stimulus as neural activity",
+        "body": "Some free nerve endings in skin are nociceptors that respond to mechanical, thermal or chemical stimuli capable of threatening tissue. Receptors and ion channels participate in transduction, followed by electrical activity along afferent fibers. Fiber types differ in sensitivity and conduction speed, and inflammation can alter sensitivity. This encoding process is nociception. Activity in an ending or a sensory neuron alone cannot establish what pain a person experiences."
+      },
+      {
+        "title": "Spinal circuits: parallel reflex and ascending routes",
+        "body": "Input from the body can reach spinal interneurons and motor neurons, coordinating flexors and related muscle groups in withdrawal. The circuit need not await a conscious decision. Other neurons convey information toward multiple brain relays and networks at the same time. The two drawn routes summarize different roles; they do not imply one literal fork, an absence of synapses, or a universal interval between withdrawal and conscious sensation."
+      },
+      {
+        "title": "Pain: a personal experience, not a damage scale",
+        "body": "Pain includes sensory and emotional experience and is influenced by bodily state, attention, memory, expectations and context. Visible wound size alone does not explain pain intensity. Nervous-system disease or persistent changes in sensitivity can also produce or sustain pain without an obvious new injury. Respecting someone’s pain report matters alongside investigating its cause. This page illustrates an acute protective response; brightness does not calculate damage, and the animation cannot diagnose an individual."
+      }
+    ],
+    "misconception": "Withdrawing a hand does not establish that pain was already consciously experienced. An absence of visible injury does not establish an absence of pain. Reflexes, nociception and pain are distinct concepts.",
+    "boundary": "Enlarged tissues from different locations are placed together. Routes, cells and synapses are greatly simplified; crossing pathways and descending modulation are omitted. Progress is for observation, not measured latency, diagnosis, a pain score or an injury experiment. Scrubbing backward reviews the illustration.",
+    "narration": [
+      {
+        "label": "A small message begins",
+        "text": "Have you ever touched something and quickly pulled your hand away? Today we will not touch anything hot or hurt ourselves. We will follow a little message on the screen instead. First, zoom into the skin. Fine nerve endings there can respond to some changes that might harm the body. What they send is a nerve signal, not a tiny ball of pain traveling through you.",
+        "cue": "Begin with the whole diagram, zoom into the skin endings, then return to the full routes."
+      },
+      {
+        "label": "A place where routes branch",
+        "text": "Now let the picture move slowly. Follow the warm-colored dot along the nerve to a place called the spinal cord. Pause and find the two routes that branch here. The green one passes through a circuit in the body and connects with a motor nerve and muscle. The purple one carries information toward the brain. You can emphasize each route in turn. A dimmer route is still working; it has not really switched off.",
+        "cue": "Advance to the spinal branch and pause. Emphasize each route while retaining both."
+      },
+      {
+        "label": "The body can protect itself first",
+        "text": "Keep watching. The green route reaches the muscle, and the illustrated hand pulls back a little. This protective action is called a reflex. Sometimes the body starts moving before we have had time to decide what to do. Now look at the purple route: information is still traveling onward. Pulling away and clearly feeling pain are related, but they are not exactly the same event. They are not one single button.",
+        "cue": "Advance to withdrawal and pause to compare the muscle with the continuing ascending signal."
+      },
+      {
+        "label": "Listen carefully to the body",
+        "text": "In the brain, information is processed along with the body’s condition, what we notice and our past experiences. Pain can tell us that we need protection and care, but it is not a ruler for measuring a wound. A small-looking wound can hurt a lot. No visible wound does not mean pain is pretend. If you feel unwell, tell an adult who cares for you. Together, you can listen carefully to what your body is telling you.",
+        "cue": "Finish on multiple brain-processing nodes, the full routes and the care message."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "IASP · Terminology: pain and nociception",
+      "url": "https://www.iasp-pain.org/resources/terminology/"
+    },
+    {
+      "title": "UTHealth · Neuroscience Online: Pain Principles",
+      "url": "https://nba.uth.tmc.edu/neuroscience/m/s2/chapter06.html"
+    },
+    {
+      "title": "NCBI Bookshelf · Physiology, Withdrawal Response",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK544292/"
+    },
+    {
+      "title": "NIH / NCCIH · Pain",
+      "url": "https://www.nccih.nih.gov/health/pain"
+    }
+  ]
+}

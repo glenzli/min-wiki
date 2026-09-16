@@ -56,7 +56,7 @@ function selectHabitat(habitat: keyof typeof scenes) {
   el('habitat-title').textContent = scene.title;
   el('habitat-text').textContent = scene.text;
   el('habitat-note').textContent = scene.note;
-  el('habitat-art').innerHTML = scene.art;
+  el('habitat-art').innerHTML = `<defs><radialGradient id="habitat-cell" cx="30%" cy="25%"><stop stop-color="#d1dcad"/><stop offset=".6" stop-color="#8eaf94"/><stop offset="1" stop-color="#507a5a"/></radialGradient><linearGradient id="ceramic" x2=".3" y2="1"><stop stop-color="#e2d1df"/><stop offset=".55" stop-color="#bfa2cf"/><stop offset="1" stop-color="#9271a9"/></linearGradient></defs>` + scene.art.replaceAll('fill="#8eaf94"','fill="url(#habitat-cell)"').replaceAll('fill="#81ac8b"','fill="url(#habitat-cell)"').replaceAll('fill="#779a77"','fill="url(#habitat-cell)"').replace('fill="#bfa2cf"','fill="url(#ceramic)"');
   el('habitat-art').setAttribute('aria-label', `${scene.title}. ${t('场景示意，不代表真实数量或比例。')}`);
 }
 for (const button of document.querySelectorAll<HTMLButtonElement>('[data-habitat]')) {

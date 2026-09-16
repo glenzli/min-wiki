@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "earth-seasons",
+  "zh": {
+    "question": "北京的白天变长时，南半球的城市也会一起变长吗？",
+    "observe": "在四季场景中比较六月与十二月的北京和南半球城市，再切到不倾斜的地球，比较昼长变化。",
+    "academic": [
+      {
+        "title": "倾斜改变的是受光几何",
+        "body": "地轴与公转轨道面的法线约成23.4°，在一年内指向近似保持稳定。地球沿轨道移动时，太阳直射纬度在南北回归线之间变化。同一纬度的正午太阳高度和白昼时长随之改变。直射程度提高时，同一束入射光覆盖的地面面积更小，单位水平面积获得的能量更大；白昼变长则增加一天内接收能量的时间。"
+      },
+      {
+        "title": "从纬度和赤纬计算昼长",
+        "body": "在球形地球、点状太阳、不计折射的几何近似下，日出日落时角满足cos H₀=−tanφ tanδ，昼长约为24H₀/π小时；φ为纬度，δ为太阳赤纬。当右侧超出可行范围时，应判断极昼或极夜，而不是强行求反余弦。实际日出日落还受太阳视半径、大气折射、海拔和地形影响。"
+      },
+      {
+        "title": "四季与天气并非同一件事",
+        "body": "南北半球在同一天朝向太阳的倾斜关系相反，因此季节大致相反，这直接反驳了“整个地球离太阳近就是夏天”的解释。地球轨道确实有远近变化，但不是当代四季的主要原因。海洋储热、云、冰雪反照率和大气输送还会影响气温，使最热的一天通常并不恰好落在夏至当天。"
+      }
+    ],
+    "misconception": "地球不是靠每年把地轴左右摆动来制造四季；一年内轴向近似不变，是公转改变了朝向太阳的关系。",
+    "boundary": "读数主要描述太阳光照的几何关系；不预测天气，不含真实地形遮挡、折射和海陆热惯性。地球、太阳及轨道的显示大小不共用真实比例。",
+    "narration": [
+      {
+        "label": "先看我们的家",
+        "text": "想象我们站在地球上，一边跟着地球转，一边一起绕太阳旅行。地球转起来的那根看不见的轴，是有一点歪的。它并不是今天往左歪、明天往右歪；在这一年的旅行里，它大致一直指着同一个方向。先找到画面里的那根轴。",
+        "cue": "显示地轴和四季全景。"
+      },
+      {
+        "label": "把阳光摊开看",
+        "text": "地球走到不同地方时，阳光照到我们这里的角度会变化。有时照得更正，光比较集中；有时斜斜照过来，同样一束光就摊得更开。白天能晒到太阳的时间，也会跟着变。角度和时间一起改变，才让一年有不同的季节。",
+        "cue": "比较太阳高度与受光范围，避免表现地轴来回摆。"
+      },
+      {
+        "label": "两边一起比较",
+        "text": "请先暂停，猜一猜：北京白天变长的时候，地球南边的城市会怎样？给自己一点时间，再切换城市看读数。你会发现，两边并不总是一起变长。一边更朝向太阳时，另一边就更背向太阳，所以南北两边的季节常常相反。",
+        "cue": "六月、十二月各比较南北城市；停顿约四秒。"
+      },
+      {
+        "label": "再做一个假设",
+        "text": "最后，我们试试让地轴不再倾斜。看看同一个城市，一年里白天长短还会不会像刚才那样变化。这是在画面里做的一个小实验。真实生活里，云、海洋和风也会改变冷暖，所以看懂季节以后，还不能只凭阳光图就猜出明天的天气。",
+        "cue": "切换不倾斜场景，比较同城昼长。"
+      }
+    ]
+  },
+  "en": {
+    "question": "When Beijing’s days become longer, do days in the Southern Hemisphere also become longer?",
+    "observe": "In the seasons scene, compare June and December for Beijing and a southern city. Then try the untilted-Earth scene and compare daylight changes.",
+    "academic": [
+      {
+        "title": "Tilt changes illumination geometry",
+        "body": "Earth’s axis is about 23.4° from the normal to its orbital plane and keeps an approximately fixed direction over a year. As Earth orbits, solar declination changes between the tropics, changing noon solar altitude and daylight duration. More direct sunlight distributes a beam over a smaller horizontal area; longer days increase the time available to receive solar energy."
+      },
+      {
+        "title": "Calculating geometric daylight",
+        "body": "For a spherical Earth, a point Sun, and no atmospheric refraction, the sunrise hour angle obeys cos H₀=−tanφ tanδ. Daylight is approximately 24H₀/π hours, with latitude φ and declination δ. Values outside the inverse-cosine domain require polar-day or polar-night cases. Actual sunrise also depends on the solar disk, refraction, elevation, and terrain."
+      },
+      {
+        "title": "Seasons are not a weather forecast",
+        "body": "Opposite hemispheres lean toward and away from the Sun at the same time, explaining their generally opposite seasons. Earth’s changing Sun distance is real, but is not the main cause of its present seasons. Ocean heat storage, clouds, ice reflectivity, and atmospheric transport affect temperature, so the hottest day need not coincide with the summer solstice."
+      }
+    ],
+    "misconception": "Earth does not tilt back and forth to create each season. Its axis stays approximately fixed while its position around the Sun changes.",
+    "boundary": "The readouts describe illumination geometry, not weather. Terrain, refraction, and ocean heat storage are omitted; displayed bodies and distances do not share a true scale.",
+    "narration": [
+      {
+        "label": "Find our home",
+        "text": "Imagine standing on Earth while it spins and carries us around the Sun. The invisible line it spins around is tilted. It does not lean left today and right tomorrow. During this year-long journey, it keeps pointing roughly the same way. Start by finding that axis in the picture.",
+        "cue": "Show the axis in the seasons overview."
+      },
+      {
+        "label": "Spread out the sunlight",
+        "text": "At different places along Earth’s journey, sunlight reaches us at different angles. Sometimes it arrives more directly and is more concentrated. Sometimes it arrives at a slant and the same beam spreads out farther. The amount of time we have daylight changes too. Angle and daylight time work together to shape our seasons.",
+        "cue": "Compare solar altitude and illuminated area without swinging the axis."
+      },
+      {
+        "label": "Compare both sides",
+        "text": "Pause and make a guess. When Beijing’s days get longer, what happens in a city south of the equator? Take a moment, then switch cities and inspect the numbers. Both places do not always gain daylight together. As one hemisphere leans more toward the Sun, the other leans away, giving them generally opposite seasons.",
+        "cue": "Compare northern and southern cities in June and December; pause four seconds."
+      },
+      {
+        "label": "Try a different Earth",
+        "text": "Finally, try an Earth whose axis is not tilted. Does daylight in the same city change through the year as much as before? This is a small experiment inside our picture. In the real world, clouds, oceans, and winds affect warmth too. Understanding seasons does not mean a sunlight diagram can predict tomorrow’s weather.",
+        "cue": "Switch to the untilted scene and compare daylight in the same city."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA Space Place · What Causes the Seasons?",
+      "url": "https://spaceplace.nasa.gov/seasons/en/"
+    },
+    {
+      "title": "NASA · Seeing Equinoxes and Solstices from Space",
+      "url": "https://science.nasa.gov/resource/seeing-equinoxes-and-solstices-from-space/"
+    },
+    {
+      "title": "NASA · Earth Facts",
+      "url": "https://science.nasa.gov/earth/facts/"
+    }
+  ]
+}

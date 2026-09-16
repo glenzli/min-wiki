@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "buoyancy",
+  "zh": {
+    "question": "同一块橡皮泥，捏成球和空心船，为什么结果可能不同？",
+    "observe": "对比泥球与船，保持材料质量不变；给船逐块加货，观察吃水和排水量。再用压入实验比较半浸入、全浸入和继续下移。",
+    "academic": [
+      {
+        "title": "浮力来自压力差",
+        "body": "静止液体的压强随深度增加，物体表面各处压力的合力通常向上。阿基米德原理表述为浮力等于排开液体的重量，即液体密度、重力加速度与排水体积之积。排水体积只计算被物体或不进水空间占据的部分，不是容器里总水量；沉下去的物体也受到浮力，触底后还可能受到箱底支持力。"
+      },
+      {
+        "title": "形状改变可用的排水空间",
+        "body": "同一块泥的质量不因捏成船而减小，但船壳围出的不进水空间，使它在船边没入水面前能够排开更多水。稳定漂浮时浮力等于总重力；增加货物后需排开更多水，船便下沉一些。水越过船边进入内部后，原来被排除的水能占据该空间，浮力条件改变，不能再沿用未进水船体的排水能力。"
+      },
+      {
+        "title": "密度、深度与实验控制",
+        "body": "在均匀且近似不可压缩的水中，刚性物体完全浸没后继续下移，其排水体积不变，浮力基本不变，尽管各处压强都增大。换更密的液体，在相同浸没体积下浮力会增大；自由漂浮物则会升高一点直到再次平衡。比较时需说清固定的是体积、质量还是平衡状态，不能混用这些条件。"
+      }
+    ],
+    "misconception": "轻的必浮、重的必沉不成立；浮沉要比较重量、可排开的液体和所受其他支持。",
+    "boundary": "画面显示理想静水和平衡结果；水位变化放大，过渡不是流体求解，不包含波浪、渗水速率与翻船稳定性。",
+    "narration": [
+      {
+        "label": "水也会向上托",
+        "text": "把小木块放到水里，它浮起来了；换一块石头，它可能沉下去。是不是只有浮着的东西，才受到水的帮助呢？其实沉下去的石头，水也在向上托它，只是还托不住全部重量。今天我们看箭头、看水位，不只用轻和重来猜。",
+        "cue": "比较木块与石块，突出浮力箭头。"
+      },
+      {
+        "label": "同一块泥，换个形状",
+        "text": "现在看这块橡皮泥。先把它捏成球，再捏成像小碗一样的空心船。泥没有偷偷变轻，船却能在不进水的时候，占住更大的一片空间，让更多水让开位置。被排开的水越多，水向上托的力就越大。先停一下，比较旁边排水量的变化。",
+        "cue": "对比球和船，停三秒看排水量。"
+      },
+      {
+        "label": "加一点货物",
+        "text": "给小船慢慢加货物，看看船边是不是更接近水面了。它要多排开一些水，才能托住新增的重量。可是船边太低，水就会跑进来，原来的空心空间不能继续把水挡在外面。我们只在模型里试，真正玩水时要有大人陪着。",
+        "cue": "逐块加货，观察吃水和进水条件。"
+      },
+      {
+        "label": "全部进入水里以后",
+        "text": "最后，用装置慢慢把方块压进水里。开始时，进去的部分越多，水托的力越大。等整个方块都在水里了，再往下移，排开的水没有继续变多，向上的力也基本不变。发现了吗？想解释浮力，要问水被排开多少，还要问物体有多重。",
+        "cue": "比较半浸、全浸与更深位置。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Why can the same clay behave differently as a ball and a hollow boat?",
+    "observe": "Compare clay ball and boat at the same material mass, then add cargo one piece at a time and watch draft and displacement. Compare partial, complete and deeper immersion in the held-object experiment.",
+    "academic": [
+      {
+        "title": "Pressure differences produce buoyancy",
+        "body": "Pressure increases with depth in a resting liquid. The resulting upward force equals the weight of displaced liquid: fluid density times gravity times displaced volume. This volume is not the total water in the tank. Sinking objects also experience buoyancy, and the tank floor can provide additional support after contact."
+      },
+      {
+        "title": "Shape changes usable displacement",
+        "body": "Reshaping clay does not reduce its mass. A watertight hollow hull can displace more water before its rim submerges. At floating equilibrium buoyancy balances total weight. Added cargo increases the required displacement and draft. Flooding lets water occupy previously excluded space, changing the boat’s available buoyancy."
+      },
+      {
+        "title": "Control density, depth and equilibrium",
+        "body": "For a rigid object fully immersed in nearly incompressible uniform water, moving deeper does not change displaced volume or buoyancy much, although pressure increases. Denser liquid increases buoyancy at fixed immersion. A freely floating object instead rises until balance returns. Comparisons must state which quantities are held fixed."
+      }
+    ],
+    "misconception": "Light always floats and heavy always sinks is false. Compare weight, possible displacement and any other supporting forces.",
+    "boundary": "The diagram uses ideal still-water equilibrium. Water-level changes are enlarged, and transitions do not solve fluid flow, flooding rates or capsizing stability.",
+    "narration": [
+      {
+        "label": "Water pushes upward",
+        "text": "A wooden block floats, while a stone may sink. Does water help only the floating object? No: water also pushes upward on the sinking stone, but may not support its whole weight. Today we will inspect arrows and water level, instead of guessing from light and heavy alone.",
+        "cue": "Compare wood and stone, indicating buoyancy arrows."
+      },
+      {
+        "label": "Same clay, another shape",
+        "text": "Turn the clay ball into a hollow boat, rather like a little bowl. The clay has not secretly become lighter. While water stays outside, the boat occupies more space and pushes more water aside. More displaced water gives a larger upward push. Pause and compare the displacement reading beside the tank.",
+        "cue": "Compare ball and boat, pausing for three seconds at displacement."
+      },
+      {
+        "label": "Add a little cargo",
+        "text": "Add cargo slowly. Does the rim move closer to the water? The boat must displace more water to support the added weight. If the rim gets too low, water enters and the hollow space no longer keeps that water outside. Try this in the model; real water play needs an adult nearby.",
+        "cue": "Add cargo one piece at a time and inspect draft and flooding."
+      },
+      {
+        "label": "After complete immersion",
+        "text": "Finally, use the support to lower the block. At first, more of it enters the water and the upward push grows. Once the whole rigid block is underwater, moving it deeper does not displace more water, so the push stays nearly the same. Buoyancy questions need both displacement and the object’s weight.",
+        "cue": "Compare partial, complete and deeper immersion."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "OpenStax · Archimedes’ Principle",
+      "url": "https://openstax.org/books/college-physics/pages/11-7-archimedes-principle"
+    },
+    {
+      "title": "OpenStax · Buoyancy",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
+    },
+    {
+      "title": "OpenStax · Fluids, Density, and Pressure",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure"
+    }
+  ]
+}

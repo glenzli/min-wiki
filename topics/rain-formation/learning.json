@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "rain-formation",
+  "zh": {
+    "question": "云里已经有小水滴，为什么不一定会下雨？云下空气很干时又会怎样？",
+    "observe": "分别观察暖云和冰相路线，再把云下湿度调低，推进到下落末尾；比较雨滴半径和是否到达地面。",
+    "academic": [
+      {
+        "title": "云滴必须跨越生长门槛",
+        "body": "空气抬升时常因膨胀而冷却，水汽在适当条件下凝结到气溶胶颗粒上，形成云滴。小云滴下落很慢，可被上升气流和湍流维持在云中；凝结生长本身往往不足以迅速产生大雨滴。是否降雨还要看颗粒生长、碰撞效率、云厚及在云中的停留时间，不能只看云是否存在。"
+      },
+      {
+        "title": "两条常见的生长路线",
+        "body": "在暖云中，不同大小的液滴沉降速度不同，较大的液滴可能碰撞并合并小滴。在混合相云中，冰晶可通过水汽沉积、碰并和凇附增长，落入暖空气后可能融化成雨。不是所有雨都先成为雪，也不是所有碰撞都会合并。雨滴水量随半径的三次方变化，半径增大十倍，体积会增大约千倍。"
+      },
+      {
+        "title": "从云底到地面还有一段旅程",
+        "body": "雨滴离开云后仍在与空气交换水分和热量。较干的空气通常使蒸发更明显，小滴可能在到达地面前完全蒸发，形成雨幡。实际结果还取决于落程、温度、滴谱和气流。雷达发现云下的降水粒子，不一定等于地面雨量计会记录到同样多的雨，两类观测需要结合理解。"
+      }
+    ],
+    "misconception": "云不是被装满后漏水的袋子；降雨需要颗粒长大，而且落下的水还可能蒸发。",
+    "boundary": "湿度滑块只改变简化蒸发情景；颗粒比例、碰撞次数、落速和时间不是真实云的数值模拟。",
+    "narration": [
+      {
+        "label": "云里很热闹",
+        "text": "抬头看一朵云，里面已经有许多小水滴，有时还有小冰晶。它们非常小，不会马上变成落在你雨伞上的大雨点。今天我们把云里发生的事情放大，让眼睛能跟上。先猜一猜，小水滴接下来要发生什么变化，才比较容易落下来呢？",
+        "cue": "停在初始云滴阶段，留三秒思考。"
+      },
+      {
+        "label": "慢慢长大",
+        "text": "在一种云里，有些水滴在路上遇到别的水滴，碰到一起，合成更大的水滴。另一种路线里，小冰晶先长大，落到暖一些的地方后，再融化成水滴。两种路线都可以帮助雨形成。我们换着看一遍，找一找哪一条路线出现了冰。",
+        "cue": "分别播放暖云和冰相路线。"
+      },
+      {
+        "label": "雨还没到地面",
+        "text": "看，雨滴开始往下落了。可是旅程还没有结束。如果云下面的空气很干，雨滴里的水还会进入空气，雨滴就慢慢变小。现在先停一下，把下面的空气调得干一些，再往前看。最后它到达地面了吗？还是在路上就看不见了呢？",
+        "cue": "降低湿度，停在落程中，再推进末尾。"
+      },
+      {
+        "label": "把两件事分开看",
+        "text": "所以，看见云不一定会下雨，看见云下面有一条条雨的样子，也不一定有雨落到我们脚边。小水滴要长大，落下后还要走完路，才成为地面收到的雨。下次看天气时，可以和大人一起留意云和地面，不过遇到雷雨，要在安全的屋里观察。",
+        "cue": "回到全景，对照云底与地面。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Clouds already contain tiny droplets, so why do they not always rain? What if the air below is dry?",
+    "observe": "Compare the warm-cloud and ice routes, then lower humidity below the cloud and advance to the end. Compare drop radius and whether water reaches the ground.",
+    "academic": [
+      {
+        "title": "Droplets must grow",
+        "body": "Rising air often cools through expansion, allowing vapor to condense on aerosol particles. Small droplets fall slowly and can remain within updrafts and turbulence. Condensation alone often does not produce large raindrops quickly. Rain also depends on growth, collision efficiency, cloud depth and residence time."
+      },
+      {
+        "title": "Two common growth routes",
+        "body": "In warm clouds, drops with different fall speeds can collide and merge. In mixed-phase clouds, ice grows by vapor deposition, aggregation and collecting supercooled drops; it may later melt into rain. Not all rain starts as snow, and not every collision merges droplets. Drop volume scales with the cube of radius."
+      },
+      {
+        "title": "Rain may evaporate on the way",
+        "body": "Below a cloud, drops exchange water and heat with the air. Dry air can increase evaporation; small drops may vanish before reaching the ground, producing virga. Temperature, fall distance, drop-size distribution and airflow also matter. Radar returns from falling particles need not match rainfall measured at the surface."
+      }
+    ],
+    "misconception": "A cloud is not a bag that leaks when full. Particles must grow, and falling water can still evaporate.",
+    "boundary": "The humidity slider controls a simplified evaporation scenario. Particle scales, collision counts, fall speeds and timing are not a numerical cloud forecast.",
+    "narration": [
+      {
+        "label": "Inside a cloud",
+        "text": "A cloud already contains many little droplets and sometimes tiny ice crystals. They are much too small to immediately become the large drops landing on your umbrella. Today we magnify their story so our eyes can follow it. What might the little droplets need to do before they can more easily fall?",
+        "cue": "Hold the cloud-droplet stage and pause for three seconds."
+      },
+      {
+        "label": "Growing larger",
+        "text": "In one kind of cloud, some droplets meet other droplets and join into larger drops. Along another route, little ice crystals grow first and may melt into drops when they fall into warmer air. Both routes can help make rain. Watch each one and find the route that includes ice.",
+        "cue": "Play the warm-cloud and ice routes in turn."
+      },
+      {
+        "label": "Not at the ground yet",
+        "text": "The drops are falling, but their journey is not over. If the air below the cloud is dry, some water enters the air and the drops shrink. Pause, make the air below drier, then continue. Does the drop reach the ground, or does it disappear along the way?",
+        "cue": "Lower humidity, pause halfway down and advance to the end."
+      },
+      {
+        "label": "Two different questions",
+        "text": "Seeing clouds does not guarantee rain, and seeing streaks below a cloud does not guarantee rain at your feet. Droplets need to grow and complete the trip before the ground receives rain. You can notice clouds and ground conditions with an adult, but watch thunderstorms from the safety of a building.",
+        "cue": "Return to the overview and compare cloud base with ground."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Met Office · Rain",
+      "url": "https://weather.metoffice.gov.uk/learn-about/weather/types-of-weather/rain"
+    },
+    {
+      "title": "NWS · Cloud Development",
+      "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/clouds/cloud_development/clouds.htm"
+    },
+    {
+      "title": "USGS · Condensation and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/condensation-and-water-cycle"
+    }
+  ]
+}

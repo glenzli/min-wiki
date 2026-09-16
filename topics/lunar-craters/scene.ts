@@ -62,10 +62,11 @@ export class TopicScene {
       c.restore();
     }
     if (progress > .8) {
+      c.save(); c.globalAlpha = smooth(.8, .9, progress);
       const x = 245, y = -104; const rim=c.createRadialGradient(x-14,y-17,5,x,y,63);rim.addColorStop(0,'#292e34');rim.addColorStop(.52,'#404951');rim.addColorStop(.7,'#9b9c94');rim.addColorStop(.83,'#727970');rim.addColorStop(1,'#3c4751');s.path(rimPath(x,y,63,57,.4),rim,'#919994',1);
       for (let i = 0; i < 28; i++) { const a = i * 2.4 + seed(i) * .25, rr = 49 + seed(i + 64) * 30; s.path([[x + Math.cos(a) * 36, y + Math.sin(a) * 33], [x + Math.cos(a) * rr, y + Math.sin(a) * rr * .9]], undefined, '#ced0c260', 1.5); }
       const bowl=c.createLinearGradient(x-35,y-30,x+35,y+30);bowl.addColorStop(0,'#202934');bowl.addColorStop(.6,'#5c6365');bowl.addColorStop(1,'#a5a69b');s.path(rimPath(x,y,37,33,1.1),bowl,'#c0c3b7',.7);
-      for (let i = 0; i < 31; i++) { const a = seed(i + 802) * Math.PI * 2, r = 30 + seed(i + 170) * 32, xx = x + Math.cos(a) * r, yy = y + Math.sin(a) * r * .9, size = .6 + seed(i + 129) * 1.9; s.path([[xx - size, yy], [xx - size * .4, yy - size], [xx + size, yy + .2], [xx, yy + size]], '#aaa99b', '#30384255', .4); } s.label(t('俯视坑形'), x, -180, { width: 170 });
+      for (let i = 0; i < 31; i++) { const a = seed(i + 802) * Math.PI * 2, r = 30 + seed(i + 170) * 32, xx = x + Math.cos(a) * r, yy = y + Math.sin(a) * r * .9, size = .6 + seed(i + 129) * 1.9; s.path([[xx - size, yy], [xx - size * .4, yy - size], [xx + size, yy + .2], [xx, yy + size]], '#aaa99b', '#30384255', .4); } s.label(t('俯视坑形'), x, -180, { width: 170 }); c.restore();
     }
     s.label(t('月面剖面'), -275, 183, { width: 170 }); s.end();
   }

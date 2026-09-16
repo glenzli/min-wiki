@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "seed-travel",
+  "zh": {
+    "question": "没有风时，蒲公英的小伞还能自己朝远处飞吗？",
+    "observe": "先选蒲公英，把风设为零并出发；再分别用轻风和较大风重复，比较路径。切换牛蒡，看小钩如何随动物移动，区分传播和萌发。",
+    "academic": [
+      {
+        "title": "传播单位不总是裸露的种子",
+        "body": "蒲公英随风离开的单位是包着种子的小果实，上方冠毛与连接结构共同构成轻巧的传播体。牛蒡带钩的外部结构则能附着毛发或衣物，连同内部果实被搬运。日常把这些都叫“种子”便于交流，但理解形态时，要分清种子本身、包裹种子的果实以及帮助传播的外层结构，它们不一定来自花的同一部分。"
+      },
+      {
+        "title": "冠毛延缓下落，风提供侧向搬运",
+        "body": "重力使传播体向下运动，冠毛增加与空气的相互作用，使其沉降较慢，于是横向气流有更多时间带走它。真实冠毛是有空隙的丝束，不是密封伞布；流体实验显示其上方可形成分离涡环。飞行距离还受释放高度、湍流、湿度和地形影响，因此风档位只展示比较关系，不能推出固定的米数或保证落点。"
+      },
+      {
+        "title": "附着、移动、脱落与成苗是不同关卡",
+        "body": "带钩传播需要先接触合适表面并成功附着，运输后还要脱落；到达新位置也不等于一定能发芽。传播能改变种子接触光、水、竞争者和捕食者的机会，但远不总比近好，落到不合适地点仍可能失败。界面只演示运输的一小段，不能把传播成功、萌发成功和最终活到成株合并成一件事。"
+      }
+    ],
+    "misconception": "小伞不是发动机；它延缓下落，横向搬运需要空气运动。落到远处也不保证成为新植物。",
+    "boundary": "路径展示固定时段的示意，不代表实际风场或落点；牛蒡示意省略附着强度、脱落时机及其内部多个果实的结构。",
+    "narration": [
+      {
+        "label": "不会走路的植物",
+        "text": "植物长在原地，却能把下一代送到别的地方。它们的种子有时搭风的便车，有时跟着动物走。先看看蒲公英，一个个白白的小伞下面，挂着包有种子的小果实。它没有翅膀用力扇，也没有小马达。猜猜没有风的时候，它会怎样走？",
+        "cue": "选择蒲公英，风设为零。"
+      },
+      {
+        "label": "先试一阵风",
+        "text": "让它出发，看看没有风时的下落。停一停，再换成轻风试一次。小伞让它落得慢一些，风就有更多时间把它带向旁边。风大一点，路也会不同，但真的天空里还有起起伏伏的气流，所以我们不能只看一个按钮，就知道它最后一定落在哪一块泥土上。",
+        "cue": "对比无风和轻风路径，中间暂停三秒。"
+      },
+      {
+        "label": "小钩子的顺风车",
+        "text": "再来认识牛蒡。它不用白色的小伞，而是带着一些小钩子。动物经过时，小钩可能挂到毛上，跟着一起走。画面里的动物前进，小果实也跟着移动。等它以后脱落，就可能到了新地方。这和小伞随风走，是两种不同的搭车办法。",
+        "cue": "切到牛蒡，播放动物连续移动。"
+      },
+      {
+        "label": "到达还不是长大",
+        "text": "可是到了新地方，故事还没结束。种子还要遇到合适的水分、空气和温度，之后的小苗也需要适合自己的环境。落在石头上和落在合适的土里，结果可能很不一样。下次看到衣服上挂的小刺球，可以和大人观察它的钩子，想一想，这一次它搭的是谁的便车。",
+        "cue": "停在传播后的状态，保持传播与萌发分开。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Without wind, can a dandelion parachute fly sideways by itself?",
+    "observe": "Launch the dandelion fruit first with no wind, then repeat with light and stronger wind. Compare paths, then switch to burdock and watch transport by an animal. Dispersal and germination are different events.",
+    "academic": [
+      {
+        "title": "The travelling unit is not always a bare seed",
+        "body": "A dandelion disperses a small fruit containing a seed, with a stalk and pappus. Burdock’s hooked structures attach to fur or clothing and transport enclosed fruits. Everyday language calls them seeds, but the seed, surrounding fruit and dispersal structures have different anatomical identities."
+      },
+      {
+        "title": "A pappus slows descent while wind transports it",
+        "body": "Gravity pulls the fruit downward. Air interaction with the porous pappus slows settling, allowing wind more transport time. Experiments reveal a separated vortex ring above the pappus. Release height, turbulence, moisture and terrain also matter, so the wind settings cannot predict a fixed distance or landing point."
+      },
+      {
+        "title": "Transport is only one step towards establishment",
+        "body": "Hooked structures must contact and attach to a suitable surface, travel and eventually detach. Arrival does not ensure germination. Dispersal changes exposure to resources, competitors and enemies, but farther is not always better. Transport, germination and survival to adulthood are separate outcomes."
+      }
+    ],
+    "misconception": "The parachute is not an engine: it slows descent, while moving air provides transport. Travelling far does not guarantee a new plant.",
+    "boundary": "Paths represent a short illustrative interval, not a measured wind field or final landing. The burdock example omits attachment strength, release timing and multiple enclosed fruits.",
+    "narration": [
+      {
+        "label": "Plants that cannot walk",
+        "text": "A plant stays rooted, yet its offspring can travel. Seeds may ride the wind or animals. A dandelion’s white parachute carries a tiny fruit containing a seed. It has no flapping wings or little motor. What do you think happens when there is no wind?",
+        "cue": "Choose the dandelion with no wind."
+      },
+      {
+        "label": "Try a breeze",
+        "text": "Launch it and watch it descend without wind. Pause, then try a breeze. The parachute slows its fall, giving moving air more time to carry it sideways. Stronger wind changes the route, but real air also swirls and rises, so one setting cannot tell us an exact landing place.",
+        "cue": "Compare still-air and light-wind paths with a pause."
+      },
+      {
+        "label": "A ride using hooks",
+        "text": "Meet burdock next. Instead of a white parachute, it has little hooks that may catch on passing fur. As the animal moves in our picture, the attached structure moves too. It may later fall off elsewhere. Riding fur and riding wind are two different ways to travel.",
+        "cue": "Switch to burdock and animate the animal’s movement."
+      },
+      {
+        "label": "Arrival is not the end",
+        "text": "Reaching a new place is only part of the story. A seed needs suitable germination conditions, and the seedling needs a place where it can survive. Landing on stone can differ from landing in suitable soil. If a burr catches your clothes, inspect its hooks with a grown-up and ask whose ride it used.",
+        "cue": "End after transport without showing guaranteed germination."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Kew — Dandelion",
+      "url": "https://www.kew.org/plants/dandelion"
+    },
+    {
+      "title": "Cummins et al. — A separated vortex ring underlies the flight of the dandelion",
+      "url": "https://strathprints.strath.ac.uk/79669/1/Cummins_etal_Nature_2018_A_separated_vortex_ring_underlies_the_flight.pdf"
+    },
+    {
+      "title": "Kew — Plant scientist seed-dispersal resources",
+      "url": "https://www.kew.org/sites/default/files/2022-09/LKS2-Plant-scientists-pre-and-post-visit-resources.pdf"
+    }
+  ]
+}

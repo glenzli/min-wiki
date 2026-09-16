@@ -65,7 +65,7 @@ function toggle() {
   update();
 }
 el('play').addEventListener('click', toggle);
-el('reset').addEventListener('click', () => { stop(); progress = 0; update(); });
+el('reset').addEventListener('click', () => { goTo(0); });
 el('progress').addEventListener('input', () => { stop(); progress = number('progress') / 1000; update(); });
 for (const id of ["route", "humidity"]) el(id).addEventListener('input', update);
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });

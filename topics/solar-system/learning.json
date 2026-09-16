@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "solar-system",
+  "zh": {
+    "question": "一起开始绕太阳转，水星和海王星谁会先回到出发的地方？",
+    "observe": "播放轨道演示，比较内侧与外侧行星；再切换大小比较，确认“画得大”和“离太阳远”是两件事。",
+    "academic": [
+      {
+        "title": "公转是持续改变方向",
+        "body": "行星具有运动速度，同时受太阳引力作用。引力不断改变速度方向，使轨迹弯曲；轨道并不是支撑行星的实体轨道。近似只考虑太阳与一颗行星时，束缚轨道是椭圆，太阳位于一个焦点。开普勒第二定律说明相同时间扫过相同面积，因此同一颗行星接近近日点时通常更快，远离时更慢。"
+      },
+      {
+        "title": "一个关系连接距离与周期",
+        "body": "对于绕同一个主要质量公转的小天体，T²与a³近似成正比，其中a是椭圆半长轴，不能把每一时刻的距离都直接代入。以地球年和天文单位计，太阳系行星近似满足T²≈a³。外侧行星的路程更长、典型速度也更低，因此一圈需要更久；页面必须让所有行星共享同一条模拟时间。"
+      },
+      {
+        "title": "大小、距离与图像各有尺度",
+        "body": "太阳直径约为地球的一百零九倍，地日距离又远大于太阳直径。在普通屏幕上同时按真比例显示半径与轨道，许多行星几乎不可见。轨道视图因而压缩距离并放大天体，大小比较则专门保持相对尺寸。纹理与颜色帮助识别世界，却不能从一张示意图直接读出表面温度或当日真实位置。"
+      }
+    ],
+    "misconception": "绕得快不是因为行星画得小；周期主要与轨道尺度和中心质量有关。示意排列也不是八颗行星此刻排成一队。",
+    "boundary": "公转模型用于比较轨道和周期，显示半径及距离经过调整；没有计算完整多体摄动，也不是实时星历或可用于航天导航的数据。",
+    "narration": [
+      {
+        "label": "认识一大家子",
+        "text": "让我们从太阳旁边出发。太阳会自己发光，八颗行星围着它走。离太阳近的有水星、金星、地球和火星；再往外，还有木星、土星、天王星和海王星。先别急着记名字，挑一个你喜欢的世界，看看它在哪一圈。",
+        "cue": "显示轨道全景，停在初始位置。"
+      },
+      {
+        "label": "等谁先回来",
+        "text": "按下播放，把眼睛放在一颗近处的行星上，再看看远处那颗。暂停想一想：它们一起出发，谁先绕完一圈？现在继续观察。近处的常常已经绕了好几圈，远处的还没有回来。它们共用同一个时钟，却有很不一样的一年。",
+        "cue": "播放片刻后停顿约四秒；比较内外行星。"
+      },
+      {
+        "label": "换一把尺子",
+        "text": "我们再来比较大小。把行星排在一起时，要给它们换成同一把尺子。木星很大，地球小得多，可是小小的地球也装得下我们的家、海洋和山。刚才的轨道图把小行星画大了，是为了让我们看得见，不是它们真的突然长大了。",
+        "cue": "切换大小比较，先找木星，再找地球。"
+      },
+      {
+        "label": "一条看不见的路",
+        "text": "这些画出来的圈是帮我们找路的线，太空里没有一条硬硬的轨道托住行星。行星一直在动，太阳的引力让它们的路线不断转弯。现在你可以选一颗行星跟着看：认清它的大小，再看它走多远、多久，三个问题就不会混在一起啦。",
+        "cue": "返回轨道视图，选地球并跟随。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If Mercury and Neptune start together, which returns to its starting place first?",
+    "observe": "Play the orbit view and compare inner and outer planets. Then use the size comparison to separate physical size from orbital distance.",
+    "academic": [
+      {
+        "title": "An orbit is a continuously turning path",
+        "body": "A planet moves while the Sun’s gravity changes its velocity, bending its path. There is no physical rail underneath it. In the two-body approximation a bound orbit is an ellipse with the Sun at a focus. Equal areas are swept out in equal times, so a planet usually moves faster near perihelion and slower near aphelion."
+      },
+      {
+        "title": "Distance and orbital period",
+        "body": "For small bodies orbiting the same dominant mass, T² is proportional to a³. Here a is the orbital semimajor axis, not the changing instantaneous distance. In Earth years and astronomical units, solar-system planets approximately satisfy T²≈a³. Outer planets travel longer paths at lower typical speeds. Comparing them requires a shared simulation clock."
+      },
+      {
+        "title": "Size and distance need separate scales",
+        "body": "The Sun’s diameter is about 109 Earth diameters, and Earth’s distance from it is much greater still. Most planets would be hard to see if a small screen used one true scale for both radii and orbits. This orbit view enlarges bodies and compresses distances; the size view preserves relative diameters. Texture colors are not temperature measurements or present-day positions."
+      }
+    ],
+    "misconception": "A planet does not orbit faster because its symbol is smaller. Orbital scale and central mass matter. A comparison lineup is not the planets’ current alignment.",
+    "boundary": "The model compares orbits and periods using adjusted display scales. It is not a full interacting many-body model, a live ephemeris, or navigation data.",
+    "narration": [
+      {
+        "label": "Meet the family",
+        "text": "Let’s begin beside the Sun. The Sun makes its own light, and eight planets travel around it. Mercury, Venus, Earth, and Mars are closer in. Farther out are Jupiter, Saturn, Uranus, and Neptune. You do not have to remember every name yet. Choose a world you like and find its path.",
+        "cue": "Show the initial orbit overview."
+      },
+      {
+        "label": "Who returns first?",
+        "text": "Press play. Watch a nearby planet, then a faraway one. Pause and make a guess: if they start together, which finishes a lap first? Now keep watching. The nearby planet may complete several laps before the distant planet comes back. They share one clock, but a year lasts a different amount of time on each world.",
+        "cue": "Pause for about four seconds, then compare inner and outer orbits."
+      },
+      {
+        "label": "Use the same ruler",
+        "text": "Now compare sizes. When we line up the planets, we need the same ruler for them all. Jupiter is huge beside Earth, yet our smaller Earth has room for our homes, oceans, and mountains. The orbit picture enlarged small planets so we could see them. They have not really grown or shrunk.",
+        "cue": "Switch to size comparison; locate Jupiter and Earth."
+      },
+      {
+        "label": "An invisible path",
+        "text": "The circles are guide lines to help us look. There are no hard tracks holding planets up in space. Planets keep moving, and the Sun’s gravity keeps bending their routes. Choose one planet and follow it again. Ask how big it is, how far it travels, and how long it takes. Those are three different questions.",
+        "cue": "Return to the orbit view and follow Earth."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Orbits and Kepler’s Laws",
+      "url": "https://science.nasa.gov/solar-system/orbits-and-keplers-laws/"
+    },
+    {
+      "title": "NASA · Solar System Facts",
+      "url": "https://science.nasa.gov/solar-system/solar-system-facts/"
+    },
+    {
+      "title": "NASA · Sun Facts",
+      "url": "https://science.nasa.gov/sun/facts/"
+    }
+  ]
+}

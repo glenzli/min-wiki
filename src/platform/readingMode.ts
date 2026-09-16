@@ -1,11 +1,13 @@
 import { t } from './i18n.ts';
 import './readingMode.css';
+import { enhanceDisclosure, setDisclosureOpen } from './disclosure.ts';
 
 /** Presentation only: each topic selects its own deeper explanations. */
 export function mountReadingMode(advanced: string): void {
   const header = document.querySelector('main header');
   if (!header || document.querySelector('[data-mode]')) return;
   const explanations = [...document.querySelectorAll<HTMLDetailsElement>(advanced)];
+  explanations.forEach(enhanceDisclosure);
   const control = document.createElement('div');
   control.className = 'reading-mode';
   control.setAttribute('role', 'group');
@@ -22,7 +24,7 @@ export function mountReadingMode(advanced: string): void {
   });
   function select(mode: 'kids' | 'academic') {
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
-    explanations.forEach(details => { details.open = mode === 'academic'; });
+    explanations.forEach(details => setDisclosureOpen(details, mode === 'academic'));
     hint.textContent = mode === 'kids'
       ? t('先动手观察，再说说你发现了什么。')
       : t('深入说明已展开：继续往下看原理、模型边界与来源。');

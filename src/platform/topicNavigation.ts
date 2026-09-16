@@ -2,6 +2,7 @@ import { t, languageHref, mountLanguageControl } from './i18n.ts';
 import catalog from '../../content/catalog.json';
 import { mountThemeControl, setContentTheme } from './theme.ts';
 import './shell.css';
+import { mountTopicLearning } from './learning/mount.ts';
 
 export function mountTopicNavigation(id: string) {
   const topic = catalog.topics.find(item => item.id === id && item.status === 'published');
@@ -20,4 +21,6 @@ export function mountTopicNavigation(id: string) {
   nav.append(home,trail,preferences); host.replaceChildren(nav);
   document.documentElement.dataset.topicUi = '';
   setContentTheme(topic.theme);
+  // Topic startup remains synchronous; optional long-form content loads independently.
+  void mountTopicLearning(id).catch(error => console.error('Unable to load topic learning notes', error));
 }

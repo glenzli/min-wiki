@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { SCIENCE } from './science.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -20,6 +21,13 @@ catch (error) {
     console.error(error);
 }
 let route: Route = 'safe', planet: Planet = 'rocky', progress = 0, playing = false, academic = false, last = performance.now(), frame = 0, disposed = false;
+let cancelStageMotion = () => {};
+for (const type of ['click', 'input', 'keydown']) document.addEventListener(type, () => cancelStageMotion(), { capture: true });
+function seekStage(target: number) {
+  playing = false;
+  cancelStageMotion = animateValue({ from: progress, to: target, duration: 1100,
+    onUpdate: value => { progress = value; update(); } });
+}
 const positions = [0, .375, .57, .9];
 function update() {
     const data = CONTENT[route], shared = CONTENT.shared, stage = Math.max(0, positions.reduce((found, p, i) => progress >= p ? i : found, 0));
@@ -57,7 +65,7 @@ document.addEventListener('keydown', e => {
         toggle();
     }
 });
-el('steps').replaceChildren(...CONTENT.shared.stages.map((s, i) => { const b = document.createElement('button'); b.textContent = s; b.addEventListener('click', () => { progress = positions[i]; playing = false; update(); }); return b; }));
+el('steps').replaceChildren(...CONTENT.shared.stages.map((s, i) => { const b = document.createElement('button'); b.textContent = s; b.addEventListener('click', () => { seekStage(positions[i]); }); return b; }));
 function animate(now: number) {
     const dt = Math.min((now - last) / 1000, .1);
     last = now;

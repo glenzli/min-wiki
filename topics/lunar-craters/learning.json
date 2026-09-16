@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "lunar-craters",
+  "zh": {
+    "question": "同样大小的石块撞向月面，速度增加一倍，带来的动能也只增加一倍吗？",
+    "observe": "保持撞击体直径不变，比较两档速度的能量读数与坑形；再保持速度不变改变直径，并暂停观察抛出物。",
+    "academic": [
+      {
+        "title": "撞击释放的是动能",
+        "body": "以均匀球形撞击体为例，质量m=ρπD³/6，动能E=mv²/2。密度与直径不变时，速度加倍使动能变为四倍；密度与速度不变时，直径加倍使质量和动能变为八倍。能量分配到冲击压缩、破碎、抛射、熔融和加热等过程，不能把所有动能都当成挖出坑的功，更不能据此断言坑径也同比增加。"
+      },
+      {
+        "title": "成坑经历压缩、挖掘与调整",
+        "body": "高速接触会产生冲击波，受压物质随后运动，挖掘出暂态坑腔并向外抛射。材料回落和坑壁调整后留下最终地形。简单坑常近似碗状，足够大的复杂坑可能有中央峰和阶地；并非所有撞击坑都长同一个样子。多数常见斜撞仍可形成近圆形坑，极低角度、靶材差异等情况会改变形态。"
+      },
+      {
+        "title": "月面保留了一本不完整的记录",
+        "body": "月球缺少能有效阻挡撞击体的厚大气，也没有地球那样普遍的风雨侵蚀，因此许多古老撞击痕迹保存很久。但月面不是完全不变：后续撞击会覆盖、破坏旧坑，微小撞击也会翻动表土，古代熔岩曾覆盖部分盆地。研究者结合坑的叠覆关系、密度、遥感与样品年龄重建历史，不能只凭单个坑的深浅定年。"
+      }
+    ],
+    "misconception": "月面的大多数圆坑不是火山口，也不要求撞击体一定垂直落下。动能翻倍不等于坑的直径翻倍。",
+    "boundary": "剖面和抛射采用简化教学模型，不解完整冲击流体与材料破坏；坑的缩放是定性展示。发光闪现代表撞击能量释放，不是月球大气中的燃烧。",
+    "narration": [
+      {
+        "label": "看月亮留下的痕迹",
+        "text": "月亮表面有许多圆圆的坑，它们像留下来的旧脚印，告诉我们这里发生过什么。很多坑是太空里的石块撞出来的。我们先看一块石头朝月面飞来。月球没有像地球这样厚的大气，所以不会出现同样的空气减速和明亮流星旅程。",
+        "cue": "从接近阶段播放，保留无大气的月面。"
+      },
+      {
+        "label": "碰到以后发生什么",
+        "text": "石块高速撞上月面，周围的岩石被压、被打碎，还会向外飞出去。请暂停找一找：坑的边缘在哪里？哪些小碎片还在空中？想好以后再继续看。飞起来的碎片有些会落回去，坑边也会调整，最后的样子不是刚接触那一刻就全部做好了。",
+        "cue": "在抛射阶段停顿约四秒，随后观察回落。"
+      },
+      {
+        "label": "换一个速度试试",
+        "text": "现在让石块大小保持一样，只改变速度，再看一次。速度变快，撞击带来的能量就增加得很明显。接着固定速度，再换一块大一些的石头。一次只换一个条件，就能更清楚地发现谁在影响结果，而不是只看哪次画面更热闹。",
+        "cue": "比较速度，再比较直径；指出能量读数。"
+      },
+      {
+        "label": "为什么痕迹留得久",
+        "text": "地球上有风、雨、河流，会慢慢改变地面。月亮没有这些常见的风雨，所以不少坑能留下很久。不过，新的撞击还会盖住旧的痕迹，小碎片也会翻动表面的尘土。月亮并不是一本永远不变的书，我们要把许多线索放在一起读。",
+        "cue": "结束在成坑与俯视图，观察坑缘和抛出物。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If a same-sized impactor hits the Moon twice as fast, does its kinetic energy only double?",
+    "observe": "Hold diameter fixed and compare two speeds, then hold speed fixed and change diameter. Inspect the energy readout, crater shape, and airborne ejecta.",
+    "academic": [
+      {
+        "title": "The impact brings kinetic energy",
+        "body": "For a uniform spherical impactor, m=ρπD³/6 and E=mv²/2. At fixed density and diameter, doubling speed quadruples kinetic energy. At fixed density and speed, doubling diameter multiplies mass and energy by eight. Energy goes into shock compression, fragmentation, ejecta, melting, and heating. It does not all excavate the crater, and crater diameter does not scale directly with energy."
+      },
+      {
+        "title": "Compression, excavation, and modification",
+        "body": "High-speed contact launches shock waves. Moving material excavates a transient cavity and ejects debris, after which fallback and wall modification shape the final crater. Simple craters are broadly bowl-shaped; larger complex craters can have central peaks and terraces. Many ordinary oblique impacts still make roughly circular craters, though very shallow angles and target properties can change the form."
+      },
+      {
+        "title": "A long but incomplete record",
+        "body": "The Moon lacks a thick protective atmosphere and widespread wind and rain erosion, preserving many ancient impacts. Its surface is not unchanging: later impacts destroy or cover older craters, tiny impacts churn regolith, and ancient lava flooded some basins. Researchers combine overlap, crater density, remote sensing, and sample ages rather than dating a crater solely from its depth."
+      }
+    ],
+    "misconception": "Most lunar circular craters are impacts, not volcanoes, and do not require vertical arrival. Doubling energy does not double crater diameter.",
+    "boundary": "The profile and ejecta are simplified illustrations, not full shock hydrodynamics or material failure. Crater scaling is qualitative. The flash indicates impact energy, not burning in a lunar atmosphere.",
+    "narration": [
+      {
+        "label": "Read the marks on the Moon",
+        "text": "Many round pits cover the Moon. Like old footprints, they give us clues about what happened there. Many formed when rocks from space struck the ground. Watch one approach. The Moon does not have Earth’s thick atmosphere, so the rock does not experience the same atmospheric slowing and glowing meteor journey.",
+        "cue": "Play the approach over the airless Moon."
+      },
+      {
+        "label": "After the collision",
+        "text": "The fast rock strikes, compresses and breaks material, and sends fragments outward. Pause and look: where is the crater rim? Which pieces are still in the air? Then continue. Some pieces fall back, and the sides of the hole change. Its final shape is not completely finished at the instant of first contact.",
+        "cue": "Pause four seconds during ejecta flight, then watch fallback."
+      },
+      {
+        "label": "Try a different speed",
+        "text": "Keep the rock the same size and change only its speed. A faster impact brings much more energy. Then keep speed fixed and choose a larger rock. Changing one condition at a time helps us understand what affects the result, instead of simply choosing whichever collision looks more dramatic.",
+        "cue": "Compare speeds, then diameters; point out the energy readout."
+      },
+      {
+        "label": "Why the marks last",
+        "text": "On Earth, wind, rain, and rivers slowly change the ground. The Moon lacks this familiar weather, so many craters survive a long time. But new impacts can cover old marks, and tiny fragments stir its surface dust. The Moon is not a book whose pages never change. We need several clues to read its history.",
+        "cue": "Finish with the crater profile, rim, ejecta, and overhead inset."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Moon Craters",
+      "url": "https://science.nasa.gov/moon/lunar-craters/"
+    },
+    {
+      "title": "NASA · Moon Facts",
+      "url": "https://science.nasa.gov/moon/facts/"
+    },
+    {
+      "title": "NASA · Exploring the Moon educator guide",
+      "url": "https://science.nasa.gov/wp-content/uploads/2024/01/exploring-the-moon-teachers-guide.pdf"
+    }
+  ]
+}

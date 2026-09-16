@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import type { Planet } from './data/planetsData.ts';
@@ -63,6 +64,7 @@ function $(id: string): HTMLElement {
 }
 
 class SolarApp {
+  private cancelStageMotion = () => {};
   mode!: string;
   scenario!: string;
   selectedPlanet!: string | null;
@@ -76,6 +78,7 @@ class SolarApp {
   resumePlayAfterDialog!: boolean;
 
   constructor() {
+    for (const type of ["click", "input", "keydown"]) document.addEventListener(type, () => this.cancelStageMotion(), { capture: true });
     this.mode = 'kids';
     this.scenario = 'orbit';
     this.selectedPlanet = null;
@@ -379,7 +382,11 @@ class SolarApp {
         button.setAttribute('aria-label', t("第{{v0}}步：{{v1}}", {v0: i + 1, v1: phase.label}));
         button.addEventListener('click', () => {
           if (this.simulation) {
-            this.seekProgress(phase.at);
+            this.pause();
+            const from = this.simulation.timeYears;
+            const base = Math.max(0, from - this.cycleProgress() * this.cycleDurationYears);
+            this.cancelStageMotion = animateValue({ from, to: base + phase.at * this.cycleDurationYears, duration: 1000,
+              onUpdate: value => { this.simulation.timeYears = value; this.updateUI(); } });
           }
         });
         return button;

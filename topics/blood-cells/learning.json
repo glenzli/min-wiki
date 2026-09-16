@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "blood-cells",
+  "references": [
+    {
+      "title": "NCBI · Blood and the cells it contains",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK2263/"
+    },
+    {
+      "title": "OpenStax · Leukocytes and Platelets",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets"
+    },
+    {
+      "title": "OpenStax · Hemostasis",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis"
+    }
+  ],
+  "zh": {
+    "question": "血液是红色的，保护身体和帮助止血，也都是红细胞做的吗？",
+    "observe": "分别播放三个场景：追踪氧气离开红细胞、观察白细胞变形穿出血管，再看血小板聚集与纤维网络出现。每次只比较当前过程，不把三个场景当成同一条必经路线。",
+    "academic": [
+      {
+        "title": "红细胞的形状与气体运输",
+        "body": "人的成熟红细胞呈双凹圆盘状，没有细胞核，内部富含血红蛋白。形状、膜和细胞骨架共同支持气体交换与变形通过微小血管。大多数氧与血红蛋白可逆结合，少量溶在血浆中；在肺与组织处，氧分压差和局部条件影响净交换。运输二氧化碳并不是把另一组小球简单装回空位，血中还有碳酸氢根等形式。"
+      },
+      {
+        "title": "白细胞是多类细胞的总称",
+        "body": "中性粒细胞可被信号募集，黏附血管内皮、穿越血管壁并吞噬目标；吞入后还需在细胞内处理。白细胞并不都靠吞噬工作，B、T 淋巴细胞等参与其他免疫过程。它们也不能仅凭一个物体的颜色就判断敌友。动画选取一种迁移和吞入路径，没有重建趋化、受体识别、细胞协作与炎症调节的完整网络。"
+      },
+      {
+        "title": "止血需要血小板与血浆蛋白合作",
+        "body": "人的血小板是巨核细胞形成的细胞质片段，有膜和内部结构，但不是完整有核细胞。血管损伤可启动血管反应、血小板黏附与聚集，以及凝血蛋白参与的纤维蛋白形成。这些过程会重叠进行，并受局部限制。纤维网帮助稳定血栓，却不是永久替代血管；后续组织修复和纤溶同样重要，动画仅展示早期的部分过程。"
+      }
+    ],
+    "misconception": "红细胞不是万能修理工，白细胞也不是同一种球；血小板是细胞片段。静脉里的血仍是较暗的红色，不是蓝色。",
+    "boundary": "三个局部场景的数量、比例与时间均经过调整。六个金色氧气标记不是一枚红细胞的全部氧；屏幕形状不是血涂片诊断，也没有建立血管压力、真实免疫识别或完整凝血动力学。",
+    "narration": [
+      {
+        "label": "一起看看血液",
+        "text": "血液看上去红红的，里面却不只有一种东西。现在，把想象中的放大镜放到一小段血管上。那些中间浅一点、边缘厚一点的小圆盘，就是红细胞。旁边还有不同的白细胞、小小的血小板，以及让它们在其中流动的血浆。我们分开看看它们的本领。",
+        "cue": "先停在运氧场景起点，依次指认红细胞、血管壁与外部组织。"
+      },
+      {
+        "label": "红细胞帮助运氧气",
+        "text": "红细胞里有一种叫血红蛋白的物质，能和氧气结合。它从肺附近带来氧气，再随着血流来到身体各处。慢慢推进画面，金色标记离开红细胞，进入周围组织。离开的是氧气，红细胞还留在血管里。真实氧分子非常小，我们并不能看到这些金色小点。",
+        "cue": "播放运氧，停在标记跨过血管壁之后；给孩子三秒观察。"
+      },
+      {
+        "label": "白细胞有不同工作",
+        "text": "换一个场景。这个有弯弯细胞核的白细胞叫中性粒细胞。它可以改变形状，穿过血管壁，到组织里包围并吞入一些细菌。吞进去之后，还需要继续处理。白细胞有好多种，并不是每一种都这样做；身体的保护工作需要许多伙伴一起完成。",
+        "cue": "切到白细胞；在穿壁中途暂停，再继续到吞入阶段。"
+      },
+      {
+        "label": "血小板和纤维网络",
+        "text": "最后看一处小破口。小小的血小板先黏附、聚集起来，纤维蛋白再形成网络，帮助这处小血栓更稳固。血小板其实是大细胞分出来的小片段。运氧气、保护身体、帮助止血，是不同的本领。现在，你能指着画面，说说每一位做了什么吗？",
+        "cue": "播放止血场景，停留在纤维网终态；不展示实际受伤操作。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Blood is red. Does that mean red cells also do immune defence and stop bleeding?",
+    "observe": "Play the three scenes separately. Follow oxygen leaving a red cell, a white cell changing shape to cross the vessel wall, and platelets gathering before a fibre mesh appears. Compare one process at a time; these are not one inevitable sequence.",
+    "academic": [
+      {
+        "title": "Red-cell structure and gas transport",
+        "body": "A mature human red cell is a biconcave disc without a nucleus and contains abundant hemoglobin. Its membrane and cytoskeleton support deformation in tiny vessels. Most oxygen binds reversibly to hemoglobin; a smaller amount dissolves in plasma. Partial-pressure differences and local conditions influence net exchange at lungs and tissues. Carbon dioxide is not simply a replacement cargo loaded into empty oxygen slots: bicarbonate and other forms also contribute to its transport."
+      },
+      {
+        "title": "White cells comprise different cell types",
+        "body": "Neutrophils can be recruited by signals, adhere to endothelium, cross vessel walls and engulf targets, which then require intracellular processing. Other white cells have different roles; B and T lymphocytes are not all interchangeable phagocytes. Recognition is not based on an object’s visible colour. This animation selects one migration and engulfment path, omitting the full network of chemotaxis, receptor recognition, cooperation and inflammatory control."
+      },
+      {
+        "title": "Hemostasis is a cooperative process",
+        "body": "Human platelets are membrane-bound fragments produced by megakaryocytes, with internal structures but no nucleus. Vessel damage can trigger vascular responses, platelet adhesion and aggregation, and clotting reactions that produce fibrin. These processes overlap and are locally regulated. Fibrin stabilizes a clot rather than permanently replacing the vessel; subsequent tissue repair and fibrinolysis matter too. Only part of early hemostasis is illustrated."
+      }
+    ],
+    "misconception": "Red cells are not universal repair workers, white cells are diverse, and platelets are cell fragments. Blood in veins is a darker red, not blue.",
+    "boundary": "Counts, proportions and times are adjusted in three local scenes. Six gold oxygen markers are not a red cell’s entire oxygen load. Shapes are not a diagnostic blood smear, and pressure, immune recognition and full clotting dynamics are not modeled.",
+    "narration": [
+      {
+        "label": "Meet the blood",
+        "text": "Blood looks red, but it contains more than one kind of thing. Imagine bringing a magnifying glass to a small blood vessel. The little discs with thinner middles and thicker rims are red cells. There are also different white cells, tiny platelets, and the plasma around them. Let us look at their jobs separately.",
+        "cue": "Pause at the start of oxygen transport; identify red cells, the wall and nearby tissue."
+      },
+      {
+        "label": "Red cells help carry oxygen",
+        "text": "Red cells contain hemoglobin, which can bind oxygen. They pick up oxygen near the lungs and travel with the blood. Advance the picture slowly. Gold markers leave the red cell and reach nearby tissue. Oxygen leaves; the red cell stays inside the vessel. Real oxygen molecules are far too small to see as these gold dots.",
+        "cue": "Play oxygen transport and pause after the markers cross the vessel wall; allow three seconds to observe."
+      },
+      {
+        "label": "White cells have different jobs",
+        "text": "Change the scene. This white cell, with its lobed nucleus, is a neutrophil. It can change shape, cross the vessel wall and engulf some bacteria in the tissue. More processing is needed afterward. White cells come in many kinds, and they do not all work in this way. Protecting the body takes many cooperating partners.",
+        "cue": "Switch to the white cell; pause during wall crossing, then continue to engulfment."
+      },
+      {
+        "label": "Platelets and a fibre mesh",
+        "text": "Finally, look at a small break. Tiny platelets stick and gather, and fibrin forms a network that helps stabilize the local clot. Platelets are actually little fragments produced by larger cells. Carrying oxygen, protecting tissues and helping stop bleeding are different jobs. Can you point to each participant and describe what it did?",
+        "cue": "Play the hemostasis scene and hold the final mesh; do not demonstrate an actual injury."
+      }
+    ]
+  }
+}

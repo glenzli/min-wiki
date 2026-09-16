@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "fish-gills",
+  "zh": {
+    "question": "鱼要从水里得到氧气，必须先吞下一串气泡吗？",
+    "observe": "按四个步骤观察水从嘴进入、经过鳃再流出；追踪氧气标记从水侧到血液侧，分清水流路线和气体交换路线。",
+    "academic": [
+      {
+        "title": "鳃获取的是溶解氧",
+        "body": "氧分子可以溶解在水中，不必形成可见气泡。典型鱼类让水接触鳃的交换表面，通过水侧和血液侧的气体分压差实现氧进入血液，二氧化碳通常沿相反净方向排出。鱼并不是把水分子中的氧原子拆出来；水里虽然含有大量水分子，溶解氧供应却仍可能不足，所以“在水里”本身不能保证鱼能顺利呼吸。"
+      },
+      {
+        "title": "薄片、血流和水流一起工作",
+        "body": "鳃丝上许多薄小的鳃小片提供较大交换面积，薄的屏障缩短扩散距离，血液及时带走进入的氧。很多鱼的鳃中水与血的总体流向相反，逆流安排有助于沿交换面维持梯度。只有画出很多薄片还不够：如果水不更新，或血液不把氧带走，梯度减小后交换效率就会下降，这说明结构必须与持续流动一起理解。"
+      },
+      {
+        "title": "不同鱼的通水方式有差别",
+        "body": "本页以有鳃盖的鱼为代表，嘴与鳃盖相关的动作帮助水流过鳃；另一些鱼会更多利用游动推动水流。水温、周围水体的含氧量、鳃的状态和鱼的代谢需求共同决定供氧是否充足。温度升高时水的可溶氧量通常降低，同时鱼的需氧量可能增加，因此不能仅凭鱼有没有张嘴，或水看起来是否清澈，判断它获得的氧气。"
+      }
+    ],
+    "misconception": "鱼主要吸收水中已经溶解的氧气，不是把水分子拆成氧气，也不需要看得见的气泡。",
+    "boundary": "氧气圆点和水流箭头不按分子尺度或真实流速；本图没有绘出完整逆流血管，不能用箭头大小估计溶氧浓度。",
+    "narration": [
+      {
+        "label": "水里也有氧气",
+        "text": "我们用肺从空气里得到氧气。鱼一直待在水里，怎样得到氧气呢？原来，水里也能溶着氧气。它们小得看不见，不一定变成一串串气泡。画面里的黄色小点，是我们给氧气画的记号，好让你跟着它走一段，看看它怎样帮助鱼的身体。",
+        "cue": "展示水侧氧气标记，保持第一步。"
+      },
+      {
+        "label": "水经过一排薄片",
+        "text": "看，水从鱼嘴进来了，接着流过鳃。放大看看，鳃有许多很薄的小片，里面还有细细的血管。许多小片合起来，让水和身体交换气体的地方变大了。先停一停，用手指找出水在哪一边，血液又在哪一边，它们之间隔着薄薄的表面。",
+        "cue": "切到鳃薄片，在水血两侧暂停三秒。"
+      },
+      {
+        "label": "氧气跨过小边界",
+        "text": "现在跟着氧气的小记号看。一部分氧气从水这边穿过薄薄的表面，进入血液，再由血液带到身体里需要它的地方。鱼没有把一大口水吞进血管，也不是把水拆开做出氧气。需要分清：水在鳃外面流过，氧气可以穿过交换的表面。",
+        "cue": "移动氧气标记到血液侧，水流路线保持可见。"
+      },
+      {
+        "label": "让新的水继续来",
+        "text": "水又从鳃盖附近流出去，新水继续带来氧气。身体产生的一些二氧化碳，也能从血液这边进入水里离开。原来，呼吸不是只做一次的小动作，而是需要一直交换。不同鱼的办法有些不同，水里的氧气也会变化，所以清清的水并不一定就有足够的氧气。",
+        "cue": "显示出水路线，再回顾四步。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Does a fish need to swallow bubbles to obtain oxygen from water?",
+    "observe": "Follow the four steps from mouth to gills to outgoing water. Track the oxygen marker crossing from water to blood, keeping water flow distinct from gas exchange.",
+    "academic": [
+      {
+        "title": "Gills obtain dissolved oxygen",
+        "body": "Oxygen molecules can be dissolved without visible bubbles. Across typical gill exchange surfaces, partial-pressure differences support oxygen transfer into blood and net carbon-dioxide transfer outward. Fish do not split water molecules to extract their oxygen atoms. Being surrounded by water therefore does not guarantee an adequate oxygen supply."
+      },
+      {
+        "title": "Surface structure works with continuing flow",
+        "body": "Filaments and many thin lamellae provide a large area and short diffusion distance. Blood carries oxygen away. In many fishes, opposing water and blood flow helps maintain an exchange gradient. Thin surfaces alone are insufficient: renewal of water and blood is essential to effective transfer."
+      },
+      {
+        "title": "Ventilation varies among fish and conditions",
+        "body": "This example represents an operculum-bearing fish. Other fishes may rely more on swimming to drive water over their gills. Temperature, oxygen availability, gill condition and metabolic demand all matter. Warmer water generally holds less dissolved oxygen, while demand may rise; water clarity or mouth movements alone cannot establish oxygen supply."
+      }
+    ],
+    "misconception": "Fish take up oxygen already dissolved in the water; they do not split water molecules or require visible bubbles.",
+    "boundary": "Oxygen dots and arrows are symbolic and not molecularly scaled. The complete countercurrent blood-vessel arrangement is not drawn, and arrow size does not measure oxygen concentration.",
+    "narration": [
+      {
+        "label": "There is oxygen in water",
+        "text": "We use lungs to obtain oxygen from air. How can fish obtain it while staying in water? Oxygen can dissolve in water without making visible bubbles. The coloured dots are symbols we have drawn so you can follow a little of that oxygen on its journey.",
+        "cue": "Show the oxygen symbols on the water side."
+      },
+      {
+        "label": "Water passes thin surfaces",
+        "text": "Water enters the mouth and passes over the gills. In the enlarged view, many thin surfaces contain tiny blood vessels. Together they provide a large area for gas exchange. Pause and point out the water side and the blood side, separated by a thin barrier.",
+        "cue": "Pause at the gill surface for three seconds."
+      },
+      {
+        "label": "Oxygen crosses a boundary",
+        "text": "Follow the oxygen symbol. Some oxygen crosses the thin surface into blood, which carries it around the body. The fish does not pour a mouthful of water into its blood vessels or split water to make oxygen. Water flows past; oxygen crosses the exchange surface.",
+        "cue": "Transfer the oxygen symbol while keeping the water route visible."
+      },
+      {
+        "label": "Keep the water renewing",
+        "text": "Water leaves near the gill cover and fresh water brings more oxygen. Some carbon dioxide made by the body also crosses into the water. Breathing requires continuing exchange, not a single action. Fish use different methods, and clear-looking water does not necessarily contain enough dissolved oxygen.",
+        "cue": "Show outgoing water and review the four steps."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "American Museum of Natural History — Vertebrates Breathing in Water",
+      "url": "https://www.amnh.org/learn-teach/resources-for-learning/hall-of-ocean-life/water-vertebrates-breathing"
+    },
+    {
+      "title": "OpenStax — Systems of Gas Exchange",
+      "url": "https://openstax.org/books/biology-2e/pages/39-1-systems-of-gas-exchange"
+    },
+    {
+      "title": "Smithsonian — Acidification and Low Oxygen Put Fish in Double Jeopardy",
+      "url": "https://www.si.edu/newsdesk/releases/acidification-and-low-oxygen-put-fish-double-jeopardy"
+    }
+  ]
+}

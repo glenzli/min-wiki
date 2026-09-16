@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "planet-surfaces",
+  "zh": {
+    "question": "在每颗行星上一直向下走，都能找到像地球陆地一样可站立的地面吗？",
+    "observe": "选择地球、木星和海王星，分别切到剖面并开始下降；比较探针遇到的是空气、海水、岩石还是越来越稠密的流体。",
+    "academic": [
+      {
+        "title": "我们看到的外观不一定是地面",
+        "body": "水星、金星、地球和火星属于岩石行星，但从太空看到的最外层未必是岩石：金星被厚云遮住，地球的大部分外表是海洋。木星的条带主要是大气云层的外观，不是可着陆的地皮。讨论表面时必须先区分可见云顶、压力参考面、液体表面与固体地壳，不能把照片中一切有颜色的地方都称为地面。"
+      },
+      {
+        "title": "巨行星内部是逐渐改变的环境",
+        "body": "木星以氢和氦为主，向下压力和温度升高，物质性质逐渐转为更稠密的流体，深处可能出现导电的金属氢。它没有像地球那样清楚可着陆的固体表面。海王星被称为冰巨星，是按成分与形成传统分类，并不意味着外面铺着可步行的冰壳；内部富含水、氨、甲烷等成分，处于高温高压环境。"
+      },
+      {
+        "title": "结构解释来自多种证据",
+        "body": "探测器的引力场、磁场、光谱和大气探测，结合高压物性实验与内部模型，帮助约束行星结构。对不透明云层下的深处，许多细节仍有不确定性，不能当作已被相机直接拍到。地球海面下能找到岩石海床，这与巨行星的深层流体不同；“能到达那里”和“那里存在固体材料”也不是同一个判断。"
+      }
+    ],
+    "misconception": "云顶不是地板，“冰巨星”也不是可以在表面滑冰的巨球。地球海洋下面有海床，不代表木星云层下面也有一块同样的地面。",
+    "boundary": "景观与剖面是根据已知特征绘制的解释图，不是登陆照片；层厚、探针速度和下降深度未按真实比例，不能据此推算可生存环境或实际任务路线。",
+    "narration": [
+      {
+        "label": "脚下都一样吗",
+        "text": "在地球上，我们可以站在岩石和泥土上，也可以坐船看海。如果换到别的行星，一直向下走，是不是也会遇到同样的地面？先别急着回答。今天我们带着一个画出来的小探针，去比较几种不同的世界。",
+        "cue": "先显示地球景观，再选择剖面。"
+      },
+      {
+        "label": "从海面往下看",
+        "text": "先看地球。小探针穿过空气，来到海面，再往下进入水里，最后可以找到岩石海床。暂停一会儿，指一指空气、水和岩石分别在哪里。它们不是同一种东西，所以“看到一个表面”和“脚下能站稳”还需要分开想。",
+        "cue": "下降到海床；停顿约四秒辨认三层。"
+      },
+      {
+        "label": "云下面没有地板",
+        "text": "再换到木星。它外面漂亮的条带是云层，不是一块块地板。往深处去，周围会越来越稠密，压力越来越大，并没有一个像地球陆地那样清楚的着陆面。海王星也不是一颗外面裹着硬冰、可以让我们下去滑冰的大球。",
+        "cue": "分别比较木星、海王星的下降剖面。"
+      },
+      {
+        "label": "图画帮我们提问",
+        "text": "这些风景是帮助理解的图画，不是有人站在那里拍的照片。科学家用探测器收到的光、引力和磁场信息，推想看不见的内部，还会继续检查新的证据。现在回头看看：有些地方是云，有些是水，有些是岩石，同叫行星，脚下的世界可以非常不同。",
+        "cue": "回到各行星景观对照，保留示意说明。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If we keep descending on every planet, will we find ground we could stand on like Earth’s land?",
+    "observe": "Choose Earth, Jupiter, and Neptune. Use each section view and start descending to compare air, seawater, rock, and increasingly dense fluid.",
+    "academic": [
+      {
+        "title": "A visible exterior need not be ground",
+        "body": "Mercury, Venus, Earth, and Mars are rocky planets, but their visible outermost layer may be clouds or ocean rather than rock. Jupiter’s bands mainly show atmospheric clouds, not landing surfaces. Distinguish visible cloud tops, reference pressure levels, liquid surfaces, and solid crust instead of calling every colored region in a planetary picture ground."
+      },
+      {
+        "title": "Giant-planet environments change with depth",
+        "body": "Jupiter is mainly hydrogen and helium. Increasing pressure and temperature lead to denser fluid states, with conducting metallic hydrogen at depth. It lacks an Earth-like accessible solid surface. Neptune’s ice-giant label concerns composition and formation terminology, not a walkable outer ice shell. Its interior includes water-, ammonia-, and methane-rich material under extreme temperature and pressure."
+      },
+      {
+        "title": "Interior models combine several kinds of evidence",
+        "body": "Spacecraft gravity and magnetic measurements, spectra, and atmospheric probes combine with high-pressure experiments and models to constrain interiors. Many deep details beneath opaque clouds remain uncertain, rather than directly photographed. Earth’s rocky seabed differs from a giant planet’s deep fluid. The existence of solid material somewhere and the ability to reach a landing surface are different questions."
+      }
+    ],
+    "misconception": "Cloud tops are not floors, and an ice giant is not a giant skating rink. Earth’s seabed does not imply an equivalent surface beneath Jupiter’s clouds.",
+    "boundary": "Landscapes and sections are explanatory illustrations, not landing photographs. Layer thickness, probe speed, and depth are uncalibrated and cannot determine survivability or mission routes.",
+    "narration": [
+      {
+        "label": "Is the ground always alike?",
+        "text": "On Earth we can stand on rock and soil or take a boat across the sea. If we traveled downward on another planet, would we meet the same kind of ground? Do not answer too quickly. Today an imaginary little probe will help us compare several different worlds.",
+        "cue": "Show Earth’s landscape, then its section view."
+      },
+      {
+        "label": "Below the ocean",
+        "text": "Start with Earth. The probe travels through air, reaches the ocean, enters water, and finally finds rocky seabed. Pause and point to air, water, and rock. They are different materials. Seeing an outer surface and finding something you can stand on are two different questions to think about.",
+        "cue": "Descend to the seabed and pause four seconds to identify the layers."
+      },
+      {
+        "label": "No floor beneath these clouds",
+        "text": "Now choose Jupiter. Its beautiful bands are clouds, not floorboards. Farther down, material becomes denser and pressure increases. There is no clear landing surface like Earth’s land. Neptune is not a giant ball with an outer hard-ice shell that we could land on and skate across either.",
+        "cue": "Compare descent through Jupiter and Neptune."
+      },
+      {
+        "label": "Pictures help us ask questions",
+        "text": "These landscapes are pictures to help us understand, not photographs taken by someone standing there. Scientists use spacecraft measurements of light, gravity, and magnetic fields to study hidden interiors, and keep checking new evidence. Look again: some exteriors are clouds, some water, and some rock. Worlds called planets can be very different underfoot.",
+        "cue": "Compare landscapes again with the illustration note visible."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Jupiter Facts",
+      "url": "https://science.nasa.gov/jupiter/jupiter-facts/"
+    },
+    {
+      "title": "NASA · Neptune Facts",
+      "url": "https://science.nasa.gov/neptune/neptune-facts/"
+    },
+    {
+      "title": "NASA · Earth Facts",
+      "url": "https://science.nasa.gov/earth/facts/"
+    }
+  ]
+}

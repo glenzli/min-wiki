@@ -17,7 +17,7 @@
 - `topics/typhoon/`: ocean/shear/hemisphere conditions and broad tropical-cyclone circulation.
 - `topics/tornado/`: a supercell-related vorticity pathway with condensation visibility independent of near-ground circulation.
 - `topics/planet-surfaces/`: selected planetary compositions, surface/fluid encounters and procedural surface illustrations, with model limits distinct from geography.
-- `topics/mimosa/`: touch propagation, pulvinus turgor and reversible leaf movement.
+- `topics/mimosa/`: touch propagation, pulvinus turgor and reversible leaf movement; continuous whole-plant, primary-pulvinus tissue and single-motor-cell views share local anatomy and deformation.
 - `topics/hydrangea/`: cultivar-dependent aluminum uptake and later sepal color, distinct from immediate recoloring.
 - `topics/rain-formation/`: cloud droplets, warm/ice growth pathways and subcloud evaporation.
 - `topics/lightning-thunder/`: charge separation, branching discharge and light/sound arrival timing.
@@ -38,3 +38,11 @@
 Start with `docs/architecture.md` when adding a topic. Do not move simulation engines or scientific content into the catalog or platform merely to reuse a layout.
 
 - `src/platform/readingMode.ts`: content-free reading-mode controls for step-based topics; each topic selects its own deeper notes. Switching preserves experiment state and sources remain accessible.
+- `src/platform/learning/`: lazy presentation of topic-owned bilingual observation prompts, academic notes and narration; exports spoken text separately from visual directions. Topic prose lives in `topics/<id>/learning.json` and loads only for the current page.
+- `src/platform/disclosure.ts`: finite native-details transitions, including rapid reversal. `src/visuals/transition.ts` owns reduced-motion-aware numeric interpolation; model state and trajectories remain with topics.
+- `scripts/export-narration.mjs`: exports all published topic scripts and storyboards; `docs/narration.md` documents the audio-production boundary.
+
+- `topics/pain-signals/`: nociceptive pathways, spinal withdrawal reflex and conscious pain, with a safe virtual stimulus and explicit model limits.
+- `topics/taste-smell/`: oral/nasal anatomy, taste-bud signal transduction and retronasal smell; flavor is distinct from the five taste qualities.
+- `topics/blood-cells/`: red-cell oxygen delivery, neutrophil migration/phagocytosis and platelet/fibrin clotting as three independent processes.
+- `topics/body-cells/`: epithelial barrier, skeletal-muscle filament sliding and a myelinated-neuron chemical synapse, with topic-owned state and illustrations.

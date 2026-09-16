@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -45,6 +46,7 @@ const stageInfo: Record<Stage, { micro: string; progress: string; next: string }
   },
 };
 
+let spot = [235, 262], cancelSpot = () => {};
 function render() {
   const stage = stageInfo[state.stage];
   el('practice').dataset.stage = state.stage;
@@ -68,7 +70,12 @@ function render() {
     button.dataset.reviewed = String(state.reviewed.includes(region));
   });
   const [x, y] = regionInfo[state.selected].position;
-  document.getElementById('region-spot')!.setAttribute('transform', `translate(${x} ${y})`);
+  cancelSpot();
+  const from = [...spot];
+  cancelSpot = animateValue({ from: 0, to: 1, duration: 360, onUpdate: p => {
+    spot = [from[0]! + (x - from[0]!) * p, from[1]! + (y - from[1]!) * p];
+    document.getElementById('region-spot')!.setAttribute('transform', `translate(${spot[0]} ${spot[1]})`);
+  } });
 }
 
 document.querySelectorAll<HTMLButtonElement>('[data-region]').forEach(button => {

@@ -64,7 +64,10 @@ function nucleus(x:number,y:number,r:number) {
   <g data-structure="dna" clip-path="url(#inside-nucleus)" fill="none" stroke="#887192" stroke-width="2.5" stroke-linecap="round">${chromatin}</g>${marker(x-r*.65,y+ry*.7,2)}${marker(x+r*.85,y-ry*.7,3)}`;
 }
 
+let drawnCell: Cell | undefined;
 function draw() {
+  if (drawnCell === cell) { highlightPart(); return; }
+  drawnCell = cell;
   const material = `<defs><radialGradient id="cytoplasm" cx="32%" cy="25%"><stop stop-color="#faecdf"/><stop offset=".65" stop-color="#edd1bd"/><stop offset="1" stop-color="#d4aa95"/></radialGradient><radialGradient id="mito"><stop stop-color="#f2c5a0"/><stop offset="1" stop-color="#c38d70"/></radialGradient></defs>`;
   let shapes = '';
   if (cell === 'animal') {
@@ -85,6 +88,9 @@ function draw() {
       <g data-structure="dna"><path d="M283 235c-18-31 16-53 40-26s28 73 57 47s16-77 47-49s42 66 10 69s-59-46-77-25s-51 39-51 14s-9-29-26-30Z" fill="none" stroke="#8d6540" stroke-width="8" stroke-linecap="round"/></g>${marker(148,232,1)}${marker(376,286,2)}`;
   }
   el('drawing').innerHTML = material + shapes;
+  highlightPart();
+}
+function highlightPart() {
   for (const node of document.querySelectorAll<SVGElement>('#drawing [data-structure]')) {
     node.classList.toggle('selected',node.dataset.structure === part);
   }

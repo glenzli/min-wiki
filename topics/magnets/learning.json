@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "magnets",
+  "zh": {
+    "question": "铜、铝、铁都是金属，普通磁铁会把它们都明显吸过来吗？",
+    "observe": "把磁铁缓慢靠近铁、铜、铝和木头，保持其他条件相同；选择另一块磁铁，翻转一次再靠近，比较接近、接触与分离。",
+    "academic": [
+      {
+        "title": "磁场可以在未接触时施力",
+        "body": "磁铁周围存在磁场，与合适材料或另一块磁铁发生相互作用时可以产生力和力矩。画面的靠近过程表现距离改变后的相对影响，而不是磁力只在某条看不见的界线后突然出现。物品是否移动还取决于作用力是否克服摩擦、约束和其他力；没有位移不等于没有任何磁响应。"
+      },
+      {
+        "title": "材料内部的磁性有区别",
+        "body": "铁等铁磁材料可在外磁场中被明显磁化，因此常被普通磁铁吸引；材料的成分、结构和加工状态会影响表现。铜和铝并非完全没有磁响应，但在本类静态桌面实验中通常不会明显被吸起。金属是导电等性质相关的类别，不是强磁性的同义词，不能把所有金属都归为会被磁铁吸住。"
+      },
+      {
+        "title": "磁极关系与转动自由度",
+        "body": "条形磁铁有南北两极，同极相对常排斥，异极相对常吸引。若磁铁能自由转动，磁力矩可能使它先转向，然后异极接近；因此实验需要说明是否固定朝向。本页托盘限制横向运动和转向，方便分辨吸引与排斥。普通条形磁铁分成两段后仍各有两极，不会得到单独的南极或北极。"
+      }
+    ],
+    "misconception": "磁铁不会明显吸住所有金属；没有运动也不能证明材料完全没有磁性响应。",
+    "boundary": "位移和弹动是定性、有摩擦和边界的演示，不可反推磁力；儿童只在成人陪同下使用大尺寸封装磁铁，远离可吞咽的小磁体。",
+    "narration": [
+      {
+        "label": "还没碰到就动了",
+        "text": "看看托盘上的回形针。我们把磁铁慢慢推近，还没碰到，它就可能开始移动，好像有一只看不见的手在拉。其实是磁铁周围的磁场在起作用。先别着急把磁铁推到底，慢慢靠近，找到物品开始明显移动的那一段。",
+        "cue": "选择铁，缓慢靠近并停在移动开始处。"
+      },
+      {
+        "label": "换换材料试试",
+        "text": "现在换一块铜，再换铝和木头，用同样的办法比较。先猜，再看结果，给自己留一点思考的时间。你发现了吗？铜和铝也是金属，却不会像这里的铁回形针一样，明显被普通磁铁吸过来。原来，不能只说它是金属，就知道磁铁会怎么对待它。",
+        "cue": "轮流选择铜、铝、木头，各停两秒。"
+      },
+      {
+        "label": "另一块磁铁",
+        "text": "再请另一块磁铁登场。先靠近，看看它们会不会贴在一起，然后点一下翻转。先停一下，这次是靠近，还是分开了？两块磁铁相对的磁极不同，结果就会改变。这个托盘让磁铁不能随便转身，帮助我们看清楚推开和拉近的差别。",
+        "cue": "选择磁铁，比较翻转前后，停三秒。"
+      },
+      {
+        "label": "把比较的方法记住",
+        "text": "今天最有用的本领，是一次换一个条件：先换材料，再换方向，就比较容易发现原因。真实的小磁铁不能放进嘴巴，也不能随意拆开玩具里的磁铁。请大人陪你用合适的大磁铁观察，把刚才的预测和发现讲给他听，看看还能提出什么新问题。",
+        "cue": "回到准备状态，对照材料菜单与翻转按钮。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Copper, aluminum and iron are all metals. Will an ordinary magnet visibly attract all of them?",
+    "observe": "Approach iron, copper, aluminum and wood while holding other settings constant. Then choose another magnet, flip it once and compare approach, contact and separation.",
+    "academic": [
+      {
+        "title": "Magnetic forces act before contact",
+        "body": "A magnetic field can exert forces and torques on suitable materials or other magnets without contact. The diagram illustrates changes with distance, not a field that switches on at an invisible boundary. Visible movement also depends on friction and constraints, so no movement does not mean absolutely no magnetic response."
+      },
+      {
+        "title": "Materials respond differently",
+        "body": "Ferromagnetic materials such as iron can become strongly magnetized in an external field. Composition, structure and processing matter. Copper and aluminum have magnetic responses too, but are not normally picked up by an ordinary magnet in this static tabletop setup. Being metallic is not the same as being strongly magnetic."
+      },
+      {
+        "title": "Poles and freedom to rotate",
+        "body": "Bar magnets have north and south poles. Like-facing poles repel and unlike-facing poles attract. A freely rotating magnet may turn first and then approach with unlike poles facing. The tray constrains turning to isolate the comparison. Cutting an ordinary bar magnet gives smaller magnets with both poles, not isolated single poles."
+      }
+    ],
+    "misconception": "Magnets do not strongly attract every metal, and lack of motion does not prove zero magnetic response.",
+    "boundary": "Motion is a qualitative, constrained demonstration, not a force measurement. For real play, adults should provide large enclosed magnets and keep swallowable magnets away from children.",
+    "narration": [
+      {
+        "label": "It moves before touching",
+        "text": "Watch the paper clip. As the magnet comes closer, the clip can start moving before contact, almost as if an invisible hand were pulling it. The magnet’s field is acting on it. Approach slowly instead of pushing all the way at once, and find the part where movement becomes noticeable.",
+        "cue": "Select iron, approach slowly and pause when movement begins."
+      },
+      {
+        "label": "Try other materials",
+        "text": "Try copper, aluminum and wood with the same procedure. Predict first and give yourself time to notice the result. Copper and aluminum are metals, but do not visibly follow this ordinary magnet like the iron paper clip. Knowing that something is a metal does not settle how strongly a magnet attracts it.",
+        "cue": "Select copper, aluminum and wood, pausing for two seconds each."
+      },
+      {
+        "label": "Meet another magnet",
+        "text": "Bring in another magnet. Approach and see whether they join, then flip one. Pause: do they come together or move apart now? Changing the facing poles changes the result. This tray prevents unrestricted turning so we can see the difference between attraction and repulsion clearly.",
+        "cue": "Choose magnet and compare before and after flipping, pausing three seconds."
+      },
+      {
+        "label": "Remember how to compare",
+        "text": "The useful skill is changing one condition at a time: first material, then orientation. That helps us notice causes. Never put small magnets in your mouth or remove them from toys. Ask an adult to provide a suitable large magnet, explain your predictions and discoveries, and think of your next question together.",
+        "cue": "Return to ready state and indicate material and flip controls."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "CPSC · Magnet Safety",
+      "url": "https://www.cpsc.gov/Safety-Education/Safety-Education-Centers/Magnets"
+    },
+    {
+      "title": "National MagLab · Magnets from Mini to Mighty",
+      "url": "https://maglabweb.magnet.fsu.edu/magnet-academy/read-science-stories/science-simplified/magnets-from-mini-to-mighty/"
+    },
+    {
+      "title": "OpenStax · Magnetism and Its Historical Discoveries",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/11-1-magnetism-and-its-historical-discoveries"
+    }
+  ]
+}

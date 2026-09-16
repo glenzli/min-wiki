@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { DONOR_MASS, BLACK_HOLE_MASS, DONOR_LOBE, SEPARATION, donorRadius } from './model.ts';
 import { SCIENCE } from './science.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -19,6 +20,13 @@ catch (error) {
     console.error(error);
 }
 let scenario: Scenario = 'overflow', progress = 0, playing = false, academic = false, last = performance.now(), frame = 0, disposed = false;
+let cancelStageMotion = () => {};
+for (const type of ['click', 'input', 'keydown']) document.addEventListener(type, () => cancelStageMotion(), { capture: true });
+function seekStage(target: number) {
+  playing = false;
+  cancelStageMotion = animateValue({ from: progress, to: target, duration: 1100,
+    onUpdate: value => { progress = value; update(); } });
+}
 const positions = [0, .25, .55, .85];
 function update() {
     const data = CONTENT[scenario], stage = Math.max(0, positions.reduce((found, p, i) => progress >= p ? i : found, 0));
@@ -36,7 +44,7 @@ function update() {
     document.querySelectorAll<HTMLButtonElement>('[data-scenario]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.scenario === scenario)));
     el('steps').querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String(i === stage)));
 }
-function buildSteps() { el('steps').replaceChildren(...CONTENT[scenario].stages.map((s, i) => { const b = document.createElement('button'); b.textContent = s; b.addEventListener('click', () => { progress = positions[i]; playing = false; update(); }); return b; })); }
+function buildSteps() { el('steps').replaceChildren(...CONTENT[scenario].stages.map((s, i) => { const b = document.createElement('button'); b.textContent = s; b.addEventListener('click', () => { seekStage(positions[i]); }); return b; })); }
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-scenario]'))
     b.addEventListener('click', () => { scenario = b.dataset.scenario as Scenario; progress = 0; playing = false; buildSteps(); update(); });
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]'))

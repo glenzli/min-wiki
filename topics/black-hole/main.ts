@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -65,6 +66,7 @@ function $(id: string): HTMLElement {
 const clockLabel = (seconds: number) => `${Math.floor(seconds/60).toString().padStart(2,'0')}:${Math.floor(seconds%60).toString().padStart(2,'0')}`;
 
 class App {
+  private cancelStageMotion = () => {};
   playback!: Playback;
   synth!: SpaceSynth;
   soundEnabled!: boolean;
@@ -79,6 +81,7 @@ class App {
   resumeAfterDialog!: boolean;
 
   constructor() {
+    for (const type of ["click", "input", "keydown"]) document.addEventListener(type, () => this.cancelStageMotion(), { capture: true });
     this.playback = new Playback();
     this.synth = new SpaceSynth();
     this.soundEnabled = false;
@@ -172,7 +175,9 @@ class App {
       button.innerHTML=`<span class="step-num">0${i+1}</span>${phase.label}`;
       button.setAttribute('aria-label',t("第{{v0}}步：{{v1}}", {v0: i+1, v1: phase.label}));
       button.addEventListener('click',()=>{
-        this.playback.seek(playbackProgress(phase.at, scenario)); this.playback.playing=false; this.syncPlayback();
+        this.playback.playing = false; this.syncPlayback();
+        this.cancelStageMotion = animateValue({ from: this.playback.progress, to: playbackProgress(phase.at, scenario), duration: 1000,
+          onUpdate: value => { this.playback.seek(value); this.syncPlayback(); this.updateUI(); } });
       });
       return button;
     }));

@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -11,8 +12,12 @@ const ids = ['egg','larva','pupa','adult'];
 const titles = [t('一粒小小的卵'),t('吃叶子，长身体'),t('蛹里面正在大变身'),t('展开翅膀，成为蝴蝶')];
 const texts = [t('很多蝴蝶把卵产在适合幼虫吃的植物上。小毛毛虫会从卵里孵出来。'),t('毛毛虫是蝴蝶的幼虫。它吃东西、长大，还会蜕掉旧的外皮。'),t('蛹不是在睡觉。外面很安静，里面的身体正在重新发育，翅膀等成虫结构逐渐形成。'),t('蝴蝶从蛹里出来，翅膀展开、变硬后才能飞。成虫交配产卵，下一代又开始了。')];
 let stage = 0;
-function render() { ids.forEach((id,i)=>el(id).setAttribute('visibility',i===stage?'visible':'hidden')); document.querySelectorAll<HTMLButtonElement>('[data-stage]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.stage)===stage))); el('peek-control').hidden = stage!==2; report(stage+1,titles[stage]!,texts[stage]!); }
-document.querySelectorAll<HTMLButtonElement>('[data-stage]').forEach(b=>b.addEventListener('click',()=>{stage=Number(b.dataset.stage);render();}));
+let cancelReveal: () => void = () => {};
+function render() { ids.forEach((id,i)=>{ el(id).setAttribute('visibility',i===stage?'visible':'hidden'); el(id).setAttribute('opacity','1'); }); document.querySelectorAll<HTMLButtonElement>('[data-stage]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.stage)===stage))); el('peek-control').hidden = stage!==2; report(stage+1,titles[stage]!,texts[stage]!); }
+document.querySelectorAll<HTMLButtonElement>('[data-stage]').forEach(b=>b.addEventListener('click',()=>{cancelReveal(); stage=Number(b.dataset.stage); render();
+  // Stages are observation snapshots, not a fictitious anatomical morph.
+  const target = el<SVGGElement>(ids[stage]!);
+  cancelReveal = animateValue({from: 0, to: 1, duration: 420, onUpdate: value => target.setAttribute('opacity',String(value))});}));
 el<HTMLInputElement>('peek').addEventListener('change',()=>el('inside').setAttribute('opacity',el<HTMLInputElement>('peek').checked?'1':'0')); render();
 
 mountReadingMode('details:not(.references)');

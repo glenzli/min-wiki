@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "lightning-thunder",
+  "zh": {
+    "question": "闪电和雷声来自同一次事件，为什么我们常常先看见闪电？",
+    "observe": "固定温度，分别选择近处和远处闪电；推进到放电后，比较声音传播到观察者所需时间。再只改变温度，比较理论声速。",
+    "academic": [
+      {
+        "title": "电荷分离创造放电条件",
+        "body": "雷暴云中的冰晶、霰等粒子在碰撞和气流作用下发生电荷交换与分离，使不同区域产生强电场。当空气的绝缘状态被击穿，可形成导电通道并发生放电。这里呈现常见的简化电荷分布；真实雷暴电荷结构复杂，闪电可以发生在云内、云间或云地之间，不都是从云直线落地。"
+      },
+      {
+        "title": "雷声是空气快速膨胀的结果",
+        "body": "放电通道附近的空气在极短时间内被加热，快速膨胀并产生压力扰动，传播到耳朵时成为雷声。闪电通道有长度和弯曲形状，不同部分的声音会在不同时刻到达，再加上反射等影响，便可能听到持续的隆隆声。雷不是两朵云像石头那样碰撞发出的声音。"
+      },
+      {
+        "title": "延迟能估距，不能证明安全",
+        "body": "光在空气中传播远快于声音，所以常先看到闪光。温度适宜时，声音每秒约走三百多米，距离可粗估为声速乘以延迟；风、温度分层和通道位置都会影响结果。这个估计只解释时间差，不是安全判据。听见雷声就应进入合适的坚固建筑或封闭硬顶车辆，并遵循当地雷电警示。"
+      }
+    ],
+    "misconception": "闪电不是先发生、雷声过一会儿才产生；主要是声音到达得更晚。",
+    "boundary": "圆形波前、温度声速公式和单一距离都是教学近似；没有真实声压或危险范围预测。不要在户外等待闪电来验证。",
+    "narration": [
+      {
+        "label": "先亮，后响",
+        "text": "在安全的屋子里看雷雨时，你可能先看见窗外一亮，过了一会儿才听见轰隆隆。难道雷声刚才忘记出发了吗？不是的。今天我们用屏幕上的闪电做比较，就不用到外面等待。先看好云和观察者的位置，猜一猜什么会先到达。",
+        "cue": "显示云和观察者，保持无闪烁静态。"
+      },
+      {
+        "label": "云里的小电火花",
+        "text": "雷暴云里面，小冰粒受到气流带动，碰来碰去，会让不同地方积起不同的电荷。条件合适时，一道很强的电流穿过空气，这就是闪电。闪电把周围空气很快加热，空气猛地膨胀，发出了向外传播的声音，也就是我们听到的雷。",
+        "cue": "推进电荷分离与放电，使用现有单次示意。"
+      },
+      {
+        "label": "声音还在路上",
+        "text": "光跑得非常快，声音却慢得多。看到亮光时，声音可能还在路上。我们把距离调远一些，再看声音的圆圈走过来。现在停一下，比较近处和远处的等待时间。是不是更远的时候，声音通常要多走一会儿，才来到观察者这里？",
+        "cue": "比较近远两次传播，留三秒观察。"
+      },
+      {
+        "label": "好奇心带回室内",
+        "text": "这就解释了先看到闪电、后听到雷声的原因。可是声音有多远，不能告诉我们外面一定安全。真实生活中，只要听到雷声，就赶快告诉大人，一起进入合适的安全地方。我们把好奇心带回室内，用模型研究时间差，不在树下等下一次闪电。",
+        "cue": "停在室内观察说明，不重复闪光。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If lightning and thunder come from one event, why do we usually see the flash first?",
+    "observe": "Keep temperature fixed and compare near and distant lightning. After discharge, watch how long sound takes to arrive. Then change only temperature and compare the theoretical sound speed.",
+    "academic": [
+      {
+        "title": "Charge separation enables discharge",
+        "body": "Collisions among ice particles and their transport by storm airflows separate electrical charge. Strong electric fields can break down air insulation and establish conducting channels. Real storm charge structures are complex; lightning can occur within clouds, between clouds or between cloud and ground."
+      },
+      {
+        "title": "Thunder comes from rapid expansion",
+        "body": "Lightning heats nearby air extremely rapidly. The expanding air produces pressure disturbances heard as thunder. A long, branching channel sends sound from different distances, and reflections can further spread out arrival times, creating a rumble. Thunder is not the sound of two clouds colliding."
+      },
+      {
+        "title": "Delay estimates distance, not safety",
+        "body": "Light travels much faster than sound. Sound moves a little over three hundred meters each second in typical air, so distance can be roughly estimated from delay. Wind, temperature profiles and channel geometry limit the estimate. Hearing thunder calls for suitable shelter, not further outdoor measurement."
+      }
+    ],
+    "misconception": "Thunder is not created only after a long wait; most of the delay comes from sound traveling to you.",
+    "boundary": "Circular fronts, the temperature formula and a single source distance are approximations, not sound-pressure or hazard predictions. Do not wait outdoors to test them.",
+    "narration": [
+      {
+        "label": "Flash, then rumble",
+        "text": "From a safe building, you may see a flash outside and hear a rumble later. Did the thunder forget to start? No. We can investigate with lightning on screen instead of waiting outdoors. Find the cloud and the observer, and predict what will reach the observer first.",
+        "cue": "Show cloud and observer in a steady, non-flashing view."
+      },
+      {
+        "label": "A powerful electrical spark",
+        "text": "Inside a storm cloud, moving ice particles collide and help separate electrical charge. When conditions allow, a powerful current passes through the air: lightning. It heats the nearby air very quickly. The air expands rapidly and sends sound outward. That sound is the thunder we hear.",
+        "cue": "Advance charge separation and the existing single discharge illustration."
+      },
+      {
+        "label": "Sound is still traveling",
+        "text": "Light travels extremely fast, while sound is much slower. When the flash reaches us, sound may still be on its way. Increase the distance and watch the sound front travel. Pause to compare near and far. Does the farther journey usually take sound longer to reach the observer?",
+        "cue": "Compare two distances and leave three seconds to observe."
+      },
+      {
+        "label": "Bring curiosity indoors",
+        "text": "That explains why the flash often arrives before the rumble. Distance estimates cannot promise that outside is safe. In real life, tell an adult when you hear thunder and move together to suitable shelter. Bring your curiosity indoors and use the model to study delays, rather than waiting under a tree for another flash.",
+        "cue": "Hold the shelter reminder without replaying the flash."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NWS · Understanding Lightning Science",
+      "url": "https://www.weather.gov/safety/lightning-science-overview"
+    },
+    {
+      "title": "NWS · Thunder",
+      "url": "https://www.weather.gov/safety/lightning-science-thunder"
+    },
+    {
+      "title": "NWS · Lightning Safety",
+      "url": "https://www.weather.gov/safety/lightning"
+    }
+  ]
+}

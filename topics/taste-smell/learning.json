@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "topicId": "taste-smell",
+  "zh": {
+    "question": "暂时只看舌头提供的线索，草莓的风味会少掉什么？",
+    "observe": "选草莓并播放，先看溶入唾液的物质接近味孔，再放大味蕾。到终点比较“先只看味觉贡献”和“加入嗅觉贡献”：绿色路线有没有消失？紫色路线从哪里进入鼻腔？再换番茄重看。",
+    "academic": [
+      {
+        "title": "从舌乳头到味觉细胞",
+        "body": "舌面的小凸起叫乳头，其中菌状、叶状和轮廓乳头可含味蕾，丝状乳头主要承担机械作用而没有味蕾。味蕾由多类细胞组成；味觉细胞的顶端微绒毛接近味孔，接触唾液中的可溶物质。受体或离子通道把化学线索转换为细胞活动，再与感觉神经通信。味蕾也不只存在于舌头，口腔其他一些部位同样参与味觉。"
+      },
+      {
+        "title": "五种基本味觉，不是五个专属区域",
+        "body": "甜、酸、咸、苦、鲜是五种公认的基本味觉，不同味质采用不同的分子检测机制。甜、苦与鲜涉及不同的受体系统，酸味和咸味涉及相应的离子通道机制，不能用一个万能受体解释全部反应。不同味觉细胞散布在许多有味蕾的区域，区域敏感性可以不同，却不是舌尖只尝甜、舌根只尝苦。真实食物通常提供多种味质，而非一种标签。"
+      },
+      {
+        "title": "后鼻嗅觉参与风味整合",
+        "body": "咀嚼时释放的挥发性分子可经口腔后方进入鼻腔，到达上部嗅觉区域，随后转为神经信号；这叫后鼻嗅觉。它与舌头提供的基本味质，加上口感、温度等共同参与风味体验。嗅觉贡献减弱时，香气辨别可能变差，但不能直接推断基本味觉全部消失。辣椒素产生的灼热感主要涉及三叉神经等化学感觉通路，不是第六种基本味觉，也不能用味道来保证食物安全。"
+      }
+    ],
+    "misconception": "舌头没有把甜、酸、咸、苦、鲜严格分成五块的地图；辣的灼热感也不是第六种基本味觉。食物香气与基本味质需要分别理解。",
+    "boundary": "这是不同尺度的概念切面，不是显微照片、真实气流或感觉强度模型。细胞数量与种类、神经中继和脑区网络都被简化。比较按钮只改变图上计入的嗅觉贡献，不模拟堵鼻、疾病或个体喜好。",
+    "narration": [
+      {
+        "label": "从酸甜和香气开始",
+        "text": "想一想草莓：有时甜甜的，有时还有一点酸，也有自己的香气。它们都是舌头一个人找到的吗？今天不用拿食物做试验，我们只在屏幕里看看。选好草莓，慢慢播放。嘴巴里的唾液让一些物质溶进去，就像给这些很小的线索铺了一层水，帮助它们接近味觉细胞。",
+        "cue": "选择草莓，从初始画面推进至溶入唾液；指向放大图上方的小点与液层。"
+      },
+      {
+        "label": "放大一个小凸起",
+        "text": "现在按一下放大味蕾。舌头表面有许多小凸起，有些里面住着一群细胞，这一群叫味蕾。看，细胞长长的，顶端靠近一个小开口。物质接触到这里，细胞就能作出回应，把消息交给神经。先暂停找一找：小点在哪里，神经又连在哪里？整个草莓可没有钻进神经里。",
+        "cue": "放大味蕾，停在细胞回应阶段，对照味孔、细胞与下方神经纤维。"
+      },
+      {
+        "label": "鼻子从后面收到消息",
+        "text": "继续看旁边的嘴巴和鼻子。紫色路线从嘴巴后面转上去，来到鼻腔上部。一些香气分子会走这条路，让鼻子也收到食物的线索。到终点时，先只看味觉的贡献，再加入嗅觉。绿色的味觉路线一直都在，可是有了香气的帮忙，风味的信息就更丰富了。试着换番茄再看一遍。",
+        "cue": "回看侧面图，推进至终点，切换两种贡献模式，最后更换番茄。"
+      },
+      {
+        "label": "许多感觉一起合作",
+        "text": "我们的基本味觉有甜、酸、咸、苦和鲜。它们并没有把舌头分成五块只做一件事的地方。食物的软硬、冷暖，还有鼻子闻到的香气，也一起参加这次合作。辣椒带来的灼热又是另一类感觉，不是新的一块味觉区域。我们只看屏幕，不用吃辣试一试，更不要尝不认识的东西。",
+        "cue": "停在双通路全景，再指向五种基本味觉卡片及辣的说明。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If we temporarily consider only the tongue’s contribution, what is missing from strawberry flavor?",
+    "observe": "Choose strawberry and play. Watch dissolved substances approach the taste pore, then zoom into the taste bud. At the endpoint, compare taste alone with the addition of smell. Does the green route disappear? Where does the purple route enter the nose? Switch to tomato and replay.",
+    "academic": [
+      {
+        "title": "From papillae to taste cells",
+        "body": "Small bumps on the tongue are papillae. Fungiform, foliate and circumvallate papillae can contain taste buds; filiform papillae mainly have a mechanical role and lack them. A taste bud contains several cell types. Microvilli at the tops of taste cells approach the taste pore and contact substances dissolved in saliva. Receptors or ion channels convert chemical information into cellular activity, followed by communication with sensory nerves. Taste buds are not confined to the tongue; some other oral regions also contribute."
+      },
+      {
+        "title": "Five basic tastes, not five exclusive zones",
+        "body": "Sweet, sour, salty, bitter and umami are five established basic taste qualities, detected through different molecular mechanisms. Sweet, bitter and umami involve distinct receptor systems, while sour and salty involve relevant ion-channel mechanisms; one universal receptor cannot explain every response. Different taste cells occur across many taste-bud-bearing regions. Regional sensitivity may vary, but the tip is not exclusively sweet and the back is not exclusively bitter. Real foods usually provide several taste qualities, rather than a single label."
+      },
+      {
+        "title": "Retronasal smell contributes to flavor",
+        "body": "Volatile molecules released during chewing can travel through the back of the mouth into the nose and reach the upper olfactory region, where they lead to neural signals. This is retronasal olfaction. Smell, basic tastes, texture, temperature and other inputs contribute to flavor. Reduced smell can make aromas harder to distinguish without eliminating basic taste. Capsaicin’s burning sensation mainly involves trigeminal and related chemical-sensory pathways; it is not a sixth basic taste. Taste cannot establish whether an unfamiliar food is safe."
+      }
+    ],
+    "misconception": "There is no tongue map dividing sweet, sour, salty, bitter and umami into five exclusive zones. Chili’s burning sensation is not a sixth basic taste. Food aromas and basic taste qualities are distinct contributions.",
+    "boundary": "These are conceptual sections at different scales, not micrographs, realistic airflow or a model of sensory intensity. Cell counts and types, nerve relays and brain networks are simplified. The comparison changes the displayed contribution of smell, without simulating nose-blocking, disease or individual preferences.",
+    "narration": [
+      {
+        "label": "Start with sweetness and aroma",
+        "text": "Think of a strawberry. It can be sweet, a little sour, and have its own lovely aroma. Does the tongue discover all of that by itself? We do not need to try any food today. We can explore on the screen. Choose strawberry and play slowly. Saliva in the mouth lets some substances dissolve, making a watery layer that helps these tiny clues reach the taste cells.",
+        "cue": "Choose strawberry and advance to dissolution. Point out the dots and fluid layer in the enlarged view."
+      },
+      {
+        "label": "Look inside a small bump",
+        "text": "Now press the button to enlarge a taste bud. The tongue has many small bumps. Some contain a group of cells called a taste bud. Look at the long cells, with their tops close to a small opening. When substances contact this area, the cells can respond and pass information to nerves. Pause and find the dots. Where do the nerves connect? The whole strawberry certainly does not travel inside a nerve.",
+        "cue": "Zoom into the taste bud and pause at the cell-response stage. Compare the pore, cells and nerve fibers below."
+      },
+      {
+        "label": "The nose receives clues from behind",
+        "text": "Keep watching the mouth and nose beside it. The purple route turns upward from the back of the mouth toward the top of the nasal cavity. Some aroma molecules can travel this way, helping the nose collect food clues too. At the endpoint, consider taste alone, then add smell. The green taste route remains throughout, but aroma adds information to the flavor. Try selecting tomato and watch it again.",
+        "cue": "Advance the side view to the endpoint, switch contribution modes, then choose tomato."
+      },
+      {
+        "label": "Several senses work together",
+        "text": "Our basic tastes include sweet, sour, salty, bitter and umami, or savory. They have not divided the tongue into five places that each do only one job. A food’s texture and temperature, together with its aroma, also join in. The burning feeling from chili is another kind of sensation, not a new taste zone. We can keep exploring on the screen without trying chili, and we should never taste things we do not recognize.",
+        "cue": "Hold the whole view, then point to the five basic-taste cards and the explanation of chili."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NIH / NIDCD · Taste Disorders",
+      "url": "https://www.nidcd.nih.gov/health/taste-disorders"
+    },
+    {
+      "title": "NIH / NIDCD · Smell Disorders",
+      "url": "https://www.nidcd.nih.gov/health/smell-disorders"
+    },
+    {
+      "title": "UTHealth · Neuroscience Online: Chemical Senses",
+      "url": "https://nba.uth.tmc.edu/neuroscience/m/s2/chapter09.html"
+    },
+    {
+      "title": "Silver et al. · TRPV1 receptors and nasal trigeminal chemesthesis (2006)",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16908491/"
+    }
+  ]
+}

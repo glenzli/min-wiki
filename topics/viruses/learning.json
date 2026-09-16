@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "viruses",
+  "zh": {
+    "question": "病毒碰到任何一个细胞，都能复制出新病毒吗？",
+    "observe": "先用可支持复制的宿主逐步观察附着、进入、制造、组装、释放；再分别切换表面不匹配和内部有防御的宿主，找出过程停止的不同位置。",
+    "academic": [
+      {
+        "title": "病毒颗粒不是一个完整细胞",
+        "body": "病毒的遗传物质为 DNA 或 RNA，外面通常由蛋白质衣壳保护，有些还具有包膜。它们没有细胞式的完整代谢与蛋白质合成系统，复制需依赖适合宿主的细胞环境。这里画的是感染某些细菌的噬菌体，并不是所有病毒都长着头部和尾部。病毒能感染的生物范围很广，“病毒”等于“人的病原体”会漏掉大部分生物学背景。"
+      },
+      {
+        "title": "表面结合与内部复制是不同门槛",
+        "body": "噬菌体表面结构需识别合适受体，才能完成本例的附着与遗传信息进入。但结合成功并不保证细胞支持复制，细菌的限制系统、CRISPR 等防御及细胞状态都可能阻断后续过程。将“表面不匹配”和“内部阻断”分开，能够解释宿主范围不只是外形对上即可，也避免把钥匙开门的类比误当作感染必成的完整模型。"
+      },
+      {
+        "title": "复制、组装、释放各有机制",
+        "body": "在支持本例裂解性周期的细菌中，病毒遗传信息被复制，蛋白质部件由宿主相关机器制造，再装配成新的颗粒；最终细胞裂解释放子代。原来的病毒不是先长大再二分裂。其他病毒可能出芽或使用不同出口，有些噬菌体还能进入溶原状态，所以这六步只是一种有边界的路线，不能覆盖所有病毒生命周期。"
+      }
+    ],
+    "misconception": "细胞表面能结合，不代表后面一定能复制；病毒也不是像细菌那样长大后分成两半。",
+    "boundary": "仅为一种有尾噬菌体裂解周期的示意，省略分子数量、细胞拥挤、溶原与多种防御细节，不是人体感染过程的通用图。",
+    "narration": [
+      {
+        "label": "认识特别的小访客",
+        "text": "图里这个像小探测器的东西，是一种噬菌体。名字有点长，你可以先记住，它是会感染某些细菌的病毒。它不是小机器人，也不是一个完整细胞。外壳保护着遗传信息，可它不能靠自己，把制造新病毒所需的所有事情都完成。",
+        "cue": "展示原始噬菌体与细菌，停在相遇前。"
+      },
+      {
+        "label": "先过第一道关",
+        "text": "让它靠近细菌看看。表面的结构要合适，才可能接上。先换一个不匹配的细菌，停一停，看看过程停在哪里。再换回合适的例子，遗传信息可以进去，但这还不是成功复制的保证。有些细菌里面还有防御办法，能让接下来的事情停住。",
+        "cue": "比较不匹配宿主，暂停三秒，再比较内部防御。"
+      },
+      {
+        "label": "先做部件，再组起来",
+        "text": "现在选能支持这次复制的细胞，继续往后看。遗传信息被复制，一些部件被制造出来，再把这些部件组装成新的噬菌体。注意看，原来那个病毒没有鼓得越来越大，然后像切小面团一样分成两半。这里发生的是借用细胞里的条件和工具，制造并组装许多新颗粒。",
+        "cue": "依次展示制造部件与组装阶段。"
+      },
+      {
+        "label": "一种路线，不是所有故事",
+        "text": "最后，这个例子里的细菌裂开，新噬菌体被释放出来。图上只画了几个代表，真实数量不是用这几个小图标来计算的。别忘了，病毒家族有很多不同成员，有些离开细胞的方式也不同。今天最重要的发现是：碰到细胞、能够进去和成功复制，是要分开想的几件事。",
+        "cue": "从组装位置连续移到释放位置，结束在三种宿主比较。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Can a virus make new viruses whenever it touches any cell?",
+    "observe": "Follow attachment, entry, production, assembly and release in a permissive host. Then compare a surface mismatch and an internal defence, locating the distinct stopping points.",
+    "academic": [
+      {
+        "title": "A virus particle is not a complete cell",
+        "body": "Viruses carry DNA or RNA protected by a protein capsid, sometimes with an envelope. They lack a complete cellular protein-making and metabolic system and depend on suitable hosts. This illustration is a bacteriophage; not all viruses have heads and tails or infect humans."
+      },
+      {
+        "title": "Attachment and replication are separate barriers",
+        "body": "A phage must interact with suitable receptors for this entry pathway. Successful binding does not guarantee replication: bacterial defences and physiological state can block subsequent steps. Surface mismatch and internal defence therefore represent distinct barriers; a key-and-lock analogy alone is an incomplete account of host range."
+      },
+      {
+        "title": "Replication, assembly and release differ",
+        "body": "In this permissive lytic pathway, genomes are copied and components made using cellular machinery before new particles are assembled. Lysis releases them. The original virion does not grow and divide like a bacterium. Other viruses use different release routes, and some phages can enter lysogeny; this is one bounded example."
+      }
+    ],
+    "misconception": "Being able to bind a cell does not guarantee replication, and viruses do not reproduce simply by growing and splitting like bacteria.",
+    "boundary": "This is one tailed-phage lytic pathway, omitting molecular counts, crowding, lysogeny and many defences. It is not a universal diagram of human infection.",
+    "narration": [
+      {
+        "label": "Meet an unusual tiny visitor",
+        "text": "The object that resembles a little probe is a bacteriophage, a virus that infects certain bacteria. It is neither a robot nor a complete cell. A coat protects its genetic information, but the particle cannot perform all the work needed to make new viruses by itself.",
+        "cue": "Show the original phage before encounter."
+      },
+      {
+        "label": "The first barrier",
+        "text": "Bring it towards the bacterium. Suitable surface structures are needed for attachment. Try a mismatch and pause to see where progress stops. With a suitable example, genetic information can enter, yet replication is still not guaranteed: defences inside some cells can block later steps.",
+        "cue": "Pause at mismatch, then compare internal defence."
+      },
+      {
+        "label": "Make parts and assemble them",
+        "text": "Choose a cell that supports this pathway. Genetic information is copied, components are produced, and new phages are assembled. The original particle does not swell and split like a piece of dough. New particles are built using the conditions and machinery available inside the cell.",
+        "cue": "Show production and then assembly."
+      },
+      {
+        "label": "One pathway among many",
+        "text": "In this example the bacterium lyses and releases new phages. The few drawings stand for a process, not a measured number. Other viruses leave cells in other ways. Remember the key distinction: meeting a cell, entering it and successfully replicating are separate events.",
+        "cue": "Move offspring continuously outward and end with host comparisons."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "National Human Genome Research Institute — Virus",
+      "url": "https://www.genome.gov/genetics-glossary/Virus"
+    },
+    {
+      "title": "RCSB PDB-101 — Bacteriophage T4 Infection",
+      "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection"
+    },
+    {
+      "title": "Maffei et al. — Systematic exploration of Escherichia coli phage-host interactions with the BASEL phage collection",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/34784345/"
+    }
+  ]
+}

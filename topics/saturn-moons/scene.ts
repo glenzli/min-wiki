@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { teachingDistanceScale, updateTeachingLens, retreatPosition } from '../../src/visuals/teachingCamera.ts';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
@@ -22,6 +23,13 @@ function moonTexture(id: string, index: number) {
   const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace; return texture;
 }
 export class TopicScene {
+  private cancelViewMotion = () => {};
+  private viewBlend = 1;
+  private fromBodies: { position: THREE.Vector3; scale: THREE.Vector3; rotation: THREE.Quaternion }[] = [];
+  private fromCamera = new THREE.Vector3();
+  private toCamera = new THREE.Vector3();
+  private fromTarget = new THREE.Vector3();
+  private toTarget = new THREE.Vector3();
   private renderer: THREE.WebGLRenderer;
   private world = new THREE.Scene();
   private camera = new THREE.PerspectiveCamera(43, 1, .1, 12000);
@@ -35,6 +43,7 @@ export class TopicScene {
   private plume: THREE.Points;
   private selection = new THREE.Mesh(new THREE.RingGeometry(1.18, 1.21, 64), new THREE.MeshBasicMaterial({ color: '#edc887', side: THREE.DoubleSide, transparent: true, opacity: .7, depthTest: false }));
   private view = '';
+  private progress = 0;
   private selected = 'titan';
   private disposed = false;
   private width = 1;
@@ -63,10 +72,11 @@ export class TopicScene {
     const starPositions = new Float32Array(500 * 3); for (let i = 0; i < 500; i++) { const a = i * 2.399963, z = 1 - 2 * (i + .5) / 500, r = Math.sqrt(1 - z * z); starPositions.set([Math.cos(a) * r * 650, z * 650, Math.sin(a) * r * 650], i * 3); }
     const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.BufferAttribute(starPositions, 3)); this.world.add(new THREE.Points(sg, new THREE.PointsMaterial({ color: '#bfd0e5', size: 1, sizeAttenuation: false, transparent: true, opacity: .5 })));
     this.controls = new OrbitControls(this.camera, canvas); this.controls.enablePan = false; this.controls.enableDamping = false; this.controls.minDistance = 4; this.controls.maxDistance = 220; this.controls.addEventListener('change', () => this.render());
+    this.controls.addEventListener('start', () => { this.cancelViewMotion(); this.viewBlend = 1; });
     this.caption.className = 'scene-caption'; canvas.parentElement!.append(this.caption);
     this.observer = new ResizeObserver(() => this.resize()); this.observer.observe(canvas); this.resize();
   }
-  private resize() { this.width = this.canvas.clientWidth; this.height = this.canvas.clientHeight; this.renderer.setSize(this.width, this.height, false); this.camera.aspect = this.width / this.height; updateTeachingLens(this.camera, this.controls.target); const lensScale = teachingDistanceScale(this.camera.aspect, 43); this.controls.minDistance = 4 * lensScale; this.controls.maxDistance = 220 * lensScale; this.setCamera(); this.render(); }
+  private resize() { this.cancelViewMotion(); this.viewBlend = 1; this.width = this.canvas.clientWidth; this.height = this.canvas.clientHeight; this.renderer.setSize(this.width, this.height, false); this.camera.aspect = this.width / this.height; updateTeachingLens(this.camera, this.controls.target); const lensScale = teachingDistanceScale(this.camera.aspect, 43); this.controls.minDistance = 4 * lensScale; this.controls.maxDistance = 220 * lensScale; this.setCamera(); this.render(); }
   private setCamera() {
     const f = Math.max(1, 1.5 / this.camera.aspect);
     if (this.view === 'close') this.camera.position.set(0, 1.3, 12 * Math.max(1, .95 / this.camera.aspect));
@@ -75,8 +85,16 @@ export class TopicScene {
     this.controls.target.set(0, 0, 0); retreatPosition(this.camera.position, this.controls.target, this.camera.aspect, 43); this.controls.update();
   }
   draw(progress: number, settings: Settings, view: string) {
-    const changed = view !== this.view; this.view = view; this.selected = settings.moon;
-    this.saturn.visible = view === 'orbit'; this.caption.textContent = view === 'sizes' ? t('七颗卫星使用同一半径比例') : view === 'close' ? t('表面特征示意，不是实测全表面地图') : t('已确认卫星 293 颗 · NASA，2026 年 8 月');
+    const changed = view !== this.view, animate = changed && this.view !== '';
+    this.progress = progress; this.selected = settings.moon;
+    if (changed) {
+      this.cancelViewMotion();
+      this.fromBodies = this.bodies.map(body => ({ position: body.position.clone(), scale: body.scale.clone(), rotation: body.quaternion.clone() }));
+      this.fromCamera.copy(this.camera.position); this.fromTarget.copy(this.controls.target);
+      this.view = view; this.setCamera();
+      this.toCamera.copy(this.camera.position); this.toTarget.copy(this.controls.target); this.viewBlend = animate ? 0 : 1;
+    }
+    this.saturn.visible = view === 'orbit'; this.caption.textContent = view === 'sizes' ? t('七颗卫星使用同一半径比例') : view === 'close' ? t('表面特征示意，不是实测全表面地图') : t('精选七颗卫星 · 轨道间距为示意');
     const radii = MOONS.map((_, i) => comparisonRadius(i)), total = radii.reduce((s, r) => s + 2 * r, 0) + 6 * 1.8; let x = -total / 2;
     this.bodies.forEach((body, i) => {
       const moon = MOONS[i], angle = orbitalAngle(progress, i);
@@ -90,12 +108,21 @@ export class TopicScene {
     this.selection.visible = view !== 'close'; this.plume.visible = view === 'close' && settings.moon === 'enceladus';
     const positions = this.plume.geometry.getAttribute('position') as THREE.BufferAttribute;
     for (let i = 0; i < positions.count; i++) { const a = i * 2.4, u = (i / positions.count + progress * 6) % 1; positions.setXYZ(i, Math.cos(a) * (.05 + u * .28), -1 - u * .8, Math.sin(a) * (.05 + u * .28)); } positions.needsUpdate = true;
-    if (changed) this.setCamera(); this.render();
+    if (this.viewBlend < 1) {
+      this.bodies.forEach((body, i) => { const from = this.fromBodies[i]; body.position.lerpVectors(from.position, body.position.clone(), this.viewBlend); body.scale.lerpVectors(from.scale, body.scale.clone(), this.viewBlend); body.quaternion.slerpQuaternions(from.rotation, body.quaternion.clone(), this.viewBlend); if (MOONS[i].id === this.selected) { this.selection.position.copy(body.position); this.selection.scale.setScalar(body.scale.x); } });
+      this.camera.position.lerpVectors(this.fromCamera, this.toCamera, this.viewBlend);
+      this.controls.target.lerpVectors(this.fromTarget, this.toTarget, this.viewBlend); this.controls.update();
+    }
+    this.render();
+    if (animate) this.cancelViewMotion = animateValue({ from: 0, to: 1, duration: 1100, onUpdate: blend => {
+      this.viewBlend = blend; if (blend === 1) { this.camera.position.copy(this.toCamera); this.controls.target.copy(this.toTarget); this.controls.update(); }
+      this.draw(this.progress, { moon: this.selected }, this.view);
+    } });
   }
   private render() {
     if (this.disposed) return;
     this.selection.quaternion.copy(this.camera.quaternion); this.renderer.render(this.world, this.camera);
     this.bodies.forEach((body, i) => { const p = body.position.clone().add(new THREE.Vector3(0, -body.scale.x - .6, 0)).project(this.camera), label = this.labels[i]; label.textContent = this.view === 'sizes' ? MOON_TEXT[MOONS[i].id].name.split(' · ')[0] : MOON_TEXT[MOONS[i].id].name; label.hidden = !body.visible || p.z > 1 || p.z < -1 || (this.width < 500 && this.view === 'orbit' && MOONS[i].id !== this.selected); if (this.view === 'sizes') p.y -= (i % 2) * 55 / this.height; label.style.left = `${Math.max(48, Math.min(this.width - 48, (p.x + 1) * .5 * this.width))}px`; label.style.top = `${Math.max(65, Math.min(this.height - 65, (1 - p.y) * .5 * this.height))}px`; });
   }
-  dispose() { this.disposed = true; this.observer.disconnect(); this.controls.dispose(); this.labels.forEach(l => l.remove()); this.caption.remove(); this.textures.forEach(t => t.dispose()); this.world.traverse(object => { if (object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Points) { object.geometry.dispose(); (Array.isArray(object.material) ? object.material : [object.material]).forEach(m => m.dispose()); } }); this.renderer.dispose(); }
+  dispose() { this.cancelViewMotion(); this.disposed = true; this.observer.disconnect(); this.controls.dispose(); this.labels.forEach(l => l.remove()); this.caption.remove(); this.textures.forEach(t => t.dispose()); this.world.traverse(object => { if (object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Points) { object.geometry.dispose(); (Array.isArray(object.material) ? object.material : [object.material]).forEach(m => m.dispose()); } }); this.renderer.dispose(); }
 }

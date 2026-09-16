@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "frog-life",
+  "zh": {
+    "question": "蝌蚪长成青蛙时，尾巴是掉下来的，还是慢慢变短的？",
+    "observe": "把成长滑条慢慢移过长后腿、露前腿到小青蛙，暂停在有四条腿也有尾巴的位置。再观察尾巴连续缩短，比较同一身体如何改变。",
+    "academic": [
+      {
+        "title": "变态是多器官协同的发育",
+        "body": "典型青蛙的水生蝌蚪与成体有明显不同的身体结构。变态过程中，甲状腺激素参与调节组织变化，四肢生长、尾部重塑、口器与消化道调整并不是互相独立的装饰。后腿通常先明显可见，前腿随后露出；外观阶段只是方便辨识的标记，内部器官的发育早已进行，也并非按界面按钮同时启动。"
+      },
+      {
+        "title": "尾巴的材料被重新处理",
+        "body": "尾巴缩短涉及有调控的细胞死亡和组织分解，部分物质被身体回收利用，而不是像脱落叶片那样整条掉下。具有四肢但仍保留尾巴的蛙苗是正常过渡形态。连续观察同一个个体，比只比较两张阶段照片更容易理解“长腿”和“吸收尾巴”有一段重叠时间，不能把青蛙简单理解成给蝌蚪加上四条腿。"
+      },
+      {
+        "title": "水陆生活并非一次彻底切换",
+        "body": "很多蝌蚪依靠鳃和皮肤交换气体，肺功能也可能在变态完成前出现；成蛙常利用肺与湿润皮肤呼吸。发育速度受物种和环境影响，不能用固定天数套所有青蛙。部分蛙类直接在卵内完成发育，孵出小蛙，没有自由游泳的蝌蚪期，所以本页代表一种常见路线，并非整个蛙类的唯一生活史。"
+      }
+    ],
+    "misconception": "青蛙的尾巴通常被逐渐吸收，不是掉下来；有腿又有尾巴是正常的过渡阶段。",
+    "boundary": "这是一类常见蛙的形态演变示意，不对应指定物种的天数、体长或完整呼吸器官发育；拖回滑条是回看，真实动物不会倒着长。",
+    "narration": [
+      {
+        "label": "池塘里的新生命",
+        "text": "池塘里那些像小果冻一样的团块，里面可能有青蛙的卵。卵里的小生命慢慢发育，孵出一条条带尾巴的小蝌蚪。它们用尾巴游泳，样子和岸边的青蛙很不一样。可是别着急，我们沿着同一只小动物的成长过程，看看身体会怎样改变。",
+        "cue": "从卵缓慢移动到蝌蚪。"
+      },
+      {
+        "label": "先找到小后腿",
+        "text": "慢慢向前拖一拖，身体后面是不是出现了小后腿？它们越来越明显，尾巴还在帮助游泳。再往前一点，前腿也露出来了。现在我们停一停：数一数，它有几条腿，尾巴还在不在？原来，小青蛙不是一下子换了一个新身体，中间有很多慢慢变化的样子。",
+        "cue": "在四肢可见而尾巴仍长时停三秒。"
+      },
+      {
+        "label": "尾巴到哪里去了",
+        "text": "继续看，尾巴一点点变短了。它不是啪嗒一下掉进水里，而是身体把尾巴里的组织逐渐拆开，回收一些材料。与此同时，里面许多地方也在发育，为新的生活方式做准备。我们画面里最容易看见腿和尾巴，真正的变化还包括许多眼睛看不到的部分。",
+        "cue": "缓慢播放尾巴吸收，保持身体位置连续。"
+      },
+      {
+        "label": "认识不同的青蛙",
+        "text": "现在，一只小青蛙出现了。它可以用腿游泳，也逐渐适应岸边的生活。我们看到的是很多青蛙常走的成长路线，不过青蛙家族很大，有些小蛙直接从卵里出来，不会到水里当自由游泳的蝌蚪。以后观察池塘，可以带着这个发现慢慢看，让小动物留在自己的家里。",
+        "cue": "停在蛙苗终态，回顾成长路线。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Does a tadpole lose its tail by dropping it, or does the tail gradually shorten?",
+    "observe": "Move slowly through hind-leg growth, foreleg emergence and froglet stages. Pause when all four legs and a tail coexist, then watch the tail shorten continuously.",
+    "academic": [
+      {
+        "title": "Metamorphosis coordinates multiple organs",
+        "body": "In a typical frog life cycle, aquatic tadpoles differ strongly from adults. Thyroid hormones help regulate tissue changes involving limbs, tail, mouth and digestive tract. Hind legs usually become visible before forelegs emerge. Visible stages are convenient landmarks; internal organs do not wait for a screen-like switch before developing."
+      },
+      {
+        "title": "Tail tissue is remodelled and resorbed",
+        "body": "Tail shortening involves regulated cell death and tissue breakdown, with material reused by the body. The tail does not normally drop off whole. A froglet with four limbs and a remaining tail is a normal transitional form. Following one individual reveals that leg development and tail loss overlap."
+      },
+      {
+        "title": "The aquatic-to-terrestrial transition has exceptions",
+        "body": "Many tadpoles exchange gases using gills and skin, and lung function can begin before metamorphosis ends. Adults commonly use lungs and moist skin. Timing varies among species and environments. Some frogs develop directly inside eggs and hatch as froglets, without a free-swimming tadpole stage."
+      }
+    ],
+    "misconception": "The tail is normally gradually resorbed, not dropped. Having both legs and a tail is a normal transition.",
+    "boundary": "This shows a common pattern, not species-specific days, body sizes or full respiratory development. Moving the slider back reviews the past; real development does not reverse.",
+    "narration": [
+      {
+        "label": "A new life in the pond",
+        "text": "Jelly-like clumps in a pond may contain frog eggs. Inside, young animals develop and eventually hatch as tadpoles. They swim with tails and look very different from frogs on the bank. Follow one animal through its development and see how its body changes.",
+        "cue": "Move gradually from eggs to tadpole."
+      },
+      {
+        "label": "Find the little hind legs",
+        "text": "Move forward slowly. Can you see the hind legs growing? The tail is still there. Continue until the forelegs emerge, then pause. Count the legs and check for the tail. A frog does not suddenly exchange one body for another; there are many intermediate forms to notice.",
+        "cue": "Pause for three seconds with four legs and a remaining tail."
+      },
+      {
+        "label": "Where did the tail go?",
+        "text": "Keep watching as the tail shortens. It does not simply drop into the water. The body gradually breaks down tail tissue and reuses some of its material. Other parts develop too. Legs and tail are easy to see in our picture, but much of the change happens inside.",
+        "cue": "Show continuous tail resorption without moving the whole animal abruptly."
+      },
+      {
+        "label": "Meet a diverse family",
+        "text": "Now there is a froglet, using its legs and gradually adapting to life near the bank. Many frogs follow this route, but the family is diverse: some hatch directly as small frogs. On a pond visit, watch carefully and let the animals remain in their own home.",
+        "cue": "End at the froglet and review the route."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Australian Museum — Frog life cycle",
+      "url": "https://australian.museum/learn/teachers/learning/frog-life-cycle/"
+    },
+    {
+      "title": "Natural History Museum — Tadpole vision and development",
+      "url": "https://www.nhm.ac.uk/discover/news/2022/november/tadpoles-have-eye-on-future-as-vision-develops.html"
+    },
+    {
+      "title": "Wang et al. — Gene Expression Program Underlying Tail Resorption During Thyroid Hormone-Dependent Metamorphosis",
+      "url": "https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2019.00011/full"
+    }
+  ]
+}

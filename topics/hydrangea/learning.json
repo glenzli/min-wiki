@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "hydrangea",
+  "zh": {
+    "question": "把土调酸，白色绣球也一定会变蓝吗？",
+    "observe": "固定品种，分别改变酸碱度和铝供应，再点培育新花；比较成熟花色。最后换白花品种作对照，并查看液泡中的色素环境。",
+    "academic": [
+      {
+        "title": "土壤酸度影响可利用铝",
+        "body": "能蓝变的大花绣球在较酸土壤中，常较容易获得可溶性铝；铝被根吸收后还需运输到萼片细胞。酸碱度是影响可利用性的条件之一，并不是直接泼到花上的染料。即使酸度合适，缺乏可用铝也不保证变蓝。比较两种条件时，应该固定品种并一次只改一个变量，才能辨认酸度与铝供应各自的作用。"
+      },
+      {
+        "title": "蓝色由细胞内的组合形成",
+        "body": "绣球显眼的大片结构主要是萼片。蓝色与液泡中的花青素、铝及共色素形成的复合物有关，也受液泡化学环境影响。土壤的 pH 和液泡的 pH 不是同一个数值，植物还要维持细胞内部条件。研究通过萼片组织中的成分定位和转运蛋白实验，连接起土壤供给、细胞运输与最后呈现的花色。"
+      },
+      {
+        "title": "品种与新花是重要对照",
+        "body": "遗传背景决定植物是否具备这条显色路径。白花品种不能仅靠调酸就补出缺少的有色色素；其他绣球种类也不能直接套用本例规则。改变土壤条件后，新发育萼片的颜色要经过吸收、运输和成熟才能体现，所以界面把“下一朵花的条件”和“当前花的条件”分开。已有花朵不会像屏幕色块一样立即重新着色。"
+      }
+    ],
+    "misconception": "土壤酸度并非一个通用的花色开关；可用铝、显色成分、品种和发育过程都不可忽略。",
+    "boundary": "仅示意部分大花绣球的显色机制；色条与铝百分比是相对趋势，不是园艺配方，不能用来计算施肥或调酸剂量。",
+    "narration": [
+      {
+        "label": "花园里的问题",
+        "text": "花园里有蓝色、粉色和白色的绣球，它们像一团团轻轻的云。有人说，换一换土，花的颜色也会变。这句话有意思，但还少了几个条件。今天我们在画面里做一次小实验，看看同样一朵新花，在不同条件下会长成什么样。",
+        "cue": "展示完整成熟花序，然后指向条件控件。"
+      },
+      {
+        "label": "先只改一个条件",
+        "text": "先保留同一个品种，把土壤的酸碱度调一调，再请新花慢慢长出来。停一停，记住它的颜色。接着只改变铝的供应，再培育一朵。铝在这里是一种来自土里的成分，不是蓝色颜料。土壤条件会影响植物能不能得到它，得到多少。",
+        "cue": "固定品种依次比较 pH 和铝；两轮间暂停三秒。"
+      },
+      {
+        "label": "走进装色素的小空间",
+        "text": "现在到花里看看。显眼的大薄片，多数叫萼片。它们的细胞里有液泡，里面的色素和一些别的成分遇到一起，可以形成让花显蓝的组合。土变了，还得等植物吸收、运输，等新花长大，颜色才慢慢显出来。可不是按一下按钮，花园里的花就马上换衣服。",
+        "cue": "进入液泡视图，播放新花成熟过程。"
+      },
+      {
+        "label": "请白花来比较",
+        "text": "最后请白花品种也来试试。你发现了吗？它不会沿着刚才这条路变蓝，因为需要的有色色素并不齐全。原来，花的颜色既与环境有关，也与它本身的品种有关。我们的小实验最有用的地方，就是每次只改一点，再耐心比较，而不是急着猜一个答案。",
+        "cue": "切换白花品种培育，再与有色品种对照。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Will making the soil acidic turn every white hydrangea blue?",
+    "observe": "Keep the cultivar fixed and change pH and aluminium supply separately, then grow a new bloom. Compare its mature colour, use the white cultivar as a control, and inspect the vacuole view.",
+    "academic": [
+      {
+        "title": "Soil pH influences available aluminium",
+        "body": "In colour-responsive bigleaf hydrangeas, acidic soil often makes aluminium more available. Aluminium must be absorbed and transported to sepal cells. Soil pH is a condition affecting availability, not a dye poured onto flowers. Suitable acidity alone does not guarantee blue when aluminium is unavailable; compare one variable at a time."
+      },
+      {
+        "title": "Blue results from a chemical combination",
+        "body": "The showy structures are mainly sepals. Blue involves complexes of anthocyanin, aluminium and copigments in vacuoles, with the cellular chemical environment also contributing. Soil pH is not vacuolar pH. Tissue mapping and transporter studies connect supply, cellular transport and visible colour."
+      },
+      {
+        "title": "Cultivar and developing blooms matter",
+        "body": "Genetic background determines whether this colour response is possible. Acidifying soil does not supply missing anthocyanin to a white cultivar, and other hydrangea species may behave differently. Uptake, transport and maturation take time, so settings for the next bloom are kept distinct from the current bloom."
+      }
+    ],
+    "misconception": "Soil acidity is not a universal flower-colour switch; available aluminium, pigments, cultivar and development all matter.",
+    "boundary": "This represents part of the bigleaf-hydrangea colour mechanism. Bars and aluminium percentages are qualitative, not gardening recipes or dosing advice.",
+    "narration": [
+      {
+        "label": "A garden question",
+        "text": "Hydrangeas can look like soft clouds of blue, pink or white. You may hear that changing the soil changes their colour. That can happen, but several conditions matter. Today we will grow a new bloom in our picture and compare what happens under different settings.",
+        "cue": "Show the mature flower head and the condition controls."
+      },
+      {
+        "label": "Change one thing at a time",
+        "text": "Keep the cultivar the same, adjust the soil pH and grow a bloom. Pause and remember its colour. Next change only the aluminium supply and grow another. Aluminium here is something the plant can obtain from soil, not blue paint. Soil conditions influence how available it is.",
+        "cue": "Compare pH and aluminium separately, pausing between blooms."
+      },
+      {
+        "label": "Inside the colour space",
+        "text": "Look inside the showy parts, called sepals. Their cells have vacuoles where pigments and other substances can form a blue-producing combination. After soil conditions change, absorption, transport and flower development still take time. Real garden flowers cannot change their appearance instantly at the push of a button.",
+        "cue": "Enter the vacuole view and show maturation."
+      },
+      {
+        "label": "Invite a white-flowered control",
+        "text": "Try the white cultivar. It does not follow the same route to blue because the needed coloured pigment is missing. Colour depends on the plant as well as its surroundings. The useful habit in our experiment is changing one thing, waiting and comparing carefully before deciding what the result means.",
+        "cue": "Grow a white cultivar and compare with the pigmented cultivar."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Ito et al. — Direct mapping of hydrangea blue-complex in sepal tissues",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6443790/"
+    },
+    {
+      "title": "Negishi et al. — Aluminium transporters in blue hydrangea sepals",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3430636/"
+    },
+    {
+      "title": "University of Georgia — Growing Bigleaf Hydrangea",
+      "url": "https://fieldreport.caes.uga.edu/publications/C973/growing-bigleaf-hydrangea/"
+    }
+  ]
+}

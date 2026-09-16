@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { SCIENCE } from './science.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -13,6 +14,7 @@ mountTopicNavigation('leaf-colors');
 const el = (id: string) => document.getElementById(id)!;
 let position = 0, zoom = 0, season = 0, kind: LeafKind = 'yellow', academic = false, playing = false;
 let touring = false, journey = 0;
+let cancelSeek: () => void = () => {};
 let frame = 0, last = 0, scene: LeafScene | undefined;
 try { scene = new LeafScene(el('scene') as HTMLCanvasElement, el('hotspot')); }
 catch (error) { el('scene-error').hidden = false; el('hotspot').hidden = true; console.error(error); }
@@ -61,11 +63,18 @@ function update() {
   for (const key of ['title', 'body', 'formula', 'terms', 'watch', 'caution'] as const) el(`science-${key}`).textContent = science[key];
   scene?.set(position, season, kind);
 }
-for (const b of document.querySelectorAll<HTMLButtonElement>('[data-zoom]')) b.addEventListener('click', () => { touring = false; position = Number(b.dataset.zoom); journey = position / 3 * JOURNEY_DURATION; update(); });
+function seekScale(target: number) {
+  touring = false; cancelSeek();
+  cancelSeek = animateValue({ from: position, to: target, duration: 850, onUpdate: value => {
+    position = value; journey = position / 3 * JOURNEY_DURATION; update();
+  }});
+}
+for (const b of document.querySelectorAll<HTMLButtonElement>('[data-zoom]')) b.addEventListener('click', () => seekScale(Number(b.dataset.zoom)));
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-kind]')) b.addEventListener('click', () => { kind = b.dataset.kind as LeafKind; zoom = routeLevel(zoom, kind); update(); });
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });
-for (const b of document.querySelectorAll<HTMLButtonElement>('[data-season]')) b.addEventListener('click', () => { stop(); season = Number(b.dataset.season); update(); });
+for (const b of document.querySelectorAll<HTMLButtonElement>('[data-season]')) b.addEventListener('click', () => { stop(); cancelSeek(); cancelSeek = animateValue({from: season, to: Number(b.dataset.season), duration: 950, onUpdate: value => { season = value; update(); }}); });
 function startJourney() {
+  cancelSeek();
   if (touring) touring = false;
   else {
     if (position >= 3) { journey = 0; position = 0; }
@@ -75,17 +84,17 @@ function startJourney() {
   }
   update();
 }
-el('hotspot').addEventListener('click', () => { touring = false; position = Math.min(3, Math.floor(position + .01) + 1); journey = position / 3 * JOURNEY_DURATION; update(); });
-el('scale').addEventListener('input', () => { touring = false; position = Number((el('scale') as HTMLInputElement).value) / 1000; journey = position / 3 * JOURNEY_DURATION; update(); });
+el('hotspot').addEventListener('click', () => { seekScale(Math.min(3, Math.floor(position + .01) + 1)); });
+el('scale').addEventListener('input', () => { cancelSeek(); touring = false; position = Number((el('scale') as HTMLInputElement).value) / 1000; journey = position / 3 * JOURNEY_DURATION; update(); });
 el('journey').addEventListener('click', startJourney);
 el('motion').addEventListener('click', () => {
   const enabled = el('motion').getAttribute('aria-pressed') !== 'true';
   el('motion').setAttribute('aria-pressed', String(enabled));
   scene?.setMotion(enabled);
 });
-el('zoom-back').addEventListener('click', () => { touring = false; position = Math.max(0, Math.ceil(position - .01) - 1); journey = position / 3 * JOURNEY_DURATION; update(); });
+el('zoom-back').addEventListener('click', () => { seekScale(Math.max(0, Math.ceil(position - .01) - 1)); });
 el('season').addEventListener('input', () => { stop(); season = Number((el('season') as HTMLInputElement).value) / 1000; update(); });
-function stop() { playing = false; if (!touring) { cancelAnimationFrame(frame); frame = 0; } }
+function stop() { cancelSeek(); playing = false; if (!touring) { cancelAnimationFrame(frame); frame = 0; } }
 function tick(now: number) {
   frame = 0;
   if ((!playing && !touring) || document.hidden) return;
@@ -97,6 +106,7 @@ function tick(now: number) {
   if (playing || touring) frame = requestAnimationFrame(tick);
 }
 el('play').addEventListener('click', () => {
+  cancelSeek();
   if (playing) stop();
   else { if (season >= 1) season = 0; playing = true; last = performance.now(); if (!frame) frame = requestAnimationFrame(tick); }
   update();

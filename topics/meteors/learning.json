@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "meteors",
+  "zh": {
+    "question": "天空里出现一条亮亮的流星，是远处的恒星掉下来了吗？每条亮迹都会留下陨石吗？",
+    "observe": "选择小碎片，把旅程从太空推进到亮迹消失；再选择能留下残块的示例，观察停止发光以后是否还在下落。",
+    "academic": [
+      {
+        "title": "三个名称指向不同对象或阶段",
+        "body": "流星体是在太空中运动的小固体天体，常来自小行星或彗星碎片；流星是高速进入大气时产生的发光现象，陨石则是最终到达地面的剩余固体。它们不能与远方的恒星混为一谈。流星雨常与地球穿过碎屑流有关，而不是许多恒星一起落下；看到亮迹也不保证有可收集的陨石。"
+      },
+      {
+        "title": "发光、烧蚀与破碎同时发生",
+        "body": "高速入射使流星体与空气强烈相互作用，激波后的气体、受激发的原子与被剥离物质参与发光。受热导致熔化、汽化等烧蚀过程，也可能伴随机械破碎。亮度受速度、质量、成分和大气环境影响，不只是石块大小；将成因简单说成普通物体擦地那样的摩擦，会遗漏高速气流压缩和能量交换。"
+      },
+      {
+        "title": "亮迹结束后可能还有暗飞行",
+        "body": "有些较强残块在高速发光阶段后仍然存在。减速使强烈发光停止后，它们可继续受重力和空气阻力作用下落，称为暗飞行；高空风也会改变落点。是否留下陨石取决于入射速度、角度、强度、形状与质量，不能仅用“大石块一定落地、小石块一定消失”作判断。页面两条路线只代表两种可能结局。"
+      }
+    ],
+    "misconception": "流星不是恒星从天上掉下来；发光停止也不一定表示物质全都不见了。陨石是留下并到达地面的固体。",
+    "boundary": "路线、高度、时间、光晕和残块大小都是示意，未计算真实大气密度、烧蚀、阻力与碎裂；两种选项不是按尺寸预测幸存的判据。",
+    "narration": [
+      {
+        "label": "一条亮线是什么",
+        "text": "夜空里有时会闪过一条亮线，我们叫它流星。听起来像星星在跑，可是远处的恒星并没有掉下来。真正来到地球附近的，常常是一小块太空碎片。它还在太空里时，我们叫它流星体。先跟着画面里的这块小碎片走。",
+        "cue": "从太空起点缓慢推进。"
+      },
+      {
+        "label": "进入空气以后",
+        "text": "小碎片很快地冲进地球的大气，和空气强烈相遇，就可能出现亮光，还会失去身上的物质。现在先暂停，找找它从哪里开始变亮。亮亮的一段是我们看到的流星，不是后面拖着一串真正的小星星。再接着看，亮光会怎样变化。",
+        "cue": "入射阶段停顿约四秒，再继续发光段。"
+      },
+      {
+        "label": "不是每次都有落地礼物",
+        "text": "有些碎片在途中就已经消散，没有石头落到地面。另一些会剩下一块，减慢速度，先不再明显发光，却还在继续往下走。把两种例子都看一遍，留意亮光消失的那一刻：碎片是真的没有了，还是只是变得不亮了？",
+        "cue": "对照消散示例与幸存残块的暗飞行。"
+      },
+      {
+        "label": "三个名字串成旅程",
+        "text": "如果最后真的有一块固体到达地面，它就叫陨石。我们把名字串起来：太空里的流星体，空气中的流星亮迹，可能留下的陨石。不是每段旅程都能走到最后。看到划过天空的亮光时，你已经知道，可以问它在哪里、在发生什么，而不用担心星星掉下来了。",
+        "cue": "到达终点，对照三种名称。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Is a meteor a distant star falling down, and does every bright streak leave a meteorite?",
+    "observe": "Follow the small-fragment example until the streak disappears. Then choose the surviving-fragment example and check whether it keeps falling after it stops glowing.",
+    "academic": [
+      {
+        "title": "Three names distinguish objects and phenomena",
+        "body": "A meteoroid is a small solid body in space, often debris from an asteroid or comet. A meteor is the luminous atmospheric phenomenon, while a meteorite is solid material that reaches the ground. None is a distant star falling. Meteor showers commonly occur when Earth meets a debris stream, and a visible streak does not guarantee recoverable meteorites."
+      },
+      {
+        "title": "Light, ablation, and fragmentation",
+        "body": "Fast entry causes intense interaction with air. Shock-heated gas, excited atoms, and removed material contribute to emission. Heating can cause melting and vaporization, collectively part of ablation, alongside mechanical fragmentation. Brightness depends on speed, mass, composition, and atmosphere. Ordinary rubbing friction alone is an incomplete explanation because hypersonic gas compression and energy exchange matter."
+      },
+      {
+        "title": "Dark flight may continue after the glow",
+        "body": "Some strong fragments survive the luminous high-speed stage. After deceleration ends intense emission, they can continue falling under gravity and aerodynamic drag: dark flight. Winds also influence their landing locations. Survival depends on speed, angle, strength, shape, and mass, not simply large versus small. The two page examples illustrate possible endings, not a universal size rule."
+      }
+    ],
+    "misconception": "A meteor is not a star falling. Losing its glow does not necessarily mean all material has vanished. A meteorite is surviving solid material that reaches the ground.",
+    "boundary": "Path, altitude, time, glow, and fragment size are illustrative, without a calibrated atmospheric, drag, ablation, or fragmentation calculation. The options are examples, not survival predictions.",
+    "narration": [
+      {
+        "label": "What makes that bright line?",
+        "text": "Sometimes a bright line flashes across the night sky. We call it a meteor, or a shooting star, but a distant star has not fallen. The traveler is often a small piece of space debris. While it is still in space, it is called a meteoroid. Let’s follow the little fragment in our picture.",
+        "cue": "Advance slowly from the space starting point."
+      },
+      {
+        "label": "Meeting the air",
+        "text": "The fragment rushes into Earth’s atmosphere and interacts strongly with the air. It can glow while losing some of its material. Pause and find where the light begins. That bright part is the meteor we see, not a string of tiny stars trailing behind. Keep watching to see how the light changes.",
+        "cue": "Pause four seconds near entry, then follow the glowing stage."
+      },
+      {
+        "label": "Not every trip reaches the ground",
+        "text": "Some fragments disappear along the way and leave no rock on the ground. Others leave a piece that slows down, stops glowing brightly, and keeps falling. Try both examples. When the light disappears, has the fragment really gone, or has it simply stopped shining? Look carefully for the remaining piece.",
+        "cue": "Compare disappearance with the surviving fragment’s dark flight."
+      },
+      {
+        "label": "Three names for the journey",
+        "text": "If a solid piece reaches the ground, it is called a meteorite. Put the names together: a meteoroid in space, a meteor’s bright atmospheric streak, and perhaps a meteorite left at the end. Not every journey reaches that final stage. Now a flashing line in the sky can make you wonder what is happening, without thinking a star has fallen.",
+        "cue": "Finish at the endpoint and compare the three terms."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Meteors and Meteorites Facts",
+      "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/"
+    },
+    {
+      "title": "American Meteor Society · Fireball FAQs",
+      "url": "https://www.amsmeteors.org/fireballs/faqf/"
+    },
+    {
+      "title": "American Meteor Society · Meteor FAQs",
+      "url": "https://www.amsmeteors.org/meteor-showers/meteor-faq/"
+    }
+  ]
+}

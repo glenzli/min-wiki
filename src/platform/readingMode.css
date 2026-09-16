@@ -1,5 +1,8 @@
-.reading-mode { display:flex; justify-content:center; gap:6px; margin:22px auto 0; width:fit-content; padding:5px; border:1px solid #80978b40; border-radius:14px; background:#a9b8a315; }
+.reading-mode { display:inline-flex; justify-content:center; gap:6px; margin:18px 0 0; width:fit-content; padding:5px; border:1px solid #80978b40; border-radius:14px; background:#a9b8a315; }
 .reading-mode button { min-height:42px; min-width:92px; padding:9px 18px; border:1px solid transparent; border-radius:10px; color:inherit; background:transparent; font:inherit; font-size:14px; cursor:pointer; }
 .reading-mode button[aria-pressed="true"] { background:#42685b; color:#fff; border-color:#42685b; box-shadow:0 2px 5px #29453615; }
 .reading-mode button:focus-visible { outline:3px solid #bf9b52; outline-offset:3px; }
-main header .reading-mode-hint { text-align:center; font-size:13px; line-height:1.6; opacity:.76; margin:10px auto 0; max-width:44em; }
+main header .reading-mode-hint { text-align:inherit; font-size:13px; line-height:1.6; color:var(--secondary); margin:10px 0 0; max-width:44em; }
+@media(prefers-reduced-motion:no-preference) {
+  .reading-mode button { transition:background-color 180ms ease, color 180ms ease, box-shadow 180ms ease; }
+}

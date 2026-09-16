@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -95,14 +96,20 @@ for (const button of document.querySelectorAll<HTMLButtonElement>('[data-road]')
     updatePlan();
   });
 }
+let beltY = 208, beltRadius = 66, cancelBelt = () => {};
 function selectFit(fit: 'shoulder' | 'lap') {
   el('fit-title').textContent = fit === 'shoulder' ? t('肩带跨过肩膀和胸前') : t('腰带低而贴，经过髋骨');
   el('fit-description').textContent = fit === 'shoulder'
     ? t('肩带贴合肩部和胸前，避开颈部与脸，不能滑到肩膀外。肩带不是一条可以藏起来的带子。')
     : t('腰带贴紧髋部和大腿根部附近，不压在柔软的肚子上。坐直、贴靠椅背，让带子保持在正确的位置。');
   const highlight = el('belt-highlight');
-  highlight.setAttribute('cy', fit === 'shoulder' ? '208' : '282');
-  highlight.setAttribute('r', fit === 'shoulder' ? '66' : '61');
+  cancelBelt();
+  const fromY = beltY, fromRadius = beltRadius;
+  const toY = fit === 'shoulder' ? 208 : 282, toRadius = fit === 'shoulder' ? 66 : 61;
+  cancelBelt = animateValue({ from: 0, to: 1, duration: 380, onUpdate: p => {
+    beltY = fromY + (toY - fromY) * p; beltRadius = fromRadius + (toRadius - fromRadius) * p;
+    highlight.setAttribute('cy', String(beltY)); highlight.setAttribute('r', String(beltRadius));
+  } });
   for (const button of document.querySelectorAll('[data-fit]')) button.setAttribute('aria-pressed', String((button as HTMLElement).dataset.fit === fit));
 }
 for (const button of document.querySelectorAll<HTMLButtonElement>('[data-fit]')) button.addEventListener('click', () => selectFit(button.dataset.fit as 'shoulder' | 'lap'));

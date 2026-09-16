@@ -102,5 +102,7 @@
   "轨道半长轴约 {{distance}} km\n公转周期 {{period}} 天\n本段经过 {{days}} 天；约完成 {{turns}} 周": "Semimajor axis about {{distance}} km\nOrbital period {{period}} days\nElapsed {{days}} days; about {{turns}} orbits",
   "{{days}} / 16 天": "{{days}} / 16 days",
   "放大看卫星": "Moon close-up",
-  "现在把卫星按同一个大小比例排在一起。找找土卫六：它比旁边几颗大多少？球之间的空隙只是为了摆放。": "The moons now share one size scale. Find Titan: how much larger is it than its neighbors? Gaps between the spheres are just for layout."
+  "现在把卫星按同一个大小比例排在一起。找找土卫六：它比旁边几颗大多少？球之间的空隙只是为了摆放。": "The moons now share one size scale. Find Titan: how much larger is it than its neighbors? Gaps between the spheres are just for layout.",
+  "精选七颗卫星 · 轨道间距为示意": "Seven selected moons · orbital spacing is schematic",
+  "本页不是完整卫星目录。采用圆轨道与示意初始位置，忽略摄动、共振细节及食。大小比较与轨道示意使用不同显示尺度。": "This is not a complete moon catalog. Circular orbits and illustrative starting positions omit perturbations, resonance details, and eclipses. Size comparisons and orbit views use different display scales."
 }

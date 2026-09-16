@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "rain-cycle",
+  "zh": {
+    "question": "海里的水变成云以后，还能回到海里吗？每一份水都走同一条路吗？",
+    "observe": "沿时间线追踪金色圆框，停在海面、云中、雨中和河流四处；比较水的状态与所在位置。再把水面得到的热量切换为温暖一些或凉一些，比较蒸发示意。",
+    "academic": [
+      {
+        "title": "能量推动相变",
+        "body": "太阳辐射为蒸发提供重要的能量来源，液面上的部分水分子进入空气；蒸发在没有沸腾时也会发生。空气冷却到合适条件后，水汽可在微小颗粒上凝结。可见的云由许多液滴、冰晶或两者组成，气态水本身不可见。凝结释放潜热，与蒸发吸热共同联系着水循环和大气能量收支。"
+      },
+      {
+        "title": "重力连接不同水库",
+        "body": "降水到达地面后，有的成为地表径流，有的渗入土壤，有的被植物利用后再回到空气。地下水还可能缓慢补给河流。海洋、湖泊、冰雪、土壤和地下含水层都是暂存水的地方；水会停留不同的时间，因此水循环是相互连接的网络，而不是每个水分子都依次经过四站的传送带。"
+      },
+      {
+        "title": "怎样知道水去了哪里",
+        "body": "在一个区域和一段时间内，可以用降水与流入减去蒸发和流出，估算储水量的变化。雨量计、河道流量观测和地下水位记录提供不同证据。某地长时间少雨，并不意味着水从地球消失，而可能意味着当地输入少于输出；全球循环也不能保证每个地方随时都有足够清洁的淡水。"
+      }
+    ],
+    "misconception": "云不是一袋看不见的水汽；我们看见的是许多微小水滴或冰晶。",
+    "boundary": "圆框追踪的是一小份水的代表路径；粒子、时间和距离均被放大或压缩，画面没有表示所有支路或预测降水量。",
+    "narration": [
+      {
+        "label": "从一片海开始",
+        "text": "你见过雨后慢慢变干的地面吗？水没有被地面吃掉，有一些变成了看不见的水蒸气，走进空气。海面也在发生这样的事。阳光送来能量，水的旅行就可以继续。画面里的金色圆圈像一支小指示笔，帮助我们追踪其中一小份水。",
+        "cue": "指向海面，停留两秒。"
+      },
+      {
+        "label": "来到云里",
+        "text": "现在慢慢往前看。空气里的水汽遇到合适的变冷条件，会聚成非常小的水滴。有些云里还有小冰晶。许多小水滴和冰晶一起，才让我们看见云。我们先停一下，找找看：圆圈的位置变了，里面表示水的样子是不是也变了？",
+        "cue": "推进至云中，留出三秒观察。"
+      },
+      {
+        "label": "雨落下来",
+        "text": "云里的小颗粒还要继续长大，才可能成为落下来的雨或雪。这一回，我们跟着雨来到山坡。水受到地球的吸引，沿着地面往低处走，小溪和河流把一些水送回大海。看看圆圈经过的弯弯河道，水可不是一下子跳回海里的。",
+        "cue": "慢慢推进经过雨和河道。"
+      },
+      {
+        "label": "还有别的路线",
+        "text": "不过，水的旅行没有一张人人相同的车票。有的水钻进土壤，有的待在湖里，有的被植物吸收，也有的冻成了冰。今天只看了一条路线。下次看到云、河流或者晾干的衣服，你都可以想一想：这里的水，刚从哪里来，又可能到哪里去呢？",
+        "cue": "停在全景，回指海、云、山和河。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Can seawater return to the sea after becoming a cloud? Does every portion take the same route?",
+    "observe": "Follow the gold circle and pause over the sea, cloud, rain and river. Compare location and state, then switch the heat received by the water between warmer and cooler conditions to compare the evaporation symbols.",
+    "academic": [
+      {
+        "title": "Energy and changes of state",
+        "body": "Solar radiation supplies much of the energy for evaporation, which also occurs below boiling. Cooling can allow vapor to condense on tiny particles. Visible clouds contain droplets, ice crystals or both; gaseous water is invisible. Evaporation absorbs latent heat and condensation releases it, linking water movement to atmospheric energy."
+      },
+      {
+        "title": "Gravity connects water stores",
+        "body": "Precipitation can run over land, infiltrate soil or be used by plants and returned to the air. Groundwater can slowly feed streams. Oceans, lakes, ice, soil and aquifers store water for different lengths of time. The cycle is a connected network rather than a conveyor belt on which every molecule visits four stops."
+      },
+      {
+        "title": "Following a water budget",
+        "body": "For a chosen region and interval, inputs minus evaporation and other outputs determine changes in stored water. Rain gauges, stream measurements and well levels provide different evidence. Drought does not mean water has vanished from Earth: local losses can exceed inputs. A global cycle does not guarantee clean freshwater at every location."
+      }
+    ],
+    "misconception": "A cloud is not a bag of invisible vapor: its visible parts are tiny droplets or ice crystals.",
+    "boundary": "The circle follows one representative portion of water. Particle sizes, distances and times are rescaled; not every route is shown and rainfall is not predicted.",
+    "narration": [
+      {
+        "label": "Start at the sea",
+        "text": "Have you seen wet ground slowly dry after rain? The ground has not eaten the water. Some has become invisible water vapor and entered the air. This happens over the sea too. Sunshine supplies energy for the journey. Our gold circle is a little pointer helping us follow one portion of water.",
+        "cue": "Point to the sea and pause for two seconds."
+      },
+      {
+        "label": "Into a cloud",
+        "text": "Move forward slowly. When conditions allow air to cool enough, its water vapor can gather into tiny droplets. Some clouds contain little ice crystals too. Many droplets and crystals together make a cloud visible. Pause and look: our circle has moved, and has the symbol for the water changed as well?",
+        "cue": "Advance into the cloud and pause for three seconds."
+      },
+      {
+        "label": "Rain falls",
+        "text": "The tiny particles in clouds must grow before they can fall as rain or snow. This time we follow rain onto a hillside. Earth pulls water downward, and streams and rivers carry some back to the sea. Watch the circle travel along the winding river: the water does not simply jump back into the ocean.",
+        "cue": "Advance slowly through rainfall and along the river."
+      },
+      {
+        "label": "Other routes",
+        "text": "Water does not have one ticket with the same stops for everyone. Some soaks into soil, stays in lakes, enters plants or freezes into ice. Today we followed just one route. Next time you notice a cloud, a river or clothes drying, wonder where that water came from and where it might travel next.",
+        "cue": "Hold the overview and point back to sea, cloud, hill and river."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "USGS · The Water Cycle",
+      "url": "https://water.usgs.gov/vizlab/water-cycle/"
+    },
+    {
+      "title": "USGS · Evaporation and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/evaporation-and-water-cycle"
+    },
+    {
+      "title": "USGS · Groundwater Flow and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/groundwater-flow-and-water-cycle"
+    }
+  ]
+}

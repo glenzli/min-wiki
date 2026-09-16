@@ -54,5 +54,19 @@
   "从水面离开后，分子之间的距离变大。": "After leaving the surface, molecules spread farther apart.",
   "气态分子靠近冷表面，逐渐聚成液态水。": "Gas molecules gather near the cold surface and become liquid water.",
   "进度不是温度计或钟表。这里选取从表面向内结冰的简化剖面；实际结冰也可能从杯壁等处开始。冰的体积增大仅作示意，不计算潜热和具体速率。分子大小、间距、运动与二维排列均经过简化；图中的气态分子不是可见白雾。由成人操作冷冻容器，日常观察不需要沸水。": "Progress is not a thermometer or clock. This simplified section shows freezing inward from the surface; real freezing can also begin at the container walls. Ice expansion is illustrative; latent heat and rates are not calculated. Molecular sizes, distances, motion and two-dimensional arrangements are simplified. The gas molecules shown are not visible white mist. Adults should handle freezing containers; boiling water is not needed.",
-  "水面先出现薄冰，冰层逐渐向里面长厚，最后整杯水结成冰。": "A thin layer of ice forms at the surface, grows deeper, and eventually freezes the whole cup."
+  "水面先出现薄冰，冰层逐渐向里面长厚，最后整杯水结成冰。": "A thin layer of ice forms at the surface, grows deeper, and eventually freezes the whole cup.",
+  "一层冰，许多晶粒": "One layer, many crystal grains",
+  "标出晶界": "Show grain boundaries",
+  "透亮的区域也是冰。细小气泡与晶粒边界是两回事。": "The clear regions are ice too. Tiny air bubbles and grain boundaries are different features.",
+  "虚线标出不同晶粒相遇的位置；它们不是裂开的缝。": "Dashed guides mark where different grains meet. They are not open cracks.",
+  "观察冰层的不同阶段": "Explore stages of the ice layer",
+  "初生薄冰": "First thin ice",
+  "冰水相接": "Ice meets water",
+  "完整冰层": "Fully frozen",
+  "杯中的一个晶粒里有大量水分子；晶界不是分子之间的连线。": "Each grain in the cup contains vast numbers of water molecules. A grain boundary is not a bond between molecules.",
+  "冰是固态的水；融化后变成能流动的液态水。许多小晶粒可以长在一起，组成一整块冰。晶粒接触的地方叫晶界，并不是冰块之间的空隙。": "Ice is solid water; melting makes liquid water that can flow. Many crystal grains can grow together into one body of ice. Where neighboring grains meet is called a grain boundary, not a gap between separate ice cubes.",
+  "这里选择从上方散热的冻结情景。固定的成核位置长出取向不同的晶粒，生长方向与速度略有差异；相遇后组成连续多晶冰。真实晶界通常很难用肉眼辨认，图中反光和可选虚线用于帮助观察。细小气泡可以在冻结时被夹入，让局部散射更强；冰不需要有气泡才会结晶。": "This example removes heat from above. Differently oriented grains grow from fixed nucleation sites, with slightly different directions and speeds, and meet to form continuous polycrystalline ice. Real grain boundaries are usually difficult to see by eye; highlights and optional dashed guides make them easier to follow. Trapped air bubbles can scatter light, but bubbles are not needed for ice to crystallize.",
+  "进度不是温度计或钟表。晶粒由固定晶核竞争生长的几何模型生成，保留连续相界与冰量；不求解传热、潜热、成核概率或真实折射。实际结冰也可能从杯壁开始，融化也不一定严格反向。分子图只示意普通冰的局部有序结构，不是完整三维晶格；杯中气泡不是水分子。由成人操作冷冻容器，日常观察不需要沸水。": "Progress is neither a thermometer nor a clock. A geometric competition between fixed nuclei produces persistent grains and a continuous phase boundary while preserving the illustrated ice amount. It does not solve heat transfer, latent heat, nucleation probabilities or optical refraction. Real freezing may begin at the walls, and melting need not exactly reverse freezing. The molecular inset represents local order in ordinary ice, not its full three-dimensional lattice. Air bubbles in the cup are not water molecules. Adults should handle freezing containers; boiling water is not needed.",
+  "沿着冰水交界看：晶粒的末端慢慢退去，液态水越来越多。": "Follow the ice–water boundary: the ends of the grains retreat as more liquid water appears.",
+  "小晶粒先在表面长出，逐渐相接。冰水交界继续向下推进，透亮的冰层越来越厚。": "Small grains first grow at the surface and meet. The ice–water boundary moves downward as the clear ice layer thickens."
 }

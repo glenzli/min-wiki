@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "leaf-colors",
+  "zh": {
+    "question": "秋天的黄色和红色，都是绿色变出来的吗？",
+    "observe": "先选黄叶，再选红叶；把季节从盛夏拖到深秋，比较三条色素趋势。再沿尺度进入叶绿体或液泡，找出色素所在的位置。",
+    "academic": [
+      {
+        "title": "绿色退去，黄色显露",
+        "body": "叶绿素与类胡萝卜素都参与叶绿体的光反应系统，但吸收光的波段和作用不同。生长季里强烈的绿色常掩盖黄色。秋季衰老时叶绿素被有序拆解，原先已有的黄色更容易被看见；这不意味着一个绿色分子直接变成了黄色分子。叶片同时回收部分氮、磷等资源，所以变色也是器官衰老过程的可见结果。"
+      },
+      {
+        "title": "红色通常是另一条路径",
+        "body": "许多会变红的叶片在秋季新合成花青素，主要积累在细胞液泡中；叶绿体里的叶绿素和类胡萝卜素并不会因此搬进液泡。色素的合成量、细胞环境以及多层组织对光的吸收和散射，共同影响看到的颜色。同一片叶子可以同时含有多类色素，红叶也并不意味着黄色色素已经全部消失。"
+      },
+      {
+        "title": "季节信号与比较证据",
+        "body": "日长、温度、光照和水分条件会与物种遗传差异共同影响衰老和花青素积累。因此比较时应尽量选同一树种、相近叶龄，再记录向阳与背阴位置；只看一片红叶不能证明它因低温而变红。此处黄叶和红叶是两类代表路线，色素条用于比较趋势，不能据此计算真实叶片的浓度。"
+      }
+    ],
+    "misconception": "叶绿素减少会让已有的黄色显露；很多秋季红色来自新合成的花青素，而不是绿色直接变红。",
+    "boundary": "尺度切换是教学路线，细胞与分子没有按同一比例绘制；并非所有落叶树都变红，严重霜冻或干旱也可能使叶子直接受损。",
+    "narration": [
+      {
+        "label": "一起找颜色",
+        "text": "你在路边捡过秋天的落叶吗？有的金黄，有的红红的，像一本打开的彩色画册。今天我们不拿画笔，沿着一片叶子往里面看。叶子里本来就有一些能让我们看见颜色的小东西，我们把它们叫作色素。先记住眼前这片夏天的绿叶，猜猜秋天来了，它会有什么变化。",
+        "cue": "从完整绿叶开始；停留在盛夏。"
+      },
+      {
+        "label": "看见原来的黄色",
+        "text": "现在慢慢把季节移到秋天。先别急着往下走，看看绿色是不是淡了一些。原来，黄色的色素在夏天也住在叶子里，只是绿色太显眼，我们不容易看见它。到了秋天，绿色的叶绿素减少，黄色就显出来了。就像轻轻移开前面的东西，终于看到了后面原来就有的颜色。",
+        "cue": "缓慢拖动季节；留出三秒观察黄色。"
+      },
+      {
+        "label": "红色住在哪里",
+        "text": "再换一片会变红的叶子吧。它走的路有些不同：许多红叶在秋天还会做出新的红色色素。我们跟着画面往里走，穿过叶子，看看一个个细胞，再找里面叫液泡的小空间。红色色素常常待在这里；绿色和黄色的色素，主要住在另一种小结构——叶绿体里。",
+        "cue": "选择红叶路线，进入液泡，再对比叶绿体。"
+      },
+      {
+        "label": "带着问题去散步",
+        "text": "原来，一片叶子的颜色，藏着这么多小变化。不同的树、不同的阳光和天气，会让秋天的颜色很不一样。下次散步时，可以和大人找同一棵树上向阳和背阴的叶子，看看它们是不是一样。记得轻轻观察，地上的落叶也很好看，不必把还长在树上的叶子摘下来。",
+        "cue": "回到叶片全景，比较两条路线的最终色彩。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Do autumn yellows and reds both come from green pigment changing colour?",
+    "observe": "Compare the yellow-leaf and red-leaf routes while moving the season from summer to late autumn. Compare the three pigment trends, then enter the chloroplast or vacuole to locate them.",
+    "academic": [
+      {
+        "title": "Green fades and yellow becomes visible",
+        "body": "Chlorophyll and carotenoids both occur in chloroplast photosynthetic systems, with different absorption properties and roles. Green commonly masks yellow during growth. During autumn senescence, chlorophyll is dismantled and existing yellow pigments become more visible. Green molecules do not simply turn into yellow ones. Nutrient recovery accompanies this regulated dismantling."
+      },
+      {
+        "title": "Red follows a different pathway",
+        "body": "Many red autumn leaves synthesize anthocyanins that accumulate mainly in vacuoles. Chloroplast pigments do not move into the vacuole. Pigment amounts, their chemical surroundings, and light travelling through tissue together determine appearance. A red leaf can still contain carotenoids and remaining chlorophyll."
+      },
+      {
+        "title": "Seasonal signals and evidence",
+        "body": "Day length, temperature, light, water supply and genetic differences influence senescence and anthocyanin accumulation. A useful comparison keeps species and leaf age similar while noting sun exposure. One red leaf cannot establish temperature as its cause. The two routes represent contrasting tendencies; their bars are not concentration measurements."
+      }
+    ],
+    "misconception": "Chlorophyll loss reveals existing yellow; much autumn red comes from newly made anthocyanin, not green pigment turning red.",
+    "boundary": "The scale journey is illustrative rather than uniformly scaled. Not all deciduous trees turn red, and severe frost or drought can damage leaves before a bright display develops.",
+    "narration": [
+      {
+        "label": "Meet the colours",
+        "text": "Have you ever found golden or red leaves on a walk? They look like pages in a colourful book. Today we will travel inside a leaf. Tiny substances called pigments help give it colour. Look at this green summer leaf and guess what will change when autumn arrives.",
+        "cue": "Begin with the whole summer leaf."
+      },
+      {
+        "label": "Notice the hidden yellow",
+        "text": "Move slowly towards autumn. Pause and look for the fading green. Yellow pigments were already there in summer, but green was easier to see. As chlorophyll decreases, the yellow becomes clearer. It is a little like moving something aside and discovering a colour that was there all along.",
+        "cue": "Move the season slowly and pause for three seconds."
+      },
+      {
+        "label": "Where red lives",
+        "text": "Now choose a leaf that turns red. Many red autumn leaves make new red pigments. Travel through the leaf into its cells and find the space called a vacuole. Red pigments often collect here. The green and yellow pigments mainly live in a different little structure, the chloroplast.",
+        "cue": "Follow the red route into the vacuole, then compare the chloroplast."
+      },
+      {
+        "label": "Take the question outdoors",
+        "text": "A leaf colour can tell a story of many small changes. Different trees, sunlight and weather make autumn look different. On your next walk, compare sunny and shaded leaves on one tree with a grown-up. Fallen leaves are wonderful to examine too; you can enjoy the living leaves without picking them.",
+        "cue": "Return to the whole leaf and compare the two outcomes."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Iowa State University — The Science Behind Fall Color",
+      "url": "https://yardandgarden.extension.iastate.edu/how-to/science-behind-fall-color"
+    },
+    {
+      "title": "University of Wisconsin — Leaf Color Change in Autumn",
+      "url": "https://hort.extension.wisc.edu/articles/leaf-color-change-autumn/"
+    },
+    {
+      "title": "OpenStax — Leaves",
+      "url": "https://openstax.org/books/biology/pages/30-4-leaves"
+    }
+  ]
+}

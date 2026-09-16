@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "butterfly-life",
+  "zh": {
+    "question": "安静挂着的蛹，里面也在发生变化吗？",
+    "observe": "依次选择卵、幼虫、蛹、成虫，在蛹阶段打开内部示意。比较幼虫的取食身体与成虫的翅和口器，注意这是同一个个体的不同阶段。",
+    "academic": [
+      {
+        "title": "完全变态分开了不同任务",
+        "body": "蝴蝶经历卵、幼虫、蛹和成虫，是完全变态昆虫。幼虫主要摄取食物并积累生长和后续发育需要的物质，坚硬外骨骼限制连续增大，因此要经过多次蜕皮。成虫结构适于活动和繁殖。幼虫与成虫常使用不同食物和空间，这种生活史分工并不表示两个阶段属于不同动物，毛毛虫本身就是蝴蝶的幼体。"
+      },
+      {
+        "title": "蛹期包含有组织的重建",
+        "body": "化蛹时不是把旧身体全部变成一团无结构的液体。部分幼虫组织被分解和重塑，成虫所需组织按发育程序继续生长，受到激素调控。外部活动减少不等于停止代谢。内部示意用少量结构帮助理解“安静外壳中的发育”，真实组织来源、重排和时间关系要通过显微观察等手段研究，不能只从蛹外形判断。"
+      },
+      {
+        "title": "羽化之后还需要展开翅膀",
+        "body": "成虫从蛹中羽化时，翅尚未达到最终形态，需要展开并变得适于飞行。生命周期图回到卵，表示成虫繁殖产生下一代，而不是成虫倒退成自己的卵。各阶段持续时间取决于种类、温度和是否进入滞育；寄主植物也常有选择性，例如帝王蝶幼虫依赖乳草，不能把任何树叶都当作所有毛毛虫的食物。"
+      }
+    ],
+    "misconception": "蛹不是睡着的毛毛虫，也不是蝴蝶的卵；它是幼虫与成虫之间有组织发育的阶段。",
+    "boundary": "画面展示代表性的蝴蝶生活史，各阶段不按同一尺寸或持续时间；内部透视是解释图，不能等同于真实解剖切面。",
+    "narration": [
+      {
+        "label": "从一粒卵开始",
+        "text": "叶子上有一粒小小的卵。别看它小，里面正在发育着新的生命。许多蝴蝶妈妈会把卵放在适合幼虫吃的植物上。过一段时间，出来的却不是一只带翅膀的小蝴蝶，而是一条毛毛虫。猜猜看，它接下来最忙的事情会是什么？",
+        "cue": "展示卵，再进入幼虫阶段。"
+      },
+      {
+        "label": "吃叶子，慢慢长大",
+        "text": "毛毛虫忙着吃东西、长身体，还要换掉装不下自己的旧外皮。它是蝴蝶小时候的样子，不是另一位突然来替班的动物。等它长到合适的阶段，会变成蛹。现在停一停，仔细看这个安静的小蛹：外面不怎么动，就代表里面没有事情发生吗？",
+        "cue": "展示幼虫后转蛹；停留三秒。"
+      },
+      {
+        "label": "安静外面，忙碌里面",
+        "text": "打开内部示意看看。里面的身体正在一点点重新发育，有些旧结构会改变，有些新的结构继续长起来，翅膀也在准备。我们把看不见的事情画出来，帮助你想象，但真正的身体可比这张图复杂得多。它不是在睡一觉，然后忽然凭空长出一对翅膀。",
+        "cue": "打开蛹内部示意，指向发育中的成虫结构。"
+      },
+      {
+        "label": "翅膀准备好再出发",
+        "text": "终于，成虫从蛹里出来了。它还需要让翅膀展开、变得能够飞行，不能一出来就急着飞走。长大的蝴蝶以后可能产下新的卵，新一代的故事又开始了。你可以用手指把四个阶段连起来：卵、毛毛虫、蛹、蝴蝶。下一圈是它的孩子，不是它自己变回了卵。",
+        "cue": "进入成虫阶段，回顾四阶段并指向下一代。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Is anything changing inside a pupa that appears still?",
+    "observe": "Select egg, larva, pupa and adult in order. Open the inside view at the pupa stage and compare larval and adult structures: these are stages of one individual.",
+    "academic": [
+      {
+        "title": "Complete metamorphosis separates life-stage roles",
+        "body": "Butterflies pass through egg, larva, pupa and adult. Larvae feed and accumulate material for growth and later development. Their cuticle requires repeated moulting as they enlarge. Adult structures support dispersal and reproduction. Different diets and habitats do not make the caterpillar a separate kind of individual."
+      },
+      {
+        "title": "The pupa undergoes organised remodelling",
+        "body": "Pupation does not turn every part into an unstructured liquid. Some larval tissues break down or remodel while adult tissues develop under hormonal control. Reduced external movement is not an absence of metabolism. The inside view simplifies a coordinated developmental process rather than depicting every tissue or its exact timing."
+      },
+      {
+        "title": "Emergence begins another transition",
+        "body": "After emergence, wings must expand and become flight-ready. Returning to an egg in the life-cycle diagram means reproduction and the next generation, not an adult becoming its own egg. Timing varies with species, temperature and diapause. Host plants are often specific; monarch larvae, for example, depend on milkweeds."
+      }
+    ],
+    "misconception": "A pupa is neither a sleeping caterpillar nor a butterfly egg; it is a distinct, active developmental stage.",
+    "boundary": "Stages are representative and use different size and time scales. The internal view explains development and is not a literal anatomical section.",
+    "narration": [
+      {
+        "label": "Begin with an egg",
+        "text": "A tiny egg rests on a leaf, with a new life developing inside. Many butterflies lay eggs on plants their young can eat. What hatches is not a miniature winged butterfly but a caterpillar. What do you think this young animal will spend much of its time doing?",
+        "cue": "Show the egg, then the larva."
+      },
+      {
+        "label": "Eat and grow",
+        "text": "The caterpillar feeds, grows and sheds a skin that has become too small. It is the butterfly in its young stage, not another animal taking its place. Eventually it becomes a pupa. Pause and inspect the quiet pupa: does being still outside mean nothing is happening inside?",
+        "cue": "Move from larva to pupa and pause for three seconds."
+      },
+      {
+        "label": "A quiet outside, a busy inside",
+        "text": "Open the inside view. The body is developing: some structures change and others keep growing, including those needed by the adult. Our drawing helps us imagine an otherwise hidden process, but a real body is much more complex. Wings do not simply appear by magic after a long sleep.",
+        "cue": "Reveal the developing adult structures inside the pupa."
+      },
+      {
+        "label": "Prepare the wings before flying",
+        "text": "At last the adult emerges. Its wings still need to expand and become ready for flight. Later, adults may produce eggs and a new generation begins. Trace the sequence with your finger: egg, caterpillar, pupa, butterfly. The next egg belongs to its offspring; the adult does not turn back into its own egg.",
+        "cue": "Show the adult and trace the next generation."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Florida Museum — Butterfly and moth frequently asked questions",
+      "url": "https://www.floridamuseum.ufl.edu/discover-butterflies/faq/"
+    },
+    {
+      "title": "U.S. Fish and Wildlife Service — Monarch life cycle",
+      "url": "https://www.fws.gov/species/monarch-danaus-plexippus"
+    }
+  ]
+}

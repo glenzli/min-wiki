@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "car-safety",
+  "zh": {
+    "question": "车速变成两倍，停车距离也只会变成两倍吗？",
+    "observe": "先在干燥路面播放三十千米每小时，再比较六十；分开观察金色反应距离和绿色制动距离。保持速度不变，切到湿滑路面。",
+    "academic": [
+      {
+        "title": "停车包含反应和制动两段",
+        "body": "驾驶员发现危险到开始有效制动之间，车辆仍会前进。若反应时间固定，反应距离等于初速度乘以反应时间；制动阶段若减速度近似恒定，制动距离等于初速度平方除以两倍减速度。因而本例速度翻倍时，两段分别变成两倍与四倍，总距离不能简单说成两倍或四倍。"
+      },
+      {
+        "title": "路面抓地和制动装置各有作用",
+        "body": "制动系统使车轮减速，轮胎与路面的接触力使整车速度改变。车辆的动能主要经制动等过程转为内能，部分车辆还能回收能量。湿滑、轮胎状况、坡度、载荷和系统状态会改变停车表现。模型的湿路减速度较小只是对照设定，不表示每条湿路都让制动距离恰好增加同一倍数。"
+      },
+      {
+        "title": "约束系统帮助身体一起减速",
+        "body": "急停时身体会保持原先的运动趋势，需要安全带或儿童约束系统施力减速。合适的装置有助于把力作用在更能承受的身体部位并管理减速过程。儿童应使用适合身高体重的座椅，按制造商和当地要求安装；增高座椅帮助肩带经过肩胸、腰带低贴髋部，不能把成人安全带简单缩短就当成适配。"
+      }
+    ],
+    "misconception": "刹车不是按下就瞬间停住；安全带也不是让身体完全不受力，而是以更合适的方式约束和减速。",
+    "boundary": "距离基于固定反应时间与恒定减速度，不用于实车安全间距；动画播放时间被教学缩放，座椅图不能代替安装说明。",
+    "narration": [
+      {
+        "label": "按下刹车以后",
+        "text": "你坐车时可能发现，大人踩下刹车，车还会往前走一段。今天我们在屏幕上观察停车，真实道路上不做实验。先让小汽车出发，注意下面两种颜色的路段。金色这一段里，司机刚发现需要停车，还在反应，车仍然向前走。",
+        "cue": "播放低速情景，停在反应阶段。"
+      },
+      {
+        "label": "慢下来需要路程",
+        "text": "来到绿色这一段，刹车正在工作，小汽车逐渐变慢，最后才停下来。现在把出发速度提高，再看一次。先停一下比较：绿色路段是不是长了很多？跑得更快的车，往往需要更多路程才能停住，所以我们不能觉得车离自己还有一点远，就一定来得及。",
+        "cue": "对照三十和六十的两段距离。"
+      },
+      {
+        "label": "路面也会改变结果",
+        "text": "速度先保持不变，把路面换成湿滑的。轮胎需要和路面好好配合，才能让车减速；这个例子里的湿路让停车更困难。你能找到最后停车的位置变到哪里了吗？现实里的路面还有许多差别，图上的数字只是帮助比较，不是过马路的安全尺子。",
+        "cue": "切换湿路，观察终点标记。"
+      },
+      {
+        "label": "让身体也安全停下",
+        "text": "车慢下来时，我们的身体也要一起慢下来。合适的儿童座椅和正确系好的安全带，就在帮助身体受到合适的保护。看看肩带和腰带的位置，再请大人按你的大小选择座椅、认真安装。坐好以后不把肩带藏到背后，车开动以前就把保护准备好。",
+        "cue": "依次突出肩带、腰带和座椅示意。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If speed doubles, does stopping distance merely double too?",
+    "observe": "Play at thirty kilometers per hour on a dry road, then compare sixty. Inspect the gold reaction and green braking distances separately, then compare wet road at the same speed.",
+    "academic": [
+      {
+        "title": "Stopping has two stages",
+        "body": "A vehicle travels while the driver reacts. With fixed reaction time, reaction distance is speed times that interval. Under constant deceleration, braking distance is speed squared divided by twice the deceleration. Doubling speed therefore doubles one part and quadruples the other; total distance follows neither factor exactly."
+      },
+      {
+        "title": "Brakes and road grip play different roles",
+        "body": "Brakes slow wheel rotation while tire-road forces change vehicle motion. Kinetic energy is mainly converted to internal energy, with recovery possible in some vehicles. Grip, slope, tires, load and system condition affect stopping. The model wet-road setting is a comparison, not a universal multiplier for real roads."
+      },
+      {
+        "title": "Restraints help the body slow down",
+        "body": "During a sudden stop the body needs a force to change its motion. Correct restraints manage deceleration and load stronger body regions. Children need seats appropriate for their size and installed according to manufacturer and local requirements. Boosters position the shoulder belt across shoulder and chest and the lap belt low over hips."
+      }
+    ],
+    "misconception": "Braking does not stop a car instantly. Restraints do not eliminate forces; they manage how the body is restrained and slowed.",
+    "boundary": "Distances use fixed reaction time and constant deceleration and cannot set real following gaps. Playback time is rescaled; seat drawings do not replace installation instructions.",
+    "narration": [
+      {
+        "label": "After braking begins",
+        "text": "You may notice that a car still travels some distance when the driver brakes. We will investigate on screen, never by experimenting on a road. Start the model car and watch the two colored sections. In the gold section the driver is still reacting to the need to stop, so the car keeps moving.",
+        "cue": "Play the lower-speed case and pause in the reaction phase."
+      },
+      {
+        "label": "Slowing needs distance",
+        "text": "In the green section, braking is working and the car slows until it stops. Increase the starting speed and watch again. Pause and compare: has the green section become much longer? Faster cars generally need more space to stop. A car looking some distance away is not a promise that it can stop in time.",
+        "cue": "Compare both sections at thirty and sixty."
+      },
+      {
+        "label": "The road matters too",
+        "text": "Keep speed unchanged and choose a wet road. Tires must work with the road surface to slow the car, and this model wet road makes stopping harder. Can you find the new stopping point? Real roads differ in many ways, so these numbers are for comparison, not a ruler for deciding when to cross.",
+        "cue": "Switch to wet road and inspect the stopping marker."
+      },
+      {
+        "label": "Help the body stop safely",
+        "text": "As the car slows, our body must slow too. A suitable child seat and correctly fitted belt help protect us. Examine the shoulder and lap belt positions, then ask an adult to choose and install a seat for your size. Keep the shoulder belt in its proper place and be secured before the car moves.",
+        "cue": "Highlight shoulder belt, lap belt and child-seat diagram."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NHTSA · Car Seats and Booster Seats",
+      "url": "https://www.nhtsa.gov/vehicle-safety/car-seats-and-booster-seats"
+    },
+    {
+      "title": "NHTSA · Seat Belts",
+      "url": "https://www.nhtsa.gov/vehicle-safety/seat-belts"
+    },
+    {
+      "title": "OpenStax · Motion with Constant Acceleration",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/3-4-motion-with-constant-acceleration"
+    }
+  ]
+}

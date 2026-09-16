@@ -9,6 +9,10 @@ export type { Scenario } from './model.ts';
 export type View = 'overview' | 'close' | 'top' | 'free';
 const GAS_COUNT = 3200, WIND_COUNT = 1300;
 export class CompanionScene {
+    private cameraStarted = -Infinity;
+    private fromCamera = new THREE.Vector3();
+    private fromTarget = new THREE.Vector3();
+    private fromUp = new THREE.Vector3(0, 0, 1);
     private needsRender = true;
     private lastKey = "";
     private scene = new THREE.Scene();
@@ -94,7 +98,7 @@ export class CompanionScene {
         this.gas.material.uniforms.uHeight.value = box.height; }
     draw(progress: number, scenario: Scenario, guides: boolean, view: View, showOrbit = false) {
         const key = [progress, scenario, guides, view, showOrbit].join(":");
-        if (key === this.lastKey && !this.needsRender) return;
+        if (key === this.lastKey && !this.needsRender && performance.now() - this.cameraStarted >= 900) return;
         this.lastKey = key;
         const time = progress * 32;
         this.root.rotation.z = showOrbit ? progress * Math.PI * 2 : 0;
@@ -127,6 +131,8 @@ export class CompanionScene {
         this.tracer.position.set(marker.x, marker.y, .03);
         this.tracer.visible = scenario !== 'detached' && progress < .995;
         if (view !== this.currentView) {
+            this.fromCamera.copy(this.camera.position); this.fromTarget.copy(this.controls.target); this.fromUp.copy(this.camera.up);
+            this.cameraStarted = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? -Infinity : performance.now();
             this.currentView = view;
             this.controls.enabled = view === 'free';
         }
@@ -139,7 +145,14 @@ export class CompanionScene {
             this.camera.up.set(0, 0, 1);
             if (view === 'top')
                 this.camera.up.set(0, 1, 0);
-            this.camera.lookAt(target);
+            const elapsed = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : Math.min(1, Math.max(0, (performance.now() - this.cameraStarted) / 900));
+            const blend = elapsed * elapsed * (3 - 2 * elapsed);
+            if (blend < 1) {
+                this.camera.position.lerpVectors(this.fromCamera, this.camera.position.clone(), blend);
+                this.controls.target.lerpVectors(this.fromTarget, target, blend);
+                this.camera.up.lerpVectors(this.fromUp, this.camera.up.clone(), blend).normalize();
+            }
+            this.camera.lookAt(this.controls.target);
         }
         this.controls.update();
         this.camera.updateMatrixWorld();

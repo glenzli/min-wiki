@@ -44,3 +44,13 @@ html[data-topic-ui] .page-header .mode-switch button[aria-pressed=true] { backgr
 html[data-topic-ui] .hero h1 span { color:inherit; }
 html[data-topic-ui] .season-controls .primary,
 html[data-topic-ui] #journey[aria-pressed=true] { background:var(--accent); color:var(--page); border-color:var(--accent); }
+
+/* Controls respond gently; scene objects and their scientific timing remain topic-owned. */
+@media(prefers-reduced-motion:no-preference) {
+  html[data-topic-ui] :is(.controls,.modes,.steps,.toolbar,.settings,.leaf-types,.season-controls,.mode-switch) button {
+    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  }
+}
+html[data-topic-ui] :is(.controls,.settings) :is(input,select,button):focus-visible {
+  outline: 2px solid var(--ink); outline-offset: 4px;
+}

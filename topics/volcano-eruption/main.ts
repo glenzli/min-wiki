@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -49,7 +50,12 @@ function update() {
   if (academic) el('story-title').textContent = science.title;
   scene?.draw(progress, settings, document.getElementById('view') ? value('view') : 'overview');
 }
-function stop() { playing = false; cancelAnimationFrame(frame); frame = 0; }
+let cancelSeek = () => {};
+function goTo(target: number) {
+  stop();
+  cancelSeek = animateValue({ from: progress, to: target, duration: 1100, onUpdate: value => { progress = value; update(); } });
+}
+function stop() { cancelSeek(); playing = false; cancelAnimationFrame(frame); frame = 0; }
 function tick(now: number) {
   frame = 0;
   if (!playing || document.hidden) return;
@@ -60,7 +66,7 @@ function tick(now: number) {
 }
 function toggle() {
   if (playing) stop();
-  else { if (progress >= 1) progress = 0; playing = true; last = performance.now(); frame = requestAnimationFrame(tick); }
+  else { stop(); if (progress >= 1) progress = 0; playing = true; last = performance.now(); frame = requestAnimationFrame(tick); }
   update();
 }
 el('play').addEventListener('click', toggle);
@@ -68,7 +74,7 @@ el('reset').addEventListener('click', () => { stop(); progress = 0; update(); })
 el('progress').addEventListener('input', () => { stop(); progress = number('progress') / 1000; update(); });
 for (const id of ["vents", "gas", "viscosity"]) el(id).addEventListener('input', update);
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });
-el('steps').replaceChildren(...CONTENT.steps.map((label, i) => { const b = document.createElement('button'); b.textContent = label; b.addEventListener('click', () => { stop(); progress = positions[i]; update(); }); return b; }));
+el('steps').replaceChildren(...CONTENT.steps.map((label, i) => { const b = document.createElement('button'); b.textContent = label; b.addEventListener('click', () => { goTo(positions[i]); }); return b; }));
 document.addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !(e.target as HTMLElement)?.closest('button,input,select,a,textarea,[contenteditable]')) { e.preventDefault(); toggle(); } });
 document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0; } else if (playing && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });
 window.addEventListener('pagehide', e => { cancelAnimationFrame(frame); frame = 0; if (!e.persisted) { stop(); scene?.dispose(); } });

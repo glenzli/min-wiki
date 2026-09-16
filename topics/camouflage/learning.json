@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "camouflage",
+  "zh": {
+    "question": "动物身体完全不变，换一个背景会更容易找到吗？",
+    "observe": "先在森林背景寻找三只昆虫，再换素色背景。保持动物位置、颜色和大小不变，比较显眼程度；可用键盘逐一进入三个藏身处。",
+    "academic": [
+      {
+        "title": "伪装取决于动物与背景的关系",
+        "body": "背景匹配使身体颜色、明暗和纹理与周围接近，降低边界被发现的机会；破坏性斑纹则可能让轮廓不易连成一个完整目标。这些机制并不要求动物真的改变颜色。相同外观在树皮上可能不显眼，移到素色背景却很突出，因此伪装不是只属于动物本身的绝对属性，还依赖背景、光照、距离和观察者视觉。"
+      },
+      {
+        "title": "像叶子与融入叶子并不相同",
+        "body": "竹节虫和叶䗛的形状能让观察者把它们误认为枝叶，这与单纯难以看见有所区别：目标也许进入视野，却被认作无关物体。姿态和停留位置还能影响效果。动物没有主动变成一根树枝；跨世代的遗传变异与自然选择可以积累这样的外观特征，而不是某个个体因为希望隐藏，就在当天设计出新的身体。"
+      },
+      {
+        "title": "公平比较需要保持其他条件",
+        "body": "本页在更换背景时保留三只昆虫的外观与位置，因此观察难易差异主要来自背景变化。圈线与按钮是寻找辅助，不属于动物身体。科学实验还会随机放置目标、控制观察距离，并记录发现或攻击比例；儿童找图的速度受到熟悉度影响，不能把第二次很快找到当作伪装突然失效，更不能等同于鸟类在野外的捕食概率。"
+      }
+    ],
+    "misconception": "隐藏得好不一定靠变色；身体形状、花纹、姿势和背景都能影响是否被发现。",
+    "boundary": "这是人眼在固定屏幕上的寻找任务，不代表鸟、昆虫或其他捕食者的视觉；插图不是指定物种的精确标本图。",
+    "narration": [
+      {
+        "label": "森林里藏着谁",
+        "text": "这片小森林里藏着三只昆虫。我们不比赛谁最快，慢慢看就好。有的像细细的树枝，有的像一片叶子，还有的颜色和树皮很接近。先让眼睛沿着枝条走一走，再看看叶子的边缘。发现哪里多出一条小腿，或者一根细细的触角了吗？",
+        "cue": "保持森林背景，依次提示枝条、叶缘和树皮。"
+      },
+      {
+        "label": "保持动物，换个背景",
+        "text": "现在停一下，记住它们所在的位置。我们不动动物，只把后面的森林换成素色。咦，刚才很难找的小家伙，是不是突然清楚了？它们的身体其实没有变化，只是周围变了。就像一颗褐色的小石头，放在泥地上和白纸上，看起来会有不同的显眼程度。",
+        "cue": "停三秒，再平滑移去森林背景。"
+      },
+      {
+        "label": "颜色和形状一起帮忙",
+        "text": "点一点你找到的昆虫，看看它各自的办法。竹节虫的细长身体像枝条，叶䗛的边缘和纹路像叶片，蛾的斑纹则能和树皮混在一起。有时候是没有看清，有时候是看见了却以为只是一片叶子。它们仍然是动物，并没有真的变成植物。",
+        "cue": "依次选中三只昆虫，保持其外观不变。"
+      },
+      {
+        "label": "带着耐心再找一次",
+        "text": "把森林放回来，再看一次吧。这次容易一些，也可能因为你已经记住了藏身处，不能说它们的伪装变差了。自然里的观察者有不同的眼睛，光线也会改变结果。下次散步，不妨安静地留意枝条和树叶，先看形状，再看颜色，有些小生命需要耐心才能发现。",
+        "cue": "恢复森林背景，重置标记并再观察。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Can the same unchanged animal become easier to find on a different background?",
+    "observe": "Find three insects against the forest, then switch to a plain background. Compare visibility while position, colour and size stay fixed. The three hiding places are also keyboard-accessible.",
+    "academic": [
+      {
+        "title": "Camouflage is a relationship with the background",
+        "body": "Matching colour, brightness and texture can reduce detection; disruptive markings can interfere with recognising an outline. Neither requires an animal to change colour. The same form may be inconspicuous on bark but obvious on a plain surface. Effectiveness depends on surroundings, lighting, distance and the observer’s vision."
+      },
+      {
+        "title": "Resembling an object differs from blending in",
+        "body": "A twig-like or leaf-like body may be seen but mistaken for an irrelevant object, rather than simply going undetected. Posture and resting location matter too. Such inherited forms can evolve across generations; an individual does not design a new body on the day it wishes to hide."
+      },
+      {
+        "title": "A fair comparison holds other factors fixed",
+        "body": "The animals stay in place when the background changes, isolating an important visual variable. Rings and buttons are aids, not anatomy. Experiments also control placement and viewing conditions. Finding an animal quickly on a second attempt may reflect memory, and human search time is not a direct measurement of bird predation."
+      }
+    ],
+    "misconception": "Good camouflage does not always require colour change; shape, pattern, posture and background all matter.",
+    "boundary": "This is a fixed-screen task for human vision, not a reproduction of bird or insect perception. The illustrations are representative rather than exact species specimens.",
+    "narration": [
+      {
+        "label": "Who is hiding in the forest?",
+        "text": "Three insects are hiding here. There is no race; take your time. One resembles a twig, another a leaf, and another blends with bark. Follow the branches with your eyes, then inspect the leaf edges. Can you spot an extra leg or a slender antenna?",
+        "cue": "Keep the forest and guide attention to branches, leaves and bark."
+      },
+      {
+        "label": "Change only the background",
+        "text": "Pause and remember the positions. Keep every animal unchanged and replace the forest with a plain background. Are they easier to see? Their bodies have not changed, only their surroundings. A brown pebble can likewise be harder to notice on soil than on white paper.",
+        "cue": "Pause for three seconds, then remove the forest smoothly."
+      },
+      {
+        "label": "Colour and shape work together",
+        "text": "Select each insect to inspect its strategy. The stick insect has a twig-like body; the leaf insect has leaf-like edges and patterns; the moth’s markings fit the bark. Sometimes a hunter misses an animal; sometimes it sees it but mistakes it for a leaf. The insect remains an animal.",
+        "cue": "Select all three insects without changing their appearance."
+      },
+      {
+        "label": "Look again with patience",
+        "text": "Restore the forest and look again. It may be easier because you remember the hiding places, not because the camouflage has changed. Different observers and lighting also affect the result. On a walk, examine shapes and colours quietly; some small animals reward patient attention.",
+        "cue": "Restore the forest, reset markers and observe again."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Australian Museum — What do stick insects look like?",
+      "url": "https://australian.museum/learn/species-identification/ask-an-expert/what-do-stick-insects-look-like/"
+    },
+    {
+      "title": "Cuthill et al. — Disruptive coloration and background pattern matching",
+      "url": "https://www.nature.com/articles/nature03312"
+    }
+  ]
+}

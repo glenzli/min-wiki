@@ -598,7 +598,7 @@ export class EarthSimulation {
     if(this.view !== 'free') this.updateCameraTarget();
     const tracking = ['seasons','notilt'].includes(this.scenario) && ['north','sun'].includes(this.view);
     if (this.cameraTransition || tracking) {
-      const fraction = 1 - Math.exp(-dt * 7);
+      const fraction = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 1 - Math.exp(-dt * 7);
       this.camera.position.lerp(this._camPosTarget, fraction);
       this.controls.target.lerp(this._camLookTarget, fraction);
       if(!tracking && this.camera.position.distanceTo(this._camPosTarget)<.003) this.cameraTransition = false;

@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "shadows",
+  "zh": {
+    "question": "灯的位置不往左右动，只把灯举高，影子会怎样？",
+    "observe": "先固定左右位置，改变灯高，比较影长；再固定灯高，把灯移过木偶上方，观察影子换边及光线边界。",
+    "academic": [
+      {
+        "title": "影子是照明减少的区域",
+        "body": "在均匀介质里，几何光学可近似把光看作沿直线传播的射线。不透明物体挡住某些射线，接收面上就有照明较少的区域。影子不是物体发出的黑色东西，也不一定全黑，因为其他光源和周围表面的反射还可能照亮它。光源、遮挡物和接收面的位置共同决定影子的方向与形状。"
+      },
+      {
+        "title": "点光源的几何关系",
+        "body": "本模型把灯视为点光源，木偶最高点高为小写 h，灯高为大写 H，水平距离为 d。在 H 大于 h 的条件下，相似三角形给出中心线影长 L = dh/(H−h)。保持 d 不变而提高灯，分母增大，影长缩短；保持灯高而把灯移远，影长增大。这些结论必须连同固定条件一起说。"
+      },
+      {
+        "title": "真实灯和太阳的区别",
+        "body": "有面积的光源从多个位置发光，可能形成完全遮挡的本影和部分遮挡的半影，边缘因此变软。太阳离地球很远，在小范围内可近似用平行光，不宜直接把桌面点灯公式的参数照搬过去。户外影长还随太阳高度角改变；实验中只观察地面影子，不直视太阳或强光。"
+      }
+    ],
+    "misconception": "影子不总在物体固定的一侧；它相对这盏灯通常伸向另一边。",
+    "boundary": "精确计算的是最高点和中心影长；木偶宽度、地面影形、半影和反射经过简化，刻度不是现实长度。",
+    "narration": [
+      {
+        "label": "影子从哪里来",
+        "text": "灯亮起来，小木偶旁边出现了一片暗一点的地方。它不是木偶掉下来的一块黑布，而是木偶挡住了这盏灯的一部分光。地面收到的光少了，我们就看见影子。先找一找灯、木偶和影子，它们三个的位置有什么关系？",
+        "cue": "依次指向灯、木偶、地面影子。"
+      },
+      {
+        "label": "只把灯举高",
+        "text": "现在灯先不要往左往右跑，我们只把它举高。你先猜影子会变长还是变短，再慢慢移动高度。停一下，对着地面比较。沿着画里的线看，光经过木偶头顶旁边，继续往前走，影子的边界就跟着光的方向改变了。",
+        "cue": "保持水平位置，提高灯，停三秒。"
+      },
+      {
+        "label": "灯换一边，影子也换",
+        "text": "接下来把高度保持住，让灯从木偶左边慢慢走到右边。看，影子先变短，再在另一边伸出来。木偶没有转身，影子却换了位置。原来影子不只由木偶决定，还要看灯从哪里照过来、光最后落在哪个表面上。",
+        "cue": "固定高度，让灯经过木偶正上方。"
+      },
+      {
+        "label": "把发现带回生活",
+        "text": "真实灯不是一个小小的点，所以你有时会看到软软的影子边缘。太阳也能给我们影子，不过太阳很远，它照来的光和桌上的小灯有些不同。你可以请大人用手电筒和积木一起试，把发现讲给他听；看地面的变化就好，不用眼睛盯着强光。",
+        "cue": "停在投影边界，保留完整三者关系。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If the lamp stays at the same horizontal position but rises, how will the shadow change?",
+    "observe": "Hold horizontal position fixed and change lamp height, then keep height fixed and move the lamp across the puppet. Compare shadow length, side and the boundary ray.",
+    "academic": [
+      {
+        "title": "A shadow receives less illumination",
+        "body": "In a uniform medium, geometric optics approximates light as straight rays. An opaque object blocks some rays, reducing illumination on a receiving surface. A shadow is not black material emitted by the object and need not be completely dark: other sources and reflections can illuminate it."
+      },
+      {
+        "title": "Geometry for a point source",
+        "body": "With puppet height h, lamp height H and horizontal separation d, similar triangles give centerline shadow length L = dh/(H−h), provided H exceeds h. Raising the lamp at fixed separation shortens the shadow; increasing separation at fixed height lengthens it. The controlled conditions are part of each conclusion."
+      },
+      {
+        "title": "Real lamps and the Sun differ",
+        "body": "Extended sources emit from many positions, producing full and partial shadow regions with softer edges. Sunlight over a small scene is approximately parallel because the Sun is very distant; tabletop point-source parameters cannot simply be reused. Outdoor shadow length changes with solar altitude. Observe shadows, never look into the Sun or strong lamps."
+      }
+    ],
+    "misconception": "A shadow is not always on one fixed side of an object; relative to this lamp, it extends away from the light.",
+    "boundary": "Only the highest-point ray and centerline length are computed precisely. Object width, footprint, penumbra and reflections are simplified; the scale is illustrative.",
+    "narration": [
+      {
+        "label": "Where a shadow comes from",
+        "text": "When the lamp shines, a darker patch appears beside the puppet. It is not a piece of black cloth dropped by the puppet. The puppet blocks some light from this lamp, so part of the ground receives less illumination. Find the lamp, puppet and shadow and notice their positions.",
+        "cue": "Point to lamp, puppet and ground shadow in order."
+      },
+      {
+        "label": "Raise only the lamp",
+        "text": "Keep the lamp from moving left or right and raise it. Predict whether the shadow will lengthen or shorten, then move the height slowly. Pause to compare the ground. Follow the drawn ray past the top of the puppet: the shadow boundary changes with the light’s direction.",
+        "cue": "Hold horizontal position, raise lamp and pause for three seconds."
+      },
+      {
+        "label": "Change sides",
+        "text": "Now keep the height steady and move the lamp slowly from the puppet’s left to its right. The shadow shortens, then stretches out on the opposite side. The puppet has not turned around. A shadow depends on where light comes from and where it lands, as well as the object itself.",
+        "cue": "Hold height and move the lamp across the puppet."
+      },
+      {
+        "label": "Try noticing everyday shadows",
+        "text": "A real lamp is not a single point, so shadow edges can look soft. The Sun makes shadows too, but it is very far away and differs from a tabletop lamp. Ask an adult to investigate with a flashlight and block, and explain your discoveries. Watch the surface, without staring into a strong light.",
+        "cue": "Hold the projection boundary with lamp, object and surface visible."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "OpenStax · Propagation of Light",
+      "url": "https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light"
+    },
+    {
+      "title": "NASA Earth Observatory Kids · Sun and Seasons",
+      "url": "https://assets.science.nasa.gov/content/dam/science/esd/eo/eokids/wp-content/uploads/sites/6/2019/04/16_SunSeasons-508.pdf"
+    }
+  ]
+}

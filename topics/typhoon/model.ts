@@ -14,3 +14,22 @@ export function spiralAngle(radius: number, progress: number, arm: number, hemis
   const direction = hemisphere === 'north' ? -1 : 1;
   return arm * Math.PI * 2 / 3 - direction * radius * .025 + direction * progress * 5;
 }
+
+export interface PlaybackState { formation:number; circulation:number; playing:boolean }
+/** Development stops at maturity; transport keeps moving without resetting the storm. */
+export function advance(state:PlaybackState,seconds:number,rate=1):PlaybackState {
+  if(!state.playing)return state;
+  const elapsed=Math.max(0,Math.min(.12,seconds))*Math.max(0,rate);
+  return {...state,formation:Math.min(1,state.formation+elapsed/26),circulation:state.circulation+elapsed};
+}
+export function circulationDirection(hemisphere:Settings['hemisphere']){return hemisphere==='north'?-1:hemisphere==='south'?1:0;}
+/** Fixed tracer IDs use independent phase/azimuth spacing; endpoint fading hides reinsertion. */
+export function airParcel(index:number,time:number,hemisphere:Settings['hemisphere'],wallRadius=39) {
+  const p=((time*.038+index*.7548776662466927)%1+1)%1,dir=circulationDirection(hemisphere);
+  const angle=index*2.399963+dir*(p<.48?p*8:p<.72?3.84+(p-.48)*1.4:4.176-(p-.72)*2.4);
+  let radius:number,height:number;
+  if(p<.48){radius=230-(p/.48)*(230-wallRadius);height=5+3*p/.48;}
+  else if(p<.72){const u=(p-.48)/.24;radius=wallRadius+15*u;height=8+124*smooth(0,1,u);}
+  else{const u=(p-.72)/.28;radius=wallRadius+15+(222-wallRadius)*u;height=132+15*Math.sin(u*Math.PI);}
+  return {x:radius*Math.cos(angle),y:height,z:radius*Math.sin(angle),opacity:smooth(0,.05,p)*(1-smooth(.94,1,p)),phase:p};
+}

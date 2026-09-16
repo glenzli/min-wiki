@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "earth-moon",
+  "zh": {
+    "question": "月亮变成细弯时，是地球的影子把它遮住了吗？",
+    "observe": "在月相视图中，从新月移到上弦和满月；同时看太阳光方向、月球的位置与地面所见亮面，再切换真实比例。",
+    "academic": [
+      {
+        "title": "月相来自看见受光半球的角度",
+        "body": "月球自己不发出像太阳那样的可见光，主要反射太阳光。除食等特殊情形外，总有约一半月面被太阳照亮，但我们从地球看到这半球的比例不断改变。相位角α是月球处指向太阳和观察者两方向的夹角，理想球体的可见受光比例k=(1+cosα)/2。这里的比例是投影圆面上的几何面积，不等于整颗月球的发光强弱。"
+      },
+      {
+        "title": "两个周期为什么不一样",
+        "body": "相对远处恒星，月球绕地球一周约27.3天，称为恒星月；从一次新月到下一次新月约29.5天，称为朔望月。两者不同，是因为月球绕行期间地球也在绕太阳运动，月球还需多走一段才能恢复相同日地月方向。平均周期便于理解，实际每个朔望月长短仍有小幅变化。"
+      },
+      {
+        "title": "同一面朝向地球仍然需要自转",
+        "body": "月球自转周期与绕地球的恒星公转周期近似相同，所以大致同一半球朝着我们。这是同步自转，不是不转；从太空中固定方向看，月面会转一圈。实际还存在天平动，使我们随时间能见到略多于一半的月面。月球背面也轮流经历白天与黑夜，不是永久黑暗的一面。"
+      }
+    ],
+    "misconception": "普通月相不是地球影子造成的。地球遮住照向月球的阳光才可能发生月食，而且并非每次满月都有月食。",
+    "boundary": "月相采用简化圆轨道与固定光照方向，没有完整表现轨道倾角、偏心率、天平动与食。真实比例视图只比较平均距离与大小，不代表当前月相位置。",
+    "narration": [
+      {
+        "label": "一半照亮，一半背光",
+        "text": "晚上看到的月亮，有时圆圆，有时弯弯。我们先到太空里看看：太阳一直从一边照来，把月球朝向它的半边照亮。月球没有像太阳一样自己发光。月亮的形状看起来在变，是因为我们看到的亮面有时多、有时少。",
+        "cue": "显示光照箭头与月相小窗。"
+      },
+      {
+        "label": "跟着月亮绕一圈",
+        "text": "慢慢移动月球，从新月走到半个月亮，再走到满月。先暂停想一想：是亮的那一半不见了，还是我们看的角度变了？给自己一点时间，同时看看太空里的月球和小窗里的月亮。两个画面说的是同一个月球，只是观察的位置不同。",
+        "cue": "新月、上弦、满月各停留；提问后停顿约四秒。"
+      },
+      {
+        "label": "它也在转身",
+        "text": "月球绕着地球走时，也在慢慢转身，所以总是大致把同一面朝向我们。你可以想象自己绕着一张椅子走，又一直面向椅子：走完一圈，你其实也转了一圈。月球背向地球的那一面同样会晒到太阳，并不是永远黑黑的。",
+        "cue": "开启表面标记，观察其持续朝向地球。"
+      },
+      {
+        "label": "把距离放真实一些",
+        "text": "最后换到真实大小与距离。地球和月球之间原来空了这么远的一段！刚才为了看清月相，我们把天体放大、拉近了。这张图给我们换了一把尺子。记住，细弯的月亮通常不是地球影子盖住了它；真正的月食，是另一种特别的排列。",
+        "cue": "切真实比例，展示约三十个地球直径的中心距离。"
+      }
+    ]
+  },
+  "en": {
+    "question": "When the Moon becomes a crescent, is Earth’s shadow covering it?",
+    "observe": "Move from new moon to first quarter and full moon. Compare sunlight, orbital position, and the Earth-view disk; then inspect the true-scale view.",
+    "academic": [
+      {
+        "title": "Phase depends on the illuminated hemisphere we see",
+        "body": "Moonlight is mainly reflected sunlight. Apart from eclipses and special geometry, approximately half the Moon is sunlit, while the fraction visible from Earth changes. The phase angle α is measured at the Moon between directions to Sun and observer. For an ideal sphere, the illuminated fraction of its projected disk is k=(1+cosα)/2; it is a geometric area, not total luminous output."
+      },
+      {
+        "title": "Why two lunar periods differ",
+        "body": "Relative to distant stars, the Moon completes an orbit in about 27.3 days, a sidereal month. New moon to new moon averages about 29.5 days, a synodic month. Earth moves around the Sun during the lunar orbit, so the Moon travels farther to restore the same Sun–Earth–Moon geometry. Individual synodic months vary somewhat around this average."
+      },
+      {
+        "title": "Keeping one face toward Earth requires rotation",
+        "body": "The Moon’s spin period nearly equals its sidereal orbital period, keeping roughly the same hemisphere toward Earth. This is synchronous rotation, not absence of spin. Seen from a fixed direction in space, the surface turns once per orbit. Libration reveals slightly more than half the surface over time. The far side also has day and night; it is not permanently dark."
+      }
+    ],
+    "misconception": "Ordinary phases are not Earth’s shadow. A lunar eclipse occurs when Earth blocks sunlight from reaching the Moon, and does not happen at every full moon.",
+    "boundary": "A simplified circular orbit omits full inclination, eccentricity, libration, and eclipse geometry. The scale view compares average sizes and distance, not the current phase arrangement.",
+    "narration": [
+      {
+        "label": "One half in sunlight",
+        "text": "The Moon sometimes looks round and sometimes curved. Imagine looking from space: sunlight arrives from one side and lights the half facing it. The Moon does not make its own light like the Sun. Its shape seems to change because sometimes we see more of that bright half and sometimes less.",
+        "cue": "Show sunlight arrows and the phase inset."
+      },
+      {
+        "label": "Follow it around",
+        "text": "Move slowly from new moon to a half-lit disk and then full moon. Pause and think: has the illuminated half disappeared, or has our viewing angle changed? Take your time and compare the Moon in space with the small Earth-view window. Both show the same Moon from different places.",
+        "cue": "Pause at new, quarter, and full phases; allow four seconds for the question."
+      },
+      {
+        "label": "It turns too",
+        "text": "The Moon turns as it goes around Earth, keeping roughly the same side toward us. Imagine walking around a chair while always facing it. After one lap, you have turned all the way around too. The side facing away from Earth also receives sunlight. It is not always dark.",
+        "cue": "Enable the surface marker and follow its Earth-facing direction."
+      },
+      {
+        "label": "Give distance its real scale",
+        "text": "Now switch to true size and distance. There is a great deal of empty space between Earth and the Moon! Earlier we enlarged and brought the bodies closer to make phases easy to inspect. This view uses a different ruler. Remember that a crescent usually is not Earth’s shadow covering the Moon. An eclipse needs a special arrangement.",
+        "cue": "Show the true-scale separation of about thirty Earth diameters."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Moon Facts",
+      "url": "https://science.nasa.gov/moon/facts/"
+    },
+    {
+      "title": "NASA · Tidal Locking",
+      "url": "https://science.nasa.gov/moon/tidal-locking/"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "bacteria",
+  "zh": {
+    "question": "长得很像的两种细菌，一定做同样的事情吗？",
+    "observe": "先选择膜、DNA 和核糖体辨认细胞结构，再切换酸奶、土壤和肠道场景。比较同属细菌却不同的生活条件与作用，避免按形状判断好坏。",
+    "academic": [
+      {
+        "title": "细菌有自己的细胞组织",
+        "body": "细菌是原核生物，具有细胞膜、细胞质、DNA 和核糖体，通常还有不同于植物细胞壁的细胞壁。没有核膜不等于没有遗传控制。许多细菌通过二分裂繁殖：先复制遗传物质、延长细胞并完成分隔，再形成两个子细胞；这与病毒部件在宿主中制造后组装的方式不同，也不能仅看一个圆点变成两个圆点就当作同一机制。"
+      },
+      {
+        "title": "代谢把物质变化连接到生态作用",
+        "body": "特定乳酸菌发酵乳中的糖产生乳酸，酸度变化帮助乳蛋白形成酸奶凝胶；某些土壤细菌参与分解和氮循环；肠道中的不同细菌利用不同底物。这些作用依赖酶与代谢途径，而不是“细菌”这个名字自动赋予的能力。同一环境的群落还与其他微生物交换物质，因此一个场景往往是多种生物共同活动的结果。"
+      },
+      {
+        "title": "生长与影响都依赖具体条件",
+        "body": "营养、可用水、温度、酸碱度和氧条件限制细菌生长，不同种类对氧的需求甚至相反。数量增长只在合适的一段条件内可能近似倍增，资源耗尽和代谢产物积累后会改变。对人的影响也与菌株、进入位置、数量和宿主状态有关，不能凭外形把它们永久分为好坏两类，更不能把认识有益菌理解为随意培养或食用未知菌。"
+      }
+    ],
+    "misconception": "细菌不是病毒，也不全是病菌；外形相似不保证能力或对人的影响相同。",
+    "boundary": "场景只选少数代表作用，颜色与数量无测量含义；没有依据图片识别菌种或判断食品是否安全的功能。",
+    "narration": [
+      {
+        "label": "认识很小的细胞",
+        "text": "说到细菌，你是不是先想到了生病？其实细菌有很多种，许多不会让人生病，有的还参与我们熟悉的事情。先看这张放大的图：外面有膜，里面有 DNA，还有制造蛋白质的小结构。它不是一粒没有内容的小灰尘，而是一个小小的细胞。",
+        "cue": "依次选择膜、DNA 和核糖体。"
+      },
+      {
+        "label": "酸奶里的变化",
+        "text": "把场景切到酸奶。制作酸奶会用到挑选好的乳酸菌，它们利用奶里的糖，产生乳酸，帮助奶变得酸酸的、稠稠的。这里不是说随便找到一种细菌，都能做出好吃的酸奶。停一停，看看同一个细菌主题，已经和我们餐桌上的食物连起来了。",
+        "cue": "切酸奶场景，停三秒。"
+      },
+      {
+        "label": "土里和身体里的邻居",
+        "text": "再去土壤看看，一些细菌与真菌等伙伴一起，参与分解掉落的植物，让其中的物质重新流动。肠道里也有许多细菌，有些能处理我们不容易消化的食物成分。不同的细菌有不同本领，不是每一只都会做酸奶、分解落叶，又完成所有其他工作。",
+        "cue": "依次显示土壤与肠道，突出不同作用。"
+      },
+      {
+        "label": "看条件，不只看样子",
+        "text": "这些小生物也要遇到适合自己的环境，水分、温度、食物和空气条件都会影响它们。长得很像，也可能做不同的事情。我们认识细菌，是学会更仔细地分辨，不是把所有细菌都当坏蛋，也不是把未知的东西拿来吃。可以从图里继续找证据，看看哪里写着它的条件和作用。",
+        "cue": "回到结构图与三个场景选择，结束在比较状态。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Must two bacteria with similar shapes do the same things?",
+    "observe": "Explore membrane, DNA and ribosomes, then compare yogurt, soil and gut habitats. Notice that bacteria can have different requirements and roles despite similar shapes.",
+    "academic": [
+      {
+        "title": "Bacteria have cellular organisation",
+        "body": "Bacteria are prokaryotic cells with membranes, cytoplasm, DNA and ribosomes, usually with a wall unlike a plant wall. Many reproduce by binary fission involving DNA replication, growth and separation. This differs from assembling viral components inside a host. Similar-looking increases in particle number can represent different mechanisms."
+      },
+      {
+        "title": "Metabolism connects chemistry with ecological roles",
+        "body": "Selected lactic-acid bacteria ferment milk sugar and acidify it, helping proteins form yogurt gel. Other bacteria participate in decomposition, nitrogen transformations or gut metabolism. These abilities depend on particular pathways, not the label “bacterium”. Communities often exchange products with other microbes, so outcomes may arise from several organisms."
+      },
+      {
+        "title": "Growth and effects depend on conditions",
+        "body": "Nutrients, available water, temperature, pH and oxygen limit growth, with differing oxygen requirements among bacteria. Approximate doubling does not continue indefinitely as resources and wastes change. Effects on a host depend on strain, location and circumstances rather than an organism’s drawn shape or a permanent good/bad label."
+      }
+    ],
+    "misconception": "Bacteria are not viruses, and not all cause disease. Similar shapes do not guarantee similar abilities or effects.",
+    "boundary": "Scenes illustrate selected roles, with symbolic colours and counts. The pictures cannot identify species or establish whether food is safe.",
+    "narration": [
+      {
+        "label": "Meet a tiny cell",
+        "text": "Does the word bacteria make you think of illness? There are many kinds, and many do not make us ill. Look at this enlarged cell: a membrane surrounds DNA and tiny protein-making structures. It is not an empty speck of dust but an organised living cell.",
+        "cue": "Select membrane, DNA and ribosomes."
+      },
+      {
+        "label": "A change in yogurt",
+        "text": "Switch to yogurt. Carefully selected lactic-acid bacteria use milk sugar and produce lactic acid, helping make yogurt tangy and thick. This does not mean any unknown bacterium can make suitable yogurt. Pause and notice how the tiny world connects with familiar food.",
+        "cue": "Pause at the yogurt scene for three seconds."
+      },
+      {
+        "label": "Neighbours in soil and bodies",
+        "text": "Some soil bacteria work with fungi and others to break down plant remains and recycle materials. Many bacteria also live in the gut, including kinds that process food components we cannot easily digest. Different bacteria have different abilities; no single kind necessarily performs every job.",
+        "cue": "Compare soil and gut roles."
+      },
+      {
+        "label": "Ask about conditions, not just shape",
+        "text": "Bacteria need suitable surroundings: water, temperature, food and oxygen conditions matter. Similar shapes can hide different abilities. Learning about bacteria means making careful distinctions, neither calling them all villains nor tasting unknown material. Keep asking what conditions a kind needs and what it can do.",
+        "cue": "End with the structure and habitat comparisons available."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "OpenStax — Prokaryotic Cells",
+      "url": "https://openstax.org/books/biology-2e/pages/4-2-prokaryotic-cells"
+    },
+    {
+      "title": "OpenStax — How Microbes Grow",
+      "url": "https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow"
+    },
+    {
+      "title": "Microbiology Society — What are bacteria?",
+      "url": "https://microbiologysociety.org/why-microbiology-matters/what-is-microbiology/what-are-bacteria.html"
+    }
+  ]
+}

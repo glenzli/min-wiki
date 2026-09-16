@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "cactus-water",
+  "zh": {
+    "question": "仙人掌能熬过干旱，是因为从来不用水吗？",
+    "observe": "在储水层比较下雨与连续干燥，观察茎的宽度逐渐改变；切到表皮层比较白天和夜晚的气孔，再区分储水与省水两类机制。",
+    "academic": [
+      {
+        "title": "肉质茎储存在活组织中的水",
+        "body": "许多沙漠仙人掌具有肉质茎，水储存在活细胞及组织中，并非装在一个中空瓶子里。降雨后根吸收水，组织膨胀，棱沟等结构容许形态伸缩；干旱时储水被消耗，茎会收缩。储水让植物跨过一段少雨时期，却不能提供无限供给。根的分布和降雨响应还随种类、土壤与植株大小而不同。"
+      },
+      {
+        "title": "气孔的时间安排减少失水",
+        "body": "许多沙漠仙人掌采用景天酸代谢，常在较凉的夜间开放气孔，先把吸收的二氧化碳固定到有机酸中；白天再释放二氧化碳供光合作用使用，同时可减少气孔开放造成的失水。这种时间分工需要细胞代谢过程配合，不能只概括为“晚上呼吸、白天不呼吸”。细胞呼吸在昼夜都可进行，与气孔的二氧化碳吸收节律不是同一概念。"
+      },
+      {
+        "title": "多个结构共同节水而非绝对不失水",
+        "body": "蜡质角质层限制非气孔水分散失，叶片缩小或成为刺可以减少典型叶面面积，某些刺也提供遮阴与防护。绿色茎承担重要光合作用功能。这些适应组合提高干旱中的生存机会，却并不意味着任意高温或无限干旱都能承受。并非所有多肉植物都是仙人掌，也并非所有仙人掌来自炎热沙漠，概括必须保留生态范围。"
+      }
+    ],
+    "misconception": "仙人掌也要用水；茎不是中空水瓶，夜间吸收二氧化碳也不等于只在夜间呼吸。",
+    "boundary": "四档储水与昼夜开关为定性示意，不是浇水频率或耐旱天数；实际气孔调控会随水分压力和物种改变。",
+    "narration": [
+      {
+        "label": "沙漠里的绿色身体",
+        "text": "沙漠里很久不下雨，有些仙人掌却还能保持绿色。它们是不是根本不用水呢？当然不是。看看那胖胖的茎，里面许多活细胞能储存水，像把备用水分散放进很多小地方。它不是一个挖空的大瓶子，也不是永远装着用不完的水。",
+        "cue": "显示储水层与完整仙人掌。"
+      },
+      {
+        "label": "一场雨之后",
+        "text": "让画面下一场雨吧。根吸收到水，茎慢慢变得饱满。再让干燥的日子过去，停一停，看看茎有没有缩小，里面的储水是不是少了。原来，仙人掌会用掉储备，也需要以后得到补充。我们看到的是快进的小故事，真实的变化没有按钮按得这么快。",
+        "cue": "触发雨，再连续干燥；在收缩途中停三秒。"
+      },
+      {
+        "label": "白天和夜晚的小门",
+        "text": "再看看表皮上的小孔，它叫气孔。许多沙漠仙人掌把吸收二氧化碳的工作更多安排在凉一些的夜晚，白天让气孔少开，减少失水。它们还会把夜里得到的二氧化碳先存起来，白天再用。这个办法不是白天停止生活，而是把工作安排在不同时间。",
+        "cue": "切表皮层，对照昼夜气孔开度。"
+      },
+      {
+        "label": "好多办法一起帮忙",
+        "text": "表面的蜡质层也能帮助留住水，刺和身体形状同样会影响它怎样面对阳光和干燥。好几种办法一起合作，才让这些植物适应自己的家。不过仙人掌家族也有许多不同成员，并不是全住在热沙漠。下次看一盆仙人掌，可以观察它的棱和绿色的茎，别伸手去碰尖刺。",
+        "cue": "回到全景，指向棱、表皮和刺。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Can a cactus survive drought because it never needs water?",
+    "observe": "Compare rain and successive dry periods in the storage view and watch stem width change. Switch to the skin view, compare daytime and nighttime pores, and distinguish water storage from water saving.",
+    "academic": [
+      {
+        "title": "A fleshy stem stores water in living tissue",
+        "body": "Many desert cacti store water in cells and tissues of fleshy stems rather than a hollow bottle. After rain, uptake expands tissues and ribs permit changes in girth. Water use during drought reduces volume. Storage bridges dry intervals but is finite; root systems differ among species and environments."
+      },
+      {
+        "title": "Timing gas exchange reduces water loss",
+        "body": "Many desert cacti use CAM: carbon dioxide taken up at night is initially stored in organic acids and released internally for daytime photosynthesis. This can reduce daytime stomatal water loss. It does not mean respiration happens only at night; respiration and the timing of external carbon-dioxide uptake are different processes."
+      },
+      {
+        "title": "Several traits conserve water without eliminating loss",
+        "body": "A waxy cuticle reduces non-stomatal loss; reduced leaves or spines alter exposed surface, and spines can also shade and defend. Green stems perform much photosynthesis. These traits improve survival under dry conditions without making it unlimited. Not all succulents are cacti, and not all cacti inhabit hot deserts."
+      }
+    ],
+    "misconception": "Cacti still need water. A stem is not a hollow water bottle, and nighttime carbon-dioxide uptake does not mean respiration occurs only at night.",
+    "boundary": "Four water levels and the day/night switch are qualitative, not a watering schedule or drought-duration estimate. Actual pore regulation varies with species and water stress.",
+    "narration": [
+      {
+        "label": "A green body in a dry place",
+        "text": "Some cacti stay green through long dry periods. Does that mean they need no water? No. Many living cells in their fleshy stems store water, rather like distributing reserves among many small spaces. The stem is neither an empty bottle nor an endless supply.",
+        "cue": "Show the storage view and the whole cactus."
+      },
+      {
+        "label": "After the rain",
+        "text": "Make rain in the picture. Water taken up by roots gradually fills out the stem. Then let dry time pass. Pause and compare the stem and water store: are they shrinking? A cactus uses its reserves and eventually needs replenishment. Our buttons fast-forward a much slower real process.",
+        "cue": "Compare rain with dry periods and pause during contraction."
+      },
+      {
+        "label": "Tiny doors by day and night",
+        "text": "Look at the pores called stomata. Many desert cacti take in carbon dioxide mainly during cooler nights and keep pores more closed by day to save water. They initially store the carbon dioxide for later use. Life does not stop in daytime; different parts of the work are scheduled differently.",
+        "cue": "Compare daytime and nighttime pores in the skin view."
+      },
+      {
+        "label": "Several features work together",
+        "text": "A waxy surface helps retain water, while spines and body shape also affect exposure. Several features work together, and cactus species differ; not all live in hot deserts. When you next see one, inspect its ribs and green stem carefully without touching the sharp spines.",
+        "cue": "Return to the whole plant and indicate ribs, skin and spines."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "National Park Service — Cacti and Desert Succulents, Joshua Tree",
+      "url": "https://www.nps.gov/jotr/learn/nature/cacti.htm"
+    },
+    {
+      "title": "National Park Service — Cacti and Desert Succulents, Saguaro",
+      "url": "https://www.nps.gov/sagu/learn/nature/cacti-and-desert-succulents.htm"
+    },
+    {
+      "title": "OpenStax — Overview of Photosynthesis",
+      "url": "https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis"
+    }
+  ]
+}

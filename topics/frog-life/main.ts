@@ -17,6 +17,7 @@ let shownStage = -1;
 const play = el<HTMLButtonElement>('play');
 function stop() {
   cancelAnimationFrame(frame);
+  frame = 0;
   playing = false;
   play.textContent = t('慢慢播放');
   play.setAttribute('aria-pressed', 'false');
@@ -36,6 +37,7 @@ function render() {
 function animateTo(target: number, duration: number) {
   stop();
   const from = Number(range.value);
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { range.value = String(target); render(); return; }
   const start = performance.now();
   playing = true;
   play.textContent = t('暂停');

@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "sound-vibrations",
+  "zh": {
+    "question": "把橡皮筋绷紧，和把它拨得更大，听到的变化是同一件事吗？",
+    "observe": "先只改变绷紧程度，每次拨一下比较音高；再固定绷紧程度，只改拨动幅度比较响轻。拖动慢镜头滑块，观察一来一回。",
+    "academic": [
+      {
+        "title": "振动传递扰动而非运走空气",
+        "body": "橡皮筋振动使附近空气产生压强和密度的变化，这些扰动向外传播形成声波。空气分子主要在局部往复运动并传递能量，不随一束声音从乐器一路飞到耳朵。空气中的声波通常是纵波；画中的弯曲橡皮筋是横向位移，两者的振动方向不能混为一谈。没有合适介质时，机械声波不能这样传播。"
+      },
+      {
+        "title": "频率与振幅描述不同性质",
+        "body": "频率表示每秒完成多少次振动，与简单音的音高密切相关；振幅描述偏离平衡位置的大小，与声强有关。更大的振幅通常带来更响的声音，但响度还依赖频率、距离和听觉。画面把位移和时间放大，便于观察，播放的合成音保留模型频率，不能用慢镜头里数到的摆动次数当实际音高。"
+      },
+      {
+        "title": "理想弦模型的适用条件",
+        "body": "固定两端的理想弦基频为 f = (1/2L)√(T/μ)，其中 L 是长度，T 是张力，μ 是线密度。只有其余条件不变，张力增至四倍才使频率变为两倍。真实橡皮筋拉伸时长度、粗细和材料性质也会改变，并具有阻尼与非线性；本页端点外移仅提示绷紧动作，不用于求解真实伸长后的频谱。"
+      }
+    ],
+    "misconception": "更响不必更高；画里的慢摆动也不是实际听到的每秒振动次数。",
+    "boundary": "声音是合成音，弧线只提示传播；端点拉伸不是定量伸长模型。播放需要点击，离开页面停止；真实橡皮筋实验需成人协助。",
+    "narration": [
+      {
+        "label": "听声音，也看振动",
+        "text": "轻轻拨一下橡皮筋，它会来回动，你也可能听到声音。它的运动带动附近的空气，变化一段一段传出去，就能来到耳朵这里。今天画面把运动放慢，让眼睛看清楚；声音却按模型里的音高播放，所以看到的慢动作不等于听到的低音。",
+        "cue": "拨弦一次，对照振动和音高说明。"
+      },
+      {
+        "label": "先只改变绷紧程度",
+        "text": "现在我们只把绷紧程度调高一点，再拨一下。听起来是不是更高了一些？先停一下，换回刚才的条件再听一次，比较会更容易。在这个简化实验中，绷紧程度改变了来回振动的快慢。真实橡皮筋还有长短、粗细这些条件，会一起影响声音。",
+        "cue": "比较两种张力，播放之间留三秒。"
+      },
+      {
+        "label": "再改变拨动幅度",
+        "text": "这回把绷紧程度保持不变，只让拨动幅度大一点。你听到的主要是更响，还是更高呢？幅度是在说动得有多大，频率是在说一秒来回多少次，它们是两件不同的事。我们可以慢慢比较，不需要把声音开很大，也不要把耳朵贴近扬声器。",
+        "cue": "固定张力，比较两种幅度。"
+      },
+      {
+        "label": "按住以后会怎样",
+        "text": "点一下停止，就像轻轻按住真正的橡皮筋，振动停下来，声音也会停。再拖动手动慢镜头，你能一点一点看清它怎样来回，不过这个操作不发声。记住，声音把振动的变化传过来，不是把乐器旁边的一团空气一路送进你的耳朵。",
+        "cue": "停止播放，手动拖动一整周期。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Does tightening a band change the sound in the same way as plucking it farther?",
+    "observe": "Change only tension and pluck each time to compare pitch. Then hold tension fixed and change amplitude to compare loudness. Scrub the slow-motion slider to inspect one back-and-forth cycle.",
+    "academic": [
+      {
+        "title": "Sound carries disturbances through a medium",
+        "body": "A vibrating band creates pressure and density variations in nearby air. These disturbances propagate while air particles mainly oscillate locally rather than traveling from instrument to ear. Airborne sound is longitudinal, unlike the transverse displacement of the drawn string. Such mechanical waves need a suitable medium."
+      },
+      {
+        "title": "Frequency and amplitude differ",
+        "body": "Frequency counts cycles per second and relates closely to the pitch of a simple tone. Amplitude measures displacement and relates to intensity. Perceived loudness also depends on frequency, distance and hearing. Motion is enlarged and slowed while the synthesized audio retains the model frequency, so visual cycle counts are not the audible frequency."
+      },
+      {
+        "title": "Conditions of the ideal-string model",
+        "body": "For an ideal fixed-end string, f = (1/2L)√(T/μ), with length L, tension T and linear density μ. Quadrupling tension doubles frequency only with other quantities fixed. Real rubber changes length, thickness and material behavior as it stretches. Endpoint movement here is a visual cue, not a solution for the stretched band’s spectrum."
+      }
+    ],
+    "misconception": "Louder need not mean higher pitched, and slow visual motion is not the actual audible frequency.",
+    "boundary": "Audio is synthesized and arcs only suggest propagation. Endpoint movement is not quantitative stretching. Playback needs a click and stops when leaving; real rubber-band experiments need adult help.",
+    "narration": [
+      {
+        "label": "Hear and watch",
+        "text": "Pluck the band and it moves back and forth while making sound. Its movement disturbs nearby air, and that disturbance travels toward your ear. Our picture slows the movement so your eyes can follow it, while the audio uses the model pitch. A slow-looking picture therefore does not necessarily mean a low note.",
+        "cue": "Pluck once and compare vibration with the pitch caption."
+      },
+      {
+        "label": "Change tension first",
+        "text": "Increase only the tension and pluck again. Does the note sound higher? Pause and compare it with the previous setting. In this simplified experiment tension changes how quickly the band vibrates. A real rubber band also changes length and thickness, which can influence its sound together.",
+        "cue": "Compare two tension settings with three seconds between plays."
+      },
+      {
+        "label": "Then change amplitude",
+        "text": "Keep tension fixed and increase only the plucking amplitude. Is the main change loudness or pitch? Amplitude means how far something moves, while frequency means how many cycles happen each second. They describe different things. Compare at a comfortable volume, without putting your ear next to the speaker.",
+        "cue": "Hold tension and compare two amplitudes."
+      },
+      {
+        "label": "What happens when it stops?",
+        "text": "Press stop, like gently holding a real band still: vibration and sound end. The manual slow-motion slider lets you inspect each part of a cycle without playing audio. Remember that sound transmits a disturbance; it does not deliver the same lump of air from beside the instrument into your ear.",
+        "cue": "Stop playback and scrub one complete cycle manually."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Exploratorium · Sound Sandwich",
+      "url": "https://www.exploratorium.edu/snacks/sound-sandwich"
+    },
+    {
+      "title": "OpenStax · Speed of Sound",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/17-2-speed-of-sound"
+    },
+    {
+      "title": "NASA · Anatomy of an Electromagnetic Wave",
+      "url": "https://science.nasa.gov/ems/02_anatomy/"
+    }
+  ]
+}

@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "galactic-center",
+  "zh": {
+    "question": "恒星旁边有黑洞，恒星就一定会立刻消失吗？",
+    "observe": "比较只绕行、溢流、恒星风三种情景。开启双星绕行，寻找共同中心，再跟随气流看哪些物质留下、哪些离开。",
+    "academic": [
+      {
+        "title": "这是双星，不是星系中心",
+        "body": "本页讲解恒星级黑洞与一颗伴星的双星系统，不是银河中心超大质量黑洞的复原。在近似孤立的系统中，两者绕共同质心运行，满足M₁r₁=M₂r₂；较重天体的轨道更小。伴星是否明显失去物质还依赖其半径、间距与风；附近存在黑洞本身并不保证发生持续吸积。"
+      },
+      {
+        "title": "两条不同的供气途径",
+        "body": "共转参考系的有效势包含两个天体的引力与离心项。恒星接近填满洛希瓣时，气体可经内拉格朗日点附近转移；页面虚线只是等体积半径的参考圆，并非实际等势面的形状。恒星风则先从伴星向外吹出，再有一部分被黑洞捕获，两种机制可有混合。天鹅座X-1是研究风供给的重要真实系统。"
+      },
+      {
+        "title": "发光与向内流动还需条件",
+        "body": "气体携带角动量，因此不一定直接径向落入；形成盘和继续向内吸积需要耗散与角动量输运。释放的引力束缚能可转为热和辐射，X射线光谱与变化为研究吸积提供线索。亮光来自视界外的气体，供给率也不必等于立即到达黑洞的速率。演示中的伴星保持可见，不表示真实恒星永远不损失质量。"
+      }
+    ],
+    "misconception": "外层气体持续转移，与整颗恒星在一次遭遇中被潮汐撕碎不同；洛希瓣也不是黑洞的事件视界。",
+    "boundary": "采用固定质量比的圆双星与人工构造的连续供气路径，未求解磁流体或真实质量损失。黑洞内区另行放大；近景简化弯光不是整套数值广义相对论模拟。",
+    "narration": [
+      {
+        "label": "两个一起转的伙伴",
+        "text": "这里有两个太空伙伴：一颗亮亮的恒星，还有一个黑洞。我们先看它们怎样一起转。不是黑洞永远站着不动，只有恒星围着它跑；两个伙伴都绕着共同的中心运动。那颗看起来很大的恒星，也不一定马上就被黑洞弄没了。",
+        "cue": "选择只绕行情景，开启双星绕行。"
+      },
+      {
+        "label": "外层慢慢离开",
+        "text": "换一种情况，恒星的外层伸得更远了。有些气体可以从靠近黑洞的一侧离开。先暂停找一找：恒星还在不在？给自己一点时间，再继续跟着亮点走。离开的只是一些外层物质，刚才那颗恒星仍然在那里。",
+        "cue": "切溢流；停顿约四秒确认伴星仍在。"
+      },
+      {
+        "label": "一条弯弯的气流",
+        "text": "这些气体本来就在运动，所以不会整整齐齐地直线掉下去。它们沿着弯弯的路线走，到了黑洞周围还会绕行。靠近黑洞的热气体能够发出亮光。你可以先看近景，再退回全景，把这条气流的起点和去处连起来。",
+        "cue": "沿亮点追踪供气流，切近景后回全景。"
+      },
+      {
+        "label": "再看看恒星风",
+        "text": "还有一种办法：恒星把气体吹向周围，叫作恒星风。它不是我们用来呼吸的空气。黑洞只接到其中一部分，其余的还会走向远方。请比较三种情景：没有明显供气、从一侧溢流、向四周吹风，虽然都有两个伙伴，故事却各不相同。",
+        "cue": "切恒星风，观察捕获流与远离的粒子。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Does a star beside a black hole necessarily disappear at once?",
+    "observe": "Compare detached, overflow, and wind scenarios. Enable binary motion, locate the common center, and follow which gas stays and which escapes.",
+    "academic": [
+      {
+        "title": "A binary, not a galactic nucleus",
+        "body": "This lesson concerns a stellar-mass black hole and a companion star, not a reconstruction of the Milky Way’s central supermassive black hole. In an approximately isolated binary, both bodies orbit their common center of mass, with M₁r₁=M₂r₂. The heavier body traces the smaller orbit. Radius, separation, and wind determine mass supply; a nearby black hole alone does not guarantee sustained accretion."
+      },
+      {
+        "title": "Two supply mechanisms",
+        "body": "The corotating effective potential combines gravity and centrifugal terms. A star close to filling its Roche lobe can transfer gas near the inner Lagrange point. The circular guide shows an equivalent-volume radius, not the lobe’s true equipotential shape. Wind first flows outward, with some subsequently captured. Mechanisms can mix; Cygnus X-1 is a real system used to study wind-fed accretion."
+      },
+      {
+        "title": "Emission and inflow require more physics",
+        "body": "Gas carries angular momentum, so it need not fall radially inward. Disk formation and further accretion require dissipation and angular-momentum transport. Released gravitational binding energy can become heat and radiation; X-ray spectra and variability probe this process. Emission is outside the horizon, and supply need not instantly equal inner accretion. A visible companion here does not mean a real star never loses mass."
+      }
+    ],
+    "misconception": "Steady transfer of outer gas differs from destroying a whole star in one tidal encounter. A Roche lobe is not an event horizon.",
+    "boundary": "A fixed-mass circular binary and constructed continuous gas paths illustrate supply, without magnetohydrodynamics or real mass-loss evolution. The enlarged inner view includes simplified light bending, not a complete numerical-relativity simulation.",
+    "narration": [
+      {
+        "label": "Two traveling partners",
+        "text": "Here are two space partners: a bright star and a black hole. Watch them move together. The black hole does not always sit still while only the star goes around it. Both move around a shared center. And the star that looks so large does not have to disappear immediately just because a black hole is nearby.",
+        "cue": "Choose detached and enable binary motion."
+      },
+      {
+        "label": "Outer gas leaves",
+        "text": "Try a different situation. The star’s outer layers reach farther out, and some gas can leave from the side near the black hole. Pause and look: is the star still there? Give yourself a moment, then follow the bright marker. Only some outer material has left. The star we saw before remains.",
+        "cue": "Select overflow and pause four seconds to locate the surviving companion."
+      },
+      {
+        "label": "A curving stream",
+        "text": "The gas was already moving, so it does not all drop along one straight line. It follows a curved route and keeps circling near the black hole. Hot gas nearby can shine. Try the close view, then pull back to the whole system and connect the stream’s starting point with the place it is going.",
+        "cue": "Follow the marker; compare close and overview views."
+      },
+      {
+        "label": "A wind from a star",
+        "text": "A star can also send gas outward as a stellar wind. This is not the air we breathe. The black hole catches only some of it; other gas keeps traveling away. Compare the three situations: little supply, overflow from one side, and wind spreading outward. They have the same two partners, but different stories.",
+        "cue": "Choose wind and locate captured and escaping gas."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Anatomy of a Black Hole",
+      "url": "https://science.nasa.gov/universe/black-holes/anatomy/"
+    },
+    {
+      "title": "Chandra · Cygnus X-1",
+      "url": "https://www.chandra.harvard.edu/photo/2011/cygx1/index.html"
+    },
+    {
+      "title": "Hanke et al. · Spectroscopy of the stellar wind in Cygnus X-1",
+      "url": "https://arxiv.org/abs/1103.2711"
+    }
+  ]
+}

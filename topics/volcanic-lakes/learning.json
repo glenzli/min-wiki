@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "volcanic-lakes",
+  "zh": {
+    "question": "火山留下一个大坑，就一定会变成湖吗？",
+    "observe": "先选破火山口，依次观察岩浆撤出、断裂和下沉；再保持盆地不变，对比供水充足低渗漏与供水少高渗漏。",
+    "academic": [
+      {
+        "title": "火山口与破火山口的成因",
+        "body": "普通火山口常与喷口附近的爆炸、堆积和局部塌落有关。破火山口通常涉及岩浆储库撤出后，上覆岩体失去部分支撑，沿断裂发生较大范围下沉。二者不能只凭大小机械区分，名称也不总能说明地质成因。火山口湖这个通俗名称，有时也用在真正位于破火山口中的湖泊上。"
+      },
+      {
+        "title": "有盆地还需要正的水量收支",
+        "body": "雨雪、地表来水和地下水可以补给盆地，蒸发、渗漏和出口流出则消耗水。储水量变化等于同一时段输入减去输出；只有足够的净补给持续存在，才可能积水成湖。湖面升高后，蒸发面积、渗流和溢流也会改变，最终水位不只是简单地由坑的深度决定。"
+      },
+      {
+        "title": "湖水不是岩浆变出来的",
+        "body": "岩浆冷却主要形成岩石，不会直接变成一湖普通水。后来的水与火山岩、热液和气体相互作用，可以具有不同温度、酸度和溶解物。有些湖清冷，有些环境危险；颜色漂亮、表面平静都不是安全证明。研究湖面、水温、化学成分和气体变化，可帮助认识水文过程及火山活动。"
+      }
+    ],
+    "misconception": "火山停下来不会自动长出湖；坑能留住水和长期补给是否足够，都是条件。",
+    "boundary": "下沉与成湖跨越的真实时间可很长，画面大幅压缩；未模拟真实断裂力学、湖水化学或气体释放风险。",
+    "narration": [
+      {
+        "label": "先有一个低地方",
+        "text": "高山上为什么会有湖？有一些湖的家，是火山活动留下的低地方。不过，大坑并不会自己变出水。今天我们先看看这个家怎样形成，再问水从哪里来。选破火山口的故事，从地下开始，留意岩浆和它上面的岩层。",
+        "cue": "选择破火山口，停在地下剖面。"
+      },
+      {
+        "label": "岩层向下坐",
+        "text": "当一部分岩浆离开地下的储存区域，上面的岩体可能少了一些支撑，沿着断裂向下移动，留下较大的凹地。请慢慢推进，看清楚先发生什么、后发生什么。它不是整座山突然消失，也不是岩浆把石头全部吃掉；图里的岩层还在，只是位置改变了。",
+        "cue": "逐段推进撤出、断裂、下沉，各停两秒。"
+      },
+      {
+        "label": "雨水能留下吗",
+        "text": "有了凹地，雨雪和其他来水才有机会积在里面。现在多给一些水，看看湖面怎样升高。再把漏水调大，先猜一猜，最后的湖会一样深吗？停下来比较一下：进来的水和离开的水，都在决定这个盆地里能留下多少水。",
+        "cue": "对比两组供水与渗漏条件，停三秒。"
+      },
+      {
+        "label": "漂亮的湖也有不同",
+        "text": "火山湖的水是后来积来的，不是红色岩浆冷下来就变成蓝水。不同湖里的温度和成分可能很不一样，有的还有看不见的气体危险。所以，漂亮的颜色不是邀请我们下水的信号。我们可以用模型认识它，真正参观时，要和大人一起遵守当地规定。",
+        "cue": "停在成湖全景，保留过程边界。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If a volcano leaves a large hollow, must it become a lake?",
+    "observe": "Choose a caldera and follow magma withdrawal, faulting and subsidence. Then keep the basin and compare plentiful supply with low leakage against limited supply with high leakage.",
+    "academic": [
+      {
+        "title": "Crater and caldera origins",
+        "body": "Craters commonly involve explosion, buildup and local collapse near a vent. Calderas generally form when withdrawal from a magma reservoir allows extensive overlying rock to subside along faults. Size alone is not a complete classification, and familiar lake names do not always state their geological origin."
+      },
+      {
+        "title": "A basin needs a water budget",
+        "body": "Rain, snow, surface inflow and groundwater may supply a basin; evaporation, leakage and outflow remove water. Storage changes by inputs minus outputs over the same interval. Sustained net supply allows a lake to grow. As level rises, evaporation area, seepage and overflow can change, so basin depth alone does not determine the lake level."
+      },
+      {
+        "title": "Water does not come from cooling lava",
+        "body": "Magma mainly cools into rock, not a lake of ordinary water. Later water interacts with volcanic rocks, gases and hydrothermal fluids, producing varied temperature and chemistry. Some lakes are cool and clear; others are hazardous. Water level, temperature, chemistry and gas observations help distinguish their behavior."
+      }
+    ],
+    "misconception": "A quiet volcano does not automatically form a lake; water retention and sustained supply both matter.",
+    "boundary": "Collapse and lake filling may span long periods compressed here. Real fault mechanics, lake chemistry and gas-release hazards are not simulated.",
+    "narration": [
+      {
+        "label": "First, a low place",
+        "text": "Why can a lake sit high on a mountain? Some lakes occupy hollows left by volcanic activity. But a hollow cannot create water by itself. First we will see how this home forms, then ask where the water comes from. Choose the caldera story and look at the magma and rock above it.",
+        "cue": "Choose the caldera and hold the underground section."
+      },
+      {
+        "label": "Rock settles downward",
+        "text": "When some magma leaves its underground reservoir, the rock above may lose support and move down along fractures, leaving a large hollow. Advance slowly and notice the order. The whole mountain has not vanished, and the magma has not eaten every rock. The layers are still there, but their positions change.",
+        "cue": "Advance withdrawal, faulting and collapse with two-second pauses."
+      },
+      {
+        "label": "Can water stay?",
+        "text": "Rain, snow and other incoming water can now collect in the hollow. Increase supply and watch the level rise. Then allow more leakage. Predict whether the lake will end at the same depth. Pause and compare: both incoming and outgoing water determine how much remains in the basin.",
+        "cue": "Compare supply and leakage settings, pausing for three seconds."
+      },
+      {
+        "label": "Beautiful lakes can differ",
+        "text": "The water arrived later; red magma did not cool into blue water. Volcanic lakes can have very different temperatures and chemistry, and some have invisible gas hazards. A beautiful color is not an invitation to swim. Learn with the model and follow local rules with an adult when visiting real lakes.",
+        "cue": "Hold the completed lake overview and its model limits."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "USGS · Caldera or crater?",
+      "url": "https://www.usgs.gov/observatories/yvo/news/caldera-or-craterwhats-difference"
+    },
+    {
+      "title": "USGS · Post-Caldera Volcanism and Crater Lake",
+      "url": "https://www.usgs.gov/volcanoes/crater-lake/science/post-caldera-volcanism-and-crater-lake"
+    },
+    {
+      "title": "USGS · Volcanic gases",
+      "url": "https://www.usgs.gov/programs/VHP/volcanic-gases-can-be-harmful-health-vegetation-and-infrastructure"
+    }
+  ]
+}

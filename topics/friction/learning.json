@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "friction",
+  "zh": {
+    "question": "三块一样的木头同样快地出发，为什么可能停在不同位置？",
+    "observe": "保持出发速度不变，播放三条路的滑动，比较谁先停、谁滑得远；再只增加速度，观察同一条路的停止距离。",
+    "academic": [
+      {
+        "title": "滑动摩擦与相对运动",
+        "body": "物体相对接触表面滑动时，动摩擦力通常阻碍接触面间的相对滑动。本例木块在水平固定地面上向右运动，所以摩擦向左。实际摩擦来自接触区域的多种微观作用和变形，不只是肉眼可见的凹凸互相卡住。系数属于一对材料及其状态，不能仅凭一种材料名称或看起来粗糙就确定。"
+      },
+      {
+        "title": "停止距离有明确的模型前提",
+        "body": "在不再推、水平面且动摩擦系数近似恒定的条件下，法向力约等于重量，减速度大小为 μg，停止时间为 v₀/(μg)，停止距离为 v₀²/(2μg)。同一路面初速翻倍时，停止时间翻倍、距离约变四倍。木块停下后，模型把速度置零，不能继续把原方向摩擦当成会令它自动倒退的推力。"
+      },
+      {
+        "title": "静摩擦、滚动与能量",
+        "body": "未滑动接触的静摩擦会在限度内适应其他作用力，它可以帮助人向前走，并不总与物体整体运动方向相反。带轮玩具还涉及滚动、轴承和形变，不能套用本页无轮木块的数值。滑动时机械能转为内能等形式，能量并未消失；搓手发热提供日常线索，却不能测出本页各路面的真实摩擦系数。"
+      }
+    ],
+    "misconception": "摩擦不总是坏事，也不总是越粗糙越大；滚动小车不能直接代入滑动木块的结果。",
+    "boundary": "三种系数是教学设定，不是材料实测值；忽略空气阻力、温度和形变变化，时间可手动推进，木块停止后不会倒滑。",
+    "narration": [
+      {
+        "label": "一样的起跑",
+        "text": "这里有三块一样的小木块，分别在木板、布面和砂纸上。它们出发时一样快，松手以后没有谁再推它们。你猜哪一块会先停，哪一块会滑得最远？先把猜想放在心里，再点一下，看看三块木头一起出发的样子。",
+        "cue": "保持相同初速，从零播放。"
+      },
+      {
+        "label": "接触面在影响它们",
+        "text": "木块向右滑的时候，接触的地面给它一个向左的摩擦力，于是它慢下来。画里的小箭头帮助我们看方向。现在拖动推进时间，把画面停住，比较三块木头：有的已经停住，有的还在走。这个例子给三条路安排了不同的摩擦条件，所以结果不同。",
+        "cue": "拖动推进时间，停在部分木块静止时，留三秒。"
+      },
+      {
+        "label": "更快出发会怎样",
+        "text": "把它们送回起点，只把出发速度提高，再看同一条路上的木块停在哪里。你发现它走得更远了吗？我们一次只改一个条件，才能比较清楚。现实里的材料还会受灰尘、湿度和接触情况影响，不能看到某种表面就肯定它一定最滑或最涩。",
+        "cue": "提高初速，重播并比较同一条路。"
+      },
+      {
+        "label": "摩擦也在帮忙",
+        "text": "摩擦并不是专门来捣乱的。鞋底和地面之间合适的摩擦，帮助我们走路不打滑；两只手搓一搓，还可能感觉暖一点。小木块停下来，运动的能量没有凭空消失，一部分变成了热。今天的木块没有轮子，带轮子的玩具还要研究另外一些事情。",
+        "cue": "停在三块均静止的结果。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Why can identical blocks starting at the same speed stop at different places?",
+    "observe": "Keep starting speed fixed and play all three lanes. Compare stopping time and distance, then increase only speed and compare the stopping distance on one lane.",
+    "academic": [
+      {
+        "title": "Friction opposes relative sliding",
+        "body": "Kinetic friction generally opposes relative sliding at a contact. Here blocks move right over fixed horizontal surfaces, so friction acts left. Microscopic interactions and deformation matter, not just visible bumps catching. A coefficient describes a material pair and its condition, not one material name or appearance alone."
+      },
+      {
+        "title": "Stopping formulas have conditions",
+        "body": "After release on a horizontal surface with constant kinetic-friction coefficient, deceleration is μg, stopping time is v₀/(μg), and stopping distance is v₀²/(2μg). Doubling speed doubles stopping time and quadruples distance under those conditions. Once stopped, the block is not accelerated backward by a continuing friction force."
+      },
+      {
+        "title": "Static friction, rolling and energy",
+        "body": "Static friction adjusts within a limit and can help walking forward; it does not always oppose an object’s overall motion. Wheeled toys involve rolling, bearings and deformation, unlike these blocks. During sliding, mechanical energy becomes internal energy and other forms rather than disappearing. Warm hands after rubbing provide a qualitative clue, not a coefficient measurement."
+      }
+    ],
+    "misconception": "Friction is useful too, rougher does not always mean greater friction, and a rolling car is not this sliding-block model.",
+    "boundary": "The coefficients are illustrative, not measured material values. Air drag and changing temperature or deformation are omitted. Time can be scrubbed, and blocks do not reverse after stopping.",
+    "narration": [
+      {
+        "label": "The same start",
+        "text": "Three identical blocks sit on wood, cloth and sandpaper. They start at the same speed, and no one keeps pushing after release. Which do you predict will stop first, and which will travel farthest? Hold your prediction, then start all three together and watch.",
+        "cue": "Keep the same initial speed and play from zero."
+      },
+      {
+        "label": "The surfaces affect motion",
+        "text": "While a block slides right, the surface exerts friction to the left, slowing it down. The little arrows show that direction. Move the time slider to pause, then compare: some blocks have stopped while another still moves. This example assigns different friction conditions to the three lanes, producing different results.",
+        "cue": "Scrub time to pause while some blocks have stopped; leave three seconds."
+      },
+      {
+        "label": "Try a faster start",
+        "text": "Return to the start and increase only the speed. Compare where the block stops on the same lane. Does it travel farther? Changing one condition at a time makes the result clearer. Real materials also depend on dust, moisture and contact, so a surface name alone cannot guarantee the most or least friction.",
+        "cue": "Increase speed and replay, comparing one lane."
+      },
+      {
+        "label": "Friction helps us too",
+        "text": "Friction is not simply a nuisance. Suitable friction between shoes and ground helps us walk without slipping. Rubbing hands may make them feel warmer. When the blocks stop, their motion energy has not vanished; some becomes heat. These blocks have no wheels, so a wheeled toy would need us to consider additional effects.",
+        "cue": "Hold the final state with all blocks stationary."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "OpenStax · Friction",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/6-2-friction"
+    },
+    {
+      "title": "OpenStax · Work-Energy Theorem",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/7-3-work-energy-theorem"
+    },
+    {
+      "title": "OpenStax · Motion with Constant Acceleration",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/3-4-motion-with-constant-acceleration"
+    }
+  ]
+}

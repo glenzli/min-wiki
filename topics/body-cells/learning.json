@@ -1,0 +1,110 @@
+{
+  "version": 1,
+  "topicId": "body-cells",
+  "references": [
+    {
+      "title": "OpenStax · Types of Tissues",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-1-types-of-tissues"
+    },
+    {
+      "title": "OpenStax · Layers of the Skin",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin"
+    },
+    {
+      "title": "OpenStax · Muscle Fiber Contraction and Relaxation",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-3-muscle-fiber-contraction-and-relaxation"
+    },
+    {
+      "title": "OpenStax · Nervous Tissue",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/12-2-nervous-tissue"
+    },
+    {
+      "title": "NIH / NIGMS · What Are Stem Cells?",
+      "url": "https://www.nigms.nih.gov/biobeat/2024/11/what-are-stem-cells"
+    }
+  ],
+  "zh": {
+    "question": "身体里的细胞如果都长成同样的小圆球，还能做这么多不同的事情吗？",
+    "observe": "依次比较皮肤屏障、骨骼肌纤维和神经元。皮肤场景追踪外来颗粒；肌肉场景拖到中间和末尾比较长度；神经场景追踪轴突信号与突触递质。切换的是不同观察对象，不是一个细胞变成另一种。",
+    "academic": [
+      {
+        "title": "分化把共同基础变成不同本领",
+        "body": "很多有核体细胞拥有基本相同的基因组，但表达的基因组合和蛋白质状态不同，形成不同的形态、连接与功能。细胞分化不是仅改变外形，也不表示每种成熟细胞都能随意互换。部分组织靠干细胞或祖细胞补充，更新能力依组织而异。细胞并非只有单一工作，页面挑选的是便于观察的主要功能。"
+      },
+      {
+        "title": "从细胞连接到组织屏障",
+        "body": "上皮组织由相接的细胞与连接结构形成连续的层，既可保护，也可承担吸收、分泌等不同功能。皮肤表皮是其中一个例子，角质层的扁平角化细胞及细胞间脂质参与屏障；最外层细胞已失去细胞核。深层活细胞的分裂和分化维持更新。不能把皮肤示意推广为所有上皮都不透物质，也不能把组织视为没有细胞外结构的堆叠。"
+      },
+      {
+        "title": "收缩和传导使用不同机制",
+        "body": "骨骼肌纤维是通常多核的长细胞。钙离子调节肌动蛋白与肌球蛋白的相互作用，ATP 支持横桥循环，肌节缩短来自细丝相对滑动而非细丝变短。神经元的传导则依赖膜上的离子通道和电化学梯度；髓鞘由胶质细胞形成。页面只画有髓轴突与化学突触，其他神经结构以及真实时空尺度仍被简化。"
+      }
+    ],
+    "misconception": "细胞不会因为需要一项工作就立刻换成另一种细胞；肌肉细丝不会自己变短；神经信号也不是一颗小球在空管中流动。",
+    "boundary": "三类代表结构不是人体全部细胞。屏障颗粒、神经亮点、颜色和时间均为教学标记。肌肉放松后的回长还依赖负荷与其他结构，图中只规定一条观察路径；不由此推断疾病、伤口严重程度或实际反应速度。",
+    "narration": [
+      {
+        "label": "不同的形状",
+        "text": "看一看自己的手。我们看见的是完整的皮肤，放大许多倍，才会看到组成组织的细胞。身体里并不都是一样的小圆球。有些细胞相接成层，有些又细又长，有些伸出许多分支。这些形状和内部结构，都帮助它们完成不同的事情。",
+        "cue": "先比较三个观察按钮；停在皮肤的分层画面。"
+      },
+      {
+        "label": "连起来保护",
+        "text": "先看皮肤。许多细胞相接排列，形成保护表面。试着推进画面，外面的颗粒遇到完整屏障，停在了外面。皮肤还能帮助身体减少水分流失。最外面的细胞会发生很大变化，深处则有活细胞不断补充。保护工作，是整个组织一起完成的。",
+        "cue": "播放屏障过程；指认外部颗粒与深层细胞，留三秒观察。"
+      },
+      {
+        "label": "滑动带来收缩",
+        "text": "再看细长的肌肉纤维。把进度拖到中间，纤维变短了；看下面的放大图，里面的细丝在彼此滑动，重叠得更多，并不是每根细丝都缩短了。继续到最后，肌肉放松。我们拿积木、走路和抬手时，都需要许多肌肉纤维配合着产生力。",
+        "cue": "切到肌肉，停在中段收缩和末段放松；对照下方细丝长度。"
+      },
+      {
+        "label": "传信的长长连接",
+        "text": "最后追踪神经元的信号。它有分支和长长的轴突，能把信息传到别处。亮点只帮我们找到信号的位置，不是真的小球。在突触那里，细胞还能释放化学信使，把信息交给下一站。神经、肌肉、皮肤和血液互相配合，才让整个身体一起工作。",
+        "cue": "切到神经元，先追踪轴突，再停在突触传递终态；结束时回顾分工。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Could body cells do all their different jobs if they were identical little balls?",
+    "observe": "Compare a skin barrier, skeletal muscle fibres and a neuron. Track outside particles at skin, compare muscle length at the middle and end, and follow the axon signal and synaptic transmitter. Switching changes the specimen; it does not turn one cell into another.",
+    "academic": [
+      {
+        "title": "Specialization builds on a shared foundation",
+        "body": "Many nucleated body cells share essentially the same genome but express different combinations of genes and proteins, developing distinct forms, connections and functions. Differentiation is more than a change of outline and does not make mature cell types freely interchangeable. Some tissues are replenished by stem or progenitor cells, with different capacities for renewal. A cell may perform several tasks; the page selects prominent functions for comparison."
+      },
+      {
+        "title": "Connections create a tissue barrier",
+        "body": "Epithelia form connected sheets, with roles that may include protection, absorption or secretion. The epidermis is one example: flattened cornified cells and intercellular lipids contribute to its surface barrier, and the outermost cells lack nuclei. Deeper living cells maintain renewal through division and differentiation. This skin model does not imply that every epithelium blocks transport, or that tissue is simply cells piled together without extracellular structures."
+      },
+      {
+        "title": "Contraction and conduction use different mechanisms",
+        "body": "Skeletal muscle fibres are long, usually multinucleate cells. Calcium regulates actin–myosin interactions, and ATP supports cross-bridge cycling; sarcomeres shorten through sliding rather than shortening filaments. Neuronal conduction instead depends on membrane ion channels and electrochemical gradients. Glial cells form myelin. Only a myelinated axon and chemical synapse are shown, with other structures and real time and distance scales simplified."
+      }
+    ],
+    "misconception": "Cells do not instantly become another cell type to take a job. Muscle filaments do not shorten, and a nerve signal is not a ball flowing through a hollow tube.",
+    "boundary": "The three structures are not all the body’s cells. Barrier particles, signal highlights, colours and timing are teaching choices. Muscle lengthening after relaxation also depends on loads and other structures; one prescribed path is shown. It does not predict disease, injury severity or real response speed.",
+    "narration": [
+      {
+        "label": "Different shapes",
+        "text": "Look at your hand. We see its surface; magnifying it many times reveals cells in its tissues. The body is not made of identical little balls. Some cells join in layers, some are long and thin, and some have many branches. Their shapes and internal structures help them do different things.",
+        "cue": "Introduce the three specimen buttons and pause on the layered skin view."
+      },
+      {
+        "label": "Join together to protect",
+        "text": "Look at skin first. Many cells join into a protective surface. Advance the picture: selected outside particles meet the intact barrier and remain outside. Skin also limits water loss. The outermost cells change greatly, while living cells deeper down replenish them. Protection is the work of a whole tissue.",
+        "cue": "Play the barrier process; identify outside particles and deeper cells, leaving three seconds for observation."
+      },
+      {
+        "label": "Sliding creates contraction",
+        "text": "Now inspect the long muscle fibres. Scrub to the middle: the fibres shorten. In the close view below, filaments slide past one another and overlap more; the filaments themselves have not shortened. Continue to the end for relaxation. Picking up blocks, walking and lifting a hand require many muscle fibres working together to produce force.",
+        "cue": "Switch to muscle; pause at middle contraction and final relaxation, comparing filament lengths."
+      },
+      {
+        "label": "Long connections carry messages",
+        "text": "Finally, follow a neuron’s signal. Branches and a long axon help pass information. The bright spot only marks the signal’s position; it is not a real ball. At a synapse, the cell can release chemical messengers that affect the next cell. Nerves, muscles, skin and blood cooperate so the body can work together.",
+        "cue": "Switch to the neuron, follow the axon, and pause at synaptic transfer; finish by recalling the different jobs."
+      }
+    ]
+  }
+}

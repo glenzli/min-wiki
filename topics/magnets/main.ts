@@ -126,9 +126,11 @@ function schedule() {
 }
 document.addEventListener('visibilitychange', () => {
   cancelAnimationFrame(animation); animation = 0; lastTime = 0;
-  if (!document.hidden) schedule();
+  if (document.hidden) demoStart = null;
+  else schedule();
 });
-window.addEventListener('pagehide', () => cancelAnimationFrame(animation));
+window.addEventListener('pagehide', () => { cancelAnimationFrame(animation); animation = 0; lastTime = 0; demoStart = null; });
+window.addEventListener('pageshow', () => schedule());
 drawObject(scene, settings); syncControls(); paint();
 schedule();
 

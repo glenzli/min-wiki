@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "sand-journey",
+  "zh": {
+    "question": "一粒沙一定来自石头吗？它怎样来到海边？",
+    "observe": "先选择岩石，再选择贝壳；各推进一遍，比较碎片颜色、搬运路线与最后的堆积。留意圆框中的颗粒逐渐变小。",
+    "academic": [
+      {
+        "title": "沙是粒径名称，不是单一物质",
+        "body": "沙描述的是一个颗粒大小范围，不是一种固定矿物。许多大陆沙粒含石英，因为石英较能抵抗风化；海岸沙也可能来自贝壳、珊瑚等生物硬结构，或火山物质。不同来源可以混合，颜色只能提供线索，不能单独鉴定成分。显微镜下的形状与矿物分析能帮助区分来源。"
+      },
+      {
+        "title": "破碎和搬运是不同过程",
+        "body": "风化使岩石在原处发生物理破裂或化学变化，侵蚀和搬运把碎屑移走。流水、风浪和颗粒碰撞可以进一步磨损颗粒，尖角逐渐变圆，但程度取决于材质和经历。贝壳也可被破碎和磨蚀，并不是每粒沙都先经过高山和河流；近岸生物来源的沙可以在海边形成并重新分配。"
+      },
+      {
+        "title": "海滩是持续交换的地方",
+        "body": "波浪、水流和风会选择性搬运不同大小、密度的颗粒。搬运条件改变时，部分颗粒沉积；新的风浪也能再把它们带走。海滩因而是动态的泥沙收支系统。判断沙源时，要同时看周围岩石、生物环境和输沙方向；只看到海边有沙，不能推断海浪在当地把全部石头磨成了沙。"
+      }
+    ],
+    "misconception": "沙不等于黄色石英，也不是都由海浪现场磨出来的。",
+    "boundary": "一个圆框代表一种颗粒经历，不代表全部沙粒的共同路线；破碎、磨蚀和沉积的时间被压缩，大小并非比例尺。",
+    "narration": [
+      {
+        "label": "一粒沙的来处",
+        "text": "海边的沙摸起来细细的，可它们的故事不一定相同。有些曾经在大石头里，有些来自贝壳这样的生物硬壳。先选一种来源，看看画面上的颜色和形状。我们今天追踪一粒小颗粒，就像拿着放大镜，跟着它慢慢走一段路。",
+        "cue": "选择岩石来源，停在起点。"
+      },
+      {
+        "label": "从大块到小块",
+        "text": "岩石会在很长的时间里开裂、变化，留下小碎片。水流把一些碎片带走，它们在路上碰撞和摩擦，又可能变小、变圆。这里发生得很快，现实里常常要等很久。停一停，看看圆框里的颗粒，和一开始相比，你发现什么不同？",
+        "cue": "推进破碎过程，停三秒观察。"
+      },
+      {
+        "label": "换一个故事",
+        "text": "现在换成贝壳，再看一遍。贝壳也会破碎，小碎片能被海边的水流搬来搬去。它们不用先去山顶，再坐河流回到海边。所以同一片沙滩上，可能住着许多来路不同的小颗粒。只是看颜色，我们还不能完全知道每一粒是什么。",
+        "cue": "选择贝壳，对照来源与近岸路线。"
+      },
+      {
+        "label": "暂时停在海边",
+        "text": "水流的搬运本领变了，有些颗粒就停下来，和别的颗粒堆在一起，形成我们看到的沙地。不过，这不是旅行的永远终点。下一次风浪，又可能把沙搬走。下次观察沙子时，请让大人陪你看，不扬沙、不揉眼睛，发现不同的小颜色和小形状就很有趣。",
+        "cue": "停在沉积区，扫视不同颗粒。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Must a sand grain come from a rock? How can it reach a beach?",
+    "observe": "Run the sequence with rock and then shell. Compare fragment colors, transport routes and deposition, including the shrinking grain inside the tracking circle.",
+    "academic": [
+      {
+        "title": "Sand describes size, not one substance",
+        "body": "Sand is a grain-size category rather than a single mineral. Quartz is common in many continental sands because it resists weathering. Coastal sand may also include shells, coral skeletons or volcanic material. Sources can mix; color alone is not an identification. Microscopy and mineral analysis provide stronger evidence."
+      },
+      {
+        "title": "Breakdown differs from transport",
+        "body": "Weathering alters or breaks material where it lies; erosion and transport move it away. Flow, waves and collisions can wear grains and round their edges, depending on material and history. Shell fragments can form and move close to a coast, so not every beach grain has traveled from a mountain through a river."
+      },
+      {
+        "title": "A beach exchanges sediment",
+        "body": "Waves, currents and wind sort grains by transportability, which depends partly on size and density. Changing conditions allow deposition, and later events can move grains again. A beach therefore has a changing sediment budget. Source interpretation requires surrounding rocks, biological material and transport directions, not simply the presence of sand."
+      }
+    ],
+    "misconception": "Sand is not always yellow quartz, and waves do not create every grain locally.",
+    "boundary": "The circle represents one possible grain history, not a universal route. Breakdown and deposition are compressed in time and grain sizes are not to scale.",
+    "narration": [
+      {
+        "label": "Where a grain begins",
+        "text": "Beach sand feels fine, but its grains may have different stories. Some were part of rocks; others came from hard shells. Choose a source and notice its color and shape. Today we follow one little grain, almost as if we had a magnifying glass to accompany it on part of its journey.",
+        "cue": "Select rock and hold the starting scene."
+      },
+      {
+        "label": "From pieces to grains",
+        "text": "Over long periods rocks can crack and change, leaving fragments. Water carries some away. Collisions and rubbing during the journey can make them smaller or rounder. Our picture moves quickly, but nature may take a long time. Pause and compare the grain in the circle with the one you saw at the beginning.",
+        "cue": "Advance through fragmentation and pause for three seconds."
+      },
+      {
+        "label": "Try a different story",
+        "text": "Now choose a shell and watch again. Shells can break too, and nearby currents can carry their fragments around. They need not visit a mountain before returning by river. One beach can contain grains from many places. Looking at color alone does not tell us exactly what every grain is made of.",
+        "cue": "Select shell and compare the source and coastal route."
+      },
+      {
+        "label": "A stop on the shore",
+        "text": "When transport conditions change, some grains settle beside others to form the sand we see. This may only be a stop along the way: later waves or wind can move them again. When you examine sand with an adult, avoid throwing it or rubbing your eyes. Enjoy finding its many little colors and shapes.",
+        "cue": "Hold the deposition area and indicate contrasting grains."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NPS · Weathering and Erosion",
+      "url": "https://www.nps.gov/articles/000/weathering-erosion.htm"
+    },
+    {
+      "title": "USGS · Beaches",
+      "url": "https://www.usgs.gov/publications/beaches"
+    },
+    {
+      "title": "USGS · Sediment transport and deposition",
+      "url": "https://www.usgs.gov/publications/sediment-transport-and-deposition"
+    }
+  ]
+}

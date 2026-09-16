@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "ground-water",
+  "zh": {
+    "question": "同样一场雨，落在沙土、黏土和铺装地面上，去向会相同吗？",
+    "observe": "把进度推进到末尾，依次换三种地面，对照渗入、流走、积留三项；不要把渗入量直接读成地下水补给量。",
+    "academic": [
+      {
+        "title": "地表入渗与深部补给",
+        "body": "入渗是水进入土壤表面的过程。进入后的水有的暂存在非饱和带，有的被根系吸收或再蒸发，只有继续向下到达含水层的部分才形成地下水补给。降雨强度超过当时的入渗能力，或地面已经饱和时，更容易产生地表积水和径流；因此即使同一种土，干湿状态不同也会表现不同。"
+      },
+      {
+        "title": "有空隙不等于流得快",
+        "body": "孔隙率描述空隙占总体积的比例，渗透性则与空隙大小、连通程度及裂隙有关。黏土可以有不少微小孔隙，却因通道细而让水流动缓慢；砂粒之间较连通的空隙常让水较易通过。真实铺装也可能有接缝、裂缝或专门的透水结构，图中普通铺装只是低入渗情景。"
+      },
+      {
+        "title": "地下水怎样流动",
+        "body": "地下水大多存在于土粒和岩石的孔隙或裂缝中，并不是普遍存在的地下大河。它沿水头降低的方向移动，可补给泉和河流，也可能被抽取。运动速度因地层条件差别很大。土壤会截留或改变部分物质，但不能保证把污染完全去除；清澈的井水仍需要按适用要求检测。"
+      }
+    ],
+    "misconception": "水钻进土壤，不代表立即成为地下水，更不代表自动变成可以喝的水。",
+    "boundary": "三项分配是守恒的教学情景，不是当地土壤测量；未模拟先前含水量、坡度、植被、裂缝及长时间补给。",
+    "narration": [
+      {
+        "label": "雨来到地面",
+        "text": "下雨时，你可能见过水钻进花坛，也见过水在路面上汇成一条小水流。同样是雨，地面不同，去向就可能不同。我们来做一次屏幕上的比较：先选沙土，让雨落下来，看看蓝色小点是留在上面，向旁边走，还是进入下面。",
+        "cue": "选择沙土，缓慢推进降雨。"
+      },
+      {
+        "label": "换换地面",
+        "text": "现在先停一下，再换成黏土和铺好的路面。留意下面三个数，它们分别告诉我们，示意中的水渗进去了多少、流走了多少、暂时积住了多少。我们只换地面，方便比较。现实里，地面之前湿不湿、雨下得急不急，也都会影响结果。",
+        "cue": "保持末尾进度，切换三种地面。"
+      },
+      {
+        "label": "水在缝隙里",
+        "text": "地底下的水，常常藏在一粒粒土和一块块岩石之间的细小空隙里，像水待在海绵的空隙中。有些通道比较通畅，有些很窄，水就走得慢。已经钻进去的水，也可能先被植物吸走，并不是马上到达很深的地下水那里。",
+        "cue": "指向土粒间空隙，停三秒。"
+      },
+      {
+        "label": "看不见也要关心",
+        "text": "地下水还能慢慢来到泉水和河流中，继续它的旅行。可是钻过泥土，并不保证所有脏东西都被拦住了。我们不能看见井水很清，就自己去喝。今天记住这件事：脚下不是空空的，那里有许多水的小通道，也有需要大人和科学家认真检查的事情。",
+        "cue": "回到剖面全景，强调看不见的通道。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Will the same rain go to the same places on sand, clay and paving?",
+    "observe": "Move to the end and compare all three surfaces using infiltration, runoff and storage. Do not equate all infiltration with groundwater recharge.",
+    "academic": [
+      {
+        "title": "Infiltration is not all recharge",
+        "body": "Infiltration is entry through the soil surface. Some water stays in unsaturated soil, reaches roots or returns through evaporation; only water that reaches an aquifer becomes groundwater recharge. Runoff and ponding increase when rainfall exceeds infiltration capacity or soil is already saturated, so prior moisture matters."
+      },
+      {
+        "title": "Storage space differs from permeability",
+        "body": "Porosity measures the fraction of empty space; permeability depends on pore size, connections and fractures. Clay can have many tiny pores yet transmit water slowly. Connected spaces between sand grains often transmit it more readily. Real paving may contain joints or permeable designs; the diagram uses a low-infiltration case."
+      },
+      {
+        "title": "How groundwater moves",
+        "body": "Most groundwater occupies pores and fractures rather than underground rivers. It moves down hydraulic gradients, sometimes feeding springs and streams or entering wells. Speeds vary widely among formations. Soil can retain or transform some substances, but it cannot guarantee complete purification; clear well water still needs appropriate testing."
+      }
+    ],
+    "misconception": "Water entering soil does not instantly become groundwater or automatically become safe to drink.",
+    "boundary": "The three-way partition is a conserved teaching scenario, not a local soil measurement. Prior moisture, slope, vegetation, fractures and long-term recharge are omitted.",
+    "narration": [
+      {
+        "label": "Rain meets the ground",
+        "text": "Have you seen rain soak into a flower bed while making a little stream on a path? The same rain can take different routes on different ground. Let us compare on screen. Choose sand and let the rain fall. Do the blue dots stay on top, move sideways or enter the ground below?",
+        "cue": "Select sand and advance rainfall slowly."
+      },
+      {
+        "label": "Change the surface",
+        "text": "Pause, then try clay and paving. Look at the three numbers: they show how much model water entered the ground, ran away or stayed on the surface. Changing one thing makes comparison easier. In real life, how wet the ground was before and how hard rain falls also change the result.",
+        "cue": "Hold the final progress and switch among surfaces."
+      },
+      {
+        "label": "Water in tiny spaces",
+        "text": "Water underground often fills little spaces between soil grains and rocks, rather like water in the holes of a sponge. Some passages connect easily; others are narrow and water moves slowly. Water that has entered soil may reach plant roots first. It does not all immediately become deep groundwater.",
+        "cue": "Point between grains and pause for three seconds."
+      },
+      {
+        "label": "Care for unseen water",
+        "text": "Groundwater can slowly reach springs and rivers and continue its journey. But passing through soil does not guarantee that every harmful substance was removed. Clear well water is not something to drink without checking. Remember that the ground beneath us holds many small water pathways, with conditions adults and scientists need to investigate.",
+        "cue": "Return to the section overview and indicate the unseen pathways."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "USGS · Infiltration and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/infiltration-and-water-cycle"
+    },
+    {
+      "title": "USGS · Groundwater Flow and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/groundwater-flow-and-water-cycle"
+    },
+    {
+      "title": "CDC · Guidelines for Treating Well Water",
+      "url": "https://www.cdc.gov/drinking-water/safety/guidelines-for-treating-well-water.html"
+    }
+  ]
+}

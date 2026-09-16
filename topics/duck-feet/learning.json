@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "duck-feet",
+  "zh": {
+    "question": "鸭子的脚一直张得很大，会不会反而不容易收回来？",
+    "observe": "依次选择张开、推水和收脚，观察脚掌面积、力的箭头以及鸭子的位置。再隐藏蹼作形状对照，比较同一动作中与水接触的面积。",
+    "academic": [
+      {
+        "title": "蹼改变与水相互作用的面积",
+        "body": "鸭子的蹼连接脚趾，脚趾展开时形成较大的有效迎水面积。划水过程中脚的速度、姿态和面积共同影响水动力，所以不能只凭“脚越大”判断推进效果。用相同速度和姿态比较时，展开蹼通常能够推动更多水；缩拢脚趾则改变回程时的迎水形状。这是动作和结构配合，蹼本身并不会主动产生能量。"
+      },
+      {
+        "title": "推水与身体受力是一对作用",
+        "body": "鸭脚使水获得向后的动量，水同时对脚施加反向作用，作用通过身体结构传递，帮助鸭子向前。水流、身体阻力和两只脚的动作都影响实际运动。箭头表示作用方向，不是物体额外长出的推进器。力的成对关系也不意味着鸭子和水具有相同速度，因为受力对象的质量、流动范围和其他作用不同。"
+      },
+      {
+        "title": "回程减少对前进的抵消",
+        "body": "收脚阶段若仍维持很大的迎水面积，向前拉脚会受到较大的反向阻力，抵消一部分推进。改变脚趾展开程度和脚的角度可以减少这种代价。演示把一个划水周期分成三段，便于比较；真实划水是连续动作，鸭子也可能交替用脚、调整速度或转弯。无蹼开关只是控制形状变量，并不能定量预测真实动物的游速。"
+      }
+    ],
+    "misconception": "蹼不是发动机，也不保证脚越大游得越快；张开推水、缩小回程的配合才是本页的重点。",
+    "boundary": "箭头为方向示意，未计算流体涡旋、浮力、双脚协调或身体阻力；隐藏蹼不会在模型中给出可用的真实游速差。",
+    "narration": [
+      {
+        "label": "看看脚趾之间",
+        "text": "鸭子在水面上滑过去，看起来轻轻松松，水下面的脚却在忙。把脚放大看看，几个脚趾之间连着一层皮，这就是蹼。脚趾张开的时候，蹼也展开，像一把宽宽的小船桨。不过，鸭子可不是一直把这把船桨张到最大。我们来看一次完整的划水。",
+        "cue": "展示张开的蹼和脚趾结构。"
+      },
+      {
+        "label": "推一下水",
+        "text": "现在让脚向后划。宽宽的脚掌推着水向后，水也给鸭子的脚一个向前的作用，帮助身体向前走。先停一停，看看两个箭头朝哪边。一个告诉我们水被推的方向，一个告诉我们鸭子受到的方向。它们有关联，却不是说鸭子和水一定跑得一样快。",
+        "cue": "进入推水阶段，停三秒比较两支箭头。"
+      },
+      {
+        "label": "轻一点收回来",
+        "text": "脚划完了，还要收回来，才能再划下一次。这时脚趾靠近一些，脚掌面对水的面积变小，回来的时候就不那么费劲。你看，身体不会因为收脚就突然跳回原来的位置。鸭子把推水和收脚接起来，才有了我们看见的连续游泳动作。",
+        "cue": "进入回程，脚收拢，身体保留前移位置。"
+      },
+      {
+        "label": "做一个形状比较",
+        "text": "再试试把图里的蹼藏起来。只剩分开的脚趾时，推水的面积是不是小了？这是一个想象中的对照，真的鸭子仍然有蹼。我们不用比赛谁游得最快，只看形状怎样帮助动作。下次去池塘，也可以从岸边留意鸭脚张开和收拢，看看它们什么时候转弯。",
+        "cue": "隐藏蹼并比较脚掌面积，最后恢复真实有蹼结构。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Would keeping a duck’s foot fully spread make its return stroke harder?",
+    "observe": "Compare opening, pushing and recovery, watching foot area, force arrows and body position. Hide the webbing as a shape comparison and inspect the area interacting with water.",
+    "academic": [
+      {
+        "title": "Webbing changes the area interacting with water",
+        "body": "Webbing joins the toes and creates a larger effective area when spread. Force depends on speed and orientation as well as area. With comparable motion, spreading the webbing moves more water; folding changes the recovery shape. Muscles supply the energy, while structure affects how that effort interacts with water."
+      },
+      {
+        "title": "Pushing water produces a reaction on the duck",
+        "body": "The foot gives water backward momentum, and the water exerts a reaction on the foot that helps propel the body. Flow, body drag and both feet affect the resulting motion. Paired forces do not imply equal speeds for duck and water, since their masses, surroundings and other forces differ."
+      },
+      {
+        "title": "Recovery reduces the cost of returning the foot",
+        "body": "A broad foot pulled forward through water can oppose forward motion. Changing spread and orientation reduces this recovery cost. The three stages separate a continuous stroke for inspection. Real ducks vary rhythm, use both feet and turn. The no-webbing comparison isolates shape, not a calibrated prediction of swimming speed."
+      }
+    ],
+    "misconception": "Webbing is not an engine, and larger feet do not automatically mean faster swimming. The important comparison is spreading during propulsion and reducing area during recovery.",
+    "boundary": "Arrows show directions; vortices, buoyancy, coordination and body drag are not calculated. Hiding webbing does not provide a measured real-world speed difference.",
+    "narration": [
+      {
+        "label": "Look between the toes",
+        "text": "A duck glides across a pond while its feet work below the surface. Between its toes is skin called webbing. When the toes spread, the webbing opens like a broad little paddle. But the duck does not keep that paddle fully open all the time. Let us inspect one stroke.",
+        "cue": "Show the spread toes and webbing."
+      },
+      {
+        "label": "Push against the water",
+        "text": "Let the foot sweep backward. The broad foot pushes water back, and the water pushes on the foot to help move the duck forward. Pause and inspect the two arrows. They show related directions of action, not a promise that duck and water travel at the same speed.",
+        "cue": "Pause during propulsion and compare the arrows."
+      },
+      {
+        "label": "Return the foot with less resistance",
+        "text": "After pushing, the foot must come forward for another stroke. The toes draw closer and present less area to the water, making recovery easier. The body does not suddenly jump back to its starting point. Connecting propulsion and recovery produces the swimming motion we see.",
+        "cue": "Show foot recovery while retaining forward body displacement."
+      },
+      {
+        "label": "Compare the shapes",
+        "text": "Hide the webbing in the drawing. The separate toes present a smaller area, do they not? This is an imagined comparison; a real duck still has webbing. We are comparing how shape helps movement, not holding a race. At a pond, watch from the bank for opening feet and turns.",
+        "cue": "Hide the webbing, compare area, then restore it."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Ducks Unlimited — Masters of the Air and Water",
+      "url": "https://www.ducks.org/conservation/waterfowl-research-science/understanding-waterfowl-masters-of-the-air-and-water"
+    },
+    {
+      "title": "U.S. Fish and Wildlife Service — Waterfowl adaptations",
+      "url": "https://www.fws.gov/sites/default/files/documents/2024-04/2117.pdf"
+    }
+  ]
+}

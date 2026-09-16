@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "rainbow",
+  "zh": {
+    "question": "把太阳在天空里的位置抬高，地面上看见的彩虹会升高还是降低？",
+    "observe": "先看雨滴里的入射、内部反射和出射；再到天空视图调高太阳高度，比较主虹位置与地平线。",
+    "academic": [
+      {
+        "title": "不同颜色沿不同方向离开",
+        "body": "白光包含连续的可见波长。空气与水的折射率不同，光跨越界面时改变传播方向，且水对不同波长的折射程度略有差别。主虹光路包含入水折射、一次内部反射和出水折射。附近许多入射光线在特定出射角附近聚集，使颜色更显眼；不是水滴自己产生了彩色光，也不是每一次内部反射都是全反射。"
+      },
+      {
+        "title": "圆弧由观察者的位置决定",
+        "body": "主虹围绕背太阳点分布，常见可见光中红色约在42°的外侧，紫色略靠内。到达同一位观察者眼中的不同颜色通常来自不同方向的水滴。彩虹没有固定在地面上的端点；太阳越高，背太阳点越低，地平线上可见的弧通常越短。在高处或无遮挡视野中，条件合适时可以看到更完整的圆。"
+      },
+      {
+        "title": "第二道虹与模型的边界",
+        "body": "次虹光路在水滴内发生两次反射，较主虹更暗、位于外侧，颜色次序相反。两道虹之间常出现较暗的亚历山大暗带。真实彩虹还受雨滴大小、形状和波动光学影响，可能出现附加的细色带。本页将光线与代表波长画开，适合解释方向和顺序，不是在逐滴计算整片天空的真实亮度。"
+      }
+    ],
+    "misconception": "彩虹不是挂在某处的一座彩桥；位置由太阳、水滴和观察者共同决定。第二道虹也不是第一道虹在天空中的镜子倒影。",
+    "boundary": "几何光学采用近似球形水滴和代表波长；未完整计算干涉、偏振、雨滴分布及相机曝光。不要把屏幕上的色带宽度当作自然界的精确测量。",
+    "narration": [
+      {
+        "label": "阳光里藏着颜色",
+        "text": "雨后有时会出现一道彩虹。我们先把一小滴水放大来看。看起来白白的阳光里，原来有许多颜色。光进入水滴时转了弯，在里面有一部分折返回来，出来时又转一次弯。不同颜色转得稍有不同，就分开走了。",
+        "cue": "播放一滴水的光路，逐步显示折射与内部反射。"
+      },
+      {
+        "label": "眼睛收到哪束光",
+        "text": "并不是这一滴水把所有颜色都排好，送进你的眼睛。天空里有好多好多水滴，你从不同方向收到了不同颜色的光，它们合起来才像一道弯弯的带子。找找画面里的太阳和眼睛：看彩虹的时候，太阳通常在你的身后。",
+        "cue": "切换天空视图，显示太阳、观察者和背太阳方向。"
+      },
+      {
+        "label": "先猜再移动",
+        "text": "现在先停一停。假如把太阳的位置抬高，彩虹会一起抬高吗？想好以后，慢慢拖动太阳高度。你发现了吗，地平线上能看见的彩虹反而往低处去了。有时候地面挡住了下面的部分；换个视野，我们才可能看见更多圆弧。",
+        "cue": "停顿约四秒，再调高太阳高度并比较地面、无遮挡视图。"
+      },
+      {
+        "label": "寻找另一道虹",
+        "text": "如果出现第二道更淡的虹，再找一找红色在哪里。第二道虹里的颜色顺序反过来了，因为那条光路在水滴里面多反射了一次。彩虹没有可以跑到的脚，也不是能踩上去的桥。它是阳光、水滴和你的眼睛一起带来的美丽景象。",
+        "cue": "切双虹，比较主虹与次虹的红色位置。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If the Sun moves higher in the sky, will the rainbow seen from the ground move higher or lower?",
+    "observe": "Follow entry, internal reflection, and exit in a droplet. Then raise solar altitude in the sky view and compare the primary bow with the horizon.",
+    "academic": [
+      {
+        "title": "Colors leave in different directions",
+        "body": "White light contains a continuous range of visible wavelengths. Refraction changes its direction across air–water boundaries, with a slightly different refractive index for each wavelength. A primary-bow path includes refraction, one internal reflection, and refraction on exit. Nearby rays concentrate around particular exit angles. The droplet does not manufacture colors, and internal reflection is not necessarily total reflection."
+      },
+      {
+        "title": "The observer determines the arc",
+        "body": "A primary bow is centered on the antisolar point, with visible red near the outer 42° edge and violet slightly inward. Different colors reaching one observer usually arrive from droplets in different directions. There is no fixed endpoint on the ground. Raising the Sun lowers the antisolar point and usually reduces the arc visible above the horizon. An unobstructed elevated view can sometimes reveal more of the circle."
+      },
+      {
+        "title": "The secondary bow and model limits",
+        "body": "Two internal reflections produce the fainter secondary bow outside the primary, with reversed colors. A darker Alexander’s band often lies between them. Droplet sizes, shapes, and wave effects can produce additional fine bands. The separated rays and representative wavelengths here explain geometry, rather than calculating the brightness of every droplet in a real sky."
+      }
+    ],
+    "misconception": "A rainbow is not a bridge fixed in one place. Sunlight, droplets, and the observer determine it; the secondary is not a mirror image suspended in the sky.",
+    "boundary": "The ray diagram approximates spherical droplets and selected wavelengths, without full interference, polarization, drop distributions, or exposure. Screen band widths are not calibrated measurements.",
+    "narration": [
+      {
+        "label": "Colors inside sunlight",
+        "text": "Sometimes a rainbow appears after rain. Let’s enlarge one tiny water drop. Light that looks white contains many colors. It bends on entering the drop, some reflects inside, and it bends again when leaving. Different colors bend by slightly different amounts, so they leave in different directions.",
+        "cue": "Reveal refraction and internal reflection along a droplet path."
+      },
+      {
+        "label": "Which light reaches your eyes?",
+        "text": "One drop does not line up every color and send them all into your eyes. Many drops fill the sky. Different colors arrive from different directions and together make a curved band. Find the Sun and the eye in the picture. When you look at a rainbow, the Sun is usually behind you.",
+        "cue": "Show Sun, observer, and antisolar direction in sky view."
+      },
+      {
+        "label": "Guess, then move",
+        "text": "Pause for a moment. If we raise the Sun, will the rainbow rise too? Make your guess and slowly move the solar-height control. Notice how the part above the horizon moves lower instead. The ground can hide the lower part of the circle. A different view can let us see more of its curve.",
+        "cue": "Pause for four seconds, raise solar altitude, and compare ground and unobstructed views."
+      },
+      {
+        "label": "Look for another bow",
+        "text": "If there is a second, fainter rainbow, look for its red edge. Its colors run the other way around because the light reflected one extra time inside the drops. There is no rainbow foot you can run to and no bridge you can stand on. Sunlight, water drops, and your eyes make this beautiful sight together.",
+        "cue": "Compare red in the primary and secondary bows."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Met Office · Rainbows: optical wonders",
+      "url": "https://weather.metoffice.gov.uk/learn-about/weather/optical-effects/rainbows"
+    },
+    {
+      "title": "NOAA/National Weather Service · How Do Rainbows Form?",
+      "url": "https://www.weather.gov/fgz/Rainbow"
+    }
+  ]
+}

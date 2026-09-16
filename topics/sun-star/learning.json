@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "sun-star",
+  "zh": {
+    "question": "如果离太阳越来越远，变小的是太阳本身，还是它在眼睛里占的地方？",
+    "observe": "先看近处的太阳，点击移远或拖动距离滑杆，再移回；比较固定的真实太阳示意和右侧视大小。",
+    "academic": [
+      {
+        "title": "太阳是一颗能自己发光的恒星",
+        "body": "太阳主要由氢和氦构成，是高温的等离子体天体，而非燃烧木柴那样的化学火球。核心的高温高压使氢核通过核反应链转变为氦，释放能量。能量在内部经过辐射和对流传递，最终以光等形式向外释放。我们通常说的可见表面是光球层，并不是可以踩上去的固体外壳。"
+      },
+      {
+        "title": "角大小随距离改变",
+        "body": "半径为R的球体，观察者距中心d且位于球外时，角直径为2arcsin(R/d)。距离远大于半径时约为2R/d；同一物体移到两倍远处，角大小约减半，而真实直径不变。太阳在地球附近约占半度，因此能用视角而非屏幕厘米来比较；本页用放大的符号展示变化，并保留小光点以便追踪。"
+      },
+      {
+        "title": "看起来亮也受距离影响",
+        "body": "在没有吸收、散射且各向近似均匀辐射时，辐射通量随距离平方反比下降。远方恒星可能比太阳更大、更亮，却因非常遥远而只呈小光点；不是所有恒星都和太阳一样。它们的质量、温度、成分与演化阶段不同，光谱能提供相关证据。本页只控制视大小，不能把光晕亮度直接用作测光实验。"
+      }
+    ],
+    "misconception": "太阳不是与星星完全不同的一类东西；它就是离我们最近的恒星。远处看成光点不表示恒星本身很小。",
+    "boundary": "距离滑杆改变的是几何视角，真实太阳大小不变；光点有最小显示尺寸，颜色、光晕和亮度未按真实观测标定。观察演示即可，不要直视真实太阳。",
+    "narration": [
+      {
+        "label": "白天的星星",
+        "text": "你见过白天的太阳，也见过夜里的星星。它们看起来差别很大，对不对？太阳其实也是一颗恒星，只是它离我们比别的恒星近得多，所以看起来又大又亮。今天我们不用抬头盯着真正的太阳，就在画面里做一次越来越远的旅行。",
+        "cue": "显示初始近景；不引导直视太阳。"
+      },
+      {
+        "label": "往远处退一退",
+        "text": "先看左边代表太阳真实大小的图，再看右边我们眼睛里的样子。慢慢把距离拉远，右边的太阳就越来越小。暂停猜一猜：太阳真的缩成一小团了吗？给自己几秒钟，再把距离拉回来。你会发现，它又看起来大了，原来的太阳并没有变。",
+        "cue": "移远到中途停顿约四秒，再移近。"
+      },
+      {
+        "label": "为什么它会发光",
+        "text": "太阳能够自己发出光和热。它的中心非常热，那里发生的变化会释放能量；能量慢慢传到外面，送到太空里，也来到地球。太阳不是一团烧木头的火，也没有能让我们站着的硬地板。画面里柔软的亮边，是帮助我们认出它的画法。",
+        "cue": "停留太阳表面示意，避免表现化学燃烧。"
+      },
+      {
+        "label": "小光点也能很大",
+        "text": "如果我们退得足够远，太阳也会像夜空里的一颗小光点。那些遥远的星星，有的比太阳大，有的比太阳小，各有自己的特点。下次看到夜空，可以记住今天的小实验：眼睛里看着小，不一定真的小；距离也会改变我们看到的样子。",
+        "cue": "完成远距视图，保留固定真实大小对照。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If we move farther from the Sun, does the Sun shrink or does its apparent size shrink?",
+    "observe": "Use the far preset or distance slider, then return near. Compare the fixed illustration of physical size with the changing apparent disk.",
+    "academic": [
+      {
+        "title": "The Sun is a self-luminous star",
+        "body": "Made mainly of hydrogen and helium, the Sun is a hot plasma body, not a chemical fire burning fuel like wood. Its core conditions allow nuclear reaction chains to convert hydrogen into helium and release energy. Radiation and convection transport energy outward. The visible photosphere is often called a surface, but is not a solid shell we could stand on."
+      },
+      {
+        "title": "Angular size changes with distance",
+        "body": "A sphere of radius R viewed from outside at center distance d has angular diameter 2arcsin(R/d). Far away this is approximately 2R/d: doubling distance roughly halves angular size without changing physical diameter. The Sun spans about half a degree from Earth. This page enlarges its visual symbol and retains a minimum dot size for tracking."
+      },
+      {
+        "title": "Apparent brightness also depends on distance",
+        "body": "Without absorption or scattering, an approximately isotropic source’s flux decreases with the square of distance. A distant star can be larger and more luminous than the Sun yet appear as a tiny point. Stars vary in mass, temperature, composition, and evolutionary stage; spectra provide evidence. This interaction controls apparent size, and its halo is not a calibrated photometric measurement."
+      }
+    ],
+    "misconception": "The Sun is our nearest star, not a completely different kind of object. A distant point of light need not be physically small.",
+    "boundary": "The slider changes viewing geometry, not the Sun’s actual size. Minimum dot size, colors, halos, and brightness are illustrative. Use the diagram; do not look directly at the real Sun.",
+    "narration": [
+      {
+        "label": "A daytime star",
+        "text": "You have seen the Sun in daytime and stars at night. They look very different, don’t they? The Sun is also a star. It is much closer to us than other stars, so it looks large and bright. Today we can travel farther away inside this picture without staring at the real Sun.",
+        "cue": "Show the initial view without encouraging direct solar viewing."
+      },
+      {
+        "label": "Step farther back",
+        "text": "Look at the fixed picture of the Sun on the left and its apparent size on the right. Increase the distance slowly and the right-hand Sun gets smaller. Pause and guess: has the real Sun shrunk? After a few seconds, move closer again. It looks large once more, although the original Sun has not changed.",
+        "cue": "Pause four seconds midway out, then return near."
+      },
+      {
+        "label": "Why it shines",
+        "text": "The Sun makes its own light and heat. Its center is extremely hot, and changes there release energy. That energy travels outward and eventually into space, with some reaching Earth. The Sun is not a wood fire and has no hard floor to stand on. Its soft glow in our picture helps us recognize it.",
+        "cue": "Inspect the illustrated surface without showing chemical flames."
+      },
+      {
+        "label": "A tiny point can be huge",
+        "text": "Far enough away, the Sun would look like a little point in the night sky too. Some distant stars are bigger than the Sun, some smaller, and each has its own properties. Next time you see stars, remember our experiment: looking small does not always mean being small. Distance changes what we see.",
+        "cue": "Finish far away with the fixed physical-size comparison visible."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Sun Facts",
+      "url": "https://science.nasa.gov/sun/facts/"
+    },
+    {
+      "title": "NASA · Stars",
+      "url": "https://science.nasa.gov/universe/stars/"
+    }
+  ]
+}

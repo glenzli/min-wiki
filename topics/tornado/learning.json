@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "tornado",
+  "zh": {
+    "question": "看不见白色漏斗，就一定没有旋转的危险气柱吗？",
+    "observe": "先用较强风切变和上升气流推进，再隐藏凝结云，观察旋转状态是否保留；降低上升气流，比较组织情况。",
+    "academic": [
+      {
+        "title": "旋转雷暴不是必然产生龙卷风",
+        "body": "在常见的超级单体情景中，随高度变化的风有助于产生水平涡度，上升气流可使其倾斜、伸长，形成旋转上升气流。近地面涡度来源、冷池与上升气流的配合，对最终是否产生龙卷风都重要。强风切变或旋转雷暴只表示有关条件，不是确定的龙卷风开关；很多超级单体不产龙卷风。"
+      },
+      {
+        "title": "可见漏斗与空气旋转要分开",
+        "body": "龙卷风是与云相连并接触地面的猛烈旋转气柱。可见漏斗常是压强降低、空气冷却后凝结出的云滴，也可能伴随扬起的尘土碎屑；它不是气柱本身。凝结漏斗没有一直延伸到地面，也可能已有地面旋转；反过来，悬在空中的漏斗云本身不能单独证明地面接触。"
+      },
+      {
+        "title": "不同龙卷风与观测证据",
+        "body": "超级单体并非唯一的龙卷风来源，飑线和一些非超级单体对流也可能产生龙卷风。雷达速度、地面观测和损害调查提供互补证据，漏斗的宽窄、颜色和拍摄角度不能可靠地直接换算风速。形成过程仍是研究对象，模型展示一条常见机制链，而不是给每场事件提供完整解释。"
+      }
+    ],
+    "misconception": "白色漏斗是部分空气被显现出来，不是所有危险风的外边界。",
+    "boundary": "旋转、云形与滑块均为定性示意，不计算真实风速或概率；不要接近风暴观察，按当地预警立即避险。",
+    "narration": [
+      {
+        "label": "先看空气，再看云",
+        "text": "你可能见过照片里长长的漏斗云，好像云伸出一根手指。今天我们先不把外形当答案，而是看看空气在做什么。龙卷风里面有猛烈旋转的空气，连接着云和地面。屏幕能帮助我们安全地观察，真正的风暴不能靠近去看。",
+        "cue": "显示雷暴全景，指出旋转线。"
+      },
+      {
+        "label": "风从不同方向来",
+        "text": "在一些强雷暴里，高处和低处的风不一样，上升的气流又把旋转带起来、拉长。几个条件配合，才可能让旋转发展到地面。不过，不是每一朵转动的雷暴云都会变成龙卷风。我们慢慢改变上升气流，看看画面能不能组织起明显的旋转。",
+        "cue": "比较强弱上升气流的阶段演示。"
+      },
+      {
+        "label": "把白色漏斗藏起来",
+        "text": "现在做一个特别的比较：把凝结出来的白色云藏起来。先停一下，旋转的提示还在吗？原来，云让一部分空气运动变得可见，但看不见云，不代表空气没有转。就像平时的风常常看不见，我们要看树叶怎么动，才能发现它正在经过。",
+        "cue": "关闭凝结云，留三秒观察旋转。"
+      },
+      {
+        "label": "外形不是安全尺子",
+        "text": "漏斗长得粗还是细、颜色深还是浅，都不能直接告诉我们风有多强。科学家会把许多观测放在一起研究。我们学会把看见的云和空气的运动分开想，就进了一步。如果收到龙卷风警报，要马上跟大人去规定的安全位置，不到窗边找漏斗。",
+        "cue": "保留无凝结云的对照，随后恢复全景。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If no white funnel is visible, does that mean there is no dangerous rotating air column?",
+    "observe": "Advance with stronger shear and updraft, then hide the condensation cloud and check whether rotation remains. Lower the updraft and compare organization.",
+    "academic": [
+      {
+        "title": "A rotating storm does not guarantee a tornado",
+        "body": "In a common supercell scenario, winds changing with height provide horizontal vorticity that updrafts can tilt and stretch. Near-ground vorticity, cold pools and updraft interactions also matter. Strong shear and storm rotation identify relevant ingredients, but many supercells never produce tornadoes."
+      },
+      {
+        "title": "The visible funnel is not the vortex",
+        "body": "A tornado is a violently rotating air column connecting cloud and ground. The visible funnel often consists of condensed droplets, sometimes accompanied by dust and debris. The circulation can reach the ground even when the condensation funnel does not. Conversely, a funnel aloft alone does not establish ground contact."
+      },
+      {
+        "title": "Different routes and different evidence",
+        "body": "Tornadoes can also occur in squall lines and some non-supercell storms. Doppler radar, ground observations and damage surveys provide complementary evidence. Funnel width and color do not directly measure wind speed. Tornadogenesis remains an active research problem, and this model presents one common pathway."
+      }
+    ],
+    "misconception": "The white funnel reveals part of the circulation; it is not the boundary of all dangerous wind.",
+    "boundary": "Rotation, cloud shapes and sliders are qualitative, not wind-speed or probability calculations. Do not approach storms; follow local shelter warnings.",
+    "narration": [
+      {
+        "label": "Look for air movement",
+        "text": "A funnel cloud can look like a long finger reaching from a cloud. Today we will look beyond the outline and ask what the air is doing. A tornado contains violently rotating air connecting cloud and ground. We can investigate safely on screen, without approaching a real storm.",
+        "cue": "Show the storm overview and indicate the rotation traces."
+      },
+      {
+        "label": "Different winds at different heights",
+        "text": "In some strong thunderstorms, winds differ with height while rising air tilts and stretches rotation. Several conditions must work together for a tornado to develop. Not every rotating thunderstorm becomes one. Change the updraft slowly and observe how the organized rotation changes.",
+        "cue": "Compare the stage sequence under weaker and stronger updrafts."
+      },
+      {
+        "label": "Hide the white funnel",
+        "text": "Try a special comparison: hide the white condensation cloud. Pause. Are the rotation clues still there? The cloud makes some air movement visible, but no visible cloud does not mean no rotating air. Ordinary wind can be invisible too; moving leaves help us notice that it is passing.",
+        "cue": "Hide condensation and pause for three seconds to inspect rotation."
+      },
+      {
+        "label": "Appearance is not a safety ruler",
+        "text": "A wide or narrow funnel, and a dark or pale color, cannot directly tell us the wind speed. Scientists combine several kinds of observations. Separating visible cloud from moving air is a useful discovery. If there is a tornado warning, go with an adult to the advised shelter rather than a window to search for a funnel.",
+        "cue": "Keep the cloud-free comparison briefly, then restore the overview."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NOAA NSSL · Tornado Types",
+      "url": "https://www.nssl.noaa.gov/education/svrwx101/tornadoes/types/"
+    },
+    {
+      "title": "NOAA NSSL · Tornado FAQ",
+      "url": "https://www.nssl.noaa.gov/education/svrwx101/tornadoes/faq/"
+    },
+    {
+      "title": "NOAA NSSL · Tornado Research",
+      "url": "https://www.nssl.noaa.gov/research/tornadoes/"
+    }
+  ]
+}

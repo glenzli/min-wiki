@@ -111,6 +111,7 @@ export class BuoyancyScene {
   const surface=`M82 ${g.water}Q170 ${g.water-amplitude} 260 ${g.water}T440 ${g.water}T610 ${g.water}`;
   const support=s.experiment==='depth'?`<g><path d="M320 56H410" stroke="#7c8f86" stroke-width="10" stroke-linecap="round"/><path d="M324 53H406" stroke="#e0e8d8" stroke-width="3" stroke-linecap="round"/><path d="M365 56V${y+3}" stroke="#82958d" stroke-width="3"/><path d="M364 59V${y}" stroke="#f6f7e9" stroke-width=".8"/></g>`:'';
   const upStart=Math.min(g.bottom+9,427),downStart=Math.min(y-8,427-r.weight*10);
+  const supportForce = this.forces && settled && !r.floating && s.experiment !== 'depth' ? `<path d="M365 481V${481-Math.max(0,r.weight-r.force)*10}" stroke="#71807a" stroke-width="5" marker-end="url(#buoy-up)"/>${text(455,477,t('箱底也在托住'),14,'#586c62')}` : '';
   const arrows=this.forces&&settled?`${r.force>0?`<path d="M${x-48} ${upStart}V${upStart-r.force*10}" stroke="#178b70" stroke-width="6" stroke-linecap="round" marker-end="url(#buoy-up)"/>`:''}${text(x-48,upStart>405?477:upStart+35,t('浮力'),18,'#147b64')}<path d="M${x+g.width+46} ${downStart}V${downStart+r.weight*10}" stroke="#b77c3e" stroke-width="6" stroke-linecap="round" marker-end="url(#buoy-down)"/>${text(x+g.width+46,downStart-17,t('重力'),18,'#946230')}`:'';
   this.svg.innerHTML=`${definitions}<rect width="850" height="540" fill="url(#buoy-room)"/>
   <path d="M26 8L186 8L77 451H0Z" fill="#fffdf1" opacity=".44"/><path d="M226 0H245L135 451H116Z" fill="#fffdf3" opacity=".25"/>
@@ -126,7 +127,7 @@ export class BuoyancyScene {
   <path d="M96 418Q173 405 247 422T416 418T595 427M105 434Q205 416 309 431T579 433" stroke="#d1f4e2" stroke-width="3" opacity=".15" fill="none"/>
   <path d="M97 ${g.water+15}V417Q97 432 111 433" stroke="#f4fffa" stroke-width="7" opacity=".4" fill="none"/>
   ${ripple>0?`<ellipse cx="365" cy="${g.water}" rx="${g.width*.55+35*(1-ripple)}" ry="${5+ripple*8}" fill="none" stroke="#e8ffec" stroke-width="2" opacity="${ripple*.65}"/>`:''}
-  </g>${air}${cargo}${arrows}
+  </g>${air}${cargo}${arrows}${supportForce}
   <path d="M79 89V428Q79 450 102 450H588Q614 450 614 428V89" fill="none" stroke="#87a9a9" stroke-width="6"/>
   <path d="M86 94V426Q86 442 104 442H584" fill="none" stroke="#f8fff6" stroke-width="3" opacity=".8"/>
   <path d="M608 102V427Q608 440 591 442" fill="none" stroke="#568a98" stroke-width="2" opacity=".4"/>

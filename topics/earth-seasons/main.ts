@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -73,6 +74,7 @@ function $(id: string): HTMLElement {
 }
 
 class EarthApp {
+  private cancelStageMotion = () => {};
   mode!: string;
   scenario!: string;
   selectedCity!: string;
@@ -87,6 +89,7 @@ class EarthApp {
   resumePlayAfterDialog!: boolean;
 
   constructor() {
+    for (const type of ["click", "input", "keydown"]) document.addEventListener(type, () => this.cancelStageMotion(), { capture: true });
     this.mode = 'kids';
     this.scenario = 'daynight';
     this.selectedCity = 'beijing';
@@ -353,14 +356,9 @@ class EarthApp {
         button.addEventListener('click', () => {
           if (this.simulation) {
             this.pause();
-            if (['seasons','notilt'].includes(this.scenario)) {
-              this.simulation.orbitProgress = phase.at;
-            } else {
-              this.simulation.rotationProgress = phase.at;
-            }
-            this.syncScrubber();
-            this.updateStory();
-            this.updateCityCard();
+            const key = ['seasons','notilt'].includes(this.scenario) ? 'orbitProgress' : 'rotationProgress';
+            this.cancelStageMotion = animateValue({ from: this.simulation[key], to: phase.at, duration: 1000,
+              onUpdate: value => { this.simulation[key] = value; this.syncScrubber(); this.updateStory(); this.updateCityCard(); } });
           }
         });
         return button;

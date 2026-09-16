@@ -17,5 +17,7 @@
   "咦，气味小路断了": "The scent trail has a gap",
   "失去气味线索时，蚂蚁可能在附近寻找。这里把寻找过程停下来，让你看清缺口。": "Without the scent clue, ants may search nearby. We pause that search here so you can see the gap.",
   "找到绕行的小路": "A new route around",
-  "侦察蚁找到食物后，沿着新路线留下气味。伙伴可能逐渐跟上新路线。": "After finding food, a scout leaves scent on a new route. Other ants may gradually follow it."
+  "侦察蚁找到食物后，沿着新路线留下气味。伙伴可能逐渐跟上新路线。": "After finding food, a scout leaves scent on a new route. Other ants may gradually follow it.",
+  "画面暂时停住，方便你找到气味缺口。这不是每只蚂蚁真实停下的位置；失去线索的蚂蚁可能继续在附近寻找。": "The picture is paused so you can locate the scent gap. These are not measured stopping positions; ants that lose the cue may continue searching nearby.",
+  "这是找到新线索后的一种路线对照，蚂蚁位置已经重新安排。按前进，观察伙伴怎样沿新路线行走；中间的切换不是实际寻找过程。": "This compares one possible new route, with the ants repositioned for the illustration. Press walk to follow the new trail; the change between pictures is not the actual search."
 }

@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "water-states",
+  "zh": {
+    "question": "冰融化、水蒸发以后，还是同一种水吗？白色的雾就是水蒸气吗？",
+    "observe": "选择结冰，用“初生薄冰”“冰水相接”“完整冰层”比较生长前沿，再勾选“标出晶界”；最后选择融化，慢慢拖动进度，对照晶粒和分子区。",
+    "academic": [
+      {
+        "title": "晶粒、晶界和分子不是同一层次",
+        "body": "普通冰内部的水分子通过氢键形成较开放的有序结构。许多分子组成一个晶粒，不同取向的晶粒相遇形成晶界，整块冰仍连续相接。六角对称属于晶体结构，杯中多晶冰并不必然长成一片片六角雪花。透明冰也可以含有多个晶粒；夹带气泡与晶界不同，气泡会散射光，却不是冰密度较低的必要原因。融化改变排列和运动，不把水分子分解成氢气与氧气。"
+      },
+      {
+        "title": "温度与相变能量不能混为一谈",
+        "body": "在固定压强下，纯物质发生相变时，传入或移出的能量可以主要用于改变相态，而不立即改变温度，这部分涉及潜热。实际冻结还受成核、过冷、溶质和传热边界影响。纯水在接近标准大气压下常用零摄氏度描述熔点，但页面进度不是温度计，不能据它推算真实冰块融化所需时间。"
+      },
+      {
+        "title": "蒸发、沸腾和凝结",
+        "body": "蒸发可在液体表面、未达沸点时发生；沸腾则涉及液体内部形成并生长的蒸气泡，沸点随压强而变。水汽遇到足够冷的表面可凝结成液滴。真正的气态水不可见，杯口附近可见的白雾通常是微小液滴。温度、湿度、气流与表面积都会改变日常蒸发速率，不能只看有没有阳光。"
+      }
+    ],
+    "misconception": "水蒸气看不见；白雾中的可见部分通常是小液滴，不是变大的水分子。",
+    "boundary": "固定晶核按不同方向竞争生长，展示一种从上方冻结的几何剖面；不是传热、成核或真实折射计算。晶界反光和虚线经过强调，气泡大小不按比例。融化在此回退同一相界，实际未必严格反向。36个分子符号始终保留，只示意局部结构。",
+    "narration": [
+      {
+        "label": "水会换样子",
+        "text": "一块冰，一杯水，还有空气里看不见的水蒸气，看起来很不一样，却都可以是水。今天我们看水怎样换一种样子。先选融化，慢慢向前推。冰少了一些，杯里的液态水多了一些。它不是被变成另一种东西，而是水的状态改变了。",
+        "cue": "选择融化，缓慢推进宏观杯子。"
+      },
+      {
+        "label": "把眼睛变成放大镜",
+        "text": "旁边的小图帮我们想象非常非常小的水分子。冰里，它们排列得比较有秩序；在液态水里，仍然挨得近，却能换位置。先停一下，再选结冰。杯中一片片晶粒慢慢长大、碰到邻居，就连成了一整层冰。每片晶粒里都有许许多多分子，可不是一片晶粒只有一个分子哦。",
+        "cue": "选择结冰，依次观察薄冰、冰水相接和完整冰层；勾选晶界后停三秒，再指向分子区。"
+      },
+      {
+        "label": "水去空气里了",
+        "text": "现在选择蒸发。有些水分子从水面进入空气，杯里的水就少了一点。这个变化不用等到水烧开，晾衣服、地面变干也会发生。画面用小符号告诉你水去了哪里，但真实水蒸气是看不见的，所以不要把每一团白雾都叫成看得见的水蒸气。",
+        "cue": "播放蒸发，对照水面与离开的符号。"
+      },
+      {
+        "label": "还可以回来",
+        "text": "最后看看凝结。空气里的水遇到足够冷的表面，可以聚成小水滴，像冷杯子外面出现的小水珠。它们不是从杯壁偷偷钻出来的。水能在不同条件下改变状态，却仍然是水。下次发现冰、水珠或正在变干的东西，你可以试着说出正在发生哪一种变化。",
+        "cue": "切换凝结，停在冷表面小水滴。"
+      }
+    ]
+  },
+  "en": {
+    "question": "After ice melts or water evaporates, is it still water? Is visible white mist water vapor?",
+    "observe": "Choose freezing, compare First thin ice, Ice meets water and Fully frozen, then enable Show grain boundaries. Finally choose melting and scrub slowly, comparing the grains with the molecular inset.",
+    "academic": [
+      {
+        "title": "Grains, boundaries and molecules are different scales",
+        "body": "Ordinary ice has an open, ordered hydrogen-bonded molecular structure. Vast numbers of molecules form a grain; differently oriented grains meet at boundaries within a continuous body of ice. Hexagonal symmetry describes crystal structure, so a polycrystalline cup of ice need not resemble a collection of six-sided snowflakes. Clear ice may contain multiple grains. Trapped air bubbles scatter light but are distinct from boundaries, and are not necessary for ice’s lower density. Melting changes order and motion without splitting water into hydrogen and oxygen."
+      },
+      {
+        "title": "Temperature differs from phase-change energy",
+        "body": "At fixed pressure, energy transfer during a pure substance’s phase change can alter its state without immediately changing temperature. Nucleation, supercooling, dissolved substances and heat transfer affect real freezing. The familiar zero-degree melting point is conditional, and the progress slider is neither a thermometer nor a melting-time prediction."
+      },
+      {
+        "title": "Evaporation, boiling and condensation",
+        "body": "Evaporation occurs at a surface below boiling; boiling involves growing vapor bubbles within the liquid and depends on pressure. Vapor can condense on a sufficiently cold surface. Gaseous water is invisible; familiar white mist usually consists of tiny droplets. Temperature, humidity, airflow and area all influence evaporation."
+      }
+    ],
+    "misconception": "Water vapor is invisible; the visible parts of white mist are usually droplets, not enlarged molecules.",
+    "boundary": "Fixed nuclei compete directionally in one geometric section freezing from above; heat transfer, nucleation and optical refraction are not calculated. Boundary highlights and optional dashes are emphasized; bubble sizes are not to scale. Melting retraces the same interface here, although real melting need not reverse freezing. All 36 molecular symbols persist and show only local structure.",
+    "narration": [
+      {
+        "label": "Water changes its form",
+        "text": "An ice cube, a glass of water and invisible vapor in the air look different, but they can all be water. Choose melting and move forward slowly. There is less ice and more liquid water. The water has not become a different substance; it has changed its state.",
+        "cue": "Select melting and slowly advance the cup view."
+      },
+      {
+        "label": "Imagine a magnifying glass",
+        "text": "The inset helps us imagine extremely tiny water molecules. In ice they have more order; in liquid they remain close but can change positions. Pause, then choose freezing. In the cup, crystal grains grow and meet their neighbors, joining into one layer of ice. Each grain contains enormous numbers of molecules, not just one.",
+        "cue": "Choose freezing and compare the thin, partial and full stages; enable grain boundaries, pause three seconds, then point to the molecular inset."
+      },
+      {
+        "label": "Water enters the air",
+        "text": "Choose evaporation. Some molecules leave the surface and enter the air, reducing the water in the cup. This happens without boiling: clothes and wet ground dry this way too. Symbols show where water goes, but real vapor is invisible. A visible white mist is not gaseous water that we can see.",
+        "cue": "Play evaporation and compare the surface with departing symbols."
+      },
+      {
+        "label": "It can return",
+        "text": "Now watch condensation. Water vapor meeting a sufficiently cold surface can gather into droplets, like those on the outside of a cold cup. They have not sneaked through the cup wall. Water changes state under different conditions while remaining water. Next time you notice ice, droplets or something drying, name the change you see.",
+        "cue": "Select condensation and hold the droplets on the cold surface."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "USGS · Water Density",
+      "url": "https://www.usgs.gov/water-science-school/science/water-density"
+    },
+    {
+      "title": "OpenStax · Phase Change and Latent Heat",
+      "url": "https://openstax.org/books/physics/pages/11-3-phase-change-and-latent-heat"
+    },
+    {
+      "title": "Bari & Hallett · Nucleation and Growth of Bubbles at an Ice–Water Interface",
+      "url": "https://www.cambridge.org/core/journals/journal-of-glaciology/article/nucleation-and-growth-of-bubbles-at-an-icewater-interface/F4A703B14F0B5156D8887BBFAE923DC4"
+    }
+  ]
+}

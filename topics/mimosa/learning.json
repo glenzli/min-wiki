@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "mimosa",
+  "zh": {
+    "question": "轻碰一片小叶，整株含羞草会同时合上吗？",
+    "observe": "先用局部轻触看小叶合拢，再切到“叶枕组织”：此时主叶枕不动。点击“演示主叶枕响应”，暂停比较上、下侧支撑；切到“运动细胞”，沿金色轮廓放大同一个细胞，最后继续观察恢复。",
+    "academic": [
+      {
+        "title": "同一株植物，运动器官有层级",
+        "body": "小叶、羽片和叶柄基部都有叶枕，不能把它们当成同一个关节。轻触可让信号沿所触羽片传播，小叶依次向上合拢；较广的响应还可能到达主叶枕，使叶柄下垂。放大纵切专门表示主叶枕，所以局部轻触时它保持原状。植物利用膜电位与钙信号协调响应，没有神经元或神经系统；电信号相似并不意味着存在动物式神经传导。"
+      },
+      {
+        "title": "连续的组织怎样向下弯",
+        "body": "主叶枕中央有维管组织，周围分布运动细胞。下侧伸展组织的细胞释放钾等离子，渗透条件改变，水重新分配，膨压下降；上下两侧的差异与组织形变共同改变叶柄的支撑。原始实验测到响应时钾外流增加，支持这条机制。水并非从整株流走，也不必让细胞壁破裂或让细胞膜大幅脱离壁，才能产生动作。"
+      },
+      {
+        "title": "放大到细胞，还能分出哪些层",
+        "body": "壁内侧是细胞膜与细胞质，液泡由自己的膜包围。主叶枕的成熟运动细胞可同时有较大的含水液泡和邻近细胞核的含单宁液泡，两者不是同一种结构。显微研究显示它们的比例随发育改变，但含单宁液泡也存在于不运动的组织，不能把它单独当作运动开关。恢复依赖离子、水分及相关生理过程重新调整。"
+      }
+    ],
+    "misconception": "含羞草没有神经系统和肌肉。“害羞”只是名字；小叶上合与主叶柄下垂由不同位置的叶枕完成，不能混成同一个关节的转动。",
+    "boundary": "这是主叶枕的教学纵切及同一细胞的连续放大，不是显微照片。细胞形状、膜厚度、液泡变化与支撑条为定性示意，不是体积或压力实测；中央维管束不是神经。二十秒压缩了真实恢复时间，未模拟全部离子通道、细胞骨架或代谢，也不建议伤害或反复触碰真实植物。",
+    "narration": [
+      {
+        "label": "认识小叶子",
+        "text": "这盆植物叫含羞草。你看，一条条细细的羽片上，排着许多对小叶子，像一本本摊开的迷你书。它为什么叫这个名字呢？因为受到触碰时，叶子有时会收起来。可是它没有因为被人看见而不好意思。我们一起看看，真正发生了什么。",
+        "cue": "保持叶片展开，展示一条羽片。"
+      },
+      {
+        "label": "先分清两种动作",
+        "text": "在画面里轻轻碰一下，然后停一停。哪对小叶先合上？后面的有没有跟着动？叶子把信号传了出去，可它没有神经，也没有肌肉。现在看看叶柄根部的主叶枕：这次轻触，它还没有垂下来。原来，小叶合拢和整片叶子的叶柄下垂，不是同一个地方在动。",
+        "cue": "局部轻触后暂停，切到叶枕组织，指出主叶枕仍保持水平。"
+      },
+      {
+        "label": "走进主叶枕",
+        "text": "按一下演示主叶枕响应。看，下面的细胞少了一些水，撑住叶柄的力量变小，叶柄就慢慢向下弯。再放大金色边线里的同一个细胞。外面有细胞壁，里面有薄薄的膜，还能找到装着水和小物质的液泡。它们一起改变形状，细胞并没有破掉，水也没有从整株植物里漏光。",
+        "cue": "点击演示主叶枕响应，在膨压改变时暂停；进入运动细胞，指向壁、膜和液泡。"
+      },
+      {
+        "label": "等它慢慢回来",
+        "text": "继续看下去，小叶子又慢慢展开了。水和里面的小物质重新调整，需要一点时间。画面帮我们把等待缩短了，真实的植物可能要等更久。下次见到含羞草，可以先安静看一看。一次观察已经能发现好多事，让它休息，我们也把刚才的发现讲给朋友听吧。",
+        "cue": "继续到恢复阶段，最后停在展开状态。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Will touching one leaflet make the whole sensitive plant close at once?",
+    "observe": "First use local touch to fold leaflets, then open Pulvinus tissue: the primary pulvinus stays still. Run the primary-pulvinus demo, pause and compare upper and lower support. Open Motor cell to enlarge the same gold-outlined cell, then continue through recovery.",
+    "academic": [
+      {
+        "title": "Different organs move at different levels",
+        "body": "Pulvini occur at leaflet, pinna and petiole bases. Local touch can trigger sequential upward leaflet folding along the touched pinna; a wider response may also reach the primary pulvinus and lower the petiole. This longitudinal section specifically shows the primary pulvinus, so it stays still during the local-touch example. Plants coordinate responses through membrane voltage and calcium signals, but have neither neurons nor a nervous system. Electrical signalling does not imply animal nerve transmission."
+      },
+      {
+        "title": "How connected tissue bends downward",
+        "body": "Vascular tissue runs through the centre of the primary pulvinus, surrounded by motor tissue. Lower extensor cells release ions including potassium; osmotic conditions change, water is redistributed and turgor falls. Differences between the two sides and tissue deformation alter petiole support. Primary experiments found increased potassium efflux during the response. Water need not leave the entire plant, and movement does not require ruptured walls or severe separation of the plasma membrane from the wall."
+      },
+      {
+        "title": "Layers inside a motor cell",
+        "body": "Inside the cell wall lie the plasma membrane and cytoplasm; the vacuole has its own membrane. Mature primary-pulvinus motor cells can contain both a large aqueous vacuole and a tannin vacuole near the nucleus. Microscopy shows that their proportions change during development. Tannin vacuoles also occur in nonmotile tissue, so their presence alone is not a movement switch. Recovery involves redistribution of ions and water together with other physiological processes."
+      }
+    ],
+    "misconception": "Mimosa has no nervous system or muscles. “Shy” is a nickname; upward leaflet folding and downward petiole movement occur at pulvini in different locations.",
+    "boundary": "The primary-pulvinus section and continuous enlargement of one cell are teaching illustrations, not micrographs. Cell shape, membrane thickness, vacuole changes and support bars are qualitative, not measured volumes or pressures; the vascular bundle is not a nerve. The twenty-second sequence compresses recovery and omits complete channel, cytoskeletal and metabolic mechanisms. Do not wound or repeatedly touch a real plant.",
+    "narration": [
+      {
+        "label": "Meet the leaflets",
+        "text": "This is a sensitive plant. Along each little branch of its leaf sit pairs of leaflets, like tiny open books. Touch can make them close, which gives the plant its playful name. It is not embarrassed to be watched. Let us find out what actually moves the leaves.",
+        "cue": "Begin with the open plant and focus on one pinna."
+      },
+      {
+        "label": "Notice two different movements",
+        "text": "Touch once in the picture, then pause. Which pair closes first? Do others follow? Signals travel through the leaf, although the plant has no nerves or muscles. Now look at the main pulvinus at the stalk base. It has not drooped after this local touch. Tiny leaflets folding and the whole leaf stalk lowering are movements at different places.",
+        "cue": "Pause after local touch, open Pulvinus tissue, and show that the primary pulvinus stays level."
+      },
+      {
+        "label": "Explore the main pulvinus",
+        "text": "Start the primary-pulvinus demo. Some water leaves the lower cells, their support becomes weaker, and the stalk bends down. Enlarge the same cell inside the golden outline. Find its outer cell wall, thin inner membrane, and a vacuole holding water and dissolved substances. Their shapes change together. The cell has not burst, and the whole plant has not leaked all its water away.",
+        "cue": "Run the primary-pulvinus demo and pause during the turgor change. Open Motor cell and point out wall, membrane and vacuole."
+      },
+      {
+        "label": "Allow time to recover",
+        "text": "Continue and watch the leaflets reopen. Water and dissolved substances need time to redistribute. Our picture shortens the wait; a real plant may take longer. When you meet one, first watch quietly. One careful observation can reveal plenty, and then you can let it rest and share what you noticed.",
+        "cue": "Continue through recovery and end with the open leaf."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Hagihara et al. (2022) — Calcium-mediated rapid movements defend against herbivorous insects",
+      "url": "https://www.nature.com/articles/s41467-022-34106-x"
+    },
+    {
+      "title": "Allen (1969) — Mechanism of the Seismonastic Reaction in Mimosa pudica",
+      "url": "https://academic.oup.com/plphys/article/44/8/1101/6090205"
+    },
+    {
+      "title": "Fleurat-Lessard et al. (2016) — Co-occurrence of tannin and tannin-less vacuoles in sensitive plants",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26103934/"
+    }
+  ]
+}

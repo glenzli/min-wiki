@@ -45,7 +45,11 @@ function update() {
     return `<g opacity="${opacity('risk')}" transform="translate(${x} ${y}) rotate(-25)"><rect x="-15" y="-8" width="30" height="16" rx="8" fill="${inactive?'#8b9990':'#b27359'}" stroke="${inactive?'#71867e':'#94563f'}" stroke-width="2"/><path d="M-10 -9v-5M0 -9v-5M10 -9v-5M-10 9v5M0 9v5M10 9v5" stroke="${inactive?'#71867e':'#94563f'}" stroke-width="2"/>${inactive?'<path d="M-21 17L21 -17" stroke="#597166" stroke-width="3"/>':''}</g>`;
   }).join('');
   const chemical = state.chemicalWarning ? [[143,143],[210,218],[84,167]].map(([x,y])=>`<path d="M${x} ${y-12}l12 12-12 12-12-12Z" fill="#85677d" stroke="#62495b" stroke-width="2" opacity="${opacity('risk')}"/>`).join('') : '';
+  el('particles').getAnimations().forEach(animation => animation.cancel());
   el('particles').innerHTML = water + minerals + disinfectant + risks + chemical;
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches && !document.hidden) {
+    el('particles').animate([{ opacity: .55 }, { opacity: 1 }], { duration: 280, easing: 'ease-out' });
+  }
   el('lens').setAttribute('aria-label', scenario === 'chemical'
     ? t('示意放大图：水与矿物质仍在，紫色菱形表示煮沸不能去除的化学污染。')
     : scenario === 'microbial' ? stage === 'after'

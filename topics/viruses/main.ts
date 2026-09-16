@@ -1,3 +1,4 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -7,7 +8,8 @@ translateDocument(t);
 mountTopicNavigation('viruses');
 const el = <T extends Element = HTMLElement>(id: string): T => document.getElementById(id)! as unknown as T;
 const host = el<HTMLSelectElement>('host');
-let step = 0;
+let step = 0,shownStep=0;
+let cancelStage: () => void = () => {};
 const titles = [t('相遇之前'), t('先与表面结合'), t('遗传信息进入'), t('借用细胞，制造部件'), t('组装新的噬菌体'), t('释放，寻找下一次相遇')];
 const texts = [
   t('这个例子中的病毒叫噬菌体，会感染某些细菌。外壳包着 DNA，但它不能独自制造新病毒。'),
@@ -45,7 +47,7 @@ function render(): void {
   el('step-number').textContent = `${String(step + 1).padStart(2, '0')} / 06`;
   el('scene-stage').textContent = title;
   el('diagram-desc').textContent = text;
-  el('original-virus').setAttribute('transform', `translate(${step === 0 ? 170 : mismatch ? 363 : 480} ${step === 0 ? 106 : mismatch ? 90 : 122})`);
+  drawPositions();
   visible('original-virus', step < 5);
   visible('virus-label', step === 0);
   visible('packed-dna', step < 2);
@@ -58,18 +60,29 @@ function render(): void {
   visible('broken-cell', step === 5);
   visible('defense', defended && step === 2);
   el('cell-label').textContent = step === 5 ? t('本例：细菌裂解，子代释放') : t('细菌也是细胞');
-  const coordinates = step === 5 ? released : positions;
-  [...el('offspring').children].forEach((node, i) => {
-    const [x, y] = coordinates[i]!;
-    node.setAttribute('transform', `translate(${x} ${y}) rotate(${step === 5 ? i * 37 - 75 : -15 + i * 14}) scale(.3)`);
-  });
   el<HTMLButtonElement>('prev').disabled = step === 0;
   el<HTMLButtonElement>('next').disabled = step === limit;
 }
-host.addEventListener('change', () => { step = 0; render(); });
-el('prev').addEventListener('click', () => { step--; render(); });
-el('next').addEventListener('click', () => { step++; render(); });
-el('restart').addEventListener('click', () => { step = 0; render(); });
+function drawPositions() {
+  const approach=Math.min(1,shownStep),mismatch=host.value==='mismatch';
+  el('original-virus').setAttribute('transform',`translate(${170+((mismatch?363:480)-170)*approach} ${106+((mismatch?90:122)-106)*approach})`);
+  const release=Math.max(0,Math.min(1,shownStep-4));
+  [...el('offspring').children].forEach((node,i)=>{
+    const [x,y]=positions[i]!,[tx,ty]=released[i]!;
+    node.setAttribute('transform',`translate(${x+(tx!-x!)*release} ${y+(ty!-y!)*release}) rotate(${-15+i*14+(i*23-60)*release}) scale(.3)`);
+  });
+  const dna=el<SVGPathElement>('incoming-dna');
+  dna.setAttribute('pathLength','1'); dna.setAttribute('stroke-dasharray','1');
+  dna.setAttribute('stroke-dashoffset',String(1-Math.max(0,Math.min(1,shownStep-1))));
+}
+function seekStage(target:number) {
+  cancelStage();step=target;render();
+  cancelStage=animateValue({from:shownStep,to:step,duration:1000,onUpdate:value=>{shownStep=value;drawPositions();}});
+}
+host.addEventListener('change', () => {cancelStage();step=0;shownStep=0;render();});
+el('prev').addEventListener('click', () => seekStage(Math.max(0,step-1)));
+el('next').addEventListener('click', () => seekStage(step+1));
+el('restart').addEventListener('click', () => seekStage(0));
 render();
 
 mountReadingMode('details:last-of-type');

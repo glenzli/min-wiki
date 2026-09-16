@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "flower-fruit",
+  "zh": {
+    "question": "樱桃的果肉是花瓣变成的，还是花里面别的部分长大的？",
+    "observe": "先传粉，再逐步推进到幼果和成熟果；同时观察花朵与右侧内部图，追踪子房、胚珠、果肉与种子的对应关系。",
+    "academic": [
+      {
+        "title": "传粉与受精是两个过程",
+        "body": "花粉从花药到达柱头叫传粉，花粉携带的精细胞与胚珠内卵细胞结合才是受精。合适花粉可在柱头萌发，花粉管向胚珠生长，使精细胞到达内部。被子植物通常还发生形成胚乳的另一结合过程，即双受精。因此看到蜂停在花上，既不能证明有效花粉已经转移，也不能证明受精和结实一定成功。"
+      },
+      {
+        "title": "子房与胚珠各有发育去向",
+        "body": "本页以樱桃这类核果为例：子房壁发育成果皮，包含外层果皮、可食的肉质中层和坚硬的内层果核；种子位于硬核内部，由胚珠发育而来。花瓣通常逐渐凋落，并不直接变成果肉。这条对应关系不能机械套在每种水果的全部可食部分上，例如一些果实还包含花托等附属组织，植物学的果实范围也不同于日常“甜水果”。"
+      },
+      {
+        "title": "果实成熟需要时间和资源",
+        "body": "授粉受精之后，细胞分裂与膨大、储藏物质积累、色素和细胞壁变化共同参与果实生长成熟。植株供水、碳源、温度和胚珠发育等都会影响结果；一株树也可能让部分幼果停止发育。无籽果实说明受精与结果并非在所有植物中绝对绑定，但不能用这个例外抹去本例有性生殖路线中传粉、受精与种子形成的区别。"
+      }
+    ],
+    "misconception": "花瓣通常不变成果肉；樱桃硬核不等于种子，真正的种子在硬核里面。",
+    "boundary": "只追踪樱桃类核果的一条成功发育路线，省略兼容花粉筛选和失败分支；阶段切换压缩真实时间，不能推广到所有水果。",
+    "narration": [
+      {
+        "label": "从花找一颗樱桃",
+        "text": "树枝上开着一朵小花。以后这里可能长出樱桃，可是樱桃到底从花的哪里来呢？先别急着猜花瓣，我们看看花的里面。那里有叫子房的小部分，里面还有胚珠。名字有点新，没关系，先记住它们的位置，待会儿跟着画面看看各自会变成什么。",
+        "cue": "展示花及右侧子房、胚珠内部图。"
+      },
+      {
+        "label": "花粉送到还要继续",
+        "text": "小蜜蜂来到花边，可能帮助花粉到达合适的位置。这叫传粉。停一停，看看花粉落在哪里。故事还没有结束：合适的花粉要继续长出细细的管，让里面的生殖细胞到达胚珠，才能完成后面的受精。所以蜜蜂来过一次，并不保证每朵花都一定结出果实。",
+        "cue": "触发传粉，在花粉到达柱头时停三秒。"
+      },
+      {
+        "label": "花瓣落下，小果长大",
+        "text": "接着看，花瓣逐渐落下，里面的小果开始长大。樱桃的果肉来自子房的一部分，胚珠则发育成种子。它们不是一起变成同一种东西。右边的内部图把里面的关系打开给我们看：外面是果实，里面包着硬核，真正的种子还藏在硬核里面。",
+        "cue": "连续推进幼果，强调子房与胚珠不同去向。"
+      },
+      {
+        "label": "慢慢成熟的新故事",
+        "text": "小樱桃慢慢变得饱满，颜色也改变了，成熟需要时间、阳光、水和植株提供的材料。我们在画面里几步就看完，树上可不会这么快。下一次吃樱桃时，可以和大人看看果肉和果核，再想起今天的花。别把所有水果都当作樱桃，有些果实还有别的花部一起参与。",
+        "cue": "推进到成熟樱桃，保留内部剖面。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Does cherry flesh come from petals or from another part of the flower?",
+    "observe": "Pollinate, then advance through young and ripe fruit. Compare the flower with its internal view and trace the relationships among ovary, ovule, fruit flesh and seed.",
+    "academic": [
+      {
+        "title": "Pollination and fertilisation are distinct",
+        "body": "Pollination transfers pollen to a stigma. Compatible pollen can germinate and grow a tube towards an ovule, delivering sperm cells. Fusion with the egg forms the embryo; another fusion forms endosperm in typical double fertilisation. A bee visit alone proves neither effective pollen transfer nor successful fruit set."
+      },
+      {
+        "title": "Ovary and ovule have different outcomes",
+        "body": "In a cherry, the ovary wall forms the pericarp: outer skin, fleshy middle and hard inner stone. The seed develops from an ovule and lies inside that stone. Petals usually fall rather than become flesh. Other fruits may include accessory floral tissues, and the botanical category is broader than sweet foods."
+      },
+      {
+        "title": "Fruit development requires time and resources",
+        "body": "Cell division and expansion, stored material, pigments and cell-wall changes contribute to growth and ripening. Resource supply and embryo development affect whether a fruit persists. Seedless fruit illustrates that fertilisation and fruit formation are not universally inseparable, while the stages of this sexual pathway still need to be distinguished."
+      }
+    ],
+    "misconception": "Petals do not normally become fruit flesh. A cherry stone is not itself the seed; the seed is inside it.",
+    "boundary": "This follows one successful cherry-like development pathway, omitting compatibility tests and failed fruit set. Time is compressed and anatomy cannot be generalised to all fruits.",
+    "narration": [
+      {
+        "label": "Find a cherry inside a flower’s story",
+        "text": "A flower on a branch may later produce a cherry. Which part becomes the fruit? Before guessing the petals, look inside. Find the ovary and the ovules it contains. These are new names, but you only need to remember their positions and follow what develops from them.",
+        "cue": "Show the flower beside the ovary and ovule inset."
+      },
+      {
+        "label": "Pollen arrival is not the final step",
+        "text": "A visiting bee may help pollen reach the right place. That is pollination. Pause and find where it arrived. Compatible pollen still needs to grow a tube so reproductive cells can reach an ovule for fertilisation. One bee visit therefore does not guarantee a fruit.",
+        "cue": "Trigger pollination and pause at pollen arrival."
+      },
+      {
+        "label": "Petals fall and a young fruit grows",
+        "text": "As petals fall, a young fruit grows. Cherry flesh develops from part of the ovary, while an ovule develops into a seed. They do not become the same thing. The cutaway shows fruit around a hard stone, with the actual seed inside the stone.",
+        "cue": "Advance into young fruit and compare the tissue outcomes."
+      },
+      {
+        "label": "A slow path to ripeness",
+        "text": "The cherry fills out and changes colour as the plant supplies materials over time. Our few screen steps compress a much longer process. When eating cherries with a grown-up, inspect the flesh and stone and remember the flower. Other fruits can involve different floral parts, so they do not all follow cherry anatomy.",
+        "cue": "End with the ripe cherry and internal view."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "USDA Forest Service — The Woody Plant Seed Manual",
+      "url": "https://www.fs.usda.gov/rm/pubs_series/wo/wo_ah727.pdf"
+    },
+    {
+      "title": "OpenStax — Pollination and Fertilization",
+      "url": "https://openstax.org/books/biology-2e/pages/32-2-pollination-and-fertilization"
+    }
+  ]
+}

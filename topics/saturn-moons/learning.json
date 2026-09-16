@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "saturn-moons",
+  "zh": {
+    "question": "土星旁边大小不同的卫星，绕完一圈的时间会一样吗？",
+    "observe": "保持轨道全景播放，对照土卫一和土卫六的公转周期；再选择土卫二近景和真实大小比较，区分特点、大小与距离。",
+    "academic": [
+      {
+        "title": "共同引力场中的不同轨道",
+        "body": "在土星质量占主导、忽略摄动的近似下，卫星周期满足T²≈4π²a³/(GM)，轨道半长轴越大，周期通常越长。画面让七颗所选卫星共享时间推进，但为了看清轨道压缩了距离、放大了天体。真实系统还包含共振、偏心和倾角变化；轨道线不是可见的物质环，卫星也不是挂在土星环上的珠子。"
+      },
+      {
+        "title": "同为卫星也有不同世界",
+        "body": "土卫六拥有浓厚的以氮为主的大气，表面已确认存在甲烷和乙烷组成的湖海，其液体循环并不等于地球的水循环。土卫二的冰壳下有全球海洋，南极附近裂隙喷出水汽与冰粒。卡西尼通过成像、光谱和粒子测量研究这些环境；有液态水和有机物不等于已经发现生命。"
+      },
+      {
+        "title": "用同一比例做大小比较",
+        "body": "大小比较按同一半径尺度排列卫星，因此圆球的直径可以互相比，球间空隙却只是排版。土卫六明显大于这里其余多数卫星，表面近景也不使用大小比较的统一尺度。七颗是教学选择，并不是土星卫星总数。新发现需要持续观测和轨道确认，因此完整目录与统计数量必须附上来源和更新时间。"
+      }
+    ],
+    "misconception": "土星不只有七颗卫星；本页挑选七颗做比较。土卫六的湖海不是液态水，土卫二喷流也不是已经发现生物的证据。",
+    "boundary": "采用圆轨道和示意相位，表面纹理表达代表特征而非实测完整地图。土星环、轨道视图与卫星近景不能混用同一长度比例。",
+    "narration": [
+      {
+        "label": "光环外的伙伴",
+        "text": "土星有漂亮的光环，旁边还有许多卫星。今天先认识其中七颗，并不是它只有七颗。它们有的大，有的小，有的离土星近，有的离得远。先选中一颗，看清它的名字，再在画面里找到它，这样就不会跟丢啦。",
+        "cue": "显示轨道全景并选中土卫六。"
+      },
+      {
+        "label": "谁先绕完一圈",
+        "text": "按下播放，比较靠里的土卫一和远一些的土卫六。先暂停猜一猜：同样过了几天，谁会多绕几圈？等一小会儿，再接着看。你会发现，卫星虽然围着同一个土星，却不是排好队、用一样的速度前进，每个世界都有自己的节奏。",
+        "cue": "比较土卫一与土卫六；停顿约四秒。"
+      },
+      {
+        "label": "两种特别的世界",
+        "text": "再靠近一点看。土卫六外面包着厚厚的大气，还有液体组成的湖海，不过那些液体不是我们喝的水。小小的土卫二则有明亮的冰壳，还会从南边喷出水汽和冰粒。我们看到的这些特点，来自探测器认真拍照和测量后的发现。",
+        "cue": "先选土卫六近景，再选土卫二看南极喷流。"
+      },
+      {
+        "label": "把大小排清楚",
+        "text": "最后把卫星放到同一把尺子下，排在一起比大小。找找最大的土卫六，再找小一些的土卫二。球之间留的空位只是方便我们看，不是它们在太空中的实际距离。这些世界有许多值得研究的秘密，但有水的地方，也不能马上说一定住着生命。",
+        "cue": "切真实大小比较，强调间距不代表真实距离。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Do differently sized moons around Saturn take the same time to finish an orbit?",
+    "observe": "Compare Mimas and Titan in the playing orbit view. Then inspect Enceladus up close and use the size view to separate features, size, and distance.",
+    "academic": [
+      {
+        "title": "Different orbits in one gravitational field",
+        "body": "When Saturn dominates and perturbations are neglected, T²≈4π²a³/(GM), so moons farther out generally have longer periods. The seven selected moons share a simulation clock, but orbital spacing is compressed and bodies enlarged. Real orbits include resonances, eccentricity, and inclination changes. Orbit guides are not material rings, and moons are not beads attached to Saturn’s rings."
+      },
+      {
+        "title": "Very different satellite environments",
+        "body": "Titan has a thick, mainly nitrogen atmosphere and confirmed surface lakes and seas of methane and ethane. Its liquid cycle is not Earth’s water cycle. Enceladus has a global ocean beneath its ice shell and releases water vapor and icy particles near its south pole. Cassini studied these environments using images, spectra, and particle measurements. Water and organic compounds do not establish the presence of life."
+      },
+      {
+        "title": "Compare sizes with one scale",
+        "body": "The size lineup uses a common radius scale, so diameters can be compared; gaps between bodies are only for layout. Titan is much larger than most other moons shown, and individual close-ups do not retain that common size scale. These seven are a teaching selection, not Saturn’s total. Discoveries need follow-up and orbit confirmation, so complete inventories require a source and date."
+      }
+    ],
+    "misconception": "Saturn has more than seven moons. Titan’s surface lakes are not liquid water, and Enceladus’s plumes do not prove life has been found.",
+    "boundary": "Circular orbits and illustrative phases simplify dynamics. Surface textures highlight features rather than reproducing measured global maps. Rings, orbit views, and close-ups use different scales.",
+    "narration": [
+      {
+        "label": "Partners beyond the rings",
+        "text": "Saturn has beautiful rings and many moons nearby. Today we will meet seven of them, but Saturn does not have only seven. Some are large, some small, some nearer, and some farther away. Choose a moon, read its name, and locate it in the picture so you can keep following it.",
+        "cue": "Select Titan in the orbit overview."
+      },
+      {
+        "label": "Who completes a lap?",
+        "text": "Press play and compare Mimas, farther in, with more distant Titan. Pause and predict: after the same number of days, which will have made more laps? Wait a moment, then continue. The moons share one Saturn, but they do not travel as a matching parade at one speed. Each has its own rhythm.",
+        "cue": "Compare Mimas and Titan; pause four seconds."
+      },
+      {
+        "label": "Two unusual worlds",
+        "text": "Move closer. Titan has a thick atmosphere and lakes of liquid, but that liquid is not the water we drink. Smaller Enceladus has a bright icy shell and sprays water vapor and icy grains from its southern region. Spacecraft discovered these features by carefully taking pictures and making measurements.",
+        "cue": "Inspect Titan, then Enceladus and its south-polar plume."
+      },
+      {
+        "label": "Use one ruler",
+        "text": "Finally, line the moons up with one ruler and compare their sizes. Find large Titan, then smaller Enceladus. The gaps simply help us see the objects; they do not show actual distances in space. These worlds hold many questions to investigate. Even where there is water, we cannot immediately conclude that something is living there.",
+        "cue": "Use size comparison and explain the layout spacing."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Saturn Moons Facts",
+      "url": "https://science.nasa.gov/saturn/moons/facts/"
+    },
+    {
+      "title": "NASA · Titan Facts",
+      "url": "https://science.nasa.gov/saturn/moons/titan/facts/"
+    },
+    {
+      "title": "NASA · Enceladus",
+      "url": "https://science.nasa.gov/saturn/moons/enceladus/"
+    }
+  ]
+}

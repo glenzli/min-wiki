@@ -48,7 +48,7 @@ figcaption { color: var(--secondary); font-size: 12px; margin: 15px 0 0; text-al
 [data-stage=dry] #soil-cluster { transform: translate(310px, -95px); opacity: 0; }
 [data-stage=dry] #hand-drops { opacity: 0; }
 [data-stage=dry] #towel { opacity: 1; }
-[data-stage=wet] #water-lines,[data-stage=rinse] #water-lines { opacity: .45; stroke-dasharray: 125 38; animation: flowing 6s linear infinite; }
+[data-stage=wet] #water-lines,[data-stage=rinse] #water-lines { opacity: .45; stroke-dasharray: 125 38; animation: flowing 3s linear 2; }
 @keyframes flowing { to { stroke-dashoffset: -326; } }
 .motion-paused * { animation-play-state: paused!important; }
 .practice-controls { padding: 22px 28px 8px; }

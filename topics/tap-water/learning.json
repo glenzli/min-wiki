@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "tap-water",
+  "zh": {
+    "question": "一杯水看起来透明，能说明里面只有水分子、或者一定能喝吗？",
+    "observe": "先选矿物质，再分别比较微生物警示和化学污染情景的煮沸前后；注意灰色划线的病原体符号与仍保留的紫色化学污染符号。",
+    "academic": [
+      {
+        "title": "清澈不等于纯水或检测合格",
+        "body": "自然水与岩石、土壤接触后可含溶解的钙镁等矿物成分，肉眼通常看不见。供水系统还可能按适用标准使用并维持消毒剂残留，以降低输配过程的微生物风险；工艺因地而异。颜色、气味和透明度不能代替水质检测，也不能单凭闻到或闻不到氯味判断饮水是否合格。"
+      },
+      {
+        "title": "煮沸主要针对微生物风险",
+        "body": "符合适用时间和操作要求的煮沸可灭活许多致病微生物，使其失去感染能力，并不意味着把它们过滤出水。完成加热后仍需防止再污染，放凉并用清洁容器加盖保存。不同地区、海拔和通知可能有具体要求，儿童不应操作热水，本页的按钮也不代表完成了一项真实处理。"
+      },
+      {
+        "title": "化学污染需要另一种处理思路",
+        "body": "煮沸不能降低水中的铅，也不能把受到燃料、许多有毒化学物质或放射性物质污染的水变得可饮用。溶解矿物质也不会全部消失。遇到化学污染通知，应按当地要求使用安全替代水源或合适的专用处理；设备能去除哪一类污染物，需要看针对该物质的性能证明，不能泛称净水就一定有效。"
+      }
+    ],
+    "misconception": "烧开不等于变成纯水，也不是修复化学污染的通用办法。",
+    "boundary": "粒子只表示成分类别和处理差别，不表示数量、真实外形或检测结果；饮水与处理以当地供水和卫生通知为准。",
+    "narration": [
+      {
+        "label": "透明的水里有什么",
+        "text": "看看这杯清清的水。它的主体是水，可里面还可能溶着很少的矿物成分，就像盐溶进水以后，我们找不到一粒粒盐。画面把这些东西画成不同的小符号，帮助认识它们。它们不是真的长这么大，我们的眼睛也不能这样直接看见它们。",
+        "cue": "选择水和矿物质，分别突出符号。"
+      },
+      {
+        "label": "先听大人的供水消息",
+        "text": "有些地方的自来水可以按当地建议直接饮用，有些地方需要不同的处理，所以要先听大人查看的供水消息。如果通知说有微生物风险，大人可能需要按要求烧开。我们在屏幕上比较一下：处理前后的病原体符号，发生了什么变化？",
+        "cue": "选择微生物情景，比较煮沸前后。"
+      },
+      {
+        "label": "失去能力，不是消失",
+        "text": "灰色的小符号上多了一道线，表示这个示意里的病原体失去了感染能力，不是被一只小网捞走了。矿物质的符号却还在。先停一停，再换到紫色的化学污染情景。你会发现，点了煮沸以后，紫色符号仍然留下来了。",
+        "cue": "停三秒，再切换化学污染并比较。"
+      },
+      {
+        "label": "烧开也有做不到的事",
+        "text": "原来，烧开有能做的事，也有做不到的事。比如水里的铅，不能靠烧开去掉。遇到这类通知，要请大人寻找通知要求的安全水源，不能看水很清就喝。我们今天只在屏幕上观察，真正的开水很烫，处理和倒水都交给大人来做。",
+        "cue": "停在化学污染仍保留的结果。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Does clear water contain only water molecules, and does clarity prove it is safe to drink?",
+    "observe": "Inspect minerals, then compare before and after boiling in microbial and chemical-warning scenarios. Notice the crossed-out pathogen symbols and the chemical symbols that remain.",
+    "academic": [
+      {
+        "title": "Clarity is not purity or a test result",
+        "body": "Water may contain dissolved minerals such as calcium and magnesium that are invisible to the eye. Some supply systems maintain regulated disinfectant residuals to reduce microbial risk in distribution. Treatment varies locally. Color, smell and clarity do not replace testing, and chlorine odor alone cannot establish safety."
+      },
+      {
+        "title": "Boiling addresses microbial hazards",
+        "body": "Boiling according to applicable instructions can inactivate disease-causing microorganisms; it does not physically filter them out. Water must also be protected from recontamination while cooling and stored in clean, covered containers. Local instructions can differ, and the on-screen button is not an actual treatment procedure."
+      },
+      {
+        "title": "Chemical contamination needs another response",
+        "body": "Boiling does not reduce lead and cannot make water contaminated with fuels, toxic chemicals or radioactive materials safe. It does not remove every dissolved mineral either. Follow local instructions about safe alternative supplies and contaminant-specific treatment; a general purification claim does not prove removal of a particular chemical."
+      }
+    ],
+    "misconception": "Boiling does not produce pure water and is not a universal remedy for chemical contamination.",
+    "boundary": "Particles represent categories and treatment differences, not counts, shapes or test results. Follow local water-supply and health instructions.",
+    "narration": [
+      {
+        "label": "What is in clear water?",
+        "text": "Look at this clear glass. Most of it is water, but small amounts of minerals may be dissolved in it, rather like salt that disappears from view after dissolving. We use different symbols to show these categories. They are not really this large, and our eyes cannot directly see them this way.",
+        "cue": "Select water and then minerals, highlighting their symbols."
+      },
+      {
+        "label": "Check local advice",
+        "text": "Tap-water advice differs from place to place, so first let an adult check the local supply information. If a notice warns about microbes, adults may need to boil water as directed. Compare the pictures on screen. What changes in the pathogen symbols after the modeled treatment?",
+        "cue": "Choose the microbial scenario and compare before and after boiling."
+      },
+      {
+        "label": "Inactivated, not removed",
+        "text": "The gray symbols gain a line across them. This means the modeled pathogens have lost their ability to cause infection, not that a tiny net removed them. Mineral symbols remain. Pause, then try the purple chemical-contamination scenario. Those purple symbols stay after boiling too.",
+        "cue": "Pause for three seconds, then compare the chemical scenario."
+      },
+      {
+        "label": "Boiling has limits",
+        "text": "Boiling helps with some problems but not all. It cannot remove lead from water, for example. If a notice warns of such contamination, an adult should obtain the safe water source it recommends. Clear-looking water is not proof of safety. We are only observing on screen; real boiling and pouring hot water are jobs for adults.",
+        "cue": "Hold the result with chemical symbols still present."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "CDC · How to Make Water Safe in an Emergency",
+      "url": "https://www.cdc.gov/water-emergency/about/index.html"
+    },
+    {
+      "title": "CDC · Lead in Drinking Water",
+      "url": "https://www.cdc.gov/lead-prevention/prevention/drinking-water.html"
+    },
+    {
+      "title": "CDC · Household Water Treatment",
+      "url": "https://www.cdc.gov/global-water-sanitation-hygiene/about/about-household-water-treatment.html"
+    }
+  ]
+}

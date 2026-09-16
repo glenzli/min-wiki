@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "ant-trails",
+  "zh": {
+    "question": "没有画在地上的线，蚂蚁怎样找到伙伴走过的路？",
+    "observe": "打开气味显示并让蚂蚁前进，再擦去一段路线，在暂停的画面里找到气味缺口；最后切到绕行路线对照，再观察沿新路前进。关闭气味显示时路线仍然存在。",
+    "academic": [
+      {
+        "title": "气味是可以读取的化学线索",
+        "body": "许多蚂蚁利用信息素招募同伴到食物处。留下气味的工蚁在地面形成化学痕迹，其他个体通过触角上的感觉结构检测，而不是追随一条人眼能看到的紫线。不同物种使用的化合物、释放器官和寻路策略并不完全相同；视觉地标、路径记忆和其他信号也可能参与，所以信息素不是所有蚂蚁唯一的导航方式。"
+      },
+      {
+        "title": "队伍来自局部反应的累积",
+        "body": "个体依据附近信号改变行进方向，成功往返的蚂蚁可能进一步加强路线，于是局部选择产生群体秩序。较常使用的路线可以得到更多补充，但这种正反馈也会受食物质量、交通、探索和信息素持续时间影响。看到整齐队伍，并不能推出有一只蚂蚁在远处发号施令，也不能推出队伍每次都已计算出全局最短路。"
+      },
+      {
+        "title": "缺口与新路是一种对照",
+        "body": "气味痕迹被扰动后，附近蚂蚁可能转向和探索，再遇到线索或找到新的食物通道；新路线能否稳定还取决于后续个体是否使用并补充。图里把寻找时刻暂停，方便定位缺口，再由按钮展示一个可能的绕行结果。若在现实中观察，应记录路径如何逐步恢复，而不能把一次停顿理解为蚂蚁完全失去所有方向信息。"
+      }
+    ],
+    "misconception": "紫色气味线只是可视化；隐藏它不会擦除信息素，队伍也不需要一位“总指挥”逐只指挥。",
+    "boundary": "固定六只蚂蚁和三种路线是教学安排，没有模拟真实随机搜索、气味扩散衰减或物种差异；绕行不是保证发生的预测。切换绕行时重新安排蚂蚁位置，只作路线对照，不表示它们横穿无气味地面。",
+    "narration": [
+      {
+        "label": "看一条小队伍",
+        "text": "地上走来一队小蚂蚁，好像知道大家该往哪里去。可是地上没有路牌，也没有画着箭头的小地图。许多蚂蚁会留下很淡的气味，伙伴用触角来寻找线索。画面里的紫色小路，是我们特意画给你看的，真实的气味可不是一串紫色的小珠子。",
+        "cue": "显示原始路线，开关一次气味叠层。"
+      },
+      {
+        "label": "跟着线索走一段",
+        "text": "按一下前进，看蚂蚁沿着小路走。每只蚂蚁都在根据附近的线索作出反应，并不是远处有一位队长，给每一步发命令。关掉气味显示，再看看它们。小路只是从我们的画面里藏起来，蚂蚁能感到的线索仍然在那里，所以它们还能继续走。",
+        "cue": "连续前进一次，再关闭气味显示。"
+      },
+      {
+        "label": "小路中间断开了",
+        "text": "现在把中间一小段气味擦掉。画面先停下来，请你找找气味在哪里断开了。真的蚂蚁可能会转来转去，在附近继续找；图上停住的位置，并不是每只蚂蚁都会停下的地方。气味少了，跟随这条线就困难一些，但蚂蚁有时也会利用别的线索，并不是什么都不知道了。",
+        "cue": "擦除路线，在缺口处停三秒。"
+      },
+      {
+        "label": "新路线慢慢连起来",
+        "text": "接着看一条可能的绕行路线。为了方便比较，图里的蚂蚁重新排好了位置，我们再按前进，看它们沿新路走。如果有蚂蚁找到新路，又留下气味，伙伴就可能慢慢跟上。这是一种可能的结果，不是每个蚁群都会给出的答案。下次见到蚂蚁队伍，可以从旁边安静观察，不必打乱它们的小路。",
+        "cue": "建立绕行并前进，结束时保留旧路和新路空间关系。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How can ants follow a route when no visible line is drawn on the ground?",
+    "observe": "Show the scent and move the ants. Erase a section and locate the gap in the paused picture. Switch to the detour comparison, then watch walking along the new route. Hiding the scent overlay does not remove the scent itself.",
+    "academic": [
+      {
+        "title": "A chemical cue can be sensed",
+        "body": "Many ants recruit nestmates with pheromone trails. Chemicals deposited by workers are detected through sensory structures on antennae, not by seeing a coloured line. Species differ in chemistry and behaviour, and landmarks or route memory may also contribute. Pheromones are not every ant’s sole navigation system."
+      },
+      {
+        "title": "Local decisions produce a group pattern",
+        "body": "Individual responses to nearby cues can reinforce a useful route as workers return. Such feedback can create an organised trail without a distant commander. Food quality, traffic, exploration and signal persistence affect the outcome. A neat line does not imply that ants have calculated a globally shortest route."
+      },
+      {
+        "title": "A gap and a detour provide a comparison",
+        "body": "When a trail is disturbed, ants may turn and search until cues or a new route are found. Continued use can reinforce a replacement trail. The diagram pauses searching to expose the gap and then presents one possible detour. Real recovery is variable and does not imply that every other directional cue has vanished."
+      }
+    ],
+    "misconception": "The purple trail is a visual aid. Hiding it does not erase pheromone, and the group need not have a commander directing every worker.",
+    "boundary": "Six ants and three routes form a teaching model. Random searching, chemical decay and species differences are omitted; the detour is a possible outcome, not a guaranteed prediction. Switching routes repositions the ants for comparison; it does not show them walking across unmarked ground.",
+    "narration": [
+      {
+        "label": "Watch a little procession",
+        "text": "A line of ants seems to know where to go, even without signs or arrows. Many ants leave faint chemical trails that others sense with their antennae. The purple path in this picture makes an invisible clue visible. Real scent is not a string of purple beads.",
+        "cue": "Show the original route and toggle the scent overlay once."
+      },
+      {
+        "label": "Follow a nearby clue",
+        "text": "Press the walk button and watch. Each ant responds to nearby information; a distant leader does not have to command every step. Hide the scent display and watch again. We have hidden our coloured drawing, not removed the chemical clue, so the ants can still follow the route.",
+        "cue": "Animate one movement and then hide the scent overlay."
+      },
+      {
+        "label": "A gap in the trail",
+        "text": "Erase a short section. The picture pauses so you can find where the scent trail is broken. Real ants may turn and keep searching nearby; the frozen positions are not where every ant would stop. Losing this chemical guide makes following harder, though other clues may still be available.",
+        "cue": "Erase a section and pause at the gap for three seconds."
+      },
+      {
+        "label": "A new route becomes possible",
+        "text": "Compare a possible detour next. The ants have been repositioned for this picture; press walk to watch them follow the new route. If a scout finds and marks a route, others may follow. This is one possible outcome, not a guaranteed answer. Watch real trails quietly without disturbing them.",
+        "cue": "Establish the detour and move the ants along it."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Smithsonian — Pheromones in Insects",
+      "url": "https://www.si.edu/spotlight/buginfo/pheromones"
+    },
+    {
+      "title": "Smithsonian Tropical Research Institute — Ants of Barro Colorado",
+      "url": "https://striresearch.si.edu/barrocolorado100/ants/"
+    },
+    {
+      "title": "Morgan — Trail pheromones of ants",
+      "url": "https://resjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-3032.2008.00658.x"
+    }
+  ]
+}

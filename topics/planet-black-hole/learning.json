@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "topicId": "planet-black-hole",
+  "zh": {
+    "question": "沿同一条路线经过黑洞，松散的气态行星与紧密的岩石行星会一样吗？",
+    "observe": "固定经过路线，先选岩石行星，再选气态行星；拖到最近处比较潮汐尺度、外层释放与保留的核心。",
+    "academic": [
+      {
+        "title": "平均密度决定抗潮汐的尺度",
+        "body": "在牛顿近似中，自引力维持的天体抵抗潮汐的能力与平均密度相关。粗略潮汐半径可写作rₜ≈R(M/m)^(1/3)；用m≈4πρR³/3替换后，同一黑洞下rₜ随ρ^(−1/3)变化。因此密度较低的天体往往在更远处受强烈影响。该关系省略与内部结构相关的系数，不能直接判定所有材料的破碎阈值。"
+      },
+      {
+        "title": "轨道和结构必须一起比较",
+        "body": "穿透因子β=rₜ/rₚ把潮汐半径与最近距离联系起来，β较大意味着经过得相对更深。为了比较密度，应先保持路线不变；为了比较轨道，再固定行星种类。真实结果还受内部层结、自转、强度和遭遇速度影响。可见的形变不等于完全破坏，脱离物质、剩余核心和逃逸部分应分别观察。"
+      },
+      {
+        "title": "光亮不是吞入量的计数器",
+        "body": "碎片的轨道能量和角动量不相同，一部分可逃逸，一部分回返并通过碰撞受热。盘的形成与发光需要相互作用，不能把每个亮点当成已经跨过视界的物质。页面从连续粒子状态构造受热发光，帮助追踪物质去向，但亮度未标定为质量流率或观测光谱，更不说明现实中某颗已知行星必将经历这条路径。"
+      }
+    ],
+    "misconception": "黑洞附近出现拉长形状，不等于整颗行星已经消失；低密度也不表示它“更轻”就必然沿同一路线掉进去。",
+    "boundary": "这是受潮汐影响的行星教学模型，不对应已观测事件；采用简化引力、内聚与释放规则，没有完整材料力学、流体或数值广义相对论计算。",
+    "narration": [
+      {
+        "label": "挑一个旅行伙伴",
+        "text": "今天换行星来做旅行伙伴。一个是比较紧密的岩石世界，另一个是更松散的气态世界。它们都可能从黑洞附近经过。先不要急着给故事猜结尾：经过得远还是近，行星自己的结构怎样，都会影响接下来发生的事情。",
+        "cue": "从岩石行星、较远路线开始。"
+      },
+      {
+        "label": "只换一个条件",
+        "text": "我们做个小比较：让路线保持一样，只换行星的种类。请先暂停，猜一猜，哪一个更容易被拉开？过一会儿再播放到最靠近黑洞的地方。看看外层有没有离开，里面是不是还留着一团。这样比较，比一下把所有按钮都换掉更容易找到原因。",
+        "cue": "同一路线切两种行星；停顿约四秒后看最近处。"
+      },
+      {
+        "label": "物质不会凭空换掉",
+        "text": "继续跟着这些物质。有些变成长长的流，有些绕回来，有些走得更远。它们原来就是行星的一部分，不是画面后来又放进来的装饰。即使外形变了，我们还是可以沿着运动，找到它们怎样从刚才的位置走到现在的位置。",
+        "cue": "缓慢播放连续拉伸和碎片轨迹。"
+      },
+      {
+        "label": "再试一条远路",
+        "text": "现在把同一种行星放到更远的路线，再来一次。你也许会发现，它可以保留更多原来的样子。这个小实验帮助我们理解拉力的差别，不是在预报我们的地球会遇到什么。把距离、结构和结果连在一起，你就在像科学家那样比较证据了。",
+        "cue": "固定行星种类，对照远近路线。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Would a diffuse gas planet and a dense rocky planet respond alike along the same black-hole encounter?",
+    "observe": "Keep the route fixed and compare rocky and gas planets. Inspect closest approach, tidal scale, released layers, and any remaining core.",
+    "academic": [
+      {
+        "title": "Density sets a tidal scale",
+        "body": "In a Newtonian approximation, resistance of a self-gravitating body to tides depends on mean density. An order-of-magnitude radius is rₜ≈R(M/m)^(1/3). Substituting m≈4πρR³/3 gives rₜ proportional to ρ^(−1/3) for the same black hole. Lower-density bodies may be affected farther out. Structure-dependent coefficients are omitted, so this is not a universal material failure threshold."
+      },
+      {
+        "title": "Compare orbit and structure separately",
+        "body": "The penetration factor β=rₜ/rₚ compares tidal radius with closest approach. Larger β means a relatively deeper encounter. Hold the route fixed when comparing density, then hold planet type fixed when comparing routes. Internal layers, spin, strength, and encounter speed also matter. Deformation is not identical to total destruction; inspect released material, the remaining core, and escaping fragments separately."
+      },
+      {
+        "title": "Brightness does not count captured mass",
+        "body": "Fragments carry different orbital energies and angular momenta. Some escape; others return and can heat through collisions. Disk formation and emission involve interactions, and a bright parcel has not necessarily crossed the horizon. Continuous particle states generate the illustrated emission, but brightness is not calibrated to mass flow or a measured spectrum, and the scene does not predict the fate of a known planet."
+      }
+    ],
+    "misconception": "An elongated shape does not mean a whole planet has vanished. Low density is not the same as simply being lighter or inevitably falling in.",
+    "boundary": "This hypothetical encounter uses simplified gravity, cohesion, and release rules, without full material mechanics, hydrodynamics, or numerical general relativity. It does not reconstruct an observed event.",
+    "narration": [
+      {
+        "label": "Choose a traveler",
+        "text": "Today a planet is our traveler. One is a relatively dense rocky world, and another is a more diffuse gas world. Either can pass near a black hole. Before guessing the ending, remember that both the distance of the pass and the planet’s own structure can change what happens next.",
+        "cue": "Begin with the rocky planet on a distant route."
+      },
+      {
+        "label": "Change one thing",
+        "text": "Let’s keep the route the same and change only the kind of planet. Pause and predict which might be pulled apart more easily. Then play to the closest point. Have outer layers left? Is a central clump still together? Changing one thing at a time makes the comparison easier to understand.",
+        "cue": "Compare both planets on one route; pause four seconds before closest approach."
+      },
+      {
+        "label": "Keep following the material",
+        "text": "Follow the material onward. Some becomes a long stream, some curves back, and some travels farther away. It was part of the planet before; it is not decoration suddenly added to the picture. Even when its shape changes, we can trace how it moves from its earlier position to its new one.",
+        "cue": "Slowly follow continuous deformation and debris trajectories."
+      },
+      {
+        "label": "Try the farther path",
+        "text": "Now keep the same kind of planet and try a more distant route. It may keep more of its original shape. This experiment helps explain differences in gravity; it is not a forecast of something happening to Earth. Connecting distance, structure, and outcome is a way of comparing evidence, just as scientists do.",
+        "cue": "Hold planet type fixed and compare near and far routes."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · What Happens When Something Gets Too Close to a Black Hole?",
+      "url": "https://science.nasa.gov/universe/what-happens-when-something-gets-too-close-to-a-black-hole/"
+    },
+    {
+      "title": "NASA · Anatomy of a Black Hole",
+      "url": "https://science.nasa.gov/universe/black-holes/anatomy/"
+    }
+  ]
+}
