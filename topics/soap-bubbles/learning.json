@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "topicId": "soap-bubbles",
+  "zh": {
+    "question": "把一个泡泡轻轻拉长，再松开，它会保持长长的吗？泡泡上方和下方的颜色为什么会变化？",
+    "observe": "先点“轻轻拉长”，再点“松开，让它变圆”。然后推进薄膜排液，分别选“看上方”和“看下方”；放大标记处，显示两路反射光，再改变观察角度。",
+    "academic": [
+      {
+        "title": "表面张力、面积与约束",
+        "body": "液体界面具有表面张力；把它近似看作常数时，界面面积增大需要增加表面能。自由泡有内外两层气液界面。在给定包围体积、外部约束可忽略的平衡比较中，球形具有最小表面积，薄膜两侧的压力差平衡界面收缩趋势。薄球壳近似下，肥皂泡满足 Δp=4γ/R。风、支撑环、相邻泡泡与重力会改变形状，因此球形是带条件的结果，并非所有泡泡的硬规则。"
+      },
+      {
+        "title": "薄膜稳定与重力排液",
+        "body": "肥皂分子在水与空气的界面排列，通常降低水的表面张力，并通过界面响应帮助薄膜抵抗局部变薄。泡膜仍是能流动的液体：重力使其中液体向下重新分布，上部逐渐变薄。实际过程还受黏度、表面活性剂分布、界面流动、补液和蒸发影响。研究者追踪彩色等厚条纹随时间的移动来测量竖直薄膜排液；本页只示意上下重分配，不预测真实泡泡寿命。"
+      },
+      {
+        "title": "两界面反射的相位差",
+        "body": "白光含多种波长。来自膜前后界面的反射光具有不同的光程，其中一路反射还发生相位反转。两路叠加后，不同波长被增强或减弱，于是出现干涉色；厚度、入射及观察几何改变都会影响结果。很薄的区域可以因相消而显暗，但颜色不是单调的厚度尺，也不能独自确定破裂时刻。本页三波长取样帮助比较机制，并非经过标定的光谱颜色。"
+      }
+    ],
+    "misconception": "泡泡的彩色通常不是肥皂染料画上去的；它来自薄膜对光的干涉。肥皂也不是靠提高水的表面张力来稳定泡膜。",
+    "boundary": "自由泡近球形需要合适条件。形状比较固定空气体积；排液另用固定球面上的简化厚度分布，忽略蒸发与破裂。切面、分子和时间均不按真实比例。",
+    "narration": [
+      {
+        "label": "圆圆的外衣",
+        "text": "你吹过亮晶晶的泡泡吗？它里面大部分是空气，外面包着一层特别薄的水膜。先按一下“轻轻拉长”，看看它变成什么样。再松开，停一停，看看外形怎样慢慢回来。薄膜有一种让表面缩小的本领，叫表面张力。包住同样多的空气时，球形需要的表面最少。",
+        "cue": "先拉长再松开，留三秒观察回圆。"
+      },
+      {
+        "label": "不是硬硬的壳",
+        "text": "现在去看看外面这层膜。它不是透明塑料，也不是里面装满水的水球。薄膜里的液体还会流动。慢慢推进排液，再分别选上方和下方。上方的液体向下流，那里就变薄一些，下方会厚一些。停一下，看看右边的切面，哪一边现在更厚？",
+        "cue": "推进到排液末段，比较看上方与看下方；停三秒。"
+      },
+      {
+        "label": "追踪两路光",
+        "text": "泡泡的彩色是怎么来的呢？让我们显示光走的路线。光碰到薄膜，一部分从外面反射回来，还有一部分进入里面，再反射回来。两路光相遇，有些颜色更明显，有些变弱，就组成了眼前的彩色。不是有人偷偷给泡泡涂了彩虹！再换个观察角度，看看颜色会不会跟着变。",
+        "cue": "显示两路反射光，缓慢改变角度。"
+      },
+      {
+        "label": "圆形也有条件",
+        "text": "不过，泡泡可不是时时刻刻都像小球。风吹过来、碰到别的泡泡，或者被东西托住，它都可能改变形状。今天我们让一个小泡泡安静下来，才容易看见圆圆的样子。以后再见到泡泡，可以找找它的边缘和闪亮的颜色，想想那层很薄很薄的水膜，正在发生什么。",
+        "cue": "回到整个泡泡，停在安静的球形。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If you gently stretch a bubble and release it, will it stay long? Why do colors near its top and bottom change?",
+    "observe": "Choose “Gently stretch”, then “Release and round”. Advance film drainage and compare “Near the top” with “Near the bottom”. Enlarge the marked patch, reveal both reflected light paths, and change the viewing angle.",
+    "academic": [
+      {
+        "title": "Surface tension, area and constraints",
+        "body": "A liquid interface has surface tension. Approximating it as constant, increasing interface area requires additional surface energy. A free bubble has two air–liquid interfaces. For a specified enclosed volume with negligible external constraints, a sphere minimizes area; a pressure difference balances the tendency of the interfaces to contract. The thin spherical-shell approximation gives Δp=4γ/R for a soap bubble. Wind, support rings, neighboring bubbles and gravity can change its shape. Roundness is a conditional equilibrium result, not a rule that every bubble must follow."
+      },
+      {
+        "title": "Film stability and gravitational drainage",
+        "body": "Soap molecules arrange at air–water interfaces, usually lowering water’s surface tension while helping the film resist local thinning through interfacial responses. The film is still a flowing liquid: gravity redistributes liquid downward, thinning its upper part. Real drainage also depends on viscosity, surfactant distribution, interfacial mobility, replenishment and evaporation. Researchers track moving interference fringes of equal thickness to measure drainage in vertical films. This page illustrates upper-to-lower redistribution rather than predicting bubble lifetime."
+      },
+      {
+        "title": "Phase differences between two reflected paths",
+        "body": "White light contains many wavelengths. Reflections from the two film interfaces have different optical paths, and one reflection also reverses optical phase. Their superposition strengthens some wavelengths and weakens others, producing interference colors. Thickness and illumination/viewing geometry affect the result. Very thin regions can appear dark through cancellation, but color is not a monotonic thickness scale and cannot alone predict rupture. Three sampled wavelengths illustrate the mechanism here; the displayed colors are not calibrated spectra."
+      }
+    ],
+    "misconception": "The usual shifting colors of a bubble are not painted on by soap dye: they arise from thin-film interference. Soap also does not stabilize the film by increasing water’s surface tension.",
+    "boundary": "A nearly spherical free bubble requires suitable conditions. The shape comparison fixes enclosed air volume; the separate drainage comparison redistributes thickness on a fixed sphere, omitting evaporation and rupture. Sections, molecules and timing are rescaled.",
+    "narration": [
+      {
+        "label": "A round coat",
+        "text": "Have you seen a shiny soap bubble? Most of what is inside is air. Around it is an extremely thin film of water. Press “Gently stretch” and watch its shape change. Then release it and pause to see the shape slowly come back. The film has a tendency to make its surface smaller. This is called surface tension. A sphere needs the least surface to enclose the same amount of space.",
+        "cue": "Stretch, then release; allow three seconds to observe rounding."
+      },
+      {
+        "label": "A coat that can flow",
+        "text": "Now let us look at that film. It is not clear plastic, and the bubble is not a water ball filled all the way through. Liquid can move inside the thin film. Slowly advance drainage, then choose the top and the bottom. Liquid moves downward, so the top becomes thinner and the bottom becomes thicker. Pause and look at the section on the right. Which place has the thicker film now?",
+        "cue": "Advance to late drainage, compare top and bottom, and pause for three seconds."
+      },
+      {
+        "label": "Follow two light paths",
+        "text": "Where do the colors come from? Show the paths that light takes. Some light reflects from the first surface. Some enters the film and reflects back from the other surface. When these two parts of the light meet, some colors become stronger and others become weaker. Together they make the colors we see. Nobody secretly painted a rainbow onto the bubble! Change the viewing angle and watch whether the colors change too.",
+        "cue": "Reveal both reflected paths and slowly change the angle."
+      },
+      {
+        "label": "Round under the right conditions",
+        "text": "But a bubble does not always look like a little ball. Wind, another bubble or something holding it can change its shape. Today we let a small bubble settle quietly so its round shape is easier to see. Next time you see bubbles, look for their edges and shifting colors. Wonder what is happening in that very, very thin film of water.",
+        "cue": "Return to the whole bubble and hold its quiet spherical shape."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Exploratorium · The Shape of Bubbles",
+      "url": "https://annex.exploratorium.edu/ronh/bubbles/shape_of_bubbles.html"
+    },
+    {
+      "title": "Exploratorium · Soap",
+      "url": "https://annex.exploratorium.edu/ronh/bubbles/soap.html"
+    },
+    {
+      "title": "Monier et al., Physical Review Fluids · Self-similar and universal dynamics in drainage of mobile soap films",
+      "url": "https://journals.aps.org/prfluids/abstract/10.1103/PhysRevFluids.9.124001"
+    },
+    {
+      "title": "Rice University / OpenStax · Interference in Thin Films",
+      "url": "https://openstax.org/books/university-physics-volume-3/pages/3-4-interference-in-thin-films"
+    }
+  ]
+}
