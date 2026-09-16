@@ -9,24 +9,24 @@
 - `topics/galactic-center/`: companion binary with detached, overflowing and wind-fed scenarios; barycenter, gas paths and Three.js scene stay here. The old URL is retained.
 - `topics/planet-black-hole/`: independent density comparison and continuous parcel encounter; deterministic frame buffers belong to its model, Three.js rendering and bounded cache to its scene.
 - `topics/leaf-colors/`: leaf-to-pigment-compartment teaching illustrations, seasonal pigment state and distinct yellow/red pathways; the topic owns its Canvas renderer and bilingual explanations.
-- `topics/earth-moon/`: phase geometry, synchronous-facing Moon and independent true-scale comparison, with a Three.js orbit view and Earth-view inset.
+- `topics/earth-moon/`: phase geometry, synchronous-facing Moon and independent true-scale comparison, with a Three.js orbit view and a geocentric observer using the same lunar surface and lighting geometry.
 - `topics/saturn-moons/`: seven selected satellites, sourced physical/orbital data, moon selection and Three.js orbit/close-up/size views.
 - `topics/lunar-craters/`: impact energy, ballistic ejecta and illustrative simple-crater excavation.
-- `topics/volcano-eruption/`: magma paths, single/multiple vents and qualitative gas/viscosity-dependent eruption styles.
+- `topics/volcano-eruption/`: magma paths, single/multiple vents, ballistic clasts and qualitative eruption styles; whole-section, vent and lava-slope cameras share one state, with separate surface/interior cooling cues.
 - `topics/volcanic-lakes/`: crater/caldera geometry and bounded illustrative water balance.
 - `topics/typhoon/`: ocean/shear/hemisphere conditions and broad tropical-cyclone circulation.
 - `topics/tornado/`: a supercell-related vorticity pathway with condensation visibility independent of near-ground circulation.
 - `topics/planet-surfaces/`: selected planetary compositions, surface/fluid encounters and procedural surface illustrations, with model limits distinct from geography.
 - `topics/mimosa/`: touch propagation, pulvinus turgor and reversible leaf movement; continuous whole-plant, primary-pulvinus tissue and single-motor-cell views share local anatomy and deformation.
 - `topics/hydrangea/`: cultivar-dependent aluminum uptake and later sepal color, distinct from immediate recoloring.
-- `topics/rain-formation/`: cloud droplets, warm/ice growth pathways and subcloud evaporation.
+- `topics/rain-formation/`: cloud droplets, warm/ice growth pathways and subcloud evaporation; event positions and volume transfers remain topic-owned.
 - `topics/lightning-thunder/`: charge separation, branching discharge and light/sound arrival timing.
 - `topics/buoyancy/`: displacement, floating balance, clay hull capacity and immersion comparison, with a topic-owned static water tank and focused force tests.
 - `topics/shadows/`, `water-states/`, `magnets/`, `sound-vibrations/`, `friction/`: independent everyday-object experiments; each owns its controls, illustration, scientific qualifications and translations.
 - `topics/butterfly-life/`, `frog-life/`, `ant-trails/`, `fish-gills/`, `duck-feet/`, `camouflage/`: animal life cycles, structures and behavior through independent illustrated explorations.
 - `topics/seed-sprouting/`, `seed-travel/`, `plant-water/`, `flower-fruit/`, `cactus-water/`: plant growth conditions, transport, reproduction and dry-habitat adaptations.
 - `topics/rain-cycle/`, `river-paths/`, `sand-journey/`, `ground-water/`: water journeys and landscape changes, with qualitative process illustrations and water partition conservation tests.
-- `topics/sun-star/`, `meteors/`: apparent solar size versus distance and distinct meteoroid, meteor and meteorite stages.
+- `topics/sun-star/`, `meteors/`: apparent solar size versus distance and distinct meteoroid, meteor and meteorite stages. Meteors owns continuous entry/dark-flight trajectories, mass loss and persistent wake parcels in its model, with SVG projection in its scene.
 - `topics/cells/`, `bacteria/`, `viruses/`, `microbes-everywhere/`: cell structure, bacterial roles, host-dependent viral replication and microbial habitats; each owns its bilingual explanations and event-driven SVG exploration.
 - `topics/tap-water/`, `car-safety/`, `handwashing/`: water composition and boiling limits, braking and passenger restraints, and soap-assisted handwashing; each owns its everyday-safety illustrations, bounded interactions, bilingual explanations and primary references.
 - `topics/<id>/i18n.ts` and `locales/en.json`: topic-owned translations, loaded only with that topic. Chinese source messages are the fallback; do not import another topic to reuse its text.
@@ -46,3 +46,7 @@ Start with `docs/architecture.md` when adding a topic. Do not move simulation en
 - `topics/taste-smell/`: oral/nasal anatomy, taste-bud signal transduction and retronasal smell; flavor is distinct from the five taste qualities.
 - `topics/blood-cells/`: red-cell oxygen delivery, neutrophil migration/phagocytosis and platelet/fibrin clotting as three independent processes.
 - `topics/body-cells/`: epithelial barrier, skeletal-muscle filament sliding and a myelinated-neuron chemical synapse, with topic-owned state and illustrations.
+
+- `topics/hearing/`: air-conduction mechanics, cochlear place comparison and inner-hair-cell transduction; continuous ear/detail observation windows preserve the same journey.
+- `topics/soap-bubbles/`: fixed-volume shape comparison, spherical-film drainage and two-interface interference; whole-bubble and enlarged-film views share the selected patch and thickness.
+- `topics/digestion/`: connected digestive-tract journey, intestinal peristalsis and epithelial absorption; whole-body and villus observation windows distinguish bloodstream and lymphatic transport.

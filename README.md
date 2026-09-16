@@ -4,7 +4,7 @@
 
 一个中英双语的小科普演示集锦，用可以动手探索的页面解释科学现象。每个专题围绕一个小问题展开，配上动画、讲解和参考资料，适合孩子与家长一起观察，也欢迎任何好奇的人。
 
-目前收录 53 个专题，涵盖宇宙与星空、地球与自然、生命与身体、物质与现象、科技与工程五类。
+目前收录 56 个专题，涵盖宇宙与星空、地球与自然、生命与身体、物质与现象、科技与工程五类。
 
 ![太阳系演示：八大行星按同一直径尺度排列](docs/images/solar-system.png)
 
@@ -16,8 +16,8 @@
 | --- | ---: | --- |
 | 宇宙与星空 | 10 | [恒星路过黑洞](topics/black-hole/)、[太阳系](topics/solar-system/)、[月球陨石坑](topics/lunar-craters/) |
 | 地球与自然 | 11 | [四季](topics/earth-seasons/)、[雨的形成](topics/rain-formation/)、[水循环](topics/rain-cycle/) |
-| 生命与身体 | 23 | [叶子的颜色](topics/leaf-colors/)、[蝌蚪变青蛙](topics/frog-life/)、[洗手](topics/handwashing/)、[疼痛信号](topics/pain-signals/)、[味觉与嗅觉](topics/taste-smell/)、[血细胞](topics/blood-cells/)、[身体细胞](topics/body-cells/) |
-| 物质与现象 | 7 | [彩虹](topics/rainbow/)、[浮力](topics/buoyancy/)、[磁铁](topics/magnets/)、[水的状态](topics/water-states/)、[声音](topics/sound-vibrations/) |
+| 生命与身体 | 25 | [叶子的颜色](topics/leaf-colors/)、[蝌蚪变青蛙](topics/frog-life/)、[洗手](topics/handwashing/)、[疼痛信号](topics/pain-signals/)、[味觉与嗅觉](topics/taste-smell/)、[血细胞](topics/blood-cells/)、[身体细胞](topics/body-cells/)、[听觉](topics/hearing/)、[消化](topics/digestion/) |
+| 物质与现象 | 8 | [彩虹](topics/rainbow/)、[浮力](topics/buoyancy/)、[磁铁](topics/magnets/)、[水的状态](topics/water-states/)、[声音](topics/sound-vibrations/)、[肥皂泡](topics/soap-bubbles/) |
 | 科技与工程 | 2 | [自来水](topics/tap-water/)、[乘车安全](topics/car-safety/) |
 
 ## 阅读与操作

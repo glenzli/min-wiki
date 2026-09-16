@@ -1152,6 +1152,69 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-16"
+    },
+    {
+      "id": "hearing",
+      "title": "耳朵怎样听见声音？",
+      "category": "life",
+      "summary": "放大耳朵、耳蜗和感觉细胞，追踪振动怎样变成传向脑的消息。",
+      "tags": [
+        "听觉",
+        "耳朵",
+        "声音",
+        "身体"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-17"
+    },
+    {
+      "id": "soap-bubbles",
+      "title": "肥皂泡为什么是圆的？",
+      "category": "physics",
+      "summary": "拉长再松开泡泡，放大薄膜，观察表面张力、液体排流和干涉色。",
+      "tags": [
+        "肥皂泡",
+        "表面张力",
+        "薄膜",
+        "光"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-17"
+    },
+    {
+      "id": "digestion",
+      "title": "食物吃下去以后去哪儿？",
+      "category": "life",
+      "summary": "跟随食物走过消化管，放大小肠绒毛，比较营养进入血液与淋巴的路线。",
+      "tags": [
+        "消化",
+        "营养",
+        "肠道",
+        "身体"
+      ],
+      "duration": "自由探索 / 5–7 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-17"
     }
   ]
 }
