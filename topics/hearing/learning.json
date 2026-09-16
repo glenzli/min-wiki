@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "hearing",
+  "zh": {
+    "question": "同样响的高音和低音，会让耳蜗里同一个地方回应得最明显吗？",
+    "observe": "点“耳蜗回应”，比较“较高的音”和“较低的音”，找金色淡影的位置；再切到“感觉细胞”并慢慢拖动进度，寻找纤毛束偏转与紫色神经信号。",
+    "academic": [
+      {
+        "title": "从空气到内耳液体",
+        "body": "耳廓与耳道把声波引向鼓膜。鼓膜运动经过锤骨、砧骨和镫骨传到卵圆窗，使耳蜗液体与内部膜结构产生运动。空气和液体的声阻抗不同，中耳利用面积差及杠杆作用改善传能效率，并非凭空增加能量。圆窗的顺应性也帮助内耳液体响应；本图为清楚展示主路径省略了圆窗细节。"
+      },
+      {
+        "title": "音高的空间线索",
+        "body": "耳蜗中的基底膜从基底端到顶端，宽度、刚度等机械性质不同。声音引起行波，其响应峰的位置随频率变化：较高频率偏近基底端，较低频率偏近顶端。一个位置并非只接收唯一频率，真实声音也常含多个频率。图中切换音高移动响应范围，而振幅控制不改变这个位置，用来区分音高与响度的概念。"
+      },
+      {
+        "title": "毛细胞把运动变成电反应",
+        "body": "纤毛束偏转改变机械敏感通道的开放状态，离子流影响毛细胞的受体电位。内毛细胞随后改变递质释放，影响听神经纤维的动作电位；毛细胞本身的受体电位不能直接等同于神经脉冲。外毛细胞参与主动放大和精细调谐。信号还经过脑干等中继及脑内加工，听觉并不是某一颗细胞独自完成的。"
+      }
+    ],
+    "misconception": "声音不是钻进耳朵的一群小颗粒，更不会作为空气沿神经跑进脑。机械振动在内耳被转为细胞电反应，再影响神经信号。",
+    "boundary": "耳部、展开的耳蜗和单细胞使用不同尺度。振幅、颜色、细胞数量和时间均为教学调整；未模拟真实频率、外毛细胞反馈、完整盖膜结构或全部神经中继。静音比较不测听力，单细胞图也不是完整柯蒂器切面。",
+    "narration": [
+      {
+        "label": "接住轻轻的振动",
+        "text": "你有没有听过风吹树叶，也听过小鸟叫？声音来到耳朵时，空气正在轻轻地来回动。看，外面的耳廓像一条入口，里面接着耳道。沿着耳道走到尽头，有一层薄薄的鼓膜。空气里的振动来到这里，鼓膜也跟着轻轻动起来。我们不用把任何东西放进耳朵，只看屏幕就好。",
+        "cue": "全耳纵切面，进度从0到23%；指向耳道尽头的鼓膜。"
+      },
+      {
+        "label": "三个小伙伴接着传",
+        "text": "鼓膜旁边住着三块很小的骨头。它们连在一起，把这个动作继续传下去。接下来，振动来到了耳蜗。耳蜗弯弯的，像蜗牛壳，里面有液体，还有很细小的膜和细胞。现在我们把它在图上展开，好看清里面不同的位置。真正的耳蜗仍然好好地卷在耳朵里哦。",
+        "cue": "中耳传动到耳蜗回应；保留全耳参照，右图显示展开耳蜗。"
+      },
+      {
+        "label": "找一找哪个地方回应",
+        "text": "先停一下，猜猜看：较高的音和较低的音，会让同一个地方动得最明显吗？点一下两个比较按钮，找找金色的淡影移到了哪里。留一点时间，自己看看。原来，耳蜗里不同的地方，比较擅长回应不同高低的声音。声音高低，和声音响不响，是两件可以分开想的事。",
+        "cue": "停在62%，依次比较音高；留出观察停顿，勿播放真实声音。"
+      },
+      {
+        "label": "换成一条神经消息",
+        "text": "再靠近一枚感觉细胞。它顶上有很小很小的毛样结构，叫纤毛束，可不是我们头上的头发。轻轻弯动的纤毛束，会影响细胞怎样传消息。接着，神经把消息送向脑，脑继续加工，我们才有了听见声音的体验。这一路，先传振动，再传神经消息，真忙碌呀。",
+        "cue": "切感觉细胞视图，进度从57%到100%，最后指向紫色神经路线。"
+      }
+    ]
+  },
+  "en": {
+    "question": "For equally loud high and low sounds, will the strongest cochlear response occur in the same place?",
+    "observe": "Choose “Cochlear response,” compare higher and lower pitch, and locate the gold envelope. Then choose “Hair cell” and scrub slowly to find bundle deflection and the purple neural signal.",
+    "academic": [
+      {
+        "title": "From air to inner-ear fluid",
+        "body": "The pinna and canal guide sound toward the eardrum. Eardrum movement passes through the malleus, incus and stapes to the oval window, setting cochlear fluid and internal membranes in motion. Air and fluid have different acoustic impedances. Area differences and ossicular leverage improve energy transfer rather than creating energy. Compliance of the round window also allows fluid response; its detail is omitted to make the main pathway readable."
+      },
+      {
+        "title": "A spatial clue to pitch",
+        "body": "Width, stiffness and other mechanical properties vary along the basilar membrane. Sound produces a traveling wave whose response peak depends on frequency: higher frequencies favor the base, lower ones the apex. Each position responds over a range, and real sounds often contain multiple frequencies. Pitch selection moves the illustrated response envelope, while amplitude selection leaves that place unchanged, separating two concepts rather than measuring perceived loudness."
+      },
+      {
+        "title": "Turning movement into an electrical response",
+        "body": "Bundle deflection changes the opening of mechanically sensitive channels. Ion flow changes a hair cell’s receptor potential. Inner hair cells then alter transmitter release and auditory-nerve action potentials; a hair-cell receptor potential is not itself a nerve impulse. Outer hair cells contribute active amplification and sharp tuning. Brainstem relays and further brain processing are also needed; hearing is not performed by one cell alone."
+      }
+    ],
+    "misconception": "Sound is not a swarm of particles entering the ear, and air does not travel along nerves into the brain. Mechanical vibration becomes a cellular electrical response that then influences neural signaling.",
+    "boundary": "The ear, uncoiled cochlea and single-cell view use different scales. Displacement, colors, cell counts and timing are teaching choices. Actual frequencies, outer-hair-cell feedback, the full tectorial membrane and all neural relays are not simulated. This silent comparison does not test hearing, and the cell drawing is not a complete section of the organ of Corti.",
+    "narration": [
+      {
+        "label": "Receiving a gentle vibration",
+        "text": "Have you heard wind in the leaves, or a little bird calling? When sound reaches an ear, the air is moving gently back and forth. Look at the outer ear and the little passage leading inside. At the end of that passage sits a thin eardrum. When the vibration reaches it, the eardrum moves too. We do not need to put anything into our ears. We can explore right here on the screen.",
+        "cue": "Show the full ear at 0–23%; point to the eardrum at the end of the canal."
+      },
+      {
+        "label": "Three tiny helpers pass it on",
+        "text": "Beside the eardrum are three very small bones. They are connected and pass the movement onward. Next it reaches the cochlea, curled up a little like a snail shell. Inside are fluid, delicate membranes and tiny cells. In our drawing, we can gently uncoil it to see its different places. Your real cochlea stays safely curled inside your ear.",
+        "cue": "Move through the middle-ear stage into cochlear response; retain the whole-ear reference beside the uncoiled view."
+      },
+      {
+        "label": "Find the responding place",
+        "text": "Let us pause and make a guess. Will a higher and a lower sound make the same place respond most strongly? Try the two pitch buttons and find where the pale gold shape moves. Take a little time to look. Different places in the cochlea are especially good at responding to different pitches. How high a sound is, and how loud it is, are two different things to think about.",
+        "cue": "Pause at 62%, compare the two pitch choices, and allow an observation break. Do not play real sound."
+      },
+      {
+        "label": "A different kind of message",
+        "text": "Now move closer to one sensory cell. It has a tiny hair-like bundle on top, but this is not like the hair on your head. A gentle bend affects how the cell sends its message. A nerve then carries a message toward the brain. More processing happens there, helping us experience sound. What a busy journey: first a vibration, then a message along a nerve.",
+        "cue": "Choose the hair-cell view, move from 57% to 100%, then point to the purple neural route."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NIH / NIDCD · How Do We Hear?",
+      "url": "https://www.nidcd.nih.gov/health/how-do-we-hear"
+    },
+    {
+      "title": "UTHealth · Auditory System: Structure and Function",
+      "url": "https://nba.uth.tmc.edu/neuroscience/m/s2/chapter12.html"
+    },
+    {
+      "title": "NIH / NIDCD · Sensory Cell Development and Function",
+      "url": "https://www.nidcd.nih.gov/research/labs/section-sensory-cell-development-and-function"
+    }
+  ]
+}

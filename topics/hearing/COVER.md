@@ -1,0 +1,1 @@
+Original SVG concept cover: pinna, canal, eardrum, ossicular transfer and cochlear coil. Warm tissue and cool fluid distinguish regions; it is a schematic, not an anatomical scale drawing. No source image is reproduced.
