@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {bubbleShape,filmThickness,reflectedIntensity} from '../model.ts';
+import {bubbleShape,filmThickness,reflectedIntensity,filmRayGeometry,filmOptics} from '../model.ts';
 test('rounding an imposed shape reduces area while retaining enclosed volume',()=>{
  let previous=1;
  for(let i=0;i<=100;i++){
@@ -34,4 +34,18 @@ test('film colors depend on both thickness and viewing geometry, within finite b
   assert.ok(Number.isFinite(intensity)&&intensity>=0&&intensity<=1);
  }
  assert.notEqual(reflectedIntensity(300,540,1),reflectedIntensity(300,540,.4));
+});
+
+test('drawn film rays obey equal reflection angles and Snell refraction',()=>{
+ const unit=(a,b)=>{const x=b[0]-a[0],y=b[1]-a[1],r=Math.hypot(x,y);return [x/r,y/r];};
+ for(const cosine of [.1,.3,.6614378278,.9,1])for(const height of [45,90,137]){
+  const rays=filmRayGeometry(height,cosine),incoming=unit(...rays.incident),reflected=unit(...rays.reflected);
+  const inside=unit(rays.internal[0],rays.internal[1]),emerging=unit(...rays.emerging);
+  assert.ok(Math.abs(incoming[0]-reflected[0])<1e-12);
+  assert.ok(Math.abs(incoming[1]+reflected[1])<1e-12);
+  assert.ok(Math.abs(incoming[0]-1.333*inside[0])<1e-12);
+  assert.ok(Math.abs(emerging[0]-reflected[0])<1e-12);
+  assert.ok(Math.abs(emerging[1]-reflected[1])<1e-12);
+  assert.ok(Math.abs(inside[1]-filmOptics(cosine).transmittedCosine)<1e-12);
+ }
 });

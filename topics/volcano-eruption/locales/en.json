@@ -100,5 +100,17 @@
   "沿山坡看亮色通道、暗色表壳和较热的内部。": "Inspect the bright channel, dark crust and hotter interior along the slope.",
   "熔岩的表面先变暗、结成硬壳，里面却可能还很热。喷发减弱后，留下的熔岩继续慢慢冷却；一次次喷发也会改变火山的形状。": "The lava surface darkens and forms a crust first, while its interior may remain very hot. Deposited lava keeps cooling after the eruption wanes, and repeated eruptions change the volcano’s shape.",
   "这是通道、气泡和喷口关系的教学剖面。三个镜头观察同一时刻，近景和熔岩厚度经过放大；暗壳下的亮色表示仍较热，不是温度测量。没有求解真实岩浆流变、压力场、传热或火山灰输运，演示时长不代表实际冷却时间。两个滑块表示相对条件，不是完整喷发分类器。": "This teaching cutaway connects conduits, gas and vents. Three views show the same moment; close-ups and flow thickness are exaggerated. Bright material beneath a dark crust indicates retained heat, not a temperature measurement. The model does not solve magma rheology, pressure, heat transfer or ash transport, and its duration is not a real cooling time. The sliders compare relative conditions and do not fully classify eruption styles.",
-  "切换到山坡熔岩近景，拖到冷却阶段，比较暗色表壳与缝隙里的余热；也可以切换喷口数量追踪共同来源。": "Switch to the lava-slope close-up and scrub to cooling. Compare the dark crust with heat still visible in gaps; change the vent count to trace their shared source."
+  "切换到山坡熔岩近景，拖到冷却阶段，比较暗色表壳与缝隙里的余热；也可以切换喷口数量追踪共同来源。": "Switch to the lava-slope close-up and scrub to cooling. Compare the dark crust with heat still visible in gaps; change the vent count to trace their shared source.",
+  "沿地下通道寻找岩浆": "Trace the magma through its underground path",
+  "喷发逐渐减弱，落地物质留在原处": "Eruption wanes; landed material remains",
+  "气体少时，熔岩以流出为主": "With little gas, lava mainly flows out",
+  "此时岩浆还未到达喷口": "Magma has not yet reached the opening",
+  "喷口开始出现高温物质": "Hot material begins to reach the opening",
+  "喷口变暗，内部仍可能很热": "The vent darkens; its interior may remain hot",
+  "看熔岩怎样跨过喷口边缘": "Follow lava over the edge of the opening",
+  "气体推动高温岩浆喷出": "Gas drives hot magma out",
+  "此时地面还没有熔岩流": "No lava flow is on the surface yet",
+  "亮色熔岩在暗色表壳之间流动": "Bright lava moves between dark crust rafts",
+  "推进进度，等待岩浆到达地表": "Advance time until magma reaches the surface",
+  "沿山坡追踪熔岩前缘": "Follow the lava front down the slope"
 }

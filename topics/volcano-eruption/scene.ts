@@ -316,11 +316,12 @@ export class TopicScene {
       s.label(t('山顶喷口'), -133, -139, { anchor:anchor(0,terrain(0)), width:155 });
       if(vents.length>1)s.label(t('侧喷口'),254,40,{anchor:anchor(126,terrain(126)),width:140});
     }else if(this.view==='vent'){
-      s.label(t('熔滴上升后会落回地面'),-205,-159,{width:240});
-      s.label(t('气泡从热亮的喷口逸出'),201,160,{anchor:anchor(0,terrain(0)),width:235});
+      const before=progress<.34,waning=progress>=.82,quiet=settings.gas<.06;
+      s.label(before?t('沿地下通道寻找岩浆'):waning?t('喷发逐渐减弱，落地物质留在原处'):quiet?t('气体少时，熔岩以流出为主'):t('熔滴上升后会落回地面'),-205,-159,{width:275});
+      s.label(before?(progress<.25?t('此时岩浆还未到达喷口'):t('喷口开始出现高温物质')):waning?t('喷口变暗，内部仍可能很热'):quiet?t('看熔岩怎样跨过喷口边缘'):t('气体推动高温岩浆喷出'),201,160,{anchor:anchor(0,terrain(0)),width:260});
     }else{
-      s.label(t('表层结壳，缝里仍有热熔岩'),-164,-160,{width:290});
-      s.label(t('变暗不等于里面已经凉了'),176,166,{width:285});
+      s.label(progress<.34?t('此时地面还没有熔岩流'):progress<.8?t('亮色熔岩在暗色表壳之间流动'):t('表层结壳，缝里仍有热熔岩'),-164,-160,{width:290});
+      s.label(progress<.34?t('推进进度，等待岩浆到达地表'):progress<.8?t('沿山坡追踪熔岩前缘'):t('变暗不等于里面已经凉了'),176,166,{width:285});
     }
     s.end();
   }

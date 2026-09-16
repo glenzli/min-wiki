@@ -1,4 +1,4 @@
-import { bubbleShape, filmThickness, filmColor, reflectedIntensity, selectedIncidence } from './model.ts';
+import { bubbleShape, filmThickness, filmColor, reflectedIntensity, selectedIncidence, filmOptics, filmRayGeometry } from './model.ts';
 export interface SceneState{deformation:number;drainage:number;zoom:number;sample:number;angle:number;light:number}
 /** Both views use the same local thickness: the enlarged section is not a second experiment. */
 export class BubbleScene{
@@ -78,15 +78,18 @@ export class BubbleScene{
    const x=44+(i*47)%386,y=top+12+((i*31)%101)/101*(height-24);
    c.fillStyle='#638f9845';c.beginPath();c.arc(x,y,1.7,0,Math.PI*2);c.fill();
   }
-  // Two reflected paths meet in the observation window. Their phase difference
-  // follows the same thickness and incidence control used by the whole bubble.
-  const shift=state.angle*46,entry=170+shift,exit=245+shift;
+  // Both outgoing rays are parallel; reflection and refraction share the optical
+  // incidence used for this patch's color. Swatches summarize interference separately.
+  const optics=filmOptics(cosine),half=height*optics.transmittedSine/optics.transmittedCosine;
+  const entry=240-half,length=Math.min(140,(215-half)/Math.max(.001,optics.sine));
+  const geometry=filmRayGeometry(height,cosine,length);
+  const project=(points:number[][])=>points.map(([x,y])=>[entry+x!,top+y!]);
   const ray=(points:number[][],color:string,width:number)=>{c.strokeStyle=color;c.lineWidth=width;c.lineJoin='round';c.lineCap='round';c.beginPath();points.forEach((p,i)=>i?c.lineTo(p[0]!,p[1]!):c.moveTo(p[0]!,p[1]!));c.stroke();};
   const appear=state.light;
   if(appear>0){c.save();c.globalAlpha=appear;
-   ray([[72,63],[entry,top]],'#d0aa58',3);
-   ray([[entry,top],[360,57]],'#ba9c62',2.5);
-   ray([[entry,top],[entry+37,bottom],[exit,top],[390,62]],'#6f989a',2.5);
+   ray(project(geometry.incident),'#d0aa58',3);
+   ray(project(geometry.reflected),'#ba9c62',2.5);
+   ray(project([...geometry.internal,...geometry.emerging.slice(1)]),'#6f989a',2.5);
    c.setLineDash([4,5]);ray([[entry,top],[entry,top-48]],'#99aaa4',1);c.setLineDash([]);
    c.fillStyle='#faf7eae8';c.strokeStyle='#cdcaba';c.lineWidth=1;c.beginPath();c.roundRect(282,47,155,66,12);c.fill();c.stroke();
    for(let channel=0;channel<3;channel++){
@@ -98,7 +101,7 @@ export class BubbleScene{
   c.strokeStyle='#a77e4c';c.lineWidth=1.4;c.beginPath();c.moveTo(19,top);c.lineTo(19,bottom);c.moveTo(13,top);c.lineTo(25,top);c.moveTo(13,bottom);c.lineTo(25,bottom);c.stroke();
   c.strokeStyle='#a5bcb299';c.lineWidth=1;c.beginPath();c.moveTo(45,365);c.lineTo(435,365);c.stroke();
   // An expanded comparison of the two wave contributions; its scale is explanatory.
-  if(appear>.01){const wavelength=540,phase=4*Math.PI*1.333*thickness*Math.sqrt(1-(1-cosine*cosine)/(1.333**2))/wavelength;
+  if(appear>.01){const wavelength=540,phase=4*Math.PI*1.333*thickness*optics.transmittedCosine/wavelength;
    for(let line=0;line<2;line++){const points=Array.from({length:101},(_,i)=>[52+i*3.76,405+Math.sin(i*.19+(line?phase+Math.PI:0))*10]);c.save();c.globalAlpha=appear*.82;ray(points,line?'#6f999d':'#be9a60',1.8);c.restore();}
   }
  }
