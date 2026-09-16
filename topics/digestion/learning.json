@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "digestion",
+  "zh": {
+    "question": "一口食物到了胃里，就已经把营养全都交给身体了吗？",
+    "observe": "依次选“胃里混合”和“小肠分解”，看同一批小块继续向前。到“绒毛吸收”时切“绒毛剖面”，比较葡萄糖与长链脂肪的路线，找出细胞、血管和淋巴管。",
+    "academic": [
+      {
+        "title": "一条连续但分工不同的管道",
+        "body": "食物经口腔、咽和食管进入胃，再经小肠、大肠，最后由肛门排出未吸收的内容物。蠕动依靠管壁肌肉协调收缩与舒张来推进内容物，胃和肠道还承担混合。图中阶段按观察顺序分开，真实进餐时不同器官会同时处理不同批次，胃也逐渐排空；动画时长不能换算成真实消化时间。"
+      },
+      {
+        "title": "分解不等于吸收",
+        "body": "牙齿的机械破碎增加接触面积，唾液、胃液、胰液及小肠酶参与化学消化，将可消化的大分子变成可吸收的产物。肝脏制造胆汁，胆囊储存并释放胆汁，胆盐帮助脂肪乳化和脂质产物运输，并非把脂肪切开的酶。食物不穿过肝、胆、胰；这些器官经导管提供帮助。小肠吸收大部分营养和水；大肠继续吸收剩余水分与电解质。"
+      },
+      {
+        "title": "绒毛的表面与两条运输路线",
+        "body": "小肠绒毛及上皮微绒毛扩大表面积，但细胞仍构成有选择的屏障。葡萄糖等经跨膜转运进入毛细血管，随后可经门静脉到肝脏。多数膳食长链脂肪的消化产物进入上皮细胞后，被重新合成并包装为乳糜微粒，经乳糜管进入淋巴，最后汇入血液；短中链脂肪有不同路径。大肠继续吸水，粪便还含微生物和脱落细胞。"
+      }
+    ],
+    "misconception": "胃并不会一次吸收全部营养，肝脏和胰腺也不是食物要穿过的下一站。食物沿消化管前行，分解产物经过肠壁细胞后才进入运输系统。",
+    "boundary": "器官图、局部管壁和绒毛剖面比例不同；颗粒只是同一批食物及其产物的符号，不表示真实分子尺寸、组成比例、吸收率或速度。模型省略咽部吞咽细节、微绒毛、转运蛋白及复杂肠道混合，不用于医学诊断或饮食处方。",
+    "narration": [
+      {
+        "label": "一口食物开始旅行",
+        "text": "咬下一口食物以后，它去哪儿了呢？先看嘴巴。牙齿把食物嚼碎，唾液和它混在一起，帮忙开始处理。吞咽以后，这一口来到食管。食管的墙壁会一段接一段地动，把它向前送。食物可不是随便掉进肚子里，也不是跑进我们呼吸用的那条管子。",
+        "cue": "从口腔到食管，进度0–26%；指向沿连续路线移动的金褐色食团。"
+      },
+      {
+        "label": "胃里搅一搅，还有帮手",
+        "text": "到胃啦。胃把食物和胃液混合，再一点点送往小肠。你猜，胃是不是已经拿走所有营养了？还没有呢。旁边的肝脏、胆囊和胰腺也来帮忙，把消化用的液体送到小肠。留意看，食物一直走自己的路线，并没有钻进这些帮手的身体里。",
+        "cue": "选胃里混合，再选小肠分解；区分食物路线和辅助器官的细导管。"
+      },
+      {
+        "label": "靠近一根小绒毛",
+        "text": "现在停一下，放大小肠的墙壁。你能找到像小手指一样伸出来的绒毛吗？给自己一点时间找找。它们让接触食物的地方变多。食物中的一些营养已经被分成很小的部分。这些小部分要经过墙壁上的细胞，才进入身体的运输路线。整块食物可不会从一个大洞漏进去。",
+        "cue": "停在吸收阶段，切绒毛剖面；留出观察停顿，指向上皮细胞。"
+      },
+      {
+        "label": "接走营养，剩下继续走",
+        "text": "试着比较两个按钮。有的营养经过细胞后进入血液；有的脂肪经过处理，还要在细胞里重新包装，先坐另一条叫淋巴的路线，后来才到血液里。剩下没有被吸收的内容物继续去大肠，水分还会被接走一些。最后形成便便，经过直肠和肛门离开身体。这一趟旅行，各个地方都有自己的工作。",
+        "cue": "比较糖与长链脂肪；进度推进至100%，回到全身路线观察大肠和直肠。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Once a bite reaches the stomach, has it already given all its nutrients to the body?",
+    "observe": "Choose “Stomach mixing,” then “Intestinal digestion,” and follow the same food pieces. At “Absorption,” choose “Villus” and compare glucose with long-chain fat. Locate the epithelial cells, blood capillaries and lymph vessel.",
+    "academic": [
+      {
+        "title": "One continuous tract with different tasks",
+        "body": "Food passes through the mouth, pharynx and esophagus to the stomach, then the small and large intestines. Unabsorbed contents ultimately leave through the anus. Coordinated contraction and relaxation of wall muscles produce peristaltic propulsion, while the stomach and intestine also mix contents. Stages are separated for observation; real organs can process different cohorts at the same time, and the stomach empties gradually. Screen duration cannot be converted into digestion time."
+      },
+      {
+        "title": "Digestion is different from absorption",
+        "body": "Mechanical breakdown by teeth increases exposed surface area. Saliva, gastric juice, pancreatic juice and intestinal enzymes contribute chemical digestion of digestible macromolecules into absorbable products. The liver makes bile and the gallbladder stores and releases it. Bile salts aid fat emulsification and lipid-product transport; they are not fat-cleaving enzymes. Food does not traverse liver, gallbladder or pancreas: ducts carry their contributions into the tract. The small intestine absorbs most nutrients and water; the colon continues absorption of remaining water and electrolytes."
+      },
+      {
+        "title": "A villus surface and two transport routes",
+        "body": "Villi and epithelial microvilli enlarge absorptive area while cells retain a selective barrier. Glucose and other products cross membranes into capillaries and can reach the liver through portal blood. Most dietary long-chain lipid products are rebuilt and packaged as chylomicrons inside enterocytes, entering lacteals and lymph before reaching blood; shorter-chain fats can follow different routes. The colon continues water absorption, and stool also contains microbes and shed cells."
+      }
+    ],
+    "misconception": "The stomach does not absorb all nutrients at once, and the liver and pancreas are not the next places food passes through. Food follows the digestive tract; digestion products cross intestinal cells before entering transport systems.",
+    "boundary": "The organ route, local intestinal wall and villus use different scales. Particles stand for one cohort and its products, not true molecular size, composition, absorption efficiency or speed. Swallowing detail, microvilli, transport proteins and complex intestinal mixing are omitted. This is not a diagnostic or dietary-prescription tool.",
+    "narration": [
+      {
+        "label": "A bite begins its journey",
+        "text": "Where does a bite of food go after you eat it? Start at the mouth. Teeth break it into smaller pieces, and saliva mixes with it to begin the work. After swallowing, the bite reaches the esophagus. Its wall moves in a coordinated wave to push food along. Food does not just tumble into your tummy, and it is not traveling through the tube you use to breathe.",
+        "cue": "Move from mouth to esophagus at 0–26%, pointing to the gold-brown cohort on its continuous route."
+      },
+      {
+        "label": "Mixing in the stomach, with helpers nearby",
+        "text": "Here comes the stomach. It mixes food with its digestive juice, then sends the mixture a little at a time into the small intestine. Has the stomach already taken every nutrient? Not yet. Nearby, the liver, gallbladder and pancreas help by sending digestive fluids into the small intestine. Watch carefully: food follows its own route. It does not go inside those helpers.",
+        "cue": "Choose stomach mixing and then intestinal digestion; distinguish the food route from the helpers’ narrow ducts."
+      },
+      {
+        "label": "Closer to a little villus",
+        "text": "Let us pause and move closer to the intestinal wall. Can you find the little finger-like projections called villi? Take a little time to look. They make more surface available for contact with the contents. Some nutrients have been broken into tiny parts. Those parts must cross cells in the wall before entering the body’s transport routes. A whole food chunk does not fall through a big hole.",
+        "cue": "Pause at absorption, choose the villus view and allow an observation break; point to epithelial cells."
+      },
+      {
+        "label": "Nutrients enter, and the remainder moves on",
+        "text": "Try comparing the two buttons. Some nutrients cross cells and enter blood. Some digested fats are repackaged inside cells and first take a different route called lymph, before reaching blood later. Contents that were not absorbed keep traveling into the large intestine, where more water is taken in. The remainder forms stool, passes through the rectum and leaves through the anus. Each place along this journey has its own work to do.",
+        "cue": "Compare glucose and long-chain fat, advance to 100%, then return to the body route and locate colon and rectum."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NIH / NIDDK · Your Digestive System & How It Works",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/digestive-system-how-it-works"
+    },
+    {
+      "title": "NIH / NIDDK · Story of Discovery—Intestinal Stem Cells",
+      "url": "https://www.niddk.nih.gov/news/archive/2017/story-discovery-intestinal-stem-cells"
+    },
+    {
+      "title": "Endotext / NCBI Bookshelf · Intestinal Triglyceride and Cholesterol Metabolism",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK343489/figure/lipid_athero.F9/"
+    }
+  ]
+}

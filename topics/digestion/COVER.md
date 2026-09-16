@@ -1,0 +1,1 @@
+Original native SVG artwork showing a schematic digestive route, accessory digestive organs and a villus inset. Tissue highlights and shadows distinguish connected structures. Geometry is intentionally compact and does not reproduce a source image or anatomical proportions.
