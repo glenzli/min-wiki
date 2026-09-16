@@ -26,7 +26,6 @@
   "回到河流和海洋": "Back to rivers and sea",
   "太阳给地面和水面带来能量。一些水变成看不见的水蒸气，进入空气。": "The Sun supplies energy to land and water. Some liquid water becomes invisible water vapor in the air.",
   "含水蒸气的空气冷却时，水蒸气可能在微小颗粒上凝结成小水滴。很多小水滴聚在一起，我们就看到了云。": "As moist air cools, water vapor can condense on tiny particles to form droplets. Many tiny droplets together make a visible cloud.",
-  "云里的小水滴可以碰到一起、长得更大。当向上的气流托不住它们时，雨滴就落下来了。": "Cloud droplets can join and grow larger. When the rising air can no longer keep them aloft, raindrops fall.",
   "雨水有的沿地面流进小河，有的渗进土里。河流把一部分水送回海洋，水的旅行还会继续。": "Some rain runs into streams, and some soaks into the ground. Rivers return some water to the ocean. The journey continues.",
   "温暖一些": "Warmer",
   "凉一些": "Cooler",
@@ -40,5 +39,9 @@
   "河流": "River",
   "海洋": "Ocean",
   "小三球：放大的水分子": "Three little spheres: enlarged water molecule",
-  "圆框：追踪一小份水，不是单个分子": "Circle: a small amount of water, not one molecule"
+  "圆框：追踪一小份水，不是单个分子": "Circle: a small amount of water, not one molecule",
+  "慢慢走完一圈": "Follow the whole journey",
+  "停下来看看": "Pause and look",
+  "再走一圈": "Travel again",
+  "云里的小水滴也受到地球的吸引，它们很小，会随着空气移动。水滴碰到一起、长得更大后，往下落得更快，就更容易从云里落下来。": "Earth pulls on tiny cloud droplets too. They are so small that they move with the air. Drops can join and grow larger. Larger drops settle faster and can more easily fall out of the cloud."
 }

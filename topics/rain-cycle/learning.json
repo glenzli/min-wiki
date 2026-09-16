@@ -3,7 +3,7 @@
   "topicId": "rain-cycle",
   "zh": {
     "question": "海里的水变成云以后，还能回到海里吗？每一份水都走同一条路吗？",
-    "observe": "沿时间线追踪金色圆框，停在海面、云中、雨中和河流四处；比较水的状态与所在位置。再把水面得到的热量切换为温暖一些或凉一些，比较蒸发示意。",
+    "observe": "点击“慢慢走完一圈”，跟着金色圆框移动；用“停下来看看”或拖动进度条，停在海面、云中、雨中和河流四处，比较水的状态与位置。再把水面得到的热量切换为温暖一些或凉一些，比较蒸发示意。",
     "academic": [
       {
         "title": "能量推动相变",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "云不是一袋看不见的水汽；我们看见的是许多微小水滴或冰晶。",
-    "boundary": "圆框追踪的是一小份水的代表路径；粒子、时间和距离均被放大或压缩，画面没有表示所有支路或预测降水量。",
+    "boundary": "圆框追踪的是一小份水的代表路径；粒子、时间和距离均被放大或压缩，画面没有表示所有支路或预测降水量。海中的弧线只连接这次观察的起终点，不表示水一定回到原来的海域；每个水分子的真实行程和停留时间都不同。",
     "narration": [
       {
         "label": "从一片海开始",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Can seawater return to the sea after becoming a cloud? Does every portion take the same route?",
-    "observe": "Follow the gold circle and pause over the sea, cloud, rain and river. Compare location and state, then switch the heat received by the water between warmer and cooler conditions to compare the evaporation symbols.",
+    "observe": "Choose “Follow the whole journey” and follow the gold circle. Use “Pause and look” or drag the timeline to stop over the sea, cloud, rain and river, comparing state and location. Then switch the heat reaching the water between warmer and cooler conditions to compare evaporation symbols.",
     "academic": [
       {
         "title": "Energy and changes of state",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "A cloud is not a bag of invisible vapor: its visible parts are tiny droplets or ice crystals.",
-    "boundary": "The circle follows one representative portion of water. Particle sizes, distances and times are rescaled; not every route is shown and rainfall is not predicted.",
+    "boundary": "The circle follows one representative portion of water. Particle sizes, distances and times are rescaled; not every route is shown and rainfall is not predicted. The ocean arc connects the endpoints of this demonstration; it does not mean water must return to the same patch of ocean. Actual molecules take different routes and remain in stores for different lengths of time.",
     "narration": [
       {
         "label": "Start at the sea",
