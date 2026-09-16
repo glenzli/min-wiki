@@ -51,3 +51,18 @@ export function emissionSlot(index: number, count: number) {
   const vents = ventPositions(count);
   return { birth: .305 + index / (CLAST_BUDGET - 1) * .515, x: vents[index % vents.length] };
 }
+
+export type ObservationView = 'overview' | 'vent' | 'flow';
+export interface ObservationCamera { x:number; y:number; zoom:number }
+/** Framing only: changing view does not change time, supply, or particle identity. */
+export function observationCamera(view:ObservationView,vents:number):ObservationCamera {
+  if(view==='vent')return {x:0,y:-78,zoom:2.55};
+  if(view==='flow')return {x:vents===3?185:108,y:vents===3?51:6,zoom:3};
+  return {x:0,y:0,zoom:1};
+}
+
+/** Illustrative cooling, not thermometry. Surface heat is lost before interior heat. */
+export function lavaThermalState(progress:number){
+  const cooling=smooth(.80,1,progress);
+  return {surfaceGlow:1-.96*cooling,interiorGlow:1-.38*cooling,crust: .24+.72*cooling};
+}

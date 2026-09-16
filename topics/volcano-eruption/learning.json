@@ -3,7 +3,7 @@
   "topicId": "volcano-eruption",
   "zh": {
     "question": "同样是岩浆，为什么有时流出来，有时会猛烈喷出碎屑？",
-    "observe": "固定喷口数量，分别降低和提高气体、黏度条件；推进同一阶段，比较流动与碎屑。再增加喷口，追踪地下到地表的连接。",
+    "observe": "固定喷口数量，分别降低和提高气体、黏度条件；推进同一阶段，比较流动与碎屑。切换全景剖面、喷口近看和山坡熔岩，观察同一时刻的不同部位；最后推进到冷却阶段，看暗壳和仍较热的内部。",
     "academic": [
       {
         "title": "岩浆上升时气体会发生变化",
@@ -15,7 +15,7 @@
       },
       {
         "title": "喷口形态与喷出物都要辨认",
-        "body": "岩浆到达地表后称为熔岩，可从中央喷口或裂隙流出。爆炸性喷发的火山灰是细碎的岩石、矿物和火山玻璃，并不是燃烧留下的普通灰烬。火山气体、落灰、熔岩流和火山碎屑密度流具有不同危险机制；画面只表现部分过程，不能由熔岩流得慢就推断整座火山安全。"
+        "body": "岩浆到达地表后称为熔岩，可从中央喷口或裂隙流出。爆炸性喷发的火山灰是细碎的岩石、矿物和火山玻璃，并不是燃烧留下的普通灰烬。火山气体、落灰、熔岩流和火山碎屑密度流具有不同危险机制；画面只表现部分过程，不能由熔岩流得慢就推断整座火山安全。熔岩与空气、地面接触的外层可先形成固壳，低导热的表壳减慢内部散热，所以表面变暗不代表整股熔岩已冷却到环境温度。厚度、风雨和初温都会影响冷却时间；近景只表达外冷内热，不把画面亮度换算为真实温度。"
       }
     ],
     "misconception": "火山不是地下有火在烧；火山灰也不是木头烧完的灰。",
@@ -33,8 +33,8 @@
       },
       {
         "label": "流动，或者喷出碎片",
-        "text": "现在把岩浆容易流动的程度和气体条件换一换。你看到了比较平缓的流出，还是更明显的碎片喷出？岩浆到地面上，我们叫它熔岩。细细的火山灰则是岩石和玻璃一类的小碎片。它们虽然叫灰，却不是篝火留下的灰。",
-        "cue": "对照低高黏度及气体条件。"
+        "text": "换一换岩浆容易流动的程度和气体条件。先近看喷口：有些熔滴喷高以后，会落回山坡，铺开一点。再看山坡：熔岩沿着较低的地方流，表面慢慢结出暗色的壳，缝里却还透着热亮的颜色。外面变暗，不代表里面已经凉了。细细的火山灰是岩石和玻璃的小碎片，也不是篝火留下的灰。",
+        "cue": "在同一喷发进度切换喷口近看与山坡熔岩；随后推进到冷却末段，比较表层与内部亮度。"
       },
       {
         "label": "模型帮助提问",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Why can magma sometimes flow out and sometimes erupt explosively as fragments?",
-    "observe": "Keep vent count fixed and compare low and high gas and viscosity at the same stage. Then add vents and trace their connection from below ground to the surface.",
+    "observe": "Hold vent count fixed and compare gas and viscosity conditions at the same stage. Switch among the whole cutaway, vent close-up and slope lava to observe different parts of the same moment. Then advance to cooling and compare the dark crust with the still-hot interior.",
     "academic": [
       {
         "title": "Gas changes as magma rises",
@@ -57,7 +57,7 @@
       },
       {
         "title": "Identify vents and eruption products",
-        "body": "Magma at the surface is lava and may emerge from central vents or fissures. Volcanic ash consists of fine rock, mineral and volcanic-glass fragments, not ordinary combustion ash. Gases, ashfall, lava and pyroclastic density currents pose different hazards; slowly moving lava does not make a volcano safe."
+        "body": "Magma at the surface is lava and may emerge from central vents or fissures. Volcanic ash consists of fine rock, mineral and volcanic-glass fragments, not ordinary combustion ash. Gases, ashfall, lava and pyroclastic density currents pose different hazards; slowly moving lava does not make a volcano safe. Outer surfaces in contact with air and ground can form crust before the interior cools. The crust slows heat loss, so a dark surface does not mean the whole flow has reached ambient temperature. Thickness, weather and initial temperature affect cooling time. The close-up illustrates relative retained heat, not brightness-based thermometry."
       }
     ],
     "misconception": "A volcano is not an underground fire, and volcanic ash is not burnt wood ash.",
@@ -75,8 +75,8 @@
       },
       {
         "label": "Flow or fragments",
-        "text": "Change how easily the magma flows and the gas conditions. Do you see more flowing material or more fragments being expelled? Magma at the surface is called lava. Fine volcanic ash is made of little pieces of rock and volcanic glass. Despite its name, it is different from ash left by a campfire.",
-        "cue": "Compare low and high viscosity and gas conditions."
+        "text": "Change how easily the magma flows and the gas conditions. Look closely at the vent: some lava clasts rise and then fall onto the slope, spreading a little. Follow the lava downhill. A dark crust forms at the surface, while hot material still glows through gaps. A darker outside does not mean the inside is cool. Fine volcanic ash is made of little rock and glass fragments, different from campfire ash.",
+        "cue": "Switch between vent and slope close-ups at the same eruption progress. Advance to late cooling and compare surface and interior brightness."
       },
       {
         "label": "A model helps us ask",
@@ -97,6 +97,14 @@
     {
       "title": "USGS · Volcanic gases",
       "url": "https://www.usgs.gov/programs/VHP/volcanic-gases-can-be-harmful-health-vegetation-and-infrastructure"
+    },
+    {
+      "title": "USGS HVO · How do lava flows cool and how long does it take?",
+      "url": "https://www.usgs.gov/observatories/hvo/news/volcano-watch-how-do-lava-flows-cool-and-how-long-does-it-take"
+    },
+    {
+      "title": "USGS · Volcano Hazards Program Glossary",
+      "url": "https://www.usgs.gov/glossary/volcano-hazards-program-glossary"
     }
   ]
 }

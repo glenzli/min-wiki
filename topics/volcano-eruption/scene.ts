@@ -1,3 +1,5 @@
+import { animateValue } from '../../src/visuals/transition.ts';
+import { observationCamera, lavaThermalState, type ObservationView, type ObservationCamera } from './model.ts';
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
 import { terrain as baseTerrain, ventPositions, supplyPerVent, explosivity, activity, smooth, clastTrajectory, clastPosition, flowBranches, emissionSlot, CLAST_BUDGET } from './model.ts';
 import type { Settings, ClastTrajectory } from './model.ts';
@@ -18,7 +20,7 @@ type Clast = { birth: number; radius: number; phase: number; trajectory: ClastTr
 // A shallow perspective ribbon sits on the flank, with a visible near-side thickness.
 // Its footprint remains after supply wanes: cooling changes its surface, not its history.
 function drawFlow(s: CanvasSurface, progress: number, settings: Settings) {
-  const c = s.context, growth = smooth(.34, .80, progress), cooling = smooth(.84, 1, progress);
+  const c = s.context, growth = smooth(.34, .80, progress), cooling = smooth(.84, 1, progress), thermal=lavaThermalState(progress);
   if (growth < .001) return;
   for (const [branchIndex, branch] of flowBranches(settings.vents).entries()) {
     const extent = growth * (142 + (1 - settings.viscosity) * 185) * Math.sqrt(branch.share);
@@ -31,12 +33,17 @@ function drawFlow(s: CanvasSurface, progress: number, settings: Settings) {
     const near = Array.from({ length: 81 }, (_, i) => at(i / 80, 0));
     const far = Array.from({ length: 81 }, (_, i) => at(i / 80, 1));
     const top = [...near, ...far.slice().reverse()];
-    const thickness = 3 + settings.viscosity * 4;
+    const thickness = 4 + settings.viscosity * 5;
     s.path([...near, ...near.slice().reverse().map(([x, y]) => [x, y + thickness] as Point)], '#3c2c30', '#654132', .8);
+    // Exposed seams cool less rapidly than the skin; dark rock can retain heat.
+    c.save();c.globalAlpha=thermal.interiorGlow*.8;
+    const seam=near.slice(2,-3).map(([x,y],i)=>[x,y+thickness*(.4+.12*Math.sin(i*.63))] as Point);
+    s.path(seam,undefined,'#dc6028',thickness*.36);
+    c.restore();
     s.path(top, '#402c2c', '#a24b32', 1.4);
     c.save(); s.path(top); c.clip();
     // Incandescence comes from exposed melt between rafts of cooling crust.
-    c.globalAlpha = 1 - cooling * .87;
+    c.globalAlpha = thermal.surfaceGlow;
     s.path(top, '#d95324');
     const channel = Array.from({ length: 81 }, (_, i) => at(i / 80, .48 + Math.sin(i * .16 + branchIndex) * .1));
     s.path(channel, undefined, '#ffad38', breadth * .22);
@@ -48,22 +55,27 @@ function drawFlow(s: CanvasSurface, progress: number, settings: Settings) {
       s.path(tongue, undefined, i % 3 ? '#ffbd50' : '#ffe6a0', 1 + seed(i + 9) * 1.2);
     }
     c.globalAlpha = 1;
-    for (let i = 0; i < 13; i++) {
-      const u = .045 + i / 14 * .94 + seed(i + 35) * .018, across = .36 + seed(i + 56) * .23;
-      const length = .021 + seed(i + branchIndex * 130) * .020;
-      const plate: Point[] = Array.from({ length: 17 }, (_, j) => {
-        const angle = j / 16 * Math.PI * 2, uneven = 1 + Math.sin(angle * 3 + i) * .12;
-        return at(u + Math.cos(angle) * length * uneven, across + Math.sin(angle) * (.35 + seed(i + 89) * .16) * uneven);
+    // Offset, unequal crust rafts replace repeated crosswise ribs. They are
+    // carried by the same expanding ribbon and do not flash in/out between views.
+    for (let i = 0; i < 34; i++) {
+      const key=i+branchIndex*130,u=.03+seed(key+35)*.92,across=.12+seed(key+56)*.76;
+      const length=.023+seed(key+81)*.036,spread=.09+seed(key+89)*.14;
+      const plate:Point[]=Array.from({length:15},(_,j)=>{
+        const angle=j/14*Math.PI*2,uneven=1+.17*Math.sin(angle*3+i)+.08*Math.sin(angle*5+key);
+        return at(u+Math.cos(angle)*length*uneven,across+Math.sin(angle)*spread*uneven);
       });
-      s.path(plate, i % 3 ? '#49332d' : '#674033', '#83482f', .6);
-      c.globalAlpha = 1 - cooling * .92;
-      s.path([at(u + length * .9, across + .18), at(u + length * .65, across), at(u + length * 1.1, across - .15)], undefined, '#ffcd68', .8);
-      c.globalAlpha = 1;
+      s.path(plate,i%3?'#393537':'#54483f','#29292d',.7);
+      s.path(plate,undefined,'#88705b55',.3);
+      if(i%3===0){
+        c.globalAlpha=thermal.surfaceGlow*.7;
+        s.path([at(u-length*.3,across-spread*.8),at(u,across),at(u+length*.45,across+spread*.65)],undefined,'#ea9247',.7);
+        c.globalAlpha=1;
+      }
     }
     // The leading lobe bulges; the front edge remains rough and dark as it cools.
     const nose = at(.985, .45), w = widthAt(.94);
     s.ellipse(nose[0], nose[1], w * .43, 2.6 + settings.viscosity * 1.7, '#60382e');
-    c.globalAlpha = 1 - cooling * .96;
+    c.globalAlpha = thermal.surfaceGlow;
     s.ellipse(nose[0], nose[1] - .8, w * .31, 1.1, '#ffc461');
     c.restore();
     c.save(); c.globalAlpha = .65 - cooling * .5;
@@ -74,6 +86,17 @@ function drawFlow(s: CanvasSurface, progress: number, settings: Settings) {
 export class TopicScene {
   private surface: CanvasSurface;
   private p = 0;
+  private view:ObservationView='overview';
+  private camera:ObservationCamera=observationCamera('overview',3);
+  private cameraKey='overview:3';private cancelCamera=()=>{};
+  setView(view:ObservationView,vents=this.settings.vents){
+    const key=`${view}:${vents}`;if(key===this.cameraKey)return;this.cameraKey=key;this.view=view;this.cancelCamera();
+    const from={...this.camera},to=observationCamera(view,vents);
+    this.cancelCamera=animateValue({from:0,to:1,duration:850,onUpdate:p=>{
+      this.camera={x:from.x+(to.x-from.x)*p,y:from.y+(to.y-from.y)*p,zoom:Math.exp(Math.log(from.zoom)+(Math.log(to.zoom)-Math.log(from.zoom))*p)};
+      this.draw(this.p,this.settings);
+    }});
+  }
   private settings: Settings = { vents: 3, gas: .65, viscosity: .55 };
   private clastKey = '';
   private clasts: Clast[] = [];
@@ -95,9 +118,10 @@ export class TopicScene {
     }
   }
   constructor(canvas: HTMLCanvasElement) { this.surface = new CanvasSurface(canvas); this.surface.onResize(() => this.draw(this.p, this.settings)); }
-  draw(progress: number, settings: Settings, _view = 'overview') {
+  draw(progress: number, settings: Settings) {
     this.p = progress; this.settings = settings;
     const s = this.surface, c = s.begin('#172535', '#b18b73');
+    c.save();c.scale(this.camera.zoom,this.camera.zoom);c.translate(-this.camera.x,-this.camera.y);
     const vents = ventPositions(settings.vents), intensity = activity(progress), explosive = explosivity(settings);
     const profile: Point[] = Array.from({ length: 181 }, (_, i) => { const x = -378 + i * 4.2; return [x, terrain(x)]; });
     // Atmospheric ridges and a warm horizon keep the cutaway in a landscape.
@@ -245,8 +269,8 @@ export class TopicScene {
           const side = (j - 3) / 3;
           const height = jetHeight * (.65 + seed(j + vi * 7) * .45);
           const points: Point[] = Array.from({ length: 27 }, (_, k) => {
-            const u = k / 26;
-            return [vx + side * (2 + 13 * u * u) * Math.sqrt(share) + Math.sin(u * 16 + progress * 97 + j) * u * .7, vy - 2 - height * (2 * u - u * u)];
+            const u = k / 26 * .68;
+            return [vx + side * (2 + 29 * u * u) * Math.sqrt(share) + Math.sin(u * 16 + progress * 97 + j) * u * .7, vy - 2 - height * 4 * u * (1 - u)];
           });
           s.path(points, undefined, '#c34b22', streamWidth * 2.2);
           s.path(points, undefined, '#ff9b35', streamWidth * 1.3);
@@ -271,23 +295,34 @@ export class TopicScene {
       const angle = Math.atan2(dy, clast.trajectory.vx), trailLength = Math.min(12, Math.hypot(dy, clast.trajectory.vx) * .035);
       s.path([[x - Math.cos(angle) * trailLength, y - Math.sin(angle) * trailLength], [x, y]], undefined, '#e76b2855', r * 1.65);
       c.save(); c.translate(x, y); c.rotate(angle);
-      const polygon: Point[] = Array.from({ length: 11 }, (_, i) => {
-        const a = i / 10 * Math.PI * 2, ripple = 1 + .12 * Math.sin(a * 3 + clast.phase);
+      const polygon: Point[] = Array.from({ length: 19 }, (_, i) => {
+        const a = i / 18 * Math.PI * 2, ripple = 1 + .10 * Math.sin(a * 3 + clast.phase) + .045 * Math.sin(a * 5 + clast.phase);
         return [Math.cos(a) * r * 1.15 * ripple, Math.sin(a) * r * ripple];
       });
-      s.path(polygon, '#ffae43', '#d25424', .8);
-      s.ellipse(-r * .17, -r * .13, r * .65, r * .47, '#ffe5a1');
+      const melt=c.createRadialGradient(-r*.22,-r*.18,0,0,0,r*1.22);
+      melt.addColorStop(0,'#fff0b0');melt.addColorStop(.37,'#ffcc68');melt.addColorStop(.72,'#ed7e2c');melt.addColorStop(1,'#9b3923');
+      s.path(polygon,melt,'#bd5029',.45);
+      s.ellipse(-r*.22,-r*.2,r*.33,r*.2,'#fff4c133');
       if (r > 3.5) {
         s.path([[-r * .7, -r * .5], [r * .4, -r * .8], [r * .75, -r * .2], [r * .05, -.1]], '#693b2c');
         s.path([[-r * .45, -r * .5], [-r * .12, -r * .35], [r * .1, -r * .64]], undefined, '#ffa23a', .8);
       }
       c.restore();
     }
-    s.label(t('岩浆储存区'), -231, 184, { anchor: [-66, 170], width: 170 });
-    s.label(t('山顶喷口'), -133, -139, { anchor: [0, terrain(0)], width: 155 });
-    if (vents.length > 1) s.label(t('侧喷口'), 254, 40, { anchor: [126, terrain(126)], width: 140 });
-    if (intensity > .15) s.label(explosive > .45 ? t('火山灰与气体') : settings.gas < .06 ? t('熔岩流') : t('熔岩喷泉与熔岩流'), 220, -184, { width: 200 });
+    c.restore();
+    const anchor=(x:number,y:number):Point=>[(x-this.camera.x)*this.camera.zoom,(y-this.camera.y)*this.camera.zoom];
+    if(this.view==='overview'){
+      s.label(t('岩浆储存区'), -231, 184, { anchor:anchor(-66,170), width:170 });
+      s.label(t('山顶喷口'), -133, -139, { anchor:anchor(0,terrain(0)), width:155 });
+      if(vents.length>1)s.label(t('侧喷口'),254,40,{anchor:anchor(126,terrain(126)),width:140});
+    }else if(this.view==='vent'){
+      s.label(t('熔滴上升后会落回地面'),-205,-159,{width:240});
+      s.label(t('气泡从热亮的喷口逸出'),201,160,{anchor:anchor(0,terrain(0)),width:235});
+    }else{
+      s.label(t('表层结壳，缝里仍有热熔岩'),-164,-160,{width:290});
+      s.label(t('变暗不等于里面已经凉了'),176,166,{width:285});
+    }
     s.end();
   }
-  dispose() { this.surface.dispose(); }
+  dispose() { this.cancelCamera();this.surface.dispose(); }
 }

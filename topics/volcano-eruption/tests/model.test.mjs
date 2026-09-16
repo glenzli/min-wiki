@@ -42,3 +42,15 @@ test('visible flow shares and emission schedules preserve one total source', () 
     assert.deepEqual(slots.map(slot => slot.birth), Array.from({ length: CLAST_BUDGET }, (_, i) => emissionSlot(i, 1).birth));
   }
 });
+
+test('a darkening flow surface does not imply its interior is cold',async()=>{
+  const {lavaThermalState}=await import('../model.ts');
+  let previous=1;
+  for(let p=.8;p<=1.0001;p+=.005){
+    const heat=lavaThermalState(p);
+    assert.ok(heat.interiorGlow>=heat.surfaceGlow);
+    assert.ok(heat.surfaceGlow<=previous+1e-10);previous=heat.surfaceGlow;
+    assert.ok(heat.crust>=.24&&heat.crust<=1);
+  }
+  const end=lavaThermalState(1);assert.ok(end.surfaceGlow<.05);assert.ok(end.interiorGlow>.5);
+});

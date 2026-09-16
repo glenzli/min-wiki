@@ -6,7 +6,7 @@ import { t } from './i18n.ts';
 import { CONTENT } from './content.ts';
 import { SCIENCE } from './science.ts';
 import { TopicScene } from './scene.ts';
-import { readout } from './model.ts';
+import { readout, type ObservationView } from './model.ts';
 import './style.css';
 translateDocument(t);
 mountTopicNavigation("volcano-eruption");
@@ -15,6 +15,7 @@ const value = (id: string) => (el(id) as HTMLInputElement | HTMLSelectElement).v
 const number = (id: string) => Number(value(id));
 const checked = (id: string) => (el(id) as HTMLInputElement).checked;
 let progress = 0, playing = false, academic = false, frame = 0, last = 0;
+let view:ObservationView='overview';
 let scene: TopicScene | undefined;
 try { scene = new TopicScene(el('scene') as HTMLCanvasElement); }
 catch (error) { el('scene-error').hidden = false; console.error(error); }
@@ -48,7 +49,9 @@ function update() {
   el('science-caution').textContent = science.caution;
   el('observe').textContent = science.watch;
   if (academic) el('story-title').textContent = science.title;
-  scene?.draw(progress, settings, document.getElementById('view') ? value('view') : 'overview');
+  document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
+  el('view-hint').textContent=view==='overview'?t('从地下通道追到地面喷口。'):view==='vent'?t('保持同一时刻，放大看气泡、熔滴和落地飞溅。'):t('沿山坡看亮色通道、暗色表壳和较热的内部。');
+  scene?.setView(view,settings.vents);scene?.draw(progress, settings);
 }
 let cancelSeek = () => {};
 function goTo(target: number) {
@@ -73,6 +76,7 @@ el('play').addEventListener('click', toggle);
 el('reset').addEventListener('click', () => { stop(); progress = 0; update(); });
 el('progress').addEventListener('input', () => { stop(); progress = number('progress') / 1000; update(); });
 for (const id of ["vents", "gas", "viscosity"]) el(id).addEventListener('input', update);
+for(const button of document.querySelectorAll<HTMLButtonElement>('[data-view]'))button.addEventListener('click',()=>{view=button.dataset.view as ObservationView;update();});
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });
 el('steps').replaceChildren(...CONTENT.steps.map((label, i) => { const b = document.createElement('button'); b.textContent = label; b.addEventListener('click', () => { goTo(positions[i]); }); return b; }));
 document.addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !(e.target as HTMLElement)?.closest('button,input,select,a,textarea,[contenteditable]')) { e.preventDefault(); toggle(); } });
