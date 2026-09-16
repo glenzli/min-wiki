@@ -1,0 +1,21 @@
+{
+  "id": "air-conditioner",
+  "title": "空调怎样让房间凉下来？",
+  "category": "engineering",
+  "summary": "透视空调里的冷媒回路，分清空气、冷媒和冷凝水，比较制冷与只送风。",
+  "tags": [
+    "空调",
+    "热量",
+    "家用电器",
+    "日常科学"
+  ],
+  "duration": "自由探索 / 4–6 分钟",
+  "modes": [
+    "儿童版",
+    "学术版"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-09-17"
+}
