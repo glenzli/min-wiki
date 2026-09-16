@@ -29,3 +29,10 @@ Focused tests cover the teaching-model invariants, not empirical weather accurac
 ## Focused evidence · 2026-09-12
 
 Weather-owner strict TypeScript check and source/HTML/placeholder translation scan passed. `node --import tsx --test topics/typhoon/tests/model.test.mjs topics/tornado/tests/model.test.mjs topics/rain-formation/tests/model.test.mjs topics/lightning-thunder/tests/model.test.mjs`: 18 tests passed. Production integration and actual viewport checks remain the root task’s responsibility; this evidence does not claim browser verification.
+
+
+## Continuous precipitation refinement — 2026-09-17
+
+Representative droplets retain their radius while approaching and transfer liquid volume only after first contact. The icy inset highlights riming by supercooled droplets before melting; deposition/aggregation remain explained but are not separately simulated. Each full-scene precipitation particle has a finite birth, descent and either evaporation or ground-impact outcome. Landed drops leave wet marks and a brief expanding ripple; they never wrap back to cloud base. A marked cloud patch connects the landscape to the inset.
+
+Focused tests additionally protect pre-contact volume retention, the exact contact distance, monotone descent and persistent terminal outcomes in dry and humid air.

@@ -1,6 +1,6 @@
 import { createCloudTexture } from '../../src/visuals/cloudTexture.ts';
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
-import { rainState, smooth, evaporatedRadius, cloudStudy } from './model.ts';
+import { rainState, smooth, cloudStudy, rainParticle } from './model.ts';
 import type { Settings } from './model.ts';
 import { t } from './i18n.ts';
 const noise=(i:number)=>{const n=Math.sin(i*127.1+311.7)*43758.5453;return n-Math.floor(n);};
@@ -25,6 +25,9 @@ export class TopicScene{
   c.save();c.globalAlpha=state.cloud;
   const cloud=this.cloudTexture;c.drawImage(cloud.canvas,cloud.x,cloud.y,cloud.width,cloud.height);
   c.restore();
+  c.save();c.globalAlpha=state.cloud*.65;c.strokeStyle='#416e8a';c.lineWidth=1.2;c.setLineDash([3,5]);c.beginPath();c.ellipse(-171,-103,25,17,0,0,Math.PI*2);c.stroke();
+  if(!compact)s.path([[-145,-106],[88,-137],[111,-137]],undefined,'#69899b',1);
+  c.restore();
   const molecule=(x:number,y:number,size:number,opacity=1)=>{
     c.save();c.globalAlpha=opacity;
     s.path([[x-size*.75,y+size*.6],[x,y],[x+size*.75,y+size*.6]],undefined,'#8b8e83',size*.35);
@@ -41,12 +44,22 @@ export class TopicScene{
   }
   if(!compact&&progress>.18&&progress<.68)label(t('冷却与凝结'),-148,-214,305);
   if(settings.route==='ice'&&progress>.42){c.save();c.setLineDash([5,8]);s.path([[-320,11],[34,11]],undefined,'#527ca26b',1);c.restore();label(t('暖层：冰融化'),-148,18,300);}
-  if(progress>.63){const appear=smooth(.63,.79,progress);for(let i=0;i<100;i++){const u=(noise(i+621)+state.fall*(.65+noise(i+35)*.4))%1,x=-287+noise(i+451)*292+u*7,y=-50+u*204;
-    const r=evaporatedRadius(.7,settings.humidity,u*30),opacity=appear*Math.min(1,r/.4)*(.25+noise(i)*.42);if(r<.02)continue;
-    c.save();c.globalAlpha=opacity;
-    if(settings.route==='ice'&&y<10){s.path([[x-3,y],[x+3,y]],undefined,'#eefaff',1);s.path([[x,y-3],[x,y+3]],undefined,'#eefaff',1);}
-    else s.path([[x,y],[x-1,y+4+r*8]],undefined,'#42769c',.7+r*.8);c.restore();
-  }if(progress>.86)label(settings.humidity<45?t('干燥空气：雨幡'):t('湿润空气：雨落地'),-142,194,330);}
+  if(progress>.65){for(let i=0;i<56;i++){
+    const drop=rainParticle(progress,i,settings.humidity),{x,y,radius:r}=drop;
+    if(drop.outcome==='unborn'||drop.outcome==='evaporated')continue;
+    if(drop.outcome==='landed'){
+      const fresh=1-smooth(0,.055,drop.afterLanding),spread=smooth(0,.055,drop.afterLanding);
+      c.save();c.globalAlpha=.16+r*.25;s.ellipse(x,y,2.6+r*4,1.1,'#547e9166');
+      if(fresh>0){c.globalAlpha=fresh*.65;c.strokeStyle='#d8eceb';c.lineWidth=.8;c.beginPath();c.ellipse(x,y,2+spread*9,1+spread*3,0,0,Math.PI*2);c.stroke();
+        for(const side of [-1,1])s.ellipse(x+side*(2+spread*5),y-Math.sin(spread*Math.PI)*4,1,.7,'#bddde5');}
+      c.restore();continue;
+    }
+    const ice=settings.route==='ice'?1-drop.melt:0;
+    c.save();c.globalAlpha=smooth(0,.07,drop.age)*Math.min(1,r/.3)*(.48+noise(i)*.3);
+    if(ice>0){c.save();c.globalAlpha*=ice;c.translate(x,y);for(let arm=0;arm<3;arm++){c.rotate(Math.PI/3);s.path([[-3,0],[3,0]],undefined,'#f1fbfc',1.2);}c.restore();}
+    if(ice<1){c.globalAlpha*=1-ice;s.path([[x,y-2-r*3],[x,y]],undefined,'#42769c99',.8+r);s.ellipse(x,y,1+r,1.15+r,'#5893b3','#d9eef1');}
+    c.restore();
+  }if(progress>.86)label(rainParticle(1,0,settings.humidity).outcome==='evaporated'?t('干燥空气：雨幡'):t('湿润空气：雨落地'),-142,151,330);}
   // One representative population condenses into droplets, then merges.
   const originalScale=s.scale;
   c.save();
@@ -54,11 +67,11 @@ export class TopicScene{
     const factor=(s.width-38)/(247*originalScale);
     c.translate(-234*factor,(315-140)/originalScale+187*factor);c.scale(factor,factor);s.scale*=factor;
   }
-  const study=cloudStudy(progress),centerX=236,centerY=-35;
+  const study=cloudStudy(progress),centerX=236,centerY=-55;
   c.fillStyle='#f9f8eeed';c.beginPath();c.roundRect(111,-187,247,321,18);c.fill();c.strokeStyle='#688c9933';c.stroke();
   label(progress>.8?t('雨滴与空气中的水分子'):study.zoom<.5?t('放大看水分子'):t('再看云滴怎样长大'),234,-165,232);
   c.save();c.beginPath();c.rect(120,-140,228,185);c.clip();
-  const centers=[[centerX,centerY],[177,-88],[294,-88],[172,16],[297,16]];
+  const centers=[[centerX,centerY],[177,centerY-53],[294,centerY-53],[172,centerY+51],[297,centerY+51]];
   if(study.zoom<1)for(let i=0;i<30;i++){
     const group=Math.floor(i/6),angle=i*2.399,r=3+noise(i+8)*15;
     const startX=135+noise(i+400)*197,startY=-126+noise(i+502)*160;
@@ -72,10 +85,7 @@ export class TopicScene{
     c.save();c.globalAlpha=alpha;s.ellipse(x,y,r,r,g,'#739cac');c.restore();
   };
   const magnification=1+state.growth*.8;
-  for(let i=0;i<4;i++){
-    const f=study.transfers[i]!,origin=centers[i+1]!;
-    droplet(origin[0]!+(centerX-origin[0]!)*f,origin[1]!+(centerY-origin[1]!)*f,study.remaining[i]!*magnification,study.zoom);
-  }
+  for(let i=0;i<4;i++)droplet(centerX+study.positions[i]!.x*magnification,centerY+study.positions[i]!.y*magnification,study.remaining[i]!*magnification,study.zoom);
   const icy=settings.route==='ice'?smooth(.33,.43,progress)*(1-study.melt):0;
   const remaining=state.radiusMm>0?state.remainingRadiusMm/state.radiusMm:1;
   droplet(centerX,centerY,study.radius*magnification*remaining,study.zoom*(1-icy));
@@ -86,9 +96,9 @@ export class TopicScene{
       if(f>0)molecule(centerX+Math.cos(angle)*(14+f*(20+noise(i+98)*55)),centerY+Math.sin(angle)*(14+f*(18+noise(i+29)*45)),4.5,f*.8);
     }
   }
-  if(icy>0){const radius=study.radius*magnification*1.3;c.save();c.globalAlpha=icy;c.translate(centerX,centerY);for(let k=0;k<6;k++){c.rotate(Math.PI/3);s.path([[0,0],[0,-radius]],undefined,'#487d9e',2);s.path([[-radius*.2,-radius*.63],[0,-radius*.45],[radius*.2,-radius*.63]],undefined,'#8eb3c5',1.6);}c.restore();}
+  if(icy>0){const radius=study.radius*magnification;c.save();c.globalAlpha=icy;c.translate(centerX,centerY);s.path([[0,-radius],[-radius*.23,-radius*.25],[-radius*.83,-radius*.45],[-radius*.33,0],[-radius*.83,radius*.45],[-radius*.23,radius*.25],[0,radius],[radius*.23,radius*.25],[radius*.83,radius*.45],[radius*.33,0],[radius*.83,-radius*.45],[radius*.23,-radius*.25]],'#cadfe3aa','#97bccf',.8);for(let k=0;k<6;k++){c.rotate(Math.PI/3);s.path([[0,0],[0,-radius]],undefined,'#487d9e',1.5);s.path([[-radius*.2,-radius*.63],[0,-radius*.45],[radius*.2,-radius*.63]],undefined,'#edf8f4',1.3);}c.restore();}
   c.restore();
-  label(progress>.8?t('下落时，部分水分子又回到空气'):progress<.28?t('分散的分子，逐渐聚在一起'):progress<.42?t('许多分子组成一滴水'):settings.route==='ice'&&study.melt<.5?t('冰晶增长，进入暖层后融化'):t('小水滴碰到一起，合成大水滴'),234,69,220);
+  label(progress>.8?t('下落时，部分水分子又回到空气'):progress<.28?t('分散的分子，逐渐聚在一起'):progress<.42?t('许多分子组成一滴水'):settings.route==='ice'&&study.melt<.5?t('过冷水滴附着冰晶，随后融化'):t('小水滴接触后，才并入大水滴'),234,69,220);
   label(t('放大倍数变化；大小不按比例'),234,111,220);
   c.restore();s.scale=originalScale;
   s.end();

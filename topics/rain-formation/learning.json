@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "云不是被装满后漏水的袋子；降雨需要颗粒长大，而且落下的水还可能蒸发。",
-    "boundary": "湿度滑块只改变简化蒸发情景；颗粒比例、碰撞次数、落速和时间不是真实云的数值模拟。",
+    "boundary": "湿度滑块只改变简化蒸发情景；颗粒比例、碰撞次数、落速和时间不是真实云的数值模拟。 含冰局部图突出过冷水滴附着冰晶；未单独模拟水汽沉积或雪晶聚合。",
     "narration": [
       {
         "label": "云里很热闹",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "A cloud is not a bag that leaks when full. Particles must grow, and falling water can still evaporate.",
-    "boundary": "The humidity slider controls a simplified evaporation scenario. Particle scales, collision counts, fall speeds and timing are not a numerical cloud forecast.",
+    "boundary": "The humidity slider controls a simplified evaporation scenario. Particle scales, collision counts, fall speeds and timing are not a numerical cloud forecast. The icy close-up emphasizes supercooled drops attaching to ice; vapor deposition and aggregation are not separately simulated.",
     "narration": [
       {
         "label": "Inside a cloud",

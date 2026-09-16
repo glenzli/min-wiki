@@ -20,3 +20,38 @@ test('representative cloud droplets transfer volume continuously into the collec
  assert.ok(cloudStudy(1).remaining.every(r=>r===0));
  assert.equal(cloudStudy(1).melt,1);
 });
+
+test('droplets approach at unchanged radius and transfer only after contact',async()=>{
+ const {cloudStudy}=await import('../model.ts');
+ for(let i=0;i<4;i++){
+  const contact=.427+i*.065,before=cloudStudy(contact-.003),at=cloudStudy(contact),after=cloudStudy(contact+.005);
+  assert.equal(before.transfers[i],0);assert.equal(before.remaining[i],7);
+  const contactDistance=7*(1+Math.cbrt(i+1));
+  assert.ok(Math.hypot(before.positions[i].x,before.positions[i].y)>contactDistance);
+  assert.ok(Math.abs(Math.hypot(at.positions[i].x,at.positions[i].y)-contactDistance)<1e-10);
+  assert.ok(after.transfers[i]>0);
+ }
+});
+
+test('each precipitation particle descends once, then remains landed or evaporated',async()=>{
+ const {rainParticle}=await import('../model.ts');
+ for(const humidity of [20,75,100])for(let i=0;i<56;i++){
+  let previous=-Infinity,terminal='';
+  for(let step=0;step<=1000;step++){
+   const p=rainParticle(step/1000,i,humidity);
+   assert.ok(p.y>=previous);previous=p.y;
+   if(terminal)assert.equal(p.outcome,terminal);
+   if(['landed','evaporated'].includes(p.outcome))terminal=p.outcome;
+  }
+  assert.equal(rainParticle(1,i,humidity).outcome,humidity===20?'evaporated':'landed');
+ }
+});
+
+test('final readout and visible rainfall agree near the evaporation threshold',async()=>{
+ const {rainState,rainParticle}=await import('../model.ts');
+ for(let humidity=40;humidity<=46;humidity+=.1){
+  assert.equal(rainState(1,{route:'warm',humidity}).reachesGround,rainParticle(1,0,humidity).outcome==='landed');
+ }
+ assert.equal(rainParticle(1,0,41).outcome,'evaporated');
+ assert.equal(rainParticle(1,0,42).outcome,'landed');
+});
