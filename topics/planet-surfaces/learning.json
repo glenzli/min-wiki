@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "planet-surfaces",
   "zh": {
-    "question": "有一片会流动的海，就一定是水吗？每个世界都能找到像地球陆地一样的地面吗？",
-    "observe": "依次选择地球、土卫六和巨蟹座 55 e，比较三种液体的颜色、材料与证据标识；再让下降标记进入剖面，看它遇到海床、冰质湖底，还是深度未知的熔融岩石。最后比较木星与海王星。",
+    "question": "从表面一直往中心走，八个世界里面会遇到同样的东西吗？哪些是证据支持的结构，哪些还只是可能的模型？",
+    "observe": "先拖动三维近景，从不同角度看同一处地形；再切到整球剖面，从外层逐步移到正中心。暂停并点选各层，比较地球的固态地幔、液态外核与固态内核，再看木星的混合中心。最后比较土卫六与巨蟹座 55 e，并读候选结构的证据说明。",
     "academic": [
       {
-        "title": "表面、深处与支持这些解释的证据",
-        "body": "水星、金星、地球和火星属于岩石行星，但从太空看到的最外层未必是岩石：金星被厚云遮住，地球的大部分外表是海洋。木星的条带主要是大气云层的外观，不是可着陆的地皮。讨论表面时必须先区分可见云顶、压力参考面、液体表面与固体地壳，不能把照片中一切有颜色的地方都称为地面。\n\n木星以氢和氦为主，向下压力和温度升高，物质性质逐渐转为更稠密的流体，深处可能出现导电的金属氢。它没有像地球那样清楚可着陆的固体表面。海王星被称为冰巨星，是按成分与形成传统分类，并不意味着外面铺着可步行的冰壳；内部富含水、氨、甲烷等成分，处于高温高压环境。\n\n探测器的引力场、磁场、光谱和大气探测，结合高压物性实验与内部模型，帮助约束行星结构。对不透明云层下的深处，许多细节仍有不确定性，不能当作已被相机直接拍到。地球海面下能找到岩石海床，这与巨行星的深层流体不同；“能到达那里”和“那里存在固体材料”也不是同一个判断。"
+        "title": "整颗世界的剖面：地面、地幔和核心并不相同",
+        "body": "水星、金星、地球和火星都是岩石行星，但岩石壳层和金属内部的比例与状态不同。水星的金属核占很大比例，MESSENGER 的引力与自转资料还给出固体内核证据；金星预计有岩石地幔和富铁核，但目前不能把固态、液态部分画成已经确定的两圈。地球的地幔主要为固体岩石，能在地质时间尺度缓慢流动，不能说整片地幔都是岩浆；外核为液态富铁合金，内核则主要为固体，说明相态同时取决于压力、温度和成分。\n\nInSight 让火星的内部不再只靠整体密度猜测。2025 年 Bi 等人的地震研究报告固体内核的证据，推断半径约 600 千米；它更新了早先核模型，但精确尺寸、成分与核上过渡结构仍需检查。图中的火星内核因此标出新研究解释，不把剖面当实拍。\n\n整球剖面从外缘走到正中心，层色用于区分材料，薄地壳经过放大。地球海水只在表面盆地里，土卫六甲烷湖也是局部液体，都不画成包住整个天体的厚内部壳。近景可看地形和液面，内部图可看层次；两种视图回答不同尺度的问题。"
       },
       {
-        "title": "同样是液体，材料和环境可以完全不同",
-        "body": "土卫六是土星的卫星，不是行星。卡西尼号的雷达、红外光谱与镜面反射等观测显示，它的极区分布着甲烷和乙烷组成的湖海。表面约 −179°C：水在这里主要是坚硬的冰，构成冰质地形；甲烷和乙烷却能参与降雨、河流和湖泊循环。它没有被全球表面液体海洋覆盖。场景把极区湖岸作为比较对象，不是把惠更斯号实际着陆地点改画成一片海。"
+        "title": "巨行星与冰卫星：模糊分界和正在改变的证据",
+        "body": "木星云顶不是固体地面，向下进入越来越稠密的氢氦物质；高压下存在导电金属氢的解释。Juno 的引力数据支持一些具有弥散核心的模型：重元素富集区向外混合，未必像一个边缘清楚的硬核。海王星的“冰巨星”称呼不意味着可着陆的冰壳或已经证实的纯水海洋。引力、磁场和物性模型对高压混合内部提供约束，但 2025 年研究仍允许富水与富岩等多种结构；示意边线并不保证真实界面同样锐利。\n\n土卫六是土星的卫星。Cassini 已观测其极区的甲烷、乙烷湖海，水冰则构成外壳。表面湖与深处可能的液态水必须分开。Petricca 等人在 2025 年重新分析潮汐引力响应，指出强耗散难以与全球地下海洋相容，提出接近熔点的高压冰及液水囊模型。本图展示这一候选解释，保留不确定标识，而不把旧有的全球地下海或新模型写成直接见到的事实。"
       },
       {
-        "title": "岩浆海：有物理依据，但没有测绘的海岸",
-        "body": "55 Cancri e 是一颗非常靠近母恒星的岩石系外行星。其热辐射和 Webb 光谱帮助约束温度与可能的挥发性气体大气；白昼侧极热，使熔融硅酸盐海成为有依据的解释。模型中的发光液面与冷却斑块只是这一解释的示意，不能读成真实的海岸线、已测深的海底或整颗行星完全液化。岩石行星按整体组成分类，表层岩石熔化并不会让它变成水行星。"
+        "title": "系外行星与观察边界：看到中心不等于知道答案",
+        "body": "巨蟹座 55 e 是紧靠恒星的岩石系外行星。Webb 热辐射与光谱约束可能的大气及极热表面，使白昼侧熔融硅酸盐海成为有依据的解释；这不是已经拍摄的海岸或测量出的海底。质量、半径和光谱不能唯一决定深处的成分和固液分布。剖面中的热表层、硅酸盐内部与候选金属核只是一种讲解方案，全部标为不确定；热色带不表示全球等厚熔融，底边也不表示岩浆海底位置。\n\n地球和火星可利用地震波，其他世界还依靠引力、磁场、自转、潮汐、光谱及高压实验来反演内部。这些方法约束的是模型，不是透视照片。三维拖动改变观察角度；层间移动只是解释材料顺序，不表示真实探测器能穿过岩石、金属或高压流体，更不表示已经测得图中每一层的厚度。"
       }
     ],
-    "misconception": "蓝色不一定是海水，液体不一定是水，云顶也不是地板。土卫六是有甲烷与乙烷湖海的卫星；巨蟹座 55 e 的岩浆海仍是依据观测和模型作出的解释。",
-    "boundary": "八个世界采用相同球体显示大小；景观、云纹与地形为程序示意，不是测绘地图或着陆照片。层厚、光照与下降距离不按比例；巨蟹座 55 e 不指定已知岩浆海底，土卫六湖底材料是代表性冰质地形解释。下降标记不表示真实飞行器能在这些环境工作。",
+    "misconception": "看见云顶不等于找到地面；很热不一定全部是液体；走到图中中心不代表那里的结构已经被直接看见。甲烷湖、海水和熔融岩石不是同一种液体。",
+    "boundary": "八个世界显示为相同大小。景观与三维内部都是程序示意，不是测绘地图或透视照片；层厚、颜色、移动速度与核心尺寸没有按观测标尺绘制。木星的弥散区与海王星内部边界可能渐变；金星核、火星新内核解释、土卫六深处及巨蟹座 55 e 内部保留各自证据限制。候选结构可以一路探索到中心，但不是已测深的航线。",
     "narration": [
       {
-        "label": "从脚下到海床",
-        "text": "在地球上，我们可以站在岩石和泥土上，也可以坐船看海。如果换到别的行星，一直向下走，是不是也会遇到同样的地面？先别急着回答。今天我们带着一个画出来的小探针，去比较几种不同的世界。\n\n先看地球。小探针穿过空气，来到海面，再往下进入水里，最后可以找到岩石海床。暂停一会儿，指一指空气、水和岩石分别在哪里。它们不是同一种东西，所以“看到一个表面”和“脚下能站稳”还需要分开想。",
-        "cue": "先显示地球景观，再选择剖面。 下降到海床；停顿约四秒辨认三层。"
+        "label": "把地球打开，一直看到中心",
+        "text": "先用手指轻轻拖动画面，从另一边看看同一片地形。再把整颗地球打开一道口，开始我们的想象旅行。最外面是薄薄的岩石地壳，大陆和海底都有它。接着是很厚的地幔：岩石很热，大部分却仍是固体，只能在非常长的时间里慢慢变形。再往里，外核是会流动的金属；到了正中心，内核又是固体，因为这里也被压得非常紧。现在暂停，把刚才走过的层找一找。海水只在表面，没有一直通到地心。",
+        "cue": "拖动地球近景比较视角；切整球剖面，逐层暂停，最后到中心。回看外核与内核，辨认液态与固态。"
       },
       {
-        "label": "一片很冷的湖",
-        "text": "现在来到土卫六。先记住，它是绕着土星转的卫星。这里也有湖，有湖岸，可是湖里的液体不是水，而是叫甲烷和乙烷的东西。这里太冷了，水反而冻成了硬硬的冰。你看，同样能流动，里面装的材料可以不一样。科学家的探测器已经看到了这些湖海的证据。",
-        "cue": "选择土卫六的近景，再切剖面；在液面和冰质湖底各暂停三秒。"
+        "label": "换一个世界，里面也会变",
+        "text": "水星有比较薄的岩石外衣和很大的金属内部；金星虽然很热，核心哪些地方会流动，科学家还在找答案。火星的小震动送来新线索，提示它中心可能有固体内核。再换到木星，条纹是云，可不是地板。往里越来越稠密，较重的成分可能和周围混在一起，不像果子里一颗整整齐齐的核。海王星也不是外面裹着滑冰场。原来，同样画成一个球，里面可以很不一样。",
+        "cue": "比较水星、金星与火星的核心标识，再选择木星与海王星。拖转整球剖面，暂停在中心混合区域。"
       },
       {
-        "label": "一片可能很烫的海",
-        "text": "再去想象一颗很远、很烫的行星，叫巨蟹座五十五 e。它紧挨着自己的恒星，岩石可能都热得熔化了，就像变成一片岩浆海。这里可没有人站在岸边拍照片。科学家是在读它发来的热和光，推想可能发生了什么。我们把不知道的地方也留下来，等着新的发现。",
-        "cue": "选择巨蟹座 55 e；指出“科学推测”的标识，再看熔融层，停在没有指定海底的位置。"
+        "label": "土卫六的湖和冰",
+        "text": "土卫六绕着土星转，是一颗卫星。这里有湖岸，可是湖里不是水，而是甲烷和乙烷。水在这里反而冻成了硬冰。湖只在一些地方，没有包住整颗卫星。再看看冰下面。科学家曾经猜这里有一片很大的地下水海洋，新的线索却提示：也可能是接近融化的高压冰，夹着一些液态水。我们画出一种可能，让问号也留在这里。再往中心，是可能富含岩石的部分。",
+        "cue": "拖看土卫六代表性湖岸；切剖面，从水冰外壳到高压冰候选层再到岩石核心，指出不确定标识。"
       },
       {
-        "label": "云下面的世界与图画的边界",
-        "text": "再换到木星。它外面漂亮的条带是云层，不是一块块地板。往深处去，周围会越来越稠密，压力越来越大，并没有一个像地球陆地那样清楚的着陆面。海王星也不是一颗外面裹着硬冰、可以让我们下去滑冰的大球。\n\n这些风景是帮助理解的图画，不是有人站在那里拍的照片。科学家用探测器收到的光、引力和磁场信息，推想看不见的内部，还会继续检查新的证据。现在回头看看：有些地方是云，有些是水，有些是岩石，同叫行星，脚下的世界可以非常不同。",
-        "cue": "分别比较木星、海王星的下降剖面。 回到各行星景观对照，保留示意说明。"
+        "label": "很烫的远方，和还不知道的地方",
+        "text": "最后到巨蟹座五十五 e。它很靠近自己的恒星，朝着恒星的一面，岩石可能都热得会流动了。可没有人在那里拍过海岸照片。我们的图可以继续走到中心，但画出来的层只是一个可能的答案：岩浆到底多深，里面的金属核长什么样，还不知道。科学家会听地震的消息，也会读光、引力和磁场带来的线索。今天最有意思的，不只是走到了哪里，还可以问：我们是怎么知道的呢？",
+        "cue": "选择巨蟹座 55 e，检查各层的候选说明并到达中心；回到近景，保留非实拍与无已知海底说明。"
       }
     ]
   },
   "en": {
-    "question": "If a sea can flow, must it be water? Does every world have ground like Earth’s land?",
-    "observe": "Choose Earth, Titan, and 55 Cancri e. Compare their liquids, materials, and evidence labels. Descend through their sections to distinguish rocky seabed, an illustrative icy lakebed, and molten rock of unknown depth. Then compare Jupiter and Neptune.",
+    "question": "If we travel from the exterior to the center, do all eight worlds contain the same things? Which structures are well supported and which remain candidate models?",
+    "observe": "Drag the 3D close view to inspect the same terrain from different angles. Switch to the whole-world cutaway and travel from the exterior to the exact center. Pause and select layers: compare Earth’s solid mantle, liquid outer core and solid inner core, then Jupiter’s mixed center. Finally inspect Titan and 55 Cancri e with their evidence notes.",
     "academic": [
       {
-        "title": "Surfaces, interiors, and the evidence behind them",
-        "body": "Mercury, Venus, Earth, and Mars are rocky planets, but their visible outermost layer may be clouds or ocean rather than rock. Jupiter’s bands mainly show atmospheric clouds, not landing surfaces. Distinguish visible cloud tops, reference pressure levels, liquid surfaces, and solid crust instead of calling every colored region in a planetary picture ground.\n\nJupiter is mainly hydrogen and helium. Increasing pressure and temperature lead to denser fluid states, with conducting metallic hydrogen at depth. It lacks an Earth-like accessible solid surface. Neptune’s ice-giant label concerns composition and formation terminology, not a walkable outer ice shell. Its interior includes water-, ammonia-, and methane-rich material under extreme temperature and pressure.\n\nSpacecraft gravity and magnetic measurements, spectra, and atmospheric probes combine with high-pressure experiments and models to constrain interiors. Many deep details beneath opaque clouds remain uncertain, rather than directly photographed. Earth’s rocky seabed differs from a giant planet’s deep fluid. The existence of solid material somewhere and the ability to reach a landing surface are different questions."
+        "title": "Whole-world cutaways: crust, mantle and core are different",
+        "body": "Mercury, Venus, Earth and Mars are rocky planets with different proportions and states of rocky and metallic material. Mercury has a large metal core, with MESSENGER gravity and rotation data supporting a solid inner core. Venus is expected to have a rocky mantle and iron-rich core, but separate solid and liquid core regions are not established. Earth’s mantle is mostly solid rock that can creep over geological times; it is not a global magma ocean. A liquid iron-rich outer core surrounds a solid inner core, showing that phase depends on pressure and composition as well as temperature.\n\nInSight provides seismic constraints on Mars. Bi et al. (2025) reported evidence for a solid inner core about 600 km in radius, updating earlier core models. Dimensions, composition and core-overlying transitions still require testing. Its inner-core region is labeled as a new research interpretation rather than an interior photograph.\n\nThe whole-world section reaches the exact center. Colors distinguish materials and thin crusts are enlarged. Earth’s oceans occupy surface basins and Titan’s hydrocarbon lakes are local liquids; neither becomes a thick global interior shell. A close view explains terrain and liquid surfaces, while the cutaway explains internal regions."
       },
       {
-        "title": "Liquid is a state, not a single material",
-        "body": "Titan is a moon of Saturn, not a planet. Cassini radar, infrared spectra, and specular reflections reveal polar lakes and seas containing methane and ethane. At about −179°C, water mainly forms hard ice that helps build the terrain, while methane and ethane participate in rain, rivers, and lakes. Titan is not covered by a global surface ocean. The illustrated polar lakeshore is not the Huygens landing site."
+        "title": "Giants and icy moons: mixed boundaries and changing evidence",
+        "body": "Jupiter’s clouds are not a solid surface. Deeper hydrogen-helium material becomes dense, with conducting metallic hydrogen expected at high pressure. Juno gravity data support models with a dilute core: heavy material is mixed outward rather than necessarily confined to a sharply outlined solid kernel. Neptune’s ice-giant label does not establish a walkable ice shell or pure-water sea. Gravity, magnetism and material models constrain its high-pressure mixtures, but a 2025 study still permits both water-rich and rock-rich interiors. Drawn boundaries need not be sharp physical interfaces.\n\nTitan is Saturn’s moon. Cassini observed mainly polar methane-ethane lakes, while water ice forms the exterior. Those surface liquids are separate from possible deep liquid water. Petricca et al. (2025) reanalyzed the tidal gravity response and found strong dissipation difficult to reconcile with a global subsurface ocean, favoring near-melting high-pressure ice with possible water pockets. This view adopts that candidate interpretation with uncertainty labels rather than treating either an ocean or the new model as directly seen."
       },
       {
-        "title": "A magma ocean without a mapped coastline",
-        "body": "55 Cancri e is a rocky exoplanet very close to its star. Thermal emission and Webb spectra constrain temperature and a possible volatile atmosphere. Its intensely hot dayside makes molten silicates a well-motivated interpretation. Glowing liquid and cooling patches here illustrate that interpretation, not measured coastlines, a known sea floor, or a wholly liquid planet. A rocky classification describes bulk composition; melting surface rock does not turn it into a water planet."
+        "title": "Exoplanet limits: reaching the drawn center is not measuring it",
+        "body": "55 Cancri e is a rocky exoplanet very close to its star. Webb thermal emission and spectra constrain a possible atmosphere and extreme surface heat, motivating a dayside silicate magma ocean. This is not a photographed coast or measured sea floor. Mass, radius and spectra do not uniquely fix deep composition or phase. The hot exterior, silicate interior and candidate metal core are one explanatory arrangement, all marked uncertain. The outer color band is not a uniform global molten shell, and its bottom is not a measured magma-ocean boundary.\n\nEarth and Mars can be studied seismically; gravity, magnetism, rotation, tides, spectra and high-pressure experiments also constrain worlds. These support interior models rather than transparent photographs. Dragging changes the viewing angle. Moving through layers explains material order, not a survivable spacecraft trajectory or measured thicknesses."
       }
     ],
-    "misconception": "Blue does not mean seawater, liquid does not always mean water, and cloud tops are not floors. Titan is a moon with hydrocarbon lakes; the magma ocean on 55 Cancri e is an interpretation based on observations and models.",
-    "boundary": "All eight worlds use equal display sizes. Procedural terrain and clouds are illustrative, not measured maps or landing photographs. Layer thickness, lighting, and descent are uncalibrated. No known magma-ocean floor is assigned to 55 Cancri e; Titan’s bed represents icy terrain rather than a measurement of every lakebed. Markers do not imply spacecraft survivability.",
+    "misconception": "Cloud tops are not ground; hot material is not necessarily all liquid; reaching the drawn center does not mean its structure has been directly seen. Hydrocarbon lakes, seawater and molten rock are different liquids.",
+    "boundary": "Worlds have equal display sizes. Terrain and 3D interiors are procedural illustrations, not measured maps or transparent photographs. Layer thickness, color, travel speed and core size are uncalibrated. Jupiter and Neptune may have gradual transitions. Venus’s core, Mars’s new inner-core interpretation, Titan’s depths and 55 Cancri e retain their specific evidence limits. A candidate model can reach the center without being a measured travel path.",
     "narration": [
       {
-        "label": "From familiar ground to the seabed",
-        "text": "On Earth we can stand on rock and soil or take a boat across the sea. If we traveled downward on another planet, would we meet the same kind of ground? Do not answer too quickly. Today an imaginary little probe will help us compare several different worlds.\n\nStart with Earth. The probe travels through air, reaches the ocean, enters water, and finally finds rocky seabed. Pause and point to air, water, and rock. They are different materials. Seeing an outer surface and finding something you can stand on are two different questions to think about.",
-        "cue": "Show Earth’s landscape, then its section view. Descend to the seabed and pause four seconds to identify the layers."
+        "label": "Open Earth and travel to its center",
+        "text": "Gently drag the picture to see the same terrain from another direction. Then open a cut through the whole Earth for an imaginary journey. First comes thin rocky crust, under both land and ocean. Next is the thick mantle: hot rock that is mostly solid, changing shape only over very long times. Farther in, the outer core is flowing metal. At the exact center, the inner core is solid again, under enormous pressure. Pause and find the layers we passed. Seawater stays near the exterior; it does not reach the center.",
+        "cue": "Drag Earth’s close view, then open the whole-world cutaway. Pause in each layer and reach the center; compare liquid outer core and solid inner core."
       },
       {
-        "label": "A very cold lake",
-        "text": "Now visit Titan. Remember, it is a moon traveling around Saturn. It has lakes and shores, but the liquid is not water. It is made of things called methane and ethane. Titan is so cold that water becomes hard ice instead. Things can flow even when they are made of different materials. Spacecraft have already found evidence of these lakes and seas.",
-        "cue": "Choose Titan’s close view and then its section. Pause three seconds at the liquid surface and illustrative icy bed."
+        "label": "Different worlds, different interiors",
+        "text": "Mercury has a thin rocky exterior and a large metallic interior. Venus is very hot, but scientists still investigate which parts of its core can flow. Marsquakes offer new clues that a solid inner core may lie at the center of Mars. Now try Jupiter: its stripes are clouds, not floors. Material becomes denser inward, and heavier ingredients may mix with their surroundings instead of making a neatly edged fruit stone. Neptune is not wrapped in an ice rink either. Worlds drawn as similar balls can be very different inside.",
+        "cue": "Compare Mercury, Venus and Mars core labels, then rotate Jupiter and Neptune cutaways and pause at their mixed central regions."
       },
       {
-        "label": "A sea that may be very hot",
-        "text": "Next, imagine a very distant, very hot planet called fifty-five Cancri e. It travels close to its star, so some of its rock may melt into a magma sea. Nobody has stood on its shore to take a picture. Scientists are reading its heat and light to work out what may happen there. We also leave room for things we do not know yet, and for new discoveries.",
-        "cue": "Choose 55 Cancri e. Point to the inferred-surface label, then follow the molten layer without assigning a known sea floor."
+        "label": "Titan’s lakes and ice",
+        "text": "Titan travels around Saturn: it is a moon. Its lakes contain methane and ethane, not water. Water is frozen into hard ice here. Lakes occur in some places rather than wrapping the whole moon. What is below the ice? Scientists once inferred a large buried water ocean. New clues suggest another possibility: high-pressure ice near melting, with pockets of liquid water. We show a possible answer while keeping the question mark. Farther inward is a region that may be rich in rock.",
+        "cue": "Drag the representative lakeshore view. In the cutaway, follow the ice shell, candidate high-pressure ice and rocky core, pointing out uncertainty labels."
       },
       {
-        "label": "Below the clouds and beyond the picture",
-        "text": "Now choose Jupiter. Its beautiful bands are clouds, not floorboards. Farther down, material becomes denser and pressure increases. There is no clear landing surface like Earth’s land. Neptune is not a giant ball with an outer hard-ice shell that we could land on and skate across either.\n\nThese landscapes are pictures to help us understand, not photographs taken by someone standing there. Scientists use spacecraft measurements of light, gravity, and magnetic fields to study hidden interiors, and keep checking new evidence. Look again: some exteriors are clouds, some water, and some rock. Worlds called planets can be very different underfoot.",
-        "cue": "Compare descent through Jupiter and Neptune. Compare landscapes again with the illustration note visible."
+        "label": "A hot distant world, and what remains unknown",
+        "text": "Finally visit fifty-five Cancri e. It is so close to its star that rock on the star-facing side may become hot enough to flow. Nobody has photographed its shore. Our picture can continue to the center, but its layers are one possible answer. How deep the magma reaches and what a metal core might be like are still unknown. Scientists listen to seismic clues and read light, gravity and magnetic fields. The interesting question is not only where we went, but how we know what might be there.",
+        "cue": "Choose 55 Cancri e, inspect each candidate label and reach the center. Return to the close view with the illustration and unknown magma-floor caveats visible."
       }
     ]
   },
@@ -113,6 +113,70 @@
     {
       "title": "Hu et al. (2024) · A secondary atmosphere on the rocky exoplanet 55 Cancri e",
       "url": "https://www.nature.com/articles/s41586-024-07432-x"
+    },
+    {
+      "title": "NASA · Mercury facts",
+      "url": "https://science.nasa.gov/mercury/facts/"
+    },
+    {
+      "title": "NASA (2019) · Mercury spin, gravity and solid inner-core evidence",
+      "url": "https://www.nasa.gov/solar-system/a-closer-look-at-mercurys-spin-and-gravity-reveals-the-planets-inner-solid-core/"
+    },
+    {
+      "title": "NASA · Venus facts",
+      "url": "https://science.nasa.gov/venus/venus-facts/"
+    },
+    {
+      "title": "Margot et al. (2021) · Spin state and moment of inertia of Venus",
+      "url": "https://www.nature.com/articles/s41550-021-01339-7"
+    },
+    {
+      "title": "Shah et al. · Interior structure models of Venus",
+      "url": "https://arxiv.org/abs/2112.03225"
+    },
+    {
+      "title": "USGS · Inside the Earth",
+      "url": "https://pubs.usgs.gov/gip/dynamic/inside.html"
+    },
+    {
+      "title": "NASA · InSight and the Martian mantle (2025)",
+      "url": "https://www.nasa.gov/missions/insight/nasa-marsquake-data-reveals-lumpy-nature-of-red-planets-interior/"
+    },
+    {
+      "title": "Bi et al. (2025) · Seismic detection of a 600-km solid inner core in Mars",
+      "url": "https://www.nature.com/articles/s41586-025-09361-9"
+    },
+    {
+      "title": "Le Maistre et al. (2023) · Spin state and deep interior structure of Mars",
+      "url": "https://www.nature.com/articles/s41586-023-06150-0"
+    },
+    {
+      "title": "NASA · Juno: the dilute or fuzzy core",
+      "url": "https://science.nasa.gov/mission/juno/"
+    },
+    {
+      "title": "Wahl et al. (2017) · Jupiter interior models and a dilute core",
+      "url": "https://arxiv.org/abs/1707.01997"
+    },
+    {
+      "title": "Morf and Helled (2025) · Icy or rocky? New interior models of Uranus and Neptune",
+      "url": "https://arxiv.org/abs/2510.00175"
+    },
+    {
+      "title": "NASA (2025) · Titan may not have a global subsurface ocean",
+      "url": "https://www.nasa.gov/solar-system/planets/saturn/saturn-moons/titan/nasa-study-suggests-saturns-moon-titan-may-not-have-global-ocean/"
+    },
+    {
+      "title": "Petricca et al. (2025) · Titan tidal dissipation and an ocean-free interior model",
+      "url": "https://www.nature.com/articles/s41586-025-09818-x"
+    },
+    {
+      "title": "Dorn et al. · Bayesian analysis of exoplanet interiors including 55 Cancri e",
+      "url": "https://arxiv.org/abs/1609.03909"
+    },
+    {
+      "title": "USGS · The mantle is mostly solid rock",
+      "url": "https://www.usgs.gov/faqs/are-tectonic-plates-floating-magma"
     }
   ]
 }

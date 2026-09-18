@@ -1,7 +1,10 @@
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
-import { noise, clamp, markerY, SECTION, type World, type View } from './model.ts';
+import { noise, clamp, type World, type View } from './model.ts';
 import { palette, seed } from './surfacePainter.ts';
+import { INTERIORS, interiorAt } from './interior.ts';
+import type { PlanetView3D } from './scene3d.ts';
+import type { Angle } from './camera.ts';
 type Point = [number, number];
 const makeCanvas = (width: number, height: number) => { const c = document.createElement('canvas'); c.width = width; c.height = height; return c; };
 const hasPixels = (image?: ImageData): image is ImageData => {
@@ -13,6 +16,13 @@ const hasPixels = (image?: ImageData): image is ImageData => {
 /** Topic-owned illustrative textures. No texture is presented as a measured surface map. */
 export class TopicScene {
   private s: CanvasSurface;
+  private three?: PlanetView3D;
+  private disposed = false;
+  onInteraction?: () => void;
+  onCameraChange?: (yaw: number, elevation: number) => void;
+  get interactive() { return !!this.three; }
+  setAngle(angle: Angle) { this.three?.setAngle(angle); }
+  startTour() { this.three?.startTour(); }
   private world?: World;
   private view: View = 'landscape';
   private progress = 0;
@@ -31,10 +41,26 @@ export class TopicScene {
   private cancelTransition = () => {};
   constructor(canvas: HTMLCanvasElement) {
     this.s = new CanvasSurface(canvas);
+    if (canvas.parentElement) {
+      void import('./scene3d.ts').then(({ PlanetView3D }) => {
+        if (this.disposed) return;
+        const target = document.createElement('canvas'); target.id = 'scene-3d'; target.className = 'scene-3d'; target.tabIndex = 0;
+        target.setAttribute('role', 'img'); target.setAttribute('aria-label', canvas.getAttribute('aria-label') ?? ''); canvas.parentElement!.append(target);
+        try {
+          const view = new PlanetView3D(target); this.three = view;
+          view.onInteraction = () => this.onInteraction?.();
+          view.onCameraChange = (yaw, elevation) => this.onCameraChange?.(yaw, elevation);
+          view.onFailure = () => { view.dispose(); this.three = undefined; canvas.style.visibility = ''; canvas.removeAttribute('aria-hidden'); if (this.world) this.draw(this.world, this.view, this.progress, this.phase); this.onPrepared?.(); };
+          canvas.style.visibility = 'hidden'; canvas.setAttribute('aria-hidden', 'true');
+          if (this.world) { const texture = this.textures.get(this.world.id); if (texture) view.setTexture(this.world, texture); view.draw(this.world, this.view, this.progress, this.phase); }
+          this.onPrepared?.();
+        } catch { this.three?.dispose(); this.three = undefined; target.remove(); canvas.style.visibility = ''; canvas.removeAttribute('aria-hidden'); this.onPrepared?.(); }
+      }).catch(() => this.onPrepared?.());
+    }
     this.s.onResize(() => { this.cancelTransition(); if (this.world) this.draw(this.world, this.view, this.progress, this.phase); });
   }
   onPreparationChange(callback: () => void) { this.onPrepared = callback; }
-  get preparing() { return !!this.world && this.pendingWorld === this.world.id; }
+  get preparing() { return !this.three && !!this.world && this.pendingWorld === this.world.id; }
   get failed() { return !!this.world && this.failures.has(this.world.id); }
   private prepare(world: World) {
     if ((this.landscapes.has(world.id) && this.textures.has(world.id)) || this.pendingWorld === world.id || this.failures.has(world.id)) return;
@@ -52,7 +78,7 @@ export class TopicScene {
           try {
             const landscape = makeCanvas(result.landscape.width, result.landscape.height);
             landscape.getContext('2d')!.putImageData(result.landscape, 0, 0);
-            this.landscapes.set(world.id, landscape); this.textures.set(world.id, result.texture); this.globeKey = '';
+            this.landscapes.set(world.id, landscape); this.textures.set(world.id, result.texture); this.three?.setTexture(world, result.texture); this.globeKey = '';
           } catch { this.failures.add(world.id); }
         }
         if (this.world) { if (this.failed) this.draw(this.world, this.view, this.progress, this.phase); else this.transition(this.world, this.view, this.progress, this.phase); }
@@ -72,6 +98,7 @@ export class TopicScene {
   }
   transition(world: World, view: View, progress: number, phase: number) {
     this.cancelTransition();
+    if (this.three) { this.draw(world, view, progress, phase); return; }
     const previous = makeCanvas(this.s.canvas.width, this.s.canvas.height);
     previous.getContext('2d')!.drawImage(this.s.canvas, 0, 0);
     this.world = world; this.view = view; this.progress = progress; this.phase = phase;
@@ -82,7 +109,7 @@ export class TopicScene {
       c.drawImage(previous, 0, 0, this.s.canvas.width, this.s.canvas.height); c.restore();
     } });
   }
-  stopTransition() { this.cancelTransition(); }
+  stopTransition() { this.cancelTransition(); this.three?.stopTransition(); }
   private globe(world: World, phase: number) {
     const key = world.id + ':' + phase.toFixed(3); if (key === this.globeKey) return this.globeCanvas;
     const texture = this.textures.get(world.id);
@@ -106,6 +133,7 @@ export class TopicScene {
   draw(world: World, view: View, progress: number, phase = 0) {
     this.world = world; this.view = view; this.progress = progress; this.phase = phase;
     this.prepare(world);
+    if (this.three) { this.three.draw(world, view, progress, phase); return; }
     const s = this.s, c = s.begin(...(view === 'globe' ? ['#060b13', '#111b25'] as [string, string] : palette[world.id].sky));
     if (view === 'globe') {
       for (let i = 0; i < 70; i++) s.ellipse((seed(i + 320) - .5) * 1700, (seed(i + 810) - .5) * 570, .45 + seed(i) * .6, .45 + seed(i) * .6, '#d1dfdc58');
@@ -136,44 +164,16 @@ export class TopicScene {
       s.path([...points, [1100, 1000], [-1100, 1000]], color, '#eedcc322', 1);
     }
   }
-  private section(world: World, progress: number, phase: number) {
-    const s = this.s, c = s.context, giant = !world.surface, molten = world.liquid === 'silicate-melt', hydrocarbon = world.liquid === 'hydrocarbon';
-    const gradient = c.createLinearGradient(0, -250, 0, 250);
-    if (giant) {
-      gradient.addColorStop(0, world.color); gradient.addColorStop(.47, world.id === 'jupiter' ? '#8b7469' : '#608f9d'); gradient.addColorStop(1, '#233039');
-    } else {
-      gradient.addColorStop(0, palette[world.id].sky[0]); gradient.addColorStop(.429, palette[world.id].sky[1]);
-      const top = molten ? '#ee9441' : hydrocarbon ? '#706b46' : world.liquid === 'water' ? '#4a9dae' : '#a48a70';
-      const bottom = molten ? '#b53b18' : hydrocarbon ? '#302e24' : world.liquid === 'water' ? '#164d62' : '#5c4c40';
-      gradient.addColorStop(.433, top); gradient.addColorStop(.789, bottom);
-      gradient.addColorStop(.795, world.liquid === 'water' ? '#766c55' : hydrocarbon ? '#8e8671' : bottom); gradient.addColorStop(1, molten ? '#78321e' : '#3d3835');
+  private section(world: World, progress: number, _phase: number) {
+    const s = this.s, c = s.context, profile = INTERIORS[world.id], active = interiorAt(world.id, progress);
+    c.fillStyle = '#0b1621'; c.fillRect(-2000, -2000, 4000, 4000);
+    for (const layer of profile.layers) {
+      s.ellipse(0, 0, layer.outer * 205, layer.outer * 205, layer.color);
+      if (layer.id === active.id) { c.save(); c.globalAlpha = .12; s.ellipse(0, 0, layer.outer * 205, layer.outer * 205, '#fff8ce'); c.restore(); }
     }
-    c.fillStyle = gradient; c.fillRect(-2000, -2000, 4000, 4000);
-    const { interface: boundary, bed } = SECTION;
-    for (let line = 0; line < (giant ? 36 : 21); line++) {
-      const y = giant ? -240 + line * 14 : boundary + line * 15;
-      if (!giant && world.liquid !== 'none' && !molten && y < bed) continue;
-      const points: Point[] = Array.from({ length: 150 }, (_, i) => { const x = -800 + i * 11; return [x, y + noise(x + (giant ? phase * 2 : 0), line * 37) * (giant ? 16 : 6)]; });
-      s.path(points, undefined, line % 3 ? '#e7d9b224' : '#131b2433', giant ? 6 : 1.4);
-    }
-    if (world.liquid !== 'none') {
-      const points: Point[] = Array.from({ length: 160 }, (_, i) => { const x = -850 + i * 11; return [x, boundary + Math.sin(x * .033 + phase * .45) * (hydrocarbon ? .45 : 1.25)]; });
-      s.path(points, undefined, molten ? '#ffe2a3b0' : '#eee7c970', 2);
-      if (!molten) {
-        const bottom: Point[] = Array.from({ length: 160 }, (_, i) => { const x = -850 + i * 11; return [x, bed + noise(x * 1.1, 93) * 7]; });
-        s.path(bottom, undefined, hydrocarbon ? '#c4b99a' : '#ad9d73', 3);
-      } else {
-        // Fade into an unmeasured interior; do not invent a measured magma-ocean floor.
-        const fade = c.createLinearGradient(0, 135, 0, 280); fade.addColorStop(0, '#201c2100'); fade.addColorStop(1, '#201c21dd'); c.fillStyle = fade; c.fillRect(-2000, 135, 4000, 200);
-      }
-    }
-    const y = markerY(world, progress);
-    s.path([[0, SECTION.top], [0, y]], undefined, '#f1f5e570', 1.5);
-    for (let i = 0; i < 6; i++) { const yy = SECTION.top + i * 69; s.path([[-13, yy], [-8, yy]], undefined, '#e9efdf66', 1); }
-    const halo = c.createRadialGradient(0, y, 0, 0, y, 28); halo.addColorStop(0, '#fff6d05b'); halo.addColorStop(1, '#fff6d000'); s.ellipse(0, y, 28, 28, halo);
-    s.path([[0, y - 10], [9, y], [0, y + 10], [-9, y]], '#f9eacc', '#fff9e6', 1.5);
-    s.ellipse(-1.5, y - 1, 3, 3, '#766a55');
-    c.drawImage(this.globe(world, 0), -357, -214, 136, 136);
+    const radius = (1 - clamp(progress)) * 205, a = Math.PI * .72, x = Math.cos(a) * radius, y = -Math.sin(a) * radius;
+    s.path([[Math.cos(a) * 220, -Math.sin(a) * 220], [0, 0]], undefined, '#f7eacb99', 1.4);
+    s.ellipse(x, y, 7, 7, '#fff6be', '#fffaf1');
   }
-  dispose() { this.cancelTransition(); this.generation++; this.pendingWorld = ''; this.worker?.terminate(); this.worker = undefined; this.onPrepared = undefined; this.s.dispose(); this.landscapes.forEach(image => { image.width = 0; image.height = 0; }); this.landscapes.clear(); this.textures.clear(); this.previewGlobes.clear(); }
+  dispose() { this.disposed = true; this.three?.dispose(); this.three = undefined; this.cancelTransition(); this.generation++; this.pendingWorld = ''; this.worker?.terminate(); this.worker = undefined; this.onPrepared = undefined; this.s.dispose(); this.landscapes.forEach(image => { image.width = 0; image.height = 0; }); this.landscapes.clear(); this.textures.clear(); this.previewGlobes.clear(); }
 }

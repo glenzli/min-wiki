@@ -5,15 +5,18 @@
 <header><p class="eyebrow">岩石、云层与液体世界</p><h1>行星的表面是什么样的</h1><p class="intro">比较八个世界的岩石、云层、水海洋、甲烷湖与可能的岩浆海，寻找表面的不同含义。</p><div class="modes"><button data-mode="kids" aria-pressed="true">儿童版</button><button data-mode="academic" aria-pressed="false">学术版</button></div></header>
 <nav class="worlds" id="worlds" aria-label="选择一个世界"></nav>
 <section class="explorer" aria-label="表面观察室">
-  <div class="views"><button data-view="globe" aria-pressed="false">从太空看</button><button data-view="landscape" aria-pressed="true">靠近看一看</button><button data-view="section" aria-pressed="false">向下探索</button><span>示意地貌，不是实拍</span></div>
+  <div class="views"><button data-view="globe" aria-pressed="false">从太空看</button><button data-view="landscape" aria-pressed="true">靠近看一看</button><button data-view="section" aria-pressed="false">剖开看内部</button><span>示意地貌，不是实拍</span></div>
+  <div class="camera-controls" id="camera-controls" hidden><span>观察角度</span><button data-angle="front">正面</button><button data-angle="oblique">斜看</button><button data-angle="overhead">俯看</button><output id="camera-readout"></output></div>
   <div class="viewport"><canvas id="scene" role="img" aria-label="行星、卫星的地貌与深度层次示意"></canvas><p id="scene-preparing" role="status" hidden>正在靠近这个世界…</p><p id="scene-error" hidden>画面暂时无法显示，仍可阅读下方讲解。</p></div>
+  <p class="gesture-hint" id="gesture-hint" hidden>拖动画面转动视角，滚轮缩放；也可选角度按钮。画面获得焦点后，方向键转动，加减键缩放。</p>
   <p class="view-note" id="view-note"></p>
-  <div class="scene-facts"><p><span>这里是什么</span><strong id="material"></strong></p><p><span>留心看</span><strong id="feature"></strong></p><p class="evidence" id="evidence"></p></div>
+  <div class="controls" id="controls"><button id="play">环绕巡视</button><button id="orbit" hidden>环绕看剖面</button><button id="reset" hidden>回到表层</button><button id="center" hidden>直接到中心</button><label id="depth-control" hidden><span>表层</span><input id="depth" aria-label="从表层到中心的位置" type="range" min="0" max="1000" value="0"><span>中心</span></label><output id="layer"></output></div>
+  <div class="scene-facts" id="scene-facts"><p><span>这里是什么</span><strong id="material"></strong></p><p><span>留心看</span><strong id="feature"></strong></p><p class="evidence" id="evidence"></p></div>
+  <div class="layer-card" id="layer-card" hidden><div><p class="eyebrow">黄色标记走到了这里</p><h2 id="current-layer"></h2><span id="layer-status"></span></div><p id="layer-description"></p></div>
   <ol id="section-legend" class="section-legend" aria-label="由浅到深的层次" hidden></ol>
-  <div class="controls" id="controls"><button id="play">开始下降</button><button id="reset">回到上方</button><label id="depth-control">探索深度<input id="depth" aria-label="探索深度" type="range" min="0" max="1000" value="0"></label><output id="layer"></output></div>
   <article class="story"><div><p class="eyebrow" id="kind"></p><h2 id="title"></h2></div><div><p id="story"></p><p class="observe" id="observe"></p></div></article>
 </section>
 <section class="notes"><article><h2>液体不一定是水</h2><p>地球的海是水，土卫六的湖主要是甲烷和乙烷。极热的岩石也可能熔化成为液体：巨蟹座 55 e 就是研究中的岩浆海候选世界。它们的温度、材料与证据并不相同。</p></article><article><h2>有海，不等于整颗都是液体</h2><p>地球是有海洋的岩石行星，土卫六是有湖海的冰质卫星。木星和海王星的深层流体没有裸露在像地球海面一样的界面上。太阳系外“全球水海洋”的说法也仍需要逐个检验证据。</p></article><article><h2>已看见，还是推测出来？</h2><p>探测器已经观测到土卫六的湖海；巨蟹座 55 e 的熔融表面则是从热辐射、光谱和物理模型推断的。图里亮着的岩浆海没有被这样近距离拍到，范围和深度还不知道。</p></article><article><h2>看见的颜色也需要解释</h2><p>金星与土卫六的厚云雾会遮住地面。海王星的真实可见光外观比许多增强照片更淡，蓝色也不等于海水。这里的地形、云纹与光照帮助辨认差别，不复原具体地点。</p></article></section>
-<details><summary>模型边界与资料</summary><p>球体大小相同仅为方便比较，不代表真实大小。景观和地图为程序绘制的代表性示意；剖面层厚、下降速度及内部边界不按比例。土卫六的近景代表极区湖岸，不是惠更斯号着陆点。巨蟹座 55 e 的地貌与岩浆海形状未被测绘，模型不指定一个已知海底。所有下降标记只用来比较材料，不表示飞行器能在那里工作。</p><div id="sources"></div></details>
+<details><summary>模型边界与资料</summary><p>球体大小相同仅为方便比较，不代表真实大小。景观和地图为程序绘制的代表性示意；剖面层厚、下降速度及内部边界不按比例。土卫六的近景代表极区湖岸，不是惠更斯号着陆点。巨蟹座 55 e 的地貌与岩浆海形状未被测绘，模型不指定一个已知海底。所有下降标记只用来比较材料，不表示飞行器能在那里工作。</p><div id="sources"></div><h3>当前世界的内部研究</h3><div id="interior-sources"></div></details>
 <nav class="related"><a href="/topics/solar-system/">再比较行星的大小与公转 →</a><a href="/topics/saturn-moons/">看看土星的卫星 →</a></nav>
 </main><script type="module" src="./main.ts"></script></body></html>

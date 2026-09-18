@@ -10,35 +10,9 @@ export const WORLDS = [
 ] as const;
 export type World = typeof WORLDS[number];
 export type WorldId = World['id'];
-export type Layer = 'air' | 'water' | 'seabed' | 'ground' | 'clouds' | 'dense-fluid' | 'hydrocarbon' | 'icy-bed' | 'melt';
 export type View = 'landscape' | 'globe' | 'section';
 export const clamp = (value: number, low = 0, high = 1) => Number.isFinite(value) ? Math.min(high, Math.max(low, value)) : low;
 export const smooth = (low: number, high: number, value: number) => { const p = clamp((value - low) / (high - low)); return p * p * (3 - 2 * p); };
-export function layersFor(world: World): Layer[] {
-  if (!world.surface) return ['clouds', 'dense-fluid'];
-  if (world.liquid === 'water') return ['air', 'water', 'seabed'];
-  if (world.liquid === 'hydrocarbon') return ['air', 'hydrocarbon', 'icy-bed'];
-  // A magma-ocean depth and base have not been measured for this exoplanet.
-  if (world.liquid === 'silicate-melt') return ['air', 'melt'];
-  return ['air', 'ground'];
-}
-export function encounter(world: World, progress: number): Layer {
-  const p = clamp(progress);
-  if (!world.surface) return p < .42 ? 'clouds' : 'dense-fluid';
-  if (world.liquid === 'water') return p < .38 ? 'air' : p < .78 ? 'water' : 'seabed';
-  if (world.liquid === 'hydrocarbon') return p < .38 ? 'air' : p < .78 ? 'hydrocarbon' : 'icy-bed';
-  if (world.liquid === 'silicate-melt') return p < .38 ? 'air' : 'melt';
-  return p < .62 ? 'air' : 'ground';
-}
-export const SECTION = { top: -182, interface: -34, bed: 145, bottom: 202 };
-/** The marker shows layer encounters, not a survivable probe trajectory or a depth scale. */
-export function markerY(world: World, progress: number): number {
-  const p = clamp(progress), { top, interface: boundary, bed, bottom } = SECTION;
-  if (!world.surface) return top + p * (bottom - top);
-  if (world.liquid === 'silicate-melt') return p < .38 ? top + p / .38 * (boundary - top) : boundary + (p - .38) / .62 * (bottom - boundary);
-  if (world.liquid !== 'none') return p < .38 ? top + p / .38 * (boundary - top) : boundary + clamp((p - .38) / .4) * (bed - boundary);
-  return top + clamp(p / .62) * (boundary - top);
-}
 const hash = (x: number, y: number) => { const h = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return h - Math.floor(h); };
 export const field = (x: number, y: number) => {
   const ix = Math.floor(x), iy = Math.floor(y), fx = x - ix, fy = y - iy, u = fx * fx * (3 - 2 * fx), v = fy * fy * (3 - 2 * fy);

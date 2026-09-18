@@ -1,0 +1,754 @@
+{
+  "mercury": {
+    "summary": {
+      "zh": "薄薄的岩石外衣，包着占很大比例的金属内部。这里一路看到中心；内核大小仍依赖模型。",
+      "en": "A thin rocky exterior surrounds a very large metallic interior. The journey reaches the center; inner-core size remains model-dependent."
+    },
+    "evidence": {
+      "zh": "MESSENGER 的引力、磁场和水星自转数据支持大型金属核及液态部分；2019 年研究给出固体内核的测地学证据，不能把示意半径当精确测量。",
+      "en": "MESSENGER gravity, magnetic and rotational measurements support a large metallic core with a liquid portion. A 2019 study found geodetic evidence for a solid inner core; the drawn radii are not measured dimensions."
+    },
+    "layers": [
+      {
+        "id": "crust",
+        "name": {
+          "zh": "岩石地壳",
+          "en": "Rocky crust"
+        },
+        "kids": {
+          "zh": "脚下先是被撞击坑和碎石覆盖的硬岩石。",
+          "en": "The first layer is hard rock covered with craters and broken material."
+        },
+        "science": {
+          "zh": "岩石地壳记录撞击与古老火山活动。真实地壳远薄于整颗水星，图中放厚以便辨认。",
+          "en": "The crust records impacts and ancient volcanism. It is visually thickened to keep this thin layer identifiable."
+        },
+        "color": "#aa9d88",
+        "inner": 0.96,
+        "outer": 1
+      },
+      {
+        "id": "mantle",
+        "name": {
+          "zh": "硅酸盐地幔",
+          "en": "Silicate mantle"
+        },
+        "kids": {
+          "zh": "再往里还是岩石，不过比表面热得多。水星的岩石外衣比较薄。",
+          "en": "Deeper down is much hotter rock. Mercury has a relatively thin rocky exterior."
+        },
+        "science": {
+          "zh": "主要为硅酸盐岩石的地幔位于金属核外。把“热”画成颜色变化，不意味着地幔全是岩浆。",
+          "en": "A silicate mantle surrounds the metallic core. Warm display colors do not mean the entire mantle is molten."
+        },
+        "color": "#bb8961",
+        "inner": 0.79,
+        "outer": 0.96
+      },
+      {
+        "id": "outer-core",
+        "name": {
+          "zh": "液态金属外核",
+          "en": "Liquid metallic outer core"
+        },
+        "kids": {
+          "zh": "这里有会流动的金属。水星虽小，金属内部却很大。",
+          "en": "Metal can flow here. Mercury is small, but its metallic interior is large."
+        },
+        "science": {
+          "zh": "引力与自转摆动约束支持部分熔融的富铁核。图中概括液态区，不解析可能的成分分层。",
+          "en": "Gravity and libration constraints support a partly molten iron-rich core. This view does not resolve possible compositional sublayers."
+        },
+        "color": "#d48c43",
+        "inner": 0.38,
+        "outer": 0.79
+      },
+      {
+        "id": "inner-core",
+        "name": {
+          "zh": "固体内核（证据推断）",
+          "en": "Solid inner core (inferred)"
+        },
+        "kids": {
+          "zh": "到了最中心。科学家从水星怎样转动、怎样拉住探测器，寻找这里是否坚硬的线索。",
+          "en": "At the center, scientists use Mercury’s rotation and pull on spacecraft to infer whether this material is solid."
+        },
+        "science": {
+          "zh": "2019 年对 MESSENGER 引力与自转的联合分析支持固体内核；其半径、轻元素比例仍有模型不确定性，没有直接拍到。",
+          "en": "A 2019 joint gravity and rotation analysis supports a solid inner core. Radius and light-element content remain uncertain; there is no direct image."
+        },
+        "color": "#ebbd6f",
+        "inner": 0,
+        "outer": 0.38,
+        "uncertain": true
+      }
+    ],
+    "sources": [
+      {
+        "title": "NASA · Mercury facts",
+        "url": "https://science.nasa.gov/mercury/facts/"
+      },
+      {
+        "title": "NASA (2019) · Mercury spin, gravity and solid inner-core evidence",
+        "url": "https://www.nasa.gov/solar-system/a-closer-look-at-mercurys-spin-and-gravity-reveals-the-planets-inner-solid-core/"
+      }
+    ]
+  },
+  "venus": {
+    "summary": {
+      "zh": "云层下面有岩石地壳，更深处预计是地幔和富铁核；金星是否有固体内核还不能确定。",
+      "en": "Below the clouds are rocky crust, an inferred mantle and an iron-rich core. Whether Venus has a solid inner core remains unresolved."
+    },
+    "evidence": {
+      "zh": "雷达揭示表面，质量、引力和自转约束内部。没有像地球那样的全球地震观测，因此这里不把金星核分成已确定的固态、液态两圈。",
+      "en": "Radar reveals the surface; mass, gravity and rotation constrain the interior. Without Earth-like global seismic observations, the core is not split into supposedly established solid and liquid shells."
+    },
+    "layers": [
+      {
+        "id": "crust",
+        "name": {
+          "zh": "灼热的岩石地壳",
+          "en": "Hot rocky crust"
+        },
+        "kids": {
+          "zh": "穿过厚厚的云，下面仍是坚硬的岩石地面，不是一片云做的地板。",
+          "en": "Under thick clouds lies hard rocky ground; the clouds themselves are not a floor."
+        },
+        "science": {
+          "zh": "此剖面从岩石表面开始，厚大气在外部景观中观察。雷达测得的火山和变形地貌支持岩石地壳。",
+          "en": "The cutaway starts at the rocky surface; the thick atmosphere belongs to the exterior view. Radar-mapped volcanic and deformed terrain supports a rocky crust."
+        },
+        "color": "#b38a58",
+        "inner": 0.96,
+        "outer": 1
+      },
+      {
+        "id": "mantle",
+        "name": {
+          "zh": "高温岩石地幔",
+          "en": "Hot rocky mantle"
+        },
+        "kids": {
+          "zh": "这是厚厚的热岩石，可能极慢地变形，把里面的热带向外面。",
+          "en": "This thick hot rock can deform very slowly and carry heat outward."
+        },
+        "science": {
+          "zh": "质量和半径等约束支持硅酸盐地幔；热输运、黏度与分层依赖模型。地幔不是已确认的全球液态岩浆海。",
+          "en": "Bulk constraints support a silicate mantle; heat transport, viscosity and stratification are model-dependent. It is not an established global liquid magma ocean."
+        },
+        "color": "#bd7450",
+        "inner": 0.54,
+        "outer": 0.96
+      },
+      {
+        "id": "core",
+        "name": {
+          "zh": "富铁核（状态待定）",
+          "en": "Iron-rich core (state unresolved)"
+        },
+        "kids": {
+          "zh": "最里面可能有很大的金属核。它哪些地方是固体、哪些会流动，还需要更多线索。",
+          "en": "A large metallic core is inferred at the center. We still need better evidence about which parts are solid or liquid."
+        },
+        "science": {
+          "zh": "雷达自转测量给出转动惯量的粗约束，但核尺寸、轻元素含量与固液状态不能唯一反演。图中一整块核不表示它已确定全部为固体或液体。",
+          "en": "Radar spin measurements constrain moment of inertia only roughly. Core size, light elements and phase are not uniquely determined; a single drawn region does not assert an entirely solid or liquid core."
+        },
+        "color": "#d19a67",
+        "inner": 0,
+        "outer": 0.54,
+        "uncertain": true
+      }
+    ],
+    "sources": [
+      {
+        "title": "NASA · Venus facts",
+        "url": "https://science.nasa.gov/venus/venus-facts/"
+      },
+      {
+        "title": "Margot et al. (2021) · Spin state and moment of inertia of Venus",
+        "url": "https://www.nature.com/articles/s41550-021-01339-7"
+      },
+      {
+        "title": "Shah et al. · Interior structure models of Venus",
+        "url": "https://arxiv.org/abs/2112.03225"
+      }
+    ]
+  },
+  "earth": {
+    "summary": {
+      "zh": "穿过薄地壳和主要为固体的热地幔，再经过液态外核，最后到达固态内核。海水只在表面盆地里，不包成厚厚一壳。",
+      "en": "Cross thin crust and a mostly solid hot mantle, then a liquid outer core and solid inner core. Seawater occupies surface basins, not a thick shell around the planet."
+    },
+    "evidence": {
+      "zh": "地震波的速度、反射、折射与缺失区，是区分地壳、地幔和固液核的重要证据；引力、矿物实验和磁场研究提供补充。人类没有钻到地心。",
+      "en": "Seismic velocities, reflections, refractions and shadow zones distinguish crust, mantle and core phases, supplemented by gravity, mineral experiments and magnetic studies. No borehole reaches Earth’s center."
+    },
+    "layers": [
+      {
+        "id": "crust",
+        "name": {
+          "zh": "薄岩石地壳",
+          "en": "Thin rocky crust"
+        },
+        "kids": {
+          "zh": "大陆和海底都有岩石地壳。海水铺在低洼处，没有一直通向地心。",
+          "en": "Both continents and ocean floors have rocky crust. Water fills low basins; it does not continue to the center."
+        },
+        "science": {
+          "zh": "大陆地壳与大洋地壳厚度不同；这里合并为放大的薄壳。海洋不作为全球、等厚的内部层。",
+          "en": "Continental and oceanic crust have different thicknesses; this enlarged shell combines them. The ocean is not a global uniform interior layer."
+        },
+        "color": "#8a937c",
+        "inner": 0.97,
+        "outer": 1
+      },
+      {
+        "id": "upper-mantle",
+        "name": {
+          "zh": "上地幔",
+          "en": "Upper mantle"
+        },
+        "kids": {
+          "zh": "岩石很热，大部分却没有化成水一样的液体；等很久，它能慢慢变形。",
+          "en": "The rock is hot but mostly solid. Over very long times it can slowly change shape."
+        },
+        "science": {
+          "zh": "上地幔主要是固体硅酸盐岩石，可发生缓慢固态流动，局部条件下部分熔融；软流圈不等于全球岩浆层。",
+          "en": "The upper mantle is mostly solid silicate rock that can creep. Local partial melting does not make the asthenosphere a global magma layer."
+        },
+        "color": "#b68153",
+        "inner": 0.86,
+        "outer": 0.97
+      },
+      {
+        "id": "lower-mantle",
+        "name": {
+          "zh": "下地幔",
+          "en": "Lower mantle"
+        },
+        "kids": {
+          "zh": "越往里，头顶压着的东西越多。这里仍主要是热而致密的固体岩石。",
+          "en": "More material presses down as we descend. This is still mainly hot, dense solid rock."
+        },
+        "science": {
+          "zh": "压力改变矿物晶体结构；下地幔的岩石以高压矿物形态存在，并在地质时间尺度参与对流。分层颜色不是实拍发光颜色。",
+          "en": "Pressure changes mineral structures. High-pressure solid minerals participate in convection over geological times; layer colors are not photographed glow."
+        },
+        "color": "#b26443",
+        "inner": 0.55,
+        "outer": 0.86
+      },
+      {
+        "id": "outer-core",
+        "name": {
+          "zh": "液态金属外核",
+          "en": "Liquid metallic outer core"
+        },
+        "kids": {
+          "zh": "这里不是岩浆，而是以铁为主、会流动的金属。",
+          "en": "This is flowing metal, mainly iron, rather than molten rock."
+        },
+        "science": {
+          "zh": "富铁液态合金构成外核；其导电流动与地磁场的发电机过程有关。剪切波不能像在固体中那样穿过液态外核。",
+          "en": "The outer core is a liquid iron-rich alloy. Conducting motion contributes to the geodynamo; shear waves do not traverse it as they do a solid."
+        },
+        "color": "#dc973f",
+        "inner": 0.19,
+        "outer": 0.55
+      },
+      {
+        "id": "inner-core",
+        "name": {
+          "zh": "固态金属内核",
+          "en": "Solid metallic inner core"
+        },
+        "kids": {
+          "zh": "终于到正中心了。这里很热，但挤压也非常强，金属仍能保持固体。",
+          "en": "At the very center it is extremely hot, but enormous pressure helps the metal remain solid."
+        },
+        "science": {
+          "zh": "地震学支持固态富铁内核。相态取决于温度、压力和成分的共同作用，不能只用“越热越液态”推断。",
+          "en": "Seismology supports a solid iron-rich inner core. Phase depends jointly on temperature, pressure and composition, not temperature alone."
+        },
+        "color": "#efc775",
+        "inner": 0,
+        "outer": 0.19
+      }
+    ],
+    "sources": [
+      {
+        "title": "NASA · Earth structure",
+        "url": "https://science.nasa.gov/earth/facts/"
+      },
+      {
+        "title": "USGS · Inside the Earth",
+        "url": "https://pubs.usgs.gov/gip/dynamic/inside.html"
+      },
+      {
+        "title": "USGS · The mantle is mostly solid rock",
+        "url": "https://www.usgs.gov/faqs/are-tectonic-plates-floating-magma"
+      }
+    ]
+  },
+  "mars": {
+    "summary": {
+      "zh": "红色表面下面是岩石地壳、地幔与液态金属核；2025 年地震研究还报告了中心固体内核的证据。",
+      "en": "Below the red exterior are crust, mantle and liquid metal. A 2025 seismic study also reported evidence for a solid inner core."
+    },
+    "evidence": {
+      "zh": "InSight 的火星震记录与无线电跟踪约束内部。2025 年研究用核反射波等支持约 600 千米半径的固体内核；早先核模型有所不同，具体尺寸与成分仍需检验。",
+      "en": "InSight marsquakes and radio tracking constrain the interior. A 2025 analysis of core-sensitive seismic phases supports an inner-core radius near 600 km; earlier core models differ, and dimensions and composition need further testing."
+    },
+    "layers": [
+      {
+        "id": "crust",
+        "name": {
+          "zh": "含铁尘土与岩石地壳",
+          "en": "Rocky crust beneath iron-bearing dust"
+        },
+        "kids": {
+          "zh": "红色尘土像很薄的外衣，下面是坚硬的岩石，并不是整颗火星都红得一样。",
+          "en": "Red dust is a thin coating over hard rock; the whole planet is not uniformly red inside."
+        },
+        "science": {
+          "zh": "表面铁的氧化物参与红色外观。地壳有横向变化，单站地震探测与引力测量约束其厚度，不是均一实心红球。",
+          "en": "Iron oxides contribute to the red exterior. Seismology and gravity constrain a laterally varying crust rather than a uniform red sphere."
+        },
+        "color": "#a87356",
+        "inner": 0.965,
+        "outer": 1
+      },
+      {
+        "id": "mantle",
+        "name": {
+          "zh": "主要为固体的岩石地幔",
+          "en": "Mostly solid rocky mantle"
+        },
+        "kids": {
+          "zh": "再往下是热岩石，不能把它全都当作正在流的岩浆。",
+          "en": "Deeper down is hot rock, not an entire ocean of flowing magma."
+        },
+        "science": {
+          "zh": "InSight 约束地幔波速与结构。部分研究提出核上方有富集熔融硅酸盐层；这里不把该候选层或整片地幔一律画成液体。",
+          "en": "InSight constrains mantle velocities and structure. Some studies propose a molten silicate layer above the core; this view does not label that candidate transition or the whole mantle uniformly liquid."
+        },
+        "color": "#b5794d",
+        "inner": 0.53,
+        "outer": 0.965
+      },
+      {
+        "id": "outer-core",
+        "name": {
+          "zh": "液态富铁外核",
+          "en": "Liquid iron-rich outer core"
+        },
+        "kids": {
+          "zh": "岩石下面，来到以金属为主、能流动的一层。",
+          "en": "Under the rock is a mainly metallic layer that can flow."
+        },
+        "science": {
+          "zh": "穿核地震波与自转观测支持液态富铁合金，含有降低密度的轻元素。核边界会随采用的核上地幔模型而调整。",
+          "en": "Core-sensitive seismic and rotational measurements support a liquid iron-rich alloy with lighter elements. The inferred boundary depends on the overlying mantle model."
+        },
+        "color": "#d49146",
+        "inner": 0.18,
+        "outer": 0.53
+      },
+      {
+        "id": "inner-core",
+        "name": {
+          "zh": "固体内核（2025 年证据）",
+          "en": "Solid inner core (2025 evidence)"
+        },
+        "kids": {
+          "zh": "正中心可能藏着一小块固体金属。新的火星震线索正在帮我们看清它。",
+          "en": "The center appears to contain a small solid metal core. New marsquake clues help scientists investigate it."
+        },
+        "science": {
+          "zh": "Bi 等 2025 年研究报告内核反射和穿核波相的证据，推断固体内核半径约 613 ± 67 千米。这里采用这一新解释，大小和组分并非直接测绘。",
+          "en": "Bi et al. (2025) report inner-core reflected and core-traversing seismic phases, inferring a solid inner core of about 613 ± 67 km radius. This adopts that interpretation, not a direct interior map."
+        },
+        "color": "#e7b966",
+        "inner": 0,
+        "outer": 0.18,
+        "uncertain": true
+      }
+    ],
+    "sources": [
+      {
+        "title": "NASA · InSight and the Martian mantle (2025)",
+        "url": "https://www.nasa.gov/missions/insight/nasa-marsquake-data-reveals-lumpy-nature-of-red-planets-interior/"
+      },
+      {
+        "title": "Bi et al. (2025) · Seismic detection of a 600-km solid inner core in Mars",
+        "url": "https://www.nature.com/articles/s41586-025-09361-9"
+      },
+      {
+        "title": "Le Maistre et al. (2023) · Spin state and deep interior structure of Mars",
+        "url": "https://www.nature.com/articles/s41586-023-06150-0"
+      }
+    ]
+  },
+  "jupiter": {
+    "summary": {
+      "zh": "从云层进入越来越稠密的氢氦流体，再到金属氢与逐渐混合的中心区。没有可以站稳的地面，也不把核心画成已确认的硬球。",
+      "en": "Clouds lead into denser hydrogen-helium fluid, metallic hydrogen and a gradually mixed central region. There is no landing floor or established sharply bounded solid core."
+    },
+    "evidence": {
+      "zh": "Juno 的引力场与磁场观测结合高压物性模型支持深层结构；多个相容模型具有重元素向外混合的弥散核心，分界和成分不是直接拍到的。",
+      "en": "Juno gravity and magnetic measurements, combined with high-pressure material models, constrain the interior. Compatible models include a dilute core with heavy material mixed outward; its boundaries are not photographed."
+    },
+    "layers": [
+      {
+        "id": "cloud-atmosphere",
+        "name": {
+          "zh": "云层与上层大气",
+          "en": "Clouds and upper atmosphere"
+        },
+        "kids": {
+          "zh": "条纹是云，不是地板。我们的起点只是云顶附近。",
+          "en": "The stripes are clouds, not floorboards. We begin near their tops."
+        },
+        "science": {
+          "zh": "外缘代表云顶附近的参考位置，不是固体半径边界；大气主要由氢和氦组成。",
+          "en": "The outer edge is a near-cloud reference level, not a solid boundary. Hydrogen and helium dominate the atmosphere."
+        },
+        "color": "#d9c0a0",
+        "inner": 0.93,
+        "outer": 1
+      },
+      {
+        "id": "molecular-envelope",
+        "name": {
+          "zh": "稠密的氢氦流体",
+          "en": "Dense hydrogen-helium fluid"
+        },
+        "kids": {
+          "zh": "往里走，周围越来越稠密，但没有突然踩到一层硬壳。",
+          "en": "Farther in, material becomes denser without suddenly turning into a hard floor."
+        },
+        "science": {
+          "zh": "压力与温度随深度增加，分子氢氦包层逐渐成为稠密流体；绘图区界限不是地面或普通海面。",
+          "en": "Increasing pressure and temperature produce dense molecular fluid. Drawn region boundaries are neither ground nor an ordinary sea surface."
+        },
+        "color": "#b99675",
+        "inner": 0.78,
+        "outer": 0.93
+      },
+      {
+        "id": "metallic-hydrogen",
+        "name": {
+          "zh": "金属氢丰富区",
+          "en": "Metallic-hydrogen-rich region"
+        },
+        "kids": {
+          "zh": "这里的氢被压得很厉害，能像金属一样导电；它仍不是铁板。",
+          "en": "Hydrogen is compressed enough to conduct like a metal; it is not an iron plate."
+        },
+        "science": {
+          "zh": "高压下氢可进入导电的金属态流体。氦和重元素混合、相变范围及对流结构仍取决于内部模型。",
+          "en": "High pressure permits conducting metallic hydrogen fluid. Helium and heavy-element mixing, transition breadth and convection remain model-dependent."
+        },
+        "color": "#b88368",
+        "inner": 0.43,
+        "outer": 0.78,
+        "uncertain": true
+      },
+      {
+        "id": "dilute-core",
+        "name": {
+          "zh": "弥散核心：混合的重物质",
+          "en": "Dilute core: mixed heavy material"
+        },
+        "kids": {
+          "zh": "到中心了。较重的成分可能与周围的氢混在一起，不像果子里一颗边界整齐的核。",
+          "en": "At the center, heavier material may be mixed with hydrogen instead of forming one neatly outlined fruit stone."
+        },
+        "science": {
+          "zh": "Juno 相容模型允许延展的重元素富集区，浓度向外渐变。此环只为定位，不代表刚性壳；是否另有小致密核心、其尺寸和状态仍不唯一。",
+          "en": "Juno-compatible models allow an extended heavy-element enrichment with an outward gradient. This region is not a rigid shell; a possible compact central component and its size and state are not uniquely determined."
+        },
+        "color": "#96706c",
+        "inner": 0,
+        "outer": 0.43,
+        "uncertain": true
+      }
+    ],
+    "sources": [
+      {
+        "title": "NASA · Juno: the dilute or fuzzy core",
+        "url": "https://science.nasa.gov/mission/juno/"
+      },
+      {
+        "title": "NASA · Jupiter facts",
+        "url": "https://science.nasa.gov/jupiter/jupiter-facts/"
+      },
+      {
+        "title": "Wahl et al. (2017) · Jupiter interior models and a dilute core",
+        "url": "https://arxiv.org/abs/1707.01997"
+      }
+    ]
+  },
+  "neptune": {
+    "summary": {
+      "zh": "云下面是高压流体和更重的混合物；“冰巨星”不是一颗包着可滑冰外壳的球。深处富水或富岩等模型仍有多种可能。",
+      "en": "Below the clouds lie high-pressure fluids and heavier mixtures. “Ice giant” does not mean an outer skating rink; both water-rich and rock-rich interior models remain possible."
+    },
+    "evidence": {
+      "zh": "Voyager 2 的引力、磁场和遥感资料提供约束，但海王星只有很有限的近距离探测。2025 年内部模型仍允许差别很大的水岩比例，图中分区不是已测定的纯物质层。",
+      "en": "Voyager 2 gravity, magnetic and remote-sensing data constrain Neptune, but close-up observations are limited. A 2025 model study still permits diverse water-to-rock ratios; these regions are not measured pure-material shells."
+    },
+    "layers": [
+      {
+        "id": "cloud-atmosphere",
+        "name": {
+          "zh": "云层与氢氦大气",
+          "en": "Clouds and hydrogen-helium atmosphere"
+        },
+        "kids": {
+          "zh": "先看见的是云和气体。外表蓝蓝的，不等于外面铺满海水。",
+          "en": "We first see clouds and gas. A blue exterior does not mean an exposed water ocean."
+        },
+        "science": {
+          "zh": "氢氦大气中少量甲烷影响光谱和颜色。剖面的外缘为大气参考层，不是固体地面。",
+          "en": "Methane in a hydrogen-helium atmosphere affects the spectrum and color. The cutaway begins at an atmospheric reference level, not solid ground."
+        },
+        "color": "#8baeb8",
+        "inner": 0.92,
+        "outer": 1
+      },
+      {
+        "id": "dense-envelope",
+        "name": {
+          "zh": "逐渐变密的包层",
+          "en": "Progressively denser envelope"
+        },
+        "kids": {
+          "zh": "往深处，气体的性质慢慢改变，挤成更稠密的流体。",
+          "en": "Deeper down, gas-like material gradually becomes a denser fluid."
+        },
+        "science": {
+          "zh": "氢氦与其他成分的比例随模型改变；外包层和内部混合区可能渐变，未发现可着陆的硬表面。",
+          "en": "The hydrogen-helium fraction and other ingredients depend on the model. The transition can be gradual, without a landing surface."
+        },
+        "color": "#648e9b",
+        "inner": 0.76,
+        "outer": 0.92
+      },
+      {
+        "id": "mixed-interior",
+        "name": {
+          "zh": "高压混合内部（候选）",
+          "en": "High-pressure mixed interior (candidate)"
+        },
+        "kids": {
+          "zh": "这里可能混着水、别的成分和岩石材料，温度压力都很高；不是我们能游泳的海。",
+          "en": "Water-bearing ingredients and rocky material may mix here under extreme heat and pressure; it is not a sea we could swim in."
+        },
+        "science": {
+          "zh": "传统模型使用富含水、氨和甲烷的高压物质；2025 年研究也容许富岩模型。高压相态与混合程度不唯一，不能把“冰”理解为日常冰块。",
+          "en": "Traditional models use high-pressure water-, ammonia- and methane-bearing material; 2025 models also allow rock-rich interiors. Phases and mixing are uncertain; “ice” does not imply ordinary cold ice cubes."
+        },
+        "color": "#7b9390",
+        "inner": 0.32,
+        "outer": 0.76,
+        "uncertain": true
+      },
+      {
+        "id": "central-region",
+        "name": {
+          "zh": "中心重物质区（候选）",
+          "en": "Central heavy-material region (candidate)"
+        },
+        "kids": {
+          "zh": "最中心可能更集中着较重的材料；具体混合成什么样，还在研究。",
+          "en": "Heavier material may be concentrated near the center; its detailed mixture is still being studied."
+        },
+        "science": {
+          "zh": "岩石和金属富集的中心区是一类模型表示，不保证有界限锐利、完全固态的小核。现有数据不能唯一确定尺寸、成分和温度。",
+          "en": "A rock- and metal-enriched central region is one modeling representation, not a guarantee of a sharply bounded, fully solid small core. Size, composition and temperature are not uniquely fixed."
+        },
+        "color": "#8f8174",
+        "inner": 0,
+        "outer": 0.32,
+        "uncertain": true
+      }
+    ],
+    "sources": [
+      {
+        "title": "NASA · Neptune facts",
+        "url": "https://science.nasa.gov/neptune/neptune-facts/"
+      },
+      {
+        "title": "Morf and Helled (2025) · Icy or rocky? New interior models of Uranus and Neptune",
+        "url": "https://arxiv.org/abs/2510.00175"
+      }
+    ]
+  },
+  "titan": {
+    "summary": {
+      "zh": "这是土星的卫星：表面局部有甲烷、乙烷湖，主体外层却是水冰。深处采用近熔高压冰的候选结构，全球地下水海洋还不能当成定论。",
+      "en": "This is Saturn’s moon: local methane-ethane lakes sit on an icy exterior. The deep view adopts a candidate near-melting high-pressure ice structure; a global subsurface water ocean is not treated as settled."
+    },
+    "evidence": {
+      "zh": "Cassini 已观测表面湖海。2025 年对其潮汐引力响应的重新分析，挑战全球地下海洋解释，提出高压冰与液水囊模型；这与表面甲烷湖是两件事。",
+      "en": "Cassini observed surface lakes and seas. A 2025 tidal-gravity reanalysis challenged a global subsurface ocean, proposing high-pressure ice with liquid-water pockets. This is separate from the observed surface hydrocarbon lakes."
+    },
+    "layers": [
+      {
+        "id": "ice-shell",
+        "name": {
+          "zh": "水冰外壳与局部湖泊",
+          "en": "Water-ice shell with local lakes"
+        },
+        "kids": {
+          "zh": "这里冷得让水变成硬冰；湖里的甲烷和乙烷却还能流。湖没有包满整颗卫星。",
+          "en": "Water freezes into hard ice here, while methane and ethane can flow in lakes. Those lakes do not cover the whole moon."
+        },
+        "science": {
+          "zh": "此剖面从冰质外壳起算。甲烷乙烷湖主要在极区，是局部表面液体，不能画成全球厚壳或与深处可能的液态水混同。",
+          "en": "The radial view begins at the icy exterior. Mainly polar hydrocarbon lakes are local surface liquids, not a global thick shell or the same liquid as possible deep water."
+        },
+        "color": "#b5bdac",
+        "inner": 0.91,
+        "outer": 1
+      },
+      {
+        "id": "high-pressure-ice",
+        "name": {
+          "zh": "高压冰与可能的液水囊",
+          "en": "High-pressure ice and possible water pockets"
+        },
+        "kids": {
+          "zh": "深处的冰被挤得很厉害，可能接近融化，夹着一些液态水；科学家仍在检查这个想法。",
+          "en": "Deep ice is strongly compressed and may be close to melting, with pockets of liquid water. Scientists are still testing this picture."
+        },
+        "science": {
+          "zh": "Petricca 等 2025 年的潮汐耗散模型支持接近熔点的高压冰，允许局部熔融，而不是稳定的全球地下海。这里展示该候选模型，不宣称争论已全部结束。",
+          "en": "Petricca et al. (2025) favor near-melting high-pressure ice with possible local melt rather than a stable global subsurface ocean. This is that candidate model, not a claim that every uncertainty is resolved."
+        },
+        "color": "#82aaa9",
+        "inner": 0.72,
+        "outer": 0.91,
+        "uncertain": true
+      },
+      {
+        "id": "rocky-core",
+        "name": {
+          "zh": "岩石丰富的核心",
+          "en": "Rock-rich core"
+        },
+        "kids": {
+          "zh": "到了里面，可能有很多岩石。它不是一整颗铁球，也不是湖水一直通到中心。",
+          "en": "The interior is probably rich in rock, not one giant iron ball or lakewater extending all the way to the center."
+        },
+        "science": {
+          "zh": "引力与潮汐模型支持较低密度的岩石丰富核心，可能含水合矿物等组分；具体成分和分异程度仍不确定。",
+          "en": "Gravity and tidal models support a relatively low-density rock-rich core, potentially including hydrated minerals. Detailed composition and differentiation remain uncertain."
+        },
+        "color": "#9b917b",
+        "inner": 0,
+        "outer": 0.72,
+        "uncertain": true
+      }
+    ],
+    "sources": [
+      {
+        "title": "NASA · Titan facts and observed surface lakes",
+        "url": "https://science.nasa.gov/saturn/moons/titan/facts/"
+      },
+      {
+        "title": "NASA (2025) · Titan may not have a global subsurface ocean",
+        "url": "https://www.nasa.gov/solar-system/planets/saturn/saturn-moons/titan/nasa-study-suggests-saturns-moon-titan-may-not-have-global-ocean/"
+      },
+      {
+        "title": "Petricca et al. (2025) · Titan tidal dissipation and an ocean-free interior model",
+        "url": "https://www.nature.com/articles/s41586-025-09818-x"
+      }
+    ]
+  },
+  "cancri": {
+    "summary": {
+      "zh": "巨蟹座 55 e 很靠近恒星，白昼侧可能有熔融岩石。本剖面只是从热表层到中心的一种候选结构，任何边界都不是已测得的岩浆海底。",
+      "en": "55 Cancri e orbits close to its star and may have dayside molten rock. This cutaway is one candidate arrangement down to the center; no boundary is a measured magma-ocean floor."
+    },
+    "evidence": {
+      "zh": "质量、半径、热辐射与 Webb 光谱约束整体和可能的大气，不能像地震扫描一样解析内部。熔融深度、地幔成分、金属核的存在细节与尺寸仍未确定。",
+      "en": "Mass, radius, thermal emission and Webb spectra constrain the bulk planet and possible atmosphere, not a seismic image of its interior. Melt depth, mantle composition and the details and size of any metallic core remain unresolved."
+    },
+    "layers": [
+      {
+        "id": "hot-surface",
+        "name": {
+          "zh": "高温表层（昼侧可能熔融）",
+          "en": "Hot exterior (dayside may be molten)"
+        },
+        "kids": {
+          "zh": "朝着恒星的一面，岩石可能热得会流动；背面的情况可能不同。我们还没有这里的实拍照片。",
+          "en": "On the star-facing side, rock may become hot enough to flow. The far side can differ, and we have no photograph of this surface."
+        },
+        "science": {
+          "zh": "热与光谱观测支持岩浆海解释，但未测得其范围或深度。径向色带便于讲解，不表示全球等厚熔融壳；底边不能读成已知海底。",
+          "en": "Thermal and spectral data motivate a magma-ocean interpretation without measuring its extent or depth. A radial color band is not a globally uniform molten shell; its lower edge is not a known sea floor."
+        },
+        "color": "#d97b42",
+        "inner": 0.91,
+        "outer": 1,
+        "uncertain": true
+      },
+      {
+        "id": "silicate-interior",
+        "name": {
+          "zh": "硅酸盐内部（候选）",
+          "en": "Silicate interior (candidate)"
+        },
+        "kids": {
+          "zh": "再往里面，画的是可能存在的岩石材料；它们多少熔化、怎样混合，还不知道。",
+          "en": "Farther in, we illustrate possible rocky material. How much is molten and how it mixes are still unknown."
+        },
+        "science": {
+          "zh": "硅酸盐地幔是岩石行星内部的一类模型选择；大气、热状态与组成可产生简并，不能从质量和半径唯一确定这一层。",
+          "en": "A silicate mantle is one rocky-interior model choice. Atmospheric, thermal and compositional degeneracies prevent a unique inference from mass and radius."
+        },
+        "color": "#a05d4a",
+        "inner": 0.44,
+        "outer": 0.91,
+        "uncertain": true
+      },
+      {
+        "id": "candidate-core",
+        "name": {
+          "zh": "中心金属核（候选）",
+          "en": "Central metallic core (candidate)"
+        },
+        "kids": {
+          "zh": "画面可以一直走到中心，但走到的只是一个可能模型；科学家并没有真的看见这里的金属核。",
+          "en": "Our picture reaches the center, but it is still a possible model. Scientists have not directly seen a metallic core here."
+        },
+        "science": {
+          "zh": "集中金属核只是候选方案；核的大小、成分、固液状态乃至分层方式都未被唯一确定。不能把到达图中中心当作证明这颗行星与地球内部相同。",
+          "en": "A concentrated metallic core is a candidate, not a unique result. Its size, composition, phase and segregation remain unresolved; reaching the drawn center does not establish an Earth-like interior."
+        },
+        "color": "#bf9463",
+        "inner": 0,
+        "outer": 0.44,
+        "uncertain": true
+      }
+    ],
+    "sources": [
+      {
+        "title": "NASA · Webb hints at a possible atmosphere on 55 Cancri e",
+        "url": "https://science.nasa.gov/missions/webb/nasas-webb-hints-at-possible-atmosphere-surrounding-rocky-exoplanet/"
+      },
+      {
+        "title": "Hu et al. (2024) · A secondary atmosphere on 55 Cancri e",
+        "url": "https://www.nature.com/articles/s41586-024-07432-x"
+      },
+      {
+        "title": "Dorn et al. · Bayesian analysis of exoplanet interiors including 55 Cancri e",
+        "url": "https://arxiv.org/abs/1609.03909"
+      }
+    ]
+  }
+}
