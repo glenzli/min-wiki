@@ -12,7 +12,7 @@ test('leaving a disruption explicitly hides the previous gas in Three.js', () =>
       star:{group:new THREE.Group(),surface:{material:{uniforms:{uTime:{value:0}}}}},
       stellarGas:{points:new THREE.Points()}, focus:new THREE.Vector3(),
       trail:{geometry:new THREE.BufferGeometry()}, future:{geometry:new THREE.BufferGeometry()},
-      guides:new THREE.Group(), controls:{update(){}}, camera:new THREE.PerspectiveCamera(),
+      arrows:new THREE.Group(), guides:new THREE.Group(), controls:{update(){}}, camera:new THREE.PerspectiveCamera(),
       renderer:{render(){}}, scene:new THREE.Scene(),
     });
     scene.stellarGas.points.visible=true;

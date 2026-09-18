@@ -16,6 +16,8 @@ worker.onmessage = ({ data: { scenario } }: MessageEvent<{scenario:string}>) => 
       detachAt: model.detachAt,
       bound: model.bound,
       absorbedAt: model.absorbedAt,
+      returnedAt: model.returnedAt,
+      heat: model.heat,
       variation: model.variation,
       focus: model.focus,
     };

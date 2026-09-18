@@ -4,4 +4,4 @@
 
 - [Florida Museum · Butterfly life cycle](https://www.floridamuseum.ufl.edu/discover-butterflies/faq/)
 
-Original SVG illustrations; no external media or runtime dependencies. Controls use native buttons and ranges. No background animation or audio.
+Original SVG illustrations; no external media or runtime dependencies. Controls use native buttons and ranges. Adult wing preparation is a finite, user-started 12-second observation with pause, scrubbing and preserved progress; reduced motion uses discrete observations. Whole/detail cameras share the same anatomy. No autoplay, flight simulation or audio. Wing expansion uses simplified geometry and is not an anatomical reconstruction.

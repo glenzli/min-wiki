@@ -6,3 +6,11 @@
 - [Australian Museum · Insects](https://australian.museum/learn/animals/insects/)
 
 Original SVG illustrations; no external media or runtime dependencies. Controls use native buttons and ranges. No background animation or audio.
+
+## Continuous observation refinement · 2026-09-19
+
+The existing static background-match comparison is retained deliberately: inventing a wiggle or colour-changing loop would alter the variables being compared. Added continuous background blending and three bounded camera close-ups. Hotspots are projected through the current SVG screen transform, including responsive resizing; hidden off-view targets are removed from focus. Animal geometry and color remain fixed during background comparison.
+
+Camera and backdrop transitions are finite and respect reduced motion. Page exit cancels transitions and disconnects the resize observer. Existing insect geometry, identification boundaries and bilingual narration are preserved. Root task owns desktop/mobile browser acceptance.
+
+Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.

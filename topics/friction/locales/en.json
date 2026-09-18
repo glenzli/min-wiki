@@ -28,5 +28,14 @@
   "鞋底和地面的摩擦帮助我们走路而不打滑。摩擦不是只会“捣乱”。搓一搓手会变暖，也能发现运动能量转成热的一点线索。": "Friction between shoes and the ground helps us walk without slipping. It is useful too. Rubbing your hands warms them, giving a clue that motion energy can become thermal energy.",
   "把三块木头都送回起点。慢慢推进时间，看谁先停下。再只增加出发速度：同一条路上的木块会滑得更远吗？": "Return all three blocks to the start. Advance time slowly and see which stops first. Then increase only the starting speed: does the block slide farther on the same surface?",
   "本页模拟水平地面上的滑动木块，松手后不再施力。用近似动摩擦模型 F = μmg，减速度为 μg，停止距离 d = v₀²/(2μg)，停止后不反向滑动。三条路取示意系数 0.12、0.28、0.50，并非材料实测值。真实摩擦还取决于两种材料、表面状态和接触情况，不能只凭“看起来粗糙”判断。": "These blocks slide on level ground with no continued push. The approximate kinetic-friction model F = μmg gives deceleration μg and stopping distance d = v₀²/(2μg). Blocks do not reverse after stopping. The three illustrative coefficients are 0.12, 0.28 and 0.50, not measured material data. Real friction depends on both materials, surface condition and contact; visible roughness alone does not determine it.",
-  "这里使用没有轮子的滑动玩具，不能把结果直接当成小汽车的滚动距离。省略空气阻力、表面变形和静摩擦起动过程。时间单位为秒，画面比例统一；路线中的材料名称只代表本演示的比较情景，不保证所有木板、布料和砂纸都按此顺序。": "The toys slide without wheels, so these results do not directly describe rolling toy cars. Air resistance, surface deformation and starting static friction are omitted. Time is in seconds and all lanes use the same visual scale. Material names identify these illustrative scenarios; real wood, cloth and sandpaper need not always rank this way."
+  "这里使用没有轮子的滑动玩具，不能把结果直接当成小汽车的滚动距离。省略空气阻力、表面变形和静摩擦起动过程。时间单位为秒，画面比例统一；路线中的材料名称只代表本演示的比较情景，不保证所有木板、布料和砂纸都按此顺序。": "The toys slide without wheels, so these results do not directly describe rolling toy cars. Air resistance, surface deformation and starting static friction are omitted. Time is in seconds and all lanes use the same visual scale. Material names identify these illustrative scenarios; real wood, cloth and sandpaper need not always rank this way.",
+  "播放滑动": "Play the slide",
+  "暂停": "Pause",
+  "运动能量 {{n}}%；已转移 {{m}}%": "Motion energy {{n}}%; transferred {{m}}%",
+  "近看接触处": "A closer look at contact",
+  "观察哪条路？": "Which surface?",
+  "放大的接触面示意，与上方木块同步滑动": "Enlarged contact diagram sliding in sync with the blocks above",
+  "上面是木块，下面是地面。少量区域真正接触；相互作用和微小形变把运动能量转为内能。橙色只标记能量去向，不是火花或温度计。": "The block is above the surface. Only small regions touch; interactions and small deformations transfer motion energy into internal energy. Orange marks where energy goes, not sparks or a temperature reading.",
+  "蓝绿：仍是运动能量": "Teal: energy still in motion",
+  "橙色：转移到木块和地面的能量": "Orange: energy transferred to the block and surface"
 }

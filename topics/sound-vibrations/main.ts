@@ -1,66 +1,48 @@
+import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
+import { DURATION, frequency } from './model.ts';
+import { SoundScene } from './scene.ts';
 import './style.css';
-translateDocument(t);
-mountTopicNavigation('sound-vibrations');
+translateDocument(t); mountTopicNavigation('sound-vibrations');
 const el = (id: string) => document.getElementById(id)!;
-const value = (id: string) => Number((el(id) as HTMLInputElement).value);
-import { frequency } from './model.ts';
-let audio:AudioContext|undefined,osc:OscillatorNode|undefined,frame=0,started=0,serial=0;
-let shownTension=value('tension'),stretchFrame=0;
-function draw(phase=0,envelope=1){const stretch=(shownTension-1)/3,offset=18*stretch;el('left-anchor').setAttribute('transform',`translate(${-offset} 0)`);el('right-anchor').setAttribute('transform',`translate(${offset} 0)`);el('string').setAttribute('stroke-width',String(8-2.5*stretch));const a=value('amplitude')*envelope;el('string').setAttribute('d',Array.from({length:51},(_,i)=>{const x=172-offset+i/50*(556+offset*2),y=230+a*Math.sin(Math.PI*i/50)*Math.sin(phase);return `${i?'L':'M'}${x} ${y}`;}).join(''));el('pitch').textContent=t('每秒振动约 {{frequency}} 次',{frequency:Math.round(frequency(value('tension')))});el('air').setAttribute('d',envelope<.05?'':`M790 175Q825 230 790 285M811 154Q860 230 811 306`);el('air').setAttribute('opacity',String(Math.abs(Math.sin(phase))*envelope));}
-function halt(){cancelAnimationFrame(stretchFrame);stretchFrame=0;el('pull-cues').setAttribute('opacity','0');serial++;cancelAnimationFrame(frame);frame=0;if(osc){try{osc.stop();}catch{/* already ended */}osc.disconnect();osc=undefined;}shownTension=value('tension');draw(0,0);}
-function playVisual(token:number){
- started=performance.now();
- if(matchMedia('(prefers-reduced-motion: reduce)').matches){draw(Math.PI/2);return;}
- const tick=(now:number)=>{
-  if(token!==serial)return;
-  const seconds=(now-started)/1000;
-  if(seconds>=1.65){draw(0,0);frame=0;el('readout').textContent=t('振动停止了，声音也停了。');return;}
-  draw(seconds*frequency(value('tension'))/100*Math.PI*2,Math.exp(-seconds*2.7));
-  frame=requestAnimationFrame(tick);
- };
- frame=requestAnimationFrame(tick);
+const input = (id: string) => el(id) as HTMLInputElement;
+const value = (id: string) => Number(input(id).value);
+const scene = new SoundScene(el('scene') as unknown as SVGElement);
+let time = 0, playing = false, frame = 0, last = 0, view = 0, targetView = 0, cancelView = () => {};
+let audio: AudioContext | undefined, oscillator: OscillatorNode | undefined, gainNode: GainNode | undefined, serial = 0;
+function update() {
+  scene.draw(time, value('tension'), value('amplitude'), view);
+  el('pitch').textContent = t('实际音高约 {{frequency}} Hz', {frequency: Math.round(frequency(value('tension')))});
+  el('clock').textContent = `${time.toFixed(1)} / ${DURATION} s`; input('phase').value = String(time * 100);
+  el('play').textContent = playing ? t('暂停慢镜头') : time >= DURATION ? t('从头回看') : t('播放慢镜头');
+  const message = time === 0 ? t('先播放，再切换到空气。金色小团的“家”用空心圈标出。') : time < 4.75 ? t('橡皮筋附近先开始动；远处要等一等，变化才传得到。') : time < 9 ? t('金色空气小团只在空心圈附近来回；疏密变化继续向右传。') : time < 13.75 ? t('声源已经停下，先前发出的变化仍在空气中继续前进。') : t('最后一段变化已经离开。空气小团回到各自的平衡位置。');
+  if (el('readout').textContent !== message) el('readout').textContent = message;
+  document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.view) === targetView)));
 }
-async function pluck(){
- halt();const token=serial;
- try{
-  audio??=new AudioContext();await audio.resume();
-  if(token!==serial||document.hidden)return;
-  osc=audio.createOscillator();const gain=audio.createGain();osc.type='triangle';
-  osc.frequency.value=frequency(value('tension'));
-  gain.gain.setValueAtTime(value('amplitude')/50*.09,audio.currentTime);
-  gain.gain.exponentialRampToValueAtTime(.0001,audio.currentTime+1.6);
-  osc.connect(gain);gain.connect(audio.destination);osc.start();osc.stop(audio.currentTime+1.65);
-  const playing=osc;
-  playing.onended=()=>{playing.disconnect();gain.disconnect();if(osc===playing){osc=undefined;draw(0,0);el('readout').textContent=t('振动停止了，声音也停了。');}};
-  el('readout').textContent=t('正在慢镜头观察振动，同时播放实际音高。');
- }catch{
-  if(token!==serial||document.hidden)return;
-  el('readout').textContent=t('声音暂时无法播放，仍可用慢镜头观察振动。');
- }
- if(token===serial&&!document.hidden)playVisual(token);
+function pause() { playing = false; cancelAnimationFrame(frame); frame = 0; }
+function tick(now: number) { frame = 0; if (!playing || document.hidden) return; time = Math.min(DURATION, time + Math.min((now - last) / 1000, .1)); last = now; if (time >= DURATION) playing = false; update(); if (playing) frame = requestAnimationFrame(tick); }
+function stopAudio() { serial++; if (oscillator) { try { oscillator.stop(); } catch { /* already finished */ } oscillator.disconnect(); oscillator = undefined; } gainNode?.disconnect(); gainNode = undefined; }
+async function listen() {
+  stopAudio(); const token = serial;
+  try {
+    audio ??= new AudioContext(); await audio.resume(); if (token !== serial || document.hidden) return;
+    const current = audio.createOscillator(), gain = audio.createGain(); oscillator = current; gainNode = gain;
+    current.type = 'triangle'; current.frequency.value = frequency(value('tension'));
+    gain.gain.setValueAtTime(0, audio.currentTime); gain.gain.linearRampToValueAtTime(value('amplitude') / 50 * .09, audio.currentTime + .015); gain.gain.exponentialRampToValueAtTime(.0001, audio.currentTime + 1.6);
+    current.connect(gain); gain.connect(audio.destination); current.start(); current.stop(audio.currentTime + 1.65);
+    current.onended = () => { current.disconnect(); gain.disconnect(); if (oscillator === current) { oscillator = undefined; gainNode = undefined; } };
+    el('audio-status').textContent = t('播放一次实际音高；慢镜头可以独立暂停。');
+  } catch { if (token === serial) el('audio-status').textContent = t('声音暂时无法播放，仍可观察慢镜头。'); }
 }
-el('pluck').addEventListener('click',()=>{void pluck();});el('stop').addEventListener('click',()=>{halt();el('readout').textContent=t('振动停止了，声音也停了。');});el('tension').addEventListener('input',()=>{
-  const from=shownTension;halt();shownTension=from;
-  const target=value('tension'),start=performance.now();
-  const direction=target>=from?1:-1;
-  el('left-pull').setAttribute('transform',`translate(119 230) scale(${direction} 1) translate(-119 -230)`);
-  el('right-pull').setAttribute('transform',`translate(781 230) scale(${direction} 1) translate(-781 -230)`);
-  if(matchMedia('(prefers-reduced-motion: reduce)').matches){shownTension=target;draw(value('phase')/100*Math.PI*2);return;}
-  const tick=(now:number)=>{
-    const elapsed=now-start,p=Math.min(1,elapsed/180);
-    shownTension=from+(target-from)*(1-(1-p)**3);
-    draw(value('phase')/100*Math.PI*2);
-    el('pull-cues').setAttribute('opacity',String(Math.max(0,1-elapsed/650)*.8));
-    if(elapsed<650)stretchFrame=requestAnimationFrame(tick);else stretchFrame=0;
-  };
-  stretchFrame=requestAnimationFrame(tick);
-  el('readout').textContent=t('先拨一下；绷紧程度改变音高，拨动幅度改变响轻。');
-});
-el('amplitude').addEventListener('input',()=>{halt();draw(value('phase')/100*Math.PI*2);});
-el('phase').addEventListener('input',()=>{halt();draw(value('phase')/100*Math.PI*2);el('readout').textContent=t('这是手动慢镜头：拖动滑块，看橡皮筋怎样来回运动。');});document.addEventListener('visibilitychange',()=>{if(document.hidden){halt();void audio?.suspend();}});window.addEventListener('pagehide',event=>{halt();if(event.persisted)void audio?.suspend();else void audio?.close();});draw(0,0);el('readout').textContent=t('先拨一下；绷紧程度改变音高，拨动幅度改变响轻。');
-
-mountReadingMode('details:not(.references)');
+el('play').addEventListener('click', () => { if (playing) pause(); else { if (time >= DURATION) time = 0; playing = true; last = performance.now(); frame = requestAnimationFrame(tick); } update(); });
+el('stop').addEventListener('click', () => { pause(); stopAudio(); time = 0; update(); });
+el('pluck').addEventListener('click', () => { void listen(); });
+for (const id of ['tension', 'amplitude']) el(id).addEventListener('input', () => { pause(); stopAudio(); time = 0; update(); });
+el('phase').addEventListener('input', () => { pause(); time = value('phase') / 100; update(); });
+for (const b of document.querySelectorAll<HTMLButtonElement>('[data-view]')) b.addEventListener('click', () => { cancelView(); targetView = Number(b.dataset.view); cancelView = animateValue({from: view, to: targetView, duration: 500, onUpdate: v => { view = v; update(); }}); });
+document.addEventListener('visibilitychange', () => { if (document.hidden) { pause(); stopAudio(); void audio?.suspend(); update(); } });
+window.addEventListener('pagehide', event => { pause(); cancelView(); stopAudio(); if (event.persisted) void audio?.suspend(); else void audio?.close(); });
+update(); mountReadingMode('details:not(.references)');

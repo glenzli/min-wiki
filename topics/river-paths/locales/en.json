@@ -41,5 +41,10 @@
   "低处": "Lower ground",
   "外侧冲刷": "Outer-bank erosion",
   "内侧沉积": "Inner-bank deposition",
-  "把石头换个位置": "Move the rock"
+  "把石头换个位置": "Move the rock",
+  "播放过程": "Play the process",
+  "暂停": "Pause",
+  "近看河湾": "Inspect the bend",
+  "同一批泥沙：从外岸出发，停在内侧": "The same grains leave the outer bank and settle along the inside",
+  "上游在画面上方，下游在下方；外侧冲刷、内侧沉积": "Upstream is above, downstream below; erosion outside, deposition inside"
 }

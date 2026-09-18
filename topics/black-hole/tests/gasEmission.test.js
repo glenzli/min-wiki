@@ -5,8 +5,8 @@ import { StellarGas } from '../rendering/stellarGas.ts';
 function fixture() {
   const gas = new StellarGas(1);
   gas.model = {count:1,bound:new Uint8Array([1])};
-  const sample = (x=8, alive=1, released=1) => {
-    gas.updateEmission(new Float32Array([x,0,0]),new Float32Array([x,-.1,0]),new Float32Array([released,alive]));
+  const sample = (x=8, alive=1, released=1, heat=1) => {
+    gas.updateEmission(new Float32Array([x,0,0]),new Float32Array([x,-.1,0]),new Float32Array([released,alive]),new Float32Array([heat]));
     return Uint8Array.from(gas.emission.image.data);
   };
   return {gas,sample};
@@ -18,6 +18,7 @@ test('emission stays local to surviving released bound gas; empty azimuth stays 
   assert.equal(map[48*96+28],0);
   assert.ok(sample(8,0).every(x=>x===0));
   assert.ok(sample(8,1,0).every(x=>x===0));
+  assert.ok(sample(8,1,1,0).every(x=>x===0), "unheated first-pass gas does not light a disk");
   gas.model.bound[0]=0;
   assert.ok(sample().every(x=>x===0));
 });

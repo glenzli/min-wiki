@@ -3,7 +3,7 @@
   "topicId": "butterfly-life",
   "zh": {
     "question": "安静挂着的蛹，里面也在发生变化吗？",
-    "observe": "依次选择卵、幼虫、蛹、成虫，在蛹阶段打开内部示意。比较幼虫的取食身体与成虫的翅和口器，注意这是同一个个体的不同阶段。",
+    "observe": "依次选择卵、幼虫、蛹、成虫，在蛹阶段打开内部示意。比较幼虫的取食身体与成虫的翅和口器，注意这是同一个个体的不同阶段。 选择蝴蝶后播放翅膀准备过程，比较小而皱的翅与展开后的翅；暂停、拖动回看，或靠近观察翅脉。",
     "academic": [
       {
         "title": "完全变态分开了不同任务",
@@ -15,7 +15,7 @@
       },
       {
         "title": "羽化之后还需要展开翅膀",
-        "body": "成虫从蛹中羽化时，翅尚未达到最终形态，需要展开并变得适于飞行。生命周期图回到卵，表示成虫繁殖产生下一代，而不是成虫倒退成自己的卵。各阶段持续时间取决于种类、温度和是否进入滞育；寄主植物也常有选择性，例如帝王蝶幼虫依赖乳草，不能把任何树叶都当作所有毛毛虫的食物。"
+        "body": "成虫从蛹中羽化时，翅尚未达到最终形态，需要展开并变得适于飞行。生命周期图回到卵，表示成虫繁殖产生下一代，而不是成虫倒退成自己的卵。各阶段持续时间取决于种类、温度和是否进入滞育；寄主植物也常有选择性，例如帝王蝶幼虫依赖乳草，不能把任何树叶都当作所有毛毛虫的食物。 体液进入翅脉帮助柔软的翅展开，随后翅逐渐硬化。这里的形变用简化的尺寸变化表达，不重建真实折叠几何，也不以几秒代替某一物种的实际准备时间。"
       }
     ],
     "misconception": "蛹不是睡着的毛毛虫，也不是蝴蝶的卵；它是幼虫与成虫之间有组织发育的阶段。",
@@ -39,13 +39,13 @@
       {
         "label": "翅膀准备好再出发",
         "text": "终于，成虫从蛹里出来了。它还需要让翅膀展开、变得能够飞行，不能一出来就急着飞走。长大的蝴蝶以后可能产下新的卵，新一代的故事又开始了。你可以用手指把四个阶段连起来：卵、毛毛虫、蛹、蝴蝶。下一圈是它的孩子，不是它自己变回了卵。",
-        "cue": "进入成虫阶段，回顾四阶段并指向下一代。"
+        "cue": "播放成虫翅膀准备过程；停在小而皱、展开、等待硬化三个观察点，再回顾四阶段。"
       }
     ]
   },
   "en": {
     "question": "Is anything changing inside a pupa that appears still?",
-    "observe": "Select egg, larva, pupa and adult in order. Open the inside view at the pupa stage and compare larval and adult structures: these are stages of one individual.",
+    "observe": "Select egg, larva, pupa and adult in order. Open the inside view at the pupa stage and compare larval and adult structures: these are stages of one individual. Select the adult and play wing preparation. Compare crumpled and expanded wings; pause, scrub or look closer at the wing veins.",
     "academic": [
       {
         "title": "Complete metamorphosis separates life-stage roles",
@@ -57,7 +57,7 @@
       },
       {
         "title": "Emergence begins another transition",
-        "body": "After emergence, wings must expand and become flight-ready. Returning to an egg in the life-cycle diagram means reproduction and the next generation, not an adult becoming its own egg. Timing varies with species, temperature and diapause. Host plants are often specific; monarch larvae, for example, depend on milkweeds."
+        "body": "After emergence, wings must expand and become flight-ready. Returning to an egg in the life-cycle diagram means reproduction and the next generation, not an adult becoming its own egg. Timing varies with species, temperature and diapause. Host plants are often specific; monarch larvae, for example, depend on milkweeds. Fluid entering the wing veins helps the soft wings expand before they harden. The size changes illustrate expansion, not exact folding geometry or species-specific timing."
       }
     ],
     "misconception": "A pupa is neither a sleeping caterpillar nor a butterfly egg; it is a distinct, active developmental stage.",
@@ -81,7 +81,7 @@
       {
         "label": "Prepare the wings before flying",
         "text": "At last the adult emerges. Its wings still need to expand and become ready for flight. Later, adults may produce eggs and a new generation begins. Trace the sequence with your finger: egg, caterpillar, pupa, butterfly. The next egg belongs to its offspring; the adult does not turn back into its own egg.",
-        "cue": "Show the adult and trace the next generation."
+        "cue": "Play adult wing preparation; pause at crumpled, expanded and hardening observations, then review the four stages."
       }
     ]
   },
@@ -93,6 +93,10 @@
     {
       "title": "U.S. Fish and Wildlife Service — Monarch life cycle",
       "url": "https://www.fws.gov/species/monarch-danaus-plexippus"
+    },
+    {
+      "title": "Smithsonian Gardens — About Butterflies",
+      "url": "https://gardens.si.edu/learn/for-educators/cultivating-habitat/butterfly-gardening/about-butterflies/"
     }
   ]
 }

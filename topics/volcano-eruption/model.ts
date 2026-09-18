@@ -1,9 +1,30 @@
-export interface Settings { vents: number; gas: number; viscosity: number }
+export interface Settings { vents: number; gas: number; viscosity: number; supply?:number }
+export type EruptionStyle='flow'|'fountain'|'ash';
+export const PRESETS:Record<EruptionStyle,Settings>={
+  flow:{vents:1,gas:.12,viscosity:.16,supply:.65},
+  fountain:{vents:1,gas:.8,viscosity:.2,supply:.75},
+  ash:{vents:1,gas:.92,viscosity:.88,supply:.85},
+};
+const unit=(n:number)=>Math.max(0,Math.min(1,Number.isFinite(n)?n:0));
 export const smooth = (a: number, b: number, x: number) => { const u = Math.min(1, Math.max(0, (x - a) / (b - a))); return u * u * (3 - 2 * u); };
 export const terrain = (x: number) => 115 - 158 * Math.exp(-((x / 168) ** 2)) + 20 * Math.exp(-((x / 25) ** 2));
 export const ventPositions = (count: number) => count === 3 ? [-126, 0, 126] : [0];
 export const supplyPerVent = (count: number) => 1 / ventPositions(count).length;
 export const explosivity = (settings: Settings) => settings.gas * (.25 + .75 * settings.viscosity);
+/** Qualitative appearance weights, never a classifier or a mass/VEI estimate. */
+export function eruptionAppearance(settings:Settings){
+ const gas=unit(settings.gas),viscosity=unit(settings.viscosity),supply=unit(settings.supply??.7);
+ const ash=smooth(.22,.74,gas*(.25+.75*viscosity));
+ return {ash,fountain:smooth(.12,.7,gas)*(1-ash*.92),lava:1-ash*.84,supply,
+   reach:(.4+.6*supply)*(1-.64*viscosity),
+   style:ash>.62?'ash':gas>.42?'fountain':'flow'} as const;
+}
+export type VolcanoStatus='erupting'|'dormant'|'extinct';
+/** Activity status concerns evidence over time, independently of this eruption's style. */
+export function statusEvidence(status:VolcanoStatus){
+ return {erupting:status==='erupting',future:status==='extinct'?'not-expected':'possible',
+  activeSystem:status!=='extinct',appearanceConclusive:false} as const;
+}
 export const activity = (p: number) => smooth(.28, .46, p) * (1 - smooth(.77, 1, p));
 export function readout(progress: number, settings: Settings) { return { value: String(ventPositions(settings.vents).length), stage: progress < .22 ? 0 : progress < .45 ? 1 : progress < .84 ? 2 : 3, limited: false }; }
 
@@ -52,13 +73,14 @@ export function emissionSlot(index: number, count: number) {
   return { birth: .305 + index / (CLAST_BUDGET - 1) * .515, x: vents[index % vents.length] };
 }
 
-export type ObservationView = 'overview' | 'vent' | 'flow';
+export type ObservationView = 'overview' | 'vent' | 'flow' | 'plume';
 export interface ObservationCamera { x:number; y:number; zoom:number }
 /** Framing only: changing view does not change time, supply, or particle identity. */
 export function observationCamera(view:ObservationView,vents:number):ObservationCamera {
   if(view==='vent')return {x:0,y:-78,zoom:2.55};
   if(view==='flow')return {x:vents===3?185:108,y:vents===3?51:6,zoom:3};
-  return {x:0,y:0,zoom:1};
+  if(view==='plume')return {x:35,y:-120,zoom:1.55};
+  return {x:0,y:-12,zoom:.94};
 }
 
 /** Illustrative cooling, not thermometry. Surface heat is lost before interior heat. */

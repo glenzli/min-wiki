@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "topicId": "submarine-volcanoes",
+  "zh": {
+    "question": "海水能让熔岩表面冷却，为什么海底火山仍能继续生长，甚至长成岛？",
+    "observe": "在深水场景运行到前段，再切喷口近看，分清暗色外壳与橙色内部。保持同一进度比较浅水情境。最后切堆积成岛，比较两种供给，并在结束前后寻找虚线轮廓与侵蚀变化。",
+    "academic": [
+      {
+        "title": "冷却形态取决于流出与结壳的竞争",
+        "body": "枕状熔岩具有圆鼓或管状外形。相对较低的流出速率给外壳形成留下时间，内部通道仍能输送较热熔岩，继续形成新团块；较大流量也可能形成片状等形态。外壳出现不等于整个内部已经固结，枕状熔岩也不是永久空心袋。深水情境只选取这一缓慢溢流过程，不代表海底熔岩的全部形态。 表皮的褶皱与裂缝帮助辨认新旧熔岩；本图只选少量透视剖口显示内部，剖口不是天然空洞。"
+      },
+      {
+        "title": "水压、气体与岩浆—水接触共同影响喷发",
+        "body": "环境压力会限制气体膨胀；但气体含量、岩浆供给和混合条件也决定喷发行为。岩浆—水快速传热可能造成猛烈破碎。NW Rota-1 在约 550–560 米深仍被直接观测到主要由岩浆气体驱动的爆炸喷发。因此不能用单一深度给“深水安静、浅水爆炸”划线，水也不会普遍切断岩浆的深部供给。 深海阳光极弱或缺失，本例用探测器照明。热液与冷海水混合可形成悬浮矿物颗粒，使水体浑浊；这与海面上由凝结水滴形成的白雾不同，不能把两者都画成水蒸气泡。"
+      },
+      {
+        "title": "露出海面取决于累计建设与损失",
+        "body": "火山岛的出现要求山体累计增长足以使山顶超过当地海面。真实演化还受侵蚀、滑坡、沉降与海平面变化影响。这里固定海面，把较多或较少供给转为两种示意增高量，再单独展示后期侵蚀。较少供给的例子始终在水下；较多供给的例子露出山顶后，大部分垂直高度仍在海面下。这些比例只是插画选择。"
+      }
+    ],
+    "misconception": "海水不是万能的灭火器，熔岩也不是在燃烧的普通火焰。深水不保证没有爆炸，浅水不保证一定爆炸；海底火山也不一定会变成岛。",
+    "boundary": "三个情境不是所有火山必经的阶段。画面没有真实深度刻度，成岛压缩的地质时间与熔岩冷却演示不同。几何形状、熔岩颜色、团块数、碎屑轨迹和侵蚀量为定性教学设定，不求解真实流体、热传导、碎裂、滑坡或海啸，也不预测成岛时间。 岩层、裂纹、光照衰减、颗粒浓度与海岸浪花都是稳定的程序插画，不是地质测绘、光学测量或流场求解。羽流淡出只表示这个演示片段结束，并不表示真实热液活动与喷发同步停止。",
+    "narration": [
+      {
+        "label": "先到海面下面",
+        "text": "看，蓝蓝的海下面也藏着山。这里很深，阳光照不到喷口，探测器的小灯帮我们看一看。山里的岩浆流出来以后叫熔岩。海水让它的外面很快变冷，里面却不一定马上冷下来。按运行，再靠近喷口，找找暗色皮层和细细的亮缝。",
+        "cue": "深水从零运行到约25%；先指探测器灯光，再切喷口近看，比较实心冷却皮层、推进亮缝和少量透视剖口。"
+      },
+      {
+        "label": "一团接着一团",
+        "text": "圆鼓鼓的熔岩像不像枕头？它们可不软，也不能去摸。里面还热的熔岩继续往外挤，新的一团又长出来啦。等里面也冷了，它们就变成岩石。海底的熔岩有许多模样，这里只看其中一种。",
+        "cue": "保持近景，从25%继续运行到结束，比较新团块生长、外壳形成与内部橙色消退。"
+      },
+      {
+        "label": "水和岩浆相遇",
+        "text": "再看靠近海面的例子。水和很热的岩浆相遇，有时会发生猛烈变化，把碎屑向外喷。水下的小颗粒让水变浑，海面上的白雾又不一样，里面有许多凝结的小水滴。可不能只看水深就猜会不会爆炸，也不能说海水会把所有火山都扑灭。",
+        "cue": "浅水运行到约40%，分别指水下颗粒羽流与海面上的白雾；移动到终点看冷却碎屑留下。"
+      },
+      {
+        "label": "小岛下面是一座山",
+        "text": "现在把很长的时间缩成一小段。一次又一次增加岩石，山顶才有可能露出海面。试试供给较少的按钮，它就一直藏在水下。再看看长成岛的例子：露出来的只是山顶，下面还有大大的山。最后海浪带走一些东西，岛的样子也会改变。",
+        "cue": "成岛情境在约80%比较两种供给，切山体剖面；恢复较多供给并移到100%，对比虚线旧轮廓。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If seawater cools a lava surface, how can an underwater volcano keep growing or even build an island?",
+    "observe": "Run the deep-water scene to an early stage, then examine the vent close-up and distinguish the dark rind from the orange interior. Compare the shallow scene at the same progress. Finally compare two supplies in the island scene, looking for the dashed earlier outline and later erosion.",
+    "academic": [
+      {
+        "title": "Flow and crust formation shape the lava",
+        "body": "Pillow lavas form bulbous or tubular lobes. Relatively slow extrusion allows a rind to develop while internal passages can feed hotter lava into new lobes. Larger flows can instead form sheets and other shapes. A visible crust does not mean the whole interior has solidified, and pillows are not permanently hollow bags. Our deep-water scene selects one slow-flowing example rather than all submarine lava forms. Wrinkles and cracks help distinguish new and older lava. A few illustrative cutaways reveal interiors; they are not natural hollow openings."
+      },
+      {
+        "title": "Pressure, gas and contact with water all matter",
+        "body": "Ambient pressure limits gas expansion, but gas content, magma supply and mixing also influence eruption behavior. Rapid heat transfer between magma and water can cause violent fragmentation. Explosions driven mainly by magmatic gases were directly observed at NW Rota-1 at about 550–560 meters depth. A single depth cannot divide quiet deep eruptions from explosive shallow ones, and seawater does not universally shut off deeper magma supply. Sunlight is weak or absent in the deep ocean, so this example uses vehicle lighting. Mixing hydrothermal fluid with cold seawater can create suspended mineral particles. This turbidity differs from mist made of condensed droplets above the sea; neither should simply be treated as steam bubbles."
+      },
+      {
+        "title": "Emergence depends on accumulation and loss",
+        "body": "An island forms when accumulated growth lifts a summit above local sea level. Erosion, landslides, subsidence and sea-level changes also affect real evolution. This model fixes sea level, assigns two illustrative growth amounts, and then shows later erosion separately. The lower-supply example stays submerged. The larger example emerges with most vertical height still underwater. Those proportions are illustration choices."
+      }
+    ],
+    "misconception": "Seawater is not a universal fire extinguisher, and lava is not an ordinary burning flame. Deep water does not guarantee no explosions, shallow water does not guarantee explosions, and an underwater volcano need not become an island.",
+    "boundary": "These are not inevitable stages of every volcano. There is no real depth scale, and compressed island-building time differs from the cooling demonstration. Geometry, glow, lobe counts, fragment paths and erosion are qualitative teaching choices. The model does not solve real fluid flow, heat transfer, fragmentation, landslides or tsunamis, or predict an island's formation time. Strata, cracks, light attenuation, particle density and surf are deterministic illustrations, not geological surveys, optical measurements or flow solutions. Fading plumes end this teaching segment; real hydrothermal activity need not stop with the eruption.",
+    "narration": [
+      {
+        "label": "Look beneath the sea",
+        "text": "Look, a mountain is hiding under the sea. Down here the vent has no sunlight, so a little lamp on the underwater vehicle helps us see. Magma that comes out is called lava. Seawater cools the outside quickly, while the inside may stay hot. Press Run and move closer. Can you find the dark skin and tiny glowing seams?",
+        "cue": "Run deep water from zero to about 25%. Point to the vehicle lamp, then choose the vent close-up and compare solid skins, advancing seams and the few illustrative cutaways."
+      },
+      {
+        "label": "One lobe after another",
+        "text": "Do those rounded shapes look like pillows? They are not soft, and we must never touch them. Hot lava inside can keep pushing out, making another lobe. When the inside cools too, it becomes rock. Lava under the sea can have many shapes. This is just one example.",
+        "cue": "Keep the close-up and run from 25% to the end. Compare new growth, crust formation and the fading orange interior."
+      },
+      {
+        "label": "Water meets magma",
+        "text": "Now look at the example near the surface. When water meets very hot magma, violent changes can sometimes scatter fragments. Tiny particles make water cloudy. The white mist above the sea is different: it contains many condensed droplets. Depth alone cannot tell us whether an explosion will happen, and seawater does not put out every volcano.",
+        "cue": "Run shallow water to about 40%. Point separately to suspended underwater particles and white mist above the sea, then move to the endpoint to see deposited fragments."
+      },
+      {
+        "label": "A little island, a big mountain",
+        "text": "Now we squeeze a long story into a short scene. Rock builds up again and again before a summit might rise above the sea. Try Less supply: this mountain stays hidden. In the island example, only the top appears, with a much bigger mountain below. At the end, waves carry some material away, changing its shape.",
+        "cue": "At about 80% in the island scene, compare supplies and choose the mountain section. Restore the larger supply and move to 100%, comparing the dashed former outline."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NOAA · Do volcanoes occur in the ocean?",
+      "url": "https://oceanservice.noaa.gov/facts/volcanoes.html"
+    },
+    {
+      "title": "NOAA PMEL · Pillow lava",
+      "url": "https://www.pmel.noaa.gov/eoi/nemo/explorer/concepts/pillows.html"
+    },
+    {
+      "title": "NOAA PMEL · Direct observations of NW Rota-1 explosive eruptions",
+      "url": "https://www.pmel.noaa.gov/public/pmel/publications-search/search_abstract.php?fmContributionNum=3078"
+    },
+    {
+      "title": "USGS · Lava and seawater: an explosive hazard",
+      "url": "https://www.usgs.gov/observatories/hvo/news/volcano-watch-mixture-lava-and-seawater-creates-explosive-hazard"
+    },
+    {
+      "title": "USGS · Evolution of Hawaiian Volcanoes",
+      "url": "https://www.usgs.gov/observatories/hvo/evolution-hawaiian-volcanoes"
+    },
+    {
+      "title": "NOAA Ocean Exploration · Light and Color in the Deep Sea",
+      "url": "https://oceanexplorer.noaa.gov/fact-sheet/light-and-color-fact-sheet/"
+    },
+    {
+      "title": "NOAA PMEL · What is a Hydrothermal Plume?",
+      "url": "https://www.pmel.noaa.gov/eoi/PlumeStudies/plumes-whatis.html"
+    },
+    {
+      "title": "NOAA National Weather Service · Cloud Development",
+      "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/clouds/cloud_development/clouds.htm"
+    }
+  ]
+}

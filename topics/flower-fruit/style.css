@@ -20,3 +20,5 @@
 @media(prefers-reduced-motion:reduce){.stage-enter,.main-root,.pollen-tube,.bee-arrival{animation:none!important;stroke-dashoffset:0}}
 
 .scene{align-self:start}
+
+.scene.detail-view .scene-badge{display:none}

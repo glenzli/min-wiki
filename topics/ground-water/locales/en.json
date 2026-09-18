@@ -39,5 +39,11 @@
   "积留：{{n}} 份": "Stays: {{n}} units",
   "放大的地面剖面": "Enlarged ground cross-section",
   "流走的水": "Runoff",
-  "同样一场雨": "The same rainfall"
+  "同样一场雨": "The same rainfall",
+  "播放过程": "Play the process",
+  "暂停": "Pause",
+  "近看孔隙": "Inspect the pores",
+  "仍在空中：{{n}} 份": "Still in the air: {{n}} parts",
+  "黄色圈：同一份雨水；虚线：流走的路线": "Gold marker: the same parcel; dashed line: runoff route",
+  "100 份是示意总量，不是雨量测量": "100 symbolic parts, not a rainfall measurement"
 }

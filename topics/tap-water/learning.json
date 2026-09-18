@@ -3,7 +3,7 @@
   "topicId": "tap-water",
   "zh": {
     "question": "一杯水看起来透明，能说明里面只有水分子、或者一定能喝吗？",
-    "observe": "先选矿物质，再分别比较微生物警示和化学污染情景的煮沸前后；注意灰色划线的病原体符号与仍保留的紫色化学污染符号。",
+    "observe": "先认出水与矿物质，再播放微生物警示的连续变化，暂停查看灰色划线。保持进度切换化学污染：紫色菱形一直保留。绿色虚线只表示加热后的消毒剂残留未建模。",
     "academic": [
       {
         "title": "清澈不等于纯水或检测合格",
@@ -11,7 +11,7 @@
       },
       {
         "title": "煮沸主要针对微生物风险",
-        "body": "符合适用时间和操作要求的煮沸可灭活许多致病微生物，使其失去感染能力，并不意味着把它们过滤出水。完成加热后仍需防止再污染，放凉并用清洁容器加盖保存。不同地区、海拔和通知可能有具体要求，儿童不应操作热水，本页的按钮也不代表完成了一项真实处理。"
+        "body": "符合适用时间和操作要求的煮沸可灭活许多致病微生物，使其失去感染能力，并不意味着把它们过滤出水。完成加热后仍需防止再污染，放凉并用清洁容器加盖保存。不同地区、海拔和通知可能有具体要求，儿童不应操作热水，本页的按钮也不代表完成了一项真实处理。连续变化用于展示处理前后的概念联系：同一符号保留，灰色划线逐渐出现。中间帧没有对应的温度、持续时间或存活比例，不能拿进度条判断现实中的水已经安全。"
       },
       {
         "title": "化学污染需要另一种处理思路",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "烧开不等于变成纯水，也不是修复化学污染的通用办法。",
-    "boundary": "粒子只表示成分类别和处理差别，不表示数量、真实外形或检测结果；饮水与处理以当地供水和卫生通知为准。",
+    "boundary": "粒子只表示成分类别和处理差别，不表示真实数量或检测。进度和变色不是煮沸计时、温度或微生物存活曲线；余氯处理后状态未建模。只能在屏幕上比较，饮水与处理须由大人遵循当地通知。",
     "narration": [
       {
         "label": "透明的水里有什么",
@@ -29,23 +29,23 @@
       {
         "label": "先听大人的供水消息",
         "text": "有些地方的自来水可以按当地建议直接饮用，有些地方需要不同的处理，所以要先听大人查看的供水消息。如果通知说有微生物风险，大人可能需要按要求烧开。我们在屏幕上比较一下：处理前后的病原体符号，发生了什么变化？",
-        "cue": "选择微生物情景，比较煮沸前后。"
+        "cue": "选微生物警示，从0播放到约60%暂停，保持同一组水与矿物质符号。"
       },
       {
         "label": "失去能力，不是消失",
         "text": "灰色的小符号上多了一道线，表示这个示意里的病原体失去了感染能力，不是被一只小网捞走了。矿物质的符号却还在。先停一停，再换到紫色的化学污染情景。你会发现，点了煮沸以后，紫色符号仍然留下来了。",
-        "cue": "停三秒，再切换化学污染并比较。"
+        "cue": "推进到100%，随后保持进度切换化学污染，再拖回确认紫色符号全程保留。"
       },
       {
         "label": "烧开也有做不到的事",
         "text": "原来，烧开有能做的事，也有做不到的事。比如水里的铅，不能靠烧开去掉。遇到这类通知，要请大人寻找通知要求的安全水源，不能看水很清就喝。我们今天只在屏幕上观察，真正的开水很烫，处理和倒水都交给大人来做。",
-        "cue": "停在化学污染仍保留的结果。"
+        "cue": "停在化学警示结果，强调屏幕不是煮沸计时或饮水认证。"
       }
     ]
   },
   "en": {
     "question": "Does clear water contain only water molecules, and does clarity prove it is safe to drink?",
-    "observe": "Inspect minerals, then compare before and after boiling in microbial and chemical-warning scenarios. Notice the crossed-out pathogen symbols and the chemical symbols that remain.",
+    "observe": "Identify water and minerals, then play the microbial-warning change and pause on the gray crossed symbols. Keep the same progress when switching to chemical contamination: purple diamonds remain. Green outlines mean the heated disinfectant residual is not modeled.",
     "academic": [
       {
         "title": "Clarity is not purity or a test result",
@@ -53,7 +53,7 @@
       },
       {
         "title": "Boiling addresses microbial hazards",
-        "body": "Boiling according to applicable instructions can inactivate disease-causing microorganisms; it does not physically filter them out. Water must also be protected from recontamination while cooling and stored in clean, covered containers. Local instructions can differ, and the on-screen button is not an actual treatment procedure."
+        "body": "Boiling according to applicable instructions can inactivate disease-causing microorganisms; it does not physically filter them out. Water must also be protected from recontamination while cooling and stored in clean, covered containers. Local instructions can differ, and the on-screen button is not an actual treatment procedure. The continuous transition links the before and after concepts while keeping the same symbols. Intermediate frames have no assigned temperature, duration or surviving fraction, so progress cannot establish real water safety."
       },
       {
         "title": "Chemical contamination needs another response",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Boiling does not produce pure water and is not a universal remedy for chemical contamination.",
-    "boundary": "Particles represent categories and treatment differences, not counts, shapes or test results. Follow local water-supply and health instructions.",
+    "boundary": "Particles show categories and treatment differences, not counts or test results. Progress and fading are not a boiling timer, temperature or microbial survival curve; heated disinfectant residuals are not modeled. Compare only on screen; adults should follow local water advice.",
     "narration": [
       {
         "label": "What is in clear water?",
@@ -71,17 +71,17 @@
       {
         "label": "Check local advice",
         "text": "Tap-water advice differs from place to place, so first let an adult check the local supply information. If a notice warns about microbes, adults may need to boil water as directed. Compare the pictures on screen. What changes in the pathogen symbols after the modeled treatment?",
-        "cue": "Choose the microbial scenario and compare before and after boiling."
+        "cue": "Choose the microbial warning, play from 0 to about 60%, then pause with the same water and mineral symbols."
       },
       {
         "label": "Inactivated, not removed",
         "text": "The gray symbols gain a line across them. This means the modeled pathogens have lost their ability to cause infection, not that a tiny net removed them. Mineral symbols remain. Pause, then try the purple chemical-contamination scenario. Those purple symbols stay after boiling too.",
-        "cue": "Pause for three seconds, then compare the chemical scenario."
+        "cue": "Advance to 100%, switch to chemical contamination without resetting, then scrub back to confirm persistent purple symbols."
       },
       {
         "label": "Boiling has limits",
         "text": "Boiling helps with some problems but not all. It cannot remove lead from water, for example. If a notice warns of such contamination, an adult should obtain the safe water source it recommends. Clear-looking water is not proof of safety. We are only observing on screen; real boiling and pouring hot water are jobs for adults.",
-        "cue": "Hold the result with chemical symbols still present."
+        "cue": "Hold the chemical-warning result and emphasize that the screen is not a boiling timer or safety certificate."
       }
     ]
   },

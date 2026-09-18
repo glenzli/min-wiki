@@ -23,5 +23,21 @@
   "同一个物体离我们越远，看起来通常越小。远方恒星看起来像亮点，不表示它们只有小点那么大；恒星之间本来也有大小和温度的差别。": "The same object usually looks smaller as it gets farther away. Distant stars look like bright points, but are not actually tiny dots. Stars also differ in their real sizes and temperatures.",
   "盯着左边的太阳，再把距离拉远。变化的是太阳本身，还是它在眼里占的大小？拿一个橘子从近处移远，也能试试。": "Watch the Sun on the left while increasing distance. Does the Sun change, or the amount of your view it fills? Try moving an orange farther away too.",
   "保持太阳半径 R 不变，观察距离 d 增大，视角直径为 θ = 2 asin(R/d)。当 d 远大于 R 时，视角近似与距离成反比。太阳主要通过核心核聚变释放能量，并非像木柴那样靠氧气燃烧。这里只改变距离，不改变恒星物理尺寸或演化状态。": "With solar radius R fixed and observer distance d increasing, angular diameter is θ = 2 asin(R/d). When d is much larger than R, angular diameter is approximately inversely proportional to distance. The Sun releases energy mainly through nuclear fusion in its core, not oxygen-fed combustion like burning wood. Only distance changes here, not the star’s physical size or evolutionary state.",
-  "地球与太阳的平均距离约为 1 个天文单位。本页展示 1—1000 倍这个距离，尚未到达其他恒星；右图把太阳视直径统一放大以便比较，极小时保留最低可见亮点，所以不能当作真实视野或亮度计。背景星点仅为装饰。太阳不能直接用眼睛、望远镜或普通墨镜观看。": "Earth’s average distance from the Sun is about one astronomical unit. This page spans 1–1000 times that distance, still short of other stars. The right panel enlarges angular diameter by one shared scale and retains a minimum visible point at tiny sizes, so it is not a realistic field of view or brightness meter. Background stars are decorative. Never view the Sun directly with your eyes, a telescope or ordinary sunglasses."
+  "地球与太阳的平均距离约为 1 个天文单位。本页展示 1—1000 倍这个距离，尚未到达其他恒星；右图把太阳视直径统一放大以便比较，极小时保留最低可见亮点，所以不能当作真实视野或亮度计。背景星点仅为装饰。太阳不能直接用眼睛、望远镜或普通墨镜观看。": "Earth’s average distance from the Sun is about one astronomical unit. This page spans 1–1000 times that distance, still short of other stars. The right panel enlarges angular diameter by one shared scale and retains a minimum visible point at tiny sizes, so it is not a realistic field of view or brightness meter. Background stars are decorative. Never view the Sun directly with your eyes, a telescope or ordinary sunglasses.",
+  "距离：{{factor}} AU": "Distance: {{factor}} AU",
+  "{{minutes}} 分 {{seconds}} 秒": "{{minutes}} min {{seconds}} s",
+  "{{hours}} 小时": "{{hours}} hours",
+  "{{days}} 天": "{{days}} days",
+  "右图已保留最小亮点；请看角直径数值继续比较。": "The right view now preserves a minimum visible dot; compare the angular-diameter numbers.",
+  "左右两图使用同一基准；右边改变的是视大小。": "Both panels share the same initial scale; only apparent size changes on the right.",
+  "暂停旅行": "Pause the journey",
+  "从头旅行": "Travel again",
+  "慢慢移远": "Move farther slowly",
+  "太阳的角直径": "Angular diameter of the Sun",
+  "光从太阳到这里需要": "Light travel time from the Sun",
+  "收到的能量 · 以地球距离为 100%": "Irradiance · 100% at Earth’s distance",
+  "观察距离 · 可以拖动回看": "Viewing distance · drag to review",
+  "光也需要旅行时间。从太阳发出的光来到地球附近，大约要 8 分多钟。这里的旅行只是改变观察位置，不是宇宙飞船的真实飞行。": "Light takes time to travel. Sunlight reaches Earth in a little over eight minutes. This journey changes the viewing position; it does not simulate an actual spacecraft.",
+  "保持太阳半径 R 不变，观察距离 d 增大，视角直径为 θ = 2 asin(R/d)。当 d 远大于 R 时，视角近似与距离成反比。太阳主要通过核心核聚变释放能量，并非像木柴那样靠氧气燃烧。这里只改变距离，不改变恒星物理尺寸或演化状态。附带数值使用真空光速计算光行时，使用 1/d² 计算相同面积、垂直接收太阳辐射时的能量通量比；不把画面的光晕当作测光数据。": "For fixed solar radius R and viewing distance d, angular diameter is θ = 2 asin(R/d), approximately inverse to distance when d greatly exceeds R. Solar energy mainly comes from core fusion, not combustion. Only viewing distance changes, not the Sun’s size or evolution. Numerical light travel time uses the vacuum speed of light; irradiance follows 1/d² for equal areas perpendicular to the rays. The halo is not calibrated photometry.",
+  "地球与太阳的平均距离约为 1 个天文单位（AU）。距离轴每一大步乘以 10，便于同时看近处和很远处。光行时从可见光球附近到观察者近似计算，不是能量穿过太阳内部所需时间。本页展示 1—1000 倍这个距离，尚未到达其他恒星；右图把太阳视直径统一放大以便比较，极小时保留最低可见亮点，所以不能当作真实视野或亮度计。背景星点仅为装饰。太阳不能直接用眼睛、望远镜或普通墨镜观看。": "Earth is about one astronomical unit (AU) from the Sun. Each major distance step multiplies distance by ten to show near and distant views together. Light travel time approximates the journey from the visible photosphere to the observer, not energy transport inside the Sun. The range is 1–1000 AU, still short of other stars. The right panel enlarges angular sizes and retains a minimum dot; neither field of view nor brightness is calibrated. Background stars are decorative. Never view the Sun directly with your eyes, a telescope or ordinary sunglasses."
 }

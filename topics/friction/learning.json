@@ -3,7 +3,7 @@
   "topicId": "friction",
   "zh": {
     "question": "三块一样的木头同样快地出发，为什么可能停在不同位置？",
-    "observe": "保持出发速度不变，播放三条路的滑动，比较谁先停、谁滑得远；再只增加速度，观察同一条路的停止距离。",
+    "observe": "播放滑动，随时暂停或拖回。选一条路近看接触处，比较木块移动与左向摩擦；再看蓝绿运动能量缩短、橙色已转移部分增长，总条长保持不变。",
     "academic": [
       {
         "title": "滑动摩擦与相对运动",
@@ -15,11 +15,11 @@
       },
       {
         "title": "静摩擦、滚动与能量",
-        "body": "未滑动接触的静摩擦会在限度内适应其他作用力，它可以帮助人向前走，并不总与物体整体运动方向相反。带轮玩具还涉及滚动、轴承和形变，不能套用本页无轮木块的数值。滑动时机械能转为内能等形式，能量并未消失；搓手发热提供日常线索，却不能测出本页各路面的真实摩擦系数。"
+        "body": "未滑动接触的静摩擦会在限度内适应其他作用力，它可以帮助人向前走，并不总与物体整体运动方向相反。带轮玩具还涉及滚动、轴承和形变，不能套用本页无轮木块的数值。滑动时机械能转为内能等形式，能量并未消失；搓手发热提供日常线索，却不能测出本页各路面的真实摩擦系数。能量条按恒定动摩擦模型计算：剩余动能比例为(v/v₀)²，转移比例为1−(v/v₀)²。条长守恒，橙色只表示进入木块和地面的能量，并不是把温度变化放大后显示。"
       }
     ],
     "misconception": "摩擦不总是坏事，也不总是越粗糙越大；滚动小车不能直接代入滑动木块的结果。",
-    "boundary": "三种系数是教学设定，不是材料实测值；忽略空气阻力、温度和形变变化，时间可手动推进，木块停止后不会倒滑。",
+    "boundary": "三种系数是教学设定，不是材料实测值。接触窗口只表示少量接触区与相对滑动，未求解微观材料形变；橙色与能量条不表示温度。忽略空气阻力，停下后不会倒滑。",
     "narration": [
       {
         "label": "一样的起跑",
@@ -29,7 +29,7 @@
       {
         "label": "接触面在影响它们",
         "text": "木块向右滑的时候，接触的地面给它一个向左的摩擦力，于是它慢下来。画里的小箭头帮助我们看方向。现在拖动推进时间，把画面停住，比较三块木头：有的已经停住，有的还在走。这个例子给三条路安排了不同的摩擦条件，所以结果不同。",
-        "cue": "拖动推进时间，停在部分木块静止时，留三秒。"
+        "cue": "播放到约0.7秒暂停，选择布面接触窗口；上下表面位置与主场景保持同步。"
       },
       {
         "label": "更快出发会怎样",
@@ -38,14 +38,14 @@
       },
       {
         "label": "摩擦也在帮忙",
-        "text": "摩擦并不是专门来捣乱的。鞋底和地面之间合适的摩擦，帮助我们走路不打滑；两只手搓一搓，还可能感觉暖一点。小木块停下来，运动的能量没有凭空消失，一部分变成了热。今天的木块没有轮子，带轮子的玩具还要研究另外一些事情。",
-        "cue": "停在三块均静止的结果。"
+        "text": "摩擦并不是专门来捣乱的。鞋底和地面之间合适的摩擦，帮助我们走路不打滑。再看看能量条：蓝绿色变短，橙色变长，可总长没变。小木块停下来，运动能量转到了木块和地面里，并没有消失。橙色不是火花，也不能告诉我们温度有多高。",
+        "cue": "看三条能量条由蓝绿转为橙色，停稳后无反向运动或持续热动画。"
       }
     ]
   },
   "en": {
     "question": "Why can identical blocks starting at the same speed stop at different places?",
-    "observe": "Keep starting speed fixed and play all three lanes. Compare stopping time and distance, then increase only speed and compare the stopping distance on one lane.",
+    "observe": "Play, pause or scrub back. Select a surface to inspect its contact while the block moves, then compare the shrinking teal motion energy with growing orange transferred energy; total bar length stays constant.",
     "academic": [
       {
         "title": "Friction opposes relative sliding",
@@ -57,11 +57,11 @@
       },
       {
         "title": "Static friction, rolling and energy",
-        "body": "Static friction adjusts within a limit and can help walking forward; it does not always oppose an object’s overall motion. Wheeled toys involve rolling, bearings and deformation, unlike these blocks. During sliding, mechanical energy becomes internal energy and other forms rather than disappearing. Warm hands after rubbing provide a qualitative clue, not a coefficient measurement."
+        "body": "Static friction adjusts within a limit and can help walking forward; it does not always oppose an object’s overall motion. Wheeled toys involve rolling, bearings and deformation, unlike these blocks. During sliding, mechanical energy becomes internal energy and other forms rather than disappearing. Warm hands after rubbing provide a qualitative clue, not a coefficient measurement. The bar uses the constant-friction model: remaining kinetic fraction is (v/v₀)² and the transferred fraction is its complement. Orange represents energy entering the block and surface, not a displayed temperature rise."
       }
     ],
     "misconception": "Friction is useful too, rougher does not always mean greater friction, and a rolling car is not this sliding-block model.",
-    "boundary": "The coefficients are illustrative, not measured material values. Air drag and changing temperature or deformation are omitted. Time can be scrubbed, and blocks do not reverse after stopping.",
+    "boundary": "The coefficients are illustrative, not measured values. The contact window depicts limited contact and relative sliding without solving microscopic deformation; orange and the energy bars do not measure temperature. Air drag is omitted and stopped blocks never reverse.",
     "narration": [
       {
         "label": "The same start",
@@ -71,7 +71,7 @@
       {
         "label": "The surfaces affect motion",
         "text": "While a block slides right, the surface exerts friction to the left, slowing it down. The little arrows show that direction. Move the time slider to pause, then compare: some blocks have stopped while another still moves. This example assigns different friction conditions to the three lanes, producing different results.",
-        "cue": "Scrub time to pause while some blocks have stopped; leave three seconds."
+        "cue": "Pause near 0.7 s and select the cloth contact window; its displacement stays synchronized with the main scene."
       },
       {
         "label": "Try a faster start",
@@ -80,8 +80,8 @@
       },
       {
         "label": "Friction helps us too",
-        "text": "Friction is not simply a nuisance. Suitable friction between shoes and ground helps us walk without slipping. Rubbing hands may make them feel warmer. When the blocks stop, their motion energy has not vanished; some becomes heat. These blocks have no wheels, so a wheeled toy would need us to consider additional effects.",
-        "cue": "Hold the final state with all blocks stationary."
+        "text": "Friction is not simply a nuisance. Suitable friction helps shoes grip the ground. Now watch the energy bars: teal gets shorter and orange gets longer, but the total stays the same. As the blocks stop, motion energy transfers to the blocks and surfaces rather than vanishing. Orange is not a spark or a temperature reading.",
+        "cue": "Follow energy bars from teal to orange; once stopped, there is no reverse motion or continuing heat animation."
       }
     ]
   },

@@ -3,7 +3,7 @@
   "topicId": "seed-travel",
   "zh": {
     "question": "没有风时，蒲公英的小伞还能自己朝远处飞吗？",
-    "observe": "先选蒲公英，把风设为零并出发；再分别用轻风和较大风重复，比较路径。切换牛蒡，看小钩如何随动物移动，区分传播和萌发。",
+    "observe": "选择蒲公英，对比无风、轻风和较大风：同一个小果实都缓缓下落，横向位移不同。选择牛蒡，暂停检查接触毛发、附着同行和脱落；可以拖回任意时刻。",
     "academic": [
       {
         "title": "传播单位不总是裸露的种子",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "小伞不是发动机；它延缓下落，横向搬运需要空气运动。落到远处也不保证成为新植物。",
-    "boundary": "路径展示固定时段的示意，不代表实际风场或落点；牛蒡示意省略附着强度、脱落时机及其内部多个果实的结构。",
+    "boundary": "18 秒的示意旅程不预测真实风场、附着强度或落点。蒲公英采用共同的定性沉降曲线，牛蒡脱落时刻为教学选择；着地后不自动萌发。",
     "narration": [
       {
         "label": "不会走路的植物",
@@ -33,8 +33,8 @@
       },
       {
         "label": "小钩子的顺风车",
-        "text": "再来认识牛蒡。它不用白色的小伞，而是带着一些小钩子。动物经过时，小钩可能挂到毛上，跟着一起走。画面里的动物前进，小果实也跟着移动。等它以后脱落，就可能到了新地方。这和小伞随风走，是两种不同的搭车办法。",
-        "cue": "切到牛蒡，播放动物连续移动。"
+        "text": "再来认识牛蒡。它不用白色的小伞，而是带着一些小钩子。动物经过时，小钩可能挂到毛上，跟着一起走。画面里的动物前进，小果实也跟着移动。等它以后脱落，就可能到了新地方。这和小伞随风走，是两种不同的搭车办法。这次可以看到完整的三小步：先碰上毛发，再跟着走，最后同一个小刺球松开并落下。我们没有换成另一个刺球，也没有让它一落地就长出小苗。",
+        "cue": "牛蒡约五分之一处停看接触，中段停看随毛移动，最后停看同一个传播体落地。"
       },
       {
         "label": "到达还不是长大",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Without wind, can a dandelion parachute fly sideways by itself?",
-    "observe": "Launch the dandelion fruit first with no wind, then repeat with light and stronger wind. Compare paths, then switch to burdock and watch transport by an animal. Dispersal and germination are different events.",
+    "observe": "Compare no wind, light wind and stronger wind: the same dandelion fruit settles while horizontal transport changes. Choose burdock and pause at contact with fur, attached travel and release. Scrub to any moment.",
     "academic": [
       {
         "title": "The travelling unit is not always a bare seed",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "The parachute is not an engine: it slows descent, while moving air provides transport. Travelling far does not guarantee a new plant.",
-    "boundary": "Paths represent a short illustrative interval, not a measured wind field or final landing. The burdock example omits attachment strength, release timing and multiple enclosed fruits.",
+    "boundary": "The 18-second illustrative journey predicts neither wind fields, attachment strength nor landing position. Dandelions share a qualitative settling curve; burr release time is chosen for explanation. Landing does not automatically trigger germination.",
     "narration": [
       {
         "label": "Plants that cannot walk",
@@ -75,8 +75,8 @@
       },
       {
         "label": "A ride using hooks",
-        "text": "Meet burdock next. Instead of a white parachute, it has little hooks that may catch on passing fur. As the animal moves in our picture, the attached structure moves too. It may later fall off elsewhere. Riding fur and riding wind are two different ways to travel.",
-        "cue": "Switch to burdock and animate the animal’s movement."
+        "text": "Meet burdock next. Instead of a white parachute, it has little hooks that may catch on passing fur. As the animal moves in our picture, the attached structure moves too. It may later fall off elsewhere. Riding fur and riding wind are two different ways to travel. Watch three connected events: contact with fur, a ride, and release of the same burr. It is never replaced with another burr, and landing does not instantly produce a seedling.",
+        "cue": "Pause near one-fifth progress for contact, midway for transport with fur, and at the end for the same dispersal unit reaching the ground."
       },
       {
         "label": "Arrival is not the end",

@@ -3,23 +3,23 @@
   "topicId": "black-hole",
   "zh": {
     "question": "同一颗恒星从更远处经过黑洞，还会被拉成细长气流吗？",
-    "observe": "先播放远距离经过，再切换近距离遭遇；暂停在最靠近黑洞时，比较外层、核心与气流的去向。",
+    "observe": "先比较远近两条路线，再从上方跟踪长尾和回返气流。切到黑洞近景观察橙色亮处；淡线只记录少量物质点最近走过的路径。",
     "academic": [
       {
         "title": "拉扯来自引力差",
-        "body": "潮汐作用比较的是天体两侧的引力差，而不是只看中心处引力有多强。当恒星半径远小于中心距离时，沿径向的差分加速度约为 2GMR/r³。距离缩短会迅速增强这种差异。把它与恒星自身引力比较，可估计潮汐半径 rₜ≈R(M/m)^(1/3)；这只是量级条件，实际破坏还取决于轨道与内部结构。"
+        "body": "潮汐作用比较的是天体不同位置的引力差，而不是只看中心处引力有多强。当恒星半径 R 远小于中心距离 r 时，中心到近侧的径向差分加速度约为 2GMR/r³。距离缩短会迅速增强这种差异。把它与恒星自身引力比较，可估计潮汐半径 rₜ≈R(M/m)^(1/3)；这只是量级条件，实际破坏还取决于轨道与内部结构。"
       },
       {
-        "title": "碎裂不等于全部落入",
-        "body": "恒星最接近黑洞时，不同部分获得不同的轨道能量和角动量。被释放的物质可能逃离，也可能仍受引力束缚，经过较长路径后回返。回返气流通过碰撞和耗散逐步改变轨道；并非全部物质立刻构成整齐圆盘。外层先脱离、核心稍后松散是本页所选模型的连续过程，不是所有遭遇必然相同的顺序。"
+        "title": "回返、圆盘化与吸积是不同过程",
+        "body": "不同部分获得不同轨道能量和角动量。一些物质可逃离，束缚碎屑则可沿拉长的偏心轨道回返。真实气流相遇和激波可能耗散轨道能量，角动量重新分配影响内移；流动可在一段时间内保持偏心，不保证迅速形成完整圆盘。本页在束缚碎屑外行后转向内行时启用温和耗散，不把回返当成已经求解的碰撞，也不按固定时刻强迫所有物质内移。"
       },
       {
-        "title": "我们怎样知道发生了什么",
-        "body": "潮汐瓦解事件可表现为突然增强、随后演化的辐射，研究者结合光谱、亮度随时间的变化及宿主星系环境判断来源。发光物质位于事件视界之外；黑洞阴影和视界也不是同一个可见圆边。演示中的颜色帮助追踪物质与受热程度，不是直接观测到的温度图，单凭一个亮环不能证明恒星正在被撕碎。"
+        "title": "亮度、轨迹与观测证据",
+        "body": "橙色亮处来自简化耗散造成的轨道能量损失，并会逐渐衰减；它不是温度测量，变暗也不一定表示物质落入。淡线记录少量物质点的最近路径，不是实体环。局部光像另用无自旋薄盘近似计算，不能单凭亮弧证明已形成完整圆盘。真实潮汐瓦解事件需要结合亮度演化、光谱与宿主环境判断；发光物质位于事件视界外，光学暗影与视界也不是同一个边界。"
       }
     ],
     "misconception": "黑洞不是把周围一切都吸走的吸尘器；是否碎裂取决于经过距离、轨道和天体结构，发光的通常是视界外的气体。",
-    "boundary": "粒子沿连续轨迹展示潮汐拉伸和回流；没有求解完整流体、磁场、辐射输运或数值广义相对论。大小、亮度与演示时间不能直接换算成一次真实事件。",
+    "boundary": "同一批物质点连续展示拉伸、回返与偏心绕行；用渐弱支撑和回返后的耗散作教学近似，没有求解真实碰撞、流体压力、磁场或相对论流体。受热亮度、光学暗影、大小与展示时间不能直接换算成真实事件的温度、吞入量或成盘时间。",
     "narration": [
       {
         "label": "先认清主角",
@@ -32,36 +32,36 @@
         "cue": "切近距离；在外层初次脱离时停顿约四秒。"
       },
       {
-        "label": "继续跟着气体",
-        "text": "继续播放，原来聚在一起的物质变成了弯弯的长流。有些往远处走，有些还会绕回来。绕回来也不等于立刻掉进去，它们要继续运动、相遇和改变路线。画面里一直跟着的，仍然是刚才那批物质，并不是黑洞突然变出了新的彩带。",
-        "cue": "跟随同一批物质经过拉伸、回返阶段。"
+        "label": "绕回来，还要继续走",
+        "text": "继续播放，原来聚在一起的物质变成了弯弯的长流。有些往远处走，有些走了一段很长的路，又绕回来。回来不等于马上掉进去，也不等于已经变成圆盘。我们从上方跟着它们看：哪一段正在远离，哪一段正在回来？淡淡的线记下少量气体刚走过的路，不是黑洞身旁真的长出了一圈圈环。",
+        "cue": "切到俯视；跟随长尾、回返气流与少量最近路径。"
       },
       {
-        "label": "亮光在哪里",
-        "text": "最后，看看黑洞旁边的亮光。光来自外面的热气体，不是已经掉进黑洞的光又跑出来了。这段画面把很难看到的过程放大、放慢，好让我们观察。你可以再比较两条路线：同样遇到黑洞，离得不同，故事的结尾也可能不同。",
-        "cue": "拉回全景，比较远距离和近距离结果。"
+        "label": "亮处为什么会变化",
+        "text": "现在切到黑洞近景，找找橙色亮处。真实的气流相遇时可能碰撞、变热。这里用变化的亮光帮助我们想象这个过程，颜色不能告诉我们准确的温度。亮处慢慢变暗，也不一定是气体落进去了。看看那里的气体还在不在，再拉回全景：外面的长尾和弯弯的气流，仍然在继续旅行。",
+        "cue": "切近景观察局部亮处与衰减，再回俯视比较气体仍在的位置。"
       }
     ]
   },
   "en": {
     "question": "Would the same star become a long stream if it passed farther from the black hole?",
-    "observe": "Play a distant pass, then a close encounter. Pause near the closest approach and compare the outer layers, the core, and the outgoing material.",
+    "observe": "Compare distant and close passes, then track the tail and returning streams from above. Use the black hole close-up to inspect orange patches; faint lines record only a few parcels’ recent paths.",
     "academic": [
       {
         "title": "Tides measure a difference",
-        "body": "A tide is the difference in gravity across an object, rather than the gravitational acceleration at its center. For a star much smaller than its distance from the black hole, the radial difference is approximately 2GMR/r³. Comparing this with the star’s self-gravity gives the order-of-magnitude tidal radius rₜ≈R(M/m)^(1/3). Orbit and internal structure affect the actual outcome."
+        "body": "Tides compare gravity at different positions within an object, rather than just its central acceleration. For stellar radius R much smaller than distance r, the radial acceleration difference from the center to the near side is approximately 2GMR/r³. Comparing this with the star’s self-gravity gives the order-of-magnitude tidal radius rₜ≈R(M/m)^(1/3). Orbit and internal structure affect the actual outcome."
       },
       {
-        "title": "Disruption is not complete capture",
-        "body": "Different pieces acquire different orbital energies and angular momenta. Some can escape while bound material returns along extended paths. Collisions and dissipation can change the returning stream’s orbit; an orderly disk does not appear instantly. Outer-layer release followed by core dispersal belongs to this chosen illustration, rather than a universal sequence for every encounter."
+        "title": "Fallback, circularization and accretion are distinct",
+        "body": "Different parts acquire different orbital energies and angular momenta. Some can escape, while bound debris can return on elongated, eccentric orbits. Stream interactions and shocks may dissipate orbital energy, and angular-momentum redistribution affects inward motion. The flow may remain eccentric instead of quickly forming a complete disk. Here, gentle dissipation starts after bound debris turns inward following outward motion. A return is not a solved collision, and no fixed time forces all material inward."
       },
       {
-        "title": "Evidence beyond an illustration",
-        "body": "Researchers investigate candidate tidal disruptions using changing brightness, spectra, and the host environment. Emission comes from outside the event horizon. A black-hole shadow is not identical to the horizon’s visible outline. The colors here help track material and heating; they are not an observed temperature map, and a bright ring alone does not establish that a star is being disrupted."
+        "title": "Brightness, paths and observational evidence",
+        "body": "Orange patches follow orbital-energy loss from simplified dissipation and gradually fade. They are not temperature measurements, and fading does not necessarily mean capture. Faint lines trace a few parcels’ recent paths, not solid rings. A separate non-spinning thin-disk approximation produces the local optical image; a bright arc alone does not establish a complete disk. Real tidal disruptions are assessed using changing brightness, spectra and the host environment. Emission comes from outside the horizon, which is not identical to the optical shadow."
       }
     ],
     "misconception": "A black hole does not vacuum up everything nearby. Distance, orbit, and internal structure affect disruption; the glowing gas is outside the horizon.",
-    "boundary": "The continuous particle model illustrates stretching and fallback. It does not solve complete hydrodynamics, magnetic fields, radiation transport, or numerical general relativity; displayed scale and time are not calibrated to a real event.",
+    "boundary": "One continuous material population illustrates stretching, return and eccentric motion. Weakening support and dissipation after return are teaching approximations, without physical collisions, gas pressure, magnetic fields or relativistic fluid dynamics. Heating brightness, optical shadow, sizes and playback time cannot yield a real event’s temperature, captured mass or disk-formation time.",
     "narration": [
       {
         "label": "Meet the travelers",
@@ -74,14 +74,14 @@
         "cue": "Pause for about four seconds when outer layers first detach."
       },
       {
-        "label": "Follow the same material",
-        "text": "Keep watching. Material that was together becomes a long, curving stream. Some travels away and some returns. Returning does not mean falling straight in: it keeps moving, meeting other material, and changing its route. We are following the same material as before. The black hole has not suddenly made a brand-new ribbon.",
-        "cue": "Follow the same parcels through stretching and fallback."
+        "label": "Returning is another part of the journey",
+        "text": "Keep watching as the material becomes a long, curved stream. Some travels away. Some takes a long route and comes back. Returning does not mean falling straight in or already becoming a disk. Follow the streams from above: which part is moving away, and which is returning? Faint lines mark the recent paths of a few gas parcels. They are not real rings growing around the black hole.",
+        "cue": "Use the top view; follow the tail, returning streams and selected recent paths."
       },
       {
-        "label": "Where the light comes from",
-        "text": "Finally, look at the glow nearby. It comes from hot gas outside the black hole, not light escaping after falling inside. This picture enlarges and slows the process so we can inspect it. Try comparing the two routes again. Passing the same black hole at different distances can lead to different endings.",
-        "cue": "Return to the overview and compare outcomes."
+        "label": "Why the bright patches change",
+        "text": "Use the black hole close-up and find the orange patches. Real streams may collide and heat up when they meet. The changing glow helps us imagine this process, but its colors cannot tell us an exact temperature. A fading patch does not always mean the gas has fallen in. Check whether the gas is still there, then return to the overview: the long tail and curved streams are continuing their journey outside.",
+        "cue": "Inspect local patches and fading in the close-up, then use the top view to locate the remaining gas."
       }
     ]
   },
@@ -97,6 +97,14 @@
     {
       "title": "NASA/Hubble · Tidal disruption illustration",
       "url": "https://science.nasa.gov/asset/hubble/six-panel-illustration-of-black-hole-tde-at2024tvd/"
+    },
+    {
+      "title": "Bonnerot & Stone · Formation of an Accretion Flow",
+      "url": "https://arxiv.org/abs/2008.11731"
+    },
+    {
+      "title": "Shiokawa et al. · Accretion Flow from a Stellar Tidal Disruption",
+      "url": "https://arxiv.org/abs/1501.04365"
     }
   ]
 }

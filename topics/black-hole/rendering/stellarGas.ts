@@ -4,10 +4,14 @@ import { smooth } from '../physics/encounter.ts';
 import { CORE_RELEASE_END } from '../physics/stellarDisruption.ts';
 
 // A continuous volume of overlapping, soft parcels. The same samples render
-// the luminous star, peeling envelope, curved streams, and dissipating disk.
+// the luminous star, peeling envelope, curved streams, and returning eccentric flow.
 export class StellarGas {
   points!: THREE.Points<THREE.BufferGeometry<THREE.NormalBufferAttributes>, THREE.ShaderMaterial, THREE.Object3DEventMap>;
   model!: StellarDisruption;
+  readonly trails = new THREE.LineSegments(new THREE.BufferGeometry(),
+    new THREE.LineBasicMaterial({ vertexColors: true, transparent: true, opacity: .32, depthWrite: false }));
+  private trailVertices = new Float32Array(24 * 24 * 6);
+  private trailColors = new Float32Array(24 * 24 * 6);
   // Topic-owned emission: the lens samples the same live parcels as the points.
   readonly emissionExtent = 20;
   readonly emissionSize = 96;
@@ -16,6 +20,9 @@ export class StellarGas {
 
 
   constructor(pixelRatio: number) {
+    this.trails.geometry.setAttribute('position', new THREE.BufferAttribute(this.trailVertices, 3).setUsage(THREE.DynamicDrawUsage));
+    this.trails.geometry.setAttribute('color', new THREE.BufferAttribute(this.trailColors, 3).setUsage(THREE.DynamicDrawUsage));
+    this.trails.frustumCulled = false;
     this.emission.minFilter = this.emission.magFilter = THREE.LinearFilter;
     this.emission.unpackAlignment = 1;
     const count = 12000;
@@ -25,6 +32,7 @@ export class StellarGas {
     geometry.setAttribute('state', new THREE.BufferAttribute(new Float32Array(count * 2), 2).setUsage(THREE.DynamicDrawUsage));
     geometry.setAttribute('origin', new THREE.BufferAttribute(new Float32Array(count * 3), 3));
     geometry.setAttribute('variation', new THREE.BufferAttribute(new Float32Array(count), 1));
+    geometry.setAttribute('heat', new THREE.BufferAttribute(new Float32Array(count), 1).setUsage(THREE.DynamicDrawUsage));
     geometry.setAttribute('bound', new THREE.BufferAttribute(new Float32Array(count), 1));
     const material = new THREE.ShaderMaterial({
       uniforms: {
@@ -34,7 +42,7 @@ export class StellarGas {
       },
       vertexShader: `
         attribute vec3 previous; attribute vec3 origin; attribute vec2 state;
-        attribute float variation; attribute float bound;
+        attribute float variation; attribute float bound; attribute float heat;
         uniform float uProgress; uniform float uPixelRatio; uniform float uHeight;
         varying vec3 vColor; varying float vAlpha;
         varying vec2 vDirection; varying float vAspect;
@@ -46,7 +54,7 @@ export class StellarGas {
           motion.x *= projectionMatrix[1][1] / projectionMatrix[0][0];
           vDirection = length(motion) > 0.000001 ? normalize(motion) : vec2(1.0, 0.0);
           float dispersed = smoothstep(0.28, 0.44, uProgress) * state.x;
-          float width = mix(0.18 + variation * 0.12, 0.105 + variation * 0.075, dispersed)
+          float width = mix(0.18 + variation * 0.12, 0.14 + variation * 0.10, dispersed)
             * uHeight * projectionMatrix[1][1] / max(1.0, -mv.z);
           float stretch = 1.0 + dispersed * min(0.8, length(motion) * 28.0);
           vAspect = stretch;
@@ -58,11 +66,11 @@ export class StellarGas {
           vec3 stellar = mix(vec3(1.0,0.26,0.025),vec3(1.0,0.68,0.19),grain) * limb;
           float core = (1.0-smoothstep(0.0,1.8,length(origin))) * (1.0-state.x);
           stellar = mix(stellar,vec3(2.0,1.25,0.45),core);
-          float heat = 1.0 - smoothstep(4.0, 28.0, length(position));
+
           vec3 stream = mix(vec3(0.78,0.21,0.045),vec3(1.35,0.62,0.20),variation);
-          stream = mix(stream,vec3(1.8,1.30,0.72),heat*0.65);
+          stream = mix(stream,vec3(1.8,1.30,0.72),heat*0.85);
           vColor = mix(stellar,stream,dispersed);
-          vAlpha = mix(0.38,0.24,dispersed) * state.y;
+          vAlpha = mix(0.38,0.68,dispersed) * state.y;
           vAlpha *= 1.0-smoothstep(95.0,135.0,length(position));
           if (length(position)<3.65) vAlpha=0.0;
         }`,
@@ -101,27 +109,52 @@ export class StellarGas {
 
   update(progress: number) {
     const attributes = this.points.geometry.attributes;
-    const focus = this.model.sample(progress, attributes.position.array as Float32Array, attributes.previous.array as Float32Array, attributes.state.array as Float32Array);
-    this.updateEmission(attributes.position.array as Float32Array, attributes.previous.array as Float32Array, attributes.state.array as Float32Array);
+    const focus = this.model.sample(progress, attributes.position.array as Float32Array, attributes.previous.array as Float32Array, attributes.state.array as Float32Array, attributes.heat.array as Float32Array);
+    this.updateEmission(attributes.position.array as Float32Array, attributes.previous.array as Float32Array, attributes.state.array as Float32Array, attributes.heat.array as Float32Array);
     attributes.position.needsUpdate = true;
     attributes.previous.needsUpdate = true;
     attributes.state.needsUpdate = true;
+    attributes.heat.needsUpdate = true;
     this.points.material.uniforms.uProgress.value = progress;
+    this.updateTrails(progress);
     return { ...focus, starVisible: progress < CORE_RELEASE_END && focus.remaining > 0.025 };
   }
-  private updateEmission(positions: Float32Array, previous: Float32Array, state: Float32Array) {
+  private updateTrails(progress: number) {
+    const m = this.model;
+    const frame = Math.max(0, Math.min(m.frames - 1, (progress - m.start) / (m.end - m.start) * (m.frames - 1)));
+    let at = 0;
+    for (let n = 0; n < 24; n++) {
+      const i = Math.floor((n + .5) / 24 * m.count);
+      if (!m.bound[i] || progress < m.detachAt[i] || progress >= m.absorbedAt[i]) continue;
+      for (let k = 0; k < 24; k++) {
+        for (let end = 0; end < 2; end++) {
+          const f = Math.max(0, frame - (24 - k - end) * 1.8);
+          const a = Math.min(m.frames - 2, Math.floor(f)), mix = f - a;
+          const glow = .08 + .92 * ((k + end) / 24) ** 2;
+          for (let d = 0; d < 3; d++) {
+            this.trailVertices[at] = m.positions[(a * m.count + i) * 3 + d] * (1 - mix)
+              + m.positions[((a + 1) * m.count + i) * 3 + d] * mix;
+            this.trailColors[at++] = [.62, .37, .16][d] * glow;
+          }
+        }
+      }
+    }
+    this.trails.geometry.setDrawRange(0, at / 3);
+    this.trails.geometry.attributes.position.needsUpdate = true;
+    this.trails.geometry.attributes.color.needsUpdate = true;
+  }
+
+  private updateEmission(positions: Float32Array, previous: Float32Array, state: Float32Array, heat: Float32Array) {
     const size = this.emissionSize, scale = size / (2 * this.emissionExtent);
     this.emissionDensity.fill(0);
     for (let i = 0; i < this.model.count; i++) {
       const j = i * 3, x = positions[j], y = positions[j + 1], z = positions[j + 2];
       const r = Math.hypot(x, y);
       if (r < 3.6 || r > 18) continue;
-      const dx = x - previous[j], dy = y - previous[j + 1];
-      const radialFraction = Math.abs(x * dx + y * dy) / Math.max(1e-8, r * Math.hypot(dx, dy));
-      // Released, surviving bound gas near the plane lights up as its motion
-      // becomes orbital. No global timeline fade or prescribed circular disk.
-      const weight = state[i * 2] * state[i * 2 + 1] * this.model.bound[i]
-        * (1 - smooth(0.3, 0.85, radialFraction)) * (1 - smooth(0.6, 2.5, Math.abs(z)));
+      // Use local energy-loss history, not radius or circular-looking motion.
+      // This light is illustrative, not a shock solver or temperature scale.
+      const weight = state[i * 2] * state[i * 2 + 1] * this.model.bound[i] * heat[i]
+        * (1 - smooth(0.6, 2.5, Math.abs(z)));
       if (weight <= 0) continue;
       const px = (x + this.emissionExtent) * scale - 0.5;
       const py = (y + this.emissionExtent) * scale - 0.5;

@@ -3,7 +3,7 @@
   "topicId": "hydrangea",
   "zh": {
     "question": "把土调酸，白色绣球也一定会变蓝吗？",
-    "observe": "固定品种，分别改变酸碱度和铝供应，再点培育新花；比较成熟花色。最后换白花品种作对照，并查看液泡中的色素环境。",
+    "observe": "每次只改一项条件，培育新花；切换整株、根与运输、萼片细胞三个视图，在同一进度观察。比较白花，并用图例辨认花青素、铝和辅色素。",
     "academic": [
       {
         "title": "土壤酸度影响可利用铝",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "土壤酸度并非一个通用的花色开关；可用铝、显色成分、品种和发育过程都不可忽略。",
-    "boundary": "仅示意部分大花绣球的显色机制；色条与铝百分比是相对趋势，不是园艺配方，不能用来计算施肥或调酸剂量。",
+    "boundary": "仅示意部分大花绣球的显色机制；色条与铝百分比是相对趋势，不是园艺配方，不能用来计算施肥或调酸剂量。 金色圆点的数量、路线和 14 秒周期都是因果示意，不代表实测铝浓度、运输路径细节或反应速率；绿色方块表示辅色素，不是叶绿体。",
     "narration": [
       {
         "label": "花园里的问题",
@@ -33,8 +33,8 @@
       },
       {
         "label": "走进装色素的小空间",
-        "text": "现在到花里看看。显眼的大薄片，多数叫萼片。它们的细胞里有液泡，里面的色素和一些别的成分遇到一起，可以形成让花显蓝的组合。土变了，还得等植物吸收、运输，等新花长大，颜色才慢慢显出来。可不是按一下按钮，花园里的花就马上换衣服。",
-        "cue": "进入液泡视图，播放新花成熟过程。"
+        "text": "先看根与运输。金色小圆点表示土里可以被利用的铝，同一批圆点沿着根和茎，来到花的萼片。再走进细胞：粉色椭圆表示花青素，绿色方块表示帮忙显色的成分。它们与铝凑到一起，能形成蓝色组合。这些小形状是帮助我们辨认的符号。土变了，还得等吸收、运输和新花长大，可不是花园里的花马上换衣服。",
+        "cue": "在根与运输视图回看吸收阶段，再于同一进度切到细胞；指认三种图例，继续观察同处结合。"
       },
       {
         "label": "请白花来比较",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Will making the soil acidic turn every white hydrangea blue?",
-    "observe": "Keep the cultivar fixed and change pH and aluminium supply separately, then grow a new bloom. Compare its mature colour, use the white cultivar as a control, and inspect the vacuole view.",
+    "observe": "Change one condition at a time and grow a new bloom. Inspect the same progress through plant, root-transport and sepal-cell views. Compare white flowers and use the legend to identify anthocyanin, aluminium and copigment.",
     "academic": [
       {
         "title": "Soil pH influences available aluminium",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Soil acidity is not a universal flower-colour switch; available aluminium, pigments, cultivar and development all matter.",
-    "boundary": "This represents part of the bigleaf-hydrangea colour mechanism. Bars and aluminium percentages are qualitative, not gardening recipes or dosing advice.",
+    "boundary": "This represents part of the bigleaf-hydrangea colour mechanism. Bars and aluminium percentages are qualitative, not gardening recipes or dosing advice. Gold-dot counts, routes and the 14-second cycle illustrate causality, not measured concentrations, detailed transport anatomy or reaction rates. Green squares are copigments, not chloroplasts.",
     "narration": [
       {
         "label": "A garden question",
@@ -75,8 +75,8 @@
       },
       {
         "label": "Inside the colour space",
-        "text": "Look inside the showy parts, called sepals. Their cells have vacuoles where pigments and other substances can form a blue-producing combination. After soil conditions change, absorption, transport and flower development still take time. Real garden flowers cannot change their appearance instantly at the push of a button.",
-        "cue": "Enter the vacuole view and show maturation."
+        "text": "First follow the roots and transport. Gold dots represent available aluminium, traveling through roots and stem toward a sepal. Inside a cell, pink ovals represent anthocyanin and green squares are helper pigments. Together with aluminium they can form a blue complex. These little shapes are identification symbols. Uptake, transport and new growth take time; garden flowers do not instantly change their clothes.",
+        "cue": "Review uptake in the root view, switch to the cell at the same progress, identify all three legend symbols and watch them assemble together."
       },
       {
         "label": "Invite a white-flowered control",

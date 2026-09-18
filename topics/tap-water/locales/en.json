@@ -80,5 +80,17 @@
   "高温可以灭活病原体，但溶解矿物质不会全部消失。图中不再显示余氯符号，因为加热后的残留会变化，本页不模拟它；这不代表全部除氯或水质认证。": "Heat can inactivate pathogens, but not all dissolved minerals disappear. Residual-disinfectant symbols are omitted after heating because residues can change and are not simulated here; this does not mean complete dechlorination or certified safety.",
   "主体是水，还有溶解矿物质等少量成分。正常情境没有画病原体，不表示绝对无菌。是否需要烧开，请大人查看当地供水与饮用建议。": "It is mainly water, with small amounts of dissolved minerals and other ingredients. No pathogens drawn in this situation does not mean absolute sterility. A grown-up should check local supply and drinking advice to decide whether boiling is needed.",
   "比较结果 · 按适用指引煮沸后": "COMPARISON · AFTER BOILING AS DIRECTED",
-  "比较结果 · 煮沸前": "COMPARISON · BEFORE BOILING"
+  "比较结果 · 煮沸前": "COMPARISON · BEFORE BOILING",
+  "播放变化": "Play the change",
+  "暂停": "Pause",
+  "概念演示进度 {{n}}%；不是煮沸计时": "Conceptual progress {{n}}%; not a boiling timer",
+  "先认出同一组符号，再播放变化。": "Identify the same symbols, then play the change.",
+  "正在对照处理影响：进度不是温度、时间或存活比例。": "Compare treatment effects; progress is not temperature, time or a surviving fraction.",
+  "比较停在这里；可拖回前面检查哪些符号一直存在。": "The comparison stops here. Scrub back to see which symbols stay throughout.",
+  "高温可以灭活病原体，但溶解矿物质不会全部消失。绿色虚线框表示本页未模拟加热后的消毒剂残留，不代表全部除氯或水质认证。": "Heat can inactivate pathogens, but dissolved minerals do not all disappear. Dashed green outlines mean the heated disinfectant residual is not modeled, not that all chlorine was removed or the water was certified safe.",
+  "慢慢回看同一组符号": "Scrub through the same symbols",
+  "只在屏幕里看概念变化，不是操作热水；绿色虚线框表示加热后的消毒剂残留未建模。": "Observe the concept on screen; do not handle hot water. Dashed green outlines mean the disinfectant residual after heating is not modeled.",
+  "热处理影响病原体的示意": "A conceptual view of heat affecting pathogens",
+  "同一组符号仍在，灰色划线逐渐出现；矿物质没有被全部捞走。画面进度不代表存活比例，也不能判断现实中的水是否安全。": "The same symbols remain as gray crossing lines appear; minerals have not all been removed. Progress does not represent a surviving fraction or establish whether real water is safe.",
+  "比较过程 · 不是实际计时": "Comparison in progress · not a real timer"
 }

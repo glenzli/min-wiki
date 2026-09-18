@@ -21,5 +21,11 @@
   "水从鳃盖附近流出去。不断有新水流过鳃，带来新的氧气；二氧化碳也能由鳃进入水中。": "Water leaves near the gill covers. Fresh water keeps bringing more oxygen. Carbon dioxide can also pass through the gills into the water.",
   "水侧": "Water side",
   "血液侧": "Blood side",
-  "薄交换面": "Thin barrier"
+  "薄交换面": "Thin barrier",
+  "播放一次": "Play one passage",
+  "暂停": "Pause",
+  "再看一次": "Watch again",
+  "重新观察": "Restart",
+  "观察进度": "Observation progress",
+  "放大框上方：水向左流 · 下方：血液向右流 · 黄色点：同一份氧气跨过中间的薄交换面。水没有进入血管。": "Detail above: water flows left · Below: blood flows right · Yellow dot: the same marked oxygen parcel crosses the thin exchange surface. The water does not enter the blood vessel."
 }

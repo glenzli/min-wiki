@@ -3,7 +3,7 @@
   "topicId": "duck-feet",
   "zh": {
     "question": "鸭子的脚一直张得很大，会不会反而不容易收回来？",
-    "observe": "依次选择张开、推水和收脚，观察脚掌面积、力的箭头以及鸭子的位置。再隐藏蹼作形状对照，比较同一动作中与水接触的面积。",
+    "observe": "播放一次完整划水，可在任何位置暂停或拖回。依次比较脚趾展开、脚向后推水、脚趾收拢与回收；大圆和鸭身下面的脚表示同一次动作。",
     "academic": [
       {
         "title": "蹼改变与水相互作用的面积",
@@ -19,12 +19,12 @@
       }
     ],
     "misconception": "蹼不是发动机，也不保证脚越大游得越快；张开推水、缩小回程的配合才是本页的重点。",
-    "boundary": "箭头为方向示意，未计算流体涡旋、浮力、双脚协调或身体阻力；隐藏蹼不会在模型中给出可用的真实游速差。",
+    "boundary": "16 秒只是放慢观察的一次动作，不是真实划水周期。水纹、箭头和身体位移不来自流体求解；隐藏蹼只比较形状，不预测真实速度。",
     "narration": [
       {
         "label": "看看脚趾之间",
-        "text": "鸭子在水面上滑过去，看起来轻轻松松，水下面的脚却在忙。把脚放大看看，几个脚趾之间连着一层皮，这就是蹼。脚趾张开的时候，蹼也展开，像一把宽宽的小船桨。不过，鸭子可不是一直把这把船桨张到最大。我们来看一次完整的划水。",
-        "cue": "展示张开的蹼和脚趾结构。"
+        "text": "鸭子在水面上滑过去，看起来轻轻松松，水下面的脚却在忙。把脚放大看看，几个脚趾之间连着一层皮，这就是蹼。脚趾张开的时候，蹼也展开，像一把宽宽的小船桨。不过，鸭子可不是一直把这把船桨张到最大。我们来看一次完整的划水。现在按播放，就能把张开、推水和收回接起来。随时暂停，也可以拖动进度回到刚才的动作。",
+        "cue": "播放一次完整划水，在推进中途与回收中途分别暂停；最后脚回到准备姿态，身体保留前移。"
       },
       {
         "label": "推一下水",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Would keeping a duck’s foot fully spread make its return stroke harder?",
-    "observe": "Compare opening, pushing and recovery, watching foot area, force arrows and body position. Hide the webbing as a shape comparison and inspect the area interacting with water.",
+    "observe": "Play one complete stroke, pausing or scrubbing anywhere. Compare toe spread, the backward push, folding and recovery. The enlarged foot and the foot below the duck show the same stroke.",
     "academic": [
       {
         "title": "Webbing changes the area interacting with water",
@@ -61,12 +61,12 @@
       }
     ],
     "misconception": "Webbing is not an engine, and larger feet do not automatically mean faster swimming. The important comparison is spreading during propulsion and reducing area during recovery.",
-    "boundary": "Arrows show directions; vortices, buoyancy, coordination and body drag are not calculated. Hiding webbing does not provide a measured real-world speed difference.",
+    "boundary": "The 16-second sequence slows one stroke for inspection; it is not a measured stroke period. Water marks, arrows and displacement are not a fluid simulation. Hiding webbing compares shape, not swimming speed.",
     "narration": [
       {
         "label": "Look between the toes",
-        "text": "A duck glides across a pond while its feet work below the surface. Between its toes is skin called webbing. When the toes spread, the webbing opens like a broad little paddle. But the duck does not keep that paddle fully open all the time. Let us inspect one stroke.",
-        "cue": "Show the spread toes and webbing."
+        "text": "A duck glides across a pond while its feet work below the surface. Between its toes is skin called webbing. When the toes spread, the webbing opens like a broad little paddle. But the duck does not keep that paddle fully open all the time. Let us inspect one stroke. Press play to connect opening, pushing and recovery. Pause whenever you like, or drag the progress control to look back.",
+        "cue": "Play one complete stroke, pausing during propulsion and recovery. The foot returns to readiness while the body retains forward displacement."
       },
       {
         "label": "Push against the water",
@@ -93,6 +93,10 @@
     {
       "title": "U.S. Fish and Wildlife Service — Waterfowl adaptations",
       "url": "https://www.fws.gov/sites/default/files/documents/2024-04/2117.pdf"
+    },
+    {
+      "title": "Journal of Experimental Biology — Underwater paddling kinematics and hydrodynamics in a surface swimming duck versus a diving duck (2025)",
+      "url": "https://doi.org/10.1242/jeb.249274"
     }
   ]
 }

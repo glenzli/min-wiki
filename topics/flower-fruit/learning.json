@@ -3,7 +3,7 @@
   "topicId": "flower-fruit",
   "zh": {
     "question": "樱桃的果肉是花瓣变成的，还是花里面别的部分长大的？",
-    "observe": "先传粉，再逐步推进到幼果和成熟果；同时观察花朵与右侧内部图，追踪子房、胚珠、果肉与种子的对应关系。",
+    "observe": "播放连续观察，先跟着蜜蜂身上的一粒花粉走到柱头；暂停，再看放大剖面中的花粉管。拖动进度，对照子房、胚珠与之后的果实、种子。",
     "academic": [
       {
         "title": "传粉与受精是两个过程",
@@ -24,7 +24,7 @@
       {
         "label": "从花找一颗樱桃",
         "text": "树枝上开着一朵小花。以后这里可能长出樱桃，可是樱桃到底从花的哪里来呢？先别急着猜花瓣，我们看看花的里面。那里有叫子房的小部分，里面还有胚珠。名字有点新，没关系，先记住它们的位置，待会儿跟着画面看看各自会变成什么。",
-        "cue": "展示花及右侧子房、胚珠内部图。"
+        "cue": "播放，跟随同一粒金色花粉随蜜蜂到达柱头；暂停对照剖面。"
       },
       {
         "label": "花粉送到还要继续",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Does cherry flesh come from petals or from another part of the flower?",
-    "observe": "Pollinate, then advance through young and ripe fruit. Compare the flower with its internal view and trace the relationships among ovary, ovule, fruit flesh and seed.",
+    "observe": "Play the journey and follow a pollen grain from the bee to the stigma. Pause to inspect pollen-tube growth in the enlarged section, then scrub to compare ovary and ovule with fruit and seed.",
     "academic": [
       {
         "title": "Pollination and fertilisation are distinct",
@@ -66,7 +66,7 @@
       {
         "label": "Find a cherry inside a flower’s story",
         "text": "A flower on a branch may later produce a cherry. Which part becomes the fruit? Before guessing the petals, look inside. Find the ovary and the ovules it contains. These are new names, but you only need to remember their positions and follow what develops from them.",
-        "cue": "Show the flower beside the ovary and ovule inset."
+        "cue": "Play and follow one golden pollen grain with the bee onto the stigma; pause to compare the section."
       },
       {
         "label": "Pollen arrival is not the final step",
@@ -92,6 +92,10 @@
     },
     {
       "title": "OpenStax — Pollination and Fertilization",
+      "url": "https://openstax.org/books/biology-2e/pages/32-2-pollination-and-fertilization"
+    },
+    {
+      "title": "OpenStax Biology 2e — Pollination and Fertilization",
       "url": "https://openstax.org/books/biology-2e/pages/32-2-pollination-and-fertilization"
     }
   ]

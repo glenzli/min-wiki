@@ -4,7 +4,7 @@
 
 A growing collection of small science demos in Chinese and English. Each page explores a question through interaction, animation, explanations and references. Made for children and parents to explore together, and for anyone who is curious.
 
-The collection currently contains 59 topics across space, Earth, life, physics and engineering.
+The collection currently contains 60 topics across space, Earth, life, physics and engineering.
 
 ![Solar-system demo: eight planets at one diameter scale](docs/images/solar-system.png)
 

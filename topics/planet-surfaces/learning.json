@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "planet-surfaces",
   "zh": {
-    "question": "在每颗行星上一直向下走，都能找到像地球陆地一样可站立的地面吗？",
-    "observe": "选择地球、木星和海王星，分别切到剖面并开始下降；比较探针遇到的是空气、海水、岩石还是越来越稠密的流体。",
+    "question": "有一片会流动的海，就一定是水吗？每个世界都能找到像地球陆地一样的地面吗？",
+    "observe": "依次选择地球、土卫六和巨蟹座 55 e，比较三种液体的颜色、材料与证据标识；再让下降标记进入剖面，看它遇到海床、冰质湖底，还是深度未知的熔融岩石。最后比较木星与海王星。",
     "academic": [
       {
-        "title": "我们看到的外观不一定是地面",
-        "body": "水星、金星、地球和火星属于岩石行星，但从太空看到的最外层未必是岩石：金星被厚云遮住，地球的大部分外表是海洋。木星的条带主要是大气云层的外观，不是可着陆的地皮。讨论表面时必须先区分可见云顶、压力参考面、液体表面与固体地壳，不能把照片中一切有颜色的地方都称为地面。"
+        "title": "表面、深处与支持这些解释的证据",
+        "body": "水星、金星、地球和火星属于岩石行星，但从太空看到的最外层未必是岩石：金星被厚云遮住，地球的大部分外表是海洋。木星的条带主要是大气云层的外观，不是可着陆的地皮。讨论表面时必须先区分可见云顶、压力参考面、液体表面与固体地壳，不能把照片中一切有颜色的地方都称为地面。\n\n木星以氢和氦为主，向下压力和温度升高，物质性质逐渐转为更稠密的流体，深处可能出现导电的金属氢。它没有像地球那样清楚可着陆的固体表面。海王星被称为冰巨星，是按成分与形成传统分类，并不意味着外面铺着可步行的冰壳；内部富含水、氨、甲烷等成分，处于高温高压环境。\n\n探测器的引力场、磁场、光谱和大气探测，结合高压物性实验与内部模型，帮助约束行星结构。对不透明云层下的深处，许多细节仍有不确定性，不能当作已被相机直接拍到。地球海面下能找到岩石海床，这与巨行星的深层流体不同；“能到达那里”和“那里存在固体材料”也不是同一个判断。"
       },
       {
-        "title": "巨行星内部是逐渐改变的环境",
-        "body": "木星以氢和氦为主，向下压力和温度升高，物质性质逐渐转为更稠密的流体，深处可能出现导电的金属氢。它没有像地球那样清楚可着陆的固体表面。海王星被称为冰巨星，是按成分与形成传统分类，并不意味着外面铺着可步行的冰壳；内部富含水、氨、甲烷等成分，处于高温高压环境。"
+        "title": "同样是液体，材料和环境可以完全不同",
+        "body": "土卫六是土星的卫星，不是行星。卡西尼号的雷达、红外光谱与镜面反射等观测显示，它的极区分布着甲烷和乙烷组成的湖海。表面约 −179°C：水在这里主要是坚硬的冰，构成冰质地形；甲烷和乙烷却能参与降雨、河流和湖泊循环。它没有被全球表面液体海洋覆盖。场景把极区湖岸作为比较对象，不是把惠更斯号实际着陆地点改画成一片海。"
       },
       {
-        "title": "结构解释来自多种证据",
-        "body": "探测器的引力场、磁场、光谱和大气探测，结合高压物性实验与内部模型，帮助约束行星结构。对不透明云层下的深处，许多细节仍有不确定性，不能当作已被相机直接拍到。地球海面下能找到岩石海床，这与巨行星的深层流体不同；“能到达那里”和“那里存在固体材料”也不是同一个判断。"
+        "title": "岩浆海：有物理依据，但没有测绘的海岸",
+        "body": "55 Cancri e 是一颗非常靠近母恒星的岩石系外行星。其热辐射和 Webb 光谱帮助约束温度与可能的挥发性气体大气；白昼侧极热，使熔融硅酸盐海成为有依据的解释。模型中的发光液面与冷却斑块只是这一解释的示意，不能读成真实的海岸线、已测深的海底或整颗行星完全液化。岩石行星按整体组成分类，表层岩石熔化并不会让它变成水行星。"
       }
     ],
-    "misconception": "云顶不是地板，“冰巨星”也不是可以在表面滑冰的巨球。地球海洋下面有海床，不代表木星云层下面也有一块同样的地面。",
-    "boundary": "景观与剖面是根据已知特征绘制的解释图，不是登陆照片；层厚、探针速度和下降深度未按真实比例，不能据此推算可生存环境或实际任务路线。",
+    "misconception": "蓝色不一定是海水，液体不一定是水，云顶也不是地板。土卫六是有甲烷与乙烷湖海的卫星；巨蟹座 55 e 的岩浆海仍是依据观测和模型作出的解释。",
+    "boundary": "八个世界采用相同球体显示大小；景观、云纹与地形为程序示意，不是测绘地图或着陆照片。层厚、光照与下降距离不按比例；巨蟹座 55 e 不指定已知岩浆海底，土卫六湖底材料是代表性冰质地形解释。下降标记不表示真实飞行器能在这些环境工作。",
     "narration": [
       {
-        "label": "脚下都一样吗",
-        "text": "在地球上，我们可以站在岩石和泥土上，也可以坐船看海。如果换到别的行星，一直向下走，是不是也会遇到同样的地面？先别急着回答。今天我们带着一个画出来的小探针，去比较几种不同的世界。",
-        "cue": "先显示地球景观，再选择剖面。"
+        "label": "从脚下到海床",
+        "text": "在地球上，我们可以站在岩石和泥土上，也可以坐船看海。如果换到别的行星，一直向下走，是不是也会遇到同样的地面？先别急着回答。今天我们带着一个画出来的小探针，去比较几种不同的世界。\n\n先看地球。小探针穿过空气，来到海面，再往下进入水里，最后可以找到岩石海床。暂停一会儿，指一指空气、水和岩石分别在哪里。它们不是同一种东西，所以“看到一个表面”和“脚下能站稳”还需要分开想。",
+        "cue": "先显示地球景观，再选择剖面。 下降到海床；停顿约四秒辨认三层。"
       },
       {
-        "label": "从海面往下看",
-        "text": "先看地球。小探针穿过空气，来到海面，再往下进入水里，最后可以找到岩石海床。暂停一会儿，指一指空气、水和岩石分别在哪里。它们不是同一种东西，所以“看到一个表面”和“脚下能站稳”还需要分开想。",
-        "cue": "下降到海床；停顿约四秒辨认三层。"
+        "label": "一片很冷的湖",
+        "text": "现在来到土卫六。先记住，它是绕着土星转的卫星。这里也有湖，有湖岸，可是湖里的液体不是水，而是叫甲烷和乙烷的东西。这里太冷了，水反而冻成了硬硬的冰。你看，同样能流动，里面装的材料可以不一样。科学家的探测器已经看到了这些湖海的证据。",
+        "cue": "选择土卫六的近景，再切剖面；在液面和冰质湖底各暂停三秒。"
       },
       {
-        "label": "云下面没有地板",
-        "text": "再换到木星。它外面漂亮的条带是云层，不是一块块地板。往深处去，周围会越来越稠密，压力越来越大，并没有一个像地球陆地那样清楚的着陆面。海王星也不是一颗外面裹着硬冰、可以让我们下去滑冰的大球。",
-        "cue": "分别比较木星、海王星的下降剖面。"
+        "label": "一片可能很烫的海",
+        "text": "再去想象一颗很远、很烫的行星，叫巨蟹座五十五 e。它紧挨着自己的恒星，岩石可能都热得熔化了，就像变成一片岩浆海。这里可没有人站在岸边拍照片。科学家是在读它发来的热和光，推想可能发生了什么。我们把不知道的地方也留下来，等着新的发现。",
+        "cue": "选择巨蟹座 55 e；指出“科学推测”的标识，再看熔融层，停在没有指定海底的位置。"
       },
       {
-        "label": "图画帮我们提问",
-        "text": "这些风景是帮助理解的图画，不是有人站在那里拍的照片。科学家用探测器收到的光、引力和磁场信息，推想看不见的内部，还会继续检查新的证据。现在回头看看：有些地方是云，有些是水，有些是岩石，同叫行星，脚下的世界可以非常不同。",
-        "cue": "回到各行星景观对照，保留示意说明。"
+        "label": "云下面的世界与图画的边界",
+        "text": "再换到木星。它外面漂亮的条带是云层，不是一块块地板。往深处去，周围会越来越稠密，压力越来越大，并没有一个像地球陆地那样清楚的着陆面。海王星也不是一颗外面裹着硬冰、可以让我们下去滑冰的大球。\n\n这些风景是帮助理解的图画，不是有人站在那里拍的照片。科学家用探测器收到的光、引力和磁场信息，推想看不见的内部，还会继续检查新的证据。现在回头看看：有些地方是云，有些是水，有些是岩石，同叫行星，脚下的世界可以非常不同。",
+        "cue": "分别比较木星、海王星的下降剖面。 回到各行星景观对照，保留示意说明。"
       }
     ]
   },
   "en": {
-    "question": "If we keep descending on every planet, will we find ground we could stand on like Earth’s land?",
-    "observe": "Choose Earth, Jupiter, and Neptune. Use each section view and start descending to compare air, seawater, rock, and increasingly dense fluid.",
+    "question": "If a sea can flow, must it be water? Does every world have ground like Earth’s land?",
+    "observe": "Choose Earth, Titan, and 55 Cancri e. Compare their liquids, materials, and evidence labels. Descend through their sections to distinguish rocky seabed, an illustrative icy lakebed, and molten rock of unknown depth. Then compare Jupiter and Neptune.",
     "academic": [
       {
-        "title": "A visible exterior need not be ground",
-        "body": "Mercury, Venus, Earth, and Mars are rocky planets, but their visible outermost layer may be clouds or ocean rather than rock. Jupiter’s bands mainly show atmospheric clouds, not landing surfaces. Distinguish visible cloud tops, reference pressure levels, liquid surfaces, and solid crust instead of calling every colored region in a planetary picture ground."
+        "title": "Surfaces, interiors, and the evidence behind them",
+        "body": "Mercury, Venus, Earth, and Mars are rocky planets, but their visible outermost layer may be clouds or ocean rather than rock. Jupiter’s bands mainly show atmospheric clouds, not landing surfaces. Distinguish visible cloud tops, reference pressure levels, liquid surfaces, and solid crust instead of calling every colored region in a planetary picture ground.\n\nJupiter is mainly hydrogen and helium. Increasing pressure and temperature lead to denser fluid states, with conducting metallic hydrogen at depth. It lacks an Earth-like accessible solid surface. Neptune’s ice-giant label concerns composition and formation terminology, not a walkable outer ice shell. Its interior includes water-, ammonia-, and methane-rich material under extreme temperature and pressure.\n\nSpacecraft gravity and magnetic measurements, spectra, and atmospheric probes combine with high-pressure experiments and models to constrain interiors. Many deep details beneath opaque clouds remain uncertain, rather than directly photographed. Earth’s rocky seabed differs from a giant planet’s deep fluid. The existence of solid material somewhere and the ability to reach a landing surface are different questions."
       },
       {
-        "title": "Giant-planet environments change with depth",
-        "body": "Jupiter is mainly hydrogen and helium. Increasing pressure and temperature lead to denser fluid states, with conducting metallic hydrogen at depth. It lacks an Earth-like accessible solid surface. Neptune’s ice-giant label concerns composition and formation terminology, not a walkable outer ice shell. Its interior includes water-, ammonia-, and methane-rich material under extreme temperature and pressure."
+        "title": "Liquid is a state, not a single material",
+        "body": "Titan is a moon of Saturn, not a planet. Cassini radar, infrared spectra, and specular reflections reveal polar lakes and seas containing methane and ethane. At about −179°C, water mainly forms hard ice that helps build the terrain, while methane and ethane participate in rain, rivers, and lakes. Titan is not covered by a global surface ocean. The illustrated polar lakeshore is not the Huygens landing site."
       },
       {
-        "title": "Interior models combine several kinds of evidence",
-        "body": "Spacecraft gravity and magnetic measurements, spectra, and atmospheric probes combine with high-pressure experiments and models to constrain interiors. Many deep details beneath opaque clouds remain uncertain, rather than directly photographed. Earth’s rocky seabed differs from a giant planet’s deep fluid. The existence of solid material somewhere and the ability to reach a landing surface are different questions."
+        "title": "A magma ocean without a mapped coastline",
+        "body": "55 Cancri e is a rocky exoplanet very close to its star. Thermal emission and Webb spectra constrain temperature and a possible volatile atmosphere. Its intensely hot dayside makes molten silicates a well-motivated interpretation. Glowing liquid and cooling patches here illustrate that interpretation, not measured coastlines, a known sea floor, or a wholly liquid planet. A rocky classification describes bulk composition; melting surface rock does not turn it into a water planet."
       }
     ],
-    "misconception": "Cloud tops are not floors, and an ice giant is not a giant skating rink. Earth’s seabed does not imply an equivalent surface beneath Jupiter’s clouds.",
-    "boundary": "Landscapes and sections are explanatory illustrations, not landing photographs. Layer thickness, probe speed, and depth are uncalibrated and cannot determine survivability or mission routes.",
+    "misconception": "Blue does not mean seawater, liquid does not always mean water, and cloud tops are not floors. Titan is a moon with hydrocarbon lakes; the magma ocean on 55 Cancri e is an interpretation based on observations and models.",
+    "boundary": "All eight worlds use equal display sizes. Procedural terrain and clouds are illustrative, not measured maps or landing photographs. Layer thickness, lighting, and descent are uncalibrated. No known magma-ocean floor is assigned to 55 Cancri e; Titan’s bed represents icy terrain rather than a measurement of every lakebed. Markers do not imply spacecraft survivability.",
     "narration": [
       {
-        "label": "Is the ground always alike?",
-        "text": "On Earth we can stand on rock and soil or take a boat across the sea. If we traveled downward on another planet, would we meet the same kind of ground? Do not answer too quickly. Today an imaginary little probe will help us compare several different worlds.",
-        "cue": "Show Earth’s landscape, then its section view."
+        "label": "From familiar ground to the seabed",
+        "text": "On Earth we can stand on rock and soil or take a boat across the sea. If we traveled downward on another planet, would we meet the same kind of ground? Do not answer too quickly. Today an imaginary little probe will help us compare several different worlds.\n\nStart with Earth. The probe travels through air, reaches the ocean, enters water, and finally finds rocky seabed. Pause and point to air, water, and rock. They are different materials. Seeing an outer surface and finding something you can stand on are two different questions to think about.",
+        "cue": "Show Earth’s landscape, then its section view. Descend to the seabed and pause four seconds to identify the layers."
       },
       {
-        "label": "Below the ocean",
-        "text": "Start with Earth. The probe travels through air, reaches the ocean, enters water, and finally finds rocky seabed. Pause and point to air, water, and rock. They are different materials. Seeing an outer surface and finding something you can stand on are two different questions to think about.",
-        "cue": "Descend to the seabed and pause four seconds to identify the layers."
+        "label": "A very cold lake",
+        "text": "Now visit Titan. Remember, it is a moon traveling around Saturn. It has lakes and shores, but the liquid is not water. It is made of things called methane and ethane. Titan is so cold that water becomes hard ice instead. Things can flow even when they are made of different materials. Spacecraft have already found evidence of these lakes and seas.",
+        "cue": "Choose Titan’s close view and then its section. Pause three seconds at the liquid surface and illustrative icy bed."
       },
       {
-        "label": "No floor beneath these clouds",
-        "text": "Now choose Jupiter. Its beautiful bands are clouds, not floorboards. Farther down, material becomes denser and pressure increases. There is no clear landing surface like Earth’s land. Neptune is not a giant ball with an outer hard-ice shell that we could land on and skate across either.",
-        "cue": "Compare descent through Jupiter and Neptune."
+        "label": "A sea that may be very hot",
+        "text": "Next, imagine a very distant, very hot planet called fifty-five Cancri e. It travels close to its star, so some of its rock may melt into a magma sea. Nobody has stood on its shore to take a picture. Scientists are reading its heat and light to work out what may happen there. We also leave room for things we do not know yet, and for new discoveries.",
+        "cue": "Choose 55 Cancri e. Point to the inferred-surface label, then follow the molten layer without assigning a known sea floor."
       },
       {
-        "label": "Pictures help us ask questions",
-        "text": "These landscapes are pictures to help us understand, not photographs taken by someone standing there. Scientists use spacecraft measurements of light, gravity, and magnetic fields to study hidden interiors, and keep checking new evidence. Look again: some exteriors are clouds, some water, and some rock. Worlds called planets can be very different underfoot.",
-        "cue": "Compare landscapes again with the illustration note visible."
+        "label": "Below the clouds and beyond the picture",
+        "text": "Now choose Jupiter. Its beautiful bands are clouds, not floorboards. Farther down, material becomes denser and pressure increases. There is no clear landing surface like Earth’s land. Neptune is not a giant ball with an outer hard-ice shell that we could land on and skate across either.\n\nThese landscapes are pictures to help us understand, not photographs taken by someone standing there. Scientists use spacecraft measurements of light, gravity, and magnetic fields to study hidden interiors, and keep checking new evidence. Look again: some exteriors are clouds, some water, and some rock. Worlds called planets can be very different underfoot.",
+        "cue": "Compare descent through Jupiter and Neptune. Compare landscapes again with the illustration note visible."
       }
     ]
   },
@@ -97,6 +97,22 @@
     {
       "title": "NASA · Earth Facts",
       "url": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "title": "NASA · Titan Facts",
+      "url": "https://science.nasa.gov/saturn/moons/titan/facts/"
+    },
+    {
+      "title": "NASA · Cassini science: Titan",
+      "url": "https://science.nasa.gov/mission/cassini/science/titan/"
+    },
+    {
+      "title": "NASA · Webb hints at a possible atmosphere on 55 Cancri e",
+      "url": "https://science.nasa.gov/missions/webb/nasas-webb-hints-at-possible-atmosphere-surrounding-rocky-exoplanet/"
+    },
+    {
+      "title": "Hu et al. (2024) · A secondary atmosphere on the rocky exoplanet 55 Cancri e",
+      "url": "https://www.nature.com/articles/s41586-024-07432-x"
     }
   ]
 }

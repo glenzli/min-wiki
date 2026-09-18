@@ -1,3 +1,5 @@
+@import './topicPresentation.css';
+
 :root, :root[data-theme="light"] {
   color-scheme: light;
   --page: #ffffff; --surface: #ffffff; --ink: #18181b; --secondary: #5f6368;
@@ -27,30 +29,5 @@ html body { font-family:var(--ui-font); -webkit-font-smoothing:antialiased; }
 .encyclopedia-home { font-size:16px; font-weight:650; letter-spacing:-.02em; }
 .encyclopedia-trail { font-size:12px; min-width:0; flex-wrap:wrap; gap:8px; }
 .theme-control select { border-radius:6px; min-height:36px; }
-html[data-topic-ui] body { background:var(--page); color:var(--ink); }
-html[data-topic-ui] main { max-width:1200px; }
-html[data-topic-ui] .hero h1 { font-size:clamp(30px,3.6vw,46px); line-height:1.2; font-weight:700; letter-spacing:-.035em; }
-html[data-topic-ui] :is(.explorer,.observation,.formula-card) { border-radius:8px; }
-html[data-topic-ui] :is(.controls,.modes,.steps,.toolbar,.settings,.leaf-types,.season-controls) button,
-html[data-topic-ui] :is(.controls,.settings) select { border-radius:6px; }
-html[data-topic-ui] .hero .intro { line-height:1.8; }
-html[data-topic-ui] :is(.modes,.reading-mode) button[aria-pressed=true] { background:var(--accent); color:var(--page); border-color:var(--accent); }
-html[data-topic-ui] .reading-mode { background:var(--tint); border-color:var(--border); border-radius:8px; }
-html[data-topic-ui] .reading-mode button { border-radius:6px; }
-@media(max-width:700px) { .encyclopedia-nav { padding:12px 16px; gap:12px; } .encyclopedia-trail { font-size:11px; } }
-html[data-topic-ui] .page-header .mode-switch { border-color:var(--border); border-radius:8px; background:var(--tint); }
-html[data-topic-ui] .page-header .mode-switch button { border-radius:6px; color:var(--secondary); }
-html[data-topic-ui] .page-header .mode-switch button[aria-pressed=true] { background:var(--accent); color:var(--page); }
-html[data-topic-ui] .hero h1 span { color:inherit; }
-html[data-topic-ui] .season-controls .primary,
-html[data-topic-ui] #journey[aria-pressed=true] { background:var(--accent); color:var(--page); border-color:var(--accent); }
 
-/* Controls respond gently; scene objects and their scientific timing remain topic-owned. */
-@media(prefers-reduced-motion:no-preference) {
-  html[data-topic-ui] :is(.controls,.modes,.steps,.toolbar,.settings,.leaf-types,.season-controls,.mode-switch) button {
-    transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
-  }
-}
-html[data-topic-ui] :is(.controls,.settings) :is(input,select,button):focus-visible {
-  outline: 2px solid var(--ink); outline-offset: 4px;
-}
+/* Topic presentation is shared separately from the catalog/navigation shell. */

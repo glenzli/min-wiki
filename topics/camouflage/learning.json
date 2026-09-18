@@ -3,7 +3,7 @@
   "topicId": "camouflage",
   "zh": {
     "question": "动物身体完全不变，换一个背景会更容易找到吗？",
-    "observe": "先在森林背景寻找三只昆虫，再换素色背景。保持动物位置、颜色和大小不变，比较显眼程度；可用键盘逐一进入三个藏身处。",
+    "observe": "先找三只昆虫，再缓慢拖动枝叶背景。动物不变，比较轮廓何时显眼；选择任一昆虫近看，再切回整片枝叶。键盘也可选择藏身处。",
     "academic": [
       {
         "title": "伪装取决于动物与背景的关系",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "隐藏得好不一定靠变色；身体形状、花纹、姿势和背景都能影响是否被发现。",
-    "boundary": "这是人眼在固定屏幕上的寻找任务，不代表鸟、昆虫或其他捕食者的视觉；插图不是指定物种的精确标本图。",
+    "boundary": "静止比较刻意固定昆虫外观和位置；相机近看只是放大，不代表动物长大。背景混合是屏幕观察工具，不模拟动物即时变色、捕食者视觉或野外发现概率。",
     "narration": [
       {
         "label": "森林里藏着谁",
@@ -28,8 +28,8 @@
       },
       {
         "label": "保持动物，换个背景",
-        "text": "现在停一下，记住它们所在的位置。我们不动动物，只把后面的森林换成素色。咦，刚才很难找的小家伙，是不是突然清楚了？它们的身体其实没有变化，只是周围变了。就像一颗褐色的小石头，放在泥地上和白纸上，看起来会有不同的显眼程度。",
-        "cue": "停三秒，再平滑移去森林背景。"
+        "text": "现在停一下，记住它们所在的位置。我们不动动物，只把后面的森林换成素色。咦，刚才很难找的小家伙，是不是突然清楚了？它们的身体其实没有变化，只是周围变了。就像一颗褐色的小石头，放在泥地上和白纸上，看起来会有不同的显眼程度。还可以把背景慢慢移走，而不是一下子换完。找到一个轮廓后，近看它的细腿和纹路，再回到整片枝叶里看看。变大的是观察画面，不是昆虫的身体。",
+        "cue": "缓慢移动背景滑条；选一个近看，在同一近看视角再次比较背景。"
       },
       {
         "label": "颜色和形状一起帮忙",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Can the same unchanged animal become easier to find on a different background?",
-    "observe": "Find three insects against the forest, then switch to a plain background. Compare visibility while position, colour and size stay fixed. The three hiding places are also keyboard-accessible.",
+    "observe": "Find the three insects, then gradually slide away the branch-and-leaf background. Keep the animal unchanged and compare when its outline stands out. Open an insect close-up, then return to the whole scene. Hiding places are keyboard accessible.",
     "academic": [
       {
         "title": "Camouflage is a relationship with the background",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Good camouflage does not always require colour change; shape, pattern, posture and background all matter.",
-    "boundary": "This is a fixed-screen task for human vision, not a reproduction of bird or insect perception. The illustrations are representative rather than exact species specimens.",
+    "boundary": "The static comparison deliberately fixes insect appearance and position. A close-up magnifies the view rather than growing the animal. Background blending is an observation aid, not instant colour change, predator vision or a measured detection probability.",
     "narration": [
       {
         "label": "Who is hiding in the forest?",
@@ -70,8 +70,8 @@
       },
       {
         "label": "Change only the background",
-        "text": "Pause and remember the positions. Keep every animal unchanged and replace the forest with a plain background. Are they easier to see? Their bodies have not changed, only their surroundings. A brown pebble can likewise be harder to notice on soil than on white paper.",
-        "cue": "Pause for three seconds, then remove the forest smoothly."
+        "text": "Pause and remember the positions. Keep every animal unchanged and replace the forest with a plain background. Are they easier to see? Their bodies have not changed, only their surroundings. A brown pebble can likewise be harder to notice on soil than on white paper. You can remove the background gradually instead of switching all at once. After finding an outline, inspect its fine legs and patterns up close, then return to the whole scene. The view is enlarged, not the insect’s body.",
+        "cue": "Move the background slider gradually, then repeat the comparison from one close-up view."
       },
       {
         "label": "Colour and shape work together",

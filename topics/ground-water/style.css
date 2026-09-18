@@ -7,3 +7,5 @@
 .encyclopedia-nav .theme-control{margin:0;display:flex}.encyclopedia-nav select{width:auto;min-height:32px;padding:5px 9px}.encyclopedia-nav{min-height:66px}main{padding-top:24px}.hero{margin-bottom:22px}.hero h1{font-size:clamp(29px,4vw,46px);margin:10px 0}.hero .intro{margin:12px auto}.hero .eyebrow{margin:5px 0}.experiments{margin-bottom:20px}@media(max-width:750px){.encyclopedia-nav select{max-width:130px}.hero h1{font-size:30px}.scene-top{font-size:11px}}
 
 @media(max-width:750px){#scene text{font-size:30px}#scene text[data-caption]{font-size:25px}}
+
+.stage-controls{flex-wrap:wrap}.stage-controls input[type=range]{flex:1 1 100%;min-width:0}.stage-controls button{flex:1 1 auto}#scene{overflow:hidden}#view[aria-pressed=true]{background:var(--accent);color:white}

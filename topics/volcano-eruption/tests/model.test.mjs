@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ventPositions, supplyPerVent, explosivity, activity, clastTrajectory, clastPosition, flowBranches, CLAST_BUDGET, emissionSlot } from '../model.ts';
+import { ventPositions, supplyPerVent, explosivity, activity, clastTrajectory, clastPosition, flowBranches, CLAST_BUDGET, emissionSlot, PRESETS, eruptionAppearance, statusEvidence, observationCamera } from '../model.ts';
 test('multiple vents divide a fixed supply without multiplying it', () => {
   for (const count of [1, 3]) assert.equal(ventPositions(count).length * supplyPerVent(count), 1);
   assert.ok(ventPositions(3).some(x => x < 0) && ventPositions(3).some(x => x > 0));
@@ -53,4 +53,33 @@ test('a darkening flow surface does not imply its interior is cold',async()=>{
     assert.ok(heat.crust>=.24&&heat.crust<=1);
   }
   const end=lavaThermalState(1);assert.ok(end.surfaceGlow<.05);assert.ok(end.interiorGlow>.5);
+});
+
+test('style examples distinguish effusion, fountains and ash without making supply a VEI classifier',()=>{
+  const flow=eruptionAppearance(PRESETS.flow),fountain=eruptionAppearance(PRESETS.fountain),ash=eruptionAppearance(PRESETS.ash);
+  assert.ok(flow.lava>ash.lava && flow.ash<fountain.ash && fountain.ash<ash.ash);
+  assert.ok(fountain.fountain>flow.fountain && fountain.fountain>ash.fountain);
+  for(const [style,preset] of Object.entries(PRESETS)){
+    const low=eruptionAppearance({...preset,supply:.2}),high=eruptionAppearance({...preset,supply:1});
+    assert.equal(low.style,style);assert.equal(high.style,style);
+    assert.ok(high.supply>low.supply && high.reach>low.reach);
+    assert.equal(low.ash,high.ash);
+  }
+});
+
+test('quiet appearance cannot separate dormancy from an extinction assessment',()=>{
+  const dormant=statusEvidence('dormant'),extinct=statusEvidence('extinct');
+  assert.equal(dormant.erupting,false);assert.equal(extinct.erupting,false);
+  assert.equal(dormant.appearanceConclusive,false);assert.equal(extinct.appearanceConclusive,false);
+  assert.equal(dormant.activeSystem,true);assert.equal(dormant.future,'possible');
+  assert.equal(extinct.future,'not-expected');
+  assert.equal(statusEvidence('erupting').activeSystem,true);
+});
+
+test('observation views frame different features while leaving the input conditions intact',()=>{
+  const input=Object.freeze({...PRESETS.ash}),before={...input};
+  const views=['overview','vent','flow','plume'].map(view=>observationCamera(view,input.vents));
+  assert.equal(new Set(views.map(v=>JSON.stringify(v))).size,4);
+  assert.ok(views.every(v=>[v.x,v.y,v.zoom].every(Number.isFinite)&&v.zoom>0));
+  assert.deepEqual(input,before);
 });

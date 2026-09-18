@@ -3,11 +3,11 @@
   "topicId": "viruses",
   "zh": {
     "question": "病毒碰到任何一个细胞，都能复制出新病毒吗？",
-    "observe": "先用可支持复制的宿主逐步观察附着、进入、制造、组装、释放；再分别切换表面不匹配和内部有防御的宿主，找出过程停止的不同位置。",
+    "observe": "先选能支持复制的细菌，点“连续看一遍”，或慢拖进度条。在“看附着处”追踪尾鞘和金色 DNA，在“看细胞里面”观察装入 DNA、接上尾部。切换视角会保留进度；再换两种受阻宿主，比较过程停在哪里。",
     "academic": [
       {
         "title": "病毒颗粒不是一个完整细胞",
-        "body": "病毒的遗传物质为 DNA 或 RNA，外面通常由蛋白质衣壳保护，有些还具有包膜。它们没有细胞式的完整代谢与蛋白质合成系统，复制需依赖适合宿主的细胞环境。这里画的是感染某些细菌的噬菌体，并不是所有病毒都长着头部和尾部。病毒能感染的生物范围很广，“病毒”等于“人的病原体”会漏掉大部分生物学背景。"
+        "body": "病毒颗粒不是细胞，不能独立进行完整的蛋白质合成和增殖。这里以 T4 类有尾噬菌体为结构参考：蛋白质头部保护 DNA，中央尾管外有可收缩的尾鞘，尾纤维参与结合细菌表面，并不是行走的脚。结构研究区分了收缩的鞘与不随之缩短的管。不是所有噬菌体都有收缩尾；其他病毒还可能携带 RNA 或包膜。图中细菌自己是一个细胞，有 DNA 与核糖体，却没有包裹 DNA 的细胞核。"
       },
       {
         "title": "表面结合与内部复制是不同门槛",
@@ -15,16 +15,16 @@
       },
       {
         "title": "复制、组装、释放各有机制",
-        "body": "在支持本例裂解性周期的细菌中，病毒遗传信息被复制，蛋白质部件由宿主相关机器制造，再装配成新的颗粒；最终细胞裂解释放子代。原来的病毒不是先长大再二分裂。其他病毒可能出芽或使用不同出口，有些噬菌体还能进入溶原状态，所以这六步只是一种有边界的路线，不能覆盖所有病毒生命周期。"
+        "body": "在支持本例裂解性周期的细菌内，病毒 DNA 的复制涉及所需的酶，蛋白质合成依靠宿主的核糖体、原料与能量；不应理解为病毒独自完成制造。T4 装配研究显示，DNA 经头部的入口包装，之后连接颈部与尾部，部件的形成与最终装配是不同事件。这里连续显示这一区别，并在宿主边界破开后才让子代通过。真正裂解涉及膜与肽聚糖层的破坏，不是噬菌体“踢开”细胞。其他病毒也可能出芽释放，某些噬菌体可走溶原途径。"
       }
     ],
     "misconception": "细胞表面能结合，不代表后面一定能复制；病毒也不是像细菌那样长大后分成两半。",
-    "boundary": "仅为一种有尾噬菌体裂解周期的示意，省略分子数量、细胞拥挤、溶原与多种防御细节，不是人体感染过程的通用图。",
+    "boundary": "这是参考 T4 类结构的一种有尾噬菌体裂解路线，不是所有病毒或人体感染的通用图。透明剖面、配色、细胞包被的层间距离及六个代表子代均是教学处理。DNA 用单线与夸张的卷曲表示，未解算分子运动、包装马达、膜通道、宿主 DNA 降解或真实扩散；子代不是需要长大的“小病毒”。回拖只供重看，并不表示真实感染能倒转。",
     "narration": [
       {
         "label": "认识特别的小访客",
-        "text": "图里这个像小探测器的东西，是一种噬菌体。名字有点长，你可以先记住，它是会感染某些细菌的病毒。它不是小机器人，也不是一个完整细胞。外壳保护着遗传信息，可它不能靠自己，把制造新病毒所需的所有事情都完成。",
-        "cue": "展示原始噬菌体与细菌，停在相遇前。"
+        "text": "图里这个像小探测器的东西，是一种噬菌体。你可以先记住，它是会感染某些细菌的病毒。点“看附着处”，头部里面装着金色的细线，它表示遗传信息。下面的细丝帮助它结合表面，不是用来走路的脚。它不是小机器人，也不是完整细胞，不能独自制造新病毒。",
+        "cue": "相遇前切到“看附着处”，观察头部、DNA 和尾纤维；放大不推进过程。"
       },
       {
         "label": "先过第一道关",
@@ -33,8 +33,8 @@
       },
       {
         "label": "先做部件，再组起来",
-        "text": "现在选能支持这次复制的细胞，继续往后看。遗传信息被复制，一些部件被制造出来，再把这些部件组装成新的噬菌体。注意看，原来那个病毒没有鼓得越来越大，然后像切小面团一样分成两半。这里发生的是借用细胞里的条件和工具，制造并组装许多新颗粒。",
-        "cue": "依次展示制造部件与组装阶段。"
+        "text": "现在换回能支持复制的细胞，点“连续看一遍”。再看细胞里面：它本来就有制造蛋白质的工具。借助这些条件，新的部件慢慢形成，遗传信息装进头部，尾部再接上。你可以拖慢一点，停一停，找找哪个头部还没有装好。这里不是原来那个病毒越长越大，再分成两半。",
+        "cue": "在“看细胞里面”拖到制造与装配之间，停三秒，观察入口包装与尾部接合。"
       },
       {
         "label": "一种路线，不是所有故事",
@@ -45,11 +45,11 @@
   },
   "en": {
     "question": "Can a virus make new viruses whenever it touches any cell?",
-    "observe": "Follow attachment, entry, production, assembly and release in a permissive host. Then compare a surface mismatch and an internal defence, locating the distinct stopping points.",
+    "observe": "Choose a host that supports replication and select Watch the process, or move the slider slowly. In Attachment close-up, follow the sheath and golden DNA; Inside the cell, watch DNA packaging and tail attachment. Changing views retains progress. Then compare the two blocked hosts.",
     "academic": [
       {
         "title": "A virus particle is not a complete cell",
-        "body": "Viruses carry DNA or RNA protected by a protein capsid, sometimes with an envelope. They lack a complete cellular protein-making and metabolic system and depend on suitable hosts. This illustration is a bacteriophage; not all viruses have heads and tails or infect humans."
+        "body": "A virus particle is not a cell and cannot independently carry out a complete protein-making and reproduction process. This T4-like structural example has a protein head protecting DNA, a contractile sheath around a central tube, and fibers involved in surface binding. The fibers are not walking legs. Structural studies distinguish the shortening sheath from the tube, which does not shorten with it. Not every phage has a contractile tail; other viruses may have RNA or an envelope. The bacterium is a cell with DNA and ribosomes but no nucleus enclosing its DNA."
       },
       {
         "title": "Attachment and replication are separate barriers",
@@ -57,16 +57,16 @@
       },
       {
         "title": "Replication, assembly and release differ",
-        "body": "In this permissive lytic pathway, genomes are copied and components made using cellular machinery before new particles are assembled. Lysis releases them. The original virion does not grow and divide like a bacterium. Other viruses use different release routes, and some phages can enter lysogeny; this is one bounded example."
+        "body": "In a cell supporting this lytic pathway, viral DNA replication involves the required enzymes, while protein synthesis depends on host ribosomes, materials and energy. This does not mean the virus manufactures itself independently. T4 assembly research shows DNA packaging through a head portal, followed by neck and tail attachment: making components and assembling a particle are distinct events. The scene preserves this sequence and opens the host envelope before offspring pass through. Actual lysis involves disruption of membranes and peptidoglycan, not phages kicking the cell open. Other viruses may bud from cells, and some phages can enter lysogeny."
       }
     ],
     "misconception": "Being able to bind a cell does not guarantee replication, and viruses do not reproduce simply by growing and splitting like bacteria.",
-    "boundary": "This is one tailed-phage lytic pathway, omitting molecular counts, crowding, lysogeny and many defences. It is not a universal diagram of human infection.",
+    "boundary": "This is one tailed-phage lytic route with T4-like structural references, not a universal model of viruses or human infection. The transparent cutaway, colors, envelope spacing and six representative offspring are teaching choices. DNA is a single drawn strand with exaggerated coils. Molecular motion, packaging motors, membrane channels, host DNA degradation and diffusion are not simulated. The offspring are not immature little viruses that must grow. Scrubbing backward is a viewing aid, not reversible infection.",
     "narration": [
       {
         "label": "Meet an unusual tiny visitor",
-        "text": "The object that resembles a little probe is a bacteriophage, a virus that infects certain bacteria. It is neither a robot nor a complete cell. A coat protects its genetic information, but the particle cannot perform all the work needed to make new viruses by itself.",
-        "cue": "Show the original phage before encounter."
+        "text": "The little object that looks like a probe is a bacteriophage, a virus that infects certain bacteria. Choose Attachment close-up. The golden strand in its head represents genetic information. The fibers below help it bind a surface; they are not walking legs. It is neither a tiny robot nor a complete cell, and it cannot make new viruses by itself.",
+        "cue": "Before encounter, choose Attachment close-up; observe the head, DNA and fibers without advancing progress."
       },
       {
         "label": "The first barrier",
@@ -75,8 +75,8 @@
       },
       {
         "label": "Make parts and assemble them",
-        "text": "Choose a cell that supports this pathway. Genetic information is copied, components are produced, and new phages are assembled. The original particle does not swell and split like a piece of dough. New particles are built using the conditions and machinery available inside the cell.",
-        "cue": "Show production and then assembly."
+        "text": "Now choose the cell that supports replication and select Watch the process. Look inside the cell: it already has machinery for making proteins. With the cell’s help, new components form, genetic information goes into heads, and tails attach. Move the slider slowly and pause. Can you find a head that is not finished yet? The original virus is not growing bigger and splitting in two.",
+        "cue": "In Inside the cell, scrub between production and assembly; pause for three seconds to inspect portal packaging and tail attachment."
       },
       {
         "label": "One pathway among many",
@@ -97,6 +97,14 @@
     {
       "title": "Maffei et al. — Systematic exploration of Escherichia coli phage-host interactions with the BASEL phage collection",
       "url": "https://pubmed.ncbi.nlm.nih.gov/34784345/"
+    },
+    {
+      "title": "Aksyuk et al. (2009) — The tail sheath structure of bacteriophage T4",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2670864/"
+    },
+    {
+      "title": "Original research — Structure-function analysis of the DNA translocating portal of the bacteriophage T4 packaging machine",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24126213/"
     }
   ]
 }

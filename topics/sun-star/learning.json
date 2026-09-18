@@ -3,7 +3,7 @@
   "topicId": "sun-star",
   "zh": {
     "question": "如果离太阳越来越远，变小的是太阳本身，还是它在眼睛里占的地方？",
-    "observe": "先看近处的太阳，点击移远或拖动距离滑杆，再移回；比较固定的真实太阳示意和右侧视大小。",
+    "observe": "慢慢移远，并在中途暂停；对照真实大小与视大小，再比较角直径、光行时和辐射通量三个读数。拖动距离或用 1、10、100、1000 AU 按钮回看。",
     "academic": [
       {
         "title": "太阳是一颗能自己发光的恒星",
@@ -15,11 +15,11 @@
       },
       {
         "title": "看起来亮也受距离影响",
-        "body": "在没有吸收、散射且各向近似均匀辐射时，辐射通量随距离平方反比下降。远方恒星可能比太阳更大、更亮，却因非常遥远而只呈小光点；不是所有恒星都和太阳一样。它们的质量、温度、成分与演化阶段不同，光谱能提供相关证据。本页只控制视大小，不能把光晕亮度直接用作测光实验。"
+        "body": "在没有吸收、散射且各向近似均匀辐射时，辐射通量随距离平方反比下降。远方恒星可能比太阳更大、更亮，却因非常遥远而只呈小光点；不是所有恒星都和太阳一样。它们的质量、温度、成分与演化阶段不同，光谱能提供相关证据。本页只控制视大小，不能把光晕亮度直接用作测光实验。 数值面板单独列出通量比例和真空光行时 d/c。1 AU 的光行时约 499 秒；这从太阳可见表面附近起算，与核心能量向外传递所需的漫长时间不同。"
       }
     ],
     "misconception": "太阳不是与星星完全不同的一类东西；它就是离我们最近的恒星。远处看成光点不表示恒星本身很小。",
-    "boundary": "距离滑杆改变的是几何视角，真实太阳大小不变；光点有最小显示尺寸，颜色、光晕和亮度未按真实观测标定。观察演示即可，不要直视真实太阳。",
+    "boundary": "距离滑杆改变的是几何视角，真实太阳大小不变；光点有最小显示尺寸，颜色、光晕和亮度未按真实观测标定。观察演示即可，不要直视真实太阳。 距离采用对数刻度，旅程不是实际航天飞行；数值光行时与画面播放时长不同。",
     "narration": [
       {
         "label": "白天的星星",
@@ -38,14 +38,14 @@
       },
       {
         "label": "小光点也能很大",
-        "text": "如果我们退得足够远，太阳也会像夜空里的一颗小光点。那些遥远的星星，有的比太阳大，有的比太阳小，各有自己的特点。下次看到夜空，可以记住今天的小实验：眼睛里看着小，不一定真的小；距离也会改变我们看到的样子。",
-        "cue": "完成远距视图，保留固定真实大小对照。"
+        "text": "如果我们退得足够远，太阳也会像夜空里的一颗小光点。那些遥远的星星，有的比太阳大，有的比太阳小，各有自己的特点。下次看到夜空，可以记住今天的小实验：眼睛里看着小，不一定真的小；距离也会改变我们看到的样子。 还有一个小秘密：光也要旅行，来到地球要八分多钟。把距离拉得更远，光走过来的时间也更长。",
+        "cue": "完成远距视图，比较固定真实大小与光行时；回到 1 AU 看八分多钟读数。"
       }
     ]
   },
   "en": {
     "question": "If we move farther from the Sun, does the Sun shrink or does its apparent size shrink?",
-    "observe": "Use the far preset or distance slider, then return near. Compare the fixed illustration of physical size with the changing apparent disk.",
+    "observe": "Move outward slowly and pause midway. Compare physical and apparent size, then read angular diameter, light travel time and irradiance. Scrub or revisit 1, 10, 100 and 1000 AU.",
     "academic": [
       {
         "title": "The Sun is a self-luminous star",
@@ -57,11 +57,11 @@
       },
       {
         "title": "Apparent brightness also depends on distance",
-        "body": "Without absorption or scattering, an approximately isotropic source’s flux decreases with the square of distance. A distant star can be larger and more luminous than the Sun yet appear as a tiny point. Stars vary in mass, temperature, composition, and evolutionary stage; spectra provide evidence. This interaction controls apparent size, and its halo is not a calibrated photometric measurement."
+        "body": "Without absorption or scattering, an approximately isotropic source’s flux decreases with the square of distance. A distant star can be larger and more luminous than the Sun yet appear as a tiny point. Stars vary in mass, temperature, composition, and evolutionary stage; spectra provide evidence. This interaction controls apparent size, and its halo is not a calibrated photometric measurement. The numerical panel separately gives relative irradiance and vacuum light travel time d/c. At 1 AU the latter is about 499 seconds, starting near the visible photosphere, distinct from the much longer transport of energy out of the core."
       }
     ],
     "misconception": "The Sun is our nearest star, not a completely different kind of object. A distant point of light need not be physically small.",
-    "boundary": "The slider changes viewing geometry, not the Sun’s actual size. Minimum dot size, colors, halos, and brightness are illustrative. Use the diagram; do not look directly at the real Sun.",
+    "boundary": "The slider changes viewing geometry, not the Sun’s actual size. Minimum dot size, colors, halos, and brightness are illustrative. Use the diagram; do not look directly at the real Sun. Distance uses a logarithmic scale, not spacecraft motion. Numerical light travel time differs from playback duration.",
     "narration": [
       {
         "label": "A daytime star",
@@ -80,8 +80,8 @@
       },
       {
         "label": "A tiny point can be huge",
-        "text": "Far enough away, the Sun would look like a little point in the night sky too. Some distant stars are bigger than the Sun, some smaller, and each has its own properties. Next time you see stars, remember our experiment: looking small does not always mean being small. Distance changes what we see.",
-        "cue": "Finish far away with the fixed physical-size comparison visible."
+        "text": "Far enough away, the Sun would look like a little point in the night sky too. Some distant stars are bigger than the Sun, some smaller, and each has its own properties. Next time you see stars, remember our experiment: looking small does not always mean being small. Distance changes what we see. Here is another surprise: light takes time to travel, a little over eight minutes to Earth. From farther away, that journey takes longer.",
+        "cue": "Finish at a distant view, compare physical size and light travel time, then return to 1 AU to read a little over eight minutes."
       }
     ]
   },

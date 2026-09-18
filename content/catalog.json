@@ -272,12 +272,13 @@
       "id": "volcano-eruption",
       "title": "火山为什么会喷发",
       "category": "earth",
-      "summary": "打开火山的剖面，看岩浆怎样向上走。试试一个喷口和多个喷口，再比较熔岩流与火山灰喷发。",
+      "summary": "比较熔岩流、熔岩喷泉和富灰爆发，再用长期证据认识休眠、熄灭与火山形状。",
       "tags": [
         "火山",
         "岩浆",
-        "喷口",
-        "火山灰"
+        "火山灰",
+        "休眠火山",
+        "喷发方式"
       ],
       "duration": "互动探索 / 条件与过程",
       "modes": [
@@ -287,7 +288,29 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-18"
+    },
+    {
+      "id": "submarine-volcanoes",
+      "title": "海底火山怎样长成岛？",
+      "category": "earth",
+      "summary": "潜到海面下，比较枕状熔岩、浅水喷发与反复堆积，看看一座岛水下的大山。",
+      "tags": [
+        "海底火山",
+        "火山岛",
+        "枕状熔岩",
+        "海洋",
+        "地质"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-18"
     },
     {
       "id": "volcanic-lakes",
@@ -355,16 +378,20 @@
       "id": "planet-surfaces",
       "title": "行星的表面是什么样的",
       "category": "universe",
-      "summary": "比较六颗行星的岩石、海水和云层，看看我们说的表面究竟在哪里。",
+      "summary": "比较八个世界的岩石、海水、甲烷湖与可能的熔岩海，分清真实观测、推断和藏在云下的流体。",
       "tags": [
         "行星",
         "岩石行星",
         "海洋",
         "气态巨行星",
         "冰巨星",
-        "火星"
+        "火星",
+        "液态表面",
+        "土卫六",
+        "熔岩海",
+        "系外行星"
       ],
-      "duration": "互动探索 / 六颗行星",
+      "duration": "互动探索 / 八个世界",
       "modes": [
         "儿童版",
         "学术版"
@@ -372,7 +399,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-18"
     },
     {
       "id": "mimosa",

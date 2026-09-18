@@ -1,9 +1,8 @@
 import { animateValue } from '../../src/visuals/transition.ts';
-import { observationCamera, lavaThermalState, type ObservationView, type ObservationCamera } from './model.ts';
+import { observationCamera, lavaThermalState, eruptionAppearance, type ObservationView, type ObservationCamera } from './model.ts';
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
-import { terrain as baseTerrain, ventPositions, supplyPerVent, explosivity, activity, smooth, clastTrajectory, clastPosition, flowBranches, emissionSlot, CLAST_BUDGET } from './model.ts';
+import { terrain as baseTerrain, ventPositions, supplyPerVent, activity, smooth, clastTrajectory, clastPosition, flowBranches, emissionSlot, CLAST_BUDGET } from './model.ts';
 import type { Settings, ClastTrajectory } from './model.ts';
-import { t } from './i18n.ts';
 const seed = (i: number) => (Math.sin(i * 127.1 + 311.7) * 43758.5453 % 1 + 1) % 1;
 type Point = [number, number];
 
@@ -20,11 +19,12 @@ type Clast = { birth: number; radius: number; phase: number; trajectory: ClastTr
 // A shallow perspective ribbon sits on the flank, with a visible near-side thickness.
 // Its footprint remains after supply wanes: cooling changes its surface, not its history.
 function drawFlow(s: CanvasSurface, progress: number, settings: Settings) {
+  const appearance=eruptionAppearance(settings);
   const c = s.context, growth = smooth(.34, .80, progress), cooling = smooth(.84, 1, progress), thermal=lavaThermalState(progress);
   if (growth < .001) return;
   for (const [branchIndex, branch] of flowBranches(settings.vents).entries()) {
-    const extent = growth * (142 + (1 - settings.viscosity) * 185) * Math.sqrt(branch.share);
-    const breadth = (52 + settings.viscosity * 22) * Math.sqrt(branch.share);
+    const extent = growth * (142 + (1 - settings.viscosity) * 185) * Math.sqrt(branch.share) * (.24+.76*appearance.lava) * (.5+.65*appearance.supply);
+    const breadth = (52 + settings.viscosity * 22) * Math.sqrt(branch.share) * (.5+.5*appearance.lava) * (.6+.4*appearance.supply);
     const widthAt = (u: number) => breadth * (.79 + .06 * Math.sin(u * 12 + branchIndex) + .025 * Math.sin(u * 29)) * (1 - .82 * smooth(.86, 1, u));
     const at = (u: number, across: number): Point => {
       const x = branch.x + branch.direction * extent * u, w = widthAt(u);
@@ -101,18 +101,19 @@ export class TopicScene {
   private clastKey = '';
   private clasts: Clast[] = [];
   private prepareClasts(settings: Settings) {
-    const key = `${settings.vents}|${settings.gas}|${settings.viscosity}`;
+    const key = `${settings.vents}|${settings.gas}|${settings.viscosity}|${settings.supply}`;
     if (key === this.clastKey) return;
     this.clastKey = key;
     this.clasts = [];
     if (settings.gas < .06) return;
+    const appearance=eruptionAppearance(settings);
     for (let i = 0; i < CLAST_BUDGET; i++) {
       // The same seeded population is divided among vents, never multiplied by them.
-      if (seed(i + 12000) > .3 + settings.gas * .7) continue;
+      if (seed(i + 12000) > settings.gas * (.4+.6*appearance.supply)) continue;
       const slot = emissionSlot(i, settings.vents), launchActivity = activity(slot.birth);
       const direction = slot.x && seed(i + 2600) > .19 ? Math.sign(slot.x) : seed(i + 81) > .5 ? 1 : -1;
       const speed = direction * (10 + seed(i + 820) * (47 + settings.viscosity * 16));
-      const rise = (13 + settings.gas * (96 + settings.viscosity * 31)) * (.45 + seed(i + 980) * .58) * launchActivity;
+      const rise = (13 + settings.gas * (140 - settings.viscosity * 55)) * (.45+.55*appearance.supply) * (.45 + seed(i + 980) * .58) * launchActivity;
       const radius = 1.35 + seed(i + 200) * 2.6 + (seed(i + 700) > .9 ? 2.2 + settings.viscosity * 2 : 0);
       this.clasts.push({ birth: slot.birth, radius, phase: seed(i + 1300) * Math.PI * 2, trajectory: clastTrajectory(slot.x, speed, rise, terrain) });
     }
@@ -122,7 +123,7 @@ export class TopicScene {
     this.p = progress; this.settings = settings;
     const s = this.surface, c = s.begin('#172535', '#b18b73');
     c.save();c.scale(this.camera.zoom,this.camera.zoom);c.translate(-this.camera.x,-this.camera.y);
-    const vents = ventPositions(settings.vents), intensity = activity(progress), explosive = explosivity(settings);
+    const vents = ventPositions(settings.vents), intensity = activity(progress), appearance=eruptionAppearance(settings);
     const profile: Point[] = Array.from({ length: 181 }, (_, i) => { const x = -378 + i * 4.2; return [x, terrain(x)]; });
     // Atmospheric ridges and a warm horizon keep the cutaway in a landscape.
     const haze = c.createRadialGradient(220, -130, 2, 220, -130, 280);
@@ -205,17 +206,30 @@ export class TopicScene {
     c.restore(); c.restore();
     // Gas-entrained ash drifts upward on its own clock; a weakening vent cannot
     // pull an already emitted cloud back down. One ash schedule is shared by all vents.
-    if (explosive > .25) {
-      for (let i = 0; i < 78; i++) {
-        const birth = .32 + i / 77 * .48, age = (progress - birth) * 24 / 6;
+    // Unequal parcels rise from the same vent, entrain air and widen into a drifting
+    // ash cloud. Material already aloft keeps travelling after the source weakens.
+    if (appearance.ash > .005) {
+      for (let i = 0; i < 150; i++) {
+        const birth = .30 + i / 149 * .49, age = (progress - birth) * 24 / 9;
         if (age <= 0 || age >= 1) continue;
         const vx = vents[i % vents.length], vy = terrain(vx);
-        const x = vx + Math.sin(i * 4.8) * (4 + age * 26) + age * age * (35 + seed(i + 60) * 35);
-        const y = vy - 10 - age * 160, r = (3 + age * 24) * (.7 + seed(i + 330) * .65);
-        const ash = c.createRadialGradient(x - r * .3, y - r * .35, 0, x, y, r);
-        ash.addColorStop(0, '#c9b5a1'); ash.addColorStop(.5, '#827c79'); ash.addColorStop(1, '#555b6600');
-        c.save(); c.globalAlpha = activity(birth) * explosive * Math.sin(Math.PI * age) * .52;
-        s.path(outline(x, y, r * 1.25, r, i * 1.7), ash); c.restore();
+        const spread=smooth(.24,.78,age),rise=(125+135*appearance.supply)*Math.pow(age,.73);
+        const x=vx+(seed(i+86)-.5)*(10+spread*132)+age*age*(58+seed(i+61)*64);
+        const y=vy-8-rise+(seed(i+53)-.5)*spread*22;
+        const r=(4+Math.pow(age,.8)*42)*(.65+seed(i+330)*.65)*(.6+.4*appearance.supply);
+        const ash=c.createRadialGradient(x-r*.3,y-r*.35,0,x,y,r*1.3);
+        ash.addColorStop(0,'#c8bdae');ash.addColorStop(.45,'#7d7e80');ash.addColorStop(.78,'#575f68cc');ash.addColorStop(1,'#4d566100');
+        c.save();c.globalAlpha=activity(birth)*appearance.ash*smooth(0,.05,age)*(1-smooth(.76,1,age))*.86;
+        s.path(outline(x,y,r*1.3,r,i*1.7),ash);c.restore();
+      }
+      // Fine ash falls beyond the lava footprint; it is fragmented rock, not smoke.
+      for(let i=0;i<80;i++){
+        const birth=.31+i/80*.45,age=(progress-birth)*24/(6+seed(i+210)*3);
+        if(age<=0)continue;
+        const u=Math.min(1,age),vx=vents[i%vents.length],end=vx+65+seed(i+500)*220;
+        const x=vx+(end-vx)*u,y=terrain(vx)-2-(135+seed(i+511)*85)*Math.sin(Math.PI*u)+(terrain(end)-terrain(vx)+2)*u*u;
+        c.save();c.globalAlpha=appearance.ash*(.2+appearance.supply*.4)*smooth(0,.06,age);
+        s.ellipse(x,y,1+seed(i+777),.7,'#b5aaa0');c.restore();
       }
     }
     drawFlow(s, progress, settings);
@@ -232,7 +246,7 @@ export class TopicScene {
       c.save(); c.translate(x, y - .8); c.rotate(slope);
       s.path(outline(0, -.8, r * (1.15 + settle * .35), r * .38, clast.phase), '#4a3030', '#82432d', .7);
       if (fresh > .005) {
-        c.globalAlpha = fresh * (1 - cooling * .7);
+        c.globalAlpha = fresh * (1 - cooling * .7) * (1-appearance.ash*.88);
         s.path(outline(0, -1.2, r * (1 + settle * .27), r * .23, clast.phase), '#f68b35');
         s.path([[-r * .8, -1.2], [-r * .1, -1.8], [r * .4, -.6]], undefined, '#ffe497', .9);
         if (position.afterImpact < .23) {
@@ -262,8 +276,8 @@ export class TopicScene {
         s.ellipse(vx - 1, vy - 1.5, coreWidth * .42, 1.1, '#fff4cd'); c.restore();
       }
       if (settings.gas >= .06 && intensity > .015) {
-        const jetHeight = intensity * settings.gas * (74 - settings.viscosity * 31);
-        const streamWidth = (3.6 - settings.viscosity * 1.1) * Math.sqrt(share);
+        const jetHeight = intensity * appearance.fountain * (145 - settings.viscosity * 60) * (.45+.55*appearance.supply);
+        const streamWidth = (3.6 - settings.viscosity * 1.1) * Math.sqrt(share) * (.45+.55*appearance.supply);
         c.save(); c.globalAlpha = Math.min(1, intensity * 2);
         for (let j = 0; j < 7; j++) {
           const side = (j - 3) / 3;
@@ -293,7 +307,7 @@ export class TopicScene {
       const { x, y } = position, r = clast.radius;
       const dy = clast.trajectory.vy + clast.trajectory.gravity * elapsed;
       const angle = Math.atan2(dy, clast.trajectory.vx), trailLength = Math.min(12, Math.hypot(dy, clast.trajectory.vx) * .035);
-      s.path([[x - Math.cos(angle) * trailLength, y - Math.sin(angle) * trailLength], [x, y]], undefined, '#e76b2855', r * 1.65);
+      s.path([[x - Math.cos(angle) * trailLength, y - Math.sin(angle) * trailLength], [x, y]], undefined, appearance.ash>.62?'#8e8a8555':'#e76b2855', r * 1.65);
       c.save(); c.translate(x, y); c.rotate(angle);
       const polygon: Point[] = Array.from({ length: 19 }, (_, i) => {
         const a = i / 18 * Math.PI * 2, ripple = 1 + .10 * Math.sin(a * 3 + clast.phase) + .045 * Math.sin(a * 5 + clast.phase);
@@ -301,7 +315,7 @@ export class TopicScene {
       });
       const melt=c.createRadialGradient(-r*.22,-r*.18,0,0,0,r*1.22);
       melt.addColorStop(0,'#fff0b0');melt.addColorStop(.37,'#ffcc68');melt.addColorStop(.72,'#ed7e2c');melt.addColorStop(1,'#9b3923');
-      s.path(polygon,melt,'#bd5029',.45);
+      s.path(polygon,appearance.ash>.62?'#766658':melt,'#bd5029',.45);
       s.ellipse(-r*.22,-r*.2,r*.33,r*.2,'#fff4c133');
       if (r > 3.5) {
         s.path([[-r * .7, -r * .5], [r * .4, -r * .8], [r * .75, -r * .2], [r * .05, -.1]], '#693b2c');
@@ -310,19 +324,7 @@ export class TopicScene {
       c.restore();
     }
     c.restore();
-    const anchor=(x:number,y:number):Point=>[(x-this.camera.x)*this.camera.zoom,(y-this.camera.y)*this.camera.zoom];
-    if(this.view==='overview'){
-      s.label(t('岩浆储存区'), -231, 184, { anchor:anchor(-66,170), width:170 });
-      s.label(t('山顶喷口'), -133, -139, { anchor:anchor(0,terrain(0)), width:155 });
-      if(vents.length>1)s.label(t('侧喷口'),254,40,{anchor:anchor(126,terrain(126)),width:140});
-    }else if(this.view==='vent'){
-      const before=progress<.34,waning=progress>=.82,quiet=settings.gas<.06;
-      s.label(before?t('沿地下通道寻找岩浆'):waning?t('喷发逐渐减弱，落地物质留在原处'):quiet?t('气体少时，熔岩以流出为主'):t('熔滴上升后会落回地面'),-205,-159,{width:275});
-      s.label(before?(progress<.25?t('此时岩浆还未到达喷口'):t('喷口开始出现高温物质')):waning?t('喷口变暗，内部仍可能很热'):quiet?t('看熔岩怎样跨过喷口边缘'):t('气体推动高温岩浆喷出'),201,160,{anchor:anchor(0,terrain(0)),width:260});
-    }else{
-      s.label(progress<.34?t('此时地面还没有熔岩流'):progress<.8?t('亮色熔岩在暗色表壳之间流动'):t('表层结壳，缝里仍有热熔岩'),-164,-160,{width:290});
-      s.label(progress<.34?t('推进进度，等待岩浆到达地表'):progress<.8?t('沿山坡追踪熔岩前缘'):t('变暗不等于里面已经凉了'),176,166,{width:285});
-    }
+    // Labels belong to the external legend; zooming never enlarges prose over a vent.
     s.end();
   }
   dispose() { this.cancelCamera();this.surface.dispose(); }

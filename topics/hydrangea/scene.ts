@@ -1,6 +1,5 @@
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
-import { bloomState, type GardenConditions } from './model.ts';
-import { t } from './i18n.ts';
+import { aluminumRoute, complexBinding, bloomState, type GardenConditions } from './model.ts';
 const noise = (n: number) => { const x = Math.sin(n * 92.73 + 34.7) * 47586.3; return x - Math.floor(x); };
 export class HydrangeaScene extends CanvasSurface {
   private p = 1;
@@ -14,7 +13,7 @@ export class HydrangeaScene extends CanvasSurface {
       const x = (noise(i) - .5) * 850, y = (noise(i + 51) - .5) * 540, r = 30 + noise(i + 120) * 105;
       const g = c.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, i % 3 ? '#7ea77d20' : '#fffefac5'); g.addColorStop(1, '#d5e4d000'); this.ellipse(x, y, r, r, g);
     }
-    if (view === 'plant') this.plant(p, planted); else this.cell(p, planted);
+    if (view === 'plant') this.plant(p, planted); else if (view === 'root') this.root(p, planted); else this.cell(p, planted);
     this.end();
   }
   private leaf(x: number, y: number, angle: number, length: number, width: number, seed: number) {
@@ -69,8 +68,6 @@ export class HydrangeaScene extends CanvasSurface {
       this.floret(f.x * radial, -51 + (f.y + 51) * radial, f.size * grow, s.hue + (noise(f.seed + 16) - .5) * 14,
         s.saturation, s.lightness - 8 + f.z * 10 + (noise(f.seed + 3) - .5) * 7, f.seed, noise(f.seed + 8) * 6.28);
     }
-    this.label(t('一团花序，许多小花'), -194, 157, { color: '#516253', background: '#fffef3df', width: 245 });
-    this.label(t('显眼的彩色部分是萼片'), 228, -132, { color: '#516253', background: '#fffef3df', anchor: [122, -104], width: 166 });
   }
   private cell(p: number, planted: GardenConditions) {
     const c = this.context, s = bloomState(p, planted), color = `hsl(${s.hue} ${s.saturation}% ${s.lightness}%)`;
@@ -80,14 +77,50 @@ export class HydrangeaScene extends CanvasSurface {
     this.ellipse(-201, 63, 17, 24, '#c4b995', '#99906b');
     if (planted.cultivar !== 'white') for (let i = 0; i < 13; i++) {
       const x = -148 + noise(i + 70) * 278, y = -73 + noise(i + 170) * 134;
-      const bound = i / 13 < s.blue * s.maturity;
+      const bound = complexBinding(p, planted, i);
       c.save(); c.translate(x, y); c.rotate(noise(i) * 6.28);
-      this.ellipse(0, 0, 8, 6, bound ? '#6e77cd' : '#c64f8d', '#fff9');
-      if (bound) { this.path([[-15, 3], [-8, 1], [0, 0], [12, -8]], undefined, '#f3ead5', 1.4); this.ellipse(-17, 3, 4, 4, '#e5b662'); this.ellipse(14, -9, 6, 4, '#bccf9a'); }
+      const pigmentHue = 335 - bound * 110;
+      this.ellipse(0, 0, 8, 6, `hsl(${pigmentHue} 53% 59%)`, '#fff9');
+      // Partners converge on the same pigment, so assembly has an observable location.
+      if (s.available > 0) {
+        const dx = 36 - 19 * bound, cy = -28 + 19 * bound;
+        c.globalAlpha = Math.min(1, s.available * 2) * (.28 + bound * .72);
+        this.ellipse(-dx, 3, 4, 4, '#e5b662', '#9c792e');
+        c.globalAlpha = .4 + .6 * bound;
+        c.save(); c.translate(14, cy); c.rotate(.35); c.fillStyle = '#aabc7d'; c.fillRect(-5, -4, 10, 8); c.restore();
+        c.globalAlpha = bound;
+        this.path([[-15, 3], [-8, 1], [0, 0], [12, -8]], undefined, '#f3ead5', 1.4);
+      } else {
+        c.save(); c.translate(14, -28); c.rotate(.35); c.fillStyle = '#aabc7d'; c.fillRect(-5, -4, 10, 8); c.restore();
+      }
+      c.globalAlpha = 1;
       c.restore();
     }
-    this.label(t('萼片细胞'), -257, -161, { background: '#fffef5e6', color: '#546052', anchor: [-202, -122], width: 140 });
-    this.label(t('液泡：花青素的主要位置'), 19, 171, { background: '#fffef5e6', color: '#546052', anchor: [17, 100], width: 320 });
-    this.label(planted.cultivar === 'white' ? t('缺少这一路显色色素') : s.maturity < .3 ? t('显色结构正在形成') : s.blue > .4 ? t('花青素 + 铝 + 辅色素') : t('缺少可形成蓝色复合物的铝'), 6, -189, { background: '#fffef5e6', color: '#546052', width: 355 });
+  }
+  private root(p: number, planted: GardenConditions) {
+    const c = this.context, s = bloomState(p, planted);
+    const soil = c.createLinearGradient(0, 70, 0, 218); soil.addColorStop(0, '#bba789'); soil.addColorStop(1, '#786550');
+    c.fillStyle = soil; c.fillRect(-330, 73, 660, 145);
+    c.beginPath(); c.moveTo(-330, 73); for(let x = -330; x <= 330; x += 8) c.lineTo(x, 73 + Math.sin(x * .08) * 2); c.strokeStyle = '#647b4c'; c.lineWidth = 4; c.stroke();
+    for(let i = 0; i < 140; i++) this.ellipse((noise(i + 33) - .5) * 650, 85 + noise(i + 50) * 124, 1 + noise(i) * 3, 1.2, i % 3 ? '#52493435' : '#e3d5b42f');
+    for(let i = 0; i < 8; i++) {
+      const endX = (i - 3.5) * 53, endY = 149 + noise(i) * 49;
+      c.beginPath(); c.moveTo(0, 67); c.bezierCurveTo(endX * .25, 110, endX * .65, 140, endX, endY); c.strokeStyle = '#e2d6b5'; c.lineWidth = 4.5 - Math.abs(i - 3.5) * .45; c.stroke();
+      for(let j = 1; j < 4; j++) { const x = endX * j / 4, y = 86 + (endY - 86) * j / 4; c.beginPath(); c.moveTo(x, y); c.quadraticCurveTo(x + (i % 2 ? 13 : -13), y + 14, x + (i % 2 ? 22 : -22), y + 23); c.strokeStyle = '#dfd2b38a'; c.lineWidth = 1; c.stroke(); }
+    }
+    this.path([[0, 90], [0, -93], [88, -111]], undefined, '#5b8252', 15);
+    this.path([[0, 84], [0, -90], [87, -110]], undefined, '#b9cc8a', 4);
+    this.leaf(0, -29, -2.65, 121, 33, 534); this.leaf(0, 20, -.52, 125, 37, 911);
+    const color = `hsl(${s.hue} ${s.saturation}% ${s.lightness}%)`;
+    const g = c.createRadialGradient(95, -130, 3, 110, -112, 65); g.addColorStop(0, '#fffde4'); g.addColorStop(.4, color); g.addColorStop(1, '#a6b58c');
+    this.ellipse(110, -112, 62, 51, g, '#7d986f');
+    c.setLineDash([3, 5]); this.ellipse(110, -112, 49, 39, '#ffffff18', '#fffaf3'); c.setLineDash([]);
+    // The same aluminum tokens travel and accumulate; white flowers can still take up aluminum.
+    for(let i = 0; i < 12; i++) {
+      c.globalAlpha = clampAlpha(s.available * 12 - i);
+      const pos = aluminumRoute(p, i); this.ellipse(pos.x, pos.y, 4.5, 4.5, '#f1c367', '#916d25');
+    }
+    c.globalAlpha = 1;
   }
 }
+function clampAlpha(value: number) { return Math.max(0, Math.min(1, value)); }

@@ -34,3 +34,21 @@ test('a pink bloom without aluminum never passes through a false blue stage', ()
   }
   assert.equal(bloomState(1, pink).hue, flowerOutcome(pink).hue);
 });
+
+import { aluminumRoute, complexBinding } from '../model.ts';
+test('white and aluminum-free blooms never assemble blue complexes, but white plants can have available aluminum',()=>{
+  const white={...blue,cultivar:'white'};assert.ok(availableAluminum(white)>.8);
+  for(let p=0;p<=1;p+=.01)for(let i=0;i<13;i++){assert.equal(complexBinding(p,white,i),0);assert.equal(complexBinding(p,{...blue,aluminum:0},i),0);}
+});
+test('complex assembly and root transport are continuous and reversible on the timeline',()=>{
+  for(let i=0;i<13;i++){
+    let previous=0;
+    for(let p=0;p<=1;p+=.005){const value=complexBinding(p,blue,i);assert.ok(value>=previous-1e-10&&value<=1);assert.ok(value-previous<.2);previous=value;}
+  }
+  for(let i=0;i<12;i++){
+    const start=aluminumRoute(0,i),end=aluminumRoute(1,i);assert.ok(start.y>100&&end.y<-80);
+    let previous=start;
+    for(let n=0;n<=1000;n++){const pos=aluminumRoute(n/1000,i);assert.ok(Object.values(pos).every(Number.isFinite));assert.ok(Math.hypot(pos.x-previous.x,pos.y-previous.y)<3);previous=pos;}
+    const middle=aluminumRoute(.4,i);aluminumRoute(.9,i);assert.deepEqual(aluminumRoute(.4,i),middle);
+  }
+});

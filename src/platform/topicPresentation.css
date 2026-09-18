@@ -1,0 +1,203 @@
+/* Reading chrome only. Topic renderers own scene geometry, color and time. */
+html[data-topic-ui] {
+  --ui-width: 1280px;
+  --ui-gutter: 28px;
+  --ui-card-radius: 18px;
+  --ui-control-radius: 9px;
+  --ui-control-height: 44px;
+  --ui-title-size: clamp(30px, 3.3vw, 42px);
+  --ui-section-size: clamp(20px, 2vw, 24px);
+  --ui-copy-size: 15px;
+  --ui-control-size: 13px;
+  --ui-shadow: 0 8px 28px #18382b06;
+}
+html[data-topic-ui][data-theme="light"] {
+  --page: #f8faf9; --surface: #ffffff; --ink: #202c28;
+  --secondary: #5e6e67; --quiet: #708077; --border: #dde5e0;
+  --accent: #365e50; --tint: #eef3ef;
+}
+html[data-topic-ui][data-theme="dark"] {
+  --page: #111715; --surface: #18211e; --ink: #e7eee9;
+  --secondary: #a7b8ae; --quiet: #94a69b; --border: #303e36;
+  --accent: #badccd; --tint: #202d26;
+  --ui-shadow: 0 8px 28px #00000010;
+}
+html[data-topic-ui] body {
+  background: var(--page); color: var(--ink);
+  font-family: var(--ui-font); font-size: var(--ui-copy-size); line-height: 1.8;
+}
+html[data-topic-ui] .encyclopedia-nav {
+  padding-inline: max(var(--ui-gutter), calc((100% - var(--ui-width))/2 + var(--ui-gutter)));
+}
+html[data-topic-ui] body > main,
+html[data-topic-ui] .app-shell {
+  box-sizing: border-box; width: 100%; max-width: var(--ui-width);
+  margin-inline: auto; padding-inline: var(--ui-gutter);
+}
+html[data-topic-ui] body > main { padding-block: 36px 64px; }
+html[data-topic-ui] body > main > header { max-width: none; margin: 0 0 28px; }
+html[data-topic-ui] :is(body > main > header, .story-panel) h1 {
+  color: var(--ink); font-size: var(--ui-title-size); line-height: 1.25;
+  letter-spacing: -.035em; font-weight: 650; margin: 10px 0 16px; text-wrap: balance;
+}
+html[data-topic-ui] .hero h1 span { color: inherit; }
+html[data-topic-ui] body > main > header :is(.intro, p:not(.eyebrow):not(.reading-mode-hint)),
+html[data-topic-ui] .story-panel > .intro {
+  max-width: 54em; font-size: var(--ui-copy-size); line-height: 1.85; color: var(--secondary);
+}
+html[data-topic-ui] :is(body > main > header, .story-panel) .eyebrow {
+  color: var(--secondary); font-size: 11px; line-height: 1.6;
+  font-weight: 600; letter-spacing: .12em; margin-block: 0 8px;
+}
+html[data-topic-ui] :is(.modes, .reading-mode, .mode-switch, .learning-modes) {
+  display: inline-flex; align-items: stretch; gap: 4px; padding: 4px;
+  border: 1px solid var(--border); border-radius: 12px; background: var(--tint);
+  width: fit-content; max-width: 100%;
+}
+/* Named controls only: .controls itself may be a sidebar or a horizontal toolbar. */
+html[data-topic-ui] :is(
+  .modes, .reading-mode, .mode-switch, .learning-modes, .controls, .buttons, .settings, .options,
+  .toolbar, .view-controls, .observation-views, .views, .scenarios, .segmented,
+  .steps, .stages, .stage-buttons, .cell-tabs, .process-tabs, .process-controls,
+  .experiment-tabs, .status-tabs, .presets, .parts, .playbar, .transport,
+  .experiments, .leaf-types, .season-controls, .planet-tabs, .city-tabs, .solstice-tabs
+) button,
+html[data-topic-ui] main select {
+  font-family: var(--ui-font); font-size: var(--ui-control-size); line-height: 1.5; font-weight: 500;
+  min-height: var(--ui-control-height); padding: 10px 14px;
+  border-radius: var(--ui-control-radius); border: 1px solid var(--border);
+  color: var(--ink); background: var(--surface); box-shadow: none; touch-action: manipulation;
+}
+html[data-topic-ui] :is(.modes, .reading-mode, .mode-switch, .learning-modes) button {
+  background: transparent; border-color: transparent; color: var(--secondary);
+  min-width: 88px; min-height: 40px; padding: 8px 14px; margin: 0;
+}
+html[data-topic-ui] :is(
+  .controls, .buttons, .toolbar, .views, .view-controls, .observation-views,
+  .scenarios, .segmented, .steps, .stages, .stage-buttons, .cell-tabs,
+  .process-tabs, .experiment-tabs, .status-tabs, .presets, .parts,
+  .experiments, .leaf-types, .season-controls, .planet-tabs, .city-tabs, .solstice-tabs
+) button:is([aria-pressed="true"], [aria-current="step"], .active) {
+  color: var(--accent); background: var(--tint);
+  border-color: color-mix(in srgb, var(--accent) 48%, var(--border));
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+html[data-topic-ui] :is(.modes, .reading-mode, .mode-switch, .learning-modes) button[aria-pressed="true"],
+html[data-topic-ui] main :is(#play, #btn-play, .play-button),
+html[data-topic-ui] .season-controls .primary {
+  color: var(--page); background: var(--accent); border-color: var(--accent); font-weight: 600;
+}
+html[data-topic-ui] main select { max-width: 100%; min-width: 0; }
+/* Topic-specific specimen choices keep their explanatory colors and icons. */
+html[data-topic-ui] :is(
+  .view-buttons, .view-tabs, .stage-controls, .scene-toolbar, .region-buttons,
+  .component-controls, .cause-steps, .environment-buttons, .habitat-buttons,
+  .scenario-controls, .seat-tabs, .ice-stages, .journey-controls, .behavior-controls,
+  .scene-transport, .step-controls, .playback, .stack, .lens-controls, .control-group,
+  .viewbar, .feature-panel, #replacement-panel, .action-row
+) button,
+html[data-topic-ui] aside > :is(button.next, button#reset) {
+  font-family: var(--ui-font); font-size: var(--ui-control-size); line-height: 1.5;
+  min-height: var(--ui-control-height); min-width: 0;
+  border-radius: var(--ui-control-radius); touch-action: manipulation;
+}
+html[data-topic-ui] :is(.object-grid, .places) button {
+  font-family: var(--ui-font); font-size: var(--ui-control-size); border-radius: var(--ui-control-radius);
+}
+html[data-topic-ui] main input[type="range"] {
+  accent-color: var(--accent); cursor: pointer; min-width: 0; min-height: 28px;
+}
+html[data-topic-ui] main input[type="checkbox"] { accent-color: var(--accent); }
+html[data-topic-ui] main button:disabled { opacity: .45; cursor: default; }
+html[data-topic-ui] :is(button, select, input, a, summary):focus-visible {
+  outline: 2px solid var(--accent); outline-offset: 4px;
+}
+html[data-topic-ui] :is(.steps, .stage-buttons, .stages) button {
+  min-width: 0; white-space: normal; overflow-wrap: anywhere;
+}
+html[data-topic-ui] :is(.steps, .stage-buttons) button {
+  border-width: 2px 0 0; border-radius: 0; background: transparent; text-align: left;
+}
+html[data-topic-ui] :is(.lab, .explorer, .laboratory, .experiment, .exploration, .panel) {
+  border: 1px solid var(--border); border-radius: var(--ui-card-radius);
+  background: var(--surface); box-shadow: var(--ui-shadow);
+}
+html[data-topic-ui] :is(.viewport, .space-scene, .specimen, .detail-window, .behavior-window) { border-radius: 12px; }
+html[data-topic-ui] :is(.workspace, .workbench, .layout) > * { min-width: 0; }
+html[data-topic-ui] :is(.panel, .story, .inspector, .science-panel, .takeaways, .discoveries, .details, .learn, .field-note) h2 {
+  font-size: var(--ui-section-size); font-weight: 600; line-height: 1.45; letter-spacing: -.025em;
+}
+html[data-topic-ui] :is(.panel, .story, .science-panel, .takeaways, .discoveries, .details, .learn, .field-note) p:not(.eyebrow):not(.science-formula):not(.number):not(.metric) {
+  font-size: var(--ui-copy-size); line-height: 1.85;
+}
+html[data-topic-ui] :is(.science-panel, .field-note, .formula-card) { border-radius: 12px; }
+html[data-topic-ui] :is(.scene-reading, .scene-note, .scene-legend, .material-legend, figcaption) { line-height: 1.75; }
+html[data-topic-ui] .scene-reading { color: var(--secondary); }
+html[data-topic-ui] .scene-reading :is(.scene-heading, .scene-note, .debris-key, .view-note) {
+  color: var(--secondary); font-size: 12px;
+}
+html[data-topic-ui] .scene-reading :is(.scene-heading span, .scene-corner, .scene-legend) { color: var(--secondary); }
+html[data-topic-ui] .scrub output { flex-shrink: 0; white-space: nowrap; }
+html[data-topic-ui] .reading-mode-hint { font-size: 12px; color: var(--secondary); }
+/* Four narrative theaters retain their sidebar, inside the same reading width. */
+html[data-topic-ui] .app-shell { height: auto; min-height: 0; }
+html[data-topic-ui] .app-shell .experience { width: 100%; max-width: none; }
+html[data-topic-ui] .app-shell .page-header { min-height: 82px; height: auto; padding-block: 14px; }
+html[data-topic-ui] .app-shell .space-scene { min-height: 380px; }
+html[data-topic-ui] .app-shell .story-panel { overflow: visible; }
+html[data-topic-ui] .app-shell #phase-desc { font-size: var(--ui-copy-size); line-height: 1.85; }
+html[data-topic-ui] .app-shell .page-footer { margin-top: 24px; min-height: 60px; }
+html[data-topic-ui] .app-shell .segmented { flex-wrap: wrap; }
+html[data-topic-ui] .app-shell :is(.segmented, .view-controls) {
+  padding: 4px; gap: 4px; border-radius: 12px; border-color: var(--border); background: var(--tint);
+}
+html[data-topic-ui] .app-shell .transport .restart-button { padding: 0; min-width: 44px; }
+html[data-topic-ui] .app-shell .scene-reading .view-controls { flex-wrap: wrap; }
+html[data-topic-ui] .app-shell + .learning-companion {
+  width: calc(100% - 2 * var(--ui-gutter)); max-width: calc(var(--ui-width) - 2 * var(--ui-gutter));
+}
+html[data-topic-ui] .learning-companion { max-width: none; }
+@media (min-width: 761px) {
+  html[data-topic-ui] .app-shell .experience { grid-template-columns: 264px minmax(0, 1fr); gap: 28px; }
+  html[data-topic-ui] .app-shell .space-scene { height: clamp(380px, 36vw, 560px); flex: none; }
+  html[data-topic-ui] .app-shell .story-panel { padding-top: 28px; }
+}
+@media (max-width: 760px) {
+  html[data-topic-ui] {
+    --ui-gutter: 16px; --ui-card-radius: 14px; --ui-title-size: 30px;
+    --ui-section-size: 21px; --ui-copy-size: 14px; --ui-control-size: 12px;
+  }
+  html[data-topic-ui] body > main { padding-block: 26px 44px; }
+  html[data-topic-ui] .encyclopedia-nav {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px;
+  }
+  html[data-topic-ui] .encyclopedia-home {
+    grid-column: 1; grid-row: 1; min-width: 0; white-space: normal; font-size: 14px; line-height: 1.4;
+  }
+  html[data-topic-ui] .encyclopedia-preferences { display: contents; }
+  html[data-topic-ui] .encyclopedia-nav .theme-control {
+    grid-column: 2; grid-row: 1; justify-self: end; margin: 0;
+  }
+  html[data-topic-ui] .encyclopedia-nav .language-control { grid-column: 3; }
+  html[data-topic-ui] .encyclopedia-nav .theme-control > span { display: none; }
+  html[data-topic-ui] .encyclopedia-nav .theme-control select { min-height: 36px; max-width: 130px; }
+  html[data-topic-ui] .encyclopedia-trail { grid-column: 1 / 3; grid-row: 2; }
+  html[data-topic-ui] .encyclopedia-nav .learning-jump { grid-column: 3; grid-row: 2; justify-self: end; }
+  html[data-topic-ui] body > main > header { margin-bottom: 24px; }
+  html[data-topic-ui] body > main > header .modes { align-self: flex-start; }
+  html[data-topic-ui] :is(.controls, .views, .view-controls, .observation-views, .process-controls, .playbar, .buttons) button { padding-inline: 11px; }
+  html[data-topic-ui] :is(.steps, .stage-buttons, .stages) button { padding: 9px 5px; }
+  html[data-topic-ui] :is(.scenarios, .segmented) button { padding-inline: 10px; white-space: normal; }
+  html[data-topic-ui] .app-shell .space-scene { min-height: 320px; height: 48svh; max-height: 480px; }
+  html[data-topic-ui] .app-shell .page-header { gap: 12px; flex-wrap: wrap; }
+  html[data-topic-ui] .app-shell .story-panel :is(h1, .intro) br { display: initial; }
+  html[data-topic-ui] .app-shell .mode-switch button { min-width: 80px; }
+  html[data-topic-ui] .app-shell .view-controls button { flex: 1 1 auto; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  html[data-topic-ui] :is(button, select) { transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+  html[data-topic-ui] button:not(:disabled):hover { border-color: var(--accent); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html[data-topic-ui] :is(button, select) { transition: none; }
+}

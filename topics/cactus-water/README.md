@@ -13,4 +13,12 @@
 - [NPS · Joshua Tree cacti](https://www.nps.gov/jotr/learn/nature/cacti.htm)
 - [NPS · Saguaro cacti](https://www.nps.gov/sagu/learn/nature/cacti-and-desert-succulents.htm)
 
-Interaction advances only on user input; no continuous timers, audio, or background workers. SVG labels and live observation text provide the same explanation.
+
+
+## Continuous observation refinement · 2026-09-19
+
+User-started rain, dry-time and gas-exchange sequences can pause or scrub. Rain uptake reaches the root-to-stem route before stored volume increases. The former bottle graphic is replaced by multiple living-cell storage compartments; stem ribs expand or contract with the same reserve. Day/night transitions preserve the current event, and brown carbon-dioxide markers are distinguished from open blue vapour markers. Enlarged tissue and whole-plant views preserve state.
+
+All playback is explicit and finite. Hidden documents pause active playback; page exit cancels frame work. Reduced-motion mode advances to inspection states rather than starting continuous movement. Phase/status text changes only at meaningful stages. Topic-local model tests cover the changed causal and continuity contracts; root task owns the full build and desktop/mobile browser acceptance.
+
+Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.

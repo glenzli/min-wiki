@@ -289,6 +289,32 @@
       "bytes": 98366
     },
     {
+      "source": "topics/submarine-volcanoes/cover-v2.jpg",
+      "output": "topics/submarine-volcanoes/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "60e1208a4663df10e54bfd9bb924066b6822eb907fbc918aa604b934fcf7102a",
+      "sha256": "378367614e33572df8568d933d4856d0e56c83e05f35ede96fe20a17d2dbfaf3",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 40684
+    },
+    {
+      "source": "topics/submarine-volcanoes/cover-v2.jpg",
+      "output": "topics/submarine-volcanoes/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "60e1208a4663df10e54bfd9bb924066b6822eb907fbc918aa604b934fcf7102a",
+      "sha256": "fcdfa28f70144fa907608e5cf0cf698f53194389ba946e80ba46ad2768ccc44a",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 139088
+    },
+    {
       "source": "topics/volcanic-lakes/cover-v2.jpg",
       "output": "topics/volcanic-lakes/cover-480.webp",
       "width": 480,
@@ -1275,6 +1301,266 @@
         640
       ],
       "bytes": 110678
+    },
+    {
+      "source": "topics/pain-signals/cover-v2.jpg",
+      "output": "topics/pain-signals/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "ce78dc198c9025c48d67f7d6bde4a99abf5ef88239522a096d762437ff1913ec",
+      "sha256": "376547223654c48ac006c49ea32304e84c73b9c091f2fa56565687c7fce8a6da",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 36974
+    },
+    {
+      "source": "topics/pain-signals/cover-v2.jpg",
+      "output": "topics/pain-signals/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "ce78dc198c9025c48d67f7d6bde4a99abf5ef88239522a096d762437ff1913ec",
+      "sha256": "fd0c6dcb157b85b5b584fc427f158eafc6dab804777640e67b523a8e763694b8",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 112962
+    },
+    {
+      "source": "topics/taste-smell/cover-v2.jpg",
+      "output": "topics/taste-smell/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "5fa255237850df2a00ae2d6f8fa900255c98eab7c06ba523fc81c368a6db4276",
+      "sha256": "c51a25333b15a6119f65f840bfd1ca01f4246128734f3552b8df5c4f7965a26a",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 28538
+    },
+    {
+      "source": "topics/taste-smell/cover-v2.jpg",
+      "output": "topics/taste-smell/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "5fa255237850df2a00ae2d6f8fa900255c98eab7c06ba523fc81c368a6db4276",
+      "sha256": "18c56e4f6b04cdc6e2cb1756e25244f5f3132f03af61cb0b3d729fdb3179b93b",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 84156
+    },
+    {
+      "source": "topics/blood-cells/cover-v2.jpg",
+      "output": "topics/blood-cells/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "16a0e7bf7b08c1510ab916ba2b44de5c6be31d7e11edf9f3cc4e6044833ea59b",
+      "sha256": "8b256429415e6d0a534b77f90948143b37d87a3e67d546beec1a416df49854b8",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 31596
+    },
+    {
+      "source": "topics/blood-cells/cover-v2.jpg",
+      "output": "topics/blood-cells/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "16a0e7bf7b08c1510ab916ba2b44de5c6be31d7e11edf9f3cc4e6044833ea59b",
+      "sha256": "915ae3c64e503044e85df41087f96c32faa56f8be8f16d744c98d68f1a6af380",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 90268
+    },
+    {
+      "source": "topics/body-cells/cover-v2.jpg",
+      "output": "topics/body-cells/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "2e8cf869330c502725df7a5e1dbcedf9badce35f577f3f36e2285273e85dc53d",
+      "sha256": "71c25a4a9439b03bef4603c6dc990b4643f10ec0a6bf4492a76e58bc12b3a0a7",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 38668
+    },
+    {
+      "source": "topics/body-cells/cover-v2.jpg",
+      "output": "topics/body-cells/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "2e8cf869330c502725df7a5e1dbcedf9badce35f577f3f36e2285273e85dc53d",
+      "sha256": "8af20b8fa5b1079f0378714ce216f4a9e8e5d02bd335fdf47e152d2d43177918",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 111828
+    },
+    {
+      "source": "topics/hearing/cover-v2.jpg",
+      "output": "topics/hearing/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "c9282f10c7884219a744998fa6290b01868c6f43738376d102f3886c9df08412",
+      "sha256": "ed6d1000f3f0740cb7e515e683544dac7fc66b4176bb291bdb61b56a0ad093ec",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 30088
+    },
+    {
+      "source": "topics/hearing/cover-v2.jpg",
+      "output": "topics/hearing/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "c9282f10c7884219a744998fa6290b01868c6f43738376d102f3886c9df08412",
+      "sha256": "f9c9c3882f09f69eef783b49026efa46c2ea91a4f65aafad5040449197fbbda9",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 93930
+    },
+    {
+      "source": "topics/soap-bubbles/cover-v2.jpg",
+      "output": "topics/soap-bubbles/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "5e35d378c8c9ef20fa6539b0a9542f1e2cd39cd9fb9396dcf3f6adfb427f3daf",
+      "sha256": "06155af638da52a6ea7d4bcd94f000aa1e18923064b41e8eb0679d63a6b55d20",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 33172
+    },
+    {
+      "source": "topics/soap-bubbles/cover-v2.jpg",
+      "output": "topics/soap-bubbles/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "5e35d378c8c9ef20fa6539b0a9542f1e2cd39cd9fb9396dcf3f6adfb427f3daf",
+      "sha256": "5613d7dcc5d40d88c4e8cc3c5e8349dbfb6924d1d23426fd8ebfdd3176a80ade",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 85938
+    },
+    {
+      "source": "topics/digestion/cover-v2.jpg",
+      "output": "topics/digestion/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "ba26293f5f5d8ce0d99878dbc47cf2093eb5cea74b19ca0b5c8539ec658fb4fb",
+      "sha256": "4f285747ccc5499cf0106d70699bdba9d7e976405f413ea910581caaaf496104",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 15768
+    },
+    {
+      "source": "topics/digestion/cover-v2.jpg",
+      "output": "topics/digestion/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "ba26293f5f5d8ce0d99878dbc47cf2093eb5cea74b19ca0b5c8539ec658fb4fb",
+      "sha256": "30400b710f40d2c7e81bd2cb8e434e2951fc76bc7c49726c92ebe02d27fb994a",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 41134
+    },
+    {
+      "source": "topics/air-conditioner/cover-v2.jpg",
+      "output": "topics/air-conditioner/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "732123822ceb71a2c4430159fc32c8ee813230641d21b9c9a3bbed0f31b8b320",
+      "sha256": "de9f283586322bc12ae636bc74e325b2d60e9fc11fa1954d570860c705e31372",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 30036
+    },
+    {
+      "source": "topics/air-conditioner/cover-v2.jpg",
+      "output": "topics/air-conditioner/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "732123822ceb71a2c4430159fc32c8ee813230641d21b9c9a3bbed0f31b8b320",
+      "sha256": "7302d9e306b3aa6cac79d1d40f9c519c5be896d696c8b2f846c85634352cd20c",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 88826
+    },
+    {
+      "source": "topics/refrigerator/cover-v2.jpg",
+      "output": "topics/refrigerator/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "b7f575f561fc19380fc14dad1916e48fbb25cff5a9ff41f53624b36e5cd36a0c",
+      "sha256": "a5a4e7bfb848fcbbcf5d6ca84f1dcc8e1f439f6a021830f5734c20649c562254",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 32438
+    },
+    {
+      "source": "topics/refrigerator/cover-v2.jpg",
+      "output": "topics/refrigerator/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "b7f575f561fc19380fc14dad1916e48fbb25cff5a9ff41f53624b36e5cd36a0c",
+      "sha256": "f378937820e07e77236a911ec90677183b35492a6117bb640adbc4fe975f6450",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 93598
+    },
+    {
+      "source": "topics/batteries/cover-v2.jpg",
+      "output": "topics/batteries/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "f89e8ad236c4fec6688442078556643a6594ec326ab780e9e18d5857200f58cf",
+      "sha256": "ea0d2347085d87a143ddf76ae5f10601bc67f6cd34b703678ab083d79d554c02",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 34394
+    },
+    {
+      "source": "topics/batteries/cover-v2.jpg",
+      "output": "topics/batteries/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "f89e8ad236c4fec6688442078556643a6594ec326ab780e9e18d5857200f58cf",
+      "sha256": "7db47ef81ed5c5df510fa1db54f7c16b772b31ba6aa93e47cd3f5c073a8dae31",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 96618
     },
     {
       "source": "topics/rainbow/assets/rain-afterglow.png",

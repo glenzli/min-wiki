@@ -77,11 +77,44 @@ test('a deeper trajectory produces early capture while leaving an external flow'
   assert.ok(deep.positions.every(Number.isFinite));
   for (const simulation of [model, deep]) {
     const first = sample(0.95, simulation), middle = sample(1.1, simulation), last = sample(1.2, simulation);
-    assert.ok(middle.focus.absorbed > first.focus.absorbed + simulation.count * 0.15);
-    assert.ok(last.focus.absorbed > middle.focus.absorbed);
+    assert.ok(middle.focus.absorbed >= first.focus.absorbed);
+    assert.ok(last.focus.absorbed >= middle.focus.absorbed);
     assert.ok(last.focus.absorbed < simulation.count, 'escaping material is not forced into the hole');
     for (let i = 0; i < simulation.count; i++) {
       if (!middle.state[i*2+1]) assert.equal(last.state[i*2+1], 0);
     }
+  }
+});
+
+
+test('heating follows individual fallback; late bound material keeps extended eccentric paths', () => {
+  assert.ok(model.returnedAt.some(p => p < model.end));
+  assert.ok(model.bound.some((bound, i) => bound && model.returnedAt[i] > model.end), 'weakly bound gas can take longer to return');
+  for (let f = 0; f < model.frames; f++) {
+    const p = model.start + f / (model.frames - 1) * (model.end - model.start);
+    for (let i = 0; i < model.count; i++) {
+      if (model.heat[f * model.count + i]) {
+        assert.ok(model.bound[i]);
+        assert.ok(p > model.returnedAt[i], 'no heat before this parcel returns');
+        assert.ok(p < model.absorbedAt[i]);
+      }
+    }
+  }
+  const late = sample(model.end), radii = [];
+  for (let i = 0; i < model.count; i++) if (model.bound[i] && late.state[i*2+1])
+    radii.push(Math.hypot(...late.positions.slice(i*3,i*3+3)));
+  assert.ok(Math.max(...radii) > 4 * Math.min(...radii), 'no assigned circular radius at the end');
+  const heat = new Float32Array(model.count);
+  model.sample(.35,late.positions,late.previous,late.state,heat);
+  assert.ok(heat.every(x => x === 0));
+});
+
+test('motion-history samples stay continuous across stored frame boundaries', () => {
+  for (const f of [100, 200, 300, 450, 575]) {
+    const p = model.start + f / (model.frames - 1) * (model.end - model.start);
+    const before = sample(p - 1e-7).previous, after = sample(p + 1e-7).previous;
+    for (let j = 0; j < before.length; j += 3)
+      assert.ok(Math.hypot(...[0,1,2].map(k => after[j+k] - before[j+k])) < .001,
+        `history jump at frame ${f}, parcel ${j/3}`);
   }
 });

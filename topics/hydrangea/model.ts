@@ -22,3 +22,18 @@ export function bloomState(progress: number, planted: GardenConditions) {
   return { ...result, maturity, stage: p < .2 ? 0 : p < .46 ? 1 : p < .76 ? 2 : 3,
     hue: (95 + hueArc * maturity + 360) % 360, lightness: 72 + (result.lightness - 72) * maturity };
 }
+
+const smooth = (value: number) => { const x = clamp(value); return x * x * (3 - 2 * x); };
+/** Fraction of a drawn complex assembled; smooth symbol motion, not a measured reaction rate. */
+export function complexBinding(progress: number, planted: GardenConditions, index: number): number {
+  const state = bloomState(progress, planted);
+  return smooth((state.blue * state.maturity - index / 13) * 13);
+}
+/** Root-to-sepal teaching route; unchanged when scrubbing backward and forward. */
+export function aluminumRoute(progress: number, index: number): { x: number; y: number } {
+  const u = clamp((progress - .04 - index * .013) / .5);
+  const origin = { x: -210 + index * 37, y: 155 + Math.sin(index * 1.7) * 22 };
+  const nodes = [origin, {x: 0, y: 87}, {x: 0, y: -93}, {x: 108 + Math.cos(index * 2.4) * 20, y: -113 + Math.sin(index * 2.4) * 20}];
+  const segment = Math.min(2, Math.floor(u * 3)), local = smooth(u * 3 - segment), a = nodes[segment]!, b = nodes[segment + 1]!;
+  return {x: a.x + (b.x - a.x) * local, y: a.y + (b.y - a.y) * local};
+}

@@ -3,7 +3,7 @@
   "topicId": "microbes-everywhere",
   "zh": {
     "question": "一个微生物被风带到窗台上，就一定能在那里越长越多吗？",
-    "observe": "依次选择土壤、水、皮肤和空气，打开想象放大镜。比较每处的水分、营养和运输线索，分清到达、存活与繁殖三件事。",
+    "observe": "依次选择土壤、水、皮肤和空气，再点“靠近看细节”。沿同一幅画寻找水膜、菌丝、纤毛或随尘粒运输的孢子，分清到达、存活与繁殖三件事。",
     "academic": [
       {
         "title": "微生物是观察尺度，不是单一谱系",
@@ -24,11 +24,11 @@
       {
         "label": "眼睛看不到的邻居",
         "text": "抓一把土、望一望池水，再看看自己的手，许多地方都可能有很小的微生物。它们往往小得让眼睛看不清，所以我们准备了一面想象放大镜。里面的颜色和形状是帮助理解的画，不是刚刚从你手上拍到的照片。先从土里开始，找找颗粒之间的小空间。",
-        "cue": "选土壤并打开想象放大镜。"
+        "cue": "选土壤，先看小环境，再靠近观察同一片土粒和菌丝。"
       },
       {
         "label": "不同地方，不同小家",
-        "text": "土粒之间可能有水、空气和养分。一些微生物在这里参与分解落叶。再换到池水和皮肤，看看周围条件哪里不同。我们停一停，想想干燥的地方和湿润的地方，会不会适合完全相同的小生物？就算都在皮肤上，不同位置也可能有不同的邻居。",
+        "text": "土粒之间可能有水、空气和养分。浅色的细线是真菌的菌丝，一些真菌和细菌能帮助分解落叶。池水里的绿色细胞，可以借助光制造糖；另一些小居民用其他方式取得食物。它们的身体和生活办法，并不一样。再换到皮肤，找找表面的沟纹。即使相隔很近，适合居住的条件也可能不同。",
         "cue": "比较土壤、水、皮肤，在干湿差异处停三秒。"
       },
       {
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "If a microbe reaches a windowsill on the wind, must it multiply there?",
-    "observe": "Inspect soil, water, skin and air using the imagined magnifier. Compare water, nutrients and transport clues, separating arrival, survival and growth.",
+    "observe": "Choose soil, water, skin and air, then select Look closer. Follow the same scene to find water films, hyphae, cilia or spores on dust, distinguishing arrival, survival and growth.",
     "academic": [
       {
         "title": "Microbes are not one evolutionary group",
@@ -66,11 +66,11 @@
       {
         "label": "Neighbours too small to see",
         "text": "Soil, pond water and our skin can all contain tiny microbes. Our eyes usually cannot inspect them directly, so we have an imagined magnifying lens. Its colours and shapes are explanatory drawings, not photographs of your hand. Begin in soil and look between the grains.",
-        "cue": "Choose soil and open the imagined lens."
+        "cue": "Choose soil, view the habitat, then move closer to the same grains and hyphae."
       },
       {
         "label": "Different tiny homes",
-        "text": "Spaces in soil can hold air, water and nutrients, and some microbes help decompose leaves. Compare pond water and skin next. Pause and ask whether a dry place and a wet place would suit exactly the same organisms. Even different regions of skin can support different neighbours.",
+        "text": "Spaces between soil grains may hold water, air and nutrients. The pale threads represent fungal hyphae; some fungi and bacteria help break down leaves. Green cells in pond water can use light to make sugars, while other residents obtain food in other ways. Their bodies and ways of living differ. On skin, look for surface grooves. Even nearby places can offer different living conditions.",
         "cue": "Compare soil, water and skin, then pause."
       },
       {
@@ -97,6 +97,14 @@
     {
       "title": "Microbiology Society — What are bacteria?",
       "url": "https://microbiologysociety.org/why-microbiology-matters/what-is-microbiology/what-are-bacteria.html"
+    },
+    {
+      "title": "USDA NRCS — Soil Biology Primer",
+      "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer"
+    },
+    {
+      "title": "Grice et al. — Topographical and Temporal Diversity of the Human Skin Microbiome",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2805064/"
     }
   ]
 }

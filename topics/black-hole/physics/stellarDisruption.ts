@@ -39,6 +39,8 @@ export class StellarDisruption {
   detachAt!: Float32Array<ArrayBuffer>;
   bound!: Uint8Array<ArrayBuffer>;
   absorbedAt!: Float32Array<ArrayBuffer>;
+  returnedAt!: Float32Array<ArrayBuffer>;
+  heat!: Uint8Array<ArrayBuffer>;
   variation!: Float32Array<ArrayBuffer>;
   focus!: Float32Array<ArrayBuffer>;
   schedule!: { progress: number; dt: number; star: ReturnType<typeof orbitAt>; }[][];
@@ -55,6 +57,8 @@ export class StellarDisruption {
     this.detachAt = new Float32Array(count);
     this.bound = new Uint8Array(count);
     this.absorbedAt = new Float32Array(count).fill(2);
+    this.returnedAt = new Float32Array(count).fill(2);
+    this.heat = new Uint8Array(count * frames);
     this.variation = new Float32Array(count);
     this.focus = new Float32Array(frames * 3);
     this.schedule = Array.from({ length: frames - 1 }, (_, f) => {
@@ -95,7 +99,8 @@ export class StellarDisruption {
     const detach = this.detachAt[i];
     let x = initialStar.x + ox, y = initialStar.y + oy, z = oz;
     let vx = initialStar.vx, vy = initialStar.vy, vz = 0;
-    let classified = false, bound = false, swallowed = false;
+    let classified = false, bound = false, swallowed = false, outward = false;
+    let returnedTime = Infinity, thermal = 0, dissipatedPower = 0;
     const acceleration = new Float64Array(3);
     let guide: ReturnType<typeof orbitAt>;
 
@@ -113,16 +118,19 @@ export class StellarDisruption {
         ay += support * (gc * star.y - ay - 1.7 * (cy - star.y - oy) - 1.2 * (cvy - star.vy));
         az += support * (-az - 1.7 * (cz - oz) - 1.2 * cvz);
       }
-      if (bound) {
-        // Dissipate radial motion continuously where the returning flow is dense.
-        // Radial damping exerts no torque about the black hole. Weak tangential
-        // drag much later illustrates inward angular-momentum transport.
-        const damping = 0.55 * (0.75 + this.variation[i] * 0.5) * smooth(0.43, 0.62, p) * (1 - smooth(25, 42, r));
+      dissipatedPower = 0;
+      if (bound && Number.isFinite(returnedTime)) {
+        // A return-gated dissipation approximation, NOT collision detection.
+        // Remove radial energy gently; conserve in-plane angular momentum.
+        // No global clock forces every bound parcel into a circular disk.
+        const age = disruptionTime(p, this.scenario) - returnedTime;
+        const damping = 0.065 * (0.75 + this.variation[i] * 0.5)
+          * smooth(0, 6, age) * (1 - smooth(30, 75, r));
         const vr = (cx * cvx + cy * cvy + cz * cvz) / r;
-        const inward = 0.02 * Math.sqrt(MU / r ** 3) * (0.65 + this.variation[i] * 0.7) * smooth(0.72, 0.98, p);
-        ax -= damping * vr * cx / r + inward * cvx;
-        ay -= damping * vr * cy / r + inward * cvy;
-        az -= damping * (vr * cz / r + 0.8 * cvz) + inward * cvz;
+        ax -= damping * vr * cx / r;
+        ay -= damping * vr * cy / r;
+        az -= damping * (vr * cz / r + 0.3 * cvz);
+        dissipatedPower = damping * (vr * vr + 0.3 * cvz * cvz);
       }
       acceleration[0] = ax;
       acceleration[1] = ay;
@@ -135,6 +143,7 @@ export class StellarDisruption {
       this.positions[at] = x;
       this.positions[at + 1] = y;
       this.positions[at + 2] = z;
+      this.heat[f * this.count + i] = swallowed ? 0 : Math.round(255 * (1 - Math.exp(-thermal / 4)));
       if (f === this.frames - 1 || swallowed) continue;
       for (const step of this.schedule[f]) {
         const currentP = step.progress;
@@ -145,6 +154,13 @@ export class StellarDisruption {
           bound = (vx * vx + vy * vy + vz * vz) / 2 - MU / Math.hypot(x, y, z) < 0;
           this.bound[i] = bound ? 1 : 0;
         }
+        const r = Math.hypot(x, y, z);
+        const radial = (x * vx + y * vy + z * vz) / r;
+        if (classified && radial > 0.02) outward = true;
+        if (bound && outward && radial < -0.02 && !Number.isFinite(returnedTime)) {
+          returnedTime = disruptionTime(currentP, this.scenario);
+          this.returnedAt[i] = currentP;
+        }
         // Explicit midpoint integrates both position and velocity; damping is
         // evaluated at the midpoint instead of overwriting a particle position.
         force(currentP, x, y, z, vx, vy, vz);
@@ -153,6 +169,7 @@ export class StellarDisruption {
         const mvy = vy + acceleration[1] * dt / 2;
         const mvz = vz + acceleration[2] * dt / 2;
         force(currentP, mx, my, mz, mvx, mvy, mvz);
+        thermal = thermal * Math.exp(-0.07 * dt) + dissipatedPower * dt;
         x += mvx * dt; y += mvy * dt; z += mvz * dt;
         vx += acceleration[0] * dt; vy += acceleration[1] * dt; vz += acceleration[2] * dt;
         if (Math.hypot(x, y, z) < HORIZON_RADIUS) {
@@ -177,7 +194,7 @@ export class StellarDisruption {
     }
   }
 
-  sample(progress: number, positions: Float32Array, previous: Float32Array, state: Float32Array) {
+  sample(progress: number, positions: Float32Array, previous: Float32Array, state: Float32Array, heat?: Float32Array) {
     const star = orbitAt(progress, this.scenario);
     const frame = clamp((progress - this.start) / (this.end - this.start)) * (this.frames - 1);
     const f = Math.min(this.frames - 2, Math.floor(frame));
@@ -195,7 +212,10 @@ export class StellarDisruption {
         const b = a + this.count * 3;
         for (let k = 0; k < 3; k++) {
           positions[j + k] = this.positions[a + k] * (1 - blend) + this.positions[b + k] * blend;
-          previous[j + k] = this.positions[Math.max(0, f - 2) * this.count * 3 + j + k];
+          // Interpolate the lagging sample too. A floor-only history made the
+          // apparent streak length/direction jump at every stored frame.
+          previous[j + k] = this.positions[Math.max(0, f - 2) * this.count * 3 + j + k] * (1 - blend)
+            + this.positions[Math.max(0, f - 1) * this.count * 3 + j + k] * blend;
         }
       }
       const support = cohesiveFraction(progress, this.detachAt[i]);
@@ -203,6 +223,9 @@ export class StellarDisruption {
       state[i * 2] = 1 - support;
       state[i * 2 + 1] = progress < this.absorbedAt[i] ? 1 : 0;
       absorbed += 1 - state[i * 2 + 1];
+      if (heat) heat[i] = progress <= this.returnedAt[i] || !state[i * 2 + 1] ? 0
+        : (this.heat[f * this.count + i] * (1 - blend)
+          + this.heat[(f + 1) * this.count + i] * blend) / 255;
     }
     const a = f * 3, b = (f + 1) * 3;
     return {
@@ -218,7 +241,7 @@ export class StellarDisruption {
 // Structured-clone boundary: integration schedules stay in the worker.
 export type DisruptionSnapshot = Pick<StellarDisruption,
   'scenario' | 'count' | 'frames' | 'start' | 'end' | 'positions' | 'initial' |
-  'detachAt' | 'bound' | 'absorbedAt' | 'variation' | 'focus'>;
+  'detachAt' | 'bound' | 'absorbedAt' | 'returnedAt' | 'heat' | 'variation' | 'focus'>;
 export type DisruptionResponse =
   | {scenario: string; snapshot: DisruptionSnapshot}
   | {scenario: string; error: string};

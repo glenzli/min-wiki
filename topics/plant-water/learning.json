@@ -3,7 +3,7 @@
   "topicId": "plant-water",
   "zh": {
     "question": "植物没有水泵，水为什么能从根走到高处的叶子？",
-    "observe": "按下一站跟随水从根、木质部到叶脉，最后通过气孔进入空气。注意最后一段表示水汽，比较运输水的通道和气孔放大图。",
+    "observe": "播放根到空气的完整水旅程，可暂停或拖回。蓝色实心标记表示液态水，空心圈表示水汽；切换叶片近看，沿叶脉、叶内空隙与气孔检查同一段过程。",
     "academic": [
       {
         "title": "吸水由水势差驱动",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "木质部运水不是根里的机械水泵在抽水；高大植物的水分运输要联系叶部蒸腾和水势差来理解。",
-    "boundary": "单个蓝点只是追踪标记，水实际上大量同时流动；未展示全部组织通路、空穴或动态气孔控制，水汽本身通常不可见。",
+    "boundary": "22 秒仅用于观察。多个蓝点都是选出的追踪记号，不表示真实水量；叶片放大图与全景使用不同尺度。水汽通常不可见；未求解水势、空穴或动态气孔调控。",
     "narration": [
       {
         "label": "跟着水去旅行",
@@ -33,8 +33,8 @@
       },
       {
         "label": "叶子的小门",
-        "text": "到叶子里了。水能帮助细胞撑起身体，也参与植物制造糖的过程，还有许多水会在叶里变成水汽，从很小的气孔出去。看看放大图，气孔周围的细胞可以调节开口。门开着的时候，空气中的二氧化碳能进来，水汽也更容易离开，植物得兼顾这两件事。",
-        "cue": "显示气孔放大图与离叶的虚线水汽。"
+        "text": "到叶子里了。水能帮助细胞撑起身体，也参与植物制造糖的过程，还有许多水会在叶里变成水汽，从很小的气孔出去。看看放大图，气孔周围的细胞可以调节开口。门开着的时候，空气中的二氧化碳能进来，水汽也更容易离开，植物得兼顾这两件事。我们可以按播放让路线连起来，再切到放大的叶片。蓝点走到叶子里面后，会变成空心的水汽记号，穿过小孔去空气里。暂停时，这一小段也会停住，让我们慢慢找。",
+        "cue": "切换叶片近看，在液态水进入叶组织、水汽到达气孔和离开后分别暂停。"
       },
       {
         "label": "看不见的离开",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "How can water reach a leaf above the roots without a mechanical pump?",
-    "observe": "Use the next-stop button to follow water from roots through xylem and leaf veins, then out through stomata. The last segment represents vapour; compare the transport route with the enlarged pore.",
+    "observe": "Play the complete root-to-air journey and pause or scrub backward. Filled blue markers indicate liquid water; open circles indicate vapour. Switch to the leaf detail to trace veins, internal air spaces and the pore.",
     "academic": [
       {
         "title": "Water potential drives uptake",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Xylem flow is not driven by a mechanical pump in the root; transpiration and water-potential gradients are central to the explanation.",
-    "boundary": "The single blue dot is a tracking aid; many water molecules move at once. Tissue routes, cavitation and dynamic stomatal control are simplified, and water vapour is normally invisible.",
+    "boundary": "Twenty-two seconds is an observation duration. Blue markers trace selected cohorts, not actual water quantities. Whole-plant and leaf-detail views use different scales. Vapour is normally invisible; water potential, cavitation and dynamic pore regulation are not solved.",
     "narration": [
       {
         "label": "Travel with water",
@@ -75,8 +75,8 @@
       },
       {
         "label": "The leaf’s tiny openings",
-        "text": "Water helps support cells and participates in making sugars. Much of it evaporates inside leaves and leaves through tiny stomatal pores. Cells around each pore adjust its opening. Open pores let carbon dioxide in, but also let water vapour out, so the plant must balance both needs.",
-        "cue": "Show the enlarged pore and dotted vapour route."
+        "text": "Water helps support cells and participates in making sugars. Much of it evaporates inside leaves and leaves through tiny stomatal pores. Cells around each pore adjust its opening. Open pores let carbon dioxide in, but also let water vapour out, so the plant must balance both needs. Play the connected route, then open the leaf close-up. Inside the leaf, the blue marker becomes an open vapour symbol before passing through the pore into the air. Pause the journey to inspect that small passage.",
+        "cue": "Switch to the leaf detail and pause as liquid enters leaf tissue, vapour reaches the pore, and vapour leaves."
       },
       {
         "label": "An invisible departure",

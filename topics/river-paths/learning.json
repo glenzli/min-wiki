@@ -3,7 +3,7 @@
   "topicId": "river-paths",
   "zh": {
     "question": "河水遇到石头会怎样？弯道的两边会发生一样的变化吗？",
-    "observe": "先把石头放在中间，推进水流与泥沙；再选择靠左或拿走，比较路径。最后观察外侧冲刷和内侧沉积的标记。",
+    "observe": "播放并暂停，选一颗带深色边的金色泥沙，看它从外岸被搬入水流，再停在内侧。切换“近看河湾”保持当前进度；比较不同石头条件时，留意整条路线的改变。",
     "academic": [
       {
         "title": "河流沿势能降低的方向运动",
@@ -15,37 +15,37 @@
       },
       {
         "title": "泥沙让水流留下证据",
-        "body": "河流搬运的不只是水。较粗颗粒可能沿底部滚动、滑动或跳跃，细颗粒可悬浮在水中，溶解物则随水迁移。流速和水深改变搬运条件，但颗粒大小、密度与黏结也重要。比较不同时期的河岸线、沙洲和沉积层，可以寻找河道改变的证据；一次动画不能替代实际地形与流量测量。"
+        "body": "河流搬运的不只是水。较粗颗粒可能沿底部滚动、滑动或跳跃，细颗粒可悬浮在水中，溶解物则随水迁移。流速和水深改变搬运条件，但颗粒大小、密度与黏结也重要。比较不同时期的河岸线、沙洲和沉积层，可以寻找河道改变的证据；一次动画不能替代实际地形与流量测量。画面让一批标记颗粒保持身份，从外岸出发、进入水流、到内侧停下，以便把侵蚀、搬运和沉积连成一个过程；真实河流还会有别处输入和继续向下游输送的泥沙。"
       }
     ],
     "misconception": "河流拐弯不只是为了绕石头；外岸冲刷、内岸沉积是常见趋势，也有受地质和工程影响的例外。",
-    "boundary": "河道形状是预设的教学示意，并未求解三维流体运动；流量、时间和泥沙浓度不能从画面读成实测值。",
+    "boundary": "河道与颗粒路径是预设教学示意，未求解三维流体运动。16颗泥沙只代表一组被搬运的颗粒，不是整个河流的泥沙收支；沉积后保留在原处。图中流量、时间和浓度不是实测值。",
     "narration": [
       {
         "label": "跟着水走",
         "text": "想象你站在安全的岸边，看一条小溪从山上流下来。它不是拿着尺子画直线，而是沿着地面能通过的地方往低处走。今天我们把小溪缩小到屏幕上。先看一眼前面的石头，猜猜水会从哪边绕过去，再慢慢往前推进。",
-        "cue": "显示起点与石头，停三秒。"
+        "cue": "从0播放，观察白色水标记沿河道前进；不要跳到末帧。"
       },
       {
         "label": "换一个条件",
         "text": "现在把石头换到另一边，再看一次。你发现河道的样子不一样了吗？这说明周围的地形会影响水的路线。不过，真正的大河拐弯还有很多原因。河岸软一点、硬一点，树根多一点、少一点，都可能让它经过很久以后变成不同的样子。",
-        "cue": "切换石头位置，对照两条路径。"
+        "cue": "暂停后切换石头位置，保持进度比较，再继续播放。"
       },
       {
         "label": "水带着小颗粒",
-        "text": "找找河里的金色小点，它们代表泥沙。水一边流，一边搬着这些小颗粒。来到弯道时，两边受到的影响常常不一样：外侧的岸可能被冲走一些，内侧却可能堆起一些沙。先停一下，用手指分别指出外侧和内侧，不要只记住左边和右边。",
-        "cue": "停在弯道，依次指向两岸。"
+        "text": "找找河里的金色小点，它们代表泥沙。挑一颗带深色边的小点，跟着它走：先在岸边，再被水搬走，最后停在弯道的内侧。点近看河湾，再暂停，你还能找到刚才那颗吗？这里的颗粒没有突然消失，水把它们从一个地方搬到了另一个地方。",
+        "cue": "在约45%切换近看河湾，跟踪深色边金点，推进到85%看它沉积。"
       },
       {
         "label": "慢慢改变的地图",
         "text": "河流在搬东西，也在慢慢改变自己的地图。一场洪水和许多年的流水，都可能留下痕迹。我们的小动画把长时间缩短了。下次和大人看河流时，可以从安全的地方找一找沙洲和弯道，想想哪些地方正在被搬走，哪些地方又收到了泥沙。",
-        "cue": "留在最终全景，指出沙洲示意。"
+        "cue": "停在100%，确认沉积颗粒仍在；拖回前段对照外岸来源。"
       }
     ]
   },
   "en": {
     "question": "What happens when flowing water meets a rock? Do both sides of a bend change in the same way?",
-    "observe": "Place the rock in the middle and advance water and sediment, then choose left or remove it. Compare the routes and the outer-bank erosion and inner-bank deposition markers.",
+    "observe": "Play and pause. Follow the outlined gold grain from the outer bank into the flow and onto the inside. Inspect the bend without resetting progress; compare the whole route under different rock conditions.",
     "academic": [
       {
         "title": "Water follows a hydraulic gradient",
@@ -57,31 +57,31 @@
       },
       {
         "title": "Sediment records river change",
-        "body": "Coarse grains can roll, slide or hop near the bed; finer material can remain suspended, and dissolved substances travel with the water. Transport depends on flow, grain size, density and cohesion. Comparing banks, bars and sediment layers over time provides evidence of change beyond a single simplified animation."
+        "body": "Coarse grains can roll, slide or hop near the bed; finer material can remain suspended, and dissolved substances travel with the water. Transport depends on flow, grain size, density and cohesion. Comparing banks, bars and sediment layers over time provides evidence of change beyond a single simplified animation. The displayed grains keep their identities from bank erosion through transport to deposition. Real rivers also receive sediment from elsewhere and carry material farther downstream."
       }
     ],
     "misconception": "Rivers do not bend only to avoid rocks. Outer erosion and inner deposition are common patterns, with geological and engineered exceptions.",
-    "boundary": "The channel is a preset teaching diagram, not a three-dimensional fluid simulation. Displayed motion does not measure discharge, time or sediment concentration.",
+    "boundary": "Channel and grain paths are prescribed teaching diagrams, not three-dimensional flow solutions. The 16 persistent grains represent one transported group, not the entire river sediment budget. Flow, time and concentration are not measurements.",
     "narration": [
       {
         "label": "Follow the water",
         "text": "Imagine watching a stream from a safe bank as it comes down a hill. It does not draw a ruler-straight line; it follows a route downhill through the landscape. Today the stream fits on our screen. Look at the rock ahead, predict which way water will pass, then move forward slowly.",
-        "cue": "Show the start and rock; pause for three seconds."
+        "cue": "Play from zero and follow the white water markers downstream rather than jumping to the last frame."
       },
       {
         "label": "Change one condition",
         "text": "Move the rock to the other side and look again. Has the route changed? The landscape influences where water flows. Real rivers have many reasons to bend, though. Softer or harder banks, and more or fewer roots, can help the channel develop differently over a long time.",
-        "cue": "Switch the rock position and compare the routes."
+        "cue": "Pause and change rock position at the same progress, then continue."
       },
       {
         "label": "Water carries grains",
-        "text": "Find the gold dots representing sediment. Flowing water carries these little grains. At a bend, the two banks often change differently: some outer bank may wear away while sand gathers along the inside. Pause and point to the outside and inside of the bend, rather than memorizing left and right.",
-        "cue": "Pause at a bend and point to both banks."
+        "text": "Find the gold sediment dots. Follow the one with a dark outline: first at the bank, then carried by water, then resting along the inside of the bend. Inspect the bend and pause. Can you still find the same grain? It has not disappeared; water moved it from one place to another.",
+        "cue": "Inspect the bend around 45%, follow the outlined grain, and advance to 85% to see deposition."
       },
       {
         "label": "A changing map",
         "text": "A river moves material and gradually redraws its own map. A flood and many years of flow can both leave traces. Our short animation compresses that long story. Next time you visit a river with an adult, look from a safe place for bars and bends, and wonder where sediment is leaving and arriving.",
-        "cue": "Hold the final overview and indicate the sediment bar."
+        "cue": "Hold at 100% with settled grains still present, then scrub back to their outer-bank origin."
       }
     ]
   },

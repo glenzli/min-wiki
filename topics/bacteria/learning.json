@@ -3,11 +3,11 @@
   "topicId": "bacteria",
   "zh": {
     "question": "长得很像的两种细菌，一定做同样的事情吗？",
-    "observe": "先选择膜、DNA 和核糖体辨认细胞结构，再切换酸奶、土壤和肠道场景。比较同属细菌却不同的生活条件与作用，避免按形状判断好坏。",
+    "observe": "选择细胞壁、细胞膜、拟核与DNA、核糖体，对照整体标记和局部放大；在膜图追踪一次物质进出，再拖动生长与分裂进度，看看 DNA 复制发生在两个细胞分开之前。比较酸奶、土壤与肠道的不同作用。",
     "academic": [
       {
         "title": "细菌有自己的细胞组织",
-        "body": "细菌是原核生物，具有细胞膜、细胞质、DNA 和核糖体，通常还有不同于植物细胞壁的细胞壁。没有核膜不等于没有遗传控制。许多细菌通过二分裂繁殖：先复制遗传物质、延长细胞并完成分隔，再形成两个子细胞；这与病毒部件在宿主中制造后组装的方式不同，也不能仅看一个圆点变成两个圆点就当作同一机制。"
+        "body": "细菌是原核细胞，具有膜、细胞质、DNA与核糖体，拟核周围没有核膜。图中的肽聚糖细胞壁是支撑网，膜是选择性边界，两者不同；另一些细菌有外膜，少数缺少细胞壁。膜蛋白可帮助特定物质运输，但不同路线的能量和浓度条件不同。核糖体读取信使RNA来合成蛋白质。许多细菌通过二分裂增加数量：复制DNA、分配遗传信息并形成分隔，而不是像病毒那样在宿主内组装子代。"
       },
       {
         "title": "代谢把物质变化连接到生态作用",
@@ -19,12 +19,12 @@
       }
     ],
     "misconception": "细菌不是病毒，也不全是病菌；外形相似不保证能力或对人的影响相同。",
-    "boundary": "场景只选少数代表作用，颜色与数量无测量含义；没有依据图片识别菌种或判断食品是否安全的功能。",
+    "boundary": "主图只选较厚细胞壁的代表，颜色、数量和尺寸无测量含义。膜图只示意两条特定路线，分裂只演示一次，真实过程可重叠且速度不同；生活场景是不同群体，不能据此识别菌种或判断食品安全。",
     "narration": [
       {
         "label": "认识很小的细胞",
-        "text": "说到细菌，你是不是先想到了生病？其实细菌有很多种，许多不会让人生病，有的还参与我们熟悉的事情。先看这张放大的图：外面有膜，里面有 DNA，还有制造蛋白质的小结构。它不是一粒没有内容的小灰尘，而是一个小小的细胞。",
-        "cue": "依次选择膜、DNA 和核糖体。"
+        "text": "说到细菌，你是不是先想到了生病？其实细菌有很多种，许多不会让人生病。看看这颗放大的细胞：外面的壁帮助撑住形状，里面的膜有选择地让一些物质进出。再往里，有保存信息的 DNA，也有制造蛋白质的小结构。点一下膜的按钮，停一停，追踪小小的营养物去了哪里。",
+        "cue": "依次选择壁、膜、拟核与DNA、核糖体；回到膜，播放一次进出并在营养物越过膜后暂停。"
       },
       {
         "label": "酸奶里的变化",
@@ -37,19 +37,19 @@
         "cue": "依次显示土壤与肠道，突出不同作用。"
       },
       {
-        "label": "看条件，不只看样子",
-        "text": "这些小生物也要遇到适合自己的环境，水分、温度、食物和空气条件都会影响它们。长得很像，也可能做不同的事情。我们认识细菌，是学会更仔细地分辨，不是把所有细菌都当坏蛋，也不是把未知的东西拿来吃。可以从图里继续找证据，看看哪里写着它的条件和作用。",
-        "cue": "回到结构图与三个场景选择，结束在比较状态。"
+        "label": "从一颗到两颗",
+        "text": "小细胞怎样变多呢？我们慢慢看一次。细胞长大，DNA 先复制出一份，两份信息分开，中间再形成分隔。现在有两个细胞了！它们还需要合适的水分、食物和环境，不能一直翻倍。认识这些小居民，也要记得：长得像，不代表本领一样，更不是让我们拿未知的东西来吃。",
+        "cue": "播放一次生长与分裂；在 DNA 复制后暂停，再继续到两个子细胞，最后保持终态。"
       }
     ]
   },
   "en": {
     "question": "Must two bacteria with similar shapes do the same things?",
-    "observe": "Explore membrane, DNA and ribosomes, then compare yogurt, soil and gut habitats. Notice that bacteria can have different requirements and roles despite similar shapes.",
+    "observe": "Select wall, membrane, nucleoid and DNA, and ribosomes. Compare the whole-cell marker with the enlarged detail. Follow one membrane exchange, then move the growth-and-division slider to see DNA copying before the two cells separate. Compare roles in yogurt, soil and the gut.",
     "academic": [
       {
         "title": "Bacteria have cellular organisation",
-        "body": "Bacteria are prokaryotic cells with membranes, cytoplasm, DNA and ribosomes, usually with a wall unlike a plant wall. Many reproduce by binary fission involving DNA replication, growth and separation. This differs from assembling viral components inside a host. Similar-looking increases in particle number can represent different mechanisms."
+        "body": "Bacteria are prokaryotic cells with membranes, cytoplasm, DNA and ribosomes; the nucleoid has no nuclear membrane. The illustrated peptidoglycan wall provides supporting mesh, distinct from the selective membrane. Other bacteria have an outer membrane; a few lack a wall. Membrane proteins transport particular substances, with different energy and concentration requirements. Ribosomes read messenger RNA to make proteins. Many bacteria reproduce through binary fission, copying and partitioning DNA before separating, unlike viruses assembled within a host."
       },
       {
         "title": "Metabolism connects chemistry with ecological roles",
@@ -61,12 +61,12 @@
       }
     ],
     "misconception": "Bacteria are not viruses, and not all cause disease. Similar shapes do not guarantee similar abilities or effects.",
-    "boundary": "Scenes illustrate selected roles, with symbolic colours and counts. The pictures cannot identify species or establish whether food is safe.",
+    "boundary": "The main cell represents one thick-walled type; colors, counts and dimensions are illustrative. Membrane exchange shows only two selected routes. Division runs once; real processes may overlap and have different timing. Habitats show different communities. These images cannot identify species or establish food safety.",
     "narration": [
       {
         "label": "Meet a tiny cell",
-        "text": "Does the word bacteria make you think of illness? There are many kinds, and many do not make us ill. Look at this enlarged cell: a membrane surrounds DNA and tiny protein-making structures. It is not an empty speck of dust but an organised living cell.",
-        "cue": "Select membrane, DNA and ribosomes."
+        "text": "Does the word bacteria make you think of illness? There are many kinds, and many do not make us ill. Look at this enlarged cell. Its outer wall helps hold its shape. Just inside, a membrane selectively lets some substances enter or leave. Further in are DNA that stores information and small structures that make proteins. Press the membrane button, pause, and follow where the tiny nutrient goes.",
+        "cue": "Select wall, membrane, nucleoid and DNA, and ribosomes. Return to the membrane, play one exchange and pause after the nutrient crosses it."
       },
       {
         "label": "A change in yogurt",
@@ -79,9 +79,9 @@
         "cue": "Compare soil and gut roles."
       },
       {
-        "label": "Ask about conditions, not just shape",
-        "text": "Bacteria need suitable surroundings: water, temperature, food and oxygen conditions matter. Similar shapes can hide different abilities. Learning about bacteria means making careful distinctions, neither calling them all villains nor tasting unknown material. Keep asking what conditions a kind needs and what it can do.",
-        "cue": "End with the structure and habitat comparisons available."
+        "label": "From one cell to two",
+        "text": "How do little cells become more numerous? Let us watch once, slowly. The cell grows and makes a copy of its DNA. The two copies separate, and a partition forms between them. Now there are two cells! They still need suitable water, food and surroundings, so they cannot keep doubling forever. Remember, similar shapes do not mean the same abilities, and learning about these residents does not mean tasting unknown things.",
+        "cue": "Play one growth-and-division sequence. Pause after DNA copying, then continue until two daughter cells form and hold the final state."
       }
     ]
   },
@@ -97,6 +97,10 @@
     {
       "title": "Microbiology Society — What are bacteria?",
       "url": "https://microbiologysociety.org/why-microbiology-matters/what-is-microbiology/what-are-bacteria.html"
+    },
+    {
+      "title": "OpenStax — Unique Characteristics of Prokaryotic Cells",
+      "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells"
     }
   ]
 }

@@ -3,7 +3,7 @@
 - `content/catalog.json`: lightweight category and topic registry; no simulation state or imports.
 - `src/catalog/`: encyclopedia discovery, URL filters, bounded list projection and generic covers. `model.ts` is the build/runtime metadata contract.
 - `src/visuals/`: content-free rendering utilities. `blackHoleOptics.ts` owns camera-dependent ray integration and material disposal; `canvasSurface.ts` owns Canvas sizing and drawing primitives. `cloudTexture.ts` owns cached procedural cloud density and lighting textures; topic dynamics remain local. `teachingCamera.ts` owns the content-free narrow-lens projection and distance compensation. These utilities do not own topic dynamics, controls or language.
-- `src/platform/`: language selection and URL propagation (`i18n.ts`), shared English messages (`locales/en.json`), appearance preferences, semantic color tokens and topic navigation. No topic renderer dependencies.
+- `src/platform/`: language selection and URL propagation (`i18n.ts`), shared English messages (`locales/en.json`), appearance preferences, semantic color tokens and topic navigation. `topicPresentation.css` owns the topic reading width, typography, control metrics and card treatment across layout families; scientific scene geometry and palettes remain topic-owned. No topic renderer dependencies.
 - `topics/<id>/`: complete independent topic, including HTML entry, renderer, content, references, styles, cover and focused tests. Full-page navigation owns the document lifetime.
 - `topics/black-hole/`: migrated black-hole experience. Physics, worker, rendering and audio retain their previous boundaries; `main.ts` composes topic controls and shared navigation.
 - `topics/galactic-center/`: companion binary with detached, overflowing and wind-fed scenarios; barycenter, gas paths and Three.js scene stay here. The old URL is retained.
@@ -12,11 +12,12 @@
 - `topics/earth-moon/`: phase geometry, synchronous-facing Moon and independent true-scale comparison, with a Three.js orbit view and a geocentric observer using the same lunar surface and lighting geometry.
 - `topics/saturn-moons/`: seven selected satellites, sourced physical/orbital data, moon selection and Three.js orbit/close-up/size views.
 - `topics/lunar-craters/`: impact energy, ballistic ejecta and illustrative simple-crater excavation.
-- `topics/volcano-eruption/`: magma paths, single/multiple vents, ballistic clasts and qualitative eruption styles; whole-section, vent and lava-slope cameras share one state, with separate surface/interior cooling cues.
+- `topics/volcano-eruption/`: magma paths, shared vent supply, distinct flow/fountain/ash examples and four cameras; `context.ts` separates long-term activity evidence from eruption settings. External legends and surface/interior cooling cues keep the cutaway readable.
+- `topics/submarine-volcanoes/`: water-dependent eruption examples and accumulation into an island; the bounded model separates deep pillow lava, shallow interaction and long-term growth/erosion, with ocean/vent/section views, local deep-water illumination, cooled lava skins, suspended particles and external material keys.
 - `topics/volcanic-lakes/`: crater/caldera geometry and bounded illustrative water balance.
 - `topics/typhoon/`: ocean/shear/hemisphere conditions and broad tropical-cyclone circulation.
 - `topics/tornado/`: a supercell-related vorticity pathway with condensation visibility independent of near-ground circulation.
-- `topics/planet-surfaces/`: selected planetary compositions, surface/fluid encounters and procedural surface illustrations, with model limits distinct from geography.
+- `topics/planet-surfaces/`: eight planetary and lunar examples with distinct globe, landscape and section views; rock, liquid water, Titan's hydrocarbon lakes, inferred silicate melt and deep planetary fluids remain separate concepts. `surfacePainter.ts` owns deterministic textures, `surfaceWorker.ts` prepares them off the UI thread, and `scene.ts` owns cancellable jobs, bounded caches and drawing. Procedural illustrations and descent models are not observation maps.
 - `topics/mimosa/`: touch propagation, pulvinus turgor and reversible leaf movement; continuous whole-plant, primary-pulvinus tissue and single-motor-cell views share local anatomy and deformation.
 - `topics/hydrangea/`: cultivar-dependent aluminum uptake and later sepal color, distinct from immediate recoloring.
 - `topics/rain-formation/`: cloud droplets, warm/ice growth pathways and subcloud evaporation; event positions and volume transfers remain topic-owned.

@@ -1,24 +1,22 @@
 # 细菌是什么？都会让人生病吗？ / What are bacteria?
 
-面向儿童的双语互动专题。点选细胞膜、DNA、核糖体，高亮典型杆状细菌的对应结构；切换酸奶、土壤、肠道，了解不同细菌在不同情境中的作用。球状、杆状与螺旋状的比较强调外形不能判断致病性。页面另解释广泛分布与有条件的二分裂。
+面向幼儿的双语专题。整颗杆状细菌始终保留为观察参照，金色标记与四处局部放大相对应：肽聚糖细胞壁、细胞膜、拟核与 DNA、核糖体。膜的局部图可播放、暂停、继续一次特定物质交换。另一条有限过程展示生长、DNA 复制与分配、中间分隔以及两个子细胞，可播放、暂停或用进度条停在任意位置。酸奶、土壤、肠道的生活场景平滑交替，各自代表不同细菌群体。
 
-A bilingual children's topic with a selectable bacterial cutaway and three illustrated settings: yogurt, soil, and the gut. Shape does not identify harmfulness. Static text remains available without JavaScript.
+This bilingual topic keeps the whole rod-shaped cell visible as a reference for four details: a peptidoglycan wall, membrane, nucleoid and DNA, and ribosomes. One illustrative membrane exchange can be played, paused and resumed. A separate finite sequence shows growth, DNA copying and partitioning, constriction and two daughter cells. It supports playback, pause and a keyboard-accessible progress slider. Yogurt, soil and gut illustrations crossfade as distinct communities.
 
-## Scientific boundaries
+## 科学边界 / Scientific scope
 
-- Structure is a simplified typical bacterium, not a universal anatomical template. Colors, sizes and counts are illustrative.
-- Setting changes refer to different bacterial populations; this is not one bacterium moved between settings.
-- Beneficial, harmless and pathogenic depend on strain, location and circumstances. Bacteria are cells; viruses lack ribosomes and rely on host machinery.
-- Broad distribution does not imply living bacteria at every point. Oxygen needs differ across bacteria. Binary fission is common, but conditions limit growth and no universal doubling time is presented.
-- No medical advice or instructions for growing real microbes.
+- 主图选择一类较厚细胞壁的细菌；另一些有外膜，少数缺壁。颜色、网格、结构数量和厚度不是真实测量。细菌没有核膜包围的细胞核，也没有线粒体；不把鞭毛或单一外壳当作所有细菌共有。
+- 壁提供支撑，膜是选择性边界。物质交换只示意两条选定路线，不能推断所有营养物都穿过同一种通道或都不需要能量。核糖体用信使 RNA 合成蛋白质，没有把它画成膜包住的小细胞。
+- 二分裂突出 DNA 先复制再分配，不把一份遗传信息剪成两半。演示一次后停止，阶段按观察需要展开；真实过程可以重叠，速度依种类和条件变化，资源限制增长。
+- 保留菌株、环境与宿主条件的限定；外形不决定作用或致病性。这不是菌种识别、培养、食用或食品安全判断工具。
 
-## Sources checked 2026-09-12
+The main cell is one thick-walled example, not a universal bacterial envelope. Some bacteria have an outer membrane; a few lack a wall. Membrane routes are selected examples with no general claim about transport energy. DNA, ribosomes and envelope layers are enlarged and simplified. Binary fission shows copying before separation, runs once, and is not timed as real growth. Real processes can overlap and growth is resource-limited. Shape does not establish biological function or disease risk.
 
-- [OpenStax: Prokaryotic Cells](https://openstax.org/books/biology-2e/pages/4-2-prokaryotic-cells): membrane, DNA, ribosomes and lack of a membrane-bound nucleus.
-- [OpenStax: How Microbes Grow](https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow): binary fission, variable growth and resource limitations.
-- [NIH / NIGMS: What Is the Microbiome?](https://www.nigms.nih.gov/biobeat/2024/03/what-is-the-microbiome): helpful and harmful microbes, strain distinctions.
-- [FAO: Soil bacteria](https://www.fao.org/agriculture/crops/thematic-sitemap/theme/spi/soil-biodiversity/soil-organisms/by-type/bacteria/en/): decomposition and nutrient cycles.
-- [Seasonal Diversity of Lactic Acid Bacteria in Artisanal Yoghurt](https://pmc.ncbi.nlm.nih.gov/articles/PMC7895560/): lactic acid fermentation in yogurt.
-- [Microbiology Society: What are bacteria?](https://microbiologysociety.org/why-microbiology-matters/what-is-microbiology/what-are-bacteria.html): habitat diversity and disease-causing subset.
+## 文件与验证 / Ownership and checks
 
-Original SVG artwork; native keyboard/touch buttons with pressed states and live text. No audio, timers, animation loops, external media or new runtime dependencies. The page has no background resources requiring lifecycle cleanup.
+`model.ts` owns bounded presentation phases, transport positions and interrupted selection interpolation. `scene.ts` renders lightweight SVG anatomy, details and division; `habitats.ts` owns the three everyday illustrations. `main.ts` owns controls, finite animation and cleanup. Existing shared reading mode, navigation, translation and reduced-motion-aware transition helper are used without modification. Hiding or leaving the page stops active motion; no timer or animation loops run while idle.
+
+`learning.json` supplies paired academic notes, misconceptions and four child-friendly narration segments with separate visual cues. All visible UI copy is covered by `locales/en.json`. Original covers remain untouched.
+
+Focused model tests cover DNA-before-separation ordering, continuous and monotonic phases, opposite membrane crossing directions, fixed endpoints and interruption-safe selection. Parent integration performs final browser/build checks. Sources: OpenStax Biology 4.2 and Microbiology 3.3/9.1, with the topic’s existing microbiology, fermentation and ecosystem references retained.

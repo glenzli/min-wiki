@@ -3,7 +3,7 @@
   "topicId": "sand-journey",
   "zh": {
     "question": "一粒沙一定来自石头吗？它怎样来到海边？",
-    "observe": "先选择岩石，再选择贝壳；各推进一遍，比较碎片颜色、搬运路线与最后的堆积。留意圆框中的颗粒逐渐变小。",
+    "observe": "播放岩石来源，再比较贝壳来源：前者沿河来到海边，后者从近岸出发。金色圈跟着同一粒；点“跟着这粒沙”近看，拖回前面比较它的大小、棱角和位置。",
     "academic": [
       {
         "title": "沙是粒径名称，不是单一物质",
@@ -11,7 +11,7 @@
       },
       {
         "title": "破碎和搬运是不同过程",
-        "body": "风化使岩石在原处发生物理破裂或化学变化，侵蚀和搬运把碎屑移走。流水、风浪和颗粒碰撞可以进一步磨损颗粒，尖角逐渐变圆，但程度取决于材质和经历。贝壳也可被破碎和磨蚀，并不是每粒沙都先经过高山和河流；近岸生物来源的沙可以在海边形成并重新分配。"
+        "body": "风化使岩石在原处发生物理破裂或化学变化，侵蚀和搬运把碎屑移走。流水、风浪和颗粒碰撞可以进一步磨损颗粒，尖角逐渐变圆，但程度取决于材质和经历。贝壳也可被破碎和磨蚀，并不是每粒沙都先经过高山和河流；近岸生物来源的沙可以在海边形成并重新分配。图中把岩石来源接到河道，把贝壳来源留在近岸水域；两种经历均保持原有颗粒的可追踪性。颗粒变小和棱角变化只表示一种可能的磨蚀经历。"
       },
       {
         "title": "海滩是持续交换的地方",
@@ -19,33 +19,33 @@
       }
     ],
     "misconception": "沙不等于黄色石英，也不是都由海浪现场磨出来的。",
-    "boundary": "一个圆框代表一种颗粒经历，不代表全部沙粒的共同路线；破碎、磨蚀和沉积的时间被压缩，大小并非比例尺。",
+    "boundary": "金色圈与16颗标记碎粒表示两种可能经历，不代表所有沙粒都走同一路线或必然变圆。破碎、磨蚀和沉积时间被压缩；没有计算粒子质量、脱落细屑或真实搬运力。",
     "narration": [
       {
         "label": "一粒沙的来处",
         "text": "海边的沙摸起来细细的，可它们的故事不一定相同。有些曾经在大石头里，有些来自贝壳这样的生物硬壳。先选一种来源，看看画面上的颜色和形状。我们今天追踪一粒小颗粒，就像拿着放大镜，跟着它慢慢走一段路。",
-        "cue": "选择岩石来源，停在起点。"
+        "cue": "选择岩石，停在0%，找到岩石上的金色追踪圈。"
       },
       {
         "label": "从大块到小块",
         "text": "岩石会在很长的时间里开裂、变化，留下小碎片。水流把一些碎片带走，它们在路上碰撞和摩擦，又可能变小、变圆。这里发生得很快，现实里常常要等很久。停一停，看看圆框里的颗粒，和一开始相比，你发现什么不同？",
-        "cue": "推进破碎过程，停三秒观察。"
+        "cue": "播放到约25%，暂停并打开跟随近景，再缓慢拖动看棱角改变。"
       },
       {
         "label": "换一个故事",
         "text": "现在换成贝壳，再看一遍。贝壳也会破碎，小碎片能被海边的水流搬来搬去。它们不用先去山顶，再坐河流回到海边。所以同一片沙滩上，可能住着许多来路不同的小颗粒。只是看颜色，我们还不能完全知道每一粒是什么。",
-        "cue": "选择贝壳，对照来源与近岸路线。"
+        "cue": "在0%选择贝壳，观察近岸起点和弯曲水路，不经过左侧河道。"
       },
       {
         "label": "暂时停在海边",
         "text": "水流的搬运本领变了，有些颗粒就停下来，和别的颗粒堆在一起，形成我们看到的沙地。不过，这不是旅行的永远终点。下一次风浪，又可能把沙搬走。下次观察沙子时，请让大人陪你看，不扬沙、不揉眼睛，发现不同的小颜色和小形状就很有趣。",
-        "cue": "停在沉积区，扫视不同颗粒。"
+        "cue": "停在100%，颗粒和金圈都保留在沙滩；回拖可沿原路追溯。"
       }
     ]
   },
   "en": {
     "question": "Must a sand grain come from a rock? How can it reach a beach?",
-    "observe": "Run the sequence with rock and then shell. Compare fragment colors, transport routes and deposition, including the shrinking grain inside the tracking circle.",
+    "observe": "Play the rock source, then compare shell: one arrives by river, the other begins near the coast. The gold ring follows one grain. Use Follow this grain and scrub back to compare its size, edges and position.",
     "academic": [
       {
         "title": "Sand describes size, not one substance",
@@ -53,7 +53,7 @@
       },
       {
         "title": "Breakdown differs from transport",
-        "body": "Weathering alters or breaks material where it lies; erosion and transport move it away. Flow, waves and collisions can wear grains and round their edges, depending on material and history. Shell fragments can form and move close to a coast, so not every beach grain has traveled from a mountain through a river."
+        "body": "Weathering alters or breaks material where it lies; erosion and transport move it away. Flow, waves and collisions can wear grains and round their edges, depending on material and history. Shell fragments can form and move close to a coast, so not every beach grain has traveled from a mountain through a river. The diagram connects the rock source to a river while keeping the shell source near shore. Both preserve grain identity; shrinking and softened corners illustrate one possible abrasion history."
       },
       {
         "title": "A beach exchanges sediment",
@@ -61,27 +61,27 @@
       }
     ],
     "misconception": "Sand is not always yellow quartz, and waves do not create every grain locally.",
-    "boundary": "The circle represents one possible grain history, not a universal route. Breakdown and deposition are compressed in time and grain sizes are not to scale.",
+    "boundary": "The gold ring and 16 marked fragments illustrate possible histories, not a route or rounding pattern shared by all sand. Time is compressed; particle mass, shed fines and actual transport forces are not calculated.",
     "narration": [
       {
         "label": "Where a grain begins",
         "text": "Beach sand feels fine, but its grains may have different stories. Some were part of rocks; others came from hard shells. Choose a source and notice its color and shape. Today we follow one little grain, almost as if we had a magnifying glass to accompany it on part of its journey.",
-        "cue": "Select rock and hold the starting scene."
+        "cue": "Choose rock at 0% and locate the gold tracking ring on the rock."
       },
       {
         "label": "From pieces to grains",
         "text": "Over long periods rocks can crack and change, leaving fragments. Water carries some away. Collisions and rubbing during the journey can make them smaller or rounder. Our picture moves quickly, but nature may take a long time. Pause and compare the grain in the circle with the one you saw at the beginning.",
-        "cue": "Advance through fragmentation and pause for three seconds."
+        "cue": "Play to about 25%, pause and open the following view; scrub slowly to compare edges."
       },
       {
         "label": "Try a different story",
         "text": "Now choose a shell and watch again. Shells can break too, and nearby currents can carry their fragments around. They need not visit a mountain before returning by river. One beach can contain grains from many places. Looking at color alone does not tell us exactly what every grain is made of.",
-        "cue": "Select shell and compare the source and coastal route."
+        "cue": "At 0%, choose shell and follow its coastal route without passing through the inland river."
       },
       {
         "label": "A stop on the shore",
         "text": "When transport conditions change, some grains settle beside others to form the sand we see. This may only be a stop along the way: later waves or wind can move them again. When you examine sand with an adult, avoid throwing it or rubbing your eyes. Enjoy finding its many little colors and shapes.",
-        "cue": "Hold the deposition area and indicate contrasting grains."
+        "cue": "Hold at 100% with grains and ring remaining on the beach; scrub back along the same route."
       }
     ]
   },
@@ -97,6 +97,10 @@
     {
       "title": "USGS · Sediment transport and deposition",
       "url": "https://www.usgs.gov/publications/sediment-transport-and-deposition"
+    },
+    {
+      "title": "NOAA · How does sand form?",
+      "url": "https://oceanservice.noaa.gov/facts/sand.html"
     }
   ]
 }

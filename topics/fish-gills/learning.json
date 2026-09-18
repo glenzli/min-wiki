@@ -3,7 +3,7 @@
   "topicId": "fish-gills",
   "zh": {
     "question": "鱼要从水里得到氧气，必须先吞下一串气泡吗？",
-    "observe": "按四个步骤观察水从嘴进入、经过鳃再流出；追踪氧气标记从水侧到血液侧，分清水流路线和气体交换路线。",
+    "observe": "播放并追踪放大框内同一个黄色氧气点：先在水侧移动，再跨过薄交换面，最后由血流带走。随时暂停，比较水流与血流的相反方向。",
     "academic": [
       {
         "title": "鳃获取的是溶解氧",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "鱼主要吸收水中已经溶解的氧气，不是把水分子拆成氧气，也不需要看得见的气泡。",
-    "boundary": "氧气圆点和水流箭头不按分子尺度或真实流速；本图没有绘出完整逆流血管，不能用箭头大小估计溶氧浓度。",
+    "boundary": "20 秒是观察时长，不是氧分子的真实通行时间。上下两条通道为局部逆流概念图，不是完整鳃血管或浓度梯度模型；圆点和箭头不按分子尺度或实际流速。",
     "narration": [
       {
         "label": "水里也有氧气",
@@ -33,8 +33,8 @@
       },
       {
         "label": "氧气跨过小边界",
-        "text": "现在跟着氧气的小记号看。一部分氧气从水这边穿过薄薄的表面，进入血液，再由血液带到身体里需要它的地方。鱼没有把一大口水吞进血管，也不是把水拆开做出氧气。需要分清：水在鳃外面流过，氧气可以穿过交换的表面。",
-        "cue": "移动氧气标记到血液侧，水流路线保持可见。"
+        "text": "现在跟着氧气的小记号看。一部分氧气从水这边穿过薄薄的表面，进入血液，再由血液带到身体里需要它的地方。鱼没有把一大口水吞进血管，也不是把水拆开做出氧气。需要分清：水在鳃外面流过，氧气可以穿过交换的表面。留意放大框里的同一个黄色记号，它真的走过中间的边界，没有在另一边偷偷换一个。再看看，水和血液朝着相反方向走，这样的安排也能帮助交换。",
+        "cue": "在跨面之前、跨面中间、血液带走之后暂停；对照外置图例，不让文字盖住氧气点。"
       },
       {
         "label": "让新的水继续来",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Does a fish need to swallow bubbles to obtain oxygen from water?",
-    "observe": "Follow the four steps from mouth to gills to outgoing water. Track the oxygen marker crossing from water to blood, keeping water flow distinct from gas exchange.",
+    "observe": "Play and track the same yellow oxygen marker in the detail: it moves on the water side, crosses the thin exchange surface and is carried away on the blood side. Pause to compare the opposing flow directions.",
     "academic": [
       {
         "title": "Gills obtain dissolved oxygen",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Fish take up oxygen already dissolved in the water; they do not split water molecules or require visible bubbles.",
-    "boundary": "Oxygen dots and arrows are symbolic and not molecularly scaled. The complete countercurrent blood-vessel arrangement is not drawn, and arrow size does not measure oxygen concentration.",
+    "boundary": "The 20-second observation is not a molecular transit time. Two local channels illustrate opposing flow, not complete gill vasculature or a concentration-gradient model. Dots and arrows are not to molecular scale or measured flow speed.",
     "narration": [
       {
         "label": "There is oxygen in water",
@@ -75,8 +75,8 @@
       },
       {
         "label": "Oxygen crosses a boundary",
-        "text": "Follow the oxygen symbol. Some oxygen crosses the thin surface into blood, which carries it around the body. The fish does not pour a mouthful of water into its blood vessels or split water to make oxygen. Water flows past; oxygen crosses the exchange surface.",
-        "cue": "Transfer the oxygen symbol while keeping the water route visible."
+        "text": "Follow the oxygen symbol. Some oxygen crosses the thin surface into blood, which carries it around the body. The fish does not pour a mouthful of water into its blood vessels or split water to make oxygen. Water flows past; oxygen crosses the exchange surface. Keep your eye on the same yellow marker as it crosses the boundary. It is not replaced by another marker on the far side. Water and blood move in opposite directions, an arrangement that helps gas exchange.",
+        "cue": "Pause before, during and after crossing. Compare the external key while keeping the oxygen marker unobstructed."
       },
       {
         "label": "Keep the water renewing",

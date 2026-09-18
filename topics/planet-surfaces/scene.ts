@@ -1,140 +1,179 @@
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
-import { noise, type World } from './model.ts';
-import { t } from './i18n.ts';
+import { animateValue } from '../../src/visuals/transition.ts';
+import { noise, clamp, markerY, SECTION, type World, type View } from './model.ts';
+import { palette, seed } from './surfacePainter.ts';
 type Point = [number, number];
-const seed = (i: number) => { const v = Math.sin(i * 134.1 + 217.8) * 41947; return v - Math.floor(v); };
+const makeCanvas = (width: number, height: number) => { const c = document.createElement('canvas'); c.width = width; c.height = height; return c; };
+const hasPixels = (image?: ImageData): image is ImageData => {
+  if (!image || !Number.isInteger(image.width) || !Number.isInteger(image.height) || image.width <= 0 || image.height <= 0 || image.width > 2048 || image.height > 1024 || image.data.length !== image.width * image.height * 4) return false;
+  for (let i = 3; i < image.data.length; i += 4) if (image.data[i] !== 0) return true;
+  return false;
+};
+
+/** Topic-owned illustrative textures. No texture is presented as a measured surface map. */
 export class TopicScene {
   private s: CanvasSurface;
   private world?: World;
-  private view = 'landscape';
+  private view: View = 'landscape';
   private progress = 0;
-  private globes = new Map<string, HTMLCanvasElement>();
-  constructor(canvas: HTMLCanvasElement) { this.s = new CanvasSurface(canvas); this.s.onResize(() => { if (this.world) this.draw(this.world, this.view, this.progress); }); }
-  private globe(world: World) {
-    if (this.globes.has(world.id)) return this.globes.get(world.id)!;
-    const canvas = document.createElement('canvas'); canvas.width = canvas.height = 360;
-    const c = canvas.getContext('2d')!, pixels = c.createImageData(360, 360);
-    const base = [1, 3, 5].map(i => parseInt(world.color.slice(i, i + 2), 16));
-    for (let y = 0; y < 360; y++) for (let x = 0; x < 360; x++) {
-      const nx = (x - 180) / 175, ny = (y - 180) / 175, d = nx * nx + ny * ny;
-      if (d > 1) continue;
-      const z = Math.sqrt(1 - d), lon = Math.atan2(nx, z) * 170, lat = Math.asin(ny) * 170;
-      const n = noise(lon + 113, lat - 17), detail = noise(lon * 4, lat * 4);
-      let col = base.map(v => v * (.84 + n * .25 + detail * .07));
-      if (world.id === 'earth') {
-        col = n > .04 ? [89 + detail * 35, 109 + detail * 28, 67 + detail * 20] : [25, 75 + detail * 14, 107 + detail * 19];
-        const cloud = noise(lon * 1.5 + lat * .4 + 270, lat * 2) > .5;
-        if (cloud || Math.abs(ny) > .92) col = col.map(v => v * .28 + 170);
-      } else if (!world.surface || world.id === 'venus') {
-        const subtle = world.id === 'neptune' ? .25 : 1;
-        const band = (Math.sin(lat * .19 + noise(lon * 1.3, lat * 2) * 1.6) * .11 + detail * .07) * subtle;
-        col = base.map(v => v * (.93 + band));
-        if (world.id === 'jupiter') {
-          const r = Math.hypot((lon - 36) / 33, (lat - 52) / 16);
-          if (r < 1) col = [169 + r * 30, 104 + r * 35, 70 + r * 25];
-        }
-      }
-      const light = .16 + .84 * Math.max(0, -nx * .55 - ny * .33 + z * .72);
-      const i = (y * 360 + x) * 4;
-      col.forEach((v, k) => pixels.data[i + k] = v * light); pixels.data[i + 3] = 255;
-    }
-    c.putImageData(pixels, 0, 0); this.globes.set(world.id, canvas); return canvas;
+  private phase = 0;
+  private landscapes = new Map<string, HTMLCanvasElement>();
+  private worker?: Worker;
+  private pendingWorld = '';
+  private generation = 0;
+  private failures = new Set<string>();
+  private onPrepared?: () => void;
+  private previewGlobes = new Map<string, HTMLCanvasElement>();
+  private textures = new Map<string, ImageData>();
+  private globeCanvas = makeCanvas(560, 560);
+  private globePixels = this.globeCanvas.getContext('2d')!.createImageData(560, 560);
+  private globeKey = '';
+  private cancelTransition = () => {};
+  constructor(canvas: HTMLCanvasElement) {
+    this.s = new CanvasSurface(canvas);
+    this.s.onResize(() => { this.cancelTransition(); if (this.world) this.draw(this.world, this.view, this.progress, this.phase); });
   }
-  draw(world: World, view: string, progress: number) {
-    this.world = world; this.view = view; this.progress = progress;
-    const s = this.s, top = world.id === 'mercury' ? '#080e19' : world.id === 'venus' ? '#8d713e' : world.id === 'mars' ? '#997764' : '#a2c4d2';
-    const c = s.begin(top, world.id === 'mars' ? '#deb292' : '#edf0de');
-    if (view === 'section') {
-      const giant = !world.surface;
-      const g = c.createLinearGradient(0, -220, 0, 230);
-      if (giant) { g.addColorStop(0, world.color); g.addColorStop(.45, world.id === 'jupiter' ? '#886b63' : '#648f9a'); g.addColorStop(1, '#23303d'); }
-      else { g.addColorStop(0, world.id === 'mercury' ? '#080e19' : world.id === 'venus' ? '#8d713e' : world.id === 'mars' ? '#997764' : '#cbdde3'); g.addColorStop(.37, world.id === 'mercury' ? '#171b23' : world.id === 'venus' ? '#c2a15e' : world.id === 'mars' ? '#deb292' : '#a6c9d5'); g.addColorStop(.39, world.ocean ? '#408ca8' : '#baa284'); g.addColorStop(.76, world.ocean ? '#194863' : '#766454'); g.addColorStop(.78, '#665444'); g.addColorStop(1, '#453b39'); }
-      c.fillStyle = g; c.fillRect(-2000, -2000, 4000, 4000);
-      for (let i = 0; i < 40; i++) {
-        const y = -210 + i * 12;
-        if (!giant && y < -220 + 450 * .39) continue;
-        const points: Point[] = Array.from({ length: 80 }, (_, j) => { const x = -400 + j * 10; return [x, y + noise(x, i * 31) * (giant ? 13 : 4)]; });
-        s.path(points, undefined, i % 3 ? '#f1e0be19' : '#13263321', giant ? 6 : 2);
+  onPreparationChange(callback: () => void) { this.onPrepared = callback; }
+  get preparing() { return !!this.world && this.pendingWorld === this.world.id; }
+  get failed() { return !!this.world && this.failures.has(this.world.id); }
+  private prepare(world: World) {
+    if ((this.landscapes.has(world.id) && this.textures.has(world.id)) || this.pendingWorld === world.id || this.failures.has(world.id)) return;
+    this.worker?.terminate();
+    this.pendingWorld = world.id; const generation = ++this.generation;
+    try {
+      const worker = new Worker(new URL('./surfaceWorker.ts', import.meta.url), { type: 'module' });
+      this.worker = worker;
+      worker.onmessage = (event: MessageEvent<{ id: string; landscape?: ImageData; texture?: ImageData; error?: boolean }>) => {
+        const result = event.data;
+        if (generation !== this.generation) return;
+        this.pendingWorld = ''; worker.terminate(); this.worker = undefined;
+        if (result.error || result.id !== world.id || !hasPixels(result.landscape) || !hasPixels(result.texture)) this.failures.add(world.id);
+        else {
+          try {
+            const landscape = makeCanvas(result.landscape.width, result.landscape.height);
+            landscape.getContext('2d')!.putImageData(result.landscape, 0, 0);
+            this.landscapes.set(world.id, landscape); this.textures.set(world.id, result.texture); this.globeKey = '';
+          } catch { this.failures.add(world.id); }
+        }
+        if (this.world) { if (this.failed) this.draw(this.world, this.view, this.progress, this.phase); else this.transition(this.world, this.view, this.progress, this.phase); }
+        this.onPrepared?.();
+      };
+      worker.onerror = () => { if (generation !== this.generation) return; this.pendingWorld = ''; this.failures.add(world.id); worker.terminate(); this.worker = undefined; if (this.world) this.draw(this.world, this.view, this.progress, this.phase); this.onPrepared?.(); };
+      worker.postMessage(world);
+    } catch { this.pendingWorld = ''; this.failures.add(world.id); this.onPrepared?.(); }
+  }
+  private preview(world: World) {
+    const cached = this.previewGlobes.get(world.id); if (cached) return cached;
+    const canvas = makeCanvas(560, 560), c = canvas.getContext('2d')!;
+    const shade = c.createRadialGradient(185, 180, 30, 285, 290, 274);
+    shade.addColorStop(0, world.color); shade.addColorStop(.7, '#324044'); shade.addColorStop(1, '#111921');
+    c.fillStyle = shade; c.beginPath(); c.arc(280, 280, 267, 0, Math.PI * 2); c.fill();
+    this.previewGlobes.set(world.id, canvas); return canvas;
+  }
+  transition(world: World, view: View, progress: number, phase: number) {
+    this.cancelTransition();
+    const previous = makeCanvas(this.s.canvas.width, this.s.canvas.height);
+    previous.getContext('2d')!.drawImage(this.s.canvas, 0, 0);
+    this.world = world; this.view = view; this.progress = progress; this.phase = phase;
+    this.cancelTransition = animateValue({ from: 0, to: 1, duration: 650, onUpdate: value => {
+      this.draw(world, view, progress, phase);
+      const c = this.s.context;
+      c.save(); c.setTransform(1, 0, 0, 1, 0, 0); c.globalAlpha = 1 - value;
+      c.drawImage(previous, 0, 0, this.s.canvas.width, this.s.canvas.height); c.restore();
+    } });
+  }
+  stopTransition() { this.cancelTransition(); }
+  private globe(world: World, phase: number) {
+    const key = world.id + ':' + phase.toFixed(3); if (key === this.globeKey) return this.globeCanvas;
+    const texture = this.textures.get(world.id);
+    if (!texture) { this.prepare(world); return this.preview(world); }
+    const data = this.globePixels, size = 560, r = 267;
+    const rotation = .28 + phase * .038, molten = world.id === 'cancri';
+    data.data.fill(0);
+    for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
+      const nx = (x - size / 2) / r, ny = (y - size / 2) / r, d = nx * nx + ny * ny;
+      if (d > 1) continue;
+      const z = Math.sqrt(1 - d), lon = Math.atan2(nx, z) + rotation + 1.05, lat = Math.asin(ny);
+      const tx = ((lon / (Math.PI * 2) % 1 + 1) % 1) * texture.width | 0;
+      const ty = clamp((lat / Math.PI + .5) * texture.height, 0, texture.height - 1) | 0;
+      const source = (ty * texture.width + tx) * 4, target = (y * size + x) * 4;
+      const lighting = .08 + .92 * Math.max(0, -nx * .58 - ny * .3 + z * .76);
+      for (let k = 0; k < 3; k++) data.data[target + k] = texture.data[source + k] * (molten ? .61 + lighting * .39 : lighting);
+      data.data[target + 3] = 255 * clamp((1 - Math.sqrt(d)) * r);
+    }
+    this.globeCanvas.getContext('2d')!.putImageData(data, 0, 0); this.globeKey = key; return this.globeCanvas;
+  }
+  draw(world: World, view: View, progress: number, phase = 0) {
+    this.world = world; this.view = view; this.progress = progress; this.phase = phase;
+    this.prepare(world);
+    const s = this.s, c = s.begin(...(view === 'globe' ? ['#060b13', '#111b25'] as [string, string] : palette[world.id].sky));
+    if (view === 'globe') {
+      for (let i = 0; i < 70; i++) s.ellipse((seed(i + 320) - .5) * 1700, (seed(i + 810) - .5) * 570, .45 + seed(i) * .6, .45 + seed(i) * .6, '#d1dfdc58');
+      if (world.id !== 'mercury') {
+        const glow = c.createRadialGradient(0, -5, 188, 0, -5, 224);
+        glow.addColorStop(0, world.color + '18'); glow.addColorStop(.68, world.color + '28'); glow.addColorStop(1, world.color + '00');
+        s.ellipse(0, -5, 230, 230, glow);
       }
-      c.drawImage(this.globe(world), -354, -204, 175, 175);
-      const surfaceY = -220 + 450 * .39, seabedY = -220 + 450 * .78;
-      const y = giant ? -184 + progress * 370 : world.ocean
-        ? progress < .38 ? -184 + progress / .38 * (surfaceY + 184) : surfaceY + Math.min(1, (progress - .38) / .4) * (seabedY - surfaceY)
-        : -184 + Math.min(1, progress / .62) * (surfaceY + 184);
-      s.path([[10, -194], [10, y]], undefined, '#eff8f199', 1.3);
-      s.path([[0, y - 8], [14, y], [0, y + 8], [-9, y]], '#f1e7c5', '#fff8dd', 1);
-      const labels = giant ? [t('云层'), t('向下逐渐变稠'), t('没有可着陆的地面')] : world.ocean ? [t('大气'), t('液态海水'), t('岩石海床')] : [t('大气或极稀薄外逸层'), t('固体岩石表面'), t('地下岩石')];
-      labels.forEach((v, i) => s.label(v, 222, -145 + i * 142, { width: 205 }));
-      s.label(t('层次与深度不按比例'), -233, 197, { width: 260 });
-    } else {
-      c.save(); c.scale(Math.max(1, s.width / (830 * s.scale)), 1);
-      if (!world.surface) this.cloudscape(world, progress);
-      else this.landscape(world, progress);
+      c.drawImage(this.globe(world, phase), -220, -225, 440, 440);
+    } else if (view === 'section') this.section(world, progress, phase);
+    else {
+      c.save();
+      const width = Math.max(850, s.width / s.scale), height = Math.max(510, s.height / s.scale);
+      const pan = Math.sin(phase * .055) * width * .014;
+      const landscape = this.landscapes.get(world.id);
+      if (landscape) c.drawImage(landscape, -width * .525 + pan, -height * .54, width * 1.05, height);
+      else this.fallback(world);
       c.restore();
-      c.drawImage(this.globe(world), -356, -229, 126, 126);
-      s.label(world.surface ? world.ocean ? t('海面下面仍是岩石') : t('岩石地面') : t('眼前是云顶，不是地面'), 202, -184, { width: 270 });
     }
     s.end();
   }
-  private landscape(world: World, progress: number) {
-    const s = this.s, c = s.context, earth = world.id === 'earth';
-    const rock = world.id === 'mercury' ? [122, 119, 112] : world.id === 'venus' ? [145, 111, 65] : [164, 103, 71];
-    for (let layer = 0; layer < 6; layer++) {
-      const points: Point[] = Array.from({ length: 160 }, (_, j) => {
-        const x = -430 + j * 5.5, h = 34 + layer * 28 + noise(x + layer * 234, layer * 90) * (35 - layer * 5);
-        return [x, earth ? h + 24 : h];
-      });
-      const col = earth ? `rgb(${68 + layer * 7},${109 + layer * 3},${102 - layer * 6})` : `rgb(${rock.map(v => Math.round(v + (3 - layer) * 9)).join(',')})`;
-      s.path([...points, [440, 1000], [-440, 1000]], col);
-      s.path(points, undefined, '#edd0a336', 1.4);
-    }
-    if (earth) {
-      const water = c.createLinearGradient(0, 55, 0, 240); water.addColorStop(0, '#608f9d'); water.addColorStop(1, '#225066');
-      s.path([[-430, 87], [-260, 102], [-170, 127], [-85, 136], [10, 153], [75, 190], [90, 1000], [-430, 1000]], water);
-      for (let i = 0; i < 200; i++) {
-        const y = 103 + seed(i + 14) * 155, x = -420 + seed(i) * (300 + (y - 100));
-        if (x > -280 + (y - 100) * 2.2) continue;
-        const w = 2 + (y - 90) * .08 * seed(i + 400);
-        s.path([[x, y], [x + w, y + .2 * Math.sin(progress * 9 + i)]], undefined, '#d6edf63e', .8);
-      }
-    }
-    for (let i = 0; i < 390; i++) {
-      const y = 90 + seed(i + 40) * 175, x = -420 + seed(i + 230) * 840;
-      if (earth && x < -265 + (y - 100) * 2.2) continue;
-      const r = (1 + seed(i + 400) ** 3 * 12) * ((y - 60) / 160);
-      const points: Point[] = Array.from({ length: 7 }, (_, j) => { const a = j / 6 * Math.PI * 2; return [x + Math.cos(a) * r * (1 + seed(i * 7 + j) * .6), y + Math.sin(a) * r * .45]; });
-      s.ellipse(x + r * .6, y + r * .3, r * 1.6, r * .36, '#15202d30');
-      s.path(points, earth ? '#647667' : `rgb(${rock.map(v => Math.round(v * (.57 + seed(i + 55) * .6))).join(',')})`, '#f0cc991b', .5);
-    }
-    if (world.id === 'mercury') for (let i = 0; i < 20; i++) {
-      const x = (seed(i + 620) - .5) * 720, y = 80 + seed(i + 750) * 125, r = 4 + seed(i + 290) * 32;
-      s.ellipse(x, y, r, r * .3, '#33353b', '#b0aaa0'); s.ellipse(x + r * .12, y + 1.5, r * .79, r * .2, '#736e66');
-    }
-    if (world.id !== 'mercury') {
-      const haze = c.createLinearGradient(0, -40, 0, 100); haze.addColorStop(0, '#edd9b800'); haze.addColorStop(.5, '#edd9b81c'); haze.addColorStop(1, '#edd9b800');
-      c.fillStyle = haze; c.fillRect(-440, -40, 880, 140);
+  private fallback(world: World) {
+    // Bounded teaching silhouette if workers or OffscreenCanvas are unavailable.
+    const s = this.s;
+    for (let layer = 0; layer < 4; layer++) {
+      const points: Point[] = Array.from({ length: 50 }, (_, i) => { const x = -1000 + i * 42; return [x, 25 + layer * 40 + noise(x * .45, layer * 48) * (world.surface ? 22 : 12)]; });
+      const color = !world.surface ? (world.id === 'neptune' ? '#7baebaae' : '#a99279ab') : world.liquid === 'silicate-melt' ? '#c56726' : world.liquid === 'hydrocarbon' ? '#484736' : world.liquid === 'water' ? '#346f80' : '#756a5b';
+      s.path([...points, [1100, 1000], [-1100, 1000]], color, '#eedcc322', 1);
     }
   }
-  private cloudscape(world: World, progress: number) {
-    const s = this.s, c = s.context, blue = world.id === 'neptune';
-    c.fillStyle = blue ? '#679aaa' : '#b09c88'; c.fillRect(-2000, -2000, 4000, 4000);
-    for (let layer = 0; layer < 16; layer++) {
-      for (let i = 0; i < 70; i++) {
-        const x = -470 + i * 14 + noise(i * 41, layer * 83) * 25, y = -175 + layer * 27 + noise(x + progress * 16, layer * 39) * 17;
-        const r = 13 + seed(i + layer * 73) * 28;
-        const g = c.createRadialGradient(x - 7, y - 8, 0, x, y, r);
-        g.addColorStop(0, blue ? '#dcf0eb80' : '#fff1ce80'); g.addColorStop(.45, blue ? '#98c4ce70' : '#ddc8aa60'); g.addColorStop(1, '#d2ccbf00');
-        s.ellipse(x, y, r * 1.8, r * .75, g);
+  private section(world: World, progress: number, phase: number) {
+    const s = this.s, c = s.context, giant = !world.surface, molten = world.liquid === 'silicate-melt', hydrocarbon = world.liquid === 'hydrocarbon';
+    const gradient = c.createLinearGradient(0, -250, 0, 250);
+    if (giant) {
+      gradient.addColorStop(0, world.color); gradient.addColorStop(.47, world.id === 'jupiter' ? '#8b7469' : '#608f9d'); gradient.addColorStop(1, '#233039');
+    } else {
+      gradient.addColorStop(0, palette[world.id].sky[0]); gradient.addColorStop(.429, palette[world.id].sky[1]);
+      const top = molten ? '#ee9441' : hydrocarbon ? '#706b46' : world.liquid === 'water' ? '#4a9dae' : '#a48a70';
+      const bottom = molten ? '#b53b18' : hydrocarbon ? '#302e24' : world.liquid === 'water' ? '#164d62' : '#5c4c40';
+      gradient.addColorStop(.433, top); gradient.addColorStop(.789, bottom);
+      gradient.addColorStop(.795, world.liquid === 'water' ? '#766c55' : hydrocarbon ? '#8e8671' : bottom); gradient.addColorStop(1, molten ? '#78321e' : '#3d3835');
+    }
+    c.fillStyle = gradient; c.fillRect(-2000, -2000, 4000, 4000);
+    const { interface: boundary, bed } = SECTION;
+    for (let line = 0; line < (giant ? 36 : 21); line++) {
+      const y = giant ? -240 + line * 14 : boundary + line * 15;
+      if (!giant && world.liquid !== 'none' && !molten && y < bed) continue;
+      const points: Point[] = Array.from({ length: 150 }, (_, i) => { const x = -800 + i * 11; return [x, y + noise(x + (giant ? phase * 2 : 0), line * 37) * (giant ? 16 : 6)]; });
+      s.path(points, undefined, line % 3 ? '#e7d9b224' : '#131b2433', giant ? 6 : 1.4);
+    }
+    if (world.liquid !== 'none') {
+      const points: Point[] = Array.from({ length: 160 }, (_, i) => { const x = -850 + i * 11; return [x, boundary + Math.sin(x * .033 + phase * .45) * (hydrocarbon ? .45 : 1.25)]; });
+      s.path(points, undefined, molten ? '#ffe2a3b0' : '#eee7c970', 2);
+      if (!molten) {
+        const bottom: Point[] = Array.from({ length: 160 }, (_, i) => { const x = -850 + i * 11; return [x, bed + noise(x * 1.1, 93) * 7]; });
+        s.path(bottom, undefined, hydrocarbon ? '#c4b99a' : '#ad9d73', 3);
+      } else {
+        // Fade into an unmeasured interior; do not invent a measured magma-ocean floor.
+        const fade = c.createLinearGradient(0, 135, 0, 280); fade.addColorStop(0, '#201c2100'); fade.addColorStop(1, '#201c21dd'); c.fillStyle = fade; c.fillRect(-2000, 135, 4000, 200);
       }
     }
-    if (!blue) {
-      c.save(); c.translate(115, 56); c.rotate(-.17);
-      for (let i = 22; i > 0; i--) {
-        const a = i / 22, points: Point[] = Array.from({ length: 120 }, (_, j) => { const t = j / 119 * Math.PI * 2, rough = 1 + .05 * Math.sin(t * 7 + a * 7); return [Math.cos(t) * 130 * a * rough, Math.sin(t) * 64 * a * rough]; });
-        s.path(points, `rgba(${164 + i * 2},${107 + i * 3},${82 + i * 3},.65)`, '#f0d2a333', .8);
-      }
-      c.restore();
-    }
+    const y = markerY(world, progress);
+    s.path([[0, SECTION.top], [0, y]], undefined, '#f1f5e570', 1.5);
+    for (let i = 0; i < 6; i++) { const yy = SECTION.top + i * 69; s.path([[-13, yy], [-8, yy]], undefined, '#e9efdf66', 1); }
+    const halo = c.createRadialGradient(0, y, 0, 0, y, 28); halo.addColorStop(0, '#fff6d05b'); halo.addColorStop(1, '#fff6d000'); s.ellipse(0, y, 28, 28, halo);
+    s.path([[0, y - 10], [9, y], [0, y + 10], [-9, y]], '#f9eacc', '#fff9e6', 1.5);
+    s.ellipse(-1.5, y - 1, 3, 3, '#766a55');
+    c.drawImage(this.globe(world, 0), -357, -214, 136, 136);
   }
-  dispose() { this.s.dispose(); this.globes.clear(); }
+  dispose() { this.cancelTransition(); this.generation++; this.pendingWorld = ''; this.worker?.terminate(); this.worker = undefined; this.onPrepared = undefined; this.s.dispose(); this.landscapes.forEach(image => { image.width = 0; image.height = 0; }); this.landscapes.clear(); this.textures.clear(); this.previewGlobes.clear(); }
 }

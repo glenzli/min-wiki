@@ -6,3 +6,13 @@
 - [US Fish and Wildlife Service · What is a Waterfowl?](https://www.fws.gov/sites/default/files/documents/2024-04/2117.pdf)
 
 Original SVG illustrations; no external media or runtime dependencies. Controls use native buttons and ranges. No background animation or audio.
+
+## Continuous observation refinement · 2026-09-19
+
+A user-started 16-second finite stroke now connects foot spread, propulsion, folding and recovery. One topic-owned kinematic model drives the body and enlarged foot. Pause, scrub and stage jumps share state; no swimming speed is inferred from hiding webbing. Water wake marks are explanatory, not a fluid computation.
+
+All playback is explicit and finite. Hidden documents pause active playback; page exit cancels frame work. Reduced-motion mode advances to inspection states rather than starting continuous movement. Phase/status text changes only at meaningful stages. Topic-local model tests cover the changed causal and continuity contracts; root task owns the full build and desktop/mobile browser acceptance.
+
+Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.
+
+- [Journal of Experimental Biology — Underwater paddling kinematics and hydrodynamics in a surface swimming duck versus a diving duck (2025)](https://doi.org/10.1242/jeb.249274) — indexed article and journal video metadata verified; full article page blocked automated retrieval.

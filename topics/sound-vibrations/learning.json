@@ -3,11 +3,11 @@
   "topicId": "sound-vibrations",
   "zh": {
     "question": "把橡皮筋绷紧，和把它拨得更大，听到的变化是同一件事吗？",
-    "observe": "先只改变绷紧程度，每次拨一下比较音高；再固定绷紧程度，只改拨动幅度比较响轻。拖动慢镜头滑块，观察一来一回。",
+    "observe": "播放慢镜头并切换空气视图，盯住金色小团和空心圈。暂停、回看声源停止后的片段，再单独听两种张力或幅度的实际音高。",
     "academic": [
       {
         "title": "振动传递扰动而非运走空气",
-        "body": "橡皮筋振动使附近空气产生压强和密度的变化，这些扰动向外传播形成声波。空气分子主要在局部往复运动并传递能量，不随一束声音从乐器一路飞到耳朵。空气中的声波通常是纵波；画中的弯曲橡皮筋是横向位移，两者的振动方向不能混为一谈。没有合适介质时，机械声波不能这样传播。"
+        "body": "橡皮筋振动带动附近空气，产生向外传播的压强和密度变化。空气中的声波通常是纵波，空气小团的平均位移方向与传播方向平行；这与弯曲弦的横向位移不同。图中实心点表示小团空气的平均位置，不是单个分子的热运动轨迹。扰动携带能量向远处走，小团空气在平衡位置附近往复；声源停止后，已经发出的波仍会继续传播。没有适合的介质时，机械声波不能这样传播。"
       },
       {
         "title": "频率与振幅描述不同性质",
@@ -15,16 +15,16 @@
       },
       {
         "title": "理想弦模型的适用条件",
-        "body": "固定两端的理想弦基频为 f = (1/2L)√(T/μ)，其中 L 是长度，T 是张力，μ 是线密度。只有其余条件不变，张力增至四倍才使频率变为两倍。真实橡皮筋拉伸时长度、粗细和材料性质也会改变，并具有阻尼与非线性；本页端点外移仅提示绷紧动作，不用于求解真实伸长后的频谱。"
+        "body": "固定两端的理想弦基频为 f = (1/2L)√(T/μ)，其中 L 是长度，T 是张力，μ 是线密度。只有其余条件不变，张力增至四倍才使频率变为两倍。真实橡皮筋拉伸时长度、粗细和材料性质也会改变，并具有阻尼与非线性；本页固定两端位置与线密度，单独比较张力，不求解真实拉伸橡皮筋的频谱。空气视图用同一振动在不同位置的延迟，表示因果传播，并以位移梯度表示压缩与稀疏。"
       }
     ],
     "misconception": "更响不必更高；画里的慢摆动也不是实际听到的每秒振动次数。",
-    "boundary": "声音是合成音，弧线只提示传播；端点拉伸不是定量伸长模型。播放需要点击，离开页面停止；真实橡皮筋实验需成人协助。",
+    "boundary": "慢镜头中的时间、位移与声速不是现实比例；空气小团示意忽略热运动、三维扩散和反射。音频是单独点击播放的合成音，暂停画面不会暂停现实声波。改变实验条件会从头开始。",
     "narration": [
       {
         "label": "听声音，也看振动",
-        "text": "轻轻拨一下橡皮筋，它会来回动，你也可能听到声音。它的运动带动附近的空气，变化一段一段传出去，就能来到耳朵这里。今天画面把运动放慢，让眼睛看清楚；声音却按模型里的音高播放，所以看到的慢动作不等于听到的低音。",
-        "cue": "拨弦一次，对照振动和音高说明。"
+        "text": "橡皮筋来回动，会推动旁边的空气。先播放慢镜头，再切换到空气，看看变化怎样一段一段传向远处。金色小团的家在空心圈那里，它只在家附近来回，没有一路跑到耳朵。画面特意放慢了；如果想听真实的音高，再点一下听声音的按钮。",
+        "cue": "播放慢镜头，切到空气，在金色点离开空心圈时暂停；单独点击音频。"
       },
       {
         "label": "先只改变绷紧程度",
@@ -37,19 +37,19 @@
         "cue": "固定张力，比较两种幅度。"
       },
       {
-        "label": "按住以后会怎样",
-        "text": "点一下停止，就像轻轻按住真正的橡皮筋，振动停下来，声音也会停。再拖动手动慢镜头，你能一点一点看清它怎样来回，不过这个操作不发声。记住，声音把振动的变化传过来，不是把乐器旁边的一团空气一路送进你的耳朵。",
-        "cue": "停止播放，手动拖动一整周期。"
+        "label": "声源停了，路上的变化呢",
+        "text": "把进度拖到后半段。橡皮筋已经不动了，可是路上还有一小段变化继续往前走。它也需要时间呀！再往后看，空气小团又回到原来的位置。我们按暂停，是让这幅慢镜头停下来，真实的声波可不会等我们。你还可以来回拖着看，找到空气挤紧和散开的位置。",
+        "cue": "在空气视图回看第 9—14 秒；暂停检查源已静止而右侧仍有疏密变化。"
       }
     ]
   },
   "en": {
     "question": "Does tightening a band change the sound in the same way as plucking it farther?",
-    "observe": "Change only tension and pluck each time to compare pitch. Then hold tension fixed and change amplitude to compare loudness. Scrub the slow-motion slider to inspect one back-and-forth cycle.",
+    "observe": "Play slow motion and switch to air. Follow the gold parcel relative to its open circle. Pause and review the interval after the source stops; separately compare actual audio at different tensions or amplitudes.",
     "academic": [
       {
         "title": "Sound carries disturbances through a medium",
-        "body": "A vibrating band creates pressure and density variations in nearby air. These disturbances propagate while air particles mainly oscillate locally rather than traveling from instrument to ear. Airborne sound is longitudinal, unlike the transverse displacement of the drawn string. Such mechanical waves need a suitable medium."
+        "body": "A vibrating band creates pressure and density disturbances in nearby air. Airborne sound is longitudinal: mean parcel displacement is parallel to propagation, unlike transverse string motion. Dots represent average parcel positions, not individual molecular thermal trajectories. Energy propagates while parcels oscillate locally. A previously emitted wave keeps traveling after its source stops; such mechanical waves need a suitable medium."
       },
       {
         "title": "Frequency and amplitude differ",
@@ -57,16 +57,16 @@
       },
       {
         "title": "Conditions of the ideal-string model",
-        "body": "For an ideal fixed-end string, f = (1/2L)√(T/μ), with length L, tension T and linear density μ. Quadrupling tension doubles frequency only with other quantities fixed. Real rubber changes length, thickness and material behavior as it stretches. Endpoint movement here is a visual cue, not a solution for the stretched band’s spectrum."
+        "body": "For an ideal fixed-end string, f = (1/2L)√(T/μ), with length L, tension T and linear density μ. Quadrupling tension doubles frequency only with other quantities fixed. Real rubber changes length, thickness and material behavior as it stretches. The diagram fixes endpoints and linear density to isolate tension. Delayed source motion represents causal air propagation, with the displacement gradient determining compression and rarefaction."
       }
     ],
     "misconception": "Louder need not mean higher pitched, and slow visual motion is not the actual audible frequency.",
-    "boundary": "Audio is synthesized and arcs only suggest propagation. Endpoint movement is not quantitative stretching. Playback needs a click and stops when leaving; real rubber-band experiments need adult help.",
+    "boundary": "Visual time, displacement and propagation speed are not to physical scale. Air parcels omit thermal motion, 3D spreading and reflections. Separate audio is synthesized; pausing the diagram does not freeze real sound waves. Changing conditions restarts the experiment.",
     "narration": [
       {
         "label": "Hear and watch",
-        "text": "Pluck the band and it moves back and forth while making sound. Its movement disturbs nearby air, and that disturbance travels toward your ear. Our picture slows the movement so your eyes can follow it, while the audio uses the model pitch. A slow-looking picture therefore does not necessarily mean a low note.",
-        "cue": "Pluck once and compare vibration with the pitch caption."
+        "text": "The band moves back and forth and pushes nearby air. Start slow motion, then switch to air and follow the disturbance outward. The open circle marks the gold parcel’s home. It moves near home instead of running all the way to your ear. Our picture is deliberately slow. Click the audio button separately to hear the actual pitch.",
+        "cue": "Play, switch to air and pause when the gold parcel leaves its home circle; click audio separately."
       },
       {
         "label": "Change tension first",
@@ -79,9 +79,9 @@
         "cue": "Hold tension and compare two amplitudes."
       },
       {
-        "label": "What happens when it stops?",
-        "text": "Press stop, like gently holding a real band still: vibration and sound end. The manual slow-motion slider lets you inspect each part of a cycle without playing audio. Remember that sound transmits a disturbance; it does not deliver the same lump of air from beside the instrument into your ear.",
-        "cue": "Stop playback and scrub one complete cycle manually."
+        "label": "After the source stops",
+        "text": "Move to the later part of the timeline. The band has stopped, but a disturbance is still traveling. That takes time too! Later the air parcels return to their original positions. Pause freezes our picture; a real sound wave would not wait for us. Scrub back and forth to find compressed and spread-out regions.",
+        "cue": "Review seconds 9–14 in the air view; pause with a still source and a moving disturbance farther right."
       }
     ]
   },
@@ -95,8 +95,8 @@
       "url": "https://openstax.org/books/university-physics-volume-1/pages/17-2-speed-of-sound"
     },
     {
-      "title": "NASA · Anatomy of an Electromagnetic Wave",
-      "url": "https://science.nasa.gov/ems/02_anatomy/"
+      "title": "OpenStax · Sound and longitudinal air motion",
+      "url": "https://openstax.org/books/college-physics-2e/pages/17-1-sound"
     }
   ]
 }

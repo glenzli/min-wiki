@@ -37,6 +37,10 @@ export class TdeSimulation {
   disposed!: boolean;
   private needsRender = true;
   private lastGuides?: boolean;
+  private cameraStarted = -Infinity;
+  private fromCamera = new THREE.Vector3();
+  private fromTarget = new THREE.Vector3();
+  private fromUp = new THREE.Vector3();
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -110,7 +114,7 @@ export class TdeSimulation {
 
   initDebris() {
     this.stellarGas = new StellarGas(this.renderer.getPixelRatio());
-    this.scene.add(this.stellarGas.points);
+    this.scene.add(this.stellarGas.points, this.stellarGas.trails);
   }
 
   selectScenario(scenario: string) {
@@ -156,7 +160,7 @@ export class TdeSimulation {
 
   update(progress: number, scenario: string) {
     if (scenario !== this.scenario) this.selectScenario(scenario);
-    if (progress === this.lastProgress && this.lastGuides === this.guidesVisible && !this.needsRender) return;
+    if (progress === this.lastProgress && this.lastGuides === this.guidesVisible && !this.needsRender && performance.now() - this.cameraStarted >= 800) return;
     if (progress !== this.lastProgress) {
       this.lastProgress = progress;
       const p = orbitAt(progress, scenario);
@@ -175,23 +179,27 @@ export class TdeSimulation {
         this.starVisible = body.starVisible;
         this.absorbed = body.absorbed;
       }
+      this.trail.visible = this.future.visible = this.arrows.visible = !tidal || progress < .46;
       const max = tidal ? 0.4 : 1;
       this.trail.geometry.setDrawRange(0, Math.max(0, Math.floor(clamp(progress/max)*240)+1));
       this.future.geometry.setDrawRange(Math.floor(clamp(progress/max)*240), 241);
-      if (this.view !== 'free') this.frameCamera();
     }
+    if (this.stellarGas.trails) this.stellarGas.trails.visible = this.stellarGas.points.visible && this.guidesVisible;
+    if (this.view !== 'free') this.frameCamera();
     this.blackHole?.setEmissionMap(this.stellarGas.emission, this.stellarGas.emissionExtent);
     this.blackHole?.setAccretion(progress*48, SCENARIOS[scenario].disrupted && this.gasStatus === 'ready' ? 1 : 0);
     this.guides.visible = this.guidesVisible;
     if (this.view === 'free') this.controls.update();
     this.camera.updateMatrixWorld();
     this.renderer.render(this.scene, this.camera);
-    this.needsRender = false;
+    this.needsRender = this.view !== 'free' && performance.now() - this.cameraStarted < 800;
     this.lastGuides = this.guidesVisible;
   }
 
   setView(view: string) {
     this.needsRender = true;
+    this.fromCamera.copy(this.camera.position); this.fromTarget.copy(this.controls.target); this.fromUp.copy(this.camera.up);
+    this.cameraStarted = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? -Infinity : performance.now();
     this.view=view;
     this.controls.enabled=view==='free';
     if(view!=='free') this.frameCamera();
@@ -205,26 +213,30 @@ export class TdeSimulation {
     const comparison=this.scenario==='free'||this.scenario==='flyby';
     let height=comparison?112:68-28*close, width=142-72*close, targetY=comparison?28:-7*(1-close), targetX=0;
     const progress=this.lastProgress??0;
-    const includeReturn=smooth(0.43,0.51,progress)*(1-smooth(0.74,0.88,progress));
-    if(!comparison&&this.gasStatus==='ready'&&includeReturn>0&&this.stellarGas.model){
-      const attributes=this.stellarGas.points.geometry.attributes;
-      const positions=attributes.position.array, states=attributes.state.array, bound=attributes.bound.array;
-      let minX=0,maxX=0,minY=0,maxY=0;
-      for(let i=0;i<bound.length;i+=4){
-        if(!bound[i]||states[i*2+1]<0.01)continue;
-        const x=positions[i*3],y=positions[i*3+1];
-        if(Math.hypot(x,y)>110)continue;
-        minX=Math.min(minX,x);maxX=Math.max(maxX,x);minY=Math.min(minY,y);maxY=Math.max(maxY,y);
-      }
-      width=Math.max(width,(maxX-minX+16)*includeReturn);
-      height=Math.max(height,(maxY-minY+18)*(this.view==='top'?1:.65)*includeReturn);
-      targetX=(minX+maxX)*.5*includeReturn;
-      targetY=targetY*(1-includeReturn)+(minY+maxY)*.5*includeReturn;
+    // Frame the encounter, not the outermost particle at this instant. A hard
+    // radius cut in a live bounding box made the entire sky jump when samples
+    // crossed it. This smooth, progress-owned composition settles and holds;
+    // seeking the same time always restores the same view.
+    if (!comparison) {
+      const returning = smooth(0.43, 0.65, progress);
+      width += 68 * returning;
+      height += (this.view === 'top' ? 64 : 38) * returning;
+      targetX = 14 * returning;
+      targetY = targetY * (1 - returning) - 24 * returning;
     }
+    if (this.view === 'close') { width=48; height=36; targetX=0; targetY=0; }
     const distance=Math.max(height/2/Math.tan(this.camera.fov*Math.PI/360), width/2/Math.tan(this.camera.fov*Math.PI/360)/aspect);
     this.controls.target.set(targetX,targetY,0);
+    this.camera.up.set(0, this.view === 'top' ? 1 : 0, this.view === 'top' ? 0 : 1);
     if(this.view==='top') this.camera.position.set(targetX,targetY,distance);
     else this.camera.position.set(targetX,targetY-distance*0.94,distance*0.34);
+    const elapsed = Math.min(1, Math.max(0, (performance.now() - this.cameraStarted) / 800));
+    const blend = elapsed * elapsed * (3 - 2 * elapsed);
+    if (blend < 1) {
+      this.camera.position.lerpVectors(this.fromCamera, this.camera.position.clone(), blend);
+      this.controls.target.lerpVectors(this.fromTarget, this.controls.target.clone(), blend);
+      this.camera.up.lerpVectors(this.fromUp, this.camera.up.clone(), blend).normalize();
+    }
     this.camera.lookAt(this.controls.target);
     this.controls.update();
   }

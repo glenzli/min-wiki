@@ -96,5 +96,15 @@
   "萼片中蓝色复合物的直接成像（原始研究）": "Direct mapping of the blue complex in sepal tissue (primary study)",
   "铝进入萼片细胞与液泡的转运蛋白（原始研究）": "Aluminum transporters in sepal-cell and vacuolar membranes (primary study)",
   "显色结构正在形成": "Color-producing structures are developing",
-  "本轮成熟后的花色：{{color}}\n本轮 pH：{{ph}}\n本轮可利用铝趋势：{{available}}%\n新花成熟度：{{maturity}}%": "Mature color for this bloom cycle: {{color}}\nThis cycle’s pH: {{ph}}\nAvailable aluminum trend: {{available}}%\nBloom maturity: {{maturity}}%"
+  "本轮成熟后的花色：{{color}}\n本轮 pH：{{ph}}\n本轮可利用铝趋势：{{available}}%\n新花成熟度：{{maturity}}%": "Mature color for this bloom cycle: {{color}}\nThis cycle’s pH: {{ph}}\nAvailable aluminum trend: {{available}}%\nBloom maturity: {{maturity}}%",
+  "从土壤到萼片": "From soil to sepal",
+  "一团花序有许多小花；显眼的彩色部分主要是扩大的萼片。": "A flower head contains many small flowers; the showy coloured parts are mainly enlarged sepals.",
+  "金色圆点表示可被利用的铝。看同一批圆点从土壤经过根和茎，到达放大的萼片；白花也可能吸收铝。": "Gold dots represent available aluminium. Follow the same dots through roots and stem to the enlarged sepal. White-flowered plants may absorb aluminium too.",
+  "白花对照缺少这一路需要的花青素；有铝也不会自动变蓝。外圈是细胞壁，里面的大区域是液泡。": "The white control lacks the anthocyanin needed for this pathway; aluminium alone cannot make it blue. The outer boundary is the cell wall and the large inner space is the vacuole.",
+  "外圈是细胞壁，里面的大区域是液泡。金色圆点和绿色方块靠近同一个粉色椭圆，形成蓝色组合；这些形状是符号，不是真实分子外形。": "The outer boundary is the cell wall; the large inner space is the vacuole. A gold dot and green square approach the same pink oval to form a blue complex. These are symbols, not molecular shapes.",
+  "根与运输": "Roots and transport",
+  "粉色椭圆：花青素": "Pink oval: anthocyanin",
+  "金色圆点：铝": "Gold dot: aluminium",
+  "绿色方块：辅色素": "Green square: copigment",
+  "蓝色组合：复合物": "Blue assembly: complex"
 }

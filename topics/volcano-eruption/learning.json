@@ -2,24 +2,24 @@
   "version": 1,
   "topicId": "volcano-eruption",
   "zh": {
-    "question": "同样是岩浆，为什么有时流出来，有时会猛烈喷出碎屑？",
-    "observe": "固定喷口数量，分别降低和提高气体、黏度条件；推进同一阶段，比较流动与碎屑。切换全景剖面、喷口近看和山坡熔岩，观察同一时刻的不同部位；最后推进到冷却阶段，看暗壳和仍较热的内部。",
+    "question": "火山为什么有的流出熔岩，有的喷出灰云？安静的火山以后还会喷吗？",
+    "observe": "停在喷发时刻，依次选择熔岩流、喷泉和富灰爆发；保持方式不变再调供给。四个镜头保留同一时刻。推进到冷却看暗壳下的余热，再比较休眠与被认为熄灭的证据。",
     "academic": [
       {
-        "title": "岩浆上升时气体会发生变化",
-        "body": "岩浆是包含熔融物、晶体和气体的体系，不是地球内部到处存在的一片液态海洋。上升过程中围压降低，原先溶在熔体中的部分挥发组分可析出并形成气泡。气泡膨胀、上升、聚合与逸出共同影响喷发；有气体不代表必然爆炸，关键还包括释放气体的速度和通道是否通畅。"
+        "title": "喷发方式与规模不能混成一个分数",
+        "body": "岩浆上升时围压下降，溶解的挥发组分可以出溶形成气泡，气泡也会膨胀。流变和气体逸出影响熔岩溢流、喷泉或碎裂；温度、成分、晶体、供浆与外来水同样重要，低黏度并不保证没有爆炸。VEI 主要依据爆炸性喷出物体积，并结合喷发柱等证据，不等于全部能量或危险程度，也不是熔岩流量的刻度。本页供给滑块只控制示意的物质多少与范围。"
       },
       {
-        "title": "黏度与气体逸出相互影响",
-        "body": "温度、成分和晶体含量都会影响岩浆的流变性质。较高黏度通常使气泡逸出更困难，在一些条件下有利于压力积累和碎裂；流动较容易、气体较易逸出的岩浆常出现溢流。但真实喷发还受供浆速度、外来水和通道演化影响，不能把两根滑块当成完整分类器。"
+        "title": "材料的去向与山体的长期形状",
+        "body": "火山灰是细碎岩石、矿物和火山玻璃，不是燃烧后的灰烬。较粗碎块可沿抛物线附近的轨迹落下，细灰受气流携带；真实输运还受粒径、风场、浮力和沉降影响。熔岩表面先冷却结壳，内部仍可保留大量热。多次熔岩与碎屑堆积塑造山体，盾状、成层火山和塌陷破火山口不对应一次喷发的弱、中、强；盾状火山也会有爆炸性喷发，破火山口也不一定靠猛烈爆炸形成。"
       },
       {
-        "title": "喷口形态与喷出物都要辨认",
-        "body": "岩浆到达地表后称为熔岩，可从中央喷口或裂隙流出。爆炸性喷发的火山灰是细碎的岩石、矿物和火山玻璃，并不是燃烧留下的普通灰烬。火山气体、落灰、熔岩流和火山碎屑密度流具有不同危险机制；画面只表现部分过程，不能由熔岩流得慢就推断整座火山安全。熔岩与空气、地面接触的外层可先形成固壳，低导热的表壳减慢内部散热，所以表面变暗不代表整股熔岩已冷却到环境温度。厚度、风雨和初温都会影响冷却时间；近景只表达外冷内热，不把画面亮度换算为真实温度。"
+        "title": "休眠是间歇，熄灭是需要证据的判断",
+        "body": "广义活火山包括当前喷发以及仍有潜力再次喷发的系统；休眠常指其中暂未喷发的时期。被认为熄灭，表示根据现有地质历史、构造和供浆背景，不再预期其喷发，并非对未来的绝对保证。各资料使用的术语和时间界线可能不同；不能仅凭安静多少年、植被或没有烟来判断。岩层年代、历史记录和地下活动线索须结合解释；一个旧喷口的活动终止，不排除火山区别处出现新喷口。"
       }
     ],
-    "misconception": "火山不是地下有火在烧；火山灰也不是木头烧完的灰。",
-    "boundary": "这是相对条件示意，未计算温度、压力、喷发柱或危险距离；观察真实火山须遵守当地封闭和预警。",
+    "misconception": "“活火山”不等于一直喷，“休眠”不等于已熄灭；喷得亮、喷得高，也不是判断全部危险的尺子。",
+    "boundary": "这是相对条件与证据的教学比较，时间、形状与尺度经过简化，不预测实际喷发、灰云或安全距离。",
     "narration": [
       {
         "label": "山下面有什么",
@@ -32,36 +32,36 @@
         "cue": "推进减压与气泡阶段，留三秒预测。"
       },
       {
-        "label": "流动，或者喷出碎片",
-        "text": "换一换岩浆容易流动的程度和气体条件。先近看喷口：有些熔滴喷高以后，会落回山坡，铺开一点。再看山坡：熔岩沿着较低的地方流，表面慢慢结出暗色的壳，缝里却还透着热亮的颜色。外面变暗，不代表里面已经凉了。细细的火山灰是岩石和玻璃的小碎片，也不是篝火留下的灰。",
-        "cue": "在同一喷发进度切换喷口近看与山坡熔岩；随后推进到冷却末段，比较表层与内部亮度。"
+        "label": "同样喷发，不同模样",
+        "text": "现在先把画面停住。点一下熔岩流，看红亮的岩石沿地面走；再点熔岩喷泉，看熔滴升起来，又落回去；最后看看灰云，它带着许多细细的岩石和玻璃碎片。这些可不是柴火烧完的灰！同一座火山也能换一种喷法。再调调供给，看看同一种喷法，是少一些，还是多一些。",
+        "cue": "固定喷发进度依次切换三个示例；选择灰柱镜头，再单独改变供给。"
       },
       {
-        "label": "模型帮助提问",
-        "text": "再增加几个喷口，找找它们怎样和地下连接。真正的火山比这幅图复杂得多，科学家会一起观察地面变化、地震和气体。我们的小模型能帮助问为什么，不能告诉我们哪里安全。如果去火山地区，一定跟着大人遵守警示，不靠近喷口和新鲜熔岩。",
-        "cue": "增加喷口后回到全景。"
+        "label": "安静的山，还有什么故事",
+        "text": "这两幅安静的山，看起来一样呢！一座可能在两次喷发之间休息，我们常叫它休眠。另一座要研究很多证据，才可能被认为以后不再喷发。科学家会读岩石留下的记录，也观察地下的小地震和地面的变化。再看看旁边的山形，它们是很久很久积起来或塌下来的。海底也有火山，有些还能慢慢长出海面。我们去下一页找找，一座小岛是怎样来的吧。",
+        "cue": "切换休眠与被认为已熄灭，强调山形相同而证据不同；观察三种地貌，接到海底火山专题。"
       }
     ]
   },
   "en": {
-    "question": "Why can magma sometimes flow out and sometimes erupt explosively as fragments?",
-    "observe": "Hold vent count fixed and compare gas and viscosity conditions at the same stage. Switch among the whole cutaway, vent close-up and slope lava to observe different parts of the same moment. Then advance to cooling and compare the dark crust with the still-hot interior.",
+    "question": "Why do some eruptions make lava flows and others ash clouds? Can a quiet volcano erupt again?",
+    "observe": "Pause during eruption and compare flows, fountains and ash. Keep the style fixed while changing supply. All four views preserve the same moment. Advance to cooling, then compare the evidence for dormancy and an extinction assessment.",
     "academic": [
       {
-        "title": "Gas changes as magma rises",
-        "body": "Magma contains melt, crystals and gas; Earth is not filled with a universal underground liquid ocean. Falling pressure during ascent allows dissolved volatile components to form bubbles. Their expansion, coalescence and escape influence eruption behavior. Gas presence alone does not guarantee an explosion; escape rate and connected pathways matter."
+        "title": "Style and size are different questions",
+        "body": "As magma rises, falling pressure allows dissolved volatiles to exsolve and gas bubbles to expand. Flow properties and gas escape influence effusion, fountains and fragmentation. Temperature, composition, crystals, magma supply and external water also matter; low viscosity does not rule out explosions. VEI primarily uses explosive ejecta volume together with plume evidence. It is not a score for total energy or hazard, nor a measure of lava discharge. Our supply slider changes only illustrative output and extent."
       },
       {
-        "title": "Viscosity interacts with gas escape",
-        "body": "Composition, temperature and crystal content affect magma flow. Higher viscosity can hinder gas escape and, under some conditions, promote pressure buildup and fragmentation. Easier flow and gas release often accompany effusion. Supply rate, external water and evolving conduits also influence real eruptions."
+        "title": "Materials travel; volcano shapes accumulate",
+        "body": "Volcanic ash is fine rock, mineral and volcanic-glass fragments, not combustion ash. Coarser clasts may follow approximately ballistic paths; fine ash is carried by gas and air. Real transport depends on particle size, winds, buoyancy and settling. Lava surfaces form crust while interiors can retain substantial heat. Repeated lava and fragment deposits build landforms. Shield volcanoes, composite volcanoes and collapse calderas are not weak, medium and strong settings for one eruption. Shields can erupt explosively, and caldera collapse need not accompany a major explosion."
       },
       {
-        "title": "Identify vents and eruption products",
-        "body": "Magma at the surface is lava and may emerge from central vents or fissures. Volcanic ash consists of fine rock, mineral and volcanic-glass fragments, not ordinary combustion ash. Gases, ashfall, lava and pyroclastic density currents pose different hazards; slowly moving lava does not make a volcano safe. Outer surfaces in contact with air and ground can form crust before the interior cools. The crust slows heat loss, so a dark surface does not mean the whole flow has reached ambient temperature. Thickness, weather and initial temperature affect cooling time. The close-up illustrates relative retained heat, not brightness-based thermometry."
+        "title": "Dormancy is an interval; extinction is an assessment",
+        "body": "Active in the broad sense includes systems erupting now and those still capable of eruption. Dormant commonly describes the latter between eruptions. An extinction assessment uses geological history, tectonic setting and magma supply, and can be revised. Definitions and time cutoffs vary; neither years of silence, vegetation nor absent emissions are decisive alone. Geological ages, records and subsurface clues require joint interpretation. An old vent becoming inactive does not exclude new activity elsewhere in its volcanic field."
       }
     ],
-    "misconception": "A volcano is not an underground fire, and volcanic ash is not burnt wood ash.",
-    "boundary": "This comparison does not calculate temperature, pressure, eruption columns or safe distances. Follow local closures and warnings near real volcanoes.",
+    "misconception": "Active does not mean always erupting, and dormant does not mean extinct. Glow and plume height are not complete measures of hazard.",
+    "boundary": "This teaching comparison simplifies conditions, evidence, time, geometry and scale. It does not forecast eruptions, ash clouds or safe distances.",
     "narration": [
       {
         "label": "What is under the mountain?",
@@ -74,14 +74,14 @@
         "cue": "Advance decompression and bubbles, then pause for three seconds."
       },
       {
-        "label": "Flow or fragments",
-        "text": "Change how easily the magma flows and the gas conditions. Look closely at the vent: some lava clasts rise and then fall onto the slope, spreading a little. Follow the lava downhill. A dark crust forms at the surface, while hot material still glows through gaps. A darker outside does not mean the inside is cool. Fine volcanic ash is made of little rock and glass fragments, different from campfire ash.",
-        "cue": "Switch between vent and slope close-ups at the same eruption progress. Advance to late cooling and compare surface and interior brightness."
+        "label": "Different ways to erupt",
+        "text": "Pause the picture. Choose lava flows and follow the glowing rock along the ground. Choose fountains and watch lava clasts rise and fall. Then look at the ash cloud. It carries tiny rock and glass fragments, not ashes from a wood fire! The same volcano can erupt in different ways. Now change the supply and compare less or more material within one style.",
+        "cue": "Keep eruption progress fixed and switch the three examples; select the plume view, then change supply alone."
       },
       {
-        "label": "A model helps us ask",
-        "text": "Add vents and look for their underground connections. Real volcanoes are much more complex. Scientists observe ground movement, earthquakes and gas together. Our model helps us ask why, but cannot tell us where it is safe. In volcanic areas, follow warnings with an adult and stay away from vents and fresh lava.",
-        "cue": "Add vents, then return to the overview."
+        "label": "A quiet mountain has a story",
+        "text": "These two quiet mountain pictures look the same! One volcano may be resting between eruptions: we call that dormant. Another may be considered unlikely to erupt again, after scientists study lots of evidence. They read rocks and observe small earthquakes and changes in the ground. Mountain shapes tell a much longer story of building and collapse. There are volcanoes under the sea too, and some can grow above the waves. Let us explore how an island can form.",
+        "cue": "Compare dormant and considered-extinct evidence while the mountain image stays the same. Observe the landforms and continue to submarine volcanoes."
       }
     ]
   },
@@ -105,6 +105,26 @@
     {
       "title": "USGS · Volcano Hazards Program Glossary",
       "url": "https://www.usgs.gov/glossary/volcano-hazards-program-glossary"
+    },
+    {
+      "title": "USGS · Eruption styles",
+      "url": "https://volcanoes.usgs.gov/volcanic_ash/eruption_styles.html"
+    },
+    {
+      "title": "USGS · Active, dormant and extinct",
+      "url": "https://www.usgs.gov/observatories/yvo/news/active-dormant-and-extinct-clarifying-confusing-classifications"
+    },
+    {
+      "title": "USGS · Volcanic Explosivity Index",
+      "url": "https://www.usgs.gov/observatories/yvo/news/volcanic-explosivity-index-a-tool-comparing-sizes-explosive-volcanic"
+    },
+    {
+      "title": "USGS · Principal types of volcanoes",
+      "url": "https://pubs.usgs.gov/gip/volc/types.html"
+    },
+    {
+      "title": "USGS / Science · Reservoir failure and caldera collapse at Kīlauea",
+      "url": "https://www.usgs.gov/publications/magma-reservoir-failure-and-onset-caldera-collapse-kilauea-volcano-2018"
     }
   ]
 }

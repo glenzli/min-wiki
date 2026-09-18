@@ -1,9 +1,19 @@
-# 小河为什么弯弯曲曲？
+# 小河为什么弯弯曲曲？ / Why do rivers bend?
 
-让水从山坡流下来，看看它怎样绕开石头，又怎样改变河岸。
+独立双语专题，模型、SVG场景、控件和 `learning.json` 均由本目录维护。公共平台只负责导航、语言和阅读方式。
 
-面向 4–6 岁，由儿童与成人共同操作。`index.html` 与专题内的 TypeScript、SVG、翻译和样式构成独立页面；共用平台只负责导航、语言及阅读主题。
+22个水流标记与16颗泥沙各自保留身份。泥沙从外岸进入水流，再停在内侧；石头条件改变预设河道。
 
-页面提供原生按钮、选择框及可用方向键操作的进度/条件控件。无自动音频或后台播放。儿童讲解随当前条件变化；折叠的家长说明保留科学范围、教学简化和一手来源。
+近看河湾的窗口不重置进度。河道不是流体求解器，不预测实际侵蚀速率或泥沙总量。
 
-请从生产构建预览中检查中文与英文、直接进入、返回目录及窄屏交互。浮力测试覆盖受力平衡、改形、超载和浸深；入渗测试覆盖水量守恒。
+提供播放/暂停、进度回拖、阶段按钮和局部视角。没有自动播放；隐藏页面或离开页面暂停。减少动态效果时直接显示目标帧。条件或阅读方式切换不清空进度。
+
+22 water markers and 16 sediment grains retain their identities. Grains move from the outer bank into the flow and settle along the inside; rock conditions select preset channels.
+
+The bend window preserves progress. This is not a fluid solver or a prediction of erosion rates or a complete sediment budget.
+
+Playback is finite and user-started. Pause, scrub, stage controls and a local view retain the same process. Hidden pages pause; reduced motion goes directly to the requested frame. Explanations, three academic notes and four narration segments are bilingual.
+
+资料复核 / Source checked 2026-09-19: https://www.usgs.gov/educational-resources/find-feature-meander
+
+专题测试覆盖身份保持、路径连续、末帧稳定与SVG投影。运行 `node --import tsx --test topics/river-paths/tests/*`。整站构建、窄屏中英文浏览器检查与发布由整合任务负责。

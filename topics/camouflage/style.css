@@ -4,3 +4,5 @@
 
 .scene svg{min-height:0}
 .hotspot[aria-pressed=true]{background:transparent;color:inherit;border:0}.hotspot[aria-pressed=true]:focus-visible{background:#ffffec20}
+
+.controls select{font:inherit;max-width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--border);border-radius:12px;color:var(--ink);background:var(--surface)}.controls label{flex-wrap:wrap}.controls input[type=range]{min-width:140px}

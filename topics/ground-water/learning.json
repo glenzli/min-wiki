@@ -3,7 +3,7 @@
   "topicId": "ground-water",
   "zh": {
     "question": "同样一场雨，落在沙土、黏土和铺装地面上，去向会相同吗？",
-    "observe": "把进度推进到末尾，依次换三种地面，对照渗入、流走、积留三项；不要把渗入量直接读成地下水补给量。",
+    "observe": "看同一批100份示意雨水落下。跟住黄色水滴，再近看孔隙；蓝点沿浅色通道进入土中，另一部分沿表面进入收集杯。任意暂停时，空中加上三种去向仍是100份。",
     "academic": [
       {
         "title": "地表入渗与深部补给",
@@ -11,7 +11,7 @@
       },
       {
         "title": "有空隙不等于流得快",
-        "body": "孔隙率描述空隙占总体积的比例，渗透性则与空隙大小、连通程度及裂隙有关。黏土可以有不少微小孔隙，却因通道细而让水流动缓慢；砂粒之间较连通的空隙常让水较易通过。真实铺装也可能有接缝、裂缝或专门的透水结构，图中普通铺装只是低入渗情景。"
+        "body": "孔隙率描述空隙占总体积的比例，渗透性则与空隙大小、连通程度及裂隙有关。黏土可以有不少微小孔隙，却因通道细而让水流动缓慢；砂粒之间较连通的空隙常让水较易通过。真实铺装也可能有接缝、裂缝或专门的透水结构，图中普通铺装只是低入渗情景。画面把同一批雨水分成固定身份的100份：尚在空中时不提前算入地面去向，进入地面后才分别计入渗入、流走或暂留。流走与已经抵达收集杯也有区别。"
       },
       {
         "title": "地下水怎样流动",
@@ -19,33 +19,33 @@
       }
     ],
     "misconception": "水钻进土壤，不代表立即成为地下水，更不代表自动变成可以喝的水。",
-    "boundary": "三项分配是守恒的教学情景，不是当地土壤测量；未模拟先前含水量、坡度、植被、裂缝及长时间补给。",
+    "boundary": "100份水与分配比例是守恒的教学设定，不是降雨或土壤实测。四类包含仍在空中的水、渗入、流走和暂留；流走的水到达后才计入杯中水位。孔道被放大，未计算渗透压、毛细过程或深部地下水补给。",
     "narration": [
       {
         "label": "雨来到地面",
         "text": "下雨时，你可能见过水钻进花坛，也见过水在路面上汇成一条小水流。同样是雨，地面不同，去向就可能不同。我们来做一次屏幕上的比较：先选沙土，让雨落下来，看看蓝色小点是留在上面，向旁边走，还是进入下面。",
-        "cue": "选择沙土，缓慢推进降雨。"
+        "cue": "沙土从0%播放，跟随黄色水滴从空中抵达地表。"
       },
       {
         "label": "换换地面",
-        "text": "现在先停一下，再换成黏土和铺好的路面。留意下面三个数，它们分别告诉我们，示意中的水渗进去了多少、流走了多少、暂时积住了多少。我们只换地面，方便比较。现实里，地面之前湿不湿、雨下得急不急，也都会影响结果。",
-        "cue": "保持末尾进度，切换三种地面。"
+        "text": "先暂停，再试试黏土和石板。画面用一百份小水滴表示同样一场雨：有的还在空中，有的进入地面，有的流走，有的暂时留在表面。把这些去向加起来，水没有凭空变少。现实中，雨有多急、地面原先多湿，也会改变结果。",
+        "cue": "停在100%，切换沙土、黏土、石板；核对三去向总数相同。"
       },
       {
         "label": "水在缝隙里",
         "text": "地底下的水，常常藏在一粒粒土和一块块岩石之间的细小空隙里，像水待在海绵的空隙中。有些通道比较通畅，有些很窄，水就走得慢。已经钻进去的水，也可能先被植物吸走，并不是马上到达很深的地下水那里。",
-        "cue": "指向土粒间空隙，停三秒。"
+        "cue": "回到约55%并打开近看孔隙，蓝色水滴沿浅色通道继续深入。"
       },
       {
         "label": "看不见也要关心",
         "text": "地下水还能慢慢来到泉水和河流中，继续它的旅行。可是钻过泥土，并不保证所有脏东西都被拦住了。我们不能看见井水很清，就自己去喝。今天记住这件事：脚下不是空空的，那里有许多水的小通道，也有需要大人和科学家认真检查的事情。",
-        "cue": "回到剖面全景，强调看不见的通道。"
+        "cue": "切回全景，观察流走水滴抵达杯中；最终暂停后水滴不消失。"
       }
     ]
   },
   "en": {
     "question": "Will the same rain go to the same places on sand, clay and paving?",
-    "observe": "Move to the end and compare all three surfaces using infiltration, runoff and storage. Do not equate all infiltration with groundwater recharge.",
+    "observe": "Watch the same 100 symbolic rain parcels fall. Follow the gold marker and inspect the pores: blue dots enter pale connected channels, while others run into the collection cup. At every pause, airborne water plus the three destinations still totals 100.",
     "academic": [
       {
         "title": "Infiltration is not all recharge",
@@ -53,7 +53,7 @@
       },
       {
         "title": "Storage space differs from permeability",
-        "body": "Porosity measures the fraction of empty space; permeability depends on pore size, connections and fractures. Clay can have many tiny pores yet transmit water slowly. Connected spaces between sand grains often transmit it more readily. Real paving may contain joints or permeable designs; the diagram uses a low-infiltration case."
+        "body": "Porosity measures the fraction of empty space; permeability depends on pore size, connections and fractures. Clay can have many tiny pores yet transmit water slowly. Connected spaces between sand grains often transmit it more readily. Real paving may contain joints or permeable designs; the diagram uses a low-infiltration case. The diagram keeps 100 parcel identities. Water still in the air is not counted at a ground destination; runoff in transit is also distinct from water that has reached the cup."
       },
       {
         "title": "How groundwater moves",
@@ -61,27 +61,27 @@
       }
     ],
     "misconception": "Water entering soil does not instantly become groundwater or automatically become safe to drink.",
-    "boundary": "The three-way partition is a conserved teaching scenario, not a local soil measurement. Prior moisture, slope, vegetation, fractures and long-term recharge are omitted.",
+    "boundary": "The 100 parcels and their allocation are a conserved teaching scenario, not measured rain or soil data. Four categories include airborne, infiltrated, runoff and temporarily stored water; cup level counts only arrived runoff. Pores are enlarged, without calculating pressure, capillarity or deep aquifer recharge.",
     "narration": [
       {
         "label": "Rain meets the ground",
         "text": "Have you seen rain soak into a flower bed while making a little stream on a path? The same rain can take different routes on different ground. Let us compare on screen. Choose sand and let the rain fall. Do the blue dots stay on top, move sideways or enter the ground below?",
-        "cue": "Select sand and advance rainfall slowly."
+        "cue": "Play sand from 0%, following the gold drop from the air to the surface."
       },
       {
         "label": "Change the surface",
-        "text": "Pause, then try clay and paving. Look at the three numbers: they show how much model water entered the ground, ran away or stayed on the surface. Changing one thing makes comparison easier. In real life, how wet the ground was before and how hard rain falls also change the result.",
-        "cue": "Hold the final progress and switch among surfaces."
+        "text": "Pause, then compare clay and paving. One hundred little parcels represent the same rain: some are still in the air, some enter the ground, some run away and some stay on top. Add them and no water has vanished. Real results also depend on how hard it rains and how wet the ground was before.",
+        "cue": "At 100%, switch sand, clay and paving and compare equal totals with different allocations."
       },
       {
         "label": "Water in tiny spaces",
         "text": "Water underground often fills little spaces between soil grains and rocks, rather like water in the holes of a sponge. Some passages connect easily; others are narrow and water moves slowly. Water that has entered soil may reach plant roots first. It does not all immediately become deep groundwater.",
-        "cue": "Point between grains and pause for three seconds."
+        "cue": "Scrub to around 55% and inspect the pores, where blue parcels follow pale connected channels."
       },
       {
         "label": "Care for unseen water",
         "text": "Groundwater can slowly reach springs and rivers and continue its journey. But passing through soil does not guarantee that every harmful substance was removed. Clear well water is not something to drink without checking. Remember that the ground beneath us holds many small water pathways, with conditions adults and scientists need to investigate.",
-        "cue": "Return to the section overview and indicate the unseen pathways."
+        "cue": "Return to the overview and watch runoff arrive in the cup; the final parcels remain visible."
       }
     ]
   },

@@ -3,7 +3,7 @@
   "topicId": "cactus-water",
   "zh": {
     "question": "仙人掌能熬过干旱，是因为从来不用水吗？",
-    "observe": "在储水层比较下雨与连续干燥，观察茎的宽度逐渐改变；切到表皮层比较白天和夜晚的气孔，再区分储水与省水两类机制。",
+    "observe": "选择一场雨并播放，先看雨到土里，再看水沿根进入茎、储水细胞变饱满。暂停或拖动比较干燥后的收缩；放大表皮，分别在白天和夜晚观察一次气体交换。",
     "academic": [
       {
         "title": "肉质茎储存在活组织中的水",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "仙人掌也要用水；茎不是中空水瓶，夜间吸收二氧化碳也不等于只在夜间呼吸。",
-    "boundary": "四档储水与昼夜开关为定性示意，不是浇水频率或耐旱天数；实际气孔调控会随水分压力和物种改变。",
+    "boundary": "储水细胞、根路与气孔均被放大；进度不是现实天数、用水量或浇水建议。昼夜开闭为典型 CAM 沙漠仙人掌的简化，实际也受水分压力和物种影响。两种气体符号不量化交换比例。",
     "narration": [
       {
         "label": "沙漠里的绿色身体",
@@ -28,8 +28,8 @@
       },
       {
         "label": "一场雨之后",
-        "text": "让画面下一场雨吧。根吸收到水，茎慢慢变得饱满。再让干燥的日子过去，停一停，看看茎有没有缩小，里面的储水是不是少了。原来，仙人掌会用掉储备，也需要以后得到补充。我们看到的是快进的小故事，真实的变化没有按钮按得这么快。",
-        "cue": "触发雨，再连续干燥；在收缩途中停三秒。"
+        "text": "让画面下一场雨吧。根吸收到水，茎慢慢变得饱满。再让干燥的日子过去，停一停，看看茎有没有缩小，里面的储水是不是少了。原来，仙人掌会用掉储备，也需要以后得到补充。我们看到的是快进的小故事，真实的变化没有按钮按得这么快。放大里面的小格子看看，蓝色画在许多细胞里面。雨要先到根那里，后面的储水才增加，不是点一下就把一个水瓶灌满。每一步都可以暂停，也能拖回去再看。",
+        "cue": "播放雨水，途中暂停根部，再放大储水细胞；切表皮层看棕色二氧化碳进入、蓝色水汽离开。"
       },
       {
         "label": "白天和夜晚的小门",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Can a cactus survive drought because it never needs water?",
-    "observe": "Compare rain and successive dry periods in the storage view and watch stem width change. Switch to the skin view, compare daytime and nighttime pores, and distinguish water storage from water saving.",
+    "observe": "Play a rain event: first rain reaches soil, then water travels through roots and storage cells fill out. Pause or scrub to compare shrinkage during drying. Enlarge the surface and observe gas exchange by day and night.",
     "academic": [
       {
         "title": "A fleshy stem stores water in living tissue",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Cacti still need water. A stem is not a hollow water bottle, and nighttime carbon-dioxide uptake does not mean respiration occurs only at night.",
-    "boundary": "Four water levels and the day/night switch are qualitative, not a watering schedule or drought-duration estimate. Actual pore regulation varies with species and water stress.",
+    "boundary": "Storage cells, root paths and stomata are enlarged. Progress measures neither real days nor water use and is not watering advice. Day/night opening simplifies a typical CAM desert cactus and also depends on species and water stress. Gas symbols do not quantify exchange ratios.",
     "narration": [
       {
         "label": "A green body in a dry place",
@@ -70,8 +70,8 @@
       },
       {
         "label": "After the rain",
-        "text": "Make rain in the picture. Water taken up by roots gradually fills out the stem. Then let dry time pass. Pause and compare the stem and water store: are they shrinking? A cactus uses its reserves and eventually needs replenishment. Our buttons fast-forward a much slower real process.",
-        "cue": "Compare rain with dry periods and pause during contraction."
+        "text": "Make rain in the picture. Water taken up by roots gradually fills out the stem. Then let dry time pass. Pause and compare the stem and water store: are they shrinking? A cactus uses its reserves and eventually needs replenishment. Our buttons fast-forward a much slower real process. Enlarge the tissue and notice blue filling inside many cells. Rain has to reach the roots before storage rises; pressing a button does not fill a hollow bottle. Pause or scrub backward to inspect each part.",
+        "cue": "Play rain, pause at the roots, then enlarge storage cells. In the surface view, follow brown carbon-dioxide markers inward and blue vapour markers outward."
       },
       {
         "label": "Tiny doors by day and night",

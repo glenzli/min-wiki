@@ -24,7 +24,9 @@
       <div class="workbench">
         <div class="specimen">
           <div class="specimen-top"><span id="specimen-name">动物细胞</span><span id="specimen-tag">身体里的一个小单位</span></div>
-          <svg id="cell-scene" viewBox="0 0 720 490" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="细胞结构示意图；使用旁边的结构按钮探索"><defs><pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#547568" opacity=".12"/></pattern></defs><rect width="720" height="490" fill="url(#dots)"/><g id="drawing"></g></svg>
+          <div class="view-controls" role="group" aria-label="观察细胞的方式"><button type="button" data-surface="0" aria-pressed="true">内部剖视</button><button type="button" data-surface="1" aria-pressed="false">半透明外观</button></div>
+          <svg id="cell-scene" viewBox="0 0 720 490" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="细胞结构示意图；使用旁边的结构按钮探索"></svg>
+          <div class="scene-symbols" data-respiration-key><span><i class="reaction-symbol" aria-hidden="true"></i>虚线圈：线粒体</span><span><i class="amino-symbol" aria-hidden="true"></i>绿圆点：氨基酸</span><span><i class="atp-symbol" aria-hidden="true"></i>金色标记：ATP</span></div>
           <p id="observation" class="observation">先找最外面的一圈膜，再找里面装着大部分 DNA 的细胞核。</p>
         </div>
         <aside class="inspector">
@@ -34,10 +36,27 @@
             <button type="button" data-part="dna" aria-pressed="false"><span class="part-number">2</span><span>DNA</span></button>
             <button type="button" data-part="nucleus" aria-pressed="false"><span class="part-number">3</span><span>细胞核</span></button>
             <button type="button" data-part="chloroplast" aria-pressed="false"><span class="part-number">4</span><span>叶绿体</span></button>
+            <button type="button" data-part="mitochondrion" aria-pressed="false"><span class="part-number">5</span><span>线粒体</span></button>
+            <button type="button" data-part="vacuole" aria-pressed="false"><span class="part-number">6</span><span>大液泡</span></button>
           </div>
           <div class="explanation" aria-live="polite" aria-atomic="true"><span id="presence" class="presence">这三种都有</span><h3 id="part-title">细胞膜</h3><p id="part-description">细胞膜把里面与外面分开，也调节一些物质的进出。它不是一堵完全封死的墙。</p><p id="part-question" class="question">换着看：三种细胞的边界形状一样吗？</p></div>
         </aside>
       </div>
+      <div class="detail-row">
+        <div class="detail-window"><p id="detail-title">放大观察：细胞膜</p><svg id="detail-scene" viewBox="0 0 720 490" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="同一细胞的局部放大"></svg><div class="scene-symbols" data-respiration-key><span><i class="reaction-symbol" aria-hidden="true"></i>虚线圈：线粒体</span><span><i class="amino-symbol" aria-hidden="true"></i>绿圆点：氨基酸</span><span><i class="atp-symbol" aria-hidden="true"></i>金色标记：ATP</span></div></div>
+        <div class="detail-context"><p class="step">同一处，再靠近一点</p><h3>薄薄的膜，丰富的内部</h3><p id="detail-note">虚线框与放大窗口对应同一处；膜和细胞器都经过教学放大。</p><p>点选结构，观察窗口会移到那里。不存在的结构不会凭空出现，窗口会退回整体对照。</p></div>
+      </div>
+      <section class="behavior" aria-labelledby="process-heading">
+        <p class="step">03 / 细胞也在做事情</p><h2 id="process-heading">从营养物质中释放可用能量</h2><p id="process-description"></p>
+        <div class="process-tabs" role="group" aria-label="选择细胞行为"><button type="button" data-process="respiration" aria-pressed="true">利用营养物质</button><button type="button" data-process="photosynthesis" aria-pressed="false">用光制造糖</button></div>
+        <p id="plant-reminder" class="plant-reminder" hidden>植物也呼吸，白天和夜晚都可以。这里分开观察两种过程，不表示它们只能轮流发生。</p>
+        <div class="behavior-workbench"><div class="behavior-window"><p>就在这里看物质来去</p><svg id="behavior-scene" viewBox="0 0 720 490" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="与上方同一细胞的物质变化示意"></svg><div class="material-key" aria-label="图中物质的符号"><span><i class="sugar-symbol" aria-hidden="true"></i>糖</span><span><i class="oxygen-symbol" aria-hidden="true"></i>氧</span><span><i class="water-symbol" aria-hidden="true"></i>水</span><span><i class="carbon-symbol" aria-hidden="true"></i>二氧化碳</span><span id="fragment-key"><i class="fragment-symbol" aria-hidden="true"></i>糖分解后的物质</span><span id="reaction-key"><i class="reaction-symbol" aria-hidden="true"></i>虚线圈：线粒体</span></div><div id="assembly-key" class="assembly-key"><div class="assembly-swatch" aria-hidden="true"><i class="amino-symbol"></i><span>→</span><i class="protein-symbol"></i></div><div><strong>绿圆点：氨基酸</strong><p>制造蛋白质的小原料。连成一串，表示正在形成蛋白质链。</p></div></div><div id="energy-readout" class="energy-readout"><span class="atp-symbol" aria-hidden="true"></span><div><strong>金色标记：ATP，携带可用能量</strong><p id="energy-status"></p></div></div></div><div class="behavior-console">
+        <div class="process-controls"><button id="play" type="button">看一次变化</button><button id="pause" type="button" disabled>暂停观察</button><button id="replay" type="button">从头观察</button></div>
+        <label class="progress-label" for="process-progress"><span>慢慢拖，看看物质来去</span><output id="process-value">0%</output></label><input id="process-progress" type="range" min="0" max="100" step="1" value="0" aria-describedby="process-status"/><p id="process-status" class="small-note" aria-live="polite"></p>
+        <div class="flow-key" id="flow-key"><p id="flow-input"></p><span aria-hidden="true">→</span><p id="flow-output"></p></div><p id="flow-extra" class="small-note"></p>
+        </div></div>
+        <p id="process-boundary" class="small-note">糖先在细胞质中分解，分解后的物质继续进入线粒体；氧参与后续反应。圈出的区域把多步过程合在一起看，并不是糖和氧碰一下就变成能量。路径不是固定管道，符号数量不代表分子比例。</p>
+      </section>
     </section>
     <section class="takeaways" aria-label="三个小发现">
       <article><span class="discovery-number">01</span><h2>细胞不是空袋子</h2><p>膜里面有细胞质，还有许多参与生命活动的结构。这里仅挑出几个来观察。</p></article>
@@ -46,10 +65,13 @@
     </section>
     <section class="field-note"><div class="note-symbol" aria-hidden="true">?</div><div><h2>为什么肉眼看不到大多数细胞？</h2><p>因为它们太小了。显微镜帮助我们观察细胞；颜色也常来自染色或后期标记。图中明亮的颜色是为了让结构容易分辨。</p></div></section>
     <details class="sources"><summary>给大人的说明与来源</summary>
-      <p>这是结构比较，不是显微照片或完整细胞模型。形状、颜色、大小和数量都做了教学简化，三种图并不等比例。动物细胞采用有细胞核的典型例子；成熟的哺乳动物红细胞等有特殊情况。植物图只代表有叶绿体的叶肉细胞，许多根部细胞没有叶绿体。</p>
+      <p>这是结构与两种行为的示意，不是显微照片或完整细胞模型。形状、颜色、大小和数量都做了教学简化，三种图并不等比例。动物细胞采用有细胞核的典型例子；成熟的哺乳动物红细胞等有特殊情况。植物图只代表有叶绿体的叶肉细胞，许多根部细胞没有叶绿体。</p>
       <p>DNA 在动物与植物细胞中主要位于细胞核，线粒体也有少量 DNA，植物的叶绿体也有自己的 DNA；图中仅突出主要 DNA。细菌图突出没有膜包围的核，不代表所有细菌都有一样的形状。植物和大多数细菌在细胞膜外还有细胞壁。叶肉细胞中央浅色区表示液泡。</p>
       <p>这里把细胞称为生命活动的基本单位，不讨论病毒是否算生命的定义争议。页面没有根据外观判断微生物是否有害，也不提供疾病或用药建议。</p>
+      <p>行为画面只比较典型动物细胞的有氧呼吸与叶肉细胞的光合作用、呼吸作用。呼吸不是把空气吸进小肺，而是细胞内利用营养物质的反应。光合作用形成的氧主要来自水；糖的碳来自二氧化碳。糖可以被使用、储存或运往植物其他部分。糖酵解在细胞质中进行，不直接消耗氧，也可产生 ATP；分解后的丙酮酸进入线粒体，氧在线粒体呼吸链末端被利用。动画把后续氧化、ATP 形成与产物出现集中在同一观察区域，没有逐步画出酶、电子传递或内膜两侧的质子梯度。ATP 是携带可用化学能的分子，参与合成等需能过程后会变为 ADP 等，再循环利用；它不是自由漂浮的能量。绿圆点现在专指氨基酸，连串示意蛋白质链的形成；这需要核糖体、RNA 和多种因子参与。ATP 支持氨基酸活化等步骤，延长链还需要 GTP 等，图中未展开这些步骤。圆点形状、颜色和数量都只是符号。现实过程能同时进行，动画的先后和速度仅便于观察，不模拟浓度、温度、光强、ATP 数量或净气体交换。</p>
       <ul>
+        <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK26829/" target="_blank" rel="noopener noreferrer">NCBI Bookshelf · From RNA to Protein</a></li>
+        <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK26882/" target="_blank" rel="noopener noreferrer">NCBI Bookshelf · How Cells Obtain Energy from Food</a></li>
         <li><a href="https://www.genome.gov/genetics-glossary/Cell" target="_blank" rel="noopener noreferrer">NIH / NHGRI · Cell</a></li>
         <li><a href="https://www.genome.gov/genetics-glossary/Bacteria" target="_blank" rel="noopener noreferrer">NIH / NHGRI · Bacteria</a></li>
         <li><a href="https://www.genome.gov/about-genomics/fact-sheets/Deoxyribonucleic-Acid-Fact-Sheet" target="_blank" rel="noopener noreferrer">NIH / NHGRI · DNA fact sheet</a></li>

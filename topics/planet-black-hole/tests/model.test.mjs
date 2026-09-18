@@ -36,3 +36,18 @@ test('only surviving returning debris emits; intact and absorbed matter stay dar
   if(route==='deep'){assert.ok(firstLight>firstReleased+10);assert.deepEqual(d.emission,buildEncounter(planet,route,80).emission);}
  }
 });
+
+
+test('late planet debris heats only after its own return and keeps multiple orbital scales', () => {
+  const count=160, m=buildEncounter('rocky','deep',count);
+  assert.ok(m.returnedAt.some(f => f < FRAMES));
+  for(let f=0;f<FRAMES;f++) for(let i=0;i<count;i++) if(m.emission[f*count+i]>0) {
+    assert.ok(m.bound[i]); assert.ok(m.returnedAt[i]<=f); assert.equal(m.states[f*count+i],1);
+  }
+  const radii=[];
+  for(let i=0;i<count;i++) if(m.bound[i]&&m.states[(FRAMES-1)*count+i]===1) {
+    const j=((FRAMES-1)*count+i)*3;
+    radii.push(Math.hypot(...m.positions.slice(j,j+3)));
+  }
+  assert.ok(Math.max(...radii)>4*Math.min(...radii));
+});

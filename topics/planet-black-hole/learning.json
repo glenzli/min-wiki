@@ -2,8 +2,8 @@
   "version": 1,
   "topicId": "planet-black-hole",
   "zh": {
-    "question": "沿同一条路线经过黑洞，松散的气态行星与紧密的岩石行星会一样吗？",
-    "observe": "固定经过路线，先选岩石行星，再选气态行星；拖到最近处比较潮汐尺度、外层释放与保留的核心。",
+    "question": "沿同一条路线经过黑洞，平均密度不同的类地球与类木星行星会怎样？",
+    "observe": "固定路线，切换两种行星比较潮汐尺度和形变；再从上方跟踪长尾与回返路径，切近景观察橙色亮处怎样变化。",
     "academic": [
       {
         "title": "平均密度决定抗潮汐的尺度",
@@ -14,16 +14,16 @@
         "body": "穿透因子β=rₜ/rₚ把潮汐半径与最近距离联系起来，β较大意味着经过得相对更深。为了比较密度，应先保持路线不变；为了比较轨道，再固定行星种类。真实结果还受内部层结、自转、强度和遭遇速度影响。可见的形变不等于完全破坏，脱离物质、剩余核心和逃逸部分应分别观察。"
       },
       {
-        "title": "光亮不是吞入量的计数器",
-        "body": "碎片的轨道能量和角动量不相同，一部分可逃逸，一部分回返并通过碰撞受热。盘的形成与发光需要相互作用，不能把每个亮点当成已经跨过视界的物质。页面从连续粒子状态构造受热发光，帮助追踪物质去向，但亮度未标定为质量流率或观测光谱，更不说明现实中某颗已知行星必将经历这条路径。"
+        "title": "回返不等于成盘，变暗不等于吞入",
+        "body": "碎屑可具有不同的轨道能量和角动量，一部分逃逸，一部分沿偏心轨道回返。真实相遇和激波可能使物质受热，但不保证立即形成完整圆盘。本例检测束缚碎屑外行后转向内行，再用温和耗散近似轨道变化；局部橙色亮度随近似能量损失增加，也会衰减。淡线仅记录少量物质点的最近路径。亮度不是温度、质量吞入率或真实光谱，也没有计算岩石断裂、气压和汽化。"
       }
     ],
-    "misconception": "黑洞附近出现拉长形状，不等于整颗行星已经消失；低密度也不表示它“更轻”就必然沿同一路线掉进去。",
-    "boundary": "这是受潮汐影响的行星教学模型，不对应已观测事件；采用简化引力、内聚与释放规则，没有完整材料力学、流体或数值广义相对论计算。",
+    "misconception": "低密度不等于“更轻就必然掉进去”；回返也不等于立刻形成圆盘。淡线是最近走过的路径，橙色亮处不是温度计。",
+    "boundary": "同一批物质点用渐弱支撑和中心引力展示形变与释放，在束缚碎屑回返后启用简化耗散，保留偏心绕行。没有求解岩石断裂、气压、汽化、真实碰撞或相对论流体，也不预测某颗已知行星的瓦解、成盘或吞入比例。",
     "narration": [
       {
         "label": "挑一个旅行伙伴",
-        "text": "今天换行星来做旅行伙伴。一个是比较紧密的岩石世界，另一个是更松散的气态世界。它们都可能从黑洞附近经过。先不要急着给故事猜结尾：经过得远还是近，行星自己的结构怎样，都会影响接下来发生的事情。",
+        "text": "今天换行星来做旅行伙伴。一个是类地球的岩石世界，另一个是类木星的气态世界。在这个比较里，它们的平均密度不同。先看看比较远的路线：经过得远还是近，会影响拉扯的强弱。行星自己的结构也很重要，但这个小模型还不能把岩石怎样裂开、气体怎样流动都算出来。",
         "cue": "从岩石行星、较远路线开始。"
       },
       {
@@ -32,20 +32,20 @@
         "cue": "同一路线切两种行星；停顿约四秒后看最近处。"
       },
       {
-        "label": "物质不会凭空换掉",
-        "text": "继续跟着这些物质。有些变成长长的流，有些绕回来，有些走得更远。它们原来就是行星的一部分，不是画面后来又放进来的装饰。即使外形变了，我们还是可以沿着运动，找到它们怎样从刚才的位置走到现在的位置。",
-        "cue": "缓慢播放连续拉伸和碎片轨迹。"
+        "label": "跟着物质绕回来",
+        "text": "继续跟着原来的物质。有些拉成长长的尾巴，有些走过一段弯路，又绕回来。回来不等于马上掉进去，也不等于已经排成圆盘。从上方看一看，哪些弯路拉得比较长？淡淡的线记下少量物质刚走过的路，不是又出现了一圈实体环。",
+        "cue": "切俯视，慢慢跟踪长尾、偏心回返与最近路径。"
       },
       {
-        "label": "再试一条远路",
-        "text": "现在把同一种行星放到更远的路线，再来一次。你也许会发现，它可以保留更多原来的样子。这个小实验帮助我们理解拉力的差别，不是在预报我们的地球会遇到什么。把距离、结构和结果连在一起，你就在像科学家那样比较证据了。",
-        "cue": "固定行星种类，对照远近路线。"
+        "label": "看亮处，再作比较",
+        "text": "切到近景，找一找橙色亮处。真实的物质相遇时可能碰撞、变热；这里用亮度变化帮助我们想象，但没有量出温度。变暗时，物质也可能还在继续绕行。现在再用同一种行星试试更远的路线：它是不是保留了更多原来的样子？这个比较帮助我们理解潮汐，不是在预报地球的未来。",
+        "cue": "观察橙色亮处与衰减，再固定行星种类对照远近路线。"
       }
     ]
   },
   "en": {
-    "question": "Would a diffuse gas planet and a dense rocky planet respond alike along the same black-hole encounter?",
-    "observe": "Keep the route fixed and compare rocky and gas planets. Inspect closest approach, tidal scale, released layers, and any remaining core.",
+    "question": "How would Earth-like and Jupiter-like planets with different mean densities respond along the same black-hole encounter?",
+    "observe": "Keep the route fixed and compare tidal scale and deformation for both planets. Then track the tail and returning paths from above, and inspect changing orange patches in the close-up.",
     "academic": [
       {
         "title": "Density sets a tidal scale",
@@ -56,16 +56,16 @@
         "body": "The penetration factor β=rₜ/rₚ compares tidal radius with closest approach. Larger β means a relatively deeper encounter. Hold the route fixed when comparing density, then hold planet type fixed when comparing routes. Internal layers, spin, strength, and encounter speed also matter. Deformation is not identical to total destruction; inspect released material, the remaining core, and escaping fragments separately."
       },
       {
-        "title": "Brightness does not count captured mass",
-        "body": "Fragments carry different orbital energies and angular momenta. Some escape; others return and can heat through collisions. Disk formation and emission involve interactions, and a bright parcel has not necessarily crossed the horizon. Continuous particle states generate the illustrated emission, but brightness is not calibrated to mass flow or a measured spectrum, and the scene does not predict the fate of a known planet."
+        "title": "Returning is not disk formation; fading is not capture",
+        "body": "Debris has different orbital energies and angular momenta. Some escapes, while some returns on eccentric orbits. Physical interactions and shocks may heat the material, without immediately creating a complete disk. Here, gentle dissipation starts after bound debris turns inward following outward motion. Local orange brightness responds to the approximate energy loss and also decays. Faint lines mark a few samples’ recent paths. Brightness is not a temperature, accretion rate or physical spectrum; rock fracture, gas pressure and vaporization are not calculated."
       }
     ],
-    "misconception": "An elongated shape does not mean a whole planet has vanished. Low density is not the same as simply being lighter or inevitably falling in.",
-    "boundary": "This hypothetical encounter uses simplified gravity, cohesion, and release rules, without full material mechanics, hydrodynamics, or numerical general relativity. It does not reconstruct an observed event.",
+    "misconception": "Low density does not mean that being lighter makes a body inevitably fall in. Returning does not instantly make a disk. Faint lines show recent paths, and orange patches are not thermometers.",
+    "boundary": "One material population uses weakening support and central gravity to illustrate deformation and release, with simplified dissipation after bound debris returns and eccentric motion retained. The model does not solve rock fracture, gas pressure, vaporization, physical collisions or relativistic fluid dynamics, or predict a known planet’s disruption, disk formation or captured fraction.",
     "narration": [
       {
         "label": "Choose a traveler",
-        "text": "Today a planet is our traveler. One is a relatively dense rocky world, and another is a more diffuse gas world. Either can pass near a black hole. Before guessing the ending, remember that both the distance of the pass and the planet’s own structure can change what happens next.",
+        "text": "Today a planet is our traveler: an Earth-like rocky world or a Jupiter-like gas world. In this comparison, they have different mean densities. Start with the more distant route: the distance of the pass changes the strength of the tides. A planet’s own structure matters too, but this small model cannot calculate all the ways rock breaks or gas flows.",
         "cue": "Begin with the rocky planet on a distant route."
       },
       {
@@ -74,14 +74,14 @@
         "cue": "Compare both planets on one route; pause four seconds before closest approach."
       },
       {
-        "label": "Keep following the material",
-        "text": "Follow the material onward. Some becomes a long stream, some curves back, and some travels farther away. It was part of the planet before; it is not decoration suddenly added to the picture. Even when its shape changes, we can trace how it moves from its earlier position to its new one.",
-        "cue": "Slowly follow continuous deformation and debris trajectories."
+        "label": "Follow the returning material",
+        "text": "Keep following the original material. Some stretches into a long tail. Some follows a curved path and returns. Coming back does not mean falling straight in or already forming a disk. Look from above: which paths are more stretched out? Faint lines record the recent paths of a few pieces of material. They are not new solid rings.",
+        "cue": "Use the top view to follow the tail, eccentric returns and recent paths slowly."
       },
       {
-        "label": "Try the farther path",
-        "text": "Now keep the same kind of planet and try a more distant route. It may keep more of its original shape. This experiment helps explain differences in gravity; it is not a forecast of something happening to Earth. Connecting distance, structure, and outcome is a way of comparing evidence, just as scientists do.",
-        "cue": "Hold planet type fixed and compare near and far routes."
+        "label": "Inspect the glow, then compare",
+        "text": "Use the close-up to find orange patches. Real material may collide and heat up when it meets other material. The changing brightness helps us imagine this, but it is not a temperature measurement. Material can keep orbiting even as its glow fades. Now try the farther route with the same planet. Does it keep more of its original shape? This comparison helps us understand tides; it is not a forecast of Earth’s future.",
+        "cue": "Observe orange patches and fading, then hold planet type fixed while comparing near and far routes."
       }
     ]
   },
@@ -93,6 +93,18 @@
     {
       "title": "NASA · Anatomy of a Black Hole",
       "url": "https://science.nasa.gov/universe/black-holes/anatomy/"
+    },
+    {
+      "title": "NASA JPL · Planetary Physical Parameters",
+      "url": "https://ssd.jpl.nasa.gov/planets/phys_par.html"
+    },
+    {
+      "title": "ESA · Black hole wakes up and has a light snack",
+      "url": "https://www.esa.int/Science_Exploration/Space_Science/Black_hole_wakes_up_and_has_a_light_snack"
+    },
+    {
+      "title": "Bonnerot & Stone · Formation of an Accretion Flow",
+      "url": "https://arxiv.org/abs/2008.11731"
     }
   ]
 }

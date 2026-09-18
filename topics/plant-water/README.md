@@ -13,4 +13,12 @@
 - [USGS · Evapotranspiration](https://www.usgs.gov/water-science-school/science/evapotranspiration-and-water-cycle)
 - [USGS · Plant water transport](https://pubs.usgs.gov/sir/2013/5014/section3.html)
 
-Interaction advances only on user input; no continuous timers, audio, or background workers. SVG labels and live observation text provide the same explanation.
+
+
+## Continuous observation refinement · 2026-09-19
+
+A 22-second controlled water journey links roots, xylem and leaf departure. The enlarged leaf section includes a water conduit, mesophyll air space and guard-cell opening. Filled and open markers distinguish liquid water and vapour; the same progress survives changing view. Cohorts are tracking aids, not molecule counts. No internal SVG text obscures the path.
+
+All playback is explicit and finite. Hidden documents pause active playback; page exit cancels frame work. Reduced-motion mode advances to inspection states rather than starting continuous movement. Phase/status text changes only at meaningful stages. Topic-local model tests cover the changed causal and continuity contracts; root task owns the full build and desktop/mobile browser acceptance.
+
+Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.

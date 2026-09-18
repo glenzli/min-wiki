@@ -271,7 +271,7 @@ class App {
     place($('star-label'),star,16,-49,sim.starVisible);
     const diskVisible=SCENARIOS[this.playback.scenario].disrupted&&motionProgress(this.playback.progress,this.playback.scenario)>0.58;
     const labelBelow=diskVisible&&sim.container.clientWidth<600;
-    place($('hole-label'),hole,labelBelow?-55:diskVisible?108:28,labelBelow?90:18,!SCENARIOS[this.playback.scenario].noBlackHole);
+    place($('hole-label'),hole,labelBelow?-55:diskVisible?108:28,labelBelow?90:18,!SCENARIOS[this.playback.scenario].noBlackHole&&!diskVisible);
   }
   animate(now: number) {
     const delta=Math.min((now-this.lastFrame)/1000,0.05);
