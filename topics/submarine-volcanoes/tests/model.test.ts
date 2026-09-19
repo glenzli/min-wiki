@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { submarineState, pillowState, fragmentState, cameraBox, SEA_LEVEL } from '../model.ts';
+import { submarineState, pillowState, fragmentState, cameraBox, islandAccretion, islandSurfaceY, ISLAND_UNIT_COUNT, SEA_LEVEL } from '../model.ts';
 
 test('finite display inputs produce bounded and deterministic scenarios', () => {
   for (const p of [-1, 0, .25, .7, 1, 2, NaN, Infinity]) {
@@ -34,12 +34,33 @@ test('erosion begins after deposition finishes and lowers the existing summit', 
   assert.equal(submarineState(.7, 'island').erosion, 0);
 });
 
+test('island growth is a bounded sequence of deposits that widens before emergence', () => {
+  const early = islandAccretion(.24, 'sustained');
+  const middle = islandAccretion(.5, 'sustained');
+  const late = islandAccretion(.78, 'sustained');
+  assert.ok(early.deposited > 1);
+  assert.ok(middle.deposited > early.deposited);
+  assert.equal(late.deposited, ISLAND_UNIT_COUNT);
+  assert.equal(new Set(late.units.map(unit => unit.phase)).size, 4);
+  assert.ok(islandSurfaceY(360, .58) < islandSurfaceY(360, .24));
+  assert.ok(islandSurfaceY(640, .58) < islandSurfaceY(640, .24));
+  assert.ok(submarineState(.58, 'island').summit < submarineState(.24, 'island').summit);
+});
+
+test('stopping supply preserves a submerged edifice instead of removing it', () => {
+  const stopped = submarineState(1, 'island', 'limited');
+  assert.ok(stopped.addition > 180);
+  assert.ok(stopped.summit < 330);
+  assert.ok(stopped.summit > SEA_LEVEL);
+  assert.equal(islandAccretion(1, 'limited').available, 13);
+});
+
 test('a pillow rind solidifies while its core is still hot, then both settle', () => {
   const mid = pillowState(.25, 0);
   assert.equal(mid.growth, 1);
   assert.equal(mid.crust, 1);
   assert.ok(mid.coreHeat > .5);
-  for (let i = 0; i < 11; i++) assert.deepEqual(pillowState(1, i), { growth: 1, crust: 1, coreHeat: 0 });
+  for (let i = 0; i < 14; i++) assert.deepEqual(pillowState(1, i), { growth: 1, crust: 1, coreHeat: 0 });
 });
 
 test('finite fragments settle instead of looping at the end', () => {

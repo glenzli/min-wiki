@@ -1,4 +1,4 @@
-import { cameraBox, clamp, fragmentState, pillowState, SEA_LEVEL, submarineState, type Environment, type Supply, type Viewpoint } from './model.ts';
+import { cameraBox, clamp, fragmentState, islandAccretion, islandSurfaceY, pillowState, SEA_FLOOR, SEA_LEVEL, submarineState, type AccretionPhase, type Environment, type Supply, type Viewpoint } from './model.ts';
 
 export type SceneFrame = { progress: number; weights: [number, number, number]; supplyMix: number; camera: [number, number, number, number]; section: number };
 const environments: Environment[] = ['deep', 'shallow', 'island'];
@@ -10,7 +10,7 @@ const seeded = (index: number, salt: number): number => {
 };
 
 /** Stable, asymmetric lobe silhouettes; geometry never changes randomly between frames. */
-const pillowShapes = Array.from({ length: 11 }, (_, index) => {
+const pillowShapes = Array.from({ length: 14 }, (_, index) => {
   const rx = 24 + seeded(index, 1) * 10, ry = 14 + seeded(index, 2) * 9;
   const points = Array.from({ length: 9 }, (_, vertex) => {
     const angle = vertex / 9 * Math.PI * 2;
@@ -29,6 +29,12 @@ const pillowShapes = Array.from({ length: 11 }, (_, index) => {
   return { outline, cracks, rx, ry, rotation: (seeded(index, 4) - .5) * 30, dx: (seeded(index, 5) - .5) * 7, dy: (seeded(index, 6) - .5) * 6 };
 });
 
+// Lobes bud from an interconnected stack instead of appearing on one diagonal string.
+const pillowAnchors = [
+  [0, 29], [-27, 38], [29, 38], [-53, 49], [55, 50], [-12, 18], [17, 15],
+  [-39, 25], [43, 27], [-70, 58], [72, 59], [-22, 2], [9, -3], [35, 7],
+] as const;
+
 const surfaceGrain = Array.from({ length: 110 }, (_, i) => {
   const x = 50 + seeded(i, 71) * 900, y = 170 + seeded(i, 72) * 450;
   const r = .35 + seeded(i, 73) * 1.3;
@@ -42,6 +48,8 @@ export function createScene(svg: SVGSVGElement) {
     <linearGradient id="ocean-deep" gradientUnits="userSpaceOnUse" x1="0" y1="154" x2="0" y2="440"><stop stop-color="#20647b"/><stop offset=".2" stop-color="#10394f"/><stop offset=".55" stop-color="#081d30"/><stop offset="1" stop-color="#050f1b"/></linearGradient>
     <linearGradient id="rock" x1=".2" y1="0" x2=".65" y2="1"><stop stop-color="#7b8478"/><stop offset=".28" stop-color="#455c5e"/><stop offset=".65" stop-color="#293e48"/><stop offset="1" stop-color="#192b37"/></linearGradient>
     <linearGradient id="interior" x2="0" y2="1"><stop stop-color="#857a5a"/><stop offset="1" stop-color="#333b3e"/></linearGradient>
+    <linearGradient id="island-rock" x1=".2" y1="0" x2=".75" y2="1"><stop stop-color="#465e5e"/><stop offset=".48" stop-color="#253f49"/><stop offset="1" stop-color="#102936"/></linearGradient>
+    <linearGradient id="fresh-flow" x1="0" x2="1"><stop stop-color="#fff0a5"/><stop offset=".3" stop-color="#ef9a3d"/><stop offset=".72" stop-color="#b6472d"/><stop offset="1" stop-color="#283c43"/></linearGradient>
     <linearGradient id="molten" x2="0" y2="1"><stop stop-color="#fff1b1"/><stop offset=".4" stop-color="#ffae43"/><stop offset="1" stop-color="#d35025"/></linearGradient>
     <radialGradient id="heat"><stop stop-color="#ffce76" stop-opacity=".64"/><stop offset=".4" stop-color="#ff9549" stop-opacity=".25"/><stop offset="1" stop-color="#eb7436" stop-opacity="0"/></radialGradient>
     <radialGradient id="pillow-skin" cx=".28" cy=".18" r=".88"><stop stop-color="#829490"/><stop offset=".27" stop-color="#4b676f"/><stop offset=".66" stop-color="#243f4d"/><stop offset="1" stop-color="#102733"/></radialGradient>
@@ -50,6 +58,7 @@ export function createScene(svg: SVGSVGElement) {
     <radialGradient id="lamp-pool"><stop stop-color="#bfd9c6" stop-opacity=".06"/><stop offset="1" stop-color="#bfd9c6" stop-opacity="0"/></radialGradient>
     <radialGradient id="particle-haze"><stop stop-color="#a0aca1" stop-opacity=".36"/><stop offset="1" stop-color="#9ca99a" stop-opacity="0"/></radialGradient>
     <radialGradient id="condensation"><stop stop-color="#edf0df" stop-opacity=".66"/><stop offset=".62" stop-color="#d7e5dd" stop-opacity=".3"/><stop offset="1" stop-color="#d7e5dd" stop-opacity="0"/></radialGradient>
+    <pattern id="fragment-speckle" width="18" height="14" patternUnits="userSpaceOnUse"><rect width="18" height="14" fill="#756e59"/><path d="M2 10l3-5 4 3-2 4zm9-7l4 2-1 4-4-2z" fill="#b2a17a" opacity=".55"/></pattern>
     <clipPath id="underwater"><rect x="-500" y="154" width="2000" height="1000"/></clipPath>
     <clipPath id="above-water"><rect x="-500" y="-500" width="2000" height="654"/></clipPath>
   </defs><g id="ocean-art"></g>`;
@@ -96,6 +105,7 @@ function rovMarkup(): string {
 }
 
 function scenario(progress: number, environment: Environment, supply: Supply, section: number): string {
+  if (environment === 'island') return islandScenario(progress, supply, section);
   const s = submarineState(progress, environment, supply);
   const y = s.summit;
   const mountain = mountainPath(y);
@@ -108,23 +118,20 @@ function scenario(progress: number, environment: Environment, supply: Supply, se
     <path d="M508 533C461 480 529 ${y + 74} 499 ${y + 9}" fill="none" stroke="#243b3e" stroke-width="28" stroke-linecap="round"/>
     <path d="M508 533C461 480 529 ${y + 74} 499 ${y + 9}" fill="none" stroke="url(#molten)" stroke-width="15" stroke-linecap="round" opacity="${n(hot)}"/>
     <path d="M504 ${Math.max(y + 70, 340)}Q562 389 597 422" fill="none" stroke="#bf6441" stroke-width="8" opacity=".7"/></g>`;
-  if (environment === 'island' && s.erosion > 0) {
-    out += `<path d="${mountainPath(s.peakSummit)}" fill="none" stroke="#d8dfc8" stroke-dasharray="7 8" stroke-width="1.5" opacity="${n(s.erosion * .5)}"/>`;
-    for (let i = 0; i < 19; i++) {
-      const travel = s.erosion * (33 + i * 5), side = i % 2 ? 1 : -1;
-      out += `<ellipse cx="${n(500 + side * (71 + travel))}" cy="${n(170 + travel * .72 + i % 3 * 10)}" rx="${2 + i % 3}" ry="2" fill="#b9b592" opacity="${n(.6 * s.erosion)}"/>`;
-    }
-  }
   out += `<path d="M474 ${y + 11}L481 ${y + 7}Q493 ${y + 12} 504 ${y + 9}L519 ${y + 11}L526 ${y + 16}Q512 ${y + 25} 490 ${y + 22}L477 ${y + 18}Z" fill="#0d2430" stroke="#65756b" stroke-width="2"/>
     <path d="M482 ${y + 13}Q497 ${y + 9} 519 ${y + 14}Q504 ${y + 20} 487 ${y + 18}Z" fill="url(#molten)" opacity="${n(s.activity * .9)}"/>
     <path d="M477 ${y + 10}L487 ${y + 11}M512 ${y + 12}L520 ${y + 13}" stroke="#a39e7e" stroke-width="1.2" opacity=".6"/>`;
   if (environment === 'deep') {
-    for (let i = 0; i < 11; i++) {
+    const fed = clamp((progress - .045) / .34);
+    out += `<path d="M500 ${n(y + 82)}C499 ${n(y + 62)} 492 ${n(y + 48)} 500 ${n(y + 24)}C480 ${n(y + 30)} 462 ${n(y + 40)} 445 ${n(y + 54)}M500 ${n(y + 24)}C523 ${n(y + 31)} 543 ${n(y + 43)} 562 ${n(y + 57)}" fill="none" stroke="#182f39" stroke-width="17" stroke-linecap="round" opacity="${n(fed * .92)}"/>
+      <path d="M500 ${n(y + 80)}C499 ${n(y + 61)} 493 ${n(y + 46)} 500 ${n(y + 24)}" fill="none" stroke="#e47639" stroke-width="5" stroke-linecap="round" opacity="${n(fed * (1 - clamp((progress - .48) / .42)))}"/>`;
+    for (let i = 0; i < pillowAnchors.length; i++) {
       const pillow = pillowState(progress, i);
       if (pillow.growth === 0) continue;
       const shape = pillowShapes[i];
-      const x = 499 + i * 13.6 + shape.dx;
-      const py = y + 20 + i * 7.9 - (i % 2) * 8 + shape.dy;
+      const [anchorX, anchorY] = pillowAnchors[i];
+      const x = 500 + anchorX + shape.dx;
+      const py = y + anchorY + shape.dy;
       const coreScale = .66 - pillow.crust * .10;
       const cutaway = i % 3 === 1 ? clamp(section * 1.55) : 0;
       const advancing = clamp(pillow.coreHeat * (.3 + 3.4 * pillow.growth * (1 - pillow.growth)));
@@ -165,13 +172,112 @@ function scenario(progress: number, environment: Environment, supply: Supply, se
       out += `<g data-material="condensation" clip-path="url(#above-water)" opacity="${n(Math.sin(q * Math.PI) * .8)}"><ellipse cx="${n(x)}" cy="${n(py)}" rx="${n(radius * 1.4)}" ry="${n(radius)}" fill="url(#condensation)"/><ellipse cx="${n(x - radius * .45)}" cy="${n(py - radius * .23)}" rx="${n(radius)}" ry="${n(radius * .7)}" fill="url(#condensation)"/></g>`;
     }
   }
-  if (environment === 'island' && s.emerged) out += coastMarkup(y, s.erosion, progress);
+  return out;
+}
 
-  if (environment === 'island' && s.activity > 0) {
-    const extent = s.activity * 128;
-    out += `<path d="M506 ${y + 19}Q549 ${y + 30} ${532 + extent * .4} ${y + 30 + extent * .52}T${545 + extent * .75} ${y + 35 + extent * .88}" fill="none" stroke="#dc743e" stroke-width="9" stroke-linecap="round" opacity="${n(s.activity * .9)}"/>
-      <path d="M506 ${y + 19}Q549 ${y + 30} ${532 + extent * .4} ${y + 30 + extent * .52}T${545 + extent * .75} ${y + 35 + extent * .88}" fill="none" stroke="#ffd37d" stroke-width="3" stroke-linecap="round" opacity="${n(s.activity * .8)}"/>`;
+const islandXs = Array.from({ length: 59 }, (_, index) => 65 + index * 15);
+const phaseColors: Record<AccretionPhase, string[]> = {
+  'deep-base': ['#1a3540', '#294950', '#385b5c', '#223f49'],
+  'spreading-flows': ['#334d4f', '#58645a', '#283f46', '#687063'],
+  'shallow-fragments': ['url(#fragment-speckle)', '#7b735c', '#9a8967', '#625f52'],
+  'lava-cap': ['#343c3b', '#5a5348', '#27383b', '#6c5e4d'],
+};
+
+function islandProfilePath(progress: number, supply: Supply, throughIndex = Number.POSITIVE_INFINITY, eroded = true): string {
+  return islandXs.map((x, index) => `${index ? 'L' : 'M'}${x} ${n(islandSurfaceY(x, progress, supply, throughIndex, eroded))}`).join('');
+}
+
+function islandBandPath(progress: number, supply: Supply, index: number): string {
+  const upper = islandXs.map(x => [x, islandSurfaceY(x, progress, supply, index, false)] as const);
+  const lower = islandXs.map(x => [x, islandSurfaceY(x, progress, supply, index - 1, false)] as const);
+  return upper.map(([x, y], point) => `${point ? 'L' : 'M'}${x} ${n(y)}`).join('')
+    + lower.reverse().map(([x, y]) => `L${x} ${n(y)}`).join('') + 'Z';
+}
+
+function islandCoastMarkup(progress: number, supply: Supply, erosion: number): string {
+  const above = islandXs.filter(x => islandSurfaceY(x, progress, supply) <= SEA_LEVEL);
+  if (!above.length) return '';
+  const left = Math.min(...above), right = Math.max(...above);
+  let out = `<path d="M${left - 18} 158q11-5 25-1M${right - 6} 157q12-4 26 1" fill="none" stroke="#e0eee2" stroke-width="4" opacity=".88"/>
+    <path d="M${left - 7} 154L${left + 8} 147M${right - 8} 147L${right + 8} 154" stroke="#263b3e" stroke-width="6" opacity=".8"/>`;
+  for (let wave = 0; wave < 4; wave++) {
+    out += `<path d="M${left - 24 - wave * 12} ${161 + wave * 4}q13 ${n(-4 + Math.sin(progress * 8 + wave))} 27 0M${right - 3 + wave * 12} ${161 + wave * 4}q13 ${n(-4 - Math.sin(progress * 8 + wave))} 27 0" fill="none" stroke="#cfe4df" stroke-width="${n(1.8 - wave * .25)}" opacity="${n(.68 - wave * .1)}"/>`;
   }
+  if (erosion > 0) {
+    for (let i = 0; i < 13; i++) {
+      const side = i % 2 ? 1 : -1;
+      const travel = erosion * (18 + i * 4.2);
+      out += `<path d="M-3-2L3-1L2 3L-2 3Z" transform="translate(${n(500 + side * (124 + travel))} ${n(176 + travel * .7 + i % 3 * 7)}) rotate(${i * 29})" fill="#8f876d" opacity="${n(erosion * .72)}"/>`;
+    }
+  }
+  return out;
+}
+
+/** A basaltic island-building case: separate deposits widen and raise the edifice. */
+function islandScenario(progress: number, supply: Supply, section: number): string {
+  const accretion = islandAccretion(progress, supply);
+  const state = submarineState(progress, 'island', supply);
+  const profile = islandProfilePath(progress, supply);
+  const clipId = `island-body-${supply}`;
+  let out = `<clipPath id="${clipId}"><path d="${profile}L935 650H65Z"/></clipPath>
+    <path d="${profile}L935 650H65Z" fill="url(#island-rock)" stroke="#77908a" stroke-width="1.3"/>`;
+
+  for (const unit of accretion.units) {
+    if (unit.growth <= 0) continue;
+    const color = phaseColors[unit.phase][unit.texture];
+    out += `<path data-deposit="${unit.phase}" d="${islandBandPath(progress, supply, unit.index)}" fill="${color}" stroke="#c0b48a" stroke-width="${n(.28 + section * .5)}" opacity="${n(.38 + section * .52)}"/>`;
+    if (unit.phase === 'shallow-fragments' && unit.growth > .35) {
+      for (let chip = 0; chip < 4; chip++) {
+        const side = chip % 2 ? 1 : -1;
+        const x = unit.center + side * (35 + chip * 18 + unit.index % 3 * 5);
+        const y = islandSurfaceY(x, progress, supply, unit.index, false) + 5 + chip % 2 * 4;
+        out += `<path d="M-4 2L-1-4L4-1L3 4Z" transform="translate(${n(x)} ${n(y)}) rotate(${unit.index * 17 + chip * 41})" fill="#c1ae82" stroke="#3d4845" stroke-width=".6" opacity="${n(.38 + section * .42)}"/>`;
+      }
+    }
+  }
+
+  const oldPillows = clamp(1 - Math.max(0, accretion.deposited - 8) / 8);
+  if (oldPillows > 0) {
+    const positions = [-116, -86, -55, -23, 16, 49, 82, 113];
+    for (let i = 0; i < positions.length; i++) {
+      const x = 500 + positions[i];
+      const y = islandSurfaceY(x, progress, supply) - 3;
+      out += `<ellipse cx="${x}" cy="${n(y)}" rx="${18 + i % 3 * 3}" ry="${11 + i % 2 * 3}" transform="rotate(${i % 2 ? -8 : 11} ${x} ${n(y)})" fill="url(#pillow-skin)" stroke="#77908a" stroke-width="1" opacity="${n(oldPillows * .82)}"/>`;
+    }
+  }
+
+  const conduitTop = Math.min(SEA_FLOOR - 18, state.summit + 22);
+  out += `<g clip-path="url(#${clipId})" opacity="${n(section)}">
+    <ellipse cx="500" cy="560" rx="91" ry="29" fill="#2d3334" stroke="#a26f4d" stroke-width="4"/>
+    <ellipse cx="500" cy="560" rx="75" ry="20" fill="url(#molten)" opacity=".78"/>
+    <path d="M500 544C477 496 518 430 500 ${n(conduitTop)}" fill="none" stroke="#1d3033" stroke-width="31" stroke-linecap="round"/>
+    <path d="M500 544C477 496 518 430 500 ${n(conduitTop)}" fill="none" stroke="url(#molten)" stroke-width="13" stroke-linecap="round" opacity="${n(.24 + state.activity * .7)}"/>
+    <path d="M500 410Q422 390 365 333M504 365Q573 333 641 296" fill="none" stroke="#c0663e" stroke-width="5" opacity=".42"/>
+  </g>`;
+
+  const active = accretion.units.find(unit => unit.index === accretion.currentIndex);
+  if (active && active.growth > 0 && progress < .8) {
+    const side = active.index % 2 ? 1 : -1;
+    const end = active.center + side * active.width * (.28 + active.growth * .58);
+    const steps = Array.from({ length: 12 }, (_, index) => active.center + (end - active.center) * index / 11);
+    const lavaPath = steps.map((x, index) => `${index ? 'L' : 'M'}${n(x)} ${n(islandSurfaceY(x, progress, supply) - 1.7)}`).join('');
+    if (active.phase === 'shallow-fragments') {
+      for (let i = 0; i < 18; i++) {
+        const q = clamp(active.growth * 1.7 - i % 4 * .11);
+        if (q <= 0 || q >= 1) continue;
+        const drift = (i % 2 ? 1 : -1) * (18 + i * 2.6) * q;
+        const y = state.summit + 12 - Math.sin(q * Math.PI) * (35 + i % 5 * 7) + q * q * 24;
+        out += `<path d="M-3-2L3-1L2 3L-2 2Z" transform="translate(${n(500 + drift)} ${n(y)}) rotate(${i * 31})" fill="#d3bd8a" stroke="#384749" stroke-width=".7" opacity="${n(.35 + .5 * Math.sin(q * Math.PI))}"/>`;
+      }
+    } else {
+      out += `<path d="${lavaPath}" fill="none" stroke="#bd4c2f" stroke-width="13" stroke-linecap="round" opacity=".88"/><path d="${lavaPath}" fill="none" stroke="url(#fresh-flow)" stroke-width="5" stroke-linecap="round"/>`;
+    }
+  }
+
+  if (state.erosion > 0) {
+    out += `<path d="${islandProfilePath(progress, supply, Number.POSITIVE_INFINITY, false)}" fill="none" stroke="#e4dfbe" stroke-dasharray="6 8" stroke-width="1.5" opacity="${n(state.erosion * .62)}"/>`;
+  }
+  if (state.emerged) out += islandCoastMarkup(progress, supply, state.erosion);
   return out;
 }
 

@@ -15,7 +15,7 @@
       },
       {
         "title": "露出海面取决于累计建设与损失",
-        "body": "火山岛的出现要求山体累计增长足以使山顶超过当地海面。真实演化还受侵蚀、滑坡、沉降与海平面变化影响。这里固定海面，把较多或较少供给转为两种示意增高量，再单独展示后期侵蚀。较少供给的例子始终在水下；较多供给的例子露出山顶后，大部分垂直高度仍在海面下。这些比例只是插画选择。"
+        "body": "火山岛不是一个圆锥整体向上抬起。喷出的物质会沿当时的地形流动、冷却、破碎或滑落，形成一个个有边界的沉积单元。较低流量的枕状与管状熔岩可建立深水基座；较大流量的叶状、片状流会填低处并扩大山体；浅水碎屑可与后来的熔岩交错；露出海面后的地上熔岩又能形成盖层。真实演化还受侵蚀、滑坡、沉降与海平面变化影响。本图固定海面，只比较持续供给与较早停止两条概念历史。"
       }
     ],
     "misconception": "海水不是万能的灭火器，熔岩也不是在燃烧的普通火焰。深水不保证没有爆炸，浅水不保证一定爆炸；海底火山也不一定会变成岛。",
@@ -38,8 +38,8 @@
       },
       {
         "label": "小岛下面是一座山",
-        "text": "现在把很长的时间缩成一小段。一次又一次增加岩石，山顶才有可能露出海面。试试供给较少的按钮，它就一直藏在水下。再看看长成岛的例子：露出来的只是山顶，下面还有大大的山。最后海浪带走一些东西，岛的样子也会改变。",
-        "cue": "成岛情境在约80%比较两种供给，切山体剖面；恢复较多供给并移到100%，对比虚线旧轮廓。"
+        "text": "现在把很长的时间缩成一小段。先看圆鼓鼓的熔岩搭出水下基座，再看较宽的熔岩流向低处铺开。接近海面时，有些碎屑落回山坡，后来又被熔岩盖住。试试“较早停止”：已经长出的海山不会消失，只是没能露出水面。持续供给时，露出来的仍只是大山的一小点。最后，海浪又会慢慢改变它。",
+        "cue": "成岛案例从前段逐步拖到后段，依次指四阶段条与剖面色带；在约75%比较两种供给，切山体剖面；恢复持续供给并移到100%，对比虚线旧轮廓。"
       }
     ]
   },
@@ -57,7 +57,7 @@
       },
       {
         "title": "Emergence depends on accumulation and loss",
-        "body": "An island forms when accumulated growth lifts a summit above local sea level. Erosion, landslides, subsidence and sea-level changes also affect real evolution. This model fixes sea level, assigns two illustrative growth amounts, and then shows later erosion separately. The lower-supply example stays submerged. The larger example emerges with most vertical height still underwater. Those proportions are illustration choices."
+        "body": "A volcanic island does not rise as one cone that inflates uniformly. Erupted material follows the existing terrain, then cools, fragments or slides into bounded deposits. Low-rate pillow and tubular lavas can build a deep base; broader lobate and sheet flows fill lows and widen the edifice; shallow fragments can alternate with later lava; subaerial flows may cap the emerged summit. Erosion, landslides, subsidence and sea-level change also matter. This fixed-sea-level illustration compares continuing supply with an early stop, not two numerical forecasts."
       }
     ],
     "misconception": "Seawater is not a universal fire extinguisher, and lava is not an ordinary burning flame. Deep water does not guarantee no explosions, shallow water does not guarantee explosions, and an underwater volcano need not become an island.",
@@ -80,8 +80,8 @@
       },
       {
         "label": "A little island, a big mountain",
-        "text": "Now we squeeze a long story into a short scene. Rock builds up again and again before a summit might rise above the sea. Try Less supply: this mountain stays hidden. In the island example, only the top appears, with a much bigger mountain below. At the end, waves carry some material away, changing its shape.",
-        "cue": "At about 80% in the island scene, compare supplies and choose the mountain section. Restore the larger supply and move to 100%, comparing the dashed former outline."
+        "text": "Now we squeeze a long story into a short scene. Rounded lava lobes first overlap into a deep base. Broader flows then spread into low places. Near the surface, some fragments fall back onto the slope and later lava can cover them. Try Early stop: the seamount remains, but it never reaches the air. With continued supply, the visible island is still only a small part of the mountain. Waves reshape it at the end.",
+        "cue": "Move through the island case and point to the four-stage strip and colored deposit bands. Near 75%, compare the two supplies and choose the section. Restore continued supply, move to 100%, and compare the dashed former outline."
       }
     ]
   },
@@ -95,6 +95,14 @@
       "url": "https://www.pmel.noaa.gov/eoi/nemo/explorer/concepts/pillows.html"
     },
     {
+      "title": "NOAA PMEL · Submarine lava morphology",
+      "url": "https://www.pmel.noaa.gov/eoi/nemo/explorer/concepts/lavamorph.html"
+    },
+    {
+      "title": "NOAA PMEL · Sheet flows",
+      "url": "https://www.pmel.noaa.gov/eoi/nemo/explorer/concepts/sheetflow.html"
+    },
+    {
       "title": "NOAA PMEL · Direct observations of NW Rota-1 explosive eruptions",
       "url": "https://www.pmel.noaa.gov/public/pmel/publications-search/search_abstract.php?fmContributionNum=3078"
     },
@@ -104,7 +112,15 @@
     },
     {
       "title": "USGS · Evolution of Hawaiian Volcanoes",
-      "url": "https://www.usgs.gov/observatories/hvo/evolution-hawaiian-volcanoes"
+      "url": "https://www.usgs.gov/news/volcano-watch-evolution-hawaiian-volcanoes"
+    },
+    {
+      "title": "USGS · Growth and degradation of Hawaiian volcanoes",
+      "url": "https://pubs.usgs.gov/publication/pp18013"
+    },
+    {
+      "title": "Surtsey Research Society · Erosion of the island",
+      "url": "https://english.surtsey.is/rof/"
     },
     {
       "title": "NOAA Ocean Exploration · Light and Color in the Deep Sea",

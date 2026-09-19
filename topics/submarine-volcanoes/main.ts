@@ -4,7 +4,7 @@ import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
-import { clamp, submarineState, type Environment, type Supply, type Viewpoint } from './model.ts';
+import { clamp, islandAccretion, submarineState, type Environment, type Supply, type Viewpoint } from './model.ts';
 import { createScene, viewCamera } from './scene.ts';
 
 translateDocument(t);
@@ -29,9 +29,21 @@ function render() {
   byId<HTMLButtonElement>('play').disabled = playing || progress >= 1;
   byId<HTMLButtonElement>('pause').disabled = !playing;
   byId('supply-controls').hidden = environment !== 'island';
+  byId('island-sequence').hidden = environment !== 'island';
   const s = submarineState(progress, environment, supply);
-  const stage = progress === 0 ? 'start' : progress >= 1 ? 'end' : environment === 'island' ? s.erosion > 0 ? 'erosion' : s.emerged ? 'emerged' : 'building' : progress > .78 ? 'cooling' : 'active';
-  const key = `${environment}-${supply}-${stage}`;
+  const accretion = islandAccretion(progress, supply);
+  document.querySelectorAll<HTMLElement>('[data-accretion-phase]').forEach(step => {
+    const phase = step.dataset.accretionPhase;
+    const order = ['deep-base', 'spreading-flows', 'shallow-fragments', 'lava-cap'];
+    const current = order.indexOf(accretion.phase);
+    const own = order.indexOf(phase ?? '');
+    step.classList.toggle('is-current', environment === 'island' && own === current && progress < .82 && (progress === 0 || accretion.adding));
+    step.classList.toggle('is-complete', environment === 'island' && own < current);
+  });
+  const stage = progress === 0 ? 'start' : progress >= 1 ? 'end' : environment === 'island'
+    ? s.erosion > 0 ? 'erosion' : supply === 'limited' && accretion.completed === accretion.available ? 'stopped' : s.emerged ? 'emerged' : 'building'
+    : progress > .78 ? 'cooling' : 'active';
+  const key = `${environment}-${supply}-${stage}-${environment === 'island' ? accretion.phase : ''}`;
   if (key !== lastStatus) {
     lastStatus = key;
     const messages = environment === 'deep'
@@ -47,22 +59,31 @@ function render() {
             ? [t('喷发停止，碎屑仍会留下'), t('喷出的碎屑冷却并沉积；水汽和气体逐渐散去。海水没有把火山内部的供给一概“扑灭”。')]
             : [t('冷却也能伴随破碎和爆炸'), t('快速传热和气体膨胀可以把物质喷散。浅水并非一定爆炸，深水也并非保证安静；还要看岩浆含气量、供给和混合条件。')]
         : stage === 'start'
-          ? [t('成岛 · 压缩许多次堆积'), t('这一段跳到更长的地质过程，压缩许多次喷发。切换“持续较多”与“供给较少”，先猜哪一种可能露出海面。')]
+          ? [t('成岛案例 · 逐次留下沉积'), t('这一段把许多次喷发压缩到一条时间线上。山体先在水下变宽、再变高；切换“持续供给”与“较早停止”，猜哪一种能越过海面。')]
           : stage === 'erosion' || stage === 'end'
-            ? [s.emerged ? t('岛已经出现，海浪仍在改变它') : t('一直留在海面下的山'), t('最后一段停止增加岩石，示意侵蚀削低山体。虚线保留先前轮廓；有限供给的例子始终没有长成岛。真实火山还会沉降或发生坍塌。')]
+            ? [s.emerged ? t('岛已经出现，海浪仍在改变它') : t('一直留在海面下的山'), t('最后一段停止增加岩石，示意海浪从边缘和顶部带走物质。虚线保留先前轮廓；较早停止供给的例子仍是海山。真实火山还会沉降或发生坍塌。')]
+            : stage === 'stopped'
+              ? [t('供给停了，海山并没有消失'), t('已有的熔岩已经冷却成岩石，宽大的水下山体会保留下来；只是这条历史没有继续增加到海面。')]
             : s.emerged
-              ? [t('露出的只是山顶'), t('切到“山体剖面”：岛下还有宽大的水下山体。这里露出海面，是因为累计堆积足够多，并不是海水突然消失。')]
-              : [t('岩石一层层增加'), t('海底的山正在变高。并不是每次喷发都能造出岛，也不是每座海底火山最终都会露出海面。')];
+              ? [t('地上熔岩盖住较松散的浅水碎屑'), t('山顶越过海面后，熔岩还会沿地表铺展，形成较坚固的熔岩盖层。露出的仍只是宽大水下山体的一小部分。')]
+              : accretion.phase === 'deep-base'
+                ? [t('低流量熔岩先堆成水下基座'), t('圆鼓或管状的熔岩单元相互搭接，形成陡一些的小丘；这只是低流量玄武质熔岩的一种形态。')]
+                : accretion.phase === 'spreading-flows'
+                  ? [t('较宽的熔岩流向低处铺开'), t('新的叶状和片状熔岩越过旧地形，在低处摊开，让山体先明显变宽，再逐步抬高。')]
+                  : [t('接近海面，破碎物和熔岩交替增加'), t('浅水中岩浆与海水接触可产生碎屑；碎屑会落回坡面，也可与后来的熔岩流交错堆积。不是每次浅水喷发都如此猛烈。')];
     byId('status-title').textContent = messages[0];
     byId('status-text').textContent = messages[1];
     byId('scene-caption').textContent = environment === 'deep'
       ? t('深海喷口由探测器的灯局部照亮，远处水体逐渐变暗。冷却皮层包住较热熔岩；少量橙色剖口是透视说明，水下细颗粒带不是蒸汽泡。')
       : environment === 'shallow'
         ? t('浅水相互作用的一个例子：水下灰色带表示悬浮细颗粒，海面上的白雾示意凝结水滴，可夹带气体与火山灰。水蒸气本身不可见，颜色不是成分测量。')
-        : t('这里压缩许多次堆积，时间尺度与前两种情境不同。看海岸的深色湿润带、白色浪花和水下山体；最后的虚线保留侵蚀前轮廓，海面保持固定。');
+        : t('这是玄武质火山岛的一条可能路径，不是所有海底火山的固定剧本。每条色带是一组新增加的物质：深水团块、较宽熔岩流、浅水碎屑与露出海面后的熔岩盖层；最后的虚线保留侵蚀前轮廓。');
   }
   byId('position-value').textContent = s.emerged ? t('山顶露出水面') : t('山顶仍在水下');
-  byId('activity-value').textContent = progress === 0 ? t('准备观察') : s.erosion > 0 ? t('侵蚀阶段') : s.activity > .01 ? t('物质仍在增加') : t('本段已经结束');
+  byId('activity-value').textContent = progress === 0 ? t('准备观察') : s.erosion > 0 ? t('侵蚀阶段') : environment === 'island' && supply === 'limited' && accretion.completed === accretion.available
+    ? t('供给停止，海山保留下来')
+    : environment === 'island' && accretion.adding ? t('第 {{value}} 组物质正在加入', { value: Math.max(1, accretion.deposited) })
+    : s.activity > .01 ? t('物质仍在增加') : t('本段已经结束');
 }
 
 function stop() { cancelPlay(); playing = false; render(); }
