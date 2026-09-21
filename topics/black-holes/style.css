@@ -5,7 +5,7 @@
 @media(max-width:940px){.layout{grid-template-columns:1fr}.panel{display:grid;grid-template-columns:1fr 1fr;column-gap:26px}.panel>.eyebrow,.panel>h2{grid-column:1/-1}.panel>.science{grid-column:1/-1}.chapters a{padding:13px 12px;grid-template-columns:18px 1fr;gap:4px 6px}.chapters strong{font-size:12px}}
 @media(max-width:560px){.black-hole-project{padding:18px 14px 40px}.hero{align-items:start;gap:12px}.modes{flex-direction:column}.modes button{font-size:12px;padding:8px 12px}.chapters{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:24px 0}.chapter-intro{display:block;margin-top:22px}.chapter-intro>p{margin-top:10px}.options{gap:10px 14px;font-size:11px}.choice-group{gap:6px}.choice-label{flex-basis:100%}.choice-group button{font-size:11px;padding:8px 10px}.viewport{aspect-ratio:1.05}.panel{display:block;padding:18px}.controls{gap:6px}.controls button{padding:9px 11px}.scene-label,.object-label{font-size:9px;padding:3px 5px}.steps{flex-wrap:wrap}.steps button{min-width:58px}.chapter-footer span{display:none}}
 @media(prefers-reduced-motion:reduce){.chapters a{transition:none}}
-.hole-comparison{padding:16px;margin-bottom:16px;border:1px solid #34434f;border-radius:16px;background:#08111d;color:#dce7ee}.hole-comparison h3{margin:0 0 6px;font-size:16px}.hole-comparison .comparison-boundary{font-size:11px;color:#9bafbf;line-height:1.65;margin:0}.hole-comparison canvas{display:block;width:100%;height:210px}.comparison-captions{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center}.comparison-captions p{font-size:12px;color:#dce7ee;margin:0;line-height:1.65;overflow-wrap:anywhere}.hole-comparison .comparison-ratio{font-size:13px;color:#ebd4a5;line-height:1.75;border-top:1px solid #283642;padding-top:12px;margin:14px 0 0}
+.hole-comparison{padding:16px;margin-bottom:16px;border:1px solid #34434f;border-radius:16px;background:#08111d;color:#dce7ee}.hole-comparison h3{margin:0 0 6px;font-size:16px}.hole-comparison .comparison-boundary{font-size:11px;color:#9bafbf;line-height:1.65;margin:0}.hole-comparison>canvas{display:block;width:100%;height:210px}.comparison-captions{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center}.comparison-captions p{font-size:12px;color:#dce7ee;margin:0;line-height:1.65;overflow-wrap:anywhere}.hole-comparison .comparison-ratio{font-size:13px;color:#ebd4a5;line-height:1.75;border-top:1px solid #283642;padding-top:12px;margin:14px 0 0}
 .comparison-controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:15px 0 0}.comparison-controls label{display:flex;flex-wrap:wrap;align-items:center;gap:8px;font-size:12px;color:#c5d6e2}.comparison-controls select{max-width:100%;background:#142231;color:#dce7ee;border-color:#3a4b5b;font-size:12px}.comparison-controls input{width:18px;height:18px;accent-color:#92cdd1}.hole-comparison .comparison-boundary{margin-top:8px}.comparison-related{display:inline-block;margin-top:12px;font-size:12px;color:#9fd8df}.scale-questions{margin:28px 0;max-width:100%;min-width:0}.scale-questions h2{font-size:22px}.scale-questions details{border-top:1px solid var(--border);padding:16px 0}.scale-questions summary{cursor:pointer;line-height:1.6;font-weight:600;min-height:44px;padding:8px 0}.scale-questions p{max-width:920px;font-size:14px}.scale-questions a{font-size:13px}.question-action{display:block;margin-top:14px}.distance-table{max-width:100%;overflow:auto;border:1px solid var(--border);border-radius:10px}.distance-table table{border-collapse:collapse;width:100%;font-size:13px;line-height:1.7}.distance-table th,.distance-table td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--border);min-width:120px}.distance-table th{font-weight:600}.distance-table caption{text-align:left;padding:12px;color:var(--secondary)}
 
 /* A single observation workspace; comparison and zoom are alternative views of the same state. */
@@ -26,7 +26,7 @@
 .black-hole-workspace .comparison-controls{margin:4px 0;gap:8px 14px}
 .black-hole-workspace .comparison-controls label{font-size:12px}
 .black-hole-workspace .comparison-controls select{padding:8px}
-.black-hole-workspace .hole-comparison canvas{flex:1;min-height:100px;height:180px}
+.black-hole-workspace .hole-comparison>canvas{flex:1;min-height:100px;height:180px}
 .black-hole-workspace .comparison-captions{gap:8px}
 .black-hole-workspace .comparison-captions p{font-size:11px;line-height:1.45}
 .black-hole-workspace .comparison-ratio{margin:5px 0 0;padding:5px 0 0;font-size:12px;line-height:1.5}
@@ -60,10 +60,10 @@
  .black-hole-workspace .layout{flex:1;min-height:0;align-items:stretch}
  .black-hole-workspace .theater{display:flex;flex-direction:column;min-height:0}
  .black-hole-workspace .viewport{flex:1;min-height:140px;aspect-ratio:auto}
- .black-hole-workspace .hole-comparison canvas{height:0}
+ .black-hole-workspace .hole-comparison>canvas{height:0}
 }
-@media(max-width:999px){.black-hole-workspace .layout{grid-template-columns:1fr}.black-hole-workspace .panel{margin-top:12px}.black-hole-workspace .chapter-jump{max-width:170px!important}.black-hole-workspace.observation-expanded .panel{position:absolute;top:70px;right:10px;bottom:10px;width:min(350px,calc(100% - 20px));z-index:6;margin:0;box-shadow:0 12px 40px #0008}.black-hole-workspace .controls{flex-wrap:wrap}.black-hole-workspace .controls .scrub{flex-basis:100%;order:2}.black-hole-workspace .hole-comparison canvas{flex:none}}
-@media(max-width:560px){.black-hole-workspace{padding:8px}.black-hole-workspace.observation-expanded{padding:6px}.black-hole-workspace .observation-title{flex-basis:auto}.black-hole-workspace .chapter-jump{max-width:130px!important}.black-hole-workspace .comparison-controls{display:flex;gap:6px}.comparison-controls label:first-child{flex:1;flex-wrap:nowrap}.comparison-controls select{width:100%;min-width:0}.black-hole-workspace .steps button{font-size:10px}.black-hole-workspace .observation-toolbar{position:sticky;top:0;z-index:8}.black-hole-workspace.observation-expanded .hole-comparison canvas{height:clamp(120px,24dvh,220px)}.black-hole-workspace.observation-expanded .layout{display:flex;flex-direction:column}.black-hole-workspace.observation-expanded .theater{flex:1}.black-hole-workspace .controls output{font-size:10px}.black-hole-workspace .controls label{margin-left:auto}}
+@media(max-width:999px){.black-hole-workspace .layout{grid-template-columns:1fr}.black-hole-workspace .panel{margin-top:12px}.black-hole-workspace .chapter-jump{max-width:170px!important}.black-hole-workspace.observation-expanded .panel{position:absolute;top:70px;right:10px;bottom:10px;width:min(350px,calc(100% - 20px));z-index:6;margin:0;box-shadow:0 12px 40px #0008}.black-hole-workspace .controls{flex-wrap:wrap}.black-hole-workspace .controls .scrub{flex-basis:100%;order:2}.black-hole-workspace .hole-comparison>canvas{flex:none}}
+@media(max-width:560px){.black-hole-workspace{padding:8px}.black-hole-workspace.observation-expanded{padding:6px}.black-hole-workspace .observation-title{flex-basis:auto}.black-hole-workspace .chapter-jump{max-width:130px!important}.black-hole-workspace .comparison-controls{display:flex;gap:6px}.comparison-controls label:first-child{flex:1;flex-wrap:nowrap}.comparison-controls select{width:100%;min-width:0}.black-hole-workspace .steps button{font-size:10px}.black-hole-workspace .observation-toolbar{position:sticky;top:0;z-index:8}.black-hole-workspace.observation-expanded .hole-comparison>canvas{height:clamp(120px,24dvh,220px)}.black-hole-workspace.observation-expanded .layout{display:flex;flex-direction:column}.black-hole-workspace.observation-expanded .theater{flex:1}.black-hole-workspace .controls output{font-size:10px}.black-hole-workspace .controls label{margin-left:auto}}
 .black-hole-workspace:not(.observation-expanded) .chapter-jump{display:none}
 .black-hole-workspace>.observation-toolbar .scale-views{margin:0}
 .black-hole-workspace .hole-comparison>*{flex-shrink:0}
@@ -87,3 +87,23 @@
 [data-chapter=scale] .black-hole-workspace[data-scale-view=pair] :is(button[aria-controls=experiment-settings],.experiment-settings){display:none}
 .scene-failed .black-hole-workspace .viewport{display:block!important}
 .scene-failed .black-hole-workspace .hole-comparison{display:none}
+
+/* Picture choices float over the demonstration; opening them never stretches the theater. */
+.reference-picker{min-width:0;flex:1}
+.reference-picker summary{cursor:pointer;display:flex;align-items:center;gap:8px;min-height:48px;width:fit-content;max-width:100%;padding:3px 9px 3px 3px;border:1px solid #40586a;border-radius:8px;background:#142635;color:#deebf3;font-size:12px;list-style:none}
+.reference-picker summary::-webkit-details-marker{display:none}
+.reference-picker summary::after{content:'⌄';margin-left:5px}
+.reference-picker summary:focus-visible{outline:2px solid #9cdee1;outline-offset:2px}
+.reference-picker summary>span{min-width:0}.reference-picker summary small{display:block;font-size:9px;color:#abc1cf;margin-top:3px}
+.black-hole-workspace .reference-picker canvas{flex:none;width:56px;height:38px;min-height:0;object-fit:contain}
+.reference-choices{position:absolute;z-index:5;left:8px;right:8px;top:86px;max-height:calc(100% - 94px);overflow:auto;overscroll-behavior:contain;display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:7px;padding:10px;background:#122433;border:1px solid #607b8e;border-radius:10px;box-shadow:0 12px 30px #0009}
+.reference-choices>p{grid-column:1/-1;font-size:11px;color:#bdd0dc;margin:0 0 3px}
+.reference-choices button{display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:68px;padding:5px;font-size:11px;line-height:1.35;background:#20394b;color:#deebf3;border-color:#526b7c}
+.reference-choices button[aria-pressed=true]{border-color:#b2eeef;background:#365461}
+.comparison-footer{display:flex;gap:12px;align-items:center;justify-content:space-between}
+.comparison-footer .comparison-related{font-size:11px;margin:0;min-height:44px;display:flex;align-items:center;text-align:right}
+.comparison-footer .comparison-qualifications{position:static}
+.comparison-footer .comparison-qualifications[open]{position:absolute}
+@media(max-width:560px){.reference-picker{flex-basis:100%}.reference-picker summary{width:100%}.reference-picker summary::after{margin-left:auto}.reference-choices{top:90px;grid-template-columns:repeat(3,minmax(0,1fr));max-height:calc(100% - 100px)}.comparison-footer{gap:6px}.black-hole-workspace .hole-comparison>canvas{height:210px}}
+
+@media(max-width:560px){.black-hole-workspace.observation-expanded .chapter-jump{min-width:150px}.black-hole-workspace.observation-expanded .hole-comparison>canvas{flex:1 1 140px;height:0;min-height:120px}}

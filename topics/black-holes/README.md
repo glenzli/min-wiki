@@ -93,3 +93,21 @@ of clipping overflowing content. The shared helper does not start playback, remo
 scientific state. Canvas framing consumes both available width and height with one km-to-pixel scale;
 subpixel objects are still not artificially enlarged. Expanded geometry qualifications remain available
 inside the comparison without pushing the playback controls out of the workspace.
+
+
+## Visible scale references — 2026-09-22
+
+`scaleIllustrations.ts` owns stable, bounded recognition drawings reused by picture choices,
+physical-span comparisons and explicitly separate enlarged insets. `chapters/scale.ts` owns the
+picker lifecycle and retains the reference across views/chapters. Small physical disks remain
+small or become labelled crosshairs; the inset never participates in the length ratio.
+The first reference is a stipulated 50 km city width, not a measured city boundary; building
+heights and street details are illustrative. The middle stop recommends Arcturus, using the
+cosmic comparison's radius. Orbital rings compare span; Sun/Neptune symbols locate bodies,
+not their physical diameters. Picture choices are independently sized recognition cards.
+
+Selected celestial references link to their own stellar pair or system-membership view. The
+shared sequence now includes VY Canis Majoris, using the central photospheric-radius estimate
+of 1420 ± 120 solar radii from [Wittkowski et al. (2012)](https://arxiv.org/abs/1203.5194), excluding
+its molecular/dust envelope. It is not labelled the largest star. Antares remains the rounded
+700-solar-radius example from [ESO (2017)](https://www.eso.org/public/news/eso1726/).

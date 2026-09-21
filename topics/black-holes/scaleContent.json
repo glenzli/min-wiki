@@ -1,25 +1,26 @@
 {
   "zh": {
-    "reference": "换一个熟悉的参照",
+    "reference": "换参照",
     "auto": "随停靠点推荐",
     "names": {
-      "journey": "50 千米的路程",
+      "journey": "一座城市（宽 50 km）",
       "earth": "地球",
       "jupiter": "木星",
       "sun": "太阳",
       "arcturus": "大角星",
       "antares": "心宿二",
       "neptune-orbit": "海王星轨道范围",
-      "milky-way": "银河系的恒星盘"
+      "milky-way": "银河系的恒星盘",
+      "vy-canis-majoris": "大犬座 VY"
     },
     "disk": "显示假想吸积盘",
     "diskNote": "俯视几何示意，描边才是视界；发光的是外面的气体。盘内缘取3倍视界半径，外缘任取6倍，不是实测盘大小。加盘不改变长度比。",
     "geometryNote": "描边标出无自旋等效事件视界，不是硬壳，也不是望远镜拍到的阴影。并非每个黑洞都有明亮吸积盘。",
-    "ruler": "两侧同一把尺 · 只比直径或跨度，不是实际相邻",
+    "ruler": "主图和标尺同一比例 · 比直径或跨度，不是实际相邻",
     "subpixel": "十字只标位置；该对象直径小于 1 屏幕像素，没有被放大。",
     "galaxyNote": "银河恒星盘取直径约 10 万光年；星系没有硬边。纹理是结构示意。M87* 属于另一个星系，这里只借银河作大小参照。",
-    "bodyNote": "地球、木星、太阳、大角星、心宿二沿用宇宙尺度章节的半径。恒星取代表估计，颜色与表面纹理为示意。",
-    "cosmicLink": "回看这些恒星与星系的比较 →",
+    "bodyNote": "这些天体与宇宙尺度章节使用相同半径。恒星取代表估计，颜色与表面纹理为示意。大犬座 VY 采用 2012 年光球半径估计 1420 ± 120 个太阳半径的中心值，不包括外围气体和尘埃；不是最大恒星排名。",
+    "cosmicLink": "沿着这个参照继续看 →",
     "questionsTitle": "再追问一步",
     "distanceTitle": "很大，也可能很远",
     "distanceIntro": "距离和大小是两把不同的尺。下面是取整的例子，不是最近或最小的实时排行榜。所有视界直径均按无自旋公式换算。 ly 表示光年，是距离单位，不是时间。",
@@ -73,29 +74,38 @@
       }
     ],
     "distanceSource": "距离、质量与成像依据：ESO / EHT；Gaia 距离见下方 ESA 资料。",
-    "diskSource": "吸积盘与视界的区别：NASA"
+    "diskSource": "吸积盘与视界的区别：NASA",
+    "cityNote": "想象一座横跨 50 千米的城市。标尺比较城市宽度；楼房、树木与道路只帮助认出城市，不是具体城市地图，也不按楼高测量。",
+    "orbitNote": "圆线是行星绕太阳的轨道，不是更大的实心球。太阳和海王星的定位符号不代表它们的直径；图卡中的天体另行放大。",
+    "pickerNote": "认物图卡 · 图卡之间不按大小比例",
+    "inset": "单独放大认一认",
+    "actual": "按比例",
+    "cityCaption": "城市示意 · 假想宽 50 km（楼房不按比例）",
+    "smallerNote": "放大框帮助认出对象；框外主图和标尺仍保持比例。",
+    "starLine": "把{{name}}横着排一排，约 {{count}} 颗才和这个黑洞的视界一样宽。"
   },
   "en": {
-    "reference": "Choose a familiar reference",
+    "reference": "Change reference",
     "auto": "Suggested at each stop",
     "names": {
-      "journey": "A 50 km journey",
+      "journey": "A city (50 km wide)",
       "earth": "Earth",
       "jupiter": "Jupiter",
       "sun": "Sun",
       "arcturus": "Arcturus",
       "antares": "Antares",
       "neptune-orbit": "Neptune's orbital span",
-      "milky-way": "Milky Way stellar disk"
+      "milky-way": "Milky Way stellar disk",
+      "vy-canis-majoris": "VY Canis Majoris"
     },
     "disk": "Show a hypothetical accretion disk",
     "diskNote": "Face-on geometry, not a telescope image. Gas glows outside the outlined horizon. Disk edges are set to 3 and 6 horizon radii, not measured extents. Adding the disk preserves length ratios.",
     "geometryNote": "The outline marks a non-spinning equivalent event horizon, not a solid shell or a photographed shadow. Not every black hole has a bright accretion disk.",
-    "ruler": "One ruler for both sides · diameters or spans, not actual neighbours",
+    "ruler": "Main objects and rulers share one scale · diameters/spans, not neighbours",
     "subpixel": "A cross only locates the object: its diameter is below 1 screen pixel and has not been enlarged.",
     "galaxyNote": "The Milky Way stellar disk is rounded to 100,000 light-years across; galaxies have no hard edge. Texture illustrates structure. M87* belongs to a different galaxy; the Milky Way is only a size reference here.",
-    "bodyNote": "Earth, Jupiter, the Sun, Arcturus and Antares use the radii from the cosmic-scale chapter. Stellar values are representative estimates; colours and surface textures are illustrative.",
-    "cosmicLink": "Revisit these stars and galaxies →",
+    "bodyNote": "These bodies share the cosmic-scale chapter’s radii. Stellar sizes are representative estimates; colour and texture are illustrative. VY Canis Majoris uses the central value of a 2012 photospheric-radius estimate, 1420 ± 120 solar radii, excluding surrounding gas and dust. This is not a largest-star ranking.",
+    "cosmicLink": "Follow this reference further →",
     "questionsTitle": "Ask one more question",
     "distanceTitle": "Very big can also be very far away",
     "distanceIntro": "Distance and size need different rulers. These are rounded examples, not a live nearest-or-smallest ranking. All horizon diameters are calculated with the non-spinning formula. ly means light-year, a unit of distance, not time.",
@@ -149,6 +159,14 @@
       }
     ],
     "distanceSource": "Distance, mass and imaging evidence: ESO / EHT; see ESA below for Gaia distances.",
-    "diskSource": "Accretion disks and horizons: NASA"
+    "diskSource": "Accretion disks and horizons: NASA",
+    "cityNote": "Imagine a city spanning 50 km. The ruler compares its width; buildings, trees and roads help identify a city. This is not a map of a particular city or a scale of building heights.",
+    "orbitNote": "Circles are planetary orbits, not a larger solid ball. Sun and Neptune position symbols are not their diameters; bodies in the picture cards are enlarged separately.",
+    "pickerNote": "Recognition cards · not to a common scale",
+    "inset": "Enlarged to recognise",
+    "actual": "To scale",
+    "cityCaption": "City illustration · 50 km wide (buildings not to scale)",
+    "smallerNote": "Enlarged boxes identify tiny objects; the main view outside them and its rulers keep the true scale.",
+    "starLine": "About {{count}} {{name}} diameters side by side match this horizon’s width."
   }
 }

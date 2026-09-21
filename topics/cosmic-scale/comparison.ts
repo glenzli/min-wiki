@@ -69,7 +69,7 @@ export class ComparisonJourney {
   this.canvas.setAttribute('aria-label',comparing?w.compareAlt:w.homeAlt);
   this.title.textContent=comparing?w.pairTitles[index]!:w.homeTitles[this.home]!;
   this.note.textContent=comparing?w.pairNotes[index]!:w.homeNotes[this.home]!;this.boundary.textContent=comparing?w.boundary:w.homeBoundary;
-  this.onward.textContent=comparing?w.goHomes:w.goZoom;this.source.href=comparing?(index===3?'https://www.eso.org/public/news/eso1726/':index===2?'https://arxiv.org/abs/1109.4425':'https://science.nasa.gov/sun/facts/'):'https://science.nasa.gov/universe/galaxies/';
+  this.onward.textContent=comparing?w.goHomes:w.goZoom;this.source.href=comparing?(index===4?'https://arxiv.org/abs/1203.5194':index===3?'https://www.eso.org/public/news/eso1726/':index===2?'https://arxiv.org/abs/1109.4425':'https://science.nasa.gov/sun/facts/'):'https://science.nasa.gov/universe/galaxies/';
   this.slider.value=String(this.pair);this.previous.disabled=this.pair<=0;this.next.disabled=this.pair>=lastPair;
   [...this.pairs.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));[...this.homes.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===this.home)));
   if(comparing){

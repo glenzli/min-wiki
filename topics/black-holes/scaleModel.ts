@@ -18,7 +18,7 @@ export const horizonRadiusKm = (solarMass: number) => solarMass * SCHWARZSCHILD_
 /** Diameter/span comparisons, never masses, areas or optical-shadow widths. */
 export const SCALE_REFERENCES = [
   { id: 'journey', spanKm: 50 },
-  { id: 'sun', spanKm: 2 * 695_700 },
+  { id: 'arcturus', spanKm: 2 * bodies.find(body => body.id === 'arcturus')!.radius },
   { id: 'neptune-orbit', spanKm: 2 * 30.07 * AU_KM },
 ] as const;
 /** Consume the very same body radii as the preceding cosmic comparison. */
@@ -41,7 +41,7 @@ export function referenceComparison(index: number, referenceId = '') {
 export function comparisonGeometry(index: number, width: number, referenceId = '', disk = false, height = 210) {
   const value = referenceComparison(index, referenceId);
   const envelope = disk ? DISK_OUTER_HORIZON_RADII : 1;
-  const pixelsPerKm = Math.min(width * .36, Math.max(1, height - 50)) / Math.max(value.diameterKm * envelope, value.reference.spanKm);
+  const pixelsPerKm = Math.min(width * .36, Math.max(1, height - 30)) / Math.max(value.diameterKm * envelope, value.reference.spanKm);
   return { ...value, pixelsPerKm, holePixels: value.diameterKm * pixelsPerKm, referencePixels: value.reference.spanKm * pixelsPerKm };
 }
 /** Geometric angular diameter, NOT a fitted EHT shadow or photon-ring diameter. */
@@ -63,4 +63,12 @@ export function scaleStage(progress: number) {
 export function niceScale(km: number) {
   const power = 10 ** Math.floor(Math.log10(km));
   return [5, 2, 1].find(factor => factor * power <= km)! * power;
+}
+
+/** Keep related links anchored to the selected body; existing pair numbers remain stable. */
+export function referenceJourneyHref(referenceId: string) {
+  if (referenceId === 'milky-way') return '/topics/cosmic-scale/?mode=homes&home=1';
+  if (referenceId === 'neptune-orbit') return '/topics/cosmic-scale/?mode=homes&home=0';
+  const index = bodies.findIndex(body => body.id === referenceId);
+  return `/topics/cosmic-scale/?mode=compare&pair=${Math.max(0, index - 1)}`;
 }

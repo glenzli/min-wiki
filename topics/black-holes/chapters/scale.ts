@@ -1,16 +1,17 @@
 import { t } from '../i18n.ts';
 import { language, languageHref } from '../../../src/platform/i18n.ts';
 import content from '../scaleContent.json';
+import { drawReference, referencePortrait } from '../scaleIllustrations.ts';
 const copy = language === 'en' ? content.en : content.zh;
 import { createCanvas } from '../types.ts';
 import type { ChapterDefinition, ChapterState, ViewOptions } from '../types.ts';
-import { AU_KM, SCALE_HOLES, SCALE_STOPS, horizonRadiusKm, worldRadiusKm, scaleStage, niceScale, comparisonGeometry, COMPARISON_REFERENCES, LIGHT_YEAR_KM, DISK_INNER_HORIZON_RADII, DISK_OUTER_HORIZON_RADII, OBSERVATION_EXAMPLES, horizonMicroarcseconds } from '../scaleModel.ts';
+import { AU_KM, SCALE_HOLES, SCALE_STOPS, horizonRadiusKm, worldRadiusKm, scaleStage, niceScale, comparisonGeometry, COMPARISON_REFERENCES, LIGHT_YEAR_KM, DISK_INNER_HORIZON_RADII, DISK_OUTER_HORIZON_RADII, OBSERVATION_EXAMPLES, horizonMicroarcseconds, referenceJourneyHref } from '../scaleModel.ts';
 
 const labels = [t('恒星级 · 10 个太阳质量'), t('人马座 A* · 银河系中心'), t('M87* · 更大的巨兽')];
 const titles = [t('质量是太阳的 10 倍，视界直径约 59 千米'), t('银河系中心：约 400 万个太阳质量'), t('M87*：约 65 亿个太阳质量')];
 const bodies = [
   t('这是一个假想的恒星级黑洞。把标尺拉远，它很快就小到看不清了。不是黑洞消失了，而是我们正在看更大的范围。'),
-  t('我们银河系的中心有一个超大质量黑洞，叫人马座 A*。它的质量约是太阳的 400 万倍，但它的视界仍比水星轨道小很多。太阳大小的圆在这里已经很小了。'),
+  t('我们银河系中心的人马座 A*，质量约是太阳的 400 万倍。太阳作参照会很小，换成大角星就容易看清了：这颗红巨星竟比黑洞的视界还宽！这里比的是直径，不是质量。'),
   t('M87 星系中心的黑洞还要巨大得多。用同一把尺子比较，它的视界半径可以超过海王星轨道半径。这并不是说太阳系真的在它里面。'),
 ];
 const science = [
@@ -35,7 +36,10 @@ class ScaleScene {
   private comparisonKey = '';
   private qualifications = document.createElement('details');
   private disposed = false;
-  private referenceSelect = document.createElement('select');
+  private referencePicker = document.createElement('details');
+  private referenceSummary = document.createElement('summary');
+  private referenceChoices: HTMLButtonElement[] = [];
+  private related = document.createElement('a');
   private diskToggle = document.createElement('input');
   private boundary = document.createElement('p');
   private referenceNote = document.createElement('p');
@@ -52,21 +56,31 @@ class ScaleScene {
     const description = document.createElement('p'); description.className = 'comparison-boundary';
     description.textContent = copy.ruler;
     const controls = document.createElement('div'); controls.className = 'comparison-controls';
-    const label = document.createElement('label'); label.textContent = copy.reference;
-    this.referenceSelect.setAttribute('aria-label', copy.reference);
+    this.referencePicker.className = 'reference-picker';
+    const choices = document.createElement('div'); choices.className = 'reference-choices';
+    const note = document.createElement('p'); note.textContent = copy.pickerNote; choices.append(note);
+    this.referenceSummary.setAttribute('aria-label', copy.reference);
     for (const reference of [{ id: '', spanKm: 0 }, ...COMPARISON_REFERENCES]) {
-      const option = document.createElement('option'); option.value = reference.id;
-      option.textContent = reference.id ? copy.names[reference.id as keyof typeof copy.names] : copy.auto;
-      this.referenceSelect.append(option);
+      const button = document.createElement('button'); button.type = 'button'; button.dataset.reference = reference.id;
+      const name = document.createElement('span'); name.textContent = reference.id ? copy.names[reference.id as keyof typeof copy.names] : copy.auto;
+      if (reference.id) button.append(referencePortrait(reference.id));
+      button.append(name);
+      button.addEventListener('click', () => {
+        state.scenario = reference.id; this.referencePicker.open = false; this.referenceSummary.focus();
+      });
+      this.referenceChoices.push(button); choices.append(button);
     }
-    this.referenceSelect.value = state.scenario;
-    this.referenceSelect.addEventListener('change', () => { state.scenario = this.referenceSelect.value; });
-    label.append(this.referenceSelect);
+    this.referencePicker.append(this.referenceSummary, choices);
+    this.referencePicker.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && this.referencePicker.open) {
+        event.preventDefault(); event.stopPropagation(); this.referencePicker.open = false; this.referenceSummary.focus();
+      }
+    });
     const diskLabel = document.createElement('label');
     this.diskToggle.type = 'checkbox'; this.diskToggle.checked = state.part === 'disk';
     this.diskToggle.addEventListener('change', () => { state.part = this.diskToggle.checked ? 'disk' : ''; });
     diskLabel.append(this.diskToggle, document.createTextNode(copy.disk));
-    controls.append(label, diskLabel);
+    controls.append(this.referencePicker, diskLabel);
     this.boundary.className = 'comparison-boundary'; this.markerNote.className = 'comparison-boundary';
     this.referenceNote.className = 'comparison-boundary reference-note';
     this.compareCanvas.setAttribute('role', 'img');
@@ -77,9 +91,9 @@ class ScaleScene {
     const summary = document.createElement('summary'); summary.textContent = t('图示与真实尺度');
     this.qualifications.append(summary, this.boundary, this.referenceNote);
     this.comparison.append(heading, description, controls, this.compareCanvas, captions, this.ratio, this.markerNote, this.qualifications);
-    const related = document.createElement('a'); related.textContent = copy.cosmicLink;
-    related.href = languageHref('/topics/cosmic-scale/?mode=compare&pair=3');
-    related.className = 'comparison-related'; this.qualifications.append(related);
+    this.related.textContent = copy.cosmicLink; this.related.className = 'comparison-related';
+    const footer = document.createElement('div'); footer.className = 'comparison-footer';
+    footer.append(this.qualifications, this.related); this.comparison.append(footer);
     this.mountQuestions();
     host.parentElement!.before(this.comparison);
     this.observer = new ResizeObserver(() => this.resize());
@@ -161,14 +175,18 @@ class ScaleScene {
     this.compareCanvas.width = Math.round(w * dpr); this.compareCanvas.height = h * dpr;
     const c = this.compareContext; c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
     const model = comparisonGeometry(index, w, this.state.scenario, withDisk, h);
-    const left = w * .25, right = w * .75, y = (h - 25) / 2, span = model.referencePixels;
+    const y = (h - 25) / 2, span = model.referencePixels;
+    const smallHole = model.holePixels * (withDisk ? DISK_OUTER_HORIZON_RADII : 1) < 24;
+    const smallReference = span < 24;
+    const left = w * (smallHole ? .37 : .25), right = w * (smallReference ? .63 : .75);
+    const leftY = y, rightY = y;
     const ref = model.reference.id;
-    const marker = (x: number) => {
+    const marker = (x: number, y: number) => {
       c.strokeStyle = '#d5e7f1'; c.lineWidth = 1; c.setLineDash([]); c.beginPath();
       c.moveTo(x - 5, y); c.lineTo(x + 5, y); c.moveTo(x, y - 5); c.lineTo(x, y + 5); c.stroke();
     };
-    const disk = (x: number, r: number, color: string, black = false) => {
-      if (r * 2 < 1) { marker(x); return; }
+    const disk = (x: number, y: number, r: number, color: string, black = false) => {
+      if (r * 2 < 1) { marker(x, y); return; }
       const g = c.createRadialGradient(x, y, 0, x, y, r);
       g.addColorStop(0, black ? '#02040a' : color); g.addColorStop(.7, black ? '#02040a' : color);
       g.addColorStop(1, black ? '#02040a' : '#172431');
@@ -185,56 +203,53 @@ class ScaleScene {
     if (withDisk && holeR * DISK_OUTER_HORIZON_RADII >= .5) {
       // Physical face-on geometry, deliberately no lensing or optical-shadow claim.
       const inner = holeR * DISK_INNER_HORIZON_RADII, outer = holeR * DISK_OUTER_HORIZON_RADII;
-      const glow = c.createRadialGradient(left,y,inner,left,y,outer);
+      const glow = c.createRadialGradient(left,leftY,inner,left,leftY,outer);
       glow.addColorStop(0,'#ffe4ac'); glow.addColorStop(.32,'#cf965e'); glow.addColorStop(1,'#6d432744');
-      c.fillStyle = glow; c.beginPath(); c.arc(left,y,outer,0,Math.PI*2); c.arc(left,y,inner,0,Math.PI*2,true); c.fill();
+      c.fillStyle = glow; c.beginPath(); c.arc(left,leftY,outer,0,Math.PI*2); c.arc(left,leftY,inner,0,Math.PI*2,true); c.fill();
     }
-    disk(left,holeR,model.hole.color,true); dimension(left,model.holePixels,model.hole.color);
-    if (span < 1) marker(right);
-    else if (ref === 'journey') {
-      c.fillStyle = '#243a44'; c.fillRect(right-span/2,y-8,span,16);
-      c.strokeStyle = '#cee3e6'; c.setLineDash([5,4]); c.beginPath(); c.moveTo(right-span/2,y); c.lineTo(right+span/2,y); c.stroke(); c.setLineDash([]);
-    } else if (ref === 'neptune-orbit') {
-      c.strokeStyle = '#8facdf'; c.lineWidth = 1;
-      for (const orbit of [1,5.203,9.537,19.191,30.07]) { c.beginPath(); c.arc(right,y,span/2*orbit/30.07,0,Math.PI*2); c.stroke(); }
-      marker(right); // Sun's position, not its physical diameter.
-    } else if (ref === 'milky-way') {
-      // Diffuse face-on stellar disk: no solid surface and no inflated central hole.
-      const radius = span/2, haze = c.createRadialGradient(right,y,0,right,y,radius);
-      haze.addColorStop(0,'#f7d2a2aa'); haze.addColorStop(.15,'#d8bb9966'); haze.addColorStop(.7,'#9fb9db22'); haze.addColorStop(1,'#9fb9db00');
-      c.fillStyle = haze; c.fillRect(right-radius,y-radius,span,span);
-      for (let n=0;n<450;n++) {
-        const q=(n+.5)/450, r=radius*Math.sqrt(q), a=n*2.39996323;
-        const arms=.5+.5*Math.cos(a*3-r/radius*15);
-        c.fillStyle=`rgba(185,207,231,${(.15+.65*arms)*(1-q)})`;
-        c.beginPath(); c.arc(right+Math.cos(a)*r,y+Math.sin(a)*r,.7,0,Math.PI*2); c.fill();
-      }
-    } else {
-      const colors: Record<string,string> = {earth:'#6cabd6',jupiter:'#cfac8b',sun:'#ffe29c',arcturus:'#efbf83',antares:'#ed9170'};
-      disk(right,span/2,colors[ref] ?? '#ffe29c');
-      if (span > 8) {
-        c.save(); c.beginPath(); c.arc(right,y,span/2,0,Math.PI*2); c.clip();
-        // Stable low-contrast surface marks are illustrations, not mapped measurements.
-        for (let n=0;n<90;n++) {
-          const r=span*.48*Math.sqrt((n+.5)/90), a=n*2.39996323;
-          c.fillStyle=ref==='earth'?'#789b724a':'#49342018'; c.beginPath();
-          c.ellipse(right+Math.cos(a)*r,y+Math.sin(a)*r,span*.026,span*.013,0,0,Math.PI*2); c.fill();
-        } c.restore();
-      }
-    }
+    disk(left,leftY,holeR,model.hole.color,true); dimension(left,model.holePixels,model.hole.color);
+    if (span < 1) marker(right, rightY);
+    else drawReference(c, ref, right, rightY, span);
+    const inset = (actualX: number, reference: boolean) => {
+      const x = w * (reference ? .85 : .15), boxWidth = Math.min(w * .26, 160);
+      const boxHeight = Math.min(h - 28, 112), top = Math.max(1, (h - 25 - boxHeight)/2);
+      const size = Math.max(12, Math.min(boxHeight - 24, boxWidth - 16));
+      c.fillStyle = '#122433'; c.strokeStyle = '#607b8e'; c.lineWidth = 1;
+      c.fillRect(x-boxWidth/2, top, boxWidth, boxHeight); c.strokeRect(x-boxWidth/2, top, boxWidth, boxHeight);
+      c.fillStyle = '#c4d9e5'; c.font = '10px system-ui'; c.textAlign = 'center'; c.fillText(copy.inset, x, top+13, boxWidth-8);
+      if (reference) drawReference(c, ref, x, top+21+size/2, size, true);
+      else disk(x, top+21+size/2, size/2, model.hole.color, true);
+      const direction = reference ? 1 : -1;
+      c.strokeStyle = '#607b8e'; c.setLineDash([2, 3]); c.beginPath();
+      c.moveTo(actualX+direction*12, y); c.lineTo(x-direction*(boxWidth/2+4), y); c.stroke(); c.setLineDash([]);
+      c.fillStyle = '#adc6d5'; c.font = '10px system-ui'; c.fillText(copy.actual, actualX, y+24, w*.15);
+    };
+    if (smallHole) inset(left, false);
+    if (smallReference) inset(right, true);
     dimension(right,span,'#b9d4d9');
     const referenceName = copy.names[ref as keyof typeof copy.names];
+    const current = document.createElement('span'); current.textContent = `${copy.reference} · ${referenceName}`;
+    const cardNote = document.createElement('small'); cardNote.textContent = copy.pickerNote;
+    const words = document.createElement('span'); words.append(current, cardNote);
+    this.referenceSummary.replaceChildren(referencePortrait(ref), words);
+    this.referenceSummary.setAttribute('aria-label', `${copy.reference} · ${referenceName}`);
+    for (const button of this.referenceChoices) button.setAttribute('aria-pressed', String(button.dataset.reference === this.state.scenario));
+    this.related.href = languageHref(referenceJourneyHref(ref));
+    this.related.hidden = ref === 'journey';
     this.captions[0].textContent = t('{{name}} · 视界直径 {{diameter}}', {name:labels[index].split(' · ')[0],diameter:length(model.diameterKm)});
-    this.captions[1].textContent = t('{{name}} · {{length}}', {name:referenceName,length:length(model.reference.spanKm)});
+    this.captions[1].textContent = ref === 'journey' ? copy.cityCaption : t('{{name}} · {{length}}', {name:referenceName,length:length(model.reference.spanKm)});
     const inverse = model.ratio < 1;
     const ratio = (inverse ? 1/model.ratio : model.ratio).toLocaleString('en-US',{maximumSignificantDigits:3});
     this.ratio.textContent = inverse
       ? t('参照跨度约是视界直径的 {{ratio}} 倍。比较长度，不比较质量。',{ratio})
       : t('视界直径约是参照跨度的 {{ratio}} 倍。比较长度，不比较质量。',{ratio});
-    this.markerNote.textContent = model.holePixels < 1 || span < 1 || ref === 'neptune-orbit' ? copy.subpixel : '';
+    if (['sun', 'arcturus', 'antares', 'vy-canis-majoris'].includes(ref) && model.ratio >= 2 && model.ratio <= 50) {
+      this.ratio.textContent = copy.starLine.replace('{{name}}', referenceName).replace('{{count}}', String(Math.round(model.ratio)));
+    }
+    this.markerNote.textContent = [smallHole || smallReference ? copy.smallerNote : '', model.holePixels < 1 || span < 1 ? copy.subpixel : ''].filter(Boolean).join(' ');
     this.markerNote.hidden = !this.markerNote.textContent;
     this.boundary.textContent = (withDisk ? copy.diskNote : copy.geometryNote) + ' ' + (ref === 'milky-way' ? copy.galaxyNote : '');
-    this.referenceNote.textContent = ref === 'journey' || ref === 'neptune-orbit' || ref === 'milky-way' ? '' : copy.bodyNote;
+    this.referenceNote.textContent = ref === 'journey' ? copy.cityNote : ref === 'neptune-orbit' ? copy.orbitNote : ref === 'milky-way' ? '' : copy.bodyNote;
     this.referenceNote.hidden = !this.referenceNote.textContent;
     this.compareCanvas.setAttribute('aria-label', `${this.captions[0].textContent}. ${this.captions[1].textContent}. ${this.ratio.textContent} ${this.markerNote.textContent}`);
   }

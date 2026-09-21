@@ -10,32 +10,37 @@
       "木星",
       "太阳",
       "大角星",
-      "心宿二"
+      "心宿二",
+      "大犬座 VY"
     ],
     "kinds": [
       "岩石行星",
       "气态巨行星",
       "恒星",
       "红巨星",
+      "红超巨星",
       "红超巨星"
     ],
     "pairs": [
       "地球与木星",
       "木星与太阳",
       "太阳与大角星",
-      "大角星与心宿二"
+      "大角星与心宿二",
+      "心宿二与大犬座 VY"
     ],
     "pairTitles": [
       "地球很大，木星更大",
       "太阳把木星也比小了",
       "太阳也不是最大的恒星",
-      "还有比大角星大得多的恒星"
+      "还有比大角星大得多的恒星",
+      "比心宿二更大的恒星"
     ],
     "pairNotes": [
       "木星的直径约是地球的 11 倍。这里比的是直径，不是质量，也不是两者之间的距离。",
       "太阳的直径约是木星的 10 倍。木星仍是刚才那一颗，只是两者一起用了更小的显示比例。",
       "大角星是红巨星，直径约是太阳的 25 倍。它的大小是估计值；恒星大小不同，这不是“最大恒星”排行榜。",
-      "心宿二的直径估计约是太阳的 700 倍，大约能横着排下 28 颗大角星。这是大小估计，不是“宇宙最大恒星”的排名。"
+      "心宿二的直径估计约是太阳的 700 倍，大约能横着排下 28 颗大角星。这是大小估计，不是“宇宙最大恒星”的排名。",
+      "大犬座 VY 的直径约是心宿二的 2 倍。这里采用 2012 年干涉观测结合大气模型得到的光球半径估计：1420 ± 120 个太阳半径；画面取中心值。不把外围气体和尘埃算成恒星表面，也不把它称作已确定的最大恒星。"
     ],
     "boundary": "圆盘直径使用同一比例；摆放间隔只为比较。恒星的颗粒、暗斑与辉光是静态表面示意，并非观测照片；颜色和纹理尺度不用于测量。",
     "scrub": "拖动，把更大的请进来",
@@ -83,32 +88,37 @@
       "Jupiter",
       "Sun",
       "Arcturus",
-      "Antares"
+      "Antares",
+      "VY Canis Majoris"
     ],
     "kinds": [
       "Rocky planet",
       "Gas giant",
       "Star",
       "Red giant",
+      "Red supergiant",
       "Red supergiant"
     ],
     "pairs": [
       "Earth & Jupiter",
       "Jupiter & Sun",
       "Sun & Arcturus",
-      "Arcturus & Antares"
+      "Arcturus & Antares",
+      "Antares & VY CMa"
     ],
     "pairTitles": [
       "Jupiter makes Earth look small",
       "The Sun makes Jupiter look small",
       "The Sun is not the largest star",
-      "Even Arcturus can look small"
+      "Even Arcturus can look small",
+      "A star larger than Antares"
     ],
     "pairNotes": [
       "Jupiter is about 11 Earth diameters across. We compare diameter, not mass or the distance between them.",
       "The Sun is about 10 Jupiter diameters across. This is the same Jupiter, with both objects now drawn at a smaller common scale.",
       "Arcturus is a red giant about 25 Sun diameters across. Its size is estimated; this is not a ranking of the largest stars.",
-      "Antares is estimated at about 700 Sun diameters, or roughly 28 Arcturus diameters across. This is an approximate size, not a ranking of the largest stars."
+      "Antares is estimated at about 700 Sun diameters, or roughly 28 Arcturus diameters across. This is an approximate size, not a ranking of the largest stars.",
+      "VY Canis Majoris is about twice the diameter of Antares. We use a 2012 photospheric-radius estimate from interferometry and an atmosphere model: 1420 ± 120 solar radii, drawing the central value. Surrounding gas and dust are not counted as the stellar surface; this is not a claim that it is the largest star."
     ],
     "boundary": "Disk diameters share one scale; spacing is for comparison. Stellar granules, dark spots and glow are static surface illustrations, not observed photographs; colors and texture sizes are not measurements.",
     "scrub": "Drag to bring in a larger body",

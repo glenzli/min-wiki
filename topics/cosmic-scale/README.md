@@ -29,9 +29,9 @@ Focused command: `node --import tsx --test topics/cosmic-scale/tests/*.test.*`. 
 
 ## Comparison ownership and compatibility
 
-`comparisonModel.ts` owns the five body radii, continuous shared diameter scaling and chapter route defaults. `comparison.ts` owns its finite cancellable animation, Canvas comparison and membership diagrams, resize/image completion and disposal. `comparisonContent.json` owns bilingual labels and distinctions. Main binds chapter state while the existing physical scene initializes only on first opening the zoom chapter.
+`comparisonModel.ts` owns the six body radii, continuous shared diameter scaling and chapter route defaults. `comparison.ts` owns its finite cancellable animation, Canvas comparison and membership diagrams, resize/image completion and disposal. `comparisonContent.json` owns bilingual labels and distinctions. Main binds chapter state while the existing physical scene initializes only on first opening the zoom chapter.
 
-`mode=compare|homes|zoom`, `pair=0..3`, and `home=0..2` preserve the new journey state alongside `origin` and `scale`. Fresh links default to comparisons; legacy links with origin or scale retain zoom. Chapter switching stops motion and keeps both view states. Diameter ratios use Earth6371/Jupiter69911/Sun695700 km radii and Arcturus25.4 solar radii, an estimate from https://arxiv.org/abs/1109.4425. The former static Sun/Earth inset is removed in favor of the full comparison chapter. Membership diagrams show selected representatives, not orbital distances, census data or solid galaxy surfaces. Earth/Jupiter illustrative maps reuse the attributed Solar System Scope assets.
+`mode=compare|homes|zoom`, `pair=0..4`, and `home=0..2` preserve the new journey state alongside `origin` and `scale`. Fresh links default to comparisons; legacy links with origin or scale retain zoom. Chapter switching stops motion and keeps both view states. Diameter ratios use Earth6371/Jupiter69911/Sun695700 km radii and Arcturus25.4 solar radii, an estimate from https://arxiv.org/abs/1109.4425. The former static Sun/Earth inset is removed in favor of the full comparison chapter. Membership diagrams show selected representatives, not orbital distances, census data or solid galaxy surfaces. Earth/Jupiter illustrative maps reuse the attributed Solar System Scope assets.
 
 Comparison stellar disks use two cached, deterministic spherical photosphere illustrations with granulation, limb darkening and restrained glow; Sun-only spots are illustrative. Texture scale and colors are not measured surface data. The comparison represents a static snapshot, with no timed convection claim.
 
@@ -50,3 +50,10 @@ height, keeping the origin globe visible in a short theater. The same framing fa
 positions, radii and the physical ruler. The width readout consumes the renderer's actual framed span,
 including after resize; URL progress and the identity of the Earth/Sun anchor remain unchanged.
 This is responsive camera framing, not a change in physical body size or a new distance measurement.
+
+
+VY Canis Majoris adds pair 4 after Antares without changing older pair indices. Its drawn
+photospheric radius is the central value 1420 R☉ of the 1420 ± 120 R☉ estimate by
+[Wittkowski et al. (2012)](https://arxiv.org/abs/1203.5194). The bilingual explanation distinguishes
+this model-assisted photospheric estimate from the extended molecular/dust envelope and from
+any largest-star ranking. The black-hole reference chooser consumes this same body entry.

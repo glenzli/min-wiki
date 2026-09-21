@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { AU_KM, SCALE_HOLES, SCALE_STOPS, horizonRadiusKm, worldRadiusKm, zoomProgress, niceScale, SCALE_REFERENCES, referenceComparison, comparisonGeometry } from '../scaleModel.ts';
 import { CHAPTERS, readChapter } from '../routes.ts';
-import { COMPARISON_REFERENCES, DISK_OUTER_HORIZON_RADII, horizonMicroarcseconds } from '../scaleModel.ts';
+import { COMPARISON_REFERENCES, DISK_OUTER_HORIZON_RADII, horizonMicroarcseconds, referenceJourneyHref } from '../scaleModel.ts';
 import { bodies } from '../../cosmic-scale/comparisonModel.ts';
 
 test('scale chapter is routable without changing existing encounter routes', () => {
@@ -33,17 +33,17 @@ test('zoom is monotonic, invertible and clamped; the same physical ruler spans e
 });
 test('familiar references compare diameters or stipulated spans, not radii with diameters', () => {
   assert.equal(SCALE_REFERENCES[0].spanKm, 50);
-  assert.equal(SCALE_REFERENCES[1].spanKm, 1_391_400);
+  assert.equal(SCALE_REFERENCES[1].spanKm, 25.4 * 1_391_400);
   assert.equal(SCALE_REFERENCES[2].spanKm, 60.14 * AU_KM);
   assert.ok(Math.abs(referenceComparison(0).ratio - 1.1813) < .0001);
-  assert.ok(Math.abs(referenceComparison(1).ratio - 16.98) < .01);
+  assert.ok(Math.abs(referenceComparison(1).ratio - .6685) < .001);
   assert.ok(referenceComparison(2).ratio > 4.2 && referenceComparison(2).ratio < 4.3);
 });
 test('paired comparison fits narrow screens without altering either physical size', () => {
   for(const width of [280,326,650,900])for(const index of [0,1,2]){
     const g=comparisonGeometry(index,width);
     assert.ok(Math.abs(g.holePixels/g.referencePixels-g.ratio)<1e-12);
-    assert.ok(g.holePixels <= width*.36 && g.holePixels <= 160.0001);
+    assert.ok(g.holePixels <= width*.36 && g.holePixels <= 180.0001);
     assert.ok(g.referencePixels > 5);
     assert.ok(width*.25-g.holePixels/2>0);
     assert.ok(width*.75+g.referencePixels/2<width);
@@ -59,8 +59,8 @@ test('selectable stellar references reuse cosmic radii and keep true ratios with
     assert.equal(disk.ratio, bare.ratio);
     assert.ok(Math.abs(disk.holePixels / disk.referencePixels / disk.ratio - 1) < 1e-12);
     assert.ok(disk.holePixels * DISK_OUTER_HORIZON_RADII <= width * .36 + 1e-10);
-    assert.ok(disk.holePixels * DISK_OUTER_HORIZON_RADII <= 160 + 1e-10);
-    assert.ok(disk.referencePixels <= 160 + 1e-10);
+    assert.ok(disk.holePixels * DISK_OUTER_HORIZON_RADII <= 180 + 1e-10);
+    assert.ok(disk.referencePixels <= 180 + 1e-10);
   }
 });
 
@@ -86,8 +86,22 @@ test('paired geometry fits available height while preserving both diameter ratio
   for (const height of [100, 180, 420]) for (const width of [300, 1000]) for (const disk of [false, true]) {
     const g = comparisonGeometry(1, width, 'sun', disk, height);
     assert.ok(Math.abs(g.holePixels / g.referencePixels - g.ratio) < 1e-10);
-    assert.ok(g.holePixels * (disk ? DISK_OUTER_HORIZON_RADII : 1) <= height - 50 + 1e-8);
-    assert.ok(g.referencePixels <= height - 50 + 1e-8);
+    assert.ok(g.holePixels * (disk ? DISK_OUTER_HORIZON_RADII : 1) <= height - 30 + 1e-8);
+    assert.ok(g.referencePixels <= height - 30 + 1e-8);
     assert.equal(g.holePixels, g.diameterKm * g.pixelsPerKm);
   }
+});
+
+
+test('related views follow the selected object without shifting older stellar pairs', () => {
+  for (const [id,pair] of [['earth',0],['sun',1],['arcturus',2],['antares',3],['vy-canis-majoris',4]]) {
+    assert.equal(referenceJourneyHref(id), `/topics/cosmic-scale/?mode=compare&pair=${pair}`);
+  }
+  assert.equal(referenceJourneyHref('neptune-orbit'), '/topics/cosmic-scale/?mode=homes&home=0');
+  assert.equal(referenceJourneyHref('milky-way'), '/topics/cosmic-scale/?mode=homes&home=1');
+  // A recognisable inset must not leak its display minimum into the physical measurement.
+  const g = comparisonGeometry(2, 800, 'vy-canis-majoris', false, 180);
+  assert.ok(g.referencePixels < 24);
+  assert.ok(g.ratio > 19 && g.ratio < 20);
+  assert.equal(g.referencePixels, g.reference.spanKm * g.pixelsPerKm);
 });

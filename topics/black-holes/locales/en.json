@@ -13,7 +13,6 @@
   "银河系中心：约 400 万个太阳质量": "Our galactic center: about 4 million solar masses",
   "M87*：约 65 亿个太阳质量": "M87*: about 6.5 billion solar masses",
   "这是一个假想的恒星级黑洞。把标尺拉远，它很快就小到看不清了。不是黑洞消失了，而是我们正在看更大的范围。": "This is a hypothetical stellar-mass black hole. Zoom out and it soon becomes too small to see. It has not vanished: we are looking at a much larger region.",
-  "我们银河系的中心有一个超大质量黑洞，叫人马座 A*。它的质量约是太阳的 400 万倍，但它的视界仍比水星轨道小很多。太阳大小的圆在这里已经很小了。": "A supermassive black hole called Sagittarius A* lies at the center of the Milky Way. It has about 4 million times the Sun's mass, yet its horizon is much smaller than Mercury's orbit. A Sun-sized circle already looks small here.",
   "M87 星系中心的黑洞还要巨大得多。用同一把尺子比较，它的视界半径可以超过海王星轨道半径。这并不是说太阳系真的在它里面。": "The black hole at the center of M87 is far larger still. On the same ruler, its horizon radius exceeds the radius of Neptune's orbit. This does not mean our solar system is inside it.",
   "以 10 M☉ 的假想无自旋黑洞为起点，rₛ = 2GM/c² 给出约 29.5 km 的视界半径。该长度是几何半径，不是吸积盘大小，也不是光像中的阴影半径。": "Start with a hypothetical non-spinning black hole of 10 M☉. The relation rₛ = 2GM/c² gives a horizon radius of about 29.5 km. This is a geometric radius, not a disk size or projected shadow radius.",
   "采用约 400 万 M☉ 的取整质量，无自旋等效视界半径约为 1180 万 km（0.079 AU）。真实自旋会改变视界几何；此处统一用史瓦西半径作质量—长度比较，不拟合人马座 A* 的实测图像。": "Using a rounded mass of 4 million M☉ gives a non-spinning-equivalent horizon radius of about 11.8 million km (0.079 AU). Spin changes the geometry. We consistently use Schwarzschild radii to compare mass with length, not to fit observed images of Sagittarius A*.",
@@ -163,5 +162,6 @@
   "连续拉远": "Zoom out continuously",
   "图示与真实尺度": "Diagram and physical scale",
   "实验设置": "Experiment settings",
-  "宇宙尺度观察": "Cosmic scale observation"
+  "宇宙尺度观察": "Cosmic scale observation",
+  "我们银河系中心的人马座 A*，质量约是太阳的 400 万倍。太阳作参照会很小，换成大角星就容易看清了：这颗红巨星竟比黑洞的视界还宽！这里比的是直径，不是质量。": "Sagittarius A* at the centre of our galaxy has about 4 million solar masses. The Sun looks tiny beside it, so try Arcturus: this red giant is wider than the black hole’s horizon! We compare diameter, not mass."
 }
