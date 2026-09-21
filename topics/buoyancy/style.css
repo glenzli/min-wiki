@@ -11,3 +11,5 @@
 @media(max-width:750px){.scene-top{padding:17px 17px 4px;font-size:11px}.scene-top strong{max-width:100%;padding:4px 9px}.object-grid button{min-height:85px;font-size:13px}.motion-state{font-size:11px;min-height:36px;padding:7px 14px 11px}.readouts{padding:14px 18px 20px}.readouts strong{font-size:26px}aside{padding-top:20px}#scene text{font-size:28px}#scene text[data-caption]{font-size:24px}}
 
 .learning-modes{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.learning-modes button{min-height:44px;font-size:14px}.mode-science{margin:28px 0;padding:24px;border:1px solid var(--border);border-radius:20px;background:var(--surface)}.mode-science h2{font-size:23px;margin:0 0 12px}.mode-science p{line-height:1.85;max-width:850px}.child-prompt{font-size:18px;line-height:1.8;color:var(--ink)}
+
+.capacity-readout{padding:12px 20px;margin:0;background:#edf2e5;color:#315f56;font-size:14px;line-height:1.7}#challenge{margin-top:12px;width:100%}

@@ -2,8 +2,8 @@
   "version": 1,
   "topicId": "magnets",
   "zh": {
-    "question": "铜、铝、铁都是金属，普通磁铁会把它们都明显吸过来吗？",
-    "observe": "把磁铁缓慢靠近铁、铜、铝和木头，保持其他条件相同；选择另一块磁铁，翻转一次再靠近，比较接近、接触与分离。",
+    "question": "回形针会靠近磁铁，小磁针也一定朝着磁铁的中心吗？",
+    "observe": "先比较材料和磁极，再切换磁针实验。观察左侧、上方、右侧的 N 端方向；保持位置不变，翻转中央磁铁。返回物品实验时检查原先条件仍在。",
     "academic": [
       {
         "title": "磁场可以在未接触时施力",
@@ -15,7 +15,7 @@
       },
       {
         "title": "磁极关系与转动自由度",
-        "body": "条形磁铁有南北两极，同极相对常排斥，异极相对常吸引。若磁铁能自由转动，磁力矩可能使它先转向，然后异极接近；因此实验需要说明是否固定朝向。本页托盘限制横向运动和转向，方便分辨吸引与排斥。普通条形磁铁分成两段后仍各有两极，不会得到单独的南极或北极。"
+        "body": "条形磁铁有南北两极，同极相对常排斥，异极相对常吸引。若磁铁能自由转动，磁力矩可能使它先转向，然后异极接近；因此实验需要说明是否固定朝向。本页托盘限制横向运动和转向，方便分辨吸引与排斥。普通条形磁铁分成两段后仍各有两极，不会得到单独的南极或北极。 另一项磁针实验展示理想点磁偶极的方向：N 端随位置改变，并在磁铁翻转后反向；忽略地磁场与探针扰动，不是条形磁铁近场测量。"
       }
     ],
     "misconception": "磁铁不会明显吸住所有金属；没有运动也不能证明材料完全没有磁性响应。",
@@ -44,8 +44,8 @@
     ]
   },
   "en": {
-    "question": "Copper, aluminum and iron are all metals. Will an ordinary magnet visibly attract all of them?",
-    "observe": "Approach iron, copper, aluminum and wood while holding other settings constant. Then choose another magnet, flip it once and compare approach, contact and separation.",
+    "question": "A paper clip moves toward a magnet. Must a compass needle also point toward its center?",
+    "observe": "Compare materials and poles, then switch to the compass. Inspect the N tip on the left, above and on the right. Hold the probe position and flip the central magnet. Return to the object experiment and check its settings remain.",
     "academic": [
       {
         "title": "Magnetic forces act before contact",
@@ -57,7 +57,7 @@
       },
       {
         "title": "Poles and freedom to rotate",
-        "body": "Bar magnets have north and south poles. Like-facing poles repel and unlike-facing poles attract. A freely rotating magnet may turn first and then approach with unlike poles facing. The tray constrains turning to isolate the comparison. Cutting an ordinary bar magnet gives smaller magnets with both poles, not isolated single poles."
+        "body": "Bar magnets have north and south poles. Like-facing poles repel and unlike-facing poles attract. A freely rotating magnet may turn first and then approach with unlike poles facing. The tray constrains turning to isolate the comparison. Cutting an ordinary bar magnet gives smaller magnets with both poles, not isolated single poles. A separate compass study shows ideal point-dipole directions: the N tip varies with probe position and reverses when the magnet is flipped. Earth’s field and probe disturbance are omitted; this is not a near-field bar-magnet measurement."
       }
     ],
     "misconception": "Magnets do not strongly attract every metal, and lack of motion does not prove zero magnetic response.",
@@ -97,6 +97,10 @@
     {
       "title": "OpenStax · Magnetism and Its Historical Discoveries",
       "url": "https://openstax.org/books/university-physics-volume-2/pages/11-1-magnetism-and-its-historical-discoveries"
+    },
+    {
+      "title": "OpenStax · Magnetic Fields, Field Lines, and Force",
+      "url": "https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force"
     }
   ]
 }

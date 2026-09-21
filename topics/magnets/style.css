@@ -3,3 +3,5 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 
 .learning-modes{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.learning-modes button{min-height:44px;font-size:14px}.mode-science{margin:28px 0;padding:24px;border:1px solid var(--border);border-radius:20px;background:var(--surface)}.mode-science h2{font-size:23px;margin:0 0 12px}.mode-science p{line-height:1.85;max-width:850px}.child-prompt{font-size:18px;line-height:1.8;color:var(--ink)}
+
+.magnet-questions{display:flex;flex-wrap:wrap;gap:8px;padding:16px 20px;border-bottom:1px solid var(--border)}.magnet-questions button{flex:1}.compass-intro{padding:12px 24px}.compass-intro h2{font-size:22px}.compass-intro p{font-size:15px}#compass-study>svg{display:block;width:100%;max-height:450px;background:#eef2e7}#compass-study .action-row{flex-basis:100%}

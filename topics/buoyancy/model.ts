@@ -1,6 +1,6 @@
 export type ObjectKind = 'wood' | 'stone' | 'steel' | 'clay';
 export type Experiment = 'objects' | 'boat' | 'depth';
-export interface Settings { experiment: Experiment; object: ObjectKind; boat: boolean; cargo: number; salt: boolean; depth: number }
+export interface Settings { experiment: Experiment; object: ObjectKind; boat: boolean; cargo: number; salt: boolean; depth: number; boatCapacity?: number }
 export const OBJECTS = { wood: { mass: 300, volume: 600 }, stone: { mass: 500, volume: 200 }, steel: { mass: 700, volume: 90 }, clay: { mass: 600, volume: 400 } } as const;
 export function buoyancy(s: Settings) {
   const density = s.salt ? 1.025 : 1;
@@ -9,12 +9,13 @@ export function buoyancy(s: Settings) {
   const isBoat = s.experiment === 'boat' && s.boat;
   const mass = object.mass + (s.experiment === 'boat' ? cargo * 100 : 0);
   const solidVolume = object.volume + (s.experiment === 'boat' ? cargo * 40 : 0);
-  const capacity = isBoat ? 1400 : solidVolume;
+  const hullCapacity = Math.max(900, Math.min(1800, Number.isFinite(s.boatCapacity) ? s.boatCapacity! : 1400));
+  const capacity = isBoat ? hullCapacity : solidVolume;
   const flooded = isBoat && mass >= density * capacity;
   const held = s.experiment === 'depth';
   const floating = !held && mass < density * capacity;
   const displaced = held ? object.volume * Math.min(1, Math.max(0, s.depth / 100)) : floating ? mass / density : solidVolume;
   const force = displaced * density * 9.81 / 1000;
   const weight = mass * 9.81 / 1000;
-  return { density, mass, capacity, solidVolume, displaced, force, weight, floating, flooded, held, fraction: floating ? displaced / capacity : 1, support: Math.max(0, weight - force) };
+  return { density, mass, capacity, solidVolume, displaced, force, weight, floating, flooded, held, fraction: floating ? displaced / capacity : 1, support: Math.max(0, weight - force), reserve: isBoat ? Math.max(0, capacity * density - mass) : 0, displacedMass: displaced * density };
 }

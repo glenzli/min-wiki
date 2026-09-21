@@ -85,5 +85,14 @@
   "先捏成船，再一点点加货物，看看船边离水面还有多远。": "Make a boat, then add cargo little by little. Watch the distance between its rim and the water.",
   "慢慢往下压，比较半浸入和全浸入时向上的箭头。": "Push down slowly. Compare the upward arrow when the block is half submerged and fully submerged.",
   "换一个物品，先猜它会停在水面，还是箱底。": "Choose another object. Guess whether it will stop at the surface or the bottom.",
-  "箱底也在托住": "The floor also supports it"
+  "箱底也在托住": "The floor also supports it",
+  "专注观察": "Focus on the experiment",
+  "退出专注观察 · Esc": "Exit focus · Esc",
+  "进水前最多排开 {{volume}} mL": "Maximum displacement before flooding: {{volume}} mL",
+  "总质量 {{mass}} g · 排开水的质量 {{water}} g · 船沿前的载重余量 {{reserve}} g": "Total mass {{mass}} g · Displaced water mass {{water}} g · Load margin before flooding {{reserve}} g",
+  "同一团 600 g 橡皮泥：先比较实心球和空心船。": "The same 600 g of clay: compare a solid ball with a hollow boat.",
+  "把船捏窄或捏宽": "Make the hull narrower or wider",
+  "橡皮泥仍是 600 克；船壳变宽、变薄，围住的空间改变。": "The clay still has a mass of 600 g. A wider, thinner hull encloses a different volume.",
+  "试着托住同样的 4 块货物": "Try carrying the same 4 blocks",
+  "停稳状态的模型；船形和水位为示意。船保持直立，不计算倾覆。右侧量杯只是排水量的对照，不从水箱取水。": "A settled-state model with illustrative hulls and water levels. The boat stays upright; capsizing is not modeled. The measuring cup compares displaced volume; it does not take water from the tank."
 }

@@ -12,3 +12,8 @@
 /* Conventional teaching palette: oxygen is blue, hydrogens remain white. */
 #molecule>circle:first-of-type{fill:#4b9dcc;stroke:#23658f}
 #vapor-molecule>circle:first-of-type{fill:#4b9dcc}
+
+.heat-controls{padding:18px 25px;border-top:1px solid var(--border);background:var(--surface)}.heat-controls p{margin:8px 0;font-size:14px}.heat-actions{display:flex;flex-wrap:wrap;gap:8px}.heat-actions button{flex:1}#heat-readout{font-size:17px;font-variant-numeric:tabular-nums}.heat-controls[hidden],#heat-boundary[hidden]{display:none!important}
+
+[hidden]{display:none!important}.observation-grid.without-molecules{grid-template-columns:1fr}.molecular-control{padding:8px 18px;text-align:right;border-bottom:1px solid var(--border)}.molecular-control button{min-height:44px;font-size:13px}.without-molecules .scene{max-height:56dvh}
+.observation-expanded .scene{max-height:38dvh}.observation-expanded .molecular-view svg{min-height:0;max-height:32dvh}.observation-expanded .ice-observation{padding:10px 20px}.observation-expanded .ice-observation p{margin:6px 0}.observation-expanded .heat-controls{padding:10px 20px}

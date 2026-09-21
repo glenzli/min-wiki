@@ -28,7 +28,7 @@ function geometry(state: Settings, result: Result): Geometry {
  const boat = state.experiment === 'boat' && state.boat, held = state.experiment === 'depth';
  const size = 150 * Math.cbrt(result.solidVolume / 600);
  const wood = state.experiment === 'objects' && state.object === 'wood';
- const width = boat ? 260 : held ? 120 : wood ? 150 : size;
+ const width = boat ? 260 * result.capacity / 1400 : held ? 120 : wood ? 150 : size;
  const height = boat ? 100 : held ? 120 : wood ? 94 : size;
  const water = 245 - result.displaced / 70;
  // Keep the existing trapezoidal hull's draft-volume relation.
@@ -39,12 +39,14 @@ function geometry(state: Settings, result: Result): Geometry {
 function objectMarkup(state: Settings, g: Geometry, flooded: boolean) {
  const x = 365 - g.width / 2, y = g.bottom - g.height, w = g.width, h = g.height, b = g.bottom;
  if (state.experiment === 'boat' && state.boat) {
-  const hull = `M${x} ${y}L${x+28} ${b-12}Q${x+32} ${b} ${x+50} ${b}H${x+w-50}Q${x+w-32} ${b} ${x+w-28} ${b-12}L${x+w} ${y}H${x+w-15}L${x+w-42} ${b-20}H${x+42}L${x+15} ${y}Z`;
-  const inside = `M${x+15} ${y}L${x+42} ${b-20}H${x+w-42}L${x+w-15} ${y}Z`;
+  const thickness=20*260/w;
+  const hull = `M${x} ${y}L${x+w*.108} ${b-12}Q${x+w*.123} ${b} ${x+w*.192} ${b}H${x+w*.808}Q${x+w*.877} ${b} ${x+w*.892} ${b-12}L${x+w} ${y}H${x+w-thickness*.75}L${x+w*.892-thickness*.7} ${b-thickness}H${x+w*.108+thickness*.7}L${x+thickness*.75} ${y}Z`;
+  const inside = `M${x+thickness*.75} ${y}L${x+w*.108+thickness*.7} ${b-thickness}H${x+w*.892-thickness*.7}L${x+w-thickness*.75} ${y}Z`;
   const shell = `<path d="${hull}" fill="url(#buoy-clay)" stroke="#965d48" stroke-width="2.5"/><path d="M${x+6} ${y+2}L${x+33} ${b-17}Q${x+37} ${b-6} ${x+53} ${b-6}H${x+w-53}" fill="none" stroke="#f2cbb1" stroke-width="3" opacity=".72"/><path d="M${x+45} ${b-15}H${x+w-44}" stroke="#945b43" stroke-width="2" opacity=".4"/>`;
-  const interior = `<path d="${inside}" fill="${flooded ? '#69b6c6' : '#f5f4e8'}"${flooded ? ' opacity=".5"' : ''}/><path d="M${x+42} ${b-20}H${x+w-42}" stroke="${flooded?'#4897ae':'#b88662'}" stroke-width="3" opacity=".55"/>`;
+  const interior = `<path d="${inside}" fill="${flooded ? '#69b6c6' : '#f5f4e8'}"${flooded ? ' opacity=".5"' : ''}/><path d="M${x+w*.108+thickness*.7} ${b-thickness}H${x+w*.892-thickness*.7}" stroke="${flooded?'#4897ae':'#b88662'}" stroke-width="3" opacity=".55"/>`;
+  const columns=Math.max(1,Math.min(6,Math.floor((w*.784-thickness*1.4)/26)));
   const cargo = Array.from({ length: state.cargo }, (_, i) => {
-   const cx=x+47+(i%6)*27, cy=b-45-Math.floor(i/6)*26;
+   const cx=365-columns*26/2+(i%columns)*26, cy=b-thickness-24-Math.floor(i/columns)*26;
    return `<g><rect x="${cx+1}" y="${cy+2}" width="24" height="24" rx="4" fill="#6d5d42" opacity=".15"/><rect x="${cx}" y="${cy}" width="24" height="24" rx="4" fill="url(#buoy-cargo)" stroke="#b18545" stroke-width="1.2"/><path d="M${cx+4} ${cy+3}H${cx+20}M${cx+4} ${cy+5}V${cy+20}" stroke="#ffe8ad" opacity=".7" fill="none" stroke-width="1.3"/><path d="M${cx+10} ${cy+4}V${cy+19}" stroke="#bc8d45" opacity=".4"/></g>`;
   }).join('');
   return { body: shell, air: flooded ? '' : interior, cargo, floodedInterior: flooded ? interior : '' };

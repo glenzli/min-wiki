@@ -2,8 +2,8 @@
   "version": 1,
   "topicId": "buoyancy",
   "zh": {
-    "question": "同一块橡皮泥，捏成球和空心船，为什么结果可能不同？",
-    "observe": "对比泥球与船，保持材料质量不变；给船逐块加货，观察吃水和排水量。再用压入实验比较半浸入、全浸入和继续下移。",
+    "question": "同一团橡皮泥、同样四块货物，只把船捏宽一点，结果会改变吗？",
+    "observe": "进入“捏一艘小船”，选择空心船，再点四块货物挑战。保持货物不变，把船从窄调到宽，同时比较进水状态、排开水的质量与总质量；换海水，再比较临界状态。",
     "academic": [
       {
         "title": "浮力来自压力差",
@@ -44,8 +44,8 @@
     ]
   },
   "en": {
-    "question": "Why can the same clay behave differently as a ball and a hollow boat?",
-    "observe": "Compare clay ball and boat at the same material mass, then add cargo one piece at a time and watch draft and displacement. Compare partial, complete and deeper immersion in the held-object experiment.",
+    "question": "Can the same clay and the same four blocks float if you only widen the hull?",
+    "observe": "Choose the boat experiment and hollow hull, then start the four-block challenge. Keep cargo fixed while widening the hull. Compare flooding, displaced-water mass and total mass; switch to seawater to compare the threshold.",
     "academic": [
       {
         "title": "Pressure differences produce buoyancy",

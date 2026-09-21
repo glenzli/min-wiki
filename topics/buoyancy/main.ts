@@ -3,11 +3,12 @@ import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { buoyancy, type Settings, type Experiment, type ObjectKind } from './model.ts';
 import './style.css';
+import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { BuoyancyScene } from './scene.ts';
 translateDocument(t);
 mountTopicNavigation('buoyancy');
 const el = (id:string)=>document.getElementById(id)!;
-const state:Settings={experiment:'objects',object:'wood',boat:false,cargo:0,salt:false,depth:50};
+const state:Settings={experiment:'objects',object:'wood',boat:false,cargo:0,salt:false,depth:50,boatCapacity:1400};
 let academic=false;
 const scene = new BuoyancyScene(el('scene') as unknown as SVGSVGElement, el('motion-state'));
 function render(){
@@ -16,6 +17,9 @@ function render(){
  document.querySelectorAll<HTMLButtonElement>('[data-experiment]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.experiment===state.experiment)));
  document.querySelectorAll<HTMLButtonElement>('[data-object]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.object===state.object)));
  el('cargo-controls').hidden=!state.boat;
+ el('hull-count').textContent=t('进水前最多排开 {{volume}} mL',{volume:state.boatCapacity??1400});
+ el('capacity-readout').hidden=state.experiment!=='boat';
+ el('capacity-readout').textContent=boatMode?t('总质量 {{mass}} g · 排开水的质量 {{water}} g · 船沿前的载重余量 {{reserve}} g',{mass:r.mass,water:r.displacedMass.toFixed(0),reserve:r.reserve.toFixed(0)}):t('同一团 600 g 橡皮泥：先比较实心球和空心船。');
  el('ball').setAttribute('aria-pressed',String(!state.boat));el('boat').setAttribute('aria-pressed',String(state.boat));
  const name=depthMode?t('有外部装置托着'):r.flooded?t('船边进水了'):r.floating?t('浮起来了！'):t('沉下去了，也有浮力');
  el('state').textContent=el('discovery-title').textContent=name;
@@ -33,9 +37,11 @@ function render(){
 document.querySelectorAll<HTMLButtonElement>('[data-experiment]').forEach(b=>b.addEventListener('click',()=>{state.experiment=b.dataset.experiment as Experiment;render();}));
 document.querySelectorAll<HTMLButtonElement>('[data-object]').forEach(b=>b.addEventListener('click',()=>{state.object=b.dataset.object as ObjectKind;render();}));
 el('ball').addEventListener('click',()=>{state.boat=false;state.cargo=0;(el('cargo') as HTMLInputElement).value='0';render();});el('boat').addEventListener('click',()=>{state.boat=true;render();});
+el('hull').addEventListener('input',()=>{state.boatCapacity=Number((el('hull') as HTMLInputElement).value);render();});
+el('challenge').addEventListener('click',()=>{state.boat=true;state.cargo=4;state.boatCapacity=900;(el('cargo') as HTMLInputElement).value='4';(el('hull') as HTMLInputElement).value='900';render();});
 for(const id of ['cargo','depth'])el(id).addEventListener('input',()=>{state[id as 'cargo'|'depth']=Number((el(id) as HTMLInputElement).value);render();});
 el('water').addEventListener('change',()=>{state.salt=(el('water') as HTMLSelectElement).value==='salt';render();});el('forces').addEventListener('change',render);
-el('reset').addEventListener('click',()=>{Object.assign(state,{experiment:'objects',object:'wood',boat:false,cargo:0,salt:false,depth:50});(el('cargo') as HTMLInputElement).value='0';(el('depth') as HTMLInputElement).value='50';(el('water') as HTMLSelectElement).value='fresh';(el('forces') as HTMLInputElement).checked=true;render();});
+el('reset').addEventListener('click',()=>{Object.assign(state,{experiment:'objects',object:'wood',boat:false,cargo:0,salt:false,depth:50,boatCapacity:1400});(el('cargo') as HTMLInputElement).value='0';(el('depth') as HTMLInputElement).value='50';(el('hull') as HTMLInputElement).value='1400';(el('water') as HTMLSelectElement).value='fresh';(el('forces') as HTMLInputElement).checked=true;render();});
 render();
 
 for(const button of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) button.addEventListener('click',()=>{
@@ -44,3 +50,5 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-mode]'))
  document.querySelectorAll<HTMLElement>('[data-academic-only]').forEach(node=>node.hidden=!academic);
  render();
 });
+
+mountObservationMode(document.querySelector<HTMLElement>('.lab')!,{enter:t('专注观察'),exit:t('退出专注观察 · Esc')});

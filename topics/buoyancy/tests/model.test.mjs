@@ -21,3 +21,13 @@ test('salt water supports the same floating weight at less displacement',()=>{
  const fresh=buoyancy(base), salt=buoyancy({...base,salt:true});
  assert.ok(salt.displaced<fresh.displaced); assert.ok(Math.abs(salt.force-salt.weight)<1e-10);
 });
+test('the same clay and cargo can flood a narrow hull but float in a wider hull',()=>{
+ const settings={...base,experiment:'boat',boat:true,cargo:4};
+ const narrow=buoyancy({...settings,boatCapacity:900}),wide=buoyancy({...settings,boatCapacity:1800});
+ assert.equal(narrow.mass,1000);assert.equal(wide.mass,narrow.mass);
+ assert.equal(wide.solidVolume,narrow.solidVolume);
+ assert.equal(narrow.flooded,true);assert.equal(wide.floating,true);
+ assert.equal(wide.displacedMass,1000);assert.equal(wide.reserve,800);
+ assert.equal(buoyancy({...settings,boatCapacity:1000}).flooded,true);
+ assert.equal(buoyancy({...settings,boatCapacity:1000,salt:true}).floating,true);
+});

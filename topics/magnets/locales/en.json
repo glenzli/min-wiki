@@ -62,5 +62,22 @@
   "铁制回形针可在外磁场中被磁化。靠近时吸引作用增强，克服托盘摩擦后开始移动，接触后保持贴合。": "An iron paper clip can become magnetized in an external field. Attraction increases as the magnet approaches; the clip moves when it overcomes tray friction, then stays attached after contact.",
   "同极相对产生排斥。这个托盘限制了转向，因此可观察到直线分离；自由磁铁可能先转动，再以异极相对。": "Like poles repel. This tray constrains rotation so linear separation can be observed; a free magnet may rotate to face the other magnet with unlike poles.",
   "异极相对产生吸引。图中的运动还受到摩擦和接触约束，不能用画面位移反推出真实磁力。": "Unlike poles attract. Friction and contact also constrain the illustrated motion, so screen displacement cannot be used to infer a real magnetic force.",
-  "木头、铜和铝在这个普通磁铁实验中没有明显位移。铜和铝并非完全没有磁响应，只是其响应很弱。": "Wood, copper and aluminum show no noticeable displacement in this ordinary-magnet experiment. Copper and aluminum do have magnetic responses, but these are weak."
+  "木头、铜和铝在这个普通磁铁实验中没有明显位移。铜和铝并非完全没有磁响应，只是其响应很弱。": "Wood, copper and aluminum show no noticeable displacement in this ordinary-magnet experiment. Copper and aluminum do have magnetic responses, but these are weak.",
+  "专注观察": "Focus on the experiment",
+  "退出专注观察 · Esc": "Exit focus · Esc",
+  "探针位置 {{angle}}°": "Probe position {{angle}}°",
+  "选择磁铁实验": "Choose a magnet experiment",
+  "什么会被吸过来？": "What gets pulled closer?",
+  "磁针能发现什么？": "What can a compass reveal?",
+  "看不见磁场，可以看磁针怎样转": "Watch a compass reveal the field direction",
+  "这是另一项实验：一块固定的磁铁、一枚可以换位置的小磁针。先猜磁针的 N 端朝哪里，再沿圆圈移动它。": "This is a separate experiment: one fixed magnet and a compass you can reposition. Predict where the N tip points, then move the compass around the circle.",
+  "磁铁周围不同位置的磁针方向": "Compass directions at different positions around a magnet",
+  "沿圆圈移动磁针": "Move the compass around the circle",
+  "翻转中间的磁铁": "Flip the central magnet",
+  "磁铁左侧": "Left of the magnet",
+  "磁铁上方": "Above the magnet",
+  "磁铁右侧": "Right of the magnet",
+  "标着 N 的尖端表示磁场方向。换位置和翻转磁铁，是两个不同的对照；磁针没有被画成飞向磁铁的回形针。": "The N tip indicates the field direction. Repositioning the probe and flipping the magnet are separate comparisons. The needle turns; it is not a paper clip flying toward the magnet.",
+  "方向按理想点磁偶极模型计算；中心条形磁铁只是方向参照。忽略地磁场、探针扰动与转动惯性，不显示真实磁力大小，也不预测条形磁铁近表面的磁场。": "Directions use an ideal point-dipole model; the central bar is an orientation reference. Earth’s field, probe disturbance and rotational inertia are omitted. No real force magnitude or near-surface bar-magnet field is predicted.",
+  "物品运动为定性示意；磁针图只解释方向。两项实验保留各自条件，切换不会清空设置。": "Object motion is qualitative; the compass diagram explains direction only. Each experiment retains its own settings when you switch."
 }

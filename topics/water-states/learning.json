@@ -2,8 +2,8 @@
   "version": 1,
   "topicId": "water-states",
   "zh": {
-    "question": "冰融化、水蒸发以后，还是同一种水吗？白色的雾就是水蒸气吗？",
-    "observe": "选择结冰，用“初生薄冰”“冰水相接”“完整冰层”比较生长前沿，再勾选“标出晶界”；最后选择融化，慢慢拖动进度，对照晶粒和分子区。",
+    "question": "同一份冰水，供热、取热、隔热，哪一种会让冰变少？吸热时温度一定一直升高吗？",
+    "observe": "从冰水各半开始，供热到中途，再改为取热，确认比例没有跳回起点；最后选理想隔热并播放，检查冰量是否保持。另选预设结冰、蒸发与凝结观察不同机制。",
     "academic": [
       {
         "title": "晶粒、晶界和分子不是同一层次",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "水蒸气看不见；白雾中的可见部分通常是小液滴，不是变大的水分子。",
-    "boundary": "固定晶核按不同方向竞争生长，展示一种从上方冻结的几何剖面；不是传热、成核或真实折射计算。晶界反光和虚线经过强调，气泡大小不按比例。融化在此回退同一相界，实际未必严格反向。36个分子符号始终保留，只示意局部结构。",
+    "boundary": "固定晶核按不同方向竞争生长，展示一种从上方冻结的几何剖面；不是传热、成核或真实折射计算。晶界反光和虚线经过强调，气泡大小不按比例。融化在此回退同一相界，实际未必严格反向。36个分子符号始终保留，只示意局部结构。 新增冷热实验只计算 100 g 纯水在熔点处的潜热账本，约 334 J/g；到全部融化或冻结停止，不计算之后升温降温和真实用时。",
     "narration": [
       {
         "label": "水会换样子",
@@ -44,8 +44,8 @@
     ]
   },
   "en": {
-    "question": "After ice melts or water evaporates, is it still water? Is visible white mist water vapor?",
-    "observe": "Choose freezing, compare First thin ice, Ice meets water and Fully frozen, then enable Show grain boundaries. Finally choose melting and scrub slowly, comparing the grains with the molecular inset.",
+    "question": "For the same ice-water sample, will adding heat, removing heat or insulation reduce the ice? Must absorbing heat always raise temperature?",
+    "observe": "Start half frozen, add heat partway, then remove heat without resetting the mixture. Finally choose ideal insulation and play: does the ice amount stay fixed? Select the separate freezing, evaporation and condensation observations for their mechanisms.",
     "academic": [
       {
         "title": "Grains, boundaries and molecules are different scales",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Water vapor is invisible; the visible parts of white mist are usually droplets, not enlarged molecules.",
-    "boundary": "Fixed nuclei compete directionally in one geometric section freezing from above; heat transfer, nucleation and optical refraction are not calculated. Boundary highlights and optional dashes are emphasized; bubble sizes are not to scale. Melting retraces the same interface here, although real melting need not reverse freezing. All 36 molecular symbols persist and show only local structure.",
+    "boundary": "Fixed nuclei compete directionally in one geometric section freezing from above; heat transfer, nucleation and optical refraction are not calculated. Boundary highlights and optional dashes are emphasized; bubble sizes are not to scale. Melting retraces the same interface here, although real melting need not reverse freezing. All 36 molecular symbols persist and show only local structure. The heat experiment accounts only for latent heat of 100 g of pure water at its melting point, about 334 J/g. It stops at full melting or freezing and does not calculate subsequent temperature changes or real durations.",
     "narration": [
       {
         "label": "Water changes its form",

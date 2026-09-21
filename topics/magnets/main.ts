@@ -4,6 +4,8 @@ import { t } from './i18n.ts';
 import { initialMotion, stepMotion, type Settings, type ObjectKind, type MotionPhase } from './model.ts';
 import { createScene, renderScene, drawObject } from './scene.ts';
 import './style.css';
+import { mountObservationMode } from '../../src/platform/observationMode.ts';
+import { mountCompass } from './compass.ts';
 
 translateDocument(t);
 mountTopicNavigation('magnets');
@@ -12,6 +14,7 @@ const near = el('near') as HTMLInputElement;
 const select = el('object') as HTMLSelectElement;
 const settings: Settings = { kind: 'iron', near: 0, flipped: false };
 let academic = false;
+let study='motion';
 let motion = initialMotion();
 let lastTime = 0;
 let demoStart: number | null = null;
@@ -122,7 +125,7 @@ function tick(time: number) {
   else lastTime = 0;
 }
 function schedule() {
-  if (!animation && !document.hidden) animation = requestAnimationFrame(tick);
+  if (!animation && !document.hidden && study==='motion') animation = requestAnimationFrame(tick);
 }
 document.addEventListener('visibilitychange', () => {
   cancelAnimationFrame(animation); animation = 0; lastTime = 0;
@@ -138,6 +141,16 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-mode]'))
   academic=button.dataset.mode==='academic';
   document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.mode==='academic')===academic)));
   document.querySelectorAll<HTMLElement>('[data-academic-only]').forEach(node=>node.hidden=!academic);
-  el('child-prompt').hidden=academic;
+  el('child-prompt').hidden=academic||study!=='motion';
   updateStatus();
 });
+
+mountCompass(el('compass-study'));
+document.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(button=>button.addEventListener('click',()=>{
+ study=button.dataset.study!;cancelAnimationFrame(animation);animation=0;lastTime=0;demoStart=null;
+ el('motion-study').hidden=study!=='motion';el('compass-study').hidden=study!=='compass';
+ el('child-prompt').hidden=academic||study!=='motion';
+ document.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.study===study)));
+ if(study==='motion')schedule();
+}));
+mountObservationMode(document.querySelector<HTMLElement>('.lab')!,{enter:t('专注观察'),exit:t('退出专注观察 · Esc')});
