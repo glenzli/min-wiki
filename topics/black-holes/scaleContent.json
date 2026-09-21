@@ -9,7 +9,7 @@
       "sun": "太阳",
       "arcturus": "大角星",
       "antares": "心宿二",
-      "neptune-orbit": "海王星轨道范围",
+      "neptune-orbit": "太阳系 · 到海王星轨道",
       "milky-way": "银河系的恒星盘",
       "vy-canis-majoris": "大犬座 VY"
     },
@@ -75,14 +75,20 @@
     ],
     "distanceSource": "距离、质量与成像依据：ESO / EHT；Gaia 距离见下方 ESA 资料。",
     "diskSource": "吸积盘与视界的区别：NASA",
-    "cityNote": "想象一座横跨 50 千米的城市。标尺比较城市宽度；楼房、树木与道路只帮助认出城市，不是具体城市地图，也不按楼高测量。",
-    "orbitNote": "圆线是行星绕太阳的轨道，不是更大的实心球。太阳和海王星的定位符号不代表它们的直径；图卡中的天体另行放大。",
-    "pickerNote": "认物图卡 · 图卡之间不按大小比例",
+    "cityNote": "像坐飞机时向下看：街区、道路、公园、河流和桥梁帮助认出同一座假想城市。标尺比较整片城市的 50 千米宽度；细节为识别示意并有放大，不是具体城市的实测地图。",
+    "orbitNote": "从上方看太阳和八大行星：蓝色地球、条纹木星、带环土星，以及最外圈的海王星。主图轨道距离按同一比例，内侧行星会挤在太阳附近；星球图标放大帮助辨认。认物图卡和放大框另将轨道间距展开。圆轨道和行星位置为示意，不是此刻的星图；海王星轨道也不是太阳系的边界。",
+    "pickerNote": "认物图卡 · 大小与轨道间距为示意",
     "inset": "单独放大认一认",
     "actual": "按比例",
-    "cityCaption": "城市示意 · 假想宽 50 km（楼房不按比例）",
+    "cityCaption": "俯瞰一座城市 · 假想宽 50 km",
     "smallerNote": "放大框帮助认出对象；框外主图和标尺仍保持比例。",
-    "starLine": "把{{name}}横着排一排，约 {{count}} 颗才和这个黑洞的视界一样宽。"
+    "starLine": "把{{name}}横着排一排，约 {{count}} 颗才和这个黑洞的视界一样宽。",
+    "orbitScale": "主图轨道与标尺同一比例 · 比最外圈直径，星球图标放大",
+    "orbitInset": "放大认一认 · 轨道间距示意",
+    "orbitInsetLines": [
+      "放大认一认",
+      "轨道间距示意"
+    ]
   },
   "en": {
     "reference": "Change reference",
@@ -94,7 +100,7 @@
       "sun": "Sun",
       "arcturus": "Arcturus",
       "antares": "Antares",
-      "neptune-orbit": "Neptune's orbital span",
+      "neptune-orbit": "Solar System · out to Neptune",
       "milky-way": "Milky Way stellar disk",
       "vy-canis-majoris": "VY Canis Majoris"
     },
@@ -160,13 +166,19 @@
     ],
     "distanceSource": "Distance, mass and imaging evidence: ESO / EHT; see ESA below for Gaia distances.",
     "diskSource": "Accretion disks and horizons: NASA",
-    "cityNote": "Imagine a city spanning 50 km. The ruler compares its width; buildings, trees and roads help identify a city. This is not a map of a particular city or a scale of building heights.",
-    "orbitNote": "Circles are planetary orbits, not a larger solid ball. Sun and Neptune position symbols are not their diameters; bodies in the picture cards are enlarged separately.",
-    "pickerNote": "Recognition cards · not to a common scale",
+    "cityNote": "Look straight down, as if from a plane: blocks, roads, parks, a river and bridges identify the same imagined city. The ruler compares its full 50 km width. Details are enlarged for recognition, not a measured map of a particular city.",
+    "orbitNote": "Look down on the Sun and eight planets: blue Earth, striped Jupiter, ringed Saturn, and Neptune on the outermost orbit shown. Orbital distances in the main view share one scale, so the inner planets cluster near the Sun; body icons are enlarged for recognition. Picture cards and recognition insets also spread the orbits apart. Circular orbits and planet positions are illustrative, not a current sky chart. Neptune’s orbit is not the edge of the Solar System.",
+    "pickerNote": "Recognition pictures · sizes and orbit spacing are illustrative",
     "inset": "Enlarged to recognise",
     "actual": "To scale",
-    "cityCaption": "City illustration · 50 km wide (buildings not to scale)",
+    "cityCaption": "A city from above · imagined width 50 km",
     "smallerNote": "Enlarged boxes identify tiny objects; the main view outside them and its rulers keep the true scale.",
-    "starLine": "About {{count}} {{name}} diameters side by side match this horizon’s width."
+    "starLine": "About {{count}} {{name}} diameters side by side match this horizon’s width.",
+    "orbitScale": "Orbits and rulers share one scale · compare the outer diameter; body icons enlarged",
+    "orbitInset": "Enlarged · orbit spacing illustrative",
+    "orbitInsetLines": [
+      "Enlarged view",
+      "Orbits spread apart"
+    ]
   }
 }

@@ -10,7 +10,7 @@ and the picture chooser identify objects without changing that conversion.
 
 The city is an imagined 50 km width, not a geographic measurement; individual buildings are
 not to scale. The middle stop now recommends Arcturus so both objects are visible. Planets,
-stellar surfaces, a city silhouette and orbital markers distinguish the reference types.
+stellar surfaces, an aerial city and planetary orbit diagrams distinguish the reference types.
 The largest stop retains the orbital-span comparison, with the new stellar references available
 in the picture chooser. Orbital rings are not a solid ball or measured planet disks.
 
@@ -51,3 +51,42 @@ rendered reference hrefs and both language destination pages were verified separ
 that automated navigation round trip is not claimed as passing. These checks are not a child
 usability study, telescope-image model or site-wide visual audit. No push or deployment is
 part of this change. The existing Three.js chunk-size warning remains unchanged.
+
+
+## Aerial city and Solar System follow-up
+
+The city now looks straight down onto blocks, roofs, streets, parks, a river and bridges.
+Its stipulated horizontal extent remains 50 km. Enlarged landmarks are recognition details,
+not a measured map. The same deterministic drawing appears in the main view, picker and inset.
+
+The Neptune reference now shows the Sun and all eight planets, with Earth land shapes,
+Jupiter bands, Saturn rings and a highlighted outer Neptune orbit. Main-view orbit distances
+remain linear; body icons are explicitly enlarged. Recognition cards and insets spread the
+inner orbits apart, with separate labels, while the main ruler still measures the same
+60.14 AU orbital diameter. Angular positions and circular paths are illustrative. Neither
+orbital motion nor a planetary ephemeris was added. The bilingual note distinguishes the
+Neptune orbit from the Solar System boundary. The multi-body reference receives a larger
+recognition inset below 140 screen pixels, without changing its physical span or comparison ratio.
+Narrow inset labels wrap into two short lines, and box height follows the available drawing width.
+
+Verification for this follow-up (separate from the initial complete suite above):
+
+- Ten focused scale-model tests passed with
+  `node --import tsx --test topics/black-holes/tests/scale.test.mjs`
+  (`/private/tmp/mini-wiki-aerial-solar-tests.log`). Later changes affected presentation only;
+  the tested physical model and test inputs remained unchanged.
+- Final `npm run build` passed typecheck, bilingual and image checks, and production bundling
+  (`/private/tmp/mini-wiki-aerial-solar-final-build.log`). The existing chunk warning remains.
+- Actual browser inspection used the existing Vite development preview on port 5173.
+  Chinese/English 1280×720 reading views, Chinese desktop immersion, and both languages at
+  390×844 in immersive mode covered
+  the aerial city, Solar System, recognition cards, separate city/solar insets and reference
+  retention while changing scale. Escape restored the reading layout with the city reference
+  retained. This is a development-preview visual check, not a fresh packaged-preview audit.
+- At 1280×720 the English Solar System reading view's stage controls ended at y=671 and
+  workspace at y=707. In 390×844 immersive views, stage controls ended at y=793 (English)
+  and y=812 (Chinese); neither had horizontal overflow. Mobile inspection caught and corrected
+  compressed English inset text and excess empty height in the Chinese recognition box.
+- Final three runtime files (`scaleIllustrations.ts`, `scaleContent.json`, `chapters/scale.ts`),
+  sorted path-and-byte SHA256: `0178d5707bac6ea6e07a4fc0f6fbfa8daf8ae7b0b7c0f786ad1e8ebf30580c7b`.
+- `git diff --check` passed. No push or deployment is included.

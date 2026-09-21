@@ -32,10 +32,10 @@ box does not share the zoom canvas's camera. It remains available when optional 
 or in-scene annotations are hidden. Stage changes update both the object captions and
 length ratio; no control silently inflates a subpixel physical disk.
 
-References are a stipulated straight 50 km journey (not a real city's measured extent),
+References include a stipulated 50 km city width (not a real city's measured extent),
 the 1,391,400 km solar diameter, and the diameter of Neptune's rounded 30.07 AU orbit.
 Ratios are approximately 1.2, 17 and 4.3 respectively. All ratios compare diameters or spans,
-not volume packing. The orbit diagram's center cross is a position symbol, not a drawn-to-scale Sun. The physical
+not volume packing. The orbit diagram uses enlarged body icons, not drawn-to-scale planet or Sun diameters. The physical
 reference constants and pair layout live in `scaleModel.ts`, with the chapter scene
 retaining its rendering and DOM lifetime ownership.
 
@@ -43,7 +43,7 @@ The solar reference uses the nominal 695,700 km radius from
 [IAU 2015 Resolution B3](https://www.iau.org/static/resolutions/IAU2015_English.pdf).
 The orbital reference retains the topic's rounded 30.07 AU Neptune value; see
 [NASA Neptune facts](https://science.nasa.gov/neptune/neptune-facts/) for its approximately
-30 AU mean distance. The 50 km road span is a stipulated ruler, not external geographic data.
+30 AU mean distance. The 50 km city width is a stipulated ruler, not external geographic data.
 
 ## Familiar references and questions — 2026-09-22
 
@@ -101,10 +101,20 @@ inside the comparison without pushing the playback controls out of the workspace
 physical-span comparisons and explicitly separate enlarged insets. `chapters/scale.ts` owns the
 picker lifecycle and retains the reference across views/chapters. Small physical disks remain
 small or become labelled crosshairs; the inset never participates in the length ratio.
-The first reference is a stipulated 50 km city width, not a measured city boundary; building
-heights and street details are illustrative. The middle stop recommends Arcturus, using the
-cosmic comparison's radius. Orbital rings compare span; Sun/Neptune symbols locate bodies,
-not their physical diameters. Picture choices are independently sized recognition cards.
+The first reference is a stipulated 50 km city width, not a measured city boundary. The city is seen straight down, like an aerial view, with blocks,
+roads, parks, a river and bridges. Recognition details are enlarged, not separately measured. The middle stop recommends Arcturus, using the
+cosmic comparison's radius. The orbital reference is a top-down Solar System view with the Sun and eight planets, including
+Earth's land, Jupiter's bands and Saturn's rings. The outer Neptune ring is highlighted; its
+unchanged diameter supplies the comparison span. The main view uses rounded semimajor-axis
+ratios and circular orbits, so the inner planets cluster near the Sun. Enlarged body icons and
+fixed angular positions identify objects; they do not measure body sizes or represent a dated
+planetary alignment. Recognition cards/insets additionally spread the inner orbits apart and
+are explicitly marked as illustrative. Neptune's orbit is not the Solar System's boundary.
+Planet order and the distinction from the wider Solar System follow
+[NASA's planet overview](https://science.nasa.gov/solar-system/planets/); inner-planet orbital values
+reuse the Solar System topic's rounded NASA/JPL data, while the outer orbits retain this
+comparison's existing 5.203, 9.537, 19.191 and 30.07 AU values. Picture choices are independently sized
+recognition cards.
 
 Selected celestial references link to their own stellar pair or system-membership view. The
 shared sequence now includes VY Canis Majoris, using the central photospheric-radius estimate

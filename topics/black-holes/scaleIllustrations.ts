@@ -6,29 +6,98 @@ export function drawReference(c: CanvasRenderingContext2D, id: string, x: number
     c.fillStyle = color; c.beginPath(); c.arc(x, y, r, 0, Math.PI * 2); c.fill();
   };
   if (id === 'journey') {
-    // A stipulated city width, not a map or scale model of individual buildings.
-    c.fillStyle = '#234c4e'; c.fillRect(-.5, .16, 1, .08);
-    c.fillStyle = '#708895'; c.fillRect(-.5, .24, 1, .05);
-    c.strokeStyle = '#e9d9ab'; c.setLineDash([.03, .03]);
-    c.beginPath(); c.moveTo(-.5, .265); c.lineTo(.5, .265); c.stroke(); c.setLineDash([]);
-    for (let i = 0; i < 10; i++) {
-      const left = -.46 + i * .094, height = [.13,.22,.18,.36,.48,.33,.2,.29,.16,.12][i]!;
-      c.fillStyle = ['#83b1b8','#c5b392','#739aa6'][i % 3]!; c.fillRect(left, .16-height, .07, height);
-      if (i === 0 || i === 8 || i === 9) {
-        c.fillStyle = '#c78268'; c.beginPath(); c.moveTo(left-.01,.16-height); c.lineTo(left+.035,.11-height); c.lineTo(left+.08,.16-height); c.fill();
-      }
-      c.fillStyle = '#ffdda0';
-      for (let row = .035; row < height-.01; row += .06) for (const col of [.016,.043]) c.fillRect(left+col,.16-row,.012,.024);
+    // Straight-down aerial illustration. Only the full horizontal span is a physical ruler;
+    // streets, roofs and landmarks are enlarged recognition details, not a measured map.
+    c.beginPath(); c.roundRect(-.5, -.41, 1, .82, .025); c.clip();
+    c.fillStyle = '#648371'; c.fillRect(-.5, -.41, 1, .82);
+    for (let n = 0; n < 90; n++) {
+      const px = -.49 + ((n * 37) % 97) / 98, py = -.4 + ((n * 29) % 79) / 98;
+      circle(px, py, .013 + (n % 4) * .007, n % 2 ? '#79917d' : '#547762');
     }
-    for (const tx of [-.49,-.27,.23,.48]) { c.fillStyle='#ad9976'; c.fillRect(tx-.006,.1,.012,.1); circle(tx,.075,.029,'#7faf87'); }
+    // City blocks retain a recognisable street pattern even in the small reference card.
+    const block = .115;
+    for (let row = 0; row < 6; row++) for (let col = 0; col < 8; col++) {
+      const bx = -.46 + col * block, by = -.345 + row * block;
+      const park = (row === 1 && col === 1) || (row === 4 && col === 5) || (row === 0 && col === 6);
+      c.fillStyle = park ? '#438367' : '#a6aa9c'; c.fillRect(bx, by, .097, .096);
+      if (park) {
+        c.strokeStyle = '#c7c7a0'; c.lineWidth = .008;
+        c.beginPath(); c.moveTo(bx+.01,by+.08); c.lineTo(bx+.07,by+.02); c.stroke();
+        for (let tree=0; tree<5; tree++) circle(bx+.018+(tree%3)*.029,by+.02+Math.floor(tree/3)*.048,.014,'#396e54');
+      } else {
+        for (let roof=0; roof<6; roof++) {
+          const rx=bx+.011+(roof%3)*.03, ry=by+.012+Math.floor(roof/3)*.043;
+          const rw=.016+(col+roof)%2*.007, rh=.024+(row+roof)%2*.008;
+          c.fillStyle='#586569'; c.fillRect(rx+.005,ry+.005,rw,rh);
+          c.fillStyle=['#e0d5ba','#c6c8bf','#b79b85'][(row+col+roof)%3]!; c.fillRect(rx,ry,rw,rh);
+          c.fillStyle='#edf0d630'; c.fillRect(rx,ry,rw,.006);
+        }
+      }
+    }
+    // Main avenues and a curving river, seen from above; bridges connect both banks.
+    const road = (y: number, width: number, color: string) => {
+      c.strokeStyle=color; c.lineWidth=width; c.beginPath(); c.moveTo(-.5,y); c.lineTo(.5,y); c.stroke();
+    };
+    for (const ay of [-.19, .155]) {
+      road(ay,.031,'#53676a'); road(ay,.021,'#d4d1b6');
+    }
+    c.strokeStyle='#d4d1b6'; c.lineWidth=.016; c.beginPath(); c.moveTo(-.245,-.41); c.lineTo(-.245,.41); c.stroke();
+    const river = () => {
+      c.beginPath(); c.moveTo(.12,-.46); c.bezierCurveTo(-.08,-.2,.26,-.12,.1,.08);
+      c.bezierCurveTo(-.04,.26,.11,.33,.04,.46);
+    };
+    river(); c.strokeStyle='#789781'; c.lineWidth=.11; c.stroke();
+    river(); c.strokeStyle='#437f96'; c.lineWidth=.075; c.stroke();
+    river(); c.strokeStyle='#69a4b3'; c.lineWidth=.044; c.stroke();
+    for (const [bx,by] of [[.09,-.19],[.072,.155]]) {
+      c.strokeStyle='#465b60'; c.lineWidth=.034; c.beginPath(); c.moveTo(bx!-.075,by!); c.lineTo(bx!+.075,by!); c.stroke();
+      c.strokeStyle='#e9dcc0'; c.lineWidth=.021; c.stroke();
+    }
+    // A large green sports ground is an orientation landmark rather than another size ruler.
+    c.fillStyle='#e4d8b9'; c.beginPath(); c.ellipse(-.3,.26,.071,.041,0,0,Math.PI*2); c.fill();
+    c.fillStyle='#4a8b68'; c.fillRect(-.346,.237,.092,.046);
+    c.strokeStyle='#d2e2c1'; c.lineWidth=.003; c.strokeRect(-.34,.241,.08,.038);
+    c.beginPath(); c.moveTo(-.3,.241); c.lineTo(-.3,.279); c.stroke();
   } else if (id === 'neptune-orbit') {
-    c.strokeStyle = '#8facdf';
-    for (const orbit of [1,5.203,9.537,19.191,30.07]) { c.beginPath(); c.arc(0,0,.5*orbit/30.07,0,Math.PI*2); c.stroke(); }
-    // Marker symbols, not inflated physical disks in the measured view.
-    if (portrait) { circle(0,0,.055,'#ffdb83'); circle(.5,0,.048,'#719de3'); }
-    else {
-      c.strokeStyle='#ffe2a4'; c.beginPath(); c.moveTo(-.025,0); c.lineTo(.025,0); c.moveTo(0,-.025); c.lineTo(0,.025); c.stroke();
-      c.strokeStyle='#90c4ff'; c.beginPath(); c.arc(.5,0,.025,0,Math.PI*2); c.stroke();
+    // Circular teaching orbits, using rounded semimajor axes in AU. Only the separately
+    // labelled recognition portraits spread the inner orbits out; the measured view is linear.
+    // Phases are fixed illustrative positions, not an ephemeris. Icons are not physical disks.
+    const planets = [
+      { id:'mercury', au:.387, angle:-2.2, color:'#b9b4a9', size:.023 },
+      { id:'venus', au:.723, angle:.65, color:'#e8c47f', size:.029 },
+      { id:'earth', au:1, angle:2.4, color:'#66b9e7', size:.033 },
+      { id:'mars', au:1.524, angle:-.6, color:'#df8968', size:.025 },
+      { id:'jupiter', au:5.203, angle:-1.35, color:'#e0b994', size:.051 },
+      { id:'saturn', au:9.537, angle:2.8, color:'#dec899', size:.042 },
+      { id:'uranus', au:19.191, angle:.9, color:'#91d4dd', size:.034 },
+      { id:'neptune', au:30.07, angle:-.1, color:'#719de3', size:.036 },
+    ];
+    const portraitRadii = [.09,.145,.20,.25,.31,.375,.435,.5];
+    for (const [i,planet] of planets.entries()) {
+      const radius = portrait ? portraitRadii[i]! : .5*planet.au/30.07;
+      c.strokeStyle = i === 7 ? '#a6d4ff' : '#8facdf70';
+      c.lineWidth = (i === 7 ? 1.5 : .7) / span;
+      c.beginPath(); c.arc(0,0,radius,0,Math.PI*2); c.stroke();
+    }
+    const sunRadius = portrait ? .047 : .009;
+    const glow=c.createRadialGradient(0,0,0,0,0,sunRadius*2.5);
+    glow.addColorStop(0,'#ffdb83aa'); glow.addColorStop(1,'#ffdb8300');
+    c.fillStyle=glow; c.fillRect(-sunRadius*2.5,-sunRadius*2.5,sunRadius*5,sunRadius*5);
+    circle(0,0,sunRadius,'#ffdc83');
+    for (const [i,planet] of planets.entries()) {
+      const radius = portrait ? portraitRadii[i]! : .5*planet.au/30.07;
+      const px=Math.cos(planet.angle)*radius, py=Math.sin(planet.angle)*radius;
+      const r=portrait ? planet.size : i<4 ? .004 : planet.size*.65;
+      if (planet.id === 'earth' || planet.id === 'jupiter') drawReference(c,planet.id,px,py,r*2);
+      else {
+        const surface=c.createRadialGradient(px-r*.3,py-r*.3,r*.1,px,py,r);
+        surface.addColorStop(0,planet.color); surface.addColorStop(.65,planet.color); surface.addColorStop(1,'#334657');
+        c.fillStyle=surface; c.beginPath(); c.arc(px,py,r,0,Math.PI*2); c.fill();
+      }
+      if (planet.id === 'saturn') {
+        c.strokeStyle='#e5d5b6'; c.lineWidth=r*.37;
+        c.beginPath(); c.ellipse(px,py,r*1.8,r*.55,-.35,0,Math.PI*2); c.stroke();
+      }
     }
   } else if (id === 'milky-way') {
     const haze = c.createRadialGradient(0,0,0,0,0,.5);

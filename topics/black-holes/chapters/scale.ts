@@ -33,6 +33,7 @@ class ScaleScene {
   private compareContext: CanvasRenderingContext2D;
   private captions = [document.createElement('p'), document.createElement('p')];
   private ratio = document.createElement('p');
+  private comparisonDescription = document.createElement('p');
   private comparisonKey = '';
   private qualifications = document.createElement('details');
   private disposed = false;
@@ -53,8 +54,8 @@ class ScaleScene {
     this.ctx = ctx;
     this.comparison.className = 'hole-comparison';
     const heading = document.createElement('h3'); heading.textContent = t('把熟悉的东西放在旁边');
-    const description = document.createElement('p'); description.className = 'comparison-boundary';
-    description.textContent = copy.ruler;
+    this.comparisonDescription.className = 'comparison-boundary';
+    this.comparisonDescription.textContent = copy.ruler;
     const controls = document.createElement('div'); controls.className = 'comparison-controls';
     this.referencePicker.className = 'reference-picker';
     const choices = document.createElement('div'); choices.className = 'reference-choices';
@@ -90,7 +91,7 @@ class ScaleScene {
     this.qualifications.className = 'comparison-qualifications';
     const summary = document.createElement('summary'); summary.textContent = t('图示与真实尺度');
     this.qualifications.append(summary, this.boundary, this.referenceNote);
-    this.comparison.append(heading, description, controls, this.compareCanvas, captions, this.ratio, this.markerNote, this.qualifications);
+    this.comparison.append(heading, this.comparisonDescription, controls, this.compareCanvas, captions, this.ratio, this.markerNote, this.qualifications);
     this.related.textContent = copy.cosmicLink; this.related.className = 'comparison-related';
     const footer = document.createElement('div'); footer.className = 'comparison-footer';
     footer.append(this.qualifications, this.related); this.comparison.append(footer);
@@ -176,11 +177,12 @@ class ScaleScene {
     const c = this.compareContext; c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
     const model = comparisonGeometry(index, w, this.state.scenario, withDisk, h);
     const y = (h - 25) / 2, span = model.referencePixels;
+    const ref = model.reference.id;
     const smallHole = model.holePixels * (withDisk ? DISK_OUTER_HORIZON_RADII : 1) < 24;
-    const smallReference = span < 24;
+    // A multi-body system needs more room to recognise than one spherical object.
+    const smallReference = span < (ref === 'neptune-orbit' ? 140 : 24);
     const left = w * (smallHole ? .37 : .25), right = w * (smallReference ? .63 : .75);
     const leftY = y, rightY = y;
-    const ref = model.reference.id;
     const marker = (x: number, y: number) => {
       c.strokeStyle = '#d5e7f1'; c.lineWidth = 1; c.setLineDash([]); c.beginPath();
       c.moveTo(x - 5, y); c.lineTo(x + 5, y); c.moveTo(x, y - 5); c.lineTo(x, y + 5); c.stroke();
@@ -211,18 +213,22 @@ class ScaleScene {
     if (span < 1) marker(right, rightY);
     else drawReference(c, ref, right, rightY, span);
     const inset = (actualX: number, reference: boolean) => {
-      const x = w * (reference ? .85 : .15), boxWidth = Math.min(w * .26, 160);
-      const boxHeight = Math.min(h - 28, 112), top = Math.max(1, (h - 25 - boxHeight)/2);
-      const size = Math.max(12, Math.min(boxHeight - 24, boxWidth - 16));
+      const solarSystem = reference && ref === 'neptune-orbit';
+      const x = w * (reference ? .85 : .15), boxWidth = Math.min(w * .26, solarSystem ? 190 : 160);
+      const boxHeight = Math.min(h - 28, solarSystem ? Math.min(190,boxWidth+24) : 112), top = Math.max(1, (h - 25 - boxHeight)/2);
+      const titleLines = solarSystem && boxWidth < 140 ? copy.orbitInsetLines : [solarSystem ? copy.orbitInset : copy.inset];
+      const drawingTop = 21 + (titleLines.length-1)*12;
+      const size = Math.max(12, Math.min(boxHeight - drawingTop - 3, boxWidth - 16));
       c.fillStyle = '#122433'; c.strokeStyle = '#607b8e'; c.lineWidth = 1;
       c.fillRect(x-boxWidth/2, top, boxWidth, boxHeight); c.strokeRect(x-boxWidth/2, top, boxWidth, boxHeight);
-      c.fillStyle = '#c4d9e5'; c.font = '10px system-ui'; c.textAlign = 'center'; c.fillText(copy.inset, x, top+13, boxWidth-8);
-      if (reference) drawReference(c, ref, x, top+21+size/2, size, true);
-      else disk(x, top+21+size/2, size/2, model.hole.color, true);
+      c.fillStyle = '#c4d9e5'; c.font = '10px system-ui'; c.textAlign = 'center';
+      titleLines.forEach((line, i) => c.fillText(line, x, top+13+i*12, boxWidth-8));
+      if (reference) drawReference(c, ref, x, top+drawingTop+size/2, size, true);
+      else disk(x, top+drawingTop+size/2, size/2, model.hole.color, true);
       const direction = reference ? 1 : -1;
       c.strokeStyle = '#607b8e'; c.setLineDash([2, 3]); c.beginPath();
-      c.moveTo(actualX+direction*12, y); c.lineTo(x-direction*(boxWidth/2+4), y); c.stroke(); c.setLineDash([]);
-      c.fillStyle = '#adc6d5'; c.font = '10px system-ui'; c.fillText(copy.actual, actualX, y+24, w*.15);
+      c.moveTo(actualX+direction*(reference ? Math.max(12,span/2+6) : 12), y); c.lineTo(x-direction*(boxWidth/2+4), y); c.stroke(); c.setLineDash([]);
+      c.fillStyle = '#adc6d5'; c.font = '10px system-ui'; c.fillText(copy.actual, actualX, y+(reference ? Math.max(24,span/2+14) : 24), w*.15);
     };
     if (smallHole) inset(left, false);
     if (smallReference) inset(right, true);
@@ -246,12 +252,13 @@ class ScaleScene {
     if (['sun', 'arcturus', 'antares', 'vy-canis-majoris'].includes(ref) && model.ratio >= 2 && model.ratio <= 50) {
       this.ratio.textContent = copy.starLine.replace('{{name}}', referenceName).replace('{{count}}', String(Math.round(model.ratio)));
     }
+    this.comparisonDescription.textContent = ref === 'neptune-orbit' ? copy.orbitScale : copy.ruler;
     this.markerNote.textContent = [smallHole || smallReference ? copy.smallerNote : '', model.holePixels < 1 || span < 1 ? copy.subpixel : ''].filter(Boolean).join(' ');
     this.markerNote.hidden = !this.markerNote.textContent;
     this.boundary.textContent = (withDisk ? copy.diskNote : copy.geometryNote) + ' ' + (ref === 'milky-way' ? copy.galaxyNote : '');
     this.referenceNote.textContent = ref === 'journey' ? copy.cityNote : ref === 'neptune-orbit' ? copy.orbitNote : ref === 'milky-way' ? '' : copy.bodyNote;
     this.referenceNote.hidden = !this.referenceNote.textContent;
-    this.compareCanvas.setAttribute('aria-label', `${this.captions[0].textContent}. ${this.captions[1].textContent}. ${this.ratio.textContent} ${this.markerNote.textContent}`);
+    this.compareCanvas.setAttribute('aria-label', `${this.captions[0].textContent}. ${this.captions[1].textContent}. ${this.ratio.textContent} ${this.comparisonDescription.textContent} ${this.markerNote.textContent}`);
   }
   private mountQuestions() {
     this.questions.className = 'scale-questions';
