@@ -2,16 +2,16 @@
   "version": 1,
   "topicId": "sound-vibrations",
   "zh": {
-    "question": "把橡皮筋绷紧，和把它拨得更大，听到的变化是同一件事吗？",
-    "observe": "播放慢镜头并切换空气视图，盯住金色小团和空心圈。暂停、回看声源停止后的片段，再单独听两种张力或幅度的实际音高。",
+    "question": "一根弦的振动，怎样成为我们听见的声音？音高、幅度和传播介质分别改变什么？",
+    "observe": "先看声源和固定空气小团，再带着同一组高低音、大小幅度条件走进耳朵。比较窗口用同一时间轴分开频率与幅度，并检查独立的空气／真空路径。各站暂停后保留进度。",
     "academic": [
       {
         "title": "振动传递扰动而非运走空气",
-        "body": "橡皮筋振动带动附近空气，产生向外传播的压强和密度变化。空气中的声波通常是纵波，空气小团的平均位移方向与传播方向平行；这与弯曲弦的横向位移不同。图中实心点表示小团空气的平均位置，不是单个分子的热运动轨迹。扰动携带能量向远处走，小团空气在平衡位置附近往复；声源停止后，已经发出的波仍会继续传播。没有适合的介质时，机械声波不能这样传播。"
+        "body": "橡皮筋振动带动附近空气，产生向外传播的压强和密度变化。空气中的声波通常是纵波，空气小团的平均位移方向与传播方向平行；这与弯曲弦的横向位移不同。图中实心点表示小团空气的平均位置，不是单个分子的热运动轨迹。扰动携带能量向远处走，小团空气在平衡位置附近往复；声源停止后，已经发出的波仍会继续传播。没有适合的介质时，机械声波不能这样传播。 固体也可以传递机械波；独立真空对照假定没有支架等固体连接路径。"
       },
       {
         "title": "频率与振幅描述不同性质",
-        "body": "频率表示每秒完成多少次振动，与简单音的音高密切相关；振幅描述偏离平衡位置的大小，与声强有关。更大的振幅通常带来更响的声音，但响度还依赖频率、距离和听觉。画面把位移和时间放大，便于观察，播放的合成音保留模型频率，不能用慢镜头里数到的摆动次数当实际音高。"
+        "body": "频率表示每秒完成多少次振动，与简单音的音高密切相关；振幅描述偏离平衡位置的大小，与声强有关。更大的振幅通常带来更响的声音，但响度还依赖频率、距离和听觉。画面把位移和时间放大，便于观察，播放的合成音保留模型频率，不能用慢镜头里数到的摆动次数当实际音高。 进入耳朵后，鼓膜和听小骨把机械振动传向内耳；耳蜗基底膜对不同频率的响应位置不同。内毛细胞产生受体电位，再通过突触影响听神经放电，而不是把声波直接吹进神经。"
       },
       {
         "title": "理想弦模型的适用条件",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "更响不必更高；画里的慢摆动也不是实际听到的每秒振动次数。",
-    "boundary": "慢镜头中的时间、位移与声速不是现实比例；空气小团示意忽略热运动、三维扩散和反射。音频是单独点击播放的合成音，暂停画面不会暂停现实声波。改变实验条件会从头开始。",
+    "boundary": "慢镜头中的时间、位移与声速不是现实比例；空气小团示意忽略热运动、三维扩散和反射。音频是单独点击播放的合成音，暂停画面不会暂停现实声波。改变实验条件会从头开始。 耳蜗坐标只是定性高低音对照，不将合成音的196—392 Hz精确映射到解剖位置。两站教学时钟相互独立，位移不代表声压或分贝。",
     "narration": [
       {
         "label": "听声音，也看振动",
@@ -32,28 +32,28 @@
         "cue": "比较两种张力，播放之间留三秒。"
       },
       {
-        "label": "再改变拨动幅度",
-        "text": "这回把绷紧程度保持不变，只让拨动幅度大一点。你听到的主要是更响，还是更高呢？幅度是在说动得有多大，频率是在说一秒来回多少次，它们是两件不同的事。我们可以慢慢比较，不需要把声音开很大，也不要把耳朵贴近扬声器。",
-        "cue": "固定张力，比较两种幅度。"
+        "label": "振动怎样换成消息",
+        "text": "把第二站停在耳蜗回应。鼓膜带动小骨头，小骨头把变化传进内耳。改变高低音，金色回应区域会换位置；只改变幅度，位置不必一起换。再看感觉细胞，小小的纤毛束偏转，会影响细胞和神经的电信号。这些不是空气小球一路飞进了脑里。",
+        "cue": "切到耳朵，停在耳蜗回应，分别改变音高与幅度，再打开感觉细胞视图。"
       },
       {
-        "label": "声源停了，路上的变化呢",
-        "text": "把进度拖到后半段。橡皮筋已经不动了，可是路上还有一小段变化继续往前走。它也需要时间呀！再往后看，空气小团又回到原来的位置。我们按暂停，是让这幅慢镜头停下来，真实的声波可不会等我们。你还可以来回拖着看，找到空气挤紧和散开的位置。",
-        "cue": "在空气视图回看第 9—14 秒；暂停检查源已静止而右侧仍有疏密变化。"
+        "label": "让比较公平一点",
+        "text": "来到第三站，先只提高音高，再只增大幅度。一样长的时间里，曲线是多了几次往返，还是变高了？再想一想，假如中间没有空气，也没有桌子、绳子这样的连接，声源还在振动，声音能到另一边吗？真空对照没有传声介质。想看传播需要多久，可以回第一站观察路上的变化。",
+        "cue": "逐个选择条件，比较同一20毫秒窗口；切换空气与真空，再回看第一站延迟。"
       }
     ]
   },
   "en": {
-    "question": "Does tightening a band change the sound in the same way as plucking it farther?",
-    "observe": "Play slow motion and switch to air. Follow the gold parcel relative to its open circle. Pause and review the interval after the source stops; separately compare actual audio at different tensions or amplitudes.",
+    "question": "How does a vibrating string become a sound we hear, and what do pitch, amplitude and a transmission medium each change?",
+    "observe": "Watch the source and fixed air parcel, then carry the pitch and amplitude comparison into the ear. Use a common time axis to separate frequency and amplitude, and compare a separate air/vacuum path. Each study retains its paused progress.",
     "academic": [
       {
         "title": "Sound carries disturbances through a medium",
-        "body": "A vibrating band creates pressure and density disturbances in nearby air. Airborne sound is longitudinal: mean parcel displacement is parallel to propagation, unlike transverse string motion. Dots represent average parcel positions, not individual molecular thermal trajectories. Energy propagates while parcels oscillate locally. A previously emitted wave keeps traveling after its source stops; such mechanical waves need a suitable medium."
+        "body": "A vibrating band creates pressure and density disturbances in nearby air. Airborne sound is longitudinal: mean parcel displacement is parallel to propagation, unlike transverse string motion. Dots represent average parcel positions, not individual molecular thermal trajectories. Energy propagates while parcels oscillate locally. A previously emitted wave keeps traveling after its source stops; such mechanical waves need a suitable medium. Solids can also carry mechanical waves; the separate vacuum comparison excludes solid connecting paths such as supports."
       },
       {
         "title": "Frequency and amplitude differ",
-        "body": "Frequency counts cycles per second and relates closely to the pitch of a simple tone. Amplitude measures displacement and relates to intensity. Perceived loudness also depends on frequency, distance and hearing. Motion is enlarged and slowed while the synthesized audio retains the model frequency, so visual cycle counts are not the audible frequency."
+        "body": "Frequency counts cycles per second and relates closely to the pitch of a simple tone. Amplitude measures displacement and relates to intensity. Perceived loudness also depends on frequency, distance and hearing. Motion is enlarged and slowed while the synthesized audio retains the model frequency, so visual cycle counts are not the audible frequency. In the ear, eardrum and ossicles pass mechanical vibration into the inner ear. Different frequencies favor different basilar-membrane regions. Inner hair cells produce receptor potentials and influence auditory-nerve firing through synapses; sound is not air flowing through a nerve."
       },
       {
         "title": "Conditions of the ideal-string model",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Louder need not mean higher pitched, and slow visual motion is not the actual audible frequency.",
-    "boundary": "Visual time, displacement and propagation speed are not to physical scale. Air parcels omit thermal motion, 3D spreading and reflections. Separate audio is synthesized; pausing the diagram does not freeze real sound waves. Changing conditions restarts the experiment.",
+    "boundary": "Visual time, displacement and propagation speed are not to physical scale. Air parcels omit thermal motion, 3D spreading and reflections. Separate audio is synthesized; pausing the diagram does not freeze real sound waves. Changing conditions restarts the experiment. Cochlear coordinates are qualitative pitch comparisons, not anatomical calibration for the synthesized 196–392 Hz tones. Study clocks are independent; displacement does not represent sound pressure or decibels.",
     "narration": [
       {
         "label": "Hear and watch",
@@ -74,14 +74,14 @@
         "cue": "Compare two tension settings with three seconds between plays."
       },
       {
-        "label": "Then change amplitude",
-        "text": "Keep tension fixed and increase only the plucking amplitude. Is the main change loudness or pitch? Amplitude means how far something moves, while frequency means how many cycles happen each second. They describe different things. Compare at a comfortable volume, without putting your ear next to the speaker.",
-        "cue": "Hold tension and compare two amplitudes."
+        "label": "Vibration becomes a message",
+        "text": "Pause the second study at the cochlea. The eardrum moves the little bones, which pass changes into the inner ear. A different pitch shifts the highlighted region; changing amplitude alone need not shift it. Look at a sensory cell: bending its tiny bundle affects electrical activity in the cell and nerve. These are not air particles flying into the brain.",
+        "cue": "Open the ear, pause at cochlear response, compare pitch and amplitude separately, then open the sensory-cell view."
       },
       {
-        "label": "After the source stops",
-        "text": "Move to the later part of the timeline. The band has stopped, but a disturbance is still traveling. That takes time too! Later the air parcels return to their original positions. Pause freezes our picture; a real sound wave would not wait for us. Scrub back and forth to find compressed and spread-out regions.",
-        "cue": "Review seconds 9–14 in the air view; pause with a still source and a moving disturbance farther right."
+        "label": "Make the comparison fair",
+        "text": "At the third stop, raise only pitch, then only amplitude. Within the same interval, does the curve gain cycles or grow taller? Suppose there is no air and no connecting table or string. The source still vibrates, but can sound reach the other side? Our vacuum path has no medium for transmission. Return to the first study to watch propagation take time.",
+        "cue": "Compare presets in the same 20-millisecond window; switch air and vacuum, then revisit propagation delay."
       }
     ]
   },
@@ -97,6 +97,10 @@
     {
       "title": "OpenStax · Sound and longitudinal air motion",
       "url": "https://openstax.org/books/college-physics-2e/pages/17-1-sound"
+    },
+    {
+      "title": "NIH / NIDCD · How Do We Hear?",
+      "url": "https://www.nidcd.nih.gov/health/how-do-we-hear"
     }
   ]
 }

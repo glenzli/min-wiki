@@ -1,0 +1,558 @@
+{
+  "zh": {
+    "layers": [
+      {
+        "name": "对流层",
+        "range": "地面至约 11 km",
+        "story": "我们呼吸的空气、大多数云和天气，都在这层较低的大气里。向上走，空气通常越来越冷、越来越稀薄。",
+        "science": "图中采用标准大气剖面作为比较基准，不是今天的天气。真实对流层顶随纬度、季节和天气变化，约 11 km 只是本图参考。地表向大气传热，但气温并非每处都单调下降，逆温也会出现。",
+        "feature": "风、云和雨的家",
+        "detail": "暖湿空气抬升、冷却，可以成云；云滴或冰晶长大后才可能降水。低云、高云与发展很高的雷雨云，大多仍在对流层。",
+        "trend": "通常越高越冷",
+        "key": "弯箭头：抬升与下沉；横箭头：风。雨线只从示例雨云落下，不是每朵云都下雨。"
+      },
+      {
+        "name": "平流层",
+        "range": "约 11–50 km",
+        "story": "再往上，温度变化开始不一样。臭氧吸收一部分太阳紫外线，使上方逐渐变暖。这里通常不容易发生强烈的上下混合。",
+        "science": "稳定的垂直温度结构抑制强对流，但平流层不是禁止空气上下运动的硬壳。平流指输送过程，并非平流层专属。臭氧层也不是一层实体薄膜。",
+        "feature": "比较稳定，仍然有风",
+        "detail": "臭氧吸收部分紫外线，上方逐渐变暖，强烈上下翻滚不容易持续；空气仍会水平输送。",
+        "trend": "上部随高度变暖",
+        "key": "紫色光线：部分紫外线被臭氧吸收。普通雨云很少来到这里；极冷的极地冬季可出现极地平流层云。"
+      },
+      {
+        "name": "中间层",
+        "range": "约 50–85 km",
+        "story": "空气已经很稀薄，向上通常再次变冷。许多进入地球大气的流星体会在这一带产生可见的流星。",
+        "science": "中间层顶高度和温度会变化。本图的干空气标准剖面只计算至约 85 km，不把它外推为真实高层大气。流星发光还取决于物体速度、组成和尺寸。",
+        "feature": "流星划过的稀薄空气",
+        "detail": "向上再次变冷。小流星体高速进入空气，与气体作用，形成短暂的发光迹线，尾迹沿来路逐渐变淡。中间层顶附近在特殊条件下也可能有夜光云。",
+        "trend": "通常越高越冷",
+        "key": "亮头标示正在强烈发光的位置，后方尾迹逐渐变淡；亮度、宽度和颜色是示意，不代表流星体大小。"
+      },
+      {
+        "name": "热层",
+        "range": "约 85–600 km",
+        "story": "这里的粒子很少，但单个粒子可以有很高的运动能量。高温不等于像地面炉子一样把人烤热；空气太稀薄了。",
+        "science": "热层温度和范围受太阳活动影响显著。这里不显示未经计算的温度和压力数值；高温描述粒子平均动能，物体热平衡还取决于辐射和粒子密度。国际空间站的轨道位于这一高度范围内。",
+        "feature": "极光与稀疏的高速粒子",
+        "detail": "这里空气很稀薄，粒子平均运动能量可以很高。在极区，一些进入高层大气的带电粒子把能量传给气体，气体随后放光，形成极光。温度高不等于到处有极光。",
+        "trend": "粒子温度可很高",
+        "key": "交叉小点：进入的带电粒子；空心圆：被放大的大气粒子；绿色光幕：气体发出的光。轨迹和颜色是教学编码，不是粒子真实形状或观测比例。"
+      },
+      {
+        "name": "外逸层",
+        "range": "约 600 km 以上，逐渐过渡",
+        "story": "越往外，空气越稀薄，渐渐与太空相接。大气没有像墙壁一样突然结束的边缘。",
+        "science": "外逸层下界随太阳活动等条件变化，600 km 仅为示意分界。图中 1000 km 是观察窗口的上限，不是地球大气的终点；100 km 常用作航天活动约定界线，也不代表上方没有气体。",
+        "feature": "空气渐渐接上太空",
+        "detail": "粒子之间相隔很远，一些轻气体粒子可以逃逸。继续往上仍可能有粒子，没有一堵“空气到此为止”的墙。",
+        "trend": "渐变边界，没有硬壳",
+        "key": "小点：稀疏粒子示意；不是可见尘埃，也不表示真实数量。"
+      }
+    ],
+    "worlds": {
+      "earth": {
+        "name": "地球",
+        "composition": "以氮气、氧气为主",
+        "cloud": "云里主要是水滴或冰晶",
+        "story": "水在空气、地面和地下之间迁移。先在熟悉的地球上找出空气与水的关系，再用同样的问题观察其他世界。",
+        "column": [
+          {
+            "title": "逐渐接上太空",
+            "body": "空气越往外越稀薄，没有突然的边缘。"
+          },
+          {
+            "title": "臭氧与稀薄高空",
+            "body": "平流层里的臭氧吸收部分紫外线。"
+          },
+          {
+            "title": "水云与天气",
+            "body": "低空有风，水滴或冰晶组成云；有些云会降雨或雪。"
+          },
+          {
+            "title": "海洋与陆地",
+            "body": "液态水可以在地表汇成河流和海洋。"
+          }
+        ],
+        "pressureNote": "",
+        "temperatureNote": ""
+      },
+      "venus": {
+        "name": "金星",
+        "composition": "以二氧化碳为主",
+        "cloud": "厚云主要由硫酸液滴组成",
+        "story": "金星与火星都以二氧化碳为主要大气成分，但大气量和地表环境非常不同。成分相似，不意味着压力和温度相同。",
+        "column": [
+          {
+            "title": "逐渐接上太空",
+            "body": "云层上方仍有大气，往外逐渐稀薄。"
+          },
+          {
+            "title": "高空厚厚的硫酸云",
+            "body": "主要云层约在 45–70 km；云顶的风很快。"
+          },
+          {
+            "title": "云下：厚重、炎热的空气",
+            "body": "浓厚二氧化碳大气带来很高的地表压力；强温室效应使地表炽热。"
+          },
+          {
+            "title": "炽热的岩石地面",
+            "body": "没有地球那样的液态水海洋；不要把黄色云当成水雨云。"
+          }
+        ],
+        "pressureNote": "",
+        "temperatureNote": ""
+      },
+      "mars": {
+        "name": "火星",
+        "composition": "以二氧化碳为主，十分稀薄",
+        "cloud": "可见水冰云，也有二氧化碳冰云",
+        "story": "薄薄的大气和低气压，使火星地表的水与地球表现不同。图中的温度是代表均值，真实昼夜、纬度和季节差异很大。",
+        "column": [
+          {
+            "title": "逐渐接上太空",
+            "body": "薄薄的大气继续向外延伸。"
+          },
+          {
+            "title": "高空也可以有冰云",
+            "body": "一些更高的云由二氧化碳冰组成，并非水云。"
+          },
+          {
+            "title": "稀薄空气、扬尘与水冰云",
+            "body": "风能卷起尘土；常见水冰云与高处二氧化碳冰云不同。"
+          },
+          {
+            "title": "寒冷、干燥的岩石地面",
+            "body": "地表气压远低于地球，没有今天地球式的常年露天液态水海洋。"
+          }
+        ],
+        "pressureNote": "",
+        "temperatureNote": ""
+      },
+      "titan": {
+        "name": "土卫六",
+        "composition": "以氮气为主，含甲烷",
+        "cloud": "有甲烷云、雨及甲烷与乙烷湖海",
+        "story": "土卫六是土星的卫星，不是行星。它很冷，地表液体循环主要涉及甲烷和乙烷；相似的循环形态不意味着流动的都是水。",
+        "column": [
+          {
+            "title": "逐渐接上太空",
+            "body": "稠密大气向高处延伸，最终逐渐稀薄。"
+          },
+          {
+            "title": "橙色有机雾霾",
+            "body": "高空化学反应形成的微粒遮住地面；雾霾不是甲烷雨云。"
+          },
+          {
+            "title": "甲烷云与可能的甲烷雨",
+            "body": "这里很冷，甲烷可以凝结成云并降雨；并非处处、时时在下雨。"
+          },
+          {
+            "title": "冰质地面与湖海",
+            "body": "水冰像岩石一样坚硬；湖海里的液体主要是甲烷与乙烷。"
+          }
+        ],
+        "pressureNote": "",
+        "temperatureNote": ""
+      },
+      "moon": {
+        "name": "月球",
+        "composition": "几乎没有大气 · 极稀薄的外逸层",
+        "cloud": "没有地球式的云、风与雨",
+        "story": "月球是地球的卫星。少量气体粒子不等于一层能形成天气的空气；没有大气散射形成的蓝天，即使地面被太阳照亮，天空背景仍很黑。",
+        "pressureNote": "近真空，仍有少量粒子",
+        "temperatureNote": "日照与阴影差别很大",
+        "column": [
+          {
+            "title": "外部空间",
+            "body": "看不到像地球那样的厚空气层；少量气体粒子仍可存在。"
+          },
+          {
+            "title": "只有极稀薄的外逸层",
+            "body": "粒子非常分散，很少互相碰撞。这里不套用地球的五层结构。"
+          },
+          {
+            "title": "没有天气云和雨",
+            "body": "没有地球式的空气环流和降雨；亮着的地面上方也没有蓝天。"
+          },
+          {
+            "title": "直接露出的岩石地面",
+            "body": "遍布撞击坑。阳光照到和照不到的地方，表面温度可以差很多。"
+          }
+        ]
+      },
+      "mercury": {
+        "name": "水星",
+        "composition": "几乎没有大气 · 极稀薄的外逸层",
+        "cloud": "没有地球式的云、风与雨",
+        "story": "水星是一颗行星。它离太阳近，但没有厚大气来有效调节昼夜温度；面向太阳的地面很热，长夜中的地面很冷。太阳风是来自太阳的带电粒子流，不是这里的天气风。",
+        "pressureNote": "近真空，仍有少量粒子",
+        "temperatureNote": "白天很热，夜里很冷",
+        "column": [
+          {
+            "title": "外部空间",
+            "body": "地面之外没有地球式的浓厚空气包围，只有极少的气体粒子。"
+          },
+          {
+            "title": "来自地表的少量粒子",
+            "body": "太阳风和微小撞击等过程会让一些原子离开地表，补充极稀薄的外逸层。"
+          },
+          {
+            "title": "没有遮住地面的雨云",
+            "body": "强烈日照可以直接照到地面；没有地球式的云雨系统搬运水。"
+          },
+          {
+            "title": "布满撞击坑的地面",
+            "body": "白昼炽热、夜晚很冷。这里的温度描述地表，不是能呼吸的空气温度。"
+          }
+        ]
+      }
+    },
+    "diagram": {
+      "title": "从地面向外，看空气在做什么",
+      "up": "向外 · 空气逐渐稀薄",
+      "ground": "同一片地面：海洋、陆地和我们",
+      "rare": "特殊条件下的云"
+    },
+    "highClouds": [
+      {
+        "name": "平流层 · 极地平流层云",
+        "body": "极地冬季极冷时才可能出现；不是普通雨云，也不是平流层每天都多云。"
+      },
+      {
+        "name": "中间层顶附近 · 夜光云",
+        "body": "高纬度夏季、极冷的高空可能出现薄薄冰晶云；不从这里给地面降雨。"
+      }
+    ],
+    "energy": {
+      "title": "极光的光从哪里来？",
+      "intro": "把一次相互作用放大看：这不是三团不同的空气，而是同一个大气粒子先得到能量、再放出光。",
+      "steps": [
+        {
+          "title": "带来能量",
+          "body": "带电粒子进入稀薄的高层大气。"
+        },
+        {
+          "title": "把能量传过去",
+          "body": "碰撞使大气原子或分子进入激发态。"
+        },
+        {
+          "title": "气体放光",
+          "body": "激发态退回较低能态时，可以发出光。"
+        }
+      ],
+      "key": "交叉点＝带电粒子；圆圈＝大气粒子；波纹箭头＝发出的光。图形、间距与等待时间均不按实际比例；极光颜色还取决于气体种类和能量变化。"
+    },
+    "journey": {
+      "site": "起点 · 示意海岸",
+      "overview": "地球全景",
+      "approach": "走近黄色地面标记",
+      "pause": "暂停旅程",
+      "play": "播放旅程",
+      "projection": "黄色方框始终标记同一地面；亮点是观察高度 · 镜头从外侧观察，不是乘坐飞船 · 现象放大示意",
+      "boundary": "球体与高度位置使用统一参考距离，镜头缩放会变化；云、箭头和粒子为放大示意。海岸并非真实地点，各类现象也不表示同时发生。",
+      "overviewGuide": "先找到黄色标记，再拖动旅程或播放：地球会连续变大，标记附近的云和地面逐渐清楚。到达地面后，观察点再向上移动。",
+      "question": "大气怎样包围地球，各层在哪里？",
+      "story": "远看，大气贴着球体，像薄薄的边缘。我们先走近同一处海岸，再从低空的风和云向上，寻找臭氧、流星与极光所在的区域。黄色方框一直留在地面，不会跟着观察点升高。",
+      "science": "采用半径 6371 km 的球形参考地球与正交侧视镜头。地表标记、各层高度和现象中心位于同一套径向坐标；镜头拉近与沿高度观察是展示路径，不是航天器动力学。低层读数仍使用标准大气参考。",
+      "anchor": "地面锚点",
+      "camera": "观察方式",
+      "cameraDescription": "球体外侧的连续缩放",
+      "compare": "把地球与其他天空并排比较 →",
+      "rail": "高度路线",
+      "railNote": "各层展开示意，间距不按比例",
+      "ground": "地面",
+      "here": "现在这里",
+      "above": "离地面",
+      "holding": "停一停，看看这里 · 3 秒后继续",
+      "clues": [
+        "从这处地面出发，抬头找云。",
+        "我们来到云的身边：下面仍是出发的海岸。",
+        "普通雨云已经在下面了；这里的臭氧吸收部分紫外线。",
+        "云和臭氧大多在下方；许多流星在这一带高空发光。",
+        "地面更远了；在合适条件下，这一带高空会出现极光。",
+        "回看下面：空气越来越稀薄，逐渐接上太空。"
+      ]
+    }
+  },
+  "en": {
+    "layers": [
+      {
+        "name": "Troposphere",
+        "range": "Surface to about 11 km",
+        "story": "The air we breathe, most clouds and most weather are in this low layer. Air usually becomes colder and thinner as we rise.",
+        "science": "The standard profile is a comparison reference, not today's weather. The tropopause varies with latitude, season and weather; 11 km is only this diagram's reference. Temperature inversions can interrupt the usual decrease with height.",
+        "feature": "A home for wind, clouds and rain",
+        "detail": "Moist air can cool as it rises and form clouds. Droplets or ice must grow before precipitation can fall. Low clouds, high clouds and tall storm clouds mostly remain in the troposphere.",
+        "trend": "Usually cooler upward",
+        "key": "Curved arrows: rising and sinking air; horizontal arrows: wind. Rain falls only from the example rain cloud, not from every cloud."
+      },
+      {
+        "name": "Stratosphere",
+        "range": "About 11–50 km",
+        "story": "Higher up, the temperature trend changes. Ozone absorbs some solar ultraviolet radiation, warming the upper parts. Strong vertical mixing is usually suppressed.",
+        "science": "Stable stratification inhibits strong convection, but this is not a solid shell forbidding vertical motion. Advection is a transport process, not a process exclusive to this layer. The ozone layer is not a physical membrane.",
+        "feature": "Stable air, with winds",
+        "detail": "Ozone absorbs some ultraviolet light, warming the upper part. Strong vertical overturning is inhibited, but air still travels horizontally.",
+        "trend": "Upper parts warm upward",
+        "key": "Violet rays: some UV absorbed by ozone. Ordinary rain clouds are rare here; polar stratospheric clouds can form in exceptionally cold polar winters."
+      },
+      {
+        "name": "Mesosphere",
+        "range": "About 50–85 km",
+        "story": "Air is very thin and usually cools again with height. Many incoming meteoroids produce visible meteors in this region.",
+        "science": "The mesopause height and temperature vary. The dry standard profile here stops near 85 km instead of being extrapolated into the upper atmosphere. Meteor emission also depends on speed, composition and size.",
+        "feature": "Meteors in thin air",
+        "detail": "Temperature falls again. A small meteoroid enters at high speed and interacts with gas, producing a brief luminous streak that fades along its wake. Special conditions near the mesopause can also produce noctilucent clouds.",
+        "trend": "Usually cooler upward",
+        "key": "The bright head marks strong emission; the wake fades behind it. Brightness, width and color are illustrative, not the size of the meteoroid."
+      },
+      {
+        "name": "Thermosphere",
+        "range": "About 85–600 km",
+        "story": "There are few particles, but each may move very energetically. High temperature does not mean heating you like an oven at ground level: the air is extremely sparse.",
+        "science": "Thermospheric temperature and extent respond strongly to solar activity. We do not invent numerical temperature or pressure readings here. Temperature describes particle kinetic energy; object heating also depends on radiation and density. The ISS orbits in this altitude range.",
+        "feature": "Auroras and sparse, energetic particles",
+        "detail": "Air is very sparse, and its particles can have high average kinetic energy. In polar regions, some incoming charged particles transfer energy to atmospheric gas, which then emits auroral light. High temperature does not mean auroras everywhere.",
+        "trend": "Particle temperature can be high",
+        "key": "Crosses: incoming charged particles; outlined circles: enlarged atmospheric particles; green curtain: light emitted by gas. Paths and colors are teaching codes, not actual particle shapes or observed scale."
+      },
+      {
+        "name": "Exosphere",
+        "range": "Above roughly 600 km, a gradual transition",
+        "story": "The atmosphere gradually becomes even thinner and blends into space. It does not end suddenly at a wall.",
+        "science": "The lower boundary varies with solar activity and other conditions; 600 km is illustrative. The 1000 km display limit is not the end of the atmosphere. The commonly used 100 km spaceflight boundary does not mean there is no gas above it.",
+        "feature": "Air gradually meets space",
+        "detail": "Particles are far apart, and some light gas particles can escape. Gas can still exist farther out: there is no wall marking the end of air.",
+        "trend": "A gradual transition, not a shell",
+        "key": "Dots represent sparse particles, not visible dust or real particle counts."
+      }
+    ],
+    "worlds": {
+      "earth": {
+        "name": "Earth",
+        "composition": "Mostly nitrogen and oxygen",
+        "cloud": "Clouds mainly contain water droplets or ice",
+        "story": "Water moves between air, surface and underground stores. Establish the connection between air and water on Earth, then ask the same questions about other worlds.",
+        "column": [
+          {
+            "title": "Gradually into space",
+            "body": "Air thins outward, without an abrupt edge."
+          },
+          {
+            "title": "Ozone and thin upper air",
+            "body": "Stratospheric ozone absorbs some UV."
+          },
+          {
+            "title": "Water clouds and weather",
+            "body": "Wind moves low air. Droplet or ice clouds sometimes bring rain or snow."
+          },
+          {
+            "title": "Oceans and land",
+            "body": "Liquid water can collect in rivers and oceans."
+          }
+        ],
+        "pressureNote": "",
+        "temperatureNote": ""
+      },
+      "venus": {
+        "name": "Venus",
+        "composition": "Mostly carbon dioxide",
+        "cloud": "Thick clouds mainly contain sulfuric-acid droplets",
+        "story": "Venus and Mars both have carbon-dioxide-dominated air, but vastly different atmospheric amounts and surface conditions. Similar composition does not mean similar pressure or temperature.",
+        "column": [
+          {
+            "title": "Gradually into space",
+            "body": "Air continues above the clouds and thins outward."
+          },
+          {
+            "title": "High sulfuric-acid clouds",
+            "body": "Main clouds lie roughly 45–70 km up; cloud-top winds are fast."
+          },
+          {
+            "title": "Below clouds: dense, hot air",
+            "body": "Abundant CO₂ produces high surface pressure; a strong greenhouse effect heats the surface."
+          },
+          {
+            "title": "Extremely hot rock",
+            "body": "No Earth-like liquid-water ocean. The yellow clouds are not water rain clouds."
+          }
+        ],
+        "pressureNote": "",
+        "temperatureNote": ""
+      },
+      "mars": {
+        "name": "Mars",
+        "composition": "Mostly carbon dioxide, very thin",
+        "cloud": "Water-ice clouds and carbon-dioxide-ice clouds occur",
+        "story": "Thin air and low pressure make surface water behave differently from water on Earth. The temperature shown is representative: day, night, season and latitude differ widely.",
+        "column": [
+          {
+            "title": "Gradually into space",
+            "body": "The thin atmosphere continues outward."
+          },
+          {
+            "title": "High ice clouds too",
+            "body": "Some higher clouds contain CO₂ ice rather than water ice."
+          },
+          {
+            "title": "Thin air, dust and water-ice clouds",
+            "body": "Winds lift dust. Water-ice clouds differ from higher CO₂-ice clouds."
+          },
+          {
+            "title": "Cold, dry rock",
+            "body": "Surface pressure is far below Earth’s; no present-day Earth-like open liquid-water oceans."
+          }
+        ],
+        "pressureNote": "",
+        "temperatureNote": ""
+      },
+      "titan": {
+        "name": "Titan",
+        "composition": "Mostly nitrogen, with methane",
+        "cloud": "Methane clouds and rain; methane–ethane lakes and seas",
+        "story": "Titan is a moon of Saturn, not a planet. Its very cold surface liquid cycle mainly involves methane and ethane. Similar-looking cycles do not mean that the liquid is water.",
+        "column": [
+          {
+            "title": "Gradually into space",
+            "body": "A dense atmosphere extends upward, eventually thinning."
+          },
+          {
+            "title": "Orange organic haze",
+            "body": "Particles formed by upper-air chemistry obscure the ground. Haze is not a methane rain cloud."
+          },
+          {
+            "title": "Methane clouds and possible rain",
+            "body": "Cold conditions allow methane to condense and rain, but not everywhere or all the time."
+          },
+          {
+            "title": "Icy ground and lakes",
+            "body": "Water ice is rock-hard. Lakes contain mainly liquid methane and ethane."
+          }
+        ],
+        "pressureNote": "",
+        "temperatureNote": ""
+      },
+      "moon": {
+        "name": "Moon",
+        "composition": "Almost airless · extremely tenuous exosphere",
+        "cloud": "No Earth-like weather clouds, winds or rain",
+        "story": "The Moon is Earth’s satellite. A few gas particles do not make a weather-bearing atmosphere. Without a thick atmosphere to scatter sunlight into a blue sky, the sky background stays dark even over sunlit ground.",
+        "pressureNote": "Near vacuum, not zero particles",
+        "temperatureNote": "Sunlight and shade differ greatly",
+        "column": [
+          {
+            "title": "Outer space",
+            "body": "No thick blanket of air like Earth’s; a few gas particles can still exist."
+          },
+          {
+            "title": "Only a tenuous exosphere",
+            "body": "Particles are far apart and rarely collide. Earth’s five-layer structure does not apply."
+          },
+          {
+            "title": "No weather clouds or rain",
+            "body": "No Earth-like air circulation or rain, and no blue sky over the sunlit ground."
+          },
+          {
+            "title": "Exposed rocky ground",
+            "body": "Impact craters cover the surface. Sunlit and shaded surfaces can differ greatly in temperature."
+          }
+        ]
+      },
+      "mercury": {
+        "name": "Mercury",
+        "composition": "Almost airless · extremely tenuous exosphere",
+        "cloud": "No Earth-like weather clouds, winds or rain",
+        "story": "Mercury is a planet near the Sun. Without a thick atmosphere to redistribute heat effectively, sunlit ground gets very hot while the long nights get very cold. Solar wind is a flow of charged particles from the Sun, not local weather wind.",
+        "pressureNote": "Near vacuum, not zero particles",
+        "temperatureNote": "Very hot days, very cold nights",
+        "column": [
+          {
+            "title": "Outer space",
+            "body": "No dense Earth-like air surrounds the surface, only extremely sparse gas."
+          },
+          {
+            "title": "A few particles from the surface",
+            "body": "Solar wind, small impacts and other processes release atoms from the surface into the tenuous exosphere."
+          },
+          {
+            "title": "No cover of rain clouds",
+            "body": "Intense sunlight reaches the ground without an Earth-like cloud-and-rain system moving water."
+          },
+          {
+            "title": "Ground covered in craters",
+            "body": "Very hot days and cold nights. These are surface conditions, not temperatures of breathable air."
+          }
+        ]
+      }
+    },
+    "diagram": {
+      "title": "From the ground outward: what is the air doing?",
+      "up": "Outward · air gradually thins",
+      "ground": "The same ground: ocean, land and us",
+      "rare": "Clouds under special conditions"
+    },
+    "highClouds": [
+      {
+        "name": "Stratosphere · polar stratospheric clouds",
+        "body": "Possible in exceptionally cold polar winters, not ordinary rain clouds or daily cloudy weather."
+      },
+      {
+        "name": "Near the mesopause · noctilucent clouds",
+        "body": "Thin ice clouds can form in very cold high air during high-latitude summers. They do not bring rain to the ground."
+      }
+    ],
+    "energy": {
+      "title": "Where does auroral light come from?",
+      "intro": "An enlarged interaction: the same atmospheric particle gains energy and then emits light. These are not three different parcels of air.",
+      "steps": [
+        {
+          "title": "Energy arrives",
+          "body": "A charged particle enters the sparse upper atmosphere."
+        },
+        {
+          "title": "Energy transfers",
+          "body": "A collision excites an atmospheric atom or molecule."
+        },
+        {
+          "title": "Gas emits light",
+          "body": "Returning to a lower energy state can release light."
+        }
+      ],
+      "key": "Cross = charged particle; circle = atmospheric particle; wavy arrow = emitted light. Shapes, spacing and timing are not to scale. Auroral color also depends on the gas and the energy change."
+    },
+    "journey": {
+      "site": "Start · illustrative coast",
+      "overview": "Whole Earth",
+      "approach": "Approaching the yellow surface marker",
+      "pause": "Pause journey",
+      "play": "Play journey",
+      "projection": "The yellow square stays at the same surface site; the bright dot marks observation height · External camera, not a spacecraft ride · Features enlarged",
+      "boundary": "The globe and reference heights share distance coordinates while the camera zoom changes. Clouds, arrows and particles are enlarged illustrations. The coast is not a mapped location, and the phenomena need not occur at the same time.",
+      "overviewGuide": "Find the yellow marker, then drag or play the journey. Earth grows continuously; clouds and ground near that marker come into view. After reaching the surface, the observation point moves upward.",
+      "question": "How does the atmosphere surround Earth, and where are its layers?",
+      "story": "From afar, the atmosphere hugs the globe as a thin rim. Approach the same coast, then move upward from low winds and clouds toward ozone, meteors and auroras. The yellow square stays on the ground rather than rising with the observation point.",
+      "science": "A reference spherical Earth of radius 6371 km is viewed with an orthographic external camera. The surface marker, layer heights and phenomenon centers share radial coordinates. Approach and ascent are a presentation path, not spacecraft dynamics. Lower readings remain a standard-atmosphere reference.",
+      "anchor": "Surface anchor",
+      "camera": "Observation",
+      "cameraDescription": "Continuous external camera zoom",
+      "compare": "Compare Earth with other skies side by side →",
+      "rail": "Height route",
+      "railNote": "Layers expanded; spacing not to scale",
+      "ground": "Ground",
+      "here": "You are here",
+      "above": "Above ground",
+      "holding": "Look around · continuing after 3 seconds",
+      "clues": [
+        "Start at this surface site and look up for clouds.",
+        "We are beside the clouds. Our starting coast is still below.",
+        "Ordinary rain clouds are below us. Ozone here absorbs some UV.",
+        "Most clouds and ozone are below. Many meteors glow at these heights.",
+        "The ground is farther away. Auroras can appear here under suitable conditions.",
+        "Look below: the air grows thinner and gradually meets space."
+      ]
+    }
+  }
+}

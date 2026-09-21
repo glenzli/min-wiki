@@ -1,4 +1,5 @@
 import { t } from './i18n.ts';
+import type { LabState, Conditions } from './journeyModel.ts';
 import { batteryState,carrierPosition } from './model.ts';
 const label=(x:number,y:number,s:string,a='start')=>`<text x="${x}" y="${y}" text-anchor="${a}">${s}</text>`;
 const wire='M149 323H93V161Q93 140 116 140H283L357 140H552Q574 140 574 163V279L545 299L548 329L576 340V402Q576 420 551 420H320Q289 420 289 389V323';
@@ -17,8 +18,8 @@ function wheel(x:number){return `<g transform="translate(${x} 370)"><circle r="3
 export function createBatteryScene(){
  document.getElementById('circuit-art')!.innerHTML=defs('main')+`<rect width="720" height="500" fill="url(#main-paper)"/>
  <ellipse cx="520" cy="412" rx="156" ry="17" fill="#7c7158" opacity=".12"/>
- <path d="${wire}" fill="none" stroke="#263f39" stroke-width="11" stroke-linejoin="round" stroke-linecap="round" filter="url(#main-shadow)"/>
- <path d="${wire}" fill="none" stroke="#82998c" stroke-width="3" stroke-linecap="round"/>
+ <path d="${wire.replace('V279L545 299L548 329L576 340','V279M576 340')}" fill="none" stroke="#263f39" stroke-width="11" stroke-linejoin="round" stroke-linecap="round" filter="url(#main-shadow)"/>
+ <path d="${wire.replace('V279L545 299L548 329L576 340','V279M576 340')}" fill="none" stroke="#82998c" stroke-width="3" stroke-linecap="round"/>
  <path id="electron-route" d="${wire}" fill="none" stroke="none"/>
  <rect x="129" y="259" width="181" height="101" rx="15" fill="#455b51" stroke="#364b42" stroke-width="2" filter="url(#main-shadow)"/>
  <rect x="145" y="276" width="146" height="63" rx="12" fill="url(#main-case)" stroke="#36534a" stroke-width="2"/><path d="M156 282H275" stroke="#b1c2ad" stroke-width="3" opacity=".7"/>
@@ -33,7 +34,7 @@ export function createBatteryScene(){
  <circle cx="283" cy="140" r="9" fill="url(#main-metal)" stroke="#697a70" stroke-width="2"/><circle cx="357" cy="140" r="9" fill="url(#main-metal)" stroke="#697a70" stroke-width="2"/>
  <g id="switch-arm"><path d="M283 140L357 140" stroke="#9d704c" stroke-width="9" stroke-linecap="round"/><path d="M290 137L350 137" stroke="#e6c399" stroke-width="2"/></g>
  ${label(320,192,t('开关'),'middle')}
- <path d="M423 298L451 255Q459 242 478 246L534 253L563 286L633 297Q652 302 657 324L650 363H423Q407 347 414 328Z" fill="url(#main-wood)" stroke="#a78254" stroke-width="2" filter="url(#main-shadow)"/>
+ <g id="load-motor"><path d="M574 279L545 299L548 329L576 340" fill="none" stroke="#738c7d" stroke-width="8"/><path d="M423 298L451 255Q459 242 478 246L534 253L563 286L633 297Q652 302 657 324L650 363H423Q407 347 414 328Z" fill="url(#main-wood)" stroke="#a78254" stroke-width="2" filter="url(#main-shadow)"/>
  <path d="M423 298L451 255Q459 242 478 246L534 253L563 286L633 297Q652 302 657 324L650 363H423Z" fill="url(#main-grain)"/>
  <path d="M461 256L478 256L478 284H445Z M490 258L527 263L546 286H490Z" fill="#adc0ad" stroke="#8fa38c" stroke-width="2"/>
  <path d="M436 310H640" stroke="#f5dfb5" stroke-width="3" opacity=".7"/>
@@ -42,19 +43,23 @@ export function createBatteryScene(){
  <path d="M568 338L595 355" stroke="#7e8c7e" stroke-width="6" stroke-linecap="round"/>
  ${wheel(460)}${wheel(607)}<path d="M422 350H645" stroke="#a38053" stroke-width="3" opacity=".6"/>
  <circle cx="638" cy="315" r="7" fill="#e7cea4" stroke="#ad8e62"/><circle cx="427" cy="318" r="4" fill="#a97557"/>
+ </g>
+ <g id="load-bulb" visibility="hidden"><path d="M574 279H555V345H490V291M522 291V358H576V340" fill="none" stroke="#738c7d" stroke-width="8"/><ellipse cx="520" cy="335" rx="82" ry="14" fill="#978765" opacity=".15"/><path d="M478 275C417 219 449 159 499 159C555 159 582 223 537 268L534 310H480Z" fill="#faf4d5" fill-opacity=".55" stroke="#9baca0" stroke-width="3"/><ellipse id="bulb-glow" cx="506" cy="227" rx="78" ry="78" fill="#ffd270" opacity="0"/><path d="M481 310H535M481 302H535M483 294H533" stroke="url(#main-metal)" stroke-width="9"/><path d="M490 291L490 245L500 222L509 245L520 222L528 244L522 291" fill="none" stroke="#a98457" stroke-width="3"/><path d="M455 207Q455 182 483 173" fill="none" stroke="#fff" stroke-width="5" opacity=".7"/></g>
+ <g id="load-led" visibility="hidden"><path d="M574 279H555V319M576 340H470V319" fill="none" stroke="#738c7d" stroke-width="8"/><rect x="440" y="249" width="140" height="84" rx="14" fill="#79968b" stroke="#526f64" stroke-width="3"/><path d="M460 315H475V294H501M556 315H541V294H518" fill="none" stroke="#d7c296" stroke-width="4"/><rect x="466" y="295" width="25" height="13" rx="3" fill="#c7b59a"/><rect x="495" y="266" width="39" height="38" rx="7" fill="#e8d399" stroke="#aa996e"/><circle id="led-glow" cx="515" cy="282" r="41" fill="#fff1b1" opacity="0"/><rect x="508" y="275" width="13" height="13" fill="#f2e7bc"/></g>
+ <g id="charger-art" visibility="hidden"><rect x="390" y="209" width="236" height="175" rx="20" fill="#526e64" stroke="#304d43" stroke-width="3"/><rect x="409" y="229" width="198" height="71" rx="10" fill="#e1e9d4"/><path d="M478 245L461 272H478L467 287L494 262H478Z" fill="#bd975e"/><path d="M574 279H629V320H614M576 340H390" fill="none" stroke="#8eaa9b" stroke-width="7"/><path d="M510 384V428H403V454" fill="none" stroke="#647c70" stroke-width="8"/><rect x="376" y="474" width="57" height="20" rx="5" fill="#d7ddc6" stroke="#7b907e" stroke-width="2"/><path d="M393 456H413V474H393Z" fill="#415c50"/><path d="M397 474V486M409 474V486" stroke="#9ea99a" stroke-width="3"/></g>
  <g id="external-electrons"></g>
  ${label(116,88,t('导线里的电子'),'start')}<path d="M202 94L206 128" stroke="#8d947b"/>
- ${label(652,234,t('马达'),'end')}<path d="M636 239L602 284" stroke="#8d947b"/>
- ${label(586,470,t('玩具结构观察窗 · 示意'),'middle')}
+ <text id="load-art-label" x="640" y="202" text-anchor="end"></text>
+ <text id="load-art-caption" x="586" y="470" text-anchor="middle"></text>
  ${label(29,469,t('完整回路：两端都要接通'))}`;
  const layers=Array.from({length:9},(_,i)=>`<path d="M98 ${173+i*16}l107-8 16 7-108 8Z" fill="${i%2?'#778879':'#a2afa0'}" stroke="#647d70" stroke-width="1"/>`).join('');
  const grains=Array.from({length:28},(_,i)=>{const x=389+i%4*27,y=168+Math.floor(i/4)*23;return `<path d="M${x} ${y}l14-6 11 9-3 16-18 2-8-12Z" fill="${i%3?'#b79b76':'#c4ac89'}" stroke="#947d61" stroke-width="1"/>`;}).join('');
  const pores=Array.from({length:48},(_,i)=>`<circle cx="${277+i%4*14}" cy="${159+Math.floor(i/4)*14}" r="2.3" fill="#a3b8a9" opacity=".5"/>`).join('');
  document.getElementById('detail-art')!.innerHTML=defs('cell')+`<rect width="600" height="1000" fill="url(#cell-paper)"/>
- ${label(28,36,t('一个锂离子电芯的放电例子'))}
+ <text id="cell-process-label" x="28" y="36"></text>
  <path d="M151 108V77Q151 67 163 67H435Q450 67 450 80V108" fill="none" stroke="#667f74" stroke-width="7"/>
  <path id="cell-external" d="M151 108V77Q151 67 163 67H435Q450 67 450 80V108" fill="none" stroke="none"/>
- <path d="M230 67H271" stroke="#f8f5e9" stroke-width="10"/><path id="detail-switch" d="M230 67H270" stroke="#ad8059" stroke-width="6" stroke-linecap="round"/><circle cx="300" cy="67" r="17" fill="url(#cell-metal)" stroke="#87998d" stroke-width="2"/><path d="M292 74V59l8 9 8-9v15" fill="none" stroke="#687e71" stroke-width="2"/>
+ <path d="M230 67H271" stroke="#f8f5e9" stroke-width="10"/><path id="detail-switch" d="M230 67H270" stroke="#ad8059" stroke-width="6" stroke-linecap="round"/><circle cx="300" cy="67" r="17" fill="url(#cell-metal)" stroke="#87998d" stroke-width="2"/><path id="detail-load-symbol" d="M292 74V59l8 9 8-9v15" fill="none" stroke="#687e71" stroke-width="2"/>
  <rect x="66" y="107" width="471" height="260" rx="21" fill="#cad4bd" stroke="#92a28f" stroke-width="3" filter="url(#cell-shadow)"/>
  <rect x="83" y="133" width="438" height="219" rx="12" fill="url(#cell-fluid)"/>
  <rect x="91" y="144" width="143" height="195" rx="8" fill="#ccd4b9"/>
@@ -81,19 +86,35 @@ export function createBatteryScene(){
  ${label(469,691,t('线圈'))}<path d="M463 697L382 726" stroke="#8b967e"/>
  ${label(306,950,t('线圈受磁力作用；换向结构帮助持续转动'),'middle')}`;
 }
-export function drawBattery(used:number,closed:boolean,switchPosition:number,coastAngle=0){
- const s=batteryState(used,closed),angle=s.rotorAngle+coastAngle;
+export function drawBattery(used:number,closed:boolean,switchPosition:number,coastAngle=0,lab?:LabState,conditions?:Conditions){
+ const s=batteryState(used,closed);
+ if(lab){s.rotorAngle=lab.rotation;s.electronTravel=lab.travel;s.ionTravel=lab.travel*2.2/2.4;s.conducting=closed;s.current=closed?1:0;}
+ const angle=s.rotorAngle+coastAngle;
  document.getElementById('switch-arm')!.setAttribute('transform',`rotate(${-34*(1-switchPosition)} 283 140)`);
  document.getElementById('detail-switch')!.setAttribute('transform',`rotate(${-34*(1-switchPosition)} 230 67)`);
  document.querySelectorAll('.toy-wheel').forEach(e=>e.setAttribute('transform',`rotate(${angle*.6})`));
  document.getElementById('motor-spindle')!.setAttribute('transform',`translate(566 316) rotate(${angle})`);
  document.getElementById('detail-rotor')!.setAttribute('transform',`rotate(${angle} 300 757)`);
  const path=document.getElementById('electron-route') as unknown as SVGPathElement,total=path.getTotalLength();
- document.getElementById('external-electrons')!.innerHTML=Array.from({length:22},(_,i)=>{const fraction=carrierPosition(i,s.electronTravel,22),pt=path.getPointAtLength(fraction*total);const atGap=pt.y<150&&pt.x>287&&pt.x<353;return `<circle cx="${pt.x}" cy="${pt.y}" r="3.7" fill="#588eac" stroke="#e7f1e9" stroke-width="1.1" opacity="${atGap&&!closed?0:s.conducting?1:.36}"/>`;}).join('');
+ document.getElementById('external-electrons')!.innerHTML=Array.from({length:22},(_,i)=>{const fraction=carrierPosition(i,s.electronTravel,22),pt=path.getPointAtLength(fraction*total);const atGap=pt.y<150&&pt.x>287&&pt.x<353;const inLoad=conditions&&(conditions.mode==='charge'||conditions.load!=='motor')&&pt.x>420&&pt.y>210&&pt.y<365;return `<circle cx="${pt.x}" cy="${pt.y}" r="3.7" fill="#588eac" stroke="#e7f1e9" stroke-width="1.1" opacity="${inLoad||atGap&&!closed?0:s.conducting?1:.36}"/>`;}).join('');
  const short=document.getElementById('cell-external') as unknown as SVGPathElement;
  document.getElementById('detail-electrons')!.innerHTML=Array.from({length:9},(_,i)=>{const pt=short.getPointAtLength(short.getTotalLength()*carrierPosition(i,s.electronTravel,9));return `<circle cx="${pt.x}" cy="${pt.y}" r="3.5" fill="#588eac" stroke="#eef4e4" stroke-width="1" opacity="${!closed&&pt.x>231&&pt.x<269&&pt.y<78?0:s.conducting?1:.3}"/>`;}).join('');
  document.getElementById('internal-ions')!.innerHTML=Array.from({length:8},(_,i)=>{const f=carrierPosition(i,s.ionTravel,8),x=211+179*f,y=175+(i%4)*42;return `<g transform="translate(${x} ${y})" opacity="${s.conducting?1:.35}"><circle r="6" fill="#cfab67" stroke="#f4e5b4" stroke-width="1.4"/><path d="M-2.5 0h5M0-2.5v5" stroke="#806a3d" stroke-width="1"/></g>`;}).join('');
  const sites=(side:'left'|'right')=>Array.from({length:18},(_,i)=>{const x=(side==='left'?118:401)+(i%3)*28,y=172+Math.floor(i/3)*27,amount=side==='left'?1-used:used;return `<circle cx="${x}" cy="${y}" r="${3.5+1.1*amount}" fill="#cfa562" stroke="#f0da9e" stroke-width="1" opacity="${.14+.86*amount}"/>`;}).join('');
  document.getElementById('negative-sites')!.innerHTML=sites('left');document.getElementById('positive-sites')!.innerHTML=sites('right');
+ return s;
+}
+/** Load and charger topology projection; all consume the same stored cell state. */
+export function drawJourney(lab:LabState,c:Conditions,active:boolean){
+ const charging=c.mode==='charge';
+ document.getElementById('detail-load-symbol')!.setAttribute('d',charging?'M303 55L292 69H301L296 79L309 63H300Z':c.load==='motor'?'M292 74V59l8 9 8-9v15':'M293 60L307 74M307 60L293 74');
+ const s=drawBattery(1-lab.energy,active,c.closed||charging&&c.charger==='matched'?1:0,0,lab,c);
+ for(const load of ['motor','bulb','led'])document.getElementById('load-'+load)!.setAttribute('visibility',!charging&&c.load===load?'visible':'hidden');
+ document.getElementById('charger-art')!.setAttribute('visibility',charging?'visible':'hidden');
+ document.getElementById('load-art-label')!.textContent=charging?t('外部能源与充电器'):c.load==='motor'?t('马达'):c.load==='bulb'?t('灯丝灯泡'):t('LED 灯具与限流');
+ document.getElementById('load-art-caption')!.textContent=charging?'':t('负载观察窗 · 示意');
+ document.getElementById('cell-process-label')!.textContent=charging?t('锂离子电芯：充电方向'):t('一个锂离子电芯的放电例子');
+ document.getElementById('bulb-glow')!.setAttribute('opacity',String(active&&!charging&&c.load==='bulb'?.55:0));
+ document.getElementById('led-glow')!.setAttribute('opacity',String(active&&!charging&&c.load==='led'?.7:0));
  return s;
 }

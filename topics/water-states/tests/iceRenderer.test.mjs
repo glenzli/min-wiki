@@ -32,7 +32,7 @@ test('one persistent SVG population is clipped by the same front that bounds the
       renderer.update(state, fraction === .5);
       assert.deepEqual(descendants(root), population, 'scrubbing must not replace grains, bubbles or textures');
       assert.equal(root.attributes.get('opacity'), fraction === 0 ? '0' : '1');
-      assert.equal(guide.attributes.get('opacity'), fraction === .5 ? '.85' : '0');
+      assert.equal(guide.attributes.get('opacity'), fraction === .5 ? '.68' : '0');
       assert.ok(!/NaN|Infinity/.test(clip.attributes.get('d') + water.attributes.get('d')));
       const edge = [...clip.attributes.get('d').matchAll(/L([\d.]+) ([\d.]+)/g)].map(m => [Number(m[1]), Number(m[2])]).reverse();
       const liquid = [...water.attributes.get('d').matchAll(/[ML]([\d.]+) ([\d.]+)/g)].map(m => [Number(m[1]), Number(m[2])]);

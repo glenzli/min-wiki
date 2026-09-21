@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "月面的大多数圆坑不是火山口，也不要求撞击体一定垂直落下。动能翻倍不等于坑的直径翻倍。",
-    "boundary": "剖面和抛射采用简化教学模型，不解完整冲击流体与材料破坏；坑的缩放是定性展示。发光闪现代表撞击能量释放，不是月球大气中的燃烧。",
+    "boundary": "三维地形和抛射采用简化教学模型，不解完整冲击流体与材料破坏；坑的缩放是定性展示。发光闪现代表撞击能量释放，不是月球大气中的燃烧。",
     "narration": [
       {
         "label": "看月亮留下的痕迹",
@@ -39,7 +39,7 @@
       {
         "label": "为什么痕迹留得久",
         "text": "地球上有风、雨、河流，会慢慢改变地面。月亮没有这些常见的风雨，所以不少坑能留下很久。不过，新的撞击还会盖住旧的痕迹，小碎片也会翻动表面的尘土。月亮并不是一本永远不变的书，我们要把许多线索放在一起读。",
-        "cue": "结束在成坑与俯视图，观察坑缘和抛出物。"
+        "cue": "结束在三维成坑地形，转动视角观察坑底、坑缘和抛出物覆盖层。"
       }
     ]
   },
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Most lunar circular craters are impacts, not volcanoes, and do not require vertical arrival. Doubling energy does not double crater diameter.",
-    "boundary": "The profile and ejecta are simplified illustrations, not full shock hydrodynamics or material failure. Crater scaling is qualitative. The flash indicates impact energy, not burning in a lunar atmosphere.",
+    "boundary": "The 3D terrain and ejecta are simplified illustrations, not full shock hydrodynamics or material failure. Crater scaling is qualitative. The flash indicates impact energy, not burning in a lunar atmosphere.",
     "narration": [
       {
         "label": "Read the marks on the Moon",
@@ -81,7 +81,7 @@
       {
         "label": "Why the marks last",
         "text": "On Earth, wind, rain, and rivers slowly change the ground. The Moon lacks this familiar weather, so many craters survive a long time. But new impacts can cover old marks, and tiny fragments stir its surface dust. The Moon is not a book whose pages never change. We need several clues to read its history.",
-        "cue": "Finish with the crater profile, rim, ejecta, and overhead inset."
+        "cue": "Finish with the 3D crater terrain; rotate the view to inspect its floor, raised rim, and ejecta blanket."
       }
     ]
   },

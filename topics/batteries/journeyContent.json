@@ -1,0 +1,270 @@
+{
+  "chapters": [
+    {
+      "id": "loads",
+      "title": {
+        "zh": "让灯亮，让车动",
+        "en": "Light and motion"
+      },
+      "question": {
+        "zh": "同一块电池，为什么能产生不同效果？",
+        "en": "How can one battery produce different effects?"
+      },
+      "body": {
+        "zh": "先合上开关，再运行。换成灯丝灯泡、LED 灯具或电机，比较光、转动与热；换负载不会把电池重新充满。",
+        "en": "Close the switch, then run. Compare a filament bulb, an LED unit and a motor: light, motion and heat. Changing the load does not refill the battery."
+      }
+    },
+    {
+      "id": "inside",
+      "title": {
+        "zh": "走进电池",
+        "en": "Inside a cell"
+      },
+      "question": {
+        "zh": "外面的电子与里面的离子，各走哪条路？",
+        "en": "Which paths do electrons and ions follow?"
+      },
+      "body": {
+        "zh": "仍是刚才那块锂离子实验电池。蓝色电子走外电路，金色锂离子在电解质中穿过隔膜。电极上的金色占位随材料状态改变，不是电子被吃掉。",
+        "en": "This is the same lithium-ion teaching battery. Blue electrons follow the external circuit; gold lithium ions cross the separator in the electrolyte. Gold electrode occupancy changes with material state—not because electrons are consumed."
+      }
+    },
+    {
+      "id": "empty",
+      "title": {
+        "zh": "电量用完以后",
+        "en": "When usable energy runs out"
+      },
+      "question": {
+        "zh": "开关断开与电池耗尽，是一回事吗？",
+        "en": "Are an open switch and a depleted cell the same?"
+      },
+      "body": {
+        "zh": "让这一段放电走到终点，再看电极占位、负载和能量账本。还有电子，却不能再按这个模型持续供能。真实设备也可能在电池完全耗尽前，因为电压不足而停止。",
+        "en": "Run this discharge segment to its endpoint, then compare electrode occupancy, the load and energy ledger. Electrons remain, but this model cannot keep delivering energy. Real devices may stop earlier because voltage is too low."
+      }
+    },
+    {
+      "id": "charge",
+      "title": {
+        "zh": "充电是什么",
+        "en": "What charging does"
+      },
+      "question": {
+        "zh": "谁把能量重新送进电池？",
+        "en": "Where does the energy for charging come from?"
+      },
+      "body": {
+        "zh": "先用掉一些能量，再接入适配充电器。负载被隔离，外部能源推动材料状态改变。观察输入、储存与热：充电不是点一下重置，也不是让电机倒着转。",
+        "en": "Use some energy first, then connect a compatible charger. The load is isolated and external energy changes the material state. Compare input, storage and heat: charging is not reset, nor a motor running backward."
+      }
+    },
+    {
+      "id": "family",
+      "title": {
+        "zh": "电池家族",
+        "en": "The battery family"
+      },
+      "question": {
+        "zh": "同样是 AA，为什么一个能充、一个不能？",
+        "en": "Why can one AA recharge while another cannot?"
+      },
+      "body": {
+        "zh": "并排观察外形，再选一枚查看层次。AA、纽扣描述尺寸或外形；锂离子、镍氢、铅酸描述化学体系；汽车电池描述用途。这些不是互斥的分类。",
+        "en": "Compare shapes, then select a specimen and reveal its layers. AA and coin describe size or form; lithium-ion, NiMH and lead-acid describe chemistry; automotive describes use. These are not mutually exclusive categories."
+      }
+    },
+    {
+      "id": "pack",
+      "title": {
+        "zh": "从电芯到汽车",
+        "en": "From cell to vehicle"
+      },
+      "question": {
+        "zh": "大电池包不只是把电芯装进盒子",
+        "en": "A battery pack is more than cells in a box"
+      },
+      "body": {
+        "zh": "追踪金色边框里的同一颗电芯，拉远看连接、监测与冷却。串联改变电压，并联增加安时容量；真实设计还需要匹配、保护与管理，不是任意拼接。",
+        "en": "Track the same gold-outlined cell as you zoom out to connections, monitoring and cooling. Series raises voltage; parallel increases amp-hour capacity. Real designs require matching, protection and management—not arbitrary wiring."
+      }
+    }
+  ],
+  "families": [
+    {
+      "id": "coin",
+      "shape": "coin",
+      "name": {
+        "zh": "纽扣电池 · 一次锂电例子",
+        "en": "Coin cell · primary lithium example"
+      },
+      "chem": {
+        "zh": "锂金属 / 二氧化锰",
+        "en": "Lithium metal / manganese dioxide"
+      },
+      "form": {
+        "zh": "扁圆外形",
+        "en": "Flat, round form"
+      },
+      "use": {
+        "zh": "小型、低功耗设备",
+        "en": "Small, low-power devices"
+      },
+      "rechargeable": false,
+      "structure": {
+        "zh": "金属壳、绝缘密封圈、分隔的两极与电解质。这里选的是一次锂电纽扣；纽扣外形也有其他化学体系。",
+        "en": "Metal case, insulating seal, separated electrodes and electrolyte. This is a primary lithium coin example; other chemistries also use coin forms."
+      },
+      "trade": {
+        "zh": "便于装进狭小空间，但小并不等于安全。疑似吞下纽扣电池要立即寻求急救。",
+        "en": "Fits small spaces, but small does not mean safe. Suspected button-battery ingestion needs immediate emergency care."
+      }
+    },
+    {
+      "id": "alkaline",
+      "shape": "aa",
+      "name": {
+        "zh": "AA · 碱性一次电池",
+        "en": "AA · primary alkaline"
+      },
+      "chem": {
+        "zh": "锌 / 二氧化锰",
+        "en": "Zinc / manganese dioxide"
+      },
+      "form": {
+        "zh": "AA 圆柱尺寸",
+        "en": "AA cylindrical size"
+      },
+      "use": {
+        "zh": "遥控器、钟等设备",
+        "en": "Remotes, clocks and similar devices"
+      },
+      "rechargeable": false,
+      "structure": {
+        "zh": "外圈为二氧化锰混合物，内侧为锌凝胶，中间隔膜将它们分开，电解质参与离子输运。",
+        "en": "An outer manganese-dioxide mixture surrounds zinc gel, with a separator between them and electrolyte for ionic transport."
+      },
+      "trade": {
+        "zh": "常见、使用方便；这个一次电池不是为反复充电设计的。AA 并不是化学体系名称。",
+        "en": "Common and convenient; this primary cell is not designed for repeated charging. AA is not a chemistry name."
+      }
+    },
+    {
+      "id": "nimh",
+      "shape": "aa",
+      "name": {
+        "zh": "AA · 镍氢充电电池",
+        "en": "AA · rechargeable NiMH"
+      },
+      "chem": {
+        "zh": "镍系电极 / 储氢合金",
+        "en": "Nickel electrode / hydrogen-storage alloy"
+      },
+      "form": {
+        "zh": "AA 圆柱尺寸",
+        "en": "AA cylindrical size"
+      },
+      "use": {
+        "zh": "适配的玩具和反复使用设备",
+        "en": "Compatible toys and frequently used devices"
+      },
+      "rechargeable": true,
+      "structure": {
+        "zh": "电极带与隔膜卷绕在壳内，负极合金可储存氢；这里不是锂离子在搬家。",
+        "en": "Electrode strips and separators are wound inside the case. The negative alloy stores hydrogen; lithium-ion transport does not describe this chemistry."
+      },
+      "trade": {
+        "zh": "同为 AA，也必须核对设备要求与充电器类型，不能只看装得进去。",
+        "en": "Even for AA, device requirements and charger type must match. Fitting in the holder is not enough."
+      }
+    },
+    {
+      "id": "phone",
+      "shape": "pouch",
+      "name": {
+        "zh": "手机 · 锂离子软包例子",
+        "en": "Phone · lithium-ion pouch example"
+      },
+      "chem": {
+        "zh": "锂离子体系",
+        "en": "Lithium-ion chemistry"
+      },
+      "form": {
+        "zh": "薄片软包",
+        "en": "Thin pouch"
+      },
+      "use": {
+        "zh": "手机与便携设备",
+        "en": "Phones and portable devices"
+      },
+      "rechargeable": true,
+      "structure": {
+        "zh": "电极、隔膜与电解质构成薄层，装在复合膜外壳中；实际可采用叠片或卷绕，外部还配有保护。",
+        "en": "Thin electrodes, separators and electrolyte sit in a laminated enclosure. Designs may stack or wind layers and include protection."
+      },
+      "trade": {
+        "zh": "兼顾便携与储能。鼓包或受损的电池应停止使用，交给大人和专业人员处理。",
+        "en": "Balances portability and stored energy. Stop using a swollen or damaged battery and involve an adult and qualified service."
+      }
+    },
+    {
+      "id": "starter",
+      "shape": "box",
+      "name": {
+        "zh": "汽车 · 铅酸启动电池",
+        "en": "Vehicle · lead-acid starter battery"
+      },
+      "chem": {
+        "zh": "铅 / 二氧化铅与硫酸电解质",
+        "en": "Lead / lead dioxide with sulfuric-acid electrolyte"
+      },
+      "form": {
+        "zh": "多个电格组成的壳体",
+        "en": "Case with multiple cells"
+      },
+      "use": {
+        "zh": "启动发动机与辅助供电",
+        "en": "Engine starting and auxiliary power"
+      },
+      "rechargeable": true,
+      "structure": {
+        "zh": "每个电格里排列正负极板与隔板；多个电格串联。不是一块巨大金属，也不是动力电池的通用结构。",
+        "en": "Each cell contains positive and negative plates with separators; several cells connect in series. It is not one giant metal block or a universal traction-battery design."
+      },
+      "trade": {
+        "zh": "可提供启动所需的短时大电流，但较重；有些汽车辅助电池采用其他体系。",
+        "en": "Can supply short starting-current bursts but is heavy. Some vehicles use other auxiliary-battery chemistries."
+      }
+    },
+    {
+      "id": "traction",
+      "shape": "pack",
+      "name": {
+        "zh": "电动汽车 · 动力电池包",
+        "en": "Electric vehicle · traction pack"
+      },
+      "chem": {
+        "zh": "常见锂离子体系；配方不同",
+        "en": "Commonly lithium-ion; formulations vary"
+      },
+      "form": {
+        "zh": "电芯与管理系统组成的电池包",
+        "en": "Cells with pack-level management"
+      },
+      "use": {
+        "zh": "经功率电子驱动牵引电机",
+        "en": "Traction motor through power electronics"
+      },
+      "rechargeable": true,
+      "structure": {
+        "zh": "许多电芯和连接件配合监测、保护及热管理；电芯可以是圆柱、方形或软包，模块并非每种设计都有。",
+        "en": "Many cells and interconnects work with monitoring, protection and thermal management. Cells may be cylindrical, prismatic or pouch; not all designs use modules."
+      },
+      "trade": {
+        "zh": "要兼顾能量、功率、重量、寿命与安全。它和负责辅助供电的汽车小电池不是同一个角色。",
+        "en": "Balances energy, power, weight, life and safety. Its role differs from the smaller auxiliary battery."
+      }
+    }
+  ]
+}

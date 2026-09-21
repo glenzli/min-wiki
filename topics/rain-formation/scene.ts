@@ -6,14 +6,23 @@ import { t } from './i18n.ts';
 const noise=(i:number)=>{const n=Math.sin(i*127.1+311.7)*43758.5453;return n-Math.floor(n);};
 export class TopicScene{
  private cloudTexture=createCloudTexture({bounds:[-355, -242, 431, 216],lobes:[[-161,-91,178,42],[-245,-133,69,61],[-173,-169,61,56],[-97,-135,71,59],[-292,-104,46,35],[5,-89,42,28]],seed:41});
- private surface:CanvasSurface;private progress=0;private settings:Settings={route:'warm',humidity:75};
- constructor(canvas:HTMLCanvasElement){this.surface=new CanvasSurface(canvas);this.surface.onResize(()=>this.draw(this.progress,this.settings));}
- draw(progress:number,settings:Settings){
-  this.progress=progress;this.settings=settings;
+ private surface:CanvasSurface;private progress=0;private settings:Settings={route:'warm',humidity:75};private detailOnly=false;
+ constructor(canvas:HTMLCanvasElement){this.surface=new CanvasSurface(canvas);this.surface.onResize(()=>this.draw(this.progress,this.settings,this.detailOnly));}
+ draw(progress:number,settings:Settings,detailOnly=false){
+  this.progress=progress;this.settings=settings;this.detailOnly=detailOnly;
+  if(this.surface.width<1||this.surface.height<1)return;
   const s=this.surface,c=s.begin('#a7c8d8','#e6e8d3'),state=rainState(progress,settings);
-  const compact=s.width<560;
+  const compact=!detailOnly&&s.width<560;
   if(compact)c.translate(0,(140-s.height*.54)/s.scale);
   const label=(text:string,x:number,y:number,width=250)=>s.label(text,x,y,{width,color:'#305366',background:'#f5f6eceb'});
+  const molecule=(x:number,y:number,size:number,opacity=1)=>{
+    c.save();c.globalAlpha=opacity;
+    s.path([[x-size*.75,y+size*.6],[x,y],[x+size*.75,y+size*.6]],undefined,'#8b8e83',size*.35);
+    s.ellipse(x,y,size*.65,size*.65,'#5288b8');
+    s.ellipse(x-size*.75,y+size*.6,size*.36,size*.36,'#fff9e7','#b5aa93');
+    s.ellipse(x+size*.75,y+size*.6,size*.36,size*.36,'#fff9e7','#b5aa93');c.restore();
+  };
+  if(!detailOnly){
   const light=c.createRadialGradient(-300,-230,0,-240,-140,250);light.addColorStop(0,'#fff6cfad');light.addColorStop(1,'#fff7d700');s.ellipse(-240,-140,250,250,light);
   s.path([[-450,143],[-325,106],[-279,114],[-218,75],[-153,106],[-97,98],[-30,131],[44,113],[128,133],[201,101],[284,124],[450,109],[450,300],[-450,300]],'#a0b8ab');
   s.path([[-450,164],[-316,145],[-254,162],[-174,143],[-94,151],[-26,138],[46,149],[149,154],[246,140],[450,153],[450,300],[-450,300]],'#809d82');
@@ -28,13 +37,6 @@ export class TopicScene{
   c.save();c.globalAlpha=state.cloud*.65;c.strokeStyle='#416e8a';c.lineWidth=1.2;c.setLineDash([3,5]);c.beginPath();c.ellipse(-171,-103,25,17,0,0,Math.PI*2);c.stroke();
   if(!compact)s.path([[-145,-106],[88,-137],[111,-137]],undefined,'#69899b',1);
   c.restore();
-  const molecule=(x:number,y:number,size:number,opacity=1)=>{
-    c.save();c.globalAlpha=opacity;
-    s.path([[x-size*.75,y+size*.6],[x,y],[x+size*.75,y+size*.6]],undefined,'#8b8e83',size*.35);
-    s.ellipse(x,y,size*.65,size*.65,'#b47d66');
-    s.ellipse(x-size*.75,y+size*.6,size*.36,size*.36,'#fff9e7','#b5aa93');
-    s.ellipse(x+size*.75,y+size*.6,size*.36,size*.36,'#fff9e7','#b5aa93');c.restore();
-  };
   if(progress<.43){
     for(let i=0;i<18;i++){
       const f=smooth(i*.004,.28+i*.006,progress),x=-320+noise(i+22)*170;
@@ -60,9 +62,11 @@ export class TopicScene{
     if(ice<1){c.globalAlpha*=1-ice;s.path([[x,y-2-r*3],[x,y]],undefined,'#42769c99',.8+r);s.ellipse(x,y,1+r,1.15+r,'#5893b3','#d9eef1');}
     c.restore();
   }if(progress>.86)label(rainParticle(1,0,settings.humidity).outcome==='evaporated'?t('干燥空气：雨幡'):t('湿润空气：雨落地'),-142,151,330);}
+  }
   // One representative population condenses into droplets, then merges.
   const originalScale=s.scale;
   c.save();
+  if(detailOnly){const factor=Math.min((s.width-32)/270,(s.height-32)/350)/s.scale;c.scale(factor,factor);s.scale*=factor;c.translate(-234,24);}
   if(compact){
     const factor=(s.width-38)/(247*originalScale);
     c.translate(-234*factor,(315-140)/originalScale+187*factor);c.scale(factor,factor);s.scale*=factor;

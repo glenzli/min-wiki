@@ -1,4 +1,16 @@
-# 细胞是什么？ / What is a cell?
+# 细胞：结构与分工 / Cells: structure and teamwork
+
+## Integrated observation workspace · 2026-09-20
+
+The same detailed cell geometry now supports three linked questions: `?chapter=structure` locates shared structures and exceptions; `?chapter=energy` follows materials and usable energy in the same selected cell; `?chapter=work` compares specialised jobs. `?cell=plant` enters the plant example directly. Chapter changes pause active work and retain the original specimen and process progress. Shared SVG definitions remain mounted outside hideable viewports so structure, close-up and process views continue to reference one anatomy.
+
+`exploration.ts` owns validated chapter/case routes and six independent progress/zoom slots. `specialization.ts` composes the existing complete body-cell and blood-cell renderers, models and translated scientific notes. `case=barrier|muscle|neuron|oxygen|defence|repair` selects an example. The old body-cells and blood-cells URLs redirect to the correct group/default example; valid `case` or legacy `kind`, language, base prefix and hash are preserved. No iframe or old full-page UI is mounted.
+
+The generic animal specimen is deliberately not retyped as a mature red cell: its nucleus/mitochondrion presence contract stays unchanged. Specialised specimens remain separate examples. Oxygen transport, defence and clotting are not sequential stages; platelets are fragments, and fibrin is not a cell. The energy-comparison action selects a typical tissue-cell example rather than pretending that the red cell contains its mitochondria. Species/structure limitations, deeper notes and references from the original examples remain readable beside the relevant workspace. Labels may be hidden without removing outside explanations. Different magnifications are explicitly not equal scales.
+
+The question path and knowledge panel connect cells to the leaf lifecycle; bacterial ecology and viruses remain independent linked topics. No cell division, complete immune model or universal molecular simulation has been added. Existing covers and detailed scientific illustrations are retained.
+
+Focused tests cover route migration, per-example state isolation and the unchanged biological model invariants. Parent integration owns final full gates and real bilingual desktop/mobile browser acceptance. No commit, push or deployment is included. Earlier descriptions below document the retained structural/energy engine.
 
 双语儿童互动页面，比较典型动物细胞、叶肉植物细胞和细菌。六个结构按钮与整体图中的点击区域对应；局部窗口沿连续视野移动，直接引用同一套 SVG 结构。可切换内部剖视与半透明表面，细胞膜、细胞壁、核内染色质、大液泡、线粒体内膜和叶绿体膜片有不同的材质与层次。不属于所选细胞的结构保留按钮，通过缺失说明和整体对照解释。
 

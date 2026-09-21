@@ -3,7 +3,7 @@
   "topicId": "rain-cycle",
   "zh": {
     "question": "海里的水变成云以后，还能回到海里吗？每一份水都走同一条路吗？",
-    "observe": "点击“慢慢走完一圈”，跟着金色圆框移动；用“停下来看看”或拖动进度条，停在海面、云中、雨中和河流四处，比较水的状态与位置。再把水面得到的热量切换为温暖一些或凉一些，比较蒸发示意。",
+    "observe": "先追踪同一批100份水，比较干湿空气、地表分流和冰中运动。再用顶部的长期观察入口进入同一山坡下的地下水收支，或同一山谷的多年积雪与冰川实验。比较补给与取水、积累与消融：储量何时增加，何时减少？各实验有独立时钟，换观察方式不清空已有状态。",
     "academic": [
       {
         "title": "能量推动相变",
@@ -11,15 +11,15 @@
       },
       {
         "title": "重力连接不同水库",
-        "body": "降水到达地面后，有的成为地表径流，有的渗入土壤，有的被植物利用后再回到空气。地下水还可能缓慢补给河流。海洋、湖泊、冰雪、土壤和地下含水层都是暂存水的地方；水会停留不同的时间，因此水循环是相互连接的网络，而不是每个水分子都依次经过四站的传送带。"
+        "body": "降水到达地面后，一部分入渗，再经过非饱和土层补给含水层；入渗并不等于已成为地下水。地下水主要在连通孔隙和裂隙中缓慢流动，不是一条普遍存在的地下空洞河流。水位和水头差影响它与河流的交换：既可能补给河流，也可能从河流获得水。长期实验用简化储水箱核对补给、交换、取水与储量变化；持续取水超过补充会降低储量和水位。它不计算实际地点的三维流场或水质净化。"
       },
       {
-        "title": "怎样知道水去了哪里",
-        "body": "在一个区域和一段时间内，可以用降水与流入减去蒸发和流出，估算储水量的变化。雨量计、河道流量观测和地下水位记录提供不同证据。某地长时间少雨，并不意味着水从地球消失，而可能意味着当地输入少于输出；全球循环也不能保证每个地方随时都有足够清洁的淡水。"
+        "title": "冰川是慢储存，不是冻住的河水",
+        "body": "山地冰川形成需要积雪多次越夏保留，并逐渐转为粒雪和冰。压实减少体积，不会凭空删除水量，所以长期实验用水当量统一记账。积累与消融之差决定净收支；持续净损失可使末端后退，但冰本身仍可向下游移动。上方追踪一批水在既有冰川中的运动；下方实验另算多年雪、粒雪与冰的简化收支，不把两个数量混为一谈。末端形状和教学年份没有按真实冰川标定，也不是完整应力变形或气候预测。"
       }
     ],
     "misconception": "云不是一袋看不见的水汽；我们看见的是许多微小水滴或冰晶。",
-    "boundary": "圆框追踪的是一小份水的代表路径；粒子、时间和距离均被放大或压缩，画面没有表示所有支路或预测降水量。海中的弧线只连接这次观察的起终点，不表示水一定回到原来的海域；每个水分子的真实行程和停留时间都不同。",
+    "boundary": "100份批次不是全球水量比例或实测降水。云中暖层融化成雨与高山降雪是两条支路。长期地下水和冰川实验是另外的简化收支模型，数量、时间和参数不能与上方批次混加，也不能用于当地水位、冰川或气候预测。图形与孔隙放大是教学示意；不模拟完整三维含水层、冰川应力变形、污染净化或植物蒸腾。",
     "narration": [
       {
         "label": "从一片海开始",
@@ -28,7 +28,7 @@
       },
       {
         "label": "来到云里",
-        "text": "现在慢慢往前看。空气里的水汽遇到合适的变冷条件，会聚成非常小的水滴。有些云里还有小冰晶。许多小水滴和冰晶一起，才让我们看见云。我们先停一下，找找看：圆圈的位置变了，里面表示水的样子是不是也变了？",
+        "text": "空气里的水汽在合适的条件下凝结成小水滴，云就变得看得见了。放大同一片云，会看到小水滴相遇后合并。有些云也有冰晶。云不保证把雨送到地面：如果下面的空气很干，雨滴可能在途中重新变成水蒸气。",
         "cue": "推进至云中，留出三秒观察。"
       },
       {
@@ -37,15 +37,15 @@
         "cue": "慢慢推进经过雨和河道。"
       },
       {
-        "label": "还有别的路线",
-        "text": "不过，水的旅行没有一张人人相同的车票。有的水钻进土壤，有的待在湖里，有的被植物吸收，也有的冻成了冰。今天只看了一条路线。下次看到云、河流或者晾干的衣服，你都可以想一想：这里的水，刚从哪里来，又可能到哪里去呢？",
-        "cue": "停在全景，回指海、云、山和河。"
+        "label": "留下很久的水",
+        "text": "不同的水走不同的路。有的进入土和石头的小缝隙，慢慢补给河流；有的以雪落在高山。把时间拉长，留下来的雪可以逐渐变成冰。冰也会慢慢向下移动。如果损失的水比新来的更多，冰川会变小，地下储存的水也会减少。水的旅程没有规定好的终点，有些变化值得慢慢看。",
+        "cue": "先看批次中的冰与融水；再进入两个独立长期实验，分别比较地下水补给/取水与冰川积累/消融，保持时间尺和数量边界可见。"
       }
     ]
   },
   "en": {
     "question": "Can seawater return to the sea after becoming a cloud? Does every portion take the same route?",
-    "observe": "Choose “Follow the whole journey” and follow the gold circle. Use “Pause and look” or drag the timeline to stop over the sea, cloud, rain and river, comparing state and location. Then switch the heat reaching the water between warmer and cooler conditions to compare evaporation symbols.",
+    "observe": "First follow the same 100 portions and compare dry air, surface partition and movement within ice. Then use the longer-term entries to explore groundwater beneath the same hillside or snow and glacier budgets in the same valley. Compare recharge with withdrawal, and accumulation with loss: when does storage grow or shrink? Experiments have independent clocks and retain state across observation views.",
     "academic": [
       {
         "title": "Energy and changes of state",
@@ -53,15 +53,15 @@
       },
       {
         "title": "Gravity connects water stores",
-        "body": "Precipitation can run over land, infiltrate soil or be used by plants and returned to the air. Groundwater can slowly feed streams. Oceans, lakes, ice, soil and aquifers store water for different lengths of time. The cycle is a connected network rather than a conveyor belt on which every molecule visits four stops."
+        "body": "Some precipitation infiltrates and passes through unsaturated soil before recharging an aquifer; infiltration is not already groundwater recharge. Groundwater mainly travels slowly through connected pores and fractures, not a universal underground cavern river. Water levels and hydraulic-head differences affect exchange with a river: groundwater may feed it, or receive water from it. The longer-term experiment balances recharge, exchange, withdrawal and storage in simplified boxes. Sustained withdrawal exceeding replenishment lowers storage and the water table. It does not calculate site-specific 3D flow or water purification."
       },
       {
-        "title": "Following a water budget",
-        "body": "For a chosen region and interval, inputs minus evaporation and other outputs determine changes in stored water. Rain gauges, stream measurements and well levels provide different evidence. Drought does not mean water has vanished from Earth: local losses can exceed inputs. A global cycle does not guarantee clean freshwater at every location."
+        "title": "Glaciers store water on slower timescales",
+        "body": "Mountain glaciers require snow to survive repeated summers and gradually become firn and ice. Compaction reduces volume without deleting water, so the longer-term experiment uses water equivalent for its budget. Accumulation minus loss gives the net balance. Sustained losses can make the terminus retreat while ice still moves downstream. Above, a batch travels through an existing glacier; below, a separate model balances snow, firn and ice over teaching years. Those quantities must not be combined. Terminus geometry and years are uncalibrated, not a full stress, deformation or climate prediction."
       }
     ],
     "misconception": "A cloud is not a bag of invisible vapor: its visible parts are tiny droplets or ice crystals.",
-    "boundary": "The circle follows one representative portion of water. Particle sizes, distances and times are rescaled; not every route is shown and rainfall is not predicted. The ocean arc connects the endpoints of this demonstration; it does not mean water must return to the same patch of ocean. Actual molecules take different routes and remain in stores for different lengths of time.",
+    "boundary": "The 100 portions are not global water proportions or measured rainfall. Ice melting to rain below a cloud is distinct from high-mountain snowfall. Longer-term groundwater and glacier studies are separate simplified budgets: their amounts, clocks and parameters cannot be added to the batch or used for local water-level, glacier or climate forecasts. Geography and enlarged pores are teaching illustrations. Full 3D aquifer flow, glacier stress and deformation, contaminant purification and plant transpiration are not simulated.",
     "narration": [
       {
         "label": "Start at the sea",
@@ -70,7 +70,7 @@
       },
       {
         "label": "Into a cloud",
-        "text": "Move forward slowly. When conditions allow air to cool enough, its water vapor can gather into tiny droplets. Some clouds contain little ice crystals too. Many droplets and crystals together make a cloud visible. Pause and look: our circle has moved, and has the symbol for the water changed as well?",
+        "text": "Under suitable conditions, water vapor condenses into droplets and the cloud becomes visible. Enlarging the same cloud shows droplets meeting and merging. Some clouds also contain ice. A cloud does not guarantee rain at the ground: very dry air below can turn the falling rain back into vapor.",
         "cue": "Advance into the cloud and pause for three seconds."
       },
       {
@@ -79,16 +79,24 @@
         "cue": "Advance slowly through rainfall and along the river."
       },
       {
-        "label": "Other routes",
-        "text": "Water does not have one ticket with the same stops for everyone. Some soaks into soil, stays in lakes, enters plants or freezes into ice. Today we followed just one route. Next time you notice a cloud, a river or clothes drying, wonder where that water came from and where it might travel next.",
-        "cue": "Hold the overview and point back to sea, cloud, hill and river."
+        "label": "Water that stays longer",
+        "text": "Different portions take different routes. Some enter little spaces in soil and rock and slowly feed a river. Some fall as snow high in the mountains. Over a longer time, snow that stays can gradually become ice. Ice moves slowly downhill too. If more water is lost than arrives, a glacier gets smaller, and underground water stores can shrink too. Water has no compulsory final stop. Some changes are worth watching slowly.",
+        "cue": "First compare batch ice and meltwater, then enter the two independent longer-term studies: groundwater recharge versus withdrawal and glacier accumulation versus loss. Keep separate clocks and quantities visible."
       }
     ]
   },
   "references": [
     {
-      "title": "USGS · The Water Cycle",
-      "url": "https://water.usgs.gov/vizlab/water-cycle/"
+      "title": "NSIDC · Why glaciers matter: mass balance and terminus change",
+      "url": "https://nsidc.org/learn/parts-cryosphere/glaciers/why-glaciers-matter"
+    },
+    {
+      "title": "USGS · Groundwater and surface-water interactions",
+      "url": "https://pubs.usgs.gov/circ/circ1139/htdocs/natural_processes_of_ground.htm"
+    },
+    {
+      "title": "USGS · Water cycle",
+      "url": "https://www.usgs.gov/water-science-school/water-cycle"
     },
     {
       "title": "USGS · Evaporation and the Water Cycle",
@@ -97,6 +105,14 @@
     {
       "title": "USGS · Groundwater Flow and the Water Cycle",
       "url": "https://www.usgs.gov/water-science-school/science/groundwater-flow-and-water-cycle"
+    },
+    {
+      "title": "USGS · Glaciers on Mount Rainier — glacier flow",
+      "url": "https://wa.water.usgs.gov/pubs/fs/fs_rainier.html"
+    },
+    {
+      "title": "NASA · Cloud droplets and ice",
+      "url": "https://gpm.nasa.gov/resources/faq/what-are-clouds-made-are-they-more-likely-form-polluted-air-or-pristine-air"
     }
   ]
 }

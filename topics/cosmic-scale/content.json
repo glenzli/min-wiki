@@ -1,0 +1,262 @@
+{
+  "stages": [
+    {
+      "name": {
+        "zh": "地球",
+        "en": "Earth"
+      },
+      "title": {
+        "zh": "我们脚下的世界",
+        "en": "The world beneath our feet"
+      },
+      "body": {
+        "zh": "先记住这颗蓝色星球。接下来它会越来越小，但定位十字始终追踪同一个位置。地球不是宇宙中心，只是这趟观察的起点。",
+        "en": "Start with the blue planet. It will become smaller, but the crosshair follows the same location. Earth is not the center of the universe; it is the starting point of this journey."
+      },
+      "boundary": {
+        "zh": "球体使用真实半径，地表与云层来自静态地图，并非实时天气；光照为观察结构而安排。定位十字不是天体直径，画面中的光晕不用于量尺寸。",
+        "en": "The sphere uses Earth’s physical radius, with static surface and cloud maps, not live weather. Lighting is arranged for viewing. Crosshairs and halos do not measure diameters."
+      },
+      "source": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "name": {
+        "zh": "太阳系",
+        "en": "Solar System"
+      },
+      "title": {
+        "zh": "大小和间隔，是两回事",
+        "en": "Sizes and distances are different"
+      },
+      "body": {
+        "zh": "轨道的尺度逐渐出现。现在地球和许多行星的真实圆盘小于一个像素，因此改用明确的定位符；没有偷偷把行星放大。天文单位 AU 是地球到太阳的平均距离量级。",
+        "en": "The planetary orbits emerge. Earth and many planets now have subpixel physical disks, so explicit markers locate them without inflating their diameters. An astronomical unit, AU, is about the mean Earth–Sun distance."
+      },
+      "boundary": {
+        "zh": "圆轨道与相位为教学构图，不是某天的星历。轨道距离与实心圆盘共享 km 标尺；十字与空心定位圈另作符号。",
+        "en": "Circular orbits and phases are illustrative, not an ephemeris. Orbital distances and solid disks share the km ruler; crosses and open circles are separate symbols."
+      },
+      "source": "https://science.nasa.gov/solar-system/solar-system-facts/"
+    },
+    {
+      "name": {
+        "zh": "邻近恒星",
+        "en": "Nearby stars"
+      },
+      "title": {
+        "zh": "恒星之间，隔着很长的路",
+        "en": "A long way between stars"
+      },
+      "body": {
+        "zh": "太阳系已经缩成一个位置。光年是光在真空中一年走过的距离，不是时间单位。最近恒星邻居也在数光年之外；这段距离远远大于行星之间的距离。",
+        "en": "The Solar System has shrunk to a location. A light-year is the distance light travels through vacuum in a year, not a unit of time. Even the nearest stellar neighbors are several light-years away, much farther than the distances between planets."
+      },
+      "boundary": {
+        "zh": "比邻星和天狼星标出取整距离，方向为教学排布。继续拉远时出现的未标名星点示意银河中的邻近恒星，不是逐星测量图，不能用来数真实恒星。星点为位置符号，不是等比例恒星大小。",
+        "en": "Proxima and Sirius have rounded distances and illustrative directions. Unnamed points emerging farther out represent a local galactic population, not measured positions or a count of real stars. Points locate stars, not true-sized disks."
+      },
+      "source": "https://science.nasa.gov/exoplanets/"
+    },
+    {
+      "name": {
+        "zh": "银河系",
+        "en": "Milky Way"
+      },
+      "title": {
+        "zh": "太阳住在银河的盘里",
+        "en": "The Sun lives in the galactic disk"
+      },
+      "body": {
+        "zh": "转到侧面，看看银河的盘有多薄。中心有核球和棒，周围还有恒星晕。太阳距银河中心约 2.6 万光年。中心黑洞主要影响它附近的轨道，整个银河并不是一套围着黑洞转的巨大太阳系。",
+        "en": "Rotate to the side to reveal the thin disk, central bulge and bar, and surrounding stellar halo. The Sun is about 26,000 light-years from the center. The central black hole dominates nearby orbits, not the whole galaxy as a giant Solar System."
+      },
+      "boundary": {
+        "zh": "银河外观与星点分布是结构重建，不是从银河外拍摄的照片或逐星测量图。暗物质晕根据引力效应推断；打开它不表示我们直接看见了暗物质。",
+        "en": "The external view and star distribution reconstruct galactic structure, not a photograph from outside or a star-by-star map. The dark-matter halo is inferred from gravity; showing it does not make it directly observed."
+      },
+      "source": "https://www.esa.int/content/view/full/423444"
+    },
+    {
+      "name": {
+        "zh": "本星系群",
+        "en": "Local Group"
+      },
+      "title": {
+        "zh": "银河也只是其中一员",
+        "en": "The Milky Way is one member"
+      },
+      "body": {
+        "zh": "银河系、仙女座星系和三角座星系，与许多更小的星系组成了本星系群。银河系与仙女座相隔约 250 万光年。继续向外还有其他星系群和星系团；这张图不是宇宙的边界。",
+        "en": "The Milky Way, Andromeda and Triangulum belong to the Local Group along with many smaller galaxies. Andromeda is about 2.5 million light-years away. Other groups and clusters lie beyond; this picture is not the edge of the universe."
+      },
+      "boundary": {
+        "zh": "本期仅展示三个代表成员，距离取整，方位和星系倾角为示意。星系发光盘范围可按标尺比较，标注点不是星系尺寸；暗晕不等于盘的边缘。",
+        "en": "This first view includes three representative members with rounded distances and illustrative directions and inclinations. Luminous disks can be compared with the ruler; labels are not sizes, and halos are not disk boundaries."
+      },
+      "source": "https://www.nasa.gov/universe/galaxies/andromeda-galaxy/"
+    }
+  ],
+  "planets": [
+    {
+      "zh": "水星",
+      "en": "Mercury"
+    },
+    {
+      "zh": "金星",
+      "en": "Venus"
+    },
+    {
+      "zh": "地球",
+      "en": "Earth"
+    },
+    {
+      "zh": "火星",
+      "en": "Mars"
+    },
+    {
+      "zh": "木星",
+      "en": "Jupiter"
+    },
+    {
+      "zh": "土星",
+      "en": "Saturn"
+    },
+    {
+      "zh": "天王星",
+      "en": "Uranus"
+    },
+    {
+      "zh": "海王星",
+      "en": "Neptune"
+    }
+  ],
+  "ui": {
+    "moon": {
+      "zh": "月球",
+      "en": "Moon"
+    },
+    "sceneNote": {
+      "zh": "镜头连续拉远；球体、轨道和星盘使用同一距离标尺。空心圆与十字只定位，不代表大小。",
+      "en": "One continuous zoom, with spheres, orbits and galactic disks sharing a distance ruler. Open circles and crosses locate objects, not their sizes."
+    },
+    "credit": {
+      "zh": "地球、云层与月球地图：Solar System Scope · CC BY 4.0",
+      "en": "Earth, cloud and Moon maps: Solar System Scope · CC BY 4.0"
+    },
+    "play": {
+      "zh": "开始拉远",
+      "en": "Start zooming out"
+    },
+    "pause": {
+      "zh": "暂停镜头",
+      "en": "Pause journey"
+    },
+    "restart": {
+      "zh": "回到地球",
+      "en": "Return to Earth"
+    },
+    "earth": {
+      "zh": "地球的位置",
+      "en": "EARTH’S LOCATION"
+    },
+    "sun": {
+      "zh": "太阳",
+      "en": "Sun"
+    },
+    "milky": {
+      "zh": "银河系",
+      "en": "Milky Way"
+    },
+    "andromeda": {
+      "zh": "仙女座",
+      "en": "Andromeda"
+    },
+    "triangulum": {
+      "zh": "三角座",
+      "en": "Triangulum"
+    },
+    "proxima": {
+      "zh": "比邻星 · 4.25 光年",
+      "en": "Proxima · 4.25 ly"
+    },
+    "sirius": {
+      "zh": "天狼星 · 8.6 光年",
+      "en": "Sirius · 8.6 ly"
+    },
+    "ruler": {
+      "zh": "标尺",
+      "en": "RULER"
+    },
+    "disk": {
+      "zh": "恒星盘",
+      "en": "Stellar disk"
+    },
+    "bulge": {
+      "zh": "核球与棒",
+      "en": "Bulge & bar"
+    },
+    "halo": {
+      "zh": "恒星晕",
+      "en": "Stellar halo"
+    },
+    "dark": {
+      "zh": "暗物质晕 · 推断",
+      "en": "Dark halo · inferred"
+    },
+    "marker": {
+      "zh": "十字为位置，不是大小",
+      "en": "CROSS = LOCATION, NOT SIZE"
+    },
+    "chooseOrigin": {
+      "zh": "选择起点（切换后回到近景）",
+      "en": "Choose a start (switching returns to close-up)"
+    },
+    "fromEarth": {
+      "zh": "从地球出发",
+      "en": "Start from Earth"
+    },
+    "fromSun": {
+      "zh": "从太阳出发",
+      "en": "Start from the Sun"
+    },
+    "sunAnchor": {
+      "zh": "太阳所在位置",
+      "en": "Sun’s location"
+    },
+    "earthAnchor": {
+      "zh": "地球所在位置",
+      "en": "Earth’s location"
+    },
+    "sizeTitle": {
+      "zh": "记住太阳有多大",
+      "en": "Remember the Sun’s size"
+    },
+    "sizeFact": {
+      "zh": "太阳的直径约是地球的 109 倍。",
+      "en": "The Sun is about 109 Earth diameters across."
+    },
+    "sizeNote": {
+      "zh": "独立大小对比：两圆直径同比例，间隔不是日地距离；不使用主图标尺。",
+      "en": "Separate size comparison: both diameters share a scale. Their spacing is not the Earth–Sun distance; this inset does not use the main ruler."
+    },
+    "sizeHint": {
+      "zh": "主图拉远后，太阳也会小到看不清。空心圈只用来找位置。",
+      "en": "As the main view widens, even the Sun becomes too small to resolve. Open circles only mark locations."
+    }
+  },
+  "sunStart": {
+    "title": {
+      "zh": "先看清太阳，再向外走",
+      "en": "Meet the Sun before moving outward"
+    },
+    "body": {
+      "zh": "先记住这颗恒星的圆盘，再一路拉远，看行星轨道怎样进入画面。太阳直径约 139 万千米，是地球的约 109 倍；但它和行星轨道之间的距离相比，仍然很小。",
+      "en": "Remember this stellar disk, then move outward as planetary orbits enter the view. The Sun is about 1.39 million km across, roughly 109 Earth diameters, yet small compared with planetary orbital distances."
+    },
+    "boundary": {
+      "zh": "太阳圆盘与距离使用同一千米标尺，表面颜色和颗粒为示意。地球仍在约一个天文单位之外，没有被搬到太阳旁边。",
+      "en": "The solar disk and distances use one kilometer ruler; surface colors and granules are illustrative. Earth remains about one AU away, not moved beside the Sun."
+    },
+    "source": "https://science.nasa.gov/sun/facts/"
+  }
+}

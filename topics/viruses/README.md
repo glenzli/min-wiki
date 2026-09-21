@@ -1,5 +1,9 @@
 # 病毒是什么？为什么需要细胞？ / What are viruses, and why do they need cells?
 
+2026-09-20：独立 UI 已收归 [微生物统一工作区](../microbes-everywhere/README.md)。本目录 `main.ts` / `index.html` 只保留兼容入口，强制进入 `?chapter=viruses`，保留有效 host/view/p、语言、部署 base 和 hash。旧页面 CSS 已移除；模型、精细场景和封面保持。局部 catalog 已标注 `parentTopic`，正式登记仍以根目录为准。
+
+The old page controller is replaced by compatibility routing. The unified workspace directly consumes this model/renderer and retains separate host progress, finite camera transitions and stopped-host branches. The 2026-09-17 validation below is historical; current focused tests cover the new owner and routing rather than the removed controller.
+
 双语儿童科普：`/topics/viruses/?lang=zh`、`?lang=en`。原创轻量 SVG，用一种 T4 类有尾噬菌体的结构讲解裂解性复制；封面保持原样。
 
 ## 观察与交互 / Observation
@@ -13,7 +17,7 @@ Playback, scrubbing and step controls sit directly beneath the specimen. Whole-p
 
 ## 结构、连续性与边界 / Structure and limits
 
-`model.ts` owns the deterministic phase model, one entering DNA strand, offspring identities and camera targets. `scene.ts` owns the SVG materials and geometry; `main.ts` owns controls and finite transition lifecycle. Tests exercise those actual modules.
+`model.ts` owns the deterministic phase model, one entering DNA strand, offspring identities and camera targets. `scene.ts` owns the SVG materials and geometry. Controls and finite lifecycle now belong to `microbes-everywhere/workspace.ts` and `workspaceRenderer.ts`; model tests still exercise these unchanged scientific modules.
 
 头部有分面与蛋白质颗粒纹理；尾鞘与中央尾管分开绘制，收缩时中央管不跟着缩短。细菌以透明剖面呈现外膜、薄细胞壁、细胞膜、DNA 与核糖体。原始颗粒与成熟子代使用相同图形尺度，子代并不是需要继续长大的“小病毒”。
 

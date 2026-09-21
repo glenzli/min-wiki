@@ -1,7 +1,7 @@
 import type { StellarDisruption } from '../physics/stellarDisruption.ts';
 import * as THREE from 'three';
 import { smooth } from '../physics/encounter.ts';
-import { CORE_RELEASE_END } from '../physics/stellarDisruption.ts';
+import { CORE_RELEASE_END, DISPLAY_PARTICLES } from '../physics/stellarDisruption.ts';
 
 // A continuous volume of overlapping, soft parcels. The same samples render
 // the luminous star, peeling envelope, curved streams, and returning eccentric flow.
@@ -25,7 +25,7 @@ export class StellarGas {
     this.trails.frustumCulled = false;
     this.emission.minFilter = this.emission.magFilter = THREE.LinearFilter;
     this.emission.unpackAlignment = 1;
-    const count = 12000;
+    const count = DISPLAY_PARTICLES;
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(count * 3), 3).setUsage(THREE.DynamicDrawUsage));
     geometry.setAttribute('previous', new THREE.BufferAttribute(new Float32Array(count * 3), 3).setUsage(THREE.DynamicDrawUsage));
@@ -99,7 +99,9 @@ export class StellarGas {
   }
 
   setModel(model: StellarDisruption) {
+    if (model.count > DISPLAY_PARTICLES) throw new Error('Disruption model exceeds the display buffer');
     this.model = model;
+    this.points.geometry.setDrawRange(0, model.count);
     const attributes = this.points.geometry.attributes;
     for (const [attribute, data] of [['origin', model.initial], ['variation', model.variation], ['bound', model.bound]] as const) {
       attributes[attribute].array.set(data);

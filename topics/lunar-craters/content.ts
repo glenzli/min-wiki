@@ -2,7 +2,7 @@ import { t } from './i18n.ts';
 export const CONTENT = {"title": t("月球上的陨石坑"),
 "prompt": t("保持大小不变，把速度加倍。撞击能量会变成几倍？"),
 "metricLabel": t("相对撞击能量"),
-"sceneNote": t("月面剖面与抛射物示意；时间放慢，天体与坑不按同一比例。"),
+"sceneNote": t("可转动的三维月面与抛射物示意；时间放慢，撞击体与坑不按同一比例。"),
 "steps": [t("太空岩石靠近"),
 t("接触与冲击"),
 t("挖掘与抛射"),

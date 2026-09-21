@@ -1,3 +1,6 @@
+import { ExplorerController } from './explorer/controller.ts';
+import './comparison.ts';
+import { isBody, readSelection } from './explorer/model.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
@@ -64,6 +67,7 @@ function $(id: string): HTMLElement {
 }
 
 class SolarApp {
+  private explorer: ExplorerController;
   private cancelStageMotion = () => {};
   mode!: string;
   scenario!: string;
@@ -103,10 +107,13 @@ class SolarApp {
       $('canvas-container').append(label);
       return {data, label};
     });
+    this.explorer = new ExplorerController(id => this.selectPlanet(id));
     this.initPlanetStrip();
     this.bindControls();
     this.buildStages();
     this.updateUI();
+    const initial = readSelection(location.search);
+    if (initial.body) { this.selectPlanet(initial.body); this.explorer.open(initial.body, initial.view); }
 
     this.animate = this.animate.bind(this);
     this.frame = requestAnimationFrame(this.animate);
@@ -117,6 +124,7 @@ class SolarApp {
         if (event.persisted) return;
         cancelAnimationFrame(this.frame);
         this.simulation?.dispose();
+        this.explorer.dispose();
       },
       { once: true }
     );
@@ -133,6 +141,8 @@ class SolarApp {
     allBtn.innerHTML = '<span class="p-dot" style="background:#e9b76c"></span>' + t('全景');
     allBtn.setAttribute('aria-label', t("全景观测"));
     strip.appendChild(allBtn);
+
+    const sun = document.createElement('button'); sun.className = 'planet-tab'; sun.dataset.planet = 'sun'; sun.textContent = SUN_DATA.displayName; strip.append(sun);
 
     // Planet buttons
     for (const p of PLANETS_DATA) {
@@ -156,6 +166,7 @@ class SolarApp {
           b.setAttribute('aria-pressed', String(b === button));
         });
         this.updateStory();
+        this.explorer.setAcademic(this.mode === 'academic');
         this.refreshPlanetCard();
       });
     });
@@ -164,7 +175,7 @@ class SolarApp {
     document.querySelectorAll<HTMLElement>('[data-scenario]').forEach(button => {
       button.addEventListener('click', () => {
         const nextScenario = button.dataset.scenario!;
-        if (this.scenario === nextScenario) return;
+        if (this.scenario === nextScenario && !this.explorer.active) return;
         this.selectScenario(nextScenario);
       });
     });
@@ -229,6 +240,7 @@ class SolarApp {
       this.resumePlayAfterDialog = this.simulation?.isPlaying;
       if (this.simulation) this.simulation.isPlaying = false;
       this.syncPlayButton();
+      this.explorer.suspend(true);
       this.dialog.showModal();
     });
 
@@ -246,6 +258,7 @@ class SolarApp {
     });
 
     this.dialog.addEventListener('close', () => {
+      this.explorer.suspend(false);
       if (this.simulation && this.resumePlayAfterDialog) {
         this.simulation.isPlaying = true;
         this.syncPlayButton();
@@ -263,11 +276,12 @@ class SolarApp {
         return;
       }
       event.preventDefault();
-      this.togglePlay();
+      if (this.explorer.active) this.explorer.toggleActivity(); else this.togglePlay();
     });
   }
 
   selectScenario(sc: string) {
+    this.explorer.close();
     this.pause();
     this.scenario = sc;
     document.querySelectorAll<HTMLElement>('[data-scenario]').forEach(b => {
@@ -279,18 +293,6 @@ class SolarApp {
       this.simulation?.setCameraView('lineup');
       document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => {
         b.setAttribute('aria-pressed', String(b.dataset.view === 'lineup'));
-      });
-    } else if (sc === 'inner') {
-      this.simulation?.setViewMode('orbit');
-      this.simulation?.setCameraView('inner');
-      document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => {
-        b.setAttribute('aria-pressed', String(b.dataset.view === 'perspective'));
-      });
-    } else if (sc === 'outer') {
-      this.simulation?.setViewMode('orbit');
-      this.simulation?.setCameraView('outer');
-      document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => {
-        b.setAttribute('aria-pressed', String(b.dataset.view === 'perspective'));
       });
     } else {
       // 'orbit'
@@ -313,12 +315,15 @@ class SolarApp {
   }
 
   selectPlanet(planetId: string) {
+    this.pause();
+    if (isBody(planetId)) this.explorer.open(planetId); else this.explorer.close();
     this.selectedPlanet = planetId || null;
 
     // Update strip button active states
     document.querySelectorAll<HTMLElement>('.planet-tab').forEach(b => {
       const match = (planetId || '') === (b.dataset.planet! || '');
       b.classList.toggle('active', match);
+      b.setAttribute('aria-pressed', String(match));
     });
 
     const card = $('planet-card');
@@ -326,10 +331,6 @@ class SolarApp {
       card.hidden = true;
       if (this.scenario === 'lineup') {
         this.simulation?.setCameraView('lineup');
-      } else if (this.scenario === 'inner') {
-        this.simulation?.setCameraView('inner');
-      } else if (this.scenario === 'outer') {
-        this.simulation?.setCameraView('outer');
       } else {
         this.simulation?.setCameraView('perspective');
       }
@@ -476,10 +477,11 @@ class SolarApp {
   }
 
   animate(now: number) {
-    const delta = Math.min((now - this.lastFrame) / 1000, 0.05);
+    const delta = Math.max(0, Math.min((now - this.lastFrame) / 1000, 0.05));
     this.lastFrame = now;
 
-    if (!document.hidden && this.simulation) {
+    this.explorer.tick(delta);
+    if (!document.hidden && this.simulation && !this.explorer.active) {
       this.simulation.update(delta);
       this.updatePlanetLabels();
       this.syncScrubber();

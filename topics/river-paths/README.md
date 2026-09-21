@@ -1,5 +1,10 @@
 # 小河为什么弯弯曲曲？ / Why do rivers bend?
 
+
+## Integrated entry · 2026-09-20
+
+The public entry now redirects to `/topics/rain-cycle/?view=river`, preserving language, query parameters and fragment. The persistent watershed owns the observation journey and controls; this directory retains its scientific model and detailed source renderers. Earlier standalone UI and validation descriptions below are historical, not evidence that the integrated page has been browser-verified.
+
 独立双语专题，模型、SVG场景、控件和 `learning.json` 均由本目录维护。公共平台只负责导航、语言和阅读方式。
 
 22个水流标记与16颗泥沙各自保留身份。泥沙从外岸进入水流，再停在内侧；石头条件改变预设河道。

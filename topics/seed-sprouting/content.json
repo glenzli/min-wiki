@@ -1,0 +1,206 @@
+{
+  "title": {
+    "zh": "开花植物：从种子到下一代",
+    "en": "Flowering plants: from seed to next generation"
+  },
+  "intro": {
+    "zh": "种子落地之后就一定会发芽吗？花粉到了，果实就一定会长出来吗？把几个植物案例放在一张条件图上，看看下一代需要跨过哪些门槛。",
+    "en": "Does landing guarantee germination? Does arriving pollen guarantee fruit? Put several plant examples on one condition map and discover what the next generation needs."
+  },
+  "mapTitle": {
+    "zh": "不是必然发生的循环，而是一条有条件的路",
+    "en": "A conditional journey, not an inevitable cycle"
+  },
+  "mapNote": {
+    "zh": "这张图串起开花植物的一般有性繁殖路线。菜豆、樱桃、蒲公英和牛蒡是不同物种的比较案例，不是同一棵植物变来变去；部分植物还有其他繁殖方式。",
+    "en": "The map connects a typical sexual reproductive pathway of flowering plants. Bean, cherry, dandelion and burdock are different comparison species, not one plant changing identity; some plants also reproduce in other ways."
+  },
+  "mature": {
+    "zh": "幼苗 → 成熟植株",
+    "en": "Seedling → mature plant"
+  },
+  "matureNote": {
+    "zh": "还需要光、水、养分、适宜环境与时间；本页没有模拟从幼苗长到开花。",
+    "en": "Light, water, nutrients, suitable conditions and time are still needed. Growth from seedling to flowering maturity is not simulated here."
+  },
+  "fruit": {
+    "zh": "胚珠 / 子房 → 种子 / 果实",
+    "en": "Ovule / ovary → seed / fruit"
+  },
+  "fruitWaiting": {
+    "zh": "樱桃对照：尚未完成受精",
+    "en": "Cherry example: fertilization not yet completed"
+  },
+  "fruitGrowing": {
+    "zh": "樱桃对照：种子与果实正在发育",
+    "en": "Cherry example: seeds and fruit developing"
+  },
+  "fruitReady": {
+    "zh": "樱桃对照：果实成熟，硬核内才是种子",
+    "en": "Cherry example: ripe fruit; seed is inside the stone"
+  },
+  "landing": {
+    "zh": "落地 → 条件性萌发",
+    "en": "Landing → conditional germination"
+  },
+  "landingBefore": {
+    "zh": "传播还没结束；即使到达，也不保证建立新植株。",
+    "en": "Dispersal is not finished. Even arrival does not guarantee a new plant."
+  },
+  "landingAfter": {
+    "zh": "传播案例已落地，但没有自动发芽。回到菜豆对照检查水、氧气和温度。",
+    "en": "The dispersal example has landed without automatically germinating. Return to the bean comparison to check water, oxygen and temperature."
+  },
+  "memory": {
+    "zh": "切换只换观察案例：每个案例的进度和条件保留，并暂停活动。刷新或换语言不保留整套实验历史。",
+    "en": "Switching changes the comparison being observed; each case retains its progress and conditions and pauses. Refreshing or changing language does not preserve the full experiment history."
+  },
+  "next": {
+    "zh": "接着问",
+    "en": "Next question"
+  },
+  "germination": {
+    "name": {
+      "zh": "01 · 一粒种子怎样起步？",
+      "en": "01 · How does a seed begin?"
+    },
+    "species": {
+      "zh": "萌发比较 · 菜豆",
+      "en": "GERMINATION COMPARISON · COMMON BEAN"
+    },
+    "question": {
+      "zh": "水够不够？空气能不能到达？",
+      "en": "Enough water—and access to oxygen?"
+    },
+    "before": {
+      "zh": "从一粒健康菜豆开始。落地点的条件仍要满足它的要求；传播只是到达，不是完成萌发。",
+      "en": "Begin with a healthy common bean. Conditions at its destination still need to meet its requirements; dispersal is arrival, not germination."
+    },
+    "after": {
+      "zh": "真叶展开之后，幼苗还要生长并达到生殖成熟，才可能开花。下面换到已成年的樱桃树，研究新的问题；不是让这株菜豆变成樱桃。",
+      "en": "After true leaves unfold, a seedling must still grow to reproductive maturity before it can flower. Next we switch to an already mature cherry tree to study a new question—not turn this bean into a cherry."
+    },
+    "next": {
+      "zh": "成熟植物的花粉到了，就一定有种子吗？",
+      "en": "On a mature plant, does arriving pollen guarantee seeds?"
+    }
+  },
+  "reproduction": {
+    "name": {
+      "zh": "02 · 花怎样产生下一代？",
+      "en": "02 · How does a flower make a next generation?"
+    },
+    "species": {
+      "zh": "繁殖比较 · 樱桃核果",
+      "en": "REPRODUCTION COMPARISON · CHERRY DRUPE"
+    },
+    "question": {
+      "zh": "授粉之后，还要发生什么？",
+      "en": "What still needs to happen after pollination?"
+    },
+    "before": {
+      "zh": "这里已是一株成年樱桃树。蜜蜂只运送花粉：接触柱头后才算授粉，之后花粉管要继续生长，才可能完成受精。",
+      "en": "This is an already mature cherry tree. The bee only carries pollen: contact with the stigma is pollination; pollen-tube growth must follow before fertilization can occur."
+    },
+    "after": {
+      "zh": "相容案例假定后续条件也适宜；不相容案例让花粉管受阻，后面不会生成种子或果实。樱桃的果肉与硬核来自子房壁，种子在硬核里面。",
+      "en": "The compatible case assumes other conditions are suitable; incompatible pollen is arrested and produces no seed or fruit here. Cherry flesh and stone arise from the ovary wall; the seed is inside the stone."
+    },
+    "next": {
+      "zh": "种子形成以后，怎样离开母株？",
+      "en": "Once seeds form, how can they leave the parent plant?"
+    }
+  },
+  "dispersal": {
+    "name": {
+      "zh": "03 · 到达以后，还差什么？",
+      "en": "03 · After arrival, what is missing?"
+    },
+    "species": {
+      "zh": "传播比较 · 蒲公英 / 牛蒡",
+      "en": "DISPERSAL COMPARISON · DANDELION / BURDOCK"
+    },
+    "question": {
+      "zh": "风吹与钩挂，怎样带走传播体？",
+      "en": "How do wind and hooks carry dispersal units?"
+    },
+    "before": {
+      "zh": "现在比较另外两种植物的成熟传播体，不是把樱桃变成绒毛或小钩。蒲公英飞走的是带冠毛的小果实；牛蒡靠带钩总苞挂上毛发。",
+      "en": "Now compare mature dispersal units of two other plants, not cherries turning into parachutes or hooks. A dandelion’s pappus carries a small fruit; burdock attaches to fur with hooked bracts."
+    },
+    "after": {
+      "zh": "同一个传播体先移动、再落下。它没有自动变成幼苗；合适环境、种子活力及有时需要解除休眠，仍会影响下一步。不同种子的要求也不同。",
+      "en": "The same dispersal unit moves and lands without turning automatically into a seedling. Suitable conditions, seed viability and sometimes release from dormancy still matter. Requirements differ between species."
+    },
+    "next": {
+      "zh": "换回菜豆对照：到达干土或积水，会怎样？",
+      "en": "Return to the bean comparison: what happens in dry or flooded soil?"
+    }
+  },
+  "status": {
+    "blocked": {
+      "zh": "菜豆：后续生长受条件限制",
+      "en": "Bean: conditions limit further growth"
+    },
+    "seedling": {
+      "zh": "菜豆：真叶已展开，尚未模拟开花",
+      "en": "Bean: true leaves unfolded; flowering not simulated"
+    },
+    "growing": {
+      "zh": "菜豆：根芽正在伸展",
+      "en": "Bean: root and shoot extending"
+    },
+    "ready": {
+      "zh": "菜豆：条件适宜，等待观察",
+      "en": "Bean: suitable conditions; awaiting observation"
+    },
+    "waiting": {
+      "zh": "尚未开始这一观察",
+      "en": "This observation has not started"
+    },
+    "incompatible": {
+      "zh": "樱桃：已授粉，但相容性门槛未通过",
+      "en": "Cherry: pollinated, but incompatible"
+    },
+    "tube": {
+      "zh": "樱桃：授粉后花粉管正在生长",
+      "en": "Cherry: pollen tube growing after pollination"
+    },
+    "developing": {
+      "zh": "樱桃：受精后种子与果实发育",
+      "en": "Cherry: seed and fruit developing after fertilization"
+    },
+    "fruit": {
+      "zh": "樱桃：果实成熟，种子在硬核内",
+      "en": "Cherry: ripe fruit; seed inside the stone"
+    },
+    "landed": {
+      "zh": "传播体已落地，不等于已萌发",
+      "en": "Dispersal unit landed, not germinated"
+    },
+    "approaching": {
+      "zh": "牛蒡尚未接触毛发",
+      "en": "Burdock has not contacted fur"
+    },
+    "attached": {
+      "zh": "牛蒡接触后随毛发一起移动",
+      "en": "Burdock moving with fur after contact"
+    },
+    "falling": {
+      "zh": "同一个牛蒡脱落并下降",
+      "en": "The same burr detaches and falls"
+    },
+    "airborne": {
+      "zh": "蒲公英小果实在下沉与平移",
+      "en": "Dandelion fruit settling and moving sideways"
+    }
+  },
+  "sources": {
+    "zh": "依据与模型边界",
+    "en": "Sources and model limits"
+  },
+  "boundary": {
+    "zh": "菜豆采用有条件的生长相册；樱桃与传播采用可回看的压缩过程。画面尺寸、时间与传播距离都未按实测标定。无籽果实、无融合生殖、种子休眠与营养繁殖等并不都遵循这条示意路线。",
+    "en": "Bean growth is a conditional album; cherry and dispersal use replayable compressed sequences. Dimensions, time and dispersal distance are not measurement-calibrated. Seedless fruit, apomixis, dormancy and vegetative reproduction need not follow every step of this illustration."
+  }
+}

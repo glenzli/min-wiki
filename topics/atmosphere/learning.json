@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "topicId": "atmosphere",
+  "zh": {
+    "question": "大气怎样包围地球？离开同一处地面向上看，会遇到哪些不同现象？",
+    "observe": "先找地球上的黄色地面标记，拖动或播放旅程，连续拉近地面再向外上升；停在不同层观察云雨、臭氧、流星和极光，最后与其他世界并排比较。",
+    "academic": [
+      {
+        "title": "分层来自温度结构，不是硬壳",
+        "body": "地球大气随高度逐渐稀薄，常按温度随高度的变化划分对流层、平流层、中间层、热层与外逸层。本图采用标准大气的低层参考剖面，边界是近似而非固定墙壁；高层状态受太阳活动等影响，不外推低层模型。"
+      },
+      {
+        "title": "同一地面与同一高度坐标",
+        "body": "镜头先从整体拉近一处示意海岸，然后沿同一半径向外观察。黄色方框固定在地表，亮点表示观察高度。地球半径采用 6371 km，层高采用参考值；全景与局部共享坐标，但云、箭头、粒子不是按真实尺寸绘制。高度进度经过对数映射，以便同时观察低层与高层。"
+      },
+      {
+        "title": "不同世界的大气要比较多个变量",
+        "body": "大气成分、总量、地表压力、温度与液体种类不能互相代替。金星和火星虽然都以二氧化碳为主，地表条件却差别很大。土卫六是卫星，表面液体循环主要涉及甲烷和乙烷。图中代表数值与插画不等于每处实时天气。 月球和水星的极稀薄外逸层不能当作地球式的低层天气大气；本页不把它们的气压写为零，也不编造统一的空气温度。"
+      }
+    ],
+    "misconception": "分层不是套在地球外面的硬壳。平流层不只允许水平运动，高温也不意味着处处出现极光。月球和水星几乎没有大气，但不等于绝对没有粒子。",
+    "boundary": "镜头是球体外侧的教学观察，不模拟航天器飞行。球体和高度采用统一参考距离；地貌并非真实地图，云、箭头与粒子放大显示。不同现象需要不同条件，不表示同地同时发生。地球低层读数采用标准大气，高层不外推；星球对比行位置不表示等高度。",
+    "narration": [
+      {
+        "label": "先看看整个地球",
+        "text": "我们住在一个球形的地球上。远远看，空气贴着它的边缘。先记住这个黄色标记，我们要一直看着同一处地面。",
+        "cue": "从全景缓慢拉近，追踪同一黄色地面方框。"
+      },
+      {
+        "label": "走近风和云",
+        "text": "现在，地面和低空的云清楚了。风把空气带到别处，暖湿空气上升、冷却，还可能形成云。云里的小水滴或冰晶长大后，才可能变成雨或雪。",
+        "cue": "停在地面和对流层，辨认气流箭头与云雨。"
+      },
+      {
+        "label": "继续往外看",
+        "text": "再向上，各层做的事情不一样。臭氧吸收一部分紫外线。有些更高的地方可以看见流星的光迹，在极区还可能看到极光。最后空气越来越稀薄，慢慢接上太空。",
+        "cue": "沿同一径向依次观察平流层、中间层、热层与外逸层；指出地面方框仍在下方。"
+      },
+      {
+        "label": "把另一片天空放在旁边",
+        "text": "把地球留在左边，右边换一个世界。那里可能有不同的云，也可能几乎没有大气。月球和水星没有地球这样的云雨，但仍有极少的气体粒子。",
+        "cue": "比较金星、火星、土卫六和近真空世界；说明两列不是等高度剖面。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How does air surround Earth? What changes as we move outward from the same surface site?",
+    "observe": "Find the yellow surface marker. Drag or play the journey to approach the ground continuously, then move outward. Pause at layers to inspect weather, ozone, meteors and auroras, then compare another world alongside Earth.",
+    "academic": [
+      {
+        "title": "Layers describe temperature structure, not shells",
+        "body": "Earth's atmosphere gradually thins with height. Temperature trends distinguish the troposphere, stratosphere, mesosphere and thermosphere, with an outer exosphere. This display uses a lower standard profile as a reference. Boundaries vary; the lower model is not extrapolated into solar-activity-dependent upper conditions."
+      },
+      {
+        "title": "One surface anchor and height coordinate",
+        "body": "The camera approaches an illustrative coast from a whole-Earth view, then observes outward along the same radius. The square remains on the surface and the bright dot marks observation height. A 6371 km reference Earth radius and reference layer heights share coordinates; clouds, arrows and particles are not life-size. Logarithmic height progress makes lower and upper layers accessible."
+      },
+      {
+        "title": "Compare several properties of each atmosphere",
+        "body": "Composition, total atmospheric amount, surface pressure, temperature and liquid species are distinct. Venus and Mars both have carbon-dioxide-dominated air but very different surface conditions. Titan is a moon whose surface liquid cycle mainly involves methane and ethane. Representative values and illustrations are not local live weather. The Moon and Mercury have extremely tenuous exospheres rather than Earth-like lower weather atmospheres; the display does not assign zero pressure or an invented single air temperature."
+      }
+    ],
+    "misconception": "Layers are not solid shells around Earth. The stratosphere does not allow only sideways motion, and high temperature does not mean auroras everywhere. The Moon and Mercury are nearly airless, not entirely particle-free.",
+    "boundary": "An external teaching camera, not spacecraft dynamics. Globe and reference heights share distance coordinates; terrain is not a mapped location and clouds, arrows and particles are enlarged. Phenomena require different conditions, not a simultaneous event. Lower readings use a standard atmosphere with no upper extrapolation; planetary rows do not imply matched altitudes.",
+    "narration": [
+      {
+        "label": "Look at the whole Earth",
+        "text": "We live on a round Earth. From far away, air hugs its edge. Remember the yellow marker: we will keep watching the same surface site.",
+        "cue": "Approach slowly from the globe while following the same yellow square."
+      },
+      {
+        "label": "Approach winds and clouds",
+        "text": "Now the ground and low clouds become clear. Wind carries air around. Warm, moist air can rise, cool and form clouds. Droplets or ice must grow before rain or snow can fall.",
+        "cue": "Pause at the surface and troposphere; identify airflow arrows and clouds and rain."
+      },
+      {
+        "label": "Keep looking outward",
+        "text": "Higher layers do different things. Ozone absorbs some ultraviolet light. Farther up, meteors can leave luminous streaks and polar regions can show auroras. Eventually the air becomes extremely sparse and blends into space.",
+        "cue": "Follow the same radial path through the stratosphere, mesosphere, thermosphere and exosphere; locate the surface square below."
+      },
+      {
+        "label": "Put another sky beside ours",
+        "text": "Keep Earth on the left and choose another world on the right. Its clouds may be different, or it may be almost airless. The Moon and Mercury have no Earth-like weather, but a few gas particles remain.",
+        "cue": "Compare Venus, Mars, Titan and the near-vacuum cases. Explain that aligned rows do not mean equal heights."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Earth's atmospheric layers",
+      "url": "https://science.nasa.gov/earth/earth-atmosphere/earths-atmosphere-a-multi-layered-cake/"
+    },
+    {
+      "title": "NASA / NOAA · U.S. Standard Atmosphere 1976",
+      "url": "https://ntrs.nasa.gov/citations/19770009539"
+    },
+    {
+      "title": "NWS · Cloud development",
+      "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/clouds/cloud_development/clouds.htm"
+    },
+    {
+      "title": "NASA · Planetary atmospheres",
+      "url": "https://science.nasa.gov/solar-system/10-things-planetary-atmospheres/"
+    },
+    {
+      "title": "NASA · Titan facts",
+      "url": "https://science.nasa.gov/saturn/moons/titan/facts/"
+    },
+    {
+      "title": "ESA · Venus cloud structure, approximately 45–70 km",
+      "url": "https://www.esa.int/Science_Exploration/Space_Science/Venus_Express/New_details_on_venusian_clouds_revealed"
+    },
+    {
+      "title": "NASA · Venus surface and atmosphere",
+      "url": "https://science.nasa.gov/venus/venus-facts/"
+    },
+    {
+      "title": "NASA · High, dry and rare noctilucent clouds",
+      "url": "https://science.nasa.gov/earth/earth-observatory/high-dry-and-rare-in-the-sky-148502/"
+    },
+    {
+      "title": "NASA · Cold polar stratosphere and clouds",
+      "url": "https://www.nasa.gov/news-release/nasa-spacecraft-measures-unusual-2005-arctic-ozone-conditions/"
+    },
+    {
+      "title": "NASA · Mars water-ice and carbon-dioxide-ice clouds",
+      "url": "https://www.nasa.gov/missions/mars-science-laboratory/nasas-curiosity-rover-captures-colorful-clouds-drifting-over-mars/"
+    },
+    {
+      "title": "NASA · Auroras: particles, excitation and emitted light",
+      "url": "https://science.nasa.gov/sun/auroras/"
+    },
+    {
+      "title": "NASA · Meteors and meteorites",
+      "url": "https://science.nasa.gov/solar-system/meteors-meteorites/"
+    },
+    {
+      "title": "NASA · Mercury facts: a surface-bounded exosphere",
+      "url": "https://science.nasa.gov/mercury/facts/"
+    },
+    {
+      "title": "NASA · The Moon’s atmosphere",
+      "url": "https://science.nasa.gov/moon/lunar-atmosphere/"
+    },
+    {
+      "title": "NASA · Weather on the Moon",
+      "url": "https://science.nasa.gov/moon/weather-on-the-moon/"
+    }
+  ]
+}

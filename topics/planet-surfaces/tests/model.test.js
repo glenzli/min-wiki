@@ -3,8 +3,10 @@ import assert from 'node:assert/strict';
 import { WORLDS, field, noise } from '../model.ts';
 const world = id => WORLDS.find(w => w.id === id);
 
-test('eight worlds distinguish planets, an icy moon, and an inferred exoplanet surface', () => {
- assert.equal(WORLDS.length, 8);
+test('all eight planets, two moons and the exoplanet retain distinct surface categories', () => {
+ assert.equal(WORLDS.filter(w => w.body === 'planet').length, 8);
+ assert.equal(WORLDS.filter(w => w.body === 'moon').length, 2);
+ assert.equal(WORLDS.length, 11);
  assert.equal(world('titan').body, 'moon');
  assert.equal(world('titan').evidence, 'observed');
  assert.equal(world('cancri').body, 'exoplanet');
@@ -15,7 +17,7 @@ test('visible surface materials stay distinct from deep interior models', () => 
  assert.equal(world('earth').liquid, 'water');
  assert.equal(world('titan').liquid, 'hydrocarbon');
  assert.equal(world('cancri').liquid, 'silicate-melt');
- for (const id of ['jupiter', 'neptune']) {
+ for (const id of ['jupiter', 'saturn', 'uranus', 'neptune']) {
   assert.equal(world(id).surface, false);
   assert.equal(world(id).liquid, 'none', 'deep fluids are not an exposed surface ocean');
  }

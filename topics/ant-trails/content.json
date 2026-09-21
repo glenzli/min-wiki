@@ -1,0 +1,374 @@
+{
+  "zh": {
+    "title": "蚂蚁与蚁群",
+    "eyebrow": "生命 · 从一只工蚁到一个蚁群",
+    "intro": "跟着有蓝色标记的 W1，看看触角能感知什么，一条食物路线怎样形成，巢里的新生命又怎样长大。",
+    "chapters": {
+      "body": "1 认识 W1",
+      "forage": "2 出巢找食物",
+      "trails": "3 线索改变了",
+      "nest": "4 巢里的生活"
+    },
+    "questions": {
+      "body": "先数清六条足：它们与触角，分别从哪里长出来？",
+      "forage": "没有现成的紫色路线，W1 怎样把食物的消息带回来？",
+      "trails": "气味变弱与道路被堵，真的是同一种困难吗？",
+      "nest": "带回食物只是开始：谁照料幼体，谁繁殖下一代？"
+    },
+    "chapterNotes": {
+      "body": "这是 W1 的放大观察窗，不是另一只新蚂蚁。选一个部位，再带着它走出巢穴。",
+      "forage": "固定地点、固定个体。蓝色 W1 先探索；W2–W4 只有在它返回后才参与这次示意招募。",
+      "trails": "三组对照拥有相同的前半程；变化从旅程 54% 开始。切换条件会回到该组自己保存的进度，不是把正在走的蚂蚁搬到新路。",
+      "nest": "同一个巢的剖面示意。W1 只有沿原旅程回巢后才进入育幼室；N1 是原本就在巢内的另一只照料工蚁。"
+    },
+    "parts": {
+      "antennae": "触角",
+      "legs": "六条足",
+      "mandibles": "大颚",
+      "waist": "细腰与腹部",
+      "shell": "外骨骼"
+    },
+    "partTexts": {
+      "antennae": "头上的一对触角有明显转折，也会活动。触角上的感觉结构帮助检测化学线索、接触物体。路线信息不是一张装进脑袋的紫色地图。",
+      "legs": "三对足都连接在中躯的胸部部分，不长在头或腹部上。足负责支撑和行走；触角不是多出来的两条腿。这里把左右三对分开，方便逐一数清。",
+      "mandibles": "头前的一对大颚用来夹持和处理物体，也参与挖掘等活动。它们是口器，不是小手；具体用途随物种和任务不同。",
+      "waist": "狭窄的腹柄连接中躯与膨大的后腹部。这里画一个腹柄节；另一些蚂蚁有两个明显腰节。中躯不只等于胸部，还包括与胸部结合的第一腹节。",
+      "shell": "坚硬的外骨骼支撑并保护身体。身体仍能在关节处活动。这里的棕黑色、光泽与放大比例是插图表达，不是鉴定一个物种的全部证据。"
+    },
+    "conditions": {
+      "intact": "路线完整",
+      "faded": "线索较快减弱",
+      "blocked": "道路被障碍阻断"
+    },
+    "conditionLabel": "比较条件",
+    "conditionNote": "教学对照，不是真实蚁群预测。改变条件不等于改变物种，也不会让它们凭空知道绕行答案。",
+    "play": "开始观察",
+    "pause": "暂停",
+    "replay": "重放这一组",
+    "next": "下一观察站",
+    "restart": "回到起点",
+    "progress": "W1 的觅食旅程",
+    "timeNote": "进度是事件顺序，不是现实秒数。拖动可回看；切观察站不重置旅程。",
+    "labels": "显示图中标注",
+    "scent": "显示化学线索",
+    "identity": "蓝色标记 W1 · 同一只成年工蚁",
+    "bodyCaption": "放大观察 W1 · 身体比例为示意",
+    "mapCaption": "同一地点 · 巢口与食物位置固定",
+    "nestCaption": "同一巢址的剖面 · 巢室形状不是所有物种的建筑图",
+    "legend": "蓝点：W1 ｜ 紫点：不可见信息素的示意 ｜ 金点：携带食物的状态标记",
+    "nestLegend": "N1：照料工蚁 ｜ Q：蚁后 ｜ L1：被追踪的幼体；它不是 W1 的“小时候”。",
+    "labelsText": {
+      "nest": "① 巢口",
+      "food": "② 食物",
+      "gap": "③ 受影响位置",
+      "brood": "④ 育幼室",
+      "queen": "⑤ 蚁后",
+      "worker": "W1",
+      "nurse": "N1",
+      "specimen": "L1"
+    },
+    "events": {
+      "search": [
+        "探索在先",
+        "W1 沿一条曲折的示意路径探索。此时还没有这次食物招募的踪迹线索，其他工蚁没有跟着一条预先画好的路走。"
+      ],
+      "found": [
+        "找到食物",
+        "W1 到达食物处。金点随后表示它已取得食物，不是身体里真的亮起一盏灯。找到食物与成功招募是不同的步骤。"
+      ],
+      "mark": [
+        "一边返回，一边留下线索",
+        "紫色标记只在 W1 已走过的返回路段出现；还没走到的地方不会提前亮起。现实中的化学痕迹不是人眼能看到的小珠子。"
+      ],
+      "recruit": [
+        "返回巢口，接触同伴",
+        "W1 已把食物带回。这里随后让 W2–W4 出发，表示一次成功的招募；现实是否出巢，还受饥饿程度、接触和其他条件影响。"
+      ],
+      "follow": [
+        "局部线索形成队伍",
+        "不同工蚁各自前进，不是锁在一条传送带上。一次顺利跟随并不表示每只蚂蚁都知道整张地图，更不能证明它们算出了最短路线。"
+      ],
+      "faded": [
+        "信号较弱，搜索增加",
+        "旧线索逐步变淡。W1 与后来到达的工蚁在受影响处转向和搜索，而不是同时消失，再整齐排到另一个位置。"
+      ],
+      "memory": [
+        "有经验与初次经过不同",
+        "本组让走过一次的 W1 找回原方向，而新来的工蚁仍在搜索。这是体现记忆与化学线索可共同作用的一个可能结果，不是每次都成功。"
+      ],
+      "blocked": [
+        "有气味，也不一定能过去",
+        "障碍挡住了原来的通道。W1 在障碍近侧搜索；伙伴也不会因为紫线还在，就穿过石头。"
+      ],
+      "explore": [
+        "先探索，才可能发现通路",
+        "W1 沿障碍上方实际走出一条绕行。新路不会提前铺好紫色线索；这段搜索路径是作者安排的成功例子，现实也可能找不到通路。"
+      ],
+      "newTrail": [
+        "回程才逐步标记新路",
+        "W1 从食物处沿新路返回，紫点按经过顺序出现。后来的工蚁先搜索，再从接上新线索的位置开始绕行，而非瞬间重排。"
+      ],
+      "reinforce": [
+        "往返补充已有线索",
+        "W1 的回程补充已走过的路段。旧标记会逐渐减弱；是否形成稳定队伍取决于后续使用与环境，不是一次成功就永久存在。"
+      ],
+      "home": [
+        "带回的食物进入巢内生活",
+        "W1 回到同一个巢，沿通道进入育幼室。这里把一次觅食与巢内照料连在一起看，不表示所有外勤工蚁每次返回都亲自喂幼体。"
+      ]
+    },
+    "broodLabel": "另一个个体 L1 的发育进度",
+    "broodClock": "独立的发育时间线：现实常需数周至数月，随物种与环境变化；不是一次觅食期间完成。拖动是在查阅 L1 的生命记录。",
+    "broodNames": [
+      "卵",
+      "幼虫",
+      "蛹",
+      "新成虫"
+    ],
+    "broodTexts": [
+      "L1 从卵开始。不是所有卵都会发育为成虫；这里追踪的是一个成功发育的例子。",
+      "幼虫没有行走的足，依赖工蚁照料与供食。N1 在旁边接触和照料；它不是幼虫长出的“大身体”。",
+      "蛹期发生身体重组，不继续像幼虫那样进食。部分物种有茧，另一些裸蛹可见附肢；本图用半透明茧作观察示意。",
+      "L1 成为另一只成年工蚁，刚羽化时颜色较浅，之后外骨骼逐渐硬化、颜色加深。它不是原来的 W1，也不是由成年 W1 变回卵。"
+    ],
+    "careAction": "观察一次照料",
+    "careNote": "照料动作是短片段：幼虫期显示口部接触；卵与蛹期显示检查。没有模拟真实营养量或生长速度。",
+    "rolesTitle": "“蚁后”不是总指挥",
+    "roles": [
+      {
+        "title": "工蚁：巢内与巢外",
+        "text": "多数常见工蚁是无翅雌蚁。照料幼体、维护巢穴、觅食等任务会随年龄、经验、个体状态和蚁群需求变化；并非每只工蚁一出生就领到终身固定职业。"
+      },
+      {
+        "title": "蚁后：繁殖角色",
+        "text": "蚁后主要承担产卵，不为每只工蚁发出路线指令。群体的秩序可以来自个体与附近同伴、幼体、食物和环境的互动；不同物种可有一只或多只蚁后。"
+      },
+      {
+        "title": "雄蚁与新蚁后",
+        "text": "繁殖季可能出现有翅繁殖个体；成熟蚁群与新巢建立还有自己的周期。个体的卵—幼虫—蛹—成虫，与蚁群的建立、增长和繁殖不是同一条时间线。"
+      }
+    ],
+    "readingTitle": "从身体到蚁群：继续读下去",
+    "readings": [
+      {
+        "title": "感觉、行动与结果",
+        "text": "把放大窗里的一对触角带回地面观察：检测附近化学线索，并不等于远远“看见”终点。大颚、足和触角的职责也不同。看一次转向时，要分别问：它接触了什么，随后做了什么，观察者又推测了什么？"
+      },
+      {
+        "title": "踪迹不是导航的唯一信息",
+        "text": "黑毛蚁 Lasius niger 的实验同时研究踪迹线索与路线记忆。研究结果并不支持“更多信息素必定让记忆更好”这种简单结论。本模型只展示两种信息可能共同参与，以及经验不同的个体不必作同一种反应。"
+      },
+      {
+        "title": "巢室不是地下城的统一图纸",
+        "text": "蚂蚁可在土壤、枯木、枝条或其他地方筑巢。图中通道和两个巢室是便于追踪的剖面，不是黑毛蚁巢的测绘，也不是所有蚂蚁都住在地下的证据。"
+      }
+    ],
+    "speciesTitle": "换一个物种，问题也会变",
+    "speciesNote": "下面是独立的物种比较，不是把 W1 变成另一种蚂蚁，也不把不同研究拼成一套通用算法。",
+    "species": [
+      {
+        "title": "黑毛蚁 · Lasius niger",
+        "text": "本工作台的踪迹与记忆讨论参考这一物种的实验。W1 的形态和路线仍是教学插图，不是实验个体数据重放。"
+      },
+      {
+        "title": "树栖龟蚁 · Cephalotes goniodontus",
+        "text": "研究者观察它们在林冠枝条网络里维持和修复觅食路线。所处的分叉网络和地面不同；研究中的路线特征不能直接套用到所有蚁群。"
+      },
+      {
+        "title": "切叶蚁 · 不同的食物系统",
+        "text": "切下的叶片可以成为栽培真菌的材料，蚂蚁以真菌为食。不能看到工蚁搬叶子，就把它当成这里搬运同一种食物的 W1。"
+      }
+    ],
+    "sourcesTitle": "模型边界与科学来源",
+    "limits": "四只巢外工蚁、一个照料工蚁及蚁后是有限教学角色。轨迹、招募延迟、记忆成功、信息素衰减和绕行结果均为作者选定；不模拟扩散、风、真实化学浓度、随机搜索、能量或最优路径。紫点与金点都是解释层。把图层藏起来不会改变模型。身体插图、巢剖面与发育记录的空间/时间尺度不同，均不作测量工具。",
+    "observeSafety": "现实观察请保持距离，不掀巢、不投食、不擦除蚁路，也不要徒手接触不认识的蚂蚁。",
+    "completed": "旅程结束，可回放或继续查阅幼体记录。",
+    "paused": "已暂停；切换视图、离开页面或隐藏窗口会保留进度。"
+  },
+  "en": {
+    "title": "Ants and their colony",
+    "eyebrow": "LIFE · FROM ONE WORKER TO A COLONY",
+    "intro": "Follow blue-marked W1: inspect its senses and body, watch a food trail form, then look inside the nest as another individual develops.",
+    "chapters": {
+      "body": "1 Meet W1",
+      "forage": "2 Find food",
+      "trails": "3 Change the clues",
+      "nest": "4 Inside the nest"
+    },
+    "questions": {
+      "body": "Count six legs: where do they attach, and how are they different from antennae?",
+      "forage": "Before a purple trail exists, how does W1 bring news of food home?",
+      "trails": "Is a fading chemical cue the same problem as a blocked path?",
+      "nest": "Returning with food is only part of colony life. Who cares for young, and who reproduces?"
+    },
+    "chapterNotes": {
+      "body": "This is a magnified view of W1, not an extra ant. Inspect a body part, then follow the same worker outside.",
+      "forage": "The site and individuals stay fixed. W1 explores first; W2–W4 join this illustrative recruitment only after it returns.",
+      "trails": "All conditions share the first part of the journey; the intervention begins at 54%. Each condition remembers its own progress. Switching recalls a comparison, not ants being relocated onto another path.",
+      "nest": "A cutaway of the same nest. W1 enters the brood chamber only after walking home. N1 is a different worker already caring for young inside."
+    },
+    "parts": {
+      "antennae": "Antennae",
+      "legs": "Six legs",
+      "mandibles": "Mandibles",
+      "waist": "Waist and gaster",
+      "shell": "Exoskeleton"
+    },
+    "partTexts": {
+      "antennae": "Two elbowed antennae extend from the head. Their sensory structures detect chemicals and contact. A pheromone trail is not a purple map that the ant can see.",
+      "legs": "All three pairs attach to the thoracic part of the mesosoma, not the head or gaster. Antennae are not a fourth pair of legs. Count the three on each side.",
+      "mandibles": "These paired mouthparts grip and process material and can help with digging. They are not little hands. Their uses vary with species and task.",
+      "waist": "A narrow petiole links the mesosoma and enlarged gaster. This drawing has one waist node; other ants have two. The mesosoma includes the thorax and the first abdominal segment.",
+      "shell": "The exoskeleton supports and protects the body; flexible joints allow movement. The colour, sheen and enlargement here are illustrative, not enough to identify a species."
+    },
+    "conditions": {
+      "intact": "Intact route",
+      "faded": "Faster cue decay",
+      "blocked": "Physical obstruction"
+    },
+    "conditionLabel": "Comparison condition",
+    "conditionNote": "A teaching comparison, not a colony forecast. Changing conditions does not change species or give ants a detour in advance.",
+    "play": "Start observing",
+    "pause": "Pause",
+    "replay": "Replay this condition",
+    "next": "Next observation",
+    "restart": "Back to the start",
+    "progress": "W1's foraging journey",
+    "timeNote": "Progress indicates event order, not real seconds. Scrub to revisit events; changing observation stations preserves the journey.",
+    "labels": "Show scene labels",
+    "scent": "Show chemical cues",
+    "identity": "Blue-marked W1 · the same adult worker",
+    "bodyCaption": "W1 enlarged · illustrative proportions",
+    "mapCaption": "One site · fixed nest and food",
+    "nestCaption": "The same nest in cutaway · not a universal nest blueprint",
+    "legend": "Blue: W1 | Purple: invisible pheromone made visible | Gold: a food-carrying status marker",
+    "nestLegend": "N1: care worker | Q: queen | L1: tracked young, not a younger version of W1.",
+    "labelsText": {
+      "nest": "① Nest",
+      "food": "② Food",
+      "gap": "③ Affected site",
+      "brood": "④ Brood chamber",
+      "queen": "⑤ Queen",
+      "worker": "W1",
+      "nurse": "N1",
+      "specimen": "L1"
+    },
+    "events": {
+      "search": [
+        "Exploration comes first",
+        "W1 follows a winding, authored search path. No trail for this food recruitment exists yet; the others are not following a line drawn in advance."
+      ],
+      "found": [
+        "Food found",
+        "W1 reaches food. A gold dot will indicate food acquired, not a literal light inside its body. Discovery and successful recruitment are separate events."
+      ],
+      "mark": [
+        "Marking while returning",
+        "Purple markers appear only where returning W1 has already passed. Unvisited sections do not light up early. Real chemical traces are not visible beads."
+      ],
+      "recruit": [
+        "Returning and contacting nestmates",
+        "W1 has brought food home. W2–W4 then leave in this successful recruitment example. Real departure also depends on hunger, encounters and other conditions."
+      ],
+      "follow": [
+        "Local cues, a collective trail",
+        "Workers move individually, not on a conveyor belt. Following successfully does not mean each knows a whole map or that the colony has calculated a shortest path."
+      ],
+      "faded": [
+        "Weaker cues, more searching",
+        "Old markers fade progressively. W1 and later arrivals turn and search near the affected site. They do not disappear and reappear in a neatly rearranged line."
+      ],
+      "memory": [
+        "Experience can matter",
+        "This example lets experienced W1 regain the original direction while newcomers search. It illustrates memory alongside chemical cues, not a guaranteed successful response."
+      ],
+      "blocked": [
+        "A cue cannot remove an obstacle",
+        "The original passage is obstructed. W1 searches on the near side; a purple trail does not let any ant walk through the stone."
+      ],
+      "explore": [
+        "Explore before a route is known",
+        "W1 actually walks around the upper side of the obstacle. No purple detour appears ahead of it. This authored search succeeds; real searches may fail."
+      ],
+      "newTrail": [
+        "A new trail forms on return",
+        "Returning W1 marks the detour in order. Later workers search, then join the newly marked route at its junction. No worker is moved to a replacement line."
+      ],
+      "reinforce": [
+        "Use can replenish a trail",
+        "W1 reinforces sections it has revisited while old marks fade. Whether a route persists depends on further use and conditions; one successful trip does not make it permanent."
+      ],
+      "home": [
+        "Food connects outside and inside",
+        "W1 returns to the same nest and walks into the brood chamber. This links foraging with care; it does not claim that every returning forager personally feeds larvae."
+      ]
+    },
+    "broodLabel": "A separate individual: L1's development",
+    "broodClock": "An independent developmental timeline: often weeks to months in nature, depending on species and conditions, not one foraging trip. Scrubbing reviews L1's life record.",
+    "broodNames": [
+      "Egg",
+      "Larva",
+      "Pupa",
+      "Young adult"
+    ],
+    "broodTexts": [
+      "L1 begins as an egg. Not every egg reaches adulthood; this record follows one successful example.",
+      "The legless larva depends on workers for food and care. N1 is a separate adult tending it, not a large body growing out of L1.",
+      "Tissues reorganise during pupation; feeding as a larva has ended. Some species have cocoons and others naked pupae. A translucent cocoon here makes the inside inspectable.",
+      "L1 becomes a different adult worker, initially pale and later darker as its exoskeleton hardens. It is not W1, and adult W1 has not turned back into an egg."
+    ],
+    "careAction": "Observe one care visit",
+    "careNote": "A brief care vignette: mouth contact for the larval stage, inspection for eggs and pupae. Food quantity and growth rate are not simulated.",
+    "rolesTitle": "A queen is not a commander",
+    "roles": [
+      {
+        "title": "Workers: inside and outside",
+        "text": "Most familiar workers are wingless females. Brood care, nest maintenance and foraging can vary with age, experience, individual condition and colony needs, rather than a lifelong occupation assigned at birth."
+      },
+      {
+        "title": "Queens: a reproductive role",
+        "text": "Queens mainly lay eggs; they do not give each worker route instructions. Local encounters with nestmates, brood, resources and surroundings help organise activity. Species differ, including in the number of queens."
+      },
+      {
+        "title": "Males and new queens",
+        "text": "Winged reproductive individuals may appear seasonally. Colony founding, growth and reproduction form a different timeline from one individual's egg–larva–pupa–adult development."
+      }
+    ],
+    "readingTitle": "From body to colony: keep exploring",
+    "readings": [
+      {
+        "title": "Separate sensing, action and inference",
+        "text": "Bring the magnified antennae back into the ground-level scene. Detecting nearby chemicals is not seeing a distant destination. Mandibles, legs and antennae also do different work. When an ant turns, ask what it contacted, what it did next, and what an observer merely inferred."
+      },
+      {
+        "title": "Pheromone is not the only information",
+        "text": "Experiments on Lasius niger examine both chemical trails and route memory. They do not support a simple rule that more pheromone always improves learning. Here the contrast only illustrates that several information sources can contribute and differently experienced individuals may respond differently."
+      },
+      {
+        "title": "No single underground blueprint",
+        "text": "Ant nests may occupy soil, wood, twigs or other sites. These passages and two chambers help us follow the story; they are not a survey of a Lasius nest or evidence that all ants live underground."
+      }
+    ],
+    "speciesTitle": "Another species, another setting",
+    "speciesNote": "These are separate comparisons. W1 does not change species, and the studies do not combine into one universal colony algorithm.",
+    "species": [
+      {
+        "title": "Black garden ant · Lasius niger",
+        "text": "Studies of this species inform the trail-and-memory discussion. W1 and its route remain teaching illustrations, not a replay of tracked experimental data."
+      },
+      {
+        "title": "Turtle ant · Cephalotes goniodontus",
+        "text": "Researchers observe trail maintenance and repair within branching canopy networks. That setting differs from this ground scene; its route patterns are not rules for every colony."
+      },
+      {
+        "title": "Leafcutter ants · a different food system",
+        "text": "Collected leaves can be substrate for cultivated fungi that ants eat. A leaf-carrying worker is not W1 fetching the same resource shown here."
+      }
+    ],
+    "sourcesTitle": "Model limits and scientific sources",
+    "limits": "Four outdoor workers, one care worker and a queen are finite teaching characters. Paths, recruitment delay, successful memory, cue decay and detour success are authored. Chemical diffusion, wind, measured concentrations, stochastic search, energetics and optimal routing are not simulated. Purple and gold are explanatory overlays; hiding them does not change the model. Anatomy, nest cutaway and development have different illustrative space/time scales and are not measuring tools.",
+    "observeSafety": "Observe real ants at a distance. Do not open nests, add food, erase trails or handle unfamiliar ants.",
+    "completed": "Journey complete. Replay it or continue inspecting the brood record.",
+    "paused": "Paused. Changing views, leaving or hiding the page preserves progress."
+  }
+}

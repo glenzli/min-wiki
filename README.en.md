@@ -4,7 +4,7 @@
 
 A growing collection of small science demos in Chinese and English. Each page explores a question through interaction, animation, explanations and references. Made for children and parents to explore together, and for anyone who is curious.
 
-The collection currently contains 60 topics across space, Earth, life, physics and engineering.
+The collection covers space, Earth, life, physics and engineering. Closely related demonstrations are being integrated into larger topics; existing links still reach their corresponding chapters.
 
 ![Solar-system demo: eight planets at one diameter scale](docs/images/solar-system.png)
 
@@ -12,13 +12,15 @@ The collection currently contains 60 topics across space, Earth, life, physics a
 
 Browse by category, search by keyword, or navigate numbered pages with up to 24 demos per page and direct links to adjacent pages. The [content catalog](content/catalog.json) lists every topic.
 
-| Category | Topics | Examples |
-| --- | ---: | --- |
-| Space & Astronomy | 10 | [A star passes a black hole](topics/black-hole/), [Solar system](topics/solar-system/), [Lunar craters](topics/lunar-craters/) |
-| Earth & Nature | 11 | [Seasons](topics/earth-seasons/), [Rain formation](topics/rain-formation/), [Water cycle](topics/rain-cycle/) |
-| Life & the Body | 25 | [Leaf colors](topics/leaf-colors/), [Tadpole to frog](topics/frog-life/), [Handwashing](topics/handwashing/), [Pain signals](topics/pain-signals/), [Taste and smell](topics/taste-smell/), [Blood cells](topics/blood-cells/), [Body cells](topics/body-cells/), [Hearing](topics/hearing/), [Digestion](topics/digestion/) |
-| Physics & Matter | 8 | [Rainbows](topics/rainbow/), [Buoyancy](topics/buoyancy/), [Magnets](topics/magnets/), [Water states](topics/water-states/), [Sound](topics/sound-vibrations/), [Soap bubbles](topics/soap-bubbles/) |
-| Technology & Engineering | 5 | [Tap water](topics/tap-water/), [Car safety](topics/car-safety/), [Air conditioning](topics/air-conditioner/), [Refrigerators](topics/refrigerator/), [Batteries](topics/batteries/) |
+| Category | Examples |
+| --- | --- |
+| Space & Astronomy | [Solar System and planet comparisons](topics/solar-system/), [Stars and multiple-star systems](topics/stars/), [Galaxies and cosmic scales](topics/cosmic-scale/), [Black holes](topics/black-holes/) |
+| Earth & Nature | [Atmospheres](topics/atmosphere/), [Water cycle](topics/rain-cycle/), [Wind and storms](topics/wind/), [Volcanoes](topics/volcano-eruption/) |
+| Life & the Body | [The life of a leaf](topics/leaf-colors/), [Cells: structure and teamwork](topics/cells/), [Hearing](topics/hearing/), [Digestion](topics/digestion/) |
+| Physics & Matter | [Rainbows](topics/rainbow/), [Buoyancy](topics/buoyancy/), [Water states](topics/water-states/), [Sound](topics/sound-vibrations/) |
+| Technology & Engineering | [Tap water](topics/tap-water/), [Air conditioning](topics/air-conditioner/), [Refrigerators](topics/refrigerator/), [Batteries](topics/batteries/) |
+
+See the [integration record (Chinese)](docs/science-journeys-20260920.md) for the scope and limits of the life, Earth and space learning paths. Contextual next-stop links connect topics without placing every subject on one page.
 
 ## Reading and interaction
 
@@ -32,6 +34,8 @@ Browse by category, search by keyword, or navigate numbered pages with up to 24 
 Switch between 中文 and English at the top of any page, or share a link with `?lang=zh` or `?lang=en`. The first visit follows your browser language; a manual choice is saved locally. Switching language reloads the current topic and restarts its animation.
 
 ## Local development
+
+Before adding, integrating or refining a topic, read the [design principles and acceptance requirements (Chinese)](docs/design-principles.md). They cover learning progression, scientific causality, continuity, scale, visuals, bilingual content, resource lifecycles and delivery checks. See the [architecture guide](docs/architecture.md) for engineering contracts and [SKELETON.md](SKELETON.md) for source ownership.
 
 Requires Node.js 22.12 or later.
 

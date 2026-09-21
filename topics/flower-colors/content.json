@@ -1,0 +1,122 @@
+{
+  "zh": {
+    "title": "花为什么五颜六色？",
+    "intro": "先找颜色的来源，再看看颜色怎样改变，最后发现花瓣上隐藏的信号。",
+    "cases": [
+      "01 · 玫瑰：色素",
+      "02 · 绣球：环境",
+      "03 · 牵牛花：开放",
+      "04 · 向日葵：花纹"
+    ],
+    "titles": [
+      "花瓣里面，藏着不同的色素",
+      "同样有色素，为什么还会变色？",
+      "花开放时，细胞里的环境也在变",
+      "我们看见的颜色，不是全部"
+    ],
+    "bridges": [
+      "先比较不同玫瑰的色素组合。下一站保持“色素”这条线索，看看绣球的显色还需要什么。",
+      "绣球不能只看土壤酸度。下一站走进牵牛花，区分土壤环境与花瓣细胞内部的变化。",
+      "这是同一朵花开放的过程，不是给它换土。下一站看看：同一朵花，在不同光线观察下还藏着什么。",
+      "颜色不仅让人觉得美，也可能帮助传粉者辨认和寻找花中的资源。回到第一站，想想不同色素还会吸收哪些光。"
+    ],
+    "roseNames": [
+      "红粉色",
+      "黄色",
+      "橙色",
+      "白色"
+    ],
+    "roseLabel": "比较不同玫瑰品种",
+    "whole": "观察花朵",
+    "close": "花瓣与细胞",
+    "opening": "从花蕾到开放",
+    "human": "人眼可见色",
+    "uv": "显示紫外吸收区域",
+    "next": "下一站 →",
+    "restart": "回到色素 →",
+    "source": "查看研究依据 ↗",
+    "notes": [
+      "红粉色玫瑰常含较多花青素；黄色常与类胡萝卜素有关，橙色可有两者共同贡献。白花的可见着色色素较少，组织散射光使它看起来明亮；白色不等于完全没有任何色素。这里是在比较不同品种，并不是让同一朵花瞬间换色。",
+      "",
+      "这里限定为三色牵牛“天蓝”（Ipomoea tricolor ‘Heavenly Blue’）。花瓣展开时，液泡内部酸性减弱，已有花青素的显色随之由偏红转蓝；不是用蓝色颜料替换红色颜料。拖动可同时观察花形与细胞环境。",
+      "向日葵外圈的舌状花常呈黄色，但其基部可积累吸收紫外线的黄酮醇，构成靶心状花纹。切换观察方式，花朵本身没有变色。研究发现这些花纹与传粉者偏好有关，也与环境适应有关；不是花朵有意识地画路标。"
+    ],
+    "limits": [
+      "花朵、细胞与色素符号不在同一比例；颗粒数量只表示相对趋势，不是实测浓度。花青素画在液泡中，类胡萝卜素画在有色体中。",
+      "",
+      "开放进度和颜色为定性插值，不是钟表时间、精确 pH 或所有牵牛花的通用规律。这里不提供调土或浇药的建议。",
+      "紫色覆盖表示紫外吸收较强，并不是蜜蜂眼中真实的紫色。图案为教学示意，各植株的范围会不同；向日葵花盘由许多小花组成。"
+    ],
+    "cell": "同一花瓣的细胞示意",
+    "vac": "液泡 · 花青素",
+    "plastid": "有色体 · 类胡萝卜素",
+    "anth": "花青素（相对趋势）",
+    "carot": "类胡萝卜素（相对趋势）",
+    "acid": "液泡酸性较强",
+    "lessAcid": "液泡酸性减弱",
+    "guideKey": "紫色：紫外吸收较强",
+    "visibleKey": "黄色花瓣中，可能藏着人眼看不到的图案",
+    "snapshot": "观察示意 · 无实测时间刻度",
+    "ions": "青色小点：氢离子转移示意，不表示数量或速率"
+  },
+  "en": {
+    "title": "Why are flowers so colorful?",
+    "intro": "Find where color comes from, discover how it changes, then reveal the signals hidden in petals.",
+    "cases": [
+      "01 · Roses: pigments",
+      "02 · Hydrangeas: chemistry",
+      "03 · Morning glory: opening",
+      "04 · Sunflowers: patterns"
+    ],
+    "titles": [
+      "Different pigments live inside petals",
+      "Pigments are only part of the story",
+      "Cell conditions change as a flower opens",
+      "Visible color is not the whole picture"
+    ],
+    "bridges": [
+      "Compare pigment combinations in roses. Next, keep pigments in mind and discover what else hydrangeas need to develop their colors.",
+      "Soil acidity alone cannot explain hydrangea color. Next, distinguish soil conditions from changes inside morning-glory petal cells.",
+      "This is one flower opening, not a change of soil. Next, discover what the same flower reveals under a different way of viewing light.",
+      "Colors can help pollinators recognize flowers and find resources. Return to pigments and consider which kinds of light they absorb."
+    ],
+    "roseNames": [
+      "Red / pink",
+      "Yellow",
+      "Orange",
+      "White"
+    ],
+    "roseLabel": "Compare different rose cultivars",
+    "whole": "Whole flower",
+    "close": "Petal and cells",
+    "opening": "From bud to open flower",
+    "human": "Human-visible color",
+    "uv": "Reveal UV absorption",
+    "next": "Next stop →",
+    "restart": "Back to pigments →",
+    "source": "Read the research ↗",
+    "notes": [
+      "Red and pink roses often contain more anthocyanins; yellow commonly involves carotenoids, while orange can involve both. White petals contain less visible coloring pigment and scatter light; white does not mean entirely pigment-free. These are comparisons between cultivars, not an instant recoloring of one flower.",
+      "",
+      "This case is specifically Ipomoea tricolor ‘Heavenly Blue’. As petals unfold, their vacuoles become less acidic and existing anthocyanins shift from reddish to blue coloration. Blue paint does not replace red paint. Drag to inspect flower shape and cell conditions together.",
+      "Sunflower ligules often look yellow, but their bases can accumulate UV-absorbing flavonols, making a bullseye pattern. Changing the view does not recolor the flower itself. Research links these patterns with pollinator preferences and environmental adaptation; flowers do not consciously draw signposts."
+    ],
+    "limits": [
+      "Flowers, cells and pigment symbols use different scales. Particle counts show relative trends, not measured concentrations. Anthocyanins are shown in vacuoles; carotenoids in chromoplasts.",
+      "",
+      "Opening and hue are qualitative interpolations, not clock time, exact pH or a rule for every morning glory. This is not soil-treatment or chemical-watering advice.",
+      "Purple overlays indicate stronger UV absorption, not the actual purple a bee sees. The pattern is illustrative and varies among plants; a sunflower head contains many small flowers."
+    ],
+    "cell": "Cells from the same petal · illustration",
+    "vac": "Vacuole · anthocyanins",
+    "plastid": "Chromoplasts · carotenoids",
+    "anth": "Anthocyanins · relative trend",
+    "carot": "Carotenoids · relative trend",
+    "acid": "More acidic vacuole",
+    "lessAcid": "Less acidic vacuole",
+    "guideKey": "Purple: stronger UV absorption",
+    "visibleKey": "Yellow petals can hide patterns beyond human vision",
+    "snapshot": "Illustration · no measured time scale",
+    "ions": "Teal dots: illustrative proton transfer, not counts or rates"
+  }
+}

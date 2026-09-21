@@ -5,5 +5,10 @@
   "热量": "Heat",
   "家用电器": "Home appliances",
   "日常科学": "Everyday science",
-  "自由探索 / 4–6 分钟": "Free exploration / 4–6 min"
+  "自由探索 / 4–6 分钟": "Free exploration / 4–6 min",
+  "制冷：热量怎样被搬走": "Cooling: where does the heat go?",
+  "从冷媒回路到空调与冰箱，追踪冷端吸热、输入功与热端放热，比较房间和柜体的边界。": "Follow heat uptake, work input and heat rejection through air conditioners and refrigerators, comparing room and cabinet boundaries.",
+  "制冷": "Refrigeration",
+  "冰箱": "Refrigerator",
+  "能量守恒": "Conservation of energy"
 }

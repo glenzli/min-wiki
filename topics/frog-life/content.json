@@ -1,0 +1,450 @@
+{
+  "title": {
+    "zh": "变态发育：动物怎样长大",
+    "en": "Metamorphosis: how animals grow up"
+  },
+  "eyebrow": {
+    "zh": "同一个生命，不同的生活本领",
+    "en": "One life, changing ways to live"
+  },
+  "intro": {
+    "zh": "长大不只是变大。跟随一只蝌蚪、一只毛毛虫，看身体改变怎样带来新的食物、呼吸和运动方式。它们不是彼此变来的，也不共用一只成长时钟。",
+    "en": "Growing up is more than getting bigger. Follow a tadpole and a caterpillar: changes in their bodies bring new ways to feed, breathe and move. They are different animals with independent developmental clocks."
+  },
+  "chapters": {
+    "frog": {
+      "zh": "池塘里的变化",
+      "en": "Changes in the pond"
+    },
+    "butterfly": {
+      "zh": "叶片上的变化",
+      "en": "Changes on a leaf"
+    },
+    "compare": {
+      "zh": "并排找规律",
+      "en": "Compare the patterns"
+    }
+  },
+  "aspects": {
+    "structure": {
+      "zh": "身体结构",
+      "en": "Body structure"
+    },
+    "food": {
+      "zh": "食物与能量",
+      "en": "Food and energy"
+    },
+    "breathing": {
+      "zh": "呼吸与环境",
+      "en": "Breathing and habitat"
+    },
+    "movement": {
+      "zh": "怎样运动",
+      "en": "Ways to move"
+    }
+  },
+  "lensLabel": {
+    "zh": "换一个观察角度",
+    "en": "Choose an observation lens"
+  },
+  "memory": {
+    "zh": "切换观察角度不会重置。切换章节会暂停，两只动物的进度各自保留。拖回进度是回看，不是逆向发育。",
+    "en": "Changing lenses does not reset the animals. Changing chapters pauses playback and preserves both histories. Scrubbing back reviews an observation; real development does not reverse."
+  },
+  "compareTitle": {
+    "zh": "变化相似，路线却不同",
+    "en": "Similar changes, different routes"
+  },
+  "compareNote": {
+    "zh": "下面的配对只对齐一个问题，不代表相同年龄、天数或大小。也可以分别调节两边的进度，作自己的比较。",
+    "en": "These pairs align a question, not age, elapsed days or size. Adjust either animal independently to make your own comparison."
+  },
+  "pairs": {
+    "larvae": {
+      "zh": "幼体怎样生活？",
+      "en": "How do the young live?"
+    },
+    "remodeling": {
+      "zh": "身体正在重建",
+      "en": "During remodelling"
+    },
+    "after": {
+      "zh": "新本领出现后",
+      "en": "After new abilities appear"
+    }
+  },
+  "frogName": {
+    "zh": "蛙 · 一条常见路线",
+    "en": "Frog · one common route"
+  },
+  "butterflyName": {
+    "zh": "蝶 · 完全变态昆虫",
+    "en": "Butterfly · complete metamorphosis"
+  },
+  "growth": {
+    "zh": "蛙的发育观察进度",
+    "en": "Frog development observations"
+  },
+  "wing": {
+    "zh": "羽化后的翅膀准备",
+    "en": "Wing preparation after emergence"
+  },
+  "play": {
+    "zh": "慢慢观察",
+    "en": "Watch slowly"
+  },
+  "pause": {
+    "zh": "暂停",
+    "en": "Pause"
+  },
+  "replay": {
+    "zh": "再观察一次",
+    "en": "Observe again"
+  },
+  "next": {
+    "zh": "下一步",
+    "en": "Next observation"
+  },
+  "prev": {
+    "zh": "上一步",
+    "en": "Previous observation"
+  },
+  "whole": {
+    "zh": "整个环境",
+    "en": "Whole habitat"
+  },
+  "detail": {
+    "zh": "靠近身体",
+    "en": "Body detail"
+  },
+  "peek": {
+    "zh": "看蛹内部示意",
+    "en": "Reveal the pupa diagram"
+  },
+  "wingPlay": {
+    "zh": "观察翅膀展开",
+    "en": "Watch the wings expand"
+  },
+  "wingNotes": [
+    {
+      "zh": "刚羽化：翅小而皱，不能马上飞。",
+      "en": "Just emerged: the wings are small and crumpled, not ready for flight."
+    },
+    {
+      "zh": "体液进入翅脉，帮助柔软的翅展开。",
+      "en": "Fluid enters the wing veins, helping the soft wings expand."
+    },
+    {
+      "zh": "翅已展开，还要逐渐硬化；展开不等于立刻能飞。",
+      "en": "Expanded wings still need to harden; expansion is not immediate flight readiness."
+    }
+  ],
+  "frogStages": [
+    {
+      "title": {
+        "zh": "卵：先在里面发育",
+        "en": "Egg: developing inside"
+      },
+      "structure": {
+        "zh": "胶质包围着卵里的胚胎。孵化是离开卵，不是刚开始有生命。",
+        "en": "Jelly surrounds the developing embryo. Hatching means leaving the egg, not the start of life."
+      },
+      "food": {
+        "zh": "胚胎依靠卵内储备发育，还不会在池塘里找食物。",
+        "en": "The embryo uses reserves in the egg; it is not yet foraging in the pond."
+      },
+      "breathing": {
+        "zh": "氧气从周围环境扩散进入卵。胶质卵不是密封的小房子，也需要合适的湿润环境。",
+        "en": "Oxygen diffuses into the egg from its surroundings. A jelly-coated egg is not a sealed room; suitable moisture matters."
+      },
+      "movement": {
+        "zh": "此时还不能像蝌蚪那样自由游泳。先看卵中的发育，再看孵出的幼体。",
+        "en": "It cannot yet swim freely like a tadpole. Development inside the egg comes before the free-living young."
+      }
+    },
+    {
+      "title": {
+        "zh": "蝌蚪：尾巴推动水",
+        "en": "Tadpole: a tail for swimming"
+      },
+      "structure": {
+        "zh": "长尾巴和圆身体适合水中生活。幼体不是一只没有腿的小成蛙，口部等结构也不同。",
+        "en": "A long tail and rounded body suit aquatic life. A tadpole is not simply an adult frog without legs; its mouth and other structures differ too."
+      },
+      "food": {
+        "zh": "许多蝌蚪刮食藻类或吃有机碎屑；不同种类也可能吃小动物，不能把所有蝌蚪都叫素食者。",
+        "en": "Many tadpoles graze algae or eat organic debris; some eat small animals. Tadpoles are not universally herbivorous."
+      },
+      "breathing": {
+        "zh": "鳃与皮肤参与水中的气体交换；有些蝌蚪也会到水面吞气，肺不一定等长完腿才工作。",
+        "en": "Gills and skin exchange gases in water. Some tadpoles also gulp air at the surface; lungs need not wait for fully developed legs."
+      },
+      "movement": {
+        "zh": "尾部摆动推动水，让身体前进。画面展示形态，不模拟一次真实游泳的水动力。",
+        "en": "Side-to-side tail motion pushes against water. The picture shows body form, not a hydrodynamic simulation of swimming."
+      }
+    },
+    {
+      "title": {
+        "zh": "后腿显现：新旧结构重叠",
+        "en": "Hind legs: old and new overlap"
+      },
+      "structure": {
+        "zh": "后腿通常先明显可见，前腿随后露出。尾巴仍然存在；身体不是一步换一套零件。",
+        "en": "Hind legs usually become visible before forelegs emerge. The tail remains: the body does not replace all its parts in a single step."
+      },
+      "food": {
+        "zh": "随着变态，口部和消化道也在调整。画面上先看见腿，不意味着变化只发生在腿上。",
+        "en": "The mouth and digestive tract change during metamorphosis too. Visible legs do not mean that only the legs are changing."
+      },
+      "breathing": {
+        "zh": "呼吸方式的贡献逐渐改变。不能用一个开关表示“鳃关掉、肺打开”，也不能据腿长推算精确呼吸比例。",
+        "en": "The contributions of respiratory organs change gradually. There is no simple gills-off, lungs-on switch, and leg length cannot tell us exact respiratory proportions."
+      },
+      "movement": {
+        "zh": "尾巴还帮助游泳，后腿逐渐长成新的运动结构。拖近下一观察点，看看四肢与尾能否同时存在。",
+        "en": "The tail still supports swimming as hind limbs develop. Move towards the next observation: can four limbs and a tail coexist?"
+      }
+    },
+    {
+      "title": {
+        "zh": "四肢可见：尾巴慢慢吸收",
+        "en": "Four limbs: a tail being resorbed"
+      },
+      "structure": {
+        "zh": "四肢与剩余的尾巴同时存在是正常过渡。尾组织被逐渐分解，部分材料被身体回收，不是整条脱落。",
+        "en": "Four limbs and a remaining tail are a normal transition. Tail tissue is gradually broken down and some material reused, rather than the whole tail falling off."
+      },
+      "food": {
+        "zh": "尾部变化是受调控的组织重塑，不是尾巴被“吃掉”的外部动作。食物和体内储备共同支持发育。",
+        "en": "Tail loss is regulated tissue remodelling, not the animal externally eating its tail. Food and stored material support development."
+      },
+      "breathing": {
+        "zh": "随着鳃退化、肺功能和皮肤呼吸的作用变化，动物逐渐适应新的生活。不同蛙的过程和节奏不同。",
+        "en": "As gills regress and the roles of lungs and skin change, the animal adapts to new conditions. The process and timing differ among frogs."
+      },
+      "movement": {
+        "zh": "腿已经出现，尾巴却还没有完全消失。此时暂停，最容易发现“长腿”和“吸收尾巴”有重叠。",
+        "en": "Legs are present while part of the tail remains. Pause here to see how limb development and tail resorption overlap."
+      }
+    },
+    {
+      "title": {
+        "zh": "蛙苗：像青蛙，还没有成熟",
+        "en": "Froglet: frog-shaped, not yet mature"
+      },
+      "structure": {
+        "zh": "尾巴基本吸收，身体已有四肢。蛙苗还要继续生长到性成熟；长得像成蛙不等于已能繁殖。",
+        "en": "The tail is largely resorbed and four limbs are present. A froglet must still grow to sexual maturity; adult-like shape is not reproductive maturity."
+      },
+      "food": {
+        "zh": "许多蛙苗开始捕捉适合自己体型的小型无脊椎动物。食物随身体能力改变，不是变大后仍用同一种取食方式。",
+        "en": "Many froglets catch small invertebrates suited to their size. Feeding changes with bodily abilities, not just with body size."
+      },
+      "breathing": {
+        "zh": "肺和湿润皮肤常共同参与气体交换。上岸不等于不再需要水分；并非所有蛙都过同样的水陆生活。",
+        "en": "Lungs and moist skin commonly share gas exchange. Moving onto land does not remove the need for moisture, and not all frogs share one aquatic–terrestrial lifestyle."
+      },
+      "movement": {
+        "zh": "腿可用于游泳和陆地活动。图中到达叶面的位移是生活环境示意，不是真实跳跃轨迹。",
+        "en": "Limbs support swimming and movement on land. The move onto a leaf illustrates habitat use, not a measured jump trajectory."
+      }
+    }
+  ],
+  "butterflyStages": [
+    {
+      "title": {
+        "zh": "卵：下一代的起点",
+        "en": "Egg: a new generation"
+      },
+      "structure": {
+        "zh": "卵内是发育的胚胎。成虫产下新卵开启下一代，不是成虫变回自己的卵。",
+        "en": "An embryo develops inside. New eggs laid by adults begin another generation; an adult does not turn into its own egg."
+      },
+      "food": {
+        "zh": "胚胎使用卵内储备。许多蝴蝶把卵产在幼虫可以取食的寄主植物上，并非任何叶片都合适。",
+        "en": "The embryo uses egg reserves. Many butterflies lay eggs on host plants their larvae can eat; not every leaf is suitable."
+      },
+      "breathing": {
+        "zh": "胚胎也需要交换气体；外面看不见运动，不代表内部没有代谢。",
+        "en": "An embryo also needs gas exchange. Lack of obvious movement outside does not mean there is no metabolism inside."
+      },
+      "movement": {
+        "zh": "卵不能像幼虫那样爬行。观察阶段之间的差别，不把按钮切换当作真实瞬间变身。",
+        "en": "An egg cannot crawl like a larva. Stage buttons revisit observations; they do not represent instantaneous transformations."
+      }
+    },
+    {
+      "title": {
+        "zh": "幼虫：吃东西，也要蜕皮",
+        "en": "Caterpillar: feeding and moulting"
+      },
+      "structure": {
+        "zh": "毛毛虫就是蝴蝶的幼体。外骨骼不能无限撑大，生长中要多次蜕皮；腹足与成虫的腿也不是简单的一一对应。",
+        "en": "A caterpillar is the young stage of a butterfly. Its cuticle cannot stretch indefinitely, so growth involves moults; its prolegs are not a simple one-to-one match for adult legs."
+      },
+      "food": {
+        "zh": "许多毛毛虫用咀嚼口器吃寄主植物，为生长与后来的蛹期积累物质。不是所有毛毛虫都吃同一种叶子。",
+        "en": "Many caterpillars chew host plants and accumulate material for growth and pupation. They do not all eat the same kinds of leaves."
+      },
+      "breathing": {
+        "zh": "身体侧面的气门连着内部气管，空气经分支通道到达组织。昆虫不是用青蛙那样的肺来呼吸。",
+        "en": "Spiracles along the body connect to branching tracheae that carry air towards tissues. Insects do not breathe with frog-like lungs."
+      },
+      "movement": {
+        "zh": "幼虫用胸足和腹足抓住植物、爬行取食。成虫的翅不是给毛毛虫外面贴上的一件新衣服。",
+        "en": "Thoracic legs and prolegs help it grip plants and crawl while feeding. Adult wings are not simply a new outfit attached to a caterpillar."
+      }
+    },
+    {
+      "title": {
+        "zh": "蛹：安静外表，持续发育",
+        "en": "Pupa: a quiet outside, active development"
+      },
+      "structure": {
+        "zh": "打开内部示意：部分组织分解或重塑，成虫结构继续发育。不是全身融成无结构的汤，也不是完整小蝴蝶躲在壳里。",
+        "en": "Open the inside diagram: some tissues break down or remodel while adult structures develop. It is neither a completely unstructured soup nor a finished miniature butterfly hiding in a shell."
+      },
+      "food": {
+        "zh": "蛹一般不从外部取食，依靠幼虫期积累的储备继续发育。因此“没有吃”不等于“没有消耗能量”。",
+        "en": "A pupa generally does not feed externally; it uses reserves accumulated as a larva. Not eating does not mean using no energy."
+      },
+      "breathing": {
+        "zh": "蛹仍有代谢并通过气管系统交换气体。安静不是停止呼吸；透明效果只是解释图，不是真实透视。",
+        "en": "A pupa remains metabolically active and exchanges gases through its tracheal system. Stillness is not an absence of breathing; transparency is an explanatory diagram."
+      },
+      "movement": {
+        "zh": "外部活动显著减少，内部发育却继续。蛹不是一个长长的睡眠，也不是所有动物成长都必须经过的阶段。",
+        "en": "External activity is greatly reduced while development continues. A pupa is not a long sleep, nor a stage every growing animal must pass through."
+      }
+    },
+    {
+      "title": {
+        "zh": "成虫：羽化不等于马上起飞",
+        "en": "Adult: emergence is not immediate flight"
+      },
+      "structure": {
+        "zh": "刚羽化的翅还小而柔软。体液帮助展开后，翅还需要硬化；用下面的独立滑条观察这段过程。",
+        "en": "Newly emerged wings are small and soft. After fluid helps them expand, they must harden. Use the independent slider below to inspect this process."
+      },
+      "food": {
+        "zh": "许多成蝶用喙管吸取花蜜等液体；不同种类食物有别。幼虫与成虫的口器和食物变化，联系着不同的生活任务。",
+        "en": "Many adults use a proboscis to take nectar or other liquids; diets vary by species. Changes in mouthparts and food accompany changing life-stage roles."
+      },
+      "breathing": {
+        "zh": "成蝶仍是气门和气管系统呼吸，不是羽化以后才长出肺。翅展开的体液作用也不等于肺在给翅充气。",
+        "en": "Adults still breathe through spiracles and tracheae, not newly acquired lungs. Fluid-assisted wing expansion is not lungs inflating the wings."
+      },
+      "movement": {
+        "zh": "翅准备好以后才适合飞行。这里演示展开与等待硬化，不模拟真实飞行；发育用时与物种和环境有关。",
+        "en": "Wings must be prepared before flight. This shows expansion and a hardening interval, not actual flight; timing depends on species and conditions."
+      }
+    }
+  ],
+  "connections": {
+    "structure": {
+      "zh": "共同点是身体重塑；区别是路线。蛙在有四肢和尾巴的重叠状态中变化，蝴蝶有独立蛹期。蛙苗仍未成熟，不能把它与成蝶当成同样的繁殖状态。",
+      "en": "Both remodel their bodies, but by different routes. Frogs pass through overlapping limbs-and-tail forms; butterflies have a distinct pupal stage. A froglet is not yet mature, so it is not reproductively equivalent to an adult butterfly."
+    },
+    "food": {
+      "zh": "把食物与口部结构一起看：很多蝌蚪的食谱、毛毛虫的咀嚼、成蝶的吸液都随生活阶段变化。但这些是代表性路线，不是每个物种相同的菜单。",
+      "en": "Compare food with feeding structures: tadpole diets, caterpillar chewing and adult butterfly liquid feeding change across life stages. These are representative routes, not a universal menu for every species."
+    },
+    "breathing": {
+      "zh": "“从水到陆地”和“从爬到飞”不是同一种呼吸改造。蛙的鳃、皮肤、肺贡献在变化；蝴蝶则沿昆虫的气管系统路线发育。",
+      "en": "Moving from water to land and changing from crawling to flight are not the same respiratory transition. Frogs change the contributions of gills, skin and lungs; butterflies develop along the insect tracheal route."
+    },
+    "movement": {
+      "zh": "尾巴、腿、翅带来不同的运动能力，但结构出现与能熟练使用并非同一瞬间。蝴蝶翅展开后还要硬化，蛙的新旧运动结构也会短暂共存。",
+      "en": "Tails, limbs and wings offer different movement abilities, but appearance and readiness are not the same moment. Butterfly wings must harden after expansion, while old and new movement structures can overlap in frogs."
+    }
+  },
+  "deeperTitle": {
+    "zh": "再追问一步：改变的材料从哪来？",
+    "en": "One question deeper: where does the material come from?"
+  },
+  "mechanisms": [
+    {
+      "title": {
+        "zh": "尾巴不是被剪掉",
+        "en": "The tail is not cut off"
+      },
+      "steps": [
+        {
+          "zh": "尾组织受到调控",
+          "en": "Regulated tail changes"
+        },
+        {
+          "zh": "细胞与组织逐渐分解",
+          "en": "Cells and tissues break down"
+        },
+        {
+          "zh": "部分材料被回收",
+          "en": "Some material is reused"
+        }
+      ],
+      "body": {
+        "zh": "腿的生长和尾的吸收有重叠。身体内部的发育调控协调多种组织；这幅图只展示外形，不声称能从尾长读取激素浓度。",
+        "en": "Limb growth overlaps with tail resorption. Developmental signals coordinate several tissues. Our illustration shows external form, not hormone concentrations inferred from tail length."
+      }
+    },
+    {
+      "title": {
+        "zh": "蛹不是暂停生命",
+        "en": "A pupa does not pause life"
+      },
+      "steps": [
+        {
+          "zh": "幼虫积累储备",
+          "en": "Larva accumulates reserves"
+        },
+        {
+          "zh": "蛹期组织重塑",
+          "en": "Pupal tissue remodelling"
+        },
+        {
+          "zh": "羽化后准备翅膀",
+          "en": "Wing preparation after emergence"
+        }
+      ],
+      "body": {
+        "zh": "蛹不取食时仍消耗储备、交换气体。打开内部示意看结构，再用翅膀滑条找出“已经展开，却还没准备好飞”的阶段。",
+        "en": "A non-feeding pupa still uses reserves and exchanges gases. Open the internal diagram, then use the wing slider to find the interval when wings are expanded but not yet flight-ready."
+      }
+    }
+  ],
+  "grasshopperTitle": {
+    "zh": "每只昆虫都要变成蛹吗？",
+    "en": "Does every insect become a pupa?"
+  },
+  "grasshopperIntro": {
+    "zh": "蝗虫提供一个不同的对照。它的若虫与成虫较相似，经历多次蜕皮，没有独立蛹期。这是路线示意，不是第三只动物的等时生长模拟。",
+    "en": "Grasshoppers provide a different comparison. Nymphs resemble adults more closely and grow through repeated moults, without a distinct pupal stage. This is a route diagram, not a third equal-time growth simulation."
+  },
+  "grasshopperSteps": [
+    {
+      "zh": "卵",
+      "en": "Egg"
+    },
+    {
+      "zh": "若虫 · 多次蜕皮",
+      "en": "Nymph · repeated moults"
+    },
+    {
+      "zh": "成虫 · 繁殖",
+      "en": "Adult · reproduction"
+    }
+  ],
+  "grasshopperNote": {
+    "zh": "蝴蝶的卵—幼虫—蛹—成虫属于昆虫完全变态；蝗虫的卵—若虫—成虫属于昆虫不完全变态。这里的“完全／不完全”不是长得好不好，也不能直接拿来给青蛙分组。",
+    "en": "Butterfly egg–larva–pupa–adult development is complete metamorphosis in insects. Grasshopper egg–nymph–adult development is incomplete metamorphosis. These names do not rate how well an animal grows, and should not be used here to classify frogs."
+  },
+  "boundary": {
+    "zh": "代表性、放大的形态示意，不对应特定物种的天数、大小或器官测量。部分蛙直接发育、没有自由游泳蝌蚪；蝴蝶各阶段是同一个体的观察快照，不是连续解剖重建。图中蛙苗还需生长成熟，下一代卵来自之后的繁殖。观察野生动物请留在原处，不触碰蛹或翅。",
+    "en": "Enlarged, representative illustrations, not species-specific days, sizes or organ measurements. Some frogs develop directly without free-swimming tadpoles. Butterfly stages revisit one individual's life, not a continuous anatomical reconstruction. Froglets still need to mature; the next generation's eggs result from later reproduction. Observe wild animals in place; do not touch pupae or wings."
+  },
+  "sourcesTitle": {
+    "zh": "资料与模型边界",
+    "en": "Sources and model boundaries"
+  }
+}

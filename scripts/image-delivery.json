@@ -3,6 +3,110 @@
   "encoder": "sharp 0.35.4 / webp 1.6.0",
   "files": [
     {
+      "source": "topics/atmosphere/cover-v2.jpg",
+      "output": "topics/atmosphere/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "a177a6cf4eebe2f276064dc9269e517f3c3740a90fe206e41124f6559b1adb17",
+      "sha256": "87d7196cd04b660c2424a384b7d95eac00ac151863f9375f929b6dd7ef03f909",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 27494
+    },
+    {
+      "source": "topics/atmosphere/cover-v2.jpg",
+      "output": "topics/atmosphere/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "a177a6cf4eebe2f276064dc9269e517f3c3740a90fe206e41124f6559b1adb17",
+      "sha256": "f0fd50079dc403d7e49b5a388c8cfe1acafbffd4c307e3e90e1d334233a82f7b",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 89946
+    },
+    {
+      "source": "topics/cosmic-scale/cover-v2.jpg",
+      "output": "topics/cosmic-scale/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "ca7e04967c2d0aeec7dcd660fa4016504dcfe80eb976ad0606cc184a4d531071",
+      "sha256": "35b63f7b0d34f03743ff7c9fa28ca66a09c2237b66318ca44347562e1bfd0037",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 28960
+    },
+    {
+      "source": "topics/cosmic-scale/cover-v2.jpg",
+      "output": "topics/cosmic-scale/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "ca7e04967c2d0aeec7dcd660fa4016504dcfe80eb976ad0606cc184a4d531071",
+      "sha256": "aab41ea95b4fff08730474fae7762ca7937a0bc5f6c3038b73abc0b62a686d9b",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 107042
+    },
+    {
+      "source": "topics/stars/cover-v2.jpg",
+      "output": "topics/stars/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "75aa1f7a40757ab9386491e082e52f99c46b7a4c8f006a87a84eaecb3b6c9f33",
+      "sha256": "8070490591a188ea561c2236f7fe815035ac523486278328a1d007b79c8d20bb",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 24402
+    },
+    {
+      "source": "topics/stars/cover-v2.jpg",
+      "output": "topics/stars/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "75aa1f7a40757ab9386491e082e52f99c46b7a4c8f006a87a84eaecb3b6c9f33",
+      "sha256": "f4f8711bf6f2209642418c083a6cc5a20986bbc608448ed794e7253e7604a900",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 72274
+    },
+    {
+      "source": "topics/black-holes/cover-v2.jpg",
+      "output": "topics/black-holes/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "c953566deb34ec6960cee32c885241f45ecffc9c7065a0321275b02ae6317c60",
+      "sha256": "0e59444aa26a0cff4192b7ec8b537b999346cc8b4b4389519832a278ca3f3058",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 11760
+    },
+    {
+      "source": "topics/black-holes/cover-v2.jpg",
+      "output": "topics/black-holes/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "c953566deb34ec6960cee32c885241f45ecffc9c7065a0321275b02ae6317c60",
+      "sha256": "0bb9891d661b77bfb0d152d278797f633ab1fb58094e38b42eee65540f5b1596",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 43080
+    },
+    {
       "source": "topics/black-hole/cover-v3.jpg",
       "output": "topics/black-hole/cover-480.webp",
       "width": 480,
@@ -339,6 +443,32 @@
         640
       ],
       "bytes": 136122
+    },
+    {
+      "source": "topics/wind/cover-v2.jpg",
+      "output": "topics/wind/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "9dc8b3161c0893cc53f634872806df2e4d33cb24e72c14bbde5027c375be85a3",
+      "sha256": "bc94f5eebaf985c6173fb269622a73b9e1f1d34e434ac43475d5f25f95accb81",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 54894
+    },
+    {
+      "source": "topics/wind/cover-v2.jpg",
+      "output": "topics/wind/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "9dc8b3161c0893cc53f634872806df2e4d33cb24e72c14bbde5027c375be85a3",
+      "sha256": "b14b2c9f7eaa9d8276d4fa83496961811d500bd30753e53ce49aa0210f3eca78",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 190798
     },
     {
       "source": "topics/typhoon/cover-v2.jpg",

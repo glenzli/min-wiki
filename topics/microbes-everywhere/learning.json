@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "microbes-everywhere",
   "zh": {
-    "question": "一个微生物被风带到窗台上，就一定能在那里越长越多吗？",
-    "observe": "依次选择土壤、水、皮肤和空气，再点“靠近看细节”。沿同一幅画寻找水膜、菌丝、纤毛或随尘粒运输的孢子，分清到达、存活与繁殖三件事。",
+    "question": "微生物到了一个地方，细菌就会分裂、病毒就会复制吗？",
+    "observe": "沿环境 E、参考细胞 B、比较宿主 H 三站观察。保留所选环境，比较 B 的资源条件，再跟随 DNA 与膜的变化；最后检查病毒在表面不匹配和内部防御下为什么停住。",
     "academic": [
       {
-        "title": "微生物是观察尺度，不是单一谱系",
-        "body": "日常所说微生物包括细菌、古菌、显微真菌、许多原生生物和微型藻类等不同类群；病毒也常在微生物学中研究，但它不是细胞生物。它们的结构、能量来源和生活方式差别很大，不能把一个彩色椭圆当作所有微生物的共同身体。这里不同场景的图形只提醒存在多样性，不承担物种鉴定或真实数量统计。"
+        "title": "环境广泛分布，不等于每种都能生长",
+        "body": "微生物并非单一谱系，包含细菌、古菌、显微真菌和许多原生生物；病毒不是细胞，也在微生物学中研究。水、尘粒或接触能搬运微生物，但到达、存活、繁殖分别需要不同条件。皮肤部位、土粒孔隙等也有不同微环境。场景 E 展示代表居民，不是物种鉴定；资源选择是对参考细胞 B 的定性实验，不是从环境图推算实际种群增长。"
       },
       {
-        "title": "广泛分布来自分散与环境筛选",
-        "body": "水、风、尘粒和动物活动可以搬运微生物或孢子，但被运到一处只代表到达。能否保持活性或存活，取决于干燥、辐射、温度等压力；能否繁殖，还需要适合的水分、能源、营养和化学环境。一些微生物能以休眠或耐受形式等待条件改变。因此“几乎到处都能发现”不等于“每一种都在每个地方大量生长”。"
+        "title": "细菌拥有细胞结构，分裂仍受条件限制",
+        "body": "B 代表一类具有较厚肽聚糖壁、无外膜的细菌。壁提供支撑，膜形成选择性边界；拟核没有核膜，核糖体按 RNA 信息合成蛋白质。二分裂须复制遗传信息、分配并建立隔膜，不能把一份 DNA 剪成两半；真实阶段可重叠、速度随种类与条件变化。资源受限对照停在早期是教学选择，不是所有细菌统一的停滞阶段，也不代表死亡。酸奶、土壤和肠道讲的是不同群体，其作用依赖菌株与情境，不由外形决定。"
       },
       {
-        "title": "微小空间也有不同的群落",
-        "body": "土粒孔隙中的含水量、氧和有机质分布并不均一，皮肤的湿润、干燥和多油区域也常有不同群落。群落成员通过竞争、互利和物质交换相互影响，一些参与分解与元素循环。检测到微生物或其 DNA 不等于它正在活跃繁殖，更不自动等于健康危害；需要进一步判断种类、活性、位置和接触方式。"
+        "title": "病毒复制依赖适配宿主，不是另一种细胞分裂",
+        "body": "病毒没有自己的核糖体，不能只凭外界营养独立制造新病毒。本例明确换到有外膜和薄壁的宿主 H，参考 T4 类噬菌体与大肠杆菌样宿主，不能把厚壁 B 当作同一宿主。表面匹配是附着条件之一，内部防御仍可阻断复制。连续模型保留原始 DNA、包装中的部件和同一批子代；边界先打开，子代才释放。这里只演示一种裂解路线，并非所有病毒均裂解、杀死宿主或感染人。"
       }
     ],
-    "misconception": "“到处都有微生物”不表示每一种都能到处生长，也不表示每次遇到微生物都会生病。",
-    "boundary": "想象放大镜不是实测显微图；场景内形状、颜色、比例与数量是示意，不能用清澈程度或这些图标判断卫生状况。",
+    "misconception": "环境中发现微生物，不证明它正在繁殖；细菌不是病毒；外壳相似或有营养，都不保证某个病毒能够感染并复制。",
+    "boundary": "E 是环境插画；B 与 H 是明确不同的参考对象，不是从 E 鉴定出的同一细胞。颜色、比例、数量、层间距与时间均教学化；资源对照没有统一真实生长速率。不能据此培养、鉴定或判断食品、饮水与健康安全。",
     "narration": [
       {
-        "label": "眼睛看不到的邻居",
-        "text": "抓一把土、望一望池水，再看看自己的手，许多地方都可能有很小的微生物。它们往往小得让眼睛看不清，所以我们准备了一面想象放大镜。里面的颜色和形状是帮助理解的画，不是刚刚从你手上拍到的照片。先从土里开始，找找颗粒之间的小空间。",
-        "cue": "选土壤，先看小环境，再靠近观察同一片土粒和菌丝。"
+        "label": "到达这里，还缺什么",
+        "text": "土粒之间、池水里和皮肤表面，都可能有微小居民。空气还能带着孢子或含菌液滴旅行。可是到达新地方，不等于能活下来，更不等于能越长越多。环境不同，适合的居民也不同。这些画不是刚刚采样的照片，我们先把环境留在观察台旁边。",
+        "cue": "在四个环境间比较，靠近同一幅图；保留一处环境作后续参照。"
       },
       {
-        "label": "不同地方，不同小家",
-        "text": "土粒之间可能有水、空气和养分。浅色的细线是真菌的菌丝，一些真菌和细菌能帮助分解落叶。池水里的绿色细胞，可以借助光制造糖；另一些小居民用其他方式取得食物。它们的身体和生活办法，并不一样。再换到皮肤，找找表面的沟纹。即使相隔很近，适合居住的条件也可能不同。",
-        "cue": "比较土壤、水、皮肤，在干湿差异处停三秒。"
+        "label": "借一颗参考细胞看工具",
+        "text": "现在换成参考细胞 B。它不是从刚才的图里认出的物种，而是帮助观察结构的例子。外面有支撑它的细胞壁，里面一层膜控制一些物质进出。紫色线是 DNA，没有核膜包住它。核糖体能按信息制造蛋白质，病毒却没有这样的工具。",
+        "cue": "依次看壁、膜、DNA和核糖体；膜上播放一次选定进出路线。"
       },
       {
-        "label": "搭便车不等于住下来",
-        "text": "现在看看空气。有些微生物或者孢子，会跟着尘粒、飞沫和气流移动，像搭了一段便车。可是到了新地方，不一定能住下来，更不一定能越来越多。那里如果太干、没有合适的食物，或者条件不对，它们就可能无法生长。到达、活下来和长出更多，是三件不同的事。",
-        "cue": "选空气，强调少量随颗粒运输的代表。"
+        "label": "条件支持，才看得到下一步",
+        "text": "让参考细胞走过一次生长过程。细胞先增加材料，遗传信息复制并分开，中间再形成分隔，成为两个子细胞。不是把一份 DNA 随手剪开。换到资源受限的对照，它停在早期。这只表示本次条件不够，不是所有细菌都这样停，也不是宣告它已经死亡。",
+        "cue": "比较支持生长与资源受限，各跑到终态，再返回原条件验证进度保留。"
       },
       {
-        "label": "好奇，也要分清楚",
-        "text": "微生物里有很多不同成员，不能全部叫作细菌，也不能全部当成病菌。水看起来很清，也不告诉我们里面有什么；看见一个图标，更不能判断真实数量。我们今天练习的是带着问题观察：它在哪里，靠什么生活，到了这里还能不能长？把这些问题分开，小小世界就清楚一些了。",
-        "cue": "依次回顾四场景，最后收起想象放大镜。"
+        "label": "病毒还需要另一道门",
+        "text": "最后明确换到另一类宿主 H，它的外面有外膜和较薄的壁，不是刚才的 B。这个噬菌体只有遇见合适的细胞，才可能把 DNA 送进去，利用细胞的条件制造部件。表面不匹配，进不去；内部防御生效，进去了也不会产生子代。成功的这条路线里，部件组装，边界打开，新的噬菌体才释放。相遇、细胞生长和病毒复制，原来不是一回事。",
+        "cue": "比较三类宿主；在DNA进入、组装和开口释放的中间态停留，返回环境。"
       }
     ]
   },
   "en": {
-    "question": "If a microbe reaches a windowsill on the wind, must it multiply there?",
-    "observe": "Choose soil, water, skin and air, then select Look closer. Follow the same scene to find water films, hyphae, cilia or spores on dust, distinguishing arrival, survival and growth.",
+    "question": "If microbes arrive somewhere, must bacteria divide and viruses replicate?",
+    "observe": "Follow habitat E, reference cell B and comparison host H. Keep the chosen habitat as a reference, compare B's resource conditions, follow DNA and membrane changes, then test why mismatched surfaces or internal defense stop a virus.",
     "academic": [
       {
-        "title": "Microbes are not one evolutionary group",
-        "body": "Microbial life includes bacteria, archaea, microscopic fungi and many protists and algae. Viruses are also studied in microbiology but are not cellular organisms. Their structures and energy sources differ greatly. Coloured shapes here suggest diversity rather than providing species identification or population counts."
+        "title": "Widespread occurrence is not universal growth",
+        "body": "Microbes are not one lineage: they include bacteria, archaea, microscopic fungi and many protists. Viruses are not cells but are studied in microbiology. Water, dust and contact transport microbes, while arrival, survival and reproduction require distinct conditions. Skin sites and soil pores contain different microhabitats. E shows representative residents, not identified species. Resource selection is a qualitative experiment for reference cell B, not a population growth estimate derived from the habitat illustration."
       },
       {
-        "title": "Dispersal is followed by environmental filtering",
-        "body": "Air, water, dust and animals can transport microbes or spores. Arrival does not establish survival, and survival does not establish growth. Drying, radiation and temperature impose stresses, while reproduction requires suitable resources and chemistry. Some organisms persist in dormant or resistant forms until conditions change."
+        "title": "Bacteria have cell machinery, but conditions still constrain division",
+        "body": "B represents one thick-peptidoglycan-walled bacterium without an outer membrane. The wall supports shape, the membrane is selective, the nucleoid lacks a nuclear membrane, and ribosomes use RNA information to make proteins. Binary fission requires copying and partitioning genetic information and forming a division boundary, not cutting one genome in half. Real stages can overlap and growth varies with species and conditions. Early arrest in the resource-limited example is a teaching choice, not a universal stopping stage or a declaration of death. Yogurt, soil and gut examples are distinct communities whose roles depend on strains and context, not shape."
       },
       {
-        "title": "Small habitats support different communities",
-        "body": "Soil pores differ in moisture, oxygen and organic material, while skin sites differ in moisture and oils. Community members compete and exchange resources, with some contributing to decomposition and nutrient cycles. Detecting organisms or DNA alone does not demonstrate active growth or a health hazard; identity, activity and context matter."
+        "title": "Viral replication needs a suitable host; it is not cell division",
+        "body": "Viruses lack their own ribosomes and cannot use external nutrients alone to make new viruses independently. The example explicitly switches to host H with an outer membrane and a thin wall, referencing a T4-like phage and an E. coli-like host, not thick-walled B. Surface compatibility is one attachment condition; internal defense can still block replication. The continuous model retains the original DNA, assembly parts and offspring identities. The host opens before offspring leave. This is one lytic route, not a claim that all viruses lyse cells, kill their hosts or infect people."
       }
     ],
-    "misconception": "Widespread microbes do not mean every kind grows everywhere or that every encounter causes illness.",
-    "boundary": "The imagined lens is not measured microscopy. Shapes, colours, sizes and counts are illustrative, and neither clarity nor these symbols establish hygiene or safety.",
+    "misconception": "Finding microbes does not prove active reproduction. Bacteria are not viruses, and a similar-looking cell or available nutrients do not guarantee infection and replication.",
+    "boundary": "E is a habitat illustration; B and H are explicitly different reference objects, not one cell identified from E. Colours, scale, counts, layer spacing and time are illustrative. The resource comparison has no universal real growth rate and cannot guide culturing, identification or food, water or health-safety judgments.",
     "narration": [
       {
-        "label": "Neighbours too small to see",
-        "text": "Soil, pond water and our skin can all contain tiny microbes. Our eyes usually cannot inspect them directly, so we have an imagined magnifying lens. Its colours and shapes are explanatory drawings, not photographs of your hand. Begin in soil and look between the grains.",
-        "cue": "Choose soil, view the habitat, then move closer to the same grains and hyphae."
+        "label": "What is missing after arrival?",
+        "text": "Tiny residents may occur between soil grains, in pond water and on skin. Air can carry spores or bacteria-bearing droplets too. Reaching a new place does not establish survival, let alone making more. Different habitats suit different residents. These illustrations are not photographs of newly collected samples. Keep one habitat beside the observation workspace.",
+        "cue": "Compare the four habitats and zoom within the same illustration; retain one habitat as the reference."
       },
       {
-        "label": "Different tiny homes",
-        "text": "Spaces between soil grains may hold water, air and nutrients. The pale threads represent fungal hyphae; some fungi and bacteria help break down leaves. Green cells in pond water can use light to make sugars, while other residents obtain food in other ways. Their bodies and ways of living differ. On skin, look for surface grooves. Even nearby places can offer different living conditions.",
-        "cue": "Compare soil, water and skin, then pause."
+        "label": "Borrow a reference cell to inspect its tools",
+        "text": "Now switch to reference cell B. It is not a species identified in the earlier picture; it is an example for studying structure. A wall supports it, and an inner membrane regulates selected exchanges. Purple lines represent DNA without a nuclear membrane. Ribosomes make proteins from information. A virus has no ribosomes of its own.",
+        "cue": "Inspect wall, membrane, DNA and ribosomes; play the selected membrane routes once."
       },
       {
-        "label": "A ride does not make a home",
-        "text": "Some microbes or spores travel with dust, droplets and moving air. Reaching somewhere new does not mean settling successfully or multiplying. The place may be too dry or lack suitable resources. Arrival, survival and growth are three different things.",
-        "cue": "Choose air and show a few transported representatives."
+        "label": "Conditions support the next step",
+        "text": "Follow one growth sequence. The cell adds material, copies and separates genetic information, then forms a partition and becomes two daughter cells. One genome is not simply cut in half. In the resource-limited comparison, the sequence stops early. This means conditions are insufficient in this example, not that all bacteria stop at that stage or that this cell has died.",
+        "cue": "Run growth-supporting and limited conditions to their endpoints; return to verify separately retained progress."
       },
       {
-        "label": "Stay curious and make distinctions",
-        "text": "Microbes include many different groups, not just bacteria or disease-causing organisms. Clear-looking water does not reveal what lives in it, and an icon cannot measure a population. Ask where an organism is, what supports it and whether it can grow there. Separating those questions makes this tiny world easier to understand.",
-        "cue": "Review the four habitats and close the imagined lens."
+        "label": "A virus needs another gate",
+        "text": "Finally, switch explicitly to host H. Its outer membrane and thinner wall differ from B. This phage must encounter a suitable cell before its DNA can enter and use cellular conditions to make parts. A mismatched surface blocks entry; effective internal defense blocks offspring even after entry. In the successful pathway, parts assemble and the boundary opens before new phages escape. Arrival, bacterial growth and viral replication are not the same thing.",
+        "cue": "Compare all three host cases; pause during entry, assembly and release, then return to the habitat."
       }
     ]
   },
@@ -105,6 +105,30 @@
     {
       "title": "Grice et al. — Topographical and Temporal Diversity of the Human Skin Microbiome",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2805064/"
+    },
+    {
+      "title": "OpenStax — Prokaryotic cell structures",
+      "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells"
+    },
+    {
+      "title": "OpenStax — How microbes grow",
+      "url": "https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow"
+    },
+    {
+      "title": "NHGRI — Virus",
+      "url": "https://www.genome.gov/genetics-glossary/Virus"
+    },
+    {
+      "title": "RCSB PDB-101 — Bacteriophage T4 infection",
+      "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection"
+    },
+    {
+      "title": "Maffei et al. — BASEL phage collection",
+      "url": "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001424"
+    },
+    {
+      "title": "Research — Lactic-acid bacteria in yogurt",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7895560/"
     }
   ]
 }

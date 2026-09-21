@@ -1,74 +1,322 @@
-import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
-import { terrain as baseTerrain, craterRadius, ejectaPosition, smooth, energyRatio } from './model.ts';
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { energyRatio, smooth } from './model.ts';
 import type { Settings } from './model.ts';
-import { t } from './i18n.ts';
-type Point = [number, number];
-const seed = (i: number) => { const n = Math.sin(i * 127.1 + 81.2) * 43758.54; return n - Math.floor(n); };
-const terrain = (x: number, p: number, settings: Settings) => baseTerrain(x, p, settings) + 1.6 * Math.sin(x * .13 + .3) + .8 * Math.sin(x * .33);
-const rimPath = (x: number, y: number, rx: number, ry: number, phase: number): Point[] => Array.from({ length: 121 }, (_, i) => {
-  const a = i / 120 * Math.PI * 2, r = 1 + .045 * Math.sin(a * 5 + phase) + .03 * Math.sin(a * 9 + 1.4) + .017 * Math.sin(a * 17 + .8);
-  return [x + Math.cos(a) * rx * r, y + Math.sin(a) * ry * r];
-});
+
+const TERRAIN_WIDTH = 14;
+const TERRAIN_DEPTH = 9;
+const SEGMENTS_X = 112;
+const SEGMENTS_Z = 72;
+const EJECTA_COUNT = 420;
+
+const seed = (i: number) => {
+  const n = Math.sin(i * 127.1 + 81.2) * 43758.5453;
+  return n - Math.floor(n);
+};
+
+const craterScale = (settings: Settings) => Math.min(3.25, 1.48 * energyRatio(settings) ** .19);
+
+function baseRelief(x: number, z: number) {
+  return .055 * Math.sin(x * 1.31 + z * .61)
+    + .032 * Math.sin(x * 3.7 - z * 2.1)
+    + .018 * Math.cos(x * 7.3 + z * 4.6);
+}
+
+function terrainHeight(x: number, z: number, progress: number, settings: Settings) {
+  const radius = craterScale(settings);
+  const formation = smooth(.35, .67, progress);
+  const settled = smooth(.68, .95, progress);
+  const distance = Math.hypot(x, z);
+  const u = distance / radius;
+  const bowl = u < 1 ? -(1 - u * u) * radius * (.56 - .11 * settled) : 0;
+  const rim = Math.exp(-(((u - 1.04) / .17) ** 2)) * radius * .15;
+  const blanket = u > 1.1 && u < 2.45
+    ? Math.max(0, .075 * radius * (2.45 - u) / (1.35 + u * u))
+    : 0;
+  return baseRelief(x, z) + formation * (bowl + rim + blanket);
+}
+
 export class TopicScene {
-  private surface: CanvasSurface;
+  private renderer: THREE.WebGLRenderer;
+  private scene = new THREE.Scene();
+  private camera = new THREE.PerspectiveCamera(34, 1, .05, 80);
+  private controls: OrbitControls;
+  private observer: ResizeObserver;
+  private terrainGeometry = new THREE.PlaneGeometry(TERRAIN_WIDTH, TERRAIN_DEPTH, SEGMENTS_X, SEGMENTS_Z);
+  private terrainMaterial = new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    vertexColors: true,
+    roughness: .94,
+    metalness: .02,
+    side: THREE.DoubleSide,
+  });
+  private terrainMesh: THREE.Mesh;
+  private meteor: THREE.Mesh;
+  private trail: THREE.Line;
+  private flash: THREE.Mesh;
+  private flashLight: THREE.PointLight;
+  private shockwave: THREE.Mesh;
+  private ejecta: THREE.Points;
   private progress = 0;
   private settings: Settings = { diameter: 100, speed: 20 };
-  constructor(canvas: HTMLCanvasElement) { this.surface = new CanvasSurface(canvas); this.surface.onResize(() => this.draw(this.progress, this.settings)); }
-  draw(progress: number, settings: Settings, _view = 'overview') {
-    this.progress = progress; this.settings = settings;
-    const s = this.surface, c = s.begin('#080f1c', '#202b38'), r = craterRadius(settings);
-    for (let i = 0; i < 70; i++) { const x = Math.sin(i * 7.33) * 360, y = -220 + (Math.cos(i * 4.7) * .5 + .5) * 260; s.ellipse(x, y, .8, .8, '#b9cfe35a'); }
-    const profile = Array.from({ length: 151 }, (_, i) => { const x = -375 + i * 5; return [x, terrain(x, progress, settings)] as [number, number]; });
-    const earth = c.createLinearGradient(0, 60, 0, 230); earth.addColorStop(0, '#8a8984'); earth.addColorStop(.16, '#747775'); earth.addColorStop(1, '#353e46');
-    s.path([...profile, [375, 230], [-375, 230]], earth, '#bac0bb', 2);
-    c.save(); c.beginPath(); profile.forEach(([x, y], i) => i ? c.lineTo(x, y) : c.moveTo(x, y)); c.lineTo(375, 230); c.lineTo(-375, 230); c.closePath(); c.clip();
-    for (let j = 0; j < 8; j++) s.path(Array.from({ length: 76 }, (_, i) => { const x = -375 + i * 10; return [x, 80 + j * 22 + seed(j + 50) * 7 + Math.sin(x * (.013 + seed(j) * .008) + j) * 3] as [number, number]; }), undefined, '#c2bfb514', 2);
-    for (let i = 0; i < 650; i++) { const x = (seed(i + 500) - .5) * 750, y = 60 + seed(i + 1400) * 180; s.ellipse(x, y, 1 + i % 3 * .35, .7, i % 2 ? '#282f3955' : '#d0c5b327'); }
-    if (progress > .345 && progress < .59) { const u = (progress - .345) / .245; c.globalAlpha = 1 - u; c.strokeStyle = '#eecb8e'; c.lineWidth = 2; c.beginPath(); c.arc(0, 64, 12 + u * r * 2, 0, Math.PI); c.stroke(); }
-    c.restore();
-    if (progress < .345) {
-      // Accelerated presentation time, not a calibrated free-fall trajectory.
-      const u = Math.min(1, progress / .345), travel = .12*u + .88*u*u*u;
-      const radius = 5 + settings.diameter / 35, x = 0, y = -180 + (244-radius)*travel;
-      // Short motion echoes communicate speed without suggesting an atmospheric flame.
-      for (let i = 3; i >= 1; i--) {
-        const earlier = Math.max(0, u - i*.018);
-        const ey = -180 + (244-radius)*(.12*earlier + .88*earlier**3);
-        c.save(); c.globalAlpha = u*u*.12/i;
-        s.ellipse(x, ey, radius*.8, radius*.85, '#c0beb9'); c.restore();
-      }
-      s.path([[0, -195], [0, 64]], undefined, '#b2c1d22e', 1);
-      c.save(); c.translate(x, y); c.rotate(u * 2); const points = Array.from({ length: 10 }, (_, i) => { const a = i / 10 * Math.PI * 2, rr = radius * (1 + .16 * Math.sin(i * 8)); return [Math.cos(a) * rr, Math.sin(a) * rr] as [number, number]; }); s.path(points, '#a5a19a', '#e1dacf', 1.5); c.restore();
-      s.label(t('撞击体'), -150, -178, { anchor: [x - 5, y - 8], width: 170 });
+  private baseXZ: Float32Array;
+  private colorAttribute: THREE.BufferAttribute;
+  private ejectaParameters: Float32Array;
+
+  constructor(private canvas: HTMLCanvasElement) {
+    this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
+    this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    this.renderer.outputColorSpace = THREE.SRGBColorSpace;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 1.08;
+    this.scene.background = new THREE.Color(0x07111d);
+    this.scene.fog = new THREE.FogExp2(0x07111d, .028);
+
+    this.camera.position.set(7.4, 5.25, 7.7);
+    this.camera.lookAt(0, -.25, 0);
+    this.controls = new OrbitControls(this.camera, canvas);
+    this.controls.enablePan = false;
+    this.controls.enableDamping = true;
+    this.controls.dampingFactor = .08;
+    this.controls.minDistance = 6.5;
+    this.controls.maxDistance = 16;
+    this.controls.minPolarAngle = .3;
+    this.controls.maxPolarAngle = Math.PI * .47;
+    this.controls.target.set(0, -.25, 0);
+    this.controls.addEventListener('change', () => this.render());
+
+    this.scene.add(new THREE.HemisphereLight(0xa9c9e2, 0x1a2028, 1.25));
+    const sun = new THREE.DirectionalLight(0xfff2d2, 3.7);
+    sun.position.set(-6, 8, 4);
+    this.scene.add(sun);
+    const fill = new THREE.DirectionalLight(0x8db5dc, .52);
+    fill.position.set(6, 2, -5);
+    this.scene.add(fill);
+
+    this.addStars();
+
+    this.terrainGeometry.rotateX(-Math.PI / 2);
+    const terrainPosition = this.terrainGeometry.getAttribute('position') as THREE.BufferAttribute;
+    this.baseXZ = new Float32Array(terrainPosition.count * 2);
+    const colors = new Float32Array(terrainPosition.count * 3);
+    for (let i = 0; i < terrainPosition.count; i++) {
+      this.baseXZ[i * 2] = terrainPosition.getX(i);
+      this.baseXZ[i * 2 + 1] = terrainPosition.getZ(i);
+      colors.set([.47, .48, .47], i * 3);
     }
-    if (progress >= .345 && progress < .40) {
-      const u = (progress - .345) / .055, flash = c.createRadialGradient(0, 64, 0, 0, 64, 10 + u * 95);
-      flash.addColorStop(0, `rgba(255,237,174,${(1 - u) * .85})`); flash.addColorStop(1, '#f7b46b00'); s.ellipse(0, 64, 10 + u * 95, 10 + u * 95, flash);
+    this.colorAttribute = new THREE.BufferAttribute(colors, 3);
+    this.terrainGeometry.setAttribute('color', this.colorAttribute);
+    this.terrainMesh = new THREE.Mesh(this.terrainGeometry, this.terrainMaterial);
+    this.scene.add(this.terrainMesh);
+
+    const meteorGeometry = new THREE.DodecahedronGeometry(.23, 1);
+    const meteorPositions = meteorGeometry.getAttribute('position') as THREE.BufferAttribute;
+    for (let i = 0; i < meteorPositions.count; i++) {
+      const scale = .82 + seed(i + 70) * .32;
+      meteorPositions.setXYZ(i, meteorPositions.getX(i) * scale, meteorPositions.getY(i) * scale, meteorPositions.getZ(i) * scale);
     }
-    if (progress > .36) {
-      const time = (progress - .36) * 72, size = Math.min(1.8, energyRatio(settings) ** .055);
-      for (let i = 0; i < 200; i++) {
-        const born = i % 11 * .17, age = time - born; if (age < 0) continue;
-        const angle = (.25 + ((i * 37) % 101) / 101 * .9), speed = (12 + i % 29 * .42) * size, [dx, height] = ejectaPosition(speed, angle, age);
-        const x = (i % 2 ? 1 : -1) * dx * .37, y = 64 - height * .37;
-        if (height < 0 || y > terrain(x, progress, settings)) continue;
-        s.ellipse(x, y, 1.2 + i % 4 * .45, 1.1 + i % 3 * .4, i % 5 ? '#c7c7bf' : '#e1c698');
-      }
+    meteorGeometry.computeVertexNormals();
+    this.meteor = new THREE.Mesh(meteorGeometry, new THREE.MeshStandardMaterial({ color: 0x999893, roughness: .91 }));
+    this.scene.add(this.meteor);
+
+    const trailGeometry = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(), new THREE.Vector3()]);
+    this.trail = new THREE.Line(trailGeometry, new THREE.LineBasicMaterial({ color: 0xb8d2e5, transparent: true, opacity: .24 }));
+    this.scene.add(this.trail);
+
+    this.flash = new THREE.Mesh(
+      new THREE.SphereGeometry(1, 30, 18),
+      new THREE.MeshBasicMaterial({ color: 0xffd582, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false }),
+    );
+    this.flash.position.set(0, .08, 0);
+    this.scene.add(this.flash);
+    this.flashLight = new THREE.PointLight(0xffb85d, 0, 8, 2);
+    this.flashLight.position.set(0, .45, 0);
+    this.scene.add(this.flashLight);
+
+    this.shockwave = new THREE.Mesh(
+      new THREE.RingGeometry(.86, 1, 96),
+      new THREE.MeshBasicMaterial({ color: 0xf2d19a, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }),
+    );
+    this.shockwave.rotation.x = -Math.PI / 2;
+    this.shockwave.position.y = .08;
+    this.scene.add(this.shockwave);
+
+    const ejectaGeometry = new THREE.BufferGeometry();
+    ejectaGeometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(EJECTA_COUNT * 3), 3));
+    const ejectaColors = new Float32Array(EJECTA_COUNT * 3);
+    this.ejectaParameters = new Float32Array(EJECTA_COUNT * 5);
+    const cool = new THREE.Color();
+    for (let i = 0; i < EJECTA_COUNT; i++) {
+      const angle = seed(i + 10) * Math.PI * 2;
+      const launch = .65 + seed(i + 400) * 1.75;
+      const elevation = .42 + seed(i + 810) * .55;
+      const delay = seed(i + 1220) * .75;
+      const side = .86 + seed(i + 1600) * .32;
+      this.ejectaParameters.set([angle, launch, elevation, delay, side], i * 5);
+      cool.set(i % 9 === 0 ? 0xd5b77f : i % 3 ? 0xb6b6ae : 0x777b7b);
+      ejectaColors.set([cool.r, cool.g, cool.b], i * 3);
     }
-    if (progress > .55) {
-      const a = smooth(.55, .72, progress); c.save(); c.globalAlpha = a;
-      s.label(t('抬高的坑缘'), -215, 0, { anchor: [-r * 1.04, terrain(-r * 1.04, progress, settings)], width: 190 });
-      s.label(t('碗状坑底'), 190, 165, { anchor: [0, terrain(0, progress, settings)], width: 160 });
-      c.restore();
-    }
-    if (progress > .8) {
-      c.save(); c.globalAlpha = smooth(.8, .9, progress);
-      const x = 245, y = -104; const rim=c.createRadialGradient(x-14,y-17,5,x,y,63);rim.addColorStop(0,'#292e34');rim.addColorStop(.52,'#404951');rim.addColorStop(.7,'#9b9c94');rim.addColorStop(.83,'#727970');rim.addColorStop(1,'#3c4751');s.path(rimPath(x,y,63,57,.4),rim,'#919994',1);
-      for (let i = 0; i < 28; i++) { const a = i * 2.4 + seed(i) * .25, rr = 49 + seed(i + 64) * 30; s.path([[x + Math.cos(a) * 36, y + Math.sin(a) * 33], [x + Math.cos(a) * rr, y + Math.sin(a) * rr * .9]], undefined, '#ced0c260', 1.5); }
-      const bowl=c.createLinearGradient(x-35,y-30,x+35,y+30);bowl.addColorStop(0,'#202934');bowl.addColorStop(.6,'#5c6365');bowl.addColorStop(1,'#a5a69b');s.path(rimPath(x,y,37,33,1.1),bowl,'#c0c3b7',.7);
-      for (let i = 0; i < 31; i++) { const a = seed(i + 802) * Math.PI * 2, r = 30 + seed(i + 170) * 32, xx = x + Math.cos(a) * r, yy = y + Math.sin(a) * r * .9, size = .6 + seed(i + 129) * 1.9; s.path([[xx - size, yy], [xx - size * .4, yy - size], [xx + size, yy + .2], [xx, yy + size]], '#aaa99b', '#30384255', .4); } s.label(t('俯视坑形'), x, -180, { width: 170 }); c.restore();
-    }
-    s.label(t('月面剖面'), -275, 183, { width: 170 }); s.end();
+    ejectaGeometry.setAttribute('color', new THREE.BufferAttribute(ejectaColors, 3));
+    this.ejecta = new THREE.Points(ejectaGeometry, new THREE.PointsMaterial({
+      size: .075,
+      sizeAttenuation: true,
+      transparent: true,
+      opacity: .9,
+      vertexColors: true,
+      depthWrite: false,
+    }));
+    this.scene.add(this.ejecta);
+
+    this.observer = new ResizeObserver(() => this.resize());
+    this.observer.observe(canvas.parentElement ?? canvas);
+    this.resize();
   }
-  dispose() { this.surface.dispose(); }
+
+  private addStars() {
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(540 * 3);
+    for (let i = 0; i < 540; i++) {
+      const angle = seed(i + 5) * Math.PI * 2;
+      const radius = 18 + seed(i + 600) * 24;
+      positions.set([
+        Math.cos(angle) * radius,
+        4 + seed(i + 1100) * 18,
+        Math.sin(angle) * radius,
+      ], i * 3);
+    }
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    this.scene.add(new THREE.Points(geometry, new THREE.PointsMaterial({ color: 0xc9dded, size: .055, transparent: true, opacity: .65, depthWrite: false })));
+  }
+
+  private resize() {
+    const rect = this.canvas.getBoundingClientRect();
+    const width = Math.max(1, Math.round(rect.width));
+    const height = Math.max(1, Math.round(rect.height));
+    this.renderer.setSize(width, height, false);
+    this.camera.aspect = width / height;
+    this.camera.updateProjectionMatrix();
+    this.render();
+  }
+
+  private updateTerrain(progress: number, settings: Settings) {
+    const position = this.terrainGeometry.getAttribute('position') as THREE.BufferAttribute;
+    const radius = craterScale(settings);
+    const formation = smooth(.35, .67, progress);
+    const color = new THREE.Color();
+    for (let i = 0; i < position.count; i++) {
+      const x = this.baseXZ[i * 2];
+      const z = this.baseXZ[i * 2 + 1];
+      const u = Math.hypot(x, z) / radius;
+      position.setY(i, terrainHeight(x, z, progress, settings));
+      const grain = baseRelief(x * 2.6, z * 2.6) * .55;
+      const bowlShade = formation * Math.max(0, 1 - u) * .16;
+      const ejectaLight = formation * Math.exp(-(((u - 1.35) / .62) ** 2)) * .1;
+      color.setRGB(.47 + grain - bowlShade + ejectaLight, .475 + grain - bowlShade + ejectaLight * .94, .46 + grain - bowlShade + ejectaLight * .78);
+      this.colorAttribute.setXYZ(i, color.r, color.g, color.b);
+    }
+    position.needsUpdate = true;
+    this.colorAttribute.needsUpdate = true;
+    this.terrainGeometry.computeVertexNormals();
+  }
+
+  private updateMeteor(progress: number, settings: Settings) {
+    const beforeImpact = progress < .35;
+    const u = Math.min(1, progress / .35);
+    const travel = .08 * u + .92 * u * u * u;
+    const start = new THREE.Vector3(2.1, 3.65, 2.25);
+    const end = new THREE.Vector3(0, .11, 0);
+    this.meteor.position.lerpVectors(start, end, travel);
+    const size = .66 + Math.min(1.1, settings.diameter / 250);
+    this.meteor.scale.setScalar(size);
+    this.meteor.rotation.set(progress * 8.2, progress * 5.7, progress * 3.8);
+    this.meteor.visible = beforeImpact;
+    this.trail.visible = beforeImpact && progress > .025;
+    if (this.trail.visible) {
+      const line = this.trail.geometry.getAttribute('position') as THREE.BufferAttribute;
+      const back = this.meteor.position.clone().lerp(start, .18);
+      line.setXYZ(0, back.x, back.y, back.z);
+      line.setXYZ(1, this.meteor.position.x, this.meteor.position.y, this.meteor.position.z);
+      line.needsUpdate = true;
+    }
+  }
+
+  private updateImpact(progress: number, settings: Settings) {
+    const impact = Math.max(0, Math.min(1, (progress - .35) / .075));
+    const fade = 1 - impact;
+    const flashMaterial = this.flash.material as THREE.MeshBasicMaterial;
+    this.flash.visible = impact > 0 && impact < 1;
+    this.flash.scale.setScalar(.12 + impact * 1.45);
+    flashMaterial.opacity = fade * .8;
+    this.flashLight.intensity = fade * 24;
+    const shock = Math.max(0, Math.min(1, (progress - .355) / .18));
+    const shockMaterial = this.shockwave.material as THREE.MeshBasicMaterial;
+    this.shockwave.visible = shock > 0 && shock < 1;
+    this.shockwave.scale.setScalar(.12 + shock * craterScale(settings) * 1.15);
+    this.shockwave.position.y = terrainHeight(0, 0, progress, settings) + .055;
+    shockMaterial.opacity = (1 - shock) * .58;
+  }
+
+  private updateEjecta(progress: number, settings: Settings) {
+    const position = this.ejecta.geometry.getAttribute('position') as THREE.BufferAttribute;
+    const radiusScale = craterScale(settings) / 1.48;
+    const time = Math.max(0, (progress - .36) * 9.5);
+    let visible = 0;
+    for (let i = 0; i < EJECTA_COUNT; i++) {
+      const offset = i * 5;
+      const angle = this.ejectaParameters[offset];
+      const launch = this.ejectaParameters[offset + 1] * (.84 + radiusScale * .16);
+      const elevation = this.ejectaParameters[offset + 2];
+      const delay = this.ejectaParameters[offset + 3];
+      const side = this.ejectaParameters[offset + 4];
+      const age = time - delay;
+      if (age <= 0) {
+        position.setXYZ(i, 0, -20, 0);
+        continue;
+      }
+      const radial = launch * Math.cos(elevation) * age * side;
+      const x = Math.cos(angle) * radial;
+      const z = Math.sin(angle) * radial;
+      const y = .1 + launch * Math.sin(elevation) * age - .62 * age * age;
+      const ground = Math.abs(x) < TERRAIN_WIDTH / 2 && Math.abs(z) < TERRAIN_DEPTH / 2
+        ? terrainHeight(x, z, progress, settings)
+        : -1;
+      if (y <= ground || radial > 8.5) position.setXYZ(i, x, ground - .12, z);
+      else { position.setXYZ(i, x, y, z); visible++; }
+    }
+    position.needsUpdate = true;
+    this.ejecta.visible = progress > .355 && visible > 0;
+  }
+
+  draw(progress: number, settings: Settings, _view = 'overview') {
+    this.progress = progress;
+    this.settings = settings;
+    this.updateTerrain(progress, settings);
+    this.updateMeteor(progress, settings);
+    this.updateImpact(progress, settings);
+    this.updateEjecta(progress, settings);
+    this.controls.update();
+    this.render();
+  }
+
+  private render() {
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  dispose() {
+    this.observer.disconnect();
+    this.controls.dispose();
+    this.terrainGeometry.dispose();
+    this.terrainMaterial.dispose();
+    this.meteor.geometry.dispose();
+    (this.meteor.material as THREE.Material).dispose();
+    this.trail.geometry.dispose();
+    (this.trail.material as THREE.Material).dispose();
+    this.flash.geometry.dispose();
+    (this.flash.material as THREE.Material).dispose();
+    this.shockwave.geometry.dispose();
+    (this.shockwave.material as THREE.Material).dispose();
+    this.ejecta.geometry.dispose();
+    (this.ejecta.material as THREE.Material).dispose();
+    this.renderer.dispose();
+  }
 }

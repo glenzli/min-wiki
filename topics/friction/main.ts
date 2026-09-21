@@ -1,46 +1,73 @@
-import { mountReadingMode } from '../../src/platform/readingMode.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
-import { translateDocument } from '../../src/platform/i18n.ts';
-import { t } from './i18n.ts';
 import './style.css';
-translateDocument(t);
-mountTopicNavigation('friction');
-const el = (id: string) => document.getElementById(id)!;
-const value = (id: string) => Number((el(id) as HTMLInputElement).value);
-import { sliding, energyState } from './model.ts';
-const lanes=[{name:t('木板'),mu:.12,fill:'woodgrain'},{name:t('布面'),mu:.28,fill:'cloth'},{name:t('砂纸'),mu:.5,fill:'rough'}];
-let frame=0,playing=false;
-const motion=matchMedia('(prefers-reduced-motion: reduce)');
-function stop(){cancelAnimationFrame(frame);frame=0;playing=false;el('finish').textContent=t('播放滑动');}
-function finish(){
- if(playing){stop();return;}
- stop();const input=el('time') as HTMLInputElement;
- if(matchMedia('(prefers-reduced-motion: reduce)').matches){input.value='4';update();return;}
- playing=true;el('finish').textContent=t('暂停');
- const from=Number(input.value)>=4?0:Number(input.value),start=performance.now();
- const tick=(now:number)=>{const time=Math.min(4,from+(now-start)/1000);input.value=String(time);update();if(time<4)frame=requestAnimationFrame(tick);else stop();};
- frame=requestAnimationFrame(tick);
+import './project.css';
+import '../car-safety/panel.css';
+import carPanel from '../car-safety/panel.html?raw';
+import carContact from '../car-safety/contact.html?raw';
+import {t} from './i18n.ts';
+import {t as carT} from '../car-safety/i18n.ts';
+import {translateDocument,languageHref} from '../../src/platform/i18n.ts';
+import {mountTopicNavigation} from '../../src/platform/topicNavigation.ts';
+import {mountReadingMode} from '../../src/platform/readingMode.ts';
+import {mountSlidingStudy,type SlidingSnapshot} from './slidingStudy.ts';
+import {mountContactStudy} from './contactStudy.ts';
+import {mountCarStudy,type BrakingSnapshot} from '../car-safety/study.ts';
+import {readMotionChapter,motionHref,type MotionChapter,type ContactMode} from './projectModel.ts';
+const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;
+el('car-host').innerHTML=carPanel;el('contact-mechanism').innerHTML=carContact;
+translateDocument(t);translateDocument(carT);
+let chapter=readMotionChapter(location.search),contactMode:ContactMode='rolling';
+let slide:SlidingSnapshot={initialSpeed:2.5,speed:2.5,time:0,kinetic:1,transferred:0,lane:0};
+let car:BrakingSnapshot={initialSpeed:30/3.6,speed:30/3.6,time:0,phase:'reaction',kinetic:1,transferred:0};
+function reference(){
+ const showEnergy=chapter==='slide'||chapter==='braking';
+ el('motion-energy-reference').hidden=!showEnergy;
+ const s=chapter==='slide'?slide:car;
+ el('motion-kinetic').style.width=s.kinetic*100+'%';el('motion-transferred').style.width=s.transferred*100+'%';
+ el('motion-k-value').textContent=Math.round(s.kinetic*100)+'%';el('motion-t-value').textContent=Math.round(s.transferred*100)+'%';
+ if(chapter==='slide'){
+  el('motion-question').textContent=t('谁让选中接触窗口的木块慢下来？');
+  el('motion-force').textContent=slide.speed>0?t('地面对向右滑的木块施加向左的滑动摩擦力；松手后没有持续推力。'):t('木块已经停下。没有水平外力使它重新滑动，模型也不会让它倒滑。');
+  el('motion-boundary').textContent=t('滑块模型：{{time}} 秒；初速 {{initial}} 米/秒，当前 {{speed}} 米/秒。能量条以同一初始平动动能为 100%。',{time:slide.time.toFixed(2),initial:slide.initialSpeed.toFixed(1),speed:slide.speed.toFixed(1)});
+  el('motion-bridge').textContent=t('接下来换成轮子：物体向前移动时，接触处一定在滑动吗？');
+ }else if(chapter==='contact'){
+  el('motion-question').textContent=t('两个接触处，摩擦做着不同的事');
+  el('motion-force').textContent=contactMode==='rolling'?t('正常制动且轮胎未滑时：路面静摩擦给车辆向后的外力，刹车片与盘的滑动摩擦给车轮制动力矩。'):t('锁止轮滑行时：胎面与路面有相对滑动；这与正常滚动接触是不同条件。');
+  el('motion-boundary').textContent=t('本章只显示接触运动约束与作用位置，不计算车轮受力大小、热量或停止距离。');
+  el('motion-bridge').textContent=t('接下来把时间加回来：发现情况后，车不会立即开始减速，更不会立即停住。');
+ }else if(chapter==='braking'){
+  el('motion-question').textContent=t('同一辆车：先反应，再制动，最后停下');
+  el('motion-force').textContent=car.phase==='reaction'?t('反应段尚未施加本例的制动力，速度和动能保持不变。'):car.phase==='braking'?t('制动段中，路面给车辆向后的作用；本例平动动能持续减少，常规制动主要向内能转移。'):t('车辆速度已为零，停车距离不会再增加。');
+  el('motion-boundary').textContent=t('停车模型：{{time}} 秒；当前 {{speed}} 米/秒。能量条仅追踪平动动能，省略车轮转动；它不是刹车温度或实测损耗。',{time:car.time.toFixed(2),speed:car.speed.toFixed(1)});
+  el('motion-bridge').textContent=t('下一步仍是这次减速的问题：车受到作用后，乘员又通过什么真实作用一起慢下来？');
+ }else{
+  el('motion-question').textContent=t('车慢下来，不代表身体会自动一起慢下来');
+  el('motion-force').textContent=t('约束系统对身体施加真实外力，让乘员随车减速。惯性不是另一个向前推身体的力。');
+  el('motion-boundary').textContent=t('这里是合身约束和作用部位示意，不计算人体受力、伤害概率或碰撞成绩；前章汽车实验的状态保留。');
+  el('motion-bridge').textContent=t('把尺度从车换到人，规律仍成立：改变运动需要作用；儿童还需要符合身材与产品条件的保护。');
+ }
 }
-motion.addEventListener('change',stop);
-document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});window.addEventListener('pagehide',stop);
-function update(){const time=value('time'),speed=value('speed');el('tracks').innerHTML=lanes.map((lane,i)=>{const state=sliding(speed,lane.mu,time),y=115+i*105,x=180+state.distance*150,arrow=state.speed>0&&time>0?`<path d="M${x+5} ${y+18}h-${lane.mu*100+12}l9-6m-9 6l9 6" stroke="#bc6451" stroke-width="4" fill="none"/>`:'';return `<rect x="130" y="${y+21}" width="705" height="38" rx="8" fill="url(#${lane.fill})"/><path d="M133 ${y+58}H831" stroke="#536f64" opacity=".25" stroke-width="3"/><path d="M180 ${y+48}H${x}" stroke="#fff9df" stroke-width="5" opacity=".85"/><ellipse cx="${x+7}" cy="${y+24}" rx="42" ry="6" fill="#65563e" opacity=".2"/><text x="32" y="${y+23}">${lane.name}</text><path d="M170 ${y-48}V${y+59}" stroke="#68867e" stroke-dasharray="4 5"/><g transform="translate(${x} ${y-34})"><rect x="-29" width="72" height="55" rx="9" fill="url(#block-light)" stroke="#a97842" stroke-width="3"/><path d="M-23 46V10Q-23 5-18 5H36" fill="none" stroke="#ffe9bd" stroke-width="2" opacity=".7"/><path d="M-21 12Q7 5 35 12M-21 43Q7 35 35 42" fill="none" stroke="#b07c40" opacity=".28"/><circle cx="-5" cy="19" r="3" fill="#503d2a"/><circle cx="19" cy="19" r="3" fill="#503d2a"/><path d="M0 34Q8 40 16 34" fill="none" stroke="#503d2a" stroke-width="3"/></g>${arrow}<text x="830" y="${y-25}" text-anchor="end" class="small">${state.speed===0?t('已停下'):t('还在滑')}</text>`;}).join('');el('readout').textContent=lanes.every(l=>sliding(speed,l.mu,time).speed===0)?t('三块木头都停了：同样快出发时，本例摩擦较小的路滑得更远。'):t('时间 {{time}} 秒 · 出发速度 {{speed}} 米/秒。三条路同时比较。',{time:time.toFixed(2),speed:speed.toFixed(1)});renderDetail(time,speed);}
-el('contact-lane').addEventListener('change',()=>{update();});
-el('time').addEventListener('input',()=>{stop();update();});el('speed').addEventListener('input',()=>{stop();(el('time') as HTMLInputElement).value='0';update();});el('finish').addEventListener('click',finish);el('reset').addEventListener('click',()=>{stop();(el('time') as HTMLInputElement).value='0';update();});update();
-
-mountReadingMode('details:not(.references)');
-
-function renderDetail(time:number,speed:number){
- const selected=Number((el('contact-lane') as HTMLSelectElement).value),lane=lanes[selected]!,state=energyState(speed,lane.mu,time);
- const shift=state.distance*30;
- const lower=Array.from({length:31},(_,i)=>`${i?'L':'M'}${40+i*27} ${143-((i*19)%17)}`).join('');
- const upper=Array.from({length:36},(_,i)=>`L${-120+i*29} ${117+((i*13)%14)}`).reverse().join('');
- el('contact-detail').innerHTML=`<defs><linearGradient id="contact-heat" x2="0" y2="1"><stop stop-color="#df9a57"/><stop offset="1" stop-color="#be8054"/></linearGradient><clipPath id="contact-window"><rect x="32" y="35" width="836" height="187" rx="18"/></clipPath></defs><rect width="900" height="250" fill="#eef4eb"/><g clip-path="url(#contact-window)"><path d="${lower}V230H30Z" fill="url(#${lane.fill})" stroke="#547369" stroke-width="2"/><g transform="translate(${shift} 0)"><path d="M-120 40H930V110${upper}Z" fill="#dfb477" stroke="#ac8456" stroke-width="2"/>${Array.from({length:17},(_,i)=>`<path d="M${i*61-100} 64q24-8 45 0m-39 19q17-5 30 0" stroke="#ae814c" opacity=".28" fill="none"/>`).join('')}</g>${Array.from({length:10},(_,i)=>`<ellipse cx="${99+i*78}" cy="133" rx="${6+selected*2}" ry="3" fill="#d88245" opacity="${.16+state.transferred*.48}"/>`).join('')}<rect x="32" y="120" width="836" height="44" fill="url(#contact-heat)" opacity="${state.transferred*.1}"/>${state.speed>0&&time>0?`<path d="M440 91h${state.speed*30}l-9-5m9 5l-9 5" stroke="#29838e" stroke-width="4" fill="none"/><path d="M460 172h-${22+lane.mu*85}l9-5m-9 5l9 5" stroke="#bd6e49" stroke-width="4" fill="none"/>`:''}</g>`;
- el('energy-bars').replaceChildren(...lanes.map(l=>{
-  const e=energyState(speed,l.mu,time),row=document.createElement('div');row.className='energy-row';
-  const label=document.createElement('span');label.textContent=l.name;
-  const bar=document.createElement('div');bar.className='energy-bar';bar.setAttribute('role','img');bar.setAttribute('aria-label',t('运动能量 {{n}}%；已转移 {{m}}%',{n:Math.round(e.kinetic*100),m:Math.round(e.transferred*100)}));
-  const kinetic=document.createElement('i');kinetic.style.width=`${e.kinetic*100}%`;kinetic.className='kinetic';
-  const transferred=document.createElement('i');transferred.style.width=`${e.transferred*100}%`;transferred.className='transferred';
-  bar.append(kinetic,transferred);row.append(label,bar);return row;
- }));
+const slider=mountSlidingStudy(s=>{slide=s;if(chapter==='slide')reference();});
+const contact=mountContactStudy(mode=>{contactMode=mode;if(chapter==='contact')reference();});
+const carStudy=mountCarStudy(s=>{car=s;if(chapter==='braking')reference();});
+const chapters:MotionChapter[]=['slide','contact','braking','restraints'];
+function select(next:MotionChapter,push=false){
+ chapter=next;slider.setActive(next==='slide');contact.setActive(next==='contact');
+ // Braking and restraint controls share one finite car study, but changing either chapter pauses it.
+ carStudy.setActive(false);
+ for(const item of chapters)el(item+'-panel').hidden=item!==next;
+ el('car-notes').hidden=next!=='braking'&&next!=='restraints';
+ document.querySelectorAll<HTMLButtonElement>('[data-motion-chapter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.motionChapter===next)));
+ el<HTMLButtonElement>('motion-back').disabled=next==='slide';el<HTMLButtonElement>('motion-next').disabled=next==='restraints';
+ if(push)history.pushState(null,'',languageHref(motionHref(next,location.search,location.hash)));reference();
 }
+document.querySelectorAll<HTMLButtonElement>('[data-motion-chapter]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.motionChapter as MotionChapter,true)));
+el('motion-back').addEventListener('click',()=>select(chapters[Math.max(0,chapters.indexOf(chapter)-1)]!,true));
+el('motion-next').addEventListener('click',()=>select(chapters[Math.min(3,chapters.indexOf(chapter)+1)]!,true));
+function restoreAnchor(){
+ let id:string;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}if(!id)return;
+ const targetId=(chapter==='braking'||chapter==='restraints')&&!id.startsWith('car-')?'car-'+id:id;
+ const target=Array.from(document.querySelectorAll<HTMLElement>('[id]')).find(node=>node.getAttribute('id')===targetId);
+ target?.closest?.('details')?.setAttribute('open','');target?.scrollIntoView?.({block:'start'});
+}
+window.addEventListener('popstate',()=>{select(readMotionChapter(location.search));restoreAnchor();});window.addEventListener('hashchange',restoreAnchor);
+select(chapter);mountReadingMode('details:not(.references)');mountTopicNavigation('friction');restoreAnchor();

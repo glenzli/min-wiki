@@ -12,8 +12,8 @@ const defs=(prefix:string)=>`<defs>
 <pattern id="${prefix}-grain" width="19" height="17" patternUnits="userSpaceOnUse"><circle cx="3" cy="5" r=".7" fill="#a99175" opacity=".13"/><circle cx="12" cy="13" r=".6" fill="#fff" opacity=".65"/></pattern>
 </defs>`;
 const spiral=()=>Array.from({length:130},(_,i)=>{const a=i/129*Math.PI*4.65,r=64*(1-i/145);return `${i?'L':'M'}${(532+Math.cos(a)*r).toFixed(2)} ${(273+Math.sin(a)*r*.78).toFixed(2)}`;}).join(' ');
-export function createHearingScene(){
- document.getElementById('ear-art')!.innerHTML=defs('ear')+`<rect width="720" height="470" fill="url(#ear-paper)"/><rect width="720" height="470" fill="url(#ear-grain)"/>
+export function createHearingScene(root: HTMLElement = document.body){
+ root.querySelector('#h-ear-art')!.innerHTML=defs('ear')+`<rect width="720" height="470" fill="url(#ear-paper)"/><rect width="720" height="470" fill="url(#ear-grain)"/>
  <path d="M254 67C337 30 498 46 651 117L679 412H220Z" fill="#e6d6bb" opacity=".45"/>
  <path d="M100 95C52 108 48 180 60 234C68 270 55 305 80 343C98 375 116 393 142 375C167 356 160 325 178 306C208 278 205 233 196 192C192 141 153 86 100 95Z" fill="url(#ear-skin)" stroke="#b98470" stroke-width="2" filter="url(#ear-shadow)"/>
  <path d="M111 114C75 121 73 175 80 215Q108 195 119 223C137 260 96 272 110 301Q125 326 147 300C178 268 185 224 174 182C167 142 146 113 111 114Z" fill="#d39f89" stroke="#f6d6bf" stroke-width="7"/>
@@ -39,7 +39,7 @@ export function createHearingScene(){
  ${text(652,189,t('向脑'),'middle')}${text(641,421,t('概念纵切面'),'end')}`;
  const tinyCells=Array.from({length:18},(_,i)=>`<g id="strip-cell-${i}" transform="translate(${88+i*24} 231)"><path d="M-4-8Q-8-21-4-29H4Q9-15 4-8Z" fill="url(#micro-cell)" stroke="#8fa088" stroke-width=".8"/><path d="M-3-29v-7m3 7v-9m3 9v-11" stroke="#758b76" stroke-width="1.3"/></g>`).join('');
  const support=Array.from({length:5},(_,i)=>{const x=136+i*73;return `<path d="M${x} 742q17-15 29 0l16 122q-11 18-48 0Z" fill="url(#micro-cell)" fill-opacity=".53" stroke="#9baa8c" stroke-width="1"/><ellipse cx="${x+14}" cy="829" rx="7" ry="11" fill="#9f9c89" opacity=".4"/>`;}).join('');
- document.getElementById('detail-art')!.innerHTML=defs('micro')+`<rect width="600" height="980" fill="url(#micro-paper)"/><rect width="600" height="980" fill="url(#micro-grain)"/>
+ root.querySelector('#h-detail-art')!.innerHTML=defs('micro')+`<rect width="600" height="980" fill="url(#micro-paper)"/><rect width="600" height="980" fill="url(#micro-grain)"/>
  ${text(32,43,t('把耳蜗轻轻展开'))}${text(32,69,t('位置表示相对高低音，不标真实频率'))}
  <path d="M54 127Q254 109 546 96V226Q315 208 54 222Z" fill="url(#micro-fluid)" stroke="#9cae9f" stroke-width="2"/><path d="M54 235Q315 221 546 245V332Q330 347 54 291Z" fill="#c0d2c7" stroke="#9cae9f" stroke-width="2"/>
  <path d="M54 226Q306 213 546 233" stroke="#f4e8bb" stroke-width="13" fill="none"/>
@@ -63,25 +63,25 @@ export function createHearingScene(){
  ${text(355,758,t('感觉细胞'))}${text(354,808,t('支持细胞'))}${text(433,912,t('神经'),'end')}
  ${text(32,956,t('尺度再次放大；略去盖膜和其他细胞'))}`;
 }
-function trace(id:string,p:number){const path=document.getElementById(id) as unknown as SVGPathElement;path.setAttribute('stroke-dashoffset',String(1-p));return path.getPointAtLength(path.getTotalLength()*p);}
-export function drawHearing(progress:number,pitch:number,strength:number){
+function trace(root:HTMLElement,id:string,p:number){const path=root.querySelector(`#${id}`) as unknown as SVGPathElement;path.setAttribute('stroke-dashoffset',String(1-p));return path.getPointAtLength(path.getTotalLength()*p);}
+export function drawHearing(progress:number,pitch:number,strength:number,root:HTMLElement = document.body){
  const s=hearingSequence(progress,pitch,strength);
- document.getElementById('eardrum')!.setAttribute('transform',`translate(${s.deflection*3} 0)`);
- document.getElementById('ossicles')!.setAttribute('transform',`rotate(${s.deflection*2.3} 369 201)`);
- document.getElementById('air-waves')!.innerHTML=Array.from({length:5},(_,i)=>{const x=36+i*54+40*s.air;return `<path d="M${x} ${239-9*s.amplitude}q${5*s.amplitude} 17 0 ${34*s.amplitude}" opacity="${.15+.7*Math.sin(Math.PI*s.air)}"/>`;}).join('');
- document.getElementById('cochlea-glow')!.setAttribute('opacity',String(.18*Math.sin(Math.PI*s.cochlea)));
- const pt=trace('nerve-route',s.nerve);const dot=document.getElementById('nerve-dot')!;dot.setAttribute('cx',String(pt.x));dot.setAttribute('cy',String(pt.y));dot.setAttribute('opacity',s.nerve>0&&s.nerve<1?'1':'0');
- document.getElementById('brain-mark')!.setAttribute('opacity',String(s.brain));
+ root.querySelector('#eardrum')!.setAttribute('transform',`translate(${s.deflection*3} 0)`);
+ root.querySelector('#ossicles')!.setAttribute('transform',`rotate(${s.deflection*2.3} 369 201)`);
+ root.querySelector('#air-waves')!.innerHTML=Array.from({length:5},(_,i)=>{const x=36+i*54+40*s.air;return `<path d="M${x} ${239-9*s.amplitude}q${5*s.amplitude} 17 0 ${34*s.amplitude}" opacity="${.15+.7*Math.sin(Math.PI*s.air)}"/>`;}).join('');
+ root.querySelector('#cochlea-glow')!.setAttribute('opacity',String(.18*Math.sin(Math.PI*s.cochlea)));
+ const pt=trace(root,'nerve-route',s.nerve);const dot=root.querySelector('#nerve-dot')!;dot.setAttribute('cx',String(pt.x));dot.setAttribute('cy',String(pt.y));dot.setAttribute('opacity',s.nerve>0&&s.nerve<1?'1':'0');
+ root.querySelector('#brain-mark')!.setAttribute('opacity',String(s.brain));
  const wave=Array.from({length:91},(_,i)=>{const x=i/90;return `${i?'L':'M'}${54+x*492} ${230+membraneDisplacement(x,progress,pitch,strength)*24}`;}).join(' ');
- document.getElementById('basilar-membrane')!.setAttribute('d',wave);
+ root.querySelector('#basilar-membrane')!.setAttribute('d',wave);
  const envelope=Array.from({length:91},(_,i)=>{const x=i/90;return `L${54+x*492} ${230-40*Math.exp(-Math.pow((x-s.place)/.18,2))*s.amplitude}`;}).join(' ');
- document.getElementById('response-envelope')!.setAttribute('d',`M54 230${envelope}L546 230Z`);
- const marker=54+s.place*492;document.getElementById('place-marker')!.setAttribute('d',`M${marker} 309V346`);document.getElementById('place-circle')!.setAttribute('cx',String(marker));
- for(let i=0;i<18;i++){const x=88+i*24;document.getElementById(`strip-cell-${i}`)!.setAttribute('transform',`translate(${x} ${239+membraneDisplacement((x-54)/492,progress,pitch,strength)*24})`);}
- document.getElementById('hair-cell')!.setAttribute('transform',`translate(0 ${s.deflection*2})`);
- document.getElementById('stereocilia')!.setAttribute('transform',`skewX(${-s.deflection*10}) translate(${Math.tan(s.deflection*10*Math.PI/180)*704} 0)`);
- document.getElementById('flow-arrows')!.setAttribute('transform',`translate(${s.deflection*8} 0)`);
- document.getElementById('ions')!.innerHTML=Array.from({length:5},(_,i)=>{const phase=Math.max(0,Math.min(1,s.transduction*2-i*.2));return `<circle cx="${259+i*7}" cy="${614+phase*89}" r="3" opacity="${Math.sin(Math.PI*phase)}"/>`;}).join('');
- trace('cell-signal',s.nerve);document.getElementById('vesicles')!.setAttribute('transform',`translate(0 ${5*Math.sin(Math.PI*s.transduction)})`);
+ root.querySelector('#response-envelope')!.setAttribute('d',`M54 230${envelope}L546 230Z`);
+ const marker=54+s.place*492;root.querySelector('#place-marker')!.setAttribute('d',`M${marker} 309V346`);root.querySelector('#place-circle')!.setAttribute('cx',String(marker));
+ for(let i=0;i<18;i++){const x=88+i*24;root.querySelector(`#strip-cell-${i}`)!.setAttribute('transform',`translate(${x} ${239+membraneDisplacement((x-54)/492,progress,pitch,strength)*24})`);}
+ root.querySelector('#hair-cell')!.setAttribute('transform',`translate(0 ${s.deflection*2})`);
+ root.querySelector('#stereocilia')!.setAttribute('transform',`skewX(${-s.deflection*10}) translate(${Math.tan(s.deflection*10*Math.PI/180)*704} 0)`);
+ root.querySelector('#flow-arrows')!.setAttribute('transform',`translate(${s.deflection*8} 0)`);
+ root.querySelector('#ions')!.innerHTML=Array.from({length:5},(_,i)=>{const phase=Math.max(0,Math.min(1,s.transduction*2-i*.2));return `<circle cx="${259+i*7}" cy="${614+phase*89}" r="3" opacity="${Math.sin(Math.PI*phase)}"/>`;}).join('');
+ trace(root,'cell-signal',s.nerve);root.querySelector('#vesicles')!.setAttribute('transform',`translate(0 ${5*Math.sin(Math.PI*s.transduction)})`);
  return s;
 }

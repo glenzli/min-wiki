@@ -83,5 +83,6 @@
   "噬菌体复制过程进度": "Progress through phage replication",
   "不是所有病毒都靠宿主裂解释放，也不是每次感染都会杀死细胞。有些噬菌体的遗传信息可以在细菌中保留而不立即产生子代。本页没有演示这些途径；内部防御用浅色标记概括，不代表所有防御的形状或机制；数量、距离和阶段划分仅为教学。": "Not all viruses leave by lysing their hosts, and not every infection kills the cell. Some phages retain their genetic information in bacteria without immediately producing offspring. Those pathways are not shown. Pale markers summarize internal defense, not the shapes or mechanisms of every defense system. Counts, distances and stage divisions are teaching choices.",
   "放大附着处，可以看到保护 DNA 的蛋白质头部、包在尾管外面的尾鞘，以及帮助结合表面的尾纤维。收缩尾鞘以 T4 类噬菌体为结构参考，不是所有噬菌体都有这种装置。细菌外膜、薄细胞壁与细胞膜被分层画出，层间距离经过放大；细菌的 DNA 没有被细胞核包住。": "The attachment close-up shows the protein head protecting DNA, a sheath around the tail tube, and fibers that help bind the surface. The contractile sheath follows a T4-like structural example; not every phage has one. The bacterial outer membrane, thin cell wall and cytoplasmic membrane are drawn as separate layers with exaggerated spacing. Bacterial DNA is not enclosed in a nucleus.",
-  "原始结构研究：尾鞘收缩，中央尾管不随之缩短。": "Original structural research: the sheath contracts while the central tube does not shorten."
+  "原始结构研究：尾鞘收缩，中央尾管不随之缩短。": "Original structural research: the sheath contracts while the central tube does not shorten.",
+  "认识病毒 →": "Explore viruses →"
 }

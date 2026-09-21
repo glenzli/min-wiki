@@ -41,6 +41,8 @@ export class TdeSimulation {
   private fromCamera = new THREE.Vector3();
   private fromTarget = new THREE.Vector3();
   private fromUp = new THREE.Vector3();
+  private prewarmTimer = 0;
+  get gasCount() { return this.stellarGas.model?.count ?? 0; }
 
   constructor(container: HTMLElement) {
     this.container = container;
@@ -73,6 +75,12 @@ export class TdeSimulation {
     this.initGuides();
     this.initDebris();
     this.library = new DisruptionLibrary();
+    // The two disruptive routes used to be prepared only after each click.
+    // Warm both in the worker after first paint so route switching reuses them.
+    this.prewarmTimer = window.setTimeout(() => {
+      if (this.disposed) return;
+      for (const route of ['tidal', 'deep']) void this.library.get(route).catch(() => {});
+    }, 280);
     this.gasStatus = 'ready';
     this.absorbed = 0;
     this.scenario = '';
@@ -259,6 +267,7 @@ export class TdeSimulation {
   }
   dispose() {
     this.disposed = true;
+    window.clearTimeout(this.prewarmTimer);
     this.library.dispose();
     this.stellarGas.emission.dispose();
     this.resizeObserver.disconnect(); this.controls.dispose();

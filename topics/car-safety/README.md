@@ -1,14 +1,16 @@
 # 刹车了，为什么还要系安全带？ / If the car brakes, why wear a seat belt?
 
-独立双语儿童百科 `/topics/car-safety/`，支持 `?lang=zh` 和 `?lang=en`、共享导航及阅读主题。专题以自然材质的汽车剖面封面、带金属质感的刹车放大图、成人安全带位置示意和座椅方向示意串起四个问题：停车需要多远、刹车与轮胎怎样合作、身体为何还会继续运动、儿童保护为何必须合身。
+已并入 `/topics/friction/`「运动、摩擦与停下来」。旧 `/topics/car-safety/` 跳转到 `?chapter=braking`，安全带/座椅类锚点进入 `restraints`；语言、部署前缀、query 与 hash 保留。停车模型、金属刹车放大图、成人安全带和儿童座椅图例仍由此目录拥有。
+
+Now part of the motion-and-stopping journey. The legacy entry redirects to the braking chapter, or restraints for belt/seat anchors. Scientific models and detailed illustrations remain here, with no iframe and no replacement by a generic friction model.
 
 ## 交互与职责
 
 - `model.ts`：反应后匀减速的一维停车模型。初速 20–60 km/h；反应时间固定 1 秒；干燥/湿滑情景减速度分别为 6/3 m/s²。反应距离与制动距离分开，停止后不倒退。参数为教学设定，不代表实测路面。路线标尺一致，汽车图标尺寸为便于观看而放大。
-- `main.ts`：速度/路面改变后回到起点；用户启动约 8 秒教学播放，可暂停、重播、拖动时间。遵循减少动态效果偏好（播放按钮直接展示终点，仍可手动拖动）；页面隐藏和离开暂停并取消动画，往返缓存恢复保留进度，不自动续播，无音频。实时朗读只在三个物理阶段改变时更新，避免每帧刷屏。
-- `index.html` / `style.css`：独立 SVG 示意与分段讲解；肩带/腰带按钮高亮正确部位；后向、前向、增高座椅按钮同时改变图形、方向、解释。示意中车头向右，车辆座位靠背在左侧；后向儿童座椅壳体靠背在右侧，前向壳体靠背在左侧。
+- `study.ts`：速度/路面改变后回到起点；用户启动约 8 秒教学播放，可暂停、重播、拖动时间。遵循减少动态效果偏好（播放按钮直接展示终点，仍可手动拖动）；页面隐藏、切章和离开暂停并取消动画，往返缓存恢复保留进度，不自动续播，无音频。实时朗读只在三个物理阶段改变时更新，避免每帧刷屏。原 `main.ts` 仅为兼容跳转。
+- `panel.html` / `contact.html` / `panel.css`：有局部样式的 SVG 示意与分段讲解，按车轮接触、停车、约束职责放入主路径；肩带/腰带按钮高亮正确部位；后向、前向、增高座椅按钮同时改变图形、方向、解释。示意中车头向右，车辆座位靠背在左侧；后向儿童座椅壳体靠背在右侧，前向壳体靠背在左侧。暂停会取消高亮插值并保留所选部位。
 - `locales/en.json` / `i18n.ts`：正文、动态数值、图形说明与边界使用同一翻译机制。封面 `alt` 在专题中显式翻译。
-- `catalog-entry.json` / `catalog-en.json`：交给父任务统一接入目录的工程分类元数据与英文文案，不自行修改共享登记。
+- `catalog-entry.json` / `catalog-en.json`：与主入口同为物理分类，保持 `parentTopic: friction`；共享目录由主任务登记。
 
 ## 科学与安全边界
 
@@ -20,7 +22,7 @@ The topic connects stopping distance, brake and tire contacts, inertia, snug adu
 
 ## Sources / 资料
 
-Reviewed live on 2026-09-12. The source pages are also linked in the topic.
+NHTSA seat/seat-belt and CDC prevention pages rechecked live on 2026-09-20; original mechanics references remain linked in the expanded page. The CDC page is dated April 23, 2026. No product-size limits or numerical safety percentages are invented.
 
 - [NHTSA: Car Seats and Booster Seats](https://www.nhtsa.gov/vehicle-safety/car-seats-and-booster-seats) — rear-facing limits, forward harness stage, belt positioning.
 - [CDC: Preventing Child Passenger Injury](https://www.cdc.gov/child-passenger-safety/prevention/index.html) — back-seat use, body fit, limits and transitions; no injury percentages copied into the lesson.

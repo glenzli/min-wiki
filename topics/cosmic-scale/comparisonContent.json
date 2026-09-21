@@ -1,0 +1,148 @@
+{
+  "zh": {
+    "chapters": [
+      "01 · 比一比谁更大",
+      "02 · 看看住在哪里",
+      "03 · 真正拉远看看"
+    ],
+    "names": [
+      "地球",
+      "木星",
+      "太阳",
+      "大角星",
+      "心宿二"
+    ],
+    "kinds": [
+      "岩石行星",
+      "气态巨行星",
+      "恒星",
+      "红巨星",
+      "红超巨星"
+    ],
+    "pairs": [
+      "地球与木星",
+      "木星与太阳",
+      "太阳与大角星",
+      "大角星与心宿二"
+    ],
+    "pairTitles": [
+      "地球很大，木星更大",
+      "太阳把木星也比小了",
+      "太阳也不是最大的恒星",
+      "还有比大角星大得多的恒星"
+    ],
+    "pairNotes": [
+      "木星的直径约是地球的 11 倍。这里比的是直径，不是质量，也不是两者之间的距离。",
+      "太阳的直径约是木星的 10 倍。木星仍是刚才那一颗，只是两者一起用了更小的显示比例。",
+      "大角星是红巨星，直径约是太阳的 25 倍。它的大小是估计值；恒星大小不同，这不是“最大恒星”排行榜。",
+      "心宿二的直径估计约是太阳的 700 倍，大约能横着排下 28 颗大角星。这是大小估计，不是“宇宙最大恒星”的排名。"
+    ],
+    "boundary": "圆盘直径使用同一比例；摆放间隔只为比较。恒星的颗粒、暗斑与辉光是静态表面示意，并非观测照片；颜色和纹理尺度不用于测量。",
+    "scrub": "拖动，把更大的请进来",
+    "previous": "回看上一组",
+    "next": "看看更大的",
+    "goHomes": "这些天体住在哪里？ →",
+    "goZoom": "带着这些参照，真正拉远 →",
+    "homeNames": [
+      "太阳系",
+      "银河系",
+      "本星系群"
+    ],
+    "homeTitles": [
+      "太阳和行星组成一个系统",
+      "太阳系在银河的恒星盘里",
+      "银河也是星系群的一员"
+    ],
+    "homeNotes": [
+      "太阳是恒星，地球和其他行星绕着它运行。太阳系的范围包含很长的轨道距离，不能把它当作一颗更大的球。",
+      "银河里有许多恒星，太阳只是其中一颗。黄色标记指出太阳系所在的大致区域；这个标记不代表太阳系的真实大小。",
+      "保留刚才的银河，再找到仙女座星系和三角座星系。本星系群还有更多成员；这里仅展示三个代表。"
+    ],
+    "homeBoundary": "包含关系示意 · 星盘、旋臂、中央亮区与尘埃暗带为结构重建，并非从银河外拍摄的照片。形状、朝向、间距和标记不用于测量；星系不是实心球。",
+    "homeAnchor": [
+      "黄色：太阳；蓝色：地球",
+      "黄色：太阳系所在区域",
+      "黄色外框：刚才的银河"
+    ],
+    "andromeda": "仙女座星系",
+    "triangulum": "三角座星系",
+    "diameter": "直径约",
+    "source": "数值依据 ↗",
+    "compareAlt": "同一比例的天体直径对比，拖动时同一天体连续缩小",
+    "homeAlt": "从太阳系到银河和本星系群的包含关系示意",
+    "credit": "地球与木星地图：Solar System Scope · CC BY 4.0"
+  },
+  "en": {
+    "chapters": [
+      "01 · Compare sizes",
+      "02 · Where do they belong?",
+      "03 · Zoom out for real"
+    ],
+    "names": [
+      "Earth",
+      "Jupiter",
+      "Sun",
+      "Arcturus",
+      "Antares"
+    ],
+    "kinds": [
+      "Rocky planet",
+      "Gas giant",
+      "Star",
+      "Red giant",
+      "Red supergiant"
+    ],
+    "pairs": [
+      "Earth & Jupiter",
+      "Jupiter & Sun",
+      "Sun & Arcturus",
+      "Arcturus & Antares"
+    ],
+    "pairTitles": [
+      "Jupiter makes Earth look small",
+      "The Sun makes Jupiter look small",
+      "The Sun is not the largest star",
+      "Even Arcturus can look small"
+    ],
+    "pairNotes": [
+      "Jupiter is about 11 Earth diameters across. We compare diameter, not mass or the distance between them.",
+      "The Sun is about 10 Jupiter diameters across. This is the same Jupiter, with both objects now drawn at a smaller common scale.",
+      "Arcturus is a red giant about 25 Sun diameters across. Its size is estimated; this is not a ranking of the largest stars.",
+      "Antares is estimated at about 700 Sun diameters, or roughly 28 Arcturus diameters across. This is an approximate size, not a ranking of the largest stars."
+    ],
+    "boundary": "Disk diameters share one scale; spacing is for comparison. Stellar granules, dark spots and glow are static surface illustrations, not observed photographs; colors and texture sizes are not measurements.",
+    "scrub": "Drag to bring in a larger body",
+    "previous": "Previous pair",
+    "next": "Meet a larger body",
+    "goHomes": "Where do these bodies belong? →",
+    "goZoom": "Now zoom out with these references →",
+    "homeNames": [
+      "Solar System",
+      "Milky Way",
+      "Local Group"
+    ],
+    "homeTitles": [
+      "The Sun and planets form a system",
+      "Our Solar System belongs to the galactic disk",
+      "The Milky Way belongs to a group"
+    ],
+    "homeNotes": [
+      "The Sun is a star, with Earth and other planets orbiting it. The system spans large orbital distances; it is not a bigger solid ball.",
+      "The galaxy contains many stars; our Sun is one of them. The yellow marker indicates our approximate region, not the Solar System’s physical size.",
+      "Keep track of the Milky Way, then find Andromeda and Triangulum. The Local Group has many more members; these are only three representatives."
+    ],
+    "homeBoundary": "Membership illustration · Disks, spiral arms, central light and dust lanes are structural reconstructions, not photographs taken outside the Milky Way. Shapes, orientations, spacing and markers are not measurements; galaxies are not solid balls.",
+    "homeAnchor": [
+      "Yellow: Sun; blue: Earth",
+      "Yellow: our Solar System’s region",
+      "Yellow outline: the same Milky Way"
+    ],
+    "andromeda": "Andromeda",
+    "triangulum": "Triangulum",
+    "diameter": "Approx. diameter",
+    "source": "Size reference ↗",
+    "compareAlt": "Body diameters on one common scale; retained bodies shrink continuously as you drag",
+    "homeAlt": "Membership from the Solar System to the Milky Way and Local Group",
+    "credit": "Earth and Jupiter maps: Solar System Scope · CC BY 4.0"
+  }
+}

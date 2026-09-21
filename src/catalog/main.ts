@@ -33,7 +33,7 @@ function $(id: string): HTMLElement {
   return element;
 }
 let filters=readFilters(location.search,catalog), page=readPage(location.search);
-const published=catalog.topics.filter(topic=>topic.status==='published');
+const published=findTopics(catalog);
 const covers=import.meta.glob<string>(['../../topics/*/cover.svg','../../topics/*/cover-480.webp','../../topics/*/cover-960.webp'], { query: '?url', import: 'default', eager: true });
 mountThemeControl($('catalog-appearance'));
 mountLanguageControl($('catalog-appearance'));

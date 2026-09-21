@@ -108,8 +108,14 @@ export class PlanetView3D {
   setTexture(world: World, pixels: ImageData) {
     if (this.textures.has(world.id)) return;
     const texture = new THREE.DataTexture(pixels.data.slice(), pixels.width, pixels.height, THREE.RGBAFormat);
-    texture.colorSpace = THREE.SRGBColorSpace; texture.minFilter = THREE.LinearFilter; texture.magFilter = THREE.LinearFilter;
-    texture.wrapS = THREE.RepeatWrapping; texture.flipY = true; texture.needsUpdate = true; this.textures.set(world.id, texture);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    // Trilinear mip sampling prevents fine procedural markings from popping as
+    // the globe turns away from the camera. The texture itself stays immutable.
+    texture.minFilter = THREE.LinearMipmapLinearFilter; texture.magFilter = THREE.LinearFilter;
+    texture.generateMipmaps = true;
+    texture.anisotropy = Math.min(8, this.renderer.capabilities.getMaxAnisotropy());
+    texture.wrapS = THREE.RepeatWrapping; texture.wrapT = THREE.ClampToEdgeWrapping;
+    texture.flipY = true; texture.needsUpdate = true; this.textures.set(world.id, texture);
     if (this.world?.id === world.id) { this.updateTexture(); this.render(); }
   }
   private updateTexture() {

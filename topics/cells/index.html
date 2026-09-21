@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="走进小小的细胞，比较动物、叶肉植物和细菌的细胞，点一点膜、DNA、细胞核和叶绿体。">
-  <title>细胞是什么？</title>
+  <title>细胞：结构与分工</title>
   <script type="module" src="/src/platform/theme.ts"></script>
 </head>
 <body>
@@ -11,17 +11,19 @@
   <main>
     <header class="hero">
       <p class="eyebrow">微小世界 · 先认识细胞</p>
-      <h1>细胞是什么？</h1>
-      <p class="intro">你、树叶和细菌，都与细胞有关。它们很小，却能在里面进行许多生命活动。</p>
+      <h1>细胞：结构与分工</h1>
+      <p class="intro">先认识细胞的边界和内部，再追踪物质与能量，最后看不同形状怎样帮助细胞一起工作。</p>
     </header>
+    <nav class="chapter-path" aria-label="细胞的三条观察线"><button data-chapter="structure" aria-pressed="true">01 · 找到结构</button><button data-chapter="energy" aria-pressed="false">02 · 看它工作</button><button data-chapter="work" aria-pressed="false">03 · 比较分工</button></nav>
+    <p id="chapter-question" class="chapter-question"></p>
     <section class="lab" aria-label="细胞观察台">
-      <div class="lab-top"><div><p class="step">01 / 换一个观察对象</p><h2>看起来不同，都是细胞</h2></div><span class="tiny-note">示意图 · 不按真实比例</span></div>
-      <div class="cell-tabs" role="group" aria-label="选择细胞">
+      <div class="lab-top" id="structure-heading"><div><p class="step">01 / 换一个观察对象</p><h2>看起来不同，都是细胞</h2></div><span class="tiny-note">示意图 · 不按真实比例</span></div>
+      <div class="cell-tabs" id="cell-options" role="group" aria-label="选择细胞">
         <button type="button" data-cell="animal" aria-pressed="true"><span class="tab-dot animal"></span><span>动物细胞</span></button>
         <button type="button" data-cell="plant" aria-pressed="false"><span class="tab-dot plant"></span><span>叶肉植物细胞</span></button>
         <button type="button" data-cell="bacterium" aria-pressed="false"><span class="tab-dot bacterium"></span><span>细菌细胞</span></button>
       </div>
-      <div class="workbench">
+      <div class="workbench" id="structure-panel">
         <div class="specimen">
           <div class="specimen-top"><span id="specimen-name">动物细胞</span><span id="specimen-tag">身体里的一个小单位</span></div>
           <div class="view-controls" role="group" aria-label="观察细胞的方式"><button type="button" data-surface="0" aria-pressed="true">内部剖视</button><button type="button" data-surface="1" aria-pressed="false">半透明外观</button></div>
@@ -42,11 +44,11 @@
           <div class="explanation" aria-live="polite" aria-atomic="true"><span id="presence" class="presence">这三种都有</span><h3 id="part-title">细胞膜</h3><p id="part-description">细胞膜把里面与外面分开，也调节一些物质的进出。它不是一堵完全封死的墙。</p><p id="part-question" class="question">换着看：三种细胞的边界形状一样吗？</p></div>
         </aside>
       </div>
-      <div class="detail-row">
+      <div class="detail-row" id="structure-detail">
         <div class="detail-window"><p id="detail-title">放大观察：细胞膜</p><svg id="detail-scene" viewBox="0 0 720 490" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="同一细胞的局部放大"></svg><div class="scene-symbols" data-respiration-key><span><i class="reaction-symbol" aria-hidden="true"></i>虚线圈：线粒体</span><span><i class="amino-symbol" aria-hidden="true"></i>绿圆点：氨基酸</span><span><i class="atp-symbol" aria-hidden="true"></i>金色标记：ATP</span></div></div>
         <div class="detail-context"><p class="step">同一处，再靠近一点</p><h3>薄薄的膜，丰富的内部</h3><p id="detail-note">虚线框与放大窗口对应同一处；膜和细胞器都经过教学放大。</p><p>点选结构，观察窗口会移到那里。不存在的结构不会凭空出现，窗口会退回整体对照。</p></div>
       </div>
-      <section class="behavior" aria-labelledby="process-heading">
+      <section class="behavior" id="energy-panel" aria-labelledby="process-heading" hidden>
         <p class="step">03 / 细胞也在做事情</p><h2 id="process-heading">从营养物质中释放可用能量</h2><p id="process-description"></p>
         <div class="process-tabs" role="group" aria-label="选择细胞行为"><button type="button" data-process="respiration" aria-pressed="true">利用营养物质</button><button type="button" data-process="photosynthesis" aria-pressed="false">用光制造糖</button></div>
         <p id="plant-reminder" class="plant-reminder" hidden>植物也呼吸，白天和夜晚都可以。这里分开观察两种过程，不表示它们只能轮流发生。</p>
@@ -57,14 +59,24 @@
         </div></div>
         <p id="process-boundary" class="small-note">糖先在细胞质中分解，分解后的物质继续进入线粒体；氧参与后续反应。圈出的区域把多步过程合在一起看，并不是糖和氧碰一下就变成能量。路径不是固定管道，符号数量不代表分子比例。</p>
       </section>
+      <section id="specialization-panel" class="specialization" aria-label="细胞与组织的分工" hidden>
+        <div class="lab-top"><div><p class="step">形状、位置与工作</p><h2 id="work-subject"></h2></div><span class="tiny-note">不同样本 · 分别放大</span></div>
+        <div id="work-options" class="work-options" role="group" aria-label="比较六种工作"></div>
+        <div class="work-layout"><div class="work-illustration"><svg id="work-scene" viewBox="0 0 980 550" xmlns="http://www.w3.org/2000/svg" role="img" data-labels="false"></svg><div class="work-view"><button id="work-zoom" aria-pressed="false">靠近工作的位置</button><button id="work-labels" aria-pressed="false">显示画面标注</button></div></div><aside class="work-explanation"><p id="work-observe"></p><div aria-live="polite"><h3 id="work-phase"></h3><p id="work-story"></p></div></aside></div>
+        <div class="work-playback"><button id="work-play" aria-pressed="false">观察这项工作</button><button id="work-reset">从头观察</button><label for="work-progress">过程进度</label><output id="work-percent" for="work-progress">0%</output><input id="work-progress" type="range" min="0" max="1000" value="0"></div>
+        <p id="work-bridge" class="chapter-bridge"></p><button id="compare-energy">比较组织细胞怎样利用能量</button>
+        <details id="work-science" class="sources"><summary>这个样本的科学说明与来源</summary><div id="work-science-content"></div></details>
+      </section>
+      <div class="chapter-next"><p id="next-question"></p><button id="chapter-next">继续观察</button></div>
     </section>
+    <nav class="cell-connections" aria-label="从细胞继续探索"><a href="/topics/leaf-colors/?view=inside">从叶肉细胞回到一片叶子 →</a><a href="/topics/bacteria/">一个细菌怎样独立生活？ →</a><a href="/topics/viruses/">病毒为什么需要细胞？ →</a></nav>
     <section class="takeaways" aria-label="三个小发现">
       <article><span class="discovery-number">01</span><h2>细胞不是空袋子</h2><p>膜里面有细胞质，还有许多参与生命活动的结构。这里仅挑出几个来观察。</p></article>
       <article><span class="discovery-number">02</span><h2>细菌也是细胞</h2><p>一个细菌通常就是一个细胞。它有 DNA，却没有膜包围的细胞核。你和树则由许多细胞组成。</p></article>
       <article><span class="discovery-number">03</span><h2>病毒不是细胞</h2><p>病毒有遗传物质，但没有完整的细胞结构。它必须借助合适的宿主细胞，才能制造更多病毒。</p></article>
     </section>
     <section class="field-note"><div class="note-symbol" aria-hidden="true">?</div><div><h2>为什么肉眼看不到大多数细胞？</h2><p>因为它们太小了。显微镜帮助我们观察细胞；颜色也常来自染色或后期标记。图中明亮的颜色是为了让结构容易分辨。</p></div></section>
-    <details class="sources"><summary>给大人的说明与来源</summary>
+    <details class="sources" id="sources"><summary>给大人的说明与来源</summary>
       <p>这是结构与两种行为的示意，不是显微照片或完整细胞模型。形状、颜色、大小和数量都做了教学简化，三种图并不等比例。动物细胞采用有细胞核的典型例子；成熟的哺乳动物红细胞等有特殊情况。植物图只代表有叶绿体的叶肉细胞，许多根部细胞没有叶绿体。</p>
       <p>DNA 在动物与植物细胞中主要位于细胞核，线粒体也有少量 DNA，植物的叶绿体也有自己的 DNA；图中仅突出主要 DNA。细菌图突出没有膜包围的核，不代表所有细菌都有一样的形状。植物和大多数细菌在细胞膜外还有细胞壁。叶肉细胞中央浅色区表示液泡。</p>
       <p>这里把细胞称为生命活动的基本单位，不讨论病毒是否算生命的定义争议。页面没有根据外观判断微生物是否有害，也不提供疾病或用药建议。</p>

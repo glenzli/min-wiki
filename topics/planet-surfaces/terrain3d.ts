@@ -3,10 +3,28 @@ import { noise, field, smooth, type World } from './model.ts';
 import { palette, seed } from './surfacePainter.ts';
 
 /** Representative relief, never a measured map. One stable height field feeds meshes and rocks. */
-export function terrainHeight(world: World, x: number, z: number): number {
+export function terrainHeight(world: World, x: number, z: number, region = ''): number {
   const n = noise(x * 21, z * 21), fine = noise(x * 77 + 47, z * 77);
+  if (region === 'polar') {
+    let h=1.7;
+    for(const [cx,cz,r] of [[0,0,5],[-9,-6,3.5],[8,-9,4],[-12,7,4.5],[11,7,3],[1,-17,3.5],[3,15,4.5]]) {
+      const d=Math.hypot(x-cx!,z-cz!)/r!;
+      h-=1.15*Math.exp(-Math.pow(d,6));
+    }
+    return h+n*.04+fine*.01;
+  }
+  if (region === 'ice') {
+    const channels = Math.sin(x * .24 + Math.sin(z * .18) * 1.6);
+    const pits = smooth(.22, .6, noise(x * 5 + 140, z * 5 - 17));
+    return .5 + smooth(-.28, .3, channels) * 1.4 - pits * .42 + n * .05 + fine * .014;
+  }
+  if (region === 'desert') return .25 + (.5 + .5 * Math.sin(x * 1.1 + Math.sin(z * .19) * 2)) ** 2 * .8 + n * .07;
+  if (region === 'canyon') {
+    const wall = smooth(2, 6, Math.abs(x + Math.sin(z * .13) * 1.6));
+    return .22 + wall * 2.8 + n * .13 + fine * .035;
+  }
   if (!world.surface) return .28 * n + fine * .1;
-  if (world.id === 'mercury') {
+  if ((world.id === 'mercury' || world.id === 'moon')) {
     let h = n * .55 + fine * .12;
     for (const [cx, cz, r] of [[0, 0, 3.7], [-6, -4, 2.1], [6, 6, 2.4]]) {
       const radius = Math.hypot(x - cx!, z - cz!) / r!;
@@ -19,20 +37,32 @@ export function terrainHeight(world: World, x: number, z: number): number {
     const plateau = smooth(-.03, .21, noise(x * 9 - 360, z * 9 + 27));
     return plateau * 2.1 + n * .3 + fine * .09 + (1 - plateau) * Math.sin(x * 2.5 + z * 1.1 + n * 4) * .1;
   }
-  if (world.id === 'earth') return n * 2.1 + x * .09 + z * .025;
+  if (world.id === 'earth') {
+    const coast = noise(x * 7 - 31, z * 7 + 44) * 2.3 + x * .055;
+    return coast + n * .18 + fine * .025;
+  }
   if (world.id === 'titan') return n * .82 + x * .07 + z * .022;
   return n * .65 + fine * .17 - .28;
 }
 
-function groundColor(world: World, x: number, z: number, height: number) {
+function groundColor(world: World, x: number, z: number, height: number, region = '') {
   const base = palette[world.id].rock;
   const c = new THREE.Color().setRGB(base[0] / 255, base[1] / 255, base[2] / 255, THREE.SRGBColorSpace);
   const grain = field(x * 13, z * 13), n = noise(x * 45, z * 45);
-  if (!world.surface) {
+  if (region === 'polar' || region === 'ice') {
+    c.set(region === 'polar' ? '#deddd0' : '#d7e8ed');
+    c.lerp(new THREE.Color(region === 'polar' ? '#927b68' : '#91aeb9'), (1 - smooth(.5, 1.05, height)) * .72);
+    c.multiplyScalar(.93 + .07 * Math.sin(height * 26));
+  } else if (region === 'desert') c.set('#c59f63');
+  else if (!world.surface) {
     const bands = .5 + .28 * Math.sin(z * 1.6 + n * 3);
     c.lerp(new THREE.Color(world.id === 'neptune' ? '#bfdde2' : '#f0dbc0'), bands);
   } else if (world.id === 'mars') c.lerp(new THREE.Color('#694c3f'), (Math.sin(height * 19) * .5 + .5) * .21);
-  else if (world.id === 'earth') c.lerp(new THREE.Color('#476147'), smooth(.1, .7, height) * .74);
+  else if (world.id === 'earth') {
+    c.lerp(new THREE.Color('#344d31'), smooth(.05, .3, height) * .82);
+    c.lerp(new THREE.Color('#c1b087'), (1 - smooth(.025, .12, Math.abs(height - .065))) * .72);
+    c.lerp(new THREE.Color('#7f8473'), smooth(.8, 1.8, height) * .65);
+  }
   else if (world.id === 'cancri') c.set('#473833');
   return c.multiplyScalar(.88 + n * .16 + grain * .06);
 }
@@ -41,14 +71,14 @@ export class TerrainPatch {
   readonly group = new THREE.Group();
   private water?: THREE.Mesh<THREE.PlaneGeometry, THREE.MeshStandardMaterial>;
   private cloudSheets: THREE.Mesh[] = [];
-  constructor(readonly world: World) {
+  constructor(readonly world: World, readonly region = '') {
     const geometry = new THREE.PlaneGeometry(70, 70, 240, 240);
     geometry.rotateX(-Math.PI / 2);
     const vertices = geometry.getAttribute('position'), colors = new Float32Array(vertices.count * 3);
     for (let i = 0; i < vertices.count; i++) {
-      const x = vertices.getX(i), z = vertices.getZ(i), h = terrainHeight(world, x, z);
-      vertices.setY(i, h);
-      const color = groundColor(world, x, z, h); color.toArray(colors, i * 3);
+      const x = vertices.getX(i), z = vertices.getZ(i), h = terrainHeight(world, x, z, region);
+      vertices.setY(i, h - (region ? (x*x+z*z)*.003/2 : 0));
+      const color = groundColor(world, x, z, h, region); color.toArray(colors, i * 3);
     }
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3)); geometry.computeVertexNormals();
     const grain = new Uint8Array(128 * 128 * 4);
@@ -60,10 +90,18 @@ export class TerrainPatch {
     bump.wrapS = bump.wrapT = THREE.RepeatWrapping; bump.repeat.set(20, 20);
     bump.minFilter = bump.magFilter = THREE.LinearFilter; bump.needsUpdate = true;
     const ground = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: .95, metalness: 0,
-      bumpMap: world.surface ? bump : null, bumpScale: world.surface ? .037 : 0 }));
+      bumpMap: world.surface ? bump : null, bumpScale: world.surface ? (region ? .00004 : .037) : 0 }));
     if (!world.surface) bump.dispose();
+    if (region) {
+      ground.material.transparent = true;
+      ground.material.onBeforeCompile = shader => {
+        shader.vertexShader = 'varying vec2 patchUV;\n' + shader.vertexShader.replace('#include <uv_vertex>', '#include <uv_vertex>\npatchUV=uv;');
+        shader.fragmentShader = 'varying vec2 patchUV;\n' + shader.fragmentShader.replace('#include <alphatest_fragment>', 'diffuseColor.a *= 1.0-smoothstep(.36,.5,length(patchUV-.5));\n#include <alphatest_fragment>');
+      };
+      ground.material.userData.feather = true;
+    }
     this.group.add(ground);
-    if (world.liquid !== 'none') {
+    if (world.liquid !== 'none' && !['desert','ice','polar'].includes(region)) {
       const molten = world.liquid === 'silicate-melt';
       const liquid = new THREE.MeshStandardMaterial({ color: molten ? '#f67425' : world.id === 'earth' ? '#357c8c' : '#53503c',
         emissive: molten ? '#ed5010' : '#000000', emissiveIntensity: molten ? .75 : 0,
@@ -82,16 +120,17 @@ export class TerrainPatch {
         liquid.map = melt; liquid.emissiveMap = melt; liquid.color.set('#ffffff'); liquid.emissive.set('#ff9c36'); liquid.emissiveIntensity = .35;
       }
       const plane = new THREE.PlaneGeometry(70, 70, 96, 96); plane.rotateX(-Math.PI / 2);
+      liquid.userData.liquid = true;
       this.water = new THREE.Mesh(plane, liquid); this.water.position.y = .04; this.group.add(this.water);
     }
     if (!world.surface) this.addClouds();
-    else if (world.liquid === 'none') {
+    else if (world.liquid === 'none' && !['polar','ice'].includes(region)) {
       const rockGeometry = new THREE.DodecahedronGeometry(1, 0);
-      const rockMaterial = new THREE.MeshStandardMaterial({ color: world.id === 'mercury' ? '#888278' : world.id === 'mars' ? '#735547' : '#87704c', roughness: 1 });
+      const rockMaterial = new THREE.MeshStandardMaterial({ color: (world.id === 'mercury' || world.id === 'moon') ? '#888278' : world.id === 'mars' ? '#735547' : '#87704c', roughness: 1 });
       const rocks = new THREE.InstancedMesh(rockGeometry, rockMaterial, 145), dummy = new THREE.Object3D();
       for (let i = 0; i < 145; i++) {
         const x = (seed(i + 17) - .5) * 37, z = (seed(i + 216) - .5) * 37, r = .035 + seed(i + 87) ** 5 * .34;
-        dummy.position.set(x, terrainHeight(world, x, z) + r * .23, z);
+        dummy.position.set(x, terrainHeight(world, x, z, region) - (region ? (x*x+z*z)*.003/2 : 0) + r * .23, z);
         dummy.rotation.set(seed(i) * 2, seed(i + 9) * 6, seed(i + 21)); dummy.scale.set(r * 1.2, r * .63, r);
         dummy.updateMatrix(); rocks.setMatrixAt(i, dummy.matrix);
       }

@@ -3,6 +3,8 @@ import { clamp, smooth, orbitAt, randomSource, SCENARIOS, MU, HORIZON_RADIUS } f
 export const STAR_RADIUS = 2.5;
 export const DISRUPTION_START = 0.18;
 export const CORE_RELEASE_END = 0.46;
+export const DISPLAY_PARTICLES = 8000;
+export const DISPLAY_FRAMES = 480;
 
 export const DISRUPTION_END = 1.2;
 
@@ -45,7 +47,7 @@ export class StellarDisruption {
   focus!: Float32Array<ArrayBuffer>;
   schedule!: { progress: number; dt: number; star: ReturnType<typeof orbitAt>; }[][];
 
-  constructor({ count = 12000, frames = 750, seed = 1947, scenario = 'tidal' } = {}) {
+  constructor({ count = DISPLAY_PARTICLES, frames = DISPLAY_FRAMES, seed = 1947, scenario = 'tidal' } = {}) {
     if (!SCENARIOS[scenario]?.disrupted) throw new Error('Expected a disruption scenario');
     this.scenario = scenario;
     this.count = count;

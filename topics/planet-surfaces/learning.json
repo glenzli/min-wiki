@@ -2,8 +2,8 @@
   "version": 1,
   "topicId": "planet-surfaces",
   "zh": {
-    "question": "从表面一直往中心走，八个世界里面会遇到同样的东西吗？哪些是证据支持的结构，哪些还只是可能的模型？",
-    "observe": "先拖动三维近景，从不同角度看同一处地形；再切到整球剖面，从外层逐步移到正中心。暂停并点选各层，比较地球的固态地幔、液态外核与固态内核，再看木星的混合中心。最后比较土卫六与巨蟹座 55 e，并读候选结构的证据说明。",
+    "question": "一颗很热的远方行星，亮着的地方一定就是已经拍到的岩浆海吗？",
+    "observe": "拖动巨蟹座 55 e 的代表性近景，再切到剖面，点选各层并检查候选解释。通过太阳系入口比较地球、巨行星与土卫六，分清岩石、水、甲烷与推断中的熔融表面。",
     "academic": [
       {
         "title": "整颗世界的剖面：地面、地幔和核心并不相同",
@@ -44,8 +44,8 @@
     ]
   },
   "en": {
-    "question": "If we travel from the exterior to the center, do all eight worlds contain the same things? Which structures are well supported and which remain candidate models?",
-    "observe": "Drag the 3D close view to inspect the same terrain from different angles. Switch to the whole-world cutaway and travel from the exterior to the exact center. Pause and select layers: compare Earth’s solid mantle, liquid outer core and solid inner core, then Jupiter’s mixed center. Finally inspect Titan and 55 Cancri e with their evidence notes.",
+    "question": "Does a bright region on a very hot distant planet mean we have photographed a lava sea?",
+    "observe": "Drag the representative close view of 55 Cancri e, then inspect its cutaway and candidate layers. Use the solar-system link to compare Earth, giant planets and Titan, distinguishing rock, water, methane and inferred molten surfaces.",
     "academic": [
       {
         "title": "Whole-world cutaways: crust, mantle and core are different",

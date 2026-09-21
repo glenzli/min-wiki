@@ -1,4 +1,4 @@
-export interface Settings { vents: number; gas: number; viscosity: number; supply?:number }
+export interface Settings { vents: number; gas: number; viscosity: number; supply?:number; resistance?:number; landform?: 'shield' | 'composite' | 'scoria' }
 export type EruptionStyle='flow'|'fountain'|'ash';
 export const PRESETS:Record<EruptionStyle,Settings>={
   flow:{vents:1,gas:.12,viscosity:.16,supply:.65},
@@ -25,7 +25,7 @@ export function statusEvidence(status:VolcanoStatus){
  return {erupting:status==='erupting',future:status==='extinct'?'not-expected':'possible',
   activeSystem:status!=='extinct',appearanceConclusive:false} as const;
 }
-export const activity = (p: number) => smooth(.28, .46, p) * (1 - smooth(.77, 1, p));
+export const activity = (p: number) => smooth(.24, .43, p) * (1 - smooth(.88, 1, p));
 export function readout(progress: number, settings: Settings) { return { value: String(ventPositions(settings.vents).length), stage: progress < .22 ? 0 : progress < .45 ? 1 : progress < .84 ? 2 : 3, limited: false }; }
 
 export interface ClastTrajectory {
@@ -73,10 +73,11 @@ export function emissionSlot(index: number, count: number) {
   return { birth: .305 + index / (CLAST_BUDGET - 1) * .515, x: vents[index % vents.length] };
 }
 
-export type ObservationView = 'overview' | 'vent' | 'flow' | 'plume';
+export type ObservationView = 'overview' | 'vent' | 'flow' | 'plume' | 'storage';
 export interface ObservationCamera { x:number; y:number; zoom:number }
 /** Framing only: changing view does not change time, supply, or particle identity. */
 export function observationCamera(view:ObservationView,vents:number):ObservationCamera {
+  if(view==='storage')return {x:0,y:135,zoom:2.25};
   if(view==='vent')return {x:0,y:-78,zoom:2.55};
   if(view==='flow')return {x:vents===3?185:108,y:vents===3?51:6,zoom:3};
   if(view==='plume')return {x:35,y:-120,zoom:1.55};

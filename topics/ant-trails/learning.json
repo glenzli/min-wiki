@@ -2,101 +2,117 @@
   "version": 1,
   "topicId": "ant-trails",
   "zh": {
-    "question": "没有画在地上的线，蚂蚁怎样找到伙伴走过的路？",
-    "observe": "打开气味显示并让蚂蚁前进，再擦去一段路线，在暂停的画面里找到气味缺口；最后切到绕行路线对照，再观察沿新路前进。关闭气味显示时路线仍然存在。",
+    "question": "一只工蚁怎样感知附近线索，而一个没有总指挥的蚁群又怎样共同生活？",
+    "observe": "先在 W1 的放大窗里区分触角、六足与大颚；再开始觅食，找出紫色踪迹第一次出现的位置。比较线索减弱和实体阻断，观察同一只 W1 怎样搜索。进入同一个巢，另用 L1 的发育记录观察卵、幼虫、蛹和成虫。",
     "academic": [
       {
-        "title": "气味是可以读取的化学线索",
-        "body": "许多蚂蚁利用信息素招募同伴到食物处。留下气味的工蚁在地面形成化学痕迹，其他个体通过触角上的感觉结构检测，而不是追随一条人眼能看到的紫线。不同物种使用的化合物、释放器官和寻路策略并不完全相同；视觉地标、路径记忆和其他信号也可能参与，所以信息素不是所有蚂蚁唯一的导航方式。"
+        "title": "身体结构连接感觉与行动",
+        "body": "触角是检测化学线索和接触的重要器官；三对足连接于中躯的胸部部分，大颚是口器。细腰、后腹部与外骨骼又承担不同作用。插图只为辨认这些结构，不是物种鉴定图谱。应把观察到的接触、转向和后续行为，与研究者对信息利用的解释分开。"
       },
       {
-        "title": "队伍来自局部反应的累积",
-        "body": "个体依据附近信号改变行进方向，成功往返的蚂蚁可能进一步加强路线，于是局部选择产生群体秩序。较常使用的路线可以得到更多补充，但这种正反馈也会受食物质量、交通、探索和信息素持续时间影响。看到整齐队伍，并不能推出有一只蚂蚁在远处发号施令，也不能推出队伍每次都已计算出全局最短路。"
+        "title": "踪迹与记忆参与局部选择",
+        "body": "以黑毛蚁研究为参照，化学线索不是导航的唯一信息，路线经验也可能参与。这里固定个体与地点，让化学标记在返回者实际经过之后出现，并区分信号较弱与通路被阻挡。搜索、成功找回方向和绕行轨迹是有限教学例子，不是随机蚁群预测，也不保证全局最短路线。"
       },
       {
-        "title": "缺口与新路是一种对照",
-        "body": "气味痕迹被扰动后，附近蚂蚁可能转向和探索，再遇到线索或找到新的食物通道；新路线能否稳定还取决于后续个体是否使用并补充。图里把寻找时刻暂停，方便定位缺口，再由按钮展示一个可能的绕行结果。若在现实中观察，应记录路径如何逐步恢复，而不能把一次停顿理解为蚂蚁完全失去所有方向信息。"
+        "title": "个体发育与群体分工不是同一层次",
+        "body": "L1 的卵、幼虫、蛹、成虫属于另一个体的发育记录，不能把成年 W1 变回幼虫。工蚁参与照料、维护和觅食，蚁后主要繁殖而非逐只指挥。幼体需求、同伴接触和环境共同影响群体活动；任务、巢形、繁殖体系及信息素使用均有物种差异。"
       }
     ],
-    "misconception": "紫色气味线只是可视化；隐藏它不会擦除信息素，队伍也不需要一位“总指挥”逐只指挥。",
-    "boundary": "固定六只蚂蚁和三种路线是教学安排，没有模拟真实随机搜索、气味扩散衰减或物种差异；绕行不是保证发生的预测。切换绕行时重新安排蚂蚁位置，只作路线对照，不表示它们横穿无气味地面。",
+    "misconception": "隐藏紫点只是隐藏解释图层，不会擦掉气味；蚁后不是总指挥，整齐的队伍也不等于万能的最短路算法。",
+    "boundary": "四只巢外工蚁、一个照料工蚁及蚁后是有限教学角色。轨迹、招募延迟、记忆成功、信息素衰减和绕行结果均为作者选定；不模拟扩散、风、真实化学浓度、随机搜索、能量或最优路径。紫点与金点都是解释层。把图层藏起来不会改变模型。身体插图、巢剖面与发育记录的空间/时间尺度不同，均不作测量工具。",
     "narration": [
       {
-        "label": "看一条小队伍",
-        "text": "地上走来一队小蚂蚁，好像知道大家该往哪里去。可是地上没有路牌，也没有画着箭头的小地图。许多蚂蚁会留下很淡的气味，伙伴用触角来寻找线索。画面里的紫色小路，是我们特意画给你看的，真实的气味可不是一串紫色的小珠子。",
-        "cue": "显示原始路线，开关一次气味叠层。"
+        "label": "先认识这位小伙伴",
+        "text": "找到蓝色标记的 W1。它头上那一对会转弯的细长结构是触角，不是腿。请从身体中间数一数，左边三条足，右边三条足，一共六条。再找找嘴边的大颚。接下来我们跟的，还是这一只工蚁。",
+        "cue": "选择触角、六足与大颚，再切到出巢找食物。"
       },
       {
-        "label": "跟着线索走一段",
-        "text": "按一下前进，看蚂蚁沿着小路走。每只蚂蚁都在根据附近的线索作出反应，并不是远处有一位队长，给每一步发命令。关掉气味显示，再看看它们。小路只是从我们的画面里藏起来，蚂蚁能感到的线索仍然在那里，所以它们还能继续走。",
-        "cue": "连续前进一次，再关闭气味显示。"
+        "label": "先找到，再留下线索",
+        "text": "开始时，地上还没有这次寻找食物的紫色小路。W1 一边探索，一边向前。找到食物后，它返回巢口，经过的地方才出现紫点。那是我们画出来的气味线索，不是真实的小珠子。等它回来，伙伴们才加入这一次示意招募。",
+        "cue": "播放至约40%，暂停比较已标记和未标记的位置。"
       },
       {
-        "label": "小路中间断开了",
-        "text": "现在把中间一小段气味擦掉。画面先停下来，请你找找气味在哪里断开了。真的蚂蚁可能会转来转去，在附近继续找；图上停住的位置，并不是每只蚂蚁都会停下的地方。气味少了，跟随这条线就困难一些，但蚂蚁有时也会利用别的线索，并不是什么都不知道了。",
-        "cue": "擦除路线，在缺口处停三秒。"
+        "label": "线索改变，困难也不同",
+        "text": "线索变弱时，工蚁会多搜索；有过路线经验的 W1 也许能找回方向。若是一块石头堵路，闻到气味也不能穿过去。看它沿石头上方实际寻找通道，返回时才把新路逐段标出来。这是一种成功的可能，不是每次都有答案。",
+        "cue": "在第三站比较减弱与阻断；查看54%、75%及95%。"
       },
       {
-        "label": "新路线慢慢连起来",
-        "text": "接着看一条可能的绕行路线。为了方便比较，图里的蚂蚁重新排好了位置，我们再按前进，看它们沿新路走。如果有蚂蚁找到新路，又留下气味，伙伴就可能慢慢跟上。这是一种可能的结果，不是每个蚁群都会给出的答案。下次见到蚂蚁队伍，可以从旁边安静观察，不必打乱它们的小路。",
-        "cue": "建立绕行并前进，结束时保留旧路和新路空间关系。"
+        "label": "巢里是另一段时间",
+        "text": "W1 把食物带回同一个巢。照料工蚁 N1 已在这里；我们另外记录的 L1 还是一粒卵。拖动它的生命记录，看幼虫、蛹和新成虫。这要比一次找食物长得多。蚁后负责产卵，不是拿着地图指挥大家的队长。",
+        "cue": "进入巢内，推进觅食至终点，再独立查看L1四阶段并观察一次照料。"
       }
     ]
   },
   "en": {
-    "question": "How can ants follow a route when no visible line is drawn on the ground?",
-    "observe": "Show the scent and move the ants. Erase a section and locate the gap in the paused picture. Switch to the detour comparison, then watch walking along the new route. Hiding the scent overlay does not remove the scent itself.",
+    "question": "How does one worker sense local information, and how does a colony live together without a commander?",
+    "observe": "Inspect W1's antennae, six legs and mandibles. Begin foraging and locate the first chemical markers. Compare a weakening cue with a physical blockage while tracking W1. Enter the same nest, then use a separate record for L1's egg, larval, pupal and adult stages.",
     "academic": [
       {
-        "title": "A chemical cue can be sensed",
-        "body": "Many ants recruit nestmates with pheromone trails. Chemicals deposited by workers are detected through sensory structures on antennae, not by seeing a coloured line. Species differ in chemistry and behaviour, and landmarks or route memory may also contribute. Pheromones are not every ant’s sole navigation system."
+        "title": "Anatomy connects sensing and action",
+        "body": "Antennae detect chemicals and contact; three leg pairs attach to the thoracic portion of the mesosoma, while mandibles are mouthparts. The waist, gaster and exoskeleton serve different functions. These drawings distinguish structures rather than identify species. Separate observed contact or turning from inferences about the information an animal used."
       },
       {
-        "title": "Local decisions produce a group pattern",
-        "body": "Individual responses to nearby cues can reinforce a useful route as workers return. Such feedback can create an organised trail without a distant commander. Food quality, traffic, exploration and signal persistence affect the outcome. A neat line does not imply that ants have calculated a globally shortest route."
+        "title": "Trails and experience inform local choices",
+        "body": "Research on Lasius niger examines chemical cues alongside route memory. Here fixed individuals mark locations only after actually returning through them. We distinguish weak signals from obstructed passage. Search paths, successful recall and the detour are finite teaching examples, not stochastic forecasts or guaranteed shortest routes."
       },
       {
-        "title": "A gap and a detour provide a comparison",
-        "body": "When a trail is disturbed, ants may turn and search until cues or a new route are found. Continued use can reinforce a replacement trail. The diagram pauses searching to expose the gap and then presents one possible detour. Real recovery is variable and does not imply that every other directional cue has vanished."
+        "title": "Development differs from colony organisation",
+        "body": "L1's developmental record belongs to another individual, not adult W1 turning back into a larva. Workers care for young, maintain nests and forage; queens mainly reproduce rather than issue individual commands. Local encounters, brood needs and surroundings influence activity. Tasks, nests, reproductive systems and chemical communication differ among species."
       }
     ],
-    "misconception": "The purple trail is a visual aid. Hiding it does not erase pheromone, and the group need not have a commander directing every worker.",
-    "boundary": "Six ants and three routes form a teaching model. Random searching, chemical decay and species differences are omitted; the detour is a possible outcome, not a guaranteed prediction. Switching routes repositions the ants for comparison; it does not show them walking across unmarked ground.",
+    "misconception": "Hiding purple marks hides an explanatory overlay, not pheromone. A queen is not a commander, and an orderly trail is not proof of a universal shortest-path algorithm.",
+    "boundary": "Four outdoor workers, one care worker and a queen are finite teaching characters. Paths, recruitment delay, successful memory, cue decay and detour success are authored. Chemical diffusion, wind, measured concentrations, stochastic search, energetics and optimal routing are not simulated. Purple and gold are explanatory overlays; hiding them does not change the model. Anatomy, nest cutaway and development have different illustrative space/time scales and are not measuring tools.",
     "narration": [
       {
-        "label": "Watch a little procession",
-        "text": "A line of ants seems to know where to go, even without signs or arrows. Many ants leave faint chemical trails that others sense with their antennae. The purple path in this picture makes an invisible clue visible. Real scent is not a string of purple beads.",
-        "cue": "Show the original route and toggle the scent overlay once."
+        "label": "Meet this worker",
+        "text": "Find blue-marked W1. The two elbowed structures on its head are antennae, not legs. Count three legs on each side of the middle region: six altogether. Locate the mandibles by the mouth. We will follow this same worker outside.",
+        "cue": "Select antennae, legs and mandibles, then open Find food."
       },
       {
-        "label": "Follow a nearby clue",
-        "text": "Press the walk button and watch. Each ant responds to nearby information; a distant leader does not have to command every step. Hide the scent display and watch again. We have hidden our coloured drawing, not removed the chemical clue, so the ants can still follow the route.",
-        "cue": "Animate one movement and then hide the scent overlay."
+        "label": "Discover, then mark",
+        "text": "At first there is no purple trail for this food. W1 searches and eventually finds it. On returning, it marks only places already passed. Purple makes an invisible chemical clue visible; real scent is not a string of beads. Nestmates then join this illustrative recruitment.",
+        "cue": "Play to about40%, then compare marked and unmarked ground."
       },
       {
-        "label": "A gap in the trail",
-        "text": "Erase a short section. The picture pauses so you can find where the scent trail is broken. Real ants may turn and keep searching nearby; the frozen positions are not where every ant would stop. Losing this chemical guide makes following harder, though other clues may still be available.",
-        "cue": "Erase a section and pause at the gap for three seconds."
+        "label": "Different changes, different problems",
+        "text": "Weak clues can lead to more searching; experienced W1 may recover a direction. A stone is different: scent cannot let an ant walk through it. Watch W1 explore above it and mark a new path on return. This is one possible success, not a guaranteed answer.",
+        "cue": "Compare faster decay and blockage at the third station; inspect54%,75% and95%."
       },
       {
-        "label": "A new route becomes possible",
-        "text": "Compare a possible detour next. The ants have been repositioned for this picture; press walk to watch them follow the new route. If a scout finds and marks a route, others may follow. This is one possible outcome, not a guaranteed answer. Watch real trails quietly without disturbing them.",
-        "cue": "Establish the detour and move the ants along it."
+        "label": "Another timescale inside",
+        "text": "W1 brings food to the same nest. N1 is a different care worker, and L1 is a separate young individual. Review its egg, larval, pupal and new-adult record. Development takes far longer than a food trip. The queen lays eggs, rather than directing workers with a map.",
+        "cue": "Enter the nest and finish the foraging journey; independently inspect all four L1 stages and a care visit."
       }
     ]
   },
   "references": [
     {
-      "title": "Smithsonian — Pheromones in Insects",
-      "url": "https://www.si.edu/spotlight/buginfo/pheromones"
+      "title": "ASU — Ant anatomy",
+      "url": "https://askabiologist.asu.edu/explore/ant-anatomy"
     },
     {
-      "title": "Smithsonian Tropical Research Institute — Ants of Barro Colorado",
-      "url": "https://striresearch.si.edu/barrocolorado100/ants/"
+      "title": "ASU — Individual life cycle",
+      "url": "https://askabiologist.asu.edu/individual-life-cycle"
     },
     {
-      "title": "Morgan — Trail pheromones of ants",
-      "url": "https://resjournals.onlinelibrary.wiley.com/doi/full/10.1111/j.1365-3032.2008.00658.x"
+      "title": "ASU — Secrets of a superorganism",
+      "url": "https://askabiologist.asu.edu/explore/secrets-superorganism"
+    },
+    {
+      "title": "Czaczkes et al. — Trail pheromone and route learning in Lasius niger",
+      "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149720"
+    },
+    {
+      "title": "Deborah Gordon — Collective wisdom of ants",
+      "url": "https://web.stanford.edu/~dmgordon/articles/other/Gordon%20Scientific%20American.pdf"
+    },
+    {
+      "title": "Stanford — Turtle-ant trail networks",
+      "url": "https://news.stanford.edu/stories/2017/10/algorithm-ants-create-trail-networks"
+    },
+    {
+      "title": "ASU — Leafcutter ant colony",
+      "url": "https://askabiologist.asu.edu/leafcutter-ant-colony"
     }
   ]
 }

@@ -1,20 +1,59 @@
-# 微生物为什么几乎无处不在？
+# 微生物：细胞、环境与病毒 / Microbes: cells, habitats and viruses
 
-切换土壤、池水、皮肤、空气；并排观察生活环境与微观插画，用“看小环境／靠近看细节”沿同一套结构连续移动观察窗口。移动端把环境压缩为对照条，保留完整微观画面。
+This is the unified observation workspace for microbial habitats, bacterial structure/division and host-dependent viral replication. It consumes the existing detailed bacterial and viral renderers directly, not their old UI or an iframe. The real catalog is `content/catalog.json`; local catalog fragments mirror its title/summary and legacy parent relationships.
 
-`scene.ts` 独立负责四种代表性环境的 SVG 材质和结构，`main.ts` 负责语言、选择和有限镜头过渡：土粒、水膜与分枝菌丝；有叶绿体的微小藻类和有纤毛的原生生物；皮肤角质表面；附在尘粒上的孢子及含菌液滴。结构、图例、说明同时切换，放大可随时反向。没有持续动画或后台资源，隐藏页面和减少动态偏好由共享有限过渡工具处理。
+## Six design questions / 六项设计
 
-微生物是宽泛术语，细菌属于细胞生物；病毒不属于细胞，仍属于微生物学研究范围。四种场景的颜色、数量、形状不代表测量，普通放大镜不足以观察大多数单个微生物。无培养、检测或诊断功能。
+1. **Question:** why do arrival, cell growth and viral replication require different conditions?
+2. **Conditions:** choose soil/water/skin/air; compare resource-supporting/limited cases for reference bacterium B; select its structural part or one division; compare matching, mismatched and defended virus hosts H.
+3. **Observations:** persistent environment reference, selective membrane routes, DNA copying/partitioning, bounded division, continuous viral DNA/assembly/release and stopped-host branches.
+4. **Causality:** a habitat supplies constraints; cells have boundaries and machinery but need conditions; viruses still require suitable living host machinery and can fail after entry.
+5. **Misconceptions:** presence is not growth; not all microbes are bacteria; viruses are not cells; a thick-walled reference is not silently converted into an E. coli-like T4 host; appearance does not establish health risk.
+6. **Evidence/boundary:** all drawings and timing are illustrative. Resource limitation is a qualitative teaching comparison, not a universal species growth rate or field sample. Primary references are linked below and in bilingual learning material.
 
-来源（2026-09-17 复核）：
-- https://microbiologysociety.org/why-microbiology-matters/what-is-microbiology/what-are-bacteria.html
-- https://microbiologysociety.org/why-microbiology-matters/microbiome.html
-- https://microbiologysociety.org/publication/current-issue/why-microbiology-matters/article/microbes-and-where-to-find-them.html
+E 是环境插画。B 是较厚细胞壁、无外膜的一类参考细菌，不是从 E 鉴定出来的物种。病毒章明确切换到 H：有外膜与薄壁的 T4 类噬菌体宿主对照，参考大肠杆菌样包被。不同宿主选择是机制条件，不由外形或壁厚直接推断。共同工作区保留环境和条件作参照，但 B 的资源开关不驱动 H 的感染结局。
 
-- https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer
-- https://directives.nrcs.usda.gov/sites/default/files2/1716910933/TN%20470-05.pdf
-- https://pmc.ncbi.nlm.nih.gov/articles/PMC2805064/
+## Ownership / 所有权
 
-视野中不提供虚构微米标尺；细菌、菌丝、土粒等不是按统一比例绘制，表面与内部线索为教学着色，不能当成一次显微观测。
+- `workspaceModel.ts`: validated routes, bounded per-resource bacterial/per-host viral states and the single user-started process clock.
+- `workspace.ts`: complete workspace UI/lifecycle, observation reference, controls, failure/cancel/retry, URL history and disposal.
+- `workspaceRenderer.ts`: one live lazy scientific renderer; environment zoom and viral camera interpolation, bacterial structure focus and direct consumption of the existing detailed SVG engines. No old topic controller is imported.
+- `sceneLifecycle.ts`: asynchronous admission and generation-based stale completion rejection.
+- `scene.ts`: original four detailed habitat illustrations; shared between context reference and main observation with separate SVG namespaces.
+- `workspaceContent.json` and `learning.json`: paired mechanism, comparison, assumptions and narration. Three academic sections and four narration segments cover the whole journey.
+- `../bacteria/model.ts`, `scene.ts`, `habitats.ts`: retained models, detailed wall/membrane/DNA/ribosome/division and the readable yogurt/soil/gut role illustrations. These remain runtime-consumed; the latter are explicitly different communities, not B moving through habitats.
+- `../viruses/model.ts`, `scene.ts`: retained continuous T4-like process, offspring identities, envelope breach and host failure branches.
+- The old bacteria/viruses `main.ts` and `index.html` are now minimal compatibility entries. Their obsolete page CSS is removed, not their scientific engines or covers.
 
-验证：站点统一 npm check；四场景与放大镜切换，中英文、窄屏与主题在成品预览中检查。
+Only one main scientific SVG renderer exists at a time; the fixed habitat reference and three static role illustrations are bounded. No idle process timer runs. Changing chapters/conditions, seeking, hiding or leaving pauses current time. Returning does not auto-play. Separate condition/host progress survives in memory; only the currently selected case is encoded in the URL. Language changes reload the page and restore encoded state, not every remembered case. Late imports cannot mount after cancellation, supersession or disposal; preparation can be retried. Reduced-motion preferences remove camera/focus interpolation while retaining the explicit finite scientific sequence.
+
+## Routes / 路由
+
+`/topics/microbes-everywhere/?chapter=environment|bacteria|viruses`
+
+- Context: `habitat=soil|water|skin|air`, `resources=ready|limited`, `close=0|1`.
+- B: `part=wall|membrane|dna|ribosomes`, `process=structure|division`, `bp=0..1`, `exchange=0..1`. Limited division is capped at 0.18 before copying, solely as the teaching contrast.
+- H: `host=compatible|mismatch|defended`, `view=whole|attachment|inside`, `p=0..5`, capped by the chosen host.
+- `microbialHref(chapter, search='', base='/', hash='')` in `workspaceModel.ts` preserves query parameters, language, deployment prefix and hash while forcing the legacy route's chapter. `readWorkspace(search)` validates applicable values.
+- Browser back/forward reselects the encoded chapter and current case without background playback. Unknown input falls back safely.
+
+## Science sources / 科学依据
+
+Reviewed 2026-09-20. These support mechanisms, not the arbitrary resource cutoff, geometric scale, counts or timings.
+
+- [USDA NRCS — Soil Biology Primer](https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer): diverse soil organisms, decomposition and roles.
+- [Grice et al. — Human skin microbiome](https://pmc.ncbi.nlm.nih.gov/articles/PMC2805064/): distinct skin microenvironments and communities.
+- [OpenStax — Prokaryotic cell structures](https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells): envelopes, nucleoid and ribosomes.
+- [OpenStax — How microbes grow](https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow): fission and condition-dependent growth.
+- [NHGRI — Virus](https://www.genome.gov/genetics-glossary/Virus): noncellular composition and host dependence.
+- [RCSB PDB-101 — T4 infection](https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection): T4 and E. coli, entry, host machinery and lytic release.
+- [Maffei et al. — BASEL phage collection](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001424): host compatibility and defense.
+- Existing viral structure/packaging studies remain in `../viruses/README.md`; yogurt references remain in the learning sources.
+
+## Focused validation / 范围验证
+
+`node --import tsx --test topics/microbes-everywhere/tests/*.test.mjs topics/bacteria/model.test.ts topics/viruses/tests/*.test.mjs`
+
+Covers actual models, routes, state retention, resource/host branches, conservative camera state, single-clock lifecycle, stale loading/cancel/retry and bilingual content. Old virus-controller tests now cover the compatibility boundary; their active UI lifecycle contracts moved to the unified workspace tests. Parent integration owns full gates and real packaged desktop/390px bilingual browser checks. Automated passing tests do not establish visual acceptance, actual biological prediction or deployment.
+
+No commit, push or deployment is implied.

@@ -4,7 +4,7 @@
 
 一个中英双语的小科普演示集锦，用可以动手探索的页面解释科学现象。每个专题围绕一个小问题展开，配上动画、讲解和参考资料，适合孩子与家长一起观察，也欢迎任何好奇的人。
 
-目前收录 60 个专题，涵盖宇宙与星空、地球与自然、生命与身体、物质与现象、科技与工程五类。
+内容涵盖宇宙与星空、地球与自然、生命与身体、物质与现象、科技与工程五类。相互依赖的演示逐步收归到完整专题，原有链接仍可进入相应章节。
 
 ![太阳系演示：八大行星按同一直径尺度排列](docs/images/solar-system.png)
 
@@ -12,13 +12,15 @@
 
 首页支持分类筛选、关键词搜索和分页，每页最多 24 个演示，可直接点击相邻页。完整专题列表见 [内容目录](content/catalog.json)。
 
-| 分类 | 数量 | 代表专题 |
-| --- | ---: | --- |
-| 宇宙与星空 | 10 | [恒星路过黑洞](topics/black-hole/)、[太阳系](topics/solar-system/)、[月球陨石坑](topics/lunar-craters/) |
-| 地球与自然 | 11 | [四季](topics/earth-seasons/)、[雨的形成](topics/rain-formation/)、[水循环](topics/rain-cycle/) |
-| 生命与身体 | 25 | [叶子的颜色](topics/leaf-colors/)、[蝌蚪变青蛙](topics/frog-life/)、[洗手](topics/handwashing/)、[疼痛信号](topics/pain-signals/)、[味觉与嗅觉](topics/taste-smell/)、[血细胞](topics/blood-cells/)、[身体细胞](topics/body-cells/)、[听觉](topics/hearing/)、[消化](topics/digestion/) |
-| 物质与现象 | 8 | [彩虹](topics/rainbow/)、[浮力](topics/buoyancy/)、[磁铁](topics/magnets/)、[水的状态](topics/water-states/)、[声音](topics/sound-vibrations/)、[肥皂泡](topics/soap-bubbles/) |
-| 科技与工程 | 5 | [自来水](topics/tap-water/)、[乘车安全](topics/car-safety/)、[空调](topics/air-conditioner/)、[冰箱](topics/refrigerator/)、[电池](topics/batteries/) |
+| 分类 | 代表专题 |
+| --- | --- |
+| 宇宙与星空 | [太阳系与行星比较](topics/solar-system/)、[恒星与多星系统](topics/stars/)、[星系与宇宙尺度](topics/cosmic-scale/)、[黑洞](topics/black-holes/) |
+| 地球与自然 | [大气](topics/atmosphere/)、[水循环](topics/rain-cycle/)、[风与风暴](topics/wind/)、[火山](topics/volcano-eruption/) |
+| 生命与身体 | [一片叶子的一生](topics/leaf-colors/)、[细胞：结构与分工](topics/cells/)、[听觉](topics/hearing/)、[消化](topics/digestion/) |
+| 物质与现象 | [彩虹](topics/rainbow/)、[浮力](topics/buoyancy/)、[水的状态](topics/water-states/)、[声音](topics/sound-vibrations/) |
+| 科技与工程 | [自来水](topics/tap-water/)、[空调](topics/air-conditioner/)、[冰箱](topics/refrigerator/)、[电池](topics/batteries/) |
+
+本轮生命、地球和宇宙三条理解路径的范围与边界见[专题整合记录](docs/science-journeys-20260920.md)。相关知识通过明确的下一站链接相连，不把所有内容塞进同一页面。
 
 ## 阅读与操作
 
@@ -32,6 +34,8 @@
 页面右上角可切换中文与 English，也支持 `?lang=zh`、`?lang=en` 分享链接。首次访问参考浏览器语言，手动选择会保存在本机；切换语言会重新打开当前专题，动画从头开始。
 
 ## 本地开发
+
+新增、融合或优化专题前，先读[设计原则与验收要求](docs/design-principles.md)：包括理解路径、科学因果、连续观察、尺度、视觉、双语、资源生命周期和交付清单。具体工程契约见[开发说明](docs/architecture.md)，源码归属见 [SKELETON.md](SKELETON.md)。
 
 需要 Node.js 22.12 或更新版本。
 

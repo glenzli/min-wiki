@@ -1,5 +1,9 @@
 # 太阳也是恒星 / The Sun is a star
 
+## Compatibility entry — 2026-09-20
+
+The public URL now redirects to `/topics/stars/?chapter=sun`, preserving language/query state and hash through `migration.ts`. The solar geometric model and original bilingual learning resources remain owned here and are consumed by the integrated stellar topic. The prior SVG UI is no longer mounted. The following describes the retained scientific model and historical standalone interface, not a second live page.
+
 The existing two-panel solar disk, granules and dark spots are retained. The left panel fixes physical size; the right panel changes angular size continuously with viewing distance. A finite journey can be paused, resumed, scrubbed and revisited at 1, 10, 100 and 1000 AU. Preset and playback writers cancel one another. Hidden/pagehide stops the journey.
 
 Independent numerical readouts show angular diameter, vacuum light travel time and irradiance relative to Earth’s distance. The model uses a 695700 km solar radius, the exact AU in kilometres and vacuum light speed. Irradiance follows 1/d² without absorption or scattering, for equal areas perpendicular to the incoming radiation. This is an apparent-size and geometric comparison, not a spacecraft flight or a calibrated rendering of sky brightness. The right panel keeps a minimum visible dot and explicitly identifies when it does so.

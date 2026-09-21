@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "friction",
   "zh": {
-    "question": "三块一样的木头同样快地出发，为什么可能停在不同位置？",
-    "observe": "播放滑动，随时暂停或拖回。选一条路近看接触处，比较木块移动与左向摩擦；再看蓝绿运动能量缩短、橙色已转移部分增长，总条长保持不变。",
+    "question": "木块、车轮和乘员都要慢下来，它们各自需要什么作用，运动能量去了哪里？",
+    "observe": "先用相同初速比较三块木头，再在接触窗口追踪能量。换到轮胎金点，比较滚动与锁止滑动；进入汽车实验，分别改变初速和路面，分清反应与制动两段。最后检查肩带、腰带和儿童座椅的作用部位。切章保留各实验进度，阅读模式不重置。",
     "academic": [
       {
-        "title": "滑动摩擦与相对运动",
-        "body": "物体相对接触表面滑动时，动摩擦力通常阻碍接触面间的相对滑动。本例木块在水平固定地面上向右运动，所以摩擦向左。实际摩擦来自接触区域的多种微观作用和变形，不只是肉眼可见的凹凸互相卡住。系数属于一对材料及其状态，不能仅凭一种材料名称或看起来粗糙就确定。"
+        "title": "接触、相对滑动与能量账",
+        "body": "物体相对接触表面滑动时，动摩擦力通常阻碍接触面间的相对滑动。本例木块在水平固定地面上向右运动，所以摩擦向左。实际摩擦来自接触区域的多种微观作用和变形，不只是肉眼可见的凹凸互相卡住。系数属于一对材料及其状态，不能仅凭一种材料名称或看起来粗糙就确定。 在不再推、水平面且动摩擦系数近似恒定的条件下，法向力约等于重量，减速度大小为 μg，停止时间为 v₀/(μg)，停止距离为 v₀²/(2μg)。同一路面初速翻倍时，停止时间翻倍、距离约变四倍。木块停下后，模型把速度置零，不能继续把原方向摩擦当成会令它自动倒退的推力。 未滑动接触的静摩擦会在限度内适应其他作用力，它可以帮助人向前走，并不总与物体整体运动方向相反。带轮玩具还涉及滚动、轴承和形变，不能套用本页无轮木块的数值。滑动时机械能转为内能等形式，能量并未消失；搓手发热提供日常线索，却不能测出本页各路面的真实摩擦系数。能量条按恒定动摩擦模型计算：剩余动能比例为(v/v₀)²，转移比例为1−(v/v₀)²。条长守恒，橙色只表示进入木块和地面的能量，并不是把温度变化放大后显示。"
       },
       {
-        "title": "停止距离有明确的模型前提",
-        "body": "在不再推、水平面且动摩擦系数近似恒定的条件下，法向力约等于重量，减速度大小为 μg，停止时间为 v₀/(μg)，停止距离为 v₀²/(2μg)。同一路面初速翻倍时，停止时间翻倍、距离约变四倍。木块停下后，模型把速度置零，不能继续把原方向摩擦当成会令它自动倒退的推力。"
+        "title": "从轮胎接触到完整停车距离",
+        "body": "驾驶员发现危险到开始有效制动之间，车辆仍会前进。若反应时间固定，反应距离等于初速度乘以反应时间；制动阶段若减速度近似恒定，制动距离等于初速度平方除以两倍减速度。因而本例速度翻倍时，两段分别变成两倍与四倍，总距离不能简单说成两倍或四倍。 制动系统使车轮减速，轮胎与路面的接触力使整车速度改变。车辆的动能主要经制动等过程转为内能，部分车辆还能回收能量。湿滑、轮胎状况、坡度、载荷和系统状态会改变停车表现。模型的湿路减速度较小只是对照设定，不表示每条湿路都让制动距离恰好增加同一倍数。 正常制动且胎面接触无滑移时，轮胎主要借静摩擦传递路面对整车的作用；刹车片与盘的相对滑动则提供制动力矩并产生内能。金点轨迹为理想刚性轮的运动学示意，不根据干湿参数求解轮胎变形、ABS或锁轮制动。"
       },
       {
-        "title": "静摩擦、滚动与能量",
-        "body": "未滑动接触的静摩擦会在限度内适应其他作用力，它可以帮助人向前走，并不总与物体整体运动方向相反。带轮玩具还涉及滚动、轴承和形变，不能套用本页无轮木块的数值。滑动时机械能转为内能等形式，能量并未消失；搓手发热提供日常线索，却不能测出本页各路面的真实摩擦系数。能量条按恒定动摩擦模型计算：剩余动能比例为(v/v₀)²，转移比例为1−(v/v₀)²。条长守恒，橙色只表示进入木块和地面的能量，并不是把温度变化放大后显示。"
+        "title": "乘员惯性与合身的约束",
+        "body": "急停时身体会保持原先的运动趋势，需要安全带或儿童约束系统施力减速。合适的装置有助于把力作用在更能承受的身体部位并管理减速过程。儿童应使用适合身高体重的座椅，按制造商和当地要求安装；增高座椅帮助肩带经过肩胸、腰带低贴髋部，不能把成人安全带简单缩短就当成适配。 惯性不是额外的向前推力；减速来自真实外力。延长受控减速过程的解释不授权故意放松安全带。肩带不得放在腋下或背后，儿童在后排按产品身高、体重与适用要求使用保护；不能只按一个生日换座椅，也不把美国指南当作当地法规。"
       }
     ],
-    "misconception": "摩擦不总是坏事，也不总是越粗糙越大；滚动小车不能直接代入滑动木块的结果。",
-    "boundary": "三种系数是教学设定，不是材料实测值。接触窗口只表示少量接触区与相对滑动，未求解微观材料形变；橙色与能量条不表示温度。忽略空气阻力，停下后不会倒滑。",
+    "misconception": "向前运动不等于接触处在滑，静摩擦不等于刹车片的滑动摩擦；惯性不是额外前推力，安全带也不能故意放松。",
+    "boundary": "三种系数是教学设定，不是材料实测值。接触窗口只表示少量接触区与相对滑动，未求解微观材料形变；橙色与能量条不表示温度。忽略空气阻力，停下后不会倒滑。 汽车另用固定 1 秒反应时间和 6/3 米每秒平方减速度，不把滑块系数套到汽车。车身平动能量比例不包含轮子转动；轮子观察时钟、滑块秒数与停车缩放时钟分开。不计算人体受力或伤害，不提供驾驶距离建议。",
     "narration": [
       {
-        "label": "一样的起跑",
-        "text": "这里有三块一样的小木块，分别在木板、布面和砂纸上。它们出发时一样快，松手以后没有谁再推它们。你猜哪一块会先停，哪一块会滑得最远？先把猜想放在心里，再点一下，看看三块木头一起出发的样子。",
-        "cue": "保持相同初速，从零播放。"
+        "label": "从同样的起跑开始",
+        "text": "三块一样的木头，同样快地出发。松手后没有谁继续推，接触的地面让它们慢下来。选一条路看看，蓝绿色的运动能量变少，橙色的已转移部分变多，总长没有变。更快出发，会不会滑得更远？",
+        "cue": "先同步播放，再选择一条路拖回与重播，最后改变初速。"
       },
       {
-        "label": "接触面在影响它们",
-        "text": "木块向右滑的时候，接触的地面给它一个向左的摩擦力，于是它慢下来。画里的小箭头帮助我们看方向。现在拖动推进时间，把画面停住，比较三块木头：有的已经停住，有的还在走。这个例子给三条路安排了不同的摩擦条件，所以结果不同。",
-        "cue": "播放到约0.7秒暂停，选择布面接触窗口；上下表面位置与主场景保持同步。"
+        "label": "轮子在滚，接地处呢？",
+        "text": "现在换成轮子，跟着同一个金点看。它转到最下面，碰到地面的那一瞬间，并没有沿着地面滑。把轮子锁住，它却还可以整个滑过去。汽车里有两个不同的接触处：刹车片摩擦刹车盘，轮胎还要借地面的作用让整辆车慢下来。",
+        "cue": "比较滚动与锁止轮，推进同一位移，随后指出刹车盘和胎面两个接触位置。"
       },
       {
-        "label": "更快出发会怎样",
-        "text": "把它们送回起点，只把出发速度提高，再看同一条路上的木块停在哪里。你发现它走得更远了吗？我们一次只改一个条件，才能比较清楚。现实里的材料还会受灰尘、湿度和接触情况影响，不能看到某种表面就肯定它一定最滑或最涩。",
-        "cue": "提高初速，重播并比较同一条路。"
+        "label": "反应，也会走过一段路",
+        "text": "司机发现需要停车，先要反应。金色这一段里，车还没有开始这次制动。到了绿色一段，车才慢慢变慢。把出发速度提高，再把路面换一下，看看两个路段怎样变化。图上的数是教学设定，不能拿来决定真实道路上什么时候过马路。",
+        "cue": "分别比较30与60、干燥与湿滑；在反应段、中间制动与停止处暂停。"
       },
       {
-        "label": "摩擦也在帮忙",
-        "text": "摩擦并不是专门来捣乱的。鞋底和地面之间合适的摩擦，帮助我们走路不打滑。再看看能量条：蓝绿色变短，橙色变长，可总长没变。小木块停下来，运动能量转到了木块和地面里，并没有消失。橙色不是火花，也不能告诉我们温度有多高。",
-        "cue": "看三条能量条由蓝绿转为橙色，停稳后无反向运动或持续热动画。"
+        "label": "身体也需要一起慢下来",
+        "text": "车受到作用慢下来，身体也需要真实的作用才能一起慢下来。安全带和合适的儿童座椅就在帮这个忙。我们看肩带经过肩膀和胸前，腰带低贴髋部。带子不能故意放松，也不藏在背后。请大人按孩子的大小、座椅和汽车的说明来选择和安装，坐好后每一程都保持正确保护。",
+        "cue": "依次看肩带、腰带，再检查后向、前向和增高座椅；不演示危险佩带或伤害。"
       }
     ]
   },
   "en": {
-    "question": "Why can identical blocks starting at the same speed stop at different places?",
-    "observe": "Play, pause or scrub back. Select a surface to inspect its contact while the block moves, then compare the shrinking teal motion energy with growing orange transferred energy; total bar length stays constant.",
+    "question": "What interactions slow a block, a wheel and a passenger, and where does motion energy go?",
+    "observe": "Compare three blocks at the same initial speed and follow their energy at the contact. Track a gold tread mark in rolling and locked-wheel sliding. Change car speed and road separately to distinguish reaction from braking. Finally inspect shoulder and lap belts and child-seat fit. Chapters preserve separate progress; reading mode never resets it.",
     "academic": [
       {
-        "title": "Friction opposes relative sliding",
-        "body": "Kinetic friction generally opposes relative sliding at a contact. Here blocks move right over fixed horizontal surfaces, so friction acts left. Microscopic interactions and deformation matter, not just visible bumps catching. A coefficient describes a material pair and its condition, not one material name or appearance alone."
+        "title": "Contact, relative sliding and energy",
+        "body": "Kinetic friction generally opposes relative sliding at a contact. Here blocks move right over fixed horizontal surfaces, so friction acts left. Microscopic interactions and deformation matter, not just visible bumps catching. A coefficient describes a material pair and its condition, not one material name or appearance alone. After release on a horizontal surface with constant kinetic-friction coefficient, deceleration is μg, stopping time is v₀/(μg), and stopping distance is v₀²/(2μg). Doubling speed doubles stopping time and quadruples distance under those conditions. Once stopped, the block is not accelerated backward by a continuing friction force. Static friction adjusts within a limit and can help walking forward; it does not always oppose an object’s overall motion. Wheeled toys involve rolling, bearings and deformation, unlike these blocks. During sliding, mechanical energy becomes internal energy and other forms rather than disappearing. Warm hands after rubbing provide a qualitative clue, not a coefficient measurement. The bar uses the constant-friction model: remaining kinetic fraction is (v/v₀)² and the transferred fraction is its complement. Orange represents energy entering the block and surface, not a displayed temperature rise."
       },
       {
-        "title": "Stopping formulas have conditions",
-        "body": "After release on a horizontal surface with constant kinetic-friction coefficient, deceleration is μg, stopping time is v₀/(μg), and stopping distance is v₀²/(2μg). Doubling speed doubles stopping time and quadruples distance under those conditions. Once stopped, the block is not accelerated backward by a continuing friction force."
+        "title": "From tire contact to the complete stopping distance",
+        "body": "A vehicle travels while the driver reacts. With fixed reaction time, reaction distance is speed times that interval. Under constant deceleration, braking distance is speed squared divided by twice the deceleration. Doubling speed therefore doubles one part and quadruples the other; total distance follows neither factor exactly. Brakes slow wheel rotation while tire-road forces change vehicle motion. Kinetic energy is mainly converted to internal energy, with recovery possible in some vehicles. Grip, slope, tires, load and system condition affect stopping. The model wet-road setting is a comparison, not a universal multiplier for real roads. With no tire slip during ordinary braking, static friction transmits road force to the vehicle, while pad–disc sliding supplies braking torque and internal energy. The gold-point trajectory is ideal rigid-wheel kinematics; it does not solve tire deformation, ABS or locked-wheel braking from road settings."
       },
       {
-        "title": "Static friction, rolling and energy",
-        "body": "Static friction adjusts within a limit and can help walking forward; it does not always oppose an object’s overall motion. Wheeled toys involve rolling, bearings and deformation, unlike these blocks. During sliding, mechanical energy becomes internal energy and other forms rather than disappearing. Warm hands after rubbing provide a qualitative clue, not a coefficient measurement. The bar uses the constant-friction model: remaining kinetic fraction is (v/v₀)² and the transferred fraction is its complement. Orange represents energy entering the block and surface, not a displayed temperature rise."
+        "title": "Passenger inertia and correctly fitted restraints",
+        "body": "During a sudden stop the body needs a force to change its motion. Correct restraints manage deceleration and load stronger body regions. Children need seats appropriate for their size and installed according to manufacturer and local requirements. Boosters position the shoulder belt across shoulder and chest and the lap belt low over hips. Inertia is not an additional forward force; deceleration requires real external forces. Explaining a managed slowing interval does not justify loosening a belt. Never route the shoulder belt under an arm or behind the back. Children use suitable restraints in the rear seat according to product size and eligibility limits, not one birthday; US guidance is not a statement of local law."
       }
     ],
-    "misconception": "Friction is useful too, rougher does not always mean greater friction, and a rolling car is not this sliding-block model.",
-    "boundary": "The coefficients are illustrative, not measured values. The contact window depicts limited contact and relative sliding without solving microscopic deformation; orange and the energy bars do not measure temperature. Air drag is omitted and stopped blocks never reverse.",
+    "misconception": "Forward motion does not imply sliding contact; static road friction differs from pad–disc sliding. Inertia is not an extra forward force, and belts must not be deliberately loosened.",
+    "boundary": "The coefficients are illustrative, not measured values. The contact window depicts limited contact and relative sliding without solving microscopic deformation; orange and the energy bars do not measure temperature. Air drag is omitted and stopped blocks never reverse. The car separately uses a fixed one-second reaction and 6/3 m/s² decelerations; block coefficients are not applied to it. Vehicle energy fractions omit wheel rotation. Contact observation, block seconds and rescaled stopping time are separate clocks. No body forces, injuries or driving-distance advice are calculated.",
     "narration": [
       {
-        "label": "The same start",
-        "text": "Three identical blocks sit on wood, cloth and sandpaper. They start at the same speed, and no one keeps pushing after release. Which do you predict will stop first, and which will travel farthest? Hold your prediction, then start all three together and watch.",
-        "cue": "Keep the same initial speed and play from zero."
+        "label": "Begin with the same start",
+        "text": "Three identical blocks start equally fast. No one keeps pushing after release; contact with the surface slows them. Select a lane. Teal motion energy shrinks while orange transferred energy grows, keeping the same total. Would a faster start travel farther?",
+        "cue": "Play together, select a contact, scrub back and replay, then change initial speed."
       },
       {
-        "label": "The surfaces affect motion",
-        "text": "While a block slides right, the surface exerts friction to the left, slowing it down. The little arrows show that direction. Move the time slider to pause, then compare: some blocks have stopped while another still moves. This example assigns different friction conditions to the three lanes, producing different results.",
-        "cue": "Pause near 0.7 s and select the cloth contact window; its displacement stays synchronized with the main scene."
+        "label": "A rolling wheel and its contact",
+        "text": "Now follow the same gold mark on a wheel. At the bottom, it touches the road without sliding along it for that instant. A locked wheel can instead slide as a whole. A car has two different contacts: pads rub the brake disc, and tires rely on the road’s force to slow the whole vehicle.",
+        "cue": "Compare rolling and locked-wheel cases at the same displacement, then identify the disc and road contacts."
       },
       {
-        "label": "Try a faster start",
-        "text": "Return to the start and increase only the speed. Compare where the block stops on the same lane. Does it travel farther? Changing one condition at a time makes the result clearer. Real materials also depend on dust, moisture and contact, so a surface name alone cannot guarantee the most or least friction.",
-        "cue": "Increase speed and replay, comparing one lane."
+        "label": "Reaction takes distance too",
+        "text": "A driver needs time to react. In the gold section, this braking action has not started yet. In the green section the car slows. Increase starting speed, then change the road, and compare both sections. These numbers are teaching choices, never a guide for deciding when to cross a real road.",
+        "cue": "Compare 30 versus 60 and dry versus wet separately; pause during reaction, braking and after stopping."
       },
       {
-        "label": "Friction helps us too",
-        "text": "Friction is not simply a nuisance. Suitable friction helps shoes grip the ground. Now watch the energy bars: teal gets shorter and orange gets longer, but the total stays the same. As the blocks stop, motion energy transfers to the blocks and surfaces rather than vanishing. Orange is not a spark or a temperature reading.",
-        "cue": "Follow energy bars from teal to orange; once stopped, there is no reverse motion or continuing heat animation."
+        "label": "The body must slow too",
+        "text": "Forces slow the car, and real forces must slow our bodies too. A correctly fitted belt and suitable child seat help. The shoulder belt crosses shoulder and chest; the lap belt lies low over the hips. Never loosen the belt deliberately or hide it behind the back. Adults choose and install protection using the child’s size and both manuals, and secure every trip.",
+        "cue": "Inspect shoulder and lap belts, then rear-facing, forward-facing and booster seats; show no unsafe-fit or injury experiment."
       }
     ]
   },
@@ -97,6 +97,18 @@
     {
       "title": "OpenStax · Motion with Constant Acceleration",
       "url": "https://openstax.org/books/university-physics-volume-1/pages/3-4-motion-with-constant-acceleration"
+    },
+    {
+      "title": "NHTSA · Car Seats and Booster Seats",
+      "url": "https://www.nhtsa.gov/vehicle-safety/car-seats-and-booster-seats"
+    },
+    {
+      "title": "NHTSA · Seat Belts",
+      "url": "https://www.nhtsa.gov/vehicle-safety/seat-belts"
+    },
+    {
+      "title": "CDC · Preventing Child Passenger Injury",
+      "url": "https://www.cdc.gov/child-passenger-safety/prevention/index.html"
     }
   ]
 }

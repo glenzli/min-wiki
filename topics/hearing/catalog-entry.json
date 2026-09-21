@@ -1,7 +1,7 @@
 {
   "id": "hearing",
   "title": "耳朵怎样听见声音？",
-  "category": "life",
+  "category": "physics",
   "summary": "放大耳朵、耳蜗和感觉细胞，追踪振动怎样变成传向脑的消息。",
   "tags": [
     "听觉",
@@ -17,5 +17,6 @@
   "theme": "light",
   "sceneTheme": "light",
   "status": "published",
-  "updated": "2026-09-17"
+  "updated": "2026-09-17",
+  "parentTopic": "sound-vibrations"
 }

@@ -1,6 +1,6 @@
 import type catalogData from '../../content/catalog.json';
-export type Catalog = typeof catalogData;
-export type Topic = Catalog['topics'][number];
+export type Topic = (typeof catalogData)['topics'][number] & { parentTopic?: string };
+export type Catalog = Omit<typeof catalogData, 'topics'> & { topics: Topic[] };
 export const PAGE_SIZE = 24;
 const ID = /^[a-z][a-z0-9-]*$/;
 export const topicHref = (topic: Pick<Topic, "id">) => `/topics/${topic.id}/`;
@@ -22,6 +22,14 @@ export function validateCatalog(catalog: Catalog) {
       || !['published', 'draft'].includes(topic.status)) throw new Error(`Invalid topic: ${topic.id}`);
     topics.add(topic.id);
   }
+  for (const topic of catalog.topics) {
+    if (topic.parentTopic === undefined) continue;
+    const parent = catalog.topics.find(item => item.id === topic.parentTopic);
+    if (!parent || parent.id === topic.id || parent.parentTopic !== undefined
+      || parent.status !== 'published' || parent.category !== topic.category) {
+      throw new Error(`Invalid parent topic: ${topic.id}`);
+    }
+  }
   return catalog;
 }
 
@@ -37,9 +45,11 @@ export function readFilters(search: string, catalog: Catalog) {
 export function findTopics(catalog: Catalog, {category = 'all', query = ''} = {}) {
   const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   return catalog.topics.filter(topic => {
-    if (topic.status !== 'published' || (category !== 'all' && topic.category !== category)) return false;
+    if (topic.status !== 'published' || topic.parentTopic !== undefined
+      || (category !== 'all' && topic.category !== category)) return false;
     const categoryName = catalog.categories.find(item => item.id === topic.category)?.name ?? '';
-    const searchable = [topic.title, topic.summary, categoryName, ...topic.tags].join(' ').toLocaleLowerCase();
+    const chapters = catalog.topics.filter(item => item.status === 'published' && item.parentTopic === topic.id);
+    const searchable = [categoryName, ...[topic, ...chapters].flatMap(item => [item.title, item.summary, ...item.tags])].join(' ').toLocaleLowerCase();
     return terms.every(term => searchable.includes(term));
   });
 }

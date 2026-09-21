@@ -82,5 +82,7 @@
   "毛细胞的放大原理": "Hair-cell mechanism, enlarged",
   "这是一个内毛细胞的原理放大。液体运动使纤毛束偏转，影响离子通道与神经连接；不是一撮汗毛，也不是声波直接钻进神经。": "This is an enlarged inner-hair-cell mechanism. Fluid movement deflects the bundle, affecting ion channels and the neural connection. It is not body hair, and sound waves do not enter the nerve directly.",
   "进度 {{value}}%": "Progress {{value}}%",
-  "示意振幅 {{value}}%": "Illustrated amplitude {{value}}%"
+  "示意振幅 {{value}}%": "Illustrated amplitude {{value}}%",
+  "这里接收同一组音高与幅度条件；位置变化只表示趋势，不把合成音的赫兹数换算成耳蜗坐标。": "This study receives the same pitch and amplitude comparison. Position indicates a trend, not a conversion from synthesized hertz to anatomical cochlear coordinates.",
+  "声音：从振动到听见": "Sound: from vibration to hearing"
 }

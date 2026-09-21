@@ -34,3 +34,30 @@ export function streamParcel(index: number, time: number, scenario: Scenario) {
     const offset = (seedValue(index + 9301) - .5) * spread;
     return { ...p, x: p.x + offset, y: p.y + (seedValue(index + 19281) - .5) * spread, z: (seedValue(index + 7351) - .5) * spread, alpha: Math.min(1, age * 24, (1 - age) * 30) };
 }
+
+/** Wind capture begins as a broad, dilute outflow. Only the cone aimed toward
+ * the black hole is bent into a focused wake; most of the wind is not accreted. */
+export function windCaptureParcel(index: number, time: number) {
+    const seed = seedValue(index + 3141);
+    const captured = seedValue(index + 9173) < .24;
+    const age = (seed + time * .075) % 1;
+    if (!captured) return { x: DONOR_X, y: 0, z: 0, heat: 0, alpha: 0 };
+    const cone = (seedValue(index + 12031) - .5) * .72;
+    const startX = DONOR_X + donorRadius('wind') * Math.cos(cone);
+    const startY = donorRadius('wind') * Math.sin(cone);
+    const join = .58;
+    if (age < join) {
+        const u = age / join;
+        const x = bezier(u, startX, DONOR_X + 2.35, HOLE_X - 2.05, HOLE_X - .92);
+        const y = bezier(u, startY, startY * 1.7, -.82 + cone * .5, -.15);
+        const width = .10 + .34 * Math.sin(Math.PI * u);
+        return { x: x + (seedValue(index + 451) - .5) * width, y: y + (seedValue(index + 1771) - .5) * width,
+            z: (seedValue(index + 7711) - .5) * width * 1.4, heat: u * .24,
+            alpha: Math.min(1, age * 18, (1 - age) * 24) * .62 };
+    }
+    const u = (age - join) / (1 - join), radius = .96 * (1 - u) + .09 * u;
+    const theta = Math.PI - u * Math.PI * 6.4;
+    return { x: HOLE_X + radius * Math.cos(theta), y: radius * Math.sin(theta),
+        z: (seedValue(index + 7711) - .5) * .08, heat: .24 + .76 * u,
+        alpha: Math.min(1, (1 - age) * 24) * .66 };
+}

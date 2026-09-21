@@ -1,6 +1,9 @@
 import { t } from './i18n.ts';
 import type { WorldId } from './model.ts';
 export const CONTENT = {
+  moon: { name: t("月球"), title: t("地球身边的岩石世界"), kids: t("月球绕着地球运行。灰色地面上有撞击坑，也有较暗的月海。"), academic: t("月海是古老玄武岩平原，并非水海。月球缺少浓厚大气，近景采用代表性撞击地貌。"), observe: t("看看撞击坑边缘和坑内的阴影。") },
+  uranus: { name: t("天王星"), title: t("侧身旋转的淡青色世界"), kids: t("天王星看起来淡淡的，但它也有云和风。它不是一颗表面冻成冰的球。"), academic: t("天王星属于冰巨行星，内部材料比例和分层仍有不确定性。甲烷影响可见光颜色，淡色外观不等于没有大气活动。"), observe: t("比较云层与推断的深层结构。") },
+  saturn: { name: t("土星"), title: t("淡金色云层下的巨行星"), kids: t("土星的环在星球外面。往云层里走，并没有岩石地面等着我们。"), academic: t("土星主要由氢和氦构成。云带随大气运动，深处逐渐转为高压流体；环不是一个坚固圆盘。"), observe: t("分开观察云带、环和卫星。") },
   mercury: { name: t("水星"), title: t("撞击留下的岩石世界"), kids: t("灰色地面上有许多撞击坑。水星没有像地球一样浓厚的大气，岩石直接面对太空环境。"), academic: t("水星是类地行星，表面由岩石和风化层构成。它拥有极稀薄的外逸层，不能把它画成具有蓝天、浓云的世界。"), observe: t("坑洼来自撞击，球体轮廓仍由重力维持。") },
   venus: { name: t("金星"), title: t("云层下面仍是岩石"), kids: t("从太空看，厚云遮住了金星的地面。继续往下，才会看到昏黄天空下的岩石平原和火山地貌。"), academic: t("金星有固体地表；二氧化碳大气和硫酸云不能等同于地面。表面约 467°C，气压约为地球海平面的 92 倍，有地面并不代表适合生命或人类着陆。"), observe: t("靠近云下的岩石，再剖开看看可能的内部。") },
   earth: { name: t("地球"), title: t("海洋覆盖的岩石行星"), kids: t("海水覆盖了地球的大部分表面，但海洋下面有岩石海床。地球不是一个从外到内全是水的球。"), academic: t("海洋覆盖约 71% 的地球表面。海面是液体与大气的界面，海床是水与岩石的界面；讨论“表面”时要先说明是哪一种界面。"), observe: t("剖开地球，让标记穿过地壳与地幔，一直走到中心。") },
@@ -12,6 +15,9 @@ export const CONTENT = {
 } satisfies Record<WorldId, { name: string; title: string; kids: string; academic: string; observe: string }>;
 
 export const DETAILS: Record<WorldId, { material: string; feature: string; evidence: string; source: string }> = {
+  moon: { material: t("岩石与月壤"), feature: t("撞击坑、碎石与暗色平原"), evidence: t("轨道与着陆影像支持的代表性地貌"), source: "https://science.nasa.gov/moon/facts/" },
+  uranus: { material: t("大气与高压混合物"), feature: t("淡青色大气与微弱云纹"), evidence: t("外观已观测，深层分区是模型"), source: "https://science.nasa.gov/uranus/facts/" },
+  saturn: { material: t("云顶与高压流体"), feature: t("浅色云带与雾霭"), evidence: t("云层有观测依据，内部是推断"), source: "https://science.nasa.gov/saturn/facts/" },
   mercury: { material: t('固体岩石与碎屑'), feature: t('撞击坑的隆起边缘、阴影与碎石'), evidence: t('依据探测器影像 · 代表性地形'), source: 'https://science.nasa.gov/mercury/facts/' },
   venus: { material: t('厚云下的固体岩石'), feature: t('低矮火山、冷却熔岩与黄褐色雾霭'), evidence: t('雷达地形与着陆影像 · 云下示意'), source: 'https://science.nasa.gov/venus/venus-facts/' },
   earth: { material: t('液态水 / 岩石海床'), feature: t('海岸、浅水颜色与海面反光'), evidence: t('已观测到的水海洋 · 非真实地图'), source: 'https://science.nasa.gov/earth/facts/' },

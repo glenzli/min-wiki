@@ -1,0 +1,154 @@
+{
+  "zh": {
+    "reference": "换一个熟悉的参照",
+    "auto": "随停靠点推荐",
+    "names": {
+      "journey": "50 千米的路程",
+      "earth": "地球",
+      "jupiter": "木星",
+      "sun": "太阳",
+      "arcturus": "大角星",
+      "antares": "心宿二",
+      "neptune-orbit": "海王星轨道范围",
+      "milky-way": "银河系的恒星盘"
+    },
+    "disk": "显示假想吸积盘",
+    "diskNote": "俯视几何示意，描边才是视界；发光的是外面的气体。盘内缘取3倍视界半径，外缘任取6倍，不是实测盘大小。加盘不改变长度比。",
+    "geometryNote": "描边标出无自旋等效事件视界，不是硬壳，也不是望远镜拍到的阴影。并非每个黑洞都有明亮吸积盘。",
+    "ruler": "两侧同一把尺 · 只比直径或跨度，不是实际相邻",
+    "subpixel": "十字只标位置；该对象直径小于 1 屏幕像素，没有被放大。",
+    "galaxyNote": "银河恒星盘取直径约 10 万光年；星系没有硬边。纹理是结构示意。M87* 属于另一个星系，这里只借银河作大小参照。",
+    "bodyNote": "地球、木星、太阳、大角星、心宿二沿用宇宙尺度章节的半径。恒星取代表估计，颜色与表面纹理为示意。",
+    "cosmicLink": "回看这些恒星与星系的比较 →",
+    "questionsTitle": "再追问一步",
+    "distanceTitle": "很大，也可能很远",
+    "distanceIntro": "距离和大小是两把不同的尺。下面是取整的例子，不是最近或最小的实时排行榜。所有视界直径均按无自旋公式换算。 ly 表示光年，是距离单位，不是时间。",
+    "distanceHeaders": [
+      "例子",
+      "离地球约多远",
+      "等效视界直径",
+      "我们靠什么发现"
+    ],
+    "distanceRows": [
+      [
+        "Gaia BH1 · 约 10 个太阳质量",
+        "伴星运动；不是直接拍到小黑圆"
+      ],
+      [
+        "人马座 A* · 约 400 万个太阳质量",
+        "邻近恒星轨道、射电发光环"
+      ],
+      [
+        "M87* · 约 65 亿个太阳质量",
+        "射电发光环与阴影附近结构"
+      ]
+    ],
+    "angular": "只用这些取整值计算：人马座 A* 的视界角直径约 {{sagittarius}} 微角秒，M87* 约 {{m87}} 微角秒。更大却看起来更小！这些是几何视界的计算值，不是 EHT 亮环或阴影的测量直径。",
+    "questions": [
+      {
+        "title": "这么大的黑洞，会把整个星系吃掉吗？",
+        "text": "不会因为它在中央，就让所有恒星都掉进去。绕行的运动很重要；整个星系的引力还来自恒星、气体和暗物质。太靠近的物质可能被捕获，气体还需要把角动量向外传递才能持续流入。可以研究星系怎样给中央供气，却不能把整座星系画成必然被吸进一个漏斗。",
+        "action": "在“恒星路过黑洞”章比较飞掠与瓦解：先找两条命运从哪里分开。",
+        "href": "/topics/black-holes/?chapter=star",
+        "source": "NASA · 黑洞问答",
+        "url": "https://science.nasa.gov/universe/10-questions-you-might-have-about-black-holes/"
+      },
+      {
+        "title": "观测到的最小黑洞是什么样？",
+        "text": "先问：这是已确认的黑洞，还是低质量候选？GW230529 的较重成员估计为 2.5–4.5 个太阳质量（90%可信区间），较可能是黑洞，但不能完全排除中子星。若把它作为无自旋黑洞，视界直径约 15–27 km。这是从引力波推断质量再计算的尺寸，不是直接拍到的照片，也不把它称为已确认的最小纪录。",
+        "source": "LVK · GW230529 原始报告（2024）",
+        "url": "https://dcc.ligo.org/LIGO-P2300352-v9/public"
+      },
+      {
+        "title": "理论上还能更小吗？",
+        "text": "恒星坍缩形成黑洞的条件，不是所有理论黑洞的尺寸下限。原初黑洞是假想的早期宇宙产物，可以讨论远小于恒星级的质量，但目前没有确认发现。经典公式把更小质量对应到更小视界；极小尺度还涉及蒸发与量子引力，不能据此宣布一个已证实的“最小黑洞”。",
+        "source": "NASA · 黑洞类型与原初黑洞",
+        "url": "https://science.nasa.gov/universe/black-holes/types/"
+      },
+      {
+        "title": "如果没有亮盘，我们怎么找到它？",
+        "text": "找它对周围东西的影响。Gaia BH1 是附近的一个例子：我们看见伴星的运动，再推断有一个不发出可见星光的大质量伴随天体。不同黑洞的证据还可能来自炽热气体、恒星轨道或并合引力波；没有亮盘不等于没有黑洞。",
+        "source": "ESA · Gaia BH1 / BH2（2023-03-30）",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Gaia/Gaia_discovers_a_new_family_of_black_holes"
+      }
+    ],
+    "distanceSource": "距离、质量与成像依据：ESO / EHT；Gaia 距离见下方 ESA 资料。",
+    "diskSource": "吸积盘与视界的区别：NASA"
+  },
+  "en": {
+    "reference": "Choose a familiar reference",
+    "auto": "Suggested at each stop",
+    "names": {
+      "journey": "A 50 km journey",
+      "earth": "Earth",
+      "jupiter": "Jupiter",
+      "sun": "Sun",
+      "arcturus": "Arcturus",
+      "antares": "Antares",
+      "neptune-orbit": "Neptune's orbital span",
+      "milky-way": "Milky Way stellar disk"
+    },
+    "disk": "Show a hypothetical accretion disk",
+    "diskNote": "Face-on geometry, not a telescope image. Gas glows outside the outlined horizon. Disk edges are set to 3 and 6 horizon radii, not measured extents. Adding the disk preserves length ratios.",
+    "geometryNote": "The outline marks a non-spinning equivalent event horizon, not a solid shell or a photographed shadow. Not every black hole has a bright accretion disk.",
+    "ruler": "One ruler for both sides · diameters or spans, not actual neighbours",
+    "subpixel": "A cross only locates the object: its diameter is below 1 screen pixel and has not been enlarged.",
+    "galaxyNote": "The Milky Way stellar disk is rounded to 100,000 light-years across; galaxies have no hard edge. Texture illustrates structure. M87* belongs to a different galaxy; the Milky Way is only a size reference here.",
+    "bodyNote": "Earth, Jupiter, the Sun, Arcturus and Antares use the radii from the cosmic-scale chapter. Stellar values are representative estimates; colours and surface textures are illustrative.",
+    "cosmicLink": "Revisit these stars and galaxies →",
+    "questionsTitle": "Ask one more question",
+    "distanceTitle": "Very big can also be very far away",
+    "distanceIntro": "Distance and size need different rulers. These are rounded examples, not a live nearest-or-smallest ranking. All horizon diameters are calculated with the non-spinning formula. ly means light-year, a unit of distance, not time.",
+    "distanceHeaders": [
+      "Example",
+      "Approximate distance from Earth",
+      "Equivalent horizon diameter",
+      "Evidence we use"
+    ],
+    "distanceRows": [
+      [
+        "Gaia BH1 · about 10 solar masses",
+        "Companion motion, not a direct image of a tiny black circle"
+      ],
+      [
+        "Sagittarius A* · about 4 million solar masses",
+        "Nearby stellar orbits and a radio emission ring"
+      ],
+      [
+        "M87* · about 6.5 billion solar masses",
+        "Radio emission and structure around the shadow"
+      ]
+    ],
+    "angular": "Using only these rounded values, the geometric horizon spans about {{sagittarius}} microarcseconds for Sagittarius A* and {{m87}} for M87*. The larger one looks smaller! These are calculated horizon angles, not measured EHT bright-ring or shadow diameters.",
+    "questions": [
+      {
+        "title": "Could a huge black hole eat a whole galaxy?",
+        "text": "Being at the centre does not make every star fall in. Orbital motion matters, and stars, gas and dark matter also contribute to a galaxy's gravity. Material passing too close may be captured; gas must transport angular momentum outward to sustain an inward flow. We can study how a galaxy supplies its centre, but should not show the whole galaxy inevitably draining into a funnel.",
+        "action": "Compare the flyby and disruption in the stellar-encounter chapter. Find where their outcomes separate.",
+        "href": "/topics/black-holes/?chapter=star",
+        "source": "NASA · Black-hole questions",
+        "url": "https://science.nasa.gov/universe/10-questions-you-might-have-about-black-holes/"
+      },
+      {
+        "title": "What does the smallest observed black hole look like?",
+        "text": "First ask: confirmed black hole or low-mass candidate? GW230529's heavier member is estimated at 2.5–4.5 solar masses (90% credible interval). A black hole is more likely, but a neutron star cannot be completely ruled out. If treated as a non-spinning black hole, its horizon would be about 15–27 km across. Mass is inferred from gravitational waves and size is then calculated, not photographed. This is not labelled a confirmed smallest record.",
+        "source": "LVK · GW230529 original report (2024)",
+        "url": "https://dcc.ligo.org/LIGO-P2300352-v9/public"
+      },
+      {
+        "title": "Could there be even smaller ones in theory?",
+        "text": "The conditions for stellar collapse are not a size limit for every theoretical black hole. Primordial black holes are hypothetical early-universe objects and could have far less than stellar masses, but none has been confirmed. The classical formula assigns smaller horizons to smaller masses. At very small scales, evaporation and quantum gravity matter, so it cannot establish a proven smallest black hole.",
+        "source": "NASA · Black-hole types and primordial holes",
+        "url": "https://science.nasa.gov/universe/black-holes/types/"
+      },
+      {
+        "title": "How can we find one without a bright disk?",
+        "text": "Look for its effects on other things. Nearby Gaia BH1 is an example: astronomers measure a companion star's motion and infer a massive companion with no visible starlight. Evidence for other black holes can include hot gas, stellar orbits or gravitational waves from mergers. No bright disk does not mean no black hole.",
+        "source": "ESA · Gaia BH1 / BH2 (2023-03-30)",
+        "url": "https://www.esa.int/Science_Exploration/Space_Science/Gaia/Gaia_discovers_a_new_family_of_black_holes"
+      }
+    ],
+    "distanceSource": "Distance, mass and imaging evidence: ESO / EHT; see ESA below for Gaia distances.",
+    "diskSource": "Accretion disks and horizons: NASA"
+  }
+}

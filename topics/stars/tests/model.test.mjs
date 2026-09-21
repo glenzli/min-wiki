@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { binaryState,tripleState,massCenter,distanceAU,solarObservation,readState,diameterRatio } from '../model.ts';
+import { stellarDestination } from '../../sun-star/migration.ts';
+import { readFileSync } from 'node:fs';
+test('binary center of mass stays fixed for all supported ratios and phases',()=>{for(const q of [.25,.5,1,2,4])for(const phase of [0,.125,.5,.9,22.2]){const p=binaryState(phase,q),center=massCenter(p);assert.ok(Math.hypot(center.x,center.y)<1e-12);assert.ok(Math.abs(Math.hypot(p[1].x-p[0].x,p[1].y-p[0].y)-1)<1e-12);}});
+test('hierarchical triple preserves identity, inner separation and barycenter',()=>{for(const time of [0,.1,3,12,40]){const p=tripleState(time);assert.equal(p.length,3);assert.ok(Math.hypot(...Object.values(massCenter(p)))<1e-12);assert.ok(Math.abs(Math.hypot(p[0].x-p[1].x,p[0].y-p[1].y)-1)<1e-12);assert.deepEqual(tripleState(time),p);}});
+test('observer distance keeps physical dimensions independent from angular size',()=>{assert.equal(distanceAU(0),1);assert.equal(distanceAU(1),1000);assert.equal(distanceAU(NaN),1);assert.ok(Math.abs(solarObservation(1).lightTravelSeconds-499)<1);assert.equal(solarObservation(2).relativeIrradiance,.25);assert.equal(diameterRatio(800,1),800);});
+test('invalid URL inputs stay finite and legacy route preserves language and hash',()=>{const state=readState('?chapter=missing&distance=Infinity&type=NaN');assert.equal(state.chapter,'sun');assert.equal(state.distance,0);assert.equal(state.type,0);assert.equal(stellarDestination('?lang=en&distance=0.5','#notes'),'/topics/stars/?lang=en&distance=0.5&chapter=sun#notes');});
+test('stellar presets and bilingual learning express their model boundaries',()=>{const data=JSON.parse(readFileSync(new URL('../content.json',import.meta.url)));assert.equal(data.types.length,4);assert.equal(data.types[2].mass,data.types[1].mass);assert.ok(data.types[2].radius>data.types[1].radius);assert.ok(data.ui.orbitBoundary.en.includes('not a free three-body'));const l=JSON.parse(readFileSync(new URL('../learning.json',import.meta.url)));for(const language of ['zh','en']){assert.equal(l[language].academic.length,3);assert.equal(l[language].narration.length,4);for(const n of l[language].academic)assert.ok(n.body.length>55);}});
+

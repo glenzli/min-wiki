@@ -10,15 +10,15 @@ export const ICE_HEIGHT = 164 * 1.09;
 export type IcePoint = { x: number; z: number };
 export type Grain = { id: number; seed: number; speed: number; lateral: number; tilt: number; bend: number };
 export const ICE_GRAINS: readonly Grain[] = [
-  [16, .990, 1.6, .035, .8], [44, 1.035, 1.4, -.022, -.6],
-  [79, .985, 1.9, .015, 1.1], [111, 1.018, 1.6, -.026, -.7],
-  [145, 1.000, 1.45, .022, .5], [184, .973, 1.8, .012, -.9],
-  [219, 1.035, 1.55, -.024, .7], [253, .987, 1.7, .017, -.6],
-  [286, 1.010, 1.4, -.010, .4],
+  [16, .990, 1.6, .044, 4.2], [44, 1.035, 1.4, -.030, -3.6],
+  [79, .985, 1.9, .023, 5.1], [111, 1.018, 1.6, -.035, -4.4],
+  [145, 1.000, 1.45, .031, 3.8], [184, .973, 1.8, .020, -4.8],
+  [219, 1.035, 1.55, -.032, 4.1], [253, .987, 1.7, .025, -3.9],
+  [286, 1.010, 1.4, -.016, 3.5],
 ].map(([seed, speed, lateral, tilt, bend], id) => ({ id, seed: seed!, speed: speed!, lateral: lateral!, tilt: tilt!, bend: bend! }));
 
 export function grainAxis(grain: Grain, z: number): number {
-  return grain.seed + grain.tilt * z + grain.bend * Math.sin(z / 47);
+  return grain.seed + grain.tilt * z + grain.bend * Math.sin(z / 38 + grain.id * .73);
 }
 export function arrivalTime(grain: Grain, x: number, z: number): number {
   const across = (x - grainAxis(grain, z)) / grain.lateral;

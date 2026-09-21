@@ -10,3 +10,4 @@
 .science-panel .science-live{white-space:pre-line;font-variant-numeric:tabular-nums;color:var(--ink)}
 .setting input[type=range]{min-height:34px}.steps button{min-height:48px}
 @media(max-width:760px){.science-panel{grid-template-columns:1fr;padding:20px;gap:4px}.science-panel p{font-size:13px}.science-panel .science-formula{font-size:18px}.observe span{font-size:13px}.steps button{font-size:11px}.settings{grid-template-columns:1fr}.setting select{font-size:13px}.scene-note{font-size:10px}.scene-heading h2{font-size:14px}}
+.viewport>canvas{touch-action:none;cursor:grab}.viewport>canvas:active{cursor:grabbing}

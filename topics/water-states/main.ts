@@ -33,7 +33,7 @@ function update(){
   const kind=process.value as Process,p=Number(range.value)/100,s=phaseState(kind,p);
   attr('lid','display',kind==='condense'?'block':'none');
   iceRenderer.update(s,showGrains.checked);
-  attr('water-surface','cy',s.top);attr('water-surface','opacity',1-clamp(s.ice*16));
+  attr('water-surface','cy',s.top);attr('water-surface','rx',Math.max(124,150-(s.top-145)*.1));attr('water-surface','opacity',1-clamp(s.ice*16));
   el('ice-observation').hidden=kind!=='melt'&&kind!=='freeze';
   setText('progress-value',`${Math.round(p*100)}%`);
   setText('ice-detail-note',showGrains.checked?t('虚线标出不同晶粒相遇的位置；它们不是裂开的缝。'):t('透亮的区域也是冰。细小气泡与晶粒边界是两回事。'));

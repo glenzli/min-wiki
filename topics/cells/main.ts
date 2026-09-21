@@ -6,10 +6,14 @@ import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
 import { focusBox,wholeBox,mixBox,hasPart,hitPart,processFor,processState,respirationState,type Cell,type Part,type Process } from './model.ts';
 import { createScene,setCameras,selectPart,drawProcess } from './scene.ts';
+import { CHAPTERS, readCellRoute, type Chapter } from './exploration.ts';
+import { mountSpecialization } from './specialization.ts';
 translateDocument(t);
 const el = (id:string):HTMLElement=>document.getElementById(id)!;
 function text(id:string,value:string){const node=el(id);if(node.textContent!==value)node.textContent=value;}
 let cell:Cell='animal',part:Part='membrane',choice:Process='photosynthesis',outer=0,outerTarget=0;
+const requestedCell = new URLSearchParams(location.search).get('cell');
+if (requestedCell === 'plant' || requestedCell === 'bacterium') cell = requestedCell;
 let whole=wholeBox(cell),detail=focusBox(cell,part),playing=false,lastAnnouncement='';
 const progress={animal:{respiration:0,photosynthesis:0},plant:{respiration:0,photosynthesis:0},bacterium:{respiration:0,photosynthesis:0}};
 let cancelCamera=()=>{},cancelSurface=()=>{},cancelPlay=()=>{};
@@ -135,3 +139,28 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();ren
 window.addEventListener('pagehide',()=>{stop();cancelCamera();cancelSurface();whole=wholeBox(cell);detail=focusBox(cell,part);outer=outerTarget;});
 window.addEventListener('pageshow',()=>{setCameras(whole,detail);render();});
 createScene();setCameras(whole,detail);render();mountReadingMode('details:not(.references)');mountTopicNavigation('cells');
+
+const initialRoute = readCellRoute(location.search);
+let chapter: Chapter = initialRoute.chapter;
+const specialization = mountSpecialization(initialRoute.example, example => {
+ const url = new URL(location.href); url.searchParams.set('case', example); history.replaceState(null, '', url);
+});
+function showChapter(next: Chapter, writeRoute = true) {
+ stop(); cancelCamera(); cancelSurface(); specialization.pause();
+ whole = wholeBox(cell); detail = focusBox(cell,part); outer = outerTarget; setCameras(whole,detail);
+ chapter = next;
+ for (const id of ['structure-heading', 'cell-options']) el(id).hidden = chapter === 'work';
+ for (const id of ['structure-panel', 'structure-detail']) el(id).hidden = chapter !== 'structure';
+ el('energy-panel').hidden = chapter !== 'energy'; el('specialization-panel').hidden = chapter !== 'work';
+ document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.chapter === chapter)));
+ text('chapter-question', chapter === 'structure' ? t('哪些结构是共有的，哪些只在这一种样本中出现？先在同一细胞上找到它们。') : chapter === 'energy' ? t('刚才找到的结构并非摆设。沿着同一细胞的路径，看物质怎样变化、能量怎样被利用。') : t('共同的细胞基础，怎样支持不同的工作？比较组织中的真实分工，而不是让一个细胞依次变身。'));
+ text('next-question', chapter === 'structure' ? t('找到结构之后，看看它们怎样参与生命活动。') : chapter === 'energy' ? t('获得可用能量之后，不同形状的细胞能做什么？') : t('带着这些特殊样本，回头比较典型细胞有哪些共同点与例外。'));
+ text('chapter-next', chapter === 'structure' ? t('继续：看物质与能量') : chapter === 'energy' ? t('继续：比较细胞分工') : t('返回：结构与例外'));
+ if (writeRoute) { const url = new URL(location.href); url.searchParams.set('chapter', chapter); history.pushState(null, '', url); }
+ render();
+}
+document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(button => button.addEventListener('click', () => showChapter(button.dataset.chapter as Chapter)));
+el('chapter-next').addEventListener('click', () => showChapter(CHAPTERS[(CHAPTERS.indexOf(chapter) + 1) % CHAPTERS.length]!));
+el('compare-energy').addEventListener('click', () => { cell = 'animal'; choice = 'respiration'; showChapter('energy'); });
+window.addEventListener('popstate', () => { const route = readCellRoute(location.search); specialization.select(route.example); showChapter(route.chapter, false); });
+showChapter(chapter, false);

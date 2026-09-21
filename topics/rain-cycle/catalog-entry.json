@@ -1,19 +1,24 @@
 {
   "id": "rain-cycle",
-  "title": "一滴水的旅行",
+  "title": "水循环：水的许多旅程",
   "category": "earth",
-  "summary": "从地面的水，到云里的小水滴，再回到河流和大海。",
+  "summary": "从海面到云、山坡、土壤和河湖，探索水的多条旅程与冰川慢时间。",
   "tags": [
     "水循环",
     "蒸发",
-    "凝结"
+    "凝结",
+    "降雨",
+    "入渗",
+    "河流",
+    "冰川"
   ],
-  "duration": "互动探索 / 四步观察",
+  "duration": "互动探索 / 条件与过程",
   "modes": [
-    "儿童探索"
+    "儿童版",
+    "学术版"
   ],
   "theme": "light",
   "sceneTheme": "light",
   "status": "published",
-  "updated": "2026-09-12"
+  "updated": "2026-09-20"
 }

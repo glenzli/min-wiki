@@ -72,6 +72,14 @@ export class TopicScene {
         s.path([[x-r, y], [x-r*.3, y-r*.7], [x+r*.6, y-r*.5], [x+r, y+r*.3], [x, y+r*.6]], ['#aa8b64a6','#756650bc','#c1a07a99'][i%3], '#5d514744', .6);
       }
       c.restore();
+      // The load remains while the reservoir's pressure support weakens.
+      if (progress < .48) {
+        for (const x of [-58, 0, 58]) {
+          s.arrow(x, 72, x, 100, '#5e5245', 2.1);
+          const support = 1 - state.withdrawal * .78;
+          s.arrow(x, 147, x, 147 - 29 * support, '#d7a568', 1.3 + support);
+        }
+      }
       // An outward magma path explains withdrawal before any roof motion.
       c.beginPath(); c.moveTo(78, 181); c.bezierCurveTo(138, 180, 203, 174, 254, 111); c.lineTo(270, terrain(270, progress, settings.basin));
       c.strokeStyle = '#5c4b3f'; c.lineWidth = 8; c.stroke();
@@ -168,6 +176,7 @@ export class TopicScene {
       if (progress < .18) label(t('岩浆沿通道撤出'), 233, 159, [159, 166], 185);
       else if (progress < .27) label(t('支撑减弱，裂隙扩展'), 0, -187, [154, 12], 255);
       else label(t('岩体沿断裂向下沉'), 0, -187, [75, terrain(75, progress, 'caldera')], 245);
+      if (progress >= .18) label(t('岩石的重量仍在'), -239, 99, [-58, 86], 172);
       label(t('仍有岩石与岩浆'), -235, 180, [-75, 185], 190);
     } else if (progress > .5 && settings.supply > 0) {
       const count = settings.leak === 'high' ? 6 : 2;

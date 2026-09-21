@@ -83,3 +83,9 @@ Build with `npm run build -- --base=/encyclopedia/` to mount under a host site. 
 3. Call `translateDocument(t)` before starting dynamic controllers, then mount shared navigation. Use `t()` for dynamic text, including canvas labels and accessible descriptions; keep markup in the source and interpolate only trusted local content into HTML templates.
 4. Preserve model identifiers and numeric data across languages. Keep all scientific qualifications and model limits in both versions.
 5. Run `npm run check`. Preview `dist/` and test both languages, direct links, language switching, narrow layouts and the topic's main interactions. Build entries and translation checks both discover published topics from the registry.
+
+### 一个主题下的多个章节
+
+登记项可使用 `parentTopic` 指向同分类、已发布的顶层主题，只支持一层。子章节继续保持 `published`，保留原 URL、构建入口、双语和解说资源。首页与分类计数仅展示顶层主题；搜索同时检查已发布子章节的标题、简介与标签，返回父主题。通用导航提供父级入口，具体章节顺序、说明与互动仍由专题管理。不要用 `draft` 隐藏已发布章节，否则旧链接不会进入构建。
+
+Published chapters may set `parentTopic` to a published top-level topic in the same category. Catalog discovery and counts show the parent, and search includes its published chapters. Chapter routes, build entries and localized learning resources remain independently reachable. The topic owns chapter order and interactions.

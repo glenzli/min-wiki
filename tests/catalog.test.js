@@ -19,10 +19,10 @@ test('published topics have unique safe routes, known categories and deployable 
 });
 test('search combines terms and category, excludes drafts, and handles empty results',()=>{
   const fixture=structuredClone(catalog);fixture.topics.push({...fixture.topics[0],id:'draft-example',status:'draft'});
-  assert.deepEqual(findTopics(fixture,{query:' 恒星  引力 '}).map(item=>item.id),['black-hole','galactic-center']);
+  assert.deepEqual(findTopics(fixture,{query:' 恒星  引力 '}).map(item=>item.id),['black-holes']);
   assert.equal(findTopics(fixture,{category:'life',query:'黑洞'}).length,0);
   assert.equal(findTopics(fixture,{query:'不存在的问题'}).length,0);
-  assert.equal(findTopics(fixture).length, catalog.topics.filter(item => item.status === 'published').length);
+  assert.equal(findTopics(fixture).length, catalog.topics.filter(item => item.status === 'published' && !item.parentTopic).length);
 });
 test('shared links recover filters and tolerate unknown categories and long input',()=>{
   assert.deepEqual(readFilters('?category=universe&q=%E9%BB%91%E6%B4%9E',catalog),{category:'universe',query:'黑洞'});
@@ -54,4 +54,35 @@ test('pagination clamps invalid URLs and returns adjacent pages with endpoints',
   assert.deepEqual(paginate(49, 2), {page:2,pages:3,start:24,end:48,visible:[1,2,3]});
   assert.deepEqual(paginate(240, 5).visible, [1,4,5,6,10]);
   assert.equal(paginate(0, 5).page, 1);
+});
+
+test('chapter discovery returns one parent, searches child metadata and preserves chapter routes', () => {
+  const base = {...catalog.topics[0], id:'collection', title:'Parent', summary:'Overview', tags:[]};
+  delete base.parentTopic;
+  const fixture = {...catalog, topics:[base,
+    {...base, id:'chapter', parentTopic:'collection', title:'Distinct child', tags:['needle']},
+    {...base, id:'hidden', parentTopic:'collection', status:'draft', tags:['secret']}]};
+  assert.equal(validateCatalog(fixture), fixture);
+  assert.deepEqual(findTopics(fixture).map(t=>t.id), ['collection']);
+  assert.deepEqual(findTopics(fixture,{query:'needle'}).map(t=>t.id), ['collection']);
+  assert.deepEqual(findTopics(fixture,{query:'Parent needle'}).map(t=>t.id), ['collection']);
+  assert.deepEqual(findTopics(fixture,{query:'secret'}), []);
+  assert.equal(topicHref(fixture.topics[1]), '/topics/chapter/');
+  for (const parentTopic of ['missing', 'chapter', '', null]) {
+    const invalid=structuredClone(fixture); invalid.topics[1].parentTopic=parentTopic;
+    assert.throws(()=>validateCatalog(invalid), /Invalid parent topic/);
+  }
+  const nested=structuredClone(fixture); nested.topics[2].parentTopic='chapter';
+  assert.throws(()=>validateCatalog(nested), /Invalid parent topic/);
+  const draft=structuredClone(fixture); draft.topics[0].status='draft';
+  assert.throws(()=>validateCatalog(draft), /Invalid parent topic/);
+  const category=structuredClone(fixture); category.topics[1].category=catalog.categories.find(c=>c.id!==base.category).id;
+  assert.throws(()=>validateCatalog(category), /Invalid parent topic/);
+});
+
+test('absorbed Saturn and surface chapters resolve to one solar-system discovery entry',()=>{
+  const ids=findTopics(catalog).map(t=>t.id);
+  assert.ok(ids.includes('solar-system'));assert.ok(!ids.includes('saturn-moons'));assert.ok(!ids.includes('planet-surfaces'));
+  assert.ok(ids.includes('earth-moon'));
+  assert.deepEqual(findTopics(catalog,{query:'土星和它的卫星们'}).map(t=>t.id),['solar-system']);
 });

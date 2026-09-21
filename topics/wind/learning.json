@@ -1,0 +1,126 @@
+{
+  "version": 1,
+  "topicId": "wind",
+  "zh": {
+    "question": "同一股风，怎样把受热、空气的路径和物体的变化联系起来？",
+    "observe": "先沿海岸的路线找“低处来、往上走、高处去”，再按下一站走进台风和龙卷风，比较相同的线索与新增条件。最后从 100 米操场拉远到城区和整片云系，沿比例尺理解跨度。",
+    "academic": [
+      {
+        "title": "推动空气的是力，不是温度标签",
+        "body": "水平气压梯度力指向同一高度上气压较低的一侧：aₚ = −∇ₕp / ρ。差异加热会改变空气柱的厚度与质量分布，经过调整形成局地环流；不能只凭温度直接判断地面气压。真实风还受地球自转、摩擦和原有运动影响。此处只示意由差异加热维持的局地环流；受热相同不代表现实世界没有风。"
+      },
+      {
+        "title": "地形与昼夜怎样改变风",
+        "body": "固体边界限制气流穿透，地形、表面摩擦和来流条件共同改变流场。背风侧可发生分离与湍流；并非每座山后都有相同的涡旋。本演示给定平滑的绕流路径，不计算真实建筑风荷载，也不模拟湍流或预测某处的风速。 海陆风是热力驱动的局地环流。陆地与水体的有效热容量、混合和蒸发不同，使日变化产生温度对比；压力场随空气柱的调整而改变。背景大尺度风、云量、地形和海温可能削弱、增强或阻止这种环流。箭头表示理想化的已建立环流，不表示日落瞬间所有风立即反向。"
+      },
+      {
+        "title": "风暴与物体响应不能只看风强",
+        "body": "台风是热带气旋在特定海域的名称，涉及大范围海气能量交换和旋转环流。龙卷风是与对流云相连、接触地面的强旋转气柱，生成途径不止一种；本项目的龙卷风环境展示超级单体相关的一种路径。热带气旋的雨带有时也能产生龙卷风，但这不使两者成为同一种现象。 空气通过压力和摩擦向物体传递动量。在其他条件固定的近似下，阻力 F ≈ ½ρCᴅAv²；真实响应还取决于形状、迎风面积、固定方式和材料。沙粒起动有阈值，种子运动受重力与阻力共同影响。这里使用无单位的示意响应，不把滑块对应到风力等级、发电量或安全阈值。 尺度演示在每个镜头内对操场、城区与云系使用同一千米到像素的转换。100 米与 20 千米是设定的参照物，500 与 1000 千米是云系跨度的教学例子；位置是假想的，云系虚线圈不是任何风速阈值的等值线。中央定位环是可读性标记，不代表真实操场大小。"
+      }
+    ],
+    "misconception": "海陆风可以用理想化环流理解，但不是每阵风都沿封闭的环走。台风与环境交换空气；龙卷风也不是缩小的台风。台风和飓风是同类热带气旋在不同海域的称呼，云系大小不能直接当成强风范围。",
+    "boundary": "本项目给定用于讲解的气流路径与无单位响应，没有求解完整天气方程。没有温差时停止的是本例由差异受热维持的环流，不是说真实世界所有风都停止。",
+    "narration": [
+      {
+        "label": "空气动起来",
+        "text": "伸出手，你可能感觉到风，却看不见空气。风就是流动的空气。不同地方受热不一样，可以让空气重新分布，形成气压差，推动空气。看：这边上升，高处返回，近地面的空气又流过来了。",
+        "cue": "选择海岸与陆地，点击开始观察；切换晴朗白天与夜晚，再把海陆受热对比移到中间。"
+      },
+      {
+        "label": "带着线索去下一站",
+        "text": "先记住三个问题：空气从哪里来，在哪里上升，到了高处又去哪里？海岸的空气绕出一个环流。到了台风里，空气也从低处汇入、向上走、再从高处流出，还会绕着中心旋转。它需要暖海、水汽和合适的环境，不是刚才那个海岸环流变大了。",
+        "cue": "逐段点击三色路线，再选下一站进入台风；比较侧面路线，并点击从上方看旋转。"
+      },
+      {
+        "label": "风暴有多大",
+        "text": "台风和飓风是同类风暴在不同海域的名字。先看看这个长一百米的操场。镜头拉远，它成了城区里的小点。再拉远，连整片城区都变小了。这个五百千米宽的云系例子，可以排下五千个这样的操场长度！云的范围不是强风的范围，云下面各处的风也不一样。",
+        "cue": "从操场依次切换城区与整片风暴；停在 500 千米，指出 20 千米城区小方框与同一比例尺。再选 1000 千米，观察云系直径变为两倍。"
+      },
+      {
+        "label": "风做了什么",
+        "text": "再把三个问题带到龙卷风：空气可以进入近地涡旋，旋转着上升，并与雷暴相连。它的形成还要看不同高度的风、上升气流和近地条件，不是缩小的台风。回到海岸，看看同一股风怎样推动草木、种子、帆和风轮。遇到风暴，我们跟着大人和当地预警指引避险。",
+        "cue": "进入龙卷风比较路线与触地条件，再回海岸观察物体响应。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How does one wind connect heating, airflow paths and changes in objects?",
+    "observe": "Follow the coastal route: air arrives below, rises and goes elsewhere aloft. Use Next to visit a tropical cyclone and a tornado, comparing shared clues and additional conditions. Finally zoom from a 100 m playground to a city area and the whole cloud system, using the ruler to understand its span.",
+    "academic": [
+      {
+        "title": "Forces move air; temperature labels alone do not",
+        "body": "The horizontal pressure-gradient acceleration points toward lower pressure at the same height: aₚ = −∇ₕp / ρ. Differential heating changes the thickness and mass distribution of air columns; adjustment can establish a local circulation. Temperature alone does not determine surface pressure. Real winds also depend on Earth’s rotation, friction and prior motion. This illustration includes only a local circulation maintained by differential heating. Equal heating does not mean that real-world winds must stop."
+      },
+      {
+        "title": "How terrain and the day–night cycle change wind",
+        "body": "Solid boundaries limit flow through them. Terrain, surface friction and the incoming flow shape the resulting wind field. Separation and turbulence can occur on the lee side; hills do not all create the same eddies. These smooth, prescribed paths do not calculate building wind loads, simulate turbulence or predict local wind speed. Sea and land breezes are thermally driven local circulations. Differences in effective heat capacity, mixing and evaporation produce a daily temperature contrast; the pressure field changes as the air columns adjust. Background winds, clouds, terrain and sea temperature can weaken, strengthen or prevent this circulation. The arrows show idealized established circulations, not an instantaneous reversal of all winds at sunset."
+      },
+      {
+        "title": "Storms and object responses require more than wind strength",
+        "body": "Typhoon is a regional name for a tropical cyclone, involving large-scale ocean–atmosphere energy exchange and rotating circulation. A tornado is a strongly rotating column of air connected to a convective cloud and in contact with the ground. Tornado formation has multiple pathways; this project illustrates one associated with supercells. Tropical-cyclone rainbands can sometimes spawn tornadoes, but that does not make the two phenomena identical. Air transfers momentum through pressure and friction. With other conditions approximately fixed, drag F ≈ ½ρCᴅAv². Actual responses also depend on shape, exposed area, anchoring and material. Sand has an entrainment threshold; seeds respond to both gravity and drag. These dimensionless responses do not convert the slider into wind categories, electricity output or safety thresholds. The scale view uses one kilometres-to-pixels conversion for the playground, city area and cloud envelope in every frame. The 100 m and 20 km references are defined examples; 500 and 1000 km are illustrative cloud-system spans. The location is imaginary and the dashed cloud boundary is not a wind-speed contour. The central locator ring aids readability and does not represent the playground’s physical size."
+      }
+    ],
+    "misconception": "Coastal breezes can be understood through an idealized circulation, but not every wind follows a closed loop. Tropical cyclones exchange air with their surroundings, and a tornado is not a miniature tropical cyclone. Typhoons and hurricanes are regional names for the same kind of storm; cloud size does not directly give the strong-wind extent.",
+    "boundary": "This project prescribes teaching paths and dimensionless responses rather than solving full weather equations. Equal heating stops only the circulation maintained by heating differences in this example, not all real-world wind.",
+    "narration": [
+      {
+        "label": "Air begins moving",
+        "text": "Hold out your hand. You may feel a breeze even though you cannot see air. Wind is moving air. Unequal heating can redistribute air and create pressure differences that push it. Watch air rise on one side, return above and flow back near the ground.",
+        "cue": "Select Coast and land, start observation, compare clear day and night, then move the heating contrast to the middle."
+      },
+      {
+        "label": "Take the clues to the next stop",
+        "text": "Remember three questions: where does air come from, where does it rise, and where does it go aloft? At the coast, air forms a circulation. In a tropical cyclone, air also flows in below, rises and flows out above, while rotating around a center. It needs a warm sea, moisture and suitable surroundings. It is not simply a larger version of the coastal breeze.",
+        "cue": "Select each colored route segment, then move to the tropical cyclone. Compare the side route and use Look down at the rotation."
+      },
+      {
+        "label": "How big is the storm?",
+        "text": "Typhoons and hurricanes are names for the same kind of storm in different ocean regions. Start with this playground, one hundred metres long. Zoom out and it becomes a dot in a city area. Zoom out again and even the city area looks small. This example cloud system is five hundred kilometres wide: five thousand playground lengths end to end! Cloud extent is not strong-wind extent, and winds vary beneath the clouds.",
+        "cue": "Move from playground to city area to whole storm. At 500 km, point out the 20 km city square and the common ruler. Select 1000 km and watch the cloud diameter double."
+      },
+      {
+        "label": "What wind does",
+        "text": "Take the same three questions to a tornado: air can enter a near-ground vortex, spiral upward and connect to a thunderstorm. Formation also depends on winds at different heights, updrafts and conditions near the ground. It is not a small tropical cyclone. Back at the coast, watch one wind move plants, seeds, a sail and a wheel. During storms, we follow adults and local warning guidance to shelter.",
+        "cue": "Compare the tornado route and ground-contact conditions, then return to the coast to observe object responses."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NOAA / NWS — Pressure and winds",
+      "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/winds/pressure_winds/Pressure.htm"
+    },
+    {
+      "title": "NOAA / NWS — Local winds and terrain",
+      "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/winds/Wx_Terms/Flight_Environment.htm"
+    },
+    {
+      "title": "NOAA / NSSL — Tornado basics",
+      "url": "https://www.nssl.noaa.gov/education/svrwx101/tornadoes/"
+    },
+    {
+      "title": "NOAA — Tropical cyclone names",
+      "url": "https://oceanservice.noaa.gov/facts/cyclone.html"
+    },
+    {
+      "title": "NOAA / NWS — High wind safety",
+      "url": "https://www.weather.gov/safety/wind-during"
+    },
+    {
+      "title": "US Department of Energy — How wind turbines work",
+      "url": "https://www.energy.gov/cmei/systems/how-do-wind-turbines-work"
+    },
+    {
+      "title": "NOAA — Hurricane Basics",
+      "url": "https://repository.library.noaa.gov/view/noaa/12828/noaa_12828_DS1.pdf"
+    },
+    {
+      "title": "NOAA GFDL — Inflow, updrafts and outflow",
+      "url": "https://www.gfdl.noaa.gov/operational-hurricane-forecasting/"
+    },
+    {
+      "title": "NOAA NSSL — Tornado types",
+      "url": "https://www.nssl.noaa.gov/education/svrwx101/tornadoes/types/"
+    }
+  ]
+}

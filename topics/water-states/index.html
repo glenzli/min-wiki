@@ -4,15 +4,15 @@
 
 <linearGradient id="glass" x2="1"><stop stop-color="#ffffff90"/><stop offset=".15" stop-color="#ffffff08"/><stop offset=".78" stop-color="#ffffff08"/><stop offset="1" stop-color="#ffffff90"/></linearGradient>
 <radialGradient id="shadow"><stop stop-color="#34636b50"/><stop offset="1" stop-color="#34636b00"/></radialGradient>
-<clipPath id="cup"><path d="M150 145H450V386Q450 404 430 404H170Q150 404 150 386Z"/></clipPath>
+<clipPath id="cup"><path d="M142 145L165 388Q168 410 190 412H410Q432 410 435 388L458 145Z"/></clipPath>
 
-<g id="vapor-molecule"><path d="M0 0L-6 5M0 0L6 5" stroke="#7f9695" stroke-width="2"/><circle r="5" fill="#5c8f99"/><circle cx="-6" cy="5" r="3" fill="#f7ffff" stroke="#7f9695"/><circle cx="6" cy="5" r="3" fill="#f7ffff" stroke="#7f9695"/></g>
+<g id="vapor-molecule"><path d="M0 0L-6 5M0 0L6 5" stroke="#7894a4" stroke-width="2"/><circle r="5" fill="#397fa8"/><circle cx="-6" cy="5" r="3" fill="#f7ffff" stroke="#8aa0a9"/><circle cx="6" cy="5" r="3" fill="#f7ffff" stroke="#8aa0a9"/></g>
 </defs><rect width="600" height="480" fill="url(#room)"/><path d="M25 0H75L280 420H198ZM115 0H138L343 420H290Z" fill="#fffdf0" opacity=".3"/><path d="M0 413Q300 403 600 414V480H0Z" fill="#d6c3a5"/><path d="M0 449Q230 434 600 450M40 467Q300 451 540 469" fill="none" stroke="#bfa989" opacity=".3"/><ellipse cx="300" cy="423" rx="205" ry="24" fill="url(#shadow)"/>
-<path d="M145 141V385Q145 411 174 411H426Q455 411 455 385V141" fill="#eefbfb30" stroke="#769da7" stroke-width="3"/>
+<path d="M138 141L161 389Q164 416 190 418H410Q436 416 439 389L462 141" fill="#eefbfb30" stroke="#769da7" stroke-width="3"/>
 <g clip-path="url(#cup)"><path id="water" fill="url(#liquid)"/><ellipse id="water-surface" cx="300" cy="240" rx="150" ry="10" fill="#d6f4ef" opacity=".8"/>
 <g id="ice"></g>
-<path d="M162 150V380Q162 392 178 392M431 153V379" fill="none" stroke="#ffffff" opacity=".45" stroke-width="5"/></g>
-<path d="M150 145V384Q150 403 170 403H430Q450 403 450 384V145" fill="url(#glass)" stroke="#edfafa" stroke-width="2"/><ellipse cx="300" cy="145" rx="153" ry="14" fill="none" stroke="#7198a3" stroke-width="2"/><path d="M150 145Q300 170 450 145" fill="none" stroke="#ffffff" stroke-width="3"/>
+<path d="M158 151L178 382Q180 397 195 400M442 151L422 382" fill="none" stroke="#ffffff" opacity=".45" stroke-width="5"/></g>
+<path d="M142 145L165 388Q168 410 190 412H410Q432 410 435 388L458 145" fill="url(#glass)" stroke="#edfafa" stroke-width="2"/><ellipse cx="300" cy="145" rx="158" ry="16" fill="none" stroke="#7198a3" stroke-width="2"/><path d="M142 145Q300 174 458 145" fill="none" stroke="#ffffff" stroke-width="3"/><path d="M177 404Q300 420 423 404" fill="none" stroke="#6e929b55" stroke-width="2"/>
 <g id="lid"><path d="M137 107Q300 75 463 107L460 118Q300 100 140 118Z" fill="#b2c6cd" stroke="#738f99" stroke-width="2"/><rect x="270" y="77" width="60" height="18" rx="9" fill="#7f9fa9"/><g id="droplets"></g></g><g id="vapor"></g>
 <text id="state" x="300" y="459" text-anchor="middle"></text></svg>
 <div id="ice-observation" class="ice-observation"><div class="ice-observation-heading"><span>一层冰，许多晶粒</span><label class="ice-guide-toggle"><input id="show-grains" type="checkbox">标出晶界</label></div><p id="ice-detail-note">透亮的区域也是冰。细小气泡与晶粒边界是两回事。</p><div class="ice-stages" role="group" aria-label="观察冰层的不同阶段"><button type="button" data-ice-stage="5">初生薄冰</button><button type="button" data-ice-stage="50">冰水相接</button><button type="button" data-ice-stage="100">完整冰层</button></div></div></div>

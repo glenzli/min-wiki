@@ -1,5 +1,9 @@
 # 种子怎样去远方？
 
+已收归 `seed-sprouting/?chapter=dispersal`。`main.ts` 只迁移旧链接，保留适用参数、语言、锚点与子路径；`study.ts` / `study.html` 是主专题直接消费的原生实验。统一条件图读取这里的接触、携带与落地状态，但不会替传播体自动生成幼苗。
+
+Integrated into the flowering-plant life-cycle workspace. The dandelion and burdock are explicit comparison species, not cherries changing into pappus or hooks. `mountStudy` owns its finite playback and transitions and returns read/pause/dispose; page-level hiding and cleanup are owned by the parent workspace. Each wind setting and the burr case retain separate progress on switching, with at most four simple entries. Changing chapter detaches and pauses the same bounded study instance.
+
 轻轻的绒毛、小小的钩子，都能帮种子离开妈妈身边。选一种，再送它一程。
 
 蒲公英被风传播的单位是含一粒种子的小果实，冠毛增加阻力，降低沉降速度。牛蒡带钩的总苞能附着于毛发或衣物，连同果实一起移动；动物吃果实后排出种子是另一条传播途径。

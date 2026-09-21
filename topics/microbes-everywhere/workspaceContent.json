@@ -1,0 +1,306 @@
+{
+  "zh": {
+    "title": "微生物：细胞、环境与病毒",
+    "eyebrow": "同一个观察工作区 · 三个不同的问题",
+    "intro": "到了一个地方，就能长出更多吗？先看小环境，再用参考细胞找出生长所需的结构，最后比较病毒为什么仍需要合适的宿主。",
+    "chapters": {
+      "environment": "① 环境提供什么？",
+      "bacteria": "② 细菌怎样生长？",
+      "viruses": "③ 病毒还缺什么？"
+    },
+    "chapterNotes": {
+      "environment": "到达、存活、繁殖不是一回事。选一个小环境，再把问题带进参考细胞。",
+      "bacteria": "沿用你选的资源条件，观察参考细胞 B 的边界、工具和一次分裂。它不是从环境图中鉴定出的物种。",
+      "viruses": "细菌有自己的核糖体，病毒没有。现在明确换成另一类宿主 H，与参考细胞 B 比较；不是把 B 变成 T4 的宿主。"
+    },
+    "habitatLabel": "环境参照",
+    "habitats": {
+      "soil": "一撮土",
+      "water": "一滴池水",
+      "skin": "皮肤表面",
+      "air": "空气与尘粒"
+    },
+    "habitatTexts": {
+      "soil": "土粒孔隙里有水膜、空气和有机物；细菌与分枝菌丝只是代表。不同孔隙不一定同样适合生长。",
+      "water": "微小藻类、原生生物与细菌的结构、取食方式不同。看起来清澈，不能说明有没有微生物或是否安全。",
+      "skin": "角质表面、沟纹和毛孔附近的水分、油脂等不同，常有不同群落。遇见微生物不等于生病。",
+      "air": "孢子和含菌液滴可随尘粒或气流运输。被带到这里，不表示正在空气中繁殖。"
+    },
+    "habitatKeys": {
+      "soil": "土粒 · 水膜中的细菌 · 分枝菌丝",
+      "water": "微小藻类 · 有纤毛的原生生物 · 细菌",
+      "skin": "角质表面 · 沟纹与毛孔 · 细菌代表",
+      "air": "尘粒 · 孢子 · 含菌液滴"
+    },
+    "contextCaption": "所选环境保持在这里；下方 B、H 是教学对照，不是该处采样或鉴定结果。",
+    "resourcesLabel": "参考细胞 B 的实验条件",
+    "resources": {
+      "ready": "条件支持生长",
+      "limited": "资源受限"
+    },
+    "resourceNote": "这是同一参考细胞的定性对照，不是测量所选环境。真实种类对水、营养、温度、氧等的需求不同；这里不计算统一生长速率。切换条件保留各自进度。",
+    "resourceVirusNote": "保留 B 的条件作比较，不把它直接套到病毒上。此处 H 是另一组活细胞宿主；宿主选择控制附着与内部防御。",
+    "identities": {
+      "environment": "环境 E · 不同居民的插画",
+      "bacteria": "参考细胞 B · 较厚细胞壁，无外膜的一个例子",
+      "viruses": "比较宿主 H · 外膜 + 薄壁；T4 类噬菌体示例"
+    },
+    "identityNote": "E → B 是提出结构问题；B → H 是不同细菌的明确比较，不是同一对象连续变形。各章会记住你的观察位置。",
+    "scale": "教学着色、放大和时间 · 不同对象不按同一比例 · 不是显微实测",
+    "close": "靠近同一处细节",
+    "wide": "看完整小环境",
+    "processLabel": "观察参考细胞 B",
+    "processes": {
+      "structure": "结构与物质交换",
+      "division": "生长与一次分裂"
+    },
+    "parts": {
+      "wall": "细胞壁",
+      "membrane": "细胞膜",
+      "dna": "拟核与 DNA",
+      "ribosomes": "核糖体"
+    },
+    "partTexts": {
+      "wall": "这类细菌的膜外有较厚的肽聚糖网，帮助维持形状。壁不是膜；另一些细菌有外膜，少数没有细胞壁。",
+      "membrane": "膜是有选择的边界。下图金色代表选定的进入物，蓝色代表排出物；播放只解释两条路线，不是所选环境的实际通量，也不概括所有运输与能量需求。",
+      "dna": "紫色线表示折叠 DNA，周围淡色只标出拟核区域，不是一层核膜。没有细胞核，不等于没有遗传信息。",
+      "ribosomes": "核糖体按信使 RNA 的信息合成蛋白质；它不是膜包住的小细胞。记住这一工具，再比较没有核糖体的病毒。"
+    },
+    "detailLabel": "金色定位标记对应的局部结构",
+    "membraneKey": "上方：细胞外；下方：细胞内。金色进入物与蓝色排出物的路线为选定示例。",
+    "divisionNotes": [
+      "先增加细胞材料，细胞伸长。形状和时间只用于观察，不是生长测量。",
+      "DNA 正在复制，准备把完整的遗传信息传给子细胞。",
+      "两份 DNA 分开，中间形成分隔；不是把原来一份 DNA 剪成两半。",
+      "形成两个子细胞，各有遗传信息。这里只演示一次，不会无限翻倍。"
+    ],
+    "limitedNote": "这组资源受限的教学对照停在早期，未进入 DNA 复制与分隔。它表示本次条件不足，不代表所有细菌都在同一个阶段停止，也不表示它已死亡。",
+    "hostLabel": "比较宿主 H 的条件",
+    "hosts": {
+      "compatible": "表面适配 · 支持复制",
+      "mismatch": "表面不匹配 · 不能附着",
+      "defended": "表面适配 · 内部防御阻断"
+    },
+    "hostNote": "三组是假设宿主条件，不是由外形鉴定出的菌种；匹配也不保证复制。每组进度分别保留。参考细胞 B 的厚壁结构不是这里的宿主外壳。",
+    "views": {
+      "whole": "整段过程",
+      "attachment": "看附着处",
+      "inside": "看细胞里面"
+    },
+    "virusTitles": [
+      "相遇之前",
+      "先与表面结合",
+      "遗传信息进入",
+      "利用细胞制造部件",
+      "组装新的噬菌体",
+      "通过开口释放"
+    ],
+    "virusTexts": [
+      "这个 T4 类噬菌体示例感染某些细菌，不是感染人的通用病毒。外壳包着 DNA，但不能靠外界营养独立制造新病毒。",
+      "与合适表面结合后，尾鞘收缩，中央尾管不跟着缩短；原来的头部仍留在外面附近。",
+      "跟随金色 DNA：遗传信息进入同一个宿主。宿主内部的工具将参与制造部件，病毒外壳没有整个钻进去。",
+      "新的 DNA 副本、空头部和尾部逐渐形成。DNA 经过头部入口包装进去，再接上尾部；部件还不是完整病毒。",
+      "同一批子代已经组装。宿主边界随后才打开，子代经过开口，不穿过完整膜。原来的病毒没有长大后分裂成两个。",
+      "本例采用裂解性释放；同一批子代离开同一个宿主。并非所有病毒都裂解细胞、都杀死宿主或都感染人。"
+    ],
+    "mismatchTitle": "停在附着之前",
+    "mismatchText": "表面不匹配，没有 DNA 进入，也没有新病毒。能遇见一个细胞，不代表能感染它。",
+    "defendedTitle": "进入之后，复制被阻断",
+    "defendedText": "表面匹配且 DNA 已进入，但示例内部防御阻断复制；不会组装或释放子代。防御图标只是机制的抽象。",
+    "play": "播放当前过程",
+    "pause": "暂停",
+    "resume": "继续观察",
+    "replay": "重新观察",
+    "reset": "回到当前案例起点",
+    "progress": "当前案例进度",
+    "paused": "过程只在点击后运行；换章、隐藏页面或拖动会暂停。回退是重访模型，不是真实生长或感染逆转。",
+    "next": {
+      "environment": "带着条件看细胞 B →",
+      "bacteria": "比较另一类宿主 H 与病毒 →",
+      "viruses": "带着新问题回到环境 →"
+    },
+    "loading": "正在准备当前观察画面……",
+    "cancel": "取消准备",
+    "cancelled": "准备已取消；条件和进度保留。",
+    "failed": "画面未能准备好，说明与导航仍可使用。可重试。",
+    "retry": "重新准备画面",
+    "mechanismTitle": "这三件事，不能互相代替",
+    "comparison": {
+      "environment": "到达一处：可能靠水、尘粒或接触运输；不证明能生长。",
+      "bacteria": "细菌增加：细胞已有边界和制造工具，仍需要合适资源与条件。",
+      "viruses": "病毒增加：需要合适活宿主的条件；外界有营养也不能独立复制。"
+    },
+    "notesTitle": "机制、边界与来源",
+    "notes": "微生物不是单一谱系，包含细菌、古菌、显微真菌和许多原生生物等；病毒不是细胞，却也属于微生物学研究对象。环境图只表示代表居民，不能识别物种或健康风险。B 与 H 都是细菌，但细胞包被不同：B 选用较厚壁例子，H 参考 T4 所感染的大肠杆菌样外膜/薄壁结构。外形或厚度都不能单独确定宿主适配性。",
+    "limits": "各章有意区分环境插画、定性资源对照与确定性过程示意。DNA、颗粒数量、颜色、透明度、层间距和时间经过简化，没有实时培养、种群预测或诊断。分裂过程现实中可重叠；病毒只显示一个裂解路线，省略溶原、RNA 病毒等多种机制。膜通路不覆盖所有运输方式；内部防御不是分子级求解。画面不能判断食品、饮水或环境是否安全。",
+    "cellsLink": "进一步比较植物、动物与其他细胞 →",
+    "rolesTitle": "细菌的作用，还要看是哪一群",
+    "rolesNote": "下面是不同细菌群体的现实情境，不是参考细胞 B 依次搬到三个地方；有益、无害、致病也不是按外形划分的固定身份。",
+    "roles": {
+      "yogurt": {
+        "title": "酸奶：糖变成乳酸",
+        "text": "制作酸奶会使用特定乳酸菌，将乳中的糖转化为乳酸；酸度变化帮助奶中蛋白质形成凝胶。这不是任意细菌都能完成的安全食品制作方法。"
+      },
+      "soil": {
+        "title": "土壤：分解与物质循环",
+        "text": "一些细菌参与分解生物残体，另一些参与氮循环，常与真菌等共同作用。不同成员承担不同工作，不是每种都能分解所有物质。"
+      },
+      "gut": {
+        "title": "肠道：利用不同食物成分",
+        "text": "一些肠道细菌帮助处理人体难以消化的食物成分，另一些在特定菌株或情境下可能引起疾病。作用取决于成员、位置与宿主条件，不能单靠形状或颜色判断。"
+      }
+    }
+  },
+  "en": {
+    "title": "Microbes: cells, habitats and viruses",
+    "eyebrow": "One observation workspace · three different questions",
+    "intro": "Does arriving somewhere mean making more? Explore a habitat, inspect a reference cell's growth machinery, then compare why a virus still needs a suitable host.",
+    "chapters": {
+      "environment": "① What does a habitat provide?",
+      "bacteria": "② How does a bacterium grow?",
+      "viruses": "③ What else does a virus need?"
+    },
+    "chapterNotes": {
+      "environment": "Arrival, survival and reproduction are different. Choose a habitat, then carry the question into a reference cell.",
+      "bacteria": "Keep your resource comparison while observing reference cell B's boundary, machinery and one division. B is not a species identified from the habitat picture.",
+      "viruses": "Bacteria have ribosomes; viruses do not. We now explicitly switch to another host type H for comparison, rather than turning B into a T4 host."
+    },
+    "habitatLabel": "Habitat reference",
+    "habitats": {
+      "soil": "Soil",
+      "water": "Pond water",
+      "skin": "Skin surface",
+      "air": "Air and dust"
+    },
+    "habitatTexts": {
+      "soil": "Pores between grains can contain water films, air and organic material. Bacteria and branching hyphae are representatives; not every pore supports the same growth.",
+      "water": "Tiny algae, protists and bacteria differ in structure and how they obtain resources. Clear water does not establish which microbes are present or whether it is safe.",
+      "skin": "Moisture and oils vary across the outer surface, grooves and pores, often supporting different communities. Encountering microbes does not imply illness.",
+      "air": "Spores and bacteria-bearing droplets may travel with dust or moving air. Being transported here does not establish reproduction in the air."
+    },
+    "habitatKeys": {
+      "soil": "Grains · bacteria in water films · branching hyphae",
+      "water": "Tiny algae · a ciliated protist · bacteria",
+      "skin": "Outer skin cells · grooves and pores · representative bacteria",
+      "air": "Dust · spores · a bacteria-bearing droplet"
+    },
+    "contextCaption": "Your habitat reference stays here. B and H are teaching comparisons, not specimens identified or sampled from this location.",
+    "resourcesLabel": "Reference cell B: experimental conditions",
+    "resources": {
+      "ready": "Conditions support growth",
+      "limited": "Resources limited"
+    },
+    "resourceNote": "A qualitative comparison for one reference cell, not a measurement of this habitat. Real species differ in water, nutrient, temperature and oxygen requirements; no universal growth rate is calculated. Each condition retains its own progress.",
+    "resourceVirusNote": "B's conditions remain for comparison, not as inputs to the virus. H represents another set of live host cells; host selection controls attachment and internal defense.",
+    "identities": {
+      "environment": "Habitat E · illustrative, different residents",
+      "bacteria": "Reference cell B · one thick-walled example without an outer membrane",
+      "viruses": "Comparison host H · outer membrane + thin wall; T4-like phage example"
+    },
+    "identityNote": "E → B asks a structural question; B → H explicitly compares different bacteria, not one shape-changing object. Each chapter remembers your observation position.",
+    "scale": "Illustrative colours, magnification and time · not a common object scale · not measured microscopy",
+    "close": "Look closer at the same region",
+    "wide": "See the whole habitat",
+    "processLabel": "Observe reference cell B",
+    "processes": {
+      "structure": "Structure and exchange",
+      "division": "Growth and one division"
+    },
+    "parts": {
+      "wall": "Cell wall",
+      "membrane": "Cell membrane",
+      "dna": "Nucleoid and DNA",
+      "ribosomes": "Ribosomes"
+    },
+    "partTexts": {
+      "wall": "This example has a thick peptidoglycan network outside its membrane, helping maintain shape. A wall is not a membrane; other bacteria have an outer membrane, and some have no wall.",
+      "membrane": "The membrane is selective. Gold represents a chosen incoming substance and blue an outgoing one. Playback explains two routes, not actual flux in this habitat or every transport and energy requirement.",
+      "dna": "Purple lines represent folded DNA. The pale region marks the nucleoid, not a nuclear membrane. Having no nucleus does not mean having no genetic information.",
+      "ribosomes": "Ribosomes use messenger RNA to make proteins; they are not membrane-bound little cells. Remember this machinery when comparing a virus, which lacks ribosomes."
+    },
+    "detailLabel": "Detail corresponding to the gold position marker",
+    "membraneKey": "Above: outside the cell. Below: inside. Gold incoming and blue outgoing substances illustrate selected routes.",
+    "divisionNotes": [
+      "Cell material increases and the cell elongates. Shape and timing support observation, not growth measurements.",
+      "DNA is copied so complete genetic information can pass to daughter cells.",
+      "Two DNA copies separate and a partition forms; one original genome is not cut arbitrarily in half.",
+      "Two daughter cells now contain genetic information. This is one division, not endless doubling."
+    ],
+    "limitedNote": "This resource-limited teaching comparison stops early, before DNA copying and partitioning. Conditions are insufficient in this example; it does not mean all bacteria stop at the same stage or that this cell has died.",
+    "hostLabel": "Comparison host H: conditions",
+    "hosts": {
+      "compatible": "Matching surface · supports replication",
+      "mismatch": "Mismatched surface · no attachment",
+      "defended": "Matching surface · internal defense blocks replication"
+    },
+    "hostNote": "These are hypothetical host conditions, not species identified by appearance. Matching alone does not guarantee replication. Each case retains its progress. B's thick wall is not this host's envelope.",
+    "views": {
+      "whole": "Whole process",
+      "attachment": "Attachment site",
+      "inside": "Inside the cell"
+    },
+    "virusTitles": [
+      "Before the encounter",
+      "Binding to the surface",
+      "Genetic information enters",
+      "Using the cell to make parts",
+      "Assembling new phages",
+      "Release through the opening"
+    ],
+    "virusTexts": [
+      "This T4-like phage example infects certain bacteria, not humans or all cells. Its shell contains DNA, but external nutrients alone cannot let it make new viruses independently.",
+      "After suitable surface binding, the sheath contracts while the central tube does not shorten. The original head remains outside nearby.",
+      "Follow the gold DNA into the same host. Cellular machinery will help make parts; the entire virus shell has not entered.",
+      "New DNA copies, empty heads and tails form. DNA is packaged through a head portal before the tail joins; separate parts are not complete viruses.",
+      "The same offspring have assembled. The host boundary opens next, and offspring pass through the opening rather than through intact membrane. The original virus has not grown and split into two.",
+      "This example uses lytic release, with the same offspring leaving the same host. Not every virus lyses cells, kills its host or infects people."
+    ],
+    "mismatchTitle": "Stopped before attachment",
+    "mismatchText": "The surface does not match: no DNA enters and no offspring form. Encountering a cell does not establish infection.",
+    "defendedTitle": "Entry occurs, but replication is blocked",
+    "defendedText": "The surface matches and DNA enters, but an illustrative internal defense blocks replication. No offspring assemble or escape. Defense symbols abstract the mechanism.",
+    "play": "Play the current process",
+    "pause": "Pause",
+    "resume": "Continue observing",
+    "replay": "Observe again",
+    "reset": "Restart this case",
+    "progress": "Current case progress",
+    "paused": "Processes run only after you press play. Changing chapters, hiding the page or scrubbing pauses. Going backward revisits the model; real growth or infection is not reversed.",
+    "next": {
+      "environment": "Take the conditions into cell B →",
+      "bacteria": "Compare host H and a virus →",
+      "viruses": "Return to the habitat with new questions →"
+    },
+    "loading": "Preparing this observation…",
+    "cancel": "Cancel preparation",
+    "cancelled": "Preparation cancelled; conditions and progress are retained.",
+    "failed": "The drawing could not be prepared. Explanations and navigation still work; you can retry.",
+    "retry": "Prepare the drawing again",
+    "mechanismTitle": "These three things do not imply one another",
+    "comparison": {
+      "environment": "Arrival: water, dust or contact can transport microbes; that does not prove growth.",
+      "bacteria": "More bacteria: cells have boundaries and their own machinery, but still need suitable resources and conditions.",
+      "viruses": "More viruses: suitable live host conditions are required; external nutrients alone cannot support independent replication."
+    },
+    "notesTitle": "Mechanisms, boundaries and sources",
+    "notes": "Microbes are not one lineage: they include bacteria, archaea, microscopic fungi and many protists. Viruses are not cells but are studied in microbiology. Habitat illustrations show representative residents, not species identification or health risk. B and H are both bacteria with different envelopes: B is a thick-walled example; H uses the outer-membrane/thin-wall reference of an E. coli-like T4 host. Shape or wall thickness alone cannot establish host compatibility.",
+    "limits": "Habitat illustrations, qualitative resource comparisons and deterministic process diagrams are deliberately distinguished. DNA, particle counts, colours, transparency, layer spacing and timing are simplified; there is no live culture, population prediction or diagnosis. Real division stages can overlap. Only one lytic viral pathway is shown, omitting lysogeny, RNA viruses and many other mechanisms. Membrane routes do not cover all transport; internal defense is not solved molecularly. These drawings cannot establish food, water or environmental safety.",
+    "cellsLink": "Compare plant, animal and other cells further →",
+    "rolesTitle": "A bacterium's role depends on the community",
+    "rolesNote": "These are distinct real-world bacterial communities, not reference cell B moving through three places. Beneficial, harmless and disease-causing are not fixed identities assigned by shape.",
+    "roles": {
+      "yogurt": {
+        "title": "Yogurt: sugars become lactic acid",
+        "text": "Yogurt uses particular lactic-acid bacteria to convert milk sugars to lactic acid; the acidity helps milk proteins form a gel. This is not a safe food-making method that works with arbitrary bacteria."
+      },
+      "soil": {
+        "title": "Soil: decomposition and cycling",
+        "text": "Some bacteria help decompose biological remains, while others participate in nitrogen cycling, often alongside fungi. Different members do different work; no one kind breaks down everything."
+      },
+      "gut": {
+        "title": "Gut: processing food components",
+        "text": "Some gut bacteria help process food components we cannot readily digest. Certain strains or circumstances may instead cause disease. Roles depend on community members, location and host conditions, not shape or colour alone."
+      }
+    }
+  }
+}

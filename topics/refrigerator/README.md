@@ -1,11 +1,14 @@
 # 冰箱怎样让食物变凉？ / How does a refrigerator cool food?
 
-Independent bilingual topic for ages 4–6 with an adult. Exterior, cutaway and refrigerant views preserve the same SVG geometry and transition continuously. Food materials, lining, insulation edges, compressor and tubing are original vector artwork.
+并入「制冷：热量怎样被搬走」的冰箱实验，旧入口保留并进入 `/topics/air-conditioner/?chapter=fridge`。原模型、插画、温控与开门条件完整保留，归属仍在此目录，不把冰箱参数套到空调模型。
+
+The refrigerator study is part of the unified cooling project, for ages 4–6 with an adult. The legacy entry redirects into its exact chapter, preserving query and hash through the platform's language/base helper. Exterior, cutaway and refrigerant views preserve the same SVG geometry and transition continuously. Food materials, lining, insulation edges, compressor and tubing are original vector artwork.
 
 - `model.ts` owns two lumped heat stores, door-dependent heat leakage, hysteresis control, cumulative heat/work accounting and a conceptual refrigerant phase cycle. It also owns the sealed pipe geometry; `scene.ts` owns cabinet artwork and plotted temperatures. No shared refrigeration engine.
+- `study.ts` mounts the finite experiment once, publishes its actual cumulative thermal state to the parent's common ledger, and owns pause/cancellation. `panel.html` and scoped `panel.css` own its UI. `main.ts` is only the compatibility redirect; there is no iframe or duplicate standalone experiment.
 - Choose a closed-door scenario or one opening and closing midway. Switching scenarios explicitly restarts the observation. Air and food temperatures remain continuous within each experiment. A dashed food curve provides the closed-door reference.
 - Finite cooling playback lasts 22 seconds; a separate 10 second circuit follows a sealed parcel through absorption, compression, rejection and throttling. Each can pause or seek. Reduced-motion preference resolves finite transitions without playing them; hidden/pagehide cancels work. No ambient animation or audio.
-- `learning.json` has child prediction/operation, three academic notes, misconception/boundary and four spoken segments with separate cues in both languages. `catalog-entry.json` and `catalog-en.json` are for root integration.
+- `learning.json` retains refrigerator-specific scientific content; the live parent learning journey incorporates food response, thermostat and room-boundary explanations. `catalog-entry.json` records the published child relation `parentTopic: air-conditioner`; root catalog remains canonical.
 
 ## Scientific limits
 

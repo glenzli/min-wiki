@@ -11,6 +11,9 @@ export const palette: Record<World['id'], { sky: [string, string]; rock: RGB; ha
   earth: { sky: ['#487d9f', '#c2d1ca'], rock: [115, 119, 81], haze: [148, 174, 175] },
   mars: { sky: ['#6e625a', '#d4ab8a'], rock: [172, 109, 72], haze: [183, 145, 116] },
   jupiter: { sky: ['#352d2b', '#b5a18b'], rock: [187, 153, 121], haze: [213, 190, 157] },
+  saturn: { sky: ['#493b2b', '#c5ae81'], rock: [205, 183, 139], haze: [213, 192, 151] },
+  uranus: { sky: ['#24404a', '#a1c6c9'], rock: [130, 183, 187], haze: [166, 206, 210] },
+  moon: { sky: ['#030509', '#080b11'], rock: [139, 136, 128], haze: [25, 27, 30] },
   neptune: { sky: ['#16252f', '#82acb7'], rock: [104, 154, 174], haze: [151, 192, 201] },
   titan: { sky: ['#715438', '#bba06b'], rock: [137, 118, 80], haze: [172, 146, 99] },
   cancri: { sky: ['#180f12', '#773721'], rock: [70, 52, 45], haze: [156, 67, 34] },
@@ -27,7 +30,7 @@ export class SurfacePainter {
       const u = Math.cos(lon) * 130 + lat * 37, v = Math.sin(lon) * 130 + lat * 103;
       const n = noise(u, v), fine = noise(u * 5, v * 5), tiny = field(u * .71, v * .71);
       let color = base.map(c => c * (.94 + n * .34 + fine * .14 + tiny * .035)) as RGB;
-      if (world.id === 'mercury') {
+      if ((world.id === 'mercury' || world.id === 'moon')) {
         let relief = 0;
         const px = Math.cos(lon) * Math.cos(lat), py = Math.sin(lat);
         for (const cr of craterSeeds) {
@@ -51,12 +54,12 @@ export class SurfacePainter {
         const canyon = Math.abs(Math.sin(lon * 2 + .15 * Math.sin(lat * 11)) + lat * 2.8);
         color = mix(color, [78, 53, 43], (1 - smooth(.015, .07, canyon)) * .65 * (1 - smooth(.25, .6, Math.abs(lat))));
         color = mix(color, [209, 210, 195], smooth(1.36, 1.52, Math.abs(lat) + fine * .07));
-      } else if (world.id === 'jupiter' || world.id === 'neptune') {
-        const giant = world.id === 'jupiter', warped = lat * (giant ? 26 : 18) + n * 1.7 + fine * .37;
+      } else if (!world.surface) {
+        const giant = world.kind === 'gas', warped = lat * (giant ? 26 : 18) + n * 1.7 + fine * .37;
         const bands = Math.sin(warped) * .19 + Math.sin(warped * 2.6) * .08;
         color = giant ? mix([130, 98, 78], [231, 214, 179], .56 + bands + fine * .1) : mix([87, 142, 161], [138, 185, 192], .6 + bands * .3 + fine * .04);
         const storm = Math.hypot((lon - 1.1) / .39, (lat - .36) / .17);
-        if (giant && storm < 1.22) {
+        if (world.id === 'jupiter' && storm < 1.22) {
           const swirl = Math.sin(storm * 37 + Math.atan2(lat - .36, lon - 1.1) * 3 + fine * 3);
           color = mix(color, [176 + swirl * 16, 107 + swirl * 12, 76 + swirl * 8], (1 - smooth(.85, 1.22, storm)) * .86);
         }
@@ -112,7 +115,7 @@ export class SurfacePainter {
         const x = col / columns * 1280, u = (x - 640) * spread, v = (1 - depth) * 900;
         const coarse = noise(u * .4, v * .4), fine = noise(u * 2.3, v * 2.3), tiny = field(u * .35, v * .35);
         let h = coarse * 33 + fine * 9;
-        if (world.id === 'mercury') {
+        if ((world.id === 'mercury' || world.id === 'moon')) {
           h *= .85;
           for (const crater of [{ x: -170, y: 370, r: 155 }, { x: 320, y: 150, r: 100 }, { x: -580, y: 675, r: 180 }]) {
             const radius = Math.hypot(u - crater.x, v - crater.y) / crater.r;

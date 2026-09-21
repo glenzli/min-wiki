@@ -1,6 +1,13 @@
-import { test } from 'node:test';
+import test from 'node:test';
 import assert from 'node:assert/strict';
-import { growthState, bodyPath } from '../model.ts';
+import { tailPath, growthState, bodyPath } from '../model.ts';
+
+test('tail fin and muscle keep their attachment and can be reviewed exactly in reverse',()=>{
+  const forward=Array.from({length:81},(_,i)=>tailPath(i/20));
+  for(let i=80;i>=0;i--){assert.equal(tailPath(i/20),forward[i]);assert.ok(!/NaN|Infinity/.test(forward[i]));assert.equal(tailPath(i/20).match(/L/g).length,73);}
+  assert.notEqual(tailPath(1.2),tailPath(1.3));assert.notEqual(tailPath(1.2),tailPath(1.2,false));
+  assert.ok(growthState(4).swim===0);assert.ok(growthState(4).kick===0);
+});
 test('development overlaps, hind limbs precede forelimbs, tail is absorbed', () => {
   assert.equal(growthState(0).tail, 0);
   assert.equal(growthState(1).hind, 0);

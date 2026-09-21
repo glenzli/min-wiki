@@ -1,5 +1,9 @@
 # 根喝到的水怎样到叶子里？
 
+## Integrated entry · 2026-09-20
+
+This URL now enters `/topics/leaf-colors/?view=water`; `main.ts` is compatibility routing only. `model.ts` retains the water cohort and phase-change contract. `scene.ts` owns the original persistent root, xylem, leaf and enlarged pore geometry, with no timers, controls or global event listeners. The leaf lifecycle controller supplies water progress and a bounded transport-availability state; it retains leaf age separately and stops this mature-leaf example before expansion or when the connection closes. The transport map is explicitly a structural illustration, not an equal-scale map of the branch. Existing scientific notes and provenance below remain applicable to that model; earlier standalone playback descriptions are historical. Final integration/browser checks belong to the root task.
+
 一起跟着蓝色水滴，从土里出发，走过根和茎，最后来到叶子。
 
 水沿水势梯度从土壤进入根，经木质部运输。叶内蒸发产生的张力和水分子的内聚性共同维持上升水流；气孔调节气体交换与失水。水还参与光合作用并维持细胞膨压，植物不是把全部吸收的水都变成身体。

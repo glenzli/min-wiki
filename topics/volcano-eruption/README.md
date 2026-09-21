@@ -1,52 +1,45 @@
-# 火山为什么会喷发 / Why volcanoes erupt
+# 火山：从岩浆到山、岛与湖 / Volcano explorer
 
-打开火山的剖面，看岩浆怎样向上走。试试一个喷口和多个喷口，再比较熔岩流与火山灰喷发。
+One bilingual project at `/topics/volcano-eruption/` combines shield and composite volcanoes, an Omuroyama-inspired scoria cone, submarine volcanism and volcanic lakes. Case cards select distinct conceptual histories rather than successive stages of one universal lifecycle.
 
-这是通道、气泡和喷口关系的剖面示意，没有求解真实岩浆流变、压力场或火山灰输运。气体、黏度与供给三个滑块表示相对条件，不是监测数值。
+## Ownership and continuity
 
-This illustrates relationships between pathways, bubbles and vents. It does not solve magma rheology, pressure fields or ash transport. Sliders represent relative conditions, not monitoring data.
+- `main.ts` owns case/chapter selection, per-case progress, camera navigation, controls, playback and disposal. Changing views preserves time. The mountain story and eruption detail have separate progress. Playback is opt-in; hiding or leaving stops it, reduced motion selects the endpoint, and bfcache restoration remounts paused.
+- `projectModel.ts` owns validated case routes, stable deposit schedules, shape profiles and later erosion/vegetation states. `landscapeScene.ts` and `landformMesh.ts` project those histories to an oblique, shaded SVG surface and a geological cutaway. Radial surface patches preserve identity; the scoria profile has a depressed crater floor, the shield is broad, and the composite surface has drainage relief. Deposits persist after eruption; erosion modifies their surface and retains an earlier outline. The 18 units are teaching deposits, not dated strata or individual historical eruptions.
+- `magmaSystem.ts` owns a bounded, qualitative recharge/overpressure/dike-advance sequence, including stalled intrusion. `magmaGeometry.ts` owns stable sills and sheet paths shared by both renderers; `magmaScene.ts` draws crystals, melt, feeding paths, propagating tips and bubbles. `mechanismContent.ts` explains the six causal stages. Surface-product time starts only after the same dike reaches the surface; magma retained underground cannot generate surface ejecta.
+- `ecologyModel.ts` owns the separate cooling, substrate, seed arrival and establishment timeline; `ecologyScene.ts` keeps 100 fixed slope sites and a magnified soil patch. Wet, dry, cold and thick-ash comparisons change growth and burial on the same mountain. `ecologyContent.ts` owns the child-facing causal narration.
+- `model.ts` / `scene.ts` retain the single-eruption magma, gas, supply, clast, cooling and camera model. A landform parameter changes terrain used by lava and ballistic intersections together. `context.ts` owns independent activity evidence.
+- `../submarine-volcanoes/model.ts` / `scene.ts` retain deep/shallow examples and bounded island accretion. `../volcanic-lakes/model.ts` / `scene.ts` retain crater/caldera formation and water balance. The unified controller consumes these directly; no iframe or duplicate player is mounted.
+- The two old HTML/main entries redirect to `?case=submarine` and `?case=lake`, retaining language and deployment base. Published `parentTopic` entries keep old URLs buildable while the directory shows a single project.
+- `projectContent.ts`, `locales/en.json` and `learning.json` own the integrated bilingual explanations, academic notes and four narration segments.
 
-## Ownership
+## Scientific scope
 
-`model.ts` owns the scientific teaching state and numeric contracts; `scene.ts` owns rendering; `content.ts` and `locales/en.json` own bilingual explanations. `main.ts` owns controls and playback. Full-page navigation releases rendering resources. Nothing plays automatically.
+Mountain geometry, deposit timing, cooling appearance, weathering and vegetation are illustrative. There is no calibrated time axis or real-vent reconstruction. Shield volcanoes can erupt explosively; scoria cones can also produce lava. The default scoria landscape uses Omuroyama as an example, including the role of traditional burning in its current grassland. Its mountain shape formed during eruption, not as a consequence of extinction.
+
+The caldera guide follows magma withdrawal, reduced support, fractures and sinking rock before water accumulation. It does not require a completely empty underground chamber or imply that every eruption triggers collapse.
+
+Ecological recovery is a qualitative comparison, with compressed, uncalibrated time. Organisms need suitable substrate, water and temperatures; drought, cold, rapid drainage and renewed deposits can interrupt recovery. Neither a universal species sequence nor a forest endpoint is prescribed. Omuroyama’s managed grassland is distinguished from this general comparison.
+
+The lake case is another basin history, not a claim that the selected land cone necessarily collapses or becomes a lake. Lake water must have input; a lake does not establish extinction. Dormancy and extinction assessments remain independent of shape, erosion, vegetation and eruption intensity. Deep/shallow/island submarine examples are selected conditions and timescales, not an inevitable sequence.
+
+The mechanism is one recharge-driven scenario, with buoyancy and regional stress held fixed. Rock resistance is an illustrative aggregate barrier, not a measured strength. Pressure and connection bars are normalized conceptual indicators; there is no pressure-volume solver, calibrated fracture mechanics, or eruption forecast. Alternative tectonic triggers are described, not simulated. The lower feeder enters from greater depth: the shallow storage region is not the origin of melt and the drawing does not include the whole mantle. Cooling and crystallization are compressed teaching time.
 
 ## Sources
 
-- [USGS · How volcanoes erupt](https://www.usgs.gov/faqs/how-do-volcanoes-erupt)
-- [USGS · Magma viscosity and gases](https://pubs.usgs.gov/gip/hawaii/page26.html)
-- [USGS · Rift zones and multiple vents](https://www.usgs.gov/news/volcano-watch-getting-rift-zone-why-and-how-they-erupt)
-- [USGS · Eruption styles](https://volcanoes.usgs.gov/volcanic_ash/eruption_styles.html)
+- [Izu Peninsula Geopark: Omuroyama](https://izugeopark.org/geosites/omuroyama/)
+- [USGS: Future eruptions around Crater Lake](https://www.usgs.gov/volcanoes/crater-lake/science/future-eruptions-around-crater-lake)
+- [USGS: Active, dormant and extinct](https://www.usgs.gov/observatories/yvo/news/active-dormant-and-extinct-clarifying-confusing-classifications)
+- [USGS: Principal volcano types](https://pubs.usgs.gov/gip/volc/types.html)
+- [USGS: Intrusion versus eruption](https://www.usgs.gov/observatories/hvo/news/volcano-watch-eruption-intrusion-whats-difference)
+- [USGS: Failed magmatic eruptions](https://www.usgs.gov/publications/failed-magmatic-eruptions-late-stage-cessation-magma-ascent)
+- [USGS: Magma mixing and crystal mush](https://www.usgs.gov/observatories/hvo/news/volcano-watch-petrologic-monitoring-kilauea-volcano-update-rockhounds)
+- [NPS: Plants at Sunset Crater](https://www.nps.gov/sucr/learn/nature/plants.htm)
+- [USGS: 2018 Kīlauea eruption and summit collapse](https://www.usgs.gov/volcanoes/kilauea/science/2018-lower-east-rift-zone-eruption-and-summit-collapse-kilauea)
+- [NOAA: Submarine volcanoes](https://oceanexplorer.noaa.gov/facts/volcanoes.html)
+
+Additional claim-specific eruption, cooling, submarine and caldera sources are retained in `learning.json` and the process owners' READMEs.
 
 ## Validation
 
-Run `npm run check`, then verify the production page in both languages, controls, playback and narrow layouts. Model tests validate implementation assumptions, not empirical calibration.
-
-## 剖面呈现 / Cutaway presentation
-
-岩层、通道边缘、岩浆内部流纹、上升气泡、抛射颗粒、卷入式灰云与熔岩冷却纹理使用连续进度驱动；保持原有喷口、气体和黏度教学关系。
-
-Layered rock, magma pathways, rising bubbles, ballistic clasts, soft ash plumes and cooling lava textures share the existing timeline and teaching controls.
-
-## Observation and material detail
-
-Whole cutaway, vent close-up, slope-flow and ash-plume views move a single camera over the same scene. Camera changes preserve progress, settings and clast identity; fast reversals cancel previous camera interpolation. No new eruption starts when changing view.
-
-The near edge of a lava ribbon exposes a hotter interior below a rapidly darkening crust. Colors, thickness and time are explanatory, not thermometry or a heat-transfer solution. Existing ballistic particles meet the first terrain intersection and retain their deposits. Multiple vents share one display source.
-
-- [USGS HVO · Lava-flow crust and retained interior heat](https://www.usgs.gov/observatories/hvo/news/volcano-watch-how-do-lava-flows-cool-and-how-long-does-it-take)
-- [USGS · Glossary: bombs, spatter and eruption products](https://www.usgs.gov/glossary/volcano-hazards-program-glossary)
-
-## Styles, supply and activity evidence
-
-Three presets compare effusion, lava fountains and ash-rich fragmentation at the same paused moment. Gas and viscosity set qualitative appearance; a separate relative-supply slider changes illustrative output and extent. Presets preserve the vent count, observation camera and timeline, with a finite, cancellable parameter transition. This is not a VEI calculator or a coupled fluid/thermal simulation. Default playback is paused during eruption so the differences are visible immediately.
-
-Four camera views include the ash column and fallout. All prose and material keys stay outside the canvas. Fine ash, coarse clasts and incandescent flows have distinct appearance and trajectories. Downwind ashfall is schematic; pyroclastic density currents are not simulated.
-
-`context.ts` owns localized style guidance and long-term activity evidence. The status explorer is independent of the eruption timeline: erupting, dormant and considered extinct do not form three strengths of eruption. Dormant and extinct share the exact same quiet mountain drawing because appearance alone cannot distinguish them. Broadly active systems can be dormant; extinction is an evidence-based, revisable assessment, not a universal inactivity timer.
-
-Long-term landforms remain in this topic as a small comparison. Water pressure, quenching, shallow-water fragmentation and emergence belong to the independent `submarine-volcanoes` topic. Volcanic lakes retain their existing owner. Both languages include updated four-part child narration in `learning.json`.
-
-- [USGS · Active, dormant and extinct](https://www.usgs.gov/observatories/yvo/news/active-dormant-and-extinct-clarifying-confusing-classifications)
-- [USGS · Volcanic Explosivity Index](https://www.usgs.gov/observatories/yvo/news/volcanic-explosivity-index-a-tool-comparing-sizes-explosive-volcanic)
-- [USGS · Principal volcano types](https://pubs.usgs.gov/gip/volc/types.html)
-- [USGS / Science · Magma reservoir failure and caldera collapse](https://www.usgs.gov/publications/magma-reservoir-failure-and-onset-caldera-collapse-kilauea-volcano-2018)
+Run `node --import tsx --test topics/volcano-eruption/tests/*.mjs topics/submarine-volcanoes/tests/*.ts topics/volcanic-lakes/tests/*.mjs`, then the repository `npm run check`. Browser review covers all cases, independent timelines, playback/pause, camera changes, retained deposits, water leakage, limited supply, old routes, language, reduced motion and narrow layouts. Model tests establish implementation contracts, not geological prediction.

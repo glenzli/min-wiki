@@ -1,5 +1,10 @@
 # 雨水落到地上以后呢？ / Where does rain go after reaching the ground?
 
+
+## Integrated entry · 2026-09-20
+
+The public entry now redirects to `/topics/rain-cycle/?view=ground`, preserving language, query parameters and fragment. The persistent watershed owns the observation journey and controls; this directory retains its scientific model and detailed source renderers. Earlier standalone UI and validation descriptions below are historical, not evidence that the integrated page has been browser-verified.
+
 独立双语专题，模型、SVG场景、控件和 `learning.json` 均由本目录维护。公共平台只负责导航、语言和阅读方式。
 
 100份同一批雨水从空中到达地面，沿连通孔道下渗，沿坡流入杯中，或暂留地表。任意帧均核对空中、渗入、流走、暂留之和；杯中水位只计算已抵达的径流。

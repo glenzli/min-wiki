@@ -203,9 +203,11 @@ export class PlanetScene {
         const returning = disrupted ? stage * stage * (3 - 2 * stage) : 0;
         // Fixed late composition; a particle leaving the old radius-18
         // selection must not move or resize the whole scene.
+        // Early framing follows the incoming planet. Once fallback dominates,
+        // settle on the black hole itself. The debris may remain eccentric, but
+        // a camera offset must not make the entire late flow look displaced.
         const target = view === 'close' ? new THREE.Vector3() : new THREE.Vector3(
-            center.x*.5*(1-returning)-4*returning,
-            center.y*.5*(1-returning)+3*returning,0);
+            center.x*.5*(1-returning), center.y*.5*(1-returning), 0);
         const initialWidth = Math.abs(center.x) + 4, initialHeight = Math.abs(center.y) + 4;
         const width = initialWidth * (1-returning) + 22*returning;
         const height = (initialHeight*(1-returning)+22*returning)*(view==='top'?1:.7);

@@ -1,0 +1,124 @@
+{
+  "zh": {
+    "title": "⑤ 同一山谷：一条冰川怎样形成？",
+    "intro": "把一次降雪放慢，再把很多年放在一起。这里有独立的多年收支，不会改变上方追踪的 100 份水。",
+    "presets": {
+      "growth": "积累多于消融",
+      "no-ice": "雪留不过夏天",
+      "retreat": "先增长，再转暖"
+    },
+    "play": "播放多年变化",
+    "pause": "暂停",
+    "replay": "重新播放",
+    "reset": "重置到无冰山谷",
+    "snowfall": "每年降雪输入",
+    "warmth": "暖季消融条件",
+    "warming": "第 20 教学年后转暖",
+    "years": "多年进度",
+    "year": "教学年",
+    "yearUnit": "年",
+    "unit": "示意水当量单位",
+    "season": {
+      "snow": "降雪季",
+      "melt": "消融季",
+      "compact": "越夏与压实"
+    },
+    "stores": {
+      "snow": "雪",
+      "firn": "粒雪",
+      "ice": "冰"
+    },
+    "input": "累计降雪",
+    "loss": "累计流出",
+    "retained": "仍然储存",
+    "balance": "本年净收支",
+    "annual": "逐年收支：加入减去流出",
+    "annualLegend": "蓝绿柱是净增加，暖棕柱是净减少；零线是不增不减。",
+    "layerTitle": "同一批雪：质量与压实",
+    "layerNote": "上层新雪、下层较老。右侧条长表示示意体积；压实减少空隙，不会凭空删掉水。",
+    "massKey": "储存水量",
+    "volumeKey": "示意体积",
+    "front": "末端位置",
+    "traces": "短白线跟随冰向下移动，不是流速测量。",
+    "status": {
+      "bare": "目前没有留下多年冰",
+      "firn": "越夏积雪逐渐变成粒雪",
+      "growing": "较老的粒雪成为冰，冰向下流动",
+      "retreating": "末端比上一年退后，冰仍然向下流动"
+    },
+    "explain": {
+      "bare": "有降雪不代表会形成冰川。暖季可以把这一年的雪全部融去，来年仍从裸露山谷开始。",
+      "firn": "能越过消融季的雪才会继续留下。后续降雪覆盖它、减少空隙；图中的质量不会因为变密而减少。",
+      "growing": "保留下来的较老粒雪逐渐变成冰。积累长期大于损失，储存增加，示意冰体增厚、延伸。",
+      "retreating": "比较完整年度的收支：一段时间内损失大于补充，会让储存减少。末端比上一年更靠上游，不代表这一刻所有地方都在消融，更不表示整条冰川倒着流。白色短线仍然向下移动。"
+    },
+    "boundary": "这是固定山谷的集总教学模型。降雪、消融和压实速度没有标定为某条真实冰川；“教学年”用来比较长期与季节，不能预测形成需要几年。消融按一个简化的暴露表层顺序扣除；不计算空间气温、辐射、滑动、裂隙、冰崩或冰川动力学。末端按冰量作代数示意，真实冰川可能滞后响应。雪、粒雪、冰的密度只用于展示空隙减少，质量以水当量统一核算。累计流出不是当前融水流量。 粒雪向冰的第五教学年过渡是本模型的延迟设定，不是自然界统一的形成时间。",
+    "sources": "科学来源",
+    "historyTitle": "记录变化",
+    "disclosure": "模型边界与来源",
+    "controls": "控制与比较",
+    "conditionNote": "改变条件会在当前教学年重算整段历史，不是把之前的冰凭空换掉；只有“第 20 教学年后转暖”明确在途中改变气候。",
+    "annualValues": "本年：降雪 {{input}} − 流出 {{loss}} = 净收支 {{net}}"
+  },
+  "en": {
+    "title": "5 · The same valley: how does a glacier form?",
+    "intro": "Slow down one snowfall, then compare many years. This is an independent multiyear budget; it does not change the 100 water portions tracked above.",
+    "presets": {
+      "growth": "Accumulation exceeds loss",
+      "no-ice": "Snow cannot survive summer",
+      "retreat": "Growth, then warming"
+    },
+    "play": "Play the changing years",
+    "pause": "Pause",
+    "replay": "Play again",
+    "reset": "Reset to an ice-free valley",
+    "snowfall": "Annual snowfall input",
+    "warmth": "Warm-season melting conditions",
+    "warming": "Warmer after model year 20",
+    "years": "Multiyear progress",
+    "year": "model year",
+    "yearUnit": "years",
+    "unit": "illustrative water-equivalent units",
+    "season": {
+      "snow": "Snow season",
+      "melt": "Melt season",
+      "compact": "Survival and compaction"
+    },
+    "stores": {
+      "snow": "Snow",
+      "firn": "Firn",
+      "ice": "Ice"
+    },
+    "input": "Cumulative snowfall",
+    "loss": "Cumulative outflow",
+    "retained": "Still stored",
+    "balance": "This year's net balance",
+    "annual": "Annual balance: added minus lost",
+    "annualLegend": "Blue-green bars show net gain; warm brown bars show net loss. The zero line means no change.",
+    "layerTitle": "The same snow: mass and compaction",
+    "layerNote": "Newer snow lies above older material. Bars at right show illustrative volume: compaction removes pore space, not water mass.",
+    "massKey": "Stored water mass",
+    "volumeKey": "Illustrative volume",
+    "front": "Terminus position",
+    "traces": "Short white lines move downhill with ice; they are not speed measurements.",
+    "status": {
+      "bare": "No multiyear ice has survived yet",
+      "firn": "Surviving snow is becoming firn",
+      "growing": "Older firn becomes ice and moves downhill",
+      "retreating": "The terminus has retreated since last year; ice still flows downhill"
+    },
+    "explain": {
+      "bare": "Snowfall does not guarantee a glacier. The warm season can melt all of a year's snow, leaving a bare valley for the next year.",
+      "firn": "Snow must survive a melt season to remain. Later snowfall covers it and reduces pore space. Becoming denser does not remove water mass.",
+      "growing": "Older surviving firn gradually becomes ice. When long-term accumulation exceeds loss, storage increases and the illustrative ice body thickens and extends.",
+      "retreating": "Compare complete annual budgets: losses exceeding inputs over time reduce storage. The terminus is now farther uphill than last year. This does not mean every part is melting at this instant, or that the glacier has reversed direction. The short white lines still move downhill."
+    },
+    "boundary": "A fixed-valley, lumped teaching model. Snowfall, melting and compaction are not calibrated to a real glacier. Model years compare seasonal and long-term change, not predict years required for formation. Ablation removes material in a simplified exposed-layer order. Spatial temperature, radiation, sliding, crevasses, calving and glacier dynamics are omitted. The terminus is an algebraic response to ice mass; real glaciers can respond with a lag. Illustrative snow/firn/ice densities show shrinking pore space; mass uses one water-equivalent unit. Cumulative outflow is not the current meltwater flow rate. The model's year-five firn-to-ice transition is a teaching delay, not a universal formation time.",
+    "sources": "Scientific sources",
+    "historyTitle": "Record the changes",
+    "disclosure": "Model limits and sources",
+    "controls": "Controls and comparisons",
+    "conditionNote": "Changing conditions recomputes the whole history at the current model year. Only the year-20 warming option changes climate partway through the history.",
+    "annualValues": "This year: snowfall {{input}} − outflow {{loss}} = net balance {{net}}"
+  }
+}

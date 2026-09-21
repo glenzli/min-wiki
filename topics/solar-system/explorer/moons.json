@@ -1,0 +1,202 @@
+{
+  "moon": {
+    "name": {
+      "zh": "月球",
+      "en": "Moon"
+    },
+    "fact": {
+      "zh": "地球的天然卫星；继续靠近可以观察撞击地貌。",
+      "en": "Earth’s natural satellite; approach it to explore impact terrain."
+    }
+  },
+  "phobos": {
+    "name": {
+      "zh": "火卫一",
+      "en": "Phobos"
+    },
+    "fact": {
+      "zh": "形状不规则，绕火星一周很快。",
+      "en": "An irregularly shaped moon with a short orbit around Mars."
+    }
+  },
+  "deimos": {
+    "name": {
+      "zh": "火卫二",
+      "en": "Deimos"
+    },
+    "fact": {
+      "zh": "更远、更小的火星卫星。",
+      "en": "A smaller, more distant moon of Mars."
+    }
+  },
+  "io": {
+    "name": {
+      "zh": "木卫一",
+      "en": "Io"
+    },
+    "fact": {
+      "zh": "以活跃火山闻名。",
+      "en": "Known for active volcanoes."
+    }
+  },
+  "europa": {
+    "name": {
+      "zh": "木卫二",
+      "en": "Europa"
+    },
+    "fact": {
+      "zh": "冰壳下存在海洋的证据很强。",
+      "en": "Strong evidence supports an ocean beneath the ice shell."
+    }
+  },
+  "ganymede": {
+    "name": {
+      "zh": "木卫三",
+      "en": "Ganymede"
+    },
+    "fact": {
+      "zh": "太阳系最大的卫星。",
+      "en": "The largest moon in the solar system."
+    }
+  },
+  "callisto": {
+    "name": {
+      "zh": "木卫四",
+      "en": "Callisto"
+    },
+    "fact": {
+      "zh": "表面布满古老撞击坑。",
+      "en": "Its surface is covered with ancient impact craters."
+    }
+  },
+  "mimas": {
+    "name": {
+      "zh": "土卫一",
+      "en": "Mimas"
+    },
+    "fact": {
+      "zh": "有一个相对自身非常大的撞击坑。",
+      "en": "Has a very large crater relative to its own size."
+    }
+  },
+  "enceladus": {
+    "name": {
+      "zh": "土卫二",
+      "en": "Enceladus"
+    },
+    "fact": {
+      "zh": "南极附近有水汽与冰粒喷流。",
+      "en": "Jets of water vapor and ice erupt near the south pole."
+    }
+  },
+  "tethys": {
+    "name": {
+      "zh": "土卫三",
+      "en": "Tethys"
+    },
+    "fact": {
+      "zh": "冰质卫星，有巨大峡谷。",
+      "en": "An icy moon with a vast canyon."
+    }
+  },
+  "dione": {
+    "name": {
+      "zh": "土卫四",
+      "en": "Dione"
+    },
+    "fact": {
+      "zh": "表面有明亮的冰崖。",
+      "en": "Bright ice cliffs mark its surface."
+    }
+  },
+  "rhea": {
+    "name": {
+      "zh": "土卫五",
+      "en": "Rhea"
+    },
+    "fact": {
+      "zh": "布满撞击坑的冰质卫星。",
+      "en": "An icy moon covered with craters."
+    }
+  },
+  "titan": {
+    "name": {
+      "zh": "土卫六",
+      "en": "Titan"
+    },
+    "fact": {
+      "zh": "浓厚大气下面有甲烷湖，可以继续靠近观察。",
+      "en": "A thick atmosphere hides methane lakes; approach for a closer view."
+    }
+  },
+  "iapetus": {
+    "name": {
+      "zh": "土卫八",
+      "en": "Iapetus"
+    },
+    "fact": {
+      "zh": "一侧很暗，另一侧较亮。",
+      "en": "One hemisphere is much darker than the other."
+    }
+  },
+  "miranda": {
+    "name": {
+      "zh": "天卫五",
+      "en": "Miranda"
+    },
+    "fact": {
+      "zh": "有复杂断崖和起伏地形。",
+      "en": "Has complex cliffs and varied terrain."
+    }
+  },
+  "ariel": {
+    "name": {
+      "zh": "天卫一",
+      "en": "Ariel"
+    },
+    "fact": {
+      "zh": "冰质表面有峡谷。",
+      "en": "Canyons cut across its icy surface."
+    }
+  },
+  "umbriel": {
+    "name": {
+      "zh": "天卫二",
+      "en": "Umbriel"
+    },
+    "fact": {
+      "zh": "颜色较暗的卫星。",
+      "en": "A relatively dark moon."
+    }
+  },
+  "titania": {
+    "name": {
+      "zh": "天卫三",
+      "en": "Titania"
+    },
+    "fact": {
+      "zh": "天王星最大的卫星。",
+      "en": "The largest moon of Uranus."
+    }
+  },
+  "oberon": {
+    "name": {
+      "zh": "天卫四",
+      "en": "Oberon"
+    },
+    "fact": {
+      "zh": "外侧的大型冰质卫星。",
+      "en": "A large icy moon farther out."
+    }
+  },
+  "triton": {
+    "name": {
+      "zh": "海卫一",
+      "en": "Triton"
+    },
+    "fact": {
+      "zh": "绕行方向与海王星自转相反。",
+      "en": "Orbits opposite to Neptune’s rotation."
+    }
+  }
+}

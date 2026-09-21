@@ -29,6 +29,7 @@
   "保持大小不变，把速度加倍。撞击能量会变成几倍？": "Keep the size fixed and double the speed. How does impact energy change?",
   "相对撞击能量": "Relative impact energy",
   "月面剖面与抛射物示意；时间放慢，天体与坑不按同一比例。": "Lunar cross section and ejecta illustration; time slowed and impactor/crater scales differ.",
+  "可转动的三维月面与抛射物示意；时间放慢，撞击体与坑不按同一比例。": "Rotatable 3D lunar terrain and ejecta; time is slowed and impactor/crater scales differ.",
   "太空岩石靠近": "Approach",
   "接触与冲击": "Contact & shock",
   "挖掘与抛射": "Excavation & ejecta",
@@ -82,6 +83,7 @@
   "挖掘结束后，坑壁在重力下调整。小型简单坑通常呈碗形；更大的复杂坑可形成阶地和中央峰，极大的盆地还有多环结构。岩石强度、重力、地层与撞击角度都影响形态。": "After excavation, gravity modifies crater walls. Small simple craters tend to be bowl-shaped; larger complex craters may have terraces and central peaks, while giant basins can be multiringed. Strength, gravity, layering and impact angle all affect the outcome.",
   "π₂ 比较重力与惯性效应，π₃ 比较材料强度与惯性效应；Y 是靶体强度。这些无量纲量提示坑径并非只由动能决定，当前示意未使用完整撞击缩放律。": "π₂ compares gravity with inertia; π₃ compares target strength with inertia, where Y is target strength. They show why energy alone cannot determine crater size. The illustration does not implement a complete crater-scaling law.",
   "比较最后的剖面和俯视图：同一个坑，从侧面是碗，从上面接近圆。": "Compare the final section and overhead view: the same crater is bowl-shaped in section and roughly circular from above.",
+  "拖动画面转动三维月面：从低角度看坑底与隆起坑缘，再从上方看它接近圆形。": "Drag to rotate the 3D terrain: inspect the floor and raised rim from a low angle, then see its roughly circular shape from above.",
   "本页只展示简单坑。调大撞击体不会自动把这个模型变成中央峰或多环盆地模型。": "Only simple craters are shown; increasing impactor size does not turn this into a central-peak or multiring-basin model.",
   "撞击体质量 m ≈ {{mass}} kg\n撞击动能 E ≈ {{energy}} J\n月面重力：1.62 m/s²": "Impactor mass m ≈ {{mass}} kg\nKinetic energy E ≈ {{energy}} J\nLunar gravity: 1.62 m/s²"
 }

@@ -11,7 +11,7 @@ import './style.css';
 translateDocument(t); mountTopicNavigation('planet-surfaces');
 const el = (id: string) => document.getElementById(id)!;
 const text = (pair: Bilingual) => language === 'en' ? pair.en : pair.zh;
-let world: typeof WORLDS[number] = WORLDS[3], view: View = 'landscape', academic = false, progress = 0, phase = 0;
+let world: typeof WORLDS[number] = WORLDS.find(w => w.id === 'cancri')!, view: View = 'landscape', academic = false, progress = 0, phase = 0;
 let playing: false | 'journey' | 'orbit' = false, frame = 0, last = 0, drawnAt = 0;
 let scene: TopicScene | undefined, cancelJourney = () => {};
 try { scene = new TopicScene(el('scene') as HTMLCanvasElement); } catch { el('scene-error').hidden = false; }
@@ -21,7 +21,7 @@ function update(draw = true) {
   el('title').textContent = section ? t('从外面到中心') : content.title;
   el('story').textContent = section ? text(profile.summary) : academic ? content.academic : content.kids;
   el('observe').textContent = section ? text(profile.evidence) : content.observe;
-  el('kind').textContent = world.body === 'moon' ? t('土星的卫星') : world.body === 'exoplanet' ? t('太阳系外的岩石行星') : world.kind === 'rock' ? t('岩石行星') : world.kind === 'gas' ? t('气态巨行星') : t('冰巨星');
+  el('kind').textContent = world.body === 'moon' ? world.id === 'moon' ? t('地球的卫星') : t('土星的卫星') : world.body === 'exoplanet' ? t('太阳系外的岩石行星') : world.kind === 'rock' ? t('岩石行星') : world.kind === 'gas' ? t('气态巨行星') : t('冰巨星');
   el('material').textContent = details.material; el('feature').textContent = details.feature; el('evidence').textContent = details.evidence;
   el('evidence').classList.toggle('inferred', world.evidence === 'inferred');
   el('scene-facts').hidden = section;
@@ -75,11 +75,13 @@ function tick(now: number) {
   const dt = Math.min(.1, (now - last) / 1000); last = now;
   if (playing === 'journey') { progress = Math.min(1, progress + dt / 32); if (progress >= 1) playing = false; }
   else phase += dt;
-  if (now - drawnAt > 32 || !playing) { update(); drawnAt = now; }
+  // Orbit at display cadence. The old 30 fps cap made high-contrast texture
+  // detail appear to jump even though the camera path itself was continuous.
+  if (now - drawnAt > 15 || !playing) { update(); drawnAt = now; }
   if (playing) frame = requestAnimationFrame(tick);
 }
 for (const type of ['click', 'input', 'keydown']) document.addEventListener(type, () => { cancelJourney(); scene?.stopTransition(); }, { capture: true });
-for (const item of WORLDS) {
+for (const item of WORLDS.filter(w => w.id === 'cancri')) {
   const button = document.createElement('button'); button.dataset.world = item.id; button.textContent = CONTENT[item.id].name; button.style.setProperty('--world', item.color);
   button.addEventListener('click', () => { stop(); world = item; progress = 0; phase = 0; update(false); scene?.transition(world, view, progress, phase); update(false); }); el('worlds').append(button);
 }

@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "leaf-colors",
   "zh": {
-    "question": "秋天的黄色和红色，都是绿色变出来的吗？",
-    "observe": "先选黄叶，再选红叶；把季节从盛夏拖到深秋，比较三条色素趋势。再沿尺度进入叶绿体或液泡，找出色素所在的位置。",
+    "question": "一片叶子从芽到落下，做过哪些工作，为什么会变色？",
+    "observe": "先在同一根枝条上回看幼叶展开，再停在成熟阶段追踪根到叶的水。进入同一叶面位置的组织、细胞和色素区室；比较黄、红两路，最后观察离层与脱落。叶龄、水的旅程和观察尺度分开控制。",
     "academic": [
       {
-        "title": "绿色退去，黄色显露",
-        "body": "叶绿素与类胡萝卜素都参与叶绿体的光反应系统，但吸收光的波段和作用不同。生长季里强烈的绿色常掩盖黄色。秋季衰老时叶绿素被有序拆解，原先已有的黄色更容易被看见；这不意味着一个绿色分子直接变成了黄色分子。叶片同时回收部分氮、磷等资源，所以变色也是器官衰老过程的可见结果。"
+        "title": "幼叶展开，成熟叶连接植物与空气",
+        "body": "本例从芽中的叶开始，不从种子开始。幼叶生长展开后，叶脉中的木质部为叶肉供应水；叶内蒸发、水分子内聚和水势梯度参与维持从根到叶的运输，水汽经气孔扩散出去。气孔调节气体交换与失水，并非始终固定开度。光合作用利用光能，糖的碳来自二氧化碳；植物活细胞白天和夜晚也呼吸。根到叶的水运路线图是结构示意，不是枝条的等比例地图。"
       },
       {
-        "title": "红色通常是另一条路径",
-        "body": "许多会变红的叶片在秋季新合成花青素，主要积累在细胞液泡中；叶绿体里的叶绿素和类胡萝卜素并不会因此搬进液泡。色素的合成量、细胞环境以及多层组织对光的吸收和散射，共同影响看到的颜色。同一片叶子可以同时含有多类色素，红叶也并不意味着黄色色素已经全部消失。"
+        "title": "衰老中的资源回收与色素变化",
+        "body": "日长、温度和植物自身状态影响叶片衰老；部分光合作用装置被拆解，氮、磷等资源可回运到其他部位。叶绿素减少使原有类胡萝卜素更显眼；一些植物新合成的花青素积累在液泡，而不是叶绿体变红。黄、红是两种能力的对照，不是所有叶子的固定先后顺序；多种色素可以共存，具体颜色和时序受物种与环境影响。"
       },
       {
-        "title": "季节信号与比较证据",
-        "body": "日长、温度、光照和水分条件会与物种遗传差异共同影响衰老和花青素积累。因此比较时应尽量选同一树种、相近叶龄，再记录向阳与背阴位置；只看一片红叶不能证明它因低温而变红。此处黄叶和红叶是两类代表路线，色素条用于比较趋势，不能据此计算真实叶片的浓度。"
+        "title": "离层、脱落与首版边界",
+        "body": "在叶柄基部，离层相关变化使叶与枝条的连接减弱，脱落后枝条留下痕迹。叶片不再由这条连接接收根部水流。首版以连续形变表示展开与脱落，以定性状态表示衰老与色素，不计算细胞分裂、真实风力轨迹、细胞死亡后的崩解或落叶分解。常绿植物也更换叶子，但不同叶龄的叶可同时存在，不能把每片叶都塞进同一年四季时间表。"
       }
     ],
-    "misconception": "叶绿素减少会让已有的黄色显露；很多秋季红色来自新合成的花青素，而不是绿色直接变红。",
-    "boundary": "尺度切换是教学路线，细胞与分子没有按同一比例绘制；并非所有落叶树都变红，严重霜冻或干旱也可能使叶子直接受损。",
+    "misconception": "红叶不是所有叶子的终点；黄色不一定变红，叶绿素也不是变成另一种色素。植物不只在夜里呼吸，常绿也不表示一片叶永远不落。",
+    "boundary": "同一叶片身份贯穿展开、衰老与脱落，回退只重访教学状态。各图有不同放大比例；形变、色素趋势、运输标记和时序均为定性示意，不能当作特定物种预测。显微图覆盖展开后至脱落前的代表组织，不展示幼芽内部发育或死亡后崩解。首版未模拟落叶分解与生态循环。",
     "narration": [
       {
-        "label": "一起找颜色",
-        "text": "你在路边捡过秋天的落叶吗？有的金黄，有的红红的，像一本打开的彩色画册。今天我们不拿画笔，沿着一片叶子往里面看。叶子里本来就有一些能让我们看见颜色的小东西，我们把它们叫作色素。先记住眼前这片夏天的绿叶，猜猜秋天来了，它会有什么变化。",
-        "cue": "从完整绿叶开始；停留在盛夏。"
+        "label": "从芽中开始",
+        "text": "先记住这根枝条。芽里有一片小小的叶，它慢慢展开，叶缘变大，却一直连在原来的位置。我们跟着的是同一片叶，不是在翻看四张不同的图片。等它展开，再靠近看看它每天做什么。",
+        "cue": "从幼叶停靠点拖到成熟，观察固定枝条和同一叶缘。"
       },
       {
-        "label": "看见原来的黄色",
-        "text": "现在慢慢把季节移到秋天。先别急着往下走，看看绿色是不是淡了一些。原来，黄色的色素在夏天也住在叶子里，只是绿色太显眼，我们不容易看见它。到了秋天，绿色的叶绿素减少，黄色就显出来了。就像轻轻移开前面的东西，终于看到了后面原来就有的颜色。",
-        "cue": "缓慢拖动季节；留出三秒观察黄色。"
+        "label": "成熟叶的工作",
+        "text": "成熟的叶子与整株植物相连。水从根进入，沿着木质部来到叶脉。一部分水在叶内蒸发，水汽经过气孔进入空气。实心标记变成空心，是在提醒我们相态变了，不是水滴从气孔喷出来。有光时，叶肉细胞还能利用光能制造糖；活细胞白天和夜晚也都会呼吸。",
+        "cue": "成熟阶段打开水运；暂停在叶内，对照主叶片、根到叶路线和气孔窗口。"
       },
       {
-        "label": "红色住在哪里",
-        "text": "再换一片会变红的叶子吧。它走的路有些不同：许多红叶在秋天还会做出新的红色色素。我们跟着画面往里走，穿过叶子，看看一个个细胞，再找里面叫液泡的小空间。红色色素常常待在这里；绿色和黄色的色素，主要住在另一种小结构——叶绿体里。",
-        "cue": "选择红叶路线，进入液泡，再对比叶绿体。"
+        "label": "衰老与不同的颜色",
+        "text": "慢慢走向衰老阶段。树从叶子里收回一些营养，绿色的叶绿素减少，原有的黄色更容易看见。有些叶子还会制造花青素，在液泡里积累，于是显出红色。红色和黄色是两条不同的路径，不是每片叶子都先黄再红。走进同一处叶片，看看不同色素住在哪里。",
+        "cue": "黄红对照，进入组织、细胞，再分别观察叶绿体与液泡。"
       },
       {
-        "label": "带着问题去散步",
-        "text": "原来，一片叶子的颜色，藏着这么多小变化。不同的树、不同的阳光和天气，会让秋天的颜色很不一样。下次散步时，可以和大人找同一棵树上向阳和背阴的叶子，看看它们是不是一样。记得轻轻观察，地上的落叶也很好看，不必把还长在树上的叶子摘下来。",
-        "cue": "回到叶片全景，比较两条路线的最终色彩。"
+        "label": "离开枝条，不是重新出生",
+        "text": "叶柄与枝条之间的连接逐渐减弱，叶片离开了。看，枝条上的痕迹还在，原来那片叶也还在画面里。它不再从根得到这条水流。真实落叶以后还会干燥、碎裂，被分解者利用，这里先停在脱落这一站。下一年长出来的是新的叶子，不是这片旧叶变回了小芽。",
+        "cue": "到脱落终点，核对枝条痕迹与运输停止；说明回退仅为重看。"
       }
     ]
   },
   "en": {
-    "question": "Do autumn yellows and reds both come from green pigment changing colour?",
-    "observe": "Compare the yellow-leaf and red-leaf routes while moving the season from summer to late autumn. Compare the three pigment trends, then enter the chloroplast or vacuole to locate them.",
+    "question": "What does a leaf do from its bud to detachment, and why does its colour change?",
+    "observe": "Follow a young leaf unfolding on the same branch, pause at maturity and track water from roots. Enter the same leaf patch, cells and pigment compartments. Compare yellow and red routes, then inspect abscission and detachment. Leaf age, water progress and observation scale are separate.",
     "academic": [
       {
-        "title": "Green fades and yellow becomes visible",
-        "body": "Chlorophyll and carotenoids both occur in chloroplast photosynthetic systems, with different absorption properties and roles. Green commonly masks yellow during growth. During autumn senescence, chlorophyll is dismantled and existing yellow pigments become more visible. Green molecules do not simply turn into yellow ones. Nutrient recovery accompanies this regulated dismantling."
+        "title": "An expanding leaf connects the plant and air",
+        "body": "This example starts with a leaf in a bud, not a seed. As it expands, xylem in its veins supplies mesophyll with water. Evaporation within leaves, water cohesion and water-potential gradients help maintain root-to-leaf transport; vapour diffuses through stomata. Stomata regulate exchange and water loss rather than remaining at a fixed opening. Light powers photosynthesis, while sugar carbon comes from carbon dioxide. Living plant cells also respire in day and night. The root-to-leaf diagram is structural, not a scale map of the branch."
       },
       {
-        "title": "Red follows a different pathway",
-        "body": "Many red autumn leaves synthesize anthocyanins that accumulate mainly in vacuoles. Chloroplast pigments do not move into the vacuole. Pigment amounts, their chemical surroundings, and light travelling through tissue together determine appearance. A red leaf can still contain carotenoids and remaining chlorophyll."
+        "title": "Resource recovery and pigment changes during senescence",
+        "body": "Day length, temperature and plant condition influence senescence. Some photosynthetic machinery is dismantled and nutrients such as nitrogen and phosphorus can be remobilised. Chlorophyll loss reveals existing carotenoids; anthocyanins made by some plants accumulate in vacuoles, not reddening chloroplasts. Yellow and red compare capabilities rather than a universal sequence. Pigments coexist, and species and environment influence timing and appearance."
       },
       {
-        "title": "Seasonal signals and evidence",
-        "body": "Day length, temperature, light, water supply and genetic differences influence senescence and anthocyanin accumulation. A useful comparison keeps species and leaf age similar while noting sun exposure. One red leaf cannot establish temperature as its cause. The two routes represent contrasting tendencies; their bars are not concentration measurements."
+        "title": "Abscission, detachment and first-version limits",
+        "body": "Changes near the stalk base weaken the connection; detachment leaves a scar on the branch. The leaf no longer receives root-supplied water through that connection. Continuous deformation illustrates expansion and detachment, with qualitative senescence and pigment states. Cell division, real wind-driven trajectories, cellular collapse after death and litter decomposition are not calculated. Evergreen plants replace leaves too, but multiple leaf ages may coexist rather than following one shared annual schedule."
       }
     ],
-    "misconception": "Chlorophyll loss reveals existing yellow; much autumn red comes from newly made anthocyanin, not green pigment turning red.",
-    "boundary": "The scale journey is illustrative rather than uniformly scaled. Not all deciduous trees turn red, and severe frost or drought can damage leaves before a bright display develops.",
+    "misconception": "Not every leaf ends red: yellow need not turn red and chlorophyll does not become another pigment. Plants do not respire only at night, and evergreen does not mean an individual leaf lasts forever.",
+    "boundary": "The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated.",
     "narration": [
       {
-        "label": "Meet the colours",
-        "text": "Have you ever found golden or red leaves on a walk? They look like pages in a colourful book. Today we will travel inside a leaf. Tiny substances called pigments help give it colour. Look at this green summer leaf and guess what will change when autumn arrives.",
-        "cue": "Begin with the whole summer leaf."
+        "label": "Starting in a bud",
+        "text": "Remember this branch. A small leaf unfolds from its bud. Its edge expands while its stalk stays at the same place. We are following one leaf, not turning four unrelated pictures. When it has expanded, move closer to discover its work.",
+        "cue": "Move from the bud stop to maturity and follow the fixed branch and leaf edge."
       },
       {
-        "label": "Notice the hidden yellow",
-        "text": "Move slowly towards autumn. Pause and look for the fading green. Yellow pigments were already there in summer, but green was easier to see. As chlorophyll decreases, the yellow becomes clearer. It is a little like moving something aside and discovering a colour that was there all along.",
-        "cue": "Move the season slowly and pause for three seconds."
+        "label": "A mature leaf at work",
+        "text": "The leaf is connected to the whole plant. Water enters the roots and travels through xylem to the veins. Some evaporates inside the leaf and diffuses through stomata. A filled marker becoming hollow indicates a change of phase, not drops spraying from a pore. In light, mesophyll cells also use light energy to make sugars. Living cells respire during both day and night.",
+        "cue": "Open water transport at maturity and pause inside the leaf; compare the main leaf, transport diagram and pore window."
       },
       {
-        "label": "Where red lives",
-        "text": "Now choose a leaf that turns red. Many red autumn leaves make new red pigments. Travel through the leaf into its cells and find the space called a vacuole. Red pigments often collect here. The green and yellow pigments mainly live in a different little structure, the chloroplast.",
-        "cue": "Follow the red route into the vacuole, then compare the chloroplast."
+        "label": "Senescence and different colours",
+        "text": "Move towards senescence. The tree recovers some nutrients, green chlorophyll decreases and existing yellow becomes easier to see. Some leaves also make anthocyanins that accumulate in vacuoles and give red colours. These are different routes; not every leaf goes from yellow to red. Enter the same patch and locate its pigments.",
+        "cue": "Compare yellow and red, then tissue, cell, chloroplast and vacuole."
       },
       {
-        "label": "Take the question outdoors",
-        "text": "A leaf colour can tell a story of many small changes. Different trees, sunlight and weather make autumn look different. On your next walk, compare sunny and shaded leaves on one tree with a grown-up. Fallen leaves are wonderful to examine too; you can enjoy the living leaves without picking them.",
-        "cue": "Return to the whole leaf and compare the two outcomes."
+        "label": "Leaving the branch is not rebirth",
+        "text": "The connection between stalk and branch weakens and the leaf detaches. Its scar remains, and the same leaf is still visible. It no longer receives that root-supplied water flow. Real litter later dries, fragments and is used by decomposers; this model stops at detachment. Next year's leaf is new, not this old leaf turning back into a bud.",
+        "cue": "Inspect detachment, the persistent scar and stopped water transport. Explain that scrubbing backward only revisits a state."
       }
     ]
   },
@@ -97,6 +97,14 @@
     {
       "title": "OpenStax — Leaves",
       "url": "https://openstax.org/books/biology/pages/30-4-leaves"
+    },
+    {
+      "title": "USGS — Evapotranspiration and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/evapotranspiration-and-water-cycle"
+    },
+    {
+      "title": "Schaberg et al. — Association of red coloration with senescence of sugar maple leaves",
+      "url": "https://research.fs.usda.gov/treesearch/15618"
     }
   ]
 }

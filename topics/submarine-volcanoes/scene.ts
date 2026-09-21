@@ -118,9 +118,14 @@ function scenario(progress: number, environment: Environment, supply: Supply, se
     <path d="M508 533C461 480 529 ${y + 74} 499 ${y + 9}" fill="none" stroke="#243b3e" stroke-width="28" stroke-linecap="round"/>
     <path d="M508 533C461 480 529 ${y + 74} 499 ${y + 9}" fill="none" stroke="url(#molten)" stroke-width="15" stroke-linecap="round" opacity="${n(hot)}"/>
     <path d="M504 ${Math.max(y + 70, 340)}Q562 389 597 422" fill="none" stroke="#bf6441" stroke-width="8" opacity=".7"/></g>`;
-  out += `<path d="M474 ${y + 11}L481 ${y + 7}Q493 ${y + 12} 504 ${y + 9}L519 ${y + 11}L526 ${y + 16}Q512 ${y + 25} 490 ${y + 22}L477 ${y + 18}Z" fill="#0d2430" stroke="#65756b" stroke-width="2"/>
-    <path d="M482 ${y + 13}Q497 ${y + 9} 519 ${y + 14}Q504 ${y + 20} 487 ${y + 18}Z" fill="url(#molten)" opacity="${n(s.activity * .9)}"/>
-    <path d="M477 ${y + 10}L487 ${y + 11}M512 ${y + 12}L520 ${y + 13}" stroke="#a39e7e" stroke-width="1.2" opacity=".6"/>`;
+  // A water-quenched, broken rind surrounds a narrow incandescent opening.
+  // It deliberately avoids the old flat black oval that read as a pasted symbol.
+  out += `<g data-material="quench-crust">
+    <path d="M470 ${y + 15}L478 ${y + 6}L489 ${y + 9}L499 ${y + 5}L509 ${y + 10}L521 ${y + 7}L530 ${y + 17}L523 ${y + 25}L509 ${y + 23}L499 ${y + 29}L485 ${y + 23}L475 ${y + 25}Z" fill="url(#pillow-skin)" stroke="#78928c" stroke-width="2"/>
+    <path d="M480 ${y + 13}Q491 ${y + 8} 500 ${y + 13}Q510 ${y + 8} 522 ${y + 15}Q512 ${y + 21} 501 ${y + 18}Q490 ${y + 23} 480 ${y + 13}Z" fill="url(#molten)" opacity="${n(.12 + s.activity * .88)}"/>
+    <path d="M477 ${y + 11}l8 5 5-5 8 6 7-6 7 5 8-3M486 ${y + 23}l5-6m11 7 3-7m9 5-2-6" fill="none" stroke="#c6c8ad" stroke-width=".9" opacity=".66"/>
+    <path d="M484 ${y + 14}Q499 ${y + 10} 517 ${y + 15}" fill="none" stroke="#fff0ad" stroke-width="1.2" opacity="${n(s.activity * .9)}"/>
+  </g>`;
   if (environment === 'deep') {
     const fed = clamp((progress - .045) / .34);
     out += `<path d="M500 ${n(y + 82)}C499 ${n(y + 62)} 492 ${n(y + 48)} 500 ${n(y + 24)}C480 ${n(y + 30)} 462 ${n(y + 40)} 445 ${n(y + 54)}M500 ${n(y + 24)}C523 ${n(y + 31)} 543 ${n(y + 43)} 562 ${n(y + 57)}" fill="none" stroke="#182f39" stroke-width="17" stroke-linecap="round" opacity="${n(fed * .92)}"/>
@@ -155,6 +160,11 @@ function scenario(progress: number, environment: Environment, supply: Supply, se
     out += `<ellipse cx="521" cy="${y + 30}" rx="75" ry="35" fill="url(#heat)" opacity="${n(s.activity * .2)}"/>`;
   }
   if (environment === 'shallow') {
+    const interaction = clamp(s.activity * 1.45);
+    out += `<g data-material="water-lava-interface" opacity="${n(interaction)}">
+      ${Array.from({length:9},(_,i)=>{const side=i%2?1:-1,x=500+side*(18+i*3.7),py=y+19+(i%3)*4;return `<path d="M-5 2L-2-4L4-3L6 2L1 5Z" transform="translate(${n(x)} ${n(py)}) rotate(${i*31})" fill="${i%3?'#526a6b':'#7b8173'}" stroke="#263d44" stroke-width=".8"/>`;}).join('')}
+      ${Array.from({length:7},(_,i)=>{const q=clamp((progress-.06-i*.035)/.28),x=493+(i%2?1:-1)*(8+i*4)*q,py=y+5-q*(32+i*4);return `<ellipse cx="${n(x)}" cy="${n(py)}" rx="${n(2+q*5)}" ry="${n(1.5+q*4)}" fill="#d8eee4" fill-opacity="${n(Math.sin(q*Math.PI)*.26)}" stroke="#b8d8cf" stroke-opacity=".32" stroke-width=".6"/>`;}).join('')}
+    </g>`;
     // Finite packets disperse and settle; no indefinitely repeating fountain.
     for (let i = 0; i < 49; i++) {
       const f = fragmentState(progress, i);

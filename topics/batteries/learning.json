@@ -2,8 +2,8 @@
   "version": 1,
   "topicId": "batteries",
   "zh": {
-    "question": "电池明明还有能量，为什么开关打开时玩具仍不能持续转动？",
-    "observe": "先找开关缺口，合上后点“运行一次”；中途断开，观察能量条和蓝点是否停止前进。重新合上并切“电芯内部”“马达内部”，比较金色离子、外部电子和线圈。",
+    "question": "同一块电池怎样让灯亮、让车动？用过的能量怎样才能重新储存？",
+    "observe": "合上开关，分别试灯丝灯泡、LED 与电机；保留用过的电池进入充电章，对照未接入、不匹配与适配电源。再比较同为 AA 的两种电池，并拉远同一颗电芯查看电池包。",
     "academic": [
       {
         "title": "闭合的是完整输运路径",
@@ -14,12 +14,12 @@
         "body": "本图采用锂离子电芯放电的例子：负极氧化过程释放电子，正极还原过程接收电子，锂离子经过电解质和多孔隔膜迁移。隔膜减少两极直接接触造成内部短路的风险，同时允许离子输运。可利用化学自由能减少，向外提供电能；电解质中还有其他离子和扩散。其他电池的材料与反应不同，不能照搬所有微观细节。"
       },
       {
-        "title": "马达、损耗与能否充电",
-        "body": "电流通过马达线圈时，线圈在磁场中受力并产生转矩，换向结构帮助维持转动，真实传动系统再带动轮子。能量除机械作用外也转为热。可充电电池必须由适配充电器提供外部能量，推动设计允许的反应向回进行，且循环并不完全无损。一次电池不为反复充电设计，外形相同不能作为可充电的证据。"
+        "title": "负载、充电与电池分类",
+        "body": "电流通过马达线圈时，线圈在磁场中受力并产生转矩，换向结构帮助维持转动，真实传动系统再带动轮子。能量除机械作用外也转为热。可充电电池必须由适配充电器提供外部能量，推动设计允许的反应向回进行，且循环并不完全无损。一次电池不为反复充电设计，外形相同不能作为可充电的证据。 灯丝因受热发光；LED 通过半导体中的发光过程将部分电能转为光，仍有热损耗，并需要合适的驱动与限流。外形、化学体系与用途是不同分类维度。相同电芯理想串联累加电压，并联累加安时容量；瓦时考虑两者，不能只按安时跨电压比较能量。"
       }
     ],
     "misconception": "电池不是装满电子、用完就变空的罐子。电子是电荷载体；放电改变的是材料的化学状态。开关断开与电池耗尽也是两种不同情况。",
-    "boundary": "这是正常低压玩具回路的定性模型。粒子尺寸、速度、转角、能量条和热分配为教学选择，不表示真实电量或效率；忽略内阻、反电动势、开关瞬态与自放电。只示意锂离子净迁移。拖动回放、重置屏幕不是实际充电，剖面也不是拆电池的操作指导。",
+    "boundary": "这是正常低压玩具回路的定性模型。粒子尺寸、速度、转角、能量条和热分配为教学选择，不表示真实电量或效率；忽略内阻、反电动势、开关瞬态与自放电。只示意锂离子净迁移。拖动回放、重置屏幕不是实际充电，剖面也不是拆电池的操作指导。 充放电账本采用归一化能量和人为分配比例，不对应产品参数；充电明确计入外部做功及热损耗。电池家族分别适配画幅，不是等尺寸或容量比较；电池包只有最多16颗理想教学电芯，标称电压不是充电设定。",
     "narration": [
       {
         "label": "先找开关的小缺口",
@@ -33,19 +33,19 @@
       },
       {
         "label": "停一下，看看发生什么",
-        "text": "先猜猜看，如果现在打开开关，轮子还会一直转吗？点一下，留一点时间自己看看。蓝点不再继续前进，能量条也停住了，轮子慢慢停下来。电池里剩下的能量并没有一下子消失。再把开关合上，我们还能接着观察，刚才用过的那一段也没有被忘掉。",
+        "text": "先猜猜看，如果现在打开开关，轮子还会一直转吗？点一下，留一点时间自己看看。蓝点不再继续前进，能量条也停住了，轮子也停下来了。电池里剩下的能量并没有一下子消失。再把开关合上，我们还能接着观察，刚才用过的那一段也没有被忘掉。",
         "cue": "在运行中断开，留出观察停顿；确认进度与能量保持，再重新闭合。"
       },
       {
-        "label": "马达转动，也要记住电池的规则",
-        "text": "靠近马达，里面有磁体和绕起来的线圈。通电以后，它们相互作用，让转轴带着轮子动起来；有些能量还会变成热。电池用久了，里面材料的状态会改变。有的电池可以用合适设备充电，有的一次电池不能。我们不拆、不加热电池，小小的按钮电池更不能放进嘴里。",
-        "cue": "切马达内部并继续运行；结束后对照一次电池与可充电卡片，不演示真实接线或拆解。"
+        "label": "重新储能，再认识电池家族",
+        "text": "刚才用过的电池还在。去充电这一站看看：没有外部能源，能量不会自己回来；设备不匹配，也不能接通。适配的充电器送来能量，电池重新储存一部分，另一些变成热。再看两枚长得很像的 AA 电池，它们里面的材料可能不同，能不能充电也不同。汽车的大电池包还需要连接、监测和散热。真实电池都交给大人，我们只在屏幕上探索。",
+        "cue": "用过电池后进入充电章，比较三种供电条件；打开家族看碱性与镍氢 AA，再查看电池包的三个职责层。"
       }
     ]
   },
   "en": {
-    "question": "If a battery still has energy, why can the toy not keep turning with the switch open?",
-    "observe": "Find the switch gap, close it, then choose “Run once.” Open it during the run and watch whether energy and blue-dot progress stop. Close it again, compare the cell and motor views, and distinguish ions, external electrons and the coil.",
+    "question": "How can the same battery power light and motion? What is needed to store energy again?",
+    "observe": "Close the switch and try a filament bulb, LED and motor. Keep the used battery, enter charging and compare absent, incompatible and compatible supplies. Compare two AA chemistries, then zoom from one cell to its pack.",
     "academic": [
       {
         "title": "A complete transport path",
@@ -56,12 +56,12 @@
         "body": "This example follows lithium-ion discharge: oxidation at the negative electrode supplies electrons, reduction at the positive electrode accepts them, and lithium ions move through electrolyte and a porous separator. The separator reduces direct contact between electrodes while permitting ionic transport. Available chemical free energy decreases as electrical energy is supplied externally. Other ions and diffusion also contribute in the electrolyte. Different battery chemistries must not be assumed to share every microscopic detail shown here."
       },
       {
-        "title": "Motor work, losses and rechargeability",
-        "body": "A current-carrying motor coil experiences magnetic forces that produce torque. Commutation helps sustain rotation, and a real transmission drives the wheels. Energy also becomes heat. A compatible charger supplies external energy to drive the designed reversible reactions back in a rechargeable cell, and cycling is not lossless. Primary cells are not designed for repeated recharging; a similar shape is not evidence that a cell is rechargeable."
+        "title": "Loads, charging and battery classification",
+        "body": "A current-carrying motor coil experiences magnetic forces that produce torque. Commutation helps sustain rotation, and a real transmission drives the wheels. Energy also becomes heat. A compatible charger supplies external energy to drive the designed reversible reactions back in a rechargeable cell, and cycling is not lossless. Primary cells are not designed for repeated recharging; a similar shape is not evidence that a cell is rechargeable. A heated filament emits light; an LED emits through semiconductor processes, still loses energy as heat, and needs suitable driving and current limiting. Form, chemistry and use are different classification dimensions. Ideal identical cells in series add voltage; parallel branches add amp-hour capacity. Watt-hours account for both, so amp-hours alone cannot compare energy at different voltages."
       }
     ],
     "misconception": "A battery is not a jar of electrons that becomes empty. Electrons carry charge; discharge changes the chemical state of materials. An open switch and a depleted battery are different conditions.",
-    "boundary": "This is a qualitative normal low-voltage toy circuit. Particle size, speed, rotation, energy bars and heat allocation are teaching choices, not charge or efficiency measurements. Internal resistance, back EMF, switching transients and self-discharge are omitted. Only net lithium-ion transport is emphasized. Scrubbing and reset do not physically recharge a cell, and the cutaway is not a disassembly guide.",
+    "boundary": "This is a qualitative normal low-voltage toy circuit. Particle size, speed, rotation, energy bars and heat allocation are teaching choices, not charge or efficiency measurements. Internal resistance, back EMF, switching transients and self-discharge are omitted. Only net lithium-ion transport is emphasized. Scrubbing and reset do not physically recharge a cell, and the cutaway is not a disassembly guide. The discharge/charge ledger uses normalized energy and illustrative allocations, not product specifications; charging explicitly includes external work and heat. Family specimens are independently fitted, not true-size or capacity comparisons. The pack has at most 16 ideal teaching cells; nominal voltage is not a charging setting.",
     "narration": [
       {
         "label": "Find the little switch gap",
@@ -75,13 +75,13 @@
       },
       {
         "label": "Pause and see what changes",
-        "text": "Make a guess. If you open the switch now, will the wheels keep turning forever? Try it and take a little time to look. The blue dots stop progressing, the energy bars stop changing, and the wheels settle. The battery’s remaining energy has not suddenly vanished. Close the switch again and we can continue. The part we already used has not been forgotten.",
+        "text": "Make a guess. If you open the switch now, will the wheels keep turning forever? Try it and take a little time to look. The blue dots stop progressing, the energy bars stop changing, and the wheels stop in this simplified view. The battery’s remaining energy has not suddenly vanished. Close the switch again and we can continue. The part we already used has not been forgotten.",
         "cue": "Open the switch during a run and leave an observation pause. Check preserved progress and energy, then close it again."
       },
       {
-        "label": "A turning motor and battery rules",
-        "text": "Move closer to the motor. It has magnets and a coil of wire. With current, they interact to turn a shaft and the wheels; some energy also becomes heat. As a battery is used, the materials inside change. Some batteries can be recharged with suitable equipment, and primary batteries cannot. We never open or heat a battery, and a tiny button battery must never go into our mouths.",
-        "cue": "Choose the motor view and continue. Then compare the primary and rechargeable cards without demonstrating real wiring or disassembly."
+        "label": "Store energy again, then meet the family",
+        "text": "We still have the battery we used. Visit charging: without an outside energy source, its energy cannot return by itself, and incompatible equipment must not connect. A suitable charger supplies energy. The battery stores some, while some becomes heat. Two AA batteries can look alike yet contain different materials and have different charging rules. A large vehicle pack also needs connections, monitoring and cooling. Grown-ups handle real batteries; we explore only on screen.",
+        "cue": "Enter charging with a used battery and compare all three supply conditions. Compare alkaline and NiMH AA specimens, then inspect the pack's three responsibility layers."
       }
     ]
   },
@@ -97,6 +97,30 @@
     {
       "title": "U.S. CPSC · Button Cell and Coin Batteries",
       "url": "https://www.cpsc.gov/Safety-Education/Safety-Education-Centers/Button-Cell-Coin-Battery-Information-Center"
+    },
+    {
+      "title": "Energizer · Battery comparison",
+      "url": "https://energizer.com/batteries/battery-comparison-chart/"
+    },
+    {
+      "title": "Energizer · Alkaline handbook",
+      "url": "https://data.energizer.com/pdfs/alkaline_appman.pdf"
+    },
+    {
+      "title": "Energizer · NiMH handbook",
+      "url": "https://data.energizer.com/pdfs/nickelmetalhydride_appman.pdf"
+    },
+    {
+      "title": "U.S. DOE AFDC · Electric vehicle components",
+      "url": "https://afdc.energy.gov/vehicles/how-do-all-electric-cars-work"
+    },
+    {
+      "title": "U.S. DOE AFDC · Vehicle batteries",
+      "url": "https://afdc.energy.gov/vehicles/electric-batteries"
+    },
+    {
+      "title": "U.S. DOE · LED basics",
+      "url": "https://www.energy.gov/cmei/ssl/led-basics"
     }
   ]
 }

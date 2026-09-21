@@ -27,12 +27,13 @@ function downloadLink(name: string, content: string, label: string): HTMLAnchorE
   return link;
 }
 
-export async function mountTopicLearning(id: string): Promise<void> {
+export async function mountTopicLearning(id: string, options: { host?: HTMLElement; signal?: AbortSignal } = {}): Promise<void> {
   const load = resources[language === 'en' ? 'en' : 'zh'][`../../../topics/${id}/learning.json`];
-  if (!load || document.getElementById('learning-companion')) return;
+  if (!load || options.signal?.aborted || (!options.host && document.getElementById('learning-companion'))) return;
   const data = await load();
+  if (options.signal?.aborted) return;
   const content = data.content;
-  const main = document.querySelector('main');
+  const main = options.host ?? document.querySelector('main');
   if (!main) return;
   const section = element('section', 'learning-companion');
   section.id = 'learning-companion';
@@ -122,14 +123,15 @@ export async function mountTopicLearning(id: string): Promise<void> {
   document.addEventListener('click', event => {
     const button = (event.target as Element).closest<HTMLButtonElement>('button[data-mode]');
     if (button) setDisclosureOpen(academic, button.dataset.mode === 'academic');
-  });
+  }, { signal: options.signal });
   const jump = element('a', 'learning-jump', t('解说稿'));
   jump.href = '#narration';
   jump.addEventListener('click', () => setDisclosureOpen(narration, true, false));
   document.querySelector('.encyclopedia-preferences')?.prepend(jump);
+  options.signal?.addEventListener('abort', () => { section.remove(); jump.remove(); }, { once: true });
   if (location.hash === '#narration' || location.hash === '#academic-notes' || location.hash === '#learning-companion') {
     const target = location.hash === '#narration' ? narration : location.hash === '#academic-notes' ? academic : section;
     if (target instanceof HTMLDetailsElement) setDisclosureOpen(target, true, false);
-    requestAnimationFrame(() => target.scrollIntoView());
+    requestAnimationFrame(() => { if (!options.signal?.aborted) target.scrollIntoView(); });
   }
 }

@@ -4,6 +4,8 @@
 
 .optics-note{border-top:1px solid var(--border);padding-top:24px;margin-top:12px}.optics-note p{font-size:13px;max-width:850px}.optics-note a{color:var(--accent);font-size:12px}
 
+.viewport.hide-annotations :is(.object-label,.scene-heading,.scene-note){display:none}
+
 /* Scientific explanations stay with their topic. */
 
 [hidden]{display:none!important}

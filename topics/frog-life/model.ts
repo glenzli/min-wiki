@@ -3,7 +3,7 @@ const smooth = (p: number, a: number, b: number) => {
   return x * x * (3 - 2 * x);
 };
 export function growthState(progress: number) {
-  const p = Math.max(0, Math.min(4, progress));
+  const p = Number.isFinite(progress)?Math.max(0, Math.min(4, progress)):0;
   const hatch = smooth(p, 0.1, 1);
   const climb = smooth(p, 3.65, 4);
   return {
@@ -14,7 +14,21 @@ export function growthState(progress: number) {
     x: 457 + 78 * hatch + 217 * climb,
     y: 263 + 21 * hatch - 212 * climb,
     scale: (0.18 + 0.82 * hatch) * (1 + 0.2 * climb),
+    swim: Math.sin(p*34)*hatch*(1-climb),
+    kick: Math.sin(p*28)*smooth(p,1.8,3)*(1-climb),
   };
+}
+/** An anchored tail wave, not a rigid tail rotating at its root. */
+export function tailPath(progress:number,fin=true){
+  const p=Number.isFinite(progress)?Math.max(0,Math.min(4,progress)):0;
+  const points:number[][]=[];
+  for(const side of [-1,1])for(let i=0;i<=36;i++){
+    const u=side===-1?i/36:1-i/36;
+    const wave=(Math.sin(p*34-u*4)-Math.sin(p*34))*15*u;
+    const width=(fin?18+22*Math.sin(Math.PI*u):11)*(1-u);
+    points.push([501-244*u,290+wave+width*side]);
+  }
+  return points.map(([x,y],i)=>`${i?'L':'M'}${x!.toFixed(3)} ${y!.toFixed(3)}`).join(' ')+'Z';
 }
 // Corresponding Bézier control points maintain one silhouette throughout metamorphosis.
 const tad = [478,266,497,238,552,236,582,259,600,270,605,282,600,290,597,303,579,313,561,316,536,323,498,319,479,306,468,297,468,280,478,266];

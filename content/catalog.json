@@ -38,6 +38,100 @@
   ],
   "topics": [
     {
+      "id": "atmosphere",
+      "title": "大气：包围星球的空气",
+      "category": "earth",
+      "summary": "从地球全景走近同一处地面，再沿高度观察各层现象，比较其他世界的天空。",
+      "tags": [
+        "大气",
+        "对流层",
+        "平流层",
+        "空气",
+        "云",
+        "水循环",
+        "土卫六"
+      ],
+      "duration": "互动探索 / 三条观察路径",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-20"
+    },
+    {
+      "id": "cosmic-scale",
+      "title": "星系与宇宙尺度",
+      "category": "universe",
+      "summary": "从地球连续拉远到太阳系、银河系和本星系群，找回我们的位置，拆看银河结构。",
+      "tags": [
+        "宇宙",
+        "星系",
+        "银河系",
+        "尺度",
+        "本星系群"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-20"
+    },
+    {
+      "id": "stars",
+      "title": "恒星与多星系统",
+      "category": "universe",
+      "summary": "从太阳的远近与内部出发，比较恒星，再看双星与层级三星怎样围绕共同质心运动。",
+      "tags": [
+        "恒星",
+        "太阳",
+        "双星",
+        "三星",
+        "质心"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-20"
+    },
+    {
+      "id": "black-holes",
+      "title": "黑洞",
+      "category": "universe",
+      "summary": "从黑洞本体与天体相遇，探索到银河系中心和更大的黑洞尺度。",
+      "tags": [
+        "黑洞",
+        "恒星",
+        "行星",
+        "伴星",
+        "引力",
+        "潮汐",
+        "吸积",
+        "人马座 A*",
+        "超大质量黑洞"
+      ],
+      "duration": "互动探索 / 五个章节",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-20"
+    },
+    {
       "id": "black-hole",
       "title": "恒星路过黑洞",
       "category": "universe",
@@ -58,13 +152,14 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-07"
+      "updated": "2026-09-07",
+      "parentTopic": "black-holes"
     },
     {
       "id": "solar-system",
-      "title": "太阳系八大行星运转与大小比较",
+      "title": "太阳系：太阳、行星与卫星",
       "category": "universe",
-      "summary": "观察八大行星的公转快慢，再让太阳与行星按同一个直径尺度排队，比较它们的大小。",
+      "summary": "从太阳系全景进入八大行星，观察动态云层与太阳活动，下降到代表性地貌，再探索内部和卫星。",
       "tags": [
         "太阳系",
         "八大行星",
@@ -74,7 +169,7 @@
         "木星",
         "引力"
       ],
-      "duration": "动态探索 / 双轨视角",
+      "duration": "连续探索 / 多种尺度",
       "modes": [
         "儿童版",
         "学术版"
@@ -82,7 +177,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-07"
+      "updated": "2026-09-20"
     },
     {
       "id": "earth-seasons",
@@ -156,7 +251,8 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-11"
+      "updated": "2026-09-11",
+      "parentTopic": "black-holes"
     },
     {
       "id": "planet-black-hole",
@@ -179,14 +275,16 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-11"
+      "updated": "2026-09-11",
+      "parentTopic": "black-holes"
     },
     {
       "id": "leaf-colors",
-      "title": "叶子的颜色",
+      "title": "一片叶子的一生",
       "category": "life",
-      "summary": "从一片叶子放大到细胞和叶绿体，看看绿色从哪里来，秋天的黄色和红色又藏在哪里。",
+      "summary": "守着同一片叶，从芽中展开、运水与制造糖，看到衰老、黄红分支和脱落，再走进它的细胞。",
       "tags": [
+        "叶子的颜色",
         "叶子",
         "叶绿素",
         "叶绿体",
@@ -196,7 +294,7 @@
         "类胡萝卜素",
         "光合作用"
       ],
-      "duration": "互动探索 / 逐层放大",
+      "duration": "互动探索",
       "modes": [
         "儿童版",
         "学术版"
@@ -204,7 +302,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "earth-moon",
@@ -245,7 +343,8 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "solar-system"
     },
     {
       "id": "lunar-craters",
@@ -270,17 +369,21 @@
     },
     {
       "id": "volcano-eruption",
-      "title": "火山为什么会喷发",
+      "title": "火山：从岩浆到山、岛与湖",
       "category": "earth",
-      "summary": "比较熔岩流、熔岩喷泉和富灰爆发，再用长期证据认识休眠、熄灭与火山形状。",
+      "summary": "选择盾状火山、成层火山、大室山式火山渣锥、海底火山或火山湖，追踪喷发、堆积与后来的地貌变化。",
       "tags": [
         "火山",
         "岩浆",
         "火山灰",
         "休眠火山",
-        "喷发方式"
+        "喷发方式",
+        "海底火山",
+        "火山湖",
+        "大室山",
+        "火山渣锥"
       ],
-      "duration": "互动探索 / 条件与过程",
+      "duration": "互动探索 / 五种案例",
       "modes": [
         "儿童版",
         "学术版"
@@ -288,7 +391,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-18"
+      "updated": "2026-09-20"
     },
     {
       "id": "submarine-volcanoes",
@@ -310,7 +413,8 @@
       "theme": "light",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-18"
+      "updated": "2026-09-18",
+      "parentTopic": "volcano-eruption"
     },
     {
       "id": "volcanic-lakes",
@@ -330,7 +434,32 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "volcano-eruption"
+    },
+    {
+      "id": "wind",
+      "title": "风：从微风到风暴",
+      "category": "earth",
+      "summary": "空气为什么会动？改变受热、观察海陆风和绕流，再走进台风与龙卷风，探索风的力量和影响。",
+      "tags": [
+        "风",
+        "空气",
+        "气压",
+        "海陆风",
+        "台风",
+        "龙卷风",
+        "风能"
+      ],
+      "duration": "互动探索 / 五个章节",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-20"
     },
     {
       "id": "typhoon",
@@ -351,7 +480,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "wind"
     },
     {
       "id": "tornado",
@@ -372,13 +502,14 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "wind"
     },
     {
       "id": "planet-surfaces",
-      "title": "行星的表面是什么样的",
+      "title": "从太空落向行星",
       "category": "universe",
-      "summary": "比较八个世界的岩石、海水、甲烷湖与可能的熔岩海，分清真实观测、推断和藏在云下的流体。",
+      "summary": "直接进入太阳系下降模式：从完整星球靠近云层、岩石或海岸，随时暂停，再查看内部结构。",
       "tags": [
         "行星",
         "岩石行星",
@@ -391,7 +522,7 @@
         "熔岩海",
         "系外行星"
       ],
-      "duration": "互动探索 / 八个世界",
+      "duration": "互动探索 / 连续下降",
       "modes": [
         "儿童版",
         "学术版"
@@ -399,7 +530,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-18"
+      "updated": "2026-09-20",
+      "parentTopic": "solar-system"
     },
     {
       "id": "mimosa",
@@ -422,6 +554,30 @@
       "updated": "2026-09-12"
     },
     {
+      "id": "flower-colors",
+      "title": "花为什么五颜六色？",
+      "category": "life",
+      "summary": "从玫瑰的色素、绣球的显色到牵牛花开放与向日葵的隐藏花纹，探索花色的不同原因。",
+      "tags": [
+        "植物",
+        "花朵",
+        "化学",
+        "绣球",
+        "玫瑰",
+        "牵牛花",
+        "向日葵"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-22"
+    },
+    {
       "id": "hydrangea",
       "title": "绣球花为什么有不同颜色？",
       "category": "life",
@@ -439,7 +595,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "flower-colors"
     },
     {
       "id": "rain-formation",
@@ -459,7 +616,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "rain-cycle"
     },
     {
       "id": "lightning-thunder",
@@ -560,41 +718,50 @@
     },
     {
       "id": "sound-vibrations",
-      "title": "声音是怎样出来的？",
+      "title": "声音：从振动到听见",
       "category": "physics",
-      "summary": "拨一下橡皮筋，看它来回振动。把它绷紧一点，再听听声音。",
+      "summary": "追踪声源、空气、鼓膜与耳蜗，比较音高、幅度和传播条件，区分机械振动与神经消息。",
       "tags": [
         "声音",
-        "振动"
+        "振动",
+        "听觉",
+        "耳蜗",
+        "声音是怎样出来的？",
+        "耳朵怎样听见声音？"
       ],
-      "duration": "慢慢玩 · 约 5—8 分钟",
+      "duration": "互动探索 / 三条观察路径",
       "modes": [
         "儿童版",
-        "学术版"
+        "家长深入版"
       ],
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "friction",
-      "title": "滑出去的玩具为什么会停？",
+      "title": "运动、摩擦与停下来",
       "category": "physics",
-      "summary": "三块一样的木头，从一样快的速度出发。看看哪条路让它滑得更远。",
+      "summary": "从滑块接触与能量变化，到轮胎抓地、反应与制动距离，再到乘员惯性和合身约束，逐层理解怎样停下来。",
       "tags": [
         "摩擦",
-        "运动"
+        "运动",
+        "刹车",
+        "惯性",
+        "安全带",
+        "儿童座椅",
+        "滑出去的玩具为什么会停？"
       ],
       "duration": "慢慢玩 · 约 5—8 分钟",
       "modes": [
         "儿童版",
-        "学术版"
+        "家长深入版"
       ],
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "butterfly-life",
@@ -608,25 +775,26 @@
       ],
       "duration": "自由探索 / 3–5 分钟",
       "modes": [
-        "儿童版",
-        "学术版"
+        "儿童版"
       ],
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20",
+      "parentTopic": "frog-life"
     },
     {
       "id": "frog-life",
-      "title": "蝌蚪怎样变成青蛙？",
+      "title": "变态发育：动物怎样长大",
       "category": "life",
-      "summary": "推着时间向前，看腿长出来、尾巴逐渐被身体吸收。",
+      "summary": "跟随蝌蚪和毛毛虫，比较身体、食物、呼吸环境与运动方式怎样改变；找出有蛹和无蛹发育的差别。",
       "tags": [
+        "变态发育",
         "青蛙",
-        "蝌蚪",
+        "蝴蝶",
         "生命周期"
       ],
-      "duration": "自由探索 / 3–5 分钟",
+      "duration": "自由探索 / 8–12 分钟",
       "modes": [
         "儿童版",
         "学术版"
@@ -634,19 +802,21 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "ant-trails",
-      "title": "蚂蚁为什么排着队走？",
+      "title": "蚂蚁与蚁群",
       "category": "life",
-      "summary": "显示看不见的气味路线，观察断点和新路线怎样影响蚂蚁。",
+      "summary": "跟随一只工蚁，认识身体与触角，发现食物与踪迹线索，再进入巢内观察幼体成长和分工。",
       "tags": [
         "蚂蚁",
-        "气味",
-        "动物行为"
+        "昆虫",
+        "信息素",
+        "动物行为",
+        "生命周期"
       ],
-      "duration": "自由探索 / 3–5 分钟",
+      "duration": "自由探索 / 8–12 分钟",
       "modes": [
         "儿童版",
         "学术版"
@@ -654,7 +824,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "fish-gills",
@@ -721,15 +891,20 @@
     },
     {
       "id": "seed-sprouting",
-      "title": "一粒豆子怎样发芽？",
-      "summary": "给豆子一点水、一点空气和合适的温度，再翻开成长相册。",
+      "title": "开花植物：从种子到下一代",
+      "summary": "比较萌发、授粉受精与传播，发现一粒种子成为下一代需要哪些条件。",
       "category": "life",
       "tags": [
         "植物",
         "种子",
-        "发芽"
+        "发芽",
+        "一粒豆子怎样发芽？",
+        "植物生命周期",
+        "萌发",
+        "受精",
+        "种子传播"
       ],
-      "duration": "3–6 分钟 / 自由探索",
+      "duration": "互动探索 / 三条观察路径",
       "modes": [
         "儿童版",
         "学术版"
@@ -737,10 +912,11 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "seed-travel",
+      "parentTopic": "seed-sprouting",
       "title": "种子怎样去远方？",
       "summary": "轻轻的绒毛、小小的钩子，都能帮种子离开妈妈身边。选一种，再送它一程。",
       "category": "life",
@@ -777,10 +953,12 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "leaf-colors"
     },
     {
       "id": "flower-fruit",
+      "parentTopic": "seed-sprouting",
       "title": "花为什么会变成果实？",
       "summary": "让蜜蜂把合适的花粉带到樱桃花上，再看花里面慢慢发生什么。",
       "category": "life",
@@ -821,15 +999,15 @@
     },
     {
       "id": "rain-cycle",
-      "title": "一滴水的旅行",
+      "title": "水循环：水的许多旅程",
       "category": "earth",
-      "summary": "从地面的水，到云里的小水滴，再回到河流和大海。",
+      "summary": "从海面到云、山坡、土壤和河湖，探索水的多条旅程与冰川慢时间。",
       "tags": [
         "水循环",
         "蒸发",
         "凝结"
       ],
-      "duration": "互动探索 / 四步观察",
+      "duration": "互动探索",
       "modes": [
         "儿童版",
         "学术版"
@@ -837,7 +1015,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "river-paths",
@@ -857,7 +1035,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "rain-cycle"
     },
     {
       "id": "sand-journey",
@@ -897,7 +1076,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "rain-cycle"
     },
     {
       "id": "sun-star",
@@ -917,7 +1097,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-12",
+      "parentTopic": "stars"
     },
     {
       "id": "meteors",
@@ -941,16 +1122,16 @@
     },
     {
       "id": "cells",
-      "title": "细胞是什么？",
+      "title": "细胞：结构与分工",
       "category": "life",
-      "summary": "切换动物、叶肉植物和细菌细胞，找一找膜、DNA 与细胞核。",
+      "summary": "从膜与细胞器，到物质和能量，再看皮肤、肌肉、神经与血液的分工。",
       "tags": [
         "细胞",
         "细菌",
         "DNA",
         "微观世界"
       ],
-      "duration": "自由探索 / 3–5 分钟",
+      "duration": "互动探索",
       "modes": [
         "儿童版",
         "学术版"
@@ -958,10 +1139,11 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "bacteria",
+      "parentTopic": "microbes-everywhere",
       "title": "细菌是什么？都会让人生病吗？",
       "category": "life",
       "summary": "放大一颗细菌，看看身体结构，再去酸奶、土壤和肠道里找它们的不同角色。",
@@ -983,6 +1165,7 @@
     },
     {
       "id": "viruses",
+      "parentTopic": "microbes-everywhere",
       "title": "病毒是什么？为什么需要细胞？",
       "category": "life",
       "summary": "换一个宿主，逐步看噬菌体如何借助细菌制造新的病毒。",
@@ -1004,17 +1187,20 @@
     },
     {
       "id": "microbes-everywhere",
-      "title": "微生物为什么几乎无处不在？",
+      "title": "微生物：细胞、环境与病毒",
       "category": "life",
-      "summary": "换着看土壤、池水、皮肤和空气，分清被带到、活下来与长出更多。",
+      "summary": "从小环境走进细菌，比较细胞怎样生长，以及病毒为什么离不开合适宿主。",
       "tags": [
         "微生物",
         "栖息地",
         "传播",
         "细菌",
-        "病毒"
+        "病毒",
+        "微生物为什么几乎无处不在？",
+        "二分裂",
+        "生态"
       ],
-      "duration": "自由探索 / 3–5 分钟",
+      "duration": "互动探索 / 三条观察路径",
       "modes": [
         "儿童版",
         "学术版"
@@ -1022,7 +1208,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20"
     },
     {
       "id": "tap-water",
@@ -1073,7 +1259,7 @@
     {
       "id": "car-safety",
       "title": "刹车了，为什么还要系安全带？",
-      "category": "engineering",
+      "category": "physics",
       "summary": "汽车停下需要一段路，身体也需要一起慢下来。看看轮胎、刹车和儿童座椅怎样接力保护我们。",
       "tags": [
         "交通安全",
@@ -1081,18 +1267,18 @@
         "摩擦",
         "惯性",
         "安全带",
-        "儿童安全座椅",
-        "生活安全"
+        "儿童安全座椅"
       ],
       "duration": "慢慢玩 · 约 6—9 分钟",
       "modes": [
         "儿童版",
-        "学术版"
+        "家长深入版"
       ],
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-20",
+      "parentTopic": "friction"
     },
     {
       "id": "pain-signals",
@@ -1142,6 +1328,7 @@
       "category": "life",
       "summary": "放大看血液中的分工：运氧气、参与防御，以及一起帮助止血。",
       "tags": [
+        "血细胞",
         "红细胞",
         "白细胞",
         "血小板",
@@ -1156,7 +1343,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-16"
+      "updated": "2026-09-16",
+      "parentTopic": "cells"
     },
     {
       "id": "body-cells",
@@ -1178,12 +1366,13 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-16"
+      "updated": "2026-09-16",
+      "parentTopic": "cells"
     },
     {
       "id": "hearing",
       "title": "耳朵怎样听见声音？",
-      "category": "life",
+      "category": "physics",
       "summary": "放大耳朵、耳蜗和感觉细胞，追踪振动怎样变成传向脑的消息。",
       "tags": [
         "听觉",
@@ -1199,7 +1388,8 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-17"
+      "updated": "2026-09-17",
+      "parentTopic": "sound-vibrations"
     },
     {
       "id": "soap-bubbles",
@@ -1245,16 +1435,20 @@
     },
     {
       "id": "air-conditioner",
-      "title": "空调怎样让房间凉下来？",
+      "title": "制冷：热量怎样被搬走",
       "category": "engineering",
-      "summary": "透视空调里的冷媒回路，分清空气、冷媒和冷凝水，比较制冷与只送风。",
+      "summary": "从冷媒回路到空调与冰箱，追踪冷端吸热、输入功与热端放热，比较房间和柜体的边界。",
       "tags": [
         "空调",
         "热量",
         "家用电器",
-        "日常科学"
+        "日常科学",
+        "空调怎样让房间凉下来？",
+        "冷媒",
+        "热量收支",
+        "温控"
       ],
-      "duration": "自由探索 / 4–6 分钟",
+      "duration": "互动探索 / 三条观察路径",
       "modes": [
         "儿童版",
         "学术版"
@@ -1262,10 +1456,11 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-17"
+      "updated": "2026-09-20"
     },
     {
       "id": "refrigerator",
+      "parentTopic": "air-conditioner",
       "title": "冰箱怎样让食物变凉？",
       "category": "engineering",
       "summary": "透视冰箱，跟着密闭管路里的冷媒，把热量从食物送到房间。",
@@ -1289,17 +1484,24 @@
     },
     {
       "id": "batteries",
-      "title": "电池怎样让玩具动起来？",
+      "title": "电池：把能量带在身边",
       "category": "engineering",
-      "summary": "合上玩具回路，放大电芯和马达，分清电子、离子与化学能的去向。",
+      "summary": "从灯与电机到电芯内部、充放电、电池家族和汽车电池包，追踪同一份能量。",
       "tags": [
         "电池",
         "电路",
         "能量",
-        "玩具",
-        "日常科学"
+        "充电",
+        "锂离子",
+        "镍氢",
+        "铅酸",
+        "纽扣电池",
+        "AA",
+        "汽车电池",
+        "电池包",
+        "玩具"
       ],
-      "duration": "自由探索 / 4–6 分钟",
+      "duration": "自由探索 / 10–15 分钟",
       "modes": [
         "儿童版",
         "学术版"
@@ -1307,7 +1509,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-17"
+      "updated": "2026-09-21"
     }
   ]
 }

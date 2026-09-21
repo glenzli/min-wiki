@@ -1,5 +1,10 @@
 # 雨是怎样形成的 / How rain forms
 
+
+## Integrated entry · 2026-09-20
+
+The public entry now redirects to `/topics/rain-cycle/?view=cloud`, preserving language, query parameters and fragment. The persistent watershed owns the observation journey and controls; this directory retains its scientific model and detailed source renderers. Earlier standalone UI and validation descriptions below are historical, not evidence that the integrated page has been browser-verified.
+
 云里的小水滴，怎样变成落到地面的雨？走进云中，比较暖云、冰晶和干燥空气带来的不同结果。
 
 How do tiny cloud droplets become rain at the ground? Look inside a cloud and compare warm droplets, ice growth and evaporation in dry air.

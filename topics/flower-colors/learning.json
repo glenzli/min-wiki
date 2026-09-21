@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "topicId": "flower-colors",
+  "zh": {
+    "question": "花色改变，都是因为土壤酸碱度变了吗？",
+    "observe": "比较玫瑰品种的色素；在绣球中改变下一轮花的条件；拖动天蓝牵牛的开放；切换向日葵的可见色与紫外吸收示意。",
+    "academic": [
+      {
+        "title": "色素、细胞位置与光",
+        "body": "红粉色玫瑰常含较多花青素；黄色常与类胡萝卜素有关，橙色可有两者共同贡献。白花的可见着色色素较少，组织散射光使它看起来明亮；白色不等于完全没有任何色素。这里是在比较不同品种，并不是让同一朵花瞬间换色。 花朵、细胞与色素符号不在同一比例；颗粒数量只表示相对趋势，不是实测浓度。花青素画在液泡中，类胡萝卜素画在有色体中。"
+      },
+      {
+        "title": "化学条件与发育不是一回事",
+        "body": "绣球显眼的大片结构主要是萼片。蓝色与液泡中的花青素、铝及共色素形成的复合物有关，也受液泡化学环境影响。土壤的 pH 和液泡的 pH 不是同一个数值，植物还要维持细胞内部条件。研究通过萼片组织中的成分定位和转运蛋白实验，连接起土壤供给、细胞运输与最后呈现的花色。 这里限定为三色牵牛“天蓝”（Ipomoea tricolor ‘Heavenly Blue’）。花瓣展开时，液泡内部酸性减弱，已有花青素的显色随之由偏红转蓝；不是用蓝色颜料替换红色颜料。拖动可同时观察花形与细胞环境。"
+      },
+      {
+        "title": "花纹、传粉者与环境",
+        "body": "向日葵外圈的舌状花常呈黄色，但其基部可积累吸收紫外线的黄酮醇，构成靶心状花纹。切换观察方式，花朵本身没有变色。研究发现这些花纹与传粉者偏好有关，也与环境适应有关；不是花朵有意识地画路标。 紫色覆盖表示紫外吸收较强，并不是蜜蜂眼中真实的紫色。图案为教学示意，各植株的范围会不同；向日葵花盘由许多小花组成。"
+      }
+    ],
+    "misconception": "土壤酸度不是所有花朵的变色开关；白色不等于没有任何色素，紫外示意色也不等于蜜蜂眼中的颜色。",
+    "boundary": "模型按案例分别解释，不预测园艺结果。绣球条件影响下一轮花；牵牛花仅限天蓝品种；向日葵图案为示意。粒子数量、颜色、形态及进度不是实测浓度、时间或光谱。",
+    "narration": [
+      {
+        "label": "先找颜色的来源",
+        "text": "看看这些玫瑰，有红粉色、黄色、橙色和白色。把花瓣放大，里面有装着不同色素的小空间。不同品种制造和积累的色素不同，呈现的颜色也不同。白花并不是一张什么都没有的纸，它的组织也会把光散射出来。",
+        "cue": "比较玫瑰品种，再切到花瓣与细胞。"
+      },
+      {
+        "label": "色素还需要合适的条件",
+        "text": "先看根与运输。金色小圆点表示土里可以被利用的铝，同一批圆点沿着根和茎，来到花的萼片。再走进细胞：粉色椭圆表示花青素，绿色方块表示帮忙显色的成分。它们与铝凑到一起，能形成蓝色组合。这些小形状是帮助我们辨认的符号。土变了，还得等吸收、运输和新花长大，可不是花园里的花马上换衣服。",
+        "cue": "在绣球中固定品种，比较下一轮花的酸度和铝供应。"
+      },
+      {
+        "label": "同一朵花慢慢打开",
+        "text": "这朵叫天蓝的牵牛花，开放前偏红，打开后变蓝。不是花瓣换了一套颜料，而是细胞液泡里的环境变了，已有色素显出不同颜色。把进度慢慢拖回来，可以同时看见花形和细胞变化；这段过程不是所有花的通用规则。",
+        "cue": "拖动开放进度，比较整花和细胞。"
+      },
+      {
+        "label": "看不见的花纹",
+        "text": "向日葵看起来黄黄的，但有些地方吸收了我们看不到的紫外线。画面把这些区域标成紫色，让我们找到藏着的图案。花没有变色，只是观察方法变了。这样的花纹可能帮助传粉者辨认和寻找资源；它们的作用也和生长环境有关。",
+        "cue": "在同一向日葵上切换可见色和紫外吸收区域。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Does every flower change color because its soil acidity changes?",
+    "observe": "Compare rose cultivar pigments, configure the next hydrangea bloom, scrub Heavenly Blue opening, and switch between visible color and sunflower UV absorption.",
+    "academic": [
+      {
+        "title": "Pigments, cell compartments and light",
+        "body": "Red and pink roses often contain more anthocyanins; yellow commonly involves carotenoids, while orange can involve both. White petals contain less visible coloring pigment and scatter light; white does not mean entirely pigment-free. These are comparisons between cultivars, not an instant recoloring of one flower. Flowers, cells and pigment symbols use different scales. Particle counts show relative trends, not measured concentrations. Anthocyanins are shown in vacuoles; carotenoids in chromoplasts."
+      },
+      {
+        "title": "Chemistry and development are distinct",
+        "body": "The showy structures are mainly sepals. Blue involves complexes of anthocyanin, aluminium and copigments in vacuoles, with the cellular chemical environment also contributing. Soil pH is not vacuolar pH. Tissue mapping and transporter studies connect supply, cellular transport and visible colour. This case is specifically Ipomoea tricolor ‘Heavenly Blue’. As petals unfold, their vacuoles become less acidic and existing anthocyanins shift from reddish to blue coloration. Blue paint does not replace red paint. Drag to inspect flower shape and cell conditions together."
+      },
+      {
+        "title": "Patterns, pollinators and environment",
+        "body": "Sunflower ligules often look yellow, but their bases can accumulate UV-absorbing flavonols, making a bullseye pattern. Changing the view does not recolor the flower itself. Research links these patterns with pollinator preferences and environmental adaptation; flowers do not consciously draw signposts. Purple overlays indicate stronger UV absorption, not the actual purple a bee sees. The pattern is illustrative and varies among plants; a sunflower head contains many small flowers."
+      }
+    ],
+    "misconception": "Soil acidity is not a universal flower-color switch. White does not mean pigment-free, and a UV overlay is not the actual color a bee sees.",
+    "boundary": "Each case has its own explanatory model, not a horticultural prediction. Hydrangea settings affect the next bloom; morning glory is limited to Heavenly Blue; sunflower patterns are illustrative. Particles, colors, geometry and progress are not measured concentrations, time or spectra.",
+    "narration": [
+      {
+        "label": "Find the source of color",
+        "text": "These roses can be pink, yellow, orange or white. Look inside a petal: different compartments contain different pigments. Cultivars make and accumulate different combinations. A white petal is not empty; its tissues also scatter light.",
+        "cue": "Compare rose cultivars, then open the petal-and-cell view."
+      },
+      {
+        "label": "Pigments need suitable conditions",
+        "text": "First follow the roots and transport. Gold dots represent available aluminium, traveling through roots and stem toward a sepal. Inside a cell, pink ovals represent anthocyanin and green squares are helper pigments. Together with aluminium they can form a blue complex. These little shapes are identification symbols. Uptake, transport and new growth take time; garden flowers do not instantly change their clothes.",
+        "cue": "Keep the hydrangea cultivar fixed and compare soil acidity and aluminum for the next bloom."
+      },
+      {
+        "label": "One flower unfolds",
+        "text": "This Heavenly Blue morning glory is reddish before opening and blue when open. It has not swapped its paint: conditions inside its petal vacuoles change how existing pigments appear. Scrub back to follow the same flower and cell. This is not a rule for every flower.",
+        "cue": "Scrub opening in the whole-flower and cell views."
+      },
+      {
+        "label": "Patterns beyond our vision",
+        "text": "A sunflower looks yellow, but some regions absorb ultraviolet light that we cannot see. Purple on this diagram reveals those regions. The flower has not changed, only our way of looking. Patterns can help pollinators recognize flowers and find resources; they also have roles linked to the environment.",
+        "cue": "Switch visible color and UV absorption on the same sunflower."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Ito et al. — Direct mapping of hydrangea blue-complex in sepal tissues",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6443790/"
+    },
+    {
+      "title": "Negishi et al. — Aluminium transporters in blue hydrangea sepals",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3430636/"
+    },
+    {
+      "title": "University of Georgia — Growing Bigleaf Hydrangea",
+      "url": "https://fieldreport.caes.uga.edu/publications/C973/growing-bigleaf-hydrangea/"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6379320/",
+      "title": "Rose pigment composition"
+    },
+    {
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3559195/",
+      "title": "Heavenly Blue opening and color"
+    },
+    {
+      "url": "https://elifesciences.org/articles/72072",
+      "title": "Sunflower UV pigmentation"
+    }
+  ]
+}

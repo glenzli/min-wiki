@@ -1,0 +1,212 @@
+{
+  "zh": {
+    "title": "水循环：水的许多旅程",
+    "longTime": "换一把时间尺，继续观察",
+    "groundStudy": "② 地下水的慢旅程 ↓",
+    "glacierStudy": "⑤ 冰川怎样形成与退缩 ↓",
+    "groundBridge": "仍在 ② 号山坡下方：上图追踪一场降水中的 100 份水，这里改用独立的长期补给与排泄实验，观察更深的储存。两套数量和时钟不相加，改变这里的条件不会重置上图那批水。",
+    "iceBridge": "仍在 ⑤ 号山谷：上图问一份水在既有冰川里怎样走；下图再问冰川本身怎样从多年积雪形成、增长或退缩。这里有独立的多年收支与时间尺，不是上方 100 份水的放大计数。",
+    "loadingStudy": "正在准备长期观察，原流域仍可使用。",
+    "failedStudy": "长期观察暂时无法载入，可以重试；原流域的说明和操作仍可使用。",
+    "retryStudy": "重试长期观察",
+    "backToBatch": "↑ 返回上方，继续追踪那批水",
+    "intro": "从海面到云里，从山坡到河湖；有的水很快流走，有的会留下很久。",
+    "views": {
+      "basin": "整个流域",
+      "cloud": "① 走进云里",
+      "ground": "② 雨落在山坡",
+      "river": "③ 河流与湖海",
+      "ice": "⑤ 冰川里的慢旅程"
+    },
+    "descriptions": {
+      "basin": "这里是同一个流域。金色圆圈跟踪一份水；改变观察位置，不会清空水的旅程。100 份只是一批示意水，不是地球水量的比例。",
+      "cloud": "定位到同一片云，再放大其中的微观过程。水滴接触后才合并；冰晶路径假定下面有足够深的暖层。高山降雪是另一条寒冷支路，不与这条融化成雨的路线混淆。",
+      "ground": "同一场降水落在标记山坡。改变地表，比较入渗、径流和暂留；下方孔道是放大的土壤剖面。渗入土壤不代表已经进入深层含水层，也不保证净化成饮用水。",
+      "river": "沿同一条河到湖泊和海岸。浅蓝色表示水，细小金色颗粒表示泥沙：外侧冲刷，内侧沉积。追踪圈表示水份，不是泥沙；部分水仍留在河湖，不强迫全部回到海里。",
+      "ice": "这是已经存在的山地冰川，不是一次下雪就冻出来的。完成降水后，可单独推进冰中的慢时间：标记水份随冰缓慢向下移动，到了消融区才变成融水接入原先的河谷。"
+    },
+    "questions": {
+      "basin": "每份水都一定回到海里吗？",
+      "cloud": "有云，就一定有雨落到地面吗？",
+      "ground": "同样一场雨，不同地面会怎样？",
+      "river": "水流过去，水和泥沙会停在哪里？",
+      "ice": "冰川自己在流动，还是只有融水在流？"
+    },
+    "play": "开始这一段旅程",
+    "pause": "暂停",
+    "replay": "重新观察",
+    "reset": "重新开始这批水",
+    "progress": "降水与分流进度",
+    "iceProgress": "冰中慢时间（另一个时间尺度）",
+    "iceNote": "先让高山降雪到达冰川，再推动这批水的慢时间。这里追踪既有冰体中的水，不预测真实流速；下面的独立长期观察再研究冰川本身的积累、形成与消融。",
+    "prepareIce": "把降水推进到储存阶段",
+    "labels": "显示位置编号",
+    "humidity": "云下空气湿度",
+    "surface": "标记坡面的地表",
+    "surfaces": {
+      "soil": "疏松土壤",
+      "clay": "紧实黏土",
+      "paved": "铺装地面"
+    },
+    "route": "云滴长大的路径",
+    "routes": {
+      "warm": "暖云碰并",
+      "ice": "冰晶生长后融化"
+    },
+    "follow": "跟踪哪条去向",
+    "followOptions": {
+      "soil": "进入土壤",
+      "ocean": "继续去海洋",
+      "lake": "停在湖里",
+      "river": "留在河道",
+      "surface": "地表暂留",
+      "ice": "进入高山冰雪",
+      "vapor": "回到空气"
+    },
+    "unavailable": "当前条件下没有这条示意去向；仍追踪原来的水份。",
+    "poolTitle": "这批水此刻在哪里？",
+    "pools": {
+      "ocean": "海洋",
+      "vapor": "气态水",
+      "cloud": "云中",
+      "falling": "正在下落",
+      "soil": "土壤",
+      "lake": "湖泊",
+      "river": "河道",
+      "ice": "冰雪",
+      "surface": "地表暂留"
+    },
+    "unit": "份",
+    "trace": "追踪水份",
+    "time": "过程时间已压缩，各过程并非等速；冰中旅程与长期收支实验都有独立时钟。",
+    "mapKey": "① 云　② 山坡　③ 河流　④ 湖泊　⑤ 冰川",
+    "cloudTitle": "同一片云的微观放大",
+    "cloudNote": "这是成分与粒径的放大窗口，不是另一个地点，也不是等比例照片。",
+    "error": "微观画面暂时不可用，流域、说明和控制仍可使用。",
+    "retry": "重试微观画面",
+    "notesTitle": "机制、边界与资料",
+    "notes": "太阳能推动蒸发，重力推动降水和地表流水。水循环包含储存与多条交换路径，没有固定起点，也不要求每份水依次走完一圈。可见云由小水滴和/或冰晶组成；水蒸气本身不可见。100份水的路径、土壤分配和冰中时间都是教学设定。山坡与山谷的长期实验另外计算简化储量和收支，不与上方批次数量相加；它们不是实际水文或气候预测，也不求解完整三维地下流场、冰川应力变形或植物蒸腾。",
+    "connections": "继续追问",
+    "atmosphere": "空气怎样运送水？",
+    "phase": "放大看水的固液气",
+    "wind": "风从哪里来？",
+    "sources": "资料依据",
+    "stages": [
+      "水进入空气",
+      "云中的水",
+      "降雨或降雪",
+      "分流与储存"
+    ],
+    "stories": [
+      "水从海面进入空气。图中的淡金色点是追踪符号，不表示能用肉眼看见水蒸气。",
+      "水汽冷却后可在微粒上凝结成云滴。进入云的放大窗口，看小水滴怎样长大。",
+      "一部分降水在干空气中重新蒸发；另一部分到达山坡。更高、更冷的地区也可收到降雪。",
+      "水到达不同储存处，旅行没有统一终点。改变地表或湿度比较去向；冰里的水还有独立的慢时间。"
+    ]
+  },
+  "en": {
+    "title": "The water cycle: many journeys",
+    "longTime": "Continue with a different timescale",
+    "groundStudy": "2 · A slower groundwater journey ↓",
+    "glacierStudy": "5 · How glaciers form and retreat ↓",
+    "groundBridge": "Still beneath hillside 2: above, 100 portions follow one precipitation event. Here an independent longer-term recharge and discharge experiment explores deeper storage. Its amounts and clock are separate; changing these conditions does not reset the batch above.",
+    "iceBridge": "Still in valley 5: above, one portion travels within an existing glacier. Below, ask how the glacier itself forms from surviving snow, grows or retreats. Its multi-year budget and clock are independent, not enlarged counts of the 100 portions above.",
+    "loadingStudy": "Preparing the longer-term study. The watershed remains available.",
+    "failedStudy": "The longer-term study could not load. Retry here; watershed explanations and controls remain available.",
+    "retryStudy": "Retry the study",
+    "backToBatch": "↑ Return to following the water batch above",
+    "intro": "From sea to cloud, from hillside to rivers and lakes. Some water moves on quickly; some stays for a long time.",
+    "views": {
+      "basin": "Whole watershed",
+      "cloud": "1 · Inside the cloud",
+      "ground": "2 · Rain on the hillside",
+      "river": "3 · Rivers, lakes and sea",
+      "ice": "5 · Slow journeys in ice"
+    },
+    "descriptions": {
+      "basin": "This is one watershed. A gold circle follows one portion of water. Changing your viewpoint keeps its journey. The 100 portions are an illustrative batch, not proportions of Earth's water.",
+      "cloud": "Locate the same cloud, then enlarge its microscopic processes. Droplets merge only after contact. The ice route assumes a deep enough warm layer below. High-altitude snowfall is a separate cold branch, not this melting-into-rain route.",
+      "ground": "The same precipitation reaches the marked hillside. Change the surface to compare infiltration, runoff and temporary storage. The pores below are an enlarged soil section. Water entering soil has not necessarily reached a deep aquifer or become safe to drink.",
+      "river": "Follow the same river to its lake and coast. Pale blue marks water; small gold grains mark sediment: erosion outside a bend and deposition inside it. The tracking ring follows water, not sediment. Some water remains in rivers or lakes rather than all returning to the sea.",
+      "ice": "This mountain glacier already exists: one snowfall did not create it. After precipitation, advance the separate slow clock. Tracked water moves downhill as ice, then becomes meltwater in the melting region and enters the same valley."
+    },
+    "questions": {
+      "basin": "Must every portion return to the sea?",
+      "cloud": "Does a cloud always bring rain to the ground?",
+      "ground": "What happens to the same rain on different surfaces?",
+      "river": "Where can water and sediment stay?",
+      "ice": "Does the ice itself flow, or only its meltwater?"
+    },
+    "play": "Start this journey",
+    "pause": "Pause",
+    "replay": "Observe again",
+    "reset": "Restart this water batch",
+    "progress": "Precipitation and partition progress",
+    "iceProgress": "Slow time in ice (a different timescale)",
+    "iceNote": "First let mountain snow reach the glacier, then advance this batch's slow clock. It follows stored water in existing ice, not a prediction of real speed. The independent longer-term study below explores accumulation, formation and loss of the glacier itself.",
+    "prepareIce": "Advance precipitation to storage",
+    "labels": "Show location numbers",
+    "humidity": "Humidity below the cloud",
+    "surface": "Surface on the marked slope",
+    "surfaces": {
+      "soil": "Loose soil",
+      "clay": "Compacted clay",
+      "paved": "Paved surface"
+    },
+    "route": "Cloud-particle growth",
+    "routes": {
+      "warm": "Warm-cloud coalescence",
+      "ice": "Ice growth followed by melting"
+    },
+    "follow": "Choose a destination to follow",
+    "followOptions": {
+      "soil": "Into soil",
+      "ocean": "On to the ocean",
+      "lake": "Stay in the lake",
+      "river": "Remain in the river",
+      "surface": "Temporary surface storage",
+      "ice": "Into mountain snow and ice",
+      "vapor": "Return to the air"
+    },
+    "unavailable": "This illustrative destination is absent under these conditions; the original portion is still tracked.",
+    "poolTitle": "Where is this water batch now?",
+    "pools": {
+      "ocean": "Ocean",
+      "vapor": "Water vapor",
+      "cloud": "In the cloud",
+      "falling": "Falling",
+      "soil": "Soil",
+      "lake": "Lake",
+      "river": "River",
+      "ice": "Snow and ice",
+      "surface": "Surface storage"
+    },
+    "unit": "portions",
+    "trace": "Tracked portion",
+    "time": "Process times are compressed and are not equally fast; the ice journey and longer-term budgets have independent clocks.",
+    "mapKey": "1 Cloud · 2 Hillside · 3 River · 4 Lake · 5 Glacier",
+    "cloudTitle": "Microscopic view of the same cloud",
+    "cloudNote": "An enlarged window into composition and particle sizes: not another location or a true-scale photograph.",
+    "error": "The microscopic view is unavailable. The watershed, explanations and controls still work.",
+    "retry": "Retry microscopic view",
+    "notesTitle": "Mechanisms, limits and sources",
+    "notes": "Solar energy drives evaporation; gravity drives precipitation and surface flow. The cycle includes stores and multiple exchange paths, with no compulsory complete loop. Visible clouds contain droplets and/or ice crystals; water vapor is invisible. The 100 portions' paths, soil fractions and ice times are teaching choices. Separate longer-term hillside and valley experiments calculate simplified stores and budgets, not quantities to add to that batch. They are not site hydrology or climate forecasts and do not solve full 3D groundwater flow, glacier stress and deformation, or plant transpiration.",
+    "connections": "Keep asking",
+    "atmosphere": "How does air transport water?",
+    "phase": "Zoom in on ice, liquid and vapor",
+    "wind": "Where does wind come from?",
+    "sources": "Sources",
+    "stages": [
+      "Into the air",
+      "Water in clouds",
+      "Rain or snow",
+      "Routes and storage"
+    ],
+    "stories": [
+      "Water enters the air from the sea. The faint gold dots are tracking symbols, not a claim that water vapor is visible.",
+      "Cooling water vapor can condense on tiny particles into droplets. Enter the cloud window to see droplets grow.",
+      "Some falling water evaporates again in dry air, while some reaches the hillside. Higher, colder regions can receive snow.",
+      "Water reaches different stores without one shared final destination. Compare surfaces or humidity; stored ice has its own slow clock."
+    ]
+  }
+}

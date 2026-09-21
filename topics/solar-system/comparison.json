@@ -1,0 +1,132 @@
+{
+  "title": {
+    "zh": "把这些世界放在同一把尺上",
+    "en": "Put these worlds on one ruler"
+  },
+  "intro": {
+    "zh": "已经走近一颗行星？现在换个问题：谁更大、谁更重、谁更密？太阳系只是比较的起点。",
+    "en": "After exploring a planet, ask a different question: which is larger, heavier or denser? The Solar System is only the starting point."
+  },
+  "ui": {
+    "diameter": {
+      "zh": "直径",
+      "en": "Diameter"
+    },
+    "mass": {
+      "zh": "质量",
+      "en": "Mass"
+    },
+    "density": {
+      "zh": "平均密度",
+      "en": "Mean density"
+    },
+    "left": {
+      "zh": "左边的世界",
+      "en": "Left-hand world"
+    },
+    "right": {
+      "zh": "右边的世界",
+      "en": "Right-hand world"
+    },
+    "ratio": {
+      "zh": "右 / 左",
+      "en": "Right / left"
+    },
+    "source": {
+      "zh": "数据来源 ↗",
+      "en": "Data source ↗"
+    },
+    "view": {
+      "zh": "走近这个世界 →",
+      "en": "Explore this world →"
+    },
+    "other": {
+      "zh": "太阳也只是恒星中的一种 →",
+      "en": "The Sun is one kind of star →"
+    },
+    "scale": {
+      "zh": "从行星走向宇宙尺度 →",
+      "en": "From planets to cosmic scales →"
+    },
+    "preset": {
+      "zh": "值得比较的组合",
+      "en": "Pairs worth comparing"
+    },
+    "giants": {
+      "zh": "木星与膨胀巨行星",
+      "en": "Jupiter & a puffy giant"
+    },
+    "rock": {
+      "zh": "地球与超级地球",
+      "en": "Earth & a super-Earth"
+    },
+    "ice": {
+      "zh": "地球与冰巨星",
+      "en": "Earth & an ice giant"
+    },
+    "cue": {
+      "zh": "切换指标，观察排序会不会改变。",
+      "en": "Change the measure. Does the order change?"
+    }
+  },
+  "diameterNote": {
+    "zh": "球体直径使用同一线性比例；间距仅用于排版。材质是示意，不是表面观测图。",
+    "en": "Disks use one linear diameter scale; spacing is editorial. Materials are illustrative, not surface observations."
+  },
+  "barNote": {
+    "zh": "条形长度使用同一线性刻度，不代表天体的形状或直径。平均密度由质量和球体体积计算，不代表表层密度。",
+    "en": "Bar lengths share a linear scale, not a physical shape or diameter. Mean density is mass divided by spherical volume, not surface density."
+  },
+  "classification": {
+    "zh": "分类不只看大小：岩石行星、气态巨行星、冰巨星反映不同性质；热木星还描述靠近恒星的高温环境。超级地球是质量／尺寸类别，不承诺海洋、岩石表面或生命。",
+    "en": "Classification is not size alone: rocky planets, gas giants and ice giants describe different properties, while hot Jupiters also describe a close-in hot environment. Super-Earth is a size/mass category, not a promise of oceans, rocky ground or life."
+  },
+  "evidence": {
+    "zh": "我们怎样知道？凌星时遮住多少星光约束半径比，恒星的径向速度变化帮助约束行星质量。两者结合可估计平均密度，但同一质量和半径可能容许不同内部结构；不能由精细插画反推已拍到地面。",
+    "en": "How do we know? Transit dimming constrains the radius ratio, and stellar radial velocities help constrain planet mass. Together they estimate mean density, but different interiors can fit the same mass and radius. A detailed illustration is not evidence of a photographed surface."
+  },
+  "solarNote": {
+    "zh": "太阳系数值沿用本专题数据表，地貌与内部可在上方探索；不把平均密度当成某一层的成分。",
+    "en": "Solar System values use this topic’s existing table. Explore surfaces and interiors above; mean density does not identify the composition of one layer."
+  },
+  "extras": [
+    {
+      "id": "cancri",
+      "radiusKm": 11945.625,
+      "massKg": 4.771628000000001e+25,
+      "color": "#d99468",
+      "name": {
+        "zh": "55 Cancri e",
+        "en": "55 Cancri e"
+      },
+      "type": {
+        "zh": "炎热超级地球",
+        "en": "Hot super-Earth"
+      },
+      "source": "https://science.nasa.gov/exoplanet-catalog/55-cancri-e/",
+      "note": {
+        "zh": "NASA 星表：1.875 个地球半径、7.99 个地球质量（2026-09-20 查询）。可能的大气与熔融地表来自观测解释，不是已经拍到的全表面。",
+        "en": "NASA catalog: 1.875 Earth radii and 7.99 Earth masses, checked 2026-09-20. Possible atmosphere and molten surface are interpretations of observations, not a photographed global surface."
+      }
+    },
+    {
+      "id": "wasp39",
+      "radiusKm": 91438.268,
+      "massKg": 5.333380000000001e+26,
+      "color": "#c6b897",
+      "name": {
+        "zh": "WASP-39 b",
+        "en": "WASP-39 b"
+      },
+      "type": {
+        "zh": "膨胀的热气态巨行星",
+        "en": "Puffy hot gas giant"
+      },
+      "source": "https://science.nasa.gov/exoplanet-catalog/wasp-39-b/",
+      "note": {
+        "zh": "NASA 星表：1.279 个木星半径、0.281 个木星质量（2026-09-20 查询）。系外半径换算采用 71492 km 的木星赤道半径，质量采用 1.898×10²⁷ kg；它比木星宽，却轻得多。",
+        "en": "NASA catalog: 1.279 Jupiter radii and 0.281 Jupiter masses, checked 2026-09-20. Exoplanet radius conversion uses Jupiter’s 71,492 km equatorial radius and mass uses 1.898×10²⁷ kg. It is wider than Jupiter but much less massive."
+      }
+    }
+  ]
+}

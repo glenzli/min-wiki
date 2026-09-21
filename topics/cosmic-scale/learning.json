@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "topicId": "cosmic-scale",
+  "zh": {
+    "question": "地球、木星、太阳和更大的恒星，谁更大？它们又属于哪些更大的系统？",
+    "observe": "先拖动大小对比，把上一组的大天体留作下一组的参照；再点太阳系、银河系与本星系群，看包含关系；最后进入真正拉远模式，观察天体怎样缩成位置标记。",
+    "academic": [
+      {
+        "title": "同一长度单位跨越多个量级",
+        "body": "模型始终以 km 保存距离，滑杆控制视野宽度的对数而不是把每个天体的半径分别取对数。同一帧内的几何投影保持线性。km、AU 和光年是不同大小的长度单位；超小天体转换为定位符，定位符与真实直径明确分开。"
+      },
+      {
+        "title": "银河系的空间结构",
+        "body": "银河系包含恒星盘、中央核球和棒、恒星晕以及气体等成分。太阳位于盘内，距中心约二万六千光年。暗物质晕来自引力效应的间接推断，不是可见星光。中心黑洞主导邻近区域，不能把全银河当成受单一中心点质量控制的巨大太阳系。"
+      },
+      {
+        "title": "地图是有边界的重建",
+        "body": "银河系的外观模型根据内部观测重建，而不是从外面拍摄的完整照片。邻近恒星与本星系群阶段只选择少量距离取整的代表成员；方位和倾角经过简化。到达本星系群不是到达宇宙尽头，本图不模拟宇宙膨胀，也不计算远方天体的光行回溯时间。"
+      }
+    ],
+    "misconception": "光年不是一年那么久，而是距离；太阳系不是银河系；银河的盘边缘不是宇宙边界；中央黑洞也不是支配整个银河的唯一引力来源。",
+    "boundary": "地球表面、星点分布与星系外观为结构插画。所有十字和空心小圈都表示位置，不是被放大的真实尺寸。星系方向为示意，银河晕范围非精确边界，三个代表星系不构成本星系群的完整清单。 天体对比只比较直径，不表示质量或实际间隔；大角星采用约 25.4 个太阳半径的估计。包含关系图不按尺寸和距离比例。",
+    "narration": [
+      {
+        "label": "把两位放在一起比",
+        "text": "先把地球和木星并排放好。木星大得多！请太阳进来，木星又变小了；再看看大角星，太阳也不算大。我们比的是直径，大家用同一把尺，排在一起并不表示它们真的挨得这么近。",
+        "cue": "依次选择三组大小对比，或拖动滑杆，追踪留下来的同一天体。"
+      },
+      {
+        "label": "大球和大家庭不同",
+        "text": "太阳和绕着它走的行星组成太阳系。银河里有许多恒星，太阳只是其中一颗；银河还和其他星系同属更大的群。这些系统有很大的范围，却不是一颗更大的实心球。",
+        "cue": "打开“看看住在哪里”，按顺序看三个系统，并寻找黄色参照。"
+      },
+      {
+        "label": "这次真的向外看",
+        "text": "带着刚才的大小印象，选择从地球或太阳出发，真正拉远。为了把遥远的轨道放进画面，就连很大的太阳也会变成小点。空心圈帮我们找到它，并不是把它偷偷放大。",
+        "cue": "进入第三段，从所选起点连续拉远到太阳系和银河。"
+      },
+      {
+        "label": "银河之外",
+        "text": "银河并不孤单，还有仙女座和其他星系。它们组成更大的群。今天的尺走到这里，但宇宙并没有在这里结束。",
+        "cue": "进入本星系群，寻找银河和所选起点的位置标记。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Which is larger: Earth, Jupiter, the Sun or a giant star? Which larger systems do they belong to?",
+    "observe": "Drag through size pairs, retaining the larger body as the next reference. Then inspect Solar System, Milky Way and Local Group membership. Finally zoom out for real to see physical disks become location markers.",
+    "academic": [
+      {
+        "title": "One length system across many orders of magnitude",
+        "body": "Distances remain in kilometers. The slider changes the logarithm of view width; it does not separately take logarithms of body radii. Geometry within each frame remains a linear projection. Kilometers, AU and light-years are all length units. Subpixel bodies switch to explicit position symbols rather than silently enlarged disks."
+      },
+      {
+        "title": "The structure of the Milky Way",
+        "body": "Our galaxy includes a stellar disk, central bulge and bar, stellar halo, gas and other components. The Sun lies in its disk around 26,000 light-years from the center. A dark-matter halo is inferred indirectly from gravitational effects rather than seen in starlight. The central black hole dominates nearby orbits, not the entire galaxy as a single-point-mass Solar System."
+      },
+      {
+        "title": "A reconstruction with defined limits",
+        "body": "The external Milky Way view is reconstructed from observations made inside it, not photographed from outside. The nearby-star and Local Group stages contain a few representative members with rounded distances and illustrative directions and inclinations. The Local Group is not the edge of the universe. This model does not simulate cosmic expansion or calculate lookback times to distant objects."
+      }
+    ],
+    "misconception": "A light-year is a distance, not a duration. The Solar System is not the Milky Way, and the disk edge is not the universe’s boundary. The central black hole is not the galaxy’s only source of gravity.",
+    "boundary": "Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the three galaxies are not a complete Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Membership diagrams are not to size or distance scale.",
+    "narration": [
+      {
+        "label": "Put two bodies side by side",
+        "text": "Earth looks small beside Jupiter. Bring in the Sun and Jupiter becomes small; bring in Arcturus and even the Sun looks small. We compare diameters on one shared ruler. Placing them together does not mean they are physically close.",
+        "cue": "Choose the three pairs or drag the slider, tracking the same retained body."
+      },
+      {
+        "label": "A bigger ball or a bigger family?",
+        "text": "The Sun and its orbiting planets belong to the Solar System. Our Sun is one of many stars in the Milky Way, which belongs to a group of galaxies. These systems span large regions, but they are not bigger solid balls.",
+        "cue": "Open the membership chapter and follow the three systems and yellow reference."
+      },
+      {
+        "label": "Now really look outward",
+        "text": "Remember those sizes, then choose Earth or the Sun and zoom out. Fitting distant orbits into the view makes even the Sun tiny. An open circle helps us find it without secretly making its physical disk larger.",
+        "cue": "Open chapter three and travel from your selected body through Solar System and galactic scales."
+      },
+      {
+        "label": "Beyond our galaxy",
+        "text": "The Milky Way is not alone. Andromeda and other galaxies form a larger group with it. Our ruler stops here today, but the universe does not.",
+        "cue": "Enter the Local Group and find the Milky Way and your selected starting location."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "ESA · Guide to our galaxy",
+      "url": "https://www.esa.int/content/view/full/423444"
+    },
+    {
+      "title": "NASA · Earth facts",
+      "url": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "title": "NASA · Andromeda Galaxy",
+      "url": "https://www.nasa.gov/universe/galaxies/andromeda-galaxy/"
+    }
+  ]
+}

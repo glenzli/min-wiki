@@ -1,0 +1,130 @@
+{
+  "title": {
+    "zh": "走近土星环",
+    "en": "Explore Saturn’s rings"
+  },
+  "context": {
+    "zh": "由远到近，看看光环是什么",
+    "en": "From a distant ring to individual particles"
+  },
+  "scale": {
+    "zh": "主环半径按同一比例 · 颗粒大小与厚度放大 · 时间加速",
+    "en": "Main-ring radii share one scale · particles and thickness enlarged · accelerated time"
+  },
+  "hint": {
+    "zh": "切换观察方式；拖动可以换角度。“暂停动态”可停住颗粒。",
+    "en": "Switch views and drag to change angle. Pause activity to freeze the particles."
+  },
+  "labels": {
+    "c": {
+      "zh": "C 环",
+      "en": "C ring"
+    },
+    "b": {
+      "zh": "B 环",
+      "en": "B ring"
+    },
+    "cassini": {
+      "zh": "卡西尼缝",
+      "en": "Cassini Division"
+    },
+    "a": {
+      "zh": "A 环",
+      "en": "A ring"
+    },
+    "f": {
+      "zh": "F 环",
+      "en": "F ring"
+    },
+    "inner": {
+      "zh": "内侧 · 绕得快",
+      "en": "Inner · faster orbit"
+    },
+    "outer": {
+      "zh": "外侧 · 绕得慢",
+      "en": "Outer · slower orbit"
+    }
+  },
+  "views": [
+    {
+      "id": "bands",
+      "title": {
+        "zh": "01 · 环的分区",
+        "en": "01 · Ring regions"
+      },
+      "kids": {
+        "zh": "从土星向外看，先经过较暗的 C 环、明亮的 B 环，再跨过卡西尼缝到 A 环。更外面还有很窄的 F 环。光环是一大群颗粒组成的薄盘。",
+        "en": "Moving outward: the dimmer C ring, bright B ring, Cassini Division, A ring, then narrow F ring. These rings form a thin disk of countless particles."
+      },
+      "science": {
+        "zh": "画面选择 C、B、A、F 环与卡西尼缝；没有画出所有微弱环。主环半径采用资料中的同一比例。亮度和透明度表达相对差异，不能当作成分或颗粒数量的直接测量。",
+        "en": "This view selects the C, B, A and F rings and Cassini Division; fainter rings are omitted. Main-ring radii share a sourced scale. Brightness and opacity are illustrative, not direct composition or particle-count measurements."
+      },
+      "detail": {
+        "zh": "主要成分是水冰，还夹有尘埃等物质。它不是一整块会一起转动的圆盘。",
+        "en": "The particles are mainly water ice with other material, including dust. The rings are not one rigid spinning disk."
+      },
+      "source": "https://science.nasa.gov/saturn/facts/"
+    },
+    {
+      "id": "gap",
+      "title": {
+        "zh": "02 · 暗缝并非全空",
+        "en": "02 · A dark gap is not empty"
+      },
+      "kids": {
+        "zh": "B 环和 A 环之间有一道明显的暗带，叫卡西尼缝。这里的物质较稀疏，里面仍有细小的环带。卫星的引力也会影响环的边缘与空隙。",
+        "en": "The dark band between B and A is the Cassini Division. It is less crowded, but still contains narrow ringlets. Moons’ gravity also shapes edges and gaps."
+      },
+      "science": {
+        "zh": "卡西尼缝从土星中心约 117,500 km 延伸至 122,050 km，内部包含多条环带与间隙。卫星共振参与塑造结构，但不是每条暗缝都由一颗在缝里绕行的卫星清出来。",
+        "en": "The Cassini Division spans roughly 117,500–122,050 km from Saturn’s center and contains ringlets and gaps. Satellite resonances shape structures; not every dark gap is cleared by a moon orbiting inside it."
+      },
+      "detail": {
+        "zh": "例如，A 环里的恩克缝有小卫星潘在其中绕行；卡西尼缝不能套用同一个“清扫车”解释。这里的细环纹理为示意。",
+        "en": "For example, Pan orbits within the Encke gap in the A ring. The Cassini Division does not follow the same simple “sweeper” explanation. Fine ringlet textures here are schematic."
+      },
+      "source": "https://pds-rings.seti.org/saturn/saturn_tables.html"
+    },
+    {
+      "id": "particles",
+      "title": {
+        "zh": "03 · 放大看冰粒",
+        "en": "03 · Zoom into icy particles"
+      },
+      "kids": {
+        "zh": "靠近后，光环变成许多大小不一的冰粒和冰块。每一块都在绕着土星走；画面跟着这片环移动，旁边的颗粒仍会慢慢错开。",
+        "en": "Up close, the ring resolves into icy particles of different sizes. Each orbits Saturn. Even while our view travels with this patch, neighboring particles drift past one another."
+      },
+      "science": {
+        "zh": "这里是随环中心共同绕行的局部观察框架。不同半径的轨道角速度不同，产生相对剪切。颗粒大小、间距和厚度被放大，边缘淡出后从另一侧补入；不模拟碰撞、自引力团簇或真实粒径分布。",
+        "en": "This is a local frame co-orbiting with a ring patch. Different orbital rates produce shear. Particle sizes, spacing and thickness are enlarged; particles fade at the patch edge and re-enter opposite it. Collisions, self-gravity clumps and the real size distribution are not simulated."
+      },
+      "detail": {
+        "zh": "冰粒大多反射阳光，自身不会像太阳那样发光。近景没有地面，也没有把颗粒连在一起的轨道。",
+        "en": "Ice mostly reflects sunlight; it does not shine like the Sun. There is no ground and no physical rail connecting the particles."
+      },
+      "source": "https://science.nasa.gov/mission/cassini/faq/"
+    },
+    {
+      "id": "motion",
+      "title": {
+        "zh": "04 · 里快外慢",
+        "en": "04 · Inner particles orbit faster"
+      },
+      "kids": {
+        "zh": "跟住两个亮点：靠近土星的绕得快，远一些的绕得慢。暂停后再播放，看它们怎样逐渐错开。",
+        "en": "Follow the two bright markers. The inner one circles faster, the outer one slower. Pause and resume to watch them separate."
+      },
+      "science": {
+        "zh": "忽略土星扁率与其他摄动的圆轨道近似：T = 2π√(r³/GM)。两个标记共享同一时间尺度，显示真实的相对周期关系；并非整个环以同一角速度旋转。",
+        "en": "For circular orbits, neglecting Saturn’s oblateness and other perturbations: T = 2π√(r³/GM). Both tracers share one timescale and preserve relative periods; the ring does not rotate at one angular speed."
+      },
+      "detail": {
+        "zh": "标记只是帮助跟踪的代表颗粒，已经放大，不是两颗卫星。",
+        "en": "The enlarged markers represent tracked ring particles, not two moons."
+      },
+      "source": "https://ssd.jpl.nasa.gov/sats/phys_par/"
+    }
+  ]
+}

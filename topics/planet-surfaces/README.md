@@ -1,6 +1,6 @@
 # 行星的表面与内部 / Planetary surfaces and interiors
 
-Eight comparative worlds: Mercury, Venus, Earth, Mars, Jupiter, Neptune, **Titan (Saturn’s moon)** and **55 Cancri e (a rocky exoplanet)**. Close terrain, globe and whole-world cutaway views answer different questions: what the outside may look like, how a world appears as a whole, and what evidence suggests lies beneath. Chinese/English child explanations, academic notes and four narration segments accompany the same observations.
+The default URL now opens the integrated solar-system descent. The material and interior owner covers all eight planets, the Moon, Titan and 55 Cancri e. The independent `?world=cancri` extension retains the original terrain renderer and fallback. Solar exploration consumes `model.ts`, `terrain3d.ts` and `interior.ts` directly; these scientific responsibilities are not duplicated.
 
 ## Views and ownership
 
@@ -12,7 +12,7 @@ The existing surfaces distinguish water, hydrocarbons, silicate melt and dense g
 
 ## Interior data contract / 内部数据约定
 
-All eight profiles reach the center. Each has ordered `layers`, a bilingual `summary` and `evidence`, and primary `sources`. Layer fields are `id`, bilingual `name`, `kids` and `science`, `color`, normalized `inner` and `outer`, and optional `uncertain`. There are 30 teaching regions in total.
+All eleven profiles reach the center. Each has ordered `layers`, a bilingual `summary` and `evidence`, and primary `sources`. Layer fields are `id`, bilingual `name`, `kids` and `science`, `color`, normalized `inner` and `outer`, and optional `uncertain`. Each profile reaches the center.
 
 - Layers run outside to inside. The outermost `outer` is 1; the innermost `inner` is 0; neighbors meet without gaps or overlaps.
 - `interiorAt(worldId, progress)` uses radial progress: 0 is the exterior, 1 the exact center, and radius is `1 − progress`. At an exact interface it selects the newly entered deeper region. Finite progress is clamped; nonfinite progress starts at the exterior. A stale runtime world id safely falls back to Earth.
@@ -48,6 +48,6 @@ Earth’s layering is strongly supported by seismology; Mars has single-station 
 
 ## Validation and integration
 
-Focused scientific-data tests: `node --import tsx --test topics/planet-surfaces/tests/interior.test.js`. They cover eight-world completeness; every bilingual field and source URL; contiguous radial regions; exact boundary behavior; reversible monotonic layer selection; center-reaching presets; invalid input; and the stated liquid/core evidence limits. Learning-package validation preserves three academic notes and four narration segments per language.
+Focused scientific-data tests: `node --import tsx --test topics/planet-surfaces/tests/interior.test.js`. They cover world completeness; every bilingual field and source URL; contiguous radial regions; exact boundary behavior; reversible monotonic layer selection; center-reaching presets; invalid input; and the stated liquid/core evidence limits. Learning-package validation preserves three academic notes and four narration segments per language.
 
 Integration checked 2026-09-19: 19 focused topic tests, the 402-test repository suite, strict typecheck, complete bilingual extraction and production build passed. In-app WebKit checks covered all eight 3D near views, camera presets, visible orbital parallax and dragging, Earth’s center preset, and center endpoints for all eight worlds in both languages at 390 px without horizontal overflow. Scientific layer selection, paused travel and camera angle remain independent. Browser checks observed no rendering warnings or errors. The Canvas path retains a full radial cutaway if 3D is unavailable; worker lifecycle tests protect cancellation, invalid pixels and disposal.

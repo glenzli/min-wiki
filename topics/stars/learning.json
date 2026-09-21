@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "topicId": "stars",
+  "zh": {
+    "question": "夜空的小光点，可能比太阳大得多吗？几颗恒星又怎样一起绕行？",
+    "observe": "先比较太阳距离与恒星结构，再改变双星质量比检查质心。数值实验中，先看原始八字轨道，再改 C 的初始位置、速度或质量并重新计算；暂停或回拖时间，对照微小扰动轨迹、能量误差与停止原因。",
+    "academic": [
+      {
+        "title": "物理大小与角大小",
+        "body": "太阳的物理半径不随观察者远近变化。球体角直径为 2arcsin(R/d)，当距离远大于半径时近似与距离成反比。光行时使用 d/c，辐照度采用无吸收条件下的平方反比；三者是不同物理量。为了追踪极小的恒星，十字符号保留位置，但不再声称它是等比例星盘。"
+      },
+      {
+        "title": "恒星结构随质量和阶段改变",
+        "body": "恒星不是简单按直径排列的行星升级版。主序恒星通过核心氢聚变供能；低质量恒星的对流范围可以不同于太阳。某些恒星核心氢耗尽后膨胀为红巨星，其致密核心与疏松包层不能用均匀火球解释。红超巨星的巨大半径不意味着按体积同比增加的质量；页面数值是代表性模型，不是具体恒星测量。"
+      },
+      {
+        "title": "从共同质心到三体积分",
+        "body": "双星与层级三星章节保留圆轨道构造，不是自由三体求解。另设的数值实验按牛顿引力逐步积分三个平面点质量，使用固定步长 velocity-Verlet，而非沿画好的曲线移动。选 L₀、M₀ 后，T₀=√(L₀³/GM₀)，数值 G=1；播放时持续计算，步长0.001 T₀，历史窗口保留最近20 T₀。八字初值来自 Montgomery 作者页面，等边对照的角速度满足 ω²=1/√3。近遇无法解析或能量误差将超过0.1%便停止。微小扰动的位置差是有限时间数值结果，不是混沌或长期稳定性的证明；守恒误差也不能单独保证位置准确。"
+      }
+    ],
+    "misconception": "看着小不一定本身小；大体积不一定更大质量；三颗恒星不等于一定混沌。白矮星、中子星等恒星遗迹也不能只按大小混进主序星成长队列。",
+    "boundary": "材质和剖面厚度为示意，巨星核心被放大；类型不是一颗星必经的全部阶段。双星/层级三星是构造，三体数值章才直接积分牛顿引力。积分不做软化，不含恒星尺寸、碰撞、潮汐、相对论或演化；近遇与误差阈值只界定本算法的有限解析能力。轨迹点大小不表示真实半径，模型时间不直接等于秒或年。避免直视真实太阳。",
+    "narration": [
+      {
+        "label": "同一颗太阳",
+        "text": "太阳也是恒星。我们把观察位置移远，太阳在眼里变小了，它自己却没有缩小。光走过更长的路，也需要更多时间。",
+        "cue": "拖动太阳距离，在中途停留比较三个读数。"
+      },
+      {
+        "label": "不同的恒星",
+        "text": "有的恒星小而偏红，有的膨胀得非常大。很大不代表同样重很多：比较这两把尺，一个量大小，另一个量质量。它们不是一颗星必须经过的同一串模样。",
+        "cue": "选择红巨星与超巨星，对照质量和半径。"
+      },
+      {
+        "label": "剖开模型",
+        "text": "我们看不到恒星深处的照片，这里用模型帮助理解。太阳内部有产生能量的核心，也有把能量送向外面的区域。换一种恒星，内部也可能不同。",
+        "cue": "切换太阳、红巨星剖面，指出层厚为示意。"
+      },
+      {
+        "label": "一起绕行",
+        "text": "两颗恒星相伴时，都在运动。再来一颗星，有时仍会有规则的路线。现在打开计算实验：三颗恒星标记每走一步，都受到另外两颗的吸引。只改一点起步条件，再看看后来的路。两条路分开，不代表所有三星都会乱跑；如果靠得太近、算不清了，我们就停下来说明原因。",
+        "cue": "先看层级构造，再打开三体数值实验。播放原始八字，暂停并改变 C 的初始 x 后重新计算，回看最近保存的历史，打开微扰对照，观察渐淡的虚线与误差读数。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Could a tiny point in the sky be much larger than the Sun, and how can stars orbit together?",
+    "observe": "Compare solar distance and stellar structure, then vary binary mass ratio while checking the center of mass. In the numerical experiment, start with the figure eight, modify C’s initial position, velocity or mass, and recompute. Pause or scrub time to compare the tiny-perturbation trajectory, energy error and stopping reason.",
+    "academic": [
+      {
+        "title": "Physical and angular size",
+        "body": "The Sun’s physical radius does not change with the observer’s distance. A sphere has angular diameter 2arcsin(R/d), approximately inverse in distance when d is large. Light travel is d/c, while irradiance follows an inverse-square law without absorption. These are different quantities. Crosshairs preserve subpixel locations but are not true-sized stellar disks."
+      },
+      {
+        "title": "Structure depends on mass and evolutionary stage",
+        "body": "Stars are not simply upgraded planets ordered by diameter. Main-sequence stars fuse hydrogen in their cores; low-mass stars can have a different extent of convection from the Sun. Some stars expand after core hydrogen exhaustion, developing a compact core and extended envelope. A red supergiant’s large radius does not mean mass grows in proportion to volume. Values here are representative models rather than measurements of named stars."
+      },
+      {
+        "title": "From a shared center to three-body integration",
+        "body": "The binary and hierarchical-triple chapter retains circular constructions, not a free three-body solver. The separate numerical experiment integrates three planar point masses under Newtonian gravity using fixed-step velocity-Verlet, not pre-drawn curves. Choosing L₀ and M₀ sets T₀=√(L₀³/GM₀), so numerical G=1. Integration continues during playback with step0.001 T₀; only the latest20 T₀ of history is retained. Figure-eight initial conditions come from Montgomery’s author page; the equal-radius equilateral comparison has ω²=1/√3. Unresolved close encounters or a proposed energy error over0.1% stop integration. Finite-time perturbation differences prove neither chaos nor long-term stability, and conservation errors alone cannot guarantee accurate positions."
+      }
+    ],
+    "misconception": "An apparently small star need not be physically small. Large radius does not imply proportional mass, and three stars do not imply inevitable chaos. Stellar remnants are not simply points on one main-sequence growth ladder.",
+    "boundary": "Materials and cutaway depths are illustrative; giant cores are enlarged and types are not one inevitable evolutionary sequence. Binary/hierarchical-triple modes are constructions; only the numerical chapter directly integrates Newtonian gravity. It uses no softening and excludes stellar sizes, collisions, tides, relativity and evolution. Close-encounter and error thresholds bound this algorithm’s finite resolution. Marker sizes are not physical radii, and model time does not directly mean seconds or years. Never look directly at the Sun.",
+    "narration": [
+      {
+        "label": "One unchanged Sun",
+        "text": "The Sun is a star. Moving farther away makes it look smaller, but the Sun itself has not shrunk. Light also takes longer to cross the greater distance.",
+        "cue": "Scrub distance and pause to compare the three readouts."
+      },
+      {
+        "label": "Different stars",
+        "text": "Some stars are small and reddish; others expand enormously. A large size need not mean proportionally more mass. Compare the two rulers, and remember that these are not all stages every star must follow.",
+        "cue": "Compare giant and supergiant radius with their mass."
+      },
+      {
+        "label": "Inside a model",
+        "text": "We do not have photographs from inside stars. These models help explain them. The Sun has a core that releases energy and regions that transport energy outward. Another kind of star can have a different structure.",
+        "cue": "Compare solar and giant cutaways and note schematic thickness."
+      },
+      {
+        "label": "Orbiting together",
+        "text": "In a binary, both stars move. A third star can still follow an orderly pattern. Open the numerical experiment: at every step, each point is pulled by the other two. Change one starting condition slightly and watch what follows. Separated paths do not mean all triples move chaotically. If the bodies approach too closely for our calculation, we stop and explain why.",
+        "cue": "Compare the hierarchical construction with the numerical chapter. Play the original figure eight, pause, change C’s initial x and recompute. Review the recent history and enable the perturbation overlay, noting fading dashed trails and error readings."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Sun facts",
+      "url": "https://science.nasa.gov/sun/facts/"
+    },
+    {
+      "title": "NASA · Star types",
+      "url": "https://science.nasa.gov/universe/stars/types/"
+    },
+    {
+      "title": "NASA · A hierarchical triple found by TESS",
+      "url": "https://www.nasa.gov/universe/nasas-tess-spots-record-breaking-stellar-triplets/"
+    },
+    {
+      "title": "Richard Montgomery · N-body tour and Simó initial conditions",
+      "url": "https://people.ucsc.edu/~rmont/Nbdy/NbdyC1.html"
+    },
+    {
+      "title": "Chenciner & Montgomery (2000) · A remarkable periodic solution",
+      "url": "https://arxiv.org/abs/math/0011268"
+    },
+    {
+      "title": "University of Marburg · Velocity-Verlet algorithm",
+      "url": "https://fb15.pages.uni-marburg.de/ag-von-domaros/teaching/molecular-dynamics/core_algorithms.html"
+    }
+  ]
+}

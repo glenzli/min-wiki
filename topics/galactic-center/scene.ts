@@ -2,12 +2,12 @@ import { teachingDistanceScale, updateTeachingLens } from '../../src/visuals/tea
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { BlackHoleOptics } from '../../src/visuals/blackHoleOptics.ts';
-import { DONOR_X, HOLE_X, DONOR_LOBE, donorRadius, streamParcel, seedValue, transferPath } from './model.ts';
+import { DONOR_X, HOLE_X, DONOR_LOBE, donorRadius, streamParcel, windCaptureParcel, seedValue, transferPath } from './model.ts';
 import type { Scenario } from './model.ts';
 import { t } from './i18n.ts';
 export type { Scenario } from './model.ts';
 export type View = 'overview' | 'close' | 'top' | 'free';
-const GAS_COUNT = 3200, WIND_COUNT = 1300;
+const GAS_COUNT = 2800, WIND_COUNT = 3200;
 export class CompanionScene {
     private cameraStarted = -Infinity;
     private fromCamera = new THREE.Vector3();
@@ -31,6 +31,7 @@ export class CompanionScene {
     private currentView: View = 'overview';
     private width = 1;
     private height = 1;
+    private lastSurfaceFrame = -Infinity;
     constructor(private canvas: HTMLCanvasElement) {
         this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
         this.renderer.setClearColor(0x030812);
@@ -49,7 +50,7 @@ export class CompanionScene {
   varying vec3 vP;varying vec3 vN;varying vec3 vV;uniform float uTime;uniform float uBlue;
   float hash(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}
   float noise(vec3 p){vec3 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(mix(hash(i),hash(i+vec3(1,0,0)),f.x),mix(hash(i+vec3(0,1,0)),hash(i+vec3(1,1,0)),f.x),f.y),mix(mix(hash(i+vec3(0,0,1)),hash(i+vec3(1,0,1)),f.x),mix(hash(i+vec3(0,1,1)),hash(i+vec3(1,1,1)),f.x),f.y),f.z);}
-  void main(){float n=noise(vP*23.+uTime*.03)*.7+noise(vP*55.-uTime*.02)*.3;float limb=pow(max(0.,dot(normalize(vN),normalize(vV))),.38);vec3 warm=mix(vec3(1.1,.39,.06),vec3(2.0,1.3,.48),n),blue=mix(vec3(.33,.67,1.),vec3(1.5,1.8,2.1),n);gl_FragColor=vec4(mix(warm,blue,uBlue)*(.45+.65*limb),1.);
+  void main(){float drift=uTime*.075;float n=noise(vP*19.+vec3(drift,-drift*.7,drift*.3))*.58+noise(vP*47.-vec3(drift*.45,drift*.2,-drift))*.29+noise(vP*93.+drift*.25)*.13;float cells=smoothstep(.46,.82,n);float limb=pow(max(0.,dot(normalize(vN),normalize(vV))),.38);float pulse=.97+.03*sin(uTime*1.7+vP.y*8.);vec3 warm=mix(vec3(1.05,.27,.025),vec3(2.25,1.42,.54),cells),blue=mix(vec3(.25,.55,1.05),vec3(1.45,1.82,2.25),cells);vec3 tint=mix(warm,blue,uBlue);gl_FragColor=vec4(tint*(.38+.74*limb)*pulse,1.);
   #include <tonemapping_fragment>
   #include <colorspace_fragment>
   }` });
@@ -93,20 +94,26 @@ export class CompanionScene {
         this.observer.observe(canvas);
         this.resize();
     }
-    private circle(radius: number, x: number, color: number) { const points = Array.from({ length: 160 }, (_, i) => new THREE.Vector3(Math.cos(i / 160 * Math.PI * 2) * radius, Math.sin(i / 160 * Math.PI * 2) * radius, 0)); const line = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color, transparent: true, opacity: .5 })); line.position.x = x; return line; }
+    private circle(radius: number, x: number, color: number) { const points = Array.from({ length: 160 }, (_, i) => new THREE.Vector3(Math.cos(i / 160 * Math.PI * 2) * radius, Math.sin(i / 160 * Math.PI * 2) * radius, 0)); const line = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineBasicMaterial({ color, transparent: true, opacity: .5, depthWrite: false })); line.position.x = x; return line; }
     private resize() { this.needsRender = true; const box = this.canvas.getBoundingClientRect(); this.width = box.width; this.height = box.height; this.camera.aspect = box.width / Math.max(1, box.height); updateTeachingLens(this.camera, this.controls.target); const lensScale = teachingDistanceScale(this.camera.aspect); this.controls.minDistance = 1.2 * lensScale; this.controls.maxDistance = 28 * lensScale; this.renderer.setSize(box.width, box.height, false); if (this.gas)
         this.gas.material.uniforms.uHeight.value = box.height; }
     draw(progress: number, scenario: Scenario, guides: boolean, view: View, showOrbit = false) {
+        const now = performance.now();
         const key = [progress, scenario, guides, view, showOrbit].join(":");
-        if (key === this.lastKey && !this.needsRender && performance.now() - this.cameraStarted >= 900) return;
+        // The photosphere keeps boiling even when the teaching timeline is paused.
+        // Bound it to 30 fps so the continuous surface does not monopolize the GPU.
+        if (key === this.lastKey && !this.needsRender && now - this.cameraStarted >= 900 && now - this.lastSurfaceFrame < 33) return;
+        this.lastSurfaceFrame = now;
         this.lastKey = key;
         const time = progress * 32;
         this.root.rotation.z = showOrbit ? progress * Math.PI * 2 : 0;
         const radius = donorRadius(scenario);
-        this.star.scale.set(radius * (scenario === 'overflow' ? 1.1 : 1), radius, radius);
-        this.star.material.uniforms.uTime.value = time;
+        // A slight Roche-side bulge remains physical, while the narrow teaching
+        // lens—not a wide-angle stretch—owns the apparent size on screen.
+        this.star.scale.set(radius * (scenario === 'overflow' ? 1.035 : 1), radius, radius);
+        this.star.material.uniforms.uTime.value = now / 1000;
         this.star.material.uniforms.uBlue.value = scenario === 'wind' ? 1 : 0;
-        this.hole.setAccretion(time, scenario === 'detached' ? 0 : 1);
+        this.hole.setAccretion(time, scenario === 'detached' ? 0 : scenario === 'wind' ? .65 : .9);
         this.guides.visible = guides && scenario !== 'wind';
         this.lobe.visible = scenario !== 'wind';
         this.scene.children.forEach(x => { if (x.userData.orbitGuide)
@@ -114,16 +121,20 @@ export class CompanionScene {
         const positions = this.gas.geometry.attributes.position.array as Float32Array, colors = this.gas.geometry.attributes.color.array as Float32Array, alphas = this.gas.geometry.attributes.alpha.array as Float32Array;
         for (let i = 0; i < GAS_COUNT + WIND_COUNT; i++) {
             if (i < GAS_COUNT) {
-                const p = streamParcel(i, time, scenario);
+                const p = scenario === 'wind' ? windCaptureParcel(i, time) : streamParcel(i, time, scenario);
                 positions.set([p.x, p.y, p.z], i * 3);
                 colors.set([1.2 + p.heat * .7, .5 + p.heat * .6, .15 + p.heat * .4], i * 3);
-                alphas[i] = scenario === 'detached' ? 0 : p.alpha * .44;
+                alphas[i] = scenario === 'detached' ? 0 : p.alpha * (scenario === 'wind' ? .34 : .48);
+                // The ray-traced surface takes over from the incoming teaching parcels.
+                // Fading the inner spiral avoids a second, rigid coil over the thin disk.
+                const diskRadius = Math.hypot(p.x - HOLE_X, p.y);
+                alphas[i] *= THREE.MathUtils.smoothstep(diskRadius, .78, 1.02);
             }
             else {
-                const age = (seedValue(i) + time * .065) % 1, a = seedValue(i + 4401) * Math.PI * 2, lat = seedValue(i + 7601) * 2 - 1, r = radius + age * 4;
+                const age = (seedValue(i) + time * .065) % 1, a = seedValue(i + 4401) * Math.PI * 2, lat = seedValue(i + 7601) * 2 - 1, r = radius + age * 5.4;
                 positions.set([DONOR_X + r * Math.sqrt(1 - lat * lat) * Math.cos(a), r * Math.sqrt(1 - lat * lat) * Math.sin(a), r * lat * .7], i * 3);
                 colors.set([.65, .84, 1], i * 3);
-                alphas[i] = scenario === 'wind' ? Math.sin(age * Math.PI) * .26 : 0;
+                alphas[i] = scenario === 'wind' ? Math.sin(age * Math.PI) * .32 : 0;
             }
         }
         Object.values(this.gas.geometry.attributes).forEach(a => a.needsUpdate = true);
@@ -139,9 +150,9 @@ export class CompanionScene {
         this.root.updateMatrixWorld(true);
         if (view !== 'free') {
             const target = view === 'close' ? this.hole.getWorldPosition(new THREE.Vector3()) : new THREE.Vector3(.35, 0, 0);
-            const distance = (view === 'close' ? 3.1 : Math.max(12.3, 10.5 / this.camera.aspect)) * teachingDistanceScale(this.camera.aspect);
+            const distance = (view === 'close' ? 3.65 : Math.max(12.3, 10.5 / this.camera.aspect)) * teachingDistanceScale(this.camera.aspect);
             this.controls.target.copy(target);
-            this.camera.position.copy(target).add(view === 'top' ? new THREE.Vector3(0, 0, distance) : new THREE.Vector3(0, -distance * (view === 'close' ? .98 : .92), distance * (view === 'close' ? .20 : .42)));
+            this.camera.position.copy(target).add(view === 'top' ? new THREE.Vector3(0, 0, distance) : new THREE.Vector3(0, -distance * (view === 'close' ? .94 : .92), distance * (view === 'close' ? .34 : .42)));
             this.camera.up.set(0, 0, 1);
             if (view === 'top')
                 this.camera.up.set(0, 1, 0);

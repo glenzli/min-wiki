@@ -1,0 +1,170 @@
+{
+  "chapter": {
+    "zh": "04 · 三体数值实验",
+    "en": "04 · Three-body experiment"
+  },
+  "context": {
+    "zh": "从轨道示意，到逐步计算引力",
+    "en": "FROM ORBIT ILLUSTRATION TO INTEGRATED GRAVITY"
+  },
+  "parameters": {
+    "zh": "改变起点 · 八字 / 三角形、质量与速度",
+    "en": "Change the start · presets, mass and velocity"
+  },
+  "title": {
+    "zh": "三颗恒星，一直相互牵引",
+    "en": "Three stars, always pulling on one another"
+  },
+  "intro": {
+    "zh": "每一步都用三个物体之间的引力更新位置与速度。先看等质量八字轨道，再改动 C 的初始条件；空心标记是仅把 C 初始 x 增加 0.0001 的另一轮计算。",
+    "en": "Every step updates positions and velocities from the forces between all three bodies. Start with the equal-mass figure eight, then modify C. Hollow markers show a separate integration with only C’s initial x increased by 0.0001."
+  },
+  "eight": {
+    "zh": "八字轨道 · 等质量",
+    "en": "Figure eight · equal masses"
+  },
+  "triangle": {
+    "zh": "等边旋转 · 对照",
+    "en": "Rotating triangle · comparison"
+  },
+  "presetNote": {
+    "zh": "按钮恢复该案例的原始初值；滑块只修改 C，随后整体平移到质心静止系。八字不是每组三体都遵循的路径。",
+    "en": "Preset buttons restore the original initial conditions. Sliders modify only C, then shift the whole system to its stationary center-of-mass frame. The figure eight is not a path followed by every triple."
+  },
+  "mass": {
+    "zh": "C 的质量 · M₀",
+    "en": "Mass of C · M₀"
+  },
+  "position": {
+    "zh": "C 初始 x 的改变量 · L₀",
+    "en": "Change in C’s initial x · L₀"
+  },
+  "velocity": {
+    "zh": "C 初始 vx 的改变量 · L₀/T₀",
+    "en": "Change in C’s initial vx · L₀/T₀"
+  },
+  "ready": {
+    "zh": "正在边演示边计算。虚线是刚刚走过的路，越早越淡；可随时暂停或回看最近 20 T₀。",
+    "en": "Integrating as the stars move. Dashed trails fade with age. Pause at any time or revisit the latest 20 T₀."
+  },
+  "modified": {
+    "zh": "从这里出发：点击“开始 / 继续”后，每一步现场计算引力，不必等待整段轨道。",
+    "en": "Start here: choose Start / continue to compute gravity step by step, without waiting for a complete trajectory."
+  },
+  "close": {
+    "zh": "近遇停止：至少一轮计算的间距过小，或本步无法分辨局部引力变化。两轮只比较共同的已解析时段；这不代表碰撞已发生。",
+    "en": "Close-encounter stop: at least one run approached too closely or exceeded the local time-resolution limit. Only their shared resolved interval is shown; this is not a detected collision."
+  },
+  "accuracy": {
+    "zh": "误差停止：至少一轮的相对能量误差将超过 0.1%，已舍弃该步。只展示两轮共同的可信计算时段。",
+    "en": "Accuracy stop: the next step in at least one run would exceed 0.1% relative energy error, so it was rejected. Only the shared accepted interval is displayed."
+  },
+  "play": {
+    "zh": "开始 / 继续",
+    "en": "Start / continue"
+  },
+  "pause": {
+    "zh": "暂停",
+    "en": "Pause"
+  },
+  "paused": {
+    "zh": "已暂停。可以回看已保存的历史，或继续演示。",
+    "en": "Paused. Review the saved history or continue the demonstration."
+  },
+  "rewind": {
+    "zh": "重置到初始位置",
+    "en": "Reset initial positions"
+  },
+  "scrub": {
+    "zh": "最近 20 T₀ 的历史 · 回看后可继续向前",
+    "en": "Latest 20 T₀ of history · review, then continue"
+  },
+  "compare": {
+    "zh": "叠加微小扰动轨迹",
+    "en": "Overlay tiny-perturbation run"
+  },
+  "legend": {
+    "zh": "A 金色 · B 蓝色 · C 珊瑚色｜恒星是本组初值，空心圆是可选的微扰对照。虚线只保留最近 3.6 T₀，越旧越淡，不预画未来轨道。",
+    "en": "A gold · B blue · C coral | Stars mark the base run; optional hollow rings mark the perturbed run. Dashed trails retain only the latest 3.6 T₀ and fade with age, never drawing the future."
+  },
+  "scale": {
+    "zh": "同一惯性平面、线性等比例坐标。物体接近画面边缘时视野扩大，不追踪单颗星；恒星盘和光晕是放大的辨认标记，不表示实际半径。",
+    "en": "One inertial plane with equal linear axis scales. The view expands when bodies approach its edge, without following one star. Enlarged stellar disks and halos identify bodies; they are not physical radii."
+  },
+  "preview": {
+    "zh": "初始位置 · 尚无轨迹",
+    "en": "INITIAL POSITIONS · NO TRAJECTORY YET"
+  },
+  "center": {
+    "zh": "质心",
+    "en": "COM"
+  },
+  "time": {
+    "zh": "查看时刻 / 已算到",
+    "en": "Viewing time / integrated to"
+  },
+  "energy": {
+    "zh": "相对能量误差 · 当前 / 已回看窗口最大",
+    "en": "Relative energy error · now / reviewed-window max"
+  },
+  "momentum": {
+    "zh": "动量变化 |P − P₀|",
+    "en": "Momentum change |P − P₀|"
+  },
+  "drift": {
+    "zh": "质心漂移 · L₀",
+    "en": "Center-of-mass drift · L₀"
+  },
+  "separation": {
+    "zh": "两轮位置差 · RMS / L₀",
+    "en": "Position difference · RMS / L₀"
+  },
+  "distance": {
+    "zh": "当前最小间距 · L₀",
+    "en": "Current minimum separation · L₀"
+  },
+  "base": {
+    "zh": "本组",
+    "en": "Base"
+  },
+  "perturbed": {
+    "zh": "扰动",
+    "en": "Perturbed"
+  },
+  "initial": {
+    "zh": "实际参与计算的初值",
+    "en": "Initial conditions actually integrated"
+  },
+  "initialNote": {
+    "zh": "每行依次为质量、位置 (x, y)、速度 (vx, vy)。下表是整体平移/匀速变换后的质心系数值。扰动轮在修改 C 的 x 后独立做同样变换；不是给每一帧加偏移。",
+    "en": "Each row lists mass, position (x, y), then velocity (vx, vy), after a uniform translation and velocity shift to the center-of-mass frame. The perturbed run repeats that transformation after changing C’s x; no offset is added to later frames."
+  },
+  "units": {
+    "zh": "单位：选定长度 L₀、质量 M₀，时间 T₀ = √(L₀³ / GM₀)，于是数值 G = 1。时间 20 指 20 T₀，不是 20 秒或年。",
+    "en": "Units: choose L₀ and M₀, then T₀ = √(L₀³ / GM₀), giving numerical G = 1. A duration of 20 means 20 T₀, not 20 seconds or years."
+  },
+  "method": {
+    "zh": "牛顿点质量模型：aᵢ = Σⱼ≠ᵢ mⱼ(rⱼ−rᵢ)/|rⱼ−rᵢ|³。固定步长 velocity-Verlet，Δt = 0.001 T₀，随播放逐步积分。每 0.02 T₀ 记录一帧，循环缓冲只保留最近 20 T₀；状态持续推进，不循环播放预先算好的片段。",
+    "en": "Newtonian point masses: aᵢ = Σⱼ≠ᵢ mⱼ(rⱼ−rᵢ)/|rⱼ−rᵢ|³. Fixed-step velocity-Verlet advances during playback with Δt = 0.001 T₀. One frame is saved every 0.02 T₀; a circular buffer retains the latest 20 T₀. The state continues forward, not looping a precomputed clip."
+  },
+  "limits": {
+    "zh": "没有引力软化。若任一对间距低于 0.04 L₀，或 Δt > 0.03√(r³/(mᵢ+mⱼ))，就停止；也检查每一步漂移段的最近距离。能量误差超过 0.1% 前停止。这里没有恒星碰撞、潮汐、相对论或观测数据拟合。",
+    "en": "No gravitational softening. Stop if any pair is closer than 0.04 L₀ or Δt > 0.03√(r³/(mᵢ+mⱼ)); the closest point along each drift segment is checked too. Stop before relative energy error exceeds 0.1%. Stellar collisions, tides, relativity and fits to observed data are not modeled."
+  },
+  "interpretation": {
+    "zh": "两轮轨迹分开，既要看初值变化，也要检查数值误差。有限时间的位置差不是混沌证明；小误差也不保证轨道位置永远准确。并非所有三体运动都混沌，八字与等边案例尤其用于对照。",
+    "en": "When trajectories separate, consider both the changed initial conditions and numerical error. A finite-time position difference is not proof of chaos; small conservation errors do not guarantee forever-accurate positions. Not every three-body motion is chaotic; the figure eight and triangle provide useful comparisons."
+  },
+  "errorDefinition": {
+    "zh": "能量误差 = |E−E₀| / max(|E₀|, 10⁻⁸(K₀+|U₀|))。动量与质心读数均对各自初值比较；数值以模型单位表示，两轮分别列出。",
+    "en": "Energy error = |E−E₀| / max(|E₀|, 10⁻⁸(K₀+|U₀|)). Momentum and center-of-mass readings compare with each run’s own initial state, in model units; both runs are listed separately."
+  },
+  "sources": {
+    "zh": "初值、原始论文与算法资料",
+    "en": "Initial conditions, original paper and algorithm"
+  },
+  "fallback": {
+    "zh": "当前浏览器不能绘制画布，仍可计算并阅读下方初值与诊断数据。",
+    "en": "Canvas is unavailable, but initial conditions and diagnostics remain accessible."
+  }
+}

@@ -1,18 +1,20 @@
 import { animateValue } from '../../src/visuals/transition.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
-import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { HydrangeaScene } from './scene.ts';
 import { bloomState, flowerOutcome, newBloom, type GardenConditions } from './model.ts';
 import { steps, stories } from './content.ts';
 import './style.css';
-translateDocument(t); mountTopicNavigation('hydrangea');
+export function mountHydrangeaStudy(saved: URLSearchParams, changed:()=>void) {
 const el = (id: string) => document.getElementById(id)!;
 const input = (id: string) => el(id) as HTMLInputElement;
 const select = (id: string) => el(id) as HTMLSelectElement;
 const colors: Record<string, string> = { blue: t('蓝色'), purple: t('紫色'), pink: t('粉色'), white: t('白色') };
 const settings = (): GardenConditions => ({ ph: Number(input('ph').value), aluminum: Number(input('aluminum').value) / 100, cultivar: select('cultivar').value === 'white' ? 'white' : 'pigmented' });
 let progress = 1, planted = newBloom(settings()), playing = false, academic = false, view = 'plant', frame = 0, last = 0;
+for (const id of ['ph','aluminum','cultivar']) { const value=saved.get('h-'+id);if(value!==null) { if(id==='cultivar') select(id).value=value==='white'?'white':'pigmented';else input(id).value=value; } }
+progress=Math.max(0,Math.min(1,Number(saved.get('h-progress')??1)||0));
+planted=newBloom({ph:Math.max(4.5,Math.min(7,Number(saved.get('h-planted-ph')??settings().ph)||5.3)),aluminum:Math.max(0,Math.min(1,Number(saved.get('h-planted-al')??settings().aluminum)||0)),cultivar:saved.get('h-planted-white')==='1'?'white':'pigmented'});
+view=['plant','root','cell'].includes(saved.get('h-view')??'')?saved.get('h-view')!:'plant';
 let scene: HydrangeaScene | undefined;
 let viewAnimation: Animation | undefined;
 try { scene = new HydrangeaScene(el('scene') as HTMLCanvasElement); } catch (error) { el('scene-error').hidden = false; console.error(error); }
@@ -37,7 +39,7 @@ function update() {
   document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.mode === 'academic') === academic)));
   document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
   el('steps').querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String(i === s.stage)));
-  scene?.draw(progress, planted, view);
+  scene?.draw(progress, planted, view); changed();
 }
 let cancelSeek: () => void = () => {};
 function seek(target: number) {
@@ -64,3 +66,6 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) cance
 window.addEventListener('pagehide', e => { viewAnimation?.cancel(); cancel(); if (!e.persisted) { stop(); scene?.dispose(); } });
 window.addEventListener('pageshow', () => { if (playing && !frame) resume(); });
 update();
+
+return {stop,redraw:update,save:(p:URLSearchParams)=>{p.set('h-progress',progress.toFixed(4));p.set('h-view',view);for(const id of ['ph','aluminum','cultivar'])p.set('h-'+id,(el(id) as HTMLInputElement).value);p.set('h-planted-ph',String(planted.ph));p.set('h-planted-al',String(planted.aluminum));p.set('h-planted-white',planted.cultivar==='white'?'1':'0');}};
+}

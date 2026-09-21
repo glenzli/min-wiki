@@ -1,0 +1,90 @@
+{
+  "layers": [
+    {
+      "id": "photosphere",
+      "outer": 1,
+      "inner": 0.96,
+      "name": {
+        "zh": "光球",
+        "en": "Photosphere"
+      },
+      "kids": {
+        "zh": "我们主要看到的发光薄层，不是坚实表面。",
+        "en": "The thin luminous layer we mainly see, not solid ground."
+      },
+      "science": {
+        "zh": "我们主要看到的发光薄层，不是坚实表面。 层厚与颜色为教学示意。",
+        "en": "The thin luminous layer we mainly see, not solid ground. Thicknesses and colors are schematic."
+      },
+      "color": "#ffcc78"
+    },
+    {
+      "id": "convection",
+      "outer": 0.96,
+      "inner": 0.7,
+      "name": {
+        "zh": "对流区",
+        "en": "Convection zone"
+      },
+      "kids": {
+        "zh": "热的等离子体上升，较冷的物质下沉。",
+        "en": "Hot plasma rises while cooler material sinks."
+      },
+      "science": {
+        "zh": "热的等离子体上升，较冷的物质下沉。 层厚与颜色为教学示意。",
+        "en": "Hot plasma rises while cooler material sinks. Thicknesses and colors are schematic."
+      },
+      "color": "#e59b4e"
+    },
+    {
+      "id": "radiative",
+      "outer": 0.7,
+      "inner": 0.25,
+      "name": {
+        "zh": "辐射区",
+        "en": "Radiative zone"
+      },
+      "kids": {
+        "zh": "能量通过辐射缓慢向外传递。",
+        "en": "Energy travels slowly outward through radiation."
+      },
+      "science": {
+        "zh": "能量通过辐射缓慢向外传递。 层厚与颜色为教学示意。",
+        "en": "Energy travels slowly outward through radiation. Thicknesses and colors are schematic."
+      },
+      "color": "#cf7436"
+    },
+    {
+      "id": "core",
+      "outer": 0.25,
+      "inner": 0,
+      "name": {
+        "zh": "核聚变核心",
+        "en": "Fusion core"
+      },
+      "kids": {
+        "zh": "氢聚变成氦，释放能量。",
+        "en": "Hydrogen fuses into helium, releasing energy."
+      },
+      "science": {
+        "zh": "氢聚变成氦，释放能量。 层厚与颜色为教学示意。",
+        "en": "Hydrogen fuses into helium, releasing energy. Thicknesses and colors are schematic."
+      },
+      "color": "#ffe5a0"
+    }
+  ],
+  "summary": {
+    "zh": "太阳内部的能量向外传递。",
+    "en": "Energy travels outward from the solar interior."
+  },
+  "evidence": {
+    "zh": "太阳内部通过物理模型和日震学推断，不是透视照片。",
+    "en": "Solar interiors are inferred through physical models and helioseismology, not photographed."
+  },
+  "sources": [
+    {
+      "title": "NASA Sun facts",
+      "url": "https://science.nasa.gov/sun/facts/"
+    }
+  ]
+}

@@ -1,0 +1,380 @@
+{
+  "chapters": [
+    {
+      "id": "sun",
+      "name": {
+        "zh": "01 · 太阳与距离",
+        "en": "01 · Sun & distance"
+      }
+    },
+    {
+      "id": "types",
+      "name": {
+        "zh": "02 · 恒星的模样",
+        "en": "02 · Different stars"
+      }
+    },
+    {
+      "id": "orbits",
+      "name": {
+        "zh": "03 · 相伴的恒星",
+        "en": "03 · Stars together"
+      }
+    },
+    {
+      "id": "three-body",
+      "name": {
+        "zh": "04 · 三体数值实验",
+        "en": "04 · Three-body experiment"
+      }
+    }
+  ],
+  "ui": {
+    "sunTitle": {
+      "zh": "远处看着小，本身没有缩小",
+      "en": "Smaller in the sky, not in space"
+    },
+    "typesTitle": {
+      "zh": "很大，不一定很重",
+      "en": "Large does not always mean massive"
+    },
+    "orbitsTitle": {
+      "zh": "没有谁被钉在正中央",
+      "en": "Neither star is pinned at the center"
+    },
+    "sunContext": {
+      "zh": "保持同一颗太阳 · 改变观察距离",
+      "en": "ONE SUN · CHANGE ONLY DISTANCE"
+    },
+    "typesContext": {
+      "zh": "代表性模型 · 不是一颗星的连续成长录像",
+      "en": "REPRESENTATIVE MODELS · NOT ONE STAR GROWING"
+    },
+    "orbitsContext": {
+      "zh": "共同质心 · 质量与距离相互对应",
+      "en": "SHARED CENTER OF MASS"
+    },
+    "play": {
+      "zh": "开始动态",
+      "en": "Start motion"
+    },
+    "pause": {
+      "zh": "暂停动态",
+      "en": "Pause motion"
+    },
+    "distance": {
+      "zh": "观察距离 · 对数刻度",
+      "en": "Observer distance · logarithmic scale"
+    },
+    "fixed": {
+      "zh": "太阳本身",
+      "en": "PHYSICAL SUN"
+    },
+    "apparent": {
+      "zh": "观察者眼里",
+      "en": "APPARENT SUN"
+    },
+    "sun": {
+      "zh": "太阳",
+      "en": "Sun"
+    },
+    "selected": {
+      "zh": "所选模型",
+      "en": "Selected model"
+    },
+    "angle": {
+      "zh": "太阳角直径",
+      "en": "Angular diameter"
+    },
+    "delay": {
+      "zh": "光行时",
+      "en": "Light travel time"
+    },
+    "flux": {
+      "zh": "辐照度 · 地球处为 100%",
+      "en": "Irradiance · Earth = 100%"
+    },
+    "radius": {
+      "zh": "半径 · 以太阳为 1",
+      "en": "Radius · Sun = 1"
+    },
+    "mass": {
+      "zh": "质量 · 以太阳为 1",
+      "en": "Mass · Sun = 1"
+    },
+    "temperature": {
+      "zh": "表面有效温度",
+      "en": "Effective surface temperature"
+    },
+    "compare": {
+      "zh": "等比例直径",
+      "en": "True diameter comparison"
+    },
+    "section": {
+      "zh": "剖面示意",
+      "en": "Interior illustration"
+    },
+    "binary": {
+      "zh": "双星",
+      "en": "Binary"
+    },
+    "triple": {
+      "zh": "层级三星",
+      "en": "Hierarchical triple"
+    },
+    "ratio": {
+      "zh": "B 星质量 / A 星质量",
+      "en": "Mass of B / mass of A"
+    },
+    "phase": {
+      "zh": "轨道相位 · 拖动定位，播放持续绕行",
+      "en": "Orbital phase · seek, then keep orbiting"
+    },
+    "center": {
+      "zh": "共同质心",
+      "en": "CENTER OF MASS"
+    },
+    "period": {
+      "zh": "外圈 / 内圈周期",
+      "en": "Outer / inner period"
+    },
+    "construction": {
+      "zh": "运动构造",
+      "en": "Orbit construction"
+    },
+    "circular": {
+      "zh": "圆轨道近似",
+      "en": "Circular approximation"
+    },
+    "hierarchical": {
+      "zh": "层级近似",
+      "en": "Hierarchical approximation"
+    },
+    "separation": {
+      "zh": "外圈 / 内圈间距",
+      "en": "Outer / inner separation"
+    },
+    "sunScale": {
+      "zh": "左右采用同一初始视角基准，右图只缩小视大小。极小时十字定位符不是太阳直径；光晕和背景星点不用于测量。",
+      "en": "Both panels share the initial angular scale; only the right apparent disk shrinks. A crosshair marks subpixel disks, not their diameter. Halos and background points are not measurements."
+    },
+    "typeScale": {
+      "zh": "两颗主星盘共用线性直径比例；太阳过小时用十字定位，另附明确放大的辨认图。标尺以太阳直径为单位。切换型号时视野会重新取景；800 倍模型另带 50 倍红巨星作中间参照。均为取整教学模型，不是具体恒星的测量值。",
+      "en": "The main disks share a linear diameter scale. A crosshair locates a subpixel Sun; a labeled inset enlarges it separately. Rulers use solar diameters. Selecting a type reframes the view; the 800× model also includes a 50× red giant as an intermediate reference. These are rounded teaching models, not measured individual stars."
+    },
+    "sectionScale": {
+      "zh": "剖面各层厚度、颜色经过示意化；它不是内部照片，也不能从图上量出真实深度。",
+      "en": "Layer thicknesses and colors are schematic, not interior photographs or measured depths."
+    },
+    "orbitScale": {
+      "zh": "点的位置和质量共享质心构造；星盘大小与间距分开缩放。没有碰撞、潮汐、质量转移或长期稳定性求解。",
+      "en": "Positions and masses share one barycentric construction; disk sizes and separations use separate scales. Collisions, tides, mass transfer and long-term stability are not solved."
+    },
+    "sunExplain": {
+      "zh": "把右边的观察者移远，角直径减小，光走得更久，单位面积收到的能量也减少。太阳仍是同一颗星。它由核心核聚变供能，不是靠氧气燃烧的火球。",
+      "en": "Move the right-hand observer away: the angular disk shrinks, light takes longer, and less energy arrives per unit area. The Sun itself is unchanged. Core nuclear fusion supplies its energy, not chemical burning with oxygen."
+    },
+    "sunBoundary": {
+      "zh": "光行时为真空中距离除以光速；通量按无吸收的平方反比计算。这里不模拟飞船，也不计算核心能量传到表面所需的时间。不要直接观看真实太阳。",
+      "en": "Vacuum light travel is distance divided by light speed; flux assumes no absorption and follows an inverse-square law. This is not spacecraft motion or the time for core energy to reach the surface. Never look directly at the real Sun."
+    },
+    "orbitExplain": {
+      "zh": "两颗星都绕共同质心运动。质量较大的星离质心更近；改变质量比，看两条轨道怎样分配同一间距。三星模式先把近双星作为内层，再让第三颗星绕这个整体运动。",
+      "en": "Both stars orbit their shared center of mass. The heavier star lies nearer that center; changing the mass ratio redistributes the same separation. In triple mode, a close inner pair and a more distant third star form a hierarchy."
+    },
+    "orbitBoundary": {
+      "zh": "三星不是三颗星必然乱跑。这里是两组圆轨道的层级教学构造，不是自由三体积分，也不证明任意三星都稳定；三体问题中的物体也不一定是恒星。",
+      "en": "Three stars do not inevitably move chaotically. This is a hierarchical construction from two circular orbits, not a free three-body integration or proof of stability. Bodies in a three-body problem need not be stars."
+    },
+    "diameter": {
+      "zh": "太阳直径",
+      "en": "solar diameter"
+    },
+    "tick": {
+      "zh": "每小格",
+      "en": "Each division"
+    },
+    "solarDiameters": {
+      "zh": "个太阳直径",
+      "en": "solar diameters"
+    },
+    "enlargedSun": {
+      "zh": "太阳辨认图 · 单独放大",
+      "en": "Sun detail · separately enlarged"
+    },
+    "bridge": {
+      "zh": "红巨星 · 50",
+      "en": "Red giant · 50"
+    },
+    "surfaceNote": {
+      "zh": "表面为增强对比的光球层示意：球面颗粒、暗斑与临边昏暗，不是观测照片；真实太阳在太空中呈近白色。不同恒星的表面细节并不完全相同。",
+      "en": "Enhanced-contrast photosphere illustration: spherical granules, dark spots and limb darkening, not an observation. The real Sun looks nearly white from space. Other stars do not all share identical surface features."
+    }
+  },
+  "types": [
+    {
+      "id": "dwarf",
+      "radius": 0.25,
+      "mass": 0.2,
+      "temp": 3200,
+      "color": "#ed9974",
+      "name": {
+        "zh": "低质量红矮星",
+        "en": "Low-mass red dwarf"
+      },
+      "description": {
+        "zh": "这个低质量主序星模型比太阳小，也更冷、更暗。它的内部可大范围对流；不能把太阳的每一层直接套用到所有恒星。",
+        "en": "This low-mass main-sequence model is smaller, cooler and dimmer than the Sun. Convection can span much of its interior; not every star has the Sun’s layering."
+      },
+      "layers": [
+        {
+          "r": 1,
+          "color": "#bb593d",
+          "name": {
+            "zh": "大范围对流",
+            "en": "Extensive convection"
+          }
+        },
+        {
+          "r": 0.25,
+          "color": "#ffd195",
+          "name": {
+            "zh": "中心核聚变",
+            "en": "Central fusion"
+          }
+        }
+      ],
+      "shortName": {
+        "zh": "红矮星",
+        "en": "Red dwarf"
+      }
+    },
+    {
+      "id": "sun",
+      "radius": 1,
+      "mass": 1,
+      "temp": 5772,
+      "color": "#ffe5b1",
+      "name": {
+        "zh": "太阳型主序星",
+        "en": "Sun-like main-sequence star"
+      },
+      "description": {
+        "zh": "太阳仍在核心把氢聚变成氦。向外输送能量的方式不同：辐射区主要传递辐射能量，外部对流区还有等离子体的循环运动。",
+        "en": "The Sun fuses hydrogen to helium in its core. Radiation transports energy through the radiative zone; circulating plasma also transports energy in the outer convective zone."
+      },
+      "layers": [
+        {
+          "r": 1,
+          "color": "#df9954",
+          "name": {
+            "zh": "对流区",
+            "en": "Convective zone"
+          }
+        },
+        {
+          "r": 0.71,
+          "color": "#eabb80",
+          "name": {
+            "zh": "辐射区",
+            "en": "Radiative zone"
+          }
+        },
+        {
+          "r": 0.25,
+          "color": "#fff0b5",
+          "name": {
+            "zh": "核聚变核心",
+            "en": "Fusion core"
+          }
+        }
+      ],
+      "shortName": {
+        "zh": "太阳型恒星",
+        "en": "Sun-like star"
+      }
+    },
+    {
+      "id": "giant",
+      "radius": 50,
+      "mass": 1,
+      "temp": 4000,
+      "color": "#efa276",
+      "name": {
+        "zh": "低质量红巨星",
+        "en": "Low-mass red giant"
+      },
+      "description": {
+        "zh": "核心氢耗尽后，某些恒星的外层会大幅膨胀，而质量并没有按体积同比增加。这个红巨星模型有致密氦核、周围的氢燃烧壳层和疏松包层；不是所有红巨星都处于同一阶段。",
+        "en": "After core hydrogen is exhausted, some stars expand enormously without a proportional increase in mass. This red-giant model has a compact helium core, a hydrogen-burning shell and an extended envelope; not all red giants share the same evolutionary stage."
+      },
+      "layers": [
+        {
+          "r": 1,
+          "color": "#b86546",
+          "name": {
+            "zh": "膨胀包层",
+            "en": "Expanded envelope"
+          }
+        },
+        {
+          "r": 0.15,
+          "color": "#ffe7a2",
+          "name": {
+            "zh": "氢燃烧壳层 · 放大",
+            "en": "Hydrogen-burning shell · enlarged"
+          }
+        },
+        {
+          "r": 0.09,
+          "color": "#fff8d8",
+          "name": {
+            "zh": "氦核 · 放大",
+            "en": "Helium core · enlarged"
+          }
+        }
+      ],
+      "shortName": {
+        "zh": "红巨星",
+        "en": "Red giant"
+      }
+    },
+    {
+      "id": "supergiant",
+      "radius": 800,
+      "mass": 15,
+      "temp": 3500,
+      "color": "#e48b65",
+      "name": {
+        "zh": "红超巨星",
+        "en": "Red supergiant"
+      },
+      "description": {
+        "zh": "大质量恒星也可能发展出非常膨胀的外层。这个模型半径是太阳的 800 倍，质量却是 15 倍。后期内部燃烧层随演化改变，这里只区分膨胀包层与致密内部，不编造固定的洋葱层。",
+        "en": "A massive star can also develop an enormously extended envelope. This model has 800 solar radii but 15 solar masses. Burning layers change during late evolution; the cutaway only distinguishes the envelope from the compact interior, not a fixed onion-layer structure."
+      },
+      "layers": [
+        {
+          "r": 1,
+          "color": "#a9503b",
+          "name": {
+            "zh": "膨胀包层",
+            "en": "Expanded envelope"
+          }
+        },
+        {
+          "r": 0.17,
+          "color": "#ffe6b0",
+          "name": {
+            "zh": "致密内部 · 放大",
+            "en": "Compact interior · enlarged"
+          }
+        }
+      ],
+      "shortName": {
+        "zh": "红超巨星",
+        "en": "Red supergiant"
+      }
+    }
+  ]
+}

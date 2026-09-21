@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "topicId": "black-holes",
+  "zh": {
+    "question": "黑洞是黑的，我们为什么还能看见它周围的亮光？",
+    "observe": "先点击事件视界、黑洞阴影、吸积盘和引力弯光，再换观察角度。随后比较路过与持续供给；在尺度章节拉远标尺，找到银河系中心的人马座 A* 和更大的 M87*。",
+    "academic": [
+      {
+        "title": "视界与阴影的区别",
+        "body": "事件视界是无法向远处发出信号的因果边界。阴影则涉及光线被捕获以及弯曲后的投影。对于远方观察者和无自旋黑洞，临界光线投影尺度约为视界半径的 2.60 倍。几何示意把这两个概念分开，不代表观察者可以看见黑洞内部。"
+      },
+      {
+        "title": "发光物质与弯曲的光像",
+        "body": "吸积盘位于黑洞外部，气体的运动、受热与辐射让它可见。画面中远侧亮带拱起是弯曲光路形成的像，不是盘面真的竖立。薄盘、无自旋和有限光路积分都是模型假设；亮度、颜色与播放速度不能作为真实观测读数。"
+      },
+      {
+        "title": "从遭遇实验到真实尺度",
+        "body": "恒星和行星章节比较一次遭遇中的潮汐作用与物质去向，伴星章节比较持续供给。它们共享对视界与外部气体的解释，但使用各自的模型和显示比例。每章的具体条件与限制放在相应的观察说明中，不能直接比较屏幕上的尺寸或粒子数量。 尺度章节以假想的 10 个太阳质量黑洞、约 400 万太阳质量的人马座 A* 和约 65 亿太阳质量的 M87* 为参照。统一用无自旋等效视界半径 rₛ = 2GM/c² 比较，质量增大多少倍，半径就增大多少倍。真实自旋、观测误差和光学阴影不包含在这把尺子里。圆形同心叠放只比较尺寸，并不表示这些天体位于同一位置。"
+      }
+    ],
+    "misconception": "发光的盘不是黑洞表面，阴影边缘也不能直接当作事件视界。路过、瓦解、回返和最终内落是不同过程。",
+    "boundary": "这是结构与机制的互动教学项目，不是某个真实系统的完整模拟。物质模型与光学模型使用独立的近似及显示尺度。",
+    "narration": [
+      {
+        "label": "先看整体",
+        "text": "先找中间暗暗的地方，再找旁边的亮光。发亮的是黑洞外面的热气体。",
+        "cue": "保持整体近景，先隐藏标注，留出观察时间。"
+      },
+      {
+        "label": "分清边界",
+        "text": "事件视界是一条特别的边界。越过它，向外发出的光也无法到达远处。几何示意中的蓝线，只是帮助我们认出它。",
+        "cue": "选择事件视界，再切回黑洞阴影，比较两种表示。"
+      },
+      {
+        "label": "转个方向",
+        "text": "后面的亮光转了个弯，也来到我们眼前。你看到的亮带好像拱起来了，可盘本身没有竖起来。",
+        "cue": "从斜侧近景切换到上方，再自由旋转。"
+      },
+      {
+        "label": "比较经历，也比较大小",
+        "text": "接下来，让恒星或行星路过这里。最后再看看，和黑洞长期相伴的恒星，怎样不断送来气体。 黑洞也有很不一样的大小。银河系中心的人马座 A* 非常重，再到更远的 M87 星系，还有更大的黑洞。我们慢慢拉远视角：刚才还能看清的小圆，现在几乎找不到了。它没有消失，只是这把尺子变大了。",
+        "cue": "依次指出三个实验章节，任选一个进入。 进入第五章，依次选择恒星级、人马座 A*、M87*；观察标尺与参考轨道。"
+      }
+    ]
+  },
+  "en": {
+    "question": "If a black hole is dark, why can we see light around it?",
+    "observe": "Select the horizon, shadow, disk and light-bending explanations, then change viewpoint. Compare encounters with ongoing supply; in the scale chapter, zoom out to Sagittarius A* in our galactic center and the larger M87*.",
+    "academic": [
+      {
+        "title": "Horizon versus shadow",
+        "body": "The horizon is a causal boundary; the shadow is an optical projection involving captured and bent light. For a distant observer and a non-spinning hole, the critical projected scale is about 2.60 horizon radii. The geometric diagram distinguishes them without exposing the interior."
+      },
+      {
+        "title": "Emitting matter and its image",
+        "body": "The luminous disk lies outside the hole. Bent light produces the apparent arches above and below it. Thin-disk, non-spinning and finite-integration assumptions constrain the display; its colors, brightness and playback speed are not observational measurements."
+      },
+      {
+        "title": "From encounters to physical scales",
+        "body": "The stellar and planetary chapters explore individual tidal encounters, while the companion chapter explores ongoing supply. Each retains its own model, scale and limitations. Compare mechanisms rather than on-screen sizes or particle counts. The scale chapter compares a hypothetical 10-solar-mass hole, Sagittarius A* at about 4 million solar masses and M87* at about 6.5 billion. A consistent non-spinning-equivalent radius rₛ = 2GM/c² scales linearly with mass. Spin, observational uncertainty and optical shadows are not included. Concentric overlays compare sizes, not actual locations."
+      }
+    ],
+    "misconception": "The disk is not a black-hole surface, and a shadow edge is not simply the event horizon. Passing, disruption, return and infall are distinct processes.",
+    "boundary": "This project illustrates structures and mechanisms, not a complete simulation of an observed system. Matter dynamics and optics use separate approximations and display scales.",
+    "narration": [
+      {
+        "label": "Look at the whole scene",
+        "text": "Find the dark center and the surrounding light. Hot gas outside the black hole makes that light.",
+        "cue": "Start with an unlabelled close-up and allow time to observe."
+      },
+      {
+        "label": "Identify the boundary",
+        "text": "Beyond the horizon, outward signals cannot reach faraway observers. Blue lines in this diagram simply help us locate the boundary.",
+        "cue": "Select the horizon, then the shadow, to compare the representations."
+      },
+      {
+        "label": "Change direction",
+        "text": "Light from the far side bends toward us. The bright band looks arched, although the disk has not stood upright.",
+        "cue": "Switch from the angled close-up to the top view, then rotate freely."
+      },
+      {
+        "label": "Compare encounters and sizes",
+        "text": "Next, let a star or planet pass nearby. Then see how a companion keeps supplying gas over time. Black holes come in very different sizes. Sagittarius A* at our galactic center is enormously massive, and M87 has a bigger one still. Zoom out slowly: the little circle we could see is now almost invisible. It has not vanished. Our ruler has changed.",
+        "cue": "Point to the three experimental chapters and enter one. In chapter five, select the stellar-mass, Sagittarius A* and M87* stops. Compare the ruler and reference orbits."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "ESO / EHT · M87* mass measurement",
+      "url": "https://www.eso.org/public/news/eso1907/"
+    },
+    {
+      "title": "ESO / EHT · Comparison of M87* and Sagittarius A*",
+      "url": "https://www.eso.org/public/images/eso2208-eht-mwe/"
+    },
+    {
+      "title": "NASA · Anatomy of a black hole",
+      "url": "https://science.nasa.gov/universe/black-holes/anatomy/"
+    },
+    {
+      "title": "NASA · A black hole’s warped world",
+      "url": "https://www.nasa.gov/universe/nasa-visualization-shows-a-black-holes-warped-world/"
+    }
+  ]
+}

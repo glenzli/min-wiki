@@ -1,0 +1,190 @@
+{
+  "pause": {
+    "zh": "暂停动态",
+    "en": "Pause activity"
+  },
+  "resume": {
+    "zh": "播放动态",
+    "en": "Play activity"
+  },
+  "begin": {
+    "zh": "开始下降",
+    "en": "Begin descent"
+  },
+  "continue": {
+    "zh": "继续下降",
+    "en": "Continue descent"
+  },
+  "pauseTravel": {
+    "zh": "暂停下降",
+    "en": "Pause descent"
+  },
+  "replay": {
+    "zh": "重新下降",
+    "en": "Descend again"
+  },
+  "interiorTravel": {
+    "zh": "走向中心",
+    "en": "Travel to the center"
+  },
+  "pauseInterior": {
+    "zh": "暂停深入",
+    "en": "Pause interior travel"
+  },
+  "sunTravel": {
+    "zh": "靠近光球",
+    "en": "Approach the photosphere"
+  },
+  "interiorProgress": {
+    "zh": "从外层到中心",
+    "en": "Exterior to center"
+  },
+  "descentProgress": {
+    "zh": "下降进度",
+    "en": "Descent progress"
+  },
+  "space": {
+    "zh": "从太空看",
+    "en": "From space"
+  },
+  "surface": {
+    "zh": "观察此处地貌",
+    "en": "Explore this terrain"
+  },
+  "activity": {
+    "zh": "正在发生什么",
+    "en": "What is happening"
+  },
+  "section": {
+    "zh": "由外到内",
+    "en": "From exterior to center"
+  },
+  "moons": {
+    "zh": "行星与它的卫星",
+    "en": "A planet and its moons"
+  },
+  "scale": {
+    "zh": "观察示意 · 大小与距离分别缩放",
+    "en": "Illustration · sizes and distances scaled separately"
+  },
+  "localScale": {
+    "zh": "固定观察区域 · 局部细节为示意",
+    "en": "Fixed observation region · illustrative local detail"
+  },
+  "sectionScale": {
+    "zh": "内部重建 · 层厚与颜色经调整 · 运动加速",
+    "en": "Interior reconstruction · adjusted thicknesses and colors · accelerated motion"
+  },
+  "descentScale": {
+    "zh": "虚拟观察路线 · 不是自由落体或可生存飞行",
+    "en": "Virtual observation path · not free fall or survivable flight"
+  },
+  "sunScale": {
+    "zh": "太阳活动示意 · 颜色、尺度与时间经过调整",
+    "en": "Solar activity illustration · colors, scales and timing adjusted"
+  },
+  "gesture": {
+    "zh": "拖动转动视角，滚轮缩放。画面获得焦点后可用方向键和加减键。",
+    "en": "Drag to orbit, scroll to zoom. Focus the canvas for arrow keys and +/−."
+  },
+  "travelHint": {
+    "zh": "拖动进度条，可以停在任意高度。下降和现象动态可以分别暂停。",
+    "en": "Scrub to any height. Descent and activity can be paused independently."
+  },
+  "sectionHint": {
+    "zh": "点选一层，或拖动滑块走向中心。虚线提示候选分区。",
+    "en": "Select a layer or scrub toward the center. Dashed lines mark uncertain regions."
+  },
+  "none": {
+    "zh": "这颗行星没有天然卫星。",
+    "en": "This planet has no natural moons."
+  },
+  "moonIntro": {
+    "zh": "卫星绕行星运行，也和行星一起绕太阳。选择下方成员，比一比绕行的快慢。",
+    "en": "Moons orbit planets and accompany them around the Sun. Select members below and compare their orbital motion."
+  },
+  "selected": {
+    "zh": "这里展示代表卫星，不是完整目录。环由许多颗粒组成，和一颗颗卫星不同。",
+    "en": "Selected moons are shown, not a complete catalog. Rings are made of many particles, unlike individual moons."
+  },
+  "period": {
+    "zh": "绕行一周",
+    "en": "One orbit"
+  },
+  "days": {
+    "zh": "天",
+    "en": "days"
+  },
+  "diameter": {
+    "zh": "直径",
+    "en": "Diameter"
+  },
+  "enter": {
+    "zh": "靠近这颗卫星 →",
+    "en": "Approach this moon →"
+  },
+  "phases": {
+    "zh": "继续探索：月亮为什么有圆有缺 →",
+    "en": "Explore further: why the Moon has phases →"
+  },
+  "uncertain": {
+    "zh": "候选解释 · 仍在研究",
+    "en": "Candidate interpretation · still under study"
+  },
+  "model": {
+    "zh": "内部结构的科学模型",
+    "en": "Scientific interior model"
+  },
+  "sunClose": {
+    "zh": "放大太阳活动",
+    "en": "Magnify solar activity"
+  },
+  "gasClose": {
+    "zh": "靠近云层",
+    "en": "Approach the clouds"
+  },
+  "sunHint": {
+    "zh": "观察颗粒状亮斑、较暗黑子和边缘弧形日珥。可以暂停动态慢慢找。",
+    "en": "Look for bright granules, darker sunspots and arched prominences at the limb. Pause activity to inspect them."
+  },
+  "year": {
+    "zh": "绕太阳一周",
+    "en": "One solar orbit"
+  },
+  "spin": {
+    "zh": "自转周期",
+    "en": "Rotation period"
+  },
+  "hours": {
+    "zh": "小时",
+    "en": "hours"
+  },
+  "retrograde": {
+    "zh": "逆行",
+    "en": "retrograde"
+  },
+  "star": {
+    "zh": "恒星",
+    "en": "Star"
+  },
+  "sites": {
+    "zh": "选择观察地点",
+    "en": "Choose an observation site"
+  },
+  "siteModel": {
+    "zh": "区域重建 · 地形高度与细节为示意",
+    "en": "Regional reconstruction · relief and details are illustrative"
+  },
+  "flowModel": {
+    "zh": "材料运动重建 · 时间加速，纹理不是实测流场",
+    "en": "Reconstructed material motion · accelerated time, textures are not measured flow fields"
+  },
+  "atmosphereModel": {
+    "zh": "固定观察区域 · 云层与流动为机制示意",
+    "en": "Fixed observation region · clouds and flow are illustrative"
+  },
+  "rings": {
+    "zh": "探索土星环",
+    "en": "Explore Saturn’s rings"
+  }
+}

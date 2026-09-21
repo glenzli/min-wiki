@@ -36,12 +36,12 @@ function result(id) { return { id, landscape: { width: 2, height: 1, data: new U
 test('rapid world switching terminates stale work and rejects stale material images', t => {
  const { scene, workers, uploads } = environment(t);
  scene.draw(WORLDS[2], 'landscape', 0); assert.equal(scene.preparing, true);
- scene.draw(WORLDS[6], 'landscape', 0); assert.equal(workers[0].terminated, true);
+ scene.draw(WORLDS.find(w => w.id === 'titan'), 'landscape', 0); assert.equal(workers[0].terminated, true);
  const stale = result('earth'); workers[0].onmessage({ data: stale });
  assert.equal(uploads.length, 0); assert.equal(scene.preparing, true);
  const latest = result('titan'); workers[1].onmessage({ data: latest });
  assert.equal(scene.preparing, false); assert.equal(scene.failed, false);
- const count = workers.length; scene.draw(WORLDS[6], 'landscape', .7);
+ const count = workers.length; scene.draw(WORLDS.find(w => w.id === 'titan'), 'landscape', .7);
  assert.equal(workers.length, count, 'prepared worlds reuse the transferred cache');
  scene.dispose(); assert.equal(uploads[0].width, 0); assert.equal(uploads[0].height, 0);
 });

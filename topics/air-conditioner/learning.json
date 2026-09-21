@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "air-conditioner",
   "zh": {
-    "question": "空调让房间凉下来时，热量消失了吗？室外机为什么会吹出热风？",
-    "observe": "先看房间与室外，再透视冷媒回路。拖动进度，跟着大金点走过四个部件。切换只送风，比较能量条；最后靠近室内机，改变空气湿润条件，找蓝色排水管。",
+    "question": "空调和冰箱都搬走了热，为什么一个能给房间降温，另一个不能靠开门给房间降温？",
+    "observe": "先跟着空调冷媒走一圈，比较制冷、只送风与冷凝水。切到冰箱，比较关门与中途开门时空气和食物的温度；两台设备切章时暂停并保留进度。最后改变假想装置热端的位置，读同一房间边界内的净能量账。",
     "academic": [
       {
-        "title": "两种流体，各走各的路",
-        "body": "普通分体式蒸气压缩空调包含室内蒸发器、室外压缩机和冷凝器，以及节流装置。风扇促进空气与换热器表面的换热；空气与冷媒由管壁隔开，正常运行时不混合。连接内外机的冷媒管不是新风管道，专门的新风系统另有空气通路。图中拆开机壳是观察镜头，并不是运行时打开外壳。"
+        "title": "密闭冷媒回路：压力、相变与输入功",
+        "body": "普通分体式蒸气压缩空调包含室内蒸发器、室外压缩机和冷凝器，以及节流装置。风扇促进空气与换热器表面的换热；空气与冷媒由管壁隔开，正常运行时不混合。连接内外机的冷媒管不是新风管道，专门的新风系统另有空气通路。图中拆开机壳是观察镜头，并不是运行时打开外壳。 低压冷媒在蒸发器里吸热并蒸发。压缩机对蒸气做功，使其能在比室外空气更热的状态向冷凝器放热、凝结；节流降低压力，部分液体闪蒸，低温两相混合物返回蒸发器。节流近似等焓，但温度变化必须结合工质物性讨论。一个完整稳态循环的能量关系是 Q外 = Q内 + W，图中 3、1、4 为任意一致的教学单位；不含风扇等辅助用电，不能据此推断具体空调能效。"
       },
       {
-        "title": "用功维持从较冷处到较热处的净传热",
-        "body": "低压冷媒在蒸发器里吸热并蒸发。压缩机对蒸气做功，使其能在比室外空气更热的状态向冷凝器放热、凝结；节流降低压力，部分液体闪蒸，低温两相混合物返回蒸发器。节流近似等焓，但温度变化必须结合工质物性讨论。一个完整稳态循环的能量关系是 Q外 = Q内 + W，图中 3、1、4 为任意一致的教学单位；不含风扇等辅助用电，不能据此推断具体空调能效。"
+        "title": "凝水、体感与温度：热负荷和控制各有作用",
+        "body": "盘管表面低于接触空气的露点时，水汽可凝结，形成需要排出的冷凝水。只送风仍可能通过增强人体对流、蒸发散热改善体感，却不等同于从房间搬走热量，电动机能量最终还会成为热。真实室温随建筑热容量、室外传热、日照、人员设备散热和空调调节共同变化，不能用冷媒走过一圈的时间替代。 箱壁传热、开门换气、放入较暖食物都会增加热负荷。空气和内胆先响应，食品内部降温还受质量、形状、导热和表面对流影响。本页以两个热容和两个启停阈值示意这种延迟；定速压缩机达到较低温度后暂停，回升后重启，变速机型还可调节能力。读数曲线能说明变化方向，不能预测某份食品何时达到安全储存条件。"
       },
       {
-        "title": "水滴、体感与室温是不同问题",
-        "body": "盘管表面低于接触空气的露点时，水汽可凝结，形成需要排出的冷凝水。只送风仍可能通过增强人体对流、蒸发散热改善体感，却不等同于从房间搬走热量，电动机能量最终还会成为热。真实室温随建筑热容量、室外传热、日照、人员设备散热和空调调节共同变化，不能用冷媒走过一圈的时间替代。"
+        "title": "先说明边界，再比较收支",
+        "body": "共同参照始终保留冷端吸热、输入功和热端放热。空调模型用任意份数，冰箱模型用累计 kJ，第三章是独立的假想循环；三者不构成产品能效比较。冰箱热端与敞开的冷端都在同一房间时，循环取热与回热抵消，电功成为净输入。瞬态关门模型还需计入箱内空气与食物的储能变化，并从散热管放热扣掉房间向箱内漏热，才得到房间净交换。固定房温不等于预测了真实房间温度。"
       }
     ],
     "misconception": "空调不是把冷风存起来再倒出来，也不是把屋里的热量变没。冷凝水来自空气水汽，不是正常漏出的冷媒；只送风不等于开启制冷。",
-    "boundary": "本页仅演示制冷方向的概念循环。管道布局、相态比例、时间和能量份数经过教学调整；高低压是相对描述，不是某一工质的实测数据。未计算房间温度、真实冷凝量或恒温控制。制热空调需另外的换向与控制，不能靠倒转压缩机解释。",
+    "boundary": "本页仅演示制冷方向的概念循环。管道布局、相态比例、时间和能量份数经过教学调整；高低压是相对描述，不是某一工质的实测数据。空调模型未计算房间温度、真实冷凝量或恒温控制。制热空调需另外的换向与控制，不能靠倒转压缩机解释。 冰箱另有独立双热容、开门负荷与温控模型，时间大幅压缩，不提供食品安全储存建议。房间边界实验不模拟空气流场或室温。",
     "narration": [
       {
-        "label": "热量去了哪里",
-        "text": "夏天开着空调，房间慢慢凉快起来。热量是一下子不见了吗？我们把房间和外面放在一起看看。屋里的这台机器吹风，屋外还有另一台。它们连着管子。空调就像一位需要电力帮忙的搬运工，把屋里的热量搬到外面。所以屋外那边，还会吹出暖暖的风。",
-        "cue": "停在房间与室外镜头，指出室内机、墙、室外机；提醒只在屏幕上观察。"
+        "label": "热量与冷媒各走哪条路",
+        "text": "夏天开着空调，房间慢慢凉快起来。热量是一下子不见了吗？我们把房间和外面放在一起看看。屋里的这台机器吹风，屋外还有另一台。它们连着管子。空调就像一位需要电力帮忙的搬运工，把屋里的热量搬到外面。所以屋外那边，还会吹出暖暖的风。 现在让外壳变透明，找找铜色的管子。里面有一种帮助搬热的材料，叫冷媒。它一直在封好的管子里走，不会像风一样吹到我们脸上。房间里的空气经过冷冷的盘管，把一些热量交出去，自己就变凉了。风扇再把这些空气送回房间。",
+        "cue": "停在房间与室外镜头，指出室内机、墙、室外机；提醒只在屏幕上观察。 切透视冷媒回路，推进到12%；区分铜管与室内空气流线。"
       },
       {
-        "label": "两条不同的路线",
-        "text": "现在让外壳变透明，找找铜色的管子。里面有一种帮助搬热的材料，叫冷媒。它一直在封好的管子里走，不会像风一样吹到我们脸上。房间里的空气经过冷冷的盘管，把一些热量交出去，自己就变凉了。风扇再把这些空气送回房间。",
-        "cue": "切透视冷媒回路，推进到12%；区分铜管与室内空气流线。"
+        "label": "跟着冷媒，再找水滴",
+        "text": "大金点是我们给一小份冷媒做的标记。它先在屋里接过热量，再来到压缩机。压缩机需要用电，接着，冷媒就能在外面把热量交出去。走过最后一个小关口，它又回来准备接热量。看看下面的小账本：屋外收到的热，不仅有屋里搬出来的，还有机器用电带来的那一份。 再靠近屋里的机器。找一找，蓝色小管子里流的是什么？那是水。空气里本来就有我们看不见的水汽，遇到足够冷的盘管，可能变成小水滴，就像冷杯子外面会出现水珠。试试只送风：风还可以动，但搬热的这条循环没有开启。我们在屏幕里看看就好，真正的空调要请大人和专业人员照看。",
+        "cue": "缓慢播放一圈，在吸热、压缩、放热和节流处停顿；最后看3+1=4示意，不把份数说成实测值。 切靠近室内机，比较较湿与较干；再选只送风，保留进度比较冷媒和能量条。"
       },
       {
-        "label": "跟着金点走一圈",
-        "text": "大金点是我们给一小份冷媒做的标记。它先在屋里接过热量，再来到压缩机。压缩机需要用电，接着，冷媒就能在外面把热量交出去。走过最后一个小关口，它又回来准备接热量。看看下面的小账本：屋外收到的热，不仅有屋里搬出来的，还有机器用电带来的那一份。",
-        "cue": "缓慢播放一圈，在吸热、压缩、放热和节流处停顿；最后看3+1=4示意，不把份数说成实测值。"
+        "label": "食物慢慢变凉",
+        "text": "这里有食物，也有围着食物的空气。开始观察吧：空气先凉下来，食物的里面要慢一些。我们先停一停，找找两条线，哪一条变化得快？再选一次开门的情景。外面较暖的空气进来了，冰箱又要多搬一些热。把门关好后，它还得慢慢工作。",
+        "cue": "播放关门情景后暂停，切换开门情景，观察两条温度线。"
       },
       {
-        "label": "水滴不是从管里漏出的",
-        "text": "再靠近屋里的机器。找一找，蓝色小管子里流的是什么？那是水。空气里本来就有我们看不见的水汽，遇到足够冷的盘管，可能变成小水滴，就像冷杯子外面会出现水珠。试试只送风：风还可以动，但搬热的这条循环没有开启。我们在屏幕里看看就好，真正的空调要请大人和专业人员照看。",
-        "cue": "切靠近室内机，比较较湿与较干；再选只送风，保留进度比较冷媒和能量条。"
+        "label": "把热端也画进房间",
+        "text": "现在看看最后一幅图。我们先画一条线，把整个房间圈起来。热从屋里搬到屋外，屋里就能少一些热。可是，如果把热端也放回屋里呢？刚搬走的热又回来了，机器用电带来的那一份也留在屋里。所以冰箱门边暂时凉凉的，不等于整间屋子一直变凉。两台机器都在搬热，重要的是，热最后被送到了哪里。",
+        "cue": "切到热留在哪里；在相同输入功下切换室外与同房间热端。"
       }
     ]
   },
   "en": {
-    "question": "When an air conditioner cools a room, has its heat disappeared? Why does the outdoor unit blow warm air?",
-    "observe": "Start with the room and outdoors, then reveal the refrigerant circuit. Scrub to follow the large gold dot through four components. Compare the energy bars in fan-only mode, then move closer to the indoor unit and compare humidity conditions at the blue drain.",
+    "question": "Both devices move heat. Why can an air conditioner cool a room, while an open refrigerator cannot cool that same room continuously?",
+    "observe": "Follow the air-conditioning circuit, comparing cooling, fan-only and condensate. Switch to the refrigerator and compare air and food temperatures with a closed door and a midway opening. Chapters pause and retain device progress. Finally move a hypothetical device’s hot side and read the net energy balance inside the same room boundary.",
     "academic": [
       {
-        "title": "Separate paths for separate fluids",
-        "body": "A typical split vapor-compression system has an indoor evaporator, outdoor compressor and condenser, and an expansion device. Fans promote heat exchange at coil surfaces. Tube walls separate air from refrigerant, so they do not mix in normal operation. Refrigerant pipes are not fresh-air ducts; ventilation needs a separate air path. The transparent casing is an observation view, not a way to operate equipment."
+        "title": "A sealed circuit: pressure, phase change and work",
+        "body": "A typical split vapor-compression system has an indoor evaporator, outdoor compressor and condenser, and an expansion device. Fans promote heat exchange at coil surfaces. Tube walls separate air from refrigerant, so they do not mix in normal operation. Refrigerant pipes are not fresh-air ducts; ventilation needs a separate air path. The transparent casing is an observation view, not a way to operate equipment. Low-pressure refrigerant absorbs heat and evaporates indoors. Compressor work raises the vapor to a state that can reject heat and condense at a temperature above outdoor air. Throttling reduces pressure and flashes part of the liquid, returning a cooler mixture to the evaporator. Throttling is approximately isenthalpic; its temperature change depends on fluid properties. A steady cycle obeys Qout = Qin + W. The illustrated 3, 1 and 4 are consistent arbitrary teaching units, exclude fans and auxiliaries, and cannot establish a product’s efficiency."
       },
       {
-        "title": "Work sustains net heat transfer from cooler to warmer surroundings",
-        "body": "Low-pressure refrigerant absorbs heat and evaporates indoors. Compressor work raises the vapor to a state that can reject heat and condense at a temperature above outdoor air. Throttling reduces pressure and flashes part of the liquid, returning a cooler mixture to the evaporator. Throttling is approximately isenthalpic; its temperature change depends on fluid properties. A steady cycle obeys Qout = Qin + W. The illustrated 3, 1 and 4 are consistent arbitrary teaching units, exclude fans and auxiliaries, and cannot establish a product’s efficiency."
+        "title": "Condensate, comfort and temperature: heat loads and controls",
+        "body": "Water vapor can condense when the coil surface is below the contacting air’s dew point. Moving air alone may improve comfort by increasing convective and evaporative heat loss from a person, but is not the same as removing room heat; fan electricity ultimately becomes heat. Actual room temperature depends on building heat capacity, outdoor heat transfer, sunlight, internal gains and system control. A refrigerant circuit time is not a room-cooling time. Wall conduction, door air exchange and warm food increase the load. Air and lining respond before the food interior, whose cooling also depends on mass, shape, conduction and convection. Two lumped heat capacities and separate start/stop thresholds illustrate delay here. A fixed-speed compressor stops after sufficient cooling and restarts as temperature rises; variable-speed designs can adjust capacity. The curves show trends, not when a particular food reaches safe storage conditions."
       },
       {
-        "title": "Water droplets, comfort and room temperature differ",
-        "body": "Water vapor can condense when the coil surface is below the contacting air’s dew point. Moving air alone may improve comfort by increasing convective and evaporative heat loss from a person, but is not the same as removing room heat; fan electricity ultimately becomes heat. Actual room temperature depends on building heat capacity, outdoor heat transfer, sunlight, internal gains and system control. A refrigerant circuit time is not a room-cooling time."
+        "title": "Name the boundary before comparing balances",
+        "body": "The shared reference retains cold-side heat, work input and hot-side heat. Air-conditioning uses arbitrary shares, the refrigerator uses cumulative kJ, and chapter three is an independent hypothetical cycle; these do not rank appliance efficiency. With both an open cold side and hot side in the same room, cyclic uptake and return cancel, leaving work as net input. Transient closed-door cooling also changes cabinet-air and food energy. Subtract room-to-cabinet leakage from condenser heat to obtain net room exchange. A fixed room temperature is not a prediction of actual room temperature."
       }
     ],
     "misconception": "An air conditioner does not store cold air to pour out or make indoor heat disappear. Condensate comes from air’s water vapor, not normal refrigerant leakage. Fan-only operation is not active refrigeration.",
-    "boundary": "Only a conceptual cooling-direction cycle is shown. Pipe layout, phase fractions, timing and energy shares are teaching choices. Pressure is relative, not measured data for a particular refrigerant. Room temperature, condensate quantity and thermostat control are not calculated. Heat-pump heating needs reversing and control arrangements, not simply a backward-running compressor.",
+    "boundary": "Only a conceptual cooling-direction cycle is shown. Pipe layout, phase fractions, timing and energy shares are teaching choices. Pressure is relative, not measured data for a particular refrigerant. The air-conditioning model does not calculate room temperature, condensate quantity or thermostat control. Heat-pump heating needs reversing and control arrangements, not simply a backward-running compressor. The refrigerator separately models two heat capacities, door load and thermostat control on a compressed clock; it does not provide food-safety guidance. The room-boundary experiment does not simulate airflow or room temperature.",
     "narration": [
       {
-        "label": "Where did the heat go?",
-        "text": "On a hot day, an air conditioner can slowly make a room cooler. Has the heat simply vanished? Let us look at the room and the outdoors together. There is a machine inside and another one outside, joined by pipes. With help from electricity, the system moves heat out of the room. The outdoor unit releases that heat, so its air can feel warm.",
-        "cue": "Use the room-and-outdoors view; identify the indoor unit, wall and outdoor unit. Explore on screen only."
+        "label": "Where heat and refrigerant travel",
+        "text": "On a hot day, an air conditioner can slowly make a room cooler. Has the heat simply vanished? Let us look at the room and the outdoors together. There is a machine inside and another one outside, joined by pipes. With help from electricity, the system moves heat out of the room. The outdoor unit releases that heat, so its air can feel warm. Now make the casing transparent and find the copper-colored pipes. A material called refrigerant travels inside them to help move heat. It stays in sealed pipes instead of blowing onto our faces. Room air passes over a cooler coil and gives up some heat. A fan then sends that cooler air back into the room.",
+        "cue": "Use the room-and-outdoors view; identify the indoor unit, wall and outdoor unit. Explore on screen only. Reveal the circuit and advance to 12%; distinguish refrigerant pipes from indoor air lines."
       },
       {
-        "label": "Two different paths",
-        "text": "Now make the casing transparent and find the copper-colored pipes. A material called refrigerant travels inside them to help move heat. It stays in sealed pipes instead of blowing onto our faces. Room air passes over a cooler coil and gives up some heat. A fan then sends that cooler air back into the room.",
-        "cue": "Reveal the circuit and advance to 12%; distinguish refrigerant pipes from indoor air lines."
+        "label": "Follow refrigerant, then find the water",
+        "text": "Our large gold dot marks one little parcel of refrigerant. It picks up heat indoors, then reaches the compressor. The compressor needs electricity. Next, the refrigerant can give up heat outdoors. After one more small gate, it returns to collect heat again. Look at the energy picture: the outdoors receives heat from the room, plus an extra share from the work used to run the cycle. Move closer to the indoor machine. Can you find water at the blue drain? The air already contains invisible water vapor. When it meets a cold enough coil, some can turn into little drops, like beads on the outside of a cold cup. Now try fan-only mode. Air can still move, but the heat-moving cycle is off. We can explore safely on screen and leave real equipment to adults and trained helpers.",
+        "cue": "Play one cycle slowly, pausing at absorption, compression, rejection and expansion. Describe 3+1=4 as an example, not a measurement. Enlarge the indoor unit and compare humid and dry conditions. Switch to fan-only without changing progress; compare the circuit and energy bars."
       },
       {
-        "label": "Follow the gold dot",
-        "text": "Our large gold dot marks one little parcel of refrigerant. It picks up heat indoors, then reaches the compressor. The compressor needs electricity. Next, the refrigerant can give up heat outdoors. After one more small gate, it returns to collect heat again. Look at the energy picture: the outdoors receives heat from the room, plus an extra share from the work used to run the cycle.",
-        "cue": "Play one cycle slowly, pausing at absorption, compression, rejection and expansion. Describe 3+1=4 as an example, not a measurement."
+        "label": "Food cools slowly",
+        "text": "There is food here, and air all around it. Start watching. The air cools first, but the middle of the food takes longer. Pause and find the two lines. Which changes faster? Now choose the scene with the opening door. Warmer room air comes in, giving the refrigerator more heat to carry away. After the door closes, cooling still takes time.",
+        "cue": "Play and pause the closed-door scene, then compare both lines during the opening-door scene."
       },
       {
-        "label": "Where did the water come from?",
-        "text": "Move closer to the indoor machine. Can you find water at the blue drain? The air already contains invisible water vapor. When it meets a cold enough coil, some can turn into little drops, like beads on the outside of a cold cup. Now try fan-only mode. Air can still move, but the heat-moving cycle is off. We can explore safely on screen and leave real equipment to adults and trained helpers.",
-        "cue": "Enlarge the indoor unit and compare humid and dry conditions. Switch to fan-only without changing progress; compare the circuit and energy bars."
+        "label": "Put the hot side inside too",
+        "text": "Draw a line around the whole room. Sending heat outdoors can leave less heat inside. But what if the hot side is also inside? The heat just removed comes back, and the work used by the machine stays too. A refrigerator doorway can feel cool briefly without cooling the whole room continuously. Both machines move heat. What matters is where the heat ends up.",
+        "cue": "Choose Where heat stays; keep work fixed while moving the hot side between outdoors and the same room."
       }
     ]
   },
@@ -101,6 +101,18 @@
     {
       "title": "Natural Resources Canada · Heating and cooling with a heat pump",
       "url": "https://natural-resources.canada.ca/energy-efficiency/energy-star/heating-cooling-heat-pump"
+    },
+    {
+      "title": "US Department of Energy · Consumer Guide to Kitchen Appliances",
+      "url": "https://www.energy.gov/sites/default/files/2021-08/ES-KitchenAppliances_080221.pdf"
+    },
+    {
+      "title": "Danfoss · Compressors and heat exchangers",
+      "url": "https://www.danfoss.com/en-us/service-and-support/case-stories/dcs/walk-in-coolers-compressors-and-heat-exchangers/"
+    },
+    {
+      "title": "Danfoss · Temperature controls",
+      "url": "https://www.danfoss.com/en-us/service-and-support/case-stories/dcs/walk-in-coolers-temperature-controls/"
     }
   ]
 }

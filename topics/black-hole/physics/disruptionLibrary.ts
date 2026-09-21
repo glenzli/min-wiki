@@ -3,8 +3,8 @@ import type { DisruptionResponse } from './stellarDisruption.ts';
 import { StellarDisruption } from './stellarDisruption.ts';
 import { SCENARIOS } from './encounter.ts';
 
-// Owns preparation and residency. Two fixed profiles, ~234 MB of trajectory and heating
-// storage at most; requests share work and never block the animation/UI thread.
+// Owns preparation and residency. Requests share one worker and never block the UI.
+// The bounded display profiles are also warmed in the background by the scene.
 export class DisruptionLibrary {
   pending!: Map<string, PendingDisruption>;
   models!: Map<string, StellarDisruption>;

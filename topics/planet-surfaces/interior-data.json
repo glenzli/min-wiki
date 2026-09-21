@@ -750,5 +750,307 @@
         "url": "https://arxiv.org/abs/1609.03909"
       }
     ]
+  },
+  "saturn": {
+    "summary": {
+      "zh": "从外层到中心的教学分区；层厚不按比例。",
+      "en": "Teaching regions from exterior to center; thicknesses are not to scale."
+    },
+    "evidence": {
+      "zh": "土星环的波动可用于约束内部模型，支持向外逐渐混合的核心。图中的色带是便于观察的分区，不是物质突然分开的硬壳；局部流场并未被直接观测。",
+      "en": "Ring waves constrain Saturn’s interior and support a diffuse, gradually mixed core. Color bands mark teaching regions, not abruptly separated hard shells; local flow has not been directly observed."
+    },
+    "sources": [
+      {
+        "title": "Mankovich & Fuller (2021) · A diffuse core in Saturn revealed by ring seismology",
+        "url": "https://arxiv.org/abs/2104.13385"
+      },
+      {
+        "title": "NASA facts",
+        "url": "https://science.nasa.gov/saturn/facts/"
+      },
+      {
+        "title": "NASA Solar System Exploration",
+        "url": "https://science.nasa.gov/solar-system/"
+      }
+    ],
+    "layers": [
+      {
+        "id": "atmosphere",
+        "outer": 1,
+        "inner": 0.9,
+        "color": "#d7c297",
+        "name": {
+          "zh": "云层与大气",
+          "en": "Clouds and atmosphere"
+        },
+        "kids": {
+          "zh": "这里看到的是大气，没有坚实地面。",
+          "en": "The visible exterior is atmosphere, without solid ground."
+        },
+        "science": {
+          "zh": "这里看到的是大气，没有坚实地面。 图中分界和尺寸为教学示意。",
+          "en": "The visible exterior is atmosphere, without solid ground. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": true
+      },
+      {
+        "id": "hydrogen",
+        "outer": 0.9,
+        "inner": 0.72,
+        "color": "#bba174",
+        "name": {
+          "zh": "逐渐稠密的氢氦",
+          "en": "Increasingly dense hydrogen and helium"
+        },
+        "kids": {
+          "zh": "越往深处，压力越大，物质逐渐改变性质。",
+          "en": "Pressure rises inward and material properties change gradually."
+        },
+        "science": {
+          "zh": "越往深处，压力越大，物质逐渐改变性质。 图中分界和尺寸为教学示意。",
+          "en": "Pressure rises inward and material properties change gradually. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": true
+      },
+      {
+        "id": "metallic",
+        "outer": 0.72,
+        "inner": 0.6,
+        "color": "#9a8469",
+        "name": {
+          "zh": "富金属氢区域",
+          "en": "Metallic-hydrogen-rich region"
+        },
+        "kids": {
+          "zh": "极高压力下，氢能像金属一样导电。",
+          "en": "Under immense pressure hydrogen can conduct electricity like a metal."
+        },
+        "science": {
+          "zh": "极高压力下，氢能像金属一样导电。 图中分界和尺寸为教学示意。",
+          "en": "Under immense pressure hydrogen can conduct electricity like a metal. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": true
+      },
+      {
+        "id": "mixed-core",
+        "outer": 0.6,
+        "inner": 0,
+        "color": "#766c61",
+        "name": {
+          "zh": "重元素混合的中心",
+          "en": "Mixed heavy-element center"
+        },
+        "kids": {
+          "zh": "中心可能是广泛混合的区域，不是已知边界的硬球。",
+          "en": "The center may be an extended mixed region, not a hard sphere with a known edge."
+        },
+        "science": {
+          "zh": "环震学支持延伸到约 60% 土星半径的弥散核心过渡区，这是受模型假设影响的解释，并非精确测量到的固体边缘。图中色彩渐变用于提示混合。",
+          "en": "Ring seismology supports a diffuse core transition extending to roughly 60% of Saturn’s radius. This is model-dependent, not a precisely measured solid edge; blended colors indicate mixing."
+        },
+        "uncertain": true
+      }
+    ]
+  },
+  "uranus": {
+    "summary": {
+      "zh": "从外层到中心的教学分区；层厚不按比例。",
+      "en": "Teaching regions from exterior to center; thicknesses are not to scale."
+    },
+    "evidence": {
+      "zh": "引力与磁场等观测约束内部。2025 年模型仍允许富水或富岩石结构，不能把“冰巨星”理解为已经探明的纯冰层；混合区只显示候选纹理。",
+      "en": "Gravity and magnetic observations constrain the interior. A 2025 model study still allows water-rich or rock-rich structures: “ice giant” does not establish pure ice shells. Mixed regions retain candidate textures."
+    },
+    "sources": [
+      {
+        "title": "Morf & Helled (2025) · Icy or rocky? Convective or stable?",
+        "url": "https://arxiv.org/abs/2510.00175"
+      },
+      {
+        "title": "NASA facts",
+        "url": "https://science.nasa.gov/uranus/facts/"
+      },
+      {
+        "title": "NASA Solar System Exploration",
+        "url": "https://science.nasa.gov/solar-system/"
+      }
+    ],
+    "layers": [
+      {
+        "id": "atmosphere",
+        "outer": 1,
+        "inner": 0.88,
+        "color": "#a2ccd0",
+        "name": {
+          "zh": "云层与大气",
+          "en": "Clouds and atmosphere"
+        },
+        "kids": {
+          "zh": "甲烷影响颜色，但这里没有冰地面。",
+          "en": "Methane affects the color; there is no icy ground here."
+        },
+        "science": {
+          "zh": "甲烷影响颜色，但这里没有冰地面。 图中分界和尺寸为教学示意。",
+          "en": "Methane affects the color; there is no icy ground here. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": true
+      },
+      {
+        "id": "envelope",
+        "outer": 0.88,
+        "inner": 0.65,
+        "color": "#7eb5bd",
+        "name": {
+          "zh": "稠密外层",
+          "en": "Dense envelope"
+        },
+        "kids": {
+          "zh": "压力和温度向内增加。",
+          "en": "Pressure and temperature increase inward."
+        },
+        "science": {
+          "zh": "压力和温度向内增加。 图中分界和尺寸为教学示意。",
+          "en": "Pressure and temperature increase inward. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": true
+      },
+      {
+        "id": "mixture",
+        "outer": 0.65,
+        "inner": 0.28,
+        "color": "#568d9e",
+        "name": {
+          "zh": "高压混合内部",
+          "en": "High-pressure mixed interior"
+        },
+        "kids": {
+          "zh": "水、氨、甲烷和岩石成分的比例仍有争议。",
+          "en": "The proportions of water, ammonia, methane and rocky material remain uncertain."
+        },
+        "science": {
+          "zh": "水、氨、甲烷和岩石成分的比例仍有争议。 图中分界和尺寸为教学示意。",
+          "en": "The proportions of water, ammonia, methane and rocky material remain uncertain. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": true
+      },
+      {
+        "id": "center",
+        "outer": 0.28,
+        "inner": 0,
+        "color": "#777f84",
+        "name": {
+          "zh": "候选中心区域",
+          "en": "Candidate central region"
+        },
+        "kids": {
+          "zh": "这里表示一种内部解释，不是被拍到的核心。",
+          "en": "This illustrates one interpretation, not a photographed core."
+        },
+        "science": {
+          "zh": "这里表示一种内部解释，不是被拍到的核心。 图中分界和尺寸为教学示意。",
+          "en": "This illustrates one interpretation, not a photographed core. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": true
+      }
+    ]
+  },
+  "moon": {
+    "summary": {
+      "zh": "从外层到中心的教学分区；层厚不按比例。",
+      "en": "Teaching regions from exterior to center; thicknesses are not to scale."
+    },
+    "evidence": {
+      "zh": "剖面依据探测资料与内部模型，边界和颜色不是透视照片。",
+      "en": "Cutaways use spacecraft constraints and interior models; boundaries and colors are not a photograph."
+    },
+    "sources": [
+      {
+        "title": "NASA facts",
+        "url": "https://science.nasa.gov/moon/facts/"
+      },
+      {
+        "title": "NASA Solar System Exploration",
+        "url": "https://science.nasa.gov/solar-system/"
+      }
+    ],
+    "layers": [
+      {
+        "id": "crust",
+        "outer": 1,
+        "inner": 0.94,
+        "color": "#b4afa6",
+        "name": {
+          "zh": "月壳",
+          "en": "Crust"
+        },
+        "kids": {
+          "zh": "月壤下面是岩石月壳。",
+          "en": "Rocky crust lies beneath the regolith."
+        },
+        "science": {
+          "zh": "月壤下面是岩石月壳。 图中分界和尺寸为教学示意。",
+          "en": "Rocky crust lies beneath the regolith. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": false
+      },
+      {
+        "id": "mantle",
+        "outer": 0.94,
+        "inner": 0.24,
+        "color": "#a68c72",
+        "name": {
+          "zh": "岩石月幔",
+          "en": "Rocky mantle"
+        },
+        "kids": {
+          "zh": "月球大部分内部是岩石。",
+          "en": "Rock makes up most of the Moon’s interior."
+        },
+        "science": {
+          "zh": "月球大部分内部是岩石。 图中分界和尺寸为教学示意。",
+          "en": "Rock makes up most of the Moon’s interior. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": false
+      },
+      {
+        "id": "outer-core",
+        "outer": 0.24,
+        "inner": 0.15,
+        "color": "#b99263",
+        "name": {
+          "zh": "液态外核",
+          "en": "Liquid outer core"
+        },
+        "kids": {
+          "zh": "小小的富铁核心有液态部分。",
+          "en": "The small iron-rich core includes a liquid region."
+        },
+        "science": {
+          "zh": "小小的富铁核心有液态部分。 图中分界和尺寸为教学示意。",
+          "en": "The small iron-rich core includes a liquid region. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": false
+      },
+      {
+        "id": "inner-core",
+        "outer": 0.15,
+        "inner": 0,
+        "color": "#cfb180",
+        "name": {
+          "zh": "固态内核",
+          "en": "Solid inner core"
+        },
+        "kids": {
+          "zh": "核心深处还有固态部分。",
+          "en": "The deepest core also contains solid material."
+        },
+        "science": {
+          "zh": "核心深处还有固态部分。 图中分界和尺寸为教学示意。",
+          "en": "The deepest core also contains solid material. Illustrated boundaries and sizes are schematic."
+        },
+        "uncertain": false
+      }
+    ]
   }
 }

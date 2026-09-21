@@ -1,0 +1,629 @@
+{
+  "sun": {
+    "name": {
+      "zh": "太阳",
+      "en": "Sun"
+    },
+    "title": {
+      "zh": "会变化的恒星",
+      "en": "A changing star"
+    },
+    "description": {
+      "zh": "亮斑在翻涌，黑子较暗，日珥沿弧线伸出。太阳的能量来自深处的核聚变。",
+      "en": "Bright granules evolve, sunspots are darker, and prominences arch above the limb. Nuclear fusion deep inside powers the Sun."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "远处的恒星",
+          "en": "A star in space"
+        },
+        "text": {
+          "zh": "太阳自己发光，周围的行星反射它的光。",
+          "en": "The Sun emits its own light; planets reflect it."
+        }
+      },
+      {
+        "title": {
+          "zh": "靠近日冕",
+          "en": "Approaching the corona"
+        },
+        "text": {
+          "zh": "稀薄的外层大气向太空伸展。日珥是受磁场约束的等离子体。",
+          "en": "The thin outer atmosphere extends into space. Magnetic fields support the plasma in prominences."
+        }
+      },
+      {
+        "title": {
+          "zh": "光球的纹理",
+          "en": "Photospheric texture"
+        },
+        "text": {
+          "zh": "明暗颗粒与对流有关；黑子比周围冷，却依然非常热。",
+          "en": "Granulation is associated with convection. Sunspots are cooler than their surroundings but still extremely hot."
+        }
+      },
+      {
+        "title": {
+          "zh": "在光球上方观察",
+          "en": "Above the photosphere"
+        },
+        "text": {
+          "zh": "这里没有坚实地面。我们停在可见光主要发出的光球上方。",
+          "en": "There is no solid ground. We stop above the photosphere, where most visible sunlight escapes."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/sun/facts/"
+  },
+  "mercury": {
+    "name": {
+      "zh": "水星",
+      "en": "Mercury"
+    },
+    "title": {
+      "zh": "没有蓝天的撞击世界",
+      "en": "A cratered world without a blue sky"
+    },
+    "description": {
+      "zh": "靠近灰色岩石，寻找圆形撞击坑的边缘。",
+      "en": "Approach gray rock and look for the raised rims of impact craters."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "灰色小行星球",
+          "en": "A small gray planet"
+        },
+        "text": {
+          "zh": "我们从太空靠近水星。",
+          "en": "We approach Mercury from space."
+        }
+      },
+      {
+        "title": {
+          "zh": "地平线弯曲",
+          "en": "A curved horizon"
+        },
+        "text": {
+          "zh": "几乎没有大气散射出蓝天。",
+          "en": "There is almost no atmosphere to scatter a blue sky."
+        }
+      },
+      {
+        "title": {
+          "zh": "坑洼逐渐清晰",
+          "en": "Craters come into view"
+        },
+        "text": {
+          "zh": "撞击坑的边缘隆起，坑里有阴影。",
+          "en": "Impact rims rise above the ground and cast shadows."
+        }
+      },
+      {
+        "title": {
+          "zh": "岩石与碎屑",
+          "en": "Rock and debris"
+        },
+        "text": {
+          "zh": "代表性地貌里有岩石与碎屑；这里不是某个实测着陆点。",
+          "en": "This representative terrain has rock and debris; it is not a surveyed landing site."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/mercury/facts/"
+  },
+  "venus": {
+    "name": {
+      "zh": "金星",
+      "en": "Venus"
+    },
+    "title": {
+      "zh": "穿过云，才看见岩石",
+      "en": "Rock beneath the clouds"
+    },
+    "description": {
+      "zh": "整球的亮色来自厚云，云下面仍有岩石平原和火山地形。",
+      "en": "Bright clouds cover the globe; beneath them are rocky plains and volcanic terrain."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "被云包住的星球",
+          "en": "A cloud-covered planet"
+        },
+        "text": {
+          "zh": "可见光下，厚云遮住地面。",
+          "en": "Visible light reveals clouds that hide the ground."
+        }
+      },
+      {
+        "title": {
+          "zh": "进入厚云",
+          "en": "Entering thick clouds"
+        },
+        "text": {
+          "zh": "雾越来越浓，远处难以看清。",
+          "en": "Haze thickens and limits the view."
+        }
+      },
+      {
+        "title": {
+          "zh": "昏黄的云下世界",
+          "en": "A dim world below"
+        },
+        "text": {
+          "zh": "穿过云层后，仍有浓厚的大气。",
+          "en": "Below the clouds, a dense atmosphere remains."
+        }
+      },
+      {
+        "title": {
+          "zh": "靠近岩石平原",
+          "en": "Above rocky plains"
+        },
+        "text": {
+          "zh": "地貌参考雷达与着陆影像重建，并非真实下降录像。",
+          "en": "Terrain is reconstructed from radar and landing evidence, not a filmed descent."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/venus/venus-facts/"
+  },
+  "earth": {
+    "name": {
+      "zh": "地球",
+      "en": "Earth"
+    },
+    "title": {
+      "zh": "流动的云与不同的地貌",
+      "en": "Moving clouds over different landscapes"
+    },
+    "description": {
+      "zh": "云系随大气运动和变化；海洋与大陆不是跟着云一起移动的。",
+      "en": "Cloud systems move and evolve with the atmosphere while oceans and continents remain beneath them."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "蓝色星球",
+          "en": "A blue world"
+        },
+        "text": {
+          "zh": "从太空能分清大陆、海洋和白云。",
+          "en": "From space we can distinguish land, oceans and clouds."
+        }
+      },
+      {
+        "title": {
+          "zh": "靠近大气边缘",
+          "en": "The atmospheric limb"
+        },
+        "text": {
+          "zh": "大气边缘出现薄薄的蓝色光晕。",
+          "en": "A thin blue glow appears along the atmospheric limb."
+        }
+      },
+      {
+        "title": {
+          "zh": "穿过流动的云",
+          "en": "Through moving clouds"
+        },
+        "text": {
+          "zh": "云随风移动，遮住又露出下面的景色。",
+          "en": "Winds carry clouds across the landscape below."
+        }
+      },
+      {
+        "title": {
+          "zh": "选定区域的近景",
+          "en": "The selected region up close"
+        },
+        "text": {
+          "zh": "沿同一观察地点接近地面，沙漠与冰盖各有不同的细节。",
+          "en": "Approach the same selected location: desert and ice-sheet sites have different details."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/earth/facts/"
+  },
+  "mars": {
+    "name": {
+      "zh": "火星",
+      "en": "Mars"
+    },
+    "title": {
+      "zh": "红色沙尘中的岩石世界",
+      "en": "A rocky world in reddish dust"
+    },
+    "description": {
+      "zh": "寻找台地、沙纹和岩块。红色并不是燃烧的火。",
+      "en": "Look for mesas, ripples and rocks. The reddish color is not fire."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "红色星球",
+          "en": "A reddish planet"
+        },
+        "text": {
+          "zh": "火星有深浅不同的地表区域。",
+          "en": "Mars has light and dark surface regions."
+        }
+      },
+      {
+        "title": {
+          "zh": "稀薄的大气",
+          "en": "A thin atmosphere"
+        },
+        "text": {
+          "zh": "稀薄大气中的尘埃影响天空颜色。",
+          "en": "Dust in its thin atmosphere affects the sky color."
+        }
+      },
+      {
+        "title": {
+          "zh": "起伏的地形",
+          "en": "Uneven terrain"
+        },
+        "text": {
+          "zh": "代表性台地和低地逐渐展开。",
+          "en": "Representative mesas and lowlands come into view."
+        }
+      },
+      {
+        "title": {
+          "zh": "沙粒与岩块",
+          "en": "Sand and rock"
+        },
+        "text": {
+          "zh": "近景表现沙纹、层状岩石和碎块。",
+          "en": "The close view shows sand ripples, layered rock and fragments."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/mars/facts/"
+  },
+  "jupiter": {
+    "name": {
+      "zh": "木星",
+      "en": "Jupiter"
+    },
+    "title": {
+      "zh": "条纹和红斑都是大气",
+      "en": "Bands and storms in an atmosphere"
+    },
+    "description": {
+      "zh": "相邻云带有不同的流动，巨大旋涡持续转动；它们都不是大陆。",
+      "en": "Neighboring cloud bands have different flows and a large vortex circulates. These are not continents."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "条纹巨行星",
+          "en": "A banded giant"
+        },
+        "text": {
+          "zh": "条纹来自大气里的云带。",
+          "en": "The stripes are atmospheric cloud bands."
+        }
+      },
+      {
+        "title": {
+          "zh": "靠近风暴",
+          "en": "Approaching a storm"
+        },
+        "text": {
+          "zh": "云带沿不同方向流动，红斑是巨大风暴。",
+          "en": "Bands flow in different directions; the red spot is a giant storm."
+        }
+      },
+      {
+        "title": {
+          "zh": "进入云层",
+          "en": "Into the clouds"
+        },
+        "text": {
+          "zh": "眼前越来越多是云与雾。",
+          "en": "Clouds and haze increasingly fill the view."
+        }
+      },
+      {
+        "title": {
+          "zh": "更浓的大气",
+          "en": "A denser atmosphere"
+        },
+        "text": {
+          "zh": "没有可站立的地面。继续深入，压力和温度会越来越高。",
+          "en": "There is no ground to stand on. Pressure and temperature rise farther inward."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/jupiter/jupiter-facts/"
+  },
+  "saturn": {
+    "name": {
+      "zh": "土星",
+      "en": "Saturn"
+    },
+    "title": {
+      "zh": "环外有卫星，环内是巨行星",
+      "en": "Moons beyond rings around a giant"
+    },
+    "description": {
+      "zh": "云带围着星球，环在星球外面；卫星沿各自轨道绕行。",
+      "en": "Cloud bands encircle the planet, rings lie outside it, and moons follow their own orbits."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "带环的巨行星",
+          "en": "A ringed giant"
+        },
+        "text": {
+          "zh": "环由许多颗粒组成，不是坚固圆盘。",
+          "en": "Rings consist of many particles, not a solid disc."
+        }
+      },
+      {
+        "title": {
+          "zh": "离开环的远景",
+          "en": "Leaving the rings behind"
+        },
+        "text": {
+          "zh": "我们朝星球靠近，没有在环上着陆。",
+          "en": "We approach the planet without landing on the rings."
+        }
+      },
+      {
+        "title": {
+          "zh": "进入浅色云层",
+          "en": "Into pale clouds"
+        },
+        "text": {
+          "zh": "浅色云带逐渐充满视野。",
+          "en": "Pale cloud bands gradually fill the view."
+        }
+      },
+      {
+        "title": {
+          "zh": "云下更浓的流体",
+          "en": "Denser material below"
+        },
+        "text": {
+          "zh": "土星也没有岩石着陆面；深入只会遇到更高压力。",
+          "en": "Saturn has no rocky landing surface; going deeper leads to greater pressure."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/saturn/facts/"
+  },
+  "uranus": {
+    "name": {
+      "zh": "天王星",
+      "en": "Uranus"
+    },
+    "title": {
+      "zh": "侧身旋转的淡青色世界",
+      "en": "A pale cyan world on its side"
+    },
+    "description": {
+      "zh": "淡色外观下也有云和风；冰巨行星不是一颗裸露的冰球。",
+      "en": "Clouds and winds exist beneath its pale appearance. An ice giant is not an exposed ball of ice."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "淡青色的整球",
+          "en": "A pale cyan globe"
+        },
+        "text": {
+          "zh": "天王星的自转轴倾斜得很厉害。",
+          "en": "Uranus has an extreme axial tilt."
+        }
+      },
+      {
+        "title": {
+          "zh": "大气的边缘",
+          "en": "An atmospheric limb"
+        },
+        "text": {
+          "zh": "甲烷影响它的可见光颜色。",
+          "en": "Methane affects its visible color."
+        }
+      },
+      {
+        "title": {
+          "zh": "云纹与薄雾",
+          "en": "Cloud streaks and haze"
+        },
+        "text": {
+          "zh": "微弱云纹帮助我们发现大气的运动。",
+          "en": "Subtle streaks help reveal atmospheric motion."
+        }
+      },
+      {
+        "title": {
+          "zh": "深入大气",
+          "en": "Deeper atmosphere"
+        },
+        "text": {
+          "zh": "这里没有可踩的冰壳；深处材料的混合方式仍有不确定性。",
+          "en": "There is no icy crust to stand on; the mixture of deep materials remains uncertain."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/uranus/facts/"
+  },
+  "neptune": {
+    "name": {
+      "zh": "海王星",
+      "en": "Neptune"
+    },
+    "title": {
+      "zh": "蓝绿色大气中的风",
+      "en": "Winds in a blue-green atmosphere"
+    },
+    "description": {
+      "zh": "亮云随着大气运动；蓝色并不说明下面是可以看见的水海洋。",
+      "en": "Bright clouds move with the atmosphere. Blue color does not imply an exposed water ocean."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "远方的冰巨行星",
+          "en": "A distant ice giant"
+        },
+        "text": {
+          "zh": "颜色示意采用较淡的蓝绿色。",
+          "en": "The illustration uses a relatively pale blue-green color."
+        }
+      },
+      {
+        "title": {
+          "zh": "靠近亮云",
+          "en": "Approaching bright clouds"
+        },
+        "text": {
+          "zh": "亮云与较暗云层形成对比。",
+          "en": "Bright clouds contrast with darker layers."
+        }
+      },
+      {
+        "title": {
+          "zh": "云在身边流动",
+          "en": "Clouds flowing nearby"
+        },
+        "text": {
+          "zh": "云带运动被加快，方便观察。",
+          "en": "Cloud motion is accelerated for observation."
+        }
+      },
+      {
+        "title": {
+          "zh": "大气逐渐稠密",
+          "en": "Increasingly dense air"
+        },
+        "text": {
+          "zh": "没有海面或冰地面可着陆；内部需要依靠物理模型推断。",
+          "en": "There is no exposed sea or icy landing ground; interior structure is inferred from models."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/neptune/facts/"
+  },
+  "moon": {
+    "name": {
+      "zh": "月球",
+      "en": "Moon"
+    },
+    "title": {
+      "zh": "地球旁边的岩石卫星",
+      "en": "Earth’s rocky satellite"
+    },
+    "description": {
+      "zh": "月海是较暗的古老熔岩平原；这里的重点是卫星与地貌，月相可以另行探索。",
+      "en": "Maria are darker ancient lava plains. Here we explore the satellite and its terrain; phases have their own topic."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "地球的卫星",
+          "en": "Earth’s satellite"
+        },
+        "text": {
+          "zh": "月球绕地球运行，也随地球一起绕太阳。",
+          "en": "The Moon orbits Earth and accompanies it around the Sun."
+        }
+      },
+      {
+        "title": {
+          "zh": "没有蓝天",
+          "en": "No blue sky"
+        },
+        "text": {
+          "zh": "没有浓厚的大气挡住视线。",
+          "en": "No thick atmosphere obscures the view."
+        }
+      },
+      {
+        "title": {
+          "zh": "靠近撞击坑",
+          "en": "Approaching craters"
+        },
+        "text": {
+          "zh": "撞击坑与较暗平原形态不同。",
+          "en": "Impact craters differ from the darker plains."
+        }
+      },
+      {
+        "title": {
+          "zh": "月壤与岩石",
+          "en": "Regolith and rock"
+        },
+        "text": {
+          "zh": "近景是代表性撞击地貌，不是阿波罗着陆点复原。",
+          "en": "This is representative impact terrain, not an Apollo landing reconstruction."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/moon/facts/"
+  },
+  "titan": {
+    "name": {
+      "zh": "土卫六",
+      "en": "Titan"
+    },
+    "title": {
+      "zh": "雾下面有冰陆地与甲烷湖",
+      "en": "Icy land and methane lakes beneath haze"
+    },
+    "description": {
+      "zh": "这是一颗土星的卫星。湖里的液体主要是甲烷和乙烷，不是地球的水。",
+      "en": "This moon belongs to Saturn. Its lakes contain mainly methane and ethane, not liquid water."
+    },
+    "stages": [
+      {
+        "title": {
+          "zh": "土星的卫星",
+          "en": "A moon of Saturn"
+        },
+        "text": {
+          "zh": "浓雾遮住土卫六的地貌。",
+          "en": "Thick haze hides Titan’s terrain."
+        }
+      },
+      {
+        "title": {
+          "zh": "进入橙色雾霭",
+          "en": "Into orange haze"
+        },
+        "text": {
+          "zh": "大气使远处景物逐渐模糊。",
+          "en": "Atmosphere makes distant features increasingly hazy."
+        }
+      },
+      {
+        "title": {
+          "zh": "靠近极区",
+          "en": "Approaching a polar region"
+        },
+        "text": {
+          "zh": "极区有探测器发现的湖海。",
+          "en": "Spacecraft have detected lakes and seas in polar regions."
+        }
+      },
+      {
+        "title": {
+          "zh": "甲烷湖岸",
+          "en": "A methane lakeshore"
+        },
+        "text": {
+          "zh": "这里代表一处极区湖岸，不是惠更斯号着陆地点。",
+          "en": "This represents a polar lakeshore, not the Huygens landing site."
+        }
+      }
+    ],
+    "source": "https://science.nasa.gov/saturn/moons/titan/facts/"
+  }
+}

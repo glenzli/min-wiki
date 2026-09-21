@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "volcano-eruption",
   "zh": {
-    "question": "火山为什么有的流出熔岩，有的喷出灰云？安静的火山以后还会喷吗？",
-    "observe": "停在喷发时刻，依次选择熔岩流、喷泉和富灰爆发；保持方式不变再调供给。四个镜头保留同一时刻。推进到冷却看暗壳下的余热，再比较休眠与被认为熄灭的证据。",
+    "question": "为什么有的火山变成绿山，有的仍光秃秃，还有的山顶塌成了湖盆？",
+    "observe": "先选大室山式火山锥，进入“植物怎样回来”，观察冷却、岩缝积土和种子到达。在相同进度切换湿润、干旱、寒冷与厚灰覆盖，看看小苗在哪里长起来。再选火山湖，依次看岩浆撤出、支撑减弱、岩体下沉，最后才让水进入。陆地案例还可以进入“为什么会喷发”，改变岩层阻碍，比较岩浆能否到达地表。",
     "academic": [
       {
-        "title": "喷发方式与规模不能混成一个分数",
-        "body": "岩浆上升时围压下降，溶解的挥发组分可以出溶形成气泡，气泡也会膨胀。流变和气体逸出影响熔岩溢流、喷泉或碎裂；温度、成分、晶体、供浆与外来水同样重要，低黏度并不保证没有爆炸。VEI 主要依据爆炸性喷出物体积，并结合喷发柱等证据，不等于全部能量或危险程度，也不是熔岩流量的刻度。本页供给滑块只控制示意的物质多少与范围。"
+        "title": "从地下活动到喷发：贯通、气体与流变",
+        "body": "岩浆来自深部岩石的部分熔融。储存系统可包含不同深度的熔体、晶体和相连岩床；补给可改变过压，但浮力、围岩应力、构造张裂、脱气和冷却也影响岩脉传播。这里只演示一次补给驱动的情境：贯通后排出降低过压，未贯通则保留地下侵入体。条形指标没有真实单位，不能由此推算喷发时间或概率。 岩浆上升时围压下降，溶解的挥发组分可以出溶形成气泡，气泡也会膨胀。流变和气体逸出影响熔岩溢流、喷泉或碎裂；温度、成分、晶体、供浆与外来水同样重要，低黏度并不保证没有爆炸。VEI 主要依据爆炸性喷出物体积，并结合喷发柱等证据，不等于全部能量或危险程度，也不是熔岩流量的刻度。本页补给与岩层阻碍共同决定示意岩脉是否贯通地表；只有贯通后才开始喷出物的独立演化。"
       },
       {
-        "title": "材料的去向与山体的长期形状",
-        "body": "火山灰是细碎岩石、矿物和火山玻璃，不是燃烧后的灰烬。较粗碎块可沿抛物线附近的轨迹落下，细灰受气流携带；真实输运还受粒径、风场、浮力和沉降影响。熔岩表面先冷却结壳，内部仍可保留大量热。多次熔岩与碎屑堆积塑造山体，盾状、成层火山和塌陷破火山口不对应一次喷发的弱、中、强；盾状火山也会有爆炸性喷发，破火山口也不一定靠猛烈爆炸形成。"
+        "title": "不同地貌，来自不同的物质与历史",
+        "body": "较易流动的熔岩可多次铺展，形成宽缓的盾状火山；熔岩与碎屑共同累积，可构成成层火山。火山渣锥由喷口周围堆积的火山渣等碎屑建立，大室山还伴随山麓熔岩流。山形在喷发时已形成，并不是熄灭后才变出的形态；后续侵蚀、风化和植被覆盖继续修改它。大室山的草坡景观还与传统山烧管理有关。海底火山同样靠累积物质生长，但压力、冷却与岩浆和水相互作用会影响喷发产物。只有累积足够的部分海底火山会长成岛。 裸岩变绿还需要生态恢复：风化产物、外来尘土及有机物积累，种子或孢子到达，并有适宜水分、温度和基质。干旱、寒冷、土层薄、排水快，以及新的熔岩或厚灰覆盖等，都可延缓或中断恢复。植物并无统一到场顺序，也不必经过相同年数或最终成为森林。"
       },
       {
-        "title": "休眠是间歇，熄灭是需要证据的判断",
-        "body": "广义活火山包括当前喷发以及仍有潜力再次喷发的系统；休眠常指其中暂未喷发的时期。被认为熄灭，表示根据现有地质历史、构造和供浆背景，不再预期其喷发，并非对未来的绝对保证。各资料使用的术语和时间界线可能不同；不能仅凭安静多少年、植被或没有烟来判断。岩层年代、历史记录和地下活动线索须结合解释；一个旧喷口的活动终止，不排除火山区别处出现新喷口。"
+        "title": "湖泊、安静与活动潜力是不同的问题",
+        "body": "塌陷案例中，岩浆沿通道撤出会改变储存区压力和对上覆岩体的支撑；上方岩体自重仍在，失稳后可沿断裂下沉。裂隙和沉降发生在后来积水之前，地下不必先出现永久空洞，也并非每次喷发都会触发塌陷。 火山口和塌陷破火山口可以提供蓄水凹地；是否形成湖泊取决于水量平衡和渗透性等条件。火山湖装的是后来补给的水，熔岩湖装的是熔融岩石。有湖不代表火山已永久熄灭，Crater Lake 所在火山中心仍有未来喷发潜力。休眠常指喷发之间的间歇；被认为熄灭则需要结合地质年代、构造和供浆背景，判断也可能修订。草坡、湖水、没有烟或某个固定年数都不能代替这些证据，旧喷口不再活动也不排除火山区别处产生新喷口。"
       }
     ],
-    "misconception": "“活火山”不等于一直喷，“休眠”不等于已熄灭；喷得亮、喷得高，也不是判断全部危险的尺子。",
-    "boundary": "这是相对条件与证据的教学比较，时间、形状与尺度经过简化，不预测实际喷发、灰云或安全距离。",
+    "misconception": "这些案例没有共同的“喷发、死亡、成湖”倒计时。长草和积水不能证明火山已熄灭，海底火山也不一定最终成岛。",
+    "boundary": "这些是选择了特定条件的概念案例，不是实测重建或危险预测。地貌故事和一次喷发各有进度；示意堆积、侵蚀、植被和水量平衡没有统一真实时标。",
     "narration": [
       {
-        "label": "山下面有什么",
-        "text": "看到火山喷出红亮的东西，你会不会以为山下面点着一堆火？其实那是很热的岩浆，里面有熔化的岩石成分，也可能有晶体和气体。它不是燃烧的木柴。我们从剖面开始，看看地下的岩浆，怎样沿着通道向上移动。",
-        "cue": "停在地下剖面，指向通道。"
+        "label": "选择一座火山",
+        "text": "火山有很多模样。宽宽的山、圆圆的小山、藏在海里的大山，甚至山上的湖，都可能留下火山活动的故事。先选一座，把剖面打开。我们要跟着岩浆，看看它来到地面后去了哪里。",
+        "cue": "逐一展示五张案例卡，进入大室山式火山渣锥并打开剖面。"
       },
       {
-        "label": "气泡长大了",
-        "text": "当岩浆来到更靠近地面的地方，周围压着它的力量常常变小，里面的一些气体就会形成气泡，气泡还会膨胀。有时气体比较容易出去，有时却没那么顺利。先慢慢推进，看看气泡和岩浆往哪里走，再猜猜改变条件会发生什么。",
-        "cue": "推进减压与气泡阶段，留三秒预测。"
+        "label": "喷出的东西留下来了",
+        "text": "先往地下看：新的岩浆补进来，周围岩石受到挤压。岩浆沿裂缝往上走，里面的气泡也会变大。走到地面，才会喷出熔岩和碎屑；有时候，它会停在地下。试着增大岩层阻碍，再看一次。喷出来的东西落下、冷却，一点一点留下山。盾状火山铺得宽，成层火山留下熔岩和碎屑，大室山式的小山则堆起许多火山渣。",
+        "cue": "从堆积初期推进到冷却；比较三种山形，再进入一次喷发并暂停。"
       },
       {
-        "label": "同样喷发，不同模样",
-        "text": "现在先把画面停住。点一下熔岩流，看红亮的岩石沿地面走；再点熔岩喷泉，看熔滴升起来，又落回去；最后看看灰云，它带着许多细细的岩石和玻璃碎片。这些可不是柴火烧完的灰！同一座火山也能换一种喷法。再调调供给，看看同一种喷法，是少一些，还是多一些。",
-        "cue": "固定喷发进度依次切换三个示例；选择灰柱镜头，再单独改变供给。"
+        "label": "海水和湖水加入故事",
+        "text": "再看看山里的湖。先不要放水！跟着橙色岩浆走：它去了别处，上面沉甸甸的岩石还在。支撑减弱，裂缝扩大，岩体沿着断裂往下沉，才留下低洼的盆地。雨水、融雪后来汇进来，才可能变成湖。水如果都漏走了，有个大坑也留不住湖。海里的火山则还有另一条故事：岩石在水下一次次堆起来，有些才长成岛。",
+        "cue": "火山湖依次停在13%、23%、36%、72%，追踪岩浆、裂隙、相同岩层和后来的水。"
       },
       {
-        "label": "安静的山，还有什么故事",
-        "text": "这两幅安静的山，看起来一样呢！一座可能在两次喷发之间休息，我们常叫它休眠。另一座要研究很多证据，才可能被认为以后不再喷发。科学家会读岩石留下的记录，也观察地下的小地震和地面的变化。再看看旁边的山形，它们是很久很久积起来或塌下来的。海底也有火山，有些还能慢慢长出海面。我们去下一页找找，一座小岛是怎样来的吧。",
-        "cue": "切换休眠与被认为已熄灭，强调山形相同而证据不同；观察三种地貌，接到海底火山专题。"
+        "label": "安静之后还有故事",
+        "text": "喷发停了，山没有消失。岩石慢慢凉下来，缝里留住细土和水，风和动物把种子带来。有种子就一定会绿吗？换成很干或很冷的环境，再看看小苗。新的厚灰还可能把它们盖住。大室山今天像一顶草帽，还受到人们长期山烧管理。长草、没有草，都不能单独告诉我们火山以后会不会喷。",
+        "cue": "进入“植物怎样回来”，观看冷却、岩缝积土、种子到达，再在末阶段比较四种环境；厚灰情境回看65%到80%的植被减少。"
       }
     ]
   },
   "en": {
-    "question": "Why do some eruptions make lava flows and others ash clouds? Can a quiet volcano erupt again?",
-    "observe": "Pause during eruption and compare flows, fountains and ash. Keep the style fixed while changing supply. All four views preserve the same moment. Advance to cooling, then compare the evidence for dormancy and an extinction assessment.",
+    "question": "Why do some volcanoes turn green, some stay bare, and some summits collapse into lake basins?",
+    "observe": "Choose the Omuroyama-style cone and open How plants return. Follow cooling, soil collecting in cracks and arriving seeds. At the same progress, compare wet, dry, cold and thick-ash conditions to see where seedlings establish. Then choose the volcanic lake: follow magma withdrawal, reduced support and sinking rock before water arrives. On land, also open Why does it erupt and change rock barriers to compare whether magma reaches the surface.",
     "academic": [
       {
-        "title": "Style and size are different questions",
-        "body": "As magma rises, falling pressure allows dissolved volatiles to exsolve and gas bubbles to expand. Flow properties and gas escape influence effusion, fountains and fragmentation. Temperature, composition, crystals, magma supply and external water also matter; low viscosity does not rule out explosions. VEI primarily uses explosive ejecta volume together with plume evidence. It is not a score for total energy or hazard, nor a measure of lava discharge. Our supply slider changes only illustrative output and extent."
+        "title": "From unrest to eruption: connection, gas and flow",
+        "body": "Magma originates through partial melting at depth. Storage may contain melt, crystals and connected sills at several levels. Recharge can change overpressure, while buoyancy, host-rock stress, tectonic extension, degassing and cooling also affect dike propagation. This is one recharge-driven episode: discharge reduces overpressure after connection, while a stalled intrusion remains underground. The bars have no physical units and cannot predict eruption timing or probability. As magma rises, falling pressure allows dissolved volatiles to exsolve and gas bubbles to expand. Flow properties and gas escape influence effusion, fountains and fragmentation. Temperature, composition, crystals, magma supply and external water also matter; low viscosity does not rule out explosions. VEI primarily uses explosive ejecta volume together with plume evidence. It is not a score for total energy or hazard, nor a measure of lava discharge. Supply and rock barriers jointly determine whether the illustrative dike reaches the surface. Only then does the separate evolution of surface products begin."
       },
       {
-        "title": "Materials travel; volcano shapes accumulate",
-        "body": "Volcanic ash is fine rock, mineral and volcanic-glass fragments, not combustion ash. Coarser clasts may follow approximately ballistic paths; fine ash is carried by gas and air. Real transport depends on particle size, winds, buoyancy and settling. Lava surfaces form crust while interiors can retain substantial heat. Repeated lava and fragment deposits build landforms. Shield volcanoes, composite volcanoes and collapse calderas are not weak, medium and strong settings for one eruption. Shields can erupt explosively, and caldera collapse need not accompany a major explosion."
+        "title": "Different landscapes record different materials and histories",
+        "body": "Repeated fluid lava flows can build a broad shield; lava and fragment deposits can form a composite volcano. Scoria cones grow from fragments deposited around a vent. Omuroyama also produced lava from its foot. Its cone formed during eruption, not as a consequence of extinction. Later weathering, erosion and vegetation modify the surface; traditional burning also maintains Omuroyama’s grassland. Submarine volcanoes likewise accumulate material, while pressure, cooling and magma–water interaction influence products. Only some accumulate enough material to become islands. Ecological recovery additionally needs suitable substrate, water and temperatures, along with arriving seeds or spores. Weathered grains, windblown dust and organic material accumulate. Drought, cold, thin soils, rapid drainage, new lava or thick ash can delay or interrupt recovery. There is no universal sequence of organisms, fixed timescale or inevitable forest endpoint."
       },
       {
-        "title": "Dormancy is an interval; extinction is an assessment",
-        "body": "Active in the broad sense includes systems erupting now and those still capable of eruption. Dormant commonly describes the latter between eruptions. An extinction assessment uses geological history, tectonic setting and magma supply, and can be revised. Definitions and time cutoffs vary; neither years of silence, vegetation nor absent emissions are decisive alone. Geological ages, records and subsurface clues require joint interpretation. An old vent becoming inactive does not exclude new activity elsewhere in its volcanic field."
+        "title": "Lakes, quiet intervals and future activity are different questions",
+        "body": "In the collapse example, magma withdrawal changes reservoir pressure and support for overlying rock. Its weight remains, and unstable rock can subside along faults. Fracturing and subsidence precede later lake filling; a permanent empty cavern is unnecessary, and not every eruption causes collapse. Craters and collapse calderas can provide water-retaining depressions. Lake formation depends on the water balance, permeability and other conditions. A volcanic lake contains water supplied later; a lava lake contains molten rock. A lake does not establish extinction: the volcanic center at Crater Lake retains future eruption potential. Dormancy commonly describes an interval between eruptions. An extinction assessment needs geological ages, tectonic setting and magma-supply history, and may be revised. Grass, water, absent emissions or a fixed number of quiet years cannot replace that evidence. An inactive old vent does not exclude new vents elsewhere in its field."
       }
     ],
-    "misconception": "Active does not mean always erupting, and dormant does not mean extinct. Glow and plume height are not complete measures of hazard.",
-    "boundary": "This teaching comparison simplifies conditions, evidence, time, geometry and scale. It does not forecast eruptions, ash clouds or safe distances.",
+    "misconception": "There is no shared eruption–extinction–lake countdown. Grass and water do not establish extinction, and submarine volcanoes do not inevitably become islands.",
+    "boundary": "These cases select particular conditions; they are neither surveyed reconstructions nor hazard forecasts. Landscape history and one eruption have independent timelines. Deposition, erosion, vegetation and water balance do not share a calibrated real timescale.",
     "narration": [
       {
-        "label": "What is under the mountain?",
-        "text": "A volcano may release glowing red material, but that does not mean someone lit a fire under the mountain. Very hot magma contains melted rock material and may contain crystals and gas. It is not burning wood. Begin with the cutaway and follow the route by which magma can move upward.",
-        "cue": "Hold the underground cutaway and point to the conduit."
+        "label": "Choose a volcano",
+        "text": "Volcanoes have many shapes. A broad mountain, a round cone, a mountain under the sea and even a lake can tell a volcanic story. Choose one and open its cutaway. Follow magma and see where it goes after reaching the surface.",
+        "cue": "Show the five case cards, enter the Omuroyama-style cone and open the cutaway."
       },
       {
-        "label": "Bubbles grow",
-        "text": "As magma approaches the surface, the surrounding pressure often falls. Some of its dissolved gas can form bubbles, and those bubbles expand. Sometimes gas escapes readily; sometimes it cannot. Move forward slowly and watch where bubbles and magma go before predicting what a change in conditions might do.",
-        "cue": "Advance decompression and bubbles, then pause for three seconds."
+        "label": "Erupted material stays",
+        "text": "Look underground first. New magma enters and pushes on the surrounding rock. It moves upward along cracks, and its gas bubbles can grow. Lava and fragments appear only after it reaches the surface; sometimes magma stops below. Increase the rock barriers and try again. Erupted material lands and cools, gradually leaving a mountain. Shields spread broadly, composite volcanoes collect lava and fragments, and an Omuroyama-style cone piles up scoria.",
+        "cue": "Advance deposition through cooling, compare the three shapes, then pause within the eruption detail."
       },
       {
-        "label": "Different ways to erupt",
-        "text": "Pause the picture. Choose lava flows and follow the glowing rock along the ground. Choose fountains and watch lava clasts rise and fall. Then look at the ash cloud. It carries tiny rock and glass fragments, not ashes from a wood fire! The same volcano can erupt in different ways. Now change the supply and compare less or more material within one style.",
-        "cue": "Keep eruption progress fixed and switch the three examples; select the plume view, then change supply alone."
+        "label": "Sea and lake water join the story",
+        "text": "Now look at a lake in a mountain. Do not add water yet! Follow the orange magma as it moves away. The heavy rock above remains. As support weakens, fractures grow and rock sinks along faults, leaving a basin. Rain and melting snow can collect later. If water leaks away, even a large basin may stay dry. Underwater volcanoes have another story: repeated deposits build up, and only some become islands.",
+        "cue": "Pause the lake case at 13%, 23%, 36% and 72%, tracing magma, fractures, the same rock layer and later water."
       },
       {
-        "label": "A quiet mountain has a story",
-        "text": "These two quiet mountain pictures look the same! One volcano may be resting between eruptions: we call that dormant. Another may be considered unlikely to erupt again, after scientists study lots of evidence. They read rocks and observe small earthquakes and changes in the ground. Mountain shapes tell a much longer story of building and collapse. There are volcanoes under the sea too, and some can grow above the waves. Let us explore how an island can form.",
-        "cue": "Compare dormant and considered-extinct evidence while the mountain image stays the same. Observe the landforms and continue to submarine volcanoes."
+        "label": "When the mountain is quiet",
+        "text": "The eruption stops, but the mountain remains. Rock cools, cracks collect fine material and water, and wind or animals bring seeds. Are seeds enough to turn it green? Try a dry or cold environment and watch the seedlings. Fresh thick ash may bury them too. Omuroyama looks like a grassy hat today partly because people maintain its grassland through traditional burning. Grass, or its absence, cannot by itself tell us whether a volcano will erupt again.",
+        "cue": "Open How plants return, observe cooling, soil in cracks and seed arrival, then compare four environments at the endpoint. Replay 65–80% under thick ash to see vegetation decline."
       }
     ]
   },
@@ -125,6 +125,94 @@
     {
       "title": "USGS / Science · Reservoir failure and caldera collapse at Kīlauea",
       "url": "https://www.usgs.gov/publications/magma-reservoir-failure-and-onset-caldera-collapse-kilauea-volcano-2018"
+    },
+    {
+      "title": "Izu Peninsula Geopark · Omuroyama",
+      "url": "https://izugeopark.org/geosites/omuroyama/"
+    },
+    {
+      "title": "USGS · Future Eruptions Around Crater Lake",
+      "url": "https://www.usgs.gov/volcanoes/crater-lake/science/future-eruptions-around-crater-lake"
+    },
+    {
+      "title": "NOAA · Do volcanoes occur in the ocean?",
+      "url": "https://oceanservice.noaa.gov/facts/volcanoes.html"
+    },
+    {
+      "title": "NOAA PMEL · Pillow lava",
+      "url": "https://www.pmel.noaa.gov/eoi/nemo/explorer/concepts/pillows.html"
+    },
+    {
+      "title": "NOAA PMEL · Submarine lava morphology",
+      "url": "https://www.pmel.noaa.gov/eoi/nemo/explorer/concepts/lavamorph.html"
+    },
+    {
+      "title": "NOAA PMEL · Sheet flows",
+      "url": "https://www.pmel.noaa.gov/eoi/nemo/explorer/concepts/sheetflow.html"
+    },
+    {
+      "title": "NOAA PMEL · Direct observations of NW Rota-1 explosive eruptions",
+      "url": "https://www.pmel.noaa.gov/public/pmel/publications-search/search_abstract.php?fmContributionNum=3078"
+    },
+    {
+      "title": "USGS · Lava and seawater: an explosive hazard",
+      "url": "https://www.usgs.gov/observatories/hvo/news/volcano-watch-mixture-lava-and-seawater-creates-explosive-hazard"
+    },
+    {
+      "title": "USGS · Evolution of Hawaiian Volcanoes",
+      "url": "https://www.usgs.gov/news/volcano-watch-evolution-hawaiian-volcanoes"
+    },
+    {
+      "title": "USGS · Growth and degradation of Hawaiian volcanoes",
+      "url": "https://pubs.usgs.gov/publication/pp18013"
+    },
+    {
+      "title": "Surtsey Research Society · Erosion of the island",
+      "url": "https://english.surtsey.is/rof/"
+    },
+    {
+      "title": "NOAA Ocean Exploration · Light and Color in the Deep Sea",
+      "url": "https://oceanexplorer.noaa.gov/fact-sheet/light-and-color-fact-sheet/"
+    },
+    {
+      "title": "NOAA PMEL · What is a Hydrothermal Plume?",
+      "url": "https://www.pmel.noaa.gov/eoi/PlumeStudies/plumes-whatis.html"
+    },
+    {
+      "title": "NOAA National Weather Service · Cloud Development",
+      "url": "https://www.weather.gov/source/zhu/ZHU_Training_Page/clouds/cloud_development/clouds.htm"
+    },
+    {
+      "title": "USGS · Caldera or crater?",
+      "url": "https://www.usgs.gov/observatories/yvo/news/caldera-or-craterwhats-difference"
+    },
+    {
+      "title": "USGS · Post-Caldera Volcanism and Crater Lake",
+      "url": "https://www.usgs.gov/volcanoes/crater-lake/science/post-caldera-volcanism-and-crater-lake"
+    },
+    {
+      "title": "USGS: Intrusion versus eruption",
+      "url": "https://www.usgs.gov/observatories/hvo/news/volcano-watch-eruption-intrusion-whats-difference"
+    },
+    {
+      "title": "USGS: Failed magmatic eruptions",
+      "url": "https://www.usgs.gov/publications/failed-magmatic-eruptions-late-stage-cessation-magma-ascent"
+    },
+    {
+      "title": "USGS: Magma mixing and crystal mush",
+      "url": "https://www.usgs.gov/observatories/hvo/news/volcano-watch-petrologic-monitoring-kilauea-volcano-update-rockhounds"
+    },
+    {
+      "title": "NPS: Plants at Sunset Crater",
+      "url": "https://www.nps.gov/sucr/learn/nature/plants.htm"
+    },
+    {
+      "title": "NPS: Life among the lava flows",
+      "url": "https://home.nps.gov/articles/000/crmo-ecosystems.htm"
+    },
+    {
+      "title": "USGS: Magma withdrawal and summit collapse",
+      "url": "https://www.usgs.gov/volcanoes/kilauea/science/2018-lower-east-rift-zone-eruption-and-summit-collapse-kilauea"
     }
   ]
 }

@@ -4,7 +4,10 @@ export const WORLDS = [
   { id: 'earth', kind: 'rock', body: 'planet', color: '#68a2a9', surface: true, liquid: 'water', evidence: 'observed' },
   { id: 'mars', kind: 'rock', body: 'planet', color: '#c48057', surface: true, liquid: 'none', evidence: 'observed' },
   { id: 'jupiter', kind: 'gas', body: 'planet', color: '#cbb198', surface: false, liquid: 'none', evidence: 'observed' },
+  { id: 'saturn', kind: 'gas', body: 'planet', color: '#d6bc88', surface: false, liquid: 'none', evidence: 'observed' },
+  { id: 'uranus', kind: 'ice', body: 'planet', color: '#a1c6c9', surface: false, liquid: 'none', evidence: 'observed' },
   { id: 'neptune', kind: 'ice', body: 'planet', color: '#82b4c3', surface: false, liquid: 'none', evidence: 'observed' },
+  { id: 'moon', kind: 'rock', body: 'moon', color: '#a6a39d', surface: true, liquid: 'none', evidence: 'observed' },
   { id: 'titan', kind: 'icy', body: 'moon', color: '#c89951', surface: true, liquid: 'hydrocarbon', evidence: 'observed' },
   { id: 'cancri', kind: 'rock', body: 'exoplanet', color: '#e7753b', surface: true, liquid: 'silicate-melt', evidence: 'inferred' },
 ] as const;

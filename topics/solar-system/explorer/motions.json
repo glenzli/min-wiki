@@ -1,0 +1,30 @@
+{
+  "solid": {
+    "zh": "岩石、冰或固态材料保留纹理，不用流动动画暗示它们正在融化。",
+    "en": "Rock, ice or solid material keeps its texture; motion is not added to imply melting."
+  },
+  "mantle": {
+    "zh": "地幔主要是固体。岩石纹理缓慢变形，表示地质时间中的对流；时间大幅加速，局部花纹不是实测流线，也不是岩浆海。",
+    "en": "The mantle is mostly solid. Deforming rock texture represents convection over geological time, greatly accelerated. Local patterns are not measured flow paths or a magma ocean."
+  },
+  "fluid": {
+    "zh": "液态外核用连续卷动的金属质感表达物质流动。纹理与颜色帮助辨认结构，不是地心的照片或可见光颜色。",
+    "en": "Continuous folded metallic textures represent motion in the liquid outer core. Texture and color distinguish structure; they are not photographs or visible-light colors of the deep interior."
+  },
+  "convection": {
+    "zh": "云气或等离子体纹理随局部环流卷动，表示热量伴随物质移动。流动分区和速度为简化重建。",
+    "en": "Cloud or plasma texture folds through local circulation, representing heat carried by moving matter. Cell geometry and speed are simplified reconstructions."
+  },
+  "radiation": {
+    "zh": "柔和的亮度变化提示辐射传能；材料纹理不作对流。这里没有把能量画成沿直线飞出的光子。",
+    "en": "Subtle brightness changes indicate radiative energy transfer; material texture does not circulate. The view does not depict photons traveling straight outward."
+  },
+  "fusion": {
+    "zh": "核心通过核聚变释放能量。细密亮纹的变化用来提示能量产生，不代表可以直接拍到的核反应画面。",
+    "en": "Fusion supplies energy in the core. Fine changing luminous texture is a cue for energy production, not a directly observable image of nuclear reactions."
+  },
+  "uncertain": {
+    "zh": "材料纹理表示一种候选内部结构；边界、成分或物态仍有不确定性，不为这些区域编造已证实的循环。",
+    "en": "Material textures show a candidate interior. Boundaries, composition or material state remain uncertain; the view does not invent established circulation in these regions."
+  }
+}

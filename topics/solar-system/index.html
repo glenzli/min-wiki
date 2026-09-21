@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#090e17" />
   <meta name="description" content="给小朋友与天文爱好者的太空探索：看太阳系八大行星如何按开普勒定律公转，一键切换 等比例排排队看大小。" />
-  <title>太阳系八大行星运转与大小比较 · 小小百科</title>
+  <title>太阳系：太阳、行星与卫星 · 小小百科</title>
   <script type="module" src="/src/platform/theme.ts"></script>
   <link rel="stylesheet" href="./topic.css" />
 </head>
@@ -26,7 +26,7 @@
       <aside class="story-panel">
         <div class="eyebrow"><span></span> 太空小剧场 · 02</div>
         <h1>太阳系<br>八大行星<span class="title-dot">.</span></h1>
-        <p class="intro">8颗神奇的行星，围绕着太阳飞奔。<br>比一比，它们到底谁大谁小？</p>
+        <p class="intro">从太阳系全景出发。<br>选择太阳或行星，走近它的世界。</p>
         <div class="story-divider"></div>
         <div class="academic-only model-readout" aria-label="动力学读数">
           <span>太阳系开普勒动力学读数 <small>T² ∝ a³</small></span>
@@ -62,14 +62,30 @@
           <div class="segmented" role="group" aria-label="选择观察模式">
             <button data-scenario="orbit" aria-pressed="true"><span class="route-dot orbit-dot"></span>公转全景</button>
             <button data-scenario="lineup" aria-pressed="false"><span class="route-dot lineup-dot"></span>等比例排排队</button>
-            <button data-scenario="inner" aria-pressed="false"><span class="route-dot inner-dot"></span>类地内行星</button>
-            <button data-scenario="outer" aria-pressed="false"><span class="route-dot outer-dot"></span>四大巨行星</button>
+
+
           </div>
         </div>
         <p class="route-description" id="route-description"></p>
         <div class="planet-strip" id="planet-strip" role="toolbar" aria-label="快速聚焦行星">
           <!-- Populated dynamically via JS -->
         </div>
+
+        <section id="explorer" class="planet-explorer" hidden aria-label="星球探索室">
+          <nav class="explorer-breadcrumb" aria-label="探索位置"><button id="explorer-back">太阳系全景</button><span aria-hidden="true">/</span><button id="explorer-parent" hidden></button><strong id="explorer-name"></strong></nav>
+          <div class="explorer-heading"><div><p class="small-label">一个世界，许多层次</p><h2 id="explorer-title"></h2></div><button id="activity-play" aria-pressed="true">暂停动态</button></div>
+          <div class="explorer-views" role="group" aria-label="选择探索方式">
+            <button data-explore-view="globe" aria-pressed="true">从太空看</button><button data-explore-view="descent" aria-pressed="false">从太空落下</button><button data-explore-view="landscape" aria-pressed="false">局部观察</button><button data-explore-view="section" aria-pressed="false">剖开看内部</button><button data-explore-view="moons" aria-pressed="false">看它的卫星</button>
+          </div>
+          <div class="explorer-layout">
+            <div class="explorer-viewport"><canvas id="explorer-canvas" tabindex="0" role="img" aria-label="可拖动的星球探索画面"></canvas><div id="moon-labels"></div><span class="explorer-scale" id="explorer-scale"></span><p id="explorer-error" hidden>三维画面暂时不可用，仍可切换并阅读讲解。</p></div>
+            <aside class="explorer-notes"><p class="small-label" id="explorer-context"></p><h3 id="explorer-stage"></h3><p id="explorer-description"></p><dl id="explorer-metrics"></dl><div id="explorer-steps"></div><p id="explorer-detail"></p><a id="explorer-source" target="_blank" rel="noreferrer">查看科学资料 ↗</a><a id="explorer-further" hidden></a></aside>
+          </div>
+          <div id="explorer-travel" class="explorer-travel" hidden><button id="descent-play">开始下降</button><button id="descent-reset">返回起点</button><label><span id="explorer-progress-label">下降进度</span><input id="explorer-progress" type="range" min="0" max="1000" value="0" step="1"></label><output id="explorer-progress-text"></output></div>
+          <div id="explorer-moons" class="explorer-moons" hidden></div>
+          <p class="explorer-hint" id="explorer-hint"></p>
+          <details class="explorer-model"><summary>画面怎样表达真实世界</summary><p>整球参考观测外观，局部地貌是代表性重建。下降路线、云层运动、太阳活动和卫星绕行经过简化与加速，不是实时观测，也不表示飞行器能够承受这些环境。剖面厚度与颜色为教学示意。</p><p>卫星视图分别调整了天体大小与轨道间距，只展示代表成员；绕行周期的相对关系保留。太阳活动采用强调结构的颜色和尺度，不是肉眼或某个波段的实拍。</p><a href="/topics/planet-surfaces/?world=cancri">延伸：太阳系外的熔岩世界 →</a></details>
+        </section>
         <div id="canvas-container" class="space-scene">
           <div class="scene-corner"><span class="live-dot"></span><span id="scene-status">太阳居于中心 · 引力统领八星</span></div>
           <div class="view-controls" role="group" aria-label="观察视角">

@@ -2,8 +2,8 @@
   "version": 1,
   "topicId": "cells",
   "zh": {
-    "question": "叶肉细胞能用光制造糖，它也会利用糖中的能量吗？",
-    "observe": "先点细胞膜、线粒体和叶绿体，看虚线框与局部放大是否对应。再选动物细胞，拖动行为进度；换成叶肉细胞，分别看“用光制造糖”和“利用营养物质”，比较进入与形成的物质。",
+    "question": "细胞有哪些共同结构，又怎样用不同形状完成不同的工作？",
+    "observe": "沿结构、物质与能量、分工三条观察线，先找到同一细胞的膜与内部，再比较呼吸和光合作用，最后观察皮肤、肌肉、神经、运氧、防御与止血。每个实验保留自己的进度，切换样本不表示细胞变身。",
     "academic": [
       {
         "title": "边界与内部空间各有作用",
@@ -11,7 +11,7 @@
       },
       {
         "title": "有遗传信息，不一定有细胞核",
-        "body": "典型动植物细胞的大部分 DNA 在有膜包围的细胞核中；线粒体及叶绿体还有少量自身 DNA。细菌没有这样的细胞核，主要 DNA 位于拟核区域，但细菌仍是细胞，能交换物质并进行代谢。细胞会因分化而特化，例如成熟哺乳动物红细胞没有细胞核和线粒体；代表性结构图不能作为每个细胞的通用清单。"
+        "body": "典型动植物细胞的大部分 DNA 在有膜包围的细胞核中；线粒体及叶绿体还有少量自身 DNA。细菌没有这样的细胞核，主要 DNA 位于拟核区域，但细菌仍是细胞，能交换物质并进行代谢。细胞会因分化而特化，例如成熟哺乳动物红细胞没有细胞核和线粒体；代表性结构图不能作为每个细胞的通用清单。 皮肤的层状屏障依靠许多细胞；骨骼肌纤维通常有多个细胞核，收缩时细丝相对滑动而不是细丝缩短。神经信号沿膜传播，化学突触另以递质传递。人的血小板是细胞片段，止血还需要血浆蛋白。运氧、防御、止血是不同过程，不是同一段血液必经的三步。"
       },
       {
         "title": "制造糖与利用营养物质可以并行",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "植物不只在夜里呼吸，也不是所有植物细胞都能光合作用。细菌没有细胞核和线粒体，却有 DNA，也会进行能量转换。",
-    "boundary": "这是配色和放大的结构、物质变化示意，不是显微照片。不同细胞与膜厚不按同一尺度；箭头概括多步反应，不是固定管道，小点不代表真实分子比例。金色 ATP 是携带可用能量的分子的符号，绿圆点表示氨基酸，连串表示蛋白质链；ATP 并不变成这些原料。该例只引入能量与合成的关系，未展开核糖体、RNA、氨基酸活化及 GTP 等步骤。不模拟 ATP 产量、净气体交换或无氧代谢，也不把这两种过程套给所有细菌。",
+    "boundary": "这是配色和放大的结构、物质变化示意，不是显微照片。不同细胞与膜厚不按同一尺度；箭头概括多步反应，不是固定管道，小点不代表真实分子比例。金色 ATP 是携带可用能量的分子的符号，绿圆点表示氨基酸，连串表示蛋白质链；ATP 并不变成这些原料。该例只引入能量与合成的关系，未展开核糖体、RNA、氨基酸活化及 GTP 等步骤。不模拟 ATP 产量、净气体交换或无氧代谢，也不把这两种过程套给所有细菌。 分工图保留各自的代表样本与简化：中性粒细胞不代表全部白细胞；人的成熟红细胞不能套用典型有核细胞的线粒体示例。六种工作彼此独立，不建立未经模拟的统一生理时间线。",
     "narration": [
       {
         "label": "边界里面有什么",
@@ -37,15 +37,15 @@
         "cue": "选动物细胞与线粒体，缓慢拖动进度：22% 至 32% 看糖分解，32% 至 52% 跟随小块和氧，52% 至 70% 看 ATP 形成，70% 至结束看能量输送与材料连接。图示符号不是分子形状或数量。"
       },
       {
-        "label": "叶子制造糖，也利用糖",
-        "text": "现在看看叶肉细胞。选用光制造糖：光带来能量，水和二氧化碳参与形成糖，还会释放氧。糖可以留下，也可以供植物别的部分使用。再选利用营养物质，原来植物也会从糖里得到可用能量！白天和夜晚都可以。我们把两件事分开看，不表示它们一定要排队轮流做。",
-        "cue": "选叶肉细胞和叶绿体，观看光合作用；随后选择线粒体与利用营养物质，对照两种过程。"
+        "label": "从叶肉细胞到身体分工",
+        "text": "现在看看叶肉细胞。选用光制造糖：光带来能量，水和二氧化碳参与形成糖，还会释放氧。糖可以留下，也可以供植物别的部分使用。再选利用营养物质，原来植物也会从糖里得到可用能量！白天和夜晚都可以。我们把两件事分开看，不表示它们一定要排队轮流做。 再看看身体里的不同细胞：皮肤连成保护层，肌肉中的细丝相对滑动，神经元传递信息，红细胞运送氧气。它们不是同一颗细胞变来变去，而是形状和结构适合不同工作。血小板则是大细胞形成的小片段，和血浆蛋白一起帮助止血。",
+        "cue": "选叶肉细胞和叶绿体，观看光合作用；随后选择线粒体与利用营养物质，对照两种过程。 随后进入分工，逐个比较不同样本；保留它们的独立进度。"
       }
     ]
   },
   "en": {
-    "question": "If a leaf cell makes sugars with light, does it also use the energy in sugars?",
-    "observe": "Select the membrane, mitochondrion and chloroplasts, matching the dashed frame to the close-up. Scrub the animal-cell process, then compare “Making sugars with light” and “Using nutrients” in the leaf cell, following inputs and products.",
+    "question": "What do cells share, and how do different shapes support different jobs?",
+    "observe": "Explore structure, matter and energy, then specialisation: locate a cell's boundary and interior, compare respiration and photosynthesis, and observe skin, muscle, neurons, oxygen transport, defence and clotting. Each experiment retains its progress; changing specimens does not mean a cell transforms.",
     "academic": [
       {
         "title": "Boundaries and internal spaces have different roles",
@@ -53,7 +53,7 @@
       },
       {
         "title": "Genetic information does not require a nucleus",
-        "body": "Most DNA in typical animal and plant cells is enclosed in a nucleus; mitochondria and chloroplasts also contain some DNA. Bacteria lack a nucleus but have DNA in a nucleoid region and carry out metabolism. Specialisation changes cell structures: mature mammalian red cells lack both a nucleus and mitochondria. A representative diagram is not a universal checklist."
+        "body": "Most DNA in typical animal and plant cells is enclosed in a nucleus; mitochondria and chloroplasts also contain some DNA. Bacteria lack a nucleus but have DNA in a nucleoid region and carry out metabolism. Specialisation changes cell structures: mature mammalian red cells lack both a nucleus and mitochondria. A representative diagram is not a universal checklist. Skin barriers involve many cells. Skeletal muscle fibres usually have multiple nuclei, and contraction involves relative filament sliding, not shorter filaments. Neural signals propagate along membranes, with chemical transmitters crossing the illustrated synapse. Human platelets are cell fragments; clotting also uses plasma proteins. Oxygen transport, defence and clotting are different processes, not three mandatory steps for the same blood parcel."
       },
       {
         "title": "Making sugars and using nutrients can overlap",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Plants respire during the day as well as at night, and not every plant cell photosynthesizes. Bacteria have DNA and convert energy despite lacking nuclei and mitochondria.",
-    "boundary": "These coloured, enlarged structures and pathways are not micrographs. Cells and membrane thicknesses do not share a common scale. Paths summarize multiple reactions rather than fixed pipes, and markers are not molecular ratios. Gold ATP is a symbol for molecules carrying usable energy. Green dots represent amino acids and a joined string represents a protein chain; ATP does not turn into these materials. This example only introduces energy support for synthesis, omitting ribosomes, RNA, amino acid activation and GTP-dependent steps. ATP yields, net gas exchange and anaerobic pathways are not modelled, and the two examples do not describe all bacteria.",
+    "boundary": "These coloured, enlarged structures and pathways are not micrographs. Cells and membrane thicknesses do not share a common scale. Paths summarize multiple reactions rather than fixed pipes, and markers are not molecular ratios. Gold ATP is a symbol for molecules carrying usable energy. Green dots represent amino acids and a joined string represents a protein chain; ATP does not turn into these materials. This example only introduces energy support for synthesis, omitting ribosomes, RNA, amino acid activation and GTP-dependent steps. ATP yields, net gas exchange and anaerobic pathways are not modelled, and the two examples do not describe all bacteria. Specialisation views retain their own specimens and limitations: neutrophils do not represent every white cell, and the mitochondrial example of a typical nucleated cell cannot be imposed on mature human red cells. The six jobs are independent, not one simulated physiological timeline.",
     "narration": [
       {
         "label": "What lies inside the boundary?",
@@ -79,9 +79,9 @@
         "cue": "Choose the animal cell and mitochondrion. Scrub through sugar breakdown at 22–32%, follow the pieces and oxygen at 32–52%, ATP formation at 52–70%, then energy delivery and assembly through the end. Symbols are not molecular shapes or counts."
       },
       {
-        "label": "Leaves make sugars and use them",
-        "text": "Now look at the leaf cell. Choose Making sugars with light. Light supplies energy; water and carbon dioxide help form sugars, and oxygen is released. Sugars can stay or supply other parts of the plant. Choose Using nutrients next. Plants also gain usable energy from sugars, during both day and night! We show these processes separately to look closely, although they do not have to wait their turn.",
-        "cue": "Choose the leaf cell and chloroplasts to watch photosynthesis. Then select the mitochondrion and Using nutrients to compare."
+        "label": "From leaf cells to specialised jobs",
+        "text": "Now look at the leaf cell. Choose Making sugars with light. Light supplies energy; water and carbon dioxide help form sugars, and oxygen is released. Sugars can stay or supply other parts of the plant. Choose Using nutrients next. Plants also gain usable energy from sugars, during both day and night! We show these processes separately to look closely, although they do not have to wait their turn. Now compare jobs in the body: skin forms a barrier, muscle filaments slide, neurons carry signals and red cells transport oxygen. These are different cells, with shapes and structures suited to their jobs, not one cell transforming. Platelets are fragments made by large cells; they work with plasma proteins to help stop bleeding.",
+        "cue": "Choose the leaf cell and chloroplasts to watch photosynthesis. Then select the mitochondrion and Using nutrients to compare. Then compare distinct specimens in the specialisation view, retaining their independent progress."
       }
     ]
   },
@@ -105,6 +105,18 @@
     {
       "title": "NCBI Bookshelf — From RNA to Protein",
       "url": "https://www.ncbi.nlm.nih.gov/books/NBK26829/"
+    },
+    {
+      "title": "NCBI — Blood and the cells it contains",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK2263/"
+    },
+    {
+      "title": "OpenStax — Types of Tissues",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/4-1-types-of-tissues"
+    },
+    {
+      "title": "OpenStax — Muscle Fiber Contraction and Relaxation",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-3-muscle-fiber-contraction-and-relaxation"
     }
   ]
 }

@@ -16,7 +16,7 @@ let progress = 0, playing = false, academic = false, frame = 0, last = 0;
 let scene: TopicScene | undefined;
 try { scene = new TopicScene(el('scene') as HTMLCanvasElement); }
 catch (error) { el('scene-error').hidden = false; console.error(error); }
-const positions = [0, 0.4, 0.63, 0.82];
+const positions = [0, 0.38, 0.64, 0.82];
 function update() {
   const settings={distanceKm:number('distance'),temperature:number('temperature')}; const result=lightningState(progress,settings);
   const stage=result.stage;

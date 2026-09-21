@@ -54,13 +54,13 @@ export function createIceRenderer(root: SVGGElement, water: SVGPathElement) {
   for (let i = 1; i < ICE_GRAINS.length; i++) {
     const points = Array.from({ length: 61 }, (_, k) => ({ x: grainBoundary(i, k / 60 * ICE_HEIGHT), z: k / 60 * ICE_HEIGHT }));
     const d = `M${coords(points)}`;
-    node(boundaryGroup, 'path', { d, fill: 'none', stroke: '#5c91a0', 'stroke-width': 1.6, opacity: .18, 'stroke-linejoin': 'round' });
-    node(boundaryGroup, 'path', { d, fill: 'none', stroke: '#f7ffff', 'stroke-width': .65, opacity: .78, transform: 'translate(.6 0)' });
+    node(boundaryGroup, 'path', { d, fill: 'none', stroke: '#5c91a0', 'stroke-width': 1.35, opacity: .09, 'stroke-linejoin': 'round' });
+    node(boundaryGroup, 'path', { d, fill: 'none', stroke: '#f7ffff', 'stroke-width': .55, opacity: .34, transform: 'translate(.6 0)' });
   }
   const emphasized = node(material, 'g', { id: 'ice-boundary-guide', opacity: 0 });
   for (let i = 1; i < ICE_GRAINS.length; i++) {
     const points = Array.from({ length: 61 }, (_, k) => ({ x: grainBoundary(i, k / 60 * ICE_HEIGHT), z: k / 60 * ICE_HEIGHT }));
-    node(emphasized, 'path', { d: `M${coords(points)}`, stroke: '#247477', 'stroke-width': 1.3, 'stroke-dasharray': '3 4', fill: 'none' });
+    node(emphasized, 'path', { d: `M${coords(points)}`, stroke: '#247477', 'stroke-width': 1.05, 'stroke-dasharray': '1.2 3.8', 'stroke-linecap': 'round', fill: 'none' });
   }
   const bubbles = node(material, 'g', { id: 'ice-air-inclusions' });
   for (const bubble of ICE_BUBBLES) {
@@ -86,7 +86,7 @@ export function createIceRenderer(root: SVGGElement, water: SVGPathElement) {
       // Suppress the zero-depth portions of the contour with the solid clip.
       frontShade.setAttribute('clip-path', 'url(#ice-growth-clip)');
       frontGlint.setAttribute('clip-path', 'url(#ice-growth-clip)');
-      emphasized.setAttribute('opacity', showBoundaries ? '.85' : '0');
+      emphasized.setAttribute('opacity', showBoundaries ? '.68' : '0');
       const waterLine = section.front.map(p => ({ x: p.x + 150, z: p.z + state.top }));
       water.setAttribute('d', `M${coords(waterLine)}L450 404H150Z`);
     },

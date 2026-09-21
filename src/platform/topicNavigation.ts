@@ -4,7 +4,7 @@ import { mountThemeControl, setContentTheme } from './theme.ts';
 import './shell.css';
 import { mountTopicLearning } from './learning/mount.ts';
 
-export function mountTopicNavigation(id: string) {
+export function mountTopicNavigation(id: string, options: { learning?: boolean } = {}) {
   const topic = catalog.topics.find(item => item.id === id && item.status === 'published');
   if (!topic) throw new Error(`Unregistered topic: ${id}`);
   const category = catalog.categories.find(item => item.id === topic.category);
@@ -15,12 +15,21 @@ export function mountTopicNavigation(id: string) {
   const trail=document.createElement('div'); trail.className='encyclopedia-trail';
   const categoryLink=document.createElement('a'); categoryLink.href=languageHref(`/?category=${category.id}`); categoryLink.textContent=t(category.name);
   const current=document.createElement('span'); current.textContent=t(topic.title); current.setAttribute('aria-current','page');
-  trail.append(categoryLink,document.createTextNode(' / '),current);
+  trail.append(categoryLink,document.createTextNode(' / '));
+  const parentId = (topic as { parentTopic?: string }).parentTopic;
+  const parent = catalog.topics.find(item => item.id === parentId && item.status === 'published');
+  if (parent) {
+    const parentLink = document.createElement('a');
+    parentLink.href = languageHref('/topics/' + parent.id + '/');
+    parentLink.textContent = t(parent.title);
+    trail.append(parentLink, document.createTextNode(' / '));
+  }
+  trail.append(current);
   const preferences = document.createElement('div'); preferences.className = 'encyclopedia-preferences';
   mountThemeControl(preferences); mountLanguageControl(preferences);
   nav.append(home,trail,preferences); host.replaceChildren(nav);
   document.documentElement.dataset.topicUi = '';
   setContentTheme(topic.theme);
   // Topic startup remains synchronous; optional long-form content loads independently.
-  void mountTopicLearning(id).catch(error => console.error('Unable to load topic learning notes', error));
+  if (options.learning !== false) void mountTopicLearning(id).catch(error => console.error('Unable to load topic learning notes', error));
 }

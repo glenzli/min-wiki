@@ -1,0 +1,79 @@
+{
+  "earth": {
+    "note": {
+      "zh": "云由小水滴或冰晶组成：厚云有暗部，高处可有薄纱状冰云。此处高度差放大、天气运动加速，并非实时云图。",
+      "en": "Clouds contain droplets or ice crystals: thick clouds have shaded structure; high ice clouds can be wispy. Height differences and motion are exaggerated, not live weather."
+    },
+    "source": "https://www.nasa.gov/earth/what-are-clouds-grades-5-8/"
+  },
+  "mercury": {
+    "note": {
+      "zh": "水星只有极稀薄的外逸层，没有地球式云海。表面贴图保留陨石坑，近景起伏是区域重建。",
+      "en": "Mercury has a very thin exosphere, not Earth-like cloud decks. Surface maps retain craters; close-up relief is a regional reconstruction."
+    },
+    "source": "https://science.nasa.gov/mercury/facts/"
+  },
+  "venus": {
+    "note": {
+      "zh": "太空中看到的是硫酸云层，无法直接透过它看清地面。下降后的岩石景观参考探测资料重建，云层流动经过加速。",
+      "en": "From space we see sulfuric-acid clouds, which obscure the ground. Rocks encountered during descent are reconstructed from mission evidence; cloud motion is accelerated."
+    },
+    "source": "https://science.nasa.gov/venus/venus-facts/"
+  },
+  "mars": {
+    "note": {
+      "zh": "红色来自表面含铁尘土；南极既有水冰，也有随季节变化的二氧化碳冰。这里固定在所选地点，展示代表性季节。",
+      "en": "Iron-bearing dust colors the surface. The south pole has water ice and seasonally changing carbon-dioxide ice. The selected site shows a representative season."
+    },
+    "source": "https://science.nasa.gov/mars/facts/"
+  },
+  "jupiter": {
+    "note": {
+      "zh": "条带和涡旋属于大气，没有可站立的云面。极区气旋结构参考朱诺探测；不同仪器看到的细节被合并展示，色彩与速度经过调整。",
+      "en": "Bands and vortices belong to the atmosphere, without ground to stand on. Polar cyclones follow Juno observations; detail from different instruments is combined, with adjusted colors and speeds."
+    },
+    "source": "https://science.nasa.gov/jupiter/jupiter-facts/"
+  },
+  "saturn": {
+    "note": {
+      "zh": "土星云带较柔和，北极六边形是一股弯曲的喷流。内部的混合核心可能逐渐过渡，剖面分区不是硬壳。",
+      "en": "Saturn has muted cloud bands; its north-polar hexagon is a meandering jet. A diffuse interior core may blend gradually into surrounding material; cutaway regions are not hard shells."
+    },
+    "source": "https://science.nasa.gov/saturn/facts/"
+  },
+  "uranus": {
+    "note": {
+      "zh": "可见光下偏淡青绿，云层对比很低；红外照片会显出更多结构。内部成分尚未定论，“冰巨星”不表示脚下有固态冰地面。 图中只选取部分暗窄环，并放大了宽度。",
+      "en": "Visible light shows a pale cyan-green world with low cloud contrast; infrared reveals more structure. Interior composition is unresolved: “ice giant” does not mean solid ice ground. Only selected dark narrow rings are shown, with enlarged widths."
+    },
+    "source": "https://science.nasa.gov/uranus/facts/"
+  },
+  "neptune": {
+    "note": {
+      "zh": "颜色参考重新校准的观测，接近青蓝而非浓艳深蓝。暗涡与亮云是可变化的天气；这里不是某一天的实况，内部也没有确定的海底。",
+      "en": "Color follows recalibrated observations: cyan-blue, not intensely deep blue. Dark vortices and bright clouds are changing weather, not today’s view. No definite ocean floor is known inside."
+    },
+    "source": "https://www.ox.ac.uk/news/2024-01-05-new-images-reveal-what-neptune-and-uranus-really-look-0"
+  },
+  "sun": {
+    "note": {
+      "zh": "太阳光球的颗粒来自对流，黑子较冷。暖色与日珥对比经过增强；这不是肉眼观察太阳时的颜色或可安全接近的地面。",
+      "en": "Photospheric granules trace convection; sunspots are cooler. Warm colors and prominence contrast are enhanced, not the Sun’s naked-eye color or a safe surface."
+    },
+    "source": "https://science.nasa.gov/sun/facts/"
+  },
+  "moon": {
+    "note": {
+      "zh": "月球没有地球式云层。表面的明暗地区与陨石坑来自已有贴图，局部细节为区域重建；内部依据地震与重力等资料推断。",
+      "en": "The Moon has no Earth-like clouds. Maps supply broad albedo and craters; local detail is reconstructed. Its interior is inferred from seismic and gravity evidence."
+    },
+    "source": "https://science.nasa.gov/moon/facts/"
+  },
+  "titan": {
+    "note": {
+      "zh": "橙色雾霾遮住表面，湖泊主要含甲烷和乙烷，不是蓝色水海。地下含水物质的分布与物态仍有模型争议。",
+      "en": "Orange haze obscures the surface. Lakes mainly contain methane and ethane, not blue seas of water. Subsurface water distribution and state remain model-dependent."
+    },
+    "source": "https://science.nasa.gov/saturn/moons/titan/facts/"
+  }
+}

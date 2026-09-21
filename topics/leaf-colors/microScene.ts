@@ -68,7 +68,9 @@ export class LeafMicroScene {
       cell.add(group);this.chloroplasts.push(group);
     }
     this.streams = this.particles(150,0x91ae6b,.014);cell.add(this.streams);
-    this.cellAnthocyanins = this.particles(95,0x982450,.019);cell.add(this.cellAnthocyanins);
+    this.cellAnthocyanins = this.particles(160,0x982450,.014);cell.add(this.cellAnthocyanins);
+    (this.cellAnthocyanins.material as THREE.MeshStandardMaterial).transparent=true;
+    (this.cellAnthocyanins.material as THREE.MeshStandardMaterial).opacity=.58;
     // A separate liquid compartment: no thylakoids or chlorophyll are placed inside it.
     const vacuole = this.groups[2];
     this.vacuoleDetailMaterial = new THREE.MeshPhysicalMaterial({color:0xe2e8c7,roughness:.33,transparent:true,opacity:.28,side:THREE.BackSide,depthWrite:false,clearcoat:.3});
@@ -76,7 +78,9 @@ export class LeafMicroScene {
     const tonoplast = new THREE.MeshStandardMaterial({color:0x9b956c,roughness:.52,transparent:true,opacity:.65});
     const edge = Array.from({length:97},(_,i)=>{const a=i/96*Math.PI*2,r=1+.068*Math.sin(3*a+1.4)+.038*Math.cos(5*a-.9);return new THREE.Vector3(2.17*Math.cos(a)*r+.05*Math.sin(a)**2,1.42*Math.sin(a)*r,.02);});
     vacuole.add(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(edge,true),110,.019,7,true),tonoplast));
-    this.anthocyanins=this.particles(175,0xa52259,.031);vacuole.add(this.anthocyanins);
+    this.anthocyanins=this.particles(280,0xa52259,.024);vacuole.add(this.anthocyanins);
+    (this.anthocyanins.material as THREE.MeshStandardMaterial).transparent=true;
+    (this.anthocyanins.material as THREE.MeshStandardMaterial).opacity=.7;
     // Remaining plastids are shown beyond the vacuolar membrane, in surrounding cytoplasm.
     for(let i=0;i<3;i++) {
       const group=new THREE.Group();group.position.set(-1.8+i*1.57,-1.62+Math.sin(i)*.03,-.22);group.rotation.z=-.3+i*.38;
@@ -137,12 +141,18 @@ export class LeafMicroScene {
     this.groups[0].visible=level===2;this.groups[1].visible=level===3;this.groups[2].visible=level===4;
     const base=leafRGB(compartmentPigments(p,'chloroplast')); this.color.setRGB(base[0]/255,base[1]/255,base[2]/255,THREE.SRGBColorSpace);
     for(const material of [...this.membranes,...this.greenBodies])material.color.copy(this.color);
-    const vac=mix([212,232,178],[156,30,79],p.anthocyanins);this.vacuoleMaterial.color.setRGB(vac[0]/255,vac[1]/255,vac[2]/255,THREE.SRGBColorSpace);this.vacuoleMaterial.opacity=.35+p.anthocyanins*.42;
-    const liquid=mix([236,241,214],[182,41,89],p.anthocyanins);this.vacuoleDetailMaterial.color.setRGB(liquid[0]/255,liquid[1]/255,liquid[2]/255,THREE.SRGBColorSpace);this.vacuoleDetailMaterial.opacity=.28+p.anthocyanins*.38;
+    // The vacuolar solution takes on only a soft bulk tint. Distributed pigment
+    // packets below carry the visible increase, avoiding a red sphere that grows
+    // outward from the centre.
+    const vac=mix([212,232,178],[205,132,157],p.anthocyanins*.52);this.vacuoleMaterial.color.setRGB(vac[0]/255,vac[1]/255,vac[2]/255,THREE.SRGBColorSpace);this.vacuoleMaterial.opacity=.38+p.anthocyanins*.10;
+    const liquid=mix([236,241,214],[211,116,151],p.anthocyanins*.58);this.vacuoleDetailMaterial.color.setRGB(liquid[0]/255,liquid[1]/255,liquid[2]/255,THREE.SRGBColorSpace);this.vacuoleDetailMaterial.opacity=.30+p.anthocyanins*.12;
     const red=compartmentPigments(p,'vacuole').anthocyanins;
     for(const [mesh,rx,ry,rz] of [[this.anthocyanins,1.91,1.21,.57],[this.cellAnthocyanins,1.5,1.05,.48]] as const) {
       for(let i=0;i<mesh.count;i++) {
-        const a=i*2.399+time*.013,r=((i+.5)/mesh.count)**(1/3),z=Math.sin(i*5.7),radial=Math.sqrt(1-z*z),threshold=((i*37)%173)/173;
+        const radialSeed=(Math.sin((i+1)*91.733+rx*17.1)*43758.5453%1+1)%1;
+        const heightSeed=(Math.sin((i+1)*53.117+ry*31.7)*24634.6345%1+1)%1;
+        const threshold=(Math.sin((i+1)*137.91+rz*47.3)*19642.349%1+1)%1;
+        const a=i*2.399+time*.013,r=Math.cbrt(.035+.965*radialSeed),z=heightSeed*2-1,radial=Math.sqrt(1-z*z);
         this.place(mesh,i,Math.cos(a)*radial*rx*r,Math.sin(a)*radial*ry*r,z*rz*r+.12,smooth(threshold-.06,threshold+.06,red));
       }
       mesh.instanceMatrix.needsUpdate=true;

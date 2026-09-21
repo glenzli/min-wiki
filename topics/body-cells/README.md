@@ -1,5 +1,9 @@
 # 身体里的细胞为什么长得不一样？
 
+## Integrated entry · 2026-09-20
+
+The public URL now redirects into `/topics/cells/?chapter=work&case=barrier`; valid `case`/`kind` selects muscle or neuron, with language, base prefix and hash retained. This directory still owns its complete biological models, SVG renderer, bilingual descriptions, academic notes and tests. The cells workspace supplies shared controls and a retained progress/zoom slot for each example; it reads the original scientific content rather than embedding the old page. `main.ts` is compatibility routing only. Earlier standalone UI descriptions below describe the retained interaction semantics, not a second independently mounted application.
+
 皮肤细胞连成保护层，肌肉纤维能收缩，神经元把信息传向远处。同样叫细胞，本领却不一样。
 
 三个独立观察场景，各自提供有限过程播放、暂停、阶段选择和拖动。`model.ts` 保存教学状态与几何约束，`scene.ts` 负责局部科学插画；`content.ts` 与 `learning.json` 分别维护操作说明和双语深入笔记／儿童口播。

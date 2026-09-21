@@ -3,7 +3,7 @@
   "topicId": "flower-fruit",
   "zh": {
     "question": "樱桃的果肉是花瓣变成的，还是花里面别的部分长大的？",
-    "observe": "播放连续观察，先跟着蜜蜂身上的一粒花粉走到柱头；暂停，再看放大剖面中的花粉管。拖动进度，对照子房、胚珠与之后的果实、种子。",
+    "observe": "在开花植物主题中选择樱桃繁殖案例，比较相容与不相容花粉；连续观察接触、管生长或受阻，暂停或回拖比较种子和果实是否形成。",
     "academic": [
       {
         "title": "传粉与受精是两个过程",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "花瓣通常不变成果肉；樱桃硬核不等于种子，真正的种子在硬核里面。",
-    "boundary": "只追踪樱桃类核果的一条成功发育路线，省略兼容花粉筛选和失败分支；阶段切换压缩真实时间，不能推广到所有水果。",
+    "boundary": "本案例已收归开花植物生命周期。相容花粉分支假定授粉受精及后续条件成功；不相容分支实际阻断花粉管继续生长，不形成种子和果实。没有计算温度、水分、花粉数量、品种差异或结实概率；所有时长经过压缩。",
     "narration": [
       {
         "label": "从花找一颗樱桃",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Does cherry flesh come from petals or from another part of the flower?",
-    "observe": "Play the journey and follow a pollen grain from the bee to the stigma. Pause to inspect pollen-tube growth in the enlarged section, then scrub to compare ovary and ovule with fruit and seed.",
+    "observe": "Select the cherry reproduction case in the flowering-plant topic. Compare compatible and incompatible pollen, following contact and tube growth or arrest; pause or scrub to compare whether seeds and fruit develop.",
     "academic": [
       {
         "title": "Pollination and fertilisation are distinct",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Petals do not normally become fruit flesh. A cherry stone is not itself the seed; the seed is inside it.",
-    "boundary": "This follows one successful cherry-like development pathway, omitting compatibility tests and failed fruit set. Time is compressed and anatomy cannot be generalised to all fruits.",
+    "boundary": "This case is integrated into the flowering-plant life cycle. Compatible pollen assumes successful fertilization and suitable later conditions; incompatible pollen actually arrests tube growth without seeds or fruit. Temperature, water, pollen quantity, cultivar differences and fruit-set probabilities are not computed; all durations are compressed.",
     "narration": [
       {
         "label": "Find a cherry inside a flower’s story",
@@ -97,6 +97,10 @@
     {
       "title": "OpenStax Biology 2e — Pollination and Fertilization",
       "url": "https://openstax.org/books/biology-2e/pages/32-2-pollination-and-fertilization"
+    },
+    {
+      "title": "Cornell / New York State Horticultural Society · Sweet cherry pollination",
+      "url": "https://nyshs.org/wp-content/uploads/2016/10/Sweet-Cherry-Pollination-Considerations-for-2001.pdf"
     }
   ]
 }

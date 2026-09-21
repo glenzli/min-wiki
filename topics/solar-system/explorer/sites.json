@@ -1,0 +1,879 @@
+{
+  "sun": [
+    {
+      "id": "granules",
+      "latitude": 15,
+      "longitude": 0,
+      "terrain": "none",
+      "name": {
+        "zh": "光球米粒组织",
+        "en": "Photospheric granules"
+      },
+      "description": {
+        "zh": "跟随同一片光球，观察亮颗粒与暗边界；这是加速的对流表面示意。",
+        "en": "Follow one photospheric region: bright granules and darker boundaries illustrate accelerated convection."
+      },
+      "source": "https://science.nasa.gov/sun/facts/",
+      "stages": [
+        {
+          "title": {
+            "zh": "远处的恒星",
+            "en": "A star in space"
+          },
+          "text": {
+            "zh": "太阳自己发光，周围的行星反射它的光。",
+            "en": "The Sun emits its own light; planets reflect it."
+          }
+        },
+        {
+          "title": {
+            "zh": "靠近日冕",
+            "en": "Approaching the corona"
+          },
+          "text": {
+            "zh": "稀薄的外层大气向太空伸展。日珥是受磁场约束的等离子体。",
+            "en": "The thin outer atmosphere extends into space. Magnetic fields support the plasma in prominences."
+          }
+        },
+        {
+          "title": {
+            "zh": "光球的纹理",
+            "en": "Photospheric texture"
+          },
+          "text": {
+            "zh": "明暗颗粒与对流有关；黑子比周围冷，却依然非常热。",
+            "en": "Granulation is associated with convection. Sunspots are cooler than their surroundings but still extremely hot."
+          }
+        },
+        {
+          "title": {
+            "zh": "在光球上方观察",
+            "en": "Above the photosphere"
+          },
+          "text": {
+            "zh": "跟随同一片光球，观察亮颗粒与暗边界；这是加速的对流表面示意。",
+            "en": "Follow one photospheric region: bright granules and darker boundaries illustrate accelerated convection."
+          }
+        }
+      ]
+    }
+  ],
+  "mercury": [
+    {
+      "id": "caloris",
+      "latitude": 31.65,
+      "longitude": 161.98,
+      "terrain": "crater",
+      "name": {
+        "zh": "卡洛里盆地区域",
+        "en": "Caloris basin region"
+      },
+      "description": {
+        "zh": "盆地中的撞击坑与岩屑。局部起伏为区域地貌重建，不是实测高度图。",
+        "en": "Craters and debris within the basin. Local relief is a regional reconstruction, not a measured elevation map."
+      },
+      "source": "https://planetarynames.wr.usgs.gov/Feature/979",
+      "stages": [
+        {
+          "title": {
+            "zh": "灰色小行星球",
+            "en": "A small gray planet"
+          },
+          "text": {
+            "zh": "我们从太空靠近水星。",
+            "en": "We approach Mercury from space."
+          }
+        },
+        {
+          "title": {
+            "zh": "地平线弯曲",
+            "en": "A curved horizon"
+          },
+          "text": {
+            "zh": "几乎没有大气散射出蓝天。",
+            "en": "There is almost no atmosphere to scatter a blue sky."
+          }
+        },
+        {
+          "title": {
+            "zh": "坑洼逐渐清晰",
+            "en": "Craters come into view"
+          },
+          "text": {
+            "zh": "撞击坑的边缘隆起，坑里有阴影。",
+            "en": "Impact rims rise above the ground and cast shadows."
+          }
+        },
+        {
+          "title": {
+            "zh": "岩石与碎屑",
+            "en": "Rock and debris"
+          },
+          "text": {
+            "zh": "盆地中的撞击坑与岩屑。局部起伏为区域地貌重建，不是实测高度图。",
+            "en": "Craters and debris within the basin. Local relief is a regional reconstruction, not a measured elevation map."
+          }
+        }
+      ]
+    }
+  ],
+  "venus": [
+    {
+      "id": "sif",
+      "latitude": 22,
+      "longitude": 352.4,
+      "terrain": "volcanic",
+      "name": {
+        "zh": "西芙火山区域",
+        "en": "Sif Mons region"
+      },
+      "description": {
+        "zh": "从浓厚云层进入火山地貌示意。地面形态主要依据雷达推断。",
+        "en": "Descend through thick clouds toward illustrative volcanic relief, inferred primarily from radar."
+      },
+      "source": "https://www.usgs.gov/maps/geologic-map-sif-mons-quadrangle-v-31-venus",
+      "stages": [
+        {
+          "title": {
+            "zh": "被云包住的星球",
+            "en": "A cloud-covered planet"
+          },
+          "text": {
+            "zh": "可见光下，厚云遮住地面。",
+            "en": "Visible light reveals clouds that hide the ground."
+          }
+        },
+        {
+          "title": {
+            "zh": "进入厚云",
+            "en": "Entering thick clouds"
+          },
+          "text": {
+            "zh": "雾越来越浓，远处难以看清。",
+            "en": "Haze thickens and limits the view."
+          }
+        },
+        {
+          "title": {
+            "zh": "昏黄的云下世界",
+            "en": "A dim world below"
+          },
+          "text": {
+            "zh": "穿过云层后，仍有浓厚的大气。",
+            "en": "Below the clouds, a dense atmosphere remains."
+          }
+        },
+        {
+          "title": {
+            "zh": "靠近岩石平原",
+            "en": "Above rocky plains"
+          },
+          "text": {
+            "zh": "从浓厚云层进入火山地貌示意。地面形态主要依据雷达推断。",
+            "en": "Descend through thick clouds toward illustrative volcanic relief, inferred primarily from radar."
+          }
+        }
+      ]
+    }
+  ],
+  "earth": [
+    {
+      "id": "sahara",
+      "latitude": 24,
+      "longitude": 13,
+      "terrain": "desert",
+      "name": {
+        "zh": "撒哈拉沙漠",
+        "en": "Sahara desert"
+      },
+      "description": {
+        "zh": "从北非沙漠上空接近，沙丘的脊线与裸岩逐渐清晰。",
+        "en": "Approach the North African desert as dune crests and exposed rock become clearer."
+      },
+      "source": "https://science.nasa.gov/earth/",
+      "stages": [
+        {
+          "title": {
+            "zh": "蓝色星球",
+            "en": "A blue world"
+          },
+          "text": {
+            "zh": "从太空能分清大陆、海洋和白云。",
+            "en": "From space we can distinguish land, oceans and clouds."
+          }
+        },
+        {
+          "title": {
+            "zh": "靠近大气边缘",
+            "en": "The atmospheric limb"
+          },
+          "text": {
+            "zh": "大气边缘出现薄薄的蓝色光晕。",
+            "en": "A thin blue glow appears along the atmospheric limb."
+          }
+        },
+        {
+          "title": {
+            "zh": "沙丘与裸岩",
+            "en": "Dunes and exposed rock"
+          },
+          "text": {
+            "zh": "从北非沙漠上空接近，沙丘的脊线与裸岩逐渐清晰。",
+            "en": "Approach the North African desert as dune crests and exposed rock become clearer."
+          }
+        },
+        {
+          "title": {
+            "zh": "沙漠近景",
+            "en": "Desert close view"
+          },
+          "text": {
+            "zh": "从北非沙漠上空接近，沙丘的脊线与裸岩逐渐清晰。",
+            "en": "Approach the North African desert as dune crests and exposed rock become clearer."
+          }
+        }
+      ]
+    },
+    {
+      "id": "greenland",
+      "latitude": 74,
+      "longitude": -42,
+      "terrain": "ice",
+      "name": {
+        "zh": "格陵兰冰盖",
+        "en": "Greenland ice sheet"
+      },
+      "description": {
+        "zh": "固定在冰盖内部，靠近白色冰雪和冰面纹理；起伏经过放大。",
+        "en": "Approach the ice-sheet interior, with snow, ice and exaggerated surface relief."
+      },
+      "source": "https://science.nasa.gov/earth/",
+      "stages": [
+        {
+          "title": {
+            "zh": "蓝色星球",
+            "en": "A blue world"
+          },
+          "text": {
+            "zh": "从太空能分清大陆、海洋和白云。",
+            "en": "From space we can distinguish land, oceans and clouds."
+          }
+        },
+        {
+          "title": {
+            "zh": "靠近大气边缘",
+            "en": "The atmospheric limb"
+          },
+          "text": {
+            "zh": "大气边缘出现薄薄的蓝色光晕。",
+            "en": "A thin blue glow appears along the atmospheric limb."
+          }
+        },
+        {
+          "title": {
+            "zh": "白色冰盖",
+            "en": "White ice sheet"
+          },
+          "text": {
+            "zh": "固定在冰盖内部，靠近白色冰雪和冰面纹理；起伏经过放大。",
+            "en": "Approach the ice-sheet interior, with snow, ice and exaggerated surface relief."
+          }
+        },
+        {
+          "title": {
+            "zh": "冰面纹理",
+            "en": "Ice surface detail"
+          },
+          "text": {
+            "zh": "固定在冰盖内部，靠近白色冰雪和冰面纹理；起伏经过放大。",
+            "en": "Approach the ice-sheet interior, with snow, ice and exaggerated surface relief."
+          }
+        }
+      ]
+    }
+  ],
+  "mars": [
+    {
+      "id": "south-cap",
+      "latitude": -86.3,
+      "longitude": 99,
+      "terrain": "polar",
+      "name": {
+        "zh": "南极冰盖 · 春季示意",
+        "en": "South polar cap · spring illustration"
+      },
+      "description": {
+        "zh": "南极的季节性干冰霜层夹有水冰和尘埃。春季干冰升华，冰面出现侵蚀纹理与深色尘埃；此处固定为春季示意。",
+        "en": "Seasonal dry-ice frost contains water ice and dust. Spring sublimation exposes erosion textures and dark dust; this scene holds a spring state."
+      },
+      "source": "https://www.jpl.nasa.gov/images/pia10137-carbon-dioxide-frost-settling-from-seasonal-outbursts-on-mars-movie/",
+      "stages": [
+        {
+          "title": {
+            "zh": "红色星球",
+            "en": "A reddish planet"
+          },
+          "text": {
+            "zh": "火星有深浅不同的地表区域。",
+            "en": "Mars has light and dark surface regions."
+          }
+        },
+        {
+          "title": {
+            "zh": "稀薄的大气",
+            "en": "A thin atmosphere"
+          },
+          "text": {
+            "zh": "稀薄大气中的尘埃影响天空颜色。",
+            "en": "Dust in its thin atmosphere affects the sky color."
+          }
+        },
+        {
+          "title": {
+            "zh": "冰盖的层理",
+            "en": "Layers of polar ice"
+          },
+          "text": {
+            "zh": "南极的季节性干冰霜层夹有水冰和尘埃。春季干冰升华，冰面出现侵蚀纹理与深色尘埃；此处固定为春季示意。",
+            "en": "Seasonal dry-ice frost contains water ice and dust. Spring sublimation exposes erosion textures and dark dust; this scene holds a spring state."
+          }
+        },
+        {
+          "title": {
+            "zh": "冰面与升华凹坑",
+            "en": "Ice and sublimation pits"
+          },
+          "text": {
+            "zh": "南极的季节性干冰霜层夹有水冰和尘埃。春季干冰升华，冰面出现侵蚀纹理与深色尘埃；此处固定为春季示意。",
+            "en": "Seasonal dry-ice frost contains water ice and dust. Spring sublimation exposes erosion textures and dark dust; this scene holds a spring state."
+          }
+        }
+      ]
+    },
+    {
+      "id": "marineris",
+      "latitude": -13.9,
+      "longitude": -59.2,
+      "terrain": "canyon",
+      "name": {
+        "zh": "水手峡谷区域",
+        "en": "Valles Marineris region"
+      },
+      "description": {
+        "zh": "从赤道附近的峡谷区域下降，始终沿着同一条谷地观察台地、崖壁和沙尘。",
+        "en": "Descend over an equatorial canyon, following the same valley between layered cliffs, plateaus and dust."
+      },
+      "source": "https://science.nasa.gov/mars/facts/",
+      "stages": [
+        {
+          "title": {
+            "zh": "红色星球",
+            "en": "A reddish planet"
+          },
+          "text": {
+            "zh": "火星有深浅不同的地表区域。",
+            "en": "Mars has light and dark surface regions."
+          }
+        },
+        {
+          "title": {
+            "zh": "稀薄的大气",
+            "en": "A thin atmosphere"
+          },
+          "text": {
+            "zh": "稀薄大气中的尘埃影响天空颜色。",
+            "en": "Dust in its thin atmosphere affects the sky color."
+          }
+        },
+        {
+          "title": {
+            "zh": "峡谷与台地",
+            "en": "Canyon and plateaus"
+          },
+          "text": {
+            "zh": "从赤道附近的峡谷区域下降，始终沿着同一条谷地观察台地、崖壁和沙尘。",
+            "en": "Descend over an equatorial canyon, following the same valley between layered cliffs, plateaus and dust."
+          }
+        },
+        {
+          "title": {
+            "zh": "崖壁与谷底",
+            "en": "Cliffs and valley floor"
+          },
+          "text": {
+            "zh": "从赤道附近的峡谷区域下降，始终沿着同一条谷地观察台地、崖壁和沙尘。",
+            "en": "Descend over an equatorial canyon, following the same valley between layered cliffs, plateaus and dust."
+          }
+        }
+      ]
+    }
+  ],
+  "jupiter": [
+    {
+      "id": "red-spot",
+      "latitude": -22,
+      "longitude": -93.6,
+      "terrain": "none",
+      "name": {
+        "zh": "大红斑",
+        "en": "Great Red Spot"
+      },
+      "description": {
+        "zh": "跟随大红斑的示意中心，观察云丝绕行与不同高度的云。风暴经度随时间变化，此处固定在模型坐标。",
+        "en": "Follow the modeled storm center and clouds at different heights. Storm longitude changes with time; this is a fixed model coordinate."
+      },
+      "source": "https://www.nasa.gov/news-release/nasas-juno-science-results-offer-first-3d-view-of-jupiter-atmosphere/",
+      "stages": [
+        {
+          "title": {
+            "zh": "条纹巨行星",
+            "en": "A banded giant"
+          },
+          "text": {
+            "zh": "条纹来自大气里的云带。",
+            "en": "The stripes are atmospheric cloud bands."
+          }
+        },
+        {
+          "title": {
+            "zh": "大红斑",
+            "en": "Great Red Spot"
+          },
+          "text": {
+            "zh": "跟随大红斑的示意中心，观察云丝绕行与不同高度的云。风暴经度随时间变化，此处固定在模型坐标。",
+            "en": "Follow the modeled storm center and clouds at different heights. Storm longitude changes with time; this is a fixed model coordinate."
+          }
+        },
+        {
+          "title": {
+            "zh": "进入云层",
+            "en": "Into the clouds"
+          },
+          "text": {
+            "zh": "眼前越来越多是云与雾。",
+            "en": "Clouds and haze increasingly fill the view."
+          }
+        },
+        {
+          "title": {
+            "zh": "更浓的大气",
+            "en": "A denser atmosphere"
+          },
+          "text": {
+            "zh": "跟随大红斑的示意中心，观察云丝绕行与不同高度的云。风暴经度随时间变化，此处固定在模型坐标。",
+            "en": "Follow the modeled storm center and clouds at different heights. Storm longitude changes with time; this is a fixed model coordinate."
+          }
+        }
+      ]
+    },
+    {
+      "id": "north-cyclones",
+      "latitude": 90,
+      "longitude": 0,
+      "terrain": "none",
+      "name": {
+        "zh": "北极气旋群",
+        "en": "North polar cyclones"
+      },
+      "description": {
+        "zh": "中央气旋周围还有各自旋转的气旋，云丝围绕多个中心弯曲。位置与速度是示意。",
+        "en": "Several separate vortices surround a central cyclone. Cloud filaments curl around multiple centers; positions and speeds are illustrative."
+      },
+      "source": "https://www.jpl.nasa.gov/news/nasa-juno-finds-jupiters-jet-streams-are-unearthly/",
+      "stages": [
+        {
+          "title": {
+            "zh": "条纹巨行星",
+            "en": "A banded giant"
+          },
+          "text": {
+            "zh": "条纹来自大气里的云带。",
+            "en": "The stripes are atmospheric cloud bands."
+          }
+        },
+        {
+          "title": {
+            "zh": "北极气旋群",
+            "en": "North polar cyclones"
+          },
+          "text": {
+            "zh": "中央气旋周围还有各自旋转的气旋，云丝围绕多个中心弯曲。位置与速度是示意。",
+            "en": "Several separate vortices surround a central cyclone. Cloud filaments curl around multiple centers; positions and speeds are illustrative."
+          }
+        },
+        {
+          "title": {
+            "zh": "进入云层",
+            "en": "Into the clouds"
+          },
+          "text": {
+            "zh": "眼前越来越多是云与雾。",
+            "en": "Clouds and haze increasingly fill the view."
+          }
+        },
+        {
+          "title": {
+            "zh": "更浓的大气",
+            "en": "A denser atmosphere"
+          },
+          "text": {
+            "zh": "中央气旋周围还有各自旋转的气旋，云丝围绕多个中心弯曲。位置与速度是示意。",
+            "en": "Several separate vortices surround a central cyclone. Cloud filaments curl around multiple centers; positions and speeds are illustrative."
+          }
+        }
+      ]
+    }
+  ],
+  "saturn": [
+    {
+      "id": "hexagon",
+      "latitude": 90,
+      "longitude": 0,
+      "terrain": "none",
+      "name": {
+        "zh": "北极六边形急流",
+        "en": "North polar hexagonal jet"
+      },
+      "description": {
+        "zh": "六边形是一圈急流的形状，中心还有极地旋涡。沿同一区域进入层叠云雾。",
+        "en": "The hexagon traces a jet surrounding a polar vortex. Follow this region into layered cloud and haze."
+      },
+      "source": "https://science.nasa.gov/mission/cassini/science/saturn/hexagon-in-motion/",
+      "stages": [
+        {
+          "title": {
+            "zh": "带环的巨行星",
+            "en": "A ringed giant"
+          },
+          "text": {
+            "zh": "环由许多颗粒组成，不是坚固圆盘。",
+            "en": "Rings consist of many particles, not a solid disc."
+          }
+        },
+        {
+          "title": {
+            "zh": "离开环的远景",
+            "en": "Leaving the rings behind"
+          },
+          "text": {
+            "zh": "我们朝星球靠近，没有在环上着陆。",
+            "en": "We approach the planet without landing on the rings."
+          }
+        },
+        {
+          "title": {
+            "zh": "进入浅色云层",
+            "en": "Into pale clouds"
+          },
+          "text": {
+            "zh": "浅色云带逐渐充满视野。",
+            "en": "Pale cloud bands gradually fill the view."
+          }
+        },
+        {
+          "title": {
+            "zh": "云下更浓的流体",
+            "en": "Denser material below"
+          },
+          "text": {
+            "zh": "六边形是一圈急流的形状，中心还有极地旋涡。沿同一区域进入层叠云雾。",
+            "en": "The hexagon traces a jet surrounding a polar vortex. Follow this region into layered cloud and haze."
+          }
+        }
+      ]
+    },
+    {
+      "id": "bands",
+      "latitude": 18,
+      "longitude": 0,
+      "terrain": "none",
+      "name": {
+        "zh": "低纬云带",
+        "en": "Low-latitude cloud bands"
+      },
+      "description": {
+        "zh": "淡黄色云带沿纬度方向错动，近景是云和雾，没有可站立的地面。",
+        "en": "Pale cloud bands drift at different rates. The close view contains clouds and haze, with no solid ground."
+      },
+      "source": "https://science.nasa.gov/saturn/facts/",
+      "stages": [
+        {
+          "title": {
+            "zh": "带环的巨行星",
+            "en": "A ringed giant"
+          },
+          "text": {
+            "zh": "环由许多颗粒组成，不是坚固圆盘。",
+            "en": "Rings consist of many particles, not a solid disc."
+          }
+        },
+        {
+          "title": {
+            "zh": "离开环的远景",
+            "en": "Leaving the rings behind"
+          },
+          "text": {
+            "zh": "我们朝星球靠近，没有在环上着陆。",
+            "en": "We approach the planet without landing on the rings."
+          }
+        },
+        {
+          "title": {
+            "zh": "进入浅色云层",
+            "en": "Into pale clouds"
+          },
+          "text": {
+            "zh": "浅色云带逐渐充满视野。",
+            "en": "Pale cloud bands gradually fill the view."
+          }
+        },
+        {
+          "title": {
+            "zh": "云下更浓的流体",
+            "en": "Denser material below"
+          },
+          "text": {
+            "zh": "淡黄色云带沿纬度方向错动，近景是云和雾，没有可站立的地面。",
+            "en": "Pale cloud bands drift at different rates. The close view contains clouds and haze, with no solid ground."
+          }
+        }
+      ]
+    }
+  ],
+  "uranus": [
+    {
+      "id": "haze",
+      "latitude": 35,
+      "longitude": 0,
+      "terrain": "none",
+      "name": {
+        "zh": "淡青色云雾",
+        "en": "Pale cyan cloud and haze"
+      },
+      "description": {
+        "zh": "较低对比度的云带隐藏在霾层中，靠近后能看见稀疏的明亮云团。",
+        "en": "Low-contrast bands lie beneath haze, with sparse bright clouds becoming clearer on approach."
+      },
+      "source": "https://science.nasa.gov/solar-system/why-uranus-and-neptune-are-different-colors/",
+      "stages": [
+        {
+          "title": {
+            "zh": "淡青色的整球",
+            "en": "A pale cyan globe"
+          },
+          "text": {
+            "zh": "天王星的自转轴倾斜得很厉害。",
+            "en": "Uranus has an extreme axial tilt."
+          }
+        },
+        {
+          "title": {
+            "zh": "大气的边缘",
+            "en": "An atmospheric limb"
+          },
+          "text": {
+            "zh": "甲烷影响它的可见光颜色。",
+            "en": "Methane affects its visible color."
+          }
+        },
+        {
+          "title": {
+            "zh": "云纹与薄雾",
+            "en": "Cloud streaks and haze"
+          },
+          "text": {
+            "zh": "微弱云纹帮助我们发现大气的运动。",
+            "en": "Subtle streaks help reveal atmospheric motion."
+          }
+        },
+        {
+          "title": {
+            "zh": "深入大气",
+            "en": "Deeper atmosphere"
+          },
+          "text": {
+            "zh": "较低对比度的云带隐藏在霾层中，靠近后能看见稀疏的明亮云团。",
+            "en": "Low-contrast bands lie beneath haze, with sparse bright clouds becoming clearer on approach."
+          }
+        }
+      ]
+    }
+  ],
+  "neptune": [
+    {
+      "id": "dark-vortex",
+      "latitude": -25,
+      "longitude": -93.6,
+      "terrain": "none",
+      "name": {
+        "zh": "暗斑与明亮云团 · 示意",
+        "en": "Dark vortex and bright clouds · illustration"
+      },
+      "description": {
+        "zh": "跟随一个代表性暗旋涡和附近的明亮云团。暗斑会出现和消失，此处不是实时天气。",
+        "en": "Follow a representative dark vortex and nearby bright clouds. Dark spots form and disappear; this is not live weather."
+      },
+      "source": "https://science.nasa.gov/neptune/neptune-facts/",
+      "stages": [
+        {
+          "title": {
+            "zh": "远方的冰巨行星",
+            "en": "A distant ice giant"
+          },
+          "text": {
+            "zh": "颜色示意采用较淡的蓝绿色。",
+            "en": "The illustration uses a relatively pale blue-green color."
+          }
+        },
+        {
+          "title": {
+            "zh": "靠近亮云",
+            "en": "Approaching bright clouds"
+          },
+          "text": {
+            "zh": "亮云与较暗云层形成对比。",
+            "en": "Bright clouds contrast with darker layers."
+          }
+        },
+        {
+          "title": {
+            "zh": "云在身边流动",
+            "en": "Clouds flowing nearby"
+          },
+          "text": {
+            "zh": "云带运动被加快，方便观察。",
+            "en": "Cloud motion is accelerated for observation."
+          }
+        },
+        {
+          "title": {
+            "zh": "大气逐渐稠密",
+            "en": "Increasingly dense air"
+          },
+          "text": {
+            "zh": "跟随一个代表性暗旋涡和附近的明亮云团。暗斑会出现和消失，此处不是实时天气。",
+            "en": "Follow a representative dark vortex and nearby bright clouds. Dark spots form and disappear; this is not live weather."
+          }
+        }
+      ]
+    }
+  ],
+  "moon": [
+    {
+      "id": "tycho",
+      "latitude": -43.3,
+      "longitude": -11.2,
+      "terrain": "crater",
+      "name": {
+        "zh": "第谷撞击坑区域",
+        "en": "Tycho crater region"
+      },
+      "description": {
+        "zh": "坑壁、坑底与岩屑始终属于同一片撞击地貌。高度与细节为示意。",
+        "en": "Crater walls, floor and debris stay within the same impact landscape. Heights and details are illustrative."
+      },
+      "source": "https://science.nasa.gov/moon/facts/",
+      "stages": [
+        {
+          "title": {
+            "zh": "地球的卫星",
+            "en": "Earth’s satellite"
+          },
+          "text": {
+            "zh": "月球绕地球运行，也随地球一起绕太阳。",
+            "en": "The Moon orbits Earth and accompanies it around the Sun."
+          }
+        },
+        {
+          "title": {
+            "zh": "没有蓝天",
+            "en": "No blue sky"
+          },
+          "text": {
+            "zh": "没有浓厚的大气挡住视线。",
+            "en": "No thick atmosphere obscures the view."
+          }
+        },
+        {
+          "title": {
+            "zh": "靠近撞击坑",
+            "en": "Approaching craters"
+          },
+          "text": {
+            "zh": "撞击坑与较暗平原形态不同。",
+            "en": "Impact craters differ from the darker plains."
+          }
+        },
+        {
+          "title": {
+            "zh": "月壤与岩石",
+            "en": "Regolith and rock"
+          },
+          "text": {
+            "zh": "坑壁、坑底与岩屑始终属于同一片撞击地貌。高度与细节为示意。",
+            "en": "Crater walls, floor and debris stay within the same impact landscape. Heights and details are illustrative."
+          }
+        }
+      ]
+    }
+  ],
+  "titan": [
+    {
+      "id": "ligeia",
+      "latitude": 79.7,
+      "longitude": 112.1,
+      "terrain": "lake",
+      "name": {
+        "zh": "丽姬娅海区域",
+        "en": "Ligeia Mare region"
+      },
+      "description": {
+        "zh": "穿过橙色霾层，接近液态烃湖泊和水冰组成的岸边。岸线细节为示意。",
+        "en": "Pass through orange haze toward a hydrocarbon sea and water-ice terrain. Shoreline details are illustrative."
+      },
+      "source": "https://planetarynames.wr.usgs.gov/Feature/14400",
+      "stages": [
+        {
+          "title": {
+            "zh": "土星的卫星",
+            "en": "A moon of Saturn"
+          },
+          "text": {
+            "zh": "浓雾遮住土卫六的地貌。",
+            "en": "Thick haze hides Titan’s terrain."
+          }
+        },
+        {
+          "title": {
+            "zh": "进入橙色雾霭",
+            "en": "Into orange haze"
+          },
+          "text": {
+            "zh": "大气使远处景物逐渐模糊。",
+            "en": "Atmosphere makes distant features increasingly hazy."
+          }
+        },
+        {
+          "title": {
+            "zh": "靠近极区",
+            "en": "Approaching a polar region"
+          },
+          "text": {
+            "zh": "极区有探测器发现的湖海。",
+            "en": "Spacecraft have detected lakes and seas in polar regions."
+          }
+        },
+        {
+          "title": {
+            "zh": "甲烷湖岸",
+            "en": "A methane lakeshore"
+          },
+          "text": {
+            "zh": "穿过橙色霾层，接近液态烃湖泊和水冰组成的岸边。岸线细节为示意。",
+            "en": "Pass through orange haze toward a hydrocarbon sea and water-ice terrain. Shoreline details are illustrative."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -2,7 +2,7 @@
  * Run from the mini-wiki repository root:
  *   node --test topics/air-conditioner/tests/controller.test.mjs
  *
- * Executes the current model.ts, scene.ts and main.ts, with a small DOM adapter
+ * Executes the real device models/renderers/studies and composed main entry, with a small DOM adapter
  * and a manually advanced animation scheduler. No production state transition
  * or energy formula is reimplemented here. This is controller-level lifecycle
  * evidence, not proof of a particular browser's BFCache eligibility.
@@ -21,11 +21,12 @@ const {parse,parseFragment}=await import(require.resolve('parse5'));
 const topic=resolve(root,'topics/air-conditioner');
 const html=readFileSync(resolve(topic,'index.html'),'utf8');
 
-function harness(controllerSource) {
+function harness(controllerSource,{project=false,search=''}={}) {
  const ids=new Map(),elements=[];
  class Target {
   listeners=new Map();
   addEventListener(type,fn){const list=this.listeners.get(type)??[];list.push(fn);this.listeners.set(type,list);}
+  removeEventListener(type,fn){this.listeners.set(type,(this.listeners.get(type)??[]).filter(item=>item!==fn));}
   dispatch(type,details={}){for(const fn of this.listeners.get(type)??[])fn({type,target:this,...details});}
  }
  class Element extends Target {
@@ -66,7 +67,9 @@ function harness(controllerSource) {
   if(fraction===1){handle.active=false;handle.onComplete?.();}
  }
  const noop=()=>{};
- const host={document,window,console,t:value=>value,translateDocument:noop,mountTopicNavigation:noop,mountReadingMode:noop,animateValue};
+ const location=new URL('https://wiki.test/topics/air-conditioner/'+search);
+ const history={pushState(_state,_unused,href){const next=new URL(href,location);location.href=next.href;}};
+ const host={document,window,location,history,URLSearchParams,console,t:value=>value,translateDocument:noop,mountTopicNavigation:noop,mountReadingMode:noop,animateValue};
  function load(name,dependencies={},override) {
   const source=override??readFileSync(resolve(topic,name),'utf8');
   const parsed=ts.createSourceFile(name,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
@@ -81,11 +84,22 @@ function harness(controllerSource) {
  }
  const model=load('model.ts');
  const scene=load('scene.ts',model);
- load('main.ts',{...model,...scene},controllerSource);
+ const {mountAirStudy}=load('airStudy.ts',{...model,...scene},controllerSource);
+ let study;
+ if(project){
+  const refrigeratorModel=load('../refrigerator/model.ts');
+  const refrigeratorScene=load('../refrigerator/scene.ts',{...refrigeratorModel,paths:refrigeratorModel.refrigerantPaths});
+  const {mountRefrigeratorStudy}=load('../refrigerator/study.ts',{...refrigeratorModel,...refrigeratorScene});
+  const projectModel=load('projectModel.ts');
+  load('main.ts',{mountAirStudy,mountRefrigeratorStudy,...refrigeratorModel,...projectModel,
+   languageHref:value=>value,refrigeratorPanel:readFileSync(resolve(topic,'../refrigerator/panel.html'),'utf8')});
+ }else study=mountAirStudy();
  const get=id=>document.getElementById(id);
  const mode=target=>document.querySelectorAll('[data-cooling]').find(button=>button.dataset.cooling===String(target));
  return {
-  get,animations,advance,
+  get,animations,advance,study,document,window,location,
+  selectChapter(chapter){document.querySelectorAll('[data-chapter]').find(b=>b.dataset.chapter===chapter).dispatch('click');},
+  input(id,value,event='input'){get(id).value=String(value);get(id).dispatch(event);},
   clickMode(target){mode(target).dispatch('click');return animations.at(-1);},
   setProgress(percent){get('progress').value=String(percent);get('progress').dispatch('input');},
   restore(){window.dispatch('pagehide',{persisted:true});window.dispatch('pageshow',{persisted:true});},
@@ -143,4 +157,42 @@ test('rapid reversals restore the latest selected mode without stale animation u
  assert.equal(third.active,false);
  h.advance(first,1);h.advance(second,1);h.advance(third,1);
  h.assertMode(0,63);
+});
+
+test('composed entry preserves both devices while chapter changes stop every animation',()=>{
+ const h=harness(undefined,{project:true});
+ h.setProgress(63);h.get('play').dispatch('click');h.advance(h.animations.at(-1),.1);
+ const airProgress=h.get('progress').value;
+ h.selectChapter('fridge');
+ assert.ok(h.animations.every(a=>!a.active));assert.equal(h.get('air-panel').hidden,true);
+ h.input('fr-plan','visit','change');h.input('fr-progress',450);
+ h.get('fr-play').dispatch('click');h.advance(h.animations.at(-1),.1);
+ const food=h.get('fr-food-value').textContent,fridgeProgress=h.get('fr-progress').value;
+ h.selectChapter('room');assert.ok(h.animations.every(a=>!a.active));
+ h.selectChapter('air');assert.equal(h.get('progress').value,airProgress);
+ h.selectChapter('fridge');assert.equal(h.get('fr-progress').value,fridgeProgress);
+ assert.equal(h.get('fr-food-value').textContent,food);assert.equal(h.get('fr-plan').value,'visit');
+ assert.equal(h.get('fridge-panel').hidden,false);assert.equal(h.get('room-panel').hidden,true);
+ assert.match(h.get('shared-cold').textContent,/kJ$/);
+});
+
+test('actual entry supports direct fridge route, history, and live room work projection',()=>{
+ const h=harness(undefined,{project:true,search:'?chapter=fridge&lang=en&custom=keep#anchor'});
+ assert.equal(h.get('fridge-panel').hidden,false);
+ h.selectChapter('room');assert.equal(h.location.searchParams.get('custom'),'keep');assert.equal(h.location.hash,'#anchor');
+ h.input('boundary-work',2);assert.match(h.get('shared-cold').textContent,/^6.0 /);assert.match(h.get('shared-hot').textContent,/^8.0 /);
+ h.input('heat-placement','same-room','change');
+ assert.equal(h.get('shared-hot-place').textContent,'热端：同一房间');
+ h.location.search='?chapter=fridge';h.window.dispatch('popstate');
+ assert.equal(h.get('fridge-panel').hidden,false);assert.equal(h.get('room-panel').hidden,true);
+});
+
+test('chapter suspension commits selected AC mode and hidden documents halt fridge work',()=>{
+ const h=harness(undefined,{project:true});
+ h.setProgress(63);const mode=h.clickMode(0);h.advance(mode,.2);
+ h.selectChapter('fridge');h.selectChapter('air');h.assertMode(0,63);
+ h.selectChapter('fridge');h.get('fr-play').dispatch('click');h.advance(h.animations.at(-1),.2);
+ const p=h.get('fr-progress').value;
+ h.document.hidden=true;h.document.dispatch('visibilitychange');
+ assert.ok(h.animations.every(a=>!a.active));assert.equal(h.get('fr-progress').value,p);
 });
