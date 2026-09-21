@@ -27,9 +27,9 @@ export class ComparisonJourney {
   this.onward.onclick=()=>this.navigate(this.chapter==='compare'?'homes':'zoom');
   this.source.textContent=w.source;this.source.target='_blank';this.source.rel='noreferrer';
   const controls=make('div','','comparison-transport');controls.append(this.previous,label,this.next);
-  const copy=make('div','','comparison-copy');copy.append(this.cards,this.note,this.boundary,this.source,this.onward);
+  const copy=make('div','','comparison-copy');copy.append(this.note,this.source,this.onward);
   const credit=make('a',w.credit,'comparison-credit');credit.href='https://www.solarsystemscope.com/textures/';credit.target='_blank';credit.rel='noreferrer';
-  root.append(heading,this.canvas,controls,copy,credit);
+  copy.append(credit);root.append(heading,this.canvas,this.cards,controls,this.boundary,copy);
   this.observer=new ResizeObserver(()=>this.paint());this.observer.observe(this.canvas);
   for(const url of [earthMap,jupiterMap]){const image=new Image();image.onload=()=>{if(!this.disposed)this.paint();};image.src=url;this.maps.push(image);}
  }
@@ -63,8 +63,8 @@ export class ComparisonJourney {
   const shade=c.createLinearGradient(x-r,y-r,x+r,y+r);shade.addColorStop(0,'#01091500');shade.addColorStop(.6,'#01091518');shade.addColorStop(1,'#010915c0');c.fillStyle=shade;c.fillRect(x-r,y-r,2*r,2*r);c.restore();
  }
  private paint(){
-  if(this.disposed||this.root.hidden)return;const width=this.canvas.clientWidth;if(!width)return;const height=width<600?300:390,dpr=Math.min(devicePixelRatio||1,2),c=this.ctx,w=this.words;
-  this.canvas.style.height=height+'px';if(this.canvas.width!==Math.round(width*dpr)||this.canvas.height!==Math.round(height*dpr)){this.canvas.width=Math.round(width*dpr);this.canvas.height=Math.round(height*dpr);}c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#08111f';c.fillRect(0,0,width,height);
+  if(this.disposed||this.root.hidden)return;const width=this.canvas.clientWidth;if(!width)return;const height=this.canvas.clientHeight||300,dpr=Math.min(devicePixelRatio||1,2),c=this.ctx,w=this.words;
+  if(this.canvas.width!==Math.round(width*dpr)||this.canvas.height!==Math.round(height*dpr)){this.canvas.width=Math.round(width*dpr);this.canvas.height=Math.round(height*dpr);}c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#08111f';c.fillRect(0,0,width,height);
   const comparing=this.chapter==='compare',index=Math.max(0,Math.min(lastPair,Math.round(this.pair)));this.pairs.hidden=!comparing;this.homes.hidden=comparing;(this.slider.parentElement!.parentElement!).hidden=!comparing;this.cards.hidden=!comparing||Math.abs(this.pair-Math.round(this.pair))>1e-5;
   this.canvas.setAttribute('aria-label',comparing?w.compareAlt:w.homeAlt);
   this.title.textContent=comparing?w.pairTitles[index]!:w.homeTitles[this.home]!;
@@ -73,7 +73,7 @@ export class ComparisonJourney {
   this.slider.value=String(this.pair);this.previous.disabled=this.pair<=0;this.next.disabled=this.pair>=lastPair;
   [...this.pairs.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===index)));[...this.homes.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===this.home)));
   if(comparing){
-   for(const [i,b] of comparisonFrame(this.pair,width).entries()){if(b.opacity===0)continue;c.globalAlpha=b.opacity;const y=height*.6-b.radius*.2;this.disk(b.x,y,b.radius,i);if(b.opacity>.1&&b.x+b.radius>0&&b.x-b.radius<width){c.font='12px system-ui';c.textAlign='center';c.fillStyle='#e5eef5';c.fillText(w.names[i]!,Math.max(32,Math.min(width-40,b.x)),Math.min(height-16,y+b.radius+20));}c.globalAlpha=1;}
+   for(const [i,b] of comparisonFrame(this.pair,width,height).entries()){if(b.opacity===0)continue;c.globalAlpha=b.opacity;const y=height*.6-b.radius*.2;this.disk(b.x,y,b.radius,i);if(b.opacity>.1&&b.x+b.radius>0&&b.x-b.radius<width){c.font='12px system-ui';c.textAlign='center';c.fillStyle='#e5eef5';c.fillText(w.names[i]!,Math.max(32,Math.min(width-40,b.x)),Math.min(height-16,y+b.radius+20));}c.globalAlpha=1;}
    const entries=[index,index+1].map(i=>{const card=make('div');card.append(make('strong',w.names[i]!),make('span',w.kinds[i]!),make('span',`${w.diameter} ${(bodies[i]!.radius*2).toLocaleString(undefined,{maximumSignificantDigits:3})} km`));return card;});this.cards.replaceChildren(...entries);
   }else this.drawHome(width,height);
  }

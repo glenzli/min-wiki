@@ -36,3 +36,17 @@ Focused command: `node --import tsx --test topics/cosmic-scale/tests/*.test.*`. 
 Comparison stellar disks use two cached, deterministic spherical photosphere illustrations with granulation, limb darkening and restrained glow; Sun-only spots are illustrative. Texture scale and colors are not measured surface data. The comparison represents a static snapshot, with no timed convection claim.
 
 Antares extends the final comparison at approximately 700 solar radii, sourced from ESO eso1726; the existing Arcturus pair index remains 2. Membership galaxy images are three cached 720px procedural structural illustrations with diffuse disks, spiral populations, warm centers and dust lanes. Projection, directions and texture details are illustrative, not observed maps or a distance scale.
+
+## Viewport and immersive interaction — 2026-09-22
+
+The comparison, membership and physical zoom chapters share a viewport-sized observation workspace.
+Explanation and settings are independently collapsible; immersive entry closes them and Escape restores
+the reading layout and previous disclosure choices. Changing layout preserves chapter, pair, origin,
+zoom progress and the original renderer. The comparison reads its actual CSS canvas height and applies
+one scale to every body, preserving diameter ratios. Narrow/mobile layouts retain natural scrolling.
+
+Physical zoom expands the horizontal camera span uniformly when width exceeds twice the available
+height, keeping the origin globe visible in a short theater. The same framing factor is applied to
+positions, radii and the physical ruler. The width readout consumes the renderer's actual framed span,
+including after resize; URL progress and the identity of the Earth/Sun anchor remain unchanged.
+This is responsive camera framing, not a change in physical body size or a new distance measurement.

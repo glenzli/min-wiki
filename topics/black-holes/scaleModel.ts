@@ -38,10 +38,10 @@ export function referenceComparison(index: number, referenceId = '') {
   return { hole, reference, diameterKm, ratio: diameterKm / reference.spanKm };
 }
 /** One linear conversion for both objects inside the independently framed comparison. */
-export function comparisonGeometry(index: number, width: number, referenceId = '', disk = false) {
+export function comparisonGeometry(index: number, width: number, referenceId = '', disk = false, height = 210) {
   const value = referenceComparison(index, referenceId);
   const envelope = disk ? DISK_OUTER_HORIZON_RADII : 1;
-  const pixelsPerKm = Math.min(width * .36, 160) / Math.max(value.diameterKm * envelope, value.reference.spanKm);
+  const pixelsPerKm = Math.min(width * .36, Math.max(1, height - 50)) / Math.max(value.diameterKm * envelope, value.reference.spanKm);
   return { ...value, pixelsPerKm, holePixels: value.diameterKm * pixelsPerKm, referencePixels: value.reference.spanKm * pixelsPerKm };
 }
 /** Geometric angular diameter, NOT a fitted EHT shadow or photon-ring diameter. */

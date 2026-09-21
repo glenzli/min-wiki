@@ -19,5 +19,16 @@
   "银河中心的黑洞有多大？ →": "How large is the central black hole? →",
   "选择从地球或太阳出发。每次拉远，不只是换一张图片，而是换一把更长的尺。": "Choose Earth or the Sun as your starting point. Each step outward uses a longer ruler, not just another picture.",
   "从所选起点到本星系群 · 连续对数缩放": "From your chosen start to the Local Group · continuous logarithmic zoom",
-  "先比一比天体大小，再看看它们住在哪里，最后带着熟悉的参照一路拉远。": "Compare body sizes, discover where they belong, then zoom outward with familiar references."
+  "先比一比天体大小，再看看它们住在哪里，最后带着熟悉的参照一路拉远。": "Compare body sizes, discover where they belong, then zoom outward with familiar references.",
+  "沉浸演示": "Immersive view",
+  "退出沉浸 · Esc": "Exit immersive · Esc",
+  "解说": "Explanation",
+  "设置": "Settings",
+  "切换章节": "Change chapter",
+  "尺度观察方式": "Scale view",
+  "并排比大小": "Compare side by side",
+  "连续拉远": "Zoom out continuously",
+  "图示与真实尺度": "Diagram and physical scale",
+  "实验设置": "Experiment settings",
+  "宇宙尺度观察": "Cosmic scale observation"
 }

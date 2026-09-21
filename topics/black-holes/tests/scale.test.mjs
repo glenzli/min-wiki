@@ -80,3 +80,14 @@ test('a farther larger horizon can have a smaller angular diameter; low-mass siz
   assert.ok(2 * horizonRadiusKm(2.5) > 14 && 2 * horizonRadiusKm(2.5) < 15);
   assert.ok(2 * horizonRadiusKm(4.5) > 26 && 2 * horizonRadiusKm(4.5) < 27);
 });
+
+// A layout change must preserve one ruler even when a short window changes the framing.
+test('paired geometry fits available height while preserving both diameter ratios and disk envelope', () => {
+  for (const height of [100, 180, 420]) for (const width of [300, 1000]) for (const disk of [false, true]) {
+    const g = comparisonGeometry(1, width, 'sun', disk, height);
+    assert.ok(Math.abs(g.holePixels / g.referencePixels - g.ratio) < 1e-10);
+    assert.ok(g.holePixels * (disk ? DISK_OUTER_HORIZON_RADII : 1) <= height - 50 + 1e-8);
+    assert.ok(g.referencePixels <= height - 50 + 1e-8);
+    assert.equal(g.holePixels, g.diameterKm * g.pixelsPerKm);
+  }
+});

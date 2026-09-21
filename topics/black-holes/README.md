@@ -25,8 +25,8 @@ and M87* (6.5 billion). Solar, Mercury and Neptune references share the same rul
 Spin and observational uncertainties are not modeled.
 Source: https://www.eso.org/public/images/eso2208-eht-mwe/.
 
-The scale chapter also owns an always-visible side-by-side comparison, mounted before
-the zoom canvas and removed with the chapter. It uses a separate, explicitly labeled
+The scale chapter also owns a side-by-side comparison, mounted with the zoom canvas and removed with the chapter.
+The workspace shows either comparison or continuous zoom, retaining the same progress and choices. It uses a separate, explicitly labeled
 framing: both objects within the box share one linear km-to-pixel conversion, but the
 box does not share the zoom canvas's camera. It remains available when optional guides
 or in-scene annotations are hidden. Stage changes update both the object captions and
@@ -78,9 +78,18 @@ horizon is conditional, not photographed or declared the confirmed smallest blac
 Primordial holes remain hypothetical. Galaxy capture is discussed through orbital motion and
 angular-momentum transport; no whole-galaxy accretion solver or swallowing animation is claimed.
 
-All five chapters have a reversible demonstration mode. The shell hides navigation, reading
-panels and optional settings while retaining playback, progress, necessary geometry qualifications
-and a sticky exit button; Escape returns to reading and restores scroll position. It neither
-starts playback nor changes experiment state. In scales, the pair comparison is the primary
-window; the separate zoom canvas is hidden. Renderer failures restore the reading panel. This
-is a local black-hole implementation, not a site-wide presentation contract.
+## Viewport and immersive interaction — 2026-09-22
+
+All five chapters use the shared presentation-only observation mode. The active chapter, playback,
+progress, chosen reference and optional accretion disk remain topic-owned and survive layout changes.
+Desktop reading mode fits the observation workspace to the remaining viewport height; long explanations
+scroll inside their own panel. The scale comparison and continuous zoom are alternative windows, not
+stacked canvases. A compact chapter selector remains available in immersive mode.
+
+Explanation and settings buttons work in both layouts. Entering immersive mode collapses these panels;
+readers can reopen either without leaving the demonstration. Escape restores the reading layout, panel
+choices and scroll position. Small screens retain reachable controls through natural scrolling instead
+of clipping overflowing content. The shared helper does not start playback, remount renderers or change
+scientific state. Canvas framing consumes both available width and height with one km-to-pixel scale;
+subpixel objects are still not artificially enlarged. Expanded geometry qualifications remain available
+inside the comparison without pushing the playback controls out of the workspace.

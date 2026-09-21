@@ -19,3 +19,22 @@ test('every moving comparison frame retains body identity and a single diameter 
 });
 
 test('Antares extends the sequence without changing legacy Arcturus stop',()=>{assert.equal(bodies[3].id,'arcturus');assert.equal(bodies[4].id,'antares');assert.equal(bodies[4].radius/bodies[2].radius,700);assert.equal(readExploration('?mode=compare&pair=2').pair,2);});
+
+test('short and immersive canvases keep spherical diameter ratios within their available height', () => {
+ for (const height of [140, 220, 600]) for (const width of [340, 1200]) for (const pair of [0, 1, 2, 3]) {
+  const frame = comparisonFrame(pair, width, height);
+  const a = frame[pair], b = frame[pair + 1];
+  assert.ok(Math.abs(a.radius / b.radius - bodies[pair].radius / bodies[pair + 1].radius) < 1e-10);
+  assert.ok(b.radius * 2 < height - 30);
+ }
+});
+
+test('short-viewport framing preserves the physical ruler and fits the Earth anchor', async () => {
+ const {viewportScale,halfWidthKm,EARTH_RADIUS_KM} = await import('../model.ts');
+ for (const [width,height] of [[1200,140],[1000,360],[340,300]]) {
+  const half = halfWidthKm(0) * viewportScale(width,height);
+  const diameter = EARTH_RADIUS_KM / half * width;
+  assert.ok(diameter < height * .8);
+  assert.equal(half, halfWidthKm(0) * Math.max(1,width/(2*height)));
+ }
+});

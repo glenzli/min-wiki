@@ -152,5 +152,16 @@
   "纯演示": "Demonstration mode",
   "退出纯演示 · Esc": "Exit demonstration · Esc",
   "参照跨度约是视界直径的 {{ratio}} 倍。比较长度，不比较质量。": "The reference spans about {{ratio}} horizon diameters. This compares length, not mass.",
-  "视界直径约是参照跨度的 {{ratio}} 倍。比较长度，不比较质量。": "The horizon diameter is about {{ratio}} times the reference span. This compares length, not mass."
+  "视界直径约是参照跨度的 {{ratio}} 倍。比较长度，不比较质量。": "The horizon diameter is about {{ratio}} times the reference span. This compares length, not mass.",
+  "沉浸演示": "Immersive view",
+  "退出沉浸 · Esc": "Exit immersive · Esc",
+  "解说": "Explanation",
+  "设置": "Settings",
+  "切换章节": "Change chapter",
+  "尺度观察方式": "Scale view",
+  "并排比大小": "Compare side by side",
+  "连续拉远": "Zoom out continuously",
+  "图示与真实尺度": "Diagram and physical scale",
+  "实验设置": "Experiment settings",
+  "宇宙尺度观察": "Cosmic scale observation"
 }

@@ -25,3 +25,6 @@ export const stageFor=(p:number)=>p<(stops[0]!+stops[1]!)/2?0:p<(stops[1]!+stops
 export const readProgress=(query:string)=>clamp(Number(new URLSearchParams(query).get('scale')??0));
 
 export function readJourney(query:string){const origin=readOrigin(query),params=new URLSearchParams(query);return {origin,progress:params.has("scale")?Math.max(originStart(origin),readProgress(query)):originStart(origin)};}
+
+/** Short viewports expand the horizontal camera span uniformly; physical sizes never change. */
+export const viewportScale=(width:number,height:number)=>Math.max(1,width/(2*Math.max(1,height)));

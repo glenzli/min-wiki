@@ -20,18 +20,11 @@
     <a data-chapter="companion" href="?chapter=companion"><span>04</span><strong>黑洞与伴星</strong><small>持续供给</small></a>
     <a data-chapter="scale" href="?chapter=scale"><span>05</span><strong>黑洞有多大</strong><small>银河系中心与巨兽</small></a>
   </nav>
-  <div class="demonstration-toolbar"><button id="demonstration" aria-pressed="false" aria-controls="story-panel">纯演示</button></div>
+  <section id="black-hole-workspace" class="black-hole-workspace" aria-label="互动观察">
   <section class="chapter-intro" aria-labelledby="chapter-title"><div><p class="eyebrow" id="chapter-number"></p><h2 id="chapter-title">认识黑洞</h2></div><p id="chapter-intro"></p></section>
-  <div class="chapter-choices" id="chapter-choices"></div>
-  <div class="options">
-    <label id="view-option">视角 <select id="view"><option value="overview">全景</option><option value="close">黑洞近景</option><option value="top">从上方看</option><option value="free">自由转动</option></select></label>
-    <label><input id="annotations" type="checkbox" checked aria-controls="scene-host">显示标注</label>
-    <label><input id="guides" type="checkbox" checked>显示参考线</label>
-    <label id="orbit-option" hidden><input id="orbit" type="checkbox" checked>显示双星绕行</label>
-    <label id="sound-option" hidden><input id="sound" type="checkbox">背景声音</label>
-  </div>
   <div class="layout">
     <section class="theater" aria-label="互动观察">
+      <div class="scale-views" id="scale-views" hidden role="group" aria-label="尺度观察方式"><button data-scale-view="pair" aria-pressed="true">并排比大小</button><button data-scale-view="zoom" aria-pressed="false">连续拉远</button></div>
       <div class="viewport"><div id="scene-host" aria-label="黑洞专题三维演示，讲解位于画面外"></div><div id="scene-loading" role="status">正在准备这一章…</div><div id="scene-error" role="alert" hidden><p>画面暂时无法显示。你仍可以阅读讲解，或重新加载这一章。</p><button id="retry">重新加载</button></div></div>
       <p class="scale-note" id="scale-note"></p>
       <div class="controls"><button id="play" disabled>开始观察</button><button id="reset" disabled>回到开始</button><label>速度 <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label><output id="elapsed">0 / 32 s</output><div class="scrub"><input id="progress" type="range" min="0" max="1000" value="0" aria-label="演示进度"></div></div>
@@ -41,6 +34,16 @@
     </section>
     <aside class="panel" id="story-panel"><p class="eyebrow">这一幕，看什么？</p><h2 id="story-title"></h2><p id="story"></p><p class="hint" id="prompt"></p><a id="back-to-anatomy" href="?chapter=anatomy">回到本体特写 →</a><div class="science" id="science" hidden><h3>科学关系</h3><p class="formula" id="formula"></p><p id="terms"></p></div></aside>
   </div>
+  <aside id="experiment-settings" class="experiment-settings"><h3>实验设置</h3>  <div class="chapter-choices" id="chapter-choices"></div>
+  <div class="options">
+    <label id="view-option">视角 <select id="view"><option value="overview">全景</option><option value="close">黑洞近景</option><option value="top">从上方看</option><option value="free">自由转动</option></select></label>
+    <label><input id="annotations" type="checkbox" checked aria-controls="scene-host">显示标注</label>
+    <label><input id="guides" type="checkbox" checked>显示参考线</label>
+    <label id="orbit-option" hidden><input id="orbit" type="checkbox" checked>显示双星绕行</label>
+    <label id="sound-option" hidden><input id="sound" type="checkbox">背景声音</label>
+  </div>
+</aside>
+  </section>
   <details class="model-notes"><summary>画面与真实宇宙</summary><p id="limits"></p><p>各章节使用不同的教学尺度。画面大小、粒子数、颜色与播放秒数不能直接当作真实测量值。</p></details>
   <nav class="chapter-footer" aria-label="章节之间"><a id="previous-chapter" href="?chapter=anatomy">上一章</a><span>可以随时换章，回来继续观察。</span><a id="next-chapter" href="?chapter=star">下一章</a></nav>
   <div id="chapter-learning"></div>

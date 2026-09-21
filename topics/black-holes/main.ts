@@ -1,3 +1,4 @@
+import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { translateDocument, languageHref } from '../../src/platform/i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountTopicLearning } from '../../src/platform/learning/mount.ts';
@@ -32,18 +33,22 @@ const slot = new SceneSlot<ChapterScene>();
 let chapterId = readChapter(location.search), definition: ChapterDefinition | null = null;
 let playing = false, academic = false, disposed = false, failed = false, last = performance.now(), frame = 0;
 let chapterAbort = new AbortController(), cancelStage = () => {}, lastCopy = '', lastStatus = '';
-let demonstration = false, readingScroll = 0;
-function setDemonstration(value: boolean) {
-  if (value === demonstration) return;
-  if (value) readingScroll = window.scrollY;
-  demonstration = value;
-  document.body.classList.toggle('demonstration-mode', value);
-  el('demonstration').setAttribute('aria-pressed', String(value));
-  write('demonstration', value ? t('退出纯演示 · Esc') : t('纯演示'));
-  el('demonstration').focus({ preventScroll: true });
-  window.scrollTo({ top: value ? 0 : readingScroll, behavior: 'instant' });
-}
-el('demonstration').addEventListener('click', () => setDemonstration(!demonstration));
+const workspace = el('black-hole-workspace');
+workspace.dataset.scaleView = 'pair';
+const observation = mountObservationMode(workspace, { enter: t('沉浸演示'), exit: t('退出沉浸 · Esc') }, { fit: true, panels: [
+  { label: t('解说'), elements: [el('story-panel')] },
+  { label: t('设置'), elements: [el('experiment-settings')], open: false },
+] });
+const title = el('chapter-title'); title.classList.add('observation-title'); observation.toolbar.prepend(title);
+const chapterJump = document.createElement('select'); chapterJump.className = 'chapter-jump'; chapterJump.setAttribute('aria-label', t('切换章节'));
+for (const id of CHAPTERS) { const option = document.createElement('option'); option.value = id; option.textContent = document.querySelector('[data-chapter="' + id + '"] strong')!.textContent; chapterJump.append(option); }
+chapterJump.addEventListener('change', () => { void selectChapter(chapterJump.value as ChapterId, true); });
+observation.toolbar.insertBefore(chapterJump, observation.toolbar.children[1] ?? null);
+observation.toolbar.insertBefore(el('scale-views'), chapterJump);
+document.querySelectorAll<HTMLButtonElement>('button[data-scale-view]').forEach(button => button.addEventListener('click', () => {
+  workspace.dataset.scaleView = button.dataset.scaleView;
+  document.querySelectorAll('button[data-scale-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+}));
 const href = (id: ChapterId) => languageHref(chapterHref(id, location.search));
 function options(): ViewOptions {
   return { view: views[chapterId], guides: input('guides').checked, annotations: input('annotations').checked,
@@ -109,6 +114,7 @@ async function selectChapter(id: ChapterId, push = false) {
   chapterAbort.abort(); chapterAbort = new AbortController();
   chapterId = id;
   document.body.dataset.chapter = id;
+  chapterJump.value = id; el('scale-views').hidden = id !== 'scale';
   if (push) history.pushState(null, '', href(id));
   (el('view') as HTMLSelectElement).value = views[id];
   el('orbit-option').hidden = id !== 'companion'; el('sound-option').hidden = id !== 'star';
@@ -161,7 +167,6 @@ el('view').addEventListener('change', () => { views[chapterId] = (el('view') as 
 el('annotations').addEventListener('change', () => { el('scene-host').classList.toggle('hide-annotations', !input('annotations').checked); });
 el('retry').addEventListener('click', () => { if (slot.current && !failed) { slot.current.retry(states[chapterId]); update(); } else void selectChapter(chapterId); });
 document.addEventListener('keydown', event => {
-  if (event.key === 'Escape' && demonstration) { event.preventDefault(); setDemonstration(false); return; }
   if (event.code === 'Space' && !event.repeat && !(event.target as HTMLElement)?.closest('button,input,select,a,textarea,summary,[contenteditable]')) { event.preventDefault(); togglePlay(); }
 });
 document.addEventListener('visibilitychange', () => { last = performance.now(); if (document.hidden) slot.current?.draw(states[chapterId], options()); });

@@ -43,7 +43,7 @@
 Start with `docs/architecture.md` when adding a topic. Do not move simulation engines or scientific content into the catalog or platform merely to reuse a layout.
 
 - `src/platform/readingMode.ts`: content-free reading-mode controls for step-based topics; each topic selects its own deeper notes. Switching preserves experiment state and sources remain accessible.
-- `src/platform/observationMode.ts` and `.css`: presentation-only focus mode for existing experiment DOM; owns surrounding-content visibility, inert state, scroll restoration and Escape, but no science state or playback.
+- `src/platform/observationMode.ts` and its CSS own reversible immersive presentation, optional panel disclosure, viewport fitting, focus and scroll restoration. Scientific state, playback and canvas geometry remain topic-owned.
 - `src/platform/learning/`: lazy presentation of topic-owned bilingual observation prompts, academic notes and narration; exports spoken text separately from visual directions. Topic prose lives in `topics/<id>/learning.json` and loads only for the current page.
 - `src/platform/disclosure.ts`: finite native-details transitions, including rapid reversal. `src/visuals/transition.ts` owns reduced-motion-aware numeric interpolation; model state and trajectories remain with topics.
 - `scripts/export-narration.mjs`: exports all published topic scripts and storyboards; `docs/narration.md` documents the audio-production boundary.

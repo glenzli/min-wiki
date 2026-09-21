@@ -33,6 +33,7 @@ class ScaleScene {
   private captions = [document.createElement('p'), document.createElement('p')];
   private ratio = document.createElement('p');
   private comparisonKey = '';
+  private qualifications = document.createElement('details');
   private disposed = false;
   private referenceSelect = document.createElement('select');
   private diskToggle = document.createElement('input');
@@ -72,10 +73,13 @@ class ScaleScene {
     this.compareContext = this.compareCanvas.getContext('2d')!;
     const captions = document.createElement('div'); captions.className = 'comparison-captions'; captions.append(...this.captions);
     this.ratio.className = 'comparison-ratio';
-    this.comparison.append(heading, description, controls, this.compareCanvas, captions, this.ratio, this.markerNote, this.boundary, this.referenceNote);
+    this.qualifications.className = 'comparison-qualifications';
+    const summary = document.createElement('summary'); summary.textContent = t('图示与真实尺度');
+    this.qualifications.append(summary, this.boundary, this.referenceNote);
+    this.comparison.append(heading, description, controls, this.compareCanvas, captions, this.ratio, this.markerNote, this.qualifications);
     const related = document.createElement('a'); related.textContent = copy.cosmicLink;
     related.href = languageHref('/topics/cosmic-scale/?mode=compare&pair=3');
-    related.className = 'comparison-related'; this.comparison.append(related);
+    related.className = 'comparison-related'; this.qualifications.append(related);
     this.mountQuestions();
     host.parentElement!.before(this.comparison);
     this.observer = new ResizeObserver(() => this.resize());
@@ -148,16 +152,16 @@ class ScaleScene {
     if (options.annotations) { c.textAlign = 'right'; c.fillStyle = '#879aaa'; c.font = `${w < 450 ? 10 : 11}px system-ui`; c.fillText(t('同心叠放 · 只比较大小'), w - 20, 25); }
   }
   private drawComparison(index: number) {
-    const w = this.comparison.clientWidth - 32, h = 210;
-    if (w <= 0) return;
+    const w = this.compareCanvas.clientWidth, h = this.compareCanvas.clientHeight;
+    if (w <= 0 || h <= 0) return;
     const withDisk = this.state.part === 'disk';
-    const key = `${index}:${w}:${devicePixelRatio}:${this.state.scenario}:${withDisk}`;
+    const key = `${index}:${w}:${h}:${devicePixelRatio}:${this.state.scenario}:${withDisk}`;
     if (key === this.comparisonKey) return; this.comparisonKey = key;
     const dpr = Math.min(devicePixelRatio, 2);
     this.compareCanvas.width = Math.round(w * dpr); this.compareCanvas.height = h * dpr;
     const c = this.compareContext; c.setTransform(dpr, 0, 0, dpr, 0, 0); c.clearRect(0, 0, w, h);
-    const model = comparisonGeometry(index, w, this.state.scenario, withDisk);
-    const left = w * .25, right = w * .75, y = 96, span = model.referencePixels;
+    const model = comparisonGeometry(index, w, this.state.scenario, withDisk, h);
+    const left = w * .25, right = w * .75, y = (h - 25) / 2, span = model.referencePixels;
     const ref = model.reference.id;
     const marker = (x: number) => {
       c.strokeStyle = '#d5e7f1'; c.lineWidth = 1; c.setLineDash([]); c.beginPath();
@@ -174,8 +178,8 @@ class ScaleScene {
     const dimension = (x: number, size: number, color: string) => {
       if (size < 1) return;
       c.strokeStyle = color; c.lineWidth = 1; c.beginPath();
-      c.moveTo(x-size/2,185); c.lineTo(x+size/2,185);
-      for (const end of [-1,1]) { c.moveTo(x+end*size/2,181); c.lineTo(x+end*size/2,189); } c.stroke();
+      c.moveTo(x-size/2,h-16); c.lineTo(x+size/2,h-16);
+      for (const end of [-1,1]) { c.moveTo(x+end*size/2,h-20); c.lineTo(x+end*size/2,h-12); } c.stroke();
     };
     const holeR = model.holePixels / 2;
     if (withDisk && holeR * DISK_OUTER_HORIZON_RADII >= .5) {
@@ -268,7 +272,7 @@ class ScaleScene {
       this.questions.append(details);
     }
     const diskSource=document.createElement('a'); diskSource.textContent=copy.diskSource; diskSource.href='https://science.nasa.gov/universe/black-holes/anatomy/'; this.questions.append(diskSource);
-    this.host.closest('.layout')!.after(this.questions);
+    this.host.closest('#black-hole-workspace')!.after(this.questions);
   }
   status() { return 'ready' as const; }
   readout(state: ChapterState) {

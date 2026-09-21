@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { AU_KM, LIGHT_YEAR_KM as LY, EARTH_RADIUS_KM, SUN_CENTER_DISTANCE_KM, scaleState, ruler, displayLength, viewPoint, viewTilt, smooth, SUN_RADIUS_KM, type Origin } from './model.ts';
+import { viewportScale, AU_KM, LIGHT_YEAR_KM as LY, EARTH_RADIUS_KM, SUN_CENTER_DISTANCE_KM, scaleState, ruler, displayLength, viewPoint, viewTilt, smooth, SUN_RADIUS_KM, type Origin } from './model.ts';
 import { GalaxyVolume } from './galaxy.ts';
 import data from './content.json';
 import earthMap from '../solar-system/assets/2k_earth_daymap.jpg';
@@ -36,7 +36,7 @@ export class CosmicScene {
   private galaxies=[new GalaxyVolume(1),new GalaxyVolume(5),new GalaxyVolume(11)];
   private dark:THREE.Mesh;
   private neighborhood:THREE.Points;
-  constructor(private canvas:HTMLCanvasElement,private text:(v:{zh:string;en:string})=>string,private failure:(failed:boolean)=>void=()=>{}){
+  constructor(private canvas:HTMLCanvasElement,private text:(v:{zh:string;en:string})=>string,private failure:(failed:boolean)=>void=()=>{},private onFraming:(widthKm:number)=>void=()=>{}){
     this.renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'low-power'});
     this.renderer.setClearColor('#030812');this.renderer.outputColorSpace=THREE.SRGBColorSpace;
     this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.05;
@@ -84,14 +84,15 @@ export class CosmicScene {
   draw(progress:number,tilt:number,layers:Layers,origin:Origin="earth"){
     this.last=[progress,tilt,{...layers},origin];if(this.disposed||this.lost)return;
     const width=this.wrapper.clientWidth;if(!width)return;
-    const height=Math.max(300,Math.min(620,width*.58)),dpr=Math.min(2,devicePixelRatio||1);
+    const height=this.wrapper.clientHeight||300,dpr=Math.min(2,devicePixelRatio||1);
     if(this.canvas.width!==Math.floor(width*dpr)||this.canvas.height!==Math.floor(height*dpr)){
-      this.wrapper.style.height=height+'px';this.renderer.setPixelRatio(dpr);this.renderer.setSize(width,height,false);this.overlay.width=Math.floor(width*dpr);this.overlay.height=Math.floor(height*dpr);
+      this.renderer.setPixelRatio(dpr);this.renderer.setSize(width,height,false);this.overlay.width=Math.floor(width*dpr);this.overlay.height=Math.floor(height*dpr);
     }
     this.camera.top=height/width;this.camera.bottom=-height/width;this.camera.updateProjectionMatrix();
     const c=this.c;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,width,height);
-    const half=scaleState(progress).halfWidth,angle=viewTilt(progress,tilt)*Math.PI/2;
-    const point=(x:number,y=0,z=0)=>viewPoint(x,y,z,progress,tilt,origin);
+    const framing=viewportScale(width,height),half=scaleState(progress).halfWidth*framing,angle=viewTilt(progress,tilt)*Math.PI/2;
+    this.onFraming(half*2);
+    const point=(x:number,y=0,z=0):[number,number,number]=>{const p=viewPoint(x,y,z,progress,tilt,origin);return [p[0]/framing,p[1]/framing,p[2]/framing];};
     const screen=(x:number,y=0,z=0):[number,number]=>{const p=point(x,y,z);return [width/2*(1+p[0]),height/2-width/2*p[1]];};
     const body=(object:THREE.Object3D,x:number,y:number,radius:number)=>{
       const p=point(x,y),r=radius/half;object.visible=r*width/2>.35&&Math.abs(p[0])<1+r&&Math.abs(p[1])<height/width+r;
