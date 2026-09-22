@@ -29,11 +29,11 @@ Focused command: `node --import tsx --test topics/cosmic-scale/tests/*.test.*`. 
 
 ## Comparison ownership and compatibility
 
-`comparisonModel.ts` owns the six body radii, continuous shared diameter scaling and chapter route defaults. `comparison.ts` owns its finite cancellable animation, Canvas comparison and membership diagrams, resize/image completion and disposal. `comparisonContent.json` owns bilingual labels and distinctions. Main binds chapter state while the existing physical scene initializes only on first opening the zoom chapter.
+`comparisonModel.ts` owns the eight body radii, continuous shared diameter scaling, stellar/orbit overlay geometry and chapter route defaults. `comparison.ts` owns its finite cancellable animation, Canvas comparison and membership diagrams, resize/image completion and disposal. `comparisonContent.json` owns bilingual labels and distinctions. Main binds chapter state while the existing physical scene initializes only on first opening the zoom chapter.
 
-`mode=compare|homes|zoom`, `pair=0..4`, and `home=0..2` preserve the new journey state alongside `origin` and `scale`. Fresh links default to comparisons; legacy links with origin or scale retain zoom. Chapter switching stops motion and keeps both view states. Diameter ratios use Earth6371/Jupiter69911/Sun695700 km radii and Arcturus25.4 solar radii, an estimate from https://arxiv.org/abs/1109.4425. The former static Sun/Earth inset is removed in favor of the full comparison chapter. Membership diagrams show selected representatives, not orbital distances, census data or solid galaxy surfaces. Earth/Jupiter illustrative maps reuse the attributed Solar System Scope assets.
+`mode=compare|homes|zoom`, `pair=0..6`, and `home=0..2` preserve the new journey state alongside `origin` and `scale`. Fresh links default to comparisons; legacy links with origin or scale retain zoom. Chapter switching stops motion and keeps both view states. Diameter ratios use Earth6371/Jupiter69911/Sun695700 km radii and Arcturus25.4 solar radii, an estimate from https://arxiv.org/abs/1109.4425. The former static Sun/Earth inset is removed in favor of the full comparison chapter. Membership diagrams show selected representatives, not orbital distances, census data or solid galaxy surfaces. Earth/Jupiter illustrative maps reuse the attributed Solar System Scope assets.
 
-Comparison stellar disks use two cached, deterministic spherical photosphere illustrations with granulation, limb darkening and restrained glow; Sun-only spots are illustrative. Texture scale and colors are not measured surface data. The comparison represents a static snapshot, with no timed convection claim.
+Comparison stellar disks use bounded cached, deterministic spherical photosphere illustrations with granulation, limb darkening and restrained glow; Sun-only spots are illustrative. Texture scale and colors are not measured surface data. The comparison represents a static snapshot, with no timed convection claim.
 
 Antares extends the final comparison at approximately 700 solar radii, sourced from ESO eso1726; the existing Arcturus pair index remains 2. Membership galaxy images are three cached 720px procedural structural illustrations with diffuse disks, spiral populations, warm centers and dust lanes. Projection, directions and texture details are illustrative, not observed maps or a distance scale.
 
@@ -57,3 +57,29 @@ photospheric radius is the central value 1420 R☉ of the 1420 ± 120 R☉ estim
 [Wittkowski et al. (2012)](https://arxiv.org/abs/1203.5194). The bilingual explanation distinguishes
 this model-assisted photospheric estimate from the extended molecular/dust envelope and from
 any largest-star ranking. The black-hole reference chooser consumes this same body entry.
+
+
+## Extreme-star estimates and planetary orbits — 2026-09-22
+
+WOH G64 and Stephenson 2-18 extend the sequence at pairs 5 and 6, preserving every older index.
+WOH G64 uses the approximately 1540 R☉ estimate of [Levesque et al. (2009)](https://arxiv.org/abs/0903.2260).
+St2-18 uses approximately 2150 R☉, derived from log(L/L☉)=5.64 and T=3200 K in
+[Fok et al. (2012)](https://arxiv.org/html/1209.6427), with R/R☉ = √(L/L☉) × (5772 K/T)².
+The latter depends on uncertain distance and cluster membership; see the association discussion in
+[Humphreys et al. (2020)](https://arxiv.org/html/2008.01108). These are selected, dated estimates,
+not a confirmed current size ranking. Extended atmospheres and circumstellar dust are not added
+to the chosen photospheric radii. Both languages show a brief estimate label; detailed qualifications
+are in the expandable explanation and learning notes.
+
+“Compare with planetary orbits” puts the selected star at the Sun’s former position. Mercury
+through Saturn use the same linear km-to-pixel conversion as the stellar outline; rounded orbital
+radii are shared with the physical zoom through `model.ts`. Planet icons are enlarged and phases
+are illustrative. The inner planets therefore cluster near the centre; a labelled icon legend keeps
+them recognisable. WOH G64 reaches beyond Jupiter but not Saturn with these values; St2-18 reaches
+slightly beyond Saturn. This is a counterfactual size overlay, not an evolution, swallowing, orbital
+or thermal simulation. It does not show the full Solar System.
+
+The compact chooser names pairs in the comparison and stars in the orbit view. Switching into the
+orbit view during a pair animation retains the selected destination. Chapter/layout changes retain
+the chosen star and view in memory; the view toggle itself is not encoded in the URL. See
+[the scoped validation record](../../docs/giant-stars-20260922.md).

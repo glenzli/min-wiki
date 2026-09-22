@@ -121,3 +121,12 @@ shared sequence now includes VY Canis Majoris, using the central photospheric-ra
 of 1420 ± 120 solar radii from [Wittkowski et al. (2012)](https://arxiv.org/abs/1203.5194), excluding
 its molecular/dust envelope. It is not labelled the largest star. Antares remains the rounded
 700-solar-radius example from [ESO (2017)](https://www.eso.org/public/news/eso1726/).
+
+
+WOH G64 and Stephenson 2-18 also consume the cosmic-scale owner's selected estimates (1540 and
+2150 solar radii). Recognition drawings include their red stellar disks; the main caption says
+“estimated size” even when explanations are hidden. The expanded notes retain the distance,
+temperature, cluster-membership and photosphere/dust qualifications in both languages. Links
+resolve to pairs 5 and 6 of the same stellar sequence. Ratios still compare horizon diameter with
+stellar diameter; they are not measurements of how many stars would be swallowed. Provenance
+and focused validation: [extreme-star record](../../docs/giant-stars-20260922.md).

@@ -108,7 +108,7 @@ export function drawReference(c: CanvasRenderingContext2D, id: string, x: number
       circle(Math.cos(a)*r,Math.sin(a)*r,.0035,`rgba(185,207,231,${(.15+.65*arm)*(1-q)})`);
     }
   } else {
-    const colors: Record<string,string> = {earth:'#66b9e7',jupiter:'#e0b994',sun:'#ffde89',arcturus:'#efb36e',antares:'#ed8860','vy-canis-majoris':'#ed8860'};
+    const colors: Record<string,string> = {earth:'#66b9e7',jupiter:'#e0b994',sun:'#ffde89',arcturus:'#efb36e',antares:'#ed8860','vy-canis-majoris':'#ed8860','woh-g64':'#ed8860','stephenson-2-18':'#ed8860'};
     const g=c.createRadialGradient(-.13,-.15,.02,0,0,.5); g.addColorStop(0,colors[id]??'#ffe29c'); g.addColorStop(.8,colors[id]??'#ffe29c'); g.addColorStop(1,'#583c32');
     c.beginPath(); c.arc(0,0,.5,0,Math.PI*2); c.clip(); c.fillStyle=g; c.fillRect(-.5,-.5,1,1);
     if (id === 'earth') {

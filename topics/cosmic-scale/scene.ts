@@ -7,7 +7,7 @@ import cloudMap from '../solar-system/assets/2k_earth_clouds.jpg';
 import moonMap from '../solar-system/assets/2k_moon.jpg';
 
 type Layers={disk:boolean;bulge:boolean;halo:boolean;dark:boolean};
-const ORBITS=[.387,.723,1,1.524,5.203,9.537,19.191,30.069];
+import { ORBIT_RADII_AU as ORBITS } from './model.ts';
 const RADII=[2439.7,6051.8,6371,3389.5,69911,58232,25362,24622];
 const COLORS=['#a99e8b','#e4c6a2','#68b8e8','#c58160','#d3b38b','#dec391','#a0d9e1','#7295ed'];
 const GALAXIES=[[-SUN_CENTER_DISTANCE_KM,0,50000*LY],[2.3e6*LY,Math.sqrt(2.5**2-2.3**2)*1e6*LY,100000*LY],[1.45e6*LY,-Math.sqrt(2.7**2-1.45**2)*1e6*LY,30000*LY]];

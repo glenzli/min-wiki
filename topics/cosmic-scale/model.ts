@@ -1,4 +1,6 @@
 export const AU_KM=149597870.7;
+/** Rounded mean distances for illustrative circular planetary orbits, in AU. */
+export const ORBIT_RADII_AU=[.387,.723,1,1.524,5.203,9.537,19.191,30.069] as const;
 export const LIGHT_YEAR_KM=9460730472580.8;
 export const EARTH_RADIUS_KM=6371;
 export const SUN_RADIUS_KM=695700;

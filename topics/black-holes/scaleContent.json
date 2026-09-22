@@ -11,7 +11,9 @@
       "antares": "心宿二",
       "neptune-orbit": "太阳系 · 到海王星轨道",
       "milky-way": "银河系的恒星盘",
-      "vy-canis-majoris": "大犬座 VY"
+      "vy-canis-majoris": "大犬座 VY",
+      "woh-g64": "WOH G64",
+      "stephenson-2-18": "史蒂文森 2-18"
     },
     "disk": "显示假想吸积盘",
     "diskNote": "俯视几何示意，描边才是视界；发光的是外面的气体。盘内缘取3倍视界半径，外缘任取6倍，不是实测盘大小。加盘不改变长度比。",
@@ -88,7 +90,12 @@
     "orbitInsetLines": [
       "放大认一认",
       "轨道间距示意"
-    ]
+    ],
+    "estimated": "估计大小",
+    "extremeNotes": {
+      "woh-g64": "WOH G64 使用 Levesque 等（2009）由光谱温度与光度推得的约 1540 个太阳半径。它有延展大气和星周尘埃；画面展示所选恒星半径估计，不把外围尘埃云当成表面，也不宣称是当前最大纪录。",
+      "stephenson-2-18": "St2-18 使用 Fok 等（2012）的光度 log(L/L☉)=5.64 与温度 3200 K 推算，取约 2150 个太阳半径。其距离及星团归属不确定，后续研究也提出疑问；这是有条件的尺寸估计，并非精确测量或已确定的最大纪录。"
+    }
   },
   "en": {
     "reference": "Change reference",
@@ -102,7 +109,9 @@
       "antares": "Antares",
       "neptune-orbit": "Solar System · out to Neptune",
       "milky-way": "Milky Way stellar disk",
-      "vy-canis-majoris": "VY Canis Majoris"
+      "vy-canis-majoris": "VY Canis Majoris",
+      "woh-g64": "WOH G64",
+      "stephenson-2-18": "Stephenson 2-18"
     },
     "disk": "Show a hypothetical accretion disk",
     "diskNote": "Face-on geometry, not a telescope image. Gas glows outside the outlined horizon. Disk edges are set to 3 and 6 horizon radii, not measured extents. Adding the disk preserves length ratios.",
@@ -179,6 +188,11 @@
     "orbitInsetLines": [
       "Enlarged view",
       "Orbits spread apart"
-    ]
+    ],
+    "estimated": "Estimated size",
+    "extremeNotes": {
+      "woh-g64": "WOH G64 uses approximately 1540 solar radii inferred from spectral temperature and luminosity by Levesque et al. (2009). It has an extended atmosphere and circumstellar dust. The drawing uses this stellar-radius estimate, excludes the surrounding dust cloud, and makes no current record claim.",
+      "stephenson-2-18": "St2-18 uses about 2150 solar radii derived from log(L/L☉)=5.64 and 3200 K in Fok et al. (2012). Its distance and cluster membership are uncertain and later work questions the association. This is a conditional size estimate, not a precise measurement or a confirmed record."
+    }
   }
 }

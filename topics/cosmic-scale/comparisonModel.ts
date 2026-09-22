@@ -1,6 +1,19 @@
-import {clamp,EARTH_RADIUS_KM,SUN_RADIUS_KM} from './model.ts';
+import {clamp,EARTH_RADIUS_KM,SUN_RADIUS_KM,AU_KM,ORBIT_RADII_AU} from './model.ts';
 export type Chapter='compare'|'homes'|'zoom';
-export const bodies=[{id:'earth',radius:EARTH_RADIUS_KM},{id:'jupiter',radius:69911},{id:'sun',radius:SUN_RADIUS_KM},{id:'arcturus',radius:25.4*SUN_RADIUS_KM},{id:'antares',radius:700*SUN_RADIUS_KM},{id:'vy-canis-majoris',radius:1420*SUN_RADIUS_KM}] as const;
+export const bodies=[{id:'earth',radius:EARTH_RADIUS_KM},{id:'jupiter',radius:69911},{id:'sun',radius:SUN_RADIUS_KM},{id:'arcturus',radius:25.4*SUN_RADIUS_KM},{id:'antares',radius:700*SUN_RADIUS_KM},{id:'vy-canis-majoris',radius:1420*SUN_RADIUS_KM},{id:'woh-g64',radius:1540*SUN_RADIUS_KM},{id:'stephenson-2-18',radius:2150*SUN_RADIUS_KM}] as const;
+/** Dated estimates, not a current record ranking. St2-18 is conditional on the 2012 L/temperature fit. */
+export const stellarEstimateSources:Record<string,string>={
+ 'arcturus':'https://arxiv.org/abs/1109.4425','antares':'https://www.eso.org/public/news/eso1726/',
+ 'vy-canis-majoris':'https://arxiv.org/abs/1203.5194','woh-g64':'https://arxiv.org/abs/0903.2260',
+ 'stephenson-2-18':'https://arxiv.org/html/1209.6427',
+};
+/** Rounded mean orbital radii, shared with the existing physical zoom; circles are illustrative. */
+export const COMPARISON_ORBITS_AU=ORBIT_RADII_AU.slice(0,6);
+export function stellarOrbitFrame(bodyIndex:number,width:number,height:number){
+ const body=bodies[Math.round(clamp(bodyIndex,2,bodies.length-1))]!;
+ const pixelsPerKm=Math.max(1,Math.min(width*.43,(height-42)/2))/(11*AU_KM);
+ return {body,pixelsPerKm,radius:body.radius*pixelsPerKm,orbits:COMPARISON_ORBITS_AU.map(au=>({au,radius:au*AU_KM*pixelsPerKm,inside:au*AU_KM<body.radius}))};
+}
 export const lastPair=bodies.length-2;
 export function readExploration(query:string){const p=new URLSearchParams(query),mode=p.get('mode');return {chapter:(['compare','homes','zoom'].includes(mode??'')?mode:p.has('scale')||p.has('origin')?'zoom':'compare') as Chapter,pair:clamp(Number(p.get('pair')??0),0,lastPair),home:Math.round(clamp(Number(p.get('home')??0),0,2))};}
 /** One common linear diameter scale at every intermediate frame. Positions are a comparison layout, not orbital distances. */

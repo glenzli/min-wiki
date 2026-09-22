@@ -3,11 +3,11 @@
   "topicId": "cosmic-scale",
   "zh": {
     "question": "地球、木星、太阳和更大的恒星，谁更大？它们又属于哪些更大的系统？",
-    "observe": "先拖动大小对比，把上一组的大天体留作下一组的参照；再点太阳系、银河系与本星系群，看包含关系；最后进入真正拉远模式，观察天体怎样缩成位置标记。",
+    "observe": "先拖动大小对比，把上一组的大天体留作下一组的参照；再点太阳系、银河系与本星系群，看包含关系；最后进入真正拉远模式，观察天体怎样缩成位置标记。 看到极大恒星时，试着放进太阳系，用地球、木星和土星的轨道认识它的估计大小。",
     "academic": [
       {
         "title": "同一长度单位跨越多个量级",
-        "body": "模型始终以 km 保存距离，滑杆控制视野宽度的对数而不是把每个天体的半径分别取对数。同一帧内的几何投影保持线性。km、AU 和光年是不同大小的长度单位；超小天体转换为定位符，定位符与真实直径明确分开。"
+        "body": "模型始终以 km 保存距离，滑杆控制视野宽度的对数而不是把每个天体的半径分别取对数。同一帧内的几何投影保持线性。km、AU 和光年是不同大小的长度单位；超小天体转换为定位符，定位符与真实直径明确分开。 WOH G64 取 2009 年约 1540 个太阳半径的估计；St2-18 由 2012 年光度与温度推得约 2150 个太阳半径，依赖不确定的距离与星团归属。它们是估计案例，不是最大恒星排行榜。"
       },
       {
         "title": "银河系的空间结构",
@@ -23,7 +23,7 @@
     "narration": [
       {
         "label": "把两位放在一起比",
-        "text": "先把地球和木星并排放好。木星大得多！请太阳进来，木星又变小了；再看看大角星，太阳也不算大。我们比的是直径，大家用同一把尺，排在一起并不表示它们真的挨得这么近。",
+        "text": "先把地球和木星并排放好。木星大得多！请太阳进来，木星又变小了；再看看大角星，太阳也不算大。我们比的是直径，大家用同一把尺，排在一起并不表示它们真的挨得这么近。 再请来名字像编号的巨大恒星。按这里的估计，有的放在太阳的位置，轮廓能伸到土星轨道附近。我们先感受这个“大”，再慢慢了解科学家怎样估计它。",
         "cue": "依次选择三组大小对比，或拖动滑杆，追踪留下来的同一天体。"
       },
       {
@@ -45,11 +45,11 @@
   },
   "en": {
     "question": "Which is larger: Earth, Jupiter, the Sun or a giant star? Which larger systems do they belong to?",
-    "observe": "Drag through size pairs, retaining the larger body as the next reference. Then inspect Solar System, Milky Way and Local Group membership. Finally zoom out for real to see physical disks become location markers.",
+    "observe": "Drag through size pairs, retaining the larger body as the next reference. Then inspect Solar System, Milky Way and Local Group membership. Finally zoom out for real to see physical disks become location markers. For the extreme stars, compare their estimated outlines with Earth’s, Jupiter’s and Saturn’s orbits in the Solar System view.",
     "academic": [
       {
         "title": "One length system across many orders of magnitude",
-        "body": "Distances remain in kilometers. The slider changes the logarithm of view width; it does not separately take logarithms of body radii. Geometry within each frame remains a linear projection. Kilometers, AU and light-years are all length units. Subpixel bodies switch to explicit position symbols rather than silently enlarged disks."
+        "body": "Distances remain in kilometers. The slider changes the logarithm of view width; it does not separately take logarithms of body radii. Geometry within each frame remains a linear projection. Kilometers, AU and light-years are all length units. Subpixel bodies switch to explicit position symbols rather than silently enlarged disks. WOH G64 uses a 2009 estimate of about 1540 solar radii. St2-18 uses about 2150 solar radii inferred from 2012 luminosity and temperature values, conditional on uncertain distance and cluster membership. These are estimated examples, not a largest-star ranking."
       },
       {
         "title": "The structure of the Milky Way",
@@ -65,7 +65,7 @@
     "narration": [
       {
         "label": "Put two bodies side by side",
-        "text": "Earth looks small beside Jupiter. Bring in the Sun and Jupiter becomes small; bring in Arcturus and even the Sun looks small. We compare diameters on one shared ruler. Placing them together does not mean they are physically close.",
+        "text": "Earth looks small beside Jupiter. Bring in the Sun and Jupiter becomes small; bring in Arcturus and even the Sun looks small. We compare diameters on one shared ruler. Placing them together does not mean they are physically close. Now meet enormous stars with catalogue-like names. With the estimates shown here, one placed at the Sun could reach around Saturn’s orbit. First imagine that size; then explore how astronomers estimate it.",
         "cue": "Choose the three pairs or drag the slider, tracking the same retained body."
       },
       {
@@ -97,6 +97,22 @@
     {
       "title": "NASA · Andromeda Galaxy",
       "url": "https://www.nasa.gov/universe/galaxies/andromeda-galaxy/"
+    },
+    {
+      "title": "Levesque et al. (2009) · WOH G64 radius estimate",
+      "url": "https://arxiv.org/abs/0903.2260"
+    },
+    {
+      "title": "Fok et al. (2012) · St2-18 luminosity and temperature",
+      "url": "https://arxiv.org/html/1209.6427"
+    },
+    {
+      "title": "Humphreys et al. (2020) · cluster membership uncertainty",
+      "url": "https://arxiv.org/html/2008.01108"
+    },
+    {
+      "title": "NASA · Solar System facts",
+      "url": "https://science.nasa.gov/solar-system/solar-system-facts/"
     }
   ]
 }

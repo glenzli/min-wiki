@@ -11,7 +11,9 @@
       "太阳",
       "大角星",
       "心宿二",
-      "大犬座 VY"
+      "大犬座 VY",
+      "WOH G64",
+      "史蒂文森 2-18"
     ],
     "kinds": [
       "岩石行星",
@@ -19,28 +21,36 @@
       "恒星",
       "红巨星",
       "红超巨星",
-      "红超巨星"
+      "红超巨星",
+      "极大恒星 · 估计",
+      "极大恒星 · 估计"
     ],
     "pairs": [
       "地球与木星",
       "木星与太阳",
       "太阳与大角星",
       "大角星与心宿二",
-      "心宿二与大犬座 VY"
+      "心宿二与大犬座 VY",
+      "大犬座 VY 与 WOH G64",
+      "WOH G64 与 St2-18"
     ],
     "pairTitles": [
       "地球很大，木星更大",
       "太阳把木星也比小了",
       "太阳也不是最大的恒星",
       "还有比大角星大得多的恒星",
-      "比心宿二更大的恒星"
+      "比心宿二更大的恒星",
+      "恒星还能这样大",
+      "把这样大的恒星放到太阳的位置"
     ],
     "pairNotes": [
       "木星的直径约是地球的 11 倍。这里比的是直径，不是质量，也不是两者之间的距离。",
       "太阳的直径约是木星的 10 倍。木星仍是刚才那一颗，只是两者一起用了更小的显示比例。",
       "大角星是红巨星，直径约是太阳的 25 倍。它的大小是估计值；恒星大小不同，这不是“最大恒星”排行榜。",
       "心宿二的直径估计约是太阳的 700 倍，大约能横着排下 28 颗大角星。这是大小估计，不是“宇宙最大恒星”的排名。",
-      "大犬座 VY 的直径约是心宿二的 2 倍。这里采用 2012 年干涉观测结合大气模型得到的光球半径估计：1420 ± 120 个太阳半径；画面取中心值。不把外围气体和尘埃算成恒星表面，也不把它称作已确定的最大恒星。"
+      "大犬座 VY 的直径约是心宿二的 2 倍。这里采用 2012 年干涉观测结合大气模型得到的光球半径估计：1420 ± 120 个太阳半径；画面取中心值。不把外围气体和尘埃算成恒星表面，也不把它称作已确定的最大恒星。",
+      "WOH G64 的名字像编号，个头却很惊人。试试“放进太阳系”：按这里的估计，它的轮廓能越过木星轨道。",
+      "史蒂文森 2-18，也写作 St2-18。按这里采用的估计，把它放在太阳的位置，轮廓会伸到土星轨道附近。恒星竟然可以这么大！"
     ],
     "boundary": "圆盘直径使用同一比例；摆放间隔只为比较。恒星的颗粒、暗斑与辉光是静态表面示意，并非观测照片；颜色和纹理尺度不用于测量。",
     "scrub": "拖动，把更大的请进来",
@@ -75,7 +85,34 @@
     "source": "数值依据 ↗",
     "compareAlt": "同一比例的天体直径对比，拖动时同一天体连续缩小",
     "homeAlt": "从太阳系到银河和本星系群的包含关系示意",
-    "credit": "地球与木星地图：Solar System Scope · CC BY 4.0"
+    "credit": "地球与木星地图：Solar System Scope · CC BY 4.0",
+    "choosePair": "选择比较的一组",
+    "solarView": "放进太阳系比一比",
+    "pairView": "回到并排比较",
+    "estimated": "估计大小",
+    "orbitBoundary": "假想放在太阳的位置 · 轮廓和轨道同一比例，行星图标放大 · 画到土星",
+    "orbitIntro": "用熟悉的行星轨道当尺子，看看这颗恒星能伸到哪里。轨道叠加只是帮助比较大小，不是在演示吞噬过程。",
+    "planetNames": [
+      "水星",
+      "金星",
+      "地球",
+      "火星",
+      "木星",
+      "土星"
+    ],
+    "inside": "在轮廓内",
+    "outside": "在轮廓外",
+    "sunPlace": "中心十字：太阳原来的位置",
+    "estimateDetails": "这个大小怎么估计的？",
+    "estimateNotes": [
+      "WOH G64 使用 Levesque 等（2009）由光谱温度与光度推得的约 1540 个太阳半径。它有延展大气和星周尘埃；画面展示所选恒星半径估计，不把外围尘埃云当成表面，也不宣称是当前最大纪录。",
+      "St2-18 使用 Fok 等（2012）的光度 log(L/L☉)=5.64 与温度 3200 K 推算，取约 2150 个太阳半径。其距离及星团归属不确定，后续研究也提出疑问；这是有条件的尺寸估计，并非精确测量或已确定的最大纪录。"
+    ],
+    "orbitDetails": "轨道采用平均距离对应的圆，行星位置为示意；并未模拟更换太阳后的轨道、温度或行星命运。水星到火星挤在中心附近，是实际距离比例的结果。颜色和纹理不是这些恒星的照片。",
+    "planetScale": "行星图标只帮助认出对象，不代表大小",
+    "roughSunDiameters": "约 {{count}} 个太阳直径",
+    "surfaceEstimate": "半径估计 · 非最大排名",
+    "chooseStar": "换一颗恒星"
   },
   "en": {
     "chapters": [
@@ -89,7 +126,9 @@
       "Sun",
       "Arcturus",
       "Antares",
-      "VY Canis Majoris"
+      "VY Canis Majoris",
+      "WOH G64",
+      "Stephenson 2-18"
     ],
     "kinds": [
       "Rocky planet",
@@ -97,28 +136,36 @@
       "Star",
       "Red giant",
       "Red supergiant",
-      "Red supergiant"
+      "Red supergiant",
+      "Extreme star · estimated",
+      "Extreme star · estimated"
     ],
     "pairs": [
       "Earth & Jupiter",
       "Jupiter & Sun",
       "Sun & Arcturus",
       "Arcturus & Antares",
-      "Antares & VY CMa"
+      "Antares & VY CMa",
+      "VY CMa & WOH G64",
+      "WOH G64 & St2-18"
     ],
     "pairTitles": [
       "Jupiter makes Earth look small",
       "The Sun makes Jupiter look small",
       "The Sun is not the largest star",
       "Even Arcturus can look small",
-      "A star larger than Antares"
+      "A star larger than Antares",
+      "Stars can be this enormous",
+      "Put an enormous star in the Sun’s place"
     ],
     "pairNotes": [
       "Jupiter is about 11 Earth diameters across. We compare diameter, not mass or the distance between them.",
       "The Sun is about 10 Jupiter diameters across. This is the same Jupiter, with both objects now drawn at a smaller common scale.",
       "Arcturus is a red giant about 25 Sun diameters across. Its size is estimated; this is not a ranking of the largest stars.",
       "Antares is estimated at about 700 Sun diameters, or roughly 28 Arcturus diameters across. This is an approximate size, not a ranking of the largest stars.",
-      "VY Canis Majoris is about twice the diameter of Antares. We use a 2012 photospheric-radius estimate from interferometry and an atmosphere model: 1420 ± 120 solar radii, drawing the central value. Surrounding gas and dust are not counted as the stellar surface; this is not a claim that it is the largest star."
+      "VY Canis Majoris is about twice the diameter of Antares. We use a 2012 photospheric-radius estimate from interferometry and an atmosphere model: 1420 ± 120 solar radii, drawing the central value. Surrounding gas and dust are not counted as the stellar surface; this is not a claim that it is the largest star.",
+      "WOH G64 has a catalogue-like name and an enormous size. Try the Solar System view: with this estimate, its outline extends beyond Jupiter’s orbit.",
+      "Stephenson 2-18 is also called St2-18. With the estimate used here, putting it in the Sun’s place would bring its outline to around Saturn’s orbit. A star can be that big!"
     ],
     "boundary": "Disk diameters share one scale; spacing is for comparison. Stellar granules, dark spots and glow are static surface illustrations, not observed photographs; colors and texture sizes are not measurements.",
     "scrub": "Drag to bring in a larger body",
@@ -153,6 +200,33 @@
     "source": "Size reference ↗",
     "compareAlt": "Body diameters on one common scale; retained bodies shrink continuously as you drag",
     "homeAlt": "Membership from the Solar System to the Milky Way and Local Group",
-    "credit": "Earth and Jupiter maps: Solar System Scope · CC BY 4.0"
+    "credit": "Earth and Jupiter maps: Solar System Scope · CC BY 4.0",
+    "choosePair": "Choose a comparison",
+    "solarView": "Compare with planetary orbits",
+    "pairView": "Back to side-by-side",
+    "estimated": "Estimated size",
+    "orbitBoundary": "Imagined at the Sun’s position · outline and orbits share one scale; planet icons enlarged · shown out to Saturn",
+    "orbitIntro": "Use familiar planetary orbits as a ruler. How far would the star reach? The orbit overlay compares sizes; it does not simulate planets being swallowed.",
+    "planetNames": [
+      "Mercury",
+      "Venus",
+      "Earth",
+      "Mars",
+      "Jupiter",
+      "Saturn"
+    ],
+    "inside": "Inside outline",
+    "outside": "Outside outline",
+    "sunPlace": "Centre cross: the Sun’s former position",
+    "estimateDetails": "How is this size estimated?",
+    "estimateNotes": [
+      "WOH G64 uses approximately 1540 solar radii inferred from spectral temperature and luminosity by Levesque et al. (2009). It has an extended atmosphere and circumstellar dust. The drawing uses this stellar-radius estimate, excludes the surrounding dust cloud, and makes no current record claim.",
+      "St2-18 uses about 2150 solar radii derived from log(L/L☉)=5.64 and 3200 K in Fok et al. (2012). Its distance and cluster membership are uncertain and later work questions the association. This is a conditional size estimate, not a precise measurement or a confirmed record."
+    ],
+    "orbitDetails": "Circular orbits use mean distances; planet positions are illustrative. No resulting orbit changes, temperatures or planetary fates are simulated. Mercury through Mars cluster near the centre because of their real relative distances. Colours and textures are not photographs of these stars.",
+    "planetScale": "Planet icons identify objects; they do not show body sizes",
+    "roughSunDiameters": "About {{count}} Sun diameters",
+    "surfaceEstimate": "Radius estimate · not a ranking",
+    "chooseStar": "Choose a star"
   }
 }
