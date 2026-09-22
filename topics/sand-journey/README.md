@@ -17,3 +17,7 @@ Playback is finite and user-started. Pause, scrub, stage controls and a local vi
 资料复核 / Source checked 2026-09-19: https://oceanservice.noaa.gov/facts/sand.html
 
 专题测试覆盖身份保持、路径连续、末帧稳定与SVG投影。运行 `node --import tsx --test topics/sand-journey/tests/*`。整站构建、窄屏中英文浏览器检查与发布由整合任务负责。
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

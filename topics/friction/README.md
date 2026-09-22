@@ -41,3 +41,7 @@ NHTSA [child seats](https://www.nhtsa.gov/vehicle-safety/car-seats-and-booster-s
 ## Focused verification / 定向验证
 
 `node --import tsx --test topics/friction/tests/*.test.* topics/car-safety/tests/*.test.*` covers original models, no-slip geometry, routes and the actual combined source entry/controllers with a deterministic DOM/animation adapter. It exercises playback, backward scrubbing, contact selection, input resets, independent chapter state, car road/seat/belt behavior, live energy projection, history, reduced motion and hide cancellation. Layout, pointer behavior and packaged URLs still require the parent's browser checks.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

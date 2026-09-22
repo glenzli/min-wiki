@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import './style.css';
@@ -24,3 +25,5 @@ el('contrast').addEventListener('input',()=>{cancelBackground();forestOpacity=Nu
 const observer=new ResizeObserver(anchors);observer.observe(svg);anchors();
 window.addEventListener('pagehide',()=>{cancelCamera();cancelBackground();observer.disconnect();});
 mountReadingMode('details:not(.references)');
+
+mountPresentationFrame({"root": ".lab", "visual": ".scene"});

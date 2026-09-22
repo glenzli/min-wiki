@@ -22,3 +22,7 @@ User-started rain, dry-time and gas-exchange sequences can pause or scrub. Rain 
 All playback is explicit and finite. Hidden documents pause active playback; page exit cancels frame work. Reduced-motion mode advances to inspection states rather than starting continuous movement. Phase/status text changes only at meaningful stages. Topic-local model tests cover the changed causal and continuity contracts; root task owns the full build and desktop/mobile browser acceptance.
 
 Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

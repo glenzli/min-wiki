@@ -1,3 +1,4 @@
+import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import './style.css';
 import './project.css';
 import '../car-safety/panel.css';
@@ -71,3 +72,9 @@ function restoreAnchor(){
 }
 window.addEventListener('popstate',()=>{select(readMotionChapter(location.search));restoreAnchor();});window.addEventListener('hashchange',restoreAnchor);
 select(chapter);mountReadingMode('details:not(.references)');mountTopicNavigation('friction');restoreAnchor();
+
+foldPresentationContext('.motion-ref');
+mountPresentationFrame({ root: '#slide-panel .lab', visual: '.scene-wrap' });
+mountPresentationFrame({ root: '#contact-panel', visual: '.contact-motion>svg', transport: '#contact-play,#contact-reset' });
+mountPresentationFrame({ root: '#car-braking', visual: '.road-scene', transport: '.playback' });
+mountPresentationFrame({ root: '#restraints-panel .protection', visual: '.belt-art' });

@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -53,3 +54,5 @@ window.addEventListener('pagehide', suspend);
 motion.addEventListener('change', () => { suspend(); zoom = Number(close); render(); });
 render();
 mountReadingMode('details:not(.references)');
+
+mountPresentationFrame({"root": ".lab", "visual": ".scene-column", "transport": ".stage-controls"});

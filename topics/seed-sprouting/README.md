@@ -50,3 +50,7 @@ Interaction advances only on user input. Bean growth uses cancellable finite tra
 
 Focused command: `node --import tsx --test topics/seed-sprouting/tests/*.test.mjs topics/seed-travel/model.test.ts topics/flower-fruit/model.test.ts`.
 Checks cover water/oxygen/temperature gates, fractional growth history, pollen contact/tube continuity, actual incompatible no-fruit outcome, wind settling, attachment/release, graph status, valid migration parameters, lifetime adapter boundaries and learning schema. Root integration owns production build and actual Chinese/English desktop/390px browser checks. A source test is not browser evidence.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

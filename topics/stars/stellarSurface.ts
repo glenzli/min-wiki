@@ -10,21 +10,22 @@ export class StellarSurface {
   private maps=new Map<string,{canvas:HTMLCanvasElement; image:ImageData; phase:number}>();
   draw(c:CanvasRenderingContext2D,x:number,y:number,r:number,color:string,time=0){
     if(r<.8){c.strokeStyle=color;c.lineWidth=1;c.beginPath();c.moveTo(x-5,y);c.lineTo(x+5,y);c.moveTo(x,y-5);c.lineTo(x,y+5);c.stroke();return;}
-    const small=r<45,size=small?96:384,key=color+size;
+    const small=r<45,size=small?64:256,key=color+size;
     let map=this.maps.get(key);
     if(!map){const canvas=document.createElement('canvas');canvas.width=canvas.height=size;map={canvas,image:canvas.getContext('2d')!.createImageData(size,size),phase:NaN};this.maps.set(key,map);}
     // Update at a bounded cadence; geometry is stable between samples and never random per frame.
     const phase=Math.floor(time*8)/8;
     if(map.phase!==phase){
-      map.phase=phase;const p=map.image.data,a=phase*.025,cos=Math.cos(a),sin=Math.sin(a);
+      map.phase=phase;const p=map.image.data,a=phase*.055,cos=Math.cos(a),sin=Math.sin(a);
       const rgb=[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)/255);
       for(let py=0;py<size;py++)for(let px=0;px<size;px++){
         const nx=(px+.5)*2/size-1,ny=(py+.5)*2/size-1,rr=nx*nx+ny*ny,o=(py*size+px)*4;
         if(rr>=1){p[o+3]=0;continue;}
         const nz=Math.sqrt(1-rr),sx=nx*cos+nz*sin,sz=nz*cos-nx*sin;
-        const granule=noise(sx*95,ny*95,sz*95),broad=noise(sx*12+2,ny*12,sz*12);
+        const flow=.65*Math.sin(phase*.23+ny*4),granule=noise(sx*75+flow,ny*75+phase*.18,sz*75+phase*.12),broad=noise(sx*12+2+phase*.04,ny*12,sz*12);
+        const pulse=.035*Math.sin(phase*.65+sx*13+ny*9);
         const lane=Math.pow(Math.max(0,(granule-.2)/.8),.55);
-        let light=(.68+.32*nz)*(.70+.32*lane+.13*broad);
+        let light=(.68+.32*nz)*(.70+.32*lane+.13*broad+pulse);
         // A few coherent dark active regions, foreshortened naturally towards the limb.
         for(const [lon,lat,radius]of [[-.4,.22,.038],[-.31,.25,.023],[.55,-.28,.025]]){
           const distance=Math.hypot(sx-Math.sin(lon!)*Math.cos(lat!),ny-Math.sin(lat!),sz-Math.cos(lon!)*Math.cos(lat!));

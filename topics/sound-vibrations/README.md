@@ -15,3 +15,7 @@ Science: [OpenStax, Sound](https://openstax.org/books/college-physics-2e/pages/1
 验证：保持旧有张力—音高关系，加入传播前沿因果性、声源停后波包延续、末态回到平衡、粒子不交叉和密度正有限检查。中英文说明与四段讲稿同步。浏览器交互、音频按钮与手机布局由根任务统一验收。
 
 2026-09-20: OpenStax Sound and NIH/NIDCD How Do We Hear? were rechecked. Fifteen focused tests execute models and the actual composed controllers/renderers: retained independent progress, shared-condition geometry, pending-audio invalidation, visibility/page lifecycle, bounded inputs and route preservation. The DOM/audio adapter is not proof of acoustic output quality or a browser's BFCache eligibility. Final integration/browser evidence is recorded in `docs/topic-depth-20260920.md`.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

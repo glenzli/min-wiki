@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
@@ -503,3 +504,6 @@ class EarthApp {
 
 // Bootstrap
 new EarthApp();
+
+mountPresentationFrame({ root: '#daylight-lesson', visual: '.lesson-comparison', paired: true, transport: '.lesson-action' });
+mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });

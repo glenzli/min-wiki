@@ -29,3 +29,7 @@ An independent bilingual everyday-life topic. Five stations cover wetting, soap,
 `model.ts` owns screen-lesson transitions; `main.ts` connects the translated content and diagrams; `style.css` owns the responsive reading design and decorative motion. Cover prompt, source and image review are in `COVER.md`. `catalog-entry.json` and `catalog-en.json` are prepared for the integrating task; this contribution does not edit the shared registry.
 
 Focused validation passed on 2026-09-12: 3 state tests; strict TypeScript compilation from `main.ts`; 89 topic source messages checked against English with no missing or unwrapped messages and matching interpolation; cover dimensions confirmed as 1200 × 800. Full build, final registry checks and live bilingual browser validation belong to the integrating task. No commit, push or deployment is included.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

@@ -14,3 +14,7 @@ The existing static background-match comparison is retained deliberately: invent
 Camera and backdrop transitions are finite and respect reduced motion. Page exit cancels transitions and disconnects the resize observer. Existing insect geometry, identification boundaries and bilingual narration are preserved. Root task owns desktop/mobile browser acceptance.
 
 Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

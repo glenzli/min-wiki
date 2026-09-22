@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -71,3 +72,5 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) { sto
 window.addEventListener('pagehide', () => { stop(); cancelJourney(); reducedMotion.removeEventListener('change', motionPreference); });
 stop(); update();
 mountReadingMode('details:not(.references)');
+
+mountPresentationFrame({"root": ".lab", "visual": ".scene-wrap", "transport": ".transport"});

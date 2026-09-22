@@ -55,3 +55,11 @@ Focused command: `node --import tsx --test topics/stars/tests/*.test.* topics/su
 Model tests cover symmetric configurations, momentum/center/energy/angular invariants, second-order step convergence, deterministic batching and replay, near-encounter stops, invalid parameters, perturbation/recentering, bounded buffers and async cancellation. The baseline figure eight stays below1e-5 relative energy error over20 T₀ at the default step; this is a tested example, not an accuracy bound for every modified input.
 
 Browser gate: all four chapters, distance reversal, giant versus supergiant, cutaway, unequal binary, hierarchical phase scrubbing, numerical presets/edits/live-continue/guard-stop, perturbation overlay, paused replay, rapid chapter switching, English/Chinese390px, legacy Sun URL and hidden/page return. Root integration owns production browser validation; source tests do not prove visual fidelity.
+
+## Presentation and illustrative surface activity
+
+All four chapters share a viewport-fitted observation workspace and optional explanation panel. The scene canvas uses the smaller of the horizontal and vertical scale factors, preserving circular stellar disks and equal coordinate axes. Immersion keeps chapter and playback controls; Escape restores the reading layout without resetting the experiment.
+
+Photosphere textures evolve at a bounded 8 Hz on an independent illustration clock, using coherent rotating granules, dark regions and small brightness changes. Texture sizes are bounded (256 or 64 pixels), reused per palette/size and released with the renderer. Surface playback does not advance orbital phase, integrate Newtonian steps or alter saved snapshots. It can be paused separately, starts off for reduced-motion preferences and pauses when hidden. The speed, features and enhanced colors are not calibrated observations; different stellar surfaces are not claimed to be identical.
+
+恒星表面活动是增强对比的示意，速度与细节未经真实恒星标定；独立于轨道和三体数值时间。隐藏页面、减少动态效果和单独暂停均可停止它。布局改变保留实验条件与历史数据。

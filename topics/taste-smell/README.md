@@ -28,3 +28,7 @@ Sources are paraphrased for a preschool explanation and do not supply images. Th
 ## Integration and validation
 
 `catalog-entry.json` and `catalog-en.json` are delivered for the coordinating task to register. This topic does not edit the shared catalog or platform. Focused model tests, TypeScript and exact local translation coverage are checked before handoff; root owns the full production build and browser acceptance. No commit, push or deployment is performed here.
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

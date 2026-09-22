@@ -25,3 +25,7 @@ observations are separate cases, not one conserved water cycle.
 
 Focus mode changes presentation only and preserves the same DOM and experiment state.
 Validation: topic tests, translation/type/build gates and packaged bilingual browser checks.
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

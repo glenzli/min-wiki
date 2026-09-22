@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -42,3 +43,5 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelSeek
 window.addEventListener('pagehide',()=>{cancelSeek();pause();});
 matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>pause());
 render(); mountReadingMode('details:not(.references)');
+
+mountPresentationFrame({"root": ".lab", "visual": ".scene", "transport": ".motion-controls"});

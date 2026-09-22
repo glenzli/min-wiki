@@ -54,3 +54,7 @@ Bodies share a six-legged ant plan but are not a diagnostic taxonomic plate. The
 `node --import tsx --test topics/ant-trails/tests/*.test.mjs`
 
 覆盖生产模型的连续性/边界/因果沉积、条件差异与路由；真实生产控制器的有限播放/取消/保态；真实 SVG renderer 的固定节点/中间镜头/暂停收敛/照料取消/清理。完整站点门禁与390px生产浏览器由根集成任务统一执行，不把模块测试称为浏览器验收。
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

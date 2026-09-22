@@ -5,3 +5,8 @@
 .specimen svg .zoom-labels text{font-size:12px}
 
 #pain-scene{aspect-ratio:580 / 660} #head-scene,#bud-scene{aspect-ratio:1 / 1}
+
+/* Desktop presentation: retain topic geometry inside the selected scene. */
+@media(min-width:1000px){
+html.presentation-page[data-topic-ui] { .presentation-notes .taste-controls { display:block; } .presentation-notes .controls { display:block!important; }}
+}

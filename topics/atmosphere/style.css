@@ -13,3 +13,50 @@ body{--topic-accent:#397c83}.atmo-hero{padding:38px 0 22px;max-width:840px}.atmo
 
 #journey-visual{display:grid;grid-template-columns:126px minmax(0,1fr);background:#122438}#journey-visual[hidden],#journey-clue[hidden]{display:none}.journey-window{min-width:0}#height-rail{display:flex;flex-direction:column;gap:10px;padding:16px 12px;color:#dceaf2;background:#172e41;border-right:1px solid #ffffff20}#height-rail strong{font-size:.75rem}#height-rail small{font-size:.65rem;line-height:1.6;color:#b6cbd6}.height-track{position:relative;display:flex;flex:1;flex-direction:column;margin-right:8px;min-height:310px}.height-band{flex:1;display:flex;align-items:center;padding:6px;font-size:.72rem;border-bottom:1px dashed #ffffff35;background:#647ea52b}.height-band:nth-child(2){background:#57aa9628}.height-band:nth-child(3){background:#657bc43b}.height-band:nth-child(4){background:#ae87c83b}.height-band:nth-child(5){background:#76bbc93b}.height-band.current{color:#ffe5a8;box-shadow:inset 3px 0 #ffe0a0;background:#bfa65d30}.height-marker{position:absolute;right:-12px;color:#ffe0a0;font-size:19px;line-height:20px;transform:translateY(50%);text-shadow:0 0 9px #ffce66}#journey-clue{padding:16px 20px;min-height:72px;background:#203b4e;color:#ffe4ad;font-size:.9rem;line-height:1.7;border-top:1px solid #ffffff20}@media(max-width:540px){#journey-visual{grid-template-columns:90px minmax(0,1fr)}#height-rail{padding:12px 7px;gap:8px}#height-rail strong{font-size:.68rem}.height-band{font-size:.62rem;padding:4px;overflow-wrap:anywhere}#height-rail small{font-size:.6rem}#journey-clue{font-size:.82rem;padding:14px}}
 @media(max-width:540px){html[lang^=en] #journey-visual{grid-template-columns:112px minmax(0,1fr)}}
+
+/* The same scene stays mounted; only available display space and explanation change. */
+.atmo-hero{padding:14px 0 8px;max-width:none}.atmo-hero h1{font-size:26px;margin:0}.atmo-hero>.eyebrow,.atmo-hero>p:not(.eyebrow){display:none}
+#atmo-observation,#atmo-observation *{box-sizing:border-box}
+#atmo-observation{border:1px solid var(--border);border-radius:14px;padding:8px;background:var(--surface)}
+#atmo-observation>.observation-toolbar{padding:0 0 8px;background:transparent}
+#atmo-observation .atmo-tabs{padding:8px 0;margin:0;gap:6px}#atmo-observation .atmo-tabs button{font-size:12px;min-width:0}
+#atmo-observation .atmo-workspace{gap:12px;align-items:stretch;min-height:0}
+#atmo-observation .atmo-inspector{position:static;min-width:0;padding:8px 12px;border:1px solid var(--border);border-radius:10px}
+#atmo-observation .modes{margin:0;gap:5px}#atmo-observation .modes button{font-size:12px;padding:7px 10px}
+#atmo-observation .atmo-inspector h2{font-size:17px;margin:14px 0 8px}#atmo-observation .atmo-inspector p{font-size:13px;line-height:1.7}
+#atmo-observation .atmo-story{display:block;margin:16px 0;padding:12px 0;line-height:1.7}#atmo-observation .atmo-story .eyebrow{display:none}
+#atmo-observation .atmo-next{font-size:12px}#atmo-observation .atmo-readings{font-size:12px;gap:8px}
+#atmo-observation .atmo-caption{padding:6px 10px;font-size:10px;line-height:1.5}
+#atmo-observation #journey-controls{padding:6px 10px;gap:6px}#atmo-observation #journey-controls button{min-height:44px;padding:6px 8px;font-size:11px}
+#atmo-observation #journey-clue{min-height:0;padding:6px 10px;font-size:12px;line-height:1.5}
+#atmo-observation .atmo-transport{padding:8px;gap:8px}#atmo-observation .atmo-transport button{font-size:12px;padding:7px 10px}
+#atmo-observation input[type=range]{margin:2px 0}#atmo-observation #journey-position{font-size:11px}
+#atmo-observation .atmo-inspector .energy-explanation,#atmo-observation .atmo-inspector .high-clouds{padding:10px;border-radius:8px;margin-top:10px}
+#atmo-observation .energy-explanation ol,#atmo-observation .high-clouds>div{display:block}#atmo-observation .energy-explanation li{margin:12px 0}
+#atmo-observation .world-note{padding:8px 0;border-top:1px solid var(--border);font-size:12px;line-height:1.6}#atmo-observation .world-note summary{cursor:pointer;min-height:36px}
+@media(min-width:1000px){
+ #atmo-observation{height:calc(100dvh - var(--observation-top,160px));min-height:430px;display:flex;flex-direction:column}
+ #atmo-observation.observation-expanded{min-height:0;padding:12px 18px}
+ #atmo-observation .atmo-workspace{flex:1;overflow:hidden;grid-template-columns:minmax(0,1fr) 270px}
+ #atmo-observation .atmo-workspace:has(.atmo-inspector.observation-panel-hidden){grid-template-columns:minmax(0,1fr)}
+ #atmo-observation .atmo-inspector{overflow:auto;min-height:0}
+ #atmo-observation .atmo-stage{display:flex;flex-direction:column;min-height:0}
+ #atmo-observation #journey-visual{flex:1;min-height:0;grid-template-columns:110px minmax(0,1fr)}
+ #atmo-observation .journey-window{min-height:0;position:relative}#atmo-observation #atmo-canvas{height:100%;position:absolute;inset:0}
+ #atmo-observation #height-rail{padding:6px 8px;gap:4px;min-height:0}#atmo-observation .height-track{min-height:0}#atmo-observation .height-band{font-size:10px;padding:2px}
+ #atmo-observation #height-rail strong{font-size:10px}#atmo-observation #height-rail small{font-size:9px;line-height:1.4}
+ #atmo-observation #world-controls{padding:6px 10px}#atmo-observation #world-controls label{font-size:12px}
+ #atmo-observation[data-view=worlds] #atmo-profiles{flex:1;min-height:0}
+ #atmo-observation .paired-profiles{height:100%;grid-template-rows:52px repeat(4,minmax(0,1fr)) 42px}
+ #atmo-observation .world-column header{padding:5px 10px}#atmo-observation .world-column h2{font-size:16px}#atmo-observation .world-column header p{font-size:10px;margin:2px 0}
+ #atmo-observation .world-band{grid-template-rows:minmax(0,1fr);grid-template-columns:42% 58%;min-height:0}
+ #atmo-observation .world-art{min-height:0}#atmo-observation .world-words{padding:5px;display:flex;align-items:center}
+ #atmo-observation .world-words h3{font-size:11px;margin:0}#atmo-observation .world-words p{display:none}
+ #atmo-observation .world-column footer{padding:4px 8px;font-size:10px;line-height:1.3}
+}
+@media(max-width:999px){#atmo-observation .atmo-workspace{grid-template-columns:1fr}#atmo-observation .world-note{display:none}#atmo-observation.observation-expanded #atmo-canvas{height:clamp(260px,44dvh,420px)}#atmo-observation.observation-expanded .height-track{min-height:120px}}
+html[data-topic-ui] body:has(#atmo-observation)>main{padding-block:12px 48px}
+html[data-topic-ui] body>main>header.atmo-hero{padding:0;margin:0 0 10px}
+html[data-topic-ui] body>main>header.atmo-hero h1{font-size:26px;margin:0;line-height:1.3}
+
+@media(min-width:1000px){#atmo-observation .hide-profile-labels .world-words{visibility:hidden}}

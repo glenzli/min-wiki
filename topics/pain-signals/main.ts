@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -54,3 +55,5 @@ window.addEventListener('pagehide',()=>{cancelPlay();cancelZoom();playing=false;
 window.addEventListener('pageshow',render);
 render();mountReadingMode('.advanced');
 mountTopicNavigation('pain-signals');
+
+mountPresentationFrame({"root": ".lab", "visual": ".specimen", "transport": ".play-controls"});

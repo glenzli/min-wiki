@@ -12,6 +12,8 @@ export class ThreeBodyScene {
   private index=0;
   private comparison=true;
   private extent=1.6;
+  private surfaceTime=0;
+  setSurfaceTime(time:number){this.surfaceTime=time;this.draw();}
   constructor(private canvas:HTMLCanvasElement,private centerLabel:string,private previewLabel:string){
     const ctx=canvas.getContext('2d');if(!ctx)throw new Error('Canvas unavailable');this.ctx=ctx;
     this.observer=new ResizeObserver(()=>this.draw());this.observer.observe(canvas);
@@ -20,8 +22,8 @@ export class ThreeBodyScene {
   setData(data:Comparison){this.data=data;this.extent=1.6;this.index=0;this.draw();}
   show(index:number,comparison:boolean){this.index=index;this.comparison=comparison;this.draw();}
   draw(){
-    const width=this.canvas.clientWidth;if(!width)return;const height=Math.max(350,Math.min(600,width*.65)),dpr=Math.min(devicePixelRatio||1,2);
-    this.canvas.style.height=height+'px';if(this.canvas.width!==Math.round(width*dpr)||this.canvas.height!==Math.round(height*dpr)){this.canvas.width=Math.round(width*dpr);this.canvas.height=Math.round(height*dpr);}
+    const width=this.canvas.clientWidth;if(!width)return;const height=this.canvas.clientHeight||350,dpr=Math.min(devicePixelRatio||1,2);
+    if(this.canvas.width!==Math.round(width*dpr)||this.canvas.height!==Math.round(height*dpr)){this.canvas.width=Math.round(width*dpr);this.canvas.height=Math.round(height*dpr);}
     const c=this.ctx;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,width,height);
     const bg=c.createRadialGradient(width*.5,height*.45,0,width*.5,height*.45,width*.8);bg.addColorStop(0,'#122239');bg.addColorStop(1,'#060d19');c.fillStyle=bg;c.fillRect(0,0,width,height);
     if(this.data){const f=frameAt(this.data.base,this.index),g=frameAt(this.data.perturbed,this.index);let target=1.6;for(const frame of this.comparison?[f,g]:[f])for(let i=0;i<3;i++)target=Math.max(target,Math.abs(frame[1+4*i]!)*1.25,Math.abs(frame[2+4*i]!)*1.25);this.extent=Math.max(this.extent,target);}
@@ -55,7 +57,7 @@ export class ThreeBodyScene {
       const x=frame[1+4*i]!,y=frame[2+4*i]!,p=point(x,y),px=p[0]!,py=p[1]!;
       c.strokeStyle=COLORS[i]!;c.fillStyle=COLORS[i]!;
       if(hollow){c.lineWidth=1.2;c.beginPath();c.arc(px,py,23,0,Math.PI*2);c.stroke();}
-      else{this.surface.draw(c,px,py,18,COLORS[i]!,frame[0]!);c.fillStyle=COLORS[i]!;c.font='600 13px system-ui';c.fillText(String.fromCharCode(65+i),px+(x>=0?25:-33),py+(y>=0?-24:31));}
+      else{this.surface.draw(c,px,py,18,COLORS[i]!,this.surfaceTime);c.fillStyle=COLORS[i]!;c.font='600 13px system-ui';c.fillText(String.fromCharCode(65+i),px+(x>=0?25:-33),py+(y>=0?-24:31));}
     }
   }
   dispose(){this.observer.disconnect();this.surface.dispose();this.data=undefined;this.initial=[];}

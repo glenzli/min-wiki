@@ -8,6 +8,7 @@ const element=<K extends keyof HTMLElementTagNameMap>(tag:K,className='',text=''
 /** Owns user-started live integration, bounded history review, and visible-page lifetime. */
 export class ThreeBodyExperiment {
   readonly root=element('section','observatory three-body');
+  readonly notes=element('aside','stellar-notes');
   private draft:Experiment={...DEFAULT_EXPERIMENT};
   private result?:Comparison;
   private scene?:ThreeBodyScene;
@@ -30,7 +31,7 @@ export class ThreeBodyExperiment {
   private inputs:HTMLInputElement[]=[];
   private presets:HTMLButtonElement[]=[];
   constructor(private text:Text){
-    const heading=element('div','scene-heading'),titles=element('div');titles.append(element('p','eyebrow',this.u('context')),element('h2','',this.u('title')));heading.append(titles);this.root.append(heading,element('p','scale-note',this.u('intro')));
+    const heading=element('div','scene-heading'),titles=element('div');titles.append(element('p','eyebrow',this.u('context')),element('h2','',this.u('title')));heading.append(titles);const intro=element('p','scale-note',this.u('intro'));this.root.append(heading,intro);
     const controls=element('div','controls three-parameters');
     for(const preset of ['eight','triangle'] as const){const button=element('button','',this.u(preset));button.onclick=()=>{this.draft={...DEFAULT_EXPERIMENT,preset};this.syncInputs();this.invalidate();};this.presets.push(button);controls.append(button);}
     for(const [key,label,min,max,step]of [['massC','mass',.5,2,.05],['xC','position',-.3,.3,.01],['vxC','velocity',-.3,.3,.01]] as const){const wrap=element('label'),caption=element('span'),output=element('output'),input=element('input');caption.append(this.u(label)+' ',output);input.type='range';input.setAttribute('aria-label',this.u(label));input.min=String(min);input.max=String(max);input.step=String(step);input.dataset.parameter=key;input.oninput=()=>{this.draft[key]=Number(input.value);output.value=this.draft[key].toFixed(2);this.invalidate();};wrap.append(caption,input);controls.append(wrap);this.inputs.push(input);}
@@ -38,13 +39,18 @@ export class ThreeBodyExperiment {
 
     this.status.setAttribute('role','status');this.status.setAttribute('aria-live','polite');this.root.append(this.status);
     const canvas=element('canvas','three-canvas');canvas.setAttribute('role','img');canvas.setAttribute('aria-label',this.u('legend'));this.root.append(canvas);
-    try{this.scene=new ThreeBodyScene(canvas,this.u('center'),this.u('preview'));}catch{canvas.hidden=true;this.root.append(element('p','scale-note',this.u('fallback')));}
+    const fallback=element('p','scale-note',this.u('fallback'));fallback.hidden=true;
+    try{this.scene=new ThreeBodyScene(canvas,this.u('center'),this.u('preview'));}catch{canvas.hidden=true;fallback.hidden=false;}
     const playback=element('div','controls three-playback');this.play.textContent=this.u('play');this.play.onclick=()=>this.toggle();this.rewind.textContent=this.u('rewind');this.rewind.onclick=()=>this.invalidate();const time=element('label','three-time',this.u('scrub'));this.scrub.type='range';this.scrub.min='0';this.scrub.step='1';this.scrub.value='0';this.scrub.oninput=()=>{const index=Number(this.scrub.value);this.pause();this.index=index;this.paint();};time.append(this.scrub);playback.append(this.play,this.rewind,time);
     const compare=element('label','three-overlay');this.overlay.type='checkbox';this.overlay.checked=false;this.overlay.onchange=()=>this.paint();compare.append(this.overlay,this.u('compare'));playback.append(compare);
-    this.root.append(playback,element('p','scale-note',this.u('legend')),element('p','scale-note',this.u('scale')),parameters,this.readings);
+    const legend=element('p','scale-note',this.u('legend')),scale=element('p','scale-note',this.u('scale'));
+    this.root.append(playback,legend,scale,parameters,this.readings);
     const explanation=element('article','explanation');for(const key of ['units','method','limits','interpretation','errorDefinition'] as const)explanation.append(element('p',key==='limits'||key==='interpretation'?'boundary':'',this.u(key)));
     const details=element('details','three-initial'),summary=element('summary','',this.u('initial'));details.append(summary,element('p','',this.u('initialNote')),this.conditions);explanation.append(details);
     const sources=element('p','three-sources',this.u('sources')+': ');for(const [label,url]of [['Montgomery / Simó','https://people.ucsc.edu/~rmont/Nbdy/NbdyC1.html'],['Chenciner & Montgomery (2000)','https://arxiv.org/abs/math/0011268'],['Velocity-Verlet','https://fb15.pages.uni-marburg.de/ag-von-domaros/teaching/molecular-dynamics/core_algorithms.html']]){const link=element('a','',label);link.href=url!;link.target='_blank';link.rel='noreferrer';sources.append(link,' ');}explanation.append(sources);this.root.append(explanation);
+    const stage=element('div','stellar-stage');
+    this.notes.append(intro,parameters,this.readings,explanation);
+    stage.append(heading,this.status,canvas,fallback,playback,legend,scale);this.root.append(stage,this.notes);
     this.syncInputs();this.invalidate();
   }
   private u(key:keyof typeof copy){return this.text(copy[key]);}
@@ -77,6 +83,7 @@ export class ThreeBodyExperiment {
   }
   pause(){if(this.playing)this.status.textContent=this.u('paused');this.playing=false;cancelAnimationFrame(this.frame);this.frame=0;this.play.textContent=this.u('play');this.play.setAttribute('aria-pressed','false');if(this.result)this.paint();}
   setActive(active:boolean){this.active=active;this.root.hidden=!active;if(!active)this.suspend();else this.paint();}
+  setSurfaceTime(time:number){if(this.active)this.scene?.setSurfaceTime(time);}
   suspend(){this.pause();}
   dispose(){this.disposed=true;this.suspend();this.scene?.dispose();this.result=undefined;this.live=undefined;}
 }

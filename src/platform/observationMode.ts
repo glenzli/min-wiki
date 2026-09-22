@@ -2,9 +2,11 @@ import './observationMode.css';
 
 type ObservationPanel = { label: string; elements: HTMLElement[]; open?: boolean };
 type ObservationOptions = { panels?: ObservationPanel[]; fit?: boolean };
+let observationSequence = 0;
 
 /** Owns presentation, focus and scroll only. Never remounts or changes the topic experiment. */
 export function mountObservationMode(root: HTMLElement, labels: { enter: string; exit: string }, options: ObservationOptions = {}) {
+  const instance = observationSequence++;
   const toolbar = document.createElement('div');
   toolbar.className = 'observation-toolbar';
   const button = document.createElement('button');
@@ -26,7 +28,7 @@ export function mountObservationMode(root: HTMLElement, labels: { enter: string;
   const ancestors: HTMLElement[] = [];
   const panels = (options.panels ?? []).map((panel, index) => {
     const control = document.createElement('button'); control.type = 'button'; control.textContent = panel.label;
-    panel.elements.forEach((element, i) => { element.id ||= `observation-panel-${index}-${i}`; });
+    panel.elements.forEach((element, i) => { element.id ||= `observation-panel-${instance}-${index}-${i}`; });
     control.setAttribute('aria-controls', panel.elements.map(element => element.id).join(' '));
     const state = { ...panel, control, open: panel.open ?? true, readingOpen: panel.open ?? true };
     const render = () => {

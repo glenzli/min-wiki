@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -6,7 +7,6 @@ import { clamp, phaseState, moleculePosition, icePosition, type Process } from '
 import { animateValue } from '../../src/visuals/transition.ts';
 import { createIceRenderer } from './iceRenderer.ts';
 import './style.css';
-import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { heatState, changeCondition, type HeatSegment, type HeatCondition } from './heatModel.ts';
 translateDocument(t);
 mountTopicNavigation('water-states');
@@ -91,8 +91,10 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});w
 update();mountReadingMode('details:not(.references)');
 
 document.querySelectorAll<HTMLButtonElement>('[data-heat-condition]').forEach(b=>b.addEventListener('click',()=>{stop();heatSegment=changeCondition(heatSegment,heatProgress,b.dataset.heatCondition as HeatCondition);heatProgress=0;range.value='0';update();}));
-mountObservationMode(document.querySelector<HTMLElement>('.lab')!,{enter:t('专注观察'),exit:t('退出专注观察 · Esc')});
+
 
 let showMolecules=!matchMedia('(max-width:760px)').matches;
 function setMolecularView(){el('molecular-view').hidden=!showMolecules;document.querySelector('.observation-grid')!.classList.toggle('without-molecules',!showMolecules);el('molecular-toggle').textContent=showMolecules?t('收起分子图'):t('放大看水分子');el('molecular-toggle').setAttribute('aria-expanded',String(showMolecules));}
 el('molecular-toggle').addEventListener('click',()=>{showMolecules=!showMolecules;setMolecularView();});setMolecularView();
+
+mountPresentationFrame({"root": ".lab", "visual": ".observation-grid", "paired": true, "transport": "#play,#restart"});

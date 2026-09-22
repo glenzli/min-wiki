@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -104,3 +105,5 @@ window.addEventListener('pageshow',event=>{if(event.persisted){bind();update();}
 bind(); update();
 
 mountReadingMode('details:not(.references)');
+
+mountPresentationFrame({ root: '#explore', visual: '.view' });

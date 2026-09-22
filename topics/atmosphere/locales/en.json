@@ -91,5 +91,9 @@
   "播放旅程": "Play journey",
   "地球到太空的旅程": "Journey from Earth to space",
   "观察镜头先拉近地面，再沿同一条半径向外观察。球体、地面标记与各层位置保留；镜头不是自由飞行模拟。高度进度经过对数压缩，现象图形为放大示意，分层边界不是硬壳。": "The camera first approaches the ground, then observes outward along the same radius. The globe, surface marker and layer positions persist. This is not a free-flight simulation. Height progress is logarithmic; phenomena are enlarged illustrations and layer boundaries are not shells.",
-  "地球低层读数采用标准大气参考，高层不外推。海岸与大陆轮廓为示意，并非真实地点地图；云雨、流星、极光等代表不同条件下的现象，不表示同地同时发生。星球对比的行位置不代表相同高度。": "Lower Earth readings use a standard-atmosphere reference without upper extrapolation. Coastlines and continents are illustrative, not a mapped location. Weather, meteors and auroras represent different conditions, not one simultaneous event. Matching planetary rows do not mean matching heights."
+  "地球低层读数采用标准大气参考，高层不外推。海岸与大陆轮廓为示意，并非真实地点地图；云雨、流星、极光等代表不同条件下的现象，不表示同地同时发生。星球对比的行位置不代表相同高度。": "Lower Earth readings use a standard-atmosphere reference without upper extrapolation. Coastlines and continents are illustrative, not a mapped location. Weather, meteors and auroras represent different conditions, not one simultaneous event. Matching planetary rows do not mean matching heights.",
+  "大气观察": "Atmosphere observation",
+  "沉浸演示": "Immersive view",
+  "退出沉浸 · Esc": "Exit immersive · Esc",
+  "解说": "Explanation"
 }

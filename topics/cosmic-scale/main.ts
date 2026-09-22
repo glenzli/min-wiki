@@ -68,9 +68,9 @@ el<HTMLInputElement>('scale').oninput=e=>{stop();flight.seek(Number((e.target as
 el<HTMLInputElement>('tilt').oninput=e=>{state.tilt=Number((e.target as HTMLInputElement).value);update();};
 data.stages.forEach((content,i)=>{const b=document.createElement('button');b.textContent=text(content.name);b.dataset.stop=String(i);b.onclick=()=>travelTo(i===0?originStart(state.origin):stops[i]!);el('stops').append(b);});
 for(const key of Object.keys(layers) as (keyof typeof layers)[]){const b=document.createElement('button');b.textContent=text(data.ui[key]);b.setAttribute('aria-pressed',String(layers[key]));b.onclick=()=>{layers[key]=!layers[key];b.setAttribute('aria-pressed',String(layers[key]));update();};el('layers').append(b);}
-document.addEventListener('visibilitychange',()=>{if(document.hidden){comparison.stop();stop();update(true);}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){comparison.pauseSurface();comparison.stop();stop();update(true);}});
 window.addEventListener('pagehide',event=>{stop();if(!event.persisted){disposed=true;comparison.dispose();scene?.dispose();}});
 window.addEventListener('pageshow',()=>update());
 window.addEventListener('popstate',()=>{stop();comparison.stop();exploration=readExploration(location.search);const next=readJourney(location.search);state.origin=next.origin;flight.seek(next.progress);state.progress=flight.progress;previous=-1;update();});
-reduced.addEventListener('change',event=>{if(event.matches){comparison.stop();stop();}});
+reduced.addEventListener('change',event=>{if(event.matches){comparison.pauseSurface();comparison.stop();stop();}});
 update();

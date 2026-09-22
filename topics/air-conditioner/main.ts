@@ -1,3 +1,4 @@
+import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import './style.css';
 import './project.css';
 import '../refrigerator/panel.css';
@@ -64,3 +65,8 @@ function restoreAnchor(){
 window.addEventListener('popstate',()=>{select(readChapter(location.search));restoreAnchor();});
 window.addEventListener('hashchange',restoreAnchor);
 select(chapter);mountReadingMode('.advanced');mountTopicNavigation('air-conditioner');restoreAnchor();
+
+foldPresentationContext('.heat-map');
+mountPresentationFrame({ root: '#air-panel .lab', visual: '#scene', transport: '#play,#pause,#reset' });
+mountPresentationFrame({ root: '#fridge-panel .lab', visual: '#fr-fridge-scene' });
+mountPresentationFrame({ root: '#room-panel', visual: '.room-outline' });

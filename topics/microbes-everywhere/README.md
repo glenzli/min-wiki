@@ -57,3 +57,7 @@ Reviewed 2026-09-20. These support mechanisms, not the arbitrary resource cutoff
 Covers actual models, routes, state retention, resource/host branches, conservative camera state, single-clock lifecycle, stale loading/cancel/retry and bilingual content. Old virus-controller tests now cover the compatibility boundary; their active UI lifecycle contracts moved to the unified workspace tests. Parent integration owns full gates and real packaged desktop/390px bilingual browser checks. Automated passing tests do not establish visual acceptance, actual biological prediction or deployment.
 
 No commit, push or deployment is implied.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

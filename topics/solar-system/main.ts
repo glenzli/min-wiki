@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { ExplorerController } from './explorer/controller.ts';
 import './comparison.ts';
 import { isBody, readSelection } from './explorer/model.ts';
@@ -494,3 +495,12 @@ class SolarApp {
 
 // Bootstrap
 new SolarApp();
+
+const solarFrame = mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });
+if (solarFrame) {
+  const explorerNotes = document.createElement('div'); explorerNotes.className = 'explorer-external-notes';
+  for (const node of document.querySelectorAll('.explorer-heading,.explorer-views,.explorer-site,.explorer-notes,.explorer-moons,.explorer-model')) explorerNotes.append(node);
+  solarFrame.notes.prepend(explorerNotes);
+}
+
+mountPresentationFrame({ root: '#world-comparison', visual: 'canvas' });

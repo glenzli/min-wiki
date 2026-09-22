@@ -1010,3 +1010,8 @@ h1 {
 }
 
 .stage-buttons button { overflow-wrap: anywhere; hyphens: auto; }
+
+/* Desktop presentation: retain topic geometry inside the selected scene. */
+@media(min-width:1000px){
+html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex:1; min-height:120px; height:0; } & .presentation-frame .theater { padding:0; gap:8px; } .presentation-frame .scenario-bar,.presentation-frame .tools-bar { padding:6px 10px; margin:0; } .presentation-frame .presentation-notes .story-panel { padding:0; } .presentation-frame .story-panel h1 { font-size:24px; margin:6px 0; } .presentation-frame .story-divider,.presentation-frame .sidebar-footer { display:none; }}
+}

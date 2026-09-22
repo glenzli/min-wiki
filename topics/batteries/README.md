@@ -41,3 +41,7 @@ All wiring and cutaways remain on screen. Adults handle real batteries. Never op
 - Original motor fundamentals remain cited in learning.json.
 
 Verification evidence and untested boundaries are in [VALIDATION.md](VALIDATION.md). Local work does not imply commit, push or deployment.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

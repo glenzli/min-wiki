@@ -67,3 +67,8 @@ a { color:#376951; text-underline-offset:3px; }
 [hidden] { display:none!important; }
 @media(max-width:800px) { .ant-desk { grid-template-columns:1fr; } .ant-notebook { border-left:0; border-top:1px solid #dfe2d1; } .ant-cards { grid-template-columns:1fr; gap:12px; } .ant-brood-panel { grid-template-columns:1fr; } #ant-body { aspect-ratio:2; } #ant-world { min-height:250px; } }
 @media(max-width:480px) { main { padding:24px 14px 50px; } .ant-chapters { grid-template-columns:1fr 1fr; padding:8px; gap:4px; } .ant-chapters button { font-size:.84rem; padding:.55rem .3rem; } .ant-head { padding:20px 16px 2px; } .ant-head h2 { font-size:1.08rem; } .ant-head p { font-size:.86rem; } .ant-toolbar { padding:2px 16px 15px; gap:10px; } .ant-toolbar label { font-size:.82rem; } .ant-drawing { padding:12px; } #ant-body { aspect-ratio:1.4; } #ant-world { min-height:220px; } .ant-notebook { padding:20px 16px; } .ant-condition-panel,.ant-brood-panel { padding:18px 16px; } .ant-reading { padding:16px; } .ant-cards article { padding:18px; } .ant-legend { font-size:.78rem; } }
+
+/* Desktop presentation: retain topic geometry inside the selected scene. */
+@media(min-width:1000px){
+html.presentation-page[data-topic-ui] { .presentation-notes .ant-desk { display:block; } .presentation-notes .ant-notebook { padding:0; } .presentation-frame .ant-drawing>div { flex:1; min-height:0; display:flex; flex-direction:column; } .presentation-frame .ant-drawing svg { flex:1; height:0; width:100%; min-height:0; max-height:none; } .presentation-frame .ant-drawing>p { font-size:12px; margin:5px 12px; } .presentation-frame .ant-parts { gap:5px; padding:6px; } .presentation-frame .ant-parts button { min-height:44px; }}
+}

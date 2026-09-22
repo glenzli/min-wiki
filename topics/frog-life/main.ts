@@ -1,3 +1,4 @@
+import { mountPresentationFrame, presentationGroup } from '../../src/platform/presentation.ts';
 import { language, translateDocument, languageHref } from '../../src/platform/i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
@@ -87,3 +88,16 @@ document.addEventListener('visibilitychange',onHidden);reduced.addEventListener(
 window.addEventListener('pagehide',event=>{controller.pause();if(!event.persisted){unsubscribe();controller.dispose();specimens.frog.dispose();specimens.butterfly.dispose();document.removeEventListener('visibilitychange',onHidden);reduced.removeEventListener('change',onMotion);window.removeEventListener('popstate',onPop);}});
 for(const a of document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]'))a.href=languageHref(a.getAttribute('href')!);
 mountReadingMode('details:not(.references)');
+
+const metamorphosisFrame = mountPresentationFrame({ root: presentationGroup('#chapters', '#specimens'), visual: '#specimens', choices: '#chapters' });
+if (metamorphosisFrame) for (const animal of ['frog', 'butterfly']) {
+ const observation = el(`${animal}-card`).querySelector<HTMLElement>('.observation')!;
+ observation.classList.add(`${animal}-notes`); metamorphosisFrame.notes.append(observation);
+}
+
+const butterflyDetails = document.createElement('details'); butterflyDetails.className = 'butterfly-details';
+const butterflySummary = document.createElement('summary'); butterflySummary.textContent = t('阶段与翅膀细节');
+butterflyDetails.append(butterflySummary);
+el('butterfly-stages').before(butterflyDetails);
+for (const node of document.querySelectorAll('.growth-note,#butterfly-stages,#peek-label,#wing-controls')) butterflyDetails.append(node);
+metamorphosisFrame?.notes.append(butterflyDetails);

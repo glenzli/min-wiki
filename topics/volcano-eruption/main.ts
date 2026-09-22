@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { ecologyState, type Habitat } from './ecologyModel.ts';
 import { ecologyMarkup, soilMarkup } from './ecologyScene.ts';
 import { LIFE_STEPS, ecologyStory, ecologyClue, LIFE_WATCH, OMURO_NOTE } from './ecologyContent.ts';
@@ -244,3 +245,5 @@ window.addEventListener('pagehide', () => { stop(); cancelCamera(); eruption?.di
 window.addEventListener('pageshow', event => { if (event.persisted) mountCase(); });
 document.addEventListener('keydown', event => { if (event.code === 'Space' && !event.repeat && !(event.target as HTMLElement)?.closest('button,input,select,a,textarea,summary,[contenteditable]')) { event.preventDefault(); el('play').click(); } });
 mountCase(); showStatus('dormant'); mountReadingMode('.advanced');
+
+mountPresentationFrame({ root: '.explorer', visual: '.scene-wrap', transport: '.playback', choices: '#cases, #chapters' });

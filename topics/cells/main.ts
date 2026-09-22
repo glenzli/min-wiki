@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import './style.css';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -164,3 +165,13 @@ el('chapter-next').addEventListener('click', () => showChapter(CHAPTERS[(CHAPTER
 el('compare-energy').addEventListener('click', () => { cell = 'animal'; choice = 'respiration'; showChapter('energy'); });
 window.addEventListener('popstate', () => { const route = readCellRoute(location.search); specialization.select(route.example); showChapter(route.chapter, false); });
 showChapter(chapter, false);
+
+const structureFrame = mountPresentationFrame({ root: '#structure-panel', visual: '.specimen' });
+if (structureFrame) {
+ structureFrame.notes.prepend(document.getElementById('structure-heading')!);
+ structureFrame.notes.append(document.getElementById('structure-detail')!);
+ for (const node of structureFrame.stage.querySelectorAll('.view-controls,.scene-symbols,.scene-caption')) structureFrame.notes.append(node);
+}
+const energyFrame = mountPresentationFrame({ root: '#energy-panel', visual: '.behavior-window', transport: '.process-controls' });
+if (energyFrame) for (const node of energyFrame.stage.querySelectorAll('.material-key,#assembly-key,#energy-readout')) energyFrame.notes.append(node);
+mountPresentationFrame({ root: '#specialization-panel', visual: '.work-illustration', transport: '.work-playback' });

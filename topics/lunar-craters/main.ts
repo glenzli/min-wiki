@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { impactEnergy, DENSITY } from './model.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -82,3 +83,5 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) { can
 window.addEventListener('pagehide', e => { cancelAnimationFrame(frame); frame = 0; if (!e.persisted) { stop(); scene?.dispose(); } });
 window.addEventListener('pageshow', () => { if (playing && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });
 update();
+
+mountPresentationFrame({"root": ".explorer", "visual": ".viewport", "transport": ".theater>.controls,.theater>.scrub"});

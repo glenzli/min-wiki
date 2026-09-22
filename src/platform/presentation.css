@@ -1,0 +1,55 @@
+/* Opt-in presentation layout. Topics choose the scene; geometry and clocks stay local. */
+.presentation-frame { --presentation-sidebar: 310px; }
+.presentation-frame .presentation-body { display:grid; grid-template-columns:minmax(0,1fr) var(--presentation-sidebar); min-height:0; flex:1; }
+.presentation-frame .presentation-body:has(>.observation-panel-hidden) { grid-template-columns:minmax(0,1fr); }
+.presentation-frame .presentation-stage { min-width:0; min-height:0; display:flex; flex-direction:column; overflow:hidden; }
+.presentation-frame .presentation-notes { min-width:0; min-height:0; overflow:auto; padding:14px; border-left:1px solid var(--border); overscroll-behavior:contain; }
+.presentation-frame .presentation-notes>*, .presentation-frame .presentation-note-group { max-width:100%; margin-block:0 12px; }
+.presentation-frame .presentation-note-group { display:block!important; height:auto!important; padding:0!important; border:0; }
+.presentation-frame .presentation-notes :is(aside,.controls,.settings,.readout,.story,.inspector,.phase,.legend) { width:auto; min-width:0; padding:10px 0; margin:0; border:0; }
+.presentation-frame .presentation-notes :is(.controls,.settings,.buttons,.sequence,.steps,.stages,.action-row) { display:flex; gap:6px; flex-wrap:wrap; }
+.presentation-frame .presentation-notes :is(label,.control-group) { min-width:0; max-width:100%; }
+.presentation-frame .presentation-notes :is(h2,h3) { font-size:18px; line-height:1.45; margin:6px 0; }
+.presentation-frame .presentation-notes p { font-size:14px; line-height:1.65; margin:8px 0; }
+.presentation-frame .presentation-transport { flex-shrink:0; display:flex; align-items:center; flex-wrap:wrap; gap:8px; padding:8px 12px; }
+.presentation-frame .presentation-transport>button { width:auto!important; flex:0 1 auto; }
+.presentation-frame .presentation-transport>div { flex:1 1 100%; }
+.presentation-frame .presentation-transport>* { padding:8px 12px; margin:0; gap:8px; }
+.presentation-frame .presentation-transport :is(button,select) { min-height:44px; padding:8px 12px; }
+.presentation-frame .presentation-choices { flex-shrink:0; border-bottom:1px solid var(--border); }
+.presentation-frame .presentation-choices>* { margin:0!important; padding:6px 12px!important; }
+.presentation-frame .observation-toolbar { padding:8px 12px; }
+.presentation-frame .observation-toolbar button { width:auto!important; flex:0 1 auto; }
+.presentation-frame .presentation-visual { min-width:0; min-height:0; position:relative; }
+.presentation-context { margin:10px 0; padding:0; }
+.presentation-context>summary { min-height:44px; padding:8px 12px; font-size:14px; cursor:pointer; }
+@media(min-width:1000px) {
+  html.presentation-page[data-topic-ui] body>main { padding-block:12px 48px; }
+  html.presentation-page[data-topic-ui] body>main>header { margin:0 0 12px; padding:0; }
+  html.presentation-page[data-topic-ui] body>main>header h1 { font-size:26px; margin:0 0 8px; line-height:1.25; }
+  html.presentation-page[data-topic-ui] body>main>header :is(.eyebrow,.reading-mode-hint) { display:none; }
+  html.presentation-page[data-topic-ui] body>main>header :is(p,.intro) { font-size:14px; line-height:1.5; margin:6px 0; }
+  html.presentation-page[data-topic-ui] body>main>header { display:flex; flex-wrap:wrap; align-items:center; gap:4px 20px; }
+  html.presentation-page[data-topic-ui] body>main>header>p { flex:1 1 50%; }
+  html.presentation-page[data-topic-ui] body>main>header>.reading-mode { margin:0; }
+  html.presentation-page[data-topic-ui] body>main>header :is(img,figure,.hero-art) { display:none; }
+  html[data-topic-ui] .presentation-frame { display:flex; flex:none!important; gap:0!important; flex-direction:column; height:max(320px,calc(100dvh - var(--observation-top,180px))); min-height:0; margin-block:10px 24px; padding:0; overflow:hidden; }
+  html[data-topic-ui] .presentation-frame .presentation-visual { flex:1; height:0; max-height:none; width:100%; display:flex; flex-direction:column; margin:0; }
+  .presentation-frame .presentation-visual>svg, .presentation-frame .presentation-visual>canvas { flex:1; display:block; width:100%!important; height:100%!important; min-height:0!important; max-height:none!important; }
+  .presentation-frame .presentation-visual>svg { overflow:visible; }
+  .presentation-frame canvas { object-fit:contain; }
+  html[data-topic-ui] .presentation-frame .presentation-pair { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; padding:10px; }
+  html[data-topic-ui] .presentation-frame .presentation-pair:has(>[hidden]) { grid-template-columns:minmax(0,1fr); }
+  .presentation-frame .presentation-pair>* { display:flex; flex-direction:column; min-height:0; min-width:0; margin:0; padding:0; height:100%; }
+  .presentation-frame .presentation-pair>*>svg, .presentation-frame .presentation-pair>*>canvas { display:block; flex:1; width:100%!important; height:0!important; min-height:0!important; max-height:none!important; }
+  .presentation-frame .presentation-pair :is(.scene-caption,figcaption) { flex-shrink:0; font-size:12px; line-height:1.5; padding:8px; }
+}
+@media(max-width:999px) {
+  .presentation-frame .presentation-body { grid-template-columns:minmax(0,1fr); }
+  .presentation-frame .presentation-notes { overflow:visible; border-left:0; border-top:1px solid var(--border); }
+  .presentation-frame .presentation-stage { overflow:visible; }
+  .presentation-frame.observation-expanded .presentation-visual { min-height:220px; }
+  .presentation-frame.observation-expanded .presentation-pair { max-height:none; }
+  .presentation-frame.observation-expanded .presentation-visual>svg,
+  .presentation-frame.observation-expanded .presentation-visual>canvas { max-height:50dvh!important; }
+}

@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { SCIENCE } from './science.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -197,3 +198,5 @@ el('return-mature').addEventListener('click', () => { stop(); age = .34; update(
 window.addEventListener('popstate', () => { const route = readLeafRoute(location.search); stop(); age = route.age; changeView(route.view, false); });
 if (view === 'inside') position = 2;
 update();
+
+mountPresentationFrame({"root": ".explorer", "visual": ".stage", "transport": ".scale-control", "choices": ".leaf-lenses"});

@@ -16,3 +16,7 @@ All playback is explicit and finite. Hidden documents pause active playback; pag
 Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.
 
 - [Journal of Experimental Biology — Underwater paddling kinematics and hydrodynamics in a surface swimming duck versus a diving duck (2025)](https://doi.org/10.1242/jeb.249274) — indexed article and journal video metadata verified; full article page blocked automated retrieval.
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

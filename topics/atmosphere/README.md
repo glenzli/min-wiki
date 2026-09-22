@@ -43,3 +43,9 @@ See `VALIDATION.md` for dated checks. Current model tests cover reference pressu
 The journey includes a fixed five-band orientation rail (equal expanded bands, not a metric height scale), a surface-to-observer line, and bilingual relative-height clues. Playback holds for three seconds at the surface and five representative layer stops; seeking remains immediate. The reference coast remains visible while moving downward during ascent.
 
 Globe artwork uses a topic-owned 1536 px procedural cache: irregular coast outlines, shelf colors, clipped land relief, islands, broad cloud fronts and broken spiral cloud banks. The locator reuses this same artwork. Fine detail fades under close zoom while the underlying coast remains fixed. These cloud patterns and landforms are authored illustrations, not satellite observations or a geographic map; the cache is released with the scene.
+
+## Presentation / 展示
+
+The two views share a viewport-fitted observation workspace with a collapsible explanation panel and reversible immersion. The paired-world illustrations occupy the stage; layer explanations remain in the inspector. Reading-mode controls and detailed mechanisms are available in the explanation panel. World selection, journey coordinates and playback are retained when changing layout. On narrow screens the comparison returns to natural document flow.
+
+16:9 桌面优先显示完整观察区；可收起解说或进入沉浸演示，Esc 返回。布局切换不重置世界、旅程或模型；详情与定量边界仍在解说中。

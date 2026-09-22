@@ -33,7 +33,7 @@ Focused command: `node --import tsx --test topics/cosmic-scale/tests/*.test.*`. 
 
 `mode=compare|homes|zoom`, `pair=0..6`, and `home=0..2` preserve the new journey state alongside `origin` and `scale`. Fresh links default to comparisons; legacy links with origin or scale retain zoom. Chapter switching stops motion and keeps both view states. Diameter ratios use Earth6371/Jupiter69911/Sun695700 km radii and Arcturus25.4 solar radii, an estimate from https://arxiv.org/abs/1109.4425. The former static Sun/Earth inset is removed in favor of the full comparison chapter. Membership diagrams show selected representatives, not orbital distances, census data or solid galaxy surfaces. Earth/Jupiter illustrative maps reuse the attributed Solar System Scope assets.
 
-Comparison stellar disks use bounded cached, deterministic spherical photosphere illustrations with granulation, limb darkening and restrained glow; Sun-only spots are illustrative. Texture scale and colors are not measured surface data. The comparison represents a static snapshot, with no timed convection claim.
+Comparison stellar disks use bounded cached, deterministic spherical photosphere illustrations with granulation, limb darkening and restrained glow; Sun-only spots are illustrative. Texture scale and colors are not measured surface data. Surface activity uses a separate illustrative clock; neither the pattern evolution nor its speed is a calibrated convection model.
 
 Antares extends the final comparison at approximately 700 solar radii, sourced from ESO eso1726; the existing Arcturus pair index remains 2. Membership galaxy images are three cached 720px procedural structural illustrations with diffuse disks, spiral populations, warm centers and dust lanes. Projection, directions and texture details are illustrative, not observed maps or a distance scale.
 
@@ -83,3 +83,9 @@ The compact chooser names pairs in the comparison and stars in the orbit view. S
 orbit view during a pair animation retains the selected destination. Chapter/layout changes retain
 the chosen star and view in memory; the view toggle itself is not encoded in the URL. See
 [the scoped validation record](../../docs/giant-stars-20260922.md).
+
+## Illustrative surface activity
+
+Diameter comparisons retain their chosen objects and common scale while stellar photospheres slowly rotate and evolve. A separate control pauses this illustrative activity; the bounded 320-pixel texture cache refreshes at at most roughly 6 Hz. This does not change diameters, drive the comparison transition or update DOM readouts every frame. Leaving the comparison, hiding the page or requesting reduced motion pauses the surface clock. Details and speed are not observational measurements.
+
+恒星表面颗粒、暗斑与亮暗变化为示意，可独立暂停；不改变尺度比较，不表示真实自转周期或已观测到的表面图像。

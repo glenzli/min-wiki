@@ -39,3 +39,7 @@ One learning journey compares independently retained frog and butterfly observat
 - [Florida Museum · Butterfly life cycle](https://www.floridamuseum.ufl.edu/educators/resource/butterfly-life-cycle/)：幼虫蜕皮、体液帮助翅膀展开。
 - [Florida Museum · Monarch metamorphosis video](https://www.floridamuseum.ufl.edu/exhibits/blog/monarch-metamorphosis-video/)：羽化、展开、硬化的先后。本图不是帝王蝶物种复原。
 - [St Andrews · From tadpole to frog](https://tadpoles.wp.st-andrews.ac.uk/from-tadpole-to-frog/)：摆尾与后肢划动的运动方式。波形与频率仅作观察示意。
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

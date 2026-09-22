@@ -19,3 +19,7 @@ The overview, tube section and villus use different scales. Particle count and d
 - Endotext, hosted by NCBI Bookshelf, [Intestinal Triglyceride and Cholesterol Metabolism](https://www.ncbi.nlm.nih.gov/books/NBK343489/figure/lipid_athero.F9/): lipid digestion products, intracellular rebuilding and chylomicron packaging, lacteal/lymph entry. This is an authored reference text, not an NIH primary experiment; no figure is copied.
 
 Focused tests cover organ ordering, breakdown before uptake, epithelial passage before transport, glucose/long-chain-lipid route differences, bounded/reversible input and a constriction behind the contents. Root owns final global build, 390px production-browser acceptance and local checkpoint commit. No push or deployment is performed by this topic task.
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

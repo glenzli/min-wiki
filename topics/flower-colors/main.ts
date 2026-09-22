@@ -1,3 +1,4 @@
+import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import {mountTopicNavigation} from '../../src/platform/topicNavigation.ts';
 import {translateDocument,language} from '../../src/platform/i18n.ts';
 import {t} from '../hydrangea/i18n.ts';
@@ -42,3 +43,7 @@ function paint(){scene.draw(state);const key=el('flower-key');key.replaceChildre
 window.addEventListener('popstate',()=>location.reload());
 window.addEventListener('pagehide',e=>{hydrangea?.stop();if(!e.persisted)scene.dispose();});
 render();
+
+foldPresentationContext('#flower-bridge');
+mountPresentationFrame({ root: '#flower-study', visual: '.flower-art' })?.notes.append(document.getElementById('flower-key')!);
+mountPresentationFrame({ root: '#hydrangea-study .explorer', visual: '.scene-wrap', transport: '.theater>.controls,.timeline' });

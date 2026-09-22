@@ -30,3 +30,8 @@
 @media(max-width:760px){.comparison-header{padding:18px 12px}.presets{gap:6px}.presets button{display:flex;flex-direction:column;align-items:start;padding:10px;gap:6px}.presets strong{font-size:14px}.presets small{font-size:10px;line-height:1.5}.preset-drawing{width:50px;height:39px}.scene-heading{padding:12px}.scene-note{padding:0 12px 14px;font-size:11px}.material-legend{padding:12px;font-size:11px;gap:6px 12px}.status-workbench,.landform-grid{grid-template-columns:1fr}.status-picture svg{max-height:220px}.status-lab>h2,.landforms>h2{font-size:22px}.status-copy h3{font-size:18px}.status-copy{padding:19px}.evidence-timeline{gap:9px}.evidence-timeline strong{font-size:12px}.landform-grid article{padding:18px}.landform-grid svg{height:85px}.status-tabs button{padding:9px 11px;font-size:12px}}
 
 @media(max-width:760px){.viewport{height:320px}}
+
+/* Desktop presentation: retain topic geometry inside the selected scene. */
+@media(min-width:1000px){
+html.presentation-page[data-topic-ui] { .presentation-choices .case-picker { display:flex; gap:6px; } .presentation-choices .case-picker button { flex:1; padding:6px; min-height:44px; } .presentation-choices .case-picker :is(small,p,span) { display:none; } .presentation-notes .story-grid { display:block; } .presentation-notes .story-card,.presentation-notes .conditions { padding:0; } .presentation-frame .scene-wrap { aspect-ratio:auto; }}
+}

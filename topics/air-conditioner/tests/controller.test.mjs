@@ -69,7 +69,8 @@ function harness(controllerSource,{project=false,search=''}={}) {
  const noop=()=>{};
  const location=new URL('https://wiki.test/topics/air-conditioner/'+search);
  const history={pushState(_state,_unused,href){const next=new URL(href,location);location.href=next.href;}};
- const host={document,window,location,history,URLSearchParams,console,t:value=>value,translateDocument:noop,mountTopicNavigation:noop,mountReadingMode:noop,animateValue};
+ // Presentation DOM is exercised in browser checks; this adapter isolates experiment lifetimes.
+ const host={mountPresentationFrame(){},foldPresentationContext(){},document,window,location,history,URLSearchParams,console,t:value=>value,translateDocument:noop,mountTopicNavigation:noop,mountReadingMode:noop,animateValue};
  function load(name,dependencies={},override) {
   const source=override??readFileSync(resolve(topic,name),'utf8');
   const parsed=ts.createSourceFile(name,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);

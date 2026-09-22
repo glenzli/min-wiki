@@ -4,3 +4,8 @@
 @media(max-width:620px){.controls label{flex-basis:100%;min-width:0}.controls select{width:100%;min-width:0}.scene text{font-size:25px}.scene .small{font-size:21px}}
 
 .contact-panel{padding:20px 28px;border-top:1px solid var(--border)}.contact-heading{display:flex;align-items:center;gap:24px;flex-wrap:wrap}.contact-heading label{max-width:260px}.contact-panel svg{display:block;width:100%;border-radius:18px}.contact-panel p{font-size:.9rem;color:var(--secondary)}.energy-row{display:grid;grid-template-columns:minmax(65px,90px) 1fr;gap:15px;align-items:center;margin:10px 0}.energy-bar{height:15px;display:flex;border-radius:7px;overflow:hidden;background:var(--border)}.energy-bar i{display:block;height:100%;flex-shrink:0}.kinetic{background:#438f99}.transferred{background:#d78c4c}.energy-key{display:flex;gap:18px;flex-wrap:wrap}.energy-key span:before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;background:#438f99;margin-right:7px}.energy-key span+span:before{background:#d78c4c}@media(max-width:620px){.contact-panel{padding:18px}.contact-heading{gap:8px}.contact-panel svg{min-height:120px}}
+
+/* Desktop presentation: retain topic geometry inside the selected scene. */
+@media(min-width:1000px){
+html.presentation-page[data-topic-ui] { .presentation-notes .controls { display:block!important; } .presentation-notes .controls label { display:block; margin:10px 0; } .motion-chapters { margin:8px 0; } .presentation-frame .contact-motion svg { flex:1; min-height:0; height:0; width:100%; }}
+}

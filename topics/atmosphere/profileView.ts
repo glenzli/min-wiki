@@ -36,12 +36,13 @@ function art(kind:string) {
  * DOM text remains readable and accessible at narrow widths; artwork has no hidden clock. */
 export class AtmosphereProfiles {
  private key='';
- constructor(private root:HTMLElement,private text:Text) {}
+ constructor(private root:HTMLElement,private text:Text,private notes?:HTMLElement) {}
  draw(s:Settings,labels:boolean) {
   this.root.classList.toggle('hide-profile-labels',!labels);
   const frame=journeyFrame(s.journey), key=s.view+':'+s.world+':'+frame.phase+':'+frame.layer;
   if(key===this.key)return;
   this.key=key;
+  if(this.notes){this.notes.hidden=s.view!=='worlds';this.notes.innerHTML=s.view==='worlds'?this.text.worlds.earth.column.map((row,i)=>`<details class="world-note"><summary>${escape(row.title)} / ${escape(this.text.worlds[s.world].column[i]!.title)}</summary><p><strong>${escape(this.text.worlds.earth.name)}</strong> · ${escape(row.body)}</p><p><strong>${escape(this.text.worlds[s.world].name)}</strong> · ${escape(this.text.worlds[s.world].column[i]!.body)}</p></details>`).join(''):'';}
   this.root.innerHTML=s.view==='worlds'?this.comparison(s.world):frame.phase==='ascent'?this.layerEnrichment(frame.layer):'';
  }
  private layerEnrichment(layer:number){

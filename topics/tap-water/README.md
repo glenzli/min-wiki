@@ -47,3 +47,7 @@ The bilingual interactive page compares water ingredients and boiling in three q
 Water, mineral and risk symbols now keep their positions along bounded paths during a user-started comparison. Inactivation markings appear continuously; chemical warning symbols persist. Progress is not temperature, duration or a microbial survival fraction. Scenario switching preserves progress and visible endpoint results remain stable. The same three academic sections and four narration segments now include matching pause/scrub cues.
 
 Rechecked CDC emergency-water guidance and [lead in drinking water](https://www.cdc.gov/lead-prevention/prevention/drinking-water.html). All hot-water handling remains an adult task; no child experiment or new treatment instructions were added.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

@@ -55,12 +55,12 @@
       "en": "SHARED CENTER OF MASS"
     },
     "play": {
-      "zh": "开始动态",
-      "en": "Start motion"
+      "zh": "播放轨道",
+      "en": "Play orbits"
     },
     "pause": {
-      "zh": "暂停动态",
-      "en": "Pause motion"
+      "zh": "暂停轨道",
+      "en": "Pause orbits"
     },
     "distance": {
       "zh": "观察距离 · 对数刻度",
@@ -207,8 +207,32 @@
       "en": "Red giant · 50"
     },
     "surfaceNote": {
-      "zh": "表面为增强对比的光球层示意：球面颗粒、暗斑与临边昏暗，不是观测照片；真实太阳在太空中呈近白色。不同恒星的表面细节并不完全相同。",
-      "en": "Enhanced-contrast photosphere illustration: spherical granules, dark spots and limb darkening, not an observation. The real Sun looks nearly white from space. Other stars do not all share identical surface features."
+      "zh": "表面颗粒缓慢变形、亮暗变化与暗斑转动为增强对比的光球示意；独立于轨道播放，速度和细节未按真实恒星标定，也不是观测照片。真实太阳在太空中呈近白色，不同恒星的表面细节并不相同。",
+      "en": "Slowly evolving granules, brightness changes and rotating dark regions illustrate a photosphere with enhanced contrast. Surface activity is independent of orbital playback; timing and detail are not calibrated to real stars or observed maps. The real Sun looks nearly white in space, and other star types have different surfaces."
+    },
+    "workspace": {
+      "zh": "恒星观察",
+      "en": "Stellar observation"
+    },
+    "immersive": {
+      "zh": "沉浸演示",
+      "en": "Immersive view"
+    },
+    "exitImmersive": {
+      "zh": "退出沉浸 · Esc",
+      "en": "Exit immersive · Esc"
+    },
+    "explanation": {
+      "zh": "解说与参数",
+      "en": "Explanation & settings"
+    },
+    "playSurface": {
+      "zh": "播放表面 · 示意",
+      "en": "Play surface · illustrated"
+    },
+    "pauseSurface": {
+      "zh": "暂停表面 · 示意",
+      "en": "Pause surface · illustrated"
     }
   },
   "types": [

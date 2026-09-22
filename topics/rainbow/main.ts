@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { SCIENCE_EXPLANATIONS } from './science.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -318,3 +319,5 @@ class RainbowApp {
     }
 }
 new RainbowApp();
+
+mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });

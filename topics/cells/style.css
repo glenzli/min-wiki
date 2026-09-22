@@ -126,3 +126,8 @@ button:disabled { opacity:.45; cursor:default; }
 .assembly-swatch { display:flex; flex-direction:column; align-items:center; gap:5px; flex:0 0 36px; }
 .assembly-swatch>span { font-size:12px; transform:rotate(90deg); line-height:1; }
 .protein-symbol { display:block; width:11px; height:11px; border-radius:50%; border:1px solid #668877; background:#91bba5; box-shadow:-10px 0 #91bba5,10px 0 #91bba5; }
+
+/* Desktop presentation: retain topic geometry inside the selected scene. */
+@media(min-width:1000px){
+html.presentation-page[data-topic-ui] {& .lab { padding:0; } .lab-top { padding:8px 12px; margin:0; } .lab-top h2 { font-size:18px; margin:3px 0; } .lab-top .eyebrow { display:none; } .cell-tabs { padding:0 12px; margin:0; } .chapter-question { margin:6px 0; font-size:13px; } .presentation-frame .specimen-top { padding:7px 10px; } .presentation-frame .scene-symbols { font-size:11px; margin:6px; } .presentation-notes .detail-row,.presentation-notes .behavior-workbench,.presentation-notes .work-layout { display:block; } .presentation-notes .detail-window { max-height:220px; } .presentation-notes .detail-window svg { height:180px; } .presentation-notes .parts { display:flex; flex-wrap:wrap; } .presentation-notes .parts button { flex:1 1 110px; } .presentation-frame .work-illustration svg { flex:1; width:100%; height:0; min-height:0; }}
+}

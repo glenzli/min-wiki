@@ -47,3 +47,7 @@ Additional budget and lifecycle tests: `node --import tsx --test topics/rain-cyc
 These checks prove deterministic accounting, continuity, route validation, shared dry-air outcomes, the ice/melt distinction and SVG IDs. They do not prove visual quality. Root integration must run the full repository gate and production-browser checks in Chinese and English, including 390 px, old links, history, cloud loading, rapid switching, pause/scrub, ice intermediate states and reduced motion.
 
 Sources: [USGS water cycle](https://www.usgs.gov/water-science-school/water-cycle), [NASA cloud composition](https://gpm.nasa.gov/resources/faq/what-are-clouds-made-are-they-more-likely-form-polluted-air-or-pristine-air), [USGS glacier flow](https://wa.water.usgs.gov/pubs/fs/fs_rainier.html).
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

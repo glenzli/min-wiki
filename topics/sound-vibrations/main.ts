@@ -1,3 +1,4 @@
+import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import './style.css';
 import '../hearing/panel.css';
 import './project.css';
@@ -51,3 +52,13 @@ el('label-toggle').addEventListener('click',()=>{const hidden=document.querySele
 function restoreAnchor(){let id:string;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}if(!id)return;const target=document.getElementById(chapter==='ear'&&!id.startsWith('h-')?'h-'+id:id)??document.getElementById(id);target?.closest('details')?.setAttribute('open','');target?.scrollIntoView?.({block:'start'});}
 window.addEventListener('popstate',()=>{select(readSoundChapter(location.search));restoreAnchor();});window.addEventListener('hashchange',restoreAnchor);
 select(chapter);renderComparison();mountReadingMode('.advanced, #source-panel details:not(.references)');mountTopicNavigation('sound-vibrations');restoreAnchor();
+
+foldPresentationContext('.causal-bridge');
+mountPresentationFrame({ root: '#source-panel .lab', visual: '.scene-wrap', transport: '#play,#stop,#pluck' });
+const hearingFrame = mountPresentationFrame({ root: '#ear-panel .lab', visual: '.specimen-pair', paired: true, transport: '.play-controls' });
+if (hearingFrame) {
+ for (const caption of hearingFrame.stage.querySelectorAll('figcaption')) hearingFrame.notes.append(caption);
+ document.querySelector('main>header')?.append(el('label-toggle'));
+}
+const comparisonFrame = mountPresentationFrame({ root: '#compare-panel', visual: '.compare-grid', paired: true });
+if (comparisonFrame) comparisonFrame.notes.prepend(el('medium').closest('label')!);

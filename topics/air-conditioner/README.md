@@ -27,3 +27,7 @@ The controller lifecycle suite executes the real topic modules against a small D
 The same suite also executes the real composed entry with both device models, SVG renderers and controllers, covering direct chapter URLs, history, shared-ledger projection, independent saved progress, and hidden/chapter cancellation. `project.test.mjs` tests boundary conservation and route compatibility. Focused command: `node --import tsx --test topics/air-conditioner/tests/*.test.mjs topics/refrigerator/tests/*.test.mjs`. Packaged browser and 390 px inspection belong to the root integration check, not this DOM adapter.
 
 Scientific boundary: Qh = Qc + W is a cyclic working-fluid balance. Refrigerator transient room exchange additionally subtracts cabinet leakage and tracks air/food stored energy. Neither the fixed-room-temperature refrigerator nor the room-boundary example predicts room warming. A cool sensation near an open fridge door does not establish sustained whole-room cooling.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

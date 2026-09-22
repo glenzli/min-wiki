@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import './style.css';
 import { t } from './i18n.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -40,3 +41,5 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
 window.addEventListener('pagehide',()=>{stop();cancelNutrient();cancelView();cancelBody();view=viewTarget;bodyZoom=bodyTarget;fatFocus=nutrient==='fat'?1:0;camera();render();});
 window.addEventListener('pageshow',()=>{camera();render();});
 routeNote();render();camera();mountReadingMode('.advanced');mountTopicNavigation('digestion');
+
+mountPresentationFrame({"root": ".lab", "visual": ".specimen-pair", "transport": ".play-controls", "paired": true});

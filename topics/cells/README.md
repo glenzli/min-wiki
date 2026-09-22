@@ -50,3 +50,7 @@ The NCBI chapters are from a 2002 foundational textbook. They support establishe
 `model.ts` owns structural presence, supported process choices, finite sequence phases, camera interpolation and matching hit regions. `scene.ts` owns the mounted anatomy and material markers; `main.ts` owns retained progress, control composition and lifecycle. Bilingual learning content remains in `learning.json`, with three academic sections and four spoken segments per language, and cues stored separately from narration.
 
 Focused model tests cover presence/absence, plant process choices, unsupported bacterial pathways, absent-structure view fallback, continuous cameras and trajectories, bounded sequence phases, continuous sugar transfer, co-located arrival before consumption, energy delivery before assembly, and diagram hit regions. Scoped TypeScript and exact topic/common translation checks are used. Native SVG raster inspection is a geometry check, not browser interaction proof. The coordinator owns final build, phone/desktop browser checks, and reading-mode acceptance. No automatic commit, push, external-site sync or deployment is part of this task.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

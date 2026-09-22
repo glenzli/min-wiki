@@ -1,3 +1,4 @@
+import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import { language, translateDocument, languageHref } from '../../src/platform/i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
@@ -50,6 +51,7 @@ function select(next:Chapter,write=false){
   const value=studies.get(chapter)??create(chapter);
   // Detached fragments retain controls and finite state, without duplicate SVG/label ids in the document.
   el('study-host').replaceChildren(value.root);
+  mountPresentationFrame({ root: value.root.querySelector<HTMLElement>('.lab')!, visual: '.scene', transport: '#next,#reset,#play,#restart' });
   for(const button of map.querySelectorAll<HTMLButtonElement>('button'))button.setAttribute('aria-current',String(button.dataset.chapter===chapter));
   const current=copy[chapter];el('case-label').textContent=text(current.species);el('question').textContent=text(current.question);el('before').textContent=text(current.before);el('after').textContent=text(current.after);el('next-chapter').textContent=text(current.next);
   if(write){const url=new URL(location.href);url.searchParams.set('chapter',chapter);history.pushState(null,'',url);}
@@ -63,3 +65,5 @@ window.addEventListener('pagehide',event=>{pause();if(!event.persisted){disposed
 window.addEventListener('popstate',()=>select(readPlantRoute(location.search).chapter));
 for(const a of document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]'))a.href=languageHref(a.getAttribute('href')!);
 select(chapter);mountReadingMode('details:not(.references)');
+
+foldPresentationContext('.cycle-panel, .chapter-context');

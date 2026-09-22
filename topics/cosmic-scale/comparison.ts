@@ -14,7 +14,8 @@ export class ComparisonJourney {
  private slider=make('input');private pairs=make('select');private homes=make('div','','comparison-buttons');
  private solarButton=make('button');private solar=false;private estimate=make('details');private estimateText=make('p');
  private previous=make('button');private next=make('button');private onward=make('button');private source=make('a');
- private maps:HTMLImageElement[]=[];private stellarMaps=new Map<number,HTMLCanvasElement>();private galaxyMaps=new Map<number,HTMLCanvasElement>();
+ private surfaceButton=make('button');private surfaceTime=0;private surfaceFrame=0;private surfaceLast=0;private surfacePaint=0;private surfacePlaying=!matchMedia('(prefers-reduced-motion: reduce)').matches;
+ private maps:HTMLImageElement[]=[];private stellarMaps=new Map<number,{canvas:HTMLCanvasElement;image:ImageData;phase:number}>();private galaxyMaps=new Map<number,HTMLCanvasElement>();
  constructor(private root:HTMLElement,language:string,private changed:(pair:number,home:number)=>void,private navigate:(chapter:Chapter)=>void){
   this.words=language==='en'?content.en:content.zh;const w=this.words;
   this.ctx=this.canvas.getContext('2d')!;this.canvas.className='comparison-canvas';this.canvas.setAttribute('role','img');
@@ -22,7 +23,7 @@ export class ComparisonJourney {
   this.pairs.onchange=()=>this.animate(Number(this.pairs.value));
   this.solarButton.onclick=()=>{const selected=this.destination??Math.round(this.pair);this.stop();this.solar=!this.solar;if(this.solar){this.pair=selected;this.changed(this.pair,this.home);}this.paint();};
   w.homeNames.forEach((name,i)=>{const b=make('button',name);b.onclick=()=>{this.home=i;this.changed(this.pair,this.home);this.paint();};this.homes.append(b);});
-  const heading=make('div','','comparison-heading'),choices=make('div','','comparison-choices');choices.append(this.pairs,this.solarButton);heading.append(this.title,choices,this.homes);
+  const heading=make('div','','comparison-heading'),choices=make('div','','comparison-choices');choices.append(this.pairs,this.solarButton,this.surfaceButton);this.surfaceButton.onclick=()=>this.setSurface(!this.surfacePlaying);heading.append(this.title,choices,this.homes);
   const label=make('label',w.scrub);this.slider.type='range';this.slider.min='0';this.slider.max=String(lastPair);this.slider.step='any';this.slider.setAttribute('aria-label',w.scrub);label.append(this.slider);
   this.slider.oninput=()=>{this.stop();this.pair=Number(this.slider.value);this.changed(this.pair,this.home);this.paint();};
   this.previous.textContent=w.previous;this.previous.onclick=()=>this.animate(Math.max(0,Math.ceil(this.pair)-1));
@@ -35,27 +36,32 @@ export class ComparisonJourney {
   copy.append(credit);root.append(heading,this.canvas,this.cards,controls,this.boundary,copy);
   this.observer=new ResizeObserver(()=>this.paint());this.observer.observe(this.canvas);
   for(const url of [earthMap,jupiterMap]){const image=new Image();image.onload=()=>{if(!this.disposed)this.paint();};image.src=url;this.maps.push(image);}
+  this.setSurface(this.surfacePlaying);
  }
- show(chapter:Chapter,pair:number,home:number){if(this.chapter!==chapter)this.stop();this.chapter=chapter;this.pair=pair;this.home=home;this.root.hidden=chapter==='zoom';this.paint();}
+ show(chapter:Chapter,pair:number,home:number){if(this.chapter!==chapter)this.stop();this.chapter=chapter;this.pair=pair;this.home=home;this.root.hidden=chapter==='zoom';if(chapter!=='compare')this.pauseSurface();this.paint();}
+ pauseSurface(){this.setSurface(false);}
+ private setSurface(active:boolean){this.surfacePlaying=active;cancelAnimationFrame(this.surfaceFrame);this.surfaceFrame=0;this.surfaceButton.textContent=active?this.words.pauseSurface:this.words.playSurface;this.surfaceButton.setAttribute('aria-pressed',String(active));if(active&&!this.disposed&&!document.hidden){this.surfaceLast=performance.now();this.surfaceFrame=requestAnimationFrame(now=>this.tickSurface(now));}}
+ private tickSurface(now:number){this.surfaceFrame=0;if(!this.surfacePlaying||this.disposed||document.hidden||this.chapter!=='compare')return;this.surfaceTime+=Math.min(.1,(now-this.surfaceLast)/1000);this.surfaceLast=now;if(now-this.surfacePaint>=160){this.surfacePaint=now;this.paint(true);}this.surfaceFrame=requestAnimationFrame(t=>this.tickSurface(t));}
  stop(){cancelAnimationFrame(this.frame);this.frame=0;this.destination=null;}
  private animate(target:number){this.stop();if(this.solar||matchMedia('(prefers-reduced-motion: reduce)').matches){this.pair=target;this.changed(this.pair,this.home);this.paint();return;}this.destination=target;const from=this.pair;let elapsed=0,last=performance.now();const tick=(now:number)=>{this.frame=0;if(this.disposed||document.hidden){this.destination=null;return;}elapsed+=Math.min(.08,(now-last)/1000);last=now;this.pair=from+(target-from)*smooth(Math.min(1,elapsed/1.1));this.changed(this.pair,this.home);this.paint();if(elapsed<1.1)this.frame=requestAnimationFrame(tick);else this.destination=null;};this.frame=requestAnimationFrame(tick);}
- /** Static, object-bound photosphere illustration; no observed surface map or timed convection is implied. */
+ /** Object-bound evolving photosphere illustration; speed and surface detail are not calibrated measurements. */
  private stellarMap(index:number){
-  const cached=this.stellarMaps.get(index);if(cached)return cached;
-  const size=640,map=make('canvas');map.width=map.height=size;const context=map.getContext('2d')!,image=context.createImageData(size,size),p=image.data;
+  const phase=Math.floor(this.surfaceTime*6)/6,size=320;let cached=this.stellarMaps.get(index);if(cached?.phase===phase)return cached.canvas;
+  if(!cached){const canvas=make('canvas');canvas.width=canvas.height=size;cached={canvas,image:canvas.getContext('2d')!.createImageData(size,size),phase:NaN};this.stellarMaps.set(index,cached);}
+  const map=cached.canvas,context=map.getContext('2d')!,image=cached.image,p=image.data;cached.phase=phase;
   const hash=(x:number,y:number,z:number)=>{let h=Math.imul(x,374761393)^Math.imul(y,668265263)^Math.imul(z,2147483647);h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967295;};
   const noise=(x:number,y:number,z:number)=>{const a=Math.floor(x),b=Math.floor(y),d=Math.floor(z);x-=a;y-=b;z-=d;const u=x*x*(3-2*x),v=y*y*(3-2*y),w=z*z*(3-2*z);let n=0;for(let k=0;k<2;k++)for(let j=0;j<2;j++)for(let i=0;i<2;i++)n+=hash(a+i,b+j,d+k)*(i?u:1-u)*(j?v:1-v)*(k?w:1-w);return n;};
   for(let py=0;py<size;py++)for(let px=0;px<size;px++){
    const x=(px+.5)*2/size-1,y=(py+.5)*2/size-1,rr=x*x+y*y,o=(py*size+px)*4;if(rr>=1)continue;
-   const z=Math.sqrt(1-rr),scale=index===2?115:66;
-   const broad=noise(x*9+7,y*9,z*9),warp=noise(x*18,y*18+3,z*18);
-   const fine=noise(x*scale+warp*2,y*scale,z*scale),micro=noise(x*scale*2,y*scale*2,z*scale*2);
-   const cell=clamp((fine-.23)*1.8,0,1),limb=.58+.42*Math.pow(z,.55);
+   const nz=Math.sqrt(1-rr),a=phase*.05,sx=x*Math.cos(a)+nz*Math.sin(a),z=nz*Math.cos(a)-x*Math.sin(a),scale=index===2?85:55;
+   const broad=noise(sx*9+7+phase*.04,y*9,z*9),warp=noise(sx*18,y*18+3+phase*.05,z*18);
+   const fine=noise(sx*scale+warp*2,y*scale+phase*.2,z*scale+phase*.12),micro=noise(sx*scale*2,y*scale*2+phase*.15,z*scale*2);
+   const cell=clamp((fine-.23)*1.8,0,1),limb=.58+.42*Math.pow(nz,.55);
    let light=limb*(.64+.38*cell+.16*broad+.07*micro);
-   if(index===2)for(const [sx,sy,r]of [[-.35,.18,.035],[-.28,.22,.018],[.43,-.3,.022]]){const d=Math.hypot(x-sx!,y-sy!);light*=1-.70*Math.exp(-((d/r!)**2))-.16*Math.exp(-((d/(r!*2))**2));}
+   if(index===2)for(const [spotX,spotY,r]of [[-.35,.18,.035],[-.28,.22,.018],[.43,-.3,.022]]){const d=Math.hypot(sx-spotX!,y-spotY!,z-Math.sqrt(1-spotX!**2-spotY!**2));light*=1-.70*Math.exp(-((d/r!)**2))-.16*Math.exp(-((d/(r!*2))**2));}
    p[o]=255*Math.min(1,light*1.18);p[o+1]=(index===2?221:161)*light*(.85+.15*cell);p[o+2]=(index===2?137:75)*light*(.72+.28*cell);p[o+3]=Math.min(255,(1-Math.sqrt(rr))*size*255);
   }
-  context.putImageData(image,0,0);this.stellarMaps.set(index,map);return map;
+  context.putImageData(image,0,0);return map;
  }
  private disk(x:number,y:number,r:number,index:number){
   const c=this.ctx;if(r<.1)return;
@@ -65,10 +71,12 @@ export class ComparisonJourney {
   const image=this.maps[index];if(index<2&&image?.complete&&image.naturalWidth)c.drawImage(image,x-r*2,y-r,r*4,r*2);
   const shade=c.createLinearGradient(x-r,y-r,x+r,y+r);shade.addColorStop(0,'#01091500');shade.addColorStop(.6,'#01091518');shade.addColorStop(1,'#010915c0');c.fillStyle=shade;c.fillRect(x-r,y-r,2*r,2*r);c.restore();
  }
- private paint(){
+ private paint(surfaceOnly=false){
   if(this.disposed||this.root.hidden)return;const width=this.canvas.clientWidth;if(!width)return;const height=this.canvas.clientHeight||300,dpr=Math.min(devicePixelRatio||1,2),c=this.ctx,w=this.words;
   if(this.canvas.width!==Math.round(width*dpr)||this.canvas.height!==Math.round(height*dpr)){this.canvas.width=Math.round(width*dpr);this.canvas.height=Math.round(height*dpr);}c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#08111f';c.fillRect(0,0,width,height);
   const comparing=this.chapter==='compare',index=Math.max(0,Math.min(lastPair,Math.round(this.pair))),solar=comparing&&this.solar&&index>=1;
+  if(!surfaceOnly){
+  this.surfaceButton.hidden=!comparing;
   this.pairs.parentElement!.hidden=!comparing;this.homes.hidden=comparing;this.solarButton.hidden=index<1;this.solarButton.textContent=solar?w.pairView:w.solarView;this.solarButton.setAttribute('aria-pressed',String(solar));
   (this.slider.parentElement!.parentElement!).hidden=!comparing;this.slider.parentElement!.hidden=solar;this.cards.hidden=!comparing||!solar&&Math.abs(this.pair-Math.round(this.pair))>1e-5;
   this.canvas.setAttribute('aria-label',solar?`${w.names[index+1]}. ${w.orbitBoundary}`:comparing?w.compareAlt:w.homeAlt);
@@ -81,14 +89,15 @@ export class ComparisonJourney {
   [...this.pairs.options].forEach((option,i)=>{option.textContent=solar?w.names[i+1]!:w.pairs[i]!;option.disabled=solar&&i===0;option.hidden=solar&&i===0;});
   this.pairs.value=String(index);[...this.homes.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===this.home)));
   this.cards.classList.toggle('orbit-readings',solar);
-  if(solar)this.drawSolarSystem(index+1,width,height);
+  }
+  if(solar)this.drawSolarSystem(index+1,width,height,!surfaceOnly);
   else if(comparing){
    for(const [i,b] of comparisonFrame(this.pair,width,height).entries()){if(b.opacity===0)continue;c.globalAlpha=b.opacity;const y=height*.6-b.radius*.2;this.disk(b.x,y,b.radius,i);if(b.opacity>.1&&b.x+b.radius>0&&b.x-b.radius<width){c.font='12px system-ui';c.textAlign='center';c.fillStyle='#e5eef5';c.fillText(w.names[i]!,Math.max(32,Math.min(width-40,b.x)),Math.min(height-16,y+b.radius+20));}c.globalAlpha=1;}
-   const entries=[index,index+1].map(i=>{const card=make('div');card.append(make('strong',w.names[i]!),make('span',w.kinds[i]!),make('span',i>=6?w.roughSunDiameters.replace('{{count}}',String(Math.round(bodies[i]!.radius/bodies[2]!.radius))):`${w.diameter} ${(bodies[i]!.radius*2).toLocaleString(undefined,{maximumSignificantDigits:3})} km`));return card;});this.cards.replaceChildren(...entries);
+   if(!surfaceOnly){const entries=[index,index+1].map(i=>{const card=make('div');card.append(make('strong',w.names[i]!),make('span',w.kinds[i]!),make('span',i>=6?w.roughSunDiameters.replace('{{count}}',String(Math.round(bodies[i]!.radius/bodies[2]!.radius))):`${w.diameter} ${(bodies[i]!.radius*2).toLocaleString(undefined,{maximumSignificantDigits:3})} km`));return card;});this.cards.replaceChildren(...entries);}
   }else this.drawHome(width,height);
  }
  /** A counterfactual size overlay. Orbital radii and the stellar outline share one linear ruler. */
- private drawSolarSystem(index:number,width:number,height:number){
+ private drawSolarSystem(index:number,width:number,height:number,updateCards=true){
   const c=this.ctx,w=this.words,geometry=stellarOrbitFrame(index,width,height),cx=width/2,cy=(height-20)/2;
   c.globalAlpha=.68;this.disk(cx,cy,geometry.radius,index);c.globalAlpha=1;
   c.strokeStyle='#ffc896';c.lineWidth=1.5;c.beginPath();c.arc(cx,cy,geometry.radius,0,Math.PI*2);c.stroke();
@@ -106,6 +115,7 @@ export class ComparisonJourney {
   c.strokeStyle='#ffffff';c.lineWidth=1;c.beginPath();c.moveTo(cx-4,cy);c.lineTo(cx+4,cy);c.moveTo(cx,cy-4);c.lineTo(cx,cy+4);c.stroke();
   c.fillStyle='#f7d7ac';c.font='12px system-ui';c.textAlign='left';c.fillText(`${w.names[index]} · ${w.estimated}`,12,20,width-24);
   c.textAlign='center';c.fillStyle='#aec6d5';c.font='11px system-ui';c.fillText(w.sunPlace,cx,height-7,width-20);
+  if(!updateCards)return;
   const planetCards=geometry.orbits.map((orbit,i)=>{
    const card=make('div'),name=make('strong'),icon=make('canvas');icon.width=icon.height=46;icon.setAttribute('aria-hidden','true');const p=icon.getContext('2d')!;p.scale(2,2);
    p.fillStyle=colors[i]!;p.beginPath();p.arc(11.5,11.5,i===5?6:8,0,Math.PI*2);p.fill();
@@ -147,5 +157,5 @@ export class ComparisonJourney {
   if(this.home===2){galaxy(width*.28,height*.29,span*.43,true);galaxy(width*.71,height*.44,span*.53,false,1);galaxy(width*.35,height*.65,span*.26,false,2);c.fillStyle='#d4e5ef';c.fillText(w.homeNames[1]!,width*.28,height*.29+span*.4);c.fillText(w.andromeda,width*.71,height*.44+span*.43);c.fillText(w.triangulum,width*.35,height*.65+span*.3);}
   c.fillStyle='#ffe0a0';c.fillText(w.homeAnchor[this.home]!,cx,height-20);
  }
- dispose(){this.stop();this.disposed=true;this.observer.disconnect();this.maps.forEach(i=>i.onload=null);this.stellarMaps.clear();this.galaxyMaps.clear();this.canvas.width=this.canvas.height=0;}
+ dispose(){this.stop();this.pauseSurface();this.disposed=true;this.observer.disconnect();this.maps.forEach(i=>i.onload=null);this.stellarMaps.clear();this.galaxyMaps.clear();this.canvas.width=this.canvas.height=0;}
 }

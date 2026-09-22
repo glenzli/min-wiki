@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import './style.css';
@@ -35,3 +36,5 @@ el('restart').addEventListener('click',()=>seek(0));el('progress').addEventListe
 document.querySelectorAll<HTMLButtonElement>('[data-step]').forEach(b=>b.addEventListener('click',()=>seek(stops[Number(b.dataset.step)]!)));
 document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelSeek();pause();}});window.addEventListener('pagehide',()=>{cancelSeek();pause();});matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>pause());
 draw();mountReadingMode('details:not(.references)');
+
+mountPresentationFrame({"root": ".lab", "visual": ".scene", "transport": ".motion-controls"});

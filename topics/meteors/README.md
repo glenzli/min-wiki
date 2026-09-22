@@ -9,3 +9,7 @@ The illustration does not solve atmosphere, drag, ablation, fragmentation or che
 Primary references: [NASA facts](https://science.nasa.gov/solar-system/meteors-meteorites/facts/), [Towner et al., dark-flight estimates](https://arxiv.org/abs/2108.04397), [Cordonnier et al., persistent meteor trains](https://arxiv.org/abs/2407.18344). The latter distinguishes the moving meteor from emission remaining along its track and discusses chemical emission, diffusion and winds.
 
 Focused verification: `node --import tsx --test topics/meteors/tests/model.test.mjs`. Tests cover path/tangent continuity, mass loss, no light in space or dark flight, ground contact, wake birth anchors and deterministic reverse scrubbing. Browser acceptance should compare 43% (bright head/wake), 79% (no solid versus dark remnant), 100% (no meteorite versus ground contact), play/pause, keyboard seeking, reduced motion, and Chinese/English layouts.
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

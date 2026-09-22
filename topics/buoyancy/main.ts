@@ -1,9 +1,9 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { buoyancy, type Settings, type Experiment, type ObjectKind } from './model.ts';
 import './style.css';
-import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { BuoyancyScene } from './scene.ts';
 translateDocument(t);
 mountTopicNavigation('buoyancy');
@@ -51,4 +51,6 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-mode]'))
  render();
 });
 
-mountObservationMode(document.querySelector<HTMLElement>('.lab')!,{enter:t('专注观察'),exit:t('退出专注观察 · Esc')});
+
+
+mountPresentationFrame({"root": ".lab", "visual": ".scene-column", "choices": "main>.experiments"});

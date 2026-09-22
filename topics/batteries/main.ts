@@ -1,3 +1,4 @@
+import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import './style.css';
 import { t } from './i18n.ts';
 import { language, translateDocument } from '../../src/platform/i18n.ts';
@@ -81,3 +82,8 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();can
 window.addEventListener('pagehide',()=>{stop();cancelCamera();});
 window.addEventListener('popstate',()=>selectChapter(readChapter(location.search)));
 selectChapter(chapter);drawFamily();drawPack();mountReadingMode('.advanced');mountTopicNavigation('batteries');
+
+foldPresentationContext('.journey-intro');
+mountPresentationFrame({ root: '#lab', visual: '.specimen-pair', paired: true, transport: '.play-controls' });
+mountPresentationFrame({ root: '#family', visual: '#family-art' });
+mountPresentationFrame({ root: '#pack', visual: '.specimen-pair', paired: true });

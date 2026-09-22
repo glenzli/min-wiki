@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountTopicLearning } from '../../src/platform/learning/mount.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -77,3 +78,5 @@ window.addEventListener('hashchange',()=>{if(['#origin','#coast','#flow','#effec
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();cancelHeat();}else play();});
 window.addEventListener('pagehide',event=>{stop();cancelHeat();if(!event.persisted){disposed=true;abort.abort();slot.dispose();stormScale.dispose();}});window.addEventListener('pageshow',()=>{if(!disposed)play();});
 controls();writeRoute();update();void slot.select(s).then(update);void loadLearning();
+
+mountPresentationFrame({"root": ".observatory", "visual": ".viewport", "transport": ".playback,#scrub", "choices": ".world-bar"});

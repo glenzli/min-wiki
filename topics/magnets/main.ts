@@ -1,10 +1,10 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { initialMotion, stepMotion, type Settings, type ObjectKind, type MotionPhase } from './model.ts';
 import { createScene, renderScene, drawObject } from './scene.ts';
 import './style.css';
-import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { mountCompass } from './compass.ts';
 
 translateDocument(t);
@@ -153,4 +153,7 @@ document.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(button=>but
  document.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.study===study)));
  if(study==='motion')schedule();
 }));
-mountObservationMode(document.querySelector<HTMLElement>('.lab')!,{enter:t('专注观察'),exit:t('退出专注观察 · Esc')});
+
+
+mountPresentationFrame({ root: '#motion-study', visual: '.scene-wrap' });
+mountPresentationFrame({ root: '#compass-study', visual: 'svg' });

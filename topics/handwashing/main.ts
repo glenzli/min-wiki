@@ -1,3 +1,4 @@
+import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -99,3 +100,6 @@ setVisible();
 render();
 
 mountReadingMode('details:not(.references)');
+
+foldPresentationContext('.opening');
+mountPresentationFrame({ root: '#practice', visual: '.visual-grid', paired: true, transport: '.action-row' });

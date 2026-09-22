@@ -15,3 +15,7 @@
 参考：[NASA Earth](https://science.nasa.gov/earth/facts/)；[NOAA 季节成因](https://www.weather.gov/lmk/seasons)。贴图来源沿用本专题原有资源说明。
 
 页面首先提供“倾角与白昼长短”对照实验：同一地点、同一节气，比较 0° 与可调的 0–23.44° 倾角。黄色纬度圈路程与白昼时长、正午太阳高度一起变化，红点用十二秒走完一天；极点明确区分纬度圈退化为点与时间环示意。实验独立于下方三维观察控件。封面 cover-v2.jpg 为本项目生成的说明性插图。
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

@@ -89,3 +89,11 @@ Build with `npm run build -- --base=/encyclopedia/` to mount under a host site. 
 登记项可使用 `parentTopic` 指向同分类、已发布的顶层主题，只支持一层。子章节继续保持 `published`，保留原 URL、构建入口、双语和解说资源。首页与分类计数仅展示顶层主题；搜索同时检查已发布子章节的标题、简介与标签，返回父主题。通用导航提供父级入口，具体章节顺序、说明与互动仍由专题管理。不要用 `draft` 隐藏已发布章节，否则旧链接不会进入构建。
 
 Published chapters may set `parentTopic` to a published top-level topic in the same category. Catalog discovery and counts show the parent, and search includes its published chapters. Chapter routes, build entries and localized learning resources remain independently reachable. The topic owns chapter order and interactions.
+
+### 宽屏演示与沉浸布局
+
+专题可显式调用 `mountPresentationFrame`，选定自己的演示根节点、画面、播放控件和章节选择。共享层只把现有节点组织为画面、控制条和可收起的解说栏，不重建实验、不持有模型或播放状态。多章项目应为各实验选择自己的容器；异步实验在挂载成功后接入。只有画面才进入主舞台，细节说明仍可展开阅读。
+
+桌面按视口剩余高度安排画面，SVG 保留 viewBox 比例；Canvas 渲染器仍由专题决定缩放和像素分辨率。移动端保留自然纵向阅读，不把双画面强压进固定高度。`observationMode` 统一管理沉浸、Esc、焦点及滚动恢复，各实例生成独立的面板标识。样式不等于验收：需实际检查正常/沉浸、语言、窄屏和关键章节，不能用首页正常推断全部章节正常。
+
+Topics explicitly opt into presentation framing. Shared code owns DOM layout and reversible immersion only; models, geometry, scientific qualifications and clocks remain topic-owned. Reparenting must preserve controller scope and existing listeners. Validate the actual rendered scenes and chapter transitions, not only page scroll dimensions.

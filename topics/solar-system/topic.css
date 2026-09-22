@@ -914,3 +914,12 @@ dialog .sources a:hover {
  .scrubber { flex-basis:100%; order:3; width:100%; }
  .page-footer { flex-wrap:wrap; gap:8px; }
 }
+
+/* Desktop presentation: retain topic geometry inside the selected scene. */
+@media(min-width:1000px){
+html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex:1; min-height:120px; height:0; } & .presentation-frame .theater { padding:0; gap:8px; } .presentation-frame .scenario-bar { padding:6px 10px; gap:8px; flex-wrap:wrap; } .presentation-frame .route-description { margin:0 10px; font-size:12px; } .presentation-frame .planet-strip { margin:0; padding:0 10px; gap:5px; } .presentation-frame .planet-strip button { padding:7px; } .presentation-frame .presentation-notes .story-panel { padding:0; } .presentation-frame .story-panel h1 { font-size:24px; margin:6px 0; } .presentation-frame .story-divider,.presentation-frame .sidebar-footer { display:none; } .presentation-frame .planet-explorer { display:flex; flex-direction:column; flex:1; min-height:0; padding:0; } .presentation-frame .explorer-layout { flex:1; min-height:0; grid-template-columns:minmax(0,1fr) 240px; } .presentation-frame .explorer-viewport { height:100%; min-height:120px; } .presentation-frame .explorer-notes { overflow:auto; padding:10px; } .presentation-frame .explorer-heading,.presentation-frame .explorer-breadcrumb,.presentation-frame .explorer-views { margin:0; padding:5px 10px; }  .presentation-frame .explorer-hint { font-size:11px; margin:4px 10px; } .presentation-frame .explorer-travel { padding:5px 10px; } .presentation-frame canvas { object-fit:contain; }}
+}
+
+@media(min-width:1000px){html.presentation-page[data-topic-ui] .presentation-frame .explorer-layout{display:flex;flex:1;min-height:0;height:0}html.presentation-page[data-topic-ui] .presentation-frame .explorer-viewport{flex:1;min-height:0;height:100%}html.presentation-page[data-topic-ui] .presentation-frame #explorer-canvas{width:100%;height:100%;min-height:0}html.presentation-page[data-topic-ui] .presentation-frame .explorer-hint{font-size:12px;line-height:1.4;margin:6px 0}html.presentation-page[data-topic-ui] .presentation-frame .explorer-views{display:flex;flex-wrap:wrap;gap:6px}html.presentation-page[data-topic-ui] .presentation-frame .explorer-heading h2{font-size:18px}}
+
+html.presentation-page[data-topic-ui] .presentation-frame:has(#explorer[hidden]) .explorer-external-notes{display:none}

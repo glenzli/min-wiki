@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument, language, languageHref } from '../../src/platform/i18n.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
@@ -50,7 +51,12 @@ function syncStudyNotes() {
 function studyStatus(id:'ground'|'ice',status:StudyStatus) {
  const box=el(`${id}-study-status`);box.hidden=status==='ready';
  box.querySelector('p')!.textContent=status==='error'?copy.failedStudy:copy.loadingStudy;
- el(`${id}-study-retry`).hidden=status!=='error';if(status==='ready')syncStudyNotes();
+ el(`${id}-study-retry`).hidden=status!=='error';if(status==='ready') {
+  syncStudyNotes();
+  mountPresentationFrame(id==='ground'
+   ? {root:'#ground-study-host .gw-study',visual:'.gw-scene',transport:'.gw-playback'}
+   : {root:'#ice-study-host .glacier-study',visual:'.glacier-landscape',transport:'.glacier-playback,.glacier-timeline'});
+ }
 }
 const studies={
  ground:new StudySlot(async()=>{const {mountGroundwaterStudy}=await import('./groundwater/index.ts');return ()=>mountGroundwaterStudy(el('ground-study-host'),studyLanguage);},status=>studyStatus('ground',status)),
@@ -104,3 +110,6 @@ window.addEventListener('pagehide',event=>{suspended=true;suspend();if(!event.pe
 window.addEventListener('pageshow',()=>{suspended=document.hidden;draw();});
 reduced.addEventListener('change',()=>{suspend();camera=[...focuses[view]!];draw();});
 draw();
+
+mountPresentationFrame({ root: '.lab', visual: '.scene-column', transport: '.stage-controls', choices: '#views, .slow-jumps' });
+mountPresentationFrame({ root: '#cloud-panel', visual: 'canvas' });

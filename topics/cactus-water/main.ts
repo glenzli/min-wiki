@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { cactusAt, type CactusEvent } from './model.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
@@ -46,3 +47,5 @@ el('day').addEventListener('click',()=>setNight(false));el('night').addEventList
 el('zoom').addEventListener('click',()=>{close=!close;cancelView();cancelView=animateValue({from:zoom,to:close?1:0,duration:850,onUpdate:z=>{zoom=z;const w=760/(1+1.2*z),h=530/(1+1.2*z);scene.setAttribute('viewBox',`${(610-w/2)*z} ${(318-h/2)*z} ${w} ${h}`);}});draw();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelNight();pause();}});window.addEventListener('pagehide',()=>{cancelNight();cancelView();pause();});matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',()=>pause());
 draw();mountReadingMode('details:not(.references)');
+
+mountPresentationFrame({"root": ".lab", "visual": ".scene", "transport": "#exchange,#zoom"});

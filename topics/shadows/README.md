@@ -9,3 +9,7 @@ The lamp can make a finite left-to-right journey, pause and resume, or be scrubb
 Scientific sources: [NASA eclipse geometry](https://science.nasa.gov/eclipses/geometry/) explains extended-source umbra and penumbra; [OpenStax propagation of light](https://openstax.org/books/university-physics-volume-3/pages/1-1-the-propagation-of-light) supports straight-ray geometric optics. The tabletop formula applies to a point source above the figure, not directly to distant sunlight.
 
 验证：投影与源—遮挡点共线、落在地面，最低灯高时所有身体部分有限，正上方仍有完整木偶宽度；双语学术说明与四段讲稿同步。离线 SVG 渲染已检查斜视/俯视构图，浏览器交互与手机验收由根任务统一完成。
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

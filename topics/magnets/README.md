@@ -20,3 +20,7 @@ the same DOM and conditions. Reopening the page starts new experiments.
 
 Source: [OpenStax magnetic fields](https://openstax.org/books/physics/pages/20-1-magnetic-fields-field-lines-and-force).
 Validation: tray and compass tests, bilingual/type/build gates, and production browser controls.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

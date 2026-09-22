@@ -16,3 +16,7 @@ Cover is an original code-authored SVG montage of the four representative flower
 - Source-server browser inspected rose cultivar/cell views, intermediate morning-glory opening, sunflower UV overlay, and hydrangea pending pH 6.7 while the current planted bloom retained pH 5.3 across case switches and refresh.
 - Packaged consumer at temporary 127.0.0.1:4176 inspected English 390px morning-glory/cell layout (clientWidth and scrollWidth both 390), opening endpoint, native language switch preserving progress, legacy hydrangea direct entry and catalog search for 绣球 returning one new parent card. New SVG cover visually inspected at card size. No captured console errors. Temporary preview was stopped; original 5173 host retained.
 - Browser automation's selectOption timed out; the native language control successfully completed the switch. No browser failure is claimed as product failure. Final metadata-only rebuild reused the inspected runtime code. No commit, push or deployment; broader pending repository publication remains separate.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

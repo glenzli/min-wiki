@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -37,3 +38,5 @@ el('reset').addEventListener('click', () => { stop(); input('height').value = '2
 document.addEventListener('visibilitychange', () => { if (document.hidden) { stop(); update(); } });
 window.addEventListener('pagehide', () => { stop(); cancelView(); });
 update(); mountReadingMode('details:not(.references)');
+
+mountPresentationFrame({"root": ".lab", "visual": ".scene-wrap"});

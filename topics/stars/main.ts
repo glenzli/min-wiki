@@ -1,3 +1,4 @@
+import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { language, languageHref, translateDocument } from '../../src/platform/i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { t } from './i18n.ts';
@@ -11,12 +12,25 @@ const text=(value:{zh:string;en:string})=>language==='en'?value.en:value.zh;
 const u=(key:keyof typeof data.ui)=>text(data.ui[key]);
 const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;
 const initial=readState(location.search);
-const state:ViewState={...initial,type:Math.round(initial.type),section:false,ratio:1,time:0};
+const state:ViewState={...initial,type:Math.round(initial.type),section:false,ratio:1,time:0,surfaceTime:0};
 const observatory=document.querySelector<HTMLElement>('.observatory')!;
 const threeBody=new ThreeBodyExperiment(text);observatory.after(threeBody.root);
 const layerKey=document.createElement('ol');layerKey.className='stellar-layer-key';layerKey.hidden=true;el('stellar-canvas').after(layerKey);
 const surfaceNote=document.createElement('p');surfaceNote.className='scale-note';surfaceNote.textContent=u('surfaceNote');layerKey.after(surfaceNote);
+const observationRoot=document.createElement('section');observationRoot.id='stellar-observation';observationRoot.setAttribute('aria-label',u('workspace'));
+observatory.before(observationRoot);observationRoot.append(el('chapters'),observatory,threeBody.root);
+const stage=document.createElement('div');stage.className='stellar-stage';const notes=document.createElement('aside');notes.className='stellar-notes';
+stage.append(observatory.querySelector('.scene-heading')!,el('stellar-canvas'),el('canvas-fallback'),el('scale-note'),el('controls'));
+notes.append(layerKey,surfaceNote,el('readouts'),observatory.querySelector('.explanation')!);observatory.append(stage,notes);
+const observation=mountObservationMode(observationRoot,{enter:u('immersive'),exit:u('exitImmersive')},{fit:true,panels:[{label:u('explanation'),elements:[notes,threeBody.notes]}]});
+const observationTitle=document.createElement('strong');observationTitle.className='observation-title';observationTitle.textContent=t('恒星与多星系统');observation.toolbar.prepend(observationTitle);
+const surfaceButton=document.createElement('button');surfaceButton.type='button';observation.toolbar.insertBefore(surfaceButton,observation.button);
+const motion=matchMedia('(prefers-reduced-motion: reduce)');let surfacePlaying=!motion.matches,surfaceFrame=0,surfaceLast=0,surfacePaint=0;
 let playing=false,last=0,frame=0,disposed=false,scene:StellarScene|undefined;
+function surfaceLabel(){surfaceButton.textContent=u(surfacePlaying?'pauseSurface':'playSurface');surfaceButton.setAttribute('aria-pressed',String(surfacePlaying));}
+function surfaceTick(now:number){surfaceFrame=0;if(!surfacePlaying||document.hidden||disposed)return;state.surfaceTime+=Math.min(.1,(now-surfaceLast)/1000);surfaceLast=now;if(now-surfacePaint>=125){surfacePaint=now;if(state.chapter==='three-body')threeBody.setSurfaceTime(state.surfaceTime);else draw();}surfaceFrame=requestAnimationFrame(surfaceTick);}
+function setSurface(active:boolean){surfacePlaying=active;cancelAnimationFrame(surfaceFrame);surfaceFrame=0;surfaceLabel();if(active&&!document.hidden&&!disposed){surfaceLast=performance.now();surfaceFrame=requestAnimationFrame(surfaceTick);}}
+surfaceButton.onclick=()=>setSurface(!surfacePlaying);surfaceLabel();
 try{scene=new StellarScene(el<HTMLCanvasElement>('stellar-canvas'),text);}catch{el('canvas-fallback').hidden=false;el('stellar-canvas').hidden=true;}
 function writeUrl(){const url=new URL(location.href);url.searchParams.set('chapter',state.chapter);url.searchParams.set('distance',state.distance.toFixed(3));url.searchParams.set('type',String(state.type));url.searchParams.set('system',state.triple?'triple':'binary');history.replaceState(null,'',url);}
 function draw(){if(state.chapter!=='three-body')scene?.draw(state);}
@@ -34,6 +48,7 @@ function updateReadout(){
 function update(){
   const chapter=chapterFrom(state.chapter);el('chapters').replaceChildren(...data.chapters.map(ch=>button(text(ch.name),chapter===ch.id,()=>{stop();state.chapter=chapterFrom(ch.id);writeUrl();update();})));
   observatory.hidden=chapter==='three-body';threeBody.setActive(chapter==='three-body');if(chapter==='three-body'){stop();return;}
+  el('play').hidden=chapter!=='orbits';el('play').textContent=u(playing?'pause':'play');
   el('scene-title').textContent=u(chapter==='sun'?'sunTitle':chapter==='types'?'typesTitle':'orbitsTitle');
   el('context').textContent=u(chapter==='sun'?'sunContext':chapter==='types'?'typesContext':'orbitsContext');
   el('scale-note').textContent=u(chapter==='sun'?'sunScale':chapter==='types'?(state.section?'sectionScale':'typeScale'):'orbitScale');
@@ -50,10 +65,10 @@ function update(){
   updateReadout();draw();
 }
 el('play').onclick=toggle;
-document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();threeBody.suspend();}else if(!disposed&&state.chapter==='three-body')threeBody.setActive(true);});
-window.addEventListener('pagehide',event=>{stop();threeBody.suspend();if(!event.persisted){disposed=true;scene?.dispose();threeBody.dispose();}});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();setSurface(false);threeBody.suspend();}else if(!disposed&&state.chapter==='three-body')threeBody.setActive(true);});
+window.addEventListener('pagehide',event=>{stop();setSurface(false);threeBody.suspend();if(!event.persisted){disposed=true;scene?.dispose();threeBody.dispose();}});
 window.addEventListener('pageshow',()=>{if(!disposed){draw();threeBody.setActive(state.chapter==='three-body');}});
-matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',event=>{if(event.matches){stop();threeBody.suspend();}});
+matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',event=>{if(event.matches){stop();setSurface(false);threeBody.suspend();}});
 window.addEventListener('popstate',()=>{stop();Object.assign(state,readState(location.search));state.type=Math.round(state.type);update();});
 for(const a of document.querySelectorAll<HTMLAnchorElement>('.next-links a'))a.href=languageHref(a.getAttribute('href')!);
-update();
+update();setSurface(surfacePlaying);

@@ -43,3 +43,7 @@ Additional claim-specific eruption, cooling, submarine and caldera sources are r
 ## Validation
 
 Run `node --import tsx --test topics/volcano-eruption/tests/*.mjs topics/submarine-volcanoes/tests/*.ts topics/volcanic-lakes/tests/*.mjs`, then the repository `npm run check`. Browser review covers all cases, independent timelines, playback/pause, camera changes, retained deposits, water leakage, limited supply, old routes, language, reduced motion and narrow layouts. Model tests establish implementation contracts, not geological prediction.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

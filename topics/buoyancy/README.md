@@ -23,3 +23,7 @@ The fixed hull-capacity model is extended, not replaced by a new dynamics solver
 and water-level motion remain illustrative. A settled floating boat displaces its total mass
 in water; the reserve is a theoretical mass margin to the rim, not a real safe load rating.
 Reshaping into a ball explicitly removes cargo as before; switching views or focus mode does not.
+
+## Presentation layout
+
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

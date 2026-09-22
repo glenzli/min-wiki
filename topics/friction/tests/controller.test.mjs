@@ -43,7 +43,8 @@ function harness(search=''){
  const requestAnimationFrame=fn=>{rafs.set(++frameId,fn);return frameId;},cancelAnimationFrame=id=>rafs.delete(id);
  function animateValue(options){const h={...options,active:true};animations.push(h);options.onUpdate(options.from);return()=>h.active=false;}
  const t=(s,values={})=>s.replace(/\{\{(\w+)\}\}/g,(_,key)=>String(values[key]??key));
- const host={document,window,location,history,URLSearchParams,matchMedia:()=>media,requestAnimationFrame,cancelAnimationFrame,performance:{now:()=>now},animateValue,t,carT:t,console,translateDocument:()=>{},mountTopicNavigation:()=>{},mountReadingMode:()=>{}};
+ // Presentation DOM is exercised in browser checks; this adapter isolates experiment lifetimes.
+ const host={mountPresentationFrame(){},foldPresentationContext(){},document,window,location,history,URLSearchParams,matchMedia:()=>media,requestAnimationFrame,cancelAnimationFrame,performance:{now:()=>now},animateValue,t,carT:t,console,translateDocument:()=>{},mountTopicNavigation:()=>{},mountReadingMode:()=>{}};
  function load(name,dependencies={}){
   const source=readFileSync(resolve(root,name),'utf8'),parsed=ts.createSourceFile(name,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
   const standalone=ts.factory.updateSourceFile(parsed,parsed.statements.filter(s=>!ts.isImportDeclaration(s)));

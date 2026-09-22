@@ -1,3 +1,4 @@
+import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { language, languageHref, translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
@@ -15,7 +16,14 @@ const set=(id:string,value:string)=>{if(el(id).textContent!==value)el(id).textCo
 let state=parseRoute(location.search),academic=false,playing=false,frame=0,last=0,lastUI=0,holdRemaining=0;
 let scene:AtmosphereScene|undefined;
 function createScene(){try{scene=new AtmosphereScene(el('atmo-canvas') as HTMLCanvasElement,text);el('render-error').hidden=true;draw();}catch(error){el('render-error').hidden=false;console.error(error);}}
-const profiles=new AtmosphereProfiles(el('atmo-profiles'),text);
+const workspace=document.querySelector<HTMLElement>('.atmo-workspace')!,inspector=document.querySelector<HTMLElement>('.atmo-inspector')!,stage=document.querySelector<HTMLElement>('.atmo-stage')!;
+const observationRoot=document.createElement('section');observationRoot.id='atmo-observation';observationRoot.setAttribute('aria-label',t('大气观察'));
+workspace.before(observationRoot);observationRoot.append(document.querySelector('.atmo-tabs')!,workspace);
+inspector.prepend(document.querySelector('.modes')!);inspector.append(document.querySelector('.atmo-story')!);
+const worldNotes=document.createElement('div');inspector.append(worldNotes);
+const profiles=new AtmosphereProfiles(el('atmo-profiles'),text,worldNotes);
+const observation=mountObservationMode(observationRoot,{enter:t('沉浸演示'),exit:t('退出沉浸 · Esc')},{fit:true,panels:[{label:t('解说'),elements:[inspector]}]});
+const observationTitle=document.createElement('strong');observationTitle.className='observation-title';observationTitle.textContent=t('大气：包围星球的空气');observation.toolbar.prepend(observationTitle);
 function saveRoute(){const url=new URL(location.href);for(const key of ['height','humidity','lift','wind','motion','p'])url.searchParams.delete(key);routeQuery(state).forEach((v,k)=>url.searchParams.set(k,v));history.replaceState(null,'',url);}
 function stop(){holdRemaining=0;playing=false;cancelAnimationFrame(frame);frame=0;}
 function readings(items:[string,string][]){const frag=document.createDocumentFragment();for(const [term,value]of items){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=term;dd.textContent=value;frag.append(dt,dd);}el('readings').replaceChildren(frag);}
@@ -29,6 +37,7 @@ const ground=document.createElement('strong');ground.textContent='▰ '+journeyT
 const note=document.createElement('small');note.textContent=journeyText.railNote;
 rail.append(railTitle,track,ground,note);
 function update(save=false){
+ observationRoot.dataset.view=state.view;const profileParent=state.view==='worlds'?stage:inspector;if(el('atmo-profiles').parentElement!==profileParent)profileParent.append(el('atmo-profiles'));
  const f=journeyFrame(state.journey),layer=text.layers[f.layer];
  el('journey-visual').hidden=state.view!=='layers';el('journey-clue').hidden=state.view!=='layers';
  marker.style.bottom=`${railPosition(f.height)*100}%`;

@@ -57,3 +57,7 @@ The explorer is a sourced visual reconstruction, not a weather forecast, terrain
 Internal textures convey material character, not photographed mineral grains or exact thermal color. Convection cells are illustrative and do not establish impermeable geological boundaries. Surface microtexture does not turn albedo into measured height. No source images or generated realistic-looking bitmap assets were added. Existing terrain remains a representative regional reconstruction, not photogrammetry. Faint Jupiter/Neptune rings and full spectral/seasonal weather are outside this renderer.
 
 Validation: focused solar/surface contracts, type/i18n/image gates, one full production build, and browser inspection of all eight planets plus the Sun, with Earth globe/descent/interior pause checks and narrow-screen checks. See task validation evidence for actual outcomes.
+
+## Presentation layout
+
+The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

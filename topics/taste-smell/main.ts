@@ -1,3 +1,4 @@
+import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -43,3 +44,5 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});w
 window.addEventListener('pageshow',render);
 render();mountReadingMode('.advanced');
 mountTopicNavigation('taste-smell');
+
+mountPresentationFrame({"root": ".lab", "visual": ".taste-pair", "transport": ".play-controls", "paired": true});

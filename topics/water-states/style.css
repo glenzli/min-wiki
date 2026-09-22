@@ -17,3 +17,8 @@
 
 [hidden]{display:none!important}.observation-grid.without-molecules{grid-template-columns:1fr}.molecular-control{padding:8px 18px;text-align:right;border-bottom:1px solid var(--border)}.molecular-control button{min-height:44px;font-size:13px}.without-molecules .scene{max-height:56dvh}
 .observation-expanded .scene{max-height:38dvh}.observation-expanded .molecular-view svg{min-height:0;max-height:32dvh}.observation-expanded .ice-observation{padding:10px 20px}.observation-expanded .ice-observation p{margin:6px 0}.observation-expanded .heat-controls{padding:10px 20px}
+
+/* Desktop presentation: retain topic geometry inside the selected scene. */
+@media(min-width:1000px){
+html.presentation-page[data-topic-ui] { .presentation-notes .controls { display:block!important; } .presentation-notes .controls label { display:block; margin:10px 0; } .presentation-notes .controls select { width:100%; } .presentation-notes .heat-actions { display:flex; flex-wrap:wrap; } .presentation-notes .heat-actions button { flex:1 1 90px; }}
+}
