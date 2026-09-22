@@ -2,7 +2,7 @@ import content from './comparisonContent.json';
 import {bodies,lastPair,comparisonFrame,stellarOrbitFrame,stellarEstimateSources,type Chapter} from './comparisonModel.ts';
 import {clamp,smooth} from './model.ts';
 import earthMap from '../solar-system/assets/2k_earth_daymap.jpg';
-import jupiterMap from '../solar-system/assets/2k_jupiter.jpg';
+import jupiterMap from '../solar-system/assets/2k_jupiter.webp';
 
 type Words=typeof content.zh;
 const make=<K extends keyof HTMLElementTagNameMap>(tag:K,text='',className='')=>{const el=document.createElement(tag);el.textContent=text;el.className=className;return el;};

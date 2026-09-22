@@ -1703,6 +1703,126 @@
         941
       ],
       "bytes": 345064
+    },
+    {
+      "source": "topics/solar-system/assets/2k_mercury.jpg",
+      "output": "topics/solar-system/assets/2k_mercury.webp",
+      "quality": 90,
+      "sourceSha256": "5a5c80607f643496bac9a631e71957def35ed788895f18b678ac849c2b38e48a",
+      "sha256": "4354acc3517f83e6f5c471b921c20382b0fbf7a8423c634e0618e1c8b2adccc9",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 629486
+    },
+    {
+      "source": "topics/solar-system/assets/2k_venus_atmosphere.jpg",
+      "output": "topics/solar-system/assets/2k_venus_atmosphere.webp",
+      "quality": 90,
+      "sourceSha256": "225012ad4911730605c4e189ca2a3bf674fce50cc48aab4102b936b47d6991ac",
+      "sha256": "8039f1a4a408713dcfa12824c5ce3207cbafaa00b432a07554d607bf2d17b20d",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 69374
+    },
+    {
+      "source": "topics/solar-system/assets/2k_mars.jpg",
+      "output": "topics/solar-system/assets/2k_mars.webp",
+      "quality": 90,
+      "sourceSha256": "2d187f3e77a98eaa8cea5f4cc722f633c122ef170b9e94ace6b5fb6cbc3f8e01",
+      "sha256": "e01394153d3ac1f9213b2c73b376f515b2c646a6bbadbab6841273b77cb88985",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 361258
+    },
+    {
+      "source": "topics/solar-system/assets/2k_jupiter.jpg",
+      "output": "topics/solar-system/assets/2k_jupiter.webp",
+      "quality": 90,
+      "sourceSha256": "b0f04d005350252636b0e3396fc592548cbd9e9126b269d32d5c6abd4b0e4f2b",
+      "sha256": "2079d905b89c0bae55eae7dd6cb9ba6d1dc05a642088c50ddad9557921f310fe",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 214284
+    },
+    {
+      "source": "topics/solar-system/assets/2k_saturn.jpg",
+      "output": "topics/solar-system/assets/2k_saturn.webp",
+      "quality": 90,
+      "sourceSha256": "54a900ca9bf7ab62e70f862852759abdf342e6d6436a95a2fe9ebdb6bcd3bbac",
+      "sha256": "1cc5202f4efc5d3cda56912314a2d1c91c141e4802794e86454071c12437357f",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 60260
+    },
+    {
+      "source": "topics/solar-system/assets/2k_uranus.jpg",
+      "output": "topics/solar-system/assets/2k_uranus.webp",
+      "quality": 90,
+      "sourceSha256": "d15239d46f82d3ea13d2b260b5b29b2a382f42f2916dae0694d0387b1204a09d",
+      "sha256": "d80c94843ab3d5e7d831cf6e0cb659f0e998f5a9d51855dafbacfbfc15981ea3",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 11148
+    },
+    {
+      "source": "topics/solar-system/assets/2k_neptune.jpg",
+      "output": "topics/solar-system/assets/2k_neptune.webp",
+      "quality": 90,
+      "sourceSha256": "cb42ea82709741d28b0af44d8b283cbc6dbd0c521a7f0e1e1e010ade00977df6",
+      "sha256": "54cb2476225f3fa9a3949003595158231ee1c748255b28bafe04b135747c0d62",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 26956
+    },
+    {
+      "source": "topics/earth-seasons/assets/earth_atmos_2048.jpg",
+      "output": "topics/earth-seasons/assets/earth_atmos_2048.webp",
+      "quality": 90,
+      "sourceSha256": "2faa400d1eade3bc44caf6750d1b772bd9bbb6d87362c02bc7c3304e78fa0a9d",
+      "sha256": "3678df39ac4a3f7a89f8b76b12da6ecbf607af68696ffc552443d4d7340be7ec",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 333714
+    },
+    {
+      "source": "topics/earth-seasons/assets/earth_lights_2048.png",
+      "output": "topics/earth-seasons/assets/earth_lights_2048.webp",
+      "quality": 90,
+      "sourceSha256": "3cc6972d1d5b6310f33ea6ef4cc14a38f1dd141a91d26888206889327d983d7b",
+      "sha256": "288f3f950119b6c5d2d78f409925fe825a7d7347523a9bd6fdcab4215ce4f6e0",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 174536
+    },
+    {
+      "source": "topics/earth-seasons/assets/earth_clouds_1024.png",
+      "output": "topics/earth-seasons/assets/earth_clouds_1024.webp",
+      "quality": 90,
+      "sourceSha256": "7d3b82ef6b3feb506fc06f02a744aed3d864e23e7417075005f4082a7ff935a4",
+      "sha256": "c4c12af8b54fe73ad9d094c9e113800637020b97684371a280fec104843be743",
+      "pixels": [
+        1024,
+        512
+      ],
+      "bytes": 223250
     }
   ]
 }

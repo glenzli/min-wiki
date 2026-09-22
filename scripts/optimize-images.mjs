@@ -17,6 +17,13 @@ for (const topic of catalog.topics.filter(topic => topic.status === 'published')
   if (source) for (const width of [480, 960]) jobs.push({ source, output: `${dir}/cover-${width}.webp`, width, quality: 84 });
 }
 jobs.push({ source: 'topics/rainbow/assets/rain-afterglow.png', output: 'topics/rainbow/assets/rain-afterglow.webp', quality: 90 });
+// Keep the attributed source maps and their pixel dimensions. Only delivery encoding changes.
+for (const name of ['mercury', 'venus_atmosphere', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune']) {
+  jobs.push({ source: `topics/solar-system/assets/2k_${name}.jpg`, output: `topics/solar-system/assets/2k_${name}.webp`, quality: 90 });
+}
+for (const [name, extension] of [['earth_atmos_2048', 'jpg'], ['earth_lights_2048', 'png'], ['earth_clouds_1024', 'png']]) {
+  jobs.push({ source: `topics/earth-seasons/assets/${name}.${extension}`, output: `topics/earth-seasons/assets/${name}.webp`, quality: 90 });
+}
 
 if (process.argv.includes('--check')) {
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
@@ -31,9 +38,16 @@ if (process.argv.includes('--check')) {
   console.log(`Image delivery: ${manifest.files.length} copies match their original sources.`);
 } else {
   const { default: sharp } = await import('sharp');
+  const previous = await exists(manifestPath) ? JSON.parse(await readFile(manifestPath, 'utf8')).files : [];
   const files = [];
   for (const job of jobs) {
     const source = await readFile(resolve(root, job.source));
+    const old = previous.find(file => file.output === job.output);
+    if (old && old.source === job.source && old.width === job.width && old.quality === job.quality
+      && old.sourceSha256 === digest(source) && await exists(job.output)
+      && old.sha256 === digest(await readFile(resolve(root, job.output)))) {
+      files.push(old); continue;
+    }
     let image = sharp(source).rotate();
     if (job.width) image = image.resize({ width: job.width, withoutEnlargement: true });
     const { data, info } = await image.webp({ quality: job.quality, effort: 5 }).toBuffer({ resolveWithObject: true });

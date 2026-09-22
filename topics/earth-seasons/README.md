@@ -19,3 +19,5 @@
 ## Presentation layout
 
 The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+
+The retained day, night and cloud source maps also have quality-90 WebP delivery copies at their original pixel dimensions. `scripts/optimize-images.mjs` records source/output hashes; only encoding changes, not lighting, rotation, texture coordinates or source attribution.

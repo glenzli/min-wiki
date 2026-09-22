@@ -23,6 +23,7 @@ import {
 
 export class SolarSimulation {
   container!: HTMLElement;
+  private resizeObserver: ResizeObserver;
   width!: number;
   height!: number;
   timeYears!: number;
@@ -123,6 +124,8 @@ export class SolarSimulation {
     // Listeners
     this.onResize = this.onResize.bind(this);
     window.addEventListener('resize', this.onResize);
+    this.resizeObserver = new ResizeObserver(this.onResize);
+    this.resizeObserver.observe(this.container);
 
     // Initial camera position
     this.setCameraView('perspective');
@@ -492,8 +495,10 @@ export class SolarSimulation {
   }
 
   onResize() {
-    this.width = this.container.clientWidth || window.innerWidth;
-    this.height = this.container.clientHeight || window.innerHeight;
+    const width = this.container.clientWidth, height = this.container.clientHeight;
+    if (!width || !height || width === this.width && height === this.height) return;
+    this.width = width;
+    this.height = height;
     this.perspectiveCamera.aspect = this.width / this.height;
     updateTeachingLens(this.perspectiveCamera, this.controls.target);
     this.controls.maxDistance = 600 * teachingDistanceScale(this.perspectiveCamera.aspect, 45);
@@ -609,6 +614,7 @@ export class SolarSimulation {
 
   dispose() {
     window.removeEventListener('resize', this.onResize);
+    this.resizeObserver.disconnect();
     this.controls.dispose();
     this.scene.traverse(object => {
       if (!(object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Points)) return;

@@ -2,9 +2,9 @@ import { teachingDistanceScale, updateTeachingLens, retreatPosition } from '../.
 import { solarGeometry, cityIllumination, surfaceNormal } from './solarGeometry.ts';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import dayMapUrl from '../assets/earth_atmos_2048.jpg';
-import nightMapUrl from '../assets/earth_lights_2048.png';
-import cloudsMapUrl from '../assets/earth_clouds_1024.png';
+import dayMapUrl from '../assets/earth_atmos_2048.webp';
+import nightMapUrl from '../assets/earth_lights_2048.webp';
+import cloudsMapUrl from '../assets/earth_clouds_1024.webp';
 import {
   EARTH_CONSTANTS,
   calcSubsolarLatitude,
@@ -16,6 +16,7 @@ import {
 
 export class EarthSimulation {
   container!: HTMLElement;
+  private resizeObserver: ResizeObserver;
   width!: number;
   height!: number;
   rotationProgress!: number;
@@ -150,6 +151,8 @@ export class EarthSimulation {
     // Resize handler
     this.onResize = this.onResize.bind(this);
     window.addEventListener('resize', this.onResize);
+    this.resizeObserver = new ResizeObserver(this.onResize);
+    this.resizeObserver.observe(this.container);
 
     // Set initial view
     this.selectScenario('daynight');
@@ -534,8 +537,10 @@ export class EarthSimulation {
   }
 
   onResize() {
-    this.width = this.container.clientWidth || window.innerWidth;
-    this.height = this.container.clientHeight || window.innerHeight;
+    const width = this.container.clientWidth, height = this.container.clientHeight;
+    if (!width || !height || width === this.width && height === this.height) return;
+    this.width = width;
+    this.height = height;
     this.camera.aspect = this.width / this.height;
     updateTeachingLens(this.camera, this.controls.target);
     this.controls.maxDistance = 300 * teachingDistanceScale(this.camera.aspect);
@@ -610,6 +615,7 @@ export class EarthSimulation {
 
   dispose() {
     window.removeEventListener('resize', this.onResize);
+    this.resizeObserver.disconnect();
     this.controls.dispose();
     this.scene.traverse(object => {
       if (!(object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Points)) return;
