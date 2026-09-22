@@ -535,13 +535,16 @@
     },
     {
       "id": "mimosa",
-      "title": "含羞草为什么会合拢？",
+      "title": "会动的植物",
       "category": "life",
-      "summary": "触碰之后，跟着信号走进含羞草的叶枕，观察离子、水分和膨压怎样让小叶合拢。",
+      "summary": "比较含羞草的合拢、捕蝇草的夹合与幼苗的向光生长，发现没有肌肉的植物怎样改变姿态。",
       "tags": [
         "植物",
         "生物学",
-        "细胞"
+        "细胞",
+        "含羞草",
+        "捕蝇草",
+        "向光性"
       ],
       "duration": "互动探索 / 条件与过程",
       "modes": [
@@ -551,7 +554,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-09-22"
     },
     {
       "id": "flower-colors",

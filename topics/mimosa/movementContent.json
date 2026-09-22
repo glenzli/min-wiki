@@ -1,0 +1,216 @@
+{
+  "zh": {
+    "start": "开始观察",
+    "pause": "暂停",
+    "resume": "继续观察",
+    "reset": "重新实验",
+    "progress": "实验进度",
+    "whole": "看整株",
+    "detail": "看动作来源",
+    "once": "只碰一次",
+    "twice": "很快碰两次",
+    "late": "隔久再碰",
+    "gap": "两次碰触间隔",
+    "left": "光从左边来",
+    "right": "光从右边来",
+    "both": "两侧都有光",
+    "oneSide": "这次的幼苗",
+    "control": "两侧光对照",
+    "signal": "信号累积示意",
+    "threshold": "触发线",
+    "touches": "已发生的碰触",
+    "relative": "两侧伸长趋势（示意）",
+    "leftSide": "左侧",
+    "rightSide": "右侧",
+    "time": "模拟时间",
+    "growthTime": "生长进程 · 延时观察",
+    "touchTime": "触发间隔用模拟秒；快速闭合放慢展示",
+    "newTrial": "换条件会重新实验；换植物保留各自进度。",
+    "error": "画面暂时无法显示；控制、读数与说明仍可使用。",
+    "sources": "资料与模型边界",
+    "light": "光源",
+    "growthZone": "同一段幼茎生长区",
+    "hair": "触发毛",
+    "midrib": "中脉",
+    "memoryNote": "柱高表示短时信号，不是思想、记忆力评分或实测钙浓度。",
+    "growthNote": "颜色和细胞大小经过放大；比较同一幼茎两侧，不能套用到所有植物器官。",
+    "flytrap": {
+      "name": "捕蝇草",
+      "latin": "Dionaea muscipula",
+      "question": "碰一次，为什么还不夹？",
+      "intro": "先试一次，再比较连续两次和隔很久的两次。碰触先引出信号，信号足够时捕虫叶才快速合拢。",
+      "mechanism": "触发毛受弯 → 电信号与钙信号 → 叶片快速变形",
+      "science": "研究观察到触发毛受刺激后，钙信号传播并逐渐回落；短时间内再刺激，可能达到闭合条件。快速阶段涉及叶片曲率变化与弹性失稳，不能把它画成含羞草叶枕的简单复制。",
+      "boundary": "本例用约 30 秒的信号整合窗口比较结果，不是所有植株都遵守的硬阈值；一次缓慢弯毛也可能产生多个信号。柱高和曲线是定性示意，闭合被放慢；没有模拟消化、实际捕食和数小时以上的再打开。重新实验是回放，不是瞬间生物恢复。",
+      "states": {
+        "ready": [
+          "张开，等待触发",
+          "先猜一猜：只碰一次，它会马上闭合吗？看红色叶面上的细毛。"
+        ],
+        "first": [
+          "碰过一次，信号正在回落",
+          "这次短促触碰留下暂时的信号，捕虫叶仍张开。趁信号还没回落，再来一次会怎样？"
+        ],
+        "triggered": [
+          "信号足够，动作即将开始",
+          "两次短促碰触的信号叠加到了本例的触发线。先看信号，再看叶片开始变形。"
+        ],
+        "closing": [
+          "再次触发，捕虫叶合拢",
+          "第二次信号到来后，叶片迅速改变曲率。边缘的长刺相互交错；它们不是牙齿。"
+        ],
+        "closed": [
+          "捕虫叶已经合拢",
+          "这里停在快速闭合之后。是否继续密闭和消化，还需要后续刺激；捕到东西并不等于已经消化。"
+        ],
+        "late": [
+          "隔得太久，两次没有叠起来",
+          "第二次触碰来时，先前信号已明显回落。本次条件下捕虫叶仍然张开。"
+        ]
+      }
+    },
+    "seedling": {
+      "name": "向光的幼苗",
+      "latin": "Young shoot · phototropism",
+      "question": "它是在转身，还是在长？",
+      "intro": "把光换到左边或右边，再让时间快进。旁边的幼苗一直受两侧光，帮你分清“长高”和“弯向一侧”。",
+      "mechanism": "侧面光 → 生长信号分布改变 → 背光侧伸长更多 → 幼茎弯向光",
+      "science": "以幼茎向光性为例，蓝光感受及生长素运输、响应的不对称参与调节两侧细胞伸长。背光侧伸长较多，整段幼茎逐渐弯向光源。根对生长素和环境的反应不同，不能照搬本图。",
+      "boundary": "这是有水分、温度等适宜条件的幼苗延时示意，不是光把植物拉过去。相对长度与弯曲幅度没有实测标定，略去生长区差异及其他向性；同一进度的两株是教学对照，不是同一株变成两株。拖回进度是回看，真实细胞不会因此缩回。",
+      "states": {
+        "ready": [
+          "先把光放好",
+          "幼茎还直立。换光的方向，再开始观察；这次让生长来改变姿态。"
+        ],
+        "growing": [
+          "两侧都在长，伸长量不同",
+          "看同一段幼茎：背光侧的细胞伸长更多。根部没有搬家，幼茎也不是绕一个关节转动。"
+        ],
+        "balanced": [
+          "两侧条件对称，继续向上长",
+          "在这个简化对照里，两侧伸长一样多，所以没有侧向弯曲。没有弯曲不代表没有生长。"
+        ],
+        "grown": [
+          "弯曲留在长出来的组织里",
+          "这次生长结束了。换另一方向可以做一轮新的对照；真实植物改变方向，需要后续生长，不能瞬间翻转。"
+        ]
+      }
+    }
+  },
+  "en": {
+    "start": "Start observing",
+    "pause": "Pause",
+    "resume": "Continue",
+    "reset": "New trial",
+    "progress": "Experiment progress",
+    "whole": "Whole plant",
+    "detail": "What makes it move",
+    "once": "One touch",
+    "twice": "Two close touches",
+    "late": "Two spaced touches",
+    "gap": "Time between touches",
+    "left": "Light from left",
+    "right": "Light from right",
+    "both": "Light from both sides",
+    "oneSide": "This seedling",
+    "control": "Light on both sides",
+    "signal": "Illustrative signal buildup",
+    "threshold": "Trigger level",
+    "touches": "Touches so far",
+    "relative": "Relative elongation (illustrative)",
+    "leftSide": "Left side",
+    "rightSide": "Right side",
+    "time": "Simulated time",
+    "growthTime": "Growth progress · time-lapse",
+    "touchTime": "Simulated seconds between touches; rapid closure slowed down",
+    "newTrial": "Changing conditions starts a new trial; each plant keeps its own progress.",
+    "error": "The picture is unavailable; controls, readings and explanations still work.",
+    "sources": "Sources and model limits",
+    "light": "Light",
+    "growthZone": "The same growing shoot region",
+    "hair": "Trigger hairs",
+    "midrib": "Midrib",
+    "memoryNote": "Bar height represents a short-lived signal, not thought, a memory score or measured calcium concentration.",
+    "growthNote": "Colors and cells are enlarged. Compare the two sides of this shoot; do not generalize to every plant organ.",
+    "flytrap": {
+      "name": "Venus flytrap",
+      "latin": "Dionaea muscipula",
+      "question": "Why does one touch usually not close it?",
+      "intro": "Try one touch, then two close together or far apart. Touch first produces signals; sufficient stimulation can trigger rapid trap closure.",
+      "mechanism": "Hair bends → electrical and calcium signals → rapid leaf deformation",
+      "science": "Experiments show a calcium signal spreading and then declining after a trigger hair is stimulated. A further stimulus soon afterwards can reach the closure condition. The rapid phase involves curvature change and elastic instability; it is not a copy of a mimosa pulvinus.",
+      "boundary": "This example uses an approximately 30-second integration window, not a universal hard threshold. One slow hair deflection may itself produce multiple signals. Signal bars and curves are qualitative, closure is slowed down, and digestion, actual prey capture and reopening over hours or longer are omitted. New trial is replay, not instant biological recovery.",
+      "states": {
+        "ready": [
+          "Open and waiting",
+          "Predict first: will one brief touch close the trap? Find the fine hairs on the red inner surfaces."
+        ],
+        "first": [
+          "One touch; the signal is fading",
+          "This brief touch leaves a temporary signal while the trap stays open. What if another arrives before it has faded?"
+        ],
+        "triggered": [
+          "Enough signal; movement is about to begin",
+          "The two brief touches have reached this example's trigger level. Notice the signal first, then the start of leaf deformation."
+        ],
+        "closing": [
+          "Another signal; the trap closes",
+          "After the second signal, the leaf rapidly changes curvature. The long marginal spikes interlock; they are not teeth."
+        ],
+        "closed": [
+          "The trap has closed",
+          "We stop after rapid closure. Further stimulation affects sealing and digestion; closing is not the same as finishing a meal."
+        ],
+        "late": [
+          "Too far apart to combine here",
+          "The earlier signal has substantially faded by the second touch. In this trial the trap stays open."
+        ]
+      }
+    },
+    "seedling": {
+      "name": "A shoot grows toward light",
+      "latin": "Young shoot · phototropism",
+      "question": "Is it turning, or growing?",
+      "intro": "Move the light left or right, then fast-forward growth. A second seedling stays lit from both sides so you can separate growing taller from bending sideways.",
+      "mechanism": "Side light → asymmetric growth signals → greater shaded-side elongation → shoot bends toward light",
+      "science": "In shoot phototropism, blue-light sensing and asymmetric auxin transport and response help regulate cell elongation. Greater elongation on the shaded side gradually bends the shoot toward the light. Roots respond differently to auxin and environmental conditions; this picture does not describe every organ.",
+      "boundary": "This time-lapse assumes suitable water, temperature and other growing conditions. Light does not pull the plant. Relative lengths and bending are not calibrated measurements; growth-zone differences and other tropisms are omitted. The pair is a teaching comparison, not one plant becoming two. Scrubbing backward replays the illustration; real cells do not shrink back.",
+      "states": {
+        "ready": [
+          "Place the light first",
+          "The young shoot is upright. Choose the light direction, then observe growth changing its posture."
+        ],
+        "growing": [
+          "Both sides grow, by different amounts",
+          "Follow the same shoot region: shaded-side cells elongate more. The roots stay put; the shoot is not rotating at a joint."
+        ],
+        "balanced": [
+          "Symmetric conditions; upward growth",
+          "In this simplified control, both sides elongate equally and there is no sideways bend. No bending does not mean no growth."
+        ],
+        "grown": [
+          "The curve remains in the grown tissue",
+          "This growth trial has finished. Change direction for a new comparison. A real plant changes its course through further growth, not an instant flip."
+        ]
+      }
+    }
+  },
+  "references": [
+    {
+      "title": "Suda et al. (2020) · Calcium dynamics in Venus flytrap",
+      "url": "https://www.nature.com/articles/s41477-020-00773-1"
+    },
+    {
+      "title": "Forterre et al. (2005) · How the Venus flytrap snaps",
+      "url": "https://www.nature.com/articles/nature03185"
+    },
+    {
+      "title": "Ding et al. (2011) · PIN3 and shoot phototropism",
+      "url": "https://www.nature.com/articles/ncb2208"
+    },
+    {
+      "title": "Burri et al. (2020) · A single slow touch can trigger closure",
+      "url": "https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000740"
+    }
+  ]
+}

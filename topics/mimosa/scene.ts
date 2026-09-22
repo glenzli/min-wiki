@@ -14,6 +14,8 @@ export class MimosaScene extends CanvasSurface {
   constructor(canvas: HTMLCanvasElement) { super(canvas); this.onResize(() => this.draw(this.p, this.settings, this.view, this.depth)); }
   draw(p: number, settings: TouchSettings, view: string, depth = view === 'plant' ? 0 : view === 'cell' ? 2 : 1) {
     this.p = p; this.settings = settings; this.view = view; this.depth = depth;
+    if (this.width < 1 || this.height < 1) return;
+    this.scale = Math.max(.01, Math.min((this.width-28)/700, (this.height-45)/450));
     const c = this.begin('#e2e9d9', '#f5f3e7');
     for (let i = 0; i < 22; i++) {
       const x = (noise(i) - .5) * 850, y = (noise(i + 50) - .5) * 570, r = 24 + noise(i + 100) * 110;

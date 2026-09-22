@@ -1,6 +1,6 @@
-# 含羞草为什么会合拢？ / Why does mimosa fold its leaves?
+# 会动的植物 / Plants in motion
 
-Independent bilingual botanical topic. Light Canvas portrait, local/wider stimulation, four selectable pinnae, a scrubbed five-stage response and a magnified pulvinus view. The 20-second teaching cycle starts only after interaction. Both reading modes retain the same scientific boundaries; the advanced panel adds water potential and current illustrative state.
+Bilingual botanical journey comparing mimosa touch responses, Venus flytrap closure and young-shoot phototropism. Each station keeps its own experiment state and can run in a compact or immersive presentation. The original mimosa station retains local/wider stimulation, four selectable pinnae, a five-stage response and pulvinus/cell views. All playback is user-started; both reading modes retain the same scientific boundaries.
 
 ## Scientific contract
 
@@ -14,8 +14,45 @@ The model tests causal order, local versus extended responses, temporary turgor 
 - Allen (1969), *Mechanism of the Seismonastic Reaction in Mimosa pudica*, Plant Physiology. https://pubmed.ncbi.nlm.nih.gov/16657174/ — potassium efflux and turgor mechanism.
 - Hagihara & Toyota (2020), *Mechanical Signaling in the Sensitive Plant Mimosa pudica L.* https://pmc.ncbi.nlm.nih.gov/articles/PMC7284940/ — synthesis and remaining mechanistic questions.
 
-## Validation
+## Earlier mimosa validation (historical)
 
 `node --import tsx --test topics/mimosa/tests/model.test.mjs`
 
 Focused model tests passed (4/4 for this topic); scoped strict TypeScript and local English coverage/interpolation checks passed. Live desktop browser checks passed in Chinese and English at 1280 px: canvas rendering and labels, primary interactions, advanced explanations and no horizontal overflow; browser warning/error log was empty. Hydrangea current-bloom isolation and the acidic/aluminum-rich white control were verified. Root integration owns registration, bilingual platform metadata, packaged build and mobile checks. No commit, push or deployment is part of this topic work.
+
+
+## Moving-plants journey — 2026-09-22
+
+The stable `/topics/mimosa/` route now presents three related experiments: mimosa touch,
+Venus flytrap stimulus integration and young-shoot phototropism. `?plant=flytrap` and
+`?plant=seedling` select the added stations; no parameter or an invalid one opens mimosa.
+Catalog identity and covers remain stable; the mimosa cover represents the first case.
+The title, searchable names, learning notes and narration cover the series in both languages.
+
+The original mimosa model and anatomical cell identity are retained. `main.ts` owns plant
+selection and browser history. Switching plants pauses playback and retains each case's
+progress and conditions; changing conditions explicitly begins a new trial. Immersive mode
+uses the shared presentation helper and hides explanation panels without changing experiments.
+`movementStudy.ts` owns bounded state and user-started playback for the two new experiments;
+`movementModel.ts` owns their scientific projections and `movementScene.ts` owns drawing.
+
+Flytrap touch scenarios compare one brief stimulus, two close stimuli and two separated by
+40 simulated seconds. The illustrative signal decays between stimuli; a 30-second teaching
+window allows rapid closure. That threshold is not universal, and one slow physical deflection
+can itself produce multiple electrical signals. Closure is shown slowly, with distinct signal
+and geometry stages. The diagram is a projection of lobe folding/curvature change, not a
+biomechanical shell solver. It omits digestion, prey dynamics and reopening. Reset is replay.
+
+The shoot experiment compares directional light with a separate two-sided-light control.
+Both cell rows elongate; the shaded side elongates more. One continuous constant-curvature
+stem uses those side lengths, retaining its base and cotyledons. The detail view follows the
+same growing stem region and shows its side-length difference. Relative elongation is not
+measured auxin concentration or a calibrated growth rate, and replay is not biological reversal.
+Light direction changes start a fresh trial instead of instantly redirecting an already-grown stem.
+This is shoot phototropism under otherwise suitable conditions, not a rule for roots or all organs.
+
+Sources added: [Suda et al. 2020](https://www.nature.com/articles/s41477-020-00773-1),
+[Forterre et al. 2005](https://www.nature.com/articles/nature03185),
+[Burri et al. 2020](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000740),
+and [Ding et al. 2011](https://www.nature.com/articles/ncb2208).
+See [follow-up validation](../../docs/moving-plants-20260922.md) for current evidence.
