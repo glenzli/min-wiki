@@ -46,4 +46,7 @@
 @media(max-width:740px){
   .presentation-frame .presentation-stage>.presentation-visual{order:0}
   .presentation-frame .presentation-stage>.presentation-transport{order:1}
+  /* Microscopic anatomy labels need the lower edge on narrow screens. */
+  .scene-bottom[data-closeup="true"]{background:none;padding:0}
+  .scene-bottom[data-closeup="true"]>span{display:none}
 }

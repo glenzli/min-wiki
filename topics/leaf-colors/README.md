@@ -79,3 +79,9 @@ Focused validation: six pigment/route tests; strict TypeScript compilation from 
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
+
+## 2026-09-28 取景复查 / Framing review
+
+宽屏有限高度的主图扩大同一叶片，让叶脉、取样点与叶柄容易辨认；向显微尺度推进时，镜头中心连续移回组织与细胞。手机主图仍由宽度限制，叶片与枝条同屏；显微剖面之后隐藏底部重复提示，避免盖住组织或细胞标注，解说继续在画面后的控制区。取景与提示变化不改叶龄、色素模型、取样位置或生物尺度。枝条延伸到画框外，厚度与放大倍率均为教学示意。
+
+The wider desktop framing makes veins, the sampling point and petiole readable while the camera follows the same tissue into the close-up. Mobile keeps the blade and branch together; from the tissue cutaway onward, a repeated bottom caption is omitted so it cannot cover anatomy labels. These framing changes do not alter leaf age, pigment state, sample identity or biological scale. Branch length, thickness and magnification remain illustrative.

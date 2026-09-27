@@ -46,6 +46,7 @@ function update() {
   el('scale-readout').textContent = data.title;
   el('journey-status').textContent = touring ? t('正在连续探索 · 可随时暂停') : kind === 'red' ? t('叶片 → 上表皮 → 组织 → 细胞 → 液泡') : t('叶片 → 上表皮 → 组织 → 细胞 → 叶绿体');
   el('scene-hint').textContent = position < 2.9 && !touring ? t('拖动尺度滑条，可以随时停下或退回。') : data.hint;
+  el('scene-hint').parentElement!.dataset.closeup = String(view === 'inside' && position > .85);
   el('scale-story').textContent = academic ? data.academic : atSurface ? data.kids : kidsStories[kind === 'red' && zoom === 2 ? 4 : zoom];
   el('observation').textContent = atSurface ? epidermisContent.observation : observations[kind === 'red' && zoom === 2 ? 4 : zoom];
   el('observation-panel').hidden = academic;
@@ -68,7 +69,7 @@ function update() {
     el('scale-title').textContent = el('detail-title').textContent = story.title;
     el('scale-story').textContent = story.story; el('observation').textContent = story.observe;
     el('scale-note').textContent = t('同一枝条 · 同一片叶');
-    el('scene-hint').textContent = view === 'water' ? t('实心是液态水，空心是水汽；标记只追踪选定的一小部分水。') : t('叶龄改变形态，观察尺度只改变你从哪里看。');
+    el('scene-hint').textContent = view === 'water' ? t('实心是液态水，空心是水汽；标记只追踪选定的一小部分水。') : t('叶龄改变形态；放大只改变视角。');
   }
   (document.querySelector('.toolbar') as HTMLElement).hidden = view !== 'inside';
   (document.querySelector('.journey-controls') as HTMLElement).hidden = view !== 'inside';

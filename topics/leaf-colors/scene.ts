@@ -98,10 +98,10 @@ export class LeafScene {
     this.canvas.width = Math.round(this.width * dpr);
     this.canvas.height = Math.round(this.height * dpr);
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    // The title and hint sit at the sides of the compact presentation stage.
-    // Reserve a proportionate margin so the same blade stays legible there.
-    const verticalReserve = Math.min(175, Math.max(95, this.height * .24));
-    this.scale = Math.min((this.width - 24) / 470, Math.max(1, this.height - verticalReserve) / 470);
+    // Fit the whole blade and its petiole, then let the branch meet the lower
+    // edge. The title and hint occupy the side corners, not a central band.
+    const verticalReserve = Math.min(75, Math.max(22, this.height * .08));
+    this.scale = Math.min((this.width - 24) / 470, Math.max(1, this.height - verticalReserve) / 450);
     this.render();
   }
   private destination() {
@@ -118,10 +118,11 @@ export class LeafScene {
     const tracked = leafPoint(originalCamera.x, originalCamera.y, this.age), follow = smooth(0, 1, this.position);
     const camera = { ...originalCamera, x: originalCamera.x * (1 - follow) + tracked.x * follow, y: originalCamera.y * (1 - follow) + tracked.y * follow, angle: originalCamera.angle + life.rotation * follow, magnification: originalCamera.magnification / (1 - follow + life.size * follow) };
     const sceneScale = this.scale * camera.magnification * (1 + .38 * smooth(.75, 2, this.position));
+    const frameY = this.height * (.46 + .08 * smooth(.2, 1, this.position));
     const entries: ScaleEntry[] = [...SCALE_ENTRIES, destination];
     const section = leafSectionAt(this.position), patch = entries[0];
     this.labels = [];
-    c.save(); c.translate(this.width / 2, this.height * .54); c.scale(sceneScale, sceneScale); c.rotate(-camera.angle); c.translate(-camera.x, -camera.y);
+    c.save(); c.translate(this.width / 2, frameY); c.scale(sceneScale, sceneScale); c.rotate(-camera.angle); c.translate(-camera.x, -camera.y);
     if (this.position < 1.1) {
       c.save(); c.globalAlpha *= 1 - smooth(.25, 1.1, this.position);
       const bark = c.createLinearGradient(0, 222, 0, 276); bark.addColorStop(0, '#ae9270'); bark.addColorStop(.4, '#81684d'); bark.addColorStop(1, '#524d39');
@@ -209,7 +210,7 @@ export class LeafScene {
     if(onSurface)y-=110*entries[0].size;
     const sample = leafPoint(x, y, this.age);
     this.hotspot.style.left = `${this.width / 2 + ((sample.x-camera.x)*Math.cos(camera.angle)+(sample.y-camera.y)*Math.sin(camera.angle))*sceneScale}px`;
-    this.hotspot.style.top = `${this.height*.54 + (-(sample.x-camera.x)*Math.sin(camera.angle)+(sample.y-camera.y)*Math.cos(camera.angle))*sceneScale}px`;
+    this.hotspot.style.top = `${frameY + (-(sample.x-camera.x)*Math.sin(camera.angle)+(sample.y-camera.y)*Math.cos(camera.angle))*sceneScale}px`;
     this.hotspot.hidden = life.growth < .9 || life.fall > 0 || this.position > 2.15 || (!onSurface && Math.abs(this.position - Math.round(this.position)) > .12);
     this.canvas.dataset.scale = this.position.toFixed(4);
     this.canvas.dataset.camera = `${camera.x.toFixed(6)},${camera.y.toFixed(6)},${camera.magnification.toFixed(6)}`;
