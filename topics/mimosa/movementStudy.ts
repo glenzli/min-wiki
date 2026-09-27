@@ -30,9 +30,9 @@ export function mountMovementStudy(host:HTMLElement,reading:HTMLElement){
   const gapLabel=node('label',copy.gap,'movement-gap'),gap=document.createElement('input'),gapValue=node('output');
   gap.type='range';gap.min='1';gap.max='45';gap.value='5';gap.setAttribute('aria-label',copy.gap);gapLabel.append(gap,gapValue);
   options.append(flyOptions,growthOptions,gapLabel);
-  const status=node('h3'),story=node('p'),mechanism=node('p','','movement-mechanism'),science=node('p','','movement-science'),hint=node('p',copy.newTrial,'fine');
+  const status=node('h3'),story=node('p'),mechanism=node('p','','movement-mechanism'),science=node('p','','movement-science'),formula=node('p','','movement-formula'),hint=node('p',copy.newTrial,'fine');
   const readout=node('p','','movement-readout');readout.setAttribute('aria-live','off');
-  notes.append(heading,latin,status,story,mechanism,readout,science,hint);
+  notes.append(heading,latin,status,story,mechanism,readout,science,formula,hint);
   theater.append(views,canvasWrap,options,controls,progressLabel,timeNote);host.append(theater,notes);
   let scene:MovementScene|undefined;
   try{scene=new MovementScene(canvas);}catch(errorValue){error.hidden=false;console.error(errorValue);}
@@ -41,8 +41,9 @@ export function mountMovementStudy(host:HTMLElement,reading:HTMLElement){
     const s=states[kind],article=copy[kind];
     heading.textContent=article.question;latin.textContent=article.latin;
     mechanism.textContent=article.mechanism;science.textContent=article.science;science.hidden=!academic;
+    formula.hidden=!academic||kind!=='flytrap';formula.textContent=kind==='flytrap'?copy.flytrap.formula:'';
     whole.setAttribute('aria-pressed',String(!s.detail));detail.setAttribute('aria-pressed',String(s.detail));
-    flyOptions.hidden=kind!=='flytrap';growthOptions.hidden=kind!=='seedling';gapLabel.hidden=kind!=='flytrap'||s.pattern==='once';
+    flyOptions.hidden=kind!=='flytrap';growthOptions.hidden=kind!=='seedling';gapLabel.hidden=kind!=='flytrap'||s.pattern==='once'||!academic;
     if(kind==='flytrap'){
       const f=flytrapFrame(s.progress,s.pattern,s.gap),text=copy.flytrap.states[f.stage];status.textContent=text[0];story.textContent=text[1];
       elapsed.textContent=`${f.time.toFixed(1)} s`;timeNote.textContent=copy.touchTime;

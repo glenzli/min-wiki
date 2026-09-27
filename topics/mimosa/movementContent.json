@@ -32,6 +32,7 @@
     "growthZone": "同一段幼茎生长区",
     "hair": "触发毛",
     "midrib": "中脉",
+    "curvature": "叶片弯曲 · 示意",
     "memoryNote": "柱高表示短时信号，不是思想、记忆力评分或实测钙浓度。",
     "growthNote": "颜色和细胞大小经过放大；比较同一幼茎两侧，不能套用到所有植物器官。",
     "flytrap": {
@@ -41,6 +42,7 @@
       "intro": "先试一次，再比较连续两次和隔很久的两次。碰触先引出信号，信号足够时捕虫叶才快速合拢。",
       "mechanism": "触发毛受弯 → 电信号与钙信号 → 叶片快速变形",
       "science": "研究观察到触发毛受刺激后，钙信号传播并逐渐回落；短时间内再刺激，可能达到闭合条件。快速阶段涉及叶片曲率变化与弹性失稳，不能把它画成含羞草叶枕的简单复制。",
+      "formula": "S(t) = min[1.2, Σ 0.62·exp(−(t−tᵢ)/(25 s))]\n只对已发生的碰触 tᵢ ≤ t 求和；S 是归一化的短时信号，不是实测钙浓度。教学触发线 S* = 0.62[1+exp(−30/25)] ≈ 0.81；两次间隔不超过 30 s 时触发，闭合后不会随 S 回落立即重开。",
       "boundary": "本例用约 30 秒的信号整合窗口比较结果，不是所有植株都遵守的硬阈值；一次缓慢弯毛也可能产生多个信号。柱高和曲线是定性示意，闭合被放慢；没有模拟消化、实际捕食和数小时以上的再打开。重新实验是回放，不是瞬间生物恢复。",
       "states": {
         "ready": [
@@ -130,6 +132,7 @@
     "growthZone": "The same growing shoot region",
     "hair": "Trigger hairs",
     "midrib": "Midrib",
+    "curvature": "Lobe curvature · model",
     "memoryNote": "Bar height represents a short-lived signal, not thought, a memory score or measured calcium concentration.",
     "growthNote": "Colors and cells are enlarged. Compare the two sides of this shoot; do not generalize to every plant organ.",
     "flytrap": {
@@ -139,6 +142,7 @@
       "intro": "Try one touch, then two close together or far apart. Touch first produces signals; sufficient stimulation can trigger rapid trap closure.",
       "mechanism": "Hair bends → electrical and calcium signals → rapid leaf deformation",
       "science": "Experiments show a calcium signal spreading and then declining after a trigger hair is stimulated. A further stimulus soon afterwards can reach the closure condition. The rapid phase involves curvature change and elastic instability; it is not a copy of a mimosa pulvinus.",
+      "formula": "S(t) = min[1.2, Σ 0.62·exp(−(t−tᵢ)/(25 s))]\nSum only touches at tᵢ ≤ t. S is a normalized short-lived signal, not measured calcium concentration. The teaching trigger level S* = 0.62[1+exp(−30/25)] ≈ 0.81; touches no more than 30 s apart trigger closure, and a fading S does not instantly reopen the trap.",
       "boundary": "This example uses an approximately 30-second integration window, not a universal hard threshold. One slow hair deflection may itself produce multiple signals. Signal bars and curves are qualitative, closure is slowed down, and digestion, actual prey capture and reopening over hours or longer are omitted. New trial is replay, not instant biological recovery.",
       "states": {
         "ready": [

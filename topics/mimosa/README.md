@@ -43,6 +43,15 @@ can itself produce multiple electrical signals. Closure is shown slowly, with di
 and geometry stages. The diagram is a projection of lobe folding/curvature change, not a
 biomechanical shell solver. It omits digestion, prey dynamics and reopening. Reset is replay.
 
+The flytrap's whole view now gives the lobes more of the shallow canvas, makes trigger hairs,
+surface texture and marginal cilia legible, and points to a hair rather than leaving the trigger
+only in prose. As closure progresses, a faint previous-open outline stays for comparison. The
+detail view places an illustrative changing lobe cross-section between the signal bar and touch
+timeline. This cross-section and the open outline are visual comparisons, not measured curvature
+or a second biological trap. Children choose one of three named trials; academic mode also exposes
+the simulated touch interval and the topic model's bounded exponential signal expression. The
+normalized signal is not a calcium concentration, and this renderer does not solve buckling.
+
 The shoot experiment compares directional light with a separate two-sided-light control.
 Both cell rows elongate; the shaded side elongates more. One continuous constant-curvature
 stem uses those side lengths, retaining its base and cotyledons. The detail view follows the

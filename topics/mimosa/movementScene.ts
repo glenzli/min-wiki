@@ -11,7 +11,9 @@ export class MovementScene extends CanvasSurface {
   draw(state:MovementDrawing){
     this.current=state;
     if(this.width<1||this.height<1)return;
-    this.scale=Math.max(.01,Math.min((this.width-20)/650,(this.height-20)/380));
+    // The trap has a shorter silhouette than the paired shoots. Give its
+    // trigger hairs and moving margins room in the shallow presentation stage.
+    this.scale=Math.max(.01,Math.min((this.width-20)/650,(this.height-20)/(state.kind==='flytrap'?315:380)));
     const c=this.begin('#e6ecdb','#faf6e9');
     c.translate(0,-15);
     c.lineCap='round';c.lineJoin='round';
@@ -33,15 +35,21 @@ export class MovementScene extends CanvasSurface {
     const width=102*(1-s.closure)+32;
     for(const side of [-1,1]){
       c.save();c.scale(side,1);
-      const g=c.createLinearGradient(0,0,width,0);g.addColorStop(0,'#a8655a');g.addColorStop(.45,'#b77660');g.addColorStop(.82,'#bc9866');g.addColorStop(1,'#819657');
-      c.beginPath();c.moveTo(0,-125);c.bezierCurveTo(width*1.4,-125,width*1.42,112,0,124);c.bezierCurveTo(6,50,6,-70,0,-125);c.fillStyle=g;c.fill();c.strokeStyle='#6b8a4c';c.lineWidth=7;c.stroke();
+      const lobe=(w:number)=>{c.beginPath();c.moveTo(0,-125);c.bezierCurveTo(w*1.4,-125,w*1.42,112,0,124);c.bezierCurveTo(6,50,6,-70,0,-125);};
+      if(s.closure>.03){c.save();lobe(134);c.setLineDash([5,7]);c.strokeStyle=`rgba(73,105,72,${.16+.2*s.closure})`;c.lineWidth=3;c.stroke();c.restore();}
+      const g=c.createRadialGradient(width*.38,-24,12,width*.45,4,width*1.25);g.addColorStop(0,'#d5a078');g.addColorStop(.38,'#ba7264');g.addColorStop(.72,'#a76c5a');g.addColorStop(1,'#6d8d56');
+      lobe(width);c.fillStyle=g;c.fill();c.strokeStyle='#5b7b49';c.lineWidth=7;c.stroke();
+      c.save();c.clip();
+      for(let i=0;i<38;i++){const yy=-108+(i*47)%217,xx=width*(.25+((i*23)%55)/100);this.ellipse(xx,yy,1.8+i%3*.4,1.1,'#f0c69a55');}
+      c.restore();
+      c.beginPath();c.moveTo(4,-112);c.quadraticCurveTo(width*.95,-110,width*.99,-20);c.quadraticCurveTo(width*1.05,75,5,113);c.strokeStyle='#e1ca8980';c.lineWidth=2;c.stroke();
       for(let i=0;i<7;i++) {const yy=-94+i*30;c.beginPath();c.moveTo(3,yy*.86);c.quadraticCurveTo(width*.48,yy*.92,width*.95*Math.sqrt(Math.max(0,1-(yy/127)**2)),yy);c.strokeStyle='#dfb99080';c.lineWidth=1.1;c.stroke();}
       for(let i=0;i<13;i++){
         const a=.16+i*(Math.PI-.32)/12,x=width*1.06*Math.sin(a),y=-123*Math.cos(a);
-        this.path([[x-3,y-3],[x+20*(1-s.closure)-s.closure*15,y-10],[x+3,y+4]],'#c8cf86','#7b9452',1);
+        this.path([[x-3,y-3],[x+29*(1-s.closure)-s.closure*17,y-13],[x+3,y+4]],'#d2d99a','#6b8b52',1);
       }
       for(const [hx,hy] of [[.35,-51],[.57,5],[.28,63]]){
-        const px=width*hx!,py=hy!;this.path([[px,py],[px+3*(1-s.closure),py-24]],undefined,'#593d34',2);
+        const px=width*hx!,py=hy!;this.path([[px,py],[px+4,py-8],[px+3*(1-s.closure),py-27]],undefined,'#4f372f',2.5);
         this.ellipse(px,py,3.5,2.5,'#925b43');
         if(s.trigger){this.ellipse(px,py-23,6,6,'#efd888');c.beginPath();c.arc(px,py-23,13,0,Math.PI*2);c.strokeStyle='#d6ad45';c.lineWidth=1.2;c.stroke();}
       }
@@ -49,6 +57,7 @@ export class MovementScene extends CanvasSurface {
     }
     this.path([[0,-124],[0,122]],undefined,'#6d864b',6);
     c.restore();
+    if(!state.detail)this.label(copy.hair,187,-91,{background:'#fffaf0',color:'#445a3d',width:105,anchor:[width*.35,-51]});
     if(state.detail){
       this.label(copy.flytrap.name,center,-159,{background:'#fffaf0',color:'#445a3d',width:200});
       const bx=83,by=-86,bw=190,bh=17;
@@ -57,6 +66,10 @@ export class MovementScene extends CanvasSurface {
       const threshold=bx+bw*SIGNAL_THRESHOLD/1.2;
       this.path([[threshold,by-5],[threshold,by+bh+6]],undefined,'#66523d',2);
       this.label(copy.threshold,threshold,by+45,{background:'#fffaf0',color:'#66523d',width:170});
+      // Cross section is a visual cue for shape change, not a measured lobe profile.
+      c.save();c.setLineDash([4,5]);this.path([[bx+13,16],[bx+bw-13,16]],undefined,'#aab99a',1);c.restore();
+      c.beginPath();c.moveTo(bx+13,16);c.quadraticCurveTo(bx+bw/2,1+55*s.closure,bx+bw-13,16);c.quadraticCurveTo(bx+bw/2,11+55*s.closure,bx+13,16);c.fillStyle='#93a969';c.fill();c.strokeStyle='#64864d';c.lineWidth=1.5;c.stroke();
+      this.label(copy.curvature,bx+bw/2,64,{background:'#fffaf0',color:'#445a3d',width:185});
       // Fixed sample of the selected trial; the marker follows the same causal state as the trap.
       const duration=flytrapFrame(1,state.pattern,state.gap).time;
       this.path([[bx,90],[bx+bw,90]],undefined,'#a9b59d',1);
