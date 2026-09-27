@@ -3,7 +3,7 @@
   "topicId": "handwashing",
   "zh": {
     "question": "只冲一下水，和用皂认真搓洗后冲净，会有什么不同？",
-    "observe": "按打湿、用皂、搓洗、冲净、擦干推进；搓洗时逐一选择掌心、手背、指缝、拇指、指尖，观察位置环和污物示意。",
+    "observe": "按打湿、用皂、搓洗、冲净、擦干推进；搓洗时逐一查看五个区域。到冲净时，切换同一处皮肤的用皂与仅用清水两种假想做法，比较油污怎样松动。",
     "academic": [
       {
         "title": "肥皂帮助水接近油污",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "泡泡多不等于洗得干净；在屏幕上点完五个部位，也不等于真的洗了二十秒。",
-    "boundary": "图形是分子和微生物的放大符号，移动不是实测速度或去除比例；本页是操作学习，不能评价一双手的卫生状况。",
+    "boundary": "图形是分子和微生物的放大符号，移动与仅用清水的残留都不是实测速度或去除比例；本页是操作学习，不能评价一双手的卫生状况或感染风险。",
     "narration": [
       {
         "label": "小手去过很多地方",
@@ -39,13 +39,13 @@
       {
         "label": "冲净，再擦干",
         "text": "最后用干净的流动水冲去肥皂和松动的污物，再用干净毛巾或合适的干手设备弄干。洗过的手不是一颗微生物都没有，但我们已经减少了一些传播的机会。记住这个顺序，饭前、上厕所后这些时候，请大人陪你把真正的洗手认真做一遍。",
-        "cue": "推进冲净和擦干，停在完整顺序。"
+        "cue": "推进冲净，切换同一处皮肤的两种假想做法，再回用皂主线擦干；不把残留形状说成检测结果。"
       }
     ]
   },
   "en": {
     "question": "How does a quick rinse differ from rubbing with soap and then rinsing thoroughly?",
-    "observe": "Follow wet, soap, rub, rinse and dry. During rubbing, select palms, backs, spaces between fingers, thumbs and fingertips and compare the marker with the dirt illustration.",
+    "observe": "Follow wet, soap, rub, rinse and dry, exploring all five hand areas during rubbing. At rinsing, switch between soap and water-only imagined methods at the same skin patch and compare how grease loosens.",
     "academic": [
       {
         "title": "Soap helps remove oily material",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "More foam does not prove better cleaning, and tapping five regions is not twenty seconds of real washing.",
-    "boundary": "The enlarged symbols do not show measured motion or removal rates. This is practice for the sequence, not a hygiene assessment of real hands.",
+    "boundary": "The enlarged symbols and residue in the water-only branch do not show measured motion or removal rates. This is practice for the sequence, not a hygiene or infection-risk assessment of real hands.",
     "narration": [
       {
         "label": "Busy little hands",
@@ -81,7 +81,7 @@
       {
         "label": "Rinse and dry",
         "text": "Rinse away soap and loosened dirt with clean running water, then dry with a clean towel or suitable hand-drying equipment. Washed hands are not completely microbe-free, but washing reduces opportunities for spread. Remember the sequence and practice it with an adult before eating and after using the toilet.",
-        "cue": "Advance rinsing and drying, then hold the complete sequence."
+        "cue": "Advance to rinsing, compare the two imagined methods at the same patch, return to the soap route, then dry. Do not treat drawn residue as a test result."
       }
     ]
   },

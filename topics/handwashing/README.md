@@ -33,3 +33,9 @@ Focused validation passed on 2026-09-12: 3 state tests; strict TypeScript compil
 ## Presentation layout
 
 The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+
+## Same-patch comparison · 2026-09-28
+
+The five-step soap practice remains the main route. At the rinse station, the child can switch the **same skin close-up** between the completed soap-and-rub route and a water-only imagined comparison. Water-only still shows moving water and acknowledges that loose material can rinse away; the oily patch remains as a qualitative illustration of why soap and rubbing matter. The choice changes the close-up and its explanation, not the recorded hand-area practice or a real hygiene result. Moving to drying returns to the soap route, so the completion text and picture agree.
+
+Children see one short causal sentence. Academic mode explains the surfactant/friction/rinse relationship and the explicit limits of the comparison. No symbol count, placement or movement is a measured removal percentage, pathogen count or infection-risk estimate. [CDC Handwashing Facts](https://www.cdc.gov/clean-hands/data-research/facts-stats/) supports the direction of this comparison and also notes that water alone can remove some material. Controls and surrounding chrome now use a neutral gray accent, while water, skin and soap retain distinct illustration colors.

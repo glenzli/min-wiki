@@ -24,7 +24,7 @@
         <svg class="hand-map" viewBox="0 0 480 400" role="img" aria-label="手部示意图：下方五个按钮可查看掌心、手背、指缝、拇指和指尖">
           <defs>
             <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4d6b5"/><stop offset=".5" stop-color="#e9bb97"/><stop offset="1" stop-color="#cd9475"/></linearGradient>
-            <radialGradient id="hand-light"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#e7eee4"/></radialGradient>
+            <radialGradient id="hand-light"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#f0efeb"/></radialGradient>
             <filter id="hand-shadow"><feDropShadow dx="4" dy="10" stdDeviation="9" flood-color="#596854" flood-opacity=".15"/></filter>
             <pattern id="skin-grain" width="11" height="13" patternUnits="userSpaceOnUse"><path d="M1 4l5 1m2 6 3-1" stroke="#fff8e6" opacity=".18" stroke-width=".7"/></pattern>
             <path id="hand-shape" d="M177 367 C180 326 166 319 156 288 L105 213 C94 195 99 179 112 175 C125 171 134 180 145 193 L169 221 L157 104 C154 86 161 74 174 74 C187 74 194 84 196 102 L207 183 L205 62 C205 45 213 33 226 33 C240 33 247 43 247 62 L250 176 L259 75 C260 58 269 47 282 50 C295 52 300 63 297 80 L289 190 L312 113 C317 97 328 92 339 97 C350 102 351 115 346 130 L326 216 C330 267 314 300 303 322 L305 367 Z"/>
@@ -36,20 +36,22 @@
           <g fill="none" stroke="#b88167" opacity=".45" stroke-linecap="round"><path d="M187 247 Q226 223 284 240 M192 266 Q232 275 282 257 M185 227 Q220 261 211 312 M186 341 Q231 347 290 339" stroke-width="2"/><path d="M163 124l31-3 M210 89l34-1 M260 103l33 3 M308 140l31 8"/></g>
           <g id="hand-drops" fill="#d5eff0" stroke="#8ec4c8" opacity=".6"><ellipse cx="206" cy="230" rx="7" ry="10"/><ellipse cx="267" cy="284" rx="5" ry="8"/><ellipse cx="278" cy="142" rx="4" ry="6"/><ellipse cx="228" cy="112" rx="5" ry="8"/></g>
           <g id="hand-lather" fill="#faffff" stroke="#badad6" opacity=".88"><circle cx="220" cy="227" r="27"/><circle cx="250" cy="250" r="31"/><circle cx="275" cy="230" r="18"/><circle cx="209" cy="258" r="18"/><circle cx="279" cy="265" r="12"/><circle cx="236" cy="215" r="10"/></g>
-          <g id="region-spot" transform="translate(235 262)"><circle r="25" fill="#fff" fill-opacity=".6" stroke="#286c62" stroke-width="2"/><circle r="6" fill="#286c62"/><path d="M-34 0h-10m78 0h10M0-34v-10m0 78v10" stroke="#286c62" stroke-width="1.5"/></g>
+          <g id="sample-site" transform="translate(235 262)"><circle r="24" fill="none" stroke="#6c6964" stroke-dasharray="4 4" stroke-width="1.7"/><ellipse id="sample-stain" rx="10" ry="6" fill="#9d815d" opacity=".9"/></g>
+          <g id="region-spot" transform="translate(235 262)"><circle r="25" fill="#fff" fill-opacity=".6" stroke="#53565b" stroke-width="2"/><circle r="6" fill="#53565b"/><path d="M-34 0h-10m78 0h10M0-34v-10m0 78v10" stroke="#53565b" stroke-width="1.5"/></g>
         </svg>
         <p id="hand-caption" class="panel-caption"></p>
       </div>
       <div class="micro-panel">
         <div class="micro-label"><span>把过程放大来看</span><span aria-hidden="true">↗</span></div>
         <svg class="micro-scene" viewBox="0 0 480 330" role="img" aria-label="皮肤表面的定性放大示意，文字解释见图下方">
-          <defs><linearGradient id="micro-bg" x2="0" y2="1"><stop stop-color="#f4faf6"/><stop offset="1" stop-color="#dce8dc"/></linearGradient><linearGradient id="skin-cut" x2="0" y2="1"><stop stop-color="#efc19d"/><stop offset="1" stop-color="#bf8b70"/></linearGradient><radialGradient id="oil-shine" cx=".35" cy=".25"><stop stop-color="#d4b873"/><stop offset="1" stop-color="#a8894f"/></radialGradient><filter id="micro-shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#665d40" flood-opacity=".18"/></filter></defs>
+          <defs><linearGradient id="micro-bg" x2="0" y2="1"><stop stop-color="#f8f8f5"/><stop offset="1" stop-color="#e5e9e8"/></linearGradient><linearGradient id="skin-cut" x2="0" y2="1"><stop stop-color="#efc19d"/><stop offset="1" stop-color="#bf8b70"/></linearGradient><radialGradient id="oil-shine" cx=".35" cy=".25"><stop stop-color="#d4b873"/><stop offset="1" stop-color="#a8894f"/></radialGradient><filter id="micro-shadow"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#665d40" flood-opacity=".18"/></filter></defs>
           <rect width="480" height="330" fill="url(#micro-bg)"/>
           <g id="water-lines" stroke="#81bbc0" fill="none" stroke-width="5" opacity=".45"><path d="M-70 63Q85 13 240 62T550 62"/><path d="M-60 100Q85 50 240 100T550 100"/><path d="M-70 137Q85 87 240 137T550 137"/></g>
           <path d="M0 239 Q38 219 75 232 T151 233 T227 230 T301 233 T379 229 T480 238 V330H0Z" fill="url(#skin-cut)"/>
           <path d="M0 240Q38 220 75 233T151 234T227 231T301 234T379 230T480 239" stroke="#fff1d9" stroke-width="6" fill="none"/>
           <g stroke="#b9856b" stroke-width="1.2" fill="none" opacity=".5"><path d="M0 268Q35 258 71 271T150 269T225 265T300 270T380 264T480 269 M0 300Q35 292 71 302T150 299T225 295T300 302T380 294T480 299 M68 270l-7 28 M150 267l10 32 M255 269l-12 30 M371 267l8 29"/></g>
           <g id="soil-cluster" filter="url(#micro-shadow)"><path d="M161 232 Q154 207 178 191 Q195 181 213 190 Q236 168 258 184 Q292 182 308 207 Q321 230 290 236Z" fill="url(#oil-shine)"/><g fill="#645948"><ellipse cx="210" cy="195" rx="13" ry="8" transform="rotate(-24 210 195)"/><circle cx="263" cy="199" r="8"/><ellipse cx="238" cy="216" rx="11" ry="6" transform="rotate(16 238 216)"/></g><path d="M176 211q8-16 19-13" fill="none" stroke="#e7d59b" stroke-width="4" opacity=".6"/><g id="soap-particles" stroke="#428e8b" stroke-width="3" fill="#c4e9e4"><path d="m176 206-16-16m46-1-8-26m55 22 13-25m30 47 21-16m-35 42 23 7"/><circle cx="157" cy="187" r="8"/><circle cx="197" cy="156" r="8"/><circle cx="270" cy="154" r="8"/><circle cx="321" cy="188" r="8"/><circle cx="316" cy="239" r="8"/></g></g>
+          <g id="loose-soil" fill="#8b755e"><ellipse cx="103" cy="230" rx="6" ry="3.5"/><circle cx="344" cy="226" r="4"/><ellipse cx="421" cy="231" rx="5" ry="3"/></g>
           <g id="rub-arrows" fill="none" stroke="#3b7c70" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"><path d="M130 119h110l-13-9m13 9-13 9 M348 145H238l13-9m-13 9 13 9"/></g>
           <g id="residents" fill="#797466" opacity=".65"><ellipse cx="52" cy="232" rx="7" ry="4"/><ellipse cx="382" cy="228" rx="8" ry="4" transform="rotate(-8 382 228)"/></g>
           <g id="towel" opacity="0"><path d="M40 25Q237 4 435 26L430 92Q239 70 45 93Z" fill="#faf9ee" stroke="#d8d8c4"/><path d="M50 46Q239 27 424 46M51 57Q239 38 425 57M51 68Q239 49 425 68" stroke="#e3e2d2" stroke-width="4" stroke-dasharray="3 3"/></g>
@@ -59,6 +61,7 @@
     </div>
     <div class="practice-controls">
       <div id="region-controls"><p class="control-title">依次点选五个区域，看看怎样搓到它</p><div class="region-buttons" role="group" aria-label="选择要查看的手部区域"><button data-region="palm">掌心</button><button data-region="back">手背</button><button data-region="between">指缝</button><button data-region="thumb">拇指</button><button data-region="tips">指尖与指甲边</button></div></div>
+      <div class="comparison-controls" id="comparison-controls" hidden><p class="control-title">回看同一处皮肤的两种假想做法</p><div role="group" aria-label="冲洗方式对照"><button type="button" data-comparison="soap">用皂搓洗后冲净</button><button type="button" data-comparison="water">只用清水冲</button></div><p class="comparison-child" id="comparison-child"></p><p class="comparison-academic" id="comparison-academic"></p></div>
       <div class="action-row"><p id="progress" role="status" aria-live="polite"></p><div><button id="restart" class="quiet">重新练习</button><button id="next" class="primary">下一步：用皂</button></div></div>
     </div>
     <p class="screen-note">屏幕上的点选只帮助记住步骤，不会测量手是否洗净。真正洗手时，要用肥皂搓洗至少 20 秒，照顾两只手，再冲净、擦干。</p>

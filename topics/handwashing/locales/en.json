@@ -80,5 +80,16 @@
   "屏幕练习完成。现在记住：用皂搓洗至少 20 秒，冲净，再擦干。": "On-screen practice complete. Remember: scrub with soap for at least 20 seconds, rinse, then dry.",
   "练习完成": "Practice complete",
   "{{region}}：{{detail}}": "{{region}}: {{detail}}",
-  "两只手都要洗；掌心、手背和手指各处都要照顾到。": "Wash both hands, covering palms, backs and every part of the fingers."
+  "两只手都要洗；掌心、手背和手指各处都要照顾到。": "Wash both hands, covering palms, backs and every part of the fingers.",
+  "回看同一处皮肤的两种假想做法": "Compare two imagined methods at the same skin patch",
+  "冲洗方式对照": "Rinsing-method comparison",
+  "用皂搓洗后冲净": "Scrub with soap, then rinse",
+  "只用清水冲": "Rinse with water only",
+  "用皂搓洗让油污松动，清水再把它带走。": "Scrubbing with soap loosens grease; water then carries it away.",
+  "同一处皮肤的假想对照：表面活性剂配合摩擦帮助油污和附着物脱离，随后流动水将其冲走。图形不表示实测去除量。": "This is an imagined comparison at one skin patch. Surfactants and friction help detach grease and attached material; running water then rinses them away. The drawing does not show a measured amount removed.",
+  "只用清水也会带走一些松散污物；油污可能更难离开。": "Water alone can carry away some loose dirt; grease may be harder to remove.",
+  "只用水冲洗仍可能带走部分松散污物与微生物；缺少肥皂和充分搓洗时，油污通常更难脱离。残留图形只是机制对照，不能预测某双手的病原体数量或感染风险。": "Rinsing with water alone can still remove some loose dirt and microbes. Without soap and thorough rubbing, grease is generally harder to detach. The remaining marks illustrate a mechanism and cannot predict pathogen counts or infection risk for any person's hands.",
+  "清水流过同一处皮肤；棕色油污仍可能附着。图中的剩余量不是测量结果。": "Water flows over the same skin patch; some brown grease may remain attached. The amount shown is not a measurement.",
+  "假想对照：这一次只用清水，没有用皂搓洗。": "Imagined comparison: this time, water alone was used, without soap or scrubbing.",
+  "圆圈标出同一处手掌；下一幅图把这里放大。两只手都要照顾到。": "The circle marks the same palm patch; the next picture enlarges it. Remember to cover both hands."
 }

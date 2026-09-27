@@ -11,6 +11,18 @@ translateDocument(t);
 mountTopicNavigation('handwashing');
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 let state = initialPractice();
+type Comparison = 'soap' | 'water';
+let comparison: Comparison = 'soap';
+const comparisonCopy: Record<Comparison, { child: string; academic: string }> = {
+  soap: {
+    child: t('用皂搓洗让油污松动，清水再把它带走。'),
+    academic: t('同一处皮肤的假想对照：表面活性剂配合摩擦帮助油污和附着物脱离，随后流动水将其冲走。图形不表示实测去除量。'),
+  },
+  water: {
+    child: t('只用清水也会带走一些松散污物；油污可能更难离开。'),
+    academic: t('只用水冲洗仍可能带走部分松散污物与微生物；缺少肥皂和充分搓洗时，油污通常更难脱离。残留图形只是机制对照，不能预测某双手的病原体数量或感染风险。'),
+  },
+};
 
 const regionInfo: Record<Region, { name: string; detail: string; position: [number, number] }> = {
   palm: { name: t('掌心'), detail: t('两只手掌相对，来回搓一搓。掌心的褶皱也要照顾到。'), position: [235, 262] },
@@ -51,16 +63,28 @@ let spot = [235, 262], cancelSpot = () => {};
 function render() {
   const stage = stageInfo[state.stage];
   el('practice').dataset.stage = state.stage;
+  const comparing = state.stage === 'rinse';
+  el('practice').dataset.comparison = comparing ? comparison : 'soap';
+  el('comparison-controls').hidden = !comparing;
+  document.querySelectorAll<HTMLButtonElement>('[data-comparison]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.comparison === comparison)));
+  el('comparison-child').textContent = comparisonCopy[comparison].child;
+  el('comparison-academic').textContent = comparisonCopy[comparison].academic;
   document.querySelectorAll<HTMLElement>('[data-step]').forEach(item => {
     if (item.dataset.step === state.stage) item.setAttribute('aria-current', 'step');
     else item.removeAttribute('aria-current');
   });
-  el('micro-caption').textContent = stage.micro;
+  el('micro-caption').textContent = comparing && comparison === 'water'
+    ? t('清水流过同一处皮肤；棕色油污仍可能附着。图中的剩余量不是测量结果。')
+    : stage.micro;
   el('hand-caption').textContent = state.stage === 'rub'
     ? t('{{region}}：{{detail}}', { region: regionInfo[state.selected].name, detail: regionInfo[state.selected].detail })
+    : comparing
+      ? t('圆圈标出同一处手掌；下一幅图把这里放大。两只手都要照顾到。')
     : t('两只手都要洗；掌心、手背和手指各处都要照顾到。');
   el('progress').textContent = state.stage === 'rub'
     ? t('搓洗练习：已看过 {{count}} / 5 个区域。', { count: state.reviewed.length })
+    : comparing && comparison === 'water'
+      ? t('假想对照：这一次只用清水，没有用皂搓洗。')
     : stage.progress;
   el<HTMLButtonElement>('next').textContent = stage.next;
   el<HTMLButtonElement>('next').disabled = !canAdvance(state);
@@ -86,10 +110,17 @@ document.querySelectorAll<HTMLButtonElement>('[data-region]').forEach(button => 
   });
 });
 el('next').addEventListener('click', () => {
-  state = advance(state); render();
+  state = advance(state);
+  if (state.stage === 'dry') comparison = 'soap';
+  render();
   if (state.stage === 'rub') document.querySelector<HTMLButtonElement>('[data-region="palm"]')?.focus();
 });
-el('restart').addEventListener('click', () => { state = initialPractice(); render(); el('next').focus(); });
+document.querySelectorAll<HTMLButtonElement>('[data-comparison]').forEach(button => button.addEventListener('click', () => {
+  if (state.stage !== 'rinse') return;
+  comparison = button.dataset.comparison as Comparison;
+  render();
+}));
+el('restart').addEventListener('click', () => { state = initialPractice(); comparison = 'soap'; render(); el('next').focus(); });
 
 // Only decorative water motion runs, and it stops with page lifetime/visibility.
 const setVisible = () => document.documentElement.classList.toggle('motion-paused', document.hidden);
