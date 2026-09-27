@@ -11,6 +11,55 @@
     "zh": "长大不只是变大。跟随一只蝌蚪、一只毛毛虫，看身体改变怎样带来新的食物、呼吸和运动方式。它们不是彼此变来的，也不共用一只成长时钟。",
     "en": "Growing up is more than getting bigger. Follow a tadpole and a caterpillar: changes in their bodies bring new ways to feed, breathe and move. They are different animals with independent developmental clocks."
   },
+  "kidsStages": {
+    "frog": [
+      {"zh":"卵里的小生命已经在发育，还没有游出来。","en":"The young animal is already developing inside the egg, before it can swim."},
+      {"zh":"蝌蚪用尾巴游，在水里寻找食物。","en":"A tadpole swims with its tail and looks for food in water."},
+      {"zh":"后腿长出来了，尾巴仍帮它游泳。","en":"Hind legs are growing while the tail still helps it swim."},
+      {"zh":"四条腿和短尾巴同时存在。尾巴会被身体慢慢吸收。","en":"Four limbs and a short tail exist together. The body gradually absorbs the tail."},
+      {"zh":"小蛙可以用腿活动，还需要继续长大。","en":"The froglet can move with its legs and still has growing to do."}
+    ],
+    "butterfly": [
+      {"zh":"小生命在叶片上的卵里发育。","en":"A young animal develops inside an egg on a leaf."},
+      {"zh":"毛毛虫吃叶子、长身体，也要一再蜕皮。","en":"The caterpillar feeds, grows and sheds its outer covering several times."},
+      {"zh":"蛹看着安静，里面的身体还在改变。","en":"The pupa looks still, while its body keeps changing inside."},
+      {"zh":"蝴蝶出来后，翅膀还要展开并变硬。","en":"After emerging, the butterfly's wings still need to expand and harden."}
+    ]
+  },
+  "sceneCues": {
+    "frog": [
+      {"zh":"看胶质包住的胚胎","en":"Look for embryos inside jelly"},
+      {"zh":"看尾鳍怎样留下水中运动的形状","en":"Follow the tail fin's swimming shape"},
+      {"zh":"在尾巴还在时找后腿","en":"Find the hind legs while the tail remains"},
+      {"zh":"同时寻找四肢与逐渐缩短的尾","en":"Find four limbs alongside a shortening tail"},
+      {"zh":"看蛙苗来到水边","en":"Watch the froglet reach the pond edge"}
+    ],
+    "butterfly": [
+      {"zh":"找叶上的卵","en":"Find the egg on the leaf"},
+      {"zh":"看取食的幼虫","en":"Watch the feeding caterpillar"},
+      {"zh":"看悬挂的蛹；可打开内部示意","en":"See the hanging pupa; open its inside diagram"},
+      {"zh":"让翅膀展开，再看何时准备好","en":"Expand the wings, then check when they are ready"}
+    ]
+  },
+  "sceneCueLabel": {"zh":"画面里找一找","en":"Look in the scene"},
+  "tailMemory": {"zh":"淡线是先前尾巴的轮廓，不是脱落的尾巴。","en":"The pale line traces the earlier tail; it is not a tail that fell off."},
+  "academicTheory": {
+    "frog": {
+      "zh":"研究线索：甲状腺激素信号参与两栖类变态，身体各组织的响应和时序不同。腿出现与尾组织吸收因此不是同一个开关。图形只插值外形，不能从腿长或尾长反推出激素水平、实际年龄或呼吸贡献。",
+      "en":"Research trail: thyroid hormone signalling participates in amphibian metamorphosis, while tissues respond on different schedules. Limb development and tail resorption are not one switch. This drawing interpolates external form; limb or tail length cannot reveal hormone levels, actual age or respiratory contributions."
+    },
+    "butterfly": {
+      "zh":"研究线索：昆虫蜕皮激素与保幼激素的信号组合参与幼虫蜕皮及进入蛹、成虫阶段。蛹期仍有代谢和组织重塑。画面不是激素浓度曲线，也没有逐组织模拟细胞命运或羽化所需真实时间。",
+      "en":"Research trail: combinations of ecdysteroid and juvenile-hormone signalling help govern larval moults and transitions to pupa and adult. Metabolism and tissue remodelling continue in the pupa. The scene is neither a hormone-concentration plot nor a cell-by-cell model or a clock of real emergence."
+    }
+  },
+  "academicSource": {"zh":"查看发育研究综述 ↗","en":"Read the developmental review ↗"},
+  "kidsConnections": {
+    "structure":{"zh":"两只动物都改变身体，但蛙没有蝴蝶那样的蛹。","en":"Both animals change shape, but the frog has no butterfly-like pupa."},
+    "food":{"zh":"长大后，吃的东西和取食方法也会改变。","en":"Food and feeding methods can change as they grow."},
+    "breathing":{"zh":"蛙从水里走向水边；蝴蝶一直沿昆虫自己的呼吸路线发育。","en":"The frog moves towards the pond edge; the butterfly keeps an insect's way of breathing."},
+    "movement":{"zh":"尾、腿、翅带来不同的运动本领。","en":"Tails, legs and wings support different kinds of movement."}
+  },
   "chapters": {
     "frog": {
       "zh": "池塘里的变化",
@@ -51,6 +100,7 @@
     "zh": "切换观察角度不会重置。切换章节会暂停，两只动物的进度各自保留。拖回进度是回看，不是逆向发育。",
     "en": "Changing lenses does not reset the animals. Changing chapters pauses playback and preserves both histories. Scrubbing back reviews an observation; real development does not reverse."
   },
+  "kidsMemory": {"zh":"两只动物各有自己的进度；拖回滑条是在回看。","en":"Each animal has its own progress. Moving a slider back reviews an earlier moment."},
   "compareTitle": {
     "zh": "变化相似，路线却不同",
     "en": "Similar changes, different routes"
@@ -59,6 +109,7 @@
     "zh": "下面的配对只对齐一个问题，不代表相同年龄、天数或大小。也可以分别调节两边的进度，作自己的比较。",
     "en": "These pairs align a question, not age, elapsed days or size. Adjust either animal independently to make your own comparison."
   },
+  "compareKidsNote": {"zh":"按一个问题配对，不表示一样大或同样年龄。","en":"Pair them by a question, not by size or age."},
   "pairs": {
     "larvae": {
       "zh": "幼体怎样生活？",
@@ -110,8 +161,8 @@
     "en": "Previous observation"
   },
   "whole": {
-    "zh": "整个环境",
-    "en": "Whole habitat"
+    "zh": "跟随它",
+    "en": "Follow the animal"
   },
   "detail": {
     "zh": "靠近身体",

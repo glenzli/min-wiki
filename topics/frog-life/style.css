@@ -17,3 +17,32 @@ html.presentation-page[data-topic-ui] {& .presentation-frame #specimens { displa
 @media(min-width:1000px){html.presentation-page[data-topic-ui] body>main>header>p{flex-basis:35%}html.presentation-page[data-topic-ui] .presentation-frame .animal-card .card-heading{flex-wrap:nowrap;gap:8px}html.presentation-page[data-topic-ui] .presentation-frame .animal-card .card-heading>p{font-size:11px;letter-spacing:0}html.presentation-page[data-topic-ui] .presentation-frame .animal-card .card-heading button{font-size:12px}}
 
 @media(min-width:1000px){html.presentation-page[data-topic-ui] .presentation-frame .animal-card .card-heading>.button-row{flex-wrap:nowrap;flex-shrink:0}}
+
+/* The observation cue sits on the same retained specimen, while depth stays in the side notes. */
+.specimen-scene{position:relative;overflow:hidden}
+.scene-cue{position:absolute;z-index:2;top:14px;left:14px;max-width:min(250px,43%);padding:9px 12px;border:1px solid #e5e9dfbd;border-radius:10px;background:#f9fbf1e8;color:#23342c;box-shadow:0 5px 22px #1e35221a;pointer-events:none}
+.scene-cue span{display:block;font-size:10px;font-weight:800;letter-spacing:.06em;opacity:.7}
+.scene-cue strong{display:block;font-size:13px;line-height:1.4;margin-top:2px}
+.scene-cue small{display:block;font-size:11px;line-height:1.35;margin-top:5px;color:#566358}
+.scene-cue [hidden]{display:none}
+.academic-mechanism{margin-top:13px;padding-top:12px;border-top:1px solid var(--border)}
+.academic-mechanism p{font-size:13px;line-height:1.65}
+.academic-mechanism a{display:inline-block;margin-top:7px;font-size:12px;color:var(--accent)}
+html[data-reading-mode="kids"] .academic-observation,
+html[data-reading-mode="kids"] .academic-mechanism,
+html[data-reading-mode="kids"] .lens-bar,
+html[data-reading-mode="kids"] .observation .lens-tag,
+html[data-reading-mode="academic"] .kids-observation{display:none}
+html[data-reading-mode="kids"] .observation{min-height:0}
+html[data-reading-mode="kids"] .observation h2{margin-top:0}
+html[data-reading-mode="kids"] .deeper,
+html[data-reading-mode="kids"] #grasshopper{display:none}
+@media(max-width:720px){.scene-cue{top:9px;left:9px;max-width:48%;padding:6px 8px}.scene-cue strong{font-size:11px}.scene-cue small{font-size:10px}}
+@media(min-width:1000px){
+ html.presentation-page[data-topic-ui][data-reading-mode="kids"] .presentation-frame .animal-card .controls{grid-template-columns:minmax(0,1fr) auto;grid-template-rows:auto 44px;align-items:center;gap:0 12px}
+ html.presentation-page[data-topic-ui][data-reading-mode="kids"] .presentation-frame .animal-card .controls>label{grid-column:1;grid-row:1}
+ html.presentation-page[data-topic-ui][data-reading-mode="kids"] .presentation-frame .animal-card .controls>output{display:none}
+ html.presentation-page[data-topic-ui][data-reading-mode="kids"] .presentation-frame .animal-card .controls>input[type="range"]{grid-column:1;grid-row:2}
+ html.presentation-page[data-topic-ui][data-reading-mode="kids"] .presentation-frame .animal-card .controls>.button-row{grid-column:2;grid-row:2;margin:0}
+ html[data-reading-mode="kids"] #frog-actions button:not(#frog-play){display:none}
+}

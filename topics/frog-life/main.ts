@@ -22,8 +22,8 @@ controller.setReducedMotion(reduced.matches);
 const specimens={frog:new Specimen('frog'),butterfly:new Specimen('butterfly')};
 const button=(label:string,action:()=>void)=>{const b=document.createElement('button');b.type='button';b.textContent=label;b.onclick=action;return b;};
 const setText=(id:string,value:string)=>{if(el(id).textContent!==value)el(id).textContent=value;};
-document.title=text(copy.title);el('title').textContent=text(copy.title);el('eyebrow').textContent=text(copy.eyebrow);el('intro').textContent=text(copy.intro);el('memory').textContent=text(copy.memory);
-el('lens-label').textContent=text(copy.lensLabel);el('compare-title').textContent=text(copy.compareTitle);el('compare-note').textContent=text(copy.compareNote);
+document.title=text(copy.title);el('title').textContent=text(copy.title);el('eyebrow').textContent=text(copy.eyebrow);el('intro').textContent=text(copy.intro);el('memory').textContent=text(copy.memory);el('kids-memory').textContent=text(copy.kidsMemory);
+el('lens-label').textContent=text(copy.lensLabel);el('compare-title').textContent=text(copy.compareTitle);el('compare-note').textContent=text(copy.compareNote);el('compare-kids-note').textContent=text(copy.compareKidsNote);
 const chapterButtons=new Map<Chapter,HTMLButtonElement>(),aspectButtons=new Map<Aspect,HTMLButtonElement>();
 function select(chapter:Chapter,write=true){controller.setChapter(chapter);if(write){const url=new URL(location.href);url.searchParams.set('chapter',chapter);history.pushState(null,'',url);}}
 for(const chapter of CHAPTERS){const b=button(text(copy.chapters[chapter]),()=>select(chapter));b.dataset.chapter=chapter;chapterButtons.set(chapter,b);el('chapters').append(b);}
@@ -32,7 +32,12 @@ for(const pair of ['larvae','remodeling','after'] as const){const b=button(text(
 for(const animal of ['frog','butterfly'] as const){
  el(`${animal}-name`).textContent=text(animal==='frog'?copy.frogName:copy.butterflyName);
  el(`${animal}-image`).append(specimens[animal].element);
+ const cue=document.createElement('div'),cueLabel=document.createElement('span'),cueText=document.createElement('strong'),cueTail=document.createElement('small');
+ cue.className='scene-cue';cueLabel.textContent=text(copy.sceneCueLabel);cueText.id=`${animal}-scene-cue`;cueTail.id=`${animal}-tail-memory`;cueTail.textContent=text(copy.tailMemory);cueTail.hidden=true;
+ cue.append(cueLabel,cueText,cueTail);specimens[animal].element.append(cue);
  el(`${animal}-camera`).append(button(text(copy.whole),()=>controller.setView(animal,'whole')),button(text(copy.detail),()=>controller.setView(animal,'detail')));
+ setText(`${animal}-theory`,text(copy.academicTheory[animal]));
+ el(`${animal}-theory-source`).textContent=text(copy.academicSource);
 }
 const frogRange=el<HTMLInputElement>('growth'),wingRange=el<HTMLInputElement>('wing-progress');
 frogRange.setAttribute('aria-label',text(copy.growth));wingRange.setAttribute('aria-label',text(copy.wing));
@@ -63,10 +68,15 @@ function render(state:MetamorphosisState){
  for(const animal of ['frog','butterfly'] as const){
   const stage=animal==='frog'?frogStage:butterflyStage;
   setText(`${animal}-title`,text(stage.title));setText(`${animal}-observation`,text(stage[state.aspect]));setText(`${animal}-lens`,text(copy.aspects[state.aspect]));
+  const stageIndex=animal==='frog'?frogObservation(state.frog.progress):state.butterfly.stage;
+  setText(`${animal}-kids-observation`,text(copy.kidsStages[animal][stageIndex]!));
+  setText(`${animal}-scene-cue`,text(copy.sceneCues[animal][stageIndex]!));
+  el(`${animal}-tail-memory`).hidden=animal!=='frog'||state.frog.progress<2.55||state.frog.progress>=3.96;
   for(const [index,b]of [...el(`${animal}-camera`).querySelectorAll('button')].entries())b.setAttribute('aria-pressed',String(state[animal].view===(index===0?'whole':'detail')));
   if(compare||state.chapter===animal)specimens[animal].render(state,text(stage.title));
  }
- setText('connection',text(copy.connections[state.aspect]));
+ setText('kids-connection',text(copy.kidsConnections[state.aspect]));
+ setText('academic-connection',text(copy.connections[state.aspect]));
  frogRange.value=String(state.frog.progress);frogRange.setAttribute('aria-valuetext',text(frogStage.title));el('growth-value').textContent=text(frogStage.title);
  prev.disabled=state.frog.progress===0;next.disabled=state.frog.progress===4;
  // Explicit species controls in comparison; one requested clock runs at a time,

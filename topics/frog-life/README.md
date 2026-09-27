@@ -43,3 +43,9 @@ One learning journey compares independently retained frog and butterfly observat
 ## Presentation layout
 
 The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+
+## 2026-09-28 年龄层与演示细化
+
+儿童版把主图与各自成长滑条留在前面，每阶段只讲眼前的一条变化；并排比较也只提示不能按年龄或大小等同配对。学术版保留身体、食物、呼吸、运动四镜头，在同一侧栏提供阶段解释、内分泌研究入口与模型限制。切换阅读版式不动两只动物的进度。蛙的整体镜头放大，画面内线索随阶段切换；尾逐渐缩短时，淡虚线标出先前尾轮廓，解说声明它不是掉下来的尾巴。形态圈点与轮廓都是观察辅助，不是器官测量、激素读数、呼吸占比或时间轴校准。
+
+研究入口：[蛙变态及甲状腺激素综述](https://pmc.ncbi.nlm.nih.gov/articles/PMC1945045/)；[昆虫完全变态的内分泌与细胞程序综述](https://pmc.ncbi.nlm.nih.gov/articles/PMC6711294/)。这些机制不能直接从本页的轮廓插值推出；蝶图保留阶段性的外形示意，不暗示蛙与蝶使用同一激素系统。

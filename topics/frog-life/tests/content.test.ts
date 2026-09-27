@@ -7,6 +7,7 @@ import { ASPECTS } from '../metamorphosisModel.ts';
 
 test('every visible stage has both languages and all four observation lenses',()=>{
   assert.equal(copy.frogStages.length,5);assert.equal(copy.butterflyStages.length,4);
+  for(const animal of ['frog','butterfly'] as const){assert.equal(copy.kidsStages[animal].length,copy[`${animal}Stages`].length);assert.equal(copy.sceneCues[animal].length,copy[`${animal}Stages`].length);}
   for(const stage of [...copy.frogStages,...copy.butterflyStages])for(const key of ['title',...ASPECTS] as const){assert.ok(stage[key].zh.trim());assert.ok(stage[key].en.trim());}
   const visit=(value:unknown)=>{if(!value||typeof value!=='object')return;const item=value as Record<string,unknown>;if('zh'in item||'en'in item){assert.equal(typeof item.zh,'string');assert.equal(typeof item.en,'string');assert.ok((item.zh as string).trim());assert.ok((item.en as string).trim());}else Object.values(item).forEach(visit);};visit(copy);
 });
