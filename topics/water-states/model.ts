@@ -38,3 +38,24 @@ export function moleculePosition(index: number, kind: Process, progress: number)
   const y=f<.3 ? liquidY+(220-liquidY)*f/.3 : 220+(gasY-220)*(f-.3)/.7;
   return {x:liquidX+(gasX-liquidX)*f,y,order:0,gas:f};
 }
+
+/** A separate, qualitative open-cup case. The heat experiment's 100 g ledger is not reused. */
+export function waterRoute(progress: number) {
+  const p=clamp(progress);
+  return { evaporation:clamp(p/.58), condensation:clamp((p-.58)/.42), cup:phaseState('evaporate',.4*clamp(p/.58)) };
+}
+
+/** Twelve persistent symbols leave the surface; ten can meet the newly placed cold lid. */
+export function routeMoleculePosition(index: number, progress: number) {
+  const {evaporation,condensation}=waterRoute(progress);
+  if(index>=12)return moleculePosition(index,'evaporate',evaporation*.15);
+  const release=clamp((evaporation-(index%6)*.08)/.6);
+  if(condensation===0)return moleculePosition(index,'evaporate',release);
+  const airborne=moleculePosition(index,'evaporate',1);
+  if(index>=10)return airborne;
+  const arrival=clamp((condensation-index*.035)/.68);
+  const ease=arrival*arrival*(3-2*arrival);
+  const dropX=74+Math.floor(index/4)*104+(index%4-1.5)*12;
+  const dropY=112+(index%4)*8;
+  return {x:airborne.x+(dropX-airborne.x)*ease,y:airborne.y+(dropY-airborne.y)*ease,order:0,gas:1-ease};
+}

@@ -22,3 +22,29 @@
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] { .presentation-notes .controls { display:block!important; } .presentation-notes .controls label { display:block; margin:10px 0; } .presentation-notes .controls select { width:100%; } .presentation-notes .heat-actions { display:flex; flex-wrap:wrap; } .presentation-notes .heat-actions button { flex:1 1 90px; }}
 }
+
+/* Neutral UI chrome; water and molecular marks retain their material colors. */
+:root{--accent:#50575e}
+.observation-grid{background:#dce0df}
+.scene-wrap{background:#ecefed}
+.molecular-view{background:#f7f8f7}
+.view-heading,.scene text{color:#343b42;fill:#343b42}
+.view-heading span:last-child,.molecule-note,.molecule-key,.scale-connection{color:#687079}
+.micro-caption{color:#404951}
+.ice-observation{background:linear-gradient(135deg,#f1f3f4,#e8edef);border-color:#d4dadd;color:#333c44}
+.ice-observation p{color:#5b6770}
+.ice-guide-toggle input{accent-color:var(--accent)}
+.ice-stages button{border-color:#cbd1d5;background:#f8f9fa;color:#3d4851}
+.ice-stages button:hover{border-color:#737d85}
+.scene-paths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;padding:10px;background:var(--surface)}
+.scene-paths button{min-width:0;min-height:46px;font-size:14px;line-height:1.25}
+.scene-paths button[aria-pressed=true]{background:#424a52;color:#fff;border-color:#424a52}
+.observation-boundary{padding:12px 18px;margin:0;border-top:1px solid var(--border);font-size:13px;line-height:1.65;color:var(--secondary)}
+.route-mechanism{padding:13px 18px;border-top:1px solid var(--border);background:var(--surface)}
+.route-mechanism h3{font-size:16px;margin:0 0 8px}
+.route-mechanism p{font-size:13px;line-height:1.65;margin:6px 0;color:var(--secondary)}
+.route-mechanism .route-formula{font-variant-numeric:lining-nums;border-left:3px solid #79858d;padding-left:10px;color:var(--ink)}
+.presentation-frame .presentation-visual .molecule-note,.presentation-frame .presentation-visual .molecule-key,.presentation-frame .presentation-visual .scale-connection{display:none}
+.presentation-frame .presentation-visual .micro-caption{font-size:13px;line-height:1.45;min-height:0;margin:4px 14px 10px}
+html[data-reading-mode='kids'] .heat-controls>p:last-child{display:none}
+@media(max-width:620px){.scene-paths{gap:5px;padding:8px}.scene-paths button{font-size:12px;padding:8px 5px}.route-mechanism{padding:13px 15px}}

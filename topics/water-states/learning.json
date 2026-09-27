@@ -3,7 +3,7 @@
   "topicId": "water-states",
   "zh": {
     "question": "同一份冰水，供热、取热、隔热，哪一种会让冰变少？吸热时温度一定一直升高吗？",
-    "observe": "从冰水各半开始，供热到中途，再改为取热，确认比例没有跳回起点；最后选理想隔热并播放，检查冰量是否保持。另选预设结冰、蒸发与凝结观察不同机制。",
+    "observe": "从冰水各半开始，供热到中途，再改为取热，确认比例没有跳回起点；最后选理想隔热并播放，检查冰量是否保持。然后切换到另一杯敞口水，沿同一画面追踪蒸发后的部分水汽如何在冷盖下凝结；局部预设可单独观察。",
     "academic": [
       {
         "title": "晶粒、晶界和分子不是同一层次",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "水蒸气看不见；白雾中的可见部分通常是小液滴，不是变大的水分子。",
-    "boundary": "固定晶核按不同方向竞争生长，展示一种从上方冻结的几何剖面；不是传热、成核或真实折射计算。晶界反光和虚线经过强调，气泡大小不按比例。融化在此回退同一相界，实际未必严格反向。36个分子符号始终保留，只示意局部结构。 新增冷热实验只计算 100 g 纯水在熔点处的潜热账本，约 334 J/g；到全部融化或冻结停止，不计算之后升温降温和真实用时。",
+    "boundary": "固定晶核按不同方向竞争生长，展示一种从上方冻结的几何剖面；不是传热、成核或真实折射计算。晶界反光和虚线经过强调，气泡大小不按比例。融化在此回退同一相界，实际未必严格反向。36 个分子符号始终保留，只示意局部结构。冰水实验只计算 100 g 纯水在熔点处的潜热账本，约 334 J/g；到全部融化或冻结停止，不计算之后升温降温和真实用时。敞口杯至冷盖是另一份水的定性路径，杯中水位、标记位置、冷凝比例和进度都不能用于推算真实速率。",
     "narration": [
       {
         "label": "水会换样子",
@@ -33,19 +33,19 @@
       },
       {
         "label": "水去空气里了",
-        "text": "现在选择蒸发。有些水分子从水面进入空气，杯里的水就少了一点。这个变化不用等到水烧开，晾衣服、地面变干也会发生。画面用小符号告诉你水去了哪里，但真实水蒸气是看不见的，所以不要把每一团白雾都叫成看得见的水蒸气。",
-        "cue": "播放蒸发，对照水面与离开的符号。"
+        "text": "换到另一杯敞口水，沿金色标记追踪。有些水从水面进入空气，杯里的水就少了一点。这个变化不用等到水烧开；晾衣服、地面变干也会发生。画面用小符号帮你想象水去了哪里，真实水蒸气看不见。",
+        "cue": "选择从水面到冷盖，播放到冷盖出现前，比较水面和金色标记。"
       },
       {
         "label": "还可以回来",
-        "text": "最后看看凝结。空气里的水遇到足够冷的表面，可以聚成小水滴，像冷杯子外面出现的小水珠。它们不是从杯壁偷偷钻出来的。水能在不同条件下改变状态，却仍然是水。下次发现冰、水珠或正在变干的东西，你可以试着说出正在发生哪一种变化。",
-        "cue": "切换凝结，停在冷表面小水滴。"
+        "text": "继续播放同一杯水的故事：冷盖靠近后，部分水汽在盖下变成小水滴。并不是所有离开的水都会回来。水换了状态，仍然是水。下次发现冰、水珠或正在变干的东西，试着说出正在发生哪一种变化。",
+        "cue": "同一路线推进到冷盖下出现小水滴，停住并指出留下的杯中水。"
       }
     ]
   },
   "en": {
     "question": "For the same ice-water sample, will adding heat, removing heat or insulation reduce the ice? Must absorbing heat always raise temperature?",
-    "observe": "Start half frozen, add heat partway, then remove heat without resetting the mixture. Finally choose ideal insulation and play: does the ice amount stay fixed? Select the separate freezing, evaporation and condensation observations for their mechanisms.",
+    "observe": "Start half frozen, add heat partway, then remove heat without resetting the mixture. Finally choose ideal insulation and play: does the ice amount stay fixed? Switch to a separate open cup and follow some evaporated water toward a cold lid in the same scene. Optional close-ups show individual mechanisms.",
     "academic": [
       {
         "title": "Grains, boundaries and molecules are different scales",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Water vapor is invisible; the visible parts of white mist are usually droplets, not enlarged molecules.",
-    "boundary": "Fixed nuclei compete directionally in one geometric section freezing from above; heat transfer, nucleation and optical refraction are not calculated. Boundary highlights and optional dashes are emphasized; bubble sizes are not to scale. Melting retraces the same interface here, although real melting need not reverse freezing. All 36 molecular symbols persist and show only local structure. The heat experiment accounts only for latent heat of 100 g of pure water at its melting point, about 334 J/g. It stops at full melting or freezing and does not calculate subsequent temperature changes or real durations.",
+    "boundary": "Fixed nuclei compete directionally in one geometric section freezing from above; heat transfer, nucleation and optical refraction are not calculated. Boundary highlights and optional dashes are emphasized; bubble sizes are not to scale. Melting retraces the same interface here, although real melting need not reverse freezing. All 36 molecular symbols persist and show only local structure. The heat experiment accounts only for latent heat of 100 g of pure water at its melting point, about 334 J/g. It stops at full melting or freezing and does not calculate subsequent temperature changes or real durations. The open cup-to-lid route is a separate qualitative sample; level, marker position, condensate fraction and progress do not determine real rates.",
     "narration": [
       {
         "label": "Water changes its form",
@@ -75,13 +75,13 @@
       },
       {
         "label": "Water enters the air",
-        "text": "Choose evaporation. Some molecules leave the surface and enter the air, reducing the water in the cup. This happens without boiling: clothes and wet ground dry this way too. Symbols show where water goes, but real vapor is invisible. A visible white mist is not gaseous water that we can see.",
-        "cue": "Play evaporation and compare the surface with departing symbols."
+        "text": "Switch to a separate open cup and follow the gold marker. Some water leaves the surface and enters the air, reducing the water in the cup. This happens without boiling: clothes and wet ground dry this way too. Symbols help us imagine where water goes, but real vapor is invisible.",
+        "cue": "Choose the surface-to-lid route, play until before the cold lid appears, and compare the surface with the gold marker."
       },
       {
         "label": "It can return",
-        "text": "Now watch condensation. Water vapor meeting a sufficiently cold surface can gather into droplets, like those on the outside of a cold cup. They have not sneaked through the cup wall. Water changes state under different conditions while remaining water. Next time you notice ice, droplets or something drying, name the change you see.",
-        "cue": "Select condensation and hold the droplets on the cold surface."
+        "text": "Keep playing the same cup's story. As the cold lid comes near, some vapor forms small drops beneath it. Not all water that left the cup returns. Water changes state while remaining water. Next time you notice ice, droplets or something drying, name the change you see.",
+        "cue": "Continue the same route to the drops beneath the lid, then point to the water left in the cup."
       }
     ]
   },
@@ -93,6 +93,14 @@
     {
       "title": "OpenStax · Phase Change and Latent Heat",
       "url": "https://openstax.org/books/physics/pages/11-3-phase-change-and-latent-heat"
+    },
+    {
+      "title": "USGS · Evaporation and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/evaporation-and-water-cycle"
+    },
+    {
+      "title": "USGS · Condensation and the Water Cycle",
+      "url": "https://www.usgs.gov/water-science-school/science/condensation-and-water-cycle"
     },
     {
       "title": "Bari & Hallett · Nucleation and Growth of Bubbles at an Ice–Water Interface",
