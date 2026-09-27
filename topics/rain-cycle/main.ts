@@ -23,7 +23,7 @@ root.innerHTML=`<header class="hero"><p class="eyebrow">MINI WIKI · EARTH</p><h
 <section class="lab"><div class="scene-column"><div class="scene-top"><strong id="question"></strong><label class="check"><input id="labels" type="checkbox" checked>${copy.labels}</label></div>
 <svg id="scene" viewBox="0 0 1000 620" role="img" aria-label="${copy.intro}"></svg><p class="map-key">${copy.mapKey}</p>
 <div class="stage-controls"><button id="play" aria-pressed="false">${copy.play}</button><input id="progress" type="range" min="0" max="1000" step="1" value="0" aria-label="${copy.progress}"><button id="reset">${copy.reset}</button></div><p class="time-note">${copy.time}</p></div>
-<aside><h2>${copy.follow}</h2><select id="follow" aria-label="${copy.follow}">${Object.entries(copy.followOptions).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select><p id="trace" class="small"></p>
+<aside><div class="batch-readout"><strong>${copy.poolTitle}</strong><p id="batch-summary"></p></div><h2>${copy.follow}</h2><select id="follow" aria-label="${copy.follow}">${Object.entries(copy.followOptions).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select><p id="trace" class="small"></p>
 <label for="humidity">${copy.humidity} <output id="humidity-value"></output></label><input id="humidity" type="range" min="0" max="100" step="1">
 <label for="surface">${copy.surface}</label><select id="surface">${Object.entries(copy.surfaces).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select>
 <label for="route">${copy.route}</label><select id="route">${Object.entries(copy.routes).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select></aside></section>
@@ -73,6 +73,9 @@ async function ensureCloud(){
 function draw(){
  const snapshot=drawWatershed(p,settings,iceProgress,tracer,input('labels').checked);
  el('scene').innerHTML=snapshot.scene;el('scene').setAttribute('viewBox',camera.join(' '));
+ const largest=Object.entries(snapshot.pools).filter(([,count])=>count>0).sort((a,b)=>b[1]-a[1]).slice(0,3);
+ const summary=`100 ${copy.unit} · ${copy.leadingStores}: `+largest.map(([pool,count])=>`${copy.pools[pool as Pool]} ${count}`).join(' · ');
+ if(el('batch-summary').textContent!==summary)el('batch-summary').textContent=summary;
  const stage=p<.22?0:p<.44?1:p<.64?2:3;
  el('story-title').textContent=copy.stages[stage]!;el('story').textContent=copy.stories[stage]!;
  el('view-title').textContent=copy.views[view];el('description').textContent=copy.descriptions[view];el('question').textContent=copy.questions[view];
@@ -111,5 +114,9 @@ window.addEventListener('pageshow',()=>{suspended=document.hidden;draw();});
 reduced.addEventListener('change',()=>{suspend();camera=[...focuses[view]!];draw();});
 draw();
 
-mountPresentationFrame({ root: '.lab', visual: '.scene-column', transport: '.stage-controls', choices: '#views, .slow-jumps' });
+const watershedFrame=mountPresentationFrame({ root: '.lab', visual: '#scene', transport: '.stage-controls', choices: '#views, .scene-top' });
+if(watershedFrame){
+ watershedFrame.notes.prepend(watershedFrame.notes.querySelector('aside')!);
+ watershedFrame.notes.append(root.querySelector('.slow-jumps')!);
+}
 mountPresentationFrame({ root: '#cloud-panel', visual: 'canvas' });

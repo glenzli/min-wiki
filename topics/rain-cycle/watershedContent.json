@@ -65,6 +65,7 @@
     },
     "unavailable": "当前条件下没有这条示意去向；仍追踪原来的水份。",
     "poolTitle": "这批水此刻在哪里？",
+    "leadingStores": "主要在",
     "pools": {
       "ocean": "海洋",
       "vapor": "气态水",
@@ -85,7 +86,7 @@
     "error": "微观画面暂时不可用，流域、说明和控制仍可使用。",
     "retry": "重试微观画面",
     "notesTitle": "机制、边界与资料",
-    "notes": "太阳能推动蒸发，重力推动降水和地表流水。水循环包含储存与多条交换路径，没有固定起点，也不要求每份水依次走完一圈。可见云由小水滴和/或冰晶组成；水蒸气本身不可见。100份水的路径、土壤分配和冰中时间都是教学设定。山坡与山谷的长期实验另外计算简化储量和收支，不与上方批次数量相加；它们不是实际水文或气候预测，也不求解完整三维地下流场、冰川应力变形或植物蒸腾。",
+    "notes": "太阳能推动蒸发，重力推动降水和地表流水。水循环包含储存与多条交换路径，没有固定起点，也不要求每份水依次走完一圈。可见云由小水滴和/或冰晶组成；水蒸气本身不可见。100份水的路径、土壤分配和冰中时间都是教学设定；土壤中的蓝色短虚线只提示可能的连通孔隙路径，不是植物根系或逐滴实测路线。山坡与山谷的长期实验另外计算简化储量和收支，不与上方批次数量相加；它们不是实际水文或气候预测，也不求解完整三维地下流场、冰川应力变形或植物蒸腾。",
     "connections": "继续追问",
     "atmosphere": "空气怎样运送水？",
     "phase": "放大看水的固液气",
@@ -170,6 +171,7 @@
     },
     "unavailable": "This illustrative destination is absent under these conditions; the original portion is still tracked.",
     "poolTitle": "Where is this water batch now?",
+    "leadingStores": "Most are in",
     "pools": {
       "ocean": "Ocean",
       "vapor": "Water vapor",
@@ -190,7 +192,7 @@
     "error": "The microscopic view is unavailable. The watershed, explanations and controls still work.",
     "retry": "Retry microscopic view",
     "notesTitle": "Mechanisms, limits and sources",
-    "notes": "Solar energy drives evaporation; gravity drives precipitation and surface flow. The cycle includes stores and multiple exchange paths, with no compulsory complete loop. Visible clouds contain droplets and/or ice crystals; water vapor is invisible. The 100 portions' paths, soil fractions and ice times are teaching choices. Separate longer-term hillside and valley experiments calculate simplified stores and budgets, not quantities to add to that batch. They are not site hydrology or climate forecasts and do not solve full 3D groundwater flow, glacier stress and deformation, or plant transpiration.",
+    "notes": "Solar energy drives evaporation; gravity drives precipitation and surface flow. The cycle includes stores and multiple exchange paths, with no compulsory complete loop. Visible clouds contain droplets and/or ice crystals; water vapor is invisible. The 100 portions' paths, soil fractions and ice times are teaching choices. Short blue dashes in the soil only suggest possible connected pore routes; they are neither roots nor measured paths of individual drops. Separate longer-term hillside and valley experiments calculate simplified stores and budgets, not quantities to add to that batch. They are not site hydrology or climate forecasts and do not solve full 3D groundwater flow, glacier stress and deformation, or plant transpiration.",
     "connections": "Keep asking",
     "atmosphere": "How does air transport water?",
     "phase": "Zoom in on ice, liquid and vapor",

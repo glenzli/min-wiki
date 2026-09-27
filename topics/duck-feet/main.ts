@@ -4,7 +4,7 @@ import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { t } from './i18n.ts';
-import { strokeAt } from './model.ts';
+import { forceArrowsAt, strokeAt } from './model.ts';
 import './style.css';
 translateDocument(t); mountTopicNavigation('duck-feet');
 const el = <T extends Element = HTMLElement>(id: string): T => document.getElementById(id)! as unknown as T;
@@ -16,13 +16,20 @@ const wake=el<SVGGElement>('wake');
 wake.innerHTML=Array.from({length:9},()=>'<path/>').join('');
 function render() {
   const s=strokeAt(progress), without=el<HTMLInputElement>('without').checked;
+  const arrows=forceArrowsAt(progress,without);
   el('duck').setAttribute('transform',`translate(${s.bodyX} 183)`);
   el('leg').setAttribute('d',`M-20 30Q${-10+s.footX*.4} 67 ${s.footX-20} ${s.footY}`);
   el('small-foot').setAttribute('transform',`translate(${s.footX-20} ${s.footY}) rotate(${s.angle}) scale(${s.spread} 1)`);
+  const nearFoot=el('small-foot').firstElementChild!;
+  nearFoot.setAttribute('d',without?'M0 0L-50 40M0 0L-6 41M0 0L19 50':'M0 0L-50 40L-29 49L-6 41L19 50L8 8Z');
+  nearFoot.setAttribute('fill',without?'none':'#e5a251');
+  nearFoot.setAttribute('stroke-width',without?'5':'3');
   el('foot').setAttribute('transform',`translate(${754+s.footX*.55} 234) rotate(${s.angle*.22})`);
   [...el('foot').children].slice(1).forEach(part=>part.setAttribute('transform',`scale(${s.spread} 1)`));
   el('web').setAttribute('opacity',without?'0':'1');
-  for(const id of ['water-push','duck-go']) {el(id).setAttribute('visibility','visible');el(id).setAttribute('opacity',String(s.thrust));}
+  el('water-push').setAttribute('d',`M${arrows.water.from} ${arrows.water.y}H${arrows.water.to}`);
+  el('duck-go').setAttribute('d',`M${arrows.foot.from} ${arrows.foot.y}H${arrows.foot.to}`);
+  for(const id of ['water-push','duck-go']) {el(id).setAttribute('visibility','visible');el(id).setAttribute('opacity',String(arrows.emphasis));}
   el('water-push').setAttribute('stroke-width',without?'4':'9');
   [...wake.children].forEach((node,i)=>{const x=319-i*16-93*s.wake,y=301+i%3*17;node.setAttribute('d',`M${x} ${y}q${-14-24*s.wake} ${-5+i%3*5} ${-28-28*s.wake} 0`);node.setAttribute('opacity',String(s.thrust*(without?.28:.75)));});
   document.querySelectorAll<HTMLButtonElement>('[data-phase]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.phase)===s.stage)));

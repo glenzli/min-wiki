@@ -17,3 +17,14 @@ export function strokeAt(progress: number) {
     wake: push,
   };
 }
+
+/** Locations of the explanatory force arrows, tied to the same foot stroke. */
+export function forceArrowsAt(progress: number, withoutWeb: boolean) {
+  const stroke = strokeAt(progress);
+  const footX = stroke.bodyX + stroke.footX - 20;
+  return {
+    water: { from: footX - 22, to: footX - (withoutWeb ? 86 : 170), y: 377 },
+    foot: { from: footX + 24, to: footX + (withoutWeb ? 101 : 185), y: 330 },
+    emphasis: stroke.thrust * (withoutWeb ? .36 : 1),
+  };
+}

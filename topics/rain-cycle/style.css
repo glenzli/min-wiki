@@ -16,7 +16,20 @@
 
 /* Desktop presentation: retain topic geometry inside the selected scene. */
 @media(min-width:1000px){
-html.presentation-page[data-topic-ui] { .presentation-notes .controls { display:block!important; } .presentation-choices .slow-jumps { padding-block:2px!important; } .presentation-choices #views { gap:4px; } .presentation-choices #views button { padding:7px 9px; }}
+html.presentation-page[data-topic-ui] { .presentation-notes .controls { display:block!important; } .presentation-choices #views { gap:4px; } .presentation-choices #views button { padding:7px 9px; }}
 }
 
+.batch-readout{padding:12px 14px;margin:0 0 20px;border-radius:14px;background:color-mix(in srgb,var(--surface) 85%,#afc6c5);border:1px solid var(--border)}
+.batch-readout strong{font-size:13px;line-height:1.5}
+.batch-readout p{margin:7px 0 0;font-size:15px;line-height:1.6;font-variant-numeric:tabular-nums}
+
 @media(min-width:1000px){html.presentation-page[data-topic-ui] .presentation-frame .glacier-workspace{display:block}html.presentation-page[data-topic-ui] .presentation-frame .gw-controls{display:block}html.presentation-page[data-topic-ui] .presentation-frame .gw-control{margin-bottom:12px}html.presentation-page[data-topic-ui] .presentation-frame .glacier-key{font-size:12px;margin:6px}html.presentation-page[data-topic-ui] .presentation-frame .gw-scene svg{width:100%;height:100%;min-height:0}}
+
+@media(min-width:1000px){
+  html.presentation-page[data-topic-ui] .lab.presentation-frame{height:max(650px,calc(100dvh - var(--observation-top,180px)))}
+  html.presentation-page[data-topic-ui] .lab .presentation-choices .scene-top{min-height:0;align-items:center;gap:18px}
+  html.presentation-page[data-topic-ui] .lab .presentation-choices .scene-top .check{white-space:nowrap}
+  html.presentation-page[data-topic-ui] .lab .presentation-visual>svg{aspect-ratio:auto;height:100%!important}
+  html.presentation-page[data-topic-ui] .lab .presentation-notes .scene-column{display:block!important}
+  html.presentation-page[data-topic-ui] .lab .presentation-notes .slow-jumps{margin:0 0 18px}
+}

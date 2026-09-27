@@ -1,5 +1,9 @@
 # 鸭子的脚为什么像船桨？
 
+## Force-diagram pass · 2026-09-28
+
+Both explanatory arrows now follow the same small foot below the waterline, instead of sending the forward arrow through the duck's head. In the no-web thought experiment, the small foot and magnified foot both show separate toes, while the arrows and wake become weaker. The stroke trajectory remains prescribed and identical in both cases: this comparison communicates effective paddle area, not a predicted speed, force value or real web-free duck. The linked geometry has a topic-local boundary test and the middle stroke was checked in the browser in Chinese and English.
+
 展示蹼足划水的定性机制。大圆是脚的放大图，线性缩放代表收拢；真实足部动作包括转动、弯曲和左右脚协调。箭头、位移和线宽不代表测量数据。隐藏蹼仅用于比较有效面积，不能据此计算鸭子的速度。鸭子的漂浮还涉及浮力，与划水产生前进动力是不同问题。
 
 - [Ducks Unlimited · Masters of the Air and Water](https://www.ducks.org/conservation/waterfowl-research-science/understanding-waterfowl-masters-of-the-air-and-water)

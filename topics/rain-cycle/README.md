@@ -1,5 +1,9 @@
 # 水循环：水的许多旅程 / The water cycle: many journeys
 
+## Main-scene pass · 2026-09-28
+
+The fitted desktop frame now gives the same watershed SVG a direct visual stage instead of shrinking it inside a column with its key and time note. The location question stays beside the camera choices; settings and a live summary of the largest stores sit alongside the map. The 100-portion denominator is explicit, and the full nine-store ledger remains below. Longer-term study shortcuts move into the explanation panel, allowing the main watershed to appear sooner on a narrow screen. A few broken blue pore-route marks replace nine continuous white strands that resembled roots; paved ground shows far fewer. These marks are explanatory paths, not measured pores or water trajectories. No parcel route, cohort accounting or independent slow clock was changed. Browser checks covered desktop Chinese before and after changing the surface, camera switching without resetting progress, and 390 px Chinese/English child and English academic layouts. This pass does not validate every microscopic or long-term scene's visual detail.
+
 One persistent watershed connects ocean evaporation, cloud particles, rain or mountain snow, hillside infiltration/runoff/storage, a meandering river, a lake and the sea. Observation windows change the camera, not the place, water batch or process progress. This replaces the former compulsory-looking closed loop.
 
 ## Ownership

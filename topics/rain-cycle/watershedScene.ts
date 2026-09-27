@@ -10,7 +10,10 @@ export function drawWatershed(p:number,settings:Settings,iceProgress:number,trac
  const {parcels,pools}=watershedState(p,settings,iceProgress),selected=parcels[tracer]!;
  const track=Array.from({length:Math.ceil(p*150)+1},(_,i)=>waterParcel(Math.min(p,i/150),tracer,settings,iceProgress)).map(d=>[d.x,d.y]);
  const particles=parcels.map(d=>{const r=d.pool==='vapor'?2:d.pool==='ice'?2.6:2.5;return `<g data-water="${d.id}" data-pool="${d.pool}"><circle cx="${d.x}" cy="${d.y}" r="${r}" fill="${d.pool==='vapor'?'#bb9a60':d.pool==='ice'?'#f5ffff':'#2798bd'}" stroke="#f9fff3" stroke-width=".65" opacity="${d.pool==='vapor'?.52:.8}"/></g>`;}).join('');
- const pores=Array.from({length:9},(_,lane)=>{const x=338+lane*7;return `<path d="${path(Array.from({length:32},(_,i)=>{const depth=i*4.9;return [x+poreOffset(depth,lane)+depth*.12,357+depth];}))}" fill="none" stroke="#efdbb6" stroke-width="${settings.surface==='soil'?5:settings.surface==='clay'?2:1}" opacity=".75"/>`;}).join('');
+ // Discrete gaps suggest permeable routes; long continuous pale strands looked like roots.
+ const poreLanes=settings.surface==='soil'?4:settings.surface==='clay'?2:1;
+ const poreDepth=settings.surface==='paved'?40:145;
+ const pores=Array.from({length:poreLanes},(_,lane)=>{const x=340+lane*17;return `<path d="${path(Array.from({length:31},(_,i)=>{const depth=i*poreDepth/30;return [x+poreOffset(depth,lane)+depth*.12,357+depth];}))}" fill="none" stroke="#5799a8" stroke-width="${settings.surface==='paved'?2:4}" stroke-dasharray="3 13" stroke-linecap="round" opacity="${settings.surface==='paved'?.25:.68}"/>`;}).join('');
  const grains=Array.from({length:16},(_,id)=>{const g=basinGrain(Math.max(0,(p-.65)/.35),id);return `<circle data-grain="${id}" cx="${g.x}" cy="${g.y}" r="${1.6+id%3*.2}" fill="#dac082" stroke="#8f7948" stroke-width=".3"/>`;}).join('');
  const glyphs=labels?[[375,99,'1'],[369,335,'2'],[499,366,'3'],[681,343,'4'],[227,218,'5']].map(([x,y,n])=>`<g transform="translate(${x} ${y})"><circle r="11" fill="#fff8e7" stroke="#658990"/><text y="4" text-anchor="middle" fill="#335c62" font-size="12">${n}</text></g>`).join(''):'';
  const snow=7+Math.max(0,p-.44)/.56*3;
