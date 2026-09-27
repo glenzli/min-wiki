@@ -8,6 +8,8 @@ The same detailed cell geometry now supports three linked questions: `?chapter=s
 
 The generic animal specimen is deliberately not retyped as a mature red cell: its nucleus/mitochondrion presence contract stays unchanged. Specialised specimens remain separate examples. Oxygen transport, defence and clotting are not sequential stages; platelets are fragments, and fibrin is not a cell. The energy-comparison action selects a typical tissue-cell example rather than pretending that the red cell contains its mitochondria. Species/structure limitations, deeper notes and references from the original examples remain readable beside the relevant workspace. Labels may be hidden without removing outside explanations. Different magnifications are explicitly not equal scales.
 
+The structure stage now keeps the selected whole specimen and the corresponding local camera side by side on desktop, and in whole-to-detail reading order on narrow screens. Both views use the same mounted geometry and selection; overflow outside the active SVG viewBox is clipped so adjacent reference specimens cannot leak into a selected camera. For absent organelles the local camera returns to a whole-cell comparison and names the absence. Child mode gives one short structural explanation and a question; academic mode shows the fuller qualification and a source for the selected part. The energy and specialised-cell stages keep their separate material paths and specimen identities.
+
 The question path and knowledge panel connect cells to the leaf lifecycle; bacterial ecology and viruses remain independent linked topics. No cell division, complete immune model or universal molecular simulation has been added. Existing covers and detailed scientific illustrations are retained.
 
 Focused tests cover route migration, per-example state isolation and the unchanged biological model invariants. Parent integration owns final full gates and real bilingual desktop/mobile browser acceptance. No commit, push or deployment is included. Earlier descriptions below document the retained structural/energy engine.
@@ -38,6 +40,8 @@ Reviewed 2026-09-17:
 
 - [NIH / NHGRI: Cell](https://www.genome.gov/genetics-glossary/Cell) — cellular organisation and typical nuclei.
 - [NIH / NHGRI: Mitochondria](https://www.genome.gov/genetics-glossary/Mitochondria) — energy conversion and mitochondrial DNA.
+- [OpenStax Biology 2e: Eukaryotic Cells](https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells) — animal/plant organelles and the central vacuole; linked from the selected structural detail.
+- [OpenStax Microbiology: Prokaryotic Cells](https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells) — bacterial structures and absence of membrane-bound organelles.
 - [NCBI Bookshelf: How Cells Obtain Energy from Food](https://www.ncbi.nlm.nih.gov/books/NBK26882/) — nutrient oxidation, cytoplasmic and mitochondrial stages, usable chemical energy and heat; plant respiration as well as animal respiration.
 - [NCBI Bookshelf: Chloroplasts and Photosynthesis](https://www.ncbi.nlm.nih.gov/books/NBK26819/) — leaf-cell organisation, chloroplast membranes, light-driven sugar production and origins of sugar carbon and released oxygen.
 - [NCBI Bookshelf: From RNA to Protein](https://www.ncbi.nlm.nih.gov/books/NBK26829/) — amino acids, protein-chain synthesis, ATP-dependent activation and GTP-dependent elongation.

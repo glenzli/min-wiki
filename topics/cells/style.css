@@ -131,3 +131,38 @@ button:disabled { opacity:.45; cursor:default; }
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] {& .lab { padding:0; } .lab-top { padding:8px 12px; margin:0; } .lab-top h2 { font-size:18px; margin:3px 0; } .lab-top .eyebrow { display:none; } .cell-tabs { padding:0 12px; margin:0; } .chapter-question { margin:6px 0; font-size:13px; } .presentation-frame .specimen-top { padding:7px 10px; } .presentation-frame .scene-symbols { font-size:11px; margin:6px; } .presentation-notes .detail-row,.presentation-notes .behavior-workbench,.presentation-notes .work-layout { display:block; } .presentation-notes .detail-window { max-height:220px; } .presentation-notes .detail-window svg { height:180px; } .presentation-notes .parts { display:flex; flex-wrap:wrap; } .presentation-notes .parts button { flex:1 1 110px; } .presentation-frame .work-illustration svg { flex:1; width:100%; height:0; min-height:0; }}
 }
+
+/* The whole specimen and its selected detail are two views of the same mounted SVG. */
+#structure-panel.presentation-frame #cell-scene,
+#structure-panel.presentation-frame #detail-scene { overflow:hidden; }
+#structure-panel.presentation-frame .specimen .detail-window { margin:0; border-radius:0; }
+#structure-panel.presentation-frame .presentation-notes .detail-row { display:block; }
+#part-description, #part-source { display:none; }
+html[data-reading-mode="academic"] #part-description-kids { display:none; }
+html[data-reading-mode="academic"] #part-description { display:block; }
+html[data-reading-mode="academic"] #part-source { display:inline-block; margin-top:10px; font-size:12px; line-height:1.5; }
+html[data-reading-mode="academic"] #part-question { display:none; }
+html[data-reading-mode="kids"] .detail-context>p:last-child { display:none; }
+@media(min-width:1000px) {
+  html.presentation-page[data-topic-ui] #structure-panel.presentation-frame .specimen {
+    display:grid; grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);
+    grid-template-rows:auto minmax(0,1fr) auto;
+  }
+  #structure-panel.presentation-frame .specimen-top { grid-column:1 / -1; grid-row:1; }
+  #structure-panel.presentation-frame #cell-scene {
+    grid-column:1; grid-row:2; width:100%; height:100%; min-height:0;
+  }
+  #structure-panel.presentation-frame .specimen .detail-window {
+    grid-column:2; grid-row:2; display:flex; flex-direction:column;
+    height:100%; min-height:0; border-top:0; border-bottom:0; border-right:0;
+  }
+  #structure-panel.presentation-frame .detail-window>p { flex:none; padding:8px 10px 3px; font-size:12px; }
+  #structure-panel.presentation-frame #detail-scene {
+    flex:1; width:100%; height:0; min-height:0; max-height:none;
+  }
+  #structure-panel.presentation-frame .observation { grid-column:1 / -1; grid-row:3; min-height:0; padding:6px 12px; }
+}
+@media(max-width:999px) {
+  #structure-panel.presentation-frame .specimen .detail-window { border-left:0; border-right:0; }
+  #structure-panel.presentation-frame #detail-scene { max-height:220px; }
+}

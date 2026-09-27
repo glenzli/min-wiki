@@ -59,6 +59,28 @@ const questions:Record<Part,string> = {
   nucleus:t('有没有细胞核，能帮助我们分辨这几类细胞。'),
   chloroplast:t('记住这个例外：植物的根部细胞通常没有叶绿体。'),
 };
+const childPartNotes:Record<Part,string> = {
+ membrane:t('膜围住细胞，也让一些物质通过。'),
+ dna:t('DNA 保存遗传信息，帮助细胞做许多事。'),
+ nucleus:t('细胞核把这枚细胞的大部分 DNA 包在里面。'),
+ chloroplast:t('叶肉细胞用叶绿体捕捉光，帮助制造糖。'),
+ mitochondrion:t('线粒体帮助细胞把营养物质里的能量变成能用的形式。'),
+ vacuole:t('大液泡存着水等物质，也帮助叶肉细胞保持饱满。'),
+};
+const absentChildPartNotes:Partial<Record<Part,string>> = {
+ nucleus:t('这个细菌没有细胞核；DNA 仍在细胞里。'),
+ chloroplast:t('这枚细胞没有叶绿体；换到叶肉细胞看看。'),
+ mitochondrion:t('这个细菌没有线粒体，也能转换能量。'),
+ vacuole:t('这枚细胞没有图里这种大液泡。'),
+};
+const academicPartSources:Record<Part,{label:string;url:string}> = {
+ membrane:{label:'OpenStax · Biology 2e',url:'https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells'},
+ dna:{label:'NHGRI · DNA',url:'https://www.genome.gov/about-genomics/fact-sheets/Deoxyribonucleic-Acid-Fact-Sheet'},
+ nucleus:{label:'OpenStax · Biology 2e',url:'https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells'},
+ chloroplast:{label:'NCBI Bookshelf · Photosynthesis',url:'https://www.ncbi.nlm.nih.gov/books/NBK26819/'},
+ mitochondrion:{label:'NHGRI · Mitochondria',url:'https://www.genome.gov/genetics-glossary/Mitochondria'},
+ vacuole:{label:'OpenStax · Biology 2e',url:'https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells'},
+};
 
 function currentProcess(){return processFor(cell,choice);}
 function currentProgress(){const process=currentProcess();return process?progress[cell][process]:0;}
@@ -91,7 +113,14 @@ function renderProgress(){
 function render(){
  const present=hasPart(cell,part),process=currentProcess(),p=currentProgress();
  text('specimen-name',cells[cell].name);text('specimen-tag',cells[cell].tag);text('observation',cells[cell].note);
- text('part-title',partNames[part]);text('part-description',explanations[cell][part]);text('part-question',questions[part]);
+ text('part-title',partNames[part]);
+ text('part-description-kids',present?childPartNotes[part]:cell==='animal'&&part==='vacuole'?t('这枚动物细胞没有这样的大液泡；还可能有小囊泡。'):absentChildPartNotes[part]!);
+ text('part-description',explanations[cell][part]);text('part-question',questions[part]);
+ const partSource=el('part-source') as HTMLAnchorElement;
+ const source=cell==='bacterium'&&!present
+  ? {label:'OpenStax · Prokaryotic cells',url:'https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells'}
+  : academicPartSources[part];
+ partSource.href=source.url;partSource.textContent=`${source.label} ↗`;
  text('presence',!present?t('这里没有这种结构'):part==='membrane'||part==='dna'?t('这三种都有'):t('在这张图里找一找'));
  text('detail-title',present?t('放大观察：{{part}}',{part:partNames[part]}):t('整体对照：这里没有{{part}}',{part:partNames[part]}));
  text('detail-note',outerTarget?t('半透明表面盖在原有结构上；切回剖视可看清内部。'):t('虚线框与放大窗口对应同一处；膜和细胞器都经过教学放大。'));
@@ -110,7 +139,7 @@ function render(){
  el('fragment-key').hidden=process!=='respiration';
  el('reaction-key').hidden=process!=='respiration';
  el('assembly-key').hidden=process!=='respiration';
- for(const key of document.querySelectorAll<HTMLElement>('[data-respiration-key]'))key.hidden=process!=='respiration';
+ for(const key of document.querySelectorAll<HTMLElement>('[data-respiration-key]'))key.hidden=process!=='respiration'||el('energy-panel').hidden;
  el('process-boundary').hidden=!process;
  text('process-boundary',process==='photosynthesis'?t('这里把光合作用的多步反应合在一起看。光提供能量，糖的碳来自二氧化碳，释放的氧主要来自水。路径不是固定管道，符号数量不代表分子比例。'):t('糖先在细胞质中分解，分解后的物质继续进入线粒体；氧参与后续反应。圈出的区域把多步过程合在一起看，并不是糖和氧碰一下就变成能量。路径不是固定管道，符号数量不代表分子比例。'));
  text('flow-input',process==='photosynthesis'?t('进入：二氧化碳、水；光带来能量'):cell==='plant'?t('使用：糖、氧'):t('进入：糖等营养物质、氧'));
@@ -171,6 +200,10 @@ if (structureFrame) {
  structureFrame.notes.prepend(document.getElementById('structure-heading')!);
  structureFrame.notes.append(document.getElementById('structure-detail')!);
  for (const node of structureFrame.stage.querySelectorAll('.view-controls,.scene-symbols,.scene-caption')) structureFrame.notes.append(node);
+ const specimen = structureFrame.stage.querySelector('.specimen')!;
+ const detailWindow = document.querySelector('.detail-window')!;
+ specimen.insertBefore(detailWindow, document.getElementById('observation')!);
+ for (const symbolKey of detailWindow.querySelectorAll('.scene-symbols')) structureFrame.notes.append(symbolKey);
 }
 const energyFrame = mountPresentationFrame({ root: '#energy-panel', visual: '.behavior-window', transport: '.process-controls' });
 if (energyFrame) for (const node of energyFrame.stage.querySelectorAll('.material-key,#assembly-key,#energy-readout')) energyFrame.notes.append(node);
