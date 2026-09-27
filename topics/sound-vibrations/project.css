@@ -1,1 +1,14 @@
 .journey-nav{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0}.journey-nav button{flex:1;min-width:160px}.causal-bridge{border:1px solid var(--border);border-radius:20px;padding:20px 24px;margin:20px 0;background:var(--surface)}.causal-bridge h2{margin-top:0}.causal-bridge p{margin-bottom:0}.condition-row{display:flex;gap:9px;flex-wrap:wrap;margin:15px 0}.condition-row button{font-size:14px}.condition-summary{font-size:14px;color:var(--secondary)}[hidden]{display:none!important}.journey-actions{display:flex;justify-content:space-between;gap:12px;margin:22px 0}.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.compare-grid article{padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:20px}.compare-grid svg{display:block;width:100%;background:#eef4ee;border-radius:12px}.compare-grid figcaption{font-size:14px;line-height:1.7;margin-top:12px}.compare-grid figure{margin:0}.comparison-note{border-left:3px solid #bd9147;padding-left:16px}.no-labels svg text{visibility:hidden}#label-toggle{font-size:13px}.detail-list{display:grid;gap:14px}.detail-list p{margin:8px 0}.details-question{font-size:18px;font-weight:700}@media(max-width:760px){.compare-grid{grid-template-columns:1fr}.causal-bridge{padding:16px}.journey-nav button{min-width:0;flex-basis:100%;text-align:left}#ear-panel .controls{padding:0;border:0}#ear-panel .sequence{grid-template-columns:1fr 1fr}.compare-grid article{padding:15px}} 
+:root{--accent:#50575e}
+.compare-grid svg{background:#f1f2f2}
+#source-panel[data-sound-view='source'] .scene-legend span{display:none}
+#source-panel .scene-wrap{position:relative}
+#source-panel .arrival-button{position:absolute;right:14px;bottom:14px;z-index:2;border:1px solid #6d512d;background:#3a3c3c;color:white;padding:10px 14px;min-height:42px;box-shadow:0 5px 18px #1c241e33}
+#ear-panel .ear-handoff{font-size:14px;line-height:1.55;margin:0 0 12px;padding:10px 12px;border-left:3px solid #b38444;background:color-mix(in srgb,#b38444 7%,var(--surface))}
+#ear-panel .ear-lens{align-self:flex-end;margin:7px 12px;font-size:13px;min-height:42px}
+#ear-panel .presentation-pair:has(>[hidden]){grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,1fr)}
+@media(min-width:1000px){html[data-topic-ui] #ear-panel .presentation-frame{height:max(530px,calc(100dvh - var(--observation-top,180px)))}}
+html[data-reading-mode='kids'] #ear-panel .control-group p.small{display:none}
+@media(max-width:760px){#ear-panel .ear-lens{margin:8px 12px}}
+@media(max-width:760px){#source-panel .arrival-button{right:8px;bottom:8px;max-width:65%;font-size:12px;padding:7px 9px}}
+@media(max-width:620px){.journey-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin:14px 0}.journey-nav button{min-width:0;min-height:62px;font-size:12px;line-height:1.25;padding:6px;text-align:center}.hero{margin:12px 0}.hero .intro{font-size:15px;line-height:1.5}}

@@ -1,5 +1,13 @@
 export const DURATION = 16;
 export const DISPLAY_SPEED = 145;
+export const RECEIVER_DISTANCE = 688;
+export const receiverArrival = RECEIVER_DISTANCE / DISPLAY_SPEED;
+/** Position of the finite emitted packet in diagram units, clipped to the shown air path. */
+export function packetSpan(time: number) {
+  const head = Math.min(RECEIVER_DISTANCE, Math.max(0, time * DISPLAY_SPEED));
+  const tail = Math.min(RECEIVER_DISTANCE, Math.max(0, (time - 9) * DISPLAY_SPEED));
+  return { head, tail, visible: head > tail };
+}
 export function frequency(tension: number) { if (!Number.isFinite(tension) || tension <= 0) throw new RangeError('positive tension required'); return 196 * Math.sqrt(tension); }
 const smooth = (x: number) => { const v = Math.max(0, Math.min(1, x)); return v * v * (3 - 2 * v); };
 /** A finite, damped source. Teaching seconds and diagram distances are not physical units. */

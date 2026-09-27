@@ -97,5 +97,13 @@
   "20 毫秒内约 {{cycles}} 次往返。比较灰色参考线：是周期数量变了，还是曲线的高度变了？": "About {{cycles}} cycles in 20 milliseconds. Compare with the gray reference: has the number of cycles changed, or the curve’s height?",
   "空气提供传递扰动的介质。这里保留频率，不模拟传播损耗；不是小团空气从声源跑到耳朵。": "Air provides a medium for the disturbance. Frequency is preserved here; transmission losses are not modeled. Air parcels do not run from the source to the ear.",
   "声源仍能振动，但理想真空路径没有介质传声。没有空气，也没有连接两端的固体。": "The source can still vibrate, but the ideal vacuum path has no medium to carry sound: neither air nor a solid connects the ends.",
-  "这里接收同一组音高与幅度条件；位置变化只表示趋势，不把合成音的赫兹数换算成耳蜗坐标。": "This study receives the same pitch and amplitude comparison. Position indicates a trend, not a conversion from synthesized hertz to anatomical cochlear coordinates."
+  "这里接收同一组音高与幅度条件；位置变化只表示趋势，不把合成音的赫兹数换算成耳蜗坐标。": "This study receives the same pitch and amplitude comparison. Position indicates a trend, not a conversion from synthesized hertz to anatomical cochlear coordinates.",
+  "这一站沿用声源的音高与幅度条件（当前合成音约 {{hz}} Hz），并从鼓膜附近单独放大。两个慢镜头不共用真实时间轴；耳蜗位置是定性趋势。": "This stop keeps the source's pitch and amplitude settings (synthesized tone about {{hz}} Hz) and magnifies the region near the eardrum. The two slow-motion views do not share a real-time clock; cochlear position shows a qualitative trend.",
+  "同一段扰动已经走到右端。这里放大看鼓膜怎样接住它。": "The same disturbance has reached the receiver at the right. Here we enlarge how the eardrum responds.",
+  "这里从声波到达鼓膜时放大观察；想看它怎样传来，可以回到第一站。": "This close-up begins when the sound reaches the eardrum. Return to the first stop to see how it travels here.",
+  "回看整只耳朵": "See the whole ear",
+  "放大看耳蜗": "Enlarge the cochlea",
+  "扰动前沿 · 示意": "Disturbance front · diagram",
+  "扰动到达右端 · 放大看耳朵 →": "Disturbance reached the receiver · enlarge the ear →",
+  "空气镜头用 u(x,t)=uₛ(t−x/vₑ) 把同一次有限声源振动延迟到不同位置；vₑ=145 图上单位／教学秒。接收端距声源 688 图上单位，前沿约在第 4.74 教学秒到达，声源停后尾段约在第 13.74 教学秒通过。图上秒数与距离不可换算成真实声速，也不计算反射、衰减或绝对声压。": "The air view uses u(x,t)=uₛ(t−x/vₑ) to delay the same finite source vibration at each position; vₑ=145 diagram units per teaching second. The receiver is 688 diagram units from the source, so the front arrives around teaching second 4.74 and the trailing edge passes around 13.74 after the source has stopped. Diagram time and distance cannot be converted into a real sound speed. Reflections, attenuation and absolute sound pressure are not calculated."
 }

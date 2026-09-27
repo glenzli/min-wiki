@@ -6,11 +6,15 @@ The shared presets isolate pitch and amplitude. They drive the source controls, 
 
 The instrument view retains the wooden box and rubber-band illustration. A second view follows a local plane longitudinal disturbance in air. Every air parcel has a fixed equilibrium position and a time-delayed copy of the same finite source displacement. The gold parcel and open reference circle distinguish local oscillation from propagation. Compression shading follows the displacement gradient; the parcel mapping remains ordered throughout the supported control range.
 
+The air view now marks the finite emitted packet's front and, after the source stops, its trailing edge. The highlighted span is teaching geometry, not a high-pressure block. The receiver at diagram distance 688 first reacts after `688 / 145 ≈ 4.74` teaching seconds, while the tail clears it near `13.74`. Only after front arrival does an in-scene link offer the ear close-up. This link keeps source progress and shared pitch/amplitude settings; the ear study still has its own slowed clock. Academic reading shows the retarded-time model and its unit limits next to the source explanation. Children see a larger single ear diagram, can opt into the cochlear close-up, and return to the whole ear. Academic reading preserves both diagrams for comparison.
+
 Slow motion lasts 16 teaching seconds. The source tapers to zero by second 9; the emitted disturbance continues outward until it leaves the scene. Play/pause, replay and timeline scrubbing operate independently from an explicit button that plays a 1.65-second synthesized tone. Audio uses 196√T Hz with bounded gain. Changing tension or amplitude stops/reset the experiment, avoiding retroactive changes to a wave already in flight. Audio callbacks use generation identity, and hiding/leaving stops and disconnects nodes.
 
 `model.ts` owns ideal-string pitch and the retarded-time displacement/density illustration. `scene.ts` owns the instrument and air SVG geometry. `sourceStudy.ts` owns the finite clock, view transition and audio lifetime. Slow-motion distance, time and exaggerated displacement are not a measurement of actual sound speed; dots are parcel averages, not molecular thermal motion. Three-dimensional spreading, reflections and nonlinear acoustics are omitted.
 
 Science: [OpenStax, Sound](https://openstax.org/books/college-physics-2e/pages/17-1-sound) supports longitudinal compressions/rarefactions and local particle motion; [Exploratorium Sound Sandwich](https://www.exploratorium.edu/snacks/sound-sandwich) connects vibrating material to audible sound. A source stopping does not erase waves already traveling through a medium.
+
+The delayed copy in the diagram is a traveling-wave teaching model; see [OpenStax, Mathematics of Waves](https://openstax.org/books/university-physics-volume-1/pages/16-2-mathematics-of-waves). It omits geometric spreading, acoustic impedance, reflection and attenuation. The marker's appearance at the receiver is not a solved eardrum force or a claim that the two chapter clocks are synchronized.
 
 验证：保持旧有张力—音高关系，加入传播前沿因果性、声源停后波包延续、末态回到平衡、粒子不交叉和密度正有限检查。中英文说明与四段讲稿同步。浏览器交互、音频按钮与手机布局由根任务统一验收。
 

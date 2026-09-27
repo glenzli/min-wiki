@@ -1,5 +1,15 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {frequency} from '../model.ts';test('quadruple ideal tension doubles pitch and zero tension is rejected',()=>{assert.equal(frequency(4),2*frequency(1));assert.throws(()=>frequency(0));});
-import { DISPLAY_SPEED, DURATION, parcelDisplacement, relativeDensity, sourceDisplacement } from '../model.ts';
+import { DISPLAY_SPEED, DURATION, RECEIVER_DISTANCE, packetSpan, receiverArrival, parcelDisplacement, relativeDensity, sourceDisplacement } from '../model.ts';
+
+test('the finite packet reaches the receiver before its trailing edge leaves the path',()=>{
+  assert.equal(receiverArrival,RECEIVER_DISTANCE/DISPLAY_SPEED);
+  assert.deepEqual(packetSpan(0),{head:0,tail:0,visible:false});
+  assert.ok(packetSpan(receiverArrival-.01).head<RECEIVER_DISTANCE);
+  assert.equal(packetSpan(receiverArrival).head,RECEIVER_DISTANCE);
+  assert.equal(packetSpan(10).head,RECEIVER_DISTANCE);
+  assert.ok(packetSpan(10).tail>0);
+  assert.deepEqual(packetSpan(DURATION),{head:RECEIVER_DISTANCE,tail:RECEIVER_DISTANCE,visible:false});
+});
 test('distant parcels wait for arrival, then follow the same delayed source displacement',()=>{
   const distance=580,delay=distance/DISPLAY_SPEED;
   assert.equal(parcelDisplacement(distance,delay-.1,1,50),0);

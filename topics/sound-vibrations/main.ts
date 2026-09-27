@@ -11,21 +11,35 @@ import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountSourceStudy } from './sourceStudy.ts';
 import { mountHearingStudy } from '../hearing/study.ts';
+import { receiverArrival } from './model.ts';
 import { readSoundChapter, soundHref, soundConditions, comparisonSample, type SoundChapter } from './projectModel.ts';
 const el = <T extends HTMLElement = HTMLElement>(id:string) => document.getElementById(id)! as T;
 el('source-panel').innerHTML=sourcePanel;el('ear-panel').innerHTML=earPanel;
 translateDocument((source,values)=>{const translated=t(source,values);return translated===source?earT(source,values):translated;});
 let chapter=readSoundChapter(location.search),condition=soundConditions(1,28),medium:'air'|'vacuum'='air';
 let source:ReturnType<typeof mountSourceStudy>,ear:ReturnType<typeof mountHearingStudy>;
+const earHandoff=document.createElement('p');earHandoff.className='ear-handoff';earHandoff.setAttribute('role','status');
+el('ear-panel').querySelector('.lab-heading')!.after(earHandoff);
+const arrivalButton=document.createElement('button');arrivalButton.setAttribute('id','arrival-ear');arrivalButton.type='button';arrivalButton.className='arrival-button';arrivalButton.textContent=t('扰动到达右端 · 放大看耳朵 →');arrivalButton.hidden=true;
+el('source-panel').querySelector('.scene-wrap')!.append(arrivalButton);
+const waveMechanism=document.createElement('p');waveMechanism.textContent=t('空气镜头用 u(x,t)=uₛ(t−x/vₑ) 把同一次有限声源振动延迟到不同位置；vₑ=145 图上单位／教学秒。接收端距声源 688 图上单位，前沿约在第 4.74 教学秒到达，声源停后尾段约在第 13.74 教学秒通过。图上秒数与距离不可换算成真实声速，也不计算反射、衰减或绝对声压。');
+el('source-panel').querySelector('details')!.append(waveMechanism);
+const waveReference=document.createElement('a');waveReference.setAttribute('href','https://openstax.org/books/university-physics-volume-1/pages/16-2-mathematics-of-waves');waveReference.setAttribute('target','_blank');waveReference.setAttribute('rel','noreferrer');waveReference.textContent='OpenStax · Mathematics of Waves ↗';
+el('source-panel').querySelector('details')!.append(waveReference);
+function renderHandoff(){
+ const academic=document.documentElement.dataset.readingMode==='academic';
+ earHandoff.textContent=academic?t('这一站沿用声源的音高与幅度条件（当前合成音约 {{hz}} Hz），并从鼓膜附近单独放大。两个慢镜头不共用真实时间轴；耳蜗位置是定性趋势。',{hz:Math.round(condition.frequency)}):source.snapshot().time>=receiverArrival?t('同一段扰动已经走到右端。这里放大看鼓膜怎样接住它。'):t('这里从声波到达鼓膜时放大观察；想看它怎样传来，可以回到第一站。');
+}
 function setConditions(tension:number,amplitude:number,origin:'source'|'ear'|'preset'){
  condition=soundConditions(tension,amplitude);
  if(origin!=='source')source.setConditions(condition.tension,condition.amplitude);
  if(origin!=='ear')ear.setConditions(condition.pitch,condition.strength);
- renderComparison();
+ renderComparison();renderHandoff();
 }
-source=mountSourceStudy(el('source-panel'),(tension,amplitude)=>setConditions(tension,amplitude,'source'));
+source=mountSourceStudy(el('source-panel'),(tension,amplitude)=>setConditions(tension,amplitude,'source'),(time,airView)=>{arrivalButton.hidden=!airView||time<receiverArrival;});
 ear=mountHearingStudy(el('ear-panel'),(pitch,strength)=>setConditions(Math.pow(4,pitch),10+40*strength,'ear'));
 ear.setConditions(condition.pitch,condition.strength);
+arrivalButton.addEventListener('click',()=>select('ear',true));
 function curve(tension:number,amplitude:number,pathMedium:'air'|'vacuum'='air'){
  return Array.from({length:361},(_,i)=>{const sample=comparisonSample(i/360*20,tension,amplitude,pathMedium);return `${i?'L':'M'}${25+i/360*450} ${110-sample.transmitted*72}`;}).join(' ');
 }
@@ -43,6 +57,7 @@ function select(next:SoundChapter,push=false){
  document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.chapter===next)));
  el<HTMLButtonElement>('previous').disabled=next==='source';el<HTMLButtonElement>('next').disabled=next==='compare';
  if(push)history.pushState(null,'',languageHref(soundHref(next,location.search,location.hash)));
+ if(next==='ear')renderHandoff();
 }
 document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.chapter as SoundChapter,true)));
 document.querySelectorAll<HTMLButtonElement>('[data-condition]').forEach(b=>b.addEventListener('click',()=>setConditions(b.dataset.condition==='pitch'?4:1,b.dataset.condition==='amplitude'?50:28,'preset')));
@@ -52,6 +67,7 @@ el('label-toggle').addEventListener('click',()=>{const hidden=document.querySele
 function restoreAnchor(){let id:string;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}if(!id)return;const target=document.getElementById(chapter==='ear'&&!id.startsWith('h-')?'h-'+id:id)??document.getElementById(id);target?.closest('details')?.setAttribute('open','');target?.scrollIntoView?.({block:'start'});}
 window.addEventListener('popstate',()=>{select(readSoundChapter(location.search));restoreAnchor();});window.addEventListener('hashchange',restoreAnchor);
 select(chapter);renderComparison();mountReadingMode('.advanced, #source-panel details:not(.references)');mountTopicNavigation('sound-vibrations');restoreAnchor();
+document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>button.addEventListener('click',renderHandoff));renderHandoff();
 
 foldPresentationContext('.causal-bridge');
 mountPresentationFrame({ root: '#source-panel .lab', visual: '.scene-wrap', transport: '#play,#stop,#pluck' });
@@ -59,6 +75,19 @@ const hearingFrame = mountPresentationFrame({ root: '#ear-panel .lab', visual: '
 if (hearingFrame) {
  for (const caption of hearingFrame.stage.querySelectorAll('figcaption')) hearingFrame.notes.append(caption);
  document.querySelector('main>header')?.append(el('label-toggle'));
+ const figures=[...hearingFrame.stage.querySelectorAll<HTMLElement>('.specimen')];
+ const lens=document.createElement('button');lens.type='button';lens.className='ear-lens';
+ hearingFrame.stage.prepend(lens);
+ let closeup=false;
+ function setEarLens(){
+  const academic=document.documentElement.dataset.readingMode==='academic';
+  lens.hidden=academic;figures[0]!.hidden=!academic&&closeup;figures[1]!.hidden=!academic&&!closeup;
+  lens.textContent=closeup?t('回看整只耳朵'):t('放大看耳蜗');
+  lens.setAttribute('aria-pressed',String(closeup));
+ }
+ lens.addEventListener('click',()=>{closeup=!closeup;setEarLens();});
+ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>button.addEventListener('click',()=>{closeup=false;setEarLens();}));
+ setEarLens();
 }
 const comparisonFrame = mountPresentationFrame({ root: '#compare-panel', visual: '.compare-grid', paired: true });
 if (comparisonFrame) comparisonFrame.notes.prepend(el('medium').closest('label')!);

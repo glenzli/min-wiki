@@ -2,7 +2,7 @@ import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
 import { DURATION, frequency } from './model.ts';
 import { SoundScene } from './scene.ts';
-export function mountSourceStudy(root: HTMLElement, changed: (tension: number, amplitude: number) => void) {
+export function mountSourceStudy(root: HTMLElement, changed: (tension: number, amplitude: number) => void, progress?: (time: number, airView: boolean) => void) {
 let active = true;
 const el = (id: string) => root.querySelector<HTMLElement>(`#${id}`)!;
 const input = (id: string) => el(id) as HTMLInputElement;
@@ -11,6 +11,8 @@ const scene = new SoundScene(el('scene') as unknown as SVGElement);
 let time = 0, playing = false, frame = 0, last = 0, view = 0, targetView = 0, cancelView = () => {};
 let audio: AudioContext | undefined, oscillator: OscillatorNode | undefined, gainNode: GainNode | undefined, serial = 0;
 function update() {
+  root.dataset.soundView=targetView?'air':'source';
+  progress?.(time,targetView===1);
   scene.draw(time, value('tension'), value('amplitude'), view);
   el('pitch').textContent = t('实际音高约 {{frequency}} Hz', {frequency: Math.round(frequency(value('tension')))});
   el('clock').textContent = `${time.toFixed(1)} / ${DURATION} s`; input('phase').value = String(time * 100);
