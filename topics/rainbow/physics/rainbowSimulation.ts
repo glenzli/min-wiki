@@ -12,7 +12,7 @@ function spectrumColour(position: number): string {
 /** A responsive optical diagram. Geometry and elapsed teaching time are separate:
  * the water paths follow Snell's law; prism spacing and playback speed are illustrative. */
 export class RainbowSimulation {
-    scenario: Scenario = 'prism';
+    scenario: Scenario = 'sky';
     isPlaying = false;
     speed = 1;
     progress = 0;
@@ -379,17 +379,22 @@ export class RainbowSimulation {
     }
     sky() {
         const c = this.ctx, ground = this.skyViewMode === 'ground';
-        const cx = 450, r = ground ? 300 : 205, horizon = 325;
+        const wide = this.container.clientWidth / Math.max(this.container.clientHeight, 1) > 2;
+        const cx = 450, r = ground ? (wide ? 275 : 300) : (wide ? 155 : 205), horizon = wide ? 315 : 325;
         // Keep the observer's landscape steady while the antisolar direction moves below it.
         const cy = ground ? horizon + this.sunAltitude / 42.3 * r : 255;
         this.landscape(0, -this.verticalPadding, 900, 510 + 2 * this.verticalPadding, horizon, ground);
         c.save();
         if (ground) { c.beginPath(); c.rect(0, -this.verticalPadding, 900, Math.max(0, horizon + this.verticalPadding)); c.clip(); }
+        // The scene begins with the rain and observer's direction; the arc is revealed
+        // along the first teaching step rather than already being complete at time zero.
+        const reveal = .18 + .82 * clamp(this.progress / .25);
         // Slight interior brightening suggests the many rays inside the primary bow.
         const mist = c.createRadialGradient(cx, cy, 0, cx, cy, r);
         mist.addColorStop(0, '#dbeaff16'); mist.addColorStop(.9, '#e1efff24'); mist.addColorStop(1, '#dbeaff00');
+        c.globalAlpha = reveal;
         c.fillStyle = mist; c.beginPath(); c.arc(cx, cy, r, 0, Math.PI * 2); c.fill();
-        this.bow(cx, cy, r, false, true, .88);
+        this.bow(cx, cy, r, false, true, .88 * reveal);
         c.restore();
         if (ground) {
             if (this.guidesVisible) {
@@ -398,19 +403,19 @@ export class RainbowSimulation {
             }
             if (this.sunAltitude >= 43)
                 this.text(t('太阳太高，彩虹落在地平线下'), 450, 150, 17, '#5f7184', 'center');
-            else
+            else if (!wide && this.container.clientWidth >= 600)
                 this.text(t('太阳越低，露出的彩虹越多'), 450, 470, 15, '#7b8c74', 'center');
-        } else
+        } else if (this.container.clientWidth >= 600)
             this.text(t('下方也有雨雾，且视野没有遮挡'), 450, 490, 15, '#7b8c74', 'center');
         if (this.guidesVisible) {
             this.line([[cx - 10, cy], [cx + 10, cy]], '#e4edf5', 1.5);
             this.line([[cx, cy - 10], [cx, cy + 10]], '#e4edf5', 1.5);
-            this.text(t('反太阳点'), cx, cy + 30, 14, '#8290a6', 'center');
+            this.text(t('反太阳点'), cx, wide && ground ? cy - 21 : cy + 30, 14, '#8290a6', 'center');
             if (!ground) {
                 this.line([[cx, cy], [cx + r * .7, cy - r * .7]], '#e4edf5', 1.2, .7, true);
                 this.text('≈ 42°', cx + 80, cy - 70, 15, '#67758f');
             }
-            this.text(t('面对雨幕，太阳在身后'), 450, 60, 17, '#526681', 'center');
+            this.text(t('面对雨幕，太阳在身后'), 450, wide ? 122 : 60, 17, '#526681', 'center');
         }
     }
     private lastRenderKey = "";
@@ -435,7 +440,9 @@ export class RainbowSimulation {
         backdrop.addColorStop(1, this.scenario === 'sky' ? '#e6f1f6' : '#e9edf0');
         c.fillStyle = backdrop;
         c.fillRect(0, 0, width, height);
-        const scale = Math.min(width / 900, height / 510), top = (height - 510 * scale) / 2;
+        const fitSkyWidth = this.scenario === 'sky' && width / height > 2;
+        const scale = fitSkyWidth ? width / 900 : Math.min(width / 900, height / 510);
+        const top = (height - 510 * scale) / 2;
         this.diagramScale = scale;
         this.verticalPadding = top / scale;
         c.translate((width - 900 * scale) / 2, top);

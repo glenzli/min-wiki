@@ -2,11 +2,15 @@
 
 融合写实环境和增强光路的互动光学示意，包含三棱镜、雨滴、双彩虹与天空四个情景，配有中英双语和两种讲解深度。
 
+## Sky-first observation · 2026-09-28
+
+The opening now begins with the rainy sky, a faint bow and the observer's antisolar direction. The bow becomes clear as the first step advances; sunlight height then moves it against the same horizon. The sky canvas fills the wide desktop stage without stretching the circle. From that observable result, the path goes into a magnified raindrop, then a second internal reflection, with the prism retained as a comparison about dispersion. Children see fewer controls in the opening sky view; the academic color selector remains. The environment is an illustration and the appearance timing is a teaching clock, not a weather simulation.
+
 - 默认暂停。未照亮的光路不预先显示；播放会逐段照亮连续光带，20 秒结束后停住。选步骤、拖动进度条和重播都会暂停，便于逐段观察。
 - 点选颜色突出对应光线，详情显示在画布下方；关闭详情恢复完整光谱。
 - 天空情景可调太阳高度，并比较平坦地面与无遮挡全圆视野。
 - 阅读界面默认白色，仍尊重全站手动深色偏好；实验画布采用冷灰环境光、玻璃反光和柔和光束；天空及双虹叠加雨后地景，保持控制与标注可读。
-- 桌面首屏把画布作为主区域，情景入口在画布上方、分步按钮在相邻侧栏；白光从首帧可见，后续折射仍由进度驱动。儿童版可直接观察并操作，学术内容留在可展开区域。
+- 桌面首屏把画布作为主区域，情景入口在画布上方、分步按钮在相邻侧栏；首帧看雨后天空，彩虹随教学进度显现。棱镜情景的白光从首帧可见，后续折射仍由进度驱动。
 
 ## 模型边界
 

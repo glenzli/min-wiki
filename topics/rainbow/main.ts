@@ -14,7 +14,7 @@ const $ = (id: string) => document.getElementById(id) as HTMLElement;
 class RainbowApp {
   private cancelStageMotion = () => {};
     mode: 'kids' | 'academic' = 'kids';
-    scenario: 'prism' | 'raindrop' | 'double' | 'sky' = 'prism';
+    scenario: 'prism' | 'raindrop' | 'double' | 'sky' = 'sky';
     selectedColorId: string = 'red';
     lastFrame = performance.now();
     private lastProgress = -1;
@@ -192,6 +192,7 @@ class RainbowApp {
     }
     selectScenario(sc: 'prism' | 'raindrop' | 'double' | 'sky') {
         this.scenario = sc;
+        document.body.dataset.scenario = sc;
         document.querySelectorAll('[data-scenario]').forEach(b => {
             b.setAttribute('aria-pressed', String((b as HTMLElement).dataset.scenario === sc));
         });

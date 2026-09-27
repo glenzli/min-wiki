@@ -9,7 +9,7 @@
   <script type="module" src="/src/platform/theme.ts"></script>
   <link rel="stylesheet" href="./topic.css" />
 </head>
-<body data-mode="kids">
+<body data-mode="kids" data-scenario="sky">
   <div id="encyclopedia-nav" data-topic="rainbow"></div>
   <div class="app-shell">
     <header class="page-header">
@@ -29,7 +29,7 @@
       <aside class="story-panel">
         <div class="eyebrow"><span></span> 物质与现象 · 01</div>
         <h1>彩虹从哪里来？<br><span class="title-sub">跟着一束光去旅行</span></h1>
-        <p class="intro">把阳光拆开，钻进一滴雨，再回到天空。<br>一步一步，看见彩虹形成的过程。</p>
+        <p class="intro">先在雨后天空找到彩虹，再走进一滴雨，看看光怎样改变方向。</p>
         <div class="story-divider"></div>
         <div id="model-readout" class="academic-only model-readout" aria-label="几何光学读数">
           <span>水滴模型参考值 <small>由折射率计算</small></span>
@@ -62,18 +62,18 @@
         <div class="scenario-bar">
           <span class="small-label">探索情景</span>
           <div class="segmented" role="group" aria-label="选择探索情景">
-            <button aria-label="三棱镜色散" data-scenario="prism" aria-pressed="true"><span class="route-dot prism-dot"></span>三棱镜色散</button>
+            <button aria-label="天空全圆彩虹" data-scenario="sky" aria-pressed="true"><span class="route-dot sky-dot"></span>天空全圆彩虹</button>
             <button aria-label="雨滴内部光路" data-scenario="raindrop" aria-pressed="false"><span class="route-dot raindrop-dot"></span>雨滴内部光路</button>
             <button aria-label="双彩虹与暗带" data-scenario="double" aria-pressed="false"><span class="route-dot double-dot"></span>双彩虹与暗带</button>
-            <button aria-label="天空全圆彩虹" data-scenario="sky" aria-pressed="false"><span class="route-dot sky-dot"></span>天空全圆彩虹</button>
+            <button aria-label="三棱镜色散" data-scenario="prism" aria-pressed="false"><span class="route-dot prism-dot"></span>三棱镜色散</button>
           </div>
         </div>
         <p class="route-description" id="route-description"></p>
-        <label id="sun-control" class="sun-control" hidden>
+        <label id="sun-control" class="sun-control">
           <span>太阳高度</span><input id="sun-altitude" type="range" min="0" max="60" value="12" step="1" /><output id="sun-value">12°</output>
         </label>
         <div id="canvas-container" class="space-scene">
-          <div class="scene-corner"><span class="live-dot"></span><span id="scene-status">白光入射 · 准备进入三棱镜</span></div>
+          <div class="scene-corner"><span class="live-dot"></span><span id="scene-status">背对太阳</span></div>
           <div id="scene-error" class="scene-error" hidden>
             <h2>光路示意暂时没有打开</h2>
             <p>请刷新页面重试。故事讲解与光学数据仍可阅读。</p>
@@ -83,8 +83,8 @@
           <div class="spectrum-strip" id="spectrum-strip" role="toolbar" aria-label="选择要追踪的颜色">
             <!-- Populated via JS -->
           </div>
-          <button id="btn-toggle-recombine" class="feature-toggle-btn" aria-pressed="false">汇聚光谱</button>
-          <div class="segmented" id="sky-view-modes" hidden>
+          <button id="btn-toggle-recombine" class="feature-toggle-btn" aria-pressed="false" hidden>汇聚光谱</button>
+          <div class="segmented" id="sky-view-modes">
             <button data-skyview="ground" aria-pressed="true" class="view-mode-btn active">地面视野</button>
             <button data-skyview="unobstructed" aria-pressed="false" class="view-mode-btn">无遮挡全圆</button>
           </div>
