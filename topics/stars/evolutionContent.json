@@ -1,0 +1,97 @@
+{
+  "ui": {
+    "title": {"zh":"同样从云中诞生，结局却会分叉","en":"One birthplace, different endings"},
+    "context": {"zh":"选质量路径 · 拖动阶段 · 看外层与行星","en":"CHOOSE A MASS PATH · MOVE THROUGH PHASES"},
+    "progress": {"zh":"演化阶段 · 间隔不代表等长时间","en":"Evolution phase · spacing is not elapsed time"},
+    "play": {"zh":"播放演化","en":"Play evolution"},
+    "pause": {"zh":"暂停演化","en":"Pause evolution"},
+    "restart": {"zh":"从云中重新播放","en":"Replay from the cloud"},
+    "age": {"zh":"诞生后约","en":"Approximate age"},
+    "radius": {"zh":"模型半径","en":"Model radius"},
+    "remnantSize": {"zh":"遗骸尺寸参照","en":"Remnant size reference"},
+    "neutronReadout": {"zh":"直径约 24 km","en":"~24 km across"},
+    "fuel": {"zh":"核心氢状态","en":"Core hydrogen"},
+    "elapsed": {"zh":"亿年","en":"billion years"},
+    "million": {"zh":"百万年","en":"million years"},
+    "tenThousand": {"zh":"万年","en":"ten thousand years"},
+    "years": {"zh":"年","en":"years"},
+    "solarRadius": {"zh":"太阳半径","en":"solar radii"},
+    "cloudExtent": {"zh":"云团无单一表面半径","en":"Cloud has no single surface radius"},
+    "blackHoleExtent": {"zh":"视界尺寸未在本模型求出","en":"Horizon size not solved by this model"},
+    "remaining": {"zh":"仍有","en":"Remaining"},
+    "notStarted": {"zh":"尚未点燃","en":"Not ignited yet"},
+    "fusionMayOverlap": {"zh":"可能已开始，与吸积重叠","en":"May have begun while accreting"},
+    "exhausted": {"zh":"核心氢已耗尽","en":"Core hydrogen exhausted"},
+    "cloud": {"zh":"冷分子云 · 气体为主，含少量尘埃","en":"Cold molecular cloud · mostly gas, some dust"},
+    "accreting": {"zh":"稠密云核收缩 · 气体落入盘和原恒星","en":"Dense core collapses · gas feeds disk and protostar"},
+    "diskClears": {"zh":"吸积减弱 · 周围盘逐渐消散","en":"Accretion wanes · surrounding disk disperses"},
+    "magnified": {"zh":"辨认镜头 · 大小随半径变化","en":"Detail · size follows radius"},
+    "formationDetail": {"zh":"成星局部镜头 · 不按大小量尺","en":"Formation close-up · not a size ruler"},
+    "formationScale": {"zh":"冷云局部 · 不按行星轨道比例","en":"Cloud region · not on planetary-orbit scale"},
+    "mainReference": {"zh":"虚线：主序期大小参照","en":"Dashed: main-sequence reference"},
+    "formerEnvelope": {"zh":"虚线：先前膨胀的外包层","en":"Dashed: formerly expanded envelope"},
+    "mainSequence": {"zh":"主序期","en":"Main sequence"},
+    "lateEnvelope": {"zh":"晚期外包层","en":"Late envelope"},
+    "neutronDiameter": {"zh":"中子星约 24 km 直径 · 遗骸符号已放大","en":"Neutron star ~24 km across · marker enlarged"},
+    "blackHoleNoDisk": {"zh":"黑洞位置符号 · 不预设吸积盘","en":"Black-hole locator · no disk assumed"},
+    "solarSystem": {"zh":"太阳系轨道 · 半径共用同一比例","en":"Solar System orbits · shared radius scale"},
+    "mercury": {"zh":"水星","en":"Mercury"},
+    "venus": {"zh":"金星","en":"Venus"},
+    "earth": {"zh":"地球 · 命运有模型差异","en":"Earth · fate depends on model"},
+    "mars": {"zh":"火星","en":"Mars"},
+    "inside": {"zh":"已在膨胀包层内","en":"inside expanded envelope"},
+    "notYet": {"zh":"轨道仍在外侧","en":"orbit outside envelope"},
+    "dispersal": {"zh":"抛出的物质继续向外","en":"Ejected matter spreads outward"},
+    "remnant": {"zh":"留下的致密遗骸","en":"Compact remnant remains"},
+    "scale": {"zh":"成星阶段的云、盘、喷流和中心亮斑是保持同一位置的过程示意，不按行星轨道尺量；喷流不代表所有恒星都一样。成星后左图恒星半径与行星轨道共用线性比例，右图非线性放大。巨星仍近似圆形；阶段曲线和年龄为教学近似。","en":"During formation the cloud, disk, outflow and central glow illustrate one evolving location and are not on the planetary-orbit ruler; not every star has the same outflow. After formation the left star radius and planetary orbits share a linear scale; the right view is enlarged nonlinearly. The giant remains nearly round. Stage curves and ages are teaching approximations."},
+    "scaleMassive": {"zh":"成星阶段的云、盘、喷流和中心亮斑是同一位置的过程示意；大质量恒星可能在继续吸积时就开始聚变。成熟恒星的左图轮廓与 900 个太阳半径标尺共用线性比例，遗骸阶段虚线保留原外包层；右图非线性放大。无供气条件时不画黑洞吸积盘。阶段是教学插值，不是流体或核心坍缩求解。","en":"The formation cloud, disk, outflow and central glow illustrate one location; massive stars can begin fusion while still accreting. Mature-star outlines on the left share a linear scale with the 900-solar-radius ruler, and the dashed remnant-stage outline keeps the former envelope. The right view enlarges nonlinearly. No black-hole accretion disk is assumed without gas supply. Stages interpolate for teaching, not fluid dynamics or core collapse."}
+  },
+  "tracks": {
+    "solar": {
+      "name":{"zh":"太阳型 · 约 1 个太阳质量","en":"Sun-like · about 1 solar mass"},
+      "summary":{"zh":"从原恒星到核心氢聚变，再经红巨星、外层抛散成为白矮星。太阳不会沿这条路径形成黑洞。","en":"From protostar to core hydrogen fusion, then red giant, outer-layer loss and white dwarf. The Sun will not form a black hole on this path."},
+      "stages":[
+        {"name":{"zh":"分子云收缩","en":"Cloud contracts"},"body":{"zh":"冷分子云以气体为主，只有少量尘埃。局部稠密云核受引力收缩，中心开始变亮；此时亮光来自收缩与吸积，尚不是稳定的核心氢聚变。","en":"A cold molecular cloud is mostly gas with a little dust. A denser core collapses under gravity and its center begins to glow. Contraction and accretion power this early light, before sustained core hydrogen fusion."}},
+        {"name":{"zh":"原恒星与吸积盘","en":"Protostar and accretion disk"},"body":{"zh":"物质向中心落下，旋转使部分气体形成扁平的吸积盘；有些形成中的恒星还沿轴向抛出物质。盘逐渐变薄，原恒星继续升温。喷流和盘是过程示意，不是流体计算。","en":"Infall feeds the center while rotation flattens some gas into an accretion disk. Some forming stars also expel material along the axis. The disk thins as the protostar heats. Disk and outflow are process illustrations, not fluid calculations."}},
+        {"name":{"zh":"主序：核心氢聚变","en":"Main sequence: core fusion"},"body":{"zh":"核心达到持续氢聚变的条件，氢变成氦并释放能量；原恒星成为主序星。图中从主序早期开始，太阳如今约 46 亿岁，仍处于这一漫长阶段。","en":"Once the core sustains hydrogen fusion, hydrogen becomes helium and releases energy; the protostar joins the main sequence. The scene begins early in that phase. The Sun, now about 4.6 billion years old, is still in it."}},
+        {"name":{"zh":"核心氢逐渐耗尽","en":"Core hydrogen runs low"},"body":{"zh":"核心氢供应减少，中心收缩变热，周围氢壳层开始更显著地供能。外层将响应内部变化，而不是突然换成另一颗星。","en":"As core hydrogen runs low, the center contracts and heats while a surrounding hydrogen-burning shell becomes important. The envelope responds; this is still the same star."}},
+        {"name":{"zh":"红巨星：外层膨胀","en":"Red giant: envelope expands"},"body":{"zh":"松散包层向外扩张。按这个 180 倍太阳半径的代表性画面，轮廓跨过水星与金星轨道；地球最终是否被吞没还涉及太阳失重、轨道变化与潮汐，不能只看静态圆圈。","en":"The loose envelope expands. At this illustrative 180-solar-radius anchor, the outline crosses Mercury’s and Venus’s orbits. Earth's eventual engulfment also depends on solar mass loss, orbit changes and tides; a static circle cannot decide it."}},
+        {"name":{"zh":"抛散外层","en":"Outer layers disperse"},"body":{"zh":"晚期外层被抛向太空，形成发光气体壳；名字叫行星状星云，却不是行星造出的。中心继续收缩，材料没有凭空消失。","en":"Late outer layers leave the star as a glowing gas shell. Despite its name, a planetary nebula is not made by planets. The center contracts; the material has not vanished."}},
+        {"name":{"zh":"白矮星慢慢冷却","en":"White dwarf cools"},"body":{"zh":"留下大致地球大小的致密核心，不再靠稳定核心聚变供能，仍会因余热发光并缓慢冷却。它不是小型黑洞。","en":"An approximately Earth-sized dense core remains. Stable core fusion has ended, but stored heat still makes it glow as it slowly cools. It is not a small black hole."}}
+      ]
+    },
+    "massive": {
+      "name":{"zh":"大质量 · 约 15 个太阳质量","en":"Massive · about 15 solar masses"},
+      "summary":{"zh":"高质量恒星更快消耗燃料；这里选择一次留下中子星的核心坍缩案例。质量不能单独精确决定每一颗星的终点。","en":"A high-mass star uses fuel faster. This example chooses a core-collapse outcome leaving a neutron star. Initial mass alone does not precisely predict every star’s endpoint."},
+      "stages":[
+        {"name":{"zh":"云核开始坍缩","en":"Dense cloud core collapses"},"body":{"zh":"冷云中一处稠密区域继续吸积大量气体，也可能同时形成别的恒星。云的范围是示意；它不是一颗边界清楚的大恒星。","en":"A dense region of a cold cloud accretes much more gas, and other stars may form nearby. The cloud extent is illustrative, not the surface of one giant star."}},
+        {"name":{"zh":"吸积与喷流","en":"Accretion and outflow"},"body":{"zh":"落入的气体在旋转盘中向内输送，部分物质可能沿轴向流出。大质量原恒星可能尚在吸积时就开始核心聚变，因此盘消散与聚变开始并非突然切换的两帧。","en":"Infalling gas moves inward through a rotating disk while some may flow outward along the axis. A massive protostar may begin core fusion while still accreting, so disk dispersal and fusion are not two abruptly separate frames."}},
+        {"name":{"zh":"炽热的主序星","en":"Hot main-sequence star"},"body":{"zh":"更大的质量使核心须更快地产生能量来支撑外层，因此寿命通常只有数百万到数千万年，远短于太阳。","en":"Greater mass requires the core to generate energy faster to support the envelope, so the lifetime is often millions to tens of millions of years, far shorter than the Sun's."}},
+        {"name":{"zh":"核心燃料接力","en":"Successive core fuels"},"body":{"zh":"核心氢耗尽后，收缩和新的聚变阶段继续；不同燃料逐步接力，越往后持续越短。这里不把所有大质量恒星画成完全相同的内部洋葱层。","en":"After core hydrogen runs out, contraction and later fusion stages follow. Successive fuels last less time. The drawing does not prescribe identical onion-like layers for all massive stars."}},
+        {"name":{"zh":"红超巨星外层","en":"Red-supergiant envelope"},"body":{"zh":"外层可能扩张到数百个太阳半径。它的大小不表示核心也同样巨大；画面中致密内部单独标出。","en":"The envelope may expand to hundreds of solar radii. The core is not equally huge; the compact interior is marked separately."}},
+        {"name":{"zh":"核心坍缩与抛射","en":"Core collapse and ejection"},"body":{"zh":"当核心不再获得足够支撑，它迅速坍缩，外层可能以超新星方式抛出。冲击波和物质传播在这里是过程示意，不是爆炸速度计算。","en":"When the core loses support it collapses rapidly, and the envelope can be expelled in a supernova. The shock and escaping matter here show the sequence, not a calculated blast speed."}},
+        {"name":{"zh":"中子星遗骸","en":"Neutron-star remnant"},"body":{"zh":"这个案例留下直径约 24 千米的极致密中子星；左侧虚线保留坍缩前膨胀的外包层，让两者大小相差多少更容易想象。遗骸光点是放大的定位符，不能用它量实际直径。","en":"This example leaves an extremely dense neutron star roughly 24 km across. The dashed outline at left keeps its former expanded envelope for context. The remnant dot is an enlarged locator, not a measurable diameter."}}
+      ]
+    },
+    "very-massive": {
+      "name":{"zh":"极大质量 · 约 30 个太阳质量","en":"Very massive · about 30 solar masses"},
+      "summary":{"zh":"这里选择形成恒星级黑洞的一个分支，不把 30 倍质量当成放之四海皆准的黑洞门槛。","en":"This example follows one stellar-black-hole outcome. Thirty solar masses is not a universal black-hole threshold."},
+      "stages":[
+        {"name":{"zh":"大量气体开始聚集","en":"A large cloud gathers"},"body":{"zh":"稠密云核从以气体为主的分子云中收集物质；最终质量会改变之后的路径。中心初始亮度主要来自收缩和吸积。","en":"A dense core gathers material from a mostly gaseous molecular cloud. Its final mass will affect the later path; early central light mainly comes from contraction and accretion."}},
+        {"name":{"zh":"收缩、盘与外流","en":"Collapse, disk and outflow"},"body":{"zh":"气体经吸积盘继续流向原恒星，部分物质可能沿两极外流。大质量恒星的核心聚变与持续吸积可以重叠，画面让盘逐渐消散而不是瞬间换成另一颗星。","en":"Gas continues through an accretion disk toward the protostar and some may flow out along the poles. Core fusion and continued accretion can overlap in massive stars; the disk fades rather than being replaced by another star at one instant."}},
+        {"name":{"zh":"短暂而炽亮的主序","en":"Brief, bright main sequence"},"body":{"zh":"巨大的核心压力要求很高的能量产率，因此代表性寿命只有几百万年。它并非太阳一路长大后的下一站。","en":"Enormous core pressure requires a high energy output, giving a representative lifetime of only a few million years. It is not the Sun's next stage."}},
+        {"name":{"zh":"核心继续演化","en":"Core evolves further"},"body":{"zh":"轻元素燃料逐步耗尽；质量损失、金属丰度和相伴恒星都会影响结局。","en":"Successive light-element fuels run low. Mass loss, composition and companions can alter the outcome."}},
+        {"name":{"zh":"巨大的外包层","en":"Enormous envelope"},"body":{"zh":"这里画一个有膨胀包层的示例。极大质量恒星并非都必经同一种红超巨星形态。","en":"This example has an expanded envelope. Very massive stars do not all pass through the same red-supergiant form."}},
+        {"name":{"zh":"核心失去支撑","en":"Core loses support"},"body":{"zh":"核心坍缩；外层抛射与回落的细节因恒星而异。画面不预言具体一颗星的爆发亮度或遗骸质量。","en":"The core collapses. Ejection and fallback differ among stars. The scene predicts neither a particular explosion brightness nor a remnant mass."}},
+        {"name":{"zh":"黑洞遗骸","en":"Black-hole remnant"},"body":{"zh":"这个分支留下恒星级黑洞。左侧虚线保留坍缩前的外包层；黑色记号只是位置符号，不能拿来量事件视界。吸积盘不是黑洞自带的：有些坍缩回落物能很快形成盘，另一些孤立遗骸则没有明亮的盘；本画面不预设供气。","en":"This branch leaves a stellar black hole. The dashed outline retains the pre-collapse envelope; the dark mark locates the remnant but does not measure its horizon. An accretion disk is not intrinsic to a black hole: fallback can form one promptly in some collapses, while other isolated remnants lack a bright disk. This scene assumes no particular gas supply."}}
+      ]
+    }
+  },
+  "sources": {
+    "life":"https://science.nasa.gov/universe/stars/",
+    "formation":"https://science.nasa.gov/mission/webb/science-overview/science-explainers/webbs-star-formation-discoveries/",
+    "planets":"https://science.nasa.gov/exoplanets/resources/life-and-death/chapter-6/",
+    "remnants":"https://science.nasa.gov/mission/webb/star-lifecycle/",
+    "accretion":"https://science.nasa.gov/universe/black-holes/anatomy/"
+  }
+}

@@ -17,8 +17,8 @@ test('depth round removes duplicate cards, retaining all published compatibility
  const localized=structuredClone(catalog);for(const t of localized.topics){t.title=english[t.title]??t.title;t.summary=english[t.summary]??t.summary;t.tags=[...t.tags,...t.tags.map(v=>english[v]??v)];}
  for(const [id,parent]of Object.entries(absorbed))assert.ok(findTopics(localized,{query:localized.topics.find(t=>t.id===id).title}).some(t=>t.id===parent));
 });
-test('short but meaningful independent experiments are not removed just for being short',()=>{
- const visible=findTopics(catalog).map(t=>t.id);for(const id of ['ant-trails','shadows','magnets','camouflage','handwashing','tap-water'])assert.ok(visible.includes(id));
+test('short but meaningful independent experiments remain listed when their mechanism is clear',()=>{
+ const visible=findTopics(catalog).map(t=>t.id);for(const id of ['ant-trails','shadows','magnets','duck-feet','handwashing'])assert.ok(visible.includes(id));
 });
 test('all four primary entries retain the navigation host and theme initialization shell',()=>{
  for(const id of ['ant-trails','frog-life','friction','sound-vibrations']){const html=readFileSync(new URL(`../topics/${id}/index.html`,import.meta.url),'utf8');assert.match(html,/id="encyclopedia-nav"/);assert.match(html,/src="\/src\/platform\/theme\.ts"/);assert.match(html,/data-content-theme="light"/);}

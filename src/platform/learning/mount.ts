@@ -118,12 +118,17 @@ export async function mountTopicLearning(id: string, options: { host?: HTMLEleme
   else main.append(section);
   enhanceDisclosure(academic); enhanceDisclosure(narration);
 
-  const activeMode = document.querySelector<HTMLButtonElement>('button[data-mode][aria-pressed="true"]');
-  setDisclosureOpen(academic, activeMode?.dataset.mode === 'academic', false);
-  document.addEventListener('click', event => {
-    const button = (event.target as Element).closest<HTMLButtonElement>('button[data-mode]');
-    if (button) setDisclosureOpen(academic, button.dataset.mode === 'academic');
-  }, { signal: options.signal });
+  // A scene-specific guide sits directly beneath the experiment. Keep the
+  // broader topic notes as an optional appendix instead of opening both at once.
+  if (document.querySelector('.scene-reading-study')) setDisclosureOpen(academic, false, false);
+  else {
+    const activeMode = document.querySelector<HTMLButtonElement>('button[data-mode][aria-pressed="true"]');
+    setDisclosureOpen(academic, activeMode?.dataset.mode === 'academic', false);
+    document.addEventListener('click', event => {
+      const button = (event.target as Element).closest<HTMLButtonElement>('button[data-mode]');
+      if (button) setDisclosureOpen(academic, button.dataset.mode === 'academic');
+    }, { signal: options.signal });
+  }
   const jump = element('a', 'learning-jump', t('解说稿'));
   jump.href = '#narration';
   jump.addEventListener('click', () => setDisclosureOpen(narration, true, false));

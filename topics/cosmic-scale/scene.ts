@@ -1,6 +1,7 @@
 import * as THREE from 'three';
-import { viewportScale, AU_KM, LIGHT_YEAR_KM as LY, EARTH_RADIUS_KM, SUN_CENTER_DISTANCE_KM, scaleState, ruler, displayLength, viewPoint, viewTilt, smooth, SUN_RADIUS_KM, type Origin } from './model.ts';
+import { anchorForScale, cameraFrameScale, AU_KM, LIGHT_YEAR_KM as LY, EARTH_RADIUS_KM, SUN_CENTER_DISTANCE_KM, scaleState, ruler, viewPoint, viewTilt, smooth, SUN_RADIUS_KM, type Origin } from './model.ts';
 import { GalaxyVolume } from './galaxy.ts';
+import { MacroScene } from './macroScene.ts';
 import data from './content.json';
 import earthMap from '../solar-system/assets/2k_earth_daymap.jpg';
 import cloudMap from '../solar-system/assets/2k_earth_clouds.jpg';
@@ -11,6 +12,8 @@ import { ORBIT_RADII_AU as ORBITS } from './model.ts';
 const RADII=[2439.7,6051.8,6371,3389.5,69911,58232,25362,24622];
 const COLORS=['#a99e8b','#e4c6a2','#68b8e8','#c58160','#d3b38b','#dec391','#a0d9e1','#7295ed'];
 const GALAXIES=[[-SUN_CENTER_DISTANCE_KM,0,50000*LY],[2.3e6*LY,Math.sqrt(2.5**2-2.3**2)*1e6*LY,100000*LY],[1.45e6*LY,-Math.sqrt(2.7**2-1.45**2)*1e6*LY,30000*LY]];
+// Sample markers reveal that the group has many smaller members. Their placement is illustrative.
+const DWARF_SAMPLES=[[-.64,.24],[-.47,-.36],[-.22,.52],[.31,-.42],[.43,.35],[.08,.72],[.91,-.66],[1.20,.83],[1.77,.25],[1.90,1.30],[2.13,.47],[2.58,.99],[2.80,.31],[2.47,-.10]] as const;
 const random=(n:number)=>{const f=Math.sin(n*127.13+88.3)*43758.54;return f-Math.floor(f);};
 
 /** Orthographic physical geometry plus a separately sized, readable annotation layer. */
@@ -34,9 +37,11 @@ export class CosmicScene {
   private orbits:THREE.LineLoop[]=[];
   private moonOrbit:THREE.LineLoop;
   private galaxies=[new GalaxyVolume(1),new GalaxyVolume(5),new GalaxyVolume(11)];
+  private macro=new MacroScene();
   private dark:THREE.Mesh;
   private neighborhood:THREE.Points;
-  constructor(private canvas:HTMLCanvasElement,private text:(v:{zh:string;en:string})=>string,private failure:(failed:boolean)=>void=()=>{},private onFraming:(widthKm:number)=>void=()=>{}){
+  private wideNeighborhood:THREE.Points;
+  constructor(private canvas:HTMLCanvasElement,private text:(v:{zh:string;en:string})=>string,private failure:(failed:boolean)=>void=()=>{},private onFraming:(widthKm:number)=>void=()=>{},private formatDistance:(km:number)=>string=km=>String(km)){
     this.renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'low-power'});
     this.renderer.setClearColor('#030812');this.renderer.outputColorSpace=THREE.SRGBColorSpace;
     this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.05;
@@ -65,11 +70,27 @@ export class CosmicScene {
     this.moonOrbit=this.makeOrbit('#91b9bf');
     this.galaxies.forEach(g=>this.world.add(g.root));
     this.dark=new THREE.Mesh(new THREE.SphereGeometry(1,32,20),new THREE.MeshBasicMaterial({color:'#80b6cf',wireframe:true,transparent:true,opacity:.045,depthWrite:false}));this.world.add(this.dark);
-    // A stable illustrative local population bridges individual neighbors and the disk.
+    // Two bounded sampling levels keep the local field populated without showing
+    // a Sun-centered sphere as the camera backs into the wider galactic disk.
+    const makeField=(positions:number[],colors:number[])=>{
+      const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));
+      const points=new THREE.Points(geometry,new THREE.PointsMaterial({size:1.5,sizeAttenuation:false,vertexColors:true,transparent:true,opacity:.65,depthWrite:false,blending:THREE.AdditiveBlending}));
+      this.world.add(points);return points;
+    };
     const nearbyPositions:number[]=[],nearbyColors:number[]=[];
-    for(let i=0;i<6000;i++){const r=Math.cbrt(random(i*5))*1.5,a=random(i*5+1)*Math.PI*2,h=random(i*5+2)*2-1,q=Math.sqrt(1-h*h);nearbyPositions.push(r*q*Math.cos(a),-r*q*Math.sin(a),r*h*.35);const b=.45+.5*random(i*5+3);nearbyColors.push(b*.8,b*.9,b);}
-    const nearbyGeometry=new THREE.BufferGeometry();nearbyGeometry.setAttribute('position',new THREE.Float32BufferAttribute(nearbyPositions,3));nearbyGeometry.setAttribute('color',new THREE.Float32BufferAttribute(nearbyColors,3));
-    this.neighborhood=new THREE.Points(nearbyGeometry,new THREE.PointsMaterial({size:1.5,sizeAttenuation:false,vertexColors:true,transparent:true,opacity:.65,depthWrite:false,blending:THREE.AdditiveBlending}));this.world.add(this.neighborhood);
+    for(let i=0;i<6000;i++){
+      const r=Math.cbrt(random(i*5))*1.5,a=random(i*5+1)*Math.PI*2,h=random(i*5+2)*2-1,q=Math.sqrt(1-h*h);
+      nearbyPositions.push(r*q*Math.cos(a),-r*q*Math.sin(a),r*h*.35);
+      const b=(.45+.5*random(i*5+3))*(1-smooth((r-1)/.5));nearbyColors.push(b*.8,b*.9,b);
+    }
+    this.neighborhood=makeField(nearbyPositions,nearbyColors);
+    const widePositions:number[]=[],wideColors:number[]=[];
+    for(let i=0;i<40000;i++){
+      const r=Math.sqrt(random(i*5+92000))*12,a=random(i*5+92001)*Math.PI*2,h=random(i*5+92002)*2-1;
+      widePositions.push(r*Math.cos(a),-r*Math.sin(a),h*(.12+.02*r));
+      const b=.38+.54*random(i*5+92003);wideColors.push(b*.8,b*.9,b);
+    }
+    this.wideNeighborhood=makeField(widePositions,wideColors);
     this.observer=new ResizeObserver(()=>{if(this.last&&!document.hidden)this.draw(...this.last);});this.observer.observe(this.wrapper);
     canvas.addEventListener('webglcontextlost',this.contextLost);canvas.addEventListener('webglcontextrestored',this.contextRestored);
   }
@@ -90,7 +111,7 @@ export class CosmicScene {
     }
     this.camera.top=height/width;this.camera.bottom=-height/width;this.camera.updateProjectionMatrix();
     const c=this.c;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,width,height);
-    const framing=viewportScale(width,height),half=scaleState(progress).halfWidth*framing,angle=viewTilt(progress,tilt)*Math.PI/2;
+    const framing=cameraFrameScale(progress,width,height),half=scaleState(progress).halfWidth*framing,angle=viewTilt(progress,tilt)*Math.PI/2;
     this.onFraming(half*2);
     const point=(x:number,y=0,z=0):[number,number,number]=>{const p=viewPoint(x,y,z,progress,tilt,origin);return [p[0]/framing,p[1]/framing,p[2]/framing];};
     const screen=(x:number,y=0,z=0):[number,number]=>{const p=point(x,y,z);return [width/2*(1+p[0]),height/2-width/2*p[1]];};
@@ -106,9 +127,15 @@ export class CosmicScene {
     orbit(this.moonOrbit,0,384400);
     ORBITS.forEach((a,i)=>{orbit(this.orbits[i]!,-AU_KM,a*AU_KM);body(this.planets[i]!,-AU_KM+Math.cos(i*.9)*a*AU_KM,Math.sin(i*.9)*a*AU_KM,RADII[i]!);if(i===2)this.planets[i]!.visible=false;});
     const fade=smooth((Math.log10(half/LY)-2.3)/1.4);
-    const localFade=smooth((Math.log10(half/LY)-1.1)/.8)*(1-smooth((Math.log10(half/LY)-3.3)/.9));
-    this.neighborhood.visible=localFade>0&&layers.disk;this.neighborhood.position.set(...point(0));this.neighborhood.scale.setScalar(1000*LY/half);this.neighborhood.rotation.x=angle;
-    (this.neighborhood.material as THREE.PointsMaterial).opacity=localFade*.7;
+    const logHalfLy=Math.log10(half/LY);
+    const localFade=smooth((logHalfLy-1.1)/.8)*(1-smooth((logHalfLy-2.78)/.5));
+    const wideFade=smooth((logHalfLy-2.7)/.6)*(1-smooth((logHalfLy-3.7)/.5));
+    const localField=(field:THREE.Points,opacity:number,size:number)=>{
+      field.visible=opacity>.001&&layers.disk;field.position.set(...point(0));field.scale.setScalar(1000*LY/half);field.rotation.x=angle;
+      const material=field.material as THREE.PointsMaterial;material.opacity=opacity*.7;material.size=size;
+    };
+    localField(this.neighborhood,localFade,1.5-.3*smooth((logHalfLy-2.5)/.8));
+    localField(this.wideNeighborhood,wideFade,1.2-.2*smooth((logHalfLy-3)/1));
     this.galaxies.forEach((g,i)=>{
       const [x,y,radius]=GALAXIES[i]!,r=radius!/half;g.root.visible=fade>0&&r*width/2>.5;
       g.root.position.set(...point(x!,y!));g.root.scale.setScalar(r);
@@ -124,13 +151,38 @@ export class CosmicScene {
       if(x<5||x>width-5||y<5||y>height-50)return;c.strokeStyle=color;c.lineWidth=1;c.beginPath();
       if(cross){c.moveTo(x-6,y);c.lineTo(x+6,y);c.moveTo(x,y-6);c.lineTo(x,y+6);}else c.arc(x,y,3,0,Math.PI*2);c.stroke();
     };
-    const ep=screen(0),er=EARTH_RADIUS_KM/half*width/2;if(origin==='earth'||half<AU_KM*400){if(er<5)marker(...ep,true);label(this.text(data.ui.earth),ep[0],ep[1]+Math.max(er+20,23));}
-    const sp=screen(-AU_KM);if(origin==='sun'||half<AU_KM*400){if(SUN_RADIUS_KM/half*width/2<4)marker(...sp,false,'#ffcf80');label(this.text(data.ui.sun),sp[0],sp[1]-Math.max(20,SUN_RADIUS_KM/half*width/2+16));}
+    const macroCenter=scaleState(progress,origin).centerX;
+    this.macro.draw(c,width,height,half/LY,scaleState(progress).halfWidth/LY,(x,y)=>[width/2+(x*1e6*LY-macroCenter)/half*width/2,height/2-y*1e6*LY/half*width/2],label,this.text);
+    const ep=screen(0),sp=screen(-AU_KM),anchor=origin==='earth'?ep:sp;
+    const bodyPixels=(origin==='earth'?EARTH_RADIUS_KM:SUN_RADIUS_KM)/half*width/2;
+    if(bodyPixels<5){
+      const regionBlend=smooth((Math.log10(half/LY)-10.1)/.6);
+      if(regionBlend<1){c.save();c.globalAlpha=1-regionBlend;marker(...anchor,true);c.restore();}
+      if(regionBlend>.01&&anchor[0]>8&&anchor[0]<width-8&&anchor[1]>8&&anchor[1]<height-50){
+        c.save();c.globalAlpha=regionBlend;c.strokeStyle='#ffe29aaa';c.lineWidth=1.5;c.beginPath();c.arc(...anchor,8,0,Math.PI*2);c.stroke();c.fillStyle='#ffe29a';c.beginPath();c.arc(...anchor,2.3,0,Math.PI*2);c.fill();c.restore();
+      }
+    }
+    label(this.text(data.ui[anchorForScale(progress,origin)]),anchor[0],anchor[1]+Math.max(bodyPixels+20,23));
+    const other=origin==='earth'?sp:ep;
+    if(half<AU_KM*400&&Math.hypot(anchor[0]-other[0],anchor[1]-other[1])>35){
+      const otherPixels=(origin==='earth'?SUN_RADIUS_KM:EARTH_RADIUS_KM)/half*width/2;
+      if(otherPixels<4)marker(...other,false,origin==='earth'?'#ffcf80':'#bddfdb');
+      label(this.text(origin==='earth'?data.ui.sun:data.ui.earth),other[0],other[1]+Math.max(20,otherPixels+16));
+    }
     const moonPixels=384400/half*width/2;if(moonPixels>35&&moonPixels<width){const p=screen(384400*.8,384400*.6);if(1737.4/half*width/2<3)marker(...p);label(this.text(data.ui.moon),p[0],p[1]+18);}
     if(half>AU_KM*.15&&half<AU_KM*350)ORBITS.forEach((a,i)=>{if(i===2)return;const p=screen(-AU_KM+Math.cos(i*.9)*a*AU_KM,Math.sin(i*.9)*a*AU_KM);if(RADII[i]!/half*width/2<3)marker(...p);if(a*AU_KM/half*width/2>35)label(this.text(data.planets[i]!),p[0],p[1]+19);});
     if(half>LY*.5&&half<300*LY)for(const [x,y,key]of [[3.8,Math.sqrt(4.25**2-3.8**2),'proxima'],[-7,-Math.sqrt(8.6**2-7**2),'sirius']] as const){const p=screen(x*LY,y*LY);marker(...p);label(this.text(data.ui[key]),p[0],p[1]+22);}
-    if(half>30000*LY){const p=screen(-SUN_CENTER_DISTANCE_KM);label(this.text(data.ui.milky),p[0],p[1]-Math.min(height*.3,50000*LY/half*width/2)-18);}
-    if(half>200000*LY)for(const i of [1,2]){const [x,y,r]=GALAXIES[i]!,p=screen(x!,y!);label(this.text(i===1?data.ui.andromeda:data.ui.triangulum),p[0],p[1]+Math.max(24,r!/half*width/2));}
+    if(half>30000*LY&&half<12e6*LY){const p=screen(-SUN_CENTER_DISTANCE_KM);label(this.text(data.ui.milky),p[0],p[1]-Math.min(height*.3,50000*LY/half*width/2)-18);}
+    if(half>200000*LY&&half<12e6*LY)for(const i of [1,2]){const [x,y,r]=GALAXIES[i]!,p=screen(x!,y!);label(this.text(i===1?data.ui.andromeda:data.ui.triangulum),p[0],p[1]+Math.max(24,r!/half*width/2));}
+    if(half>1.1e6*LY&&half<12e6*LY){
+      c.save();c.globalAlpha=smooth((half/LY-1.1e6)/.9e6);
+      for(const [x,y] of DWARF_SAMPLES){const [px,py]=screen(x*1e6*LY,y*1e6*LY);if(px<8||px>width-8||py<10||py>height-65)continue;
+        const glow=c.createRadialGradient(px,py,0,px,py,6);glow.addColorStop(0,'#d4e8e999');glow.addColorStop(1,'#91c1d000');c.fillStyle=glow;c.beginPath();c.arc(px,py,6,0,Math.PI*2);c.fill();
+        c.strokeStyle='#e2eac7b3';c.lineWidth=1;c.beginPath();c.arc(px,py,2.5,0,Math.PI*2);c.stroke();
+      }
+      c.restore();
+      const [lx,ly]=screen(-.47e6*LY,-.36e6*LY);label(this.text(data.ui.dwarfSamples),lx-18,ly+28);
+    }
     c.font='12px system-ui';c.textAlign='center';
     const boxes:{x:number;y:number;w:number}[]=[];
     for(const l of labels){
@@ -138,9 +190,9 @@ export class CosmicScene {
       for(let attempt=0;attempt<5&&boxes.some(b=>Math.abs(b.x-x)<(b.w+w)/2+3&&Math.abs(b.y-y)<20);attempt++)y-=22;
       if(y<16)continue;boxes.push({x,y,w});c.fillStyle='#030812bb';c.fillRect(x-w/2,y-13,w,19);c.fillStyle='#d1e0e8';c.fillText(l.value,x,y);
     }
-    const length=ruler(half*.4),pixels=length/half*width/2,display=displayLength(length);
+    const length=ruler(half*.4),pixels=length/half*width/2;
     c.strokeStyle='#afcdc6';c.lineWidth=1.5;c.beginPath();c.moveTo(24,height-24);c.lineTo(24+pixels,height-24);c.moveTo(24,height-29);c.lineTo(24,height-19);c.moveTo(24+pixels,height-29);c.lineTo(24+pixels,height-19);c.stroke();
-    c.fillStyle='#dce8e3';c.textAlign='left';c.fillText(display.value.toLocaleString(undefined,{maximumSignificantDigits:2})+' '+display.unit,24,height-37);
+    c.fillStyle='#dce8e3';c.textAlign='left';c.fillText(this.formatDistance(length),24,height-37);
     if(width>600){c.textAlign='right';c.fillStyle='#859aa8';c.fillText(this.text(data.ui.marker),width-24,height-23);}
   }
   dispose(){

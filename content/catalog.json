@@ -65,7 +65,7 @@
       "id": "cosmic-scale",
       "title": "星系与宇宙尺度",
       "category": "universe",
-      "summary": "从地球连续拉远到太阳系、银河系和本星系群，找回我们的位置，拆看银河结构。",
+      "summary": "从地球连续拉远，经太阳系、银河系和本星系群，直到可观测宇宙；辨认真实距离与结构示意。",
       "tags": [
         "宇宙",
         "星系",
@@ -87,7 +87,7 @@
       "id": "stars",
       "title": "恒星与多星系统",
       "category": "universe",
-      "summary": "从太阳的远近与内部出发，比较恒星，再看双星与层级三星怎样围绕共同质心运动。",
+      "summary": "比较恒星怎样形成、发光、膨胀并走向不同结局，再探索太阳表面、双星与数值三体。",
       "tags": [
         "恒星",
         "太阳",
@@ -365,6 +365,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
+      "listed": false,
       "updated": "2026-09-12"
     },
     {
@@ -890,6 +891,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
+      "listed": false,
       "updated": "2026-09-12"
     },
     {
@@ -1059,6 +1061,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
+      "listed": false,
       "updated": "2026-09-12"
     },
     {
@@ -1121,6 +1124,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
+      "listed": false,
       "updated": "2026-09-12"
     },
     {
@@ -1235,6 +1239,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
+      "listed": false,
       "updated": "2026-09-12"
     },
     {

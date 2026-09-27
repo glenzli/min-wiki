@@ -21,10 +21,35 @@
 #stellar-observation .explanation{padding:8px 12px;font-size:12px;line-height:1.7}#stellar-observation .explanation h3{font-size:15px}#stellar-observation .boundary{font-size:11px}
 #stellar-observation .stellar-layer-key{font-size:12px;margin:8px 12px;padding-left:20px}
 #stellar-observation .three-status{font-size:11px;line-height:1.5;min-height:0;padding:0 12px;margin:0 0 4px}
+#stellar-observation .three-compare-note{margin:0 12px 6px;padding:6px 9px;border-left:2px solid var(--border);background:var(--tint);color:var(--secondary);font-size:11px;line-height:1.5}
+#stellar-observation .three-compare-note[hidden]{display:none}
+
+/* Keep the experiment controls and explanatory callouts in the reading palette. */
+#stellar-observation .three-body .three-encounter,#stellar-observation .boundary{border-left-color:var(--border)}
+#stellar-observation .three-presets{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+#stellar-observation .three-presets button{min-height:36px;white-space:nowrap}
 #stellar-observation .three-playback .three-time{flex-basis:180px}#stellar-observation .three-playback .three-overlay{flex-basis:auto;font-size:11px}
 #stellar-observation .three-conditions{grid-template-columns:1fr;gap:8px}#stellar-observation .three-initial summary{line-height:1.6;min-height:44px;padding:8px 0}
 @media(min-width:1000px){#stellar-observation{height:calc(100dvh - var(--observation-top,160px));min-height:420px;display:flex;flex-direction:column}#stellar-observation .observatory{flex:1;overflow:hidden}#stellar-observation.observation-expanded{min-height:0;padding:12px 18px}#stellar-observation #stellar-canvas,#stellar-observation .three-canvas{height:0}}
 @media(max-width:999px){#stellar-observation .observatory{grid-template-columns:1fr}#stellar-observation .stellar-notes{overflow:visible;border-left:0;border-top:1px solid var(--border)}#stellar-observation .chapter-nav{flex-wrap:wrap}#stellar-observation .chapter-nav button{flex:1 1 40%}#stellar-observation .stellar-stage{flex:none}#stellar-observation .controls{flex-wrap:wrap}.stellar-workspace{padding-inline:12px}}
+@media(max-width:700px){#stellar-observation .three-body .scene-heading{flex-wrap:wrap}#stellar-observation .three-presets{width:100%;justify-content:stretch}#stellar-observation .three-presets button{flex:1}}
+@media(max-width:649px){#stellar-observation:has(.orbit-controls) #stellar-canvas{flex:none}}
 html[data-topic-ui] body>main.stellar-workspace{padding-block:12px 48px}
 html[data-topic-ui] body>main.stellar-workspace>header{margin:0 0 10px}
 html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:0;line-height:1.3}
+#stellar-observation .evolution-controls,#stellar-observation .anatomy-controls{align-items:center}
+#stellar-observation .evolution-controls>select{max-width:100%;min-width:190px}
+#stellar-observation .evolution-controls>label{flex:1 1 100%;max-width:none}
+#stellar-observation .evolution-phases{display:flex;gap:5px;width:100%;overflow-x:auto;padding:2px 0 6px;scrollbar-width:thin}
+#stellar-observation .evolution-phases button{white-space:nowrap;flex:0 0 auto}
+#stellar-observation .anatomy-controls button{flex:1 1 130px}
+#stellar-observation:has(.evolution-controls) #stellar-canvas,#stellar-observation:has(.anatomy-controls) #stellar-canvas{flex:none}
+#stellar-observation .three-encounter{margin:8px 12px;padding:9px 12px;border-left:2px solid #d2b88d;color:var(--ink);font-size:12px;line-height:1.6}
+@media(min-width:1000px){
+  #stellar-observation:has(.evolution-controls),#stellar-observation:has(.anatomy-controls){height:auto;min-height:0}
+  #stellar-observation:has(.evolution-controls) .observatory,#stellar-observation:has(.anatomy-controls) .observatory{overflow:visible;flex:none}
+  #stellar-observation:has(.evolution-controls) #stellar-canvas,#stellar-observation:has(.anatomy-controls) #stellar-canvas{height:430px;flex:none}
+  #stellar-observation:has(.three-body):not(.observation-expanded){height:auto;min-height:0}
+  #stellar-observation:has(.three-body):not(.observation-expanded) .observatory{overflow:visible;flex:none}
+  #stellar-observation:has(.three-body):not(.observation-expanded) .three-canvas{height:clamp(260px,42dvh,420px);min-height:260px;flex:none}
+}

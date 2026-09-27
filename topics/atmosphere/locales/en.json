@@ -15,7 +15,7 @@
   "暂停": "Pause",
   "回到开始": "Back to start",
   "观察高度": "Observation height",
-  "先改变条件，再观察": "Change a condition, then observe",
+  "先看现象，再找原因": "Observe the pattern, then ask why",
   "地球高度": "Height above Earth",
   "观察哪种运动": "Choose a motion",
   "抬升，同时水平输送": "Lift and transport sideways",
@@ -91,9 +91,10 @@
   "播放旅程": "Play journey",
   "地球到太空的旅程": "Journey from Earth to space",
   "观察镜头先拉近地面，再沿同一条半径向外观察。球体、地面标记与各层位置保留；镜头不是自由飞行模拟。高度进度经过对数压缩，现象图形为放大示意，分层边界不是硬壳。": "The camera first approaches the ground, then observes outward along the same radius. The globe, surface marker and layer positions persist. This is not a free-flight simulation. Height progress is logarithmic; phenomena are enlarged illustrations and layer boundaries are not shells.",
-  "地球低层读数采用标准大气参考，高层不外推。海岸与大陆轮廓为示意，并非真实地点地图；云雨、流星、极光等代表不同条件下的现象，不表示同地同时发生。星球对比的行位置不代表相同高度。": "Lower Earth readings use a standard-atmosphere reference without upper extrapolation. Coastlines and continents are illustrative, not a mapped location. Weather, meteors and auroras represent different conditions, not one simultaneous event. Matching planetary rows do not mean matching heights.",
+  "地球低层读数采用标准大气参考，高层不外推。远景地球使用参考贴图，走近地面后海岸细节转为示意，并非真实地点的测绘图；云雨、流星、极光等代表不同条件下的现象，不表示同地同时发生。星球对比的行位置不代表相同高度。": "Lower Earth readings use a standard-atmosphere reference without upper extrapolation. The distant globe uses an Earth reference texture; local coastal detail becomes illustrative rather than a survey of that site. Weather, meteors and auroras represent different conditions, not one simultaneous event. Matching planetary rows do not mean matching heights.",
   "大气观察": "Atmosphere observation",
   "沉浸演示": "Immersive view",
   "退出沉浸 · Esc": "Exit immersive · Esc",
-  "解说": "Explanation"
+  "解说": "Explanation",
+  "本层动态解说": "Animated explanation of this layer"
 }

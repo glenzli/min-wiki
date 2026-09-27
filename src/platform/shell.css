@@ -1,11 +1,11 @@
 @import './topicPresentation.css';
 
-:root, :root[data-theme="light"] {
+:root, :root[data-theme="light"], :root[data-topic-ui][data-theme="light"] {
   color-scheme: light;
   --page: #ffffff; --surface: #ffffff; --ink: #18181b; --secondary: #5f6368;
   --quiet: #71717a; --border: #e4e4e7; --accent: #3f3f46; --tint: #f4f4f5;
 }
-:root[data-theme="dark"] {
+:root[data-theme="dark"], :root[data-topic-ui][data-theme="dark"] {
   color-scheme: dark;
   --page: #0f0f10; --surface: #171719; --ink: #f4f4f5; --secondary: #a1a1aa;
   --quiet: #a1a1aa; --border: #303033; --accent: #d4d4d8; --tint: #242427;

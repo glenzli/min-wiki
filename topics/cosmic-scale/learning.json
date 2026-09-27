@@ -3,11 +3,11 @@
   "topicId": "cosmic-scale",
   "zh": {
     "question": "地球、木星、太阳和更大的恒星，谁更大？它们又属于哪些更大的系统？",
-    "observe": "先拖动大小对比，把上一组的大天体留作下一组的参照；再点太阳系、银河系与本星系群，看包含关系；最后进入真正拉远模式，观察天体怎样缩成位置标记。 看到极大恒星时，试着放进太阳系，用地球、木星和土星的轨道认识它的估计大小。",
+    "observe": "先拖动大小对比，把上一组的大天体留作下一组的参照；再沿太阳系、银河系、本星系群、拉尼亚凯亚和可观测范围这条结构路径寻找我们的位置。室女座星系团与本星系群的并排对照、宇宙网局部示意另有入口，不当作逐级放大的下一站。最后沿同一物理标尺从地球或太阳连续拉远，看定位名称怎样逐级变大，留意哪些是有距离依据的地标，哪些只是示意纹理。",
     "academic": [
       {
         "title": "同一长度单位跨越多个量级",
-        "body": "模型始终以 km 保存距离，滑杆控制视野宽度的对数而不是把每个天体的半径分别取对数。同一帧内的几何投影保持线性。km、AU 和光年是不同大小的长度单位；超小天体转换为定位符，定位符与真实直径明确分开。 WOH G64 取 2009 年约 1540 个太阳半径的估计；St2-18 由 2012 年光度与温度推得约 2150 个太阳半径，依赖不确定的距离与星团归属。它们是估计案例，不是最大恒星排行榜。"
+        "body": "模型始终以 km 保存距离，滑杆控制视野宽度的对数而不是把每个天体的半径分别取对数。同一帧内的几何投影保持线性。km、AU 和光年是不同大小的长度单位；超小天体转换为定位符，定位符与真实直径明确分开。大犬座 VY 使用 2012 年约 1420 个太阳半径的光球估计；St2-18 由 2012 年光度与温度推得约 2150 个太阳半径，依赖不确定的距离与星团归属。它们是估计案例，不是最大恒星排行榜。"
       },
       {
         "title": "银河系的空间结构",
@@ -15,11 +15,11 @@
       },
       {
         "title": "地图是有边界的重建",
-        "body": "银河系的外观模型根据内部观测重建，而不是从外面拍摄的完整照片。邻近恒星与本星系群阶段只选择少量距离取整的代表成员；方位和倾角经过简化。到达本星系群不是到达宇宙尽头，本图不模拟宇宙膨胀，也不计算远方天体的光行回溯时间。"
+        "body": "银河系的外观模型根据内部观测重建，而不是从外面拍摄的完整照片。本星系群不仅有银河、仙女座和三角座星系，还包含大、小麦哲伦云等约 50 个矮星系。室女座星系团是另一个邻近结构，不包含本星系群；按拉尼亚凯亚的流向重建，两者都处于这一广大区域，但边界取决于观测和模型，超星系团整体通常不受自身引力束缚。宇宙网是大尺度分布形态，不是容纳拉尼亚凯亚的独立外壳。结构路径图不按比例；可观测范围画面与连续镜头终点共用一套统计示意网，中心定位符并非超星系团直径。远处丝线、结点与小光点不是个别星系的实测位置或大小，不能凭画面测量。最远端的长度表示今天的空间距离量级，不等于光走过的年数；本图不模拟宇宙膨胀或光行回溯时间。"
       }
     ],
     "misconception": "光年不是一年那么久，而是距离；太阳系不是银河系；银河的盘边缘不是宇宙边界；中央黑洞也不是支配整个银河的唯一引力来源。",
-    "boundary": "地球表面、星点分布与星系外观为结构插画。所有十字和空心小圈都表示位置，不是被放大的真实尺寸。星系方向为示意，银河晕范围非精确边界，三个代表星系不构成本星系群的完整清单。 天体对比只比较直径，不表示质量或实际间隔；大角星采用约 25.4 个太阳半径的估计。包含关系图不按尺寸和距离比例。",
+    "boundary": "地球表面、星点分布与星系外观为结构插画。所有十字和空心小圈都表示位置，不是被放大的真实尺寸。星系方向为示意，银河晕范围非精确边界，本星系群的小星系点只是抽样，不是成员普查。天体对比只比较直径，不表示质量或实际间隔；大角星采用约 25.4 个太阳半径的估计。结构图不按尺寸和距离比例；连续镜头的大尺度丝线和光点也不能用标尺测量。可观测视界不是整个宇宙的物理边缘。",
     "narration": [
       {
         "label": "把两位放在一起比",
@@ -28,28 +28,28 @@
       },
       {
         "label": "大球和大家庭不同",
-        "text": "太阳和绕着它走的行星组成太阳系。银河里有许多恒星，太阳只是其中一颗；银河还和其他星系同属更大的群。这些系统有很大的范围，却不是一颗更大的实心球。",
-        "cue": "打开“看看住在哪里”，按顺序看三个系统，并寻找黄色参照。"
+        "text": "太阳和绕着它走的行星组成太阳系。银河里有许多恒星，太阳只是其中一颗；银河与仙女座等大星系以及许多小星系组成了本星系群。本星系群与室女座星系团是不同的邻居，却都出现在拉尼亚凯亚区域的流向重建里。宇宙网说的是这些结构如何分布，并不是下一层壳。",
+        "cue": "打开“看看住在哪里”，沿五站结构路径走到可观测范围；另点开室女座星系团对照与宇宙网局部图。"
       },
       {
         "label": "这次真的向外看",
         "text": "带着刚才的大小印象，选择从地球或太阳出发，真正拉远。为了把遥远的轨道放进画面，就连很大的太阳也会变成小点。空心圈帮我们找到它，并不是把它偷偷放大。",
-        "cue": "进入第三段，从所选起点连续拉远到太阳系和银河。"
+        "cue": "进入第三段，从所选起点经太阳系和银河连续拉远到可观测范围。"
       },
       {
         "label": "银河之外",
-        "text": "银河并不孤单，还有仙女座和其他星系。它们组成更大的群。今天的尺走到这里，但宇宙并没有在这里结束。",
-        "cue": "进入本星系群，寻找银河和所选起点的位置标记。"
+        "text": "银河并不孤单。本星系群有许多小星系；室女座星系团是另一个邻居。镜头继续向外，星系沿宇宙网分布，最后看到我们所在位置的观测范围。那不是宇宙的一堵墙；越远的丝线与光点越是结构示意，今天的距离也不是光旅行的时间。",
+        "cue": "沿同一滑杆经过本星系群和拉尼亚凯亚所在的距离量级，抵达可观测范围。"
       }
     ]
   },
   "en": {
     "question": "Which is larger: Earth, Jupiter, the Sun or a giant star? Which larger systems do they belong to?",
-    "observe": "Drag through size pairs, retaining the larger body as the next reference. Then inspect Solar System, Milky Way and Local Group membership. Finally zoom out for real to see physical disks become location markers. For the extreme stars, compare their estimated outlines with Earth’s, Jupiter’s and Saturn’s orbits in the Solar System view.",
+    "observe": "Drag through size pairs, retaining the larger body as the next reference. Follow our structural address through the Solar System, Milky Way, Local Group, Laniakea and observable region. A side-by-side Local Group–Virgo comparison and a local cosmic-web illustration have separate entrances; neither is the next zoom stop. Then use one physical ruler to zoom continuously from Earth or the Sun. Watch the location name change with scale, and note which landmarks have distance anchors and which textures are illustrations.",
     "academic": [
       {
         "title": "One length system across many orders of magnitude",
-        "body": "Distances remain in kilometers. The slider changes the logarithm of view width; it does not separately take logarithms of body radii. Geometry within each frame remains a linear projection. Kilometers, AU and light-years are all length units. Subpixel bodies switch to explicit position symbols rather than silently enlarged disks. WOH G64 uses a 2009 estimate of about 1540 solar radii. St2-18 uses about 2150 solar radii inferred from 2012 luminosity and temperature values, conditional on uncertain distance and cluster membership. These are estimated examples, not a largest-star ranking."
+        "body": "Distances remain in kilometers. The slider changes the logarithm of view width; it does not separately take logarithms of body radii. Geometry within each frame remains a linear projection. Kilometers, AU and light-years are all length units. Subpixel bodies switch to explicit position symbols rather than silently enlarged disks. VY Canis Majoris uses a 2012 photospheric estimate of about 1420 solar radii. St2-18 uses about 2150 solar radii inferred from 2012 luminosity and temperature values, conditional on uncertain distance and cluster membership. These are estimated examples, not a largest-star ranking."
       },
       {
         "title": "The structure of the Milky Way",
@@ -57,11 +57,11 @@
       },
       {
         "title": "A reconstruction with defined limits",
-        "body": "The external Milky Way view is reconstructed from observations made inside it, not photographed from outside. The nearby-star and Local Group stages contain a few representative members with rounded distances and illustrative directions and inclinations. The Local Group is not the edge of the universe. This model does not simulate cosmic expansion or calculate lookback times to distant objects."
+        "body": "The external Milky Way view is reconstructed from observations made inside it, not photographed from outside. Beyond the Milky Way, the Local Group includes Andromeda, Triangulum and around 50 dwarf galaxies such as the Magellanic Clouds. The Virgo Cluster is a separate nearby structure, not a container for the Local Group. In a Laniakea flow reconstruction both occupy the wider region, but its boundary depends on observations and the model, and the supercluster is generally not bound as a whole. The cosmic web is a pattern of large-scale distribution, not a separate shell around Laniakea. Address diagrams are not to scale; the observable-region view and the continuous camera's endpoint share one statistical illustration, and the central locator is not the supercluster's diameter. Distant filaments, knots and points are not measured positions or sizes of individual galaxies and cannot be measured from the picture. The far-end length is an approximate present-day spatial distance, not light-travel time; expansion and lookback time are not simulated."
       }
     ],
     "misconception": "A light-year is a distance, not a duration. The Solar System is not the Milky Way, and the disk edge is not the universe’s boundary. The central black hole is not the galaxy’s only source of gravity.",
-    "boundary": "Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the three galaxies are not a complete Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Membership diagrams are not to size or distance scale.",
+    "boundary": "Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the small-galaxy marks are a sample, not a Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Structure diagrams have no size or distance scale, and filaments and points in the continuous long-range camera cannot be measured with its ruler. The observable horizon is not the physical edge of the whole universe.",
     "narration": [
       {
         "label": "Put two bodies side by side",
@@ -70,18 +70,18 @@
       },
       {
         "label": "A bigger ball or a bigger family?",
-        "text": "The Sun and its orbiting planets belong to the Solar System. Our Sun is one of many stars in the Milky Way, which belongs to a group of galaxies. These systems span large regions, but they are not bigger solid balls.",
-        "cue": "Open the membership chapter and follow the three systems and yellow reference."
+        "text": "The Sun and its orbiting planets belong to the Solar System. Our Sun is one of many stars in the Milky Way. The Milky Way, Andromeda and many smaller galaxies belong to the Local Group. The Local Group and Virgo Cluster are different neighbors, yet both appear in the reconstructed Laniakea flow region. The cosmic web describes how such structures are distributed; it is not an outer shell.",
+        "cue": "Open the membership chapter and follow the five-stop address to the observable region; explore Virgo and a local web close-up separately."
       },
       {
         "label": "Now really look outward",
         "text": "Remember those sizes, then choose Earth or the Sun and zoom out. Fitting distant orbits into the view makes even the Sun tiny. An open circle helps us find it without secretly making its physical disk larger.",
-        "cue": "Open chapter three and travel from your selected body through Solar System and galactic scales."
+        "cue": "Open chapter three and travel from your selected body through Solar System and galactic scales to the observable region."
       },
       {
         "label": "Beyond our galaxy",
-        "text": "The Milky Way is not alone. Andromeda and other galaxies form a larger group with it. Our ruler stops here today, but the universe does not.",
-        "cue": "Enter the Local Group and find the Milky Way and your selected starting location."
+        "text": "The Milky Way is not alone. The Local Group has many small galaxies, while the Virgo Cluster is a separate neighbor. The camera keeps pulling back through a cosmic-web illustration to our observing horizon. That horizon is not a wall around the universe. Distant filaments and points are illustrative, and today's distance is not the light's travel time.",
+        "cue": "Follow one slider past the Local Group and the Laniakea distance scale to the observable region."
       }
     ]
   },
@@ -99,8 +99,36 @@
       "url": "https://www.nasa.gov/universe/galaxies/andromeda-galaxy/"
     },
     {
-      "title": "Levesque et al. (2009) · WOH G64 radius estimate",
-      "url": "https://arxiv.org/abs/0903.2260"
+      "title": "NASA · The Galaxy Next Door (Local Group membership)",
+      "url": "https://science.nasa.gov/earth/earth-observatory/the-galaxy-next-door/"
+    },
+    {
+      "title": "NASA · Large Scale Structures",
+      "url": "https://science.nasa.gov/universe/galaxies/large-scale-structures/"
+    },
+    {
+      "title": "NASA · Messier 60 and Virgo Cluster distance",
+      "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-60/"
+    },
+    {
+      "title": "Tully et al. (2014) · Laniakea span",
+      "url": "https://www.nature.com/articles/nature13674"
+    },
+    {
+      "title": "Nature Astronomy (2024) · probabilistic local flow basins",
+      "url": "https://www.nature.com/articles/s41550-024-02370-0"
+    },
+    {
+      "title": "ESA Planck · cosmic web as a distribution pattern",
+      "url": "https://www.esa.int/Science_Exploration/Space_Science/Planck/Tools_to_study_the_distribution_of_matter_in_the_Universe"
+    },
+    {
+      "title": "ESA Space for Kids · The Universe",
+      "url": "https://www.esa.int/kids/en/learn/Our_Universe/Story_of_the_Universe/The_Universe"
+    },
+    {
+      "title": "Wittkowski et al. (2012) · VY Canis Majoris photospheric radius",
+      "url": "https://arxiv.org/abs/1203.5194"
     },
     {
       "title": "Fok et al. (2012) · St2-18 luminosity and temperature",

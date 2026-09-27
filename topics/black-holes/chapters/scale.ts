@@ -243,14 +243,14 @@ class ScaleScene {
     this.related.href = languageHref(referenceJourneyHref(ref));
     this.related.hidden = ref === 'journey';
     this.captions[0].textContent = t('{{name}} · 视界直径 {{diameter}}', {name:labels[index].split(' · ')[0],diameter:length(model.diameterKm)});
-    const extreme = ref === 'woh-g64' || ref === 'stephenson-2-18';
+    const extreme = ref === 'stephenson-2-18';
     this.captions[1].textContent = ref === 'journey' ? copy.cityCaption : t('{{name}} · {{length}}', {name:referenceName,length:length(model.reference.spanKm)}) + (extreme ? ` · ${copy.estimated}` : '');
     const inverse = model.ratio < 1;
     const ratio = (inverse ? 1/model.ratio : model.ratio).toLocaleString('en-US',{maximumSignificantDigits:3});
     this.ratio.textContent = inverse
       ? t('参照跨度约是视界直径的 {{ratio}} 倍。比较长度，不比较质量。',{ratio})
       : t('视界直径约是参照跨度的 {{ratio}} 倍。比较长度，不比较质量。',{ratio});
-    if (['sun', 'arcturus', 'antares', 'vy-canis-majoris', 'woh-g64', 'stephenson-2-18'].includes(ref) && model.ratio >= 2 && model.ratio <= 50) {
+    if (['sun', 'arcturus', 'antares', 'vy-canis-majoris', 'stephenson-2-18'].includes(ref) && model.ratio >= 2 && model.ratio <= 50) {
       this.ratio.textContent = copy.starLine.replace('{{name}}', referenceName).replace('{{count}}', String(Math.round(model.ratio)));
     }
     this.comparisonDescription.textContent = ref === 'neptune-orbit' ? copy.orbitScale : copy.ruler;

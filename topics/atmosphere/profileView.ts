@@ -36,14 +36,31 @@ function art(kind:string) {
  * DOM text remains readable and accessible at narrow widths; artwork has no hidden clock. */
 export class AtmosphereProfiles {
  private key='';
- constructor(private root:HTMLElement,private text:Text,private notes?:HTMLElement) {}
+ private selectedRow=1;
+ private selectedWorld:World='venus';
+ private readonly selectRow=(event:Event)=>{
+  const button=(event.target as Element).closest<HTMLButtonElement>('.world-band[data-row]');
+  if(!button||!this.root.contains(button))return;
+  this.selectedRow=Number(button.dataset.row);
+  this.projectSelection();
+ };
+ constructor(private root:HTMLElement,private text:Text,private notes?:HTMLElement) {this.root.addEventListener('click',this.selectRow);}
  draw(s:Settings,labels:boolean) {
   this.root.classList.toggle('hide-profile-labels',!labels);
   const frame=journeyFrame(s.journey), key=s.view+':'+s.world+':'+frame.phase+':'+frame.layer;
   if(key===this.key)return;
   this.key=key;
-  if(this.notes){this.notes.hidden=s.view!=='worlds';this.notes.innerHTML=s.view==='worlds'?this.text.worlds.earth.column.map((row,i)=>`<details class="world-note"><summary>${escape(row.title)} / ${escape(this.text.worlds[s.world].column[i]!.title)}</summary><p><strong>${escape(this.text.worlds.earth.name)}</strong> · ${escape(row.body)}</p><p><strong>${escape(this.text.worlds[s.world].name)}</strong> · ${escape(this.text.worlds[s.world].column[i]!.body)}</p></details>`).join(''):'';}
+  this.selectedWorld=s.world;
+  if(this.notes)this.notes.hidden=s.view!=='worlds';
   this.root.innerHTML=s.view==='worlds'?this.comparison(s.world):frame.phase==='ascent'?this.layerEnrichment(frame.layer):'';
+  if(s.view==='worlds')this.projectSelection();
+ }
+ private projectSelection(){
+  this.root.querySelectorAll<HTMLButtonElement>('.world-band[data-row]').forEach(button=>button.setAttribute('aria-pressed',String(Number(button.dataset.row)===this.selectedRow)));
+  if(!this.notes)return;
+  const earth=this.text.worlds.earth,other=this.text.worlds[this.selectedWorld];
+  const left=earth.column[this.selectedRow]!,right=other.column[this.selectedRow]!;
+  this.notes.innerHTML=`<section class="world-focus"><p class="world-focus-kicker">${escape(this.text.diagram.comparePrompt)}</p><h3>${escape(left.title)} / ${escape(right.title)}</h3><p><strong>${escape(earth.name)}</strong> · ${escape(left.body)}</p><p><strong>${escape(other.name)}</strong> · ${escape(right.body)}</p></section>`;
  }
  private layerEnrichment(layer:number){
   if(layer===3)return this.energyExplanation();
@@ -66,7 +83,7 @@ export class AtmosphereProfiles {
  private column(world:World,side:string){
   const w=this.text.worlds[world],values=worlds[world];
   const kinds={earth:['space','ozone','weather','earth'],venus:['space','venus-cloud','venus-air','venus'],mars:['space','mars-cloud','mars-air','mars'],titan:['space','titan-haze','titan-air','titan'],moon:['vacuum','exosphere','sunlight','moon'],mercury:['vacuum','exosphere','sunlight','mercury']}[world];
-  return `<section class="world-column world-${world}" data-side="${side}" data-world="${world}"><header><h2>${escape(w.name)}</h2><p>${escape(w.composition)}</p></header>${w.column.map((row,i)=>`<div class="world-band world-band-${i}"><div class="world-art">${art(kinds[i])}</div><div class="world-words"><h3>${escape(row.title)}</h3><p>${escape(row.body)}</p></div></div>`).join('')}<footer><strong>${values.pressure===null?escape(w.pressureNote):values.pressure.toLocaleString()+' hPa'}</strong><span>${values.temperature===null?escape(w.temperatureNote):values.temperature+' °C'}</span></footer></section>`;
+  return `<section class="world-column world-${world}" data-side="${side}" data-world="${world}"><header><h2>${escape(w.name)}</h2><p>${escape(w.composition)}</p></header>${w.column.map((row,i)=>`<button class="world-band world-band-${i}" type="button" data-row="${i}" aria-pressed="false"><span class="world-art">${art(kinds[i])}</span><span class="world-words"><strong>${escape(row.title)}</strong><span>${escape(row.body)}</span></span></button>`).join('')}<footer><strong>${values.pressure===null?escape(w.pressureNote):values.pressure.toLocaleString()+' hPa'}</strong><span>${values.temperature===null?escape(w.temperatureNote):values.temperature+' °C'}</span></footer></section>`;
  }
- dispose(){this.root.replaceChildren();}
+ dispose(){this.root.removeEventListener('click',this.selectRow);this.root.replaceChildren();}
 }

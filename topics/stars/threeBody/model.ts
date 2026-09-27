@@ -1,8 +1,10 @@
 /** Planar Newtonian point masses, G = 1. No softening or prescribed trajectories. */
 export interface Body { mass: number; x: number; y: number; vx: number; vy: number }
-export type Preset = 'eight' | 'triangle';
+export type Preset = 'eight' | 'triangle' | 'wander';
 export interface Experiment { preset: Preset; massC: number; xC: number; vxC: number }
 export const DEFAULT_EXPERIMENT: Experiment = { preset: 'eight', massC: 1, xC: 0, vxC: 0 };
+/** A screened, deterministic departure from the equal-mass Lagrange triangle. */
+export const WANDER_SHIFT = Object.freeze({ x: .03426792833954096, vx: -.0018351049721240997 });
 export const DURATION = 20, STEP = .001, SAMPLE = .02, CLOSE_DISTANCE = .04, PERTURBATION = .0001;
 export const STRIDE = 19, MAX_FRAMES = 1001;
 export type StopReason = 'complete' | 'close-encounter' | 'accuracy-limit';
@@ -26,7 +28,7 @@ export function recenter(bodies: readonly Body[]): Body[] {
   return bodies.map(b=>({...b,x:b.x-x,y:b.y-y,vx:b.vx-vx,vy:b.vy-vy}));
 }
 export function initialConditions(experiment: Experiment, perturbation=0): Body[] {
-  if(experiment.preset!=='eight'&&experiment.preset!=='triangle') throw new RangeError('Unknown preset');
+  if(experiment.preset!=='eight'&&experiment.preset!=='triangle'&&experiment.preset!=='wander') throw new RangeError('Unknown preset');
   finite(experiment.massC,.5,2);finite(experiment.xC,-.3,.3);finite(experiment.vxC,-.3,.3);finite(perturbation,0,PERTURBATION);
   // Montgomery's published initial conditions (C. Simó); velocities select this time direction.
   const bodies: Body[]=experiment.preset==='eight' ? [
@@ -34,7 +36,8 @@ export function initialConditions(experiment: Experiment, perturbation=0): Body[
     {mass:1,x:.97000436,y:-.24308753,vx:-.466203685,vy:-.43236573},
     {mass:1,x:0,y:0,vx:.93240737,vy:.86473146},
   ] : [0,1,2].map(i=>{const a=i*2*Math.PI/3,w=Math.sqrt(1/Math.sqrt(3));return {mass:1,x:Math.cos(a),y:Math.sin(a),vx:-w*Math.sin(a),vy:w*Math.cos(a)};});
-  bodies[2]!.mass=experiment.massC;bodies[2]!.x+=experiment.xC+perturbation;bodies[2]!.vx+=experiment.vxC;
+  const shift=experiment.preset==='wander'?WANDER_SHIFT:{x:0,vx:0};
+  bodies[2]!.mass=experiment.massC;bodies[2]!.x+=shift.x+experiment.xC+perturbation;bodies[2]!.vx+=shift.vx+experiment.vxC;
   return recenter(bodies);
 }
 export function diagnostics(bodies: readonly Body[]): Diagnostics {

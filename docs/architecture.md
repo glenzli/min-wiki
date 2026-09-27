@@ -18,12 +18,15 @@
 | `duration`、`modes` | 描述真实播放时长与已支持的讲解方式 |
 | `theme` | 页面默认明暗，`light` 或 `dark` |
 | `sceneTheme` | 画布设计约定，由专题实现；不随全站阅读主题强制变化 |
-| `status` | `draft` 或 `published`；只有后者进入目录与正式构建 |
+| `status` | `draft` 或 `published`；只有后者进入正式构建，默认也进入目录 |
+| `listed` | 可选；已发布的顶层专题设为 `false` 时仅从目录、分类计数和搜索中收起，直接 URL 仍进入正式构建 |
 | `updated` | 内容最后修订日期 |
 
 封面可放在 `topics/<id>/cover.svg`，目录自动收集 URL；没有封面时使用分类符号。封面不导入模拟器，不在目录运行动画。
 
 构建验证登记数据和公开入口。草稿没有构建入口，仍需避免从公开文件导入草稿内容；草稿字段不是保密边界。未完成的选题放到计划文档，不把空页面伪装成已有知识。
+
+已发布但暂不作为独立目录入口的主题保留 `status: "published"`，按需使用 `listed: false`。这用于编辑收录判断，不代表页面内容已更新，也不会自动把旧主题并入别的主题；直接访问旧 URL 仍可用。重新收录前需按专题设计原则验证实际知识链、画面和双语体验。
 
 ## 添加一个专题
 
@@ -68,7 +71,9 @@
 
 `topics/<id>/learning.json` 与该题的模型和资料一起维护。`zh`、`en` 分别包含观察问题、操作线索、三节深入原理、误解纠正、模型边界，以及四段带独立画面提示的解说。`references` 保存对应的参考资料；内容审核需要确认资料支持具体主张，字段完整不等于科学结论已获证明。
 
-共享 `src/platform/learning/` 仅负责按当前专题懒加载、语言选择、排版、展开状态和下载，不持有模拟状态。学术笔记跟随页面的讲解方式，用户也可单独展开；模式切换不重置实验。口播导出排除分镜提示，生成语音仍是后续制作步骤。`scripts/export-narration.mjs` 支持一次导出所有已发布专题的两种语言。
+共享 `src/platform/learning/` 仅负责按当前专题懒加载、语言选择、排版、展开状态和下载，不持有模拟状态。没有逐场景导读的专题，学术笔记跟随页面的讲解方式；用户也可单独展开。模式切换不重置实验。口播导出排除分镜提示，生成语音仍是后续制作步骤。`scripts/export-narration.mjs` 支持一次导出所有已发布专题的两种语言。
+
+需要逐场景阅读深度的题可调用 `src/platform/sceneReading.ts`：主画面旁只保留当前现象的简短儿童解释；学术版在观察区下方展示同一场景的机制、可适用的关系式、证据与研究入口、模型边界。内容与当前阶段的选择仍由 `topics/<id>/study.ts` 维护；共享组件只负责双语呈现和布局，不控制实验。`reading=academic` 可保留阅读选择，既有章节参数继续由题内处理。全题 `learning.json` 的学术笔记保持可单独展开，使用逐场景导读的题不会在切模式时同时自动展开它。
 
 时间、物体位置和相机的连续过渡仍由专题决定。`src/visuals/transition.ts` 提供有限时长、支持减少动态效果的数值插值，不代替物理模型；新的播放或拖动操作必须取消旧的过渡，避免过期帧写回。
 
@@ -89,6 +94,8 @@ Build with `npm run build -- --base=/encyclopedia/` to mount under a host site. 
 登记项可使用 `parentTopic` 指向同分类、已发布的顶层主题，只支持一层。子章节继续保持 `published`，保留原 URL、构建入口、双语和解说资源。首页与分类计数仅展示顶层主题；搜索同时检查已发布子章节的标题、简介与标签，返回父主题。通用导航提供父级入口，具体章节顺序、说明与互动仍由专题管理。不要用 `draft` 隐藏已发布章节，否则旧链接不会进入构建。
 
 Published chapters may set `parentTopic` to a published top-level topic in the same category. Catalog discovery and counts show the parent, and search includes its published chapters. Chapter routes, build entries and localized learning resources remain independently reachable. The topic owns chapter order and interactions.
+
+An independent published topic may set `listed: false` to leave the directory, category counts and search while keeping its built page and direct URL. This is an editorial hold, not a chapter merge or a content repair. `listed` is not used on child topics or drafts.
 
 ### 宽屏演示与沉浸布局
 

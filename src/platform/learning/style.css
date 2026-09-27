@@ -1,6 +1,6 @@
 /* The companion owns prose and controls only. Scientific scenes keep their own palette. */
 .learning-companion {
-  --learning-color: var(--topic-accent, #517b72);
+  --learning-color: var(--accent);
   box-sizing: border-box;
   width: 100%; max-width: 1120px; margin: 56px auto 32px;
   color: var(--ink); font: 16px/1.85 var(--ui-font); text-align: left;

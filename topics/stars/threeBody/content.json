@@ -1,23 +1,23 @@
 {
   "chapter": {
-    "zh": "04 · 三体数值实验",
-    "en": "04 · Three-body experiment"
+    "zh": "06 · 三体数值实验",
+    "en": "06 · Three-body experiment"
   },
   "context": {
-    "zh": "从轨道示意，到逐步计算引力",
-    "en": "FROM ORBIT ILLUSTRATION TO INTEGRATED GRAVITY"
+    "zh": "数学对照 · 规则路径与不规则游走",
+    "en": "MATHEMATICAL COMPARISON · ORDERED AND WANDERING PATHS"
   },
   "parameters": {
-    "zh": "改变起点 · 八字 / 三角形、质量与速度",
-    "en": "Change the start · presets, mass and velocity"
+    "zh": "选择一种已整理好的起点",
+    "en": "Choose a curated starting pattern"
   },
   "title": {
     "zh": "三颗恒星，一直相互牵引",
     "en": "Three stars, always pulling on one another"
   },
   "intro": {
-    "zh": "每一步都用三个物体之间的引力更新位置与速度。先看等质量八字轨道，再改动 C 的初始条件；空心标记是仅把 C 初始 x 增加 0.0001 的另一轮计算。",
-    "en": "Every step updates positions and velocities from the forces between all three bodies. Start with the equal-mass figure eight, then modify C. Hollow markers show a separate integration with only C’s initial x increased by 0.0001."
+    "zh": "先对照八字与等边旋转，再看从等边起点稍作改变后的不规则游走。三组都按牛顿引力逐步计算，不是前一章 KOI-5 的观测轨道，也不能代表所有三星系统。半透明标记显示 C 的起点再移动极少一点后，另一轮计算如何分开。",
+    "en": "Compare the figure eight and rotating triangle, then a wandering path started near the triangle. All three are integrated step by step under Newtonian gravity. They are neither KOI-5's observed orbits from the previous chapter nor universal triple-star paths. Translucent markers show a second calculation started with C shifted by one more tiny amount."
   },
   "eight": {
     "zh": "八字轨道 · 等质量",
@@ -27,9 +27,17 @@
     "zh": "等边旋转 · 对照",
     "en": "Rotating triangle · comparison"
   },
+  "wander": {
+    "zh": "不规则游走 · 微扰对照",
+    "en": "Wandering path · perturbation"
+  },
   "presetNote": {
-    "zh": "按钮恢复该案例的原始初值；滑块只修改 C，随后整体平移到质心静止系。八字不是每组三体都遵循的路径。",
-    "en": "Preset buttons restore the original initial conditions. Sliders modify only C, then shift the whole system to its stationary center-of-mass frame. The figure eight is not a path followed by every triple."
+    "zh": "八字与等边旋转是两种特别整齐的路径。三组案例的质量与起点都已固定，后续运动仍由引力逐步计算。",
+    "en": "The figure eight and rotating triangle are two unusually ordered paths. All three cases have fixed masses and starting conditions; gravity still determines every subsequent step."
+  },
+  "wanderNote": {
+    "zh": "这一组从等边起点稍移 C 的位置和速度；切换时自动叠加另一轮更微小的起点改动。没有随机力，也没有预画轨道。两轮逐渐分开，能说明对初值敏感；某段时间看似不规则，不能据此证明它永远稳定或严格判定混沌。",
+    "en": "This case slightly changes C's starting position and speed from the triangle. Selecting it also overlays a second run with an even smaller starting shift. No random force or prerecorded path is used. The runs separate, showing sensitivity to initial conditions; irregular motion over a finite interval does not prove lasting stability or establish chaos on its own."
   },
   "mass": {
     "zh": "C 的质量 · M₀",
@@ -48,8 +56,8 @@
     "en": "Integrating as the stars move. Dashed trails fade with age. Pause at any time or revisit the latest 20 T₀."
   },
   "modified": {
-    "zh": "从这里出发：点击“开始 / 继续”后，每一步现场计算引力，不必等待整段轨道。",
-    "en": "Start here: choose Start / continue to compute gravity step by step, without waiting for a complete trajectory."
+    "zh": "已选定案例。点击“开始 / 继续”逐步计算引力；切换案例会从新起点重新开始。",
+    "en": "Case selected. Choose Start / continue to integrate gravity; changing cases restarts from new initial conditions."
   },
   "close": {
     "zh": "近遇停止：至少一轮计算的间距过小，或本步无法分辨局部引力变化。两轮只比较共同的已解析时段；这不代表碰撞已发生。",
@@ -80,16 +88,32 @@
     "en": "Latest 20 T₀ of history · review, then continue"
   },
   "compare": {
-    "zh": "叠加微小扰动轨迹",
-    "en": "Overlay tiny-perturbation run"
+    "zh": "叠加另一轮微扰计算",
+    "en": "Overlay another perturbed run"
+  },
+  "compareNote": {
+    "zh": "半透明 A′、B′、C′ 是另一次计算中的同名恒星。两轮起点只差一点，起初几乎重合，后来可能分开；它们不是星体外层，也不是同时存在的六颗星。",
+    "en": "Translucent A′, B′ and C′ are the same three stars in a separate run. The starts differ slightly: the stars nearly overlap at first, then may separate. These are neither stellar shells nor six stars in one system."
   },
   "legend": {
-    "zh": "A 金色 · B 蓝色 · C 珊瑚色｜恒星是本组初值，空心圆是可选的微扰对照。虚线只保留最近 3.6 T₀，越旧越淡，不预画未来轨道。",
-    "en": "A gold · B blue · C coral | Stars mark the base run; optional hollow rings mark the perturbed run. Dashed trails retain only the latest 3.6 T₀ and fade with age, never drawing the future."
+    "zh": "A 金色 · B 蓝色 · C 珊瑚色｜实心 A、B、C 是本组计算的当前位置，半透明 A′、B′、C′ 是可选的另一轮微扰计算。游走案例保留最近 8 T₀ 的虚线，另外两组保留 3.6 T₀；越旧越淡，不预画未来轨道。",
+    "en": "A gold · B blue · C coral | Solid stars mark the base run; translucent A′, B′ and C′ mark the optional perturbed run. Dashed trails retain the latest 8 T₀ in the wandering case and 3.6 T₀ in the other two. Older segments fade; no future path is drawn."
   },
   "scale": {
     "zh": "同一惯性平面、线性等比例坐标。物体接近画面边缘时视野扩大，不追踪单颗星；恒星盘和光晕是放大的辨认标记，不表示实际半径。",
     "en": "One inertial plane with equal linear axis scales. The view expands when bodies approach its edge, without following one star. Enlarged stellar disks and halos identify bodies; they are not physical radii."
+  },
+  "crossing": {
+    "zh": "轨迹线交叉只表示不同时间经过同一片画面；碰撞必须在同一时刻、同一空间位置让真实星体表面接触。这里的星盘是放大的标记，无法据此判定相撞。",
+    "en": "Crossing trail lines mark places visited at different times. A collision requires physical stellar surfaces to meet at the same time and place. These disks are enlarged markers, so the drawing cannot diagnose a collision."
+  },
+  "collision": {
+    "zh": "真实近遇可能只是偏转、交换伴星或出现质量转移；在足够近的条件下，恒星也可能合并并抛出物质。密集星团中已找到与合并有关的蓝离散星。结果还取决于星体类型、半径、速度和潮汐。本实验的近遇保护会先停止，不推演合并、爆炸或黑洞生成。",
+    "en": "A real close encounter may deflect stars, exchange companions or lead to mass transfer. If close enough, stars can also merge and expel matter; dense clusters contain blue stragglers linked to mergers. Outcomes depend on stellar type, radius, speed and tides. This experiment stops at its resolution guard and does not calculate mergers, explosions or black-hole formation."
+  },
+  "collisionSource": {
+    "zh": "恒星近遇与合并资料 ↗",
+    "en": "Stellar encounters and mergers ↗"
   },
   "preview": {
     "zh": "初始位置 · 尚无轨迹",

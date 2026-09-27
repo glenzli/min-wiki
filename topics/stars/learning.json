@@ -2,90 +2,122 @@
   "version": 1,
   "topicId": "stars",
   "zh": {
-    "question": "夜空的小光点，可能比太阳大得多吗？几颗恒星又怎样一起绕行？",
-    "observe": "先比较太阳距离与恒星结构，再改变双星质量比检查质心。数值实验中，先看原始八字轨道，再改 C 的初始位置、速度或质量并重新计算；暂停或回拖时间，对照微小扰动轨迹、能量误差与停止原因。",
+    "question": "恒星从哪里来，为什么发光，最后都会变成黑洞吗？",
+    "observe": "先从分子云拖到原恒星，找出云核、吸积盘、外流和点亮的中心如何连续变化；再选择三条质量路径比较结局。依次观察太阳的聚变、传能和表面活动，最后切换三种带行星的双星或三星结构，并把这些示意轨道与数值三体实验区分开。",
     "academic": [
       {
-        "title": "物理大小与角大小",
-        "body": "太阳的物理半径不随观察者远近变化。球体角直径为 2arcsin(R/d)，当距离远大于半径时近似与距离成反比。光行时使用 d/c，辐照度采用无吸收条件下的平方反比；三者是不同物理量。为了追踪极小的恒星，十字符号保留位置，但不再声称它是等比例星盘。"
+        "title": "寿命与终点由条件分叉",
+        "body": "以气体为主的冷分子云中，局部稠密云核在引力下收缩；旋转的落入物质形成吸积盘，一些年轻恒星沿轴向外流。原恒星早期可由收缩与吸积发光，核心持续氢聚变开启主序；大质量恒星的聚变与吸积可能重叠。云、盘与喷流在画面中连续过渡，却不是流体求解，也不按成熟恒星的半径尺量。约太阳质量的代表路径经红巨星、外层抛散留下白矮星；较大质量路径可能在核心坍缩后留下中子星或黑洞。质量、质量损失、成分、伴星和坍缩条件都会影响结果，页面的 1、15、30 个太阳质量只是案例而非通用门槛。阶段宽度不等于持续时间，半径为教学插值。成熟太阳型恒星轮廓与行星轨道共用尺度，吞没水星和金星后不令它们随恒星收缩重新出现；地球命运不能只由固定轨道圆判定。遗骸时保留原外包层虚线作大小对照；右侧镜头非线性放大。黑洞不必伴有吸积盘，还需要合适的供气条件。"
       },
       {
-        "title": "恒星结构随质量和阶段改变",
-        "body": "恒星不是简单按直径排列的行星升级版。主序恒星通过核心氢聚变供能；低质量恒星的对流范围可以不同于太阳。某些恒星核心氢耗尽后膨胀为红巨星，其致密核心与疏松包层不能用均匀火球解释。红超巨星的巨大半径不意味着按体积同比增加的质量；页面数值是代表性模型，不是具体恒星测量。"
+        "title": "长期供能与短时磁活动",
+        "body": "太阳核心核聚变供给长期光热；辐射区主要通过辐射传能，对流区有热等离子体升降，光球是可见的非固体表面。强磁场影响局部对流，较冷区域看成黑子；活跃区域的磁重联能短时释放耀斑，而太阳风是从日冕持续流出的带电粒子。耀斑不是日常阳光的燃料，也不等于持续太阳风。同一颗太阳的剖面和光球局部放大呈现不同尺度；层厚、颗粒、磁弧和喷流分别是机制示意，未求解真实磁流体或标定活动时间。"
       },
       {
-        "title": "从共同质心到三体积分",
-        "body": "双星与层级三星章节保留圆轨道构造，不是自由三体求解。另设的数值实验按牛顿引力逐步积分三个平面点质量，使用固定步长 velocity-Verlet，而非沿画好的曲线移动。选 L₀、M₀ 后，T₀=√(L₀³/GM₀)，数值 G=1；播放时持续计算，步长0.001 T₀，历史窗口保留最近20 T₀。八字初值来自 Montgomery 作者页面，等边对照的角速度满足 ω²=1/√3。近遇无法解析或能量误差将超过0.1%便停止。微小扰动的位置差是有限时间数值结果，不是混沌或长期稳定性的证明；守恒误差也不能单独保证位置准确。"
+        "title": "行星可绕双星，也可绕其中一颗",
+        "body": "Kepler-47 中有三颗已确认行星绕两颗恒星的共同质心；另一种宽双星结构可让行星绕其中一颗，KOI-5 则有行星绕层级三星中的 A 星。画面保留成员与绕行关系，但轨道距离压缩、恒星大小放大，不重建观测轨道，也不证明长期稳定。另设的数值实验以三个固定的等质量数学案例按牛顿引力逐步积分三个平面点质量，使用固定步长 velocity-Verlet，和前述真实系统不是同一轨道。选 L₀、M₀ 后，T₀=√(L₀³/GM₀)，数值 G=1；播放时持续计算，步长0.001 T₀，历史窗口保留最近20 T₀。八字初值来自 Montgomery 作者页面，等边对照满足 ω²=1/√3；不规则游走的初值是本项目从等边起点稍作改变并筛选出的数值例子，没有随机力。轨迹线交叉可能发生在不同时刻，放大的星盘不能证明真实接触；本积分没有恒星半径、潮汐或碰撞模型，近遇无法解析或能量误差将超过0.1%便停止。微扰的位置差不证明混沌或长期稳定。"
       }
     ],
-    "misconception": "看着小不一定本身小；大体积不一定更大质量；三颗恒星不等于一定混沌。白矮星、中子星等恒星遗迹也不能只按大小混进主序星成长队列。",
-    "boundary": "材质和剖面厚度为示意，巨星核心被放大；类型不是一颗星必经的全部阶段。双星/层级三星是构造，三体数值章才直接积分牛顿引力。积分不做软化，不含恒星尺寸、碰撞、潮汐、相对论或演化；近遇与误差阈值只界定本算法的有限解析能力。轨迹点大小不表示真实半径，模型时间不直接等于秒或年。避免直视真实太阳。",
+    "misconception": "太阳不会变成黑洞；恒星晚年不是统一结局。耀斑不是太阳持续发光的原因，轨迹交叉也不是两颗恒星相撞的证据。",
+    "boundary": "演化案例的年龄和半径为近似教学锚点，阶段插值不等于完整物理演化；行星静态轨道不预测地球命运。材质、剖面厚度、磁弧和颗粒为示意。双星/层级三星是构造，三体数值章才直接积分牛顿引力；该积分不含恒星尺寸、碰撞、潮汐、相对论或演化，近遇与误差阈值只界定算法解析能力。标记大小不表示真实半径，模型时间不直接等于秒或年。避免直视真实太阳。",
     "narration": [
       {
-        "label": "同一颗太阳",
-        "text": "太阳也是恒星。我们把观察位置移远，太阳在眼里变小了，它自己却没有缩小。光走过更长的路，也需要更多时间。",
-        "cue": "拖动太阳距离，在中途停留比较三个读数。"
+        "label": "同一片云，不同的命运",
+        "text": "冷云里主要是气体，也有少量尘埃。稠密的地方缩成云核，气体绕着年轻中心落入盘，有些又从两极流出。中心先因收缩和吸积发亮；核心持续把氢聚变成氦后，才进入主序。换一种出生质量，后面的时间和结局也会不同。",
+        "cue": "依次选择三条质量路径，拖动到主序、膨胀外层和遗骸；比较左侧原外包层虚线、右侧大小变化及终点读数。"
       },
       {
-        "label": "不同的恒星",
-        "text": "有的恒星小而偏红，有的膨胀得非常大。很大不代表同样重很多：比较这两把尺，一个量大小，另一个量质量。它们不是一颗星必须经过的同一串模样。",
-        "cue": "选择红巨星与超巨星，对照质量和半径。"
+        "label": "一颗星变成红巨星",
+        "text": "太阳型恒星到了晚年，核心变化会使外包层向外膨胀。把水星和金星的轨道留在画面里，看它们何时进入包层。地球的结局还要看太阳失重、轨道变化和潮汐，不能只凭一张圈图下结论。",
+        "cue": "在太阳型路径回拖和推进红巨星阶段，观察半径与水星、金星状态。"
       },
       {
-        "label": "剖开模型",
-        "text": "我们看不到恒星深处的照片，这里用模型帮助理解。太阳内部有产生能量的核心，也有把能量送向外面的区域。换一种恒星，内部也可能不同。",
-        "cue": "切换太阳、红巨星剖面，指出层厚为示意。"
+        "label": "为什么会亮，也会爆发",
+        "text": "太阳长久的光和热主要从核心聚变而来，能量经过辐射和对流到达光球。表面磁场形成较暗的黑子，储存的磁能短时释放为耀斑；外层日冕也持续送出太阳风。这些是不同原因和时间尺度。",
+        "cue": "逐一选择核心、传能、光球、黑子、耀斑和风，找出画面中对应的位置。"
       },
       {
         "label": "一起绕行",
-        "text": "两颗恒星相伴时，都在运动。再来一颗星，有时仍会有规则的路线。现在打开计算实验：三颗恒星标记每走一步，都受到另外两颗的吸引。只改一点起步条件，再看看后来的路。两条路分开，不代表所有三星都会乱跑；如果靠得太近、算不清了，我们就停下来说明原因。",
-        "cue": "先看层级构造，再打开三体数值实验。播放原始八字，暂停并改变 C 的初始 x 后重新计算，回看最近保存的历史，打开微扰对照，观察渐淡的虚线与误差读数。"
+        "text": "行星不一定只绕一颗孤单的太阳。Kepler-47 的三颗行星绕一对双星；有的行星只绕双星中的一颗；KOI-5 的行星则绕三星中的 A 星。再看三种固定的等质量数学起点：八字、等边旋转和不规则游走。它们都逐步计算引力，却不是这些真实系统的轨道；游走也不是随机力在推动。轨迹交叉不等于恒星已经相撞。",
+        "cue": "依次切换三个完整系统，指出每颗行星绕谁；再在三体数值章对比八字、等边与游走，并打开微扰叠加观察差异。"
       }
     ]
   },
   "en": {
-    "question": "Could a tiny point in the sky be much larger than the Sun, and how can stars orbit together?",
-    "observe": "Compare solar distance and stellar structure, then vary binary mass ratio while checking the center of mass. In the numerical experiment, start with the figure eight, modify C’s initial position, velocity or mass, and recompute. Pause or scrub time to compare the tiny-perturbation trajectory, energy error and stopping reason.",
+    "question": "Where do stars come from, why do they shine, and do they all become black holes?",
+    "observe": "Scrub from a molecular cloud to a protostar, tracking one dense core, disk, outflow and brightening center. Then compare three mass paths and the Sun's fusion, transport and surface activity. Finally switch among three binary or triple systems with planets, distinguishing their illustrative orbits from the separate numerical three-body experiment.",
     "academic": [
       {
-        "title": "Physical and angular size",
-        "body": "The Sun’s physical radius does not change with the observer’s distance. A sphere has angular diameter 2arcsin(R/d), approximately inverse in distance when d is large. Light travel is d/c, while irradiance follows an inverse-square law without absorption. These are different quantities. Crosshairs preserve subpixel locations but are not true-sized stellar disks."
+        "title": "Mass and conditions branch lifetimes and remnants",
+        "body": "In a cold molecular cloud dominated by gas, a dense core contracts under gravity. Rotating infall makes an accretion disk, and some young stars drive axial outflows. Contraction and accretion can make the protostar shine before sustained core hydrogen fusion begins the main sequence; massive stars can start fusion while still accreting. The cloud, disk and jet transition continuously on screen but are not a fluid solution or drawn on the mature-star radius ruler. A Sun-mass example passes through a red giant to a white dwarf; massive examples may leave neutron stars or black holes. Mass loss, composition, companions and collapse conditions also matter. The 1, 15 and 30 solar-mass paths are examples, not thresholds. Phase spacing is not equal elapsed time and radii are interpolated teaching values. The mature Sun-like stellar outline and planetary orbits share a scale; Mercury and Venus do not reappear after engulfment, while a fixed circle cannot settle Earth's fate. A former-envelope outline and nonlinear detail view compare remnants; compact markers cannot measure diameter. Black holes need not have accretion disks without matter supply."
       },
       {
-        "title": "Structure depends on mass and evolutionary stage",
-        "body": "Stars are not simply upgraded planets ordered by diameter. Main-sequence stars fuse hydrogen in their cores; low-mass stars can have a different extent of convection from the Sun. Some stars expand after core hydrogen exhaustion, developing a compact core and extended envelope. A red supergiant’s large radius does not mean mass grows in proportion to volume. Values here are representative models rather than measurements of named stars."
+        "title": "Long-term fusion and brief magnetic activity",
+        "body": "Solar core fusion supplies long-term light and heat. The radiative zone mainly transports energy by radiation; the convective zone also moves hot plasma. The photosphere is the visible nonsolid surface. Strong magnetic fields locally inhibit convection, making cooler-looking sunspots. Reconnection in active regions briefly releases magnetic energy as flares, while solar wind is a continuing outflow from the corona. Flares are neither the fuel for ordinary sunlight nor identical to steady solar wind. The same Sun's cutaway and local photospheric enlargement use different scales; layer thickness, cells, loops and jets illustrate mechanisms without magnetohydrodynamic integration or a calibrated activity clock."
       },
       {
-        "title": "From a shared center to three-body integration",
-        "body": "The binary and hierarchical-triple chapter retains circular constructions, not a free three-body solver. The separate numerical experiment integrates three planar point masses under Newtonian gravity using fixed-step velocity-Verlet, not pre-drawn curves. Choosing L₀ and M₀ sets T₀=√(L₀³/GM₀), so numerical G=1. Integration continues during playback with step0.001 T₀; only the latest20 T₀ of history is retained. Figure-eight initial conditions come from Montgomery’s author page; the equal-radius equilateral comparison has ω²=1/√3. Unresolved close encounters or a proposed energy error over0.1% stop integration. Finite-time perturbation differences prove neither chaos nor long-term stability, and conservation errors alone cannot guarantee accurate positions."
+        "title": "Planets can orbit a pair or just one star",
+        "body": "Kepler-47 has three confirmed planets orbiting the barycenter of its two stars. A sufficiently wide binary can allow a planet around one component, while KOI-5 has a planet around star A in a hierarchical triple. The scenes retain membership and orbit hierarchy but compress drawn separations and enlarge star markers; they neither fit observed orbits nor prove stability. The separate numerical experiment integrates three fixed equal-mass mathematical cases, not the observed systems, as three planar point masses under Newtonian gravity using fixed-step velocity-Verlet. Choosing L₀ and M₀ sets T₀=√(L₀³/GM₀), so numerical G=1. Playback uses step0.001 T₀ and keeps the latest20 T₀. Figure-eight initial conditions come from Montgomery’s author page; the equilateral comparison has ω²=1/√3. The wandering case is a project-screened departure from the equilateral start, with no random force. Trail crossings can occur at different times, and enlarged markers cannot establish contact. With no stellar radii, tides or collision physics, the integration stops at unresolved approaches or before proposed energy error exceeds0.1%. Finite-time perturbation differences prove neither chaos nor long-term stability."
       }
     ],
-    "misconception": "An apparently small star need not be physically small. Large radius does not imply proportional mass, and three stars do not imply inevitable chaos. Stellar remnants are not simply points on one main-sequence growth ladder.",
-    "boundary": "Materials and cutaway depths are illustrative; giant cores are enlarged and types are not one inevitable evolutionary sequence. Binary/hierarchical-triple modes are constructions; only the numerical chapter directly integrates Newtonian gravity. It uses no softening and excludes stellar sizes, collisions, tides, relativity and evolution. Close-encounter and error thresholds bound this algorithm’s finite resolution. Marker sizes are not physical radii, and model time does not directly mean seconds or years. Never look directly at the Sun.",
+    "misconception": "The Sun will not become a black hole, and late stellar life has no single ending. Flares do not power the Sun’s sustained shine; crossing trails do not prove a stellar collision.",
+    "boundary": "Evolutionary ages and radii are approximate teaching anchors; phase interpolation is not a full physical evolution calculation. Fixed planetary orbits do not predict Earth’s fate. Materials, cutaway thicknesses, field loops and granules are illustrative. Binary and hierarchical-triple modes are constructions; only the numerical chapter integrates Newtonian gravity. It excludes stellar sizes, collisions, tides, relativity and evolution; approach and error guards bound its algorithmic resolution. Marker sizes are not physical radii, and numerical model time is not seconds or years. Never look directly at the Sun.",
     "narration": [
       {
-        "label": "One unchanged Sun",
-        "text": "The Sun is a star. Moving farther away makes it look smaller, but the Sun itself has not shrunk. Light also takes longer to cross the greater distance.",
-        "cue": "Scrub distance and pause to compare the three readouts."
+        "label": "One cloud, different futures",
+        "text": "A cold cloud is mostly gas with a little dust. A dense part contracts; gas falls through a disk toward its young center and some flows out at the poles. Contraction and accretion make the center glow first. Once its core sustains hydrogen fusion, it joins the main sequence. Different birth masses can lead to different lifetimes and endings.",
+        "cue": "Choose each mass path and scrub through the main sequence, expanded envelope and remnant; compare the former-envelope outline, right-hand size change and endpoint readouts."
       },
       {
-        "label": "Different stars",
-        "text": "Some stars are small and reddish; others expand enormously. A large size need not mean proportionally more mass. Compare the two rulers, and remember that these are not all stages every star must follow.",
-        "cue": "Compare giant and supergiant radius with their mass."
+        "label": "One star grows into a giant",
+        "text": "Late in a Sun-like star's life, changes in the core expand its envelope. Keep Mercury’s and Venus’s orbits on screen and watch when they enter that envelope. Earth's outcome also depends on mass loss, orbital changes and tides, so one circle diagram is not enough.",
+        "cue": "Scrub back and forward across the Sun-like red-giant stage; watch the radius and Mercury/Venus states."
       },
       {
-        "label": "Inside a model",
-        "text": "We do not have photographs from inside stars. These models help explain them. The Sun has a core that releases energy and regions that transport energy outward. Another kind of star can have a different structure.",
-        "cue": "Compare solar and giant cutaways and note schematic thickness."
+        "label": "Why it shines and sometimes erupts",
+        "text": "Long-lasting solar light and heat come mainly from core fusion. Energy crosses radiative and convective regions to the photosphere. Surface magnetic fields make darker sunspots and briefly release stored energy as flares; the corona also sends out a continuing solar wind. These processes have different causes and timescales.",
+        "cue": "Select core, transport, photosphere, spots, flare and wind in order; locate each in the scene."
       },
       {
         "label": "Orbiting together",
-        "text": "In a binary, both stars move. A third star can still follow an orderly pattern. Open the numerical experiment: at every step, each point is pulled by the other two. Change one starting condition slightly and watch what follows. Separated paths do not mean all triples move chaotically. If the bodies approach too closely for our calculation, we stop and explain why.",
-        "cue": "Compare the hierarchical construction with the numerical chapter. Play the original figure eight, pause, change C’s initial x and recompute. Review the recent history and enable the perturbation overlay, noting fading dashed trails and error readings."
+        "text": "A planet need not orbit a lone Sun. Kepler-47's three planets circle a stellar pair; another planet can circle just one star in a binary; KOI-5's planet circles A in a triple. Then compare three fixed equal-mass mathematical starts: a figure eight, rotating triangle and wandering path. Gravity is integrated step by step; none reproduces those observed systems, and the wandering is not driven by random forces. Crossing trails do not establish a collision.",
+        "cue": "Switch among all three complete systems and name each planet's host; then compare the figure eight, triangle and wandering case with the perturbation overlay."
       }
     ]
   },
   "references": [
+    {
+      "title": "NASA Webb · Star formation in molecular clouds",
+      "url": "https://science.nasa.gov/mission/webb/science-overview/science-explainers/webbs-star-formation-discoveries/"
+    },
+    {
+      "title": "NASA · Three confirmed planets in the Kepler-47 binary",
+      "url": "https://science.nasa.gov/universe/exoplanets/discovery-alert-a-third-planet-in-kepler-47-system/"
+    },
+    {
+      "title": "NASA · KOI-5 planet in a triple-star system",
+      "url": "https://science.nasa.gov/universe/exoplanets/discovery-alert-a-forgotten-planet-found-in-a-triple-star-system/"
+    },
+    {
+      "title": "Holman & Wiegert · Planetary orbit stability in binary systems",
+      "url": "https://arxiv.org/abs/astro-ph/9809315"
+    },
+    {
+      "title": "NASA · Star life and remnants",
+      "url": "https://science.nasa.gov/universe/stars/"
+    },
+    {
+      "title": "NASA · Solar layers and energy transport",
+      "url": "https://science.nasa.gov/blogs/the-sun-spot/2023/09/26/layers-of-the-sun/"
+    },
+    {
+      "title": "NASA · Sun-like red giant and inner planets",
+      "url": "https://science.nasa.gov/exoplanets/resources/life-and-death/chapter-6/"
+    },
+    {
+      "title": "NASA · Stellar close encounters and mergers",
+      "url": "https://science.nasa.gov/asset/hubble/too-close-for-comfort/"
+    },
     {
       "title": "NASA · Sun facts",
       "url": "https://science.nasa.gov/sun/facts/"
@@ -105,6 +137,10 @@
     {
       "title": "Chenciner & Montgomery (2000) · A remarkable periodic solution",
       "url": "https://arxiv.org/abs/math/0011268"
+    },
+    {
+      "title": "Stone & Leigh (2019) · Chaotic non-hierarchical three-body systems",
+      "url": "https://www.nature.com/articles/s41586-019-1833-8"
     },
     {
       "title": "University of Marburg · Velocity-Verlet algorithm",

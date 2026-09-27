@@ -22,7 +22,32 @@ test('search combines terms and category, excludes drafts, and handles empty res
   assert.deepEqual(findTopics(fixture,{query:' 恒星  引力 '}).map(item=>item.id),['black-holes']);
   assert.equal(findTopics(fixture,{category:'life',query:'黑洞'}).length,0);
   assert.equal(findTopics(fixture,{query:'不存在的问题'}).length,0);
-  assert.equal(findTopics(fixture).length, catalog.topics.filter(item => item.status === 'published' && !item.parentTopic).length);
+  assert.equal(findTopics(fixture).length, catalog.topics.filter(item => item.status === 'published' && !item.parentTopic && item.listed !== false).length);
+});
+test('published but unlisted topics keep their direct routes without appearing in discovery',()=>{
+  const fixture=structuredClone(catalog);
+  fixture.topics[0].listed=false;
+  assert.equal(validateCatalog(fixture),fixture);
+  assert.ok(existsSync(new URL(`..${topicHref(fixture.topics[0])}index.html`,import.meta.url)));
+  assert.ok(!findTopics(fixture).some(item=>item.id===fixture.topics[0].id));
+  assert.deepEqual(findTopics(fixture,{query:fixture.topics[0].title}),[]);
+  for(const listed of ['false',null,0]) {
+    const invalid=structuredClone(fixture);invalid.topics[0].listed=listed;
+    assert.throws(()=>validateCatalog(invalid),/Invalid topic/);
+  }
+  const child=structuredClone(fixture);child.topics.find(item=>item.parentTopic).listed=false;
+  assert.throws(()=>validateCatalog(child),/Invalid topic/);
+});
+test('editorial curation retains five published legacy pages outside discovery',()=>{
+  const ids=['lunar-craters','meteors','sand-journey','camouflage','tap-water'];
+  for(const id of ids) {
+    const topic=catalog.topics.find(item=>item.id===id);
+    assert.equal(topic.status,'published');
+    assert.equal(topic.listed,false);
+    assert.ok(existsSync(new URL(`..${topicHref(topic)}index.html`,import.meta.url)));
+    assert.ok(!findTopics(catalog,{query:topic.title}).some(item=>item.id===id));
+  }
+  assert.equal(findTopics(catalog).length,36);
 });
 test('shared links recover filters and tolerate unknown categories and long input',()=>{
   assert.deepEqual(readFilters('?category=universe&q=%E9%BB%91%E6%B4%9E',catalog),{category:'universe',query:'黑洞'});

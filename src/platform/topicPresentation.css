@@ -9,18 +9,7 @@ html[data-topic-ui] {
   --ui-section-size: clamp(20px, 2vw, 24px);
   --ui-copy-size: 15px;
   --ui-control-size: 13px;
-  --ui-shadow: 0 8px 28px #18382b06;
-}
-html[data-topic-ui][data-theme="light"] {
-  --page: #f8faf9; --surface: #ffffff; --ink: #202c28;
-  --secondary: #5e6e67; --quiet: #708077; --border: #dde5e0;
-  --accent: #365e50; --tint: #eef3ef;
-}
-html[data-topic-ui][data-theme="dark"] {
-  --page: #111715; --surface: #18211e; --ink: #e7eee9;
-  --secondary: #a7b8ae; --quiet: #94a69b; --border: #303e36;
-  --accent: #badccd; --tint: #202d26;
-  --ui-shadow: 0 8px 28px #00000010;
+  --ui-shadow: 0 8px 28px #00000008;
 }
 html[data-topic-ui] body {
   background: var(--page); color: var(--ink);
@@ -200,4 +189,20 @@ html[data-topic-ui] .learning-companion { max-width: none; }
 }
 @media (prefers-reduced-motion: reduce) {
   html[data-topic-ui] :is(button, select) { transition: none; }
+}
+
+/* Neutral interaction state across topic-owned control layouts. Scene pixels and
+   scientific marks keep the topic palette. */
+html[data-topic-ui] body main button[aria-pressed="true"],
+html[data-topic-ui] body main button[aria-current="step"],
+html[data-topic-ui] body main button.active {
+  color: var(--ink); background: var(--tint); border-color: var(--accent);
+  box-shadow: inset 0 0 0 1px var(--border);
+}
+html[data-topic-ui] body main :is(.modes, .reading-mode, .mode-switch, .learning-modes) button[aria-pressed="true"],
+html[data-topic-ui] body main :is(button.primary, button#play, button#btn-play, button#cycle-play, button.play-button) {
+  color: var(--page); background: var(--accent); border-color: var(--accent); box-shadow: none;
+}
+html[data-topic-ui] body main :is(input[type="range"], input[type="checkbox"]) {
+  accent-color: var(--accent);
 }

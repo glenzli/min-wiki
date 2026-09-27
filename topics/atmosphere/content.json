@@ -1,5 +1,72 @@
 {
   "zh": {
+    "mechanisms": {
+      "eyebrow": "当前位置 · 连续解说",
+      "scale": "机制示意，颗粒、距离与时间不按比例",
+      "density": "空气粒子越来越稀疏 · 点数仅作提示",
+      "play": "播放本层解说",
+      "pause": "暂停本层解说",
+      "replay": "重看本层解说",
+      "boundaryLabel": "模型边界与科学依据",
+      "source": "核对科学依据 ↗",
+      "layers": [
+        {
+          "question": "云为什么常在靠近地面的空气里？",
+          "lead": "地面是这段旅程的重要能量来源；抬升、冷却与水汽条件要一起看。",
+          "steps": [
+            { "title": "地面向空气传热", "body": "阳光先使地表受热；地表再把一部分能量传给邻近空气。" },
+            { "title": "空气抬升并冷却", "body": "一团空气上升时周围气压降低，它膨胀，温度通常下降。" },
+            { "title": "有足够水汽才可能成云", "body": "冷却到适当程度，水汽可凝结成小水滴或冰晶；水汽不够时没有这朵云。云滴还要继续长大才可能落雨。" }
+          ],
+          "boundary": "两条路径分别示意水汽充足与不足；这里没有计算实时湿度、降雨量或天气预报。",
+          "sourceUrl": "https://www.weather.gov/source/zhu/ZHU_Training_Page/clouds/cloud_development/clouds.htm"
+        },
+        {
+          "question": "为什么往上不再一直变冷？",
+          "lead": "臭氧吸收一部分太阳紫外线，使平流层上部获得能量。",
+          "steps": [
+            { "title": "紫外线进入这一带", "body": "太阳的不同波段进入大气；这里特别追踪被臭氧吸收的部分紫外线。" },
+            { "title": "臭氧吸收并使空气升温", "body": "吸收的辐射能量转成周围空气的热运动；平流层上部通常比下部暖。" },
+            { "title": "上下翻动较难持续", "body": "这种温度结构通常抑制强对流，但仍有风和上下交换；臭氧不是一张挡住空气的薄膜。" }
+          ],
+          "boundary": "光线与臭氧分子都放大了；吸收位置、比例和温度曲线不是现场测量。",
+          "sourceUrl": "https://science.nasa.gov/earth/earth-atmosphere/earths-atmosphere-a-multi-layered-cake/"
+        },
+        {
+          "question": "天上的一道亮线从何而来？",
+          "lead": "流星体高速进入空气；发光发生在飞行途中，并非固定在一条高度线上。",
+          "steps": [
+            { "title": "小天体从太空进入", "body": "画面追踪同一个流星体的来路；它与越来越多的空气相遇。" },
+            { "title": "高速作用产生亮迹", "body": "气体被压缩、加热，流星体也会失去物质；发光的气体与物质留下短暂亮迹。" },
+            { "title": "亮迹消退，结果未必相同", "body": "许多小流星体在高空消散；也有一部分碎片可能继续下落，最后成为陨石。" }
+          ],
+          "boundary": "路径和亮度为示意；尺寸、速度与材料会改变结果，本页不预测某颗流星体是否落地。",
+          "sourceUrl": "https://science.nasa.gov/solar-system/meteors-meteorites/"
+        },
+        {
+          "question": "空气稀薄，为什么还会有高温与极光？",
+          "lead": "日光加热与极光是两条不同的能量途径，不能把高温当作极光的开关。",
+          "steps": [
+            { "title": "高能太阳辐射被吸收", "body": "一些高能紫外线与 X 射线把能量交给高层稀薄气体，使粒子的平均运动能量升高。" },
+            { "title": "粒子温度高，空气仍很稀", "body": "单个粒子运动可很快，但粒子数量少；温度高不等于像地面热空气那样不断把大量热传给物体。" },
+            { "title": "另在合适条件下出现极光", "body": "进入极区高层大气的带电粒子可使气体发光。没有相应粒子输入与磁场条件，不能只因这里温度高就画极光。" }
+          ],
+          "boundary": "辐射、粒子与极光被放大；高层实际温度与极光位置随太阳和地磁活动变化。",
+          "sourceUrl": "https://science.nasa.gov/blogs/the-sun-spot/2021/10/18/in-earths-highest-atmospheric-layers-space-weather-can-really-heat-things-up/"
+        },
+        {
+          "question": "空气究竟在哪里结束？",
+          "lead": "越往外，粒子相遇越少；大气逐渐接上太空。",
+          "steps": [
+            { "title": "粒子相距很远", "body": "外逸层里粒子很稀疏，彼此碰撞比低空少得多。" },
+            { "title": "有些仍留在地球附近", "body": "稀疏不等于都在飞走；一些粒子的运动仍受地球引力束缚。" },
+            { "title": "有些轻粒子可以逃逸", "body": "足够快的轻粒子可能离开；其他粒子仍在更远处出现，没有一道整齐的终止墙。" }
+          ],
+          "boundary": "1000 km 是本页观察上限，不是大气终点；虚线轨迹仅表示不同可能，不是实测轨道。",
+          "sourceUrl": "https://science.nasa.gov/mission/carruthers-geocorona-observatory/"
+        }
+      ]
+    },
     "layers": [
       {
         "name": "对流层",
@@ -214,7 +281,8 @@
       "title": "从地面向外，看空气在做什么",
       "up": "向外 · 空气逐渐稀薄",
       "ground": "同一片地面：海洋、陆地和我们",
-      "rare": "特殊条件下的云"
+      "rare": "特殊条件下的云",
+      "comparePrompt": "点选任一行，同时看两边的解释"
     },
     "highClouds": [
       {
@@ -252,7 +320,7 @@
       "pause": "暂停旅程",
       "play": "播放旅程",
       "projection": "黄色方框始终标记同一地面；亮点是观察高度 · 镜头从外侧观察，不是乘坐飞船 · 现象放大示意",
-      "boundary": "球体与高度位置使用统一参考距离，镜头缩放会变化；云、箭头和粒子为放大示意。海岸并非真实地点，各类现象也不表示同时发生。",
+      "boundary": "球体与高度位置使用统一参考距离，镜头缩放会变化。远景采用地球参考贴图；靠近地面时保留同一标记，海岸细节转为教学示意，不是实测地形。云、箭头和粒子为放大示意；各类现象也不表示同时发生。",
       "overviewGuide": "先找到黄色标记，再拖动旅程或播放：地球会连续变大，标记附近的云和地面逐渐清楚。到达地面后，观察点再向上移动。",
       "question": "大气怎样包围地球，各层在哪里？",
       "story": "远看，大气贴着球体，像薄薄的边缘。我们先走近同一处海岸，再从低空的风和云向上，寻找臭氧、流星与极光所在的区域。黄色方框一直留在地面，不会跟着观察点升高。",
@@ -278,6 +346,73 @@
     }
   },
   "en": {
+    "mechanisms": {
+      "eyebrow": "Here · continuous narration",
+      "scale": "Mechanism illustration; particles, distances, and time are not to scale",
+      "density": "Air particles grow sparser upward · dot counts are only a cue",
+      "play": "Play this layer's explanation",
+      "pause": "Pause this layer's explanation",
+      "replay": "Replay this layer's explanation",
+      "boundaryLabel": "Model limits and science source",
+      "source": "Check the science source ↗",
+      "layers": [
+        {
+          "question": "Why are clouds common near the ground?",
+          "lead": "The surface supplies much of the energy here; rising, cooling, and moisture must be considered together.",
+          "steps": [
+            { "title": "The surface warms nearby air", "body": "Sunlight warms the ground first; the ground transfers some energy to the air next to it." },
+            { "title": "Rising air expands and cools", "body": "As an air parcel rises, pressure around it falls. It expands, and its temperature usually drops." },
+            { "title": "Enough moisture can make a cloud", "body": "With sufficient cooling, water vapor can condense into droplets or ice. A drier parcel makes no cloud here; droplets must grow further before rain can fall." }
+          ],
+          "boundary": "The two paths illustrate moist and drier air. This is not a calculation of live humidity, rainfall, or a weather forecast.",
+          "sourceUrl": "https://www.weather.gov/source/zhu/ZHU_Training_Page/clouds/cloud_development/clouds.htm"
+        },
+        {
+          "question": "Why does it stop getting colder all the way up?",
+          "lead": "Ozone absorbs some solar ultraviolet radiation, bringing energy to the upper stratosphere.",
+          "steps": [
+            { "title": "Ultraviolet light enters", "body": "Several wavelengths enter the atmosphere; here we follow the portion of ultraviolet light absorbed by ozone." },
+            { "title": "Ozone absorbs energy", "body": "Absorbed radiation adds energy to the surrounding air; the upper stratosphere is usually warmer than the lower part." },
+            { "title": "Strong overturning is less likely", "body": "This temperature pattern usually suppresses strong convection, but winds and vertical exchange continue. Ozone is not a solid film." }
+          ],
+          "boundary": "Light rays and ozone molecules are enlarged; absorption position, fraction, and the temperature curve are not measurements here.",
+          "sourceUrl": "https://science.nasa.gov/earth/earth-atmosphere/earths-atmosphere-a-multi-layered-cake/"
+        },
+        {
+          "question": "Where does a bright meteor streak come from?",
+          "lead": "A meteoroid enters the air at high speed. Its glow follows part of a flight path, not a fixed height line.",
+          "steps": [
+            { "title": "A small body arrives from space", "body": "Follow one meteoroid along its incoming path as it meets more air." },
+            { "title": "High-speed interaction makes a glow", "body": "Gas is compressed and heated, and the body loses material. Luminous gas and material make a short-lived streak." },
+            { "title": "The streak fades; outcomes differ", "body": "Many small meteoroids disappear high up. Some fragments can continue downward and eventually become meteorites." }
+          ],
+          "boundary": "The path and glow are illustrative. Size, speed, and material affect the outcome; this page does not predict whether one body reaches the ground.",
+          "sourceUrl": "https://science.nasa.gov/solar-system/meteors-meteorites/"
+        },
+        {
+          "question": "How can thin air have high temperatures and auroras?",
+          "lead": "Solar-radiation heating and auroras follow different energy paths. High temperature alone does not switch on an aurora.",
+          "steps": [
+            { "title": "High-energy sunlight is absorbed", "body": "Some extreme ultraviolet light and X-rays transfer energy to thin upper air, raising particles' average kinetic energy." },
+            { "title": "Hot particles, very little air", "body": "Individual particles can move rapidly, but they are few; high temperature does not mean continuous transfer of large amounts of heat like dense ground-level air." },
+            { "title": "Auroras need other conditions", "body": "Charged particles entering polar upper air can make gases glow. Without the relevant particle input and magnetic conditions, high temperature alone does not make an aurora." }
+          ],
+          "boundary": "Radiation, particles, and auroral light are enlarged. Actual upper-air temperatures and aurora locations vary with solar and geomagnetic activity.",
+          "sourceUrl": "https://science.nasa.gov/blogs/the-sun-spot/2021/10/18/in-earths-highest-atmospheric-layers-space-weather-can-really-heat-things-up/"
+        },
+        {
+          "question": "Where does the air actually end?",
+          "lead": "Particles meet less often farther out; the atmosphere gradually blends into space.",
+          "steps": [
+            { "title": "Particles are far apart", "body": "Particles in the exosphere are sparse and collide much less often than they do low down." },
+            { "title": "Some remain near Earth", "body": "Sparse does not mean all particles are leaving. Earth's gravity still binds some of their paths." },
+            { "title": "Some light particles escape", "body": "Sufficiently fast light particles may leave; others occur farther out, with no tidy wall where the air ends." }
+          ],
+          "boundary": "1000 km is this page's viewing limit, not the atmosphere's end. Dashed paths show possibilities, not measured orbits.",
+          "sourceUrl": "https://science.nasa.gov/mission/carruthers-geocorona-observatory/"
+        }
+      ]
+    },
     "layers": [
       {
         "name": "Troposphere",
@@ -492,7 +627,8 @@
       "title": "From the ground outward: what is the air doing?",
       "up": "Outward · air gradually thins",
       "ground": "The same ground: ocean, land and us",
-      "rare": "Clouds under special conditions"
+      "rare": "Clouds under special conditions",
+      "comparePrompt": "Select a row to read both explanations together"
     },
     "highClouds": [
       {
@@ -530,7 +666,7 @@
       "pause": "Pause journey",
       "play": "Play journey",
       "projection": "The yellow square stays at the same surface site; the bright dot marks observation height · External camera, not a spacecraft ride · Features enlarged",
-      "boundary": "The globe and reference heights share distance coordinates while the camera zoom changes. Clouds, arrows and particles are enlarged illustrations. The coast is not a mapped location, and the phenomena need not occur at the same time.",
+      "boundary": "The globe and reference heights share distance coordinates as the camera zooms. The far view uses an Earth reference texture; near the surface, the same marker remains while coastal detail becomes a teaching illustration, not surveyed terrain. Clouds, arrows and particles are enlarged; the phenomena need not occur at the same time.",
       "overviewGuide": "Find the yellow marker, then drag or play the journey. Earth grows continuously; clouds and ground near that marker come into view. After reaching the surface, the observation point moves upward.",
       "question": "How does the atmosphere surround Earth, and where are its layers?",
       "story": "From afar, the atmosphere hugs the globe as a thin rim. Approach the same coast, then move upward from low winds and clouds toward ozone, meteors and auroras. The yellow square stays on the ground rather than rising with the observation point.",

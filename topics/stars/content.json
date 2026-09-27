@@ -1,18 +1,12 @@
 {
   "chapters": [
     {
-      "id": "sun",
-      "name": {
-        "zh": "01 · 太阳与距离",
-        "en": "01 · Sun & distance"
-      }
+      "id": "evolution",
+      "name": {"zh": "01 · 一生与分支", "en": "01 · Lifetimes & paths"}
     },
     {
-      "id": "types",
-      "name": {
-        "zh": "02 · 恒星的模样",
-        "en": "02 · Different stars"
-      }
+      "id": "anatomy",
+      "name": {"zh": "02 · 发光与活动", "en": "02 · Light & activity"}
     },
     {
       "id": "orbits",
@@ -39,8 +33,8 @@
       "en": "Large does not always mean massive"
     },
     "orbitsTitle": {
-      "zh": "没有谁被钉在正中央",
-      "en": "Neither star is pinned at the center"
+      "zh": "相伴恒星，也可能有行星",
+      "en": "Planets can live with companion stars"
     },
     "sunContext": {
       "zh": "保持同一颗太阳 · 改变观察距离",
@@ -51,8 +45,8 @@
       "en": "REPRESENTATIVE MODELS · NOT ONE STAR GROWING"
     },
     "orbitsContext": {
-      "zh": "共同质心 · 质量与距离相互对应",
-      "en": "SHARED CENTER OF MASS"
+      "zh": "选一套已知或代表性结构 · 看各自绕谁运动",
+      "en": "CHOOSE A SYSTEM · SEE WHAT ORBITS WHAT"
     },
     "play": {
       "zh": "播放轨道",
@@ -127,13 +121,19 @@
       "en": "Mass of B / mass of A"
     },
     "phase": {
-      "zh": "轨道相位 · 拖动定位，播放持续绕行",
-      "en": "Orbital phase · seek, then keep orbiting"
+      "zh": "查看运动中的另一刻 · 拖动定位",
+      "en": "See another moment · drag to seek"
     },
     "center": {
       "zh": "共同质心",
       "en": "CENTER OF MASS"
     },
+    "innerPair": {"zh":"内层双星 A+B","en":"Inner pair A+B"},
+    "hostDetail": {"zh":"A 星附近 · 再放大","en":"Near A · enlarged again"},
+    "planet": {"zh":"行星","en":"Planet"},
+    "starsCount": {"zh":"恒星","en":"Stars"},
+    "planetsCount": {"zh":"画出的行星","en":"Planets shown"},
+    "planetPath": {"zh":"行星绕行对象","en":"Planet orbits"},
     "period": {
       "zh": "外圈 / 内圈周期",
       "en": "Outer / inner period"
@@ -167,8 +167,8 @@
       "en": "Layer thicknesses and colors are schematic, not interior photographs or measured depths."
     },
     "orbitScale": {
-      "zh": "点的位置和质量共享质心构造；星盘大小与间距分开缩放。没有碰撞、潮汐、质量转移或长期稳定性求解。",
-      "en": "Positions and masses share one barycentric construction; disk sizes and separations use separate scales. Collisions, tides, mass transfer and long-term stability are not solved."
+      "zh": "全景保留谁绕谁的层级关系；画出的轨道距离经过压缩，恒星与行星盘是辨认符号，不按真实直径。曲线是圆轨道教学构造，不是观测轨道拟合或长期稳定性证明。",
+      "en": "The overview preserves which object orbits which. Drawn orbital distances are compressed, and stellar and planetary disks are identification marks, not real diameters. Curves are circular teaching constructions, not fitted observed paths or proofs of long-term stability."
     },
     "sunExplain": {
       "zh": "把右边的观察者移远，角直径减小，光走得更久，单位面积收到的能量也减少。太阳仍是同一颗星。它由核心核聚变供能，不是靠氧气燃烧的火球。",
@@ -233,6 +233,35 @@
     "pauseSurface": {
       "zh": "暂停表面 · 示意",
       "en": "Pause surface · illustrated"
+    }
+  },
+  "orbitCases": {
+    "circumbinary": {
+      "name":{"zh":"近双星 · 行星绕两星","en":"Close binary · planets around both"},
+      "sceneLabel":{"zh":"Kepler-47 · 双星与三颗已确认行星","en":"Kepler-47 · binary and three confirmed planets"},
+      "bottomLabel":{"zh":"A、B 绕共同质心；行星 b、d、c 绕这对双星","en":"A and B orbit their barycenter; b, d and c orbit the pair"},
+      "planetPath":{"zh":"双星整体","en":"Both stars"},
+      "explain":{"zh":"Kepler-47 的两颗质量不同的恒星彼此绕行，三颗已确认行星绕它们的共同质心。这不是两颗太阳被固定在行星两侧；行星绕的是整对双星。画面保留成员数和绕行层级，轨道圆与位置是教学示意。","en":"Kepler-47 has two unequal stars orbiting each other and three confirmed planets orbiting their shared center of mass. The stars are not fixed on either side of a planet; the planets circle the pair. The scene keeps the members and orbital hierarchy, while circular paths and positions are illustrative."},
+      "boundary":{"zh":"Kepler-47 的成员与绕行类型来自观测；这里没有按真实轨道距离、偏心率、半径或公转周期拟合。双星能拥有行星，不代表每对双星都有行星。","en":"The members and orbit type of Kepler-47 are observed. Distances, eccentricities, radii and periods are not fitted here. Some binaries host planets; this does not mean every binary does."},
+      "source":"https://science.nasa.gov/universe/exoplanets/discovery-alert-a-third-planet-in-kepler-47-system/"
+    },
+    "circumprimary": {
+      "name":{"zh":"宽双星 · 行星绕一星","en":"Wide binary · planet around one star"},
+      "sceneLabel":{"zh":"另一种布局 · 行星留在 A 星附近","en":"Another layout · a planet near star A"},
+      "bottomLabel":{"zh":"A、B 缓慢互绕；近处行星更快地绕 A","en":"A and B orbit slowly; the nearby planet circles A faster"},
+      "planetPath":{"zh":"只绕 A 星","en":"Star A only"},
+      "explain":{"zh":"当两颗恒星相距较远时，行星也可能主要受其中一颗恒星束缚，随它一起参与双星的外层运动。这里展示这种绕单星（S 型）布局的代表性构造，不对应某个已测量系统。","en":"In a sufficiently wide binary, a planet can remain bound mainly to one star while the host star also moves in the binary. This is a representative circumstellar (S-type) layout, not a reconstruction of a measured system."},
+      "boundary":{"zh":"行星能否长期留在 A 星附近取决于双星间距、质量、偏心率与行星轨道等条件。画面只选取分离清楚的布局；圆轨道不是稳定性求解，也不表示所有宽双星都有行星。","en":"Long-term survival near A depends on binary separation, masses, eccentricity and the planetary orbit. This scene selects a clearly separated layout. Circular paths are not a stability calculation, nor do all wide binaries have planets."},
+      "source":"https://arxiv.org/abs/astro-ph/9809315"
+    },
+    "hierarchical": {
+      "name":{"zh":"层级三星 · 行星绕 A","en":"Hierarchical triple · planet around A"},
+      "sceneLabel":{"zh":"KOI-5 型层级 · 内层 A+B，外层 C","en":"KOI-5 style hierarchy · inner A+B, outer C"},
+      "bottomLabel":{"zh":"行星靠近 A；右下角把 A 附近单独放大","en":"Planet stays near A; the inset enlarges A's neighborhood"},
+      "planetPath":{"zh":"内双星的 A 星","en":"Star A of the inner pair"},
+      "explain":{"zh":"KOI-5 有一颗行星绕 A 星，A 与 B 构成较近的一对，C 则绕这对双星更远地运动。整个系统有三个不同位置的恒星，并不是三颗星挤成一团。右下角对 A 的行星另取更大的镜头。","en":"In KOI-5, a planet orbits star A. A and B form a closer pair while C moves farther around that pair. The three stars occupy distinct places rather than crowding together. The inset uses another scale to show A's planet."},
+      "boundary":{"zh":"成员关系参考 KOI-5；图中的恒星质量比例、圆轨道、相位与行星位置为示意，不是 KOI-5 的轨道解。两个镜头不能拼成同一把距离尺；行星是否稳定仍需具体动力学研究。","en":"The membership follows KOI-5. Stellar mass ratios, circular paths, phases and planetary positions here are illustrative, not a KOI-5 orbit solution. The two views use different distance scales; planetary stability needs a system-specific dynamics study."},
+      "source":"https://science.nasa.gov/universe/exoplanets/discovery-alert-a-forgotten-planet-found-in-a-triple-star-system/"
     }
   },
   "types": [

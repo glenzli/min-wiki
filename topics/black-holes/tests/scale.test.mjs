@@ -93,10 +93,11 @@ test('paired geometry fits available height while preserving both diameter ratio
 });
 
 
-test('related views follow the selected object without shifting older stellar pairs', () => {
-  for (const [id,pair] of [['earth',0],['sun',1],['arcturus',2],['antares',3],['vy-canis-majoris',4],['woh-g64',5],['stephenson-2-18',6]]) {
-    assert.equal(referenceJourneyHref(id), `/topics/cosmic-scale/?mode=compare&pair=${pair}`);
+test('related views follow the current stellar sequence and preserve retired WOH links', () => {
+  for (const [id,pair] of [['earth',0],['sun',1],['arcturus',2],['antares',3],['vy-canis-majoris',4],['stephenson-2-18',5]]) {
+    assert.equal(referenceJourneyHref(id), `/topics/cosmic-scale/?mode=compare&pair=${pair}&pairVersion=2`);
   }
+  assert.equal(referenceJourneyHref('woh-g64'), '/topics/cosmic-scale/?mode=compare&pair=5&pairVersion=2');
   assert.equal(referenceJourneyHref('neptune-orbit'), '/topics/cosmic-scale/?mode=homes&home=0');
   assert.equal(referenceJourneyHref('milky-way'), '/topics/cosmic-scale/?mode=homes&home=1');
   // A recognisable inset must not leak its display minimum into the physical measurement.

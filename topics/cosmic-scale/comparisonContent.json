@@ -12,7 +12,6 @@
       "大角星",
       "心宿二",
       "大犬座 VY",
-      "WOH G64",
       "史蒂文森 2-18"
     ],
     "kinds": [
@@ -22,7 +21,6 @@
       "红巨星",
       "红超巨星",
       "红超巨星",
-      "极大恒星 · 估计",
       "极大恒星 · 估计"
     ],
     "pairs": [
@@ -31,8 +29,7 @@
       "太阳与大角星",
       "大角星与心宿二",
       "心宿二与大犬座 VY",
-      "大犬座 VY 与 WOH G64",
-      "WOH G64 与 St2-18"
+      "大犬座 VY 与 St2-18"
     ],
     "pairTitles": [
       "地球很大，木星更大",
@@ -40,7 +37,6 @@
       "太阳也不是最大的恒星",
       "还有比大角星大得多的恒星",
       "比心宿二更大的恒星",
-      "恒星还能这样大",
       "把这样大的恒星放到太阳的位置"
     ],
     "pairNotes": [
@@ -49,42 +45,97 @@
       "大角星是红巨星，直径约是太阳的 25 倍。它的大小是估计值；恒星大小不同，这不是“最大恒星”排行榜。",
       "心宿二的直径估计约是太阳的 700 倍，大约能横着排下 28 颗大角星。这是大小估计，不是“宇宙最大恒星”的排名。",
       "大犬座 VY 的直径约是心宿二的 2 倍。这里采用 2012 年干涉观测结合大气模型得到的光球半径估计：1420 ± 120 个太阳半径；画面取中心值。不把外围气体和尘埃算成恒星表面，也不把它称作已确定的最大恒星。",
-      "WOH G64 的名字像编号，个头却很惊人。试试“放进太阳系”：按这里的估计，它的轮廓能越过木星轨道。",
-      "史蒂文森 2-18，也写作 St2-18。按这里采用的估计，把它放在太阳的位置，轮廓会伸到土星轨道附近。恒星竟然可以这么大！"
+      "史蒂文森 2-18，也写作 St2-18。这个有条件的估计比大犬座 VY 更大；把它假想放在太阳的位置，轮廓会伸到土星轨道附近。恒星竟然可以这么大！"
     ],
-    "boundary": "圆盘直径使用同一比例；间隔只为比较。表面颗粒与暗斑的变化为教学示意，速度和细节未经观测标定；辉光不计入直径。",
+    "boundary": "圆盘直径使用同一比例；间隔只为比较。地球与木星的球面自转、恒星表面活动均为缩时示意，转速和细节未经观测标定；贴图不是实时天气，辉光不计入直径。",
     "scrub": "拖动，把更大的请进来",
     "previous": "回看上一组",
     "next": "看看更大的",
     "goHomes": "这些天体住在哪里？ →",
-    "goZoom": "带着这些参照，真正拉远 →",
+    "goZoom": "带着参照，连续拉远到可观测范围 →",
+    "homePrevious": "← 上一站",
+    "homeNext": "下一站 →",
+    "homeProgress": "第 {{current}} / {{total}} 站",
+    "homeSideProgress": "旁支对照 · 主线第 {{current}} / {{total}} 站",
+    "homeReturn": "← 回到{{name}}",
+    "homeRouteLabel": "我们所在的结构路径 · 示意图不按比例",
+    "homeSideLabel": "换个局部镜头看 · 不计入拉远主线",
+    "homeSideNames": ["对照本星系群与室女座星系团", "放大看看宇宙网"],
     "homeNames": [
       "太阳系",
       "银河系",
-      "本星系群"
+      "本星系群",
+      "星系群与星系团",
+      "拉尼亚凯亚",
+      "宇宙网",
+      "可观测宇宙"
     ],
     "homeTitles": [
       "太阳和行星组成一个系统",
       "太阳系在银河的恒星盘里",
-      "银河也是星系群的一员"
+      "银河也是星系群的一员",
+      "并排对照：本星系群与室女座星系团",
+      "本星系群与室女座星系团，同处更大区域",
+      "局部放大：星系沿丝线与结点分布",
+      "观测范围远大于我们的超星系团"
     ],
     "homeNotes": [
       "太阳是恒星，地球和其他行星绕着它运行。太阳系的范围包含很长的轨道距离，不能把它当作一颗更大的球。",
       "银河里有许多恒星，太阳只是其中一颗。黄色标记指出太阳系所在的大致区域；这个标记不代表太阳系的真实大小。",
-      "保留刚才的银河，再找到仙女座星系和三角座星系。本星系群还有更多成员；这里仅展示三个代表。"
+      "保留刚才的银河，再找到仙女座、三角座和周围的小星系。大麦哲伦云、小麦哲伦云等约 50 个矮星系也属于本星系群；图上的小点只抽样示意，并非完整清单。",
+      "这是并排对照，不是从本星系群放大就会进入室女座星系团。两者是不同的邻近结构；星系团通常比星系群拥有更多星系。",
+      "在拉尼亚凯亚的流向重建中，本星系群位于外围，室女座星系团等群与团也在这一广大区域。这个范围依据星系运动推断，并不是一层坚固边界；整体通常不受自身引力束缚。",
+      "单独放大宇宙网的一个示意片段：群与团分布在丝线和结点附近，中间有相对稀疏的空洞。宇宙网是分布形态，不是套在拉尼亚凯亚外面的一层发光绳网。",
+      "这幅画面用圆圈表示从我们这里可观测的范围，圆内的丝线、结点和相对稀疏的空洞与连续拉远终点共用一套示意网，并不是把上一幅拉尼亚凯亚图裁成圆形。拉尼亚凯亚约 5.2 亿光年的跨度不到约 930 亿光年观测范围直径的 1%；中心记号因此被放大为定位符。光传播时宇宙也在膨胀；虚线是观测视界，不是宇宙外墙。"
     ],
-    "homeBoundary": "包含关系示意 · 星盘、旋臂、中央亮区与尘埃暗带为结构重建，并非从银河外拍摄的照片。形状、朝向、间距和标记不用于测量；星系不是实心球。",
+    "homeBoundary": [
+      "包含关系示意 · 轨道、行星位置与大小不按比例；太阳系不是实心球。",
+      "银河外观为结构重建，并非从银河外拍摄的完整照片；标记、旋臂与盘面不用于测量。",
+      "成员示意 · 三个大星系与少量矮星系标记不是完整普查；形状、方向、大小和间隔均不按比例。",
+      "并排对照示意 · 两侧不是同一比例；星系点数不是成员总数，位置不可测量；淡蓝色热气体是 X 射线结构示意。",
+      "大尺度结构示意 · 虚线是模型推断的流向区域，不是精确边界；连线不是实体，也不能据此测量实际位置。",
+      "局部纹理示意 · 丝线、结点与空洞不对应真实天区位置，亮点不表示实际星系数，也不能用画面推算拉尼亚凯亚的直径。",
+      "可观测范围示意 · 圆圈表示约略的今天距离量级，内部细网的线条、结点与疏密仅为统计分布示意，并非全天实测地图或实际数量；中心定位符不是拉尼亚凯亚的直径，虚线不是宇宙的物理边缘。"
+    ],
     "homeAnchor": [
       "黄色：太阳；蓝色：地球",
       "黄色：太阳系所在区域",
-      "黄色外框：刚才的银河"
+      "黄色外框：刚才的银河",
+      "黄色标记：本星系群",
+      "黄色标记：本星系群所在区域",
+      "黄色标记：我们所在的局部区域",
+      "黄色中心：定位符，不是超星系团直径"
+    ],
+    "homeCues": [
+      [{"label":"中心恒星","detail":"太阳把行星聚在同一个系统里。"},{"label":"多条轨道","detail":"路径与行星位置为示意。"}],
+      [{"label":"银河的盘","detail":"旋臂、中央亮区和暗尘带各有结构。"},{"label":"参考尺度","detail":"恒星盘直径约 10 万光年。"}],
+      [{"label":"三座较大星系","detail":"银河、仙女座与三角座。"},{"label":"许多小成员","detail":"含大、小麦哲伦云；小光斑只抽样。"}],
+      [{"label":"本星系群","detail":"成员相对分散，黄色标记是我们的位置。"},{"label":"室女座星系团","detail":"星系更密；淡蓝色热气体为 X 射线示意。"}],
+      [{"label":"本星系群","detail":"在拉尼亚凯亚的外围。"},{"label":"更大区域","detail":"包含许多群与团，整体通常不受引力束缚。"}],
+      [{"label":"丝线与结点","detail":"星系分布更密集。"},{"label":"宇宙空洞","detail":"只是相对稀疏，并非绝对空无一物。"}],
+      [{"label":"圆内细网","detail":"丝线与结点遍及视野，位置、数量和疏密均为示意。"},{"label":"中心与边界","detail":"中心定位符放大；虚线距此今天约 465 亿光年，并非宇宙边缘。"}]
+    ],
+    "homeSources": [
+      "https://science.nasa.gov/solar-system/solar-system-facts/",
+      "https://www.esa.int/content/view/full/423444",
+      "https://science.nasa.gov/earth/earth-observatory/the-galaxy-next-door/",
+      "https://science.nasa.gov/universe/galaxies/large-scale-structures/",
+      "https://www.nature.com/articles/nature13674",
+      "https://www.esa.int/Science_Exploration/Space_Science/Planck/Tools_to_study_the_distribution_of_matter_in_the_Universe",
+      "https://www.esa.int/kids/en/learn/Our_Universe/Story_of_the_Universe/The_Universe"
     ],
     "andromeda": "仙女座星系",
     "triangulum": "三角座星系",
+    "dwarfGalaxies": "小星系示意 · 含大、小麦哲伦云",
+    "virgoCluster": "室女座星系团",
+    "clusterGas": "热气体 · X 射线示意",
+    "cosmicVoid": "相对稀疏的空洞",
+    "observer": "我们所在的拉尼亚凯亚区域",
+    "horizon": "可观测范围",
     "diameter": "直径约",
-    "source": "数值依据 ↗",
+    "source": "科学依据 ↗",
     "compareAlt": "同一比例的天体直径对比，拖动时同一天体连续缩小",
-    "homeAlt": "从太阳系到银河和本星系群的包含关系示意",
+    "homeAlt": "我们所在的结构路径及独立局部对照；结构图不按比例，观测范围内的细网为统计示意",
     "credit": "地球与木星地图：Solar System Scope · CC BY 4.0",
     "choosePair": "选择比较的一组",
     "solarView": "放进太阳系比一比",
@@ -105,7 +156,6 @@
     "sunPlace": "中心十字：太阳原来的位置",
     "estimateDetails": "这个大小怎么估计的？",
     "estimateNotes": [
-      "WOH G64 使用 Levesque 等（2009）由光谱温度与光度推得的约 1540 个太阳半径。它有延展大气和星周尘埃；画面展示所选恒星半径估计，不把外围尘埃云当成表面，也不宣称是当前最大纪录。",
       "St2-18 使用 Fok 等（2012）的光度 log(L/L☉)=5.64 与温度 3200 K 推算，取约 2150 个太阳半径。其距离及星团归属不确定，后续研究也提出疑问；这是有条件的尺寸估计，并非精确测量或已确定的最大纪录。"
     ],
     "orbitDetails": "轨道采用平均距离对应的圆，行星位置为示意；并未模拟更换太阳后的轨道、温度或行星命运。水星到火星挤在中心附近，是实际距离比例的结果。颜色和纹理不是这些恒星的照片。 表面活动可单独暂停，变化速度未按真实恒星标定。",
@@ -129,7 +179,6 @@
       "Arcturus",
       "Antares",
       "VY Canis Majoris",
-      "WOH G64",
       "Stephenson 2-18"
     ],
     "kinds": [
@@ -139,7 +188,6 @@
       "Red giant",
       "Red supergiant",
       "Red supergiant",
-      "Extreme star · estimated",
       "Extreme star · estimated"
     ],
     "pairs": [
@@ -148,8 +196,7 @@
       "Sun & Arcturus",
       "Arcturus & Antares",
       "Antares & VY CMa",
-      "VY CMa & WOH G64",
-      "WOH G64 & St2-18"
+      "VY CMa & St2-18"
     ],
     "pairTitles": [
       "Jupiter makes Earth look small",
@@ -157,7 +204,6 @@
       "The Sun is not the largest star",
       "Even Arcturus can look small",
       "A star larger than Antares",
-      "Stars can be this enormous",
       "Put an enormous star in the Sun’s place"
     ],
     "pairNotes": [
@@ -166,42 +212,97 @@
       "Arcturus is a red giant about 25 Sun diameters across. Its size is estimated; this is not a ranking of the largest stars.",
       "Antares is estimated at about 700 Sun diameters, or roughly 28 Arcturus diameters across. This is an approximate size, not a ranking of the largest stars.",
       "VY Canis Majoris is about twice the diameter of Antares. We use a 2012 photospheric-radius estimate from interferometry and an atmosphere model: 1420 ± 120 solar radii, drawing the central value. Surrounding gas and dust are not counted as the stellar surface; this is not a claim that it is the largest star.",
-      "WOH G64 has a catalogue-like name and an enormous size. Try the Solar System view: with this estimate, its outline extends beyond Jupiter’s orbit.",
-      "Stephenson 2-18 is also called St2-18. With the estimate used here, putting it in the Sun’s place would bring its outline to around Saturn’s orbit. A star can be that big!"
+      "Stephenson 2-18 is also called St2-18. This conditional estimate is larger than VY Canis Majoris; imagined at the Sun’s place, its outline reaches around Saturn’s orbit. A star can be that big!"
     ],
-    "boundary": "Disk diameters share one scale; spacing is for comparison. Evolving granules and dark regions are illustrations with uncalibrated timing and detail; glow is excluded from diameter.",
+    "boundary": "Disk diameters share one scale; spacing is for comparison. Earth and Jupiter's spherical rotation and stellar surface activity use accelerated illustrative time; rates and details are not calibrated. The maps are not live weather, and glow is excluded from diameter.",
     "scrub": "Drag to bring in a larger body",
     "previous": "Previous pair",
     "next": "Meet a larger body",
     "goHomes": "Where do these bodies belong? →",
-    "goZoom": "Now zoom out with these references →",
+    "goZoom": "Keep the reference and zoom out to the observable region →",
+    "homePrevious": "← Previous stop",
+    "homeNext": "Next stop →",
+    "homeProgress": "Stop {{current}} / {{total}}",
+    "homeSideProgress": "Side view · main stop {{current}} / {{total}}",
+    "homeReturn": "← Back to {{name}}",
+    "homeRouteLabel": "Our structural address · diagrams are not to scale",
+    "homeSideLabel": "Local close-ups and comparisons · outside the outward route",
+    "homeSideNames": ["Compare Local Group with Virgo Cluster", "Look closer at the cosmic web"],
     "homeNames": [
       "Solar System",
       "Milky Way",
-      "Local Group"
+      "Local Group",
+      "Groups & clusters",
+      "Laniakea",
+      "Cosmic web",
+      "Observable universe"
     ],
     "homeTitles": [
       "The Sun and planets form a system",
       "Our Solar System belongs to the galactic disk",
-      "The Milky Way belongs to a group"
+      "The Milky Way belongs to a group",
+      "Side by side: Local Group and Virgo Cluster",
+      "Local Group and Virgo share a wider region",
+      "Close-up: galaxies trace filaments and knots",
+      "Our observing range dwarfs our supercluster"
     ],
     "homeNotes": [
       "The Sun is a star, with Earth and other planets orbiting it. The system spans large orbital distances; it is not a bigger solid ball.",
       "The galaxy contains many stars; our Sun is one of them. The yellow marker indicates our approximate region, not the Solar System’s physical size.",
-      "Keep track of the Milky Way, then find Andromeda and Triangulum. The Local Group has many more members; these are only three representatives."
+      "Keep track of the Milky Way, then find Andromeda, Triangulum and smaller neighbors. Around 50 dwarf galaxies, including the Large and Small Magellanic Clouds, also belong to the Local Group. The small points are a sample, not a census.",
+      "This is a side-by-side comparison: zooming out from the Local Group does not take us inside the Virgo Cluster. They are different nearby structures; clusters generally contain more galaxies than groups.",
+      "In the Laniakea flow reconstruction, the Local Group lies near the edge, while the Virgo Cluster and other groups and clusters share the wider region. Its extent is inferred from galaxy motions, not a hard shell; the region is generally not bound as a whole.",
+      "Look closely at one illustrative patch of the cosmic web: groups and clusters gather near filaments and knots, with comparatively sparse voids between. The web describes a distribution, not a glowing layer surrounding Laniakea.",
+      "This circle marks the region observable from here. Its filaments, knots and comparatively sparse voids use the same illustrative web as the end of the continuous zoom, rather than cropping the previous Laniakea drawing. Laniakea's roughly 520-million-light-year span is under 1% of the roughly 93-billion-light-year observable diameter, so its center marker is enlarged to stay visible. Space expanded as light traveled; the dashed horizon is an observing limit, not an outer wall."
     ],
-    "homeBoundary": "Membership illustration · Disks, spiral arms, central light and dust lanes are structural reconstructions, not photographs taken outside the Milky Way. Shapes, orientations, spacing and markers are not measurements; galaxies are not solid balls.",
+    "homeBoundary": [
+      "Membership illustration · Orbits, planet locations and body sizes are not to scale; the Solar System is not a solid ball.",
+      "The external Milky Way view reconstructs structure; it is not a complete photograph taken from outside. Markers, arms and disk are not measurements.",
+      "Membership illustration · Three large galaxies and a few dwarf markers are not a complete census. Shapes, directions, sizes and spacing are not to scale.",
+      "Side-by-side illustration · The panels do not share a scale. Point counts are not censuses and positions cannot be measured. Pale blue hot gas illustrates X-ray structure, not visible color.",
+      "Large-scale structure diagram · The dashed flow region is inferred from a model, not a precise boundary; lines are not physical ropes, and positions cannot be measured here.",
+      "Local texture diagram · Filaments, knots and voids do not map real sky positions; bright points are not actual galaxy counts or a ruler for Laniakea's size.",
+      "Observable-region diagram · The circle suggests an approximate present-day distance scale. Its fine web, knots and density are statistical illustration, not an all-sky survey or real counts. The central marker is not Laniakea's diameter, and the dashed horizon is no physical edge."
+    ],
     "homeAnchor": [
       "Yellow: Sun; blue: Earth",
       "Yellow: our Solar System’s region",
-      "Yellow outline: the same Milky Way"
+      "Yellow outline: the same Milky Way",
+      "Yellow marker: the Local Group",
+      "Yellow marker: our Local Group’s region",
+      "Yellow marker: our local region",
+      "Yellow center: a location marker, not supercluster diameter"
+    ],
+    "homeCues": [
+      [{"label":"Central star","detail":"The Sun holds the planets in one system."},{"label":"Many orbits","detail":"Paths and planet positions are illustrative."}],
+      [{"label":"Galactic disk","detail":"Arms, central light and dark dust have distinct structure."},{"label":"Reference span","detail":"The stellar disk is roughly 100,000 light-years across."}],
+      [{"label":"Three larger galaxies","detail":"Milky Way, Andromeda and Triangulum."},{"label":"Many small members","detail":"Including the Magellanic Clouds; glows are a sample."}],
+      [{"label":"Local Group","detail":"Members are more spread out; yellow locates us."},{"label":"Virgo Cluster","detail":"Denser galaxies; pale blue hot gas is an X-ray illustration."}],
+      [{"label":"Local Group","detail":"It lies near Laniakea’s outer edge."},{"label":"Wider region","detail":"Many groups and clusters, generally not bound as one."}],
+      [{"label":"Filaments and knots","detail":"Galaxies are more concentrated here."},{"label":"Cosmic voids","detail":"Comparatively sparse, not completely empty."}],
+      [{"label":"Fine web inside","detail":"Filaments and knots fill the view; positions, numbers and density are illustrative."},{"label":"Center and horizon","detail":"The center marker is enlarged; the dashed horizon is about 46.5 billion present-day light-years away, not an outer wall."}]
+    ],
+    "homeSources": [
+      "https://science.nasa.gov/solar-system/solar-system-facts/",
+      "https://www.esa.int/content/view/full/423444",
+      "https://science.nasa.gov/earth/earth-observatory/the-galaxy-next-door/",
+      "https://science.nasa.gov/universe/galaxies/large-scale-structures/",
+      "https://www.nature.com/articles/nature13674",
+      "https://www.esa.int/Science_Exploration/Space_Science/Planck/Tools_to_study_the_distribution_of_matter_in_the_Universe",
+      "https://www.esa.int/kids/en/learn/Our_Universe/Story_of_the_Universe/The_Universe"
     ],
     "andromeda": "Andromeda",
     "triangulum": "Triangulum",
+    "dwarfGalaxies": "Small galaxies · including the Magellanic Clouds",
+    "virgoCluster": "Virgo Cluster",
+    "clusterGas": "Hot gas · X-ray illustration",
+    "cosmicVoid": "Comparatively sparse void",
+    "observer": "Our Laniakea region",
+    "horizon": "Observable horizon",
     "diameter": "Approx. diameter",
-    "source": "Size reference ↗",
+    "source": "Science source ↗",
     "compareAlt": "Body diameters on one common scale; retained bodies shrink continuously as you drag",
-    "homeAlt": "Membership from the Solar System to the Milky Way and Local Group",
+    "homeAlt": "Our structural address with separate local comparisons; structure diagrams are not to scale and the web inside the observing range is statistical illustration",
     "credit": "Earth and Jupiter maps: Solar System Scope · CC BY 4.0",
     "choosePair": "Choose a comparison",
     "solarView": "Compare with planetary orbits",
@@ -222,7 +323,6 @@
     "sunPlace": "Centre cross: the Sun’s former position",
     "estimateDetails": "How is this size estimated?",
     "estimateNotes": [
-      "WOH G64 uses approximately 1540 solar radii inferred from spectral temperature and luminosity by Levesque et al. (2009). It has an extended atmosphere and circumstellar dust. The drawing uses this stellar-radius estimate, excludes the surrounding dust cloud, and makes no current record claim.",
       "St2-18 uses about 2150 solar radii derived from log(L/L☉)=5.64 and 3200 K in Fok et al. (2012). Its distance and cluster membership are uncertain and later work questions the association. This is a conditional size estimate, not a precise measurement or a confirmed record."
     ],
     "orbitDetails": "Circular orbits use mean distances; planet positions are illustrative. No resulting orbit changes, temperatures or planetary fates are simulated. Mercury through Mars cluster near the centre because of their real relative distances. Colours and textures are not photographs of these stars. Surface activity can be paused independently; its speed is not calibrated to a real star.",

@@ -19,9 +19,20 @@ for (const root of ['src', 'topics']) {
     const group = root === 'src' ? 'common' : file.split('/')[0];
     if (!(group in catalogs)) continue;
     const ast = ts.createSourceFile(file, readFileSync(`${root}/${file}`, 'utf8'), ts.ScriptTarget.Latest, true);
+    const pairedStudy = root === 'topics' && file.endsWith('/study.ts');
     function visit(node) {
+      // Scene studies keep each Chinese and English explanation together rather than
+      // using a lookup catalog. Check the pair explicitly before exempting its source.
+      if (pairedStudy && ts.isCallExpression(node) && node.expression.getText(ast) === 'w') {
+        const [zh, en] = node.arguments;
+        if (node.arguments.length !== 2 || !ts.isStringLiteral(zh) || !ts.isStringLiteral(en)
+          || !han.test(zh.text) || !en.text.trim() || han.test(en.text)) {
+          invalid.add(`${root}/${file}: invalid bilingual study pair at ${ast.getLineAndCharacterOfPosition(node.getStart(ast)).line + 1}`);
+        }
+      }
       if ((ts.isStringLiteral(node) || ts.isNoSubstitutionTemplateLiteral(node)) && han.test(node.text)) {
-        if (ts.isCallExpression(node.parent) && node.parent.expression.getText(ast) === 't' && node.parent.arguments[0] === node) check(group, node.text);
+        if (pairedStudy && ts.isCallExpression(node.parent) && node.parent.expression.getText(ast) === 'w' && node.parent.arguments[0] === node) { /* validated as a bilingual pair above */ }
+        else if (ts.isCallExpression(node.parent) && node.parent.expression.getText(ast) === 't' && node.parent.arguments[0] === node) check(group, node.text);
         else unwrapped.add(`${root}/${file}: ${node.text}`);
       }
       if (ts.isTemplateExpression(node) && han.test(node.head.text + node.templateSpans.map(s => s.literal.text).join(''))) unwrapped.add(`${root}/${file}: untranslated template`);

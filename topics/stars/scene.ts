@@ -1,8 +1,13 @@
-import { distanceAU, solarObservation, binaryState, tripleState } from './model.ts';
+import { distanceAU, solarObservation } from './model.ts';
 import { StellarSurface } from './stellarSurface.ts';
+import {drawEvolution} from './evolutionScene.ts';
+import {drawAnatomy,disposeAnatomyTexture} from './anatomyScene.ts';
+import type {Track} from './evolutionModel.ts';
+import type {OrbitCase} from './orbitSystems.ts';
+import {drawOrbitSystem} from './orbitScene.ts';
 import data from './content.json';
 type Words=(v:{zh:string;en:string})=>string;
-export interface ViewState {chapter:string;distance:number;type:number;section:boolean;triple:boolean;ratio:number;time:number;surfaceTime:number}
+export interface ViewState {chapter:string;distance:number;type:number;section:boolean;orbitCase:OrbitCase;time:number;surfaceTime:number;evolutionTrack:Track;evolutionProgress:number;anatomyFocus:number}
 const rand=(n:number)=>{const v=Math.sin(n*127.13+8.37)*43758.5453;return v-Math.floor(v);};
 export class StellarScene {
   private ctx:CanvasRenderingContext2D;
@@ -22,11 +27,20 @@ export class StellarScene {
     for(const word of words){const next=line+(line&&spaced?' ':'')+word;if(line&&c.measureText(next).width>maxWidth){lines.push(line);line=word;}else line=next;}if(line)lines.push(line);
     lines.forEach((text,i)=>c.fillText(text,x,y+(i-(lines.length-1)/2)*font*1.18));
   }
-  draw(s:ViewState){this.lastState=s;const width=this.canvas.clientWidth,height=this.canvas.clientHeight;if(!width||!height)return;const dpr=Math.min(devicePixelRatio||1,2),c=this.ctx;
+  draw(s:ViewState){this.lastState=s;const width=this.canvas.clientWidth,newChapter=s.chapter==='evolution'||s.chapter==='anatomy',stacked=newChapter&&width<650,mobileOrbit=s.chapter==='orbits'&&width<650;
+    this.canvas.style.height=stacked?`${Math.ceil(width*560/520*2)}px`:mobileOrbit?`${Math.ceil(width*(s.orbitCase==='hierarchical'?780:565)/520)}px`:'';const height=this.canvas.clientHeight;if(!width||!height)return;const dpr=Math.min(devicePixelRatio||1,2),c=this.ctx;
     if(this.canvas.width!==Math.round(width*dpr)||this.canvas.height!==Math.round(height*dpr)){this.canvas.width=Math.round(width*dpr);this.canvas.height=Math.round(height*dpr);}
+    if(stacked){c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#070e1c';c.fillRect(0,0,width,height);const panelHeight=width*560/520,scale=width/520;
+      for(let panel=0;panel<2;panel++){c.save();c.beginPath();c.rect(0,panel*panelHeight,width,panelHeight);c.clip();c.translate(-panel*520*scale,panel*panelHeight);c.scale(scale,scale);
+        if(s.chapter==='evolution')drawEvolution(c,s.evolutionTrack,s.evolutionProgress,s.surfaceTime,this.text,this.surface,18);
+        else drawAnatomy(c,s.anatomyFocus,s.surfaceTime,this.text,this.surface,18);c.restore();}
+      return;}
+    if(mobileOrbit){c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#070e1c';c.fillRect(0,0,width,height);c.scale(width/520,width/520);drawOrbitSystem(c,s.orbitCase,s.time,s.surfaceTime,this.text,this.surface,true);return;}
     c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#070e1c';c.fillRect(0,0,width,height);this.viewScale=Math.min(width/1040,height/560);c.translate((width-1040*this.viewScale)/2,(height-560*this.viewScale)/2);c.scale(this.viewScale,this.viewScale);
     for(let i=0;i<100;i++){c.globalAlpha=.12+rand(i+1)*.38;c.fillStyle='#c4d4ed';c.beginPath();c.arc(rand(i+11)*1040,rand(i+421)*560,.3+rand(i+20),0,7);c.fill();}c.globalAlpha=1;
-    if(s.chapter==='sun'){
+    if(s.chapter==='evolution')drawEvolution(c,s.evolutionTrack,s.evolutionProgress,s.surfaceTime,this.text,this.surface,this.fontSize(16));
+    else if(s.chapter==='anatomy')drawAnatomy(c,s.anatomyFocus,s.surfaceTime,this.text,this.surface,this.fontSize(16));
+    else if(s.chapter==='sun'){
       c.strokeStyle='#283344';c.beginPath();c.moveTo(520,65);c.lineTo(520,470);c.stroke();
       this.star(260,270,142,'#ffe5b1',s.surfaceTime);const r=142*solarObservation(distanceAU(s.distance)).angularDiameterDegrees/solarObservation(1).angularDiameterDegrees;
       this.star(780,270,r,'#ffe5b1',s.surfaceTime);this.label(this.text(data.ui.fixed),260,80);this.label(this.text(data.ui.apparent),780,80);this.label('1 AU',260,484);this.label(distanceAU(s.distance).toFixed(1)+' AU',780,484);
@@ -55,22 +69,7 @@ export class StellarScene {
         }
       }
 
-    }else{
-      const points=s.triple?tripleState(s.time):binaryState(s.time,s.ratio);
-      const scale=s.triple?35:300,centerX=520,centerY=280;
-      const color=['#ffe2ac','#adcff2','#efa27e'];
-      // Recent analytical circular history, not a pre-drawn full orbit.
-      const span=s.triple?3:.8,segments=180,start=Math.max(0,s.time-span);
-      for(let b=0;b<points.length;b++){let length=0;c.strokeStyle=color[b]!;c.lineWidth=1.8;c.setLineDash([6,7]);
-        for(let i=1;i<=segments;i++){const t=start+(s.time-start)*(i-1)/segments,t2=start+(s.time-start)*i/segments;
-          const a=(s.triple?tripleState(t):binaryState(t,s.ratio))[b]!,p=(s.triple?tripleState(t2):binaryState(t2,s.ratio))[b]!;
-          const x=centerX+a.x*scale,y=centerY+a.y*scale*.62,nx=centerX+p.x*scale,ny=centerY+p.y*scale*.62;
-          c.globalAlpha=.75*(1-(s.time-t2)/span)**1.5;c.lineDashOffset=length;c.beginPath();c.moveTo(x,y);c.lineTo(nx,ny);c.stroke();length+=Math.hypot(nx-x,ny-y);
-        }
-      }c.globalAlpha=1;c.setLineDash([]);c.lineDashOffset=0;
-      points.forEach((p,i)=>{const x=centerX+p.x*scale,y=centerY+p.y*scale*.62;this.star(x,y,18+6*Math.cbrt(p.mass),color[i]!,s.surfaceTime);const closePair=s.triple&&i<2,labelX=x+(closePair?(i===0?-60:60):0),labelY=y-(closePair?(i===0?88:50):45);if(closePair){c.strokeStyle=color[i]!+'80';c.beginPath();c.moveTo(x,y-22);c.lineTo(labelX,labelY+8);c.stroke();}this.label(String.fromCharCode(65+i),labelX,labelY);});
-      c.strokeStyle='#deccab';c.beginPath();c.moveTo(512,280);c.lineTo(528,280);c.moveTo(520,272);c.lineTo(520,288);c.stroke();this.label(this.text(data.ui.center),520,505,16);
-    }
+    }else drawOrbitSystem(c,s.orbitCase,s.time,s.surfaceTime,this.text,this.surface);
   }
-  dispose(){this.resizeObserver.disconnect();this.lastState=undefined;this.surface.dispose();}
+  dispose(){this.resizeObserver.disconnect();this.lastState=undefined;this.surface.dispose();disposeAnatomyTexture();}
 }

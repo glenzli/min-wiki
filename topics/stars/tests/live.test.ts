@@ -80,6 +80,15 @@ test('production controller preserves seek input, paused state, chapter history 
     play().onclick!();for(let i=0;i<80;i++)tick();assert.ok(Number(scrub.max)>integrated);
     doc.hidden=true;tick();assert.equal(pending.size,0);doc.hidden=false;
     const reset=find(n=>n.tag==='button'&&n.textContent==='Reset initial positions');reset.onclick!();assert.equal(scrub.value,'0');assert.equal(scrub.max,'0');
+    const wandering=find(n=>n.tag==='button'&&n.textContent==='Wandering path · perturbation');wandering.onclick!();
+    assert.equal(wandering.attributes['aria-pressed'],'true');
+    const overlay=find(n=>n.tag==='input'&&n.parentElement?.className==='three-overlay');
+    const compareNote=find(n=>n.className==='three-compare-note');
+    assert.equal(overlay.checked,true);assert.equal(compareNote.hidden,false);
+    assert.match(compareNote.textContent,/separate run/);
+    overlay.checked=false;overlay.onchange!();assert.equal(compareNote.hidden,true);
+    overlay.checked=true;overlay.onchange!();assert.equal(compareNote.hidden,false);
+    assert.equal(scrub.max,'0');
     play().onclick!();tick();controller.dispose();assert.equal(pending.size,0);
   }finally{controller?.dispose();keys.forEach((k,i)=>{const d=originals[i];if(d)Object.defineProperty(host,k,d);else delete host[k];});}
 });

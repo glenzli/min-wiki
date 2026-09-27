@@ -35,7 +35,7 @@ test('old parent questions remain searchable and independent simple experiments 
   for(const [title,parent]of [['一粒豆子怎样发芽？','seed-sprouting'],['微生物为什么几乎无处不在？','microbes-everywhere'],['空调怎样让房间凉下来？','air-conditioner']])
     assert.ok(findTopics(catalog,{query:title}).some(t=>t.id===parent));
   const visible=findTopics(catalog).map(t=>t.id);
-  for(const id of ['shadows','magnets','friction','camouflage','leaf-colors','cells','water-states','handwashing','batteries'])assert.ok(visible.includes(id));
+  for(const id of ['shadows','magnets','friction','leaf-colors','cells','water-states','handwashing','batteries'])assert.ok(visible.includes(id));
 });
 test('plant legacy routes force the intended chapter while preserving applicable parameters and deployment base',()=>{
   const flower=new URL(plantDestination('reproduction','?lang=en&chapter=dispersal&journey=1.2&pollen=incompatible','#narration','/wiki/'),'https://example.test');

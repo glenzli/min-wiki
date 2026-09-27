@@ -1,5 +1,5 @@
 import type catalogData from '../../content/catalog.json';
-export type Topic = (typeof catalogData)['topics'][number] & { parentTopic?: string };
+export type Topic = (typeof catalogData)['topics'][number] & { parentTopic?: string; listed?: boolean };
 export type Catalog = Omit<typeof catalogData, 'topics'> & { topics: Topic[] };
 export const PAGE_SIZE = 24;
 const ID = /^[a-z][a-z0-9-]*$/;
@@ -19,7 +19,9 @@ export function validateCatalog(catalog: Catalog) {
       || !topic.tags.every(tag => typeof tag === 'string')
       || !Array.isArray(topic.modes) || !topic.modes.every(mode => typeof mode === 'string')
       || !['light', 'dark'].includes(topic.theme) || !['light', 'dark'].includes(topic.sceneTheme)
-      || !['published', 'draft'].includes(topic.status)) throw new Error(`Invalid topic: ${topic.id}`);
+      || !['published', 'draft'].includes(topic.status)
+      || (topic.listed !== undefined && (typeof topic.listed !== 'boolean'
+        || topic.status !== 'published' || topic.parentTopic !== undefined))) throw new Error(`Invalid topic: ${topic.id}`);
     topics.add(topic.id);
   }
   for (const topic of catalog.topics) {
@@ -45,7 +47,7 @@ export function readFilters(search: string, catalog: Catalog) {
 export function findTopics(catalog: Catalog, {category = 'all', query = ''} = {}) {
   const terms = query.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   return catalog.topics.filter(topic => {
-    if (topic.status !== 'published' || topic.parentTopic !== undefined
+    if (topic.status !== 'published' || topic.parentTopic !== undefined || topic.listed === false
       || (category !== 'all' && topic.category !== category)) return false;
     const categoryName = catalog.categories.find(item => item.id === topic.category)?.name ?? '';
     const chapters = catalog.topics.filter(item => item.status === 'published' && item.parentTopic === topic.id);

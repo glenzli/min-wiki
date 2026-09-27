@@ -65,10 +65,11 @@ export function niceScale(km: number) {
   return [5, 2, 1].find(factor => factor * power <= km)! * power;
 }
 
-/** Keep related links anchored to the selected body; existing pair numbers remain stable. */
+/** Related links use the current comparison sequence; the retired WOH id keeps a useful destination. */
 export function referenceJourneyHref(referenceId: string) {
   if (referenceId === 'milky-way') return '/topics/cosmic-scale/?mode=homes&home=1';
   if (referenceId === 'neptune-orbit') return '/topics/cosmic-scale/?mode=homes&home=0';
+  if (referenceId === 'woh-g64') return '/topics/cosmic-scale/?mode=compare&pair=5&pairVersion=2';
   const index = bodies.findIndex(body => body.id === referenceId);
-  return `/topics/cosmic-scale/?mode=compare&pair=${Math.max(0, index - 1)}`;
+  return `/topics/cosmic-scale/?mode=compare&pair=${Math.max(0, index - 1)}&pairVersion=2`;
 }

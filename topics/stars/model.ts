@@ -1,7 +1,9 @@
 import { SUN_RADIUS_KM, AU_KM, solarObservation } from '../sun-star/model.ts';
+import {clampProgress,type Track} from './evolutionModel.ts';
+import type {OrbitCase} from './orbitSystems.ts';
 export { SUN_RADIUS_KM, AU_KM, solarObservation };
-export type Chapter = 'sun' | 'types' | 'orbits' | 'three-body';
-export const chapterFrom = (value: string | null): Chapter => value === 'types' || value === 'orbits' || value === 'three-body' ? value : 'sun';
+export type Chapter = 'evolution' | 'anatomy' | 'sun' | 'types' | 'orbits' | 'three-body';
+export const chapterFrom = (value: string | null): Chapter => value === 'sun' || value === 'anatomy' || value === 'types' || value === 'orbits' || value === 'three-body' ? value : 'evolution';
 export const clamp = (v: number, lo = 0, hi = 1) => Number.isFinite(v) ? Math.max(lo, Math.min(hi, v)) : lo;
 export const distanceAU = (progress: number) => 10 ** (clamp(progress) * 3);
 export interface Point { x:number; y:number; mass:number }
@@ -18,4 +20,4 @@ export function tripleState(time:number):Point[] {
 }
 export const massCenter=(points:Point[])=>{const m=points.reduce((s,p)=>s+p.mass,0);return {x:points.reduce((s,p)=>s+p.x*p.mass,0)/m,y:points.reduce((s,p)=>s+p.y*p.mass,0)/m};};
 export const diameterRatio=(radius:number,reference:number)=>2*radius/(2*reference);
-export function readState(search:string){const p=new URLSearchParams(search);return {chapter:chapterFrom(p.get('chapter')),distance:clamp(Number(p.get('distance')??0)),type:clamp(Number(p.get('type')??1),0,3),triple:p.get('system')==='triple'};}
+export function readState(search:string){const p=new URLSearchParams(search),track=p.get('track'),orbit=p.get('orbit');const orbitCase:OrbitCase=orbit==='circumbinary'||orbit==='circumprimary'||orbit==='hierarchical'?orbit:p.get('system')==='triple'?'hierarchical':'circumbinary';return {chapter:chapterFrom(p.get('chapter')),distance:clamp(Number(p.get('distance')??0)),type:clamp(Number(p.get('type')??1),0,3),orbitCase,evolutionTrack:(track==='massive'||track==='very-massive'?track:'solar') as Track,evolutionProgress:clampProgress(Number(p.get('evolution')??0)),anatomyFocus:Math.round(clamp(Number(p.get('focus')??0),0,5))};}
