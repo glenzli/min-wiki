@@ -32,3 +32,9 @@ Sources are paraphrased for a preschool explanation and do not supply images. Th
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
+
+## Refinement 2026-09-28
+
+The portrait diagram has been composed as a wide, continuous route: the same skin ending, spinal circuit, muscle/hand and brain remain in place as the activity fronts advance. The skin zoom keeps that ending as its anchor and reveals epidermis, free ending and afferent fiber labels. The muscle-to-hand connector now reaches the withdrawing hand throughout the movement. Tissues remain enlarged side by side; routes are functional summaries, not a single literal neuron fork.
+
+The child mode places a one-sentence explanation at the top of the controls, while the academic mode adds phase-specific mechanism and model limits in the same sidebar. Both modes retain the existing playback and stage selection; mode and camera changes do not reset progress. On a 390 px screen the compact introduction leaves the illustration and playback entrance in the first viewport. The IASP distinction between nociception and pain and the UTHealth description of free nerve endings, spinal relays and differing fibers were rechecked; no physiological speed, damage or pain score is calculated.
