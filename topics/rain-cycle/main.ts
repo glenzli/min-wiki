@@ -8,6 +8,8 @@ import { StudySlot, type StudyStatus } from './studies.ts';
 import { t } from './i18n.ts';
 import content from './watershedContent.json';
 import { readRoute, waterHref, views, focuses, tracerFor, destination, type View, type Pool, type Surface } from './watershedModel.ts';
+import { rainState } from '../rain-formation/model.ts';
+import { CONTENT as cloudCopy } from '../rain-formation/content.ts';
 import { drawWatershed } from './watershedScene.ts';
 import type { TopicScene } from '../rain-formation/scene.ts';
 import './style.css';
@@ -23,13 +25,13 @@ root.innerHTML=`<header class="hero"><p class="eyebrow">MINI WIKI · EARTH</p><h
 <section class="lab"><div class="scene-column"><div class="scene-top"><strong id="question"></strong><label class="check"><input id="labels" type="checkbox" checked>${copy.labels}</label></div>
 <svg id="scene" viewBox="0 0 1000 620" role="img" aria-label="${copy.intro}"></svg><p class="map-key">${copy.mapKey}</p>
 <div class="stage-controls"><button id="play" aria-pressed="false">${copy.play}</button><input id="progress" type="range" min="0" max="1000" step="1" value="0" aria-label="${copy.progress}"><button id="reset">${copy.reset}</button></div><p class="time-note">${copy.time}</p></div>
-<aside><div class="batch-readout"><strong>${copy.poolTitle}</strong><p id="batch-summary"></p></div><h2>${copy.follow}</h2><select id="follow" aria-label="${copy.follow}">${Object.entries(copy.followOptions).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select><p id="trace" class="small"></p>
+<aside><div class="batch-readout"><strong>${copy.poolTitle}</strong><p id="batch-summary"></p></div><button class="cloud-jump" id="cloud-jump" hidden>${copy.cloudTitle} ↓</button><h2>${copy.follow}</h2><select id="follow" aria-label="${copy.follow}">${Object.entries(copy.followOptions).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select><p id="trace" class="small"></p>
 <label for="humidity">${copy.humidity} <output id="humidity-value"></output></label><input id="humidity" type="range" min="0" max="100" step="1">
 <label for="surface">${copy.surface}</label><select id="surface">${Object.entries(copy.surfaces).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select>
 <label for="route">${copy.route}</label><select id="route">${Object.entries(copy.routes).map(([id,label])=>`<option value="${id}">${label}</option>`).join('')}</select></aside></section>
 <section class="pool-section"><h2>${copy.poolTitle}</h2><div class="pool-grid" id="pools"></div></section>
 <article class="discovery"><div><p class="eyebrow" id="view-title"></p><h2 id="story-title"></h2><p id="story"></p><p id="description"></p></div></article>
-<section class="cloud-study" id="cloud-panel" hidden><div><h2>${copy.cloudTitle}</h2><p>${copy.cloudNote}</p><div id="cloud-error" hidden><p>${copy.error}</p><button id="retry">${copy.retry}</button></div></div><canvas id="cloud-canvas" role="img" aria-label="${copy.cloudNote}"></canvas></section>
+<section class="cloud-study" id="cloud-panel" hidden><div><h2>${copy.cloudTitle}</h2><p>${copy.cloudNote}</p><div class="cloud-explanation"><h3 id="cloud-step-title"></h3><p class="cloud-kids" id="cloud-step-kids"></p><p class="cloud-academic cloud-formula" id="cloud-step-formula"></p><p class="cloud-academic" id="cloud-step-academic"></p><p class="cloud-academic cloud-terms" id="cloud-step-terms">${cloudCopy.terms}</p></div><div id="cloud-error" hidden><p>${copy.error}</p><button id="retry">${copy.retry}</button></div></div><canvas id="cloud-canvas" role="img" aria-label="${copy.cloudNote}"></canvas></section>
 <section class="ice-study" id="ice-panel" hidden><h2>${copy.iceProgress}</h2><p>${copy.iceNote}</p><button id="prepare-ice">${copy.prepareIce}</button><input id="ice-progress" type="range" min="0" max="1000" step="1" value="0" aria-label="${copy.iceProgress}"></section>
 ${(['ground','ice'] as const).map(id=>`<section class="long-study" id="${id}-study" hidden aria-label="${id==='ground'?copy.groundStudy:copy.glacierStudy}"><p class="study-bridge">${id==='ground'?copy.groundBridge:copy.iceBridge}</p><div class="study-status" id="${id}-study-status"><p role="status">${copy.loadingStudy}</p><button id="${id}-study-retry" hidden>${copy.retryStudy}</button></div><div id="${id}-study-host"></div><button class="return-to-batch" data-return="${id}">${copy.backToBatch}</button></section>`).join('')}
 <details class="grownups"><summary>${copy.notesTitle}</summary><p>${copy.notes}</p><h2>${copy.sources}</h2><ul><li><a href="https://www.usgs.gov/water-science-school/water-cycle">USGS · Water cycle</a></li><li><a href="https://gpm.nasa.gov/resources/faq/what-are-clouds-made-are-they-more-likely-form-polluted-air-or-pristine-air">NASA · Cloud droplets and ice</a></li><li><a href="https://wa.water.usgs.gov/pubs/fs/fs_rainier.html">USGS · Glacier flow</a></li></ul></details>
@@ -87,12 +89,25 @@ function draw(){
  for(const option of select('follow').options)option.disabled=!destinations.includes(option.value as Pool);
  el('pools').replaceChildren(...Object.entries(snapshot.pools).map(([pool,count])=>{const card=document.createElement('div');card.className=`pool-card${count?' occupied':''}`;const label=document.createElement('span');label.textContent=copy.pools[pool as Pool];const value=document.createElement('strong');value.textContent=String(count);card.append(label,value);return card;}));
  document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view)));
- el('cloud-panel').hidden=view!=='cloud';el('ice-panel').hidden=view!=='ice';input('ice-progress').disabled=p<.64;input('ice-progress').value=String(Math.round(iceProgress*1000));
- if(view==='cloud'){void ensureCloud();cloud?.draw(microProgress(),settings,true);}
+ el('cloud-panel').hidden=view!=='cloud';el('cloud-jump').hidden=view!=='cloud';el('ice-panel').hidden=view!=='ice';input('ice-progress').disabled=p<.64;input('ice-progress').value=String(Math.round(iceProgress*1000));
+ if(view==='cloud'){
+  const micro=microProgress(),phase=rainState(micro,settings).stage;
+  el('cloud-step-title').textContent=cloudCopy.steps[phase]!;
+  el('cloud-step-kids').textContent=phase===2
+   ? (settings.route==='ice'?t('过冷水滴附着冰晶，随后融化'):t('小水滴接触后，才并入大水滴'))
+   : cloudCopy.stories[phase]!;
+  // The volume-addition formula describes liquid-drop coalescence, not ice growth.
+  el('cloud-step-formula').hidden=settings.route==='ice'&&phase===2;
+  el('cloud-step-terms').hidden=settings.route==='ice'&&phase===2;
+  el('cloud-step-formula').textContent=cloudCopy.formulas[phase]!;
+  el('cloud-step-academic').textContent=cloudCopy.academic[phase]!;
+  void ensureCloud();cloud?.draw(micro,settings,true);
+ }
  updateStudies();
 }
 function chooseView(next:View,push=true){stop();view=next;cancelCamera();const from=camera.slice(),target=focuses[next]!;cancelCamera=animateValue({from:0,to:1,duration:720,onUpdate:f=>{camera=from.map((n,i)=>n+(target[i]!-n)*f);draw();}});writeURL(push);draw();}
 el('views').replaceChildren(...views.map(id=>{const b=document.createElement('button');b.textContent=copy.views[id];b.dataset.view=id;b.addEventListener('click',()=>chooseView(id));return b;}));
+el('cloud-jump').addEventListener('click',()=>el('cloud-panel').scrollIntoView({block:'start',behavior:reduced.matches?'auto':'smooth'}));
 root.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(b=>b.addEventListener('click',()=>{const id=b.dataset.study as 'ground'|'ice';chooseView(id);el(`${id}-study`).scrollIntoView({block:'start',behavior:'instant'});}));
 root.querySelectorAll<HTMLButtonElement>('[data-return]').forEach(b=>b.addEventListener('click',()=>{stop();for(const study of Object.values(studies))void study.setActive(false);el('views').scrollIntoView({block:'start',behavior:'instant'});}));
 for(const id of ['ground','ice'] as const)el(`${id}-study-retry`).addEventListener('click',()=>{void studies[id].retry();});

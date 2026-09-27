@@ -6,6 +6,12 @@ The fitted desktop frame now gives the same watershed SVG a direct visual stage 
 
 One persistent watershed connects ocean evaporation, cloud particles, rain or mountain snow, hillside infiltration/runoff/storage, a meandering river, a lake and the sea. Observation windows change the camera, not the place, water batch or process progress. This replaces the former compulsory-looking closed loop.
 
+## Cloud magnification pass · 2026-09-28
+
+桌面云内放大镜头原先因容器收缩，画布宽度为零。本批让它占据可用宽度，并以更高、有界的画布呈现微观图；流域侧栏增加直达同一片云放大图的入口。镜头旁的讲解随原有云内进度更新，儿童版在增长阶段只讲当前选定的暖云或冰晶路径，学术版显示对应原理与公式；冰晶增长时不使用液滴碰并的体积公式。放大图与上方流域共享进度和路径，不另造一批水；粒子数量与大小不是云中分布的测量，画面也不是显微照片。
+
+The desktop cloud study now stretches its presentation body across the available width; previously the centered flex child could collapse the actual canvas to zero width. Its microscope canvas uses a taller stage and a bounded 540 px width, leaving the particle cutaway large enough to read without stretching it. The cloud-view sidebar offers a direct jump from the same tracked cloud to that study. The side explanation follows the existing child-owned rain-formation stage: children see only the selected warm-cloud or ice path during growth, while academic mode shows the corresponding principle and formula. The liquid-volume coalescence formula is withheld during the ice-growth branch. Both lenses use the same parent progress and route; neither creates a second cohort or a measured particle-size distribution. The microscope is a composition and scale illustration, not a photographed view of the cloud.
+
 ## Ownership
 
 - `watershedModel.ts`: the 100-portion teaching cohort, destinations, pool accounting, common geographic anchors, river projection, independent ice clock and validated routes.
