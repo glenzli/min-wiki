@@ -7,6 +7,8 @@
 Original SVG illustrations; no external media or runtime dependencies. Controls use native buttons and ranges. No background animation or audio.
 
 - [AMNH · Vertebrates Breathing in Water](https://www.amnh.org/learn-teach/resources-for-learning/hall-of-ocean-life/water-vertebrates-breathing)
+- [OpenStax · Systems of Gas Exchange](https://openstax.org/books/biology/pages/39-1-systems-of-gas-exchange)
+- [NOAA · Oxygen Minimum Zone](https://oceanexplorer.noaa.gov/ocean-fact/omz/)
 
 ## Continuous observation refinement · 2026-09-19
 
@@ -19,3 +21,11 @@ Selected source explanations were rechecked; the linked institutional material a
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
+
+## Water-condition and gill zoom refinement · 2026-09-28
+
+The scene camera continuously enlarges the **same** gill exchange inset; the whole-fish drawing fades as its local surface fills the stage. The marked oxygen parcel keeps its trajectory and playback position while the camera changes. Repeated thin lamella profiles, separate water/blood flow arrows and moving particles make the opposing paths visible. The enlarged structures and marker remain conceptual, without a claimed magnification factor or molecular scale.
+
+Three presets isolate renewed water, less incoming dissolved oxygen, and slower renewal. The first reduction changes only the count of background oxygen symbols; the second slows water-side symbols and weakens its flow arrow. The one tracked oxygen marker is retained across all three, so a low-oxygen scene never claims that *no* oxygen can cross. Ratios and dot counts are visual encodings, not measured concentration, flow, uptake, or survival predictions. The common progress slider marks event order, not equal physical time between presets.
+
+Children see a short causal sentence for each preset. Academic mode keeps the changing condition explanation, a diffusion relationship and its variables in the side notes, plus explicit model limits and institutional sources. The equation is a limiting-factor approximation, not a fitted model of this fish. Chinese and English carry equivalent qualifications.

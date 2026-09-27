@@ -3,7 +3,7 @@
   "topicId": "fish-gills",
   "zh": {
     "question": "鱼要从水里得到氧气，必须先吞下一串气泡吗？",
-    "observe": "播放并追踪放大框内同一个黄色氧气点：先在水侧移动，再跨过薄交换面，最后由血流带走。随时暂停，比较水流与血流的相反方向。",
+    "observe": "先看水经过整条鱼，再放大同一处鳃：跟住黄色氧气点穿过薄交换面。依次试试水中氧少、换水变慢，找出哪一边的点数或流速改变了。",
     "academic": [
       {
         "title": "鳃获取的是溶解氧",
@@ -29,7 +29,7 @@
       {
         "label": "水经过一排薄片",
         "text": "看，水从鱼嘴进来了，接着流过鳃。放大看看，鳃有许多很薄的小片，里面还有细细的血管。许多小片合起来，让水和身体交换气体的地方变大了。先停一停，用手指找出水在哪一边，血液又在哪一边，它们之间隔着薄薄的表面。",
-        "cue": "切到鳃薄片，在水血两侧暂停三秒。"
+        "cue": "按放大按钮进入同一处鳃，在水血两侧暂停三秒。"
       },
       {
         "label": "氧气跨过小边界",
@@ -39,13 +39,13 @@
       {
         "label": "让新的水继续来",
         "text": "水又从鳃盖附近流出去，新水继续带来氧气。身体产生的一些二氧化碳，也能从血液这边进入水里离开。原来，呼吸不是只做一次的小动作，而是需要一直交换。不同鱼的办法有些不同，水里的氧气也会变化，所以清清的水并不一定就有足够的氧气。",
-        "cue": "显示出水路线，再回顾四步。"
+        "cue": "显示出水路线，选择低溶氧与换水变慢各看一次，再回顾四步；不推断真实生存结果。"
       }
     ]
   },
   "en": {
     "question": "Does a fish need to swallow bubbles to obtain oxygen from water?",
-    "observe": "Play and track the same yellow oxygen marker in the detail: it moves on the water side, crosses the thin exchange surface and is carried away on the blood side. Pause to compare the opposing flow directions.",
+    "observe": "First watch water pass the whole fish, then zoom into the same gill. Follow the yellow oxygen marker across the thin surface. Try less dissolved oxygen and slower renewal to see which dots or flow changes.",
     "academic": [
       {
         "title": "Gills obtain dissolved oxygen",
@@ -71,7 +71,7 @@
       {
         "label": "Water passes thin surfaces",
         "text": "Water enters the mouth and passes over the gills. In the enlarged view, many thin surfaces contain tiny blood vessels. Together they provide a large area for gas exchange. Pause and point out the water side and the blood side, separated by a thin barrier.",
-        "cue": "Pause at the gill surface for three seconds."
+        "cue": "Use the zoom button to enter the same gill, then pause at the water and blood sides for three seconds."
       },
       {
         "label": "Oxygen crosses a boundary",
@@ -81,7 +81,7 @@
       {
         "label": "Keep the water renewing",
         "text": "Water leaves near the gill cover and fresh water brings more oxygen. Some carbon dioxide made by the body also crosses into the water. Breathing requires continuing exchange, not a single action. Fish use different methods, and clear-looking water does not necessarily contain enough dissolved oxygen.",
-        "cue": "Show outgoing water and review the four steps."
+        "cue": "Show outgoing water, compare low oxygen with slower renewal, then review the four steps. Do not infer real survival outcomes."
       }
     ]
   },
