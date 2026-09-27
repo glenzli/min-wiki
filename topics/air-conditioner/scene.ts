@@ -39,6 +39,7 @@ export function createScene(){
  <g fill="#f4efd8" stroke="#747d62" stroke-width="1.5"><circle cx="83" cy="152" r="14"/><text x="83" y="158" text-anchor="middle" font-size="19" fill="#435344" stroke="none">1</text><circle cx="473" cy="413" r="14"/><text x="473" y="419" text-anchor="middle" font-size="19" fill="#435344" stroke="none">2</text><circle cx="715" cy="185" r="14"/><text x="715" y="191" text-anchor="middle" font-size="19" fill="#435344" stroke="none">3</text><circle cx="350" cy="69" r="14"/><text x="350" y="75" text-anchor="middle" font-size="19" fill="#435344" stroke="none">4</text></g>
  <g id="parcels">${Array.from({length:13},(_,i)=>`<circle id="parcel-${i}" r="${i===0?8:3.5}" fill="${i===0?'#fff3bc':'#f6e5b4'}" stroke="#826239" stroke-width="${i===0?2:.5}"/>`).join('')}</g>
  </g>
+ <rect id="stage-focus" fill="none" stroke="#5797a6" stroke-width="4" stroke-dasharray="9 5" rx="13" opacity="0"/>
  <g id="front-fan"><circle cx="607" cy="280" r="69" fill="#627971" stroke="#b8c4b4" stroke-width="5"/><g id="fan" fill="#aebdb0">${[0,120,240].map(a=>`<path d="M607 280C624 258 602 221 579 228C559 238 588 266 607 280Z" transform="rotate(${a} 607 280)"/>`).join('')}</g><circle cx="607" cy="280" r="11" fill="#d1d5c4"/><g stroke="#d5ded033" fill="none">${[28,45,61].map(r=>`<circle cx="607" cy="280" r="${r}"/>`).join('')}</g></g>
  <g id="air"><path d="M87 270Q63 335 90 367L264 367Q243 321 262 270Z" fill="url(#cold)"/><g id="indoor-air" fill="none" stroke="#639aab" stroke-width="3" opacity=".55"><path d="M125 278Q106 320 126 346M176 282Q157 330 178 356M225 278Q206 320 227 343"/></g>
  <path d="M735 250Q768 263 791 240V348Q768 317 735 322Z" fill="url(#warm)" id="outdoor-air"/>
@@ -52,6 +53,12 @@ export function createScene(){
 }
 export function renderScene(progress:number,cooling:number,humid:number,view:number){
  const state=cycleState(progress),cutaway=Math.min(1,view),zoom=Math.max(0,view-1);
+ const focusBounds=[[78,145,193,130],[465,382,151,93],[493,194,221,139],[323,77,57,64]] as const;
+ const focusColors=['#5797a6','#b39056','#b87955','#856e9a'];
+ const [fx,fy,fw,fh]=focusBounds[state.stage],focus=byId('stage-focus');
+ for(const [name,value] of [['x',fx],['y',fy],['width',fw],['height',fh]] as const)focus.setAttribute(name,String(value));
+ focus.setAttribute('stroke',focusColors[state.stage]);focus.setAttribute('opacity',String(cutaway*cooling*.85));
+ circuit.forEach((_,index)=>byId(`pipe-${index}`).setAttribute('stroke-opacity',String(index===state.stage?1:.42)));
  byId('scene').setAttribute('viewBox',`${30*zoom} ${95*zoom} ${790-470*zoom} ${550-160*zoom}`);
  byId('casings').setAttribute('opacity',String(1-.85*cutaway));byId('inside').setAttribute('opacity',String(cutaway));
  byId('front-fan').setAttribute('opacity',String(1-.82*cutaway));byId('surroundings').setAttribute('opacity',String(1-.7*cutaway));

@@ -50,7 +50,7 @@ function harness(controllerSource,{project=false,search=''}={}) {
  }
  register(parse(html));
  const document=new Target(); document.hidden=false;
- document.getElementById=id=>{assert.ok(ids.has(id),`Real HTML/SVG must contain #${id}`);return ids.get(id);};
+ document.getElementById=id=>ids.get(id)??null;
  document.querySelectorAll=selector=>{
   const match=/^\[([\w-]+)\]$/.exec(selector);
   assert.ok(match,`Unexpected selector: ${selector}`);
@@ -70,7 +70,7 @@ function harness(controllerSource,{project=false,search=''}={}) {
  const location=new URL('https://wiki.test/topics/air-conditioner/'+search);
  const history={pushState(_state,_unused,href){const next=new URL(href,location);location.href=next.href;}};
  // Presentation DOM is exercised in browser checks; this adapter isolates experiment lifetimes.
- const host={mountPresentationFrame(){},foldPresentationContext(){},document,window,location,history,URLSearchParams,console,t:value=>value,translateDocument:noop,mountTopicNavigation:noop,mountReadingMode:noop,animateValue};
+ const host={mountPresentationFrame(){},foldPresentationContext(){},document,window,location,history,URLSearchParams,console,t:(value,variables={})=>value.replace(/\{\{(.*?)\}\}/g,(_,key)=>variables[key]??''),translateDocument:noop,mountTopicNavigation:noop,mountReadingMode:noop,animateValue};
  function load(name,dependencies={},override) {
   const source=override??readFileSync(resolve(topic,name),'utf8');
   const parsed=ts.createSourceFile(name,source,ts.ScriptTarget.Latest,true,ts.ScriptKind.TS);
@@ -95,7 +95,7 @@ function harness(controllerSource,{project=false,search=''}={}) {
   load('main.ts',{mountAirStudy,mountRefrigeratorStudy,...refrigeratorModel,...projectModel,
    languageHref:value=>value,refrigeratorPanel:readFileSync(resolve(topic,'../refrigerator/panel.html'),'utf8')});
  }else study=mountAirStudy();
- const get=id=>document.getElementById(id);
+ const get=id=>{const element=document.getElementById(id);assert.ok(element,`Real HTML/SVG must contain #${id}`);return element;};
  const mode=target=>document.querySelectorAll('[data-cooling]').find(button=>button.dataset.cooling===String(target));
  return {
   get,animations,advance,study,document,window,location,
@@ -160,6 +160,13 @@ test('rapid reversals restore the latest selected mode without stale animation u
  h.assertMode(0,63);
 });
 
+test('the cutaway focus follows the same cycle stage as the explanation',()=>{
+ const h=harness();h.document.querySelectorAll('[data-view]')[1].dispatch('click');h.advance(h.animations.at(-1),1);
+ h.setProgress(12);assert.equal(h.get('stage-focus').getAttribute('x'),'78');assert.equal(h.get('stage-focus').getAttribute('stroke'),'#5797a6');
+ h.setProgress(63);assert.equal(h.get('stage-focus').getAttribute('x'),'493');assert.equal(h.get('stage-focus').getAttribute('stroke'),'#b87955');assert.equal(h.get('pipe-2').getAttribute('stroke-opacity'),'1');
+ h.advance(h.clickMode(0),1);assert.equal(h.get('stage-focus').getAttribute('opacity'),'0');
+});
+
 test('composed entry preserves both devices while chapter changes stop every animation',()=>{
  const h=harness(undefined,{project:true});
  h.setProgress(63);h.get('play').dispatch('click');h.advance(h.animations.at(-1),.1);
@@ -186,6 +193,15 @@ test('actual entry supports direct fridge route, history, and live room work pro
  assert.equal(h.get('shared-hot-place').textContent,'热端：同一房间');
  h.location.search='?chapter=fridge';h.window.dispatch('popstate');
  assert.equal(h.get('fridge-panel').hidden,false);assert.equal(h.get('room-panel').hidden,true);
+});
+
+test('moving the hot end keeps one heat ledger while the room geometry interpolates and cancels on exit',()=>{
+ const h=harness(undefined,{project:true});h.selectChapter('room');
+ h.input('heat-placement','same-room','change');const move=h.animations.at(-1);h.advance(move,.5);
+ const x=Number(h.get('boundary-hot-node').getAttribute('transform').match(/translate\(([-\d.]+)/)[1]);
+ assert.ok(x>290&&x<555);assert.equal(h.get('room-net').textContent,'热端移动中 · 到位后读房间账');
+ h.selectChapter('air');assert.equal(move.active,false);assert.equal(h.get('boundary-hot-node').getAttribute('transform'),'translate(290 80)');
+ h.selectChapter('room');assert.equal(h.get('room-net').textContent,'房间净收支：+1.0 份');
 });
 
 test('chapter suspension commits selected AC mode and hidden documents halt fridge work',()=>{

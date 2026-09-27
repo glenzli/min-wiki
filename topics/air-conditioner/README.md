@@ -14,6 +14,8 @@ The primary entry combines three connected questions: air conditioning, food coo
 
 Ages 4–6 with adults. The same split-system illustration supports room, transparent-circuit and indoor-unit observation views. A marked refrigerant parcel follows one closed route. Cooling/fan-only and humid/drier comparisons preserve cycle progress. No audio or automatic playback.
 
+The transparent view now emphasizes the route section matching the current evaporating, compressing, condensing or throttling explanation. The focused outline and highlighted pipe section follow the same `cycleState` as the marked parcel; fan-only hides the focus. This is a camera cue, not a measured temperature or pressure field.
+
 `model.ts` owns the route, qualitative pressure/phase state and cycle energy accounting; `scene.ts` projects the state into original SVG; `airStudy.ts` owns finite playback, camera transitions and controls. Hidden/pagehide stop playback. Reduced-motion preferences are respected by the shared finite-transition helper.
 
 The idealized enthalpy sequence 1→4→5→1→1 gives evaporator uptake 3, compressor work 1 and condenser rejection 4. Expansion is approximately isenthalpic. These units and phase fractions are illustrative, not refrigerant property data; fan work is excluded from the three-bar cycle balance and explicitly addressed in fan-only mode. Condensation is qualitative and requires the selected below-dew-point condition; no room cooldown or thermostat simulation is implied.
@@ -27,6 +29,8 @@ The controller lifecycle suite executes the real topic modules against a small D
 The same suite also executes the real composed entry with both device models, SVG renderers and controllers, covering direct chapter URLs, history, shared-ledger projection, independent saved progress, and hidden/chapter cancellation. `project.test.mjs` tests boundary conservation and route compatibility. Focused command: `node --import tsx --test topics/air-conditioner/tests/*.test.mjs topics/refrigerator/tests/*.test.mjs`. Packaged browser and 390 px inspection belong to the root integration check, not this DOM adapter.
 
 Scientific boundary: Qh = Qc + W is a cyclic working-fluid balance. Refrigerator transient room exchange additionally subtracts cabinet leakage and tracks air/food stored energy. Neither the fixed-room-temperature refrigerator nor the room-boundary example predicts room warming. A cool sensation near an open fridge door does not establish sustained whole-room cooling.
+
+The room-boundary SVG is the final chapter's main stage, with its net room balance immediately below. Moving the hot end between outdoors and the same room interpolates the diagram; the result waits until the move finishes so an intermediate drawing is not mistaken for either settled energy boundary. The intermediate position is a visual transition, not a continuously solved partial-room heat-exchanger model. Leaving the chapter cancels the transition and settles its selected endpoint; reopening keeps the chosen case and work input.
 
 ## Presentation layout
 

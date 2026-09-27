@@ -132,5 +132,7 @@
   "房间": "Room",
   "室外": "Outdoors",
   "冷端取热": "Heat uptake",
-  "热端放热": "Heat release"
+  "热端放热": "Heat release",
+  "热端移动中 · 到位后读房间账": "Hot side moving · read the room balance after it arrives",
+  "输入功 W": "Work input W"
 }
