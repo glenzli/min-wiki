@@ -28,3 +28,5 @@ The detailed botanical portrait is retained. A third view follows the same gold 
 Focused tests cover existing colour/condition isolation plus white and aluminium-free controls, continuous assembly and finite reversible transport. Bilingual science notes and all four narration segments include the new observations. Root integration owns browser, mobile, packaged-build and release verification for this revision; earlier live-view evidence is not reused as proof of these changes.
 
 The controller now exports mountHydrangeaStudy for the parent flower-color entry. The legacy route still opens this study; URL state preserves next-bloom controls separately from the planted snapshot. Cross-case navigation stops growth rather than silently continuing in a hidden view.
+
+The flower-color parent now supplies the shared children/academic reading control; the legacy hydrangea URL keeps its own embedded control. The mounted study reads `reading=academic` on entry so its chemistry panel and the selected reading control agree after refresh. Switching reading mode does not change either the current bloom or pending conditions.
