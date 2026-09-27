@@ -30,14 +30,32 @@ function geometry(state: Settings, result: Result): Geometry {
  const wood = state.experiment === 'objects' && state.object === 'wood';
  const width = boat ? 260 * result.capacity / 1400 : held ? 120 : wood ? 150 : size;
  const height = boat ? 100 : held ? 120 : wood ? 94 : size;
- const water = 245 - result.displaced / 70;
+ // A shared empty-tank datum makes different displacements comparable; the rise is enlarged for teaching.
+ const water = 245 - result.displaced / 20;
  // Keep the existing trapezoidal hull's draft-volume relation.
  const draft = boat ? -160 + Math.sqrt(25600 + 42000 * result.fraction) : height * result.fraction;
  return { water, width, height, bottom: held ? water + height * state.depth / 100 : result.floating ? water + draft : 440, cup: 438 - Math.min(185, result.displaced / 8) };
 }
 
-function objectMarkup(state: Settings, g: Geometry, flooded: boolean) {
+const between = (a: number, b: number, amount: number) => a + (b - a) * amount;
+function blendGeometry(a: Geometry, b: Geometry, amount: number): Geometry {
+ return { water: between(a.water,b.water,amount), bottom: between(a.bottom,b.bottom,amount), width: between(a.width,b.width,amount), height: between(a.height,b.height,amount), cup: between(a.cup,b.cup,amount) };
+}
+function clayReshape(g: Geometry, open: number) {
+ const x=365-g.width/2,y=g.bottom-g.height,w=g.width,h=g.height;
+ // Equal-identity outlines: the top of the ball is pressed into an open, thick-walled hull.
+ const ball=[[0,.5],[.07,.25],[.25,.07],[.5,0],[.75,.07],[.93,.25],[1,.5],[.93,.75],[.75,.93],[.5,1],[.25,.93],[.07,.75]];
+ const hull=[[0,0],[.07,0],[.14,.75],[.5,.82],[.86,.75],[.93,0],[1,0],[.92,.8],[.8,1],[.5,1],[.2,1],[.08,.8]];
+ const points=ball.map(([bx,by],i)=>[x+w*between(bx,hull[i][0],open),y+h*between(by,hull[i][1],open)]);
+ const midpoint=(a:number[],b:number[])=>[(a[0]+b[0])/2,(a[1]+b[1])/2];
+ const first=midpoint(points.at(-1)!,points[0]);
+ const path=`M${first[0]} ${first[1]}${points.map((p,i)=>{const mid=midpoint(p,points[(i+1)%points.length]);return `Q${p[0]} ${p[1]} ${mid[0]} ${mid[1]}`;}).join('')}Z`;
+ return `<path d="${path}" fill="url(#buoy-clay)" stroke="#9a6049" stroke-width="2.5"/><path d="M${x+w*.15} ${y+h*.77}Q365 ${y+h*.98} ${x+w*.85} ${y+h*.77}" fill="none" stroke="#f7cbae" opacity=".32" stroke-width="2"/>`;
+}
+
+function objectMarkup(state: Settings, g: Geometry, flooded: boolean, reshaping?: number) {
  const x = 365 - g.width / 2, y = g.bottom - g.height, w = g.width, h = g.height, b = g.bottom;
+ if (state.experiment === 'boat' && reshaping !== undefined) return { body: clayReshape(g,reshaping), air: '', cargo: '', floodedInterior: '' };
  if (state.experiment === 'boat' && state.boat) {
   const thickness=20*260/w;
   const hull = `M${x} ${y}L${x+w*.108} ${b-12}Q${x+w*.123} ${b} ${x+w*.192} ${b}H${x+w*.808}Q${x+w*.877} ${b} ${x+w*.892} ${b-12}L${x+w} ${y}H${x+w-thickness*.75}L${x+w*.892-thickness*.7} ${b-thickness}H${x+w*.108+thickness*.7}L${x+thickness*.75} ${y}Z`;
@@ -78,6 +96,7 @@ export class BuoyancyScene {
  private result?:Result;
  private forces=true;
  private identity='';
+ private form=0;
  private disposed=false;
  private readonly reduced=matchMedia('(prefers-reduced-motion: reduce)');
  constructor(private readonly svg:SVGSVGElement,private readonly status:HTMLElement) {
@@ -86,36 +105,54 @@ export class BuoyancyScene {
   this.reduced.addEventListener('change',this.onMotionPreference);
  }
  set(state:Settings,result:Result,forces:boolean,instant=false) {
+  const previous=this.state;
+  const fromForm=this.form;
   const next=geometry(state,result), identity=state.experiment==='boat'?(state.boat?'boat':'clay'):state.experiment==='depth'?'held':state.object;
   const changed=this.identity!==identity;
   const from=this.current?{...this.current}:next;
-  if(changed&&this.current&&identity!=='held')Object.assign(from,{...next,bottom:next.water-8,water:245,cup:438});
+  const reshaping=previous?.experiment==='boat'&&state.experiment==='boat'&&previous.boat!==state.boat;
+  if(changed&&this.current&&identity!=='held'&&!reshaping)Object.assign(from,{...next,bottom:next.water-8,water:245,cup:438});
   this.state={...state};this.result=result;this.target=next;this.forces=forces;this.identity=identity;
   cancelAnimationFrame(this.frame);this.frame=0;
-  const moved=!this.current||Object.keys(next).some(key=>Math.abs(next[key as keyof Geometry]-this.current![key as keyof Geometry])>.001);
+  const moved=reshaping||!this.current||Object.keys(next).some(key=>Math.abs(next[key as keyof Geometry]-this.current![key as keyof Geometry])>.001);
   if(!this.current||!moved||instant||this.reduced.matches||document.hidden){this.settle();return;}
-  const start=performance.now(),duration=changed?760:520;
-  this.svg.setAttribute('aria-busy','true');this.status.textContent=t('轻轻放入，看看它停在哪里。');
+  const start=performance.now(),duration=reshaping?1450:changed?760:520;
+  this.svg.setAttribute('aria-busy','true');this.status.textContent=reshaping?(state.boat?t('同一团泥：取出、捏出空心，再放回水里。'):t('同一团泥：取出、捏回实心，再放回水里。')):t('轻轻放入，看看它停在哪里。');
   const tick=(now:number)=>{
    if(this.disposed||document.hidden){this.settle();return;}
    const progress=Math.min(1,(now-start)/duration),ease=1-(1-progress)**3;
-   const g=Object.fromEntries(Object.keys(next).map(key=>[key,from[key as keyof Geometry]+(next[key as keyof Geometry]-from[key as keyof Geometry])*ease])) as Geometry;
-   this.current=g;this.draw(g,progress<1?Math.sin(progress*Math.PI)*(1-progress):0,progress>=1);
+   if(reshaping){
+    const lifted={...from,bottom:235,water:245,cup:438},molded={...next,bottom:235,water:245,cup:438};
+    const segment=progress<.3?progress/.3:progress<.68?(progress-.3)/.38:(progress-.68)/.32;
+    const phaseEase=1-(1-Math.min(1,segment))**3;
+    const g=progress<.3?blendGeometry(from,lifted,phaseEase):progress<.68?blendGeometry(lifted,molded,phaseEase):blendGeometry(molded,next,phaseEase);
+    const opening=between(fromForm,state.boat?1:0,progress<.3?0:progress<.68?phaseEase:1);
+    this.form=opening;this.current=g;this.draw(g,progress>.68?Math.sin(segment*Math.PI)*.4:0,false,opening);
+   }else{
+    const g=blendGeometry(from,next,ease);
+    this.current=g;this.draw(g,progress<1?Math.sin(progress*Math.PI)*(1-progress):0,progress>=1);
+   }
    if(progress<1)this.frame=requestAnimationFrame(tick);else this.settle();
   };
   this.frame=requestAnimationFrame(tick);
  }
- private settle(){cancelAnimationFrame(this.frame);this.frame=0;if(this.target){this.current={...this.target};this.draw(this.current,0,true);}this.svg.setAttribute('aria-busy','false');this.status.textContent=t('换个物品，或慢慢加一点货物。');}
- private draw(g:Geometry,ripple:number,settled:boolean){
+ private settle(){cancelAnimationFrame(this.frame);this.frame=0;if(this.target){this.current={...this.target};this.form=this.state?.experiment==='boat'&&this.state.boat?1:0;this.draw(this.current,0,true);}this.svg.setAttribute('aria-busy','false');this.status.textContent=t('换个物品，或慢慢加一点货物。');}
+ private draw(g:Geometry,ripple:number,settled:boolean,reshaping?:number){
   if(!this.state||!this.result)return;
-  const s=this.state,r=this.result,{body,air,cargo,floodedInterior}=objectMarkup(s,g,r.flooded);
+  const s=this.state,r=this.result,{body,air,cargo,floodedInterior}=objectMarkup(s,g,r.flooded,reshaping);
   const x=365-g.width/2,y=g.bottom-g.height,amplitude=2+ripple*12;
   const surface=`M82 ${g.water}Q170 ${g.water-amplitude} 260 ${g.water}T440 ${g.water}T610 ${g.water}`;
   const support=s.experiment==='depth'?`<g><path d="M320 56H410" stroke="#7c8f86" stroke-width="10" stroke-linecap="round"/><path d="M324 53H406" stroke="#e0e8d8" stroke-width="3" stroke-linecap="round"/><path d="M365 56V${y+3}" stroke="#82958d" stroke-width="3"/><path d="M364 59V${y}" stroke="#f6f7e9" stroke-width=".8"/></g>`:'';
   const upStart=Math.min(g.bottom+9,427),downStart=Math.min(y-8,427-r.weight*10);
   const supportForce = this.forces && settled && !r.floating && s.experiment !== 'depth' ? `<path d="M365 481V${481-Math.max(0,r.weight-r.force)*10}" stroke="#71807a" stroke-width="5" marker-end="url(#buoy-up)"/>${text(455,477,t('箱底也在托住'),14,'#586c62')}` : '';
   const arrows=this.forces&&settled?`${r.force>0?`<path d="M${x-48} ${upStart}V${upStart-r.force*10}" stroke="#178b70" stroke-width="6" stroke-linecap="round" marker-end="url(#buoy-up)"/>`:''}${text(x-48,upStart>405?477:upStart+35,t('浮力'),18,'#147b64')}<path d="M${x+g.width+46} ${downStart}V${downStart+r.weight*10}" stroke="#b77c3e" stroke-width="6" stroke-linecap="round" marker-end="url(#buoy-down)"/>${text(x+g.width+46,downStart-17,t('重力'),18,'#946230')}`:'';
-  this.svg.innerHTML=`${definitions}<rect width="850" height="540" fill="url(#buoy-room)"/>
+  const compact=window.matchMedia('(max-width:750px)').matches;
+  const rimX=Math.min(570,365+g.width/2+15);
+  const rimLabel=r.flooded?(compact?t('进水'):t('水越过船沿')):(compact?t('船沿'):t('船沿到水面'));
+  const datumLabel=compact?t('基准水位'):t('空箱水位');
+  const rim= s.experiment==='boat'&&s.boat&&reshaping===undefined&&settled?`<g stroke="${r.flooded?'#a54b3f':'#a66d35'}" stroke-width="3" fill="none"><path d="M${rimX} ${y}h10M${rimX+5} ${y}V${g.water}M${rimX} ${g.water}h10"/></g>${text(rimX-(compact?50:60),Math.max(115,Math.min(y,g.water)-20),rimLabel,18,r.flooded?'#913f35':'#8a602f')}`:'';
+  const clayTint=s.experiment==='boat'||s.experiment==='objects'&&s.object==='clay';
+  this.svg.innerHTML=`${definitions}<clipPath id="buoy-submerged-color"><rect x="81" y="${g.water}" width="530" height="${Math.max(0,444-g.water)}"/></clipPath><rect width="850" height="540" fill="url(#buoy-room)"/>
   <path d="M26 8L186 8L77 451H0Z" fill="#fffdf1" opacity=".44"/><path d="M226 0H245L135 451H116Z" fill="#fffdf3" opacity=".25"/>
   <path d="M0 464Q425 451 850 465V540H0Z" fill="url(#buoy-table)"/>
   ${[0,1,2,3].map(i=>`<path d="M0 ${480+i*17}Q280 ${472+i*17} 850 ${479+i*17}" stroke="#b99b68" opacity=".22" fill="none"/>`).join('')}
@@ -125,11 +162,13 @@ export class BuoyancyScene {
   ${support}<g clip-path="url(#buoy-tank-clip)">
   <ellipse cx="365" cy="440" rx="${g.width*.65}" ry="12" fill="url(#buoy-shadow)" opacity="${Math.max(.08,1-(440-g.bottom)/220)}"/>
   ${body}${floodedInterior}<path d="${surface}V444H82Z" fill="url(#buoy-water-fill)"/>
+  ${clayTint?`<g clip-path="url(#buoy-submerged-color)" opacity=".46">${body}</g>`:''}
   <path d="${surface}" fill="none" stroke="url(#buoy-water-edge)" stroke-width="3"/>
   <path d="M96 418Q173 405 247 422T416 418T595 427M105 434Q205 416 309 431T579 433" stroke="#d1f4e2" stroke-width="3" opacity=".15" fill="none"/>
   <path d="M97 ${g.water+15}V417Q97 432 111 433" stroke="#f4fffa" stroke-width="7" opacity=".4" fill="none"/>
   ${ripple>0?`<ellipse cx="365" cy="${g.water}" rx="${g.width*.55+35*(1-ripple)}" ry="${5+ripple*8}" fill="none" stroke="#e8ffec" stroke-width="2" opacity="${ripple*.65}"/>`:''}
-  </g>${air}${cargo}${arrows}${supportForce}
+  </g>${air}${cargo}${arrows}${supportForce}${rim}
+  ${text(compact?135:200,239,datumLabel,17,'#637e80')}
   <path d="M79 89V428Q79 450 102 450H588Q614 450 614 428V89" fill="none" stroke="#87a9a9" stroke-width="6"/>
   <path d="M86 94V426Q86 442 104 442H584" fill="none" stroke="#f8fff6" stroke-width="3" opacity=".8"/>
   <path d="M608 102V427Q608 440 591 442" fill="none" stroke="#568a98" stroke-width="2" opacity=".4"/>
@@ -143,7 +182,7 @@ export class BuoyancyScene {
   <ellipse cx="723" cy="204" rx="57" ry="7" fill="none" stroke="#a6c1b8" stroke-width="3"/>
   <path d="M674 217V417Q674 434 685 435" fill="none" stroke="#fff" stroke-width="4" opacity=".62"/>
   ${Array.from({length:10},(_,i)=>`<path d="M${i%2?763:753} ${428-i*21}H776" stroke="#628d8c" stroke-width="1.5" opacity=".65"/>`).join('')}
-  ${text(723,184,t('排开的水'))}${text(723,477,`${r.displaced.toFixed(0)} mL`,21)}${text(345,511,t('水位变化已放大'),14,'#7b765d',true)}`;
+  ${text(723,184,t('排开的水'))}${text(723,477,`${r.displaced.toFixed(0)} mL`,21)}${text(345,511,s.experiment==='boat'?t('同一团泥 · 600 g，水位变化已放大'):t('水位变化已放大'),18,'#7b765d',true)}`;
  }
  private onVisibility=()=>{if(document.hidden)this.settle();};
  private onPageHide=(event:PageTransitionEvent)=>{if(event.persisted)this.settle();else this.dispose();};

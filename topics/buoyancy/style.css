@@ -13,3 +13,24 @@
 .learning-modes{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.learning-modes button{min-height:44px;font-size:14px}.mode-science{margin:28px 0;padding:24px;border:1px solid var(--border);border-radius:20px;background:var(--surface)}.mode-science h2{font-size:23px;margin:0 0 12px}.mode-science p{line-height:1.85;max-width:850px}.child-prompt{font-size:18px;line-height:1.8;color:var(--ink)}
 
 .capacity-readout{padding:12px 20px;margin:0;background:#edf2e5;color:#315f56;font-size:14px;line-height:1.7}#challenge{margin-top:12px;width:100%}
+
+/* Neutral reading controls; the water, clay and force arrows keep their own material colors. */
+:root{--topic-accent:#45474b}
+button:hover{border-color:#767a80}
+button[aria-pressed=true]{background:#383b40;border-color:#383b40}
+input[type=range],.check input{accent-color:#45474b}
+.scene-top{color:#65645e}
+.scene-top strong{background:#e8e7e0;border-color:#d5d3ca;color:#414349}
+.object-grid button[aria-pressed=true]{background:#e8e7e2;color:#303237;border-color:#71747a;box-shadow:0 3px 10px #3434340c}
+.object-grid button:hover{background:color-mix(in srgb,var(--surface),#7b7b7b 8%)}
+aside{background:color-mix(in srgb,var(--surface),#e8e7e3 16%)}
+.lab{box-shadow:0 15px 50px #3737370c;border-color:var(--border)}
+.capacity-readout{background:#ecebe5;color:#37393d;margin:0}
+.same-load{margin:0;padding:9px 20px;background:#e1e0d8;color:#313338;font-size:13px;line-height:1.55;border-top:1px solid #d4d1c7}
+.motion-state{color:#62625e}
+.readouts strong{color:#34373a}
+aside .readouts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;padding:14px 0;background:transparent;border-top:1px solid var(--border)}
+aside .readouts>div{min-width:0}
+aside .readouts strong{font-size:23px}
+aside .readouts span{font-size:12px;color:var(--secondary)}
+aside .readouts small{font-size:11px}

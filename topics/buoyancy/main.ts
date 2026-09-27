@@ -10,6 +10,8 @@ mountTopicNavigation('buoyancy');
 const el = (id:string)=>document.getElementById(id)!;
 const state:Settings={experiment:'objects',object:'wood',boat:false,cargo:0,salt:false,depth:50,boatCapacity:1400};
 let academic=false;
+// Academic measurements stay beside the experiment so they do not reduce the scene's height.
+el('reset').before(document.querySelector<HTMLElement>('.readouts')!);
 const scene = new BuoyancyScene(el('scene') as unknown as SVGSVGElement, el('motion-state'));
 function render(){
  const r=buoyancy(state), depthMode=state.experiment==='depth', boatMode=state.experiment==='boat'&&state.boat;
@@ -17,9 +19,11 @@ function render(){
  document.querySelectorAll<HTMLButtonElement>('[data-experiment]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.experiment===state.experiment)));
  document.querySelectorAll<HTMLButtonElement>('[data-object]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.object===state.object)));
  el('cargo-controls').hidden=!state.boat;
- el('hull-count').textContent=t('进水前最多排开 {{volume}} mL',{volume:state.boatCapacity??1400});
+ el('hull-count').textContent=academic?t('进水前最多排开 {{volume}} mL',{volume:state.boatCapacity??1400}):t('现在是{{width}}船',{width:(state.boatCapacity??1400)<=1050?t('窄'):(state.boatCapacity??1400)>=1550?t('宽'):t('中等宽度的')});
  el('capacity-readout').hidden=state.experiment!=='boat';
- el('capacity-readout').textContent=boatMode?t('总质量 {{mass}} g · 排开水的质量 {{water}} g · 船沿前的载重余量 {{reserve}} g',{mass:r.mass,water:r.displacedMass.toFixed(0),reserve:r.reserve.toFixed(0)}):t('同一团 600 g 橡皮泥：先比较实心球和空心船。');
+ el('capacity-readout').textContent=boatMode?academic?t('总质量 {{mass}} g · 排开水的质量 {{water}} g · 船沿前的载重余量 {{reserve}} g',{mass:r.mass,water:r.displacedMass.toFixed(0),reserve:r.reserve.toFixed(0)}):r.flooded?t('水已越过船沿，船里进水了。'):t('船沿还在水面上；装货会让水线升高。'):t('同一团 600 g 橡皮泥：先比较实心球和空心船。');
+ el('same-load').hidden=!(boatMode&&state.cargo===4);
+ el('same-load').textContent=academic?t('四块货物不变：900 mL 窄船会进水；当前船沿容积 {{capacity}} mL，{{outcome}}。',{capacity:r.capacity,outcome:r.flooded?t('已经进水'):t('还在漂浮')}):t('四块货物不变：窄船会进水；现在{{outcome}}。',{outcome:r.flooded?t('也进水了'):t('浮在水上')});
  el('ball').setAttribute('aria-pressed',String(!state.boat));el('boat').setAttribute('aria-pressed',String(state.boat));
  const name=depthMode?t('有外部装置托着'):r.flooded?t('船边进水了'):r.floating?t('浮起来了！'):t('沉下去了，也有浮力');
  el('state').textContent=el('discovery-title').textContent=name;
