@@ -4,13 +4,17 @@ import { lightningState, leaderPath, clamp } from './model.ts';
 import type { Settings } from './model.ts';
 import { t } from './i18n.ts';
 const noise=(i:number)=>{const v=Math.sin(i*127.1+311.7)*43758.5453;return v-Math.floor(v);};
+// Magnify the first 0.5 km so the indoor house stays separate from the mast.
+// The same screen mapping is used for the sound front, so it still reaches
+// the house at the model's arrival time. It is illustrative, not a scale bar.
+const projectDistance=(km:number)=>35*km+30*(1-Math.exp(-km/.25));
 export class TopicScene{
  private cloudTexture=createCloudTexture({bounds:[-424, -284, 706, 234],lobes:[[-99,-210,288,25],[-146,-191,136,45],[-183,-210,68,44],[-80,-180,93,58],[-126,-125,130,51],[-118,-86,77,27],[112,-200,135,17]],seed:77});
  private surface:CanvasSurface;private progress=0;private settings:Settings={distanceKm:3,temperature:20};
  constructor(canvas:HTMLCanvasElement){this.surface=new CanvasSurface(canvas);this.surface.onResize(()=>this.draw(this.progress,this.settings));}
  draw(progress:number,settings:Settings){
   this.progress=progress;this.settings=settings;
-  const s=this.surface,c=s.begin('#9db4c8','#dddcca'),state=lightningState(progress,settings),path=leaderPath(),observerX=15+settings.distanceKm*37;
+  const s=this.surface,c=s.begin('#9db4c8','#dddcca'),state=lightningState(progress,settings),path=leaderPath(),observerX=15+projectDistance(settings.distanceKm);
   const label=(text:string,x:number,y:number,width=300)=>s.label(text,x,y,{width,color:'#304b67',background:'#f1f3eceb'});
   const distant=c.createLinearGradient(0,110,0,250);distant.addColorStop(0,'#9daf9e');distant.addColorStop(1,'#718a70');
   s.path([[-450,142],[-361,113],[-291,131],[-225,107],[-168,120],[-79,111],[10,133],[104,112],[178,130],[291,117],[372,136],[450,119],[450,300],[-450,300]],'#a2b4af');
@@ -53,13 +57,18 @@ export class TopicScene{
   // A substantial building marks an indoor observer, not a figure sheltering under a tree.
   c.fillStyle='#dbd5b9';c.fillRect(observerX-17,119,34,27);s.path([[observerX-22,119],[observerX-2,104],[observerX+22,119]],'#6b7d87');c.fillStyle=state.heard?'#f1d591':'#bdd6db';c.fillRect(observerX-9,124,9,10);c.fillStyle='#7b887d';c.fillRect(observerX+5,129,7,17);
   if(progress>=.70){
-   const radius=state.soundRadiusKm*37;c.save();c.beginPath();c.rect(-430,-70,870,218);c.clip();
+   const radius=projectDistance(state.soundRadiusKm),frontX=Math.min(observerX,15+radius);
+   // The sound front and the same indoor observer share one visual distance map.
+   s.path([[15,166],[observerX,166]],undefined,'#e5e9dd93',1.25);
+   s.path([[15,166],[frontX,166]],undefined,'#765b9bdc',3.4);
+   s.path([[15,161],[15,171]],undefined,'#e5e9dd',1.4);
+   s.path([[observerX,161],[observerX,171]],undefined,'#e5e9dd',1.4);
+   if(state.heard)s.ellipse(observerX,166,8,8,'#e5cb8547','#d9b96b');
+   s.ellipse(frontX,166,3.5,3.5,'#765b9b');
+   c.save();c.beginPath();c.rect(-430,-70,870,218);c.clip();
    for(let i=0;i<3;i++){const r=radius-i*7;if(r<=0)continue;c.beginPath();c.arc(15,141,r,Math.PI,Math.PI*2);c.strokeStyle=i===0?'#765b9bbb':'#765b9b35';c.lineWidth=i===0?2:1;c.stroke();}c.restore();
-   label(state.heard?t('雷声到达室内观察者'):t('声波还在路上'),-90,-14,430);
-   label(t('声音传播 {{elapsed}} s',{elapsed:state.soundSeconds.toFixed(1)}),-139,63,330);
   }
-  label(t('室内观察点'),Math.min(observerX,267),176,180);
-  label(t('{{distance}} km · {{delay}} s',{distance:settings.distanceKm.toFixed(1),delay:state.delay.toFixed(1)}),-169,205,310);
+  label(t('室内'),observerX,88,110);
   s.end();
  }
  dispose(){this.surface.dispose();}

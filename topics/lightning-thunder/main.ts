@@ -22,7 +22,11 @@ function update() {
   const settings={distanceKm:number('distance'),temperature:number('temperature')}; const result=lightningState(progress,settings);
   const stage=result.stage;
   el('scene-title').textContent=el('story-title').textContent=CONTENT.steps[stage];
-  el('scene-note').textContent=CONTENT.note;
+  el('scene-note').textContent=stage===3
+    ? result.heard
+      ? t('光已到达；声音约 {{delay}} 秒后到达室内。画面播放经过压缩。',{delay:result.delay.toFixed(1)})
+      : t('光几乎立刻到达；声音已走 {{elapsed}} 秒，还要继续传播。画面播放经过压缩。',{elapsed:result.soundSeconds.toFixed(1)})
+    : CONTENT.note;
   el('story').textContent=academic?CONTENT.academic[stage]:CONTENT.stories[stage];
   el('metric').textContent=result.delay.toFixed(1)+' s';
   el('distance-value').textContent=value('distance')+' km'; el('temperature-value').textContent=value('temperature')+' °C';
@@ -33,8 +37,10 @@ function update() {
   el('limits').textContent=CONTENT.limits;
   el('play').textContent=playing?t('暂停'):progress>=1?t('重新播放'):t('开始观察');
   (el('progress') as HTMLInputElement).value=String(Math.round(progress*1000));
-  el('progress').setAttribute('aria-valuetext',CONTENT.steps[stage]);
-  el('elapsed').textContent=`${(progress*26).toFixed(1)} / 26 s`;
+  el('elapsed').textContent=stage===3
+    ? t('声音传播 {{elapsed}} s',{elapsed:result.soundSeconds.toFixed(1)})
+    : t('演示慢放 {{percent}}%',{percent:Math.round(progress*100)});
+  el('progress').setAttribute('aria-valuetext',`${CONTENT.steps[stage]} · ${el('elapsed').textContent}`);
   el('steps').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',String(stage===i)));
   document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String((b.dataset.mode==='academic')===academic)));
   el('science-panel').hidden=!academic;

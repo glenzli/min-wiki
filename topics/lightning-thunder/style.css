@@ -14,3 +14,11 @@
 .view-setting{margin-top:22px}.viewport{background:#b6cdd0}.scene-heading>div{box-shadow:0 3px 18px #233e5014}.scene-note{max-width:680px}
 
 .viewport{height:560px}@media(max-width:760px){.viewport{height:430px}}
+
+/* In the fitted desktop frame, science belongs beside the active scene. */
+@media(min-width:1000px){
+  .presentation-frame .presentation-notes .science-panel{display:block;padding:14px 0;background:transparent;min-width:0}
+  .presentation-frame .presentation-notes .science-panel h3{font-size:12px;margin:15px 0 4px}
+  .presentation-frame .presentation-notes .science-panel p{font-size:12px;line-height:1.65}
+  .presentation-frame .presentation-notes .science-panel .science-formula{font-size:17px;line-height:1.5;overflow-wrap:anywhere}
+}

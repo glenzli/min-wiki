@@ -10,6 +10,12 @@ How does a cloud separate charge? Why does lightning branch, and why does thunde
 
 Clouds, channels, charge signs and sound-wave arcs are illustrative and use different scales. One negative cloud-to-ground flash is shown, excluding intracloud and positive flashes. No sound autoplays and there is no full-screen strobe.
 
+## Sound-front and clock pass · 2026-09-28
+
+前三幕的进度现在只称为慢放进度；末幕从闪光重新起表，显示模型中的声音传播秒数，播放本身仍压缩时间。声波圆弧和地面传播线使用同一示意投影，到达判定仍由声速和所选距离计算。近处的 0.5 km 被视觉放大，使室内观察点不贴上放电尖端；因此画面位置不能当线性距离标尺。儿童版看到当前声波是否到达，学术版同场景的侧栏可阅读关系式、变量和限制。美国国家气象局的雷声和负地闪说明支持通道形成、回击与声波的因果顺序；这里只演一条负地闪路径，并没有预测危险范围。
+
+The first three stages now report slow-motion progress rather than invented elapsed seconds. The last stage restarts a clock at the flash and labels physical sound-travel seconds from the teaching model, even though playback is compressed. The wave arc and ground travel line use the same illustrative projection and meet the indoor observer when the model says sound arrives. The first 0.5 km is visually magnified so the house remains separate from the grounded mast; screen position is therefore not a linear distance scale. Academic notes stay readable in the scene's scrollable side panel. The linked National Weather Service explanations support the sequence of channel formation, return stroke and thunder; this single negative cloud-to-ground scene does not predict a safety radius.
+
 ## Ownership and interaction
 
 `model.ts` owns numeric and stage contracts, `scene.ts` owns deterministic Canvas rendering, `content.ts` owns bilingual stage explanations, and `main.ts` owns playback and accessible controls. No autoplay. Visibility and page lifecycle pause animation, restore bfcache state and release the canvas observer on final exit. Kids and academic modes share an interactive scene with distinct stage-linked explanations.
