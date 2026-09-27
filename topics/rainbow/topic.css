@@ -1013,5 +1013,8 @@ h1 {
 
 /* Desktop presentation: retain topic geometry inside the selected scene. */
 @media(min-width:1000px){
-html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex:1; min-height:120px; height:0; } & .presentation-frame .theater { padding:0; gap:8px; } .presentation-frame .scenario-bar,.presentation-frame .tools-bar { padding:6px 10px; margin:0; } .presentation-frame .presentation-notes .story-panel { padding:0; } .presentation-frame .story-panel h1 { font-size:24px; margin:6px 0; } .presentation-frame .story-divider,.presentation-frame .sidebar-footer { display:none; }}
+html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex:1; min-height:320px; height:0; } & .presentation-frame .theater { padding:0; gap:8px; } .presentation-frame .scenario-bar,.presentation-frame .tools-bar { padding:6px 10px; margin:0; } .presentation-frame .presentation-notes .story-panel { padding:0; } .presentation-frame .story-panel h1 { font-size:24px; margin:6px 0; } .presentation-frame .story-divider,.presentation-frame .sidebar-footer { display:none; }}
+.presentation-frame .presentation-notes .stage-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px 2px}
+.presentation-frame .presentation-notes .stage-buttons button{display:flex;align-items:center;gap:5px;text-align:left;min-width:0;width:100%;font-size:11px;white-space:normal;word-break:keep-all;padding:8px}
+.presentation-frame .presentation-notes .stage-buttons button:last-child:nth-child(odd){grid-column:1/-1}
 }

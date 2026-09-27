@@ -40,6 +40,8 @@
   "复位": "Reset",
   "灯的位置 · 也可以拖动回看": "Lamp position · drag to review",
   "换成有面积的灯，比较软边缘": "Use an extended lamp to compare soft edges",
+  "记住现在的影子，再移动灯": "Keep this shadow outline, then move the lamp",
+  "红虚线：记录时的影子": "Red dashes: saved shadow outline",
   "木偶由简化的三维木块组成，投影沿直线落到平地。中心线公式只描述头顶正中这一条光线，不是整片影子的最大长度。有面积的灯用九个发光位置近似，软边缘是教学示意；未计算反射和精确亮度，刻度不对应现实单位。": "The figure consists of simplified 3D wooden shapes projected along straight rays onto a flat plane. The centerline formula follows the top-center ray, not the maximum extent of the whole shadow. Nine source samples approximate an extended lamp and its softer edge. Reflections and calibrated brightness are omitted; divisions are illustrative.",
   "NASA · 本影、半影与光源几何 ↗": "NASA · Umbra, penumbra and source geometry ↗"
 }

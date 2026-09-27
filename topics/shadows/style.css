@@ -4,3 +4,20 @@
 @media(max-width:620px){.controls label{flex-basis:100%;min-width:0}.controls select{width:100%;min-width:0}.scene text{font-size:25px}.scene .small{font-size:21px}}
 
 .view-tabs,.scene-legend{display:flex;gap:12px;flex-wrap:wrap;padding:14px 22px;align-items:center}.view-tabs{border-bottom:1px solid var(--border)}.scene-legend{font-size:13px;color:var(--secondary);border-top:1px solid var(--border)}.scene-legend output{margin-left:auto;font-variant-numeric:tabular-nums}.controls .check{flex-direction:row;align-items:center;flex-basis:100%;font-size:14px;font-weight:500}.check input{width:18px;height:18px;accent-color:var(--accent)}.controls label output{font-size:13px;color:var(--secondary)}@media(max-width:620px){.scene{min-height:200px}.scene-legend{font-size:12px;padding:12px}.scene-legend output{margin-left:0;flex-basis:100%}.view-tabs{padding:12px}.view-tabs button{flex:1;font-size:13px;padding:8px}.controls{gap:10px}}
+
+/* Keep the experiment legible when its controls live beside the scene. */
+@media(min-width:1000px){
+  .presentation-frame .presentation-notes .controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding:14px}
+  .presentation-frame .presentation-notes .controls>button{width:100%;min-width:0;padding:8px 6px;font-size:13px}
+  .presentation-frame .presentation-notes .controls>button:first-child{grid-column:1/-1}
+  .presentation-frame .presentation-notes .controls>label{grid-column:1/-1;width:100%;min-width:0;gap:5px;font-size:13px}
+  .presentation-frame .presentation-notes .controls>label.check{display:flex;flex-direction:row;align-items:flex-start;gap:8px;line-height:1.5}
+  .presentation-frame .presentation-notes .controls>label.check input{flex:none;margin-top:3px}
+  .presentation-frame .presentation-notes .controls input[type=range]{width:100%}
+  .presentation-frame .presentation-notes .scene-legend{padding:12px 14px;gap:7px;line-height:1.45}
+  .presentation-frame .presentation-notes .scene-legend output{margin-left:0;flex-basis:100%}
+  .presentation-frame .presentation-notes .readout{padding:12px 14px;min-height:0;font-size:14px}
+  .presentation-frame .presentation-notes>details{padding:14px;border-top:1px solid var(--border);font-size:13px;line-height:1.65}
+  .presentation-frame .presentation-notes>details summary{font-size:14px}
+}
+html[data-reading-mode='kids'] .presentation-frame .presentation-notes>details{display:none}

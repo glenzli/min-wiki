@@ -69,26 +69,25 @@ export function mountSceneReading(
   limitsGroup.append(limitsHeading, limits);
   columns.append(evidenceGroup, limitsGroup);
   section.append(eyebrow, title, theory, formulaGroup, columns);
-  observation.after(section);
-
-  const cue = document.createElement('a');
-  cue.className = 'scene-reading-cue';
-  cue.href = `#${options.id}`;
-  cue.textContent = t('阅读当前场景的原理与依据 ↓');
-  cue.hidden = true;
   let childTarget = options.childTarget;
-  const cueHost = (target?: HTMLElement) => target?.closest<HTMLElement>('.explanation, .comparison-copy, .atmo-story, .stellar-notes, .atmo-inspector') ?? observation;
-  cueHost(childTarget).append(cue);
+  function placeStudy(target?: HTMLElement) {
+    if (target) {
+      target.classList.add('scene-reading-child');
+      target.after(section);
+    } else observation.append(section);
+  }
+  placeStudy(childTarget);
 
   let mode: 'kids' | 'academic' = 'kids';
   let current: SceneStudy | undefined;
   function setMode(next: 'kids' | 'academic') {
     mode = next;
+    observation.classList.toggle('scene-reading-academic', mode === 'academic');
+    observation.classList.toggle('scene-reading-kids', mode === 'kids');
     for (const button of controls.querySelectorAll<HTMLButtonElement>('button[data-mode]')) {
       button.setAttribute('aria-pressed', String(button.dataset.mode === mode));
     }
     section.hidden = mode !== 'academic';
-    cue.hidden = mode !== 'academic';
     if (current && childTarget) childTarget.textContent = pick(current.child);
   }
   controls.addEventListener('click', event => {
@@ -124,8 +123,9 @@ export function mountSceneReading(
     }));
   }
   function setChildTarget(target?: HTMLElement) {
+    childTarget?.classList.remove('scene-reading-child');
     childTarget = target;
-    cueHost(target).append(cue);
+    placeStudy(target);
     if (current && target) target.textContent = pick(current.child);
   }
   setMode(new URLSearchParams(location.search).get('reading') === 'academic' ? 'academic' : 'kids');

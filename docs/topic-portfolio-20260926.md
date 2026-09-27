@@ -109,6 +109,8 @@
 
 先做七个显眼的画面问题：太阳系全景、叶片与细胞、彩虹首帧、影子控制栏、鸭蹼力箭头、肥皂泡首屏、电池双图。随后集中做跨镜头因果：水循环、种子、火山、声音、制冷等。五个暂收起的题只有在本文件的恢复门槛和旧 URL 承接方案完成后重新评估；不因做出漂亮封面就提前上架。
 
+2026-09-28 进展：彩虹首帧的画布尺寸与入射白光已改善，完整的天空到雨滴因果镜头仍待设计；影子侧栏已重排，并增加以同一几何模型计算的保存轮廓对照；肥皂泡成对画面已进入桌面首屏。其余 P0 和逐题内容复审仍按本表执行。
+
 三处特别需要科学审校的设计依据：[NASA 的月球撞击说明](https://www.nasa.gov/meteoroid-environment-office/about-lunar-impact-monitoring/)支持大气对地球碎片的阻拦与月面撞击差别；把两种去向放在同一反事实演示中是本文件的教学设计推论。[CDC 的饮水说明](https://www.cdc.gov/natural-disasters/psa-toolkit/boil-water-advisory.html)明确煮沸不能去除化学污染；页面不能据示意画面判断某杯水安全。[IASP 的疼痛定义说明](https://www.iasp-pain.org/publications/iasp-news/iasp-announces-revised-definition-of-pain/)强调疼痛和伤害性感受是不同现象，故神经路线与脑内标记不能充当主观疼痛量表。其他逐题数值、案例和图像来源仍需在实施时对照题内参考资料逐项核对。
 
 ## 审查与后续验收的边界

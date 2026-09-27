@@ -6,6 +6,7 @@
 - 点选颜色突出对应光线，详情显示在画布下方；关闭详情恢复完整光谱。
 - 天空情景可调太阳高度，并比较平坦地面与无遮挡全圆视野。
 - 阅读界面默认白色，仍尊重全站手动深色偏好；实验画布采用冷灰环境光、玻璃反光和柔和光束；天空及双虹叠加雨后地景，保持控制与标注可读。
+- 桌面首屏把画布作为主区域，情景入口在画布上方、分步按钮在相邻侧栏；白光从首帧可见，后续折射仍由进度驱动。儿童版可直接观察并操作，学术内容留在可展开区域。
 
 ## 模型边界
 
@@ -35,4 +36,4 @@
 
 ## Presentation layout
 
-The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+The topic opts its canvas, transport and scenario choices into shared viewport fitting and reversible immersion. Explanation and stage controls remain in the adjacent scrollable panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.

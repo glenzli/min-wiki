@@ -229,7 +229,9 @@ export class RainbowSimulation {
         this.line([[305, 134], [199, 337], [410, 337]], '#ffffff', 2, .8);
         this.line([[333, 115], [438, 320]], '#ffffff', 1.5, .85);
         const incoming: Point[] = [[55, 235], [250, 235]];
-        this.path(incoming, '#fff', clamp(.35 + p / .125 * .65), 3);
+        const incomingFraction = clamp(.82 + p / .125 * .18);
+        this.path(incoming, '#657a8b', incomingFraction, 8, .28, false);
+        this.path(incoming, '#fff', incomingFraction, 3.5);
         this.text(t('白光'), 60, 207, 16, '#697b8e');
         this.text(t('玻璃三棱镜'), 305, 399, 16, '#697b8e', 'center');
         const endX = this.recombinationEnabled ? 615 : 785;

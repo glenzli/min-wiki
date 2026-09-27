@@ -4,6 +4,8 @@
 
 The topic owns its Canvas renderer, finite interaction lifecycle, physical comparison model, narration, translations and cover. Public navigation, reading mode and learning presentation remain platform responsibilities.
 
+On desktop the header is compact and both synchronized canvases are visible in the first viewport. The full bubble and its selected local film remain paired while stretching, draining, changing sample position, zooming and inspecting reflected rays. Academic calculations and source notes follow the paired visual where their length needs the document flow.
+
 ## Model boundaries
 
 - Constant-volume prolate ellipsoid comparison: a sphere minimizes area, but wind, contact and gravity can deform real bubbles.

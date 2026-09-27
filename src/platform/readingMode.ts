@@ -19,16 +19,23 @@ export function mountReadingMode(advanced: string): void {
   const buttons = choices.map(([mode, label]) => {
     const button = document.createElement('button');
     button.type = 'button'; button.dataset.mode = mode; button.textContent = label;
-    button.addEventListener('click', () => select(mode));
+    button.addEventListener('click', () => {
+      select(mode);
+      const url = new URL(location.href);
+      if (mode === 'academic') url.searchParams.set('reading', mode);
+      else url.searchParams.delete('reading');
+      history.replaceState(null, '', url);
+    });
     control.append(button); return button;
   });
-  function select(mode: 'kids' | 'academic') {
+  function select(mode: 'kids' | 'academic', animate = true) {
+    document.documentElement.dataset.readingMode = mode;
     buttons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.mode === mode)));
-    explanations.forEach(details => setDisclosureOpen(details, mode === 'academic'));
+    explanations.forEach(details => setDisclosureOpen(details, mode === 'academic', animate));
     hint.textContent = mode === 'kids'
       ? t('先动手观察，再说说你发现了什么。')
-      : t('深入说明已展开：继续往下看原理、模型边界与来源。');
+      : t('深入说明已展开：查看原理、模型边界与来源。');
   }
   header.append(control, hint);
-  select('kids');
+  select(new URLSearchParams(location.search).get('reading') === 'academic' ? 'academic' : 'kids', false);
 }

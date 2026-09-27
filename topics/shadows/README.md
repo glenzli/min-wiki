@@ -2,7 +2,7 @@
 
 A simplified wooden figure is sampled in three dimensions and its surface points are projected from a point source to a flat receiving plane. Each body part forms a convex projected footprint. Changing lamp height or horizontal position continuously recomputes the rays, without swapping shadow pictures. Oblique and overhead views share this geometry. The complete footprint remains when the centerline length reaches zero overhead.
 
-The lamp can make a finite left-to-right journey, pause and resume, or be scrubbed and returned to three reference positions. Changing controls cancels an unfinished preset journey. Nine source samples illustrate an extended lamp and partial illumination at the boundary; edge smoothing is visual antialiasing, not calibrated penumbra photometry. Display divisions are not physical length units. Reflection and diffraction are omitted.
+The lamp can make a finite left-to-right journey, pause and resume, or be scrubbed and returned to three reference positions. Changing controls cancels an unfinished preset journey. A learner can save the current shadow outline and then move or raise the lamp; the dashed reference and current shadow both use the same ray-plane projection in either view. Nine source samples illustrate an extended lamp and partial illumination at the boundary; edge smoothing is visual antialiasing, not calibrated penumbra photometry. Display divisions are not physical length units. Reflection and diffraction are omitted.
 
 `model.ts` owns ray-plane geometry and deterministic wooden shapes; `scene.ts` owns SVG projection, floor, silhouette and source drawing; `main.ts` owns finite playback, view transitions and controls. Hidden/pagehide stops active playback. Labels stay outside the geometry.
 
@@ -12,4 +12,4 @@ Scientific sources: [NASA eclipse geometry](https://science.nasa.gov/eclipses/ge
 
 ## Presentation layout
 
-The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
+The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene remains large and controls use a readable two-column sidebar; the academic explanation and sources open in the same scrollable sidebar. Immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

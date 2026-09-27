@@ -1,6 +1,6 @@
 import { groundProjection, hull, parts, project, type Point } from './model.ts';
 const path = (points: [number, number][]) => points.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(2)} ${p[1].toFixed(2)}`).join('') + 'Z';
-export function drawShadowScene(svg: SVGElement, lightX: number, height: number, overhead: number, extended: boolean) {
+export function drawShadowScene(svg: SVGElement, lightX: number, height: number, overhead: number, extended: boolean, reference?: { x: number; height: number }) {
   const set = (id: string, key: string, value: string) => svg.querySelector(`#${id}`)!.setAttribute(key, value);
   const projection = (p: Point) => project(p, overhead);
   let grid = '';
@@ -8,6 +8,10 @@ export function drawShadowScene(svg: SVGElement, lightX: number, height: number,
   for (let y = -160; y <= 160; y += 40) { const a = projection({ x: 50, y, z: 0 }), b = projection({ x: 850, y, z: 0 }); grid += `M${a}L${b}`; }
   set('floor-grid', 'd', grid);
   set('floor', 'd', path([{x:20,y:-180,z:0},{x:880,y:-180,z:0},{x:880,y:180,z:0},{x:20,y:180,z:0}].map(projection)));
+  const referenceLight = reference && { x: reference.x, y: 0, z: reference.height };
+  set('reference-shadow', 'd', referenceLight
+    ? parts.map(part => path(hull(part.points.map(point => projection(groundProjection(point, referenceLight)))))).join('')
+    : '');
   const count = extended ? 9 : 1;
   for (let i = 0; i < 9; i++) {
     if (i >= count) { set(`shadow-${i}`, 'd', ''); continue; }

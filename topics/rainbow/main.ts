@@ -320,4 +320,6 @@ class RainbowApp {
 }
 new RainbowApp();
 
-mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });
+const frame = mountPresentationFrame({ root: '.experience', visual: '.space-scene', transport: '.transport', choices: '.scenario-bar' });
+const theater = document.querySelector<HTMLElement>('.theater');
+if (frame && theater) frame.notes.prepend(theater);
