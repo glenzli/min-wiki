@@ -5,6 +5,7 @@
 .learning-modes{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.learning-modes button{min-height:44px;font-size:14px}.mode-science{margin:28px 0;padding:24px;border:1px solid var(--border);border-radius:20px;background:var(--surface)}.mode-science h2{font-size:23px;margin:0 0 12px}.mode-science p{line-height:1.85;max-width:850px}.child-prompt{font-size:18px;line-height:1.8;color:var(--ink)}
 
 .magnet-questions{display:flex;flex-wrap:wrap;gap:8px;padding:16px 20px;border-bottom:1px solid var(--border)}.magnet-questions button{flex:1}.compass-intro{padding:12px 24px}.compass-intro h2{font-size:22px}.compass-intro p{font-size:15px}#compass-study>svg{display:block;width:100%;max-height:450px;background:#eef2e7}#compass-study .action-row{flex-basis:100%}
+.compass-theory{margin:16px 24px;padding:18px 20px;border:1px solid var(--border);border-radius:16px;background:var(--surface)}.compass-theory h3{margin:0 0 8px;font-size:18px}.compass-theory p{margin:0;font-size:14px;line-height:1.75;color:var(--secondary)}
 
 /* Desktop presentation: retain topic geometry inside the selected scene. */
 @media(min-width:1000px){

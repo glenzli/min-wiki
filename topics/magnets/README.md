@@ -15,6 +15,8 @@ The bar graphic indicates the dipole orientation, not a near-field geometry calc
 No Earth field, mutual probe disturbance, physical force magnitude or rotational inertia
 is calculated. This diagram does not predict a real bar magnet's surface field.
 
+The compass now retains up to eight separated observation points as small, unconnected N-tip directions. Each mark keeps the magnet orientation at the time of the reading; flipping the center magnet grays the old marks and keeps the probe at exactly the same point, briefly showing its earlier direction as a dashed arrow. The new orientation is recorded only where the probe is actually visited. These are sampled model directions, not a particle trail or a calculated field line. The academic note gives the ideal dipole expression with the fixed-radius and near-surface limits next to the experiment.
+
 Switching questions suspends tray animation and retains both experiments. Focus mode retains
 the same DOM and conditions. Reopening the page starts new experiments.
 
