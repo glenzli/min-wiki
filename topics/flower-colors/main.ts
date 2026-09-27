@@ -1,5 +1,6 @@
 import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import {mountTopicNavigation} from '../../src/platform/topicNavigation.ts';
+import {mountReadingMode} from '../../src/platform/readingMode.ts';
 import {translateDocument,language} from '../../src/platform/i18n.ts';
 import {t} from '../hydrangea/i18n.ts';
 import {mountHydrangeaStudy} from '../hydrangea/main.ts';
@@ -9,7 +10,7 @@ import content from './content.json';
 import './style.css';
 const el=(id:string)=>document.getElementById(id)!;
 const legacy=location.pathname.includes('/hydrangea/');
-translateDocument(t);mountTopicNavigation('flower-colors');
+translateDocument(t);mountTopicNavigation('flower-colors');mountReadingMode('details:not(.references)');
 const w=language==='en'?content.en:content.zh;
 let state=readFlowerState(location.search,legacy);
 let hydrangea:ReturnType<typeof mountHydrangeaStudy>|undefined;
@@ -26,7 +27,7 @@ function render(){
  el('flower-bridge').textContent=w.bridges[i]!;
  el('flower-next').textContent=i===3?w.restart:w.next;el('flower-next').onclick=()=>change(cases[(i+1)%4]!);
  if(isHyd){hydrangea?.redraw();save();return;}
- el('flower-heading').textContent=w.titles[i]!;el('flower-note').textContent=w.notes[i]!;el('flower-limit').textContent=w.limits[i]!;
+ el('flower-heading').textContent=w.titles[i]!;el('flower-note').textContent=w.kidNotes[i]!;el('flower-academic').textContent=w.notes[i]!;el('flower-principle').textContent=w.principles[i]!;el('flower-limit').textContent=w.limits[i]!;
  const source=el('flower-source') as HTMLAnchorElement;source.href=sources[i]!;source.textContent=w.source;
  const controls=el('flower-controls');controls.replaceChildren();
  if(state.case==='pigments'){const label=document.createElement('p');label.textContent=w.roseLabel;controls.append(label,...w.roseNames.map((name,j)=>button(name,()=>{state.rose=j;render();},state.rose===j)));}
@@ -35,11 +36,12 @@ function render(){
  else controls.append(button(w.whole,()=>{state.close=false;render();},!state.close),button(w.close,()=>{state.close=true;render();},state.close));
  paint();save();
 }
-function paint(){scene.draw(state);const key=el('flower-key');key.replaceChildren();const line=(text:string)=>{const p=document.createElement('p');p.textContent=text;key.append(p);};
- if(state.case==='pigments'){if(state.close){line(w.cell);line(w.vac+' · '+w.plastid);}for(const [label,value,color]of [[w.anth,roses[state.rose]!.anthocyanin,'#b44272'],[w.carot,roses[state.rose]!.carotenoid,'#d9aa30']] as const){const item=document.createElement('div');item.className='pigment-meter';const name=document.createElement('span');name.textContent=label;const track=document.createElement('span');track.className='pigment-track';const fill=document.createElement('i');fill.style.width=(value*100)+'%';fill.style.background=color;track.append(fill);item.append(name,track);key.append(item);}}
- if(state.case==='morning'){line(state.opening<.5?w.acid:w.lessAcid);line(w.snapshot);if(state.close){line(w.vac);line(w.ions);}}
- if(state.case==='guides')line(state.uv?w.guideKey:w.visibleKey);
- el('flower-canvas').setAttribute('aria-label',w.titles[cases.indexOf(state.case)]!+' · '+(state.close?w.cell:state.case==='guides'?(state.uv?w.uv:w.human):w.whole));}
+function paint(){scene.draw(state);const key=el('flower-key');key.replaceChildren();const line=(text:string,kind?:string)=>{const p=document.createElement('p');p.textContent=text;if(kind)p.className=kind;key.append(p);};
+ if(state.case!=='pigments'||state.close)line(state.case==='guides'&&state.uv?w.uvKidKey:w.kidKeys[cases.indexOf(state.case)]!,'flower-simple-key');
+ if(state.case==='pigments'){if(state.close){line(w.cell,'flower-academic-key');line(w.vac+' · '+w.plastid,'flower-academic-key');}for(const [label,value,color]of [[w.anth,roses[state.rose]!.anthocyanin,'#b44272'],[w.carot,roses[state.rose]!.carotenoid,'#d9aa30']] as const){const item=document.createElement('div');item.className='pigment-meter flower-academic-key';const name=document.createElement('span');name.textContent=label;const track=document.createElement('span');track.className='pigment-track';const fill=document.createElement('i');fill.style.width=(value*100)+'%';fill.style.background=color;track.append(fill);item.append(name,track);key.append(item);}}
+ if(state.case==='morning'){line(state.opening<.5?w.acid:w.lessAcid,'flower-academic-key');line(w.snapshot,'flower-academic-key');if(state.close){line(w.vac,'flower-academic-key');line(w.ions,'flower-academic-key');}}
+ if(state.case==='guides')line(state.uv?w.guideKey:w.visibleKey,'flower-academic-key');
+ el('flower-canvas').setAttribute('aria-label',w.titles[cases.indexOf(state.case)]!+' · '+(state.case==='guides'?(state.uv?w.uv:w.human):state.close?w.cell:w.whole));}
 window.addEventListener('popstate',()=>location.reload());
 window.addEventListener('pagehide',e=>{hydrangea?.stop();if(!e.persisted)scene.dispose();});
 render();

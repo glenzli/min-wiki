@@ -10,6 +10,12 @@ Sources: rose pigment composition https://pmc.ncbi.nlm.nih.gov/articles/PMC63793
 
 Cover is an original code-authored SVG montage of the four representative flowers, not an observed photograph. No new third-party image assets.
 
+## Reading and scene refinement — 2026-09-28
+
+The four cases now share one children/academic reading control, including the mounted hydrangea study. Children get a short observation in the active sidebar; academic mode opens longer case-specific principles, model limits and references there, with the existing hydrangea chemistry panel. The academic mode persists in the URL when changing cases and survives refresh. The retained hydrangea settings and bloom are not reset by switching reading modes. Its long background section is removed from the children's reading flow; the optional academic notes remain accessible.
+
+The whole rose, morning glory and sunflower fill more of the available canvas. Switching between a flower and its petal-cell sample now interpolates one retained flower's position and size and brings in the cell through the linked sample marker. Refresh starts at the saved view without replaying the transition. Narrow screens use a smaller zoom to keep the sampling link and cell in frame. Sunflower UV absorption is identified as false color in both reading modes. The opening progress, pigment meters and cell symbols remain qualitative, not measured kinetics, concentrations or spectra. The added academic relation for morning glory defines vacuolar pH; the sunflower length ratio follows the cited study and is not a value computed by this page.
+
 ## Validation — 2026-09-22
 
 - `npm run check`: 648 tests passed, plus typecheck, bilingual extraction, image delivery and production build. Subsequent final presentation/legend/metadata changes passed `npm run build`; model inputs did not change after the complete test run. `git diff --check` passed for affected tracked files.

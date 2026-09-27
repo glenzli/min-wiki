@@ -57,7 +57,26 @@
     "guideKey": "紫色：紫外吸收较强",
     "visibleKey": "黄色花瓣中，可能藏着人眼看不到的图案",
     "snapshot": "观察示意 · 无实测时间刻度",
-    "ions": "青色小点：氢离子转移示意，不表示数量或速率"
+    "ions": "青色小点：氢离子转移示意，不表示数量或速率",
+    "kidNotes": [
+      "这些是不同品种的玫瑰。花瓣里的两类色素组合不同，看起来就有不同颜色；白花也不是一片空白。",
+      "",
+      "这朵牵牛花慢慢打开，花瓣也从偏红变成蓝色。颜色变化发生在花瓣细胞里。",
+      "还是同一朵向日葵。换一种观察光的方式，黄色花瓣上出现人眼平常看不到的花纹。"
+    ],
+    "principles": [
+      "不同品种的花青素与类胡萝卜素积累量及分布各异，花瓣细胞还会散射和反射光。图中的两条色素刻度是归一化的比较，不是对某朵玫瑰的化学测量。",
+      "",
+      "液泡酸度可用 pHᵥ = −log₁₀a(H⁺) 描述，其中 a 是氢离子活度。天蓝牵牛开放时液泡 pH 上升，与离子跨液泡膜运输和花瓣扩张相联系；本滑块未求解这些通量或精确 pH。",
+      "研究用舌状花的紫外吸收长度占舌状花全长的比例 LUVp = L吸收/L全长 比较花纹。不同植株的范围有差异；花青素与紫外吸收黄酮醇也不是同一种色素。图中紫色为假色，不能据此推断蜜蜂看到的具体颜色。"
+    ],
+    "kidKeys": [
+      "这一格取样来自正在看的花瓣。",
+      "",
+      "花青素还在同一片花瓣里，没有换一种色素。",
+      "观察方式改变，花本身没有变。"
+    ],
+    "uvKidKey": "紫色是帮助标出紫外吸收区域的假色，花并没有变紫。"
   },
   "en": {
     "title": "Why are flowers so colorful?",
@@ -117,6 +136,25 @@
     "guideKey": "Purple: stronger UV absorption",
     "visibleKey": "Yellow petals can hide patterns beyond human vision",
     "snapshot": "Illustration · no measured time scale",
-    "ions": "Teal dots: illustrative proton transfer, not counts or rates"
+    "ions": "Teal dots: illustrative proton transfer, not counts or rates",
+    "kidNotes": [
+      "These are different rose cultivars. Two groups of pigments vary inside their petals, giving different colors. White petals are not empty.",
+      "",
+      "As this morning glory opens, its petals shift from reddish to blue. The change happens inside petal cells.",
+      "It is the same sunflower. Change the way light is observed to reveal a pattern that our eyes normally miss."
+    ],
+    "principles": [
+      "Anthocyanin and carotenoid accumulation and distribution differ between cultivars, while petal cells also scatter and reflect light. The two pigment meters are normalized comparisons, not chemical measurements of a particular rose.",
+      "",
+      "Vacuolar acidity can be expressed as pHᵥ = −log₁₀a(H⁺), where a is proton activity. In Heavenly Blue, rising vacuolar pH during opening is linked to ion transport across the vacuolar membrane and petal expansion. The slider does not solve those fluxes or calculate exact pH.",
+      "Researchers compare UV patterns by the absorbing length of a ligule divided by its full length: LUVp = Labsorbing/Lligule. This extent varies between plants. UV-absorbing flavonols are distinct from anthocyanins. Purple is false color and cannot predict exactly what a bee sees."
+    ],
+    "kidKeys": [
+      "This sample comes from the petal you are viewing.",
+      "",
+      "The same anthocyanins remain in the same petal; they were not replaced.",
+      "The viewing method changes; the flower does not."
+    ],
+    "uvKidKey": "Purple is false color marking UV absorption. The flower has not turned purple."
   }
 }

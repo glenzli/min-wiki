@@ -10,7 +10,7 @@ const input = (id: string) => el(id) as HTMLInputElement;
 const select = (id: string) => el(id) as HTMLSelectElement;
 const colors: Record<string, string> = { blue: t('蓝色'), purple: t('紫色'), pink: t('粉色'), white: t('白色') };
 const settings = (): GardenConditions => ({ ph: Number(input('ph').value), aluminum: Number(input('aluminum').value) / 100, cultivar: select('cultivar').value === 'white' ? 'white' : 'pigmented' });
-let progress = 1, planted = newBloom(settings()), playing = false, academic = false, view = 'plant', frame = 0, last = 0;
+let progress = 1, planted = newBloom(settings()), playing = false, academic = saved.get('reading') === 'academic', view = 'plant', frame = 0, last = 0;
 for (const id of ['ph','aluminum','cultivar']) { const value=saved.get('h-'+id);if(value!==null) { if(id==='cultivar') select(id).value=value==='white'?'white':'pigmented';else input(id).value=value; } }
 progress=Math.max(0,Math.min(1,Number(saved.get('h-progress')??1)||0));
 planted=newBloom({ph:Math.max(4.5,Math.min(7,Number(saved.get('h-planted-ph')??settings().ph)||5.3)),aluminum:Math.max(0,Math.min(1,Number(saved.get('h-planted-al')??settings().aluminum)||0)),cultivar:saved.get('h-planted-white')==='1'?'white':'pigmented'});
