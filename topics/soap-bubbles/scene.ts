@@ -1,4 +1,5 @@
 import { bubbleShape, filmThickness, filmColor, reflectedIntensity, selectedIncidence, filmOptics, filmRayGeometry } from './model.ts';
+import { t } from './i18n.ts';
 export interface SceneState{deformation:number;drainage:number;zoom:number;sample:number;angle:number;light:number}
 /** Both views use the same local thickness: the enlarged section is not a second experiment. */
 export class BubbleScene{
@@ -44,6 +45,10 @@ export class BubbleScene{
   // Soft studio light and a reflected sill give the translucent film a material context.
   const glow=c.createRadialGradient(77,62,2,77,62,315);glow.addColorStop(0,'#d0ddba2b');glow.addColorStop(1,'#acc0bb00');c.fillStyle=glow;c.fillRect(0,0,480,480);
   c.fillStyle='#82957e10';c.beginPath();c.ellipse(404,326,100,190,-.3,0,Math.PI*2);c.fill();
+  // Compare two shapes around the same enclosed air volume. The dashed circle
+  // is the bubble's original outline, not another bubble or a measured trajectory.
+  const referenceAlpha=Math.min(1,state.deformation*2)*Math.max(0,1-state.zoom*3);
+  if(referenceAlpha>.001){c.save();c.globalAlpha=referenceAlpha*.78;c.strokeStyle='#e8e2c4';c.lineWidth=1.6;c.setLineDash([5,7]);c.beginPath();c.arc(240,244,r,0,Math.PI*2);c.stroke();c.setLineDash([]);c.fillStyle='#f2e9cf';c.font='500 17px Inter, "PingFang SC", system-ui, sans-serif';c.textAlign='center';c.fillText(t('圆形参照 · 同样多空气'),240,78);c.restore();}
   c.save();c.translate(240,244);const zoom=1+state.zoom*2.6;c.scale(zoom,zoom);c.translate(0,-state.sample*r*shape.b*state.zoom);
   c.save();c.scale(shape.a,shape.b);
   c.drawImage(this.texture,-r,-r,r*2,r*2);

@@ -5,16 +5,27 @@
 
 /* Keep both synchronized views within the first desktop viewport. */
 @media(min-width:900px){
-  main{padding-top:18px}
-  .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 24px;align-items:center;max-width:none;margin-bottom:14px}
+  html[data-topic-ui] body > main{padding-block:10px 64px}
+  html[data-topic-ui] body > main > header.hero{margin-bottom:8px}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 24px;align-items:center;max-width:none;margin-bottom:8px}
   .hero>.eyebrow,.hero>.reading-mode-hint{display:none}
   .hero>h1{grid-column:1;grid-row:1;margin:0;font-size:clamp(26px,2.5vw,36px);line-height:1.2}
   .hero>.intro{grid-column:1;grid-row:2;margin:0;font-size:14px;line-height:1.5}
   .hero>.reading-mode{grid-column:2;grid-row:1/span 2;margin:0}
-  .lab{padding:16px}
-  .lab-heading{margin-bottom:10px}
+  .lab{padding:12px}
+  .lab-heading{margin-bottom:4px}
   .lab-heading h2{margin:1px 0;font-size:22px}
+  .scene-toolbar{min-height:54px;padding:8px 14px}
   .pair canvas{width:min(100%,360px);height:auto;margin-inline:auto}
-  .film-labels{inset:67px 14px 91px}
+  .film-labels{inset:54px 14px 91px}
 }
 .film-labels{display:block}.film-labels span{position:absolute;left:5%;right:5%;text-align:center}.film-labels span:first-child{top:24%;transform:none}.film-labels span:nth-child(2){top:48%;left:20%;right:20%}.film-labels span:last-child{top:69%;transform:none}
+@media(max-width:620px){
+  html[data-topic-ui] body > main{padding-block:10px 44px}
+  html[data-topic-ui] body > main > header.hero{margin-bottom:10px}
+  .hero>.eyebrow,.hero>.reading-mode-hint{display:none}
+  html[data-topic-ui] body > main > header.hero h1{font-size:27px;line-height:1.12;margin:0 0 7px}
+  html[data-topic-ui] body > main > header.hero .intro{font-size:13px;line-height:1.45;margin:0 0 10px}
+  .hero>.reading-mode{margin:0}
+  .lab-heading{margin-bottom:8px}
+}

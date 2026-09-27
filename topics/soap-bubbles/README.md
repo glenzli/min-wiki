@@ -6,6 +6,10 @@ The topic owns its Canvas renderer, finite interaction lifecycle, physical compa
 
 On desktop the header is compact and both synchronized canvases are visible in the first viewport. The full bubble and its selected local film remain paired while stretching, draining, changing sample position, zooming and inspecting reflected rays. Academic calculations and source notes follow the paired visual where their length needs the document flow.
 
+## Shape comparison refinement · 2026-09-28
+
+During the imposed stretch, a faint dashed circle keeps the original spherical outline visible behind the same bubble. Its short label says the enclosed air volume is unchanged; it disappears as the bubble returns to round or the camera zooms into the film. This is a comparison between model shapes, not a second bubble or a measured deformation path. Desktop spacing now keeps both full 360 px canvases in a 1280 × 720 opening viewport without shrinking the artwork. The scientific film and light model is unchanged.
+
 ## Model boundaries
 
 - Constant-volume prolate ellipsoid comparison: a sphere minimizes area, but wind, contact and gravity can deform real bubbles.
