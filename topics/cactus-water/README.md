@@ -23,6 +23,12 @@ All playback is explicit and finite. Hidden documents pause active playback; pag
 
 Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.
 
+## Same-stem tissue and two reading depths · 2026-09-28
+
+整株上的取样圆点和短引线现在随同一块茎的宽度伸缩，并连到右侧的储水细胞或表皮气孔放大窗；镜头放大时保持原组织和当前储水、昼夜状态。储水细胞内蓝色区域随教学储备值改变。根到茎的虚线只追踪一次雨后的水路，不是看得见的液滴；气体符号仅在明确启动气体交换事件时运动，下雨与干燥的进度不会驱动它。儿童版图例缩短；学术版在当前镜头侧栏展开根部吸收、木质部与水势分解，或典型 CAM 的夜间有机酸储碳、白天利用路径，并直接连接 NPS 与 OpenStax 资料。
+
+The sample ring and leader remain attached to the same expanding or contracting stem patch and its enlarged storage-cell or epidermal view. Cell filling follows the teaching reserve. A dashed root-to-stem route traces uptake after rain; gas symbols animate only in the separate, explicitly started exchange event. Children see a short key. Academic mode gives scene-specific water-potential or CAM mechanisms and primary learning links in the scrollable side panel. The potential relation is a real conceptual decomposition, but the page does not calculate its terms or water flux. The CAM arrows are a pathway sketch, not a balanced reaction. Reserve 0–3, enlarged cells and pores, and animation time are illustrative; species, water stress and environment change real behaviour.
+
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

@@ -6,3 +6,17 @@
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] { .presentation-notes .controls { display:block!important; } .presentation-notes .controls label { display:block; }}
 }
+
+.scene svg .inset-label{font-size:12px!important;fill:#415b42;font-weight:650}
+.scene.is-zoomed .scene-badge{display:none}
+.academic-detail,.academic-key{display:none}
+html[data-reading-mode="academic"] .academic-detail{display:block}
+html[data-reading-mode="academic"] .academic-key{display:block}
+html[data-reading-mode="academic"] .kids-key{display:none}
+.academic-detail{border-top:1px solid var(--border);padding-top:16px;line-height:1.65}
+.academic-detail h3{font-size:16px;line-height:1.4;margin:0 0 9px}
+.academic-detail p{font-size:13px;color:var(--secondary);margin:9px 0}
+.academic-detail .academic-path{font-family:Georgia,'Times New Roman',serif;font-size:15px;color:var(--ink)}
+.academic-detail .academic-limit{border-left:2px solid var(--border);padding-left:10px;font-size:12px}
+.academic-detail a{display:block;margin:8px 0;font-size:12px;line-height:1.45;color:var(--accent);overflow-wrap:anywhere}
+@media(max-width:780px){.scene svg .inset-label{font-size:14px!important}}
