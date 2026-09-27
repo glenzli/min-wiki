@@ -47,6 +47,54 @@
     },
     "identityNote": "E → B 是提出结构问题；B → H 是不同细菌的明确比较，不是同一对象连续变形。各章会记住你的观察位置。",
     "scale": "教学着色、放大和时间 · 不同对象不按同一比例 · 不是显微实测",
+    "kids": {
+      "context": {
+        "environment": "先看这个小环境；画面里的居民只是例子。",
+        "bacteria": "B 是认识细菌的参考细胞，不是刚从这里采到的。",
+        "viruses": "H 是另一类宿主细胞，不是 B 变来的。"
+      },
+      "habitats": {
+        "soil": "土粒间有湿润的缝隙，能住微小生物；有它们不等于正在变多。",
+        "water": "一滴水可能住着不同微生物，水清也不能直接看出有没有。",
+        "skin": "皮肤各处不一样；住着微生物并不等于生病。",
+        "air": "尘粒和液滴能带着微生物移动；飞到这里不等于在空中繁殖。"
+      },
+      "parts": {
+        "wall": "细胞壁帮助维持形状；它和里面的膜不是同一层。",
+        "membrane": "膜像一道会挑选进出物的边界；箭头只跟踪选定的两条路。",
+        "dna": "紫线是遗传信息；没有细胞核也不等于没有 DNA。",
+        "ribosomes": "核糖体帮细胞造蛋白质；下一站的病毒没有这件工具。"
+      },
+      "division": [
+        "细胞先长大，还没有分成两个。",
+        "DNA 复制，准备给两个子细胞各一份。",
+        "两份 DNA 分开，中间开始隔开。",
+        "这一次分裂完成，出现两个子细胞。"
+      ],
+      "limited": "这组条件不足，细胞停在早期；这不表示它已经死了。",
+      "viruses": [
+        "病毒不能只靠外面的营养造出更多自己。",
+        "先找到能结合的细胞表面。",
+        "金色遗传信息进入，原来的外壳留在外面。",
+        "细胞里的工具开始制造新的部件。",
+        "部件装好，才出现完整的子代。",
+        "本例的子代从打开的宿主边界离开。"
+      ],
+      "mismatch": "表面不合适，遗传信息进不去，也不会有新病毒。",
+      "defended": "遗传信息进去了，但细胞内的防御让复制停住。"
+    },
+    "academicNotes": {
+      "environment": "对一个指定种群和时间窗，可把数量变化写作 ΔN＝进入＋分裂－死亡－离开。这里没有测量这些项；环境插画不能证明增殖，也不能判断健康风险。",
+      "bacteriaStructure": "细胞壁、膜、拟核和核糖体承担不同功能；B 是较厚肽聚糖壁且无外膜的参考细胞。结构画面不是从所选环境中鉴定出的样本。",
+      "bacteriaDivision": "理想群体在每轮都完成二分裂时 Nₙ＝N₀·2ⁿ，n 为完成的代数。本页只展示一次分裂；资源受限分支是定性停顿，不给出倍增时间或死亡率。",
+      "viruses": "本例为 T4 类噬菌体的裂解路线。表面受体匹配只是进入条件之一，进入后的宿主防御仍可能阻止复制；这里不预测感染概率，也不代表所有病毒的释放方式。"
+    },
+    "academicSources": {
+      "environment": { "label": "USDA · 土壤生物", "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer" },
+      "bacteriaStructure": { "label": "OpenStax · 原核细胞结构", "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells" },
+      "bacteriaDivision": { "label": "OpenStax · 微生物生长", "url": "https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow" },
+      "viruses": { "label": "RCSB · T4 感染", "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection" }
+    },
     "close": "靠近同一处细节",
     "wide": "看完整小环境",
     "processLabel": "观察参考细胞 B",
@@ -199,6 +247,54 @@
     },
     "identityNote": "E → B asks a structural question; B → H explicitly compares different bacteria, not one shape-changing object. Each chapter remembers your observation position.",
     "scale": "Illustrative colours, magnification and time · not a common object scale · not measured microscopy",
+    "kids": {
+      "context": {
+        "environment": "Explore this habitat; its illustrated residents are examples.",
+        "bacteria": "B is a reference bacterium, not a specimen collected here.",
+        "viruses": "H is a different host cell; B did not turn into it."
+      },
+      "habitats": {
+        "soil": "Damp gaps between soil grains can house tiny organisms; their presence does not mean they are multiplying.",
+        "water": "Different microbes may live in a drop. Clear water alone cannot show whether they are there.",
+        "skin": "Places on skin differ; having microbes there does not mean you are ill.",
+        "air": "Dust and droplets can carry microbes; arriving in air does not mean growing there."
+      },
+      "parts": {
+        "wall": "A cell wall helps hold shape. It is a different layer from the membrane inside.",
+        "membrane": "The membrane selects what crosses; the arrows follow only two chosen routes.",
+        "dna": "The purple line holds genetic information. No nucleus does not mean no DNA.",
+        "ribosomes": "Ribosomes help make proteins. The virus in the next scene lacks this tool."
+      },
+      "division": [
+        "The cell grows first; it has not become two cells yet.",
+        "DNA is copied so each daughter cell can receive a copy.",
+        "The DNA copies separate as a divider begins to form.",
+        "This one division finishes with two daughter cells."
+      ],
+      "limited": "This condition stops the example early; it does not show that the cell died.",
+      "viruses": [
+        "A virus cannot make more of itself from outside nutrients alone.",
+        "First it must bind to a suitable cell surface.",
+        "The gold genetic material enters; the original shell stays outside.",
+        "Tools inside the cell begin making new parts.",
+        "Only after assembly do complete offspring appear.",
+        "In this example, offspring leave through an opened host boundary."
+      ],
+      "mismatch": "The surface does not match; genetic material cannot enter and no new virus appears.",
+      "defended": "Genetic material entered, but defense inside the cell stops replication."
+    },
+    "academicNotes": {
+      "environment": "For a defined population and time interval, ΔN = arrivals + divisions − deaths − departures. None of these terms is measured here; a habitat illustration cannot establish growth or health risk.",
+      "bacteriaStructure": "Wall, membrane, nucleoid and ribosomes have different roles. B is a reference cell with a thicker peptidoglycan wall and no outer membrane; it was not identified from the selected habitat.",
+      "bacteriaDivision": "For an ideal population completing binary fission each generation, Nₙ = N₀·2ⁿ, where n counts completed generations. This page shows one division. Resource limitation is a qualitative stop, not a doubling time or death rate.",
+      "viruses": "This is a T4-like lytic route. Receptor matching is only one entry condition; host defense after entry can still stop replication. The scene predicts no infection probability and does not represent every viral release route."
+    },
+    "academicSources": {
+      "environment": { "label": "USDA · Soil Biology Primer", "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer" },
+      "bacteriaStructure": { "label": "OpenStax · Prokaryotic structures", "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells" },
+      "bacteriaDivision": { "label": "OpenStax · Microbial growth", "url": "https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow" },
+      "viruses": { "label": "RCSB · T4 infection", "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection" }
+    },
     "close": "Look closer at the same region",
     "wide": "See the whole habitat",
     "processLabel": "Observe reference cell B",

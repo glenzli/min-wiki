@@ -8,4 +8,6 @@ translateDocument(t);
 mountTopicNavigation('microbes-everywhere');
 mountMicrobialWorkspace(document.getElementById('microbial-workspace')!);
 
-mountPresentationFrame({ root: '.micro-workspace', visual: '#micro-renderer', transport: '#micro-player', choices: '.micro-chapters' });
+const frame = mountPresentationFrame({ root: '.micro-workspace', visual: '#micro-renderer', transport: '#micro-player', choices: '.micro-chapters' });
+const currentObservation = document.querySelector<HTMLElement>('.micro-readout');
+if (frame && currentObservation) frame.notes.prepend(currentObservation);

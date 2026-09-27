@@ -7,3 +7,70 @@
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] { .presentation-notes .micro-desk,.presentation-notes .micro-conditions { display:block; } .presentation-notes .micro-context { display:block; padding:0; } .presentation-notes .micro-context svg { max-height:120px; width:100%; } .presentation-notes .micro-observation { padding:0; } .presentation-frame #micro-renderer>svg { height:100%; min-height:0; max-height:none; }}
 }
+
+/* Reading depth changes the live step explanation, while leaving the experiment visible. */
+#micro-state-text, #micro-academic-note, #micro-academic-source { display:none; }
+html[data-reading-mode="academic"] #micro-state-kids { display:none; }
+html[data-reading-mode="academic"] #micro-child-context { display:none; }
+html[data-reading-mode="academic"] #micro-state-text,
+html[data-reading-mode="academic"] #micro-academic-note { display:block; }
+html[data-reading-mode="academic"] #micro-academic-source { display:inline-block; }
+html[data-reading-mode="kids"] #resource-note,
+html[data-reading-mode="kids"] .micro-question,
+html[data-reading-mode="kids"] .micro-context #context-text,
+html[data-reading-mode="kids"] .micro-context .micro-hint,
+html[data-reading-mode="kids"] #virus-controls .micro-hint,
+html[data-reading-mode="kids"] .micro-player-note,
+html[data-reading-mode="kids"] .micro-identity-note { display:none; }
+#micro-academic-note { border-top:1px solid var(--border); padding-top:10px; }
+.micro-academic-source { font-size:.8rem; line-height:1.5; }
+.micro-player-note { margin:2px 0 0; }
+
+/* Neutral controls distinguish the observation UI from colored scientific specimens. */
+.micro-workspace button:hover { border-color:#929b9a; }
+.micro-workspace button[aria-pressed="true"] { background:#e4e7e6; color:#263033; border-color:#929b9a; }
+.micro-workspace .micro-player-buttons button:first-child { background:#384347; color:#fff; border-color:#384347; }
+.micro-workspace #micro-progress { accent-color:#586467; }
+.micro-identity { background:#f1f2ef; }
+
+@media(min-width:1000px) {
+  html.presentation-page[data-topic-ui] .presentation-frame #micro-player {
+    display:grid; grid-template-columns:auto minmax(0,1fr); grid-template-rows:auto auto;
+    gap:0 16px; align-items:center; padding:3px 10px;
+  }
+  .presentation-frame #micro-player .micro-player-buttons {
+    grid-column:1; grid-row:1 / 3; margin:0; flex-wrap:nowrap;
+  }
+  .presentation-frame #micro-player label { grid-column:2; grid-row:1; margin:0; font-size:.75rem; }
+  .presentation-frame #micro-player #micro-progress { grid-column:2; grid-row:2; min-height:24px; margin:0; }
+  .presentation-frame #micro-renderer .micro-bacteria-structure {
+    display:grid; grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);
+    width:100%; height:100%; min-height:0;
+  }
+  .presentation-frame #micro-renderer .micro-anatomy {
+    width:100%; height:100%; min-height:0; max-height:none;
+  }
+  .presentation-frame #micro-renderer .micro-detail {
+    display:flex; flex-direction:column; gap:5px; height:100%; min-height:0;
+    padding:8px; border-top:0; border-left:1px solid #c2ccb4;
+  }
+  .presentation-frame #micro-renderer .micro-detail p { margin:0; font-size:.75rem; }
+  .presentation-frame #micro-renderer .micro-detail svg {
+    width:100%; height:0; flex:1; min-height:0; max-height:none;
+  }
+  .presentation-frame #micro-renderer>.micro-division { height:100%; min-height:0; max-height:none; }
+}
+
+@media(max-width:650px) {
+  .presentation-frame #micro-player { display:grid; gap:3px; padding:7px 8px; }
+  .presentation-frame #micro-player .micro-player-buttons {
+    display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) auto;
+    gap:5px; margin:0; width:100%;
+  }
+  .presentation-frame #micro-player .micro-player-buttons button {
+    width:100%; min-height:44px; padding:5px; font-size:.7rem;
+  }
+  .presentation-frame #micro-player .micro-player-buttons output { margin:0; text-align:right; }
+  .presentation-frame #micro-player label { margin:0; font-size:.75rem; }
+  .presentation-frame #micro-player #micro-progress { min-height:24px; margin:0; }
+}

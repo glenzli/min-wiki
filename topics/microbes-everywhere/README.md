@@ -20,12 +20,14 @@ E 是环境插画。B 是较厚细胞壁、无外膜的一类参考细菌，不�
 - `workspaceRenderer.ts`: one live lazy scientific renderer; environment zoom and viral camera interpolation, bacterial structure focus and direct consumption of the existing detailed SVG engines. No old topic controller is imported.
 - `sceneLifecycle.ts`: asynchronous admission and generation-based stale completion rejection.
 - `scene.ts`: original four detailed habitat illustrations; shared between context reference and main observation with separate SVG namespaces.
-- `workspaceContent.json` and `learning.json`: paired mechanism, comparison, assumptions and narration. Three academic sections and four narration segments cover the whole journey.
+- `workspaceContent.json` and `learning.json`: paired mechanism, comparison, assumptions and narration. The current step has separate short child text and fuller academic text, with a mechanism source beside it; the longer academic sections and four narration segments cover the whole journey.
 - `../bacteria/model.ts`, `scene.ts`, `habitats.ts`: retained models, detailed wall/membrane/DNA/ribosome/division and the readable yogurt/soil/gut role illustrations. These remain runtime-consumed; the latter are explicitly different communities, not B moving through habitats.
 - `../viruses/model.ts`, `scene.ts`: retained continuous T4-like process, offspring identities, envelope breach and host failure branches.
 - The old bacteria/viruses `main.ts` and `index.html` are now minimal compatibility entries. Their obsolete page CSS is removed, not their scientific engines or covers.
 
 Only one main scientific SVG renderer exists at a time; the fixed habitat reference and three static role illustrations are bounded. No idle process timer runs. Changing chapters/conditions, seeking, hiding or leaving pauses current time. Returning does not auto-play. Separate condition/host progress survives in memory; only the currently selected case is encoded in the URL. Language changes reload the page and restore encoded state, not every remembered case. Late imports cannot mount after cancellation, supersession or disposal; preparation can be retried. Reduced-motion preferences remove camera/focus interpolation while retaining the explicit finite scientific sequence.
+
+The desktop structure view keeps the whole reference cell and its selected detail side by side inside the observation stage. The current explanation appears first in the sidebar, so a change of part, division stage or host barrier updates the explanation without losing the picture. The child mode gives one short causal point for that state. Academic mode keeps the full state description, an additional model or mechanism note and its source link; the scientific SVG and experiment state are shared. On narrow screens the structure and detail stack in reading order, and the playback controls remain compact.
 
 ## Routes / 路由
 

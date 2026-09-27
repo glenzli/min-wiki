@@ -26,8 +26,8 @@ export function mountMicrobialWorkspace(host: HTMLElement): () => void {
   <div id="bacteria-controls" hidden><label for="micro-process">${e(copy.processLabel)}</label><select id="micro-process">${options(copy.processes)}</select><div class="micro-choice-row" id="parts">${choices(copy.parts, 'part')}</div></div>
   <div id="virus-controls" hidden><label for="micro-host">${e(copy.hostLabel)}</label><select id="micro-host">${options(copy.hosts)}</select><div class="micro-choice-row">${choices(copy.views, 'view')}</div><p class="micro-hint">${e(copy.hostNote)}</p></div></div>
   <div id="micro-renderer" class="micro-renderer"></div><div id="micro-loading" role="status"><p id="loading-text"></p><button type="button" id="cancel-scene">${e(copy.cancel)}</button><button type="button" id="retry-scene" hidden>${e(copy.retry)}</button></div><p class="micro-scale">${e(copy.scale)}</p>
-  <div id="micro-player"><div class="micro-player-buttons"><button type="button" id="micro-play">${e(copy.play)}</button><button type="button" id="micro-reset">${e(copy.reset)}</button><output id="micro-position" for="micro-progress"></output></div><label for="micro-progress">${e(copy.progress)}</label><input type="range" id="micro-progress" min="0" max="1" step=".001" value="0"><p class="micro-hint">${e(copy.paused)}</p></div>
-  <div class="micro-readout"><h2 id="micro-state-title"></h2><p id="micro-state-text"></p><p id="micro-key" class="micro-hint"></p></div><button type="button" class="micro-next" id="micro-next"></button></div></div><p class="micro-hint micro-identity-note">${e(copy.identityNote)}</p></section>
+  <div id="micro-player"><div class="micro-player-buttons"><button type="button" id="micro-play">${e(copy.play)}</button><button type="button" id="micro-reset">${e(copy.reset)}</button><output id="micro-position" for="micro-progress"></output></div><label for="micro-progress">${e(copy.progress)}</label><input type="range" id="micro-progress" min="0" max="1" step=".001" value="0"></div><p class="micro-hint micro-player-note" id="micro-player-note">${e(copy.paused)}</p>
+  <div class="micro-readout"><h2 id="micro-state-title"></h2><p id="micro-state-kids"></p><p id="micro-child-context" class="micro-hint"></p><p id="micro-state-text"></p><p id="micro-academic-note"></p><a id="micro-academic-source" class="micro-academic-source" target="_blank" rel="noopener noreferrer"></a><p id="micro-key" class="micro-hint"></p></div><button type="button" class="micro-next" id="micro-next"></button></div></div><p class="micro-hint micro-identity-note">${e(copy.identityNote)}</p></section>
   <section class="micro-comparison"><h2>${e(copy.mechanismTitle)}</h2><div>${chapters.map(chapter => `<p data-comparison="${chapter}">${e(copy.comparison[chapter])}</p>`).join('')}</div></section>
   <section class="micro-roles"><h2>${e(copy.rolesTitle)}</h2><p class="micro-hint">${e(copy.rolesNote)}</p><div>${(['yogurt','soil','gut'] as const).map(key => `<article><svg viewBox="0 0 410 280" aria-hidden="true">${namespaceSvg(habitatArt(key), 'role-')}</svg><h3>${e(copy.roles[key].title)}</h3><p>${e(copy.roles[key].text)}</p></article>`).join('')}</div></section>
   <details class="micro-science"><summary>${e(copy.notesTitle)}</summary><p>${e(copy.notes)}</p><p>${e(copy.limits)}</p><ul>
@@ -61,16 +61,27 @@ export function mountMicrobialWorkspace(host: HTMLElement): () => void {
     if (key !== lastTextKey) {
       lastTextKey = key;
       let title: string = copy.habitats[state.habitat], text: string = copy.habitatTexts[state.habitat], legend = copy.habitatKeys[state.habitat];
+      let kids: string = copy.kids.habitats[state.habitat];
+      let academicScope: keyof typeof copy.academicNotes = 'environment';
       if (state.chapter === 'bacteria') {
         title = state.process === 'structure' ? copy.parts[state.part] : copy.processes.division;
         text = state.process === 'structure' ? copy.partTexts[state.part] : state.resources === 'limited' && division >= divisionLimit('limited') - 1e-7 ? copy.limitedNote : copy.divisionNotes[divisionState(division).stage]!;
         legend = state.process === 'structure' && state.part === 'membrane' ? copy.membraneKey : copy.identities.bacteria;
+        kids = state.process === 'structure' ? copy.kids.parts[state.part] : state.resources === 'limited' && division >= divisionLimit('limited') - 1e-7 ? copy.kids.limited : copy.kids.division[divisionState(division).stage]!;
+        academicScope = state.process === 'structure' ? 'bacteriaStructure' : 'bacteriaDivision';
       } else if (cycle) {
         title = blocked ? state.host === 'mismatch' ? copy.mismatchTitle : copy.defendedTitle : copy.virusTitles[cycle.stage]!;
         text = blocked ? state.host === 'mismatch' ? copy.mismatchText : copy.defendedText : copy.virusTexts[cycle.stage]!;
         legend = copy.identities.viruses;
+        kids = blocked ? state.host === 'mismatch' ? copy.kids.mismatch : copy.kids.defended : copy.kids.viruses[cycle.stage]!;
+        academicScope = 'viruses';
       }
-      get('micro-state-title').textContent = title; get('micro-state-text').textContent = text; get('micro-key').textContent = legend;
+      const source = copy.academicSources[academicScope];
+      get('micro-state-title').textContent = title; get('micro-state-kids').textContent = kids;
+      get('micro-child-context').textContent = copy.kids.context[state.chapter];
+      get('micro-state-text').textContent = text; get('micro-academic-note').textContent = copy.academicNotes[academicScope];
+      const sourceLink = get<HTMLAnchorElement>('micro-academic-source'); sourceLink.href = source.url; sourceLink.textContent = `${source.label} ↗`;
+      get('micro-key').textContent = legend;
     }
     progress.max = String(limit); progress.value = String(p);
     const percentage = Math.round(p / (state.chapter === 'viruses' ? 5 : 1) * 100);
@@ -87,7 +98,8 @@ export function mountMicrobialWorkspace(host: HTMLElement): () => void {
     for (const button of host.querySelectorAll<HTMLButtonElement>('[data-part]')) button.setAttribute('aria-pressed', String(button.dataset.part === state.part));
     for (const button of host.querySelectorAll<HTMLButtonElement>('[data-view]')) button.setAttribute('aria-pressed', String(button.dataset.view === state.view));
     get('parts').hidden = state.process !== 'structure'; get('micro-close').textContent = state.closer ? copy.wide : copy.close; get('micro-close').setAttribute('aria-pressed', String(state.closer));
-    get('micro-player').hidden = state.chapter === 'environment' || state.chapter === 'bacteria' && state.process === 'structure' && state.part !== 'membrane';
+    const playerHidden = state.chapter === 'environment' || state.chapter === 'bacteria' && state.process === 'structure' && state.part !== 'membrane';
+    get('micro-player').hidden = playerHidden; get('micro-player-note').hidden = playerHidden;
     if (lastContext !== state.habitat) {
       lastContext = state.habitat; get('micro-context-art').innerHTML = namespaceSvg(specimenDefinitions + specimenArt[state.habitat], 'context-'); get('micro-context-art').setAttribute('aria-label', copy.habitatTexts[state.habitat]);
       get('context-title').textContent = copy.habitats[state.habitat]; get('context-text').textContent = copy.habitatTexts[state.habitat];
