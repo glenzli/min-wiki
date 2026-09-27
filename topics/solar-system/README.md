@@ -1,5 +1,9 @@
 # 太阳系：太阳、行星与卫星 / Solar system explorer
 
+## Orbit framing and identification · 2026-09-28
+
+The inclined orbit overview now moves closer when the presentation stage is wide and retreats on narrow screens, while the top-down camera leaves a margin around the outer orbit. The first frame starts at its calculated camera pose, avoiding a brief oversized orbit during camera interpolation. Five representative planet names follow their projected positions in the overview, with a small collision filter; the toolbar still names all eight planets. The true-diameter lineup now fits the Sun and all eight planets in its overview at narrow widths; its planet-only lens fits all eight and hides the Sun rather than leaving a clipped sliver. Labels are staggered on mobile without changing globe diameters. Orbit reference lines have slightly more contrast. Camera placement and labels do not change orbital radii, relative periods, initial phases or the intentionally enlarged planet radii in orbit mode. The full descent and surface branches still require their own visual pass.
+
 ## Main-scene pass · 2026-09-28
 
 The desktop presentation now gives the orbital renderer its own stage. Scenario and planet choices remain above it, while story and stage steps live beside it; selecting a world keeps the same explorer controller and renderer. At a 1280×720 browser viewport the orbital canvas grows from about 143 px to 327 px high. The lineup spaces planet positions farther apart so Chinese and English names remain readable, while globe diameters still follow the same linear diameter scale. Lineup gaps are deliberately arranged for labeling and do not represent orbital distance. Globe, lineup, and Earth-focus browser views were checked; the full planet descent and all world surfaces still require a new visual pass.

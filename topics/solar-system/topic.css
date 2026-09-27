@@ -897,6 +897,7 @@ dialog .sources a:hover {
 [hidden], body[data-mode="kids"] .academic-only { display: none !important; }
 .segmented, .header-actions, .scenario-bar, .tools-bar { flex-wrap: wrap; }
 .planet-label { position:absolute; z-index:4; pointer-events:none; font-size:11px; color:#fff; text-shadow:0 1px 4px #000; transform:translate(-50%,0); white-space:nowrap; }
+.planet-label--orbit { color:#e6edf3; background:#081321d9; border:1px solid #ffffff2b; border-left:2px solid var(--planet-color); border-radius:4px; padding:1px 5px; text-shadow:none; }
 @media(max-width:1024px) {
  .experience { grid-template-columns:minmax(0,1fr); }
 }

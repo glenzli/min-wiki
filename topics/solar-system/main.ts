@@ -72,6 +72,7 @@ class SolarApp {
   private cancelStageMotion = () => {};
   mode!: string;
   scenario!: string;
+  overviewView!: string;
   selectedPlanet!: string | null;
   lastFrame!: number;
   cycleDurationYears!: number;
@@ -86,6 +87,7 @@ class SolarApp {
     for (const type of ["click", "input", "keydown"]) document.addEventListener(type, () => this.cancelStageMotion(), { capture: true });
     this.mode = 'kids';
     this.scenario = 'orbit';
+    this.overviewView = 'perspective';
     this.selectedPlanet = null;
     this.lastFrame = performance.now();
     this.cycleDurationYears = 12.0; // 12 simulation years per full scrubber cycle (approx 1 Jupiter orbit)
@@ -104,6 +106,7 @@ class SolarApp {
       const label = document.createElement('span');
       label.className = 'planet-label';
       label.textContent = data.displayName;
+      label.style.setProperty('--planet-color', data.colorHex);
       label.hidden = true;
       $('canvas-container').append(label);
       return {data, label};
@@ -193,6 +196,7 @@ class SolarApp {
     document.querySelectorAll<HTMLElement>('[data-view]').forEach(button => {
       button.addEventListener('click', () => {
         const view = button.dataset.view!;
+        this.overviewView = view;
         this.simulation?.setCameraView(view, this.selectedPlanet);
         document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => {
           b.setAttribute('aria-pressed', String(b === button));
@@ -290,6 +294,7 @@ class SolarApp {
     });
 
     if (sc === 'lineup') {
+      this.overviewView = 'lineup';
       this.simulation?.setViewMode('lineup');
       this.simulation?.setCameraView('lineup');
       document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => {
@@ -297,6 +302,7 @@ class SolarApp {
       });
     } else {
       // 'orbit'
+      this.overviewView = 'perspective';
       this.simulation?.setViewMode('orbit');
       this.simulation?.setCameraView('perspective');
       document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => {
@@ -330,11 +336,8 @@ class SolarApp {
     const card = $('planet-card');
     if (!this.selectedPlanet) {
       card.hidden = true;
-      if (this.scenario === 'lineup') {
-        this.simulation?.setCameraView('lineup');
-      } else {
-        this.simulation?.setCameraView('perspective');
-      }
+      this.simulation?.setCameraView(this.overviewView);
+      document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.view === this.overviewView)));
       return;
     }
 
@@ -467,13 +470,33 @@ class SolarApp {
   }
 
   updatePlanetLabels() {
+    const orbit = this.scenario === 'orbit';
+    const orbitNames = new Set(['earth', 'jupiter', 'saturn', 'uranus', 'neptune']);
+    const occupied: Array<{x:number;y:number}> = [];
+    const width = this.simulation.container.clientWidth;
+    const height = this.simulation.container.clientHeight;
     for (const {data, label} of this.planetLabels) {
       const node = this.simulation.planetNodes.get(data.id);
       if (!node) { label.hidden = true; continue; }
       const point = this.simulation.labelPosition(node.currentPos);
-      label.hidden = this.scenario !== 'lineup' || !point.visible;
-      label.style.left = `${point.x}px`;
-      label.style.top = `${point.y + 14 + (data.index % 2) * 18}px`;
+      label.classList.toggle('planet-label--orbit', orbit);
+      if (!orbit) {
+        label.hidden = !point.visible;
+        label.style.left = `${Math.max(34, Math.min(width - 34, point.x))}px`;
+        const row = width < 560 ? data.index % 3 : data.index % 2;
+        label.style.top = `${point.y + 14 + row * 18}px`;
+        continue;
+      }
+      // Label representative worlds without turning the tightly packed inner
+      // orbits into a stack of text. The toolbar still names every planet.
+      const x = point.x + (point.x < width / 2 ? 30 : -30);
+      const y = point.y - 11;
+      const clear = occupied.every(other => Math.abs(x - other.x) > 84 || Math.abs(y - other.y) > 24);
+      const safeTop = width < 560 ? 92 : 61;
+      label.hidden = !orbitNames.has(data.id) || !point.visible || point.y < safeTop || point.y > height - 24 || x < 46 || x > width - 46 || !clear;
+      if (!label.hidden) occupied.push({x,y});
+      label.style.left = `${x}px`;
+      label.style.top = `${y}px`;
     }
   }
 

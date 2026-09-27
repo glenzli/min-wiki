@@ -129,6 +129,10 @@ export class SolarSimulation {
 
     // Initial camera position
     this.setCameraView('perspective');
+    this.camera.position.copy(this._camPosTarget);
+    this.controls.target.copy(this._camLookTarget);
+    this.camera.lookAt(this._camLookTarget);
+    this.cameraTransition = false;
   }
 
   initLighting() {
@@ -410,7 +414,7 @@ export class SolarSimulation {
       const mat = new THREE.LineBasicMaterial({
         color: new THREE.Color(data.colorHex),
         transparent: true,
-        opacity: 0.28
+        opacity: 0.4
       });
 
       const orbitLine = new THREE.LineLoop(geom, mat);
@@ -424,14 +428,17 @@ export class SolarSimulation {
     if (planetId) this.selectedPlanetId = planetId;
     if (this.viewMode === 'lineup') {
       const node = viewName === 'follow' && this.selectedPlanetId ? this.planetNodes.get(this.selectedPlanetId) : null;
-      const x = node ? node.lineupX : viewName === 'planets' ? 0 : -106;
+      const x = node ? node.lineupX : viewName === 'planets' ? 58 : -48;
       this._camLookTarget.set(x,0,0);
       this._camPosTarget.set(x,140,420);
       this.lineupHalfHeight = node ? Math.max(1.5,node.trueLineupRadius*1.55) : viewName === 'planets' ? 18 : 110;
       this.lineupCamera.zoom = 1;
       this.fitLineupProjection();
     } else if (viewName === 'top') {
-      this._camPosTarget.set(0,400,0.1);
+      // Leave room around Neptune's orbit in wide and narrow compositions.
+      const wide = THREE.MathUtils.smoothstep(this.perspectiveCamera.aspect, 1.4, 2.5);
+      const narrow = 1 - THREE.MathUtils.smoothstep(this.perspectiveCamera.aspect, 0.95, 1.5);
+      this._camPosTarget.set(0,400 + 55 * wide + 70 * narrow,0.1);
       this._camLookTarget.set(0,0,0);
     } else if (viewName === 'inner') {
       this._camPosTarget.set(0,68,80);
@@ -447,7 +454,12 @@ export class SolarSimulation {
         this._camLookTarget.copy(node.currentPos);
       }
     } else {
-      this._camPosTarget.set(-35,170,335);
+      // Frame by the limiting dimension: move forward in a wide stage and
+      // retreat on a narrow screen so the outer path stays inside the canvas.
+      // Only the camera changes, never the orbital radii or relative periods.
+      const wide = THREE.MathUtils.smoothstep(this.perspectiveCamera.aspect, 1.4, 2.5);
+      const narrow = 1 - THREE.MathUtils.smoothstep(this.perspectiveCamera.aspect, 0.95, 1.5);
+      this._camPosTarget.set(-35,170 - 40 * wide + 210 * narrow,335 - 90 * wide - 35 * narrow);
       this._camLookTarget.set(0,0,0);
     }
     if (this.viewMode !== 'lineup') retreatPosition(this._camPosTarget, this._camLookTarget, this.perspectiveCamera.aspect, 45);
@@ -455,7 +467,7 @@ export class SolarSimulation {
 
   fitLineupProjection() {
     const aspect = this.width / this.height;
-    const halfWidth = this.activeView === 'planets' ? 66 : this.activeView === 'follow' ? 0 : 170;
+    const halfWidth = this.activeView === 'planets' ? 130 : this.activeView === 'follow' ? 0 : 250;
     const h = Math.max(this.lineupHalfHeight,halfWidth/aspect);
     Object.assign(this.lineupCamera, {left:-h*aspect,right:h*aspect,top:h,bottom:-h});
     this.lineupCamera.updateProjectionMatrix();
@@ -535,6 +547,7 @@ export class SolarSimulation {
     const sunCurrentScale = THREE.MathUtils.lerp(1.0, getTrueScaleLineupRadius(SUN_DATA.diameterKm / 12742) / 7.5, this.modeProgress);
     this.sunGroup.position.set(sunCurrentX, 0, 0);
     this.sunGroup.scale.setScalar(sunCurrentScale);
+    this.sunGroup.visible = this.viewMode !== 'lineup' || this.activeView !== 'planets';
     this.sunLight.position.copy(this.sunGroup.position);
     this.sunCorona.visible = this.modeProgress < 0.85;
 
