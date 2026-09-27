@@ -27,8 +27,14 @@ Sources are paraphrased for a preschool explanation and do not supply images. Th
 
 ## Integration and validation
 
-`catalog-entry.json` and `catalog-en.json` are delivered for the coordinating task to register. This topic does not edit the shared catalog or platform. Focused model tests, TypeScript and exact local translation coverage are checked before handoff; root owns the full production build and browser acceptance. No commit, push or deployment is performed here.
+`catalog-entry.json` and `catalog-en.json` supply the registered entry. The topic does not edit the shared catalog or platform. Focused model tests, TypeScript, exact local translation coverage, production build, and browser states are checked for refinements. Local commits, publication, and deployment are tracked separately in the portfolio and Git history.
 
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
+
+## Refinement 2026-09-28
+
+The side section now marks one tongue sample point A, and the papilla/taste-bud view carries the same mark. At narrow widths, children choose between the whole route and the enlarged sample without losing transmission progress. The inner taste-bud zoom stays within that sample. In the comparison, the green taste signal and its brain cue remain when the purple retronasal smell route is removed.
+
+Each of the four stages has a short child explanation and an academic mechanism with a local model boundary. The current stage and comparison result lead the desktop notes, while the longer academic material uses the available note area. Reading-mode, camera, and smell-comparison changes preserve the current progress. The drawings, paths, timing, and colored brain cues are conceptual; they do not identify precise brain circuits or measure sensory contributions. The NIDCD and UTHealth sources above were checked again for taste buds, retronasal smell, and the separation of the two pathways.

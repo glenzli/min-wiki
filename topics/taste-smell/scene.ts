@@ -14,12 +14,12 @@ export function createTasteScene(){
   <path d="M142 303C163 290 202 297 225 304Q251 312 248 333Q215 345 188 329Z" fill="url(#tongue-tissue)" stroke="#a97068" stroke-width="1.7"/>
   <path d="M157 304Q190 299 224 310" stroke="#f6c8b9" stroke-width="2" fill="none"/>
   ${Array.from({length:13},(_,i)=>`<ellipse cx="${157+i*5.3}" cy="${304+Math.pow(i/12,2)*6}" rx="2.2" ry="1.8" fill="#be8078"/>`).join('')}
-  <g id="food-art"></g><circle cx="213" cy="309" r="11" fill="none" stroke="#e7c58f" stroke-width="2"/><path d="M214 321L205 349L165 362" fill="none" stroke="#9b8971" stroke-width="1.4" stroke-dasharray="3 3"/>${label(163,382,t('舌面的小凸起'),'middle')}
+  <g id="food-art"></g><circle cx="213" cy="309" r="11" fill="#fff4dc" fill-opacity=".48" stroke="#b7874e" stroke-width="2"/><text x="213" y="313" text-anchor="middle" class="sample-mark">A</text><path d="M214 321L205 349L165 362" fill="none" stroke="#9b8971" stroke-width="1.4" stroke-dasharray="3 3"/>${label(163,382,t('舌面的小凸起'),'middle')}
   <g filter="url(#soft-shadow)"><path d="M280 70Q240 72 229 105Q219 132 239 147Q251 171 280 164Q294 188 324 177Q353 177 356 153Q379 124 360 102Q351 74 325 78Q307 56 280 70Z" fill="url(#brain-tissue)" stroke="#a98b9a" stroke-width="2"/><path d="M261 88q-19 9-12 23q18-10 25 7m6-45q-4 28 20 25m-26 20q22-2 22 20q-23-1-25 20m42-79q-7 20 10 27q17-6 24 13m-51 19q20-19 31 1q-4 18 13 22m-40-20q-12 21 5 25" fill="none" stroke="#b397a5" stroke-width="3" stroke-linecap="round"/></g>
   <path d="M198 182Q218 169 242 181" stroke="#b39567" stroke-width="9" stroke-linecap="round" fill="none"/><g stroke="#a17f52" stroke-width="1.5">${Array.from({length:9},(_,i)=>`<path d="M${199+i*5} ${179-Math.sin(i/8*Math.PI)*5}v8"/>`).join('')}</g>
   <g id="smell-layer">${traceMarkup('aroma','M177 282 C208 278 252 285 264 268 C282 244 279 219 264 203 Q247 184 227 177','#98769e',true)}${traceMarkup('smell-signal','M227 177Q218 152 249 140Q270 126 302 123','#98769e')}</g>
   ${traceMarkup('taste-signal','M217 329Q246 372 282 370Q315 367 321 316L326 207Q328 168 316 145','#467e72')}
-  <g id="integration" opacity="0"><path d="M268 117L315 109L325 151L279 147Z" stroke="#7c6683" stroke-width="1.5" fill="none"/><g fill="#7c6683" stroke="#f5e2e0" stroke-width="2"><circle cx="268" cy="117" r="5"/><circle cx="315" cy="109" r="5"/><circle cx="325" cy="151" r="5"/><circle cx="279" cy="147" r="5"/></g></g>
+  <g id="integration" opacity="0"><path d="M268 117L315 109L325 151L279 147Z" stroke="#8e8389" stroke-width="1.5" fill="none"/><g fill="#8e8389" stroke="#f5e2e0" stroke-width="2"><circle cx="325" cy="151" r="5"/><circle cx="279" cy="147" r="5"/></g></g><g id="taste-brain" opacity="0"><circle cx="315" cy="109" r="8" fill="#467e72" stroke="#e8f2e5" stroke-width="2"/><path d="M315 109L325 151" stroke="#467e72" stroke-width="2"/></g><g id="smell-brain" opacity="0"><circle cx="268" cy="117" r="8" fill="#98769e" stroke="#f3e9f1" stroke-width="2"/><path d="M268 117L279 147" stroke="#98769e" stroke-width="2"/></g>
   ${label(42,170,t('嗅觉细胞'))}<path d="M130 173L193 179" stroke="#8d806c" stroke-width="1"/>${label(45,330,t('舌头'))}${label(356,225,t('传向脑'),'middle')}${label(345,449,t('侧面概念切面'),'middle')}`;
   const epithelial=Array.from({length:35},(_,i)=>{
     const x=57+i%7*53,y=240+Math.floor(i/7)*37;
@@ -36,7 +36,7 @@ export function createTasteScene(){
   <path d="M225 156C180 172 170 269 199 314Q235 364 274 313C303 268 285 174 246 156Z" fill="#e8dfb8" stroke="#a7a473" stroke-width="2"/>${cells.replaceAll('url(#cell-tissue)','url(#bud-cell-tissue)')}
   <path d="M224 151Q236 144 247 151" stroke="#92886b" stroke-width="4" fill="none"/><path d="M207 326Q227 337 236 351m28-24q-21 17-24 26m-40-31q-7 26 31 39m43-39q8 25-30 37" fill="none" stroke="#6d9a7b" stroke-width="3" stroke-linecap="round"/>
   ${traceMarkup('bud-signal','M237 351Q221 389 277 409Q321 426 405 425','#467e72')}
-  <g id="taste-activation" fill="none" stroke="#477f71" stroke-width="2" opacity="0"><path d="M235 161C214 221 219 282 233 321M241 161C255 218 259 278 241 323"/></g>
+  <g id="taste-activation" fill="none" stroke="#477f71" stroke-width="2" opacity="0"><path d="M235 161C214 221 219 282 233 321M241 161C255 218 259 278 241 323"/></g><g class="sample-anchor"><circle cx="37" cy="37" r="15" fill="#fff4dc" stroke="#b7874e" stroke-width="1.5"/><text x="37" y="42" text-anchor="middle" class="sample-mark">A</text><text x="62" y="43">${t('舌面同一取样点')}</text></g>
   <g id="solute"></g><g id="overview-labels">${label(38,82,t('唾液'))}<path d="M79 88L104 120" stroke="#8e9681" stroke-width="1"/>${label(312,93,t('味孔'))}<path d="M320 101L245 146" stroke="#95836b" stroke-width="1"/>${label(322,267,t('味觉细胞'))}<path d="M317 275L273 281" stroke="#95836b" stroke-width="1"/>${label(140,394,t('味蕾'),'middle')}${label(348,458,t('神经纤维'),'middle')}</g><g id="zoom-labels" class="zoom-labels" opacity="0"><text x="348" y="125" text-anchor="end">${t('味孔')}</text><path d="M293 127L245 147" fill="none" stroke="#95836b"/><text x="370" y="258" text-anchor="end">${t('味觉细胞')}</text><text x="252" y="395" text-anchor="middle">${t('神经纤维')}</text></g>`;
 }
 function trace(id:string,p:number,dashed=false){
@@ -52,6 +52,8 @@ export function drawTaste(progress:number,includeSmell:boolean,food:Food,smellOp
   trace('taste-signal',s.tasteNerve);trace('bud-signal',s.tasteNerve);trace('aroma',s.aroma,true);trace('smell-signal',s.smellNerve);
   document.getElementById('smell-layer')!.setAttribute('opacity',String(.12+.88*smellOpacity));
   document.getElementById('integration')!.setAttribute('opacity',String(s.integration));
+  document.getElementById('taste-brain')!.setAttribute('opacity',String(s.integration));
+  document.getElementById('smell-brain')!.setAttribute('opacity',String(s.integration*smellOpacity));
   document.getElementById('taste-activation')!.setAttribute('opacity',String(s.tasteCell));
   const size=1-.25*s.dissolved;
   document.getElementById('food-art')!.innerHTML=food==='strawberry'

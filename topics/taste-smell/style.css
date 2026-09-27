@@ -8,5 +8,29 @@
 
 /* Desktop presentation: retain topic geometry inside the selected scene. */
 @media(min-width:1000px){
-html.presentation-page[data-topic-ui] { .presentation-notes .taste-controls { display:block; } .presentation-notes .controls { display:block!important; }}
+html.presentation-page[data-topic-ui] { .presentation-notes .taste-controls { display:flex!important;flex-direction:column; } .presentation-notes .controls { display:block!important; }}
+html[data-topic-ui] .presentation-frame .presentation-pair>.scene-switch{display:none}
+}
+.scene-switch,.academic-copy,.academic-detail{display:none}
+.taste-controls>.controls:last-child{order:-1}
+html[data-reading-mode=academic] .academic-copy{display:inline}
+html[data-reading-mode=academic] .kids-copy{display:none}
+html[data-reading-mode=academic] .academic-detail{display:block}
+.status .academic-detail{border-top:1px solid var(--border);margin-top:12px;padding-top:9px}
+.status .academic-detail p{font-size:13px;line-height:1.6;margin:7px 0}
+.flavor-result .academic-detail{font-size:12px;line-height:1.6;margin-top:10px;color:var(--secondary)}
+html:not([data-reading-mode=academic]) .control-group .small{display:none}
+.specimen svg .sample-mark{font-size:12px;fill:#5c493a;stroke:none;font-weight:800}
+.specimen svg .sample-anchor text:not(.sample-mark){font-size:13px;fill:#685748}
+@media(max-width:760px){
+  main{padding-top:18px}
+  .hero{margin-bottom:14px}
+  .hero .eyebrow,.hero .reading-mode-hint{display:none}
+  .hero h1{font-size:32px;margin:5px 0 8px}
+  .hero .intro{font-size:14px;line-height:1.45;margin:0 0 12px}
+  .lab{padding:8px}
+  .scene-switch{display:flex;gap:7px;grid-column:1/-1}
+  .scene-switch button{flex:1;min-width:0;font-size:12px;padding:7px}
+  .taste-pair[data-view=head]>.specimen:last-child,.taste-pair[data-view=bud]>.specimen:nth-child(2){display:none}
+  .taste-pair{gap:9px}
 }
