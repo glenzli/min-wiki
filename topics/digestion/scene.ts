@@ -24,7 +24,7 @@ export function createDigestionScene(){
  <path d="M282 312Q305 298 331 314Q370 311 395 326Q370 342 335 331Q306 337 282 324Z" fill="#d6bb83" stroke="#b69a65" stroke-width="2"/><path d="M302 317l9 10m10-12 10 11m12-9 8 12m8-8 9 8m8-5 8 4" fill="none" stroke="#ecdbaf" stroke-width="3"/>
  <path d="M287 278L303 292L302 325L257 343M389 326L302 325" fill="none" stroke="#90965e" stroke-width="4" stroke-linejoin="round"/><path id="juice-route" d="M287 279L303 293L302 325L257 343M389 326L302 325" fill="none" stroke="#d6cb7e" stroke-width="2" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/>
  </g>
- ${routes.map((d,i)=>`<path id="food-route-${i}" d="${d}" fill="none" stroke="none"/>`).join('')}<g id="food-cohort"></g><g id="organ-water" fill="#759caf"></g>
+ ${routes.map((d,i)=>`<path id="food-route-${i}" d="${d}" fill="none" stroke="none"/>`).join('')}<path id="route-progress" fill="none" stroke="#b48243" stroke-width="4" stroke-linecap="round" opacity=".55"/><g id="food-cohort"></g><circle id="cohort-marker" r="16" fill="none" stroke="#9f7137" stroke-width="2.5"/><g id="organ-water" fill="#759caf"></g>
  <ellipse id="intestine-focus" cx="317" cy="443" rx="57" ry="47" fill="none" stroke="#ad8b52" stroke-width="2" stroke-dasharray="5 6" opacity=".55"/>
  ${label(182,85,t('口腔'))}<path d="M244 88H286" stroke="#a88c72"/>${label(419,164,t('食管'))}<path d="M410 169L347 174" stroke="#a88c72"/>
  ${label(478,275,t('胃'))}<path d="M470 279L437 285" stroke="#a88c72"/>${label(102,248,t('肝脏'))}<path d="M157 251L199 255" stroke="#a88c72"/>
@@ -37,15 +37,15 @@ export function createDigestionScene(){
  return `<g transform="translate(${x} ${y}) rotate(${angle})"><path d="M-13-12Q0-17 13-11L12 11Q0 16-12 11Z" fill="url(#gut-cell)" stroke="#be8871" stroke-width="1"/><ellipse cx="0" cy="2" rx="3.5" ry="5.5" fill="#ae7e7a" opacity=".6"/><path d="M${side*14} -10v20" stroke="#e0b397" stroke-width="3"/></g>`;
  }).join('');
  const cap='M264 927L264 746Q263 685 293 643Q309 635 322 663Q343 703 336 749L337 927';
- document.getElementById('detail-art')!.innerHTML=defs('gut')+`<rect width="600" height="1000" fill="url(#gut-paper)"/><rect width="600" height="1000" fill="url(#gut-grain)"/>
- ${label(29,43,t('一小段小肠的纵切面'))}${label(29,70,t('管壁收缩，内容物被推进并混合'))}
+ document.getElementById('detail-art')!.innerHTML=defs('gut')+`<defs><clipPath id="gut-reveal"><rect id="villus-reveal" x="0" y="520" width="0" height="470"/></clipPath></defs><rect width="600" height="1000" fill="url(#gut-paper)"/><rect width="600" height="1000" fill="url(#gut-grain)"/>
+ <g id="tube-panel">${label(29,43,t('一小段小肠的纵切面'))}${label(29,70,t('管壁收缩，内容物被推进并混合'))}
  <path id="upper-wall" fill="url(#gut-wall)" stroke="#b7856c" stroke-width="2"/>
  <path id="lumen-space" fill="url(#gut-lumen)"/>
  <path id="lower-wall" fill="url(#gut-wall)" stroke="#b7856c" stroke-width="2"/>
  <g id="tube-villi"></g><g id="lumen-food"></g><g id="enzyme-marks" fill="#98a470" opacity="0"><circle cx="115" cy="195" r="3"/><circle cx="182" cy="223" r="3"/><circle cx="289" cy="173" r="3"/><circle cx="377" cy="212" r="3"/></g>
  <path d="M58 379H547" fill="none" stroke="#b98476" stroke-width="8"/><path d="M58 394H547" fill="none" stroke="#81989e" stroke-width="5"/>
- ${label(37,429,t('绒毛增加与内容物接触的面积'))}
- ${label(29,548,t('再靠近一根绒毛'))}${label(29,577,t('先经过上皮细胞，再进入运输通路'))}
+ ${label(37,429,t('绒毛增加与内容物接触的面积'))}</g>
+ <g id="villus-panel" transform="translate(0 -520)" clip-path="url(#gut-reveal)"><rect y="520" width="600" height="470" fill="url(#gut-paper)"/>${label(29,548,t('再靠近一根绒毛'))}${label(29,577,t('先经过上皮细胞，再进入运输通路'))}
  <path d="M57 918Q59 758 99 740Q145 757 151 918M446 918Q450 761 491 740Q529 760 538 918" fill="url(#gut-tissue)" stroke="#bb927b" stroke-width="2" opacity=".36"/>
  <path d="M220 925C240 856 223 737 250 666Q269 615 298 616Q334 613 350 667C379 741 361 858 379 925Z" fill="url(#gut-tissue)" stroke="#b87d66" stroke-width="3" filter="url(#gut-shadow)"/>
  <path d="M240 913C255 841 240 738 268 675Q293 630 322 665C354 726 347 845 358 913Z" fill="#ecd3b0" opacity=".7"/>
@@ -56,12 +56,41 @@ export function createDigestionScene(){
  ${label(39,666,t('肠腔'))}${label(162,747,t('上皮细胞'),'end')}<path d="M172 745L230 714" stroke="#a38e76"/>
  ${label(399,797,t('毛细血管'))}<path d="M395 804L337 797" stroke="#a38e76"/>
  ${label(397,853,t('淋巴管'))}<path d="M392 857L313 850" stroke="#a38e76"/>
- ${label(300,970,t('绒毛不是孔洞；细胞构成一道屏障'),'middle')}`;
+ ${label(300,970,t('绒毛不是孔洞；细胞构成一道屏障'),'middle')}</g><line id="reveal-divider" y1="0" y2="470" stroke="#b98f66" stroke-width="2" opacity="0"/><g id="stage-detail"></g>`;
+}
+function stageSketch(phase:number,local:number,chewing:number,mixing:number,water:number){
+ const backdrop=`<rect width="600" height="470" fill="url(#gut-paper)"/><rect width="600" height="470" fill="url(#gut-grain)"/>${label(30,42,t('同一口食物 · 局部机制示意'))}`;
+ const particles=(cx:number,cy:number,r:number)=>Array.from({length:15},(_,i)=>{
+  const angle=i*2.4,spread=8+(i%4)*7;
+  return `<circle cx="${cx+Math.cos(angle)*spread}" cy="${cy+Math.sin(angle)*spread}" r="${r*(.7+(i%3)*.15)}" fill="url(#gut-food)" stroke="#9c7446" stroke-width="1"/>`;
+ }).join('');
+ if(phase===0){
+  const jaw=9+8*Math.sin(chewing*Math.PI*6),r=7-3*chewing;
+  const teeth=Array.from({length:8},(_,i)=>`<path d="M${136+i*42} ${153+jaw}l-10 24q9 14 20 0l-10-24M${136+i*42} ${321-jaw}l-10-24q9-14 20 0l-10 24" fill="#f4ead9" stroke="#b5937b" stroke-width="2"/>`).join('');
+  return backdrop+`<path d="M92 120Q300 89 508 120L496 ${153+jaw}H104Z" fill="url(#gut-wall)" stroke="#ba8872" stroke-width="3"/><path d="M104 ${321-jaw}H496L508 354Q300 385 92 354Z" fill="url(#gut-wall)" stroke="#ba8872" stroke-width="3"/>${teeth}<g>${particles(300,236,r)}</g><g fill="#83a8b8">${Array.from({length:9},(_,i)=>`<circle cx="${160+i*34}" cy="${184+(i%3)*27}" r="${3+i%3}" opacity=".72"/>`).join('')}</g>${label(116,420,t('牙齿咀嚼'))}${label(408,420,t('唾液混合'))}`;
+ }
+ if(phase===1){
+  const y=99+281*local,constrict=y-42;
+  return backdrop+`<path d="M207 76Q191 203 207 414H393Q409 203 393 76Z" fill="url(#gut-wall)" stroke="#b8856e" stroke-width="3"/><path d="M252 76Q243 ${constrict-27} 269 ${constrict}Q246 ${constrict+28} 252 414H348Q357 ${constrict+28} 331 ${constrict}Q357 ${constrict-27} 348 76Z" fill="url(#gut-lumen)" stroke="#bd8a72" stroke-width="2"/><path d="M207 ${constrict}Q252 ${constrict-24} 269 ${constrict}M393 ${constrict}Q348 ${constrict-24} 331 ${constrict}" fill="none" stroke="#a87362" stroke-width="8" opacity=".75"/>${particles(300,y,5)}<path d="M436 132v217m-9-9 9 9 9-9" fill="none" stroke="#9f7958" stroke-width="3"/>${label(28,439,t('收缩在食团后方'))}${label(428,439,t('朝胃推进'))}`;
+ }
+ if(phase===2){
+  const turn=mixing*155;
+  return backdrop+`<path d="M248 74Q289 83 285 116Q361 100 412 132Q492 181 460 297Q431 392 330 389Q245 369 167 396L145 349Q220 312 221 256Q186 201 217 149Q248 124 248 74Z" fill="url(#gut-wall)" stroke="#ad7968" stroke-width="4"/><path d="M244 163Q320 129 395 170Q450 213 407 319Q360 364 245 326Q285 283 266 229" fill="none" stroke="#f1cbb0" stroke-width="8" opacity=".72"/><g transform="rotate(${turn} 315 240)">${particles(315,240,8)}</g><path d="M288 180Q375 148 402 230Q412 298 335 321" fill="none" stroke="#ab745f" stroke-width="4" stroke-dasharray="8 9"/><g fill="#a0aa76">${Array.from({length:10},(_,i)=>`<circle cx="${244+i*18}" cy="${174+(i%4)*40}" r="3.2" opacity=".75"/>`).join('')}</g>${label(28,439,t('胃壁混合'))}${label(380,439,t('胃酸和酶参与处理'))}`;
+ }
+ const x=local<.4?155+290*local/.4:local<.72?445:445-145*(local-.72)/.28;
+ const y=local<.4?145:local<.72?145+210*(local-.4)/.32:355;
+ return backdrop+`<path d="M155 145H445V355H300" fill="none" stroke="#ac7b68" stroke-width="101" stroke-linecap="round" stroke-linejoin="round"/><path d="M155 145H445V355H300" fill="none" stroke="url(#gut-wall)" stroke-width="91" stroke-linecap="round" stroke-linejoin="round"/><path d="M155 145H445V355H300" fill="none" stroke="url(#gut-lumen)" stroke-width="56" stroke-linecap="round" stroke-linejoin="round"/>${particles(x,y,5)}<g fill="#6e9ab0">${Array.from({length:8},(_,i)=>{const q=Math.min(1,water*(1.3+i*.12));return `<circle cx="${406+q*(53+i%3*10)}" cy="${197+i*15}" r="4" opacity="${q}"/>`;}).join('')}</g>${label(28,439,t('继续吸收剩余水分'))}${label(392,439,t('向直肠移动'))}`;
 }
 export function drawDigestion(progress:number,nutrient:Nutrient,fatFocus=nutrient==='fat'?1:0){
  const s=digestionSequence(progress),a=absorptionRoute(progress,nutrient);
  const path=document.getElementById(`food-route-${s.phase}`) as unknown as SVGPathElement;
  const length=path.getTotalLength();
+ const routeProgress=document.getElementById('route-progress')!;
+ routeProgress.setAttribute('d',routes[s.phase]);routeProgress.setAttribute('stroke-dasharray',`${length*s.local} ${length}`);
+ const position=path.getPointAtLength(s.local*length);
+ const marker=document.getElementById('cohort-marker')!;
+ marker.setAttribute('cx',String(position.x));marker.setAttribute('cy',String(position.y));
+ document.getElementById('intestine-focus')!.setAttribute('opacity',String(s.phase===3?.7:.12));
  const nutrientCount=14;
  document.getElementById('food-cohort')!.innerHTML=Array.from({length:24},(_,i)=>{
  const offset=(i%6-2.5)*.005,point=path.getPointAtLength(Math.max(0,Math.min(1,s.local+offset))*length);
@@ -94,5 +123,9 @@ export function drawDigestion(progress:number,nutrient:Nutrient,fatFocus=nutrien
  }).join('')+'</g>';}).join('');
  document.getElementById('villus-water')!.innerHTML=Array.from({length:4},(_,i)=>{const q=segment(progress-i*.012,.6,.8);const x=q<.45?186+q/.45*74:264;const y=q<.45?755+q/.45*20:775+(q-.45)/.55*152;return `<circle cx="${x}" cy="${y-i*4}" r="3.2" opacity="${q===0?0:1}"/>`;}).join('');
  document.getElementById('selected-cell')!.setAttribute('opacity',String(.35+.65*Math.sin(Math.PI*a.uptake)));
+ const detail=document.getElementById('stage-detail')!;
+ if(s.phase!==3)detail.innerHTML=stageSketch(s.phase,s.local,s.chewing,s.mixing,s.water);
+ detail.setAttribute('opacity',s.phase===3?'0':'1');
+ detail.setAttribute('aria-hidden',String(s.phase===3));
  return s;
 }

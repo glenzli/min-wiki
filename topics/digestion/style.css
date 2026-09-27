@@ -14,3 +14,22 @@
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] { .presentation-notes .control-layout { display:block; } .presentation-notes .controls { display:block!important; }}
 }
+
+/* The two scales stay visible while the local mechanism follows the food cohort. */
+.view-buttons[hidden]{display:none}
+html[data-reading-mode="kids"] .academic-copy,
+html[data-reading-mode="academic"] .child-copy{display:none!important}
+.specimen figcaption{min-height:0;line-height:1.35;padding:8px 12px}
+.specimen .scene-toolbar{min-height:48px;padding:5px 10px;gap:6px}
+.specimen .scene-toolbar button{min-height:36px;padding:6px 9px}
+.status{min-height:0}
+.status p{line-height:1.55}
+.route-note a,.controls .small a{color:var(--accent)}
+#stage-detail{transition:opacity .3s ease;pointer-events:none}
+@media(min-width:1000px){
+ html[data-topic-ui] .presentation-frame .specimen-pair{grid-template-columns:1fr 1fr;gap:8px;padding:8px}
+ html[data-topic-ui] .presentation-frame .presentation-transport{min-height:48px;padding:4px 10px}
+ html[data-topic-ui] .presentation-frame .presentation-transport>button{min-height:40px;padding:6px 12px}
+ html[data-topic-ui] .presentation-frame .presentation-pair figcaption{padding:6px 10px;min-height:0}
+}
+@media(prefers-reduced-motion:reduce){#stage-detail{transition:none}}
