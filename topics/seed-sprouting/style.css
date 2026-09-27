@@ -27,3 +27,42 @@
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] { .presentation-notes .controls { display:block!important; } .presentation-notes .controls label { display:block; margin:8px 0; } .presentation-context .cycle-panel { margin:0; }}
 }
+
+/* The soil inset is a qualitative enlargement of the same bean's surroundings.
+   It uses the side space left by the intact, unstretched botanical illustration. */
+.plant-study .scene .soil-inset,.plant-study .scene .condition-readout{z-index:1;background:#fffaf0ed;border:1px solid #d3d5c6;border-radius:15px;box-shadow:0 9px 24px #39402c1c;color:#38443a}
+.plant-study .scene .soil-inset{padding:10px;display:grid;gap:5px}
+.plant-study .scene .inset-title{display:block;font-size:11px;font-weight:750;line-height:1.35;letter-spacing:.04em;color:#536554}
+.plant-study .scene .soil-inset svg{display:block;width:100%;height:auto;min-height:0;aspect-ratio:184/126;border-radius:10px}
+.plant-study .scene .soil-inset svg text{font-size:11px;fill:#f1faf7;font-weight:750}
+.plant-study .scene .inset-caption{font-size:12px;line-height:1.4;min-height:2.8em;color:#435449}
+.plant-study .scene .condition-readout{padding:12px;display:grid;gap:8px;align-content:start}
+.plant-study .scene .condition-row{display:flex;justify-content:space-between;gap:6px;align-items:baseline;padding-top:5px;border-top:1px solid #d9dece;font-size:12px;line-height:1.4}
+.plant-study .scene .condition-row strong{color:#243b34;font-weight:750;text-align:right}
+.seed-mechanism{display:none;border-top:1px solid var(--border);padding-top:14px;margin-top:14px}
+.seed-mechanism h3{font-size:14px!important;margin:0 0 5px!important;color:var(--ink)}
+.seed-mechanism p{font-size:13px!important;line-height:1.65!important;color:var(--secondary);margin:0 0 7px!important}
+.seed-mechanism a{font-size:12px;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+html[data-reading-mode=academic] .seed-mechanism{display:block}
+@media(min-width:1000px){
+  .plant-study .scene .soil-inset,.plant-study .scene .condition-readout{position:absolute;top:16px;width:min(21%,196px)}
+  .plant-study .scene .soil-inset{left:14px}
+  .plant-study .scene .condition-readout{right:14px}
+}
+@media(max-width:999px){
+  .plant-study .scene{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;padding-bottom:10px}
+  .plant-study .scene>svg{grid-column:1/-1}
+  .plant-study .scene .soil-inset{margin-left:10px;grid-column:1;grid-row:2;max-width:220px}
+  .plant-study .scene .condition-readout{margin-right:10px;grid-column:2;grid-row:2}
+}
+@media(max-width:510px){
+  .plant-study .scene{grid-template-columns:1fr}
+  .plant-study .scene .soil-inset{max-width:none;margin:0 10px;grid-column:1;grid-template-columns:110px 1fr;align-items:center}
+  .plant-study .scene .soil-inset .inset-title{grid-column:1/-1}
+  .plant-study .scene .soil-inset svg{grid-column:1;width:110px}
+  .plant-study .scene .soil-inset .inset-caption{grid-column:2}
+  .plant-study .scene .condition-readout{margin:0 10px;grid-column:1;grid-row:3;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+  .plant-study .scene .condition-readout .inset-title{grid-column:1/-1}
+  .plant-study .scene .condition-row{display:grid;gap:2px;font-size:11px}
+  .plant-study .scene .condition-row strong{text-align:left}
+}

@@ -6,7 +6,7 @@ This is the integrated entry for germination, cherry reproduction and seed dispe
 
 - `main.ts`: the condition map, question transitions, validated chapter navigation, at most three retained native study fragments, and the page lifetime. Only the active fragment is attached; this avoids duplicate SVG/label IDs. Switches pause finite animation and keep each case’s controls and stage. Hidden/page-exit/reduced-motion events stop movement; bfcache return does not automatically resume.
 - `lifecycleModel.ts`: pure `canGerminate`, `allowedGrowth`, `cycleEvidence`, `readPlantRoute` and `plantDestination` contracts. The graph consumes case outcomes rather than a second timeline.
-- `study.ts` / `study.html`: the existing continuous common-bean illustration and controls, now an explicit `mountStudy(root, initial, onChange)` owner with `read`, `pause` and `dispose`; it retains already observed fractional growth when conditions change.
+- `study.ts` / `study.html`: the continuous common-bean illustration and controls, an explicit `mountStudy(root, initial, onChange)` owner with `read`, `pause` and `dispose`; it retains already observed fractional growth when conditions change. A linked soil-pore close-up now shows dry gaps, damp water films with air, and waterlogged pores while the same bean stays in the main scene. Three compact condition readings update with the controls; the academic sidebar adds stage- or condition-specific mechanism and limits.
 - `../flower-fruit/study.ts` / `model.ts`: pollen identity, stigma contact, compatible versus incompatible tube development and cherry fruit/cutaway. Incompatible pollen is arrested in the model and never develops seeds/fruit; this is not merely alternate text.
 - `../seed-travel/study.ts` / `model.ts`: wind settling and burr contact → attachment → transport → release → landing. Wind settings and the burr case keep separate finite progress records.
 - `studyHost.ts`: translates scoped native fragments before insertion. No iframe or embedded whole old page; duplicate old discovery cards and page chrome are not mounted.
@@ -32,6 +32,8 @@ Routes: `/topics/seed-sprouting/?chapter=germination|reproduction|dispersal`. De
 ## 教学边界
 
 相册不是按真实天数计时。这里只演示健康菜豆的典型过程；太冷用暂停表示，不代表所有种子都完全停止。积水把氧气供应不足合并表现；种类、休眠、病害和光照需求另有差异。
+
+土壤孔隙局部放大图是定性示意：颗粒和孔隙的大小、含水量、氧气符号数量都不按比例，也不表示缺氧时氧气完全为零。儿童版直接对照同一株菜豆与条件图；学术版的机制、简化边界及大学植物学资料链接位于可滚动侧栏。手机视图把局部放大图和条件读数放在主画面下方，不盖住幼苗。
 
 ## References
 

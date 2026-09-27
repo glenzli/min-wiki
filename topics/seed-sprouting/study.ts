@@ -6,7 +6,7 @@ import type { StudyState, PlantStudy } from './lifecycleModel.ts';
 export function mountStudy(root:HTMLElement,initial:StudyState,onChange:(state:StudyState)=>void):PlantStudy {
 const scene = root.querySelector<SVGSVGElement>('#scene')!;
 const result = root.querySelector<HTMLElement>('#result')!;
-const el = <T extends HTMLElement>(id: string) => root.querySelector(`#${id}`)! as T;
+const el = <T extends Element>(id: string) => root.querySelector(`#${id}`)! as T;
 const label = (x: number, y: number, text: string, cls = '') => `<text x="${x}" y="${y}" text-anchor="middle" class="${cls}">${text}</text>`;
 
 // Deterministic illustration detail keeps soil grains still while conditions change.
@@ -50,6 +50,21 @@ function seedCoat(x: number, y: number, scale: number) {
   return `<g transform="translate(${x} ${y}) scale(${scale})" filter="url(#root-shadow)"><path d="M-52 -6 C-58 -33 -21 -43 12 -31 C37 -41 64 -16 56 11 C51 35 17 47 -17 33 C-40 26 -52 11 -52 -6Z" fill="url(#bean-coat)" stroke="#7d6040" stroke-width="1.2"/><path d="M8 -24 C-7 -8 -5 8 12 26" fill="none" stroke="#806946" stroke-width="2.1"/><path d="M13 -19 Q-2 1 16 19" fill="none" stroke="#f3e4bd" stroke-width="3.5" opacity=".7"/>${freckles}<path d="M-38 -17 Q-22 -28 -4 -23" fill="none" stroke="#fff0c7" stroke-width="3.5" stroke-linecap="round" opacity=".48"/></g>`;
 }
 const clamp=(value:number)=>Math.max(0,Math.min(1,value));
+function drawSoilInset(water:string,air:string,temp:string,stage:number){
+  // A separate, qualitative close-up of the soil around this bean: pore size,
+  // water content and oxygen dots are not measurements or particle tracks.
+  const grainPositions:Array<[number,number,number,number]>=[[28,32,24,17],[84,26,25,14],[151,30,29,18],[22,94,29,19],[87,99,26,16],[155,94,31,22],[57,66,21,14],[123,65,22,15]];
+  const grains=grainPositions.map(([x,y,rx,ry],i)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${['#a48360','#ba9870','#81664c','#9a7958'][i%4]}" stroke="#65503e" stroke-width="1.5"/>`).join('');
+  const waterFilm=water==='dry'?'':water==='damp'?`<g fill="none" stroke="#9bd5d5" stroke-width="4" stroke-linecap="round" opacity=".85"><path d="M30 51 Q48 44 64 51 M95 47 Q108 40 126 48 M53 110 Q69 103 84 113 M118 107 Q134 102 143 111"/></g>`:`<rect width="184" height="126" fill="#73beca" opacity=".58"/>`;
+  const oxygen=air==='yes'&&water!=='flood'?`<g fill="#f1faf7" font-family="system-ui" font-size="11" font-weight="700"><text x="43" y="85">O₂</text><text x="107" y="92">O₂</text><text x="132" y="54">O₂</text></g>`:`<text x="105" y="83" fill="#f1faf7" opacity=".45" font-family="system-ui" font-size="11" font-weight="700">O₂</text>`;
+  const cracks=water==='dry'?`<g fill="none" stroke="#e7d0a1" stroke-width="1.5" opacity=".78"><path d="M71 8 l-8 10 7 5 -4 8 M111 105 l-7 8 5 13"/></g>`:'';
+  el<SVGSVGElement>('soil-inset-art').innerHTML=`<rect width="184" height="126" rx="12" fill="#302a25"/>${grains}${waterFilm}${cracks}${oxygen}<rect x="1" y="1" width="182" height="124" rx="11" fill="none" stroke="#fff5dc" stroke-opacity=".55" stroke-width="2"/>`;
+  el('soil-inset-caption').textContent=water==='dry'?t('孔隙有空气，种子却缺水'):water==='flood'?t('孔隙被水占据，氧气难进入'):air==='no'?t('有水膜，氧气仍不足'):t('水膜和空气孔隙同时存在');
+  el('water-state').textContent=water==='dry'?t('缺水'):water==='flood'?t('积水'):t('湿润');
+  el('air-state').textContent=water==='flood'||air==='no'?t('供应不足'):t('可以到达');
+  el('temp-state').textContent=temp==='cold'?t('偏冷'):t('适宜');
+  el('mechanism').textContent=water==='dry'?t('干土缺少吸胀所需的水；本图不计算含水率。已经出现的根与叶只暂停后续生长，不会退回种子。'):water==='flood'?t('种子吸水仍需氧气维持细胞呼吸。积水可减少土壤气相孔隙，使氧供应受限；本图把缺氧简化为暂停，不预测腐烂或存活。'):air==='no'?t('即使土壤湿润，如果周围氧气供应不足，种子的呼吸和后续生长仍会受限。本图不计算氧浓度，把限制简化为暂停。'):temp==='cold'?t('温度影响代谢反应速度；这里用暂停表示偏冷，不表示所有种子在低温下完全停止，也不是实际发芽天数。'):[t('水进入种子后，代谢重新活跃；子叶中的储备支持胚最初的生长。孔隙图只示意水与空气共存。'),t('胚根先突破种皮，随后伸入土壤吸水；这段相册不按真实天数计时。'),t('胚轴逐渐伸长，把子叶抬起；画面保留同一株菜豆的根与芽。'),t('真叶展开后，幼苗可进行光合作用，但达到开花成熟还需要继续生长与适宜环境。')][stage]!;
+}
 let shownGrowth=0,reachedGrowth=0;
 let cancelGrowth: () => void = () => {};
 function roots(growth: number) {
@@ -87,7 +102,7 @@ function seekGrowth() {
   draw();
 }));
 el('stage').addEventListener('input',seekGrowth);
-el('stage').addEventListener('keydown',event=>{
+el<HTMLInputElement>('stage').addEventListener('keydown',event=>{
   if(!['ArrowRight','ArrowUp','ArrowLeft','ArrowDown'].includes(event.key))return;
   event.preventDefault();
   const stage=el<HTMLInputElement>('stage'),value=Number(stage.value);
@@ -118,9 +133,10 @@ function draw() {
   scene.innerHTML = defs + backdrop + terrain + pores + `<g class="specimen">${specimen}</g>` + wet +
     `<rect x="231" y="49" width="298" height="39" rx="19" fill="#fffef0" fill-opacity=".8" stroke="#d7dec6"/>` + label(380,75,[t('小豆子'),t('根先出来'),t('芽向上伸'),t('第一片真叶展开')][s]!, 'stage-caption') +
     `<rect x="30" y="476" width="228" height="31" rx="15" fill="#f4eedc" fill-opacity=".9"/>` + label(144,497,water === 'flood' || air === 'no' ? t('氧气不足') : t('土里面也有空气'),'soil-caption');
+  drawSoilInset(water,air,temp,s);
 if(!okay){
   if(s>0)result.textContent=water==='dry'?t('土太干，已经长出的幼苗会受到缺水影响；它不会变回种子。这里暂停后续生长，试试恢复湿润。'):water==='flood'||air==='no'?t('根和其他活细胞仍需要氧气。积水或缺少空气会妨碍后续生长；已经长出的结构不会倒回种子。'):t('低温让这株幼苗的后续生长变慢。画面保留已长出的结构，用暂停表示影响。');
-  else result.textContent=water==='dry'?t('太干了，豆子还没有吸到足够的水。试试湿润的环境。'):water==='flood'||air==='no'?t('豆子需要氧气。水太多会挤走土里的空气，正常成长会受阻。'):t('太冷了，豆子的成长会变慢。这里用暂停来表示，试试温暖。');
+  else result.textContent=water==='dry'?t('太干了，豆子还没有吸到足够的水。试试湿润的环境。'):water==='flood'?t('豆子需要氧气。水太多会挤走土里的空气，正常成长会受阻。'):air==='no'?t('即使土壤湿润，氧气不足也会阻碍豆子起步。试试让空气进入。'):t('太冷了，豆子的成长会变慢。这里用暂停来表示，试试温暖。');
 }
 else result.textContent=[t('先猜猜：会先长根，还是先长叶？'),t('种皮裂开，小根先钻出来，开始吸收水。'),t('小根向下，嫩芽向上。豆子储存的养分帮助它起步。'),t('真叶展开了！长大的小苗还需要光，才能自己制造养分。')][s]!;
     el<HTMLButtonElement>('next').disabled=requested===3||!okay;
