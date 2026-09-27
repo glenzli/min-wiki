@@ -29,3 +29,10 @@ export function cityIllumination(latitude: number, longitude: number, sunLocal: 
   return {altitude:deg(Math.asin(cosine)), flux:Math.max(0,cosine),
     state:cosine>1e-7?'day' as const:cosine<-1e-7?'night' as const:'horizon' as const};
 }
+
+/** Rotation phase that puts the selected meridian at local solar noon. */
+export function rotationAtLocalNoon(orbitProgress: number, tiltDeg: number, longitude: number) {
+  const sun = solarGeometry(orbitProgress, 0, tiltDeg).sunLocal;
+  const meridianAngle = -rad(longitude);
+  return wrapCycle((meridianAngle - Math.atan2(sun.z, sun.x)) / TAU);
+}

@@ -124,5 +124,12 @@
   "地球视角": "Earth view",
   "金色：阳光 · 蓝色：从地球看月球": "Gold: sunlight · Blue: Earth’s viewing direction",
   "以地心方向为近似，月球北方朝上；月盘已放大，暗面微光为辨认轮廓而增强。": "Geocentric approximation with lunar north up. The disk is enlarged, and faint night-side light is enhanced to reveal its outline.",
-  "下一月相": "Next phase"
+  "下一月相": "Next phase",
+  "这一刻看到了什么": "What can we see now?",
+  "当前机制": "Mechanism in focus",
+  "沿着画面追问": "Explore the mechanism",
+  "金色小点始终朝向地球；同一月面上，改变的是我们看见的亮面。": "The gold marker keeps facing Earth; on the same lunar surface, the visible sunlit area changes.",
+  "金色箭头：阳光 · 蓝色箭头：观察方向 · 金色小点：月面朝地球的一侧": "Gold arrows: sunlight · Blue arrow: viewing direction · Gold dot: the Earth-facing side",
+  "按同一长度比例摆放后，月球小得多，地月之间也很空。这个排列不表示此刻的月相。": "At one length scale, the Moon is much smaller and the gap is vast. This lineup does not show the current phase.",
+  "数一数，两颗球的中心之间大约能排下多少个地球？": "Count how many Earths fit between the two centers."
 }

@@ -120,7 +120,7 @@ export class TopicScene {
     this.moon.lookAt(this.earth.position); this.marker.visible = settings.guides;
     this.orbit.visible = !real && settings.guides; this.orbit.scale.setScalar(11); this.sizes.visible = real && settings.guides;
     this.world.getObjectByName('sunlight')!.visible = !real;
-    this.caption.textContent = real ? t('平均中心距离约为 30 个地球直径') : t('金色：阳光 · 蓝色：从地球看月球');
+    this.caption.textContent = real ? t('平均中心距离约为 30 个地球直径') : t('金色箭头：阳光 · 蓝色箭头：观察方向 · 金色小点：月面朝地球的一侧');
     const sight = new THREE.Vector3(...moonPosition(progress, 1));
     this.sightline.position.copy(sight).multiplyScalar(2.25); this.sightline.setDirection(sight);
     this.sightline.visible = !real && settings.guides;

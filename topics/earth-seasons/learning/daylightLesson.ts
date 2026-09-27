@@ -2,7 +2,7 @@ import { t } from '../i18n.ts';
 import './daylightLesson.css';
 import {daylightExperiment,lightAtDayProgress,daylightDifference,latitudeCirclePoint} from './daylightModel.ts';
 const TAU=Math.PI*2;
-const places=[{name:t("北京 · 北纬 39.9°"),lat:39.9},{name:t("悉尼 · 南纬 33.9°"),lat:-33.9},{name:t("赤道 · 纬度 0°"),lat:0},{name:t("北极圈 · 北纬 66.56°"),lat:66.56},{name:t("北极点 · 北纬 90°"),lat:90}];
+const places=[{id:'beijing',name:t("北京 · 北纬 39.9°"),lat:39.9},{id:'sydney',name:t("悉尼 · 南纬 33.9°"),lat:-33.9},{id:'equator',name:t("赤道 · 纬度 0°"),lat:0},{id:'arctic_circle',name:t("北极圈 · 北纬 66.56°"),lat:66.56},{id:'north_pole',name:t("北极点 · 北纬 90°"),lat:90}];
 const seasons: [string,number][]=[[t("春分"),0],[t("夏至"),.25],[t("秋分"),.5],[t("冬至"),.75]];
 const hours=(x: number | null) =>x===null?t("地平线附近"):t("{{v0}} 小时", {v0: x.toFixed(1)});
 function card(title: string,subtitle: string,key: string) {
@@ -73,19 +73,25 @@ function draw(canvas: HTMLCanvasElement,model: ReturnType<typeof daylightExperim
  text(ctx,`${model.noonAltitude.toFixed(1)}°`,402,240,18,'#f6ce77');
 }
 
-export function mountDaylightLesson(host: HTMLElement) {
+export interface DaylightSelection { cityId: string; latitude: number; orbit: number; tilt: number; dayProgress: number; }
+export function mountDaylightLesson(host: HTMLElement, onContinue: (selection: DaylightSelection) => void) {
  let latitude=39.9,orbit=.25,tilt=23.44,progress=0,playing=false,frame=0,lastTime=0;
  host.className='daylight-lesson';
  host.innerHTML=`<div class="lesson-heading"><div><span class="lesson-kicker">${t("先做一个小实验")}</span><h2>${t("地球歪一点，白天会变多长？")}</h2><p>${t("先选一个地方。想象你站在那里，跟着地球转一天：")}<strong>${t("黄色的路在阳光里，蓝色的路在黑夜里。")}</strong>${t("两边转得一样快，哪边会在阳光里待得更久？")}</p></div><button class="lesson-reset" type="button">${t("回到北京夏至")}</button></div>
  <div class="lesson-controls"><label class="lesson-control"><span>${t("我站在")}</span><select aria-label="${t("实验观察地点")}">${places.map(p=>`<option value="${p.lat}">${p.name}</option>`).join('')}</select></label><div class="lesson-control"><span>${t("公转到")}</span><div class="lesson-seasons" role="group" aria-label="${t("实验节气")}">${seasons.map(([name,value])=>`<button type="button" data-orbit="${value}" aria-pressed="${value===orbit}">${name}</button>`).join('')}</div></div></div>
  <div class="lesson-comparison">${card(t("如果地轴不倾斜"),t("倾角 0°"),'zero')}${card(t("把地轴倾斜一点"),t("倾角 23.44°"),'tilted')}</div>
  <div class="lesson-action"><label class="lesson-tilt">${t("慢慢改变右边的倾角")}<input aria-label="${t("实验地轴倾角")}" type="range" min="0" max="23.44" step="0.01" value="23.44"><output>23.44°</output></label><div class="lesson-play"><button type="button" data-walk>${t("▶ 让城市走一天")}</button><span class="lesson-turn">${t("从正午出发")}</span></div></div>
- <div class="lesson-explanation" aria-live="polite"><strong data-conclusion></strong><p data-reason></p></div>
+ <div class="lesson-explanation" aria-live="polite"><strong data-conclusion></strong><p data-child-reason></p></div>
+ <div class="lesson-continuation"><div><strong>${t("带着同一条件继续观察")}</strong><p data-selection-summary></p></div><button type="button" data-continue>${t("放到三维地球上看 →")}</button></div>
+ <div class="lesson-academic"><strong>${t("从几何关系算出图里的白昼")}</strong><p class="lesson-formula">δ = asin(sin ε · sin λ)<br>cos H₀ = −tan φ · tan δ; &nbsp;D = 24 H₀ / π</p><p data-academic-values></p><p data-academic-reason></p><p data-academic-boundary></p><a href="https://www.weather.gov/lmk/seasons" target="_blank" rel="noreferrer">${t("NOAA · 地轴倾角与季节资料 ↗")}</a></div>
  <div class="lesson-read-key"><span><i></i>${t("黄色：在阳光里")}</span><span><i></i>${t("蓝色：在黑夜里")}</span><span><i></i>${t("红点：我所在的城市")}</span></div>
- <p class="lesson-limit">${t("小地球始终把太阳放在左侧，随节气换观察方向；展开的圈表示每天绕行的纬度圈，不是地球公转轨道。一天从正午开始，12 秒走完。不计大气折射，白昼是理想几何值。继续往下，可以在三维地球上观察倾斜的地轴。")}</p>`;
+ <p class="lesson-kids-limit">${t("大圆是城市一天走的路，不是地球绕太阳的路。三维地球会接住你选的地点、节气和倾角。")}</p>
+ <p class="lesson-limit">${t("小地球始终把太阳放在左侧，随节气换观察方向；展开的圈表示每天绕行的纬度圈，不是地球公转轨道。一天从正午开始，12 秒走完。不计大气折射、太阳视半径与地形，白昼是理想几何值。三维地球继承所选地点、节气、倾角和当日进度；两个画面的地球大小与轨道距离均为教学调整。")}</p>`;
  const select=host.querySelector<HTMLSelectElement>('select')!,slider=host.querySelector<HTMLInputElement>('input')!,output=host.querySelector<HTMLOutputElement>('output')!,walk=host.querySelector<HTMLElement>('[data-walk]')!,turn=host.querySelector<HTMLElement>('.lesson-turn')!;
  const cards=[...host.querySelectorAll<HTMLElement>('.lesson-card')]; let models: ReturnType<typeof daylightExperiment>[]=[];
- function render() {cards.forEach((card,i)=>draw(card.querySelector<HTMLCanvasElement>('canvas')!,models[i],progress));turn.textContent=progress===0?t("从正午出发"):progress>=1?t("走完一天，回到正午"):t("已走过 {{v0}} 小时", {v0: (progress*24).toFixed(1)});}
+ function render() {cards.forEach((card,i)=>draw(card.querySelector<HTMLCanvasElement>('canvas')!,models[i],progress));turn.textContent=progress===0?t("从正午出发"):progress>=1?t("走完一天，回到正午"):t("已走过 {{v0}} 小时", {v0: (progress*24).toFixed(1)});
+  host.querySelector<HTMLElement>('[data-selection-summary]')!.textContent=t("{{place}} · {{term}} · 地轴 {{tilt}}° · 从正午走过 {{hours}} 小时",{place:places.find(p=>p.lat===latitude)!.name,term:seasons.find(([,value])=>value===orbit)![0],tilt:tilt.toFixed(2),hours:(progress*24).toFixed(1)});
+ }
  function stop(){playing=false;cancelAnimationFrame(frame);walk.textContent=t("▶ 让城市走一天");}
  function refresh(){
   stop();progress=0;models=[daylightExperiment(latitude,orbit,0),daylightExperiment(latitude,orbit,tilt)];
@@ -112,7 +118,19 @@ export function mountDaylightLesson(host: HTMLElement) {
   else if(Math.abs(m.declination)<.01)reason=t("春分和秋分时，两半球都没有偏向太阳；城市绕行的一圈各有一半在日侧和夜侧。地轴仍然倾斜，只是日地连线换了方向。");
   else if(m.daylight>12)reason=t("此时{{v0}}倾向太阳，城市绕行的圈有更大一段落在亮面中。黄色路更长，正午太阳也更高：照得更久、照得更直，一起带来这里夏季的日照特点。换到另一半球，看看结果会不会相反。", {v0: place});
   else reason=t("此时{{v0}}背向太阳倾斜，城市绕行的圈落在亮面中的部分变短。黄色路更短，正午太阳也更低：照得更短、照得更斜，一起带来这里冬季的日照特点。", {v0: place});
-  host.querySelector<HTMLElement>('[data-reason]')!.textContent=reason+t(" 气温还会受海洋、大气等影响，不会只跟着这个角度立即变化。");render();
+  const childReason=m.daylight===null?t("太阳贴着地平线，普通的昼长算法在这里没有明确答案。")
+    : Math.abs(latitude)===90?(m.daylight>12?t("北极这一天一直亮着。"):t("北极这一天一直黑着。"))
+    : tilt<.1?t("地轴不倾斜，这里的日侧与夜侧各占半圈。")
+    : Math.abs(latitude)<.1?t("赤道附近昼夜差不多长，但正午太阳的高度仍会变。")
+    : Math.abs(m.declination)<.01?t("这时两半球没有谁更朝向太阳，这里的昼夜差不多长。")
+    : m.daylight>12?t("黄色路更长，太阳也照得更高。"):t("黄色路变短，正午太阳更低。");
+  host.querySelector<HTMLElement>('[data-child-reason]')!.textContent=childReason;
+  host.querySelector<HTMLElement>('[data-academic-reason]')!.textContent=reason+t(" 气温还会受海洋、大气等影响，不会只跟着这个角度立即变化。");
+  host.querySelector<HTMLElement>('[data-academic-values]')!.textContent=t("当前 φ = {{latitude}}°，ε = {{tilt}}°，δ = {{declination}}°；右图理想白昼 D = {{daylight}}。",{latitude:latitude.toFixed(2),tilt:tilt.toFixed(2),declination:m.declination.toFixed(2),daylight:hours(m.daylight)});
+  host.querySelector<HTMLElement>('[data-academic-boundary]')!.textContent=m.daylight===null
+    ? t("极点太阳恰在理想地平线上，普通的日出日落时角退化；不填入 12 小时。")
+    : t("φ 是地点纬度，ε 是地轴倾角，λ 是春分起的公转相位，H₀ 为日出日落时角（弧度）。当 cos H₀ 超出 [−1, 1]，改判 24 小时极昼或 0 小时极夜。此式不预测气温。");
+  render();
  }
  select.addEventListener('change',()=>{latitude=Number(select.value);refresh();});
  host.querySelectorAll<HTMLElement>('[data-orbit]').forEach(b=>b.addEventListener('click',()=>{orbit=Number(b.dataset.orbit);refresh();}));
@@ -120,5 +138,9 @@ export function mountDaylightLesson(host: HTMLElement) {
  host.querySelector<HTMLElement>('.lesson-reset')!.addEventListener('click',()=>{latitude=39.9;orbit=.25;tilt=23.44;refresh();});
  function tick(now: number){if(!playing)return; if(!document.hidden)progress=Math.min(1,progress+Math.min((now-lastTime)/1000,.1)/12);lastTime=now;render();if(progress>=1)stop();else frame=requestAnimationFrame(tick);}
  walk.addEventListener('click',()=>{if(playing){stop();return;}if(progress>=1)progress=0;playing=true;lastTime=performance.now();walk.textContent=t("Ⅱ 暂停这一圈");frame=requestAnimationFrame(tick);});
+ host.querySelector<HTMLElement>('[data-continue]')!.addEventListener('click',()=>{
+  stop();const place=places.find(p=>p.lat===latitude)!;
+  onContinue({cityId:place.id,latitude,orbit,tilt,dayProgress:progress});
+ });
  refresh();return {dispose:stop};
 }

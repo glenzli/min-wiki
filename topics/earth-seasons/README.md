@@ -14,7 +14,11 @@
 
 参考：[NASA Earth](https://science.nasa.gov/earth/facts/)；[NOAA 季节成因](https://www.weather.gov/lmk/seasons)。贴图来源沿用本专题原有资源说明。
 
-页面首先提供“倾角与白昼长短”对照实验：同一地点、同一节气，比较 0° 与可调的 0–23.44° 倾角。黄色纬度圈路程与白昼时长、正午太阳高度一起变化，红点用十二秒走完一天；极点明确区分纬度圈退化为点与时间环示意。实验独立于下方三维观察控件。封面 cover-v2.jpg 为本项目生成的说明性插图。
+页面首先提供“倾角与白昼长短”对照实验：同一地点、同一节气，比较 0° 与可调的 0–23.44° 倾角。黄色纬度圈路程与白昼时长、正午太阳高度一起变化，红点用十二秒走完一天；极点明确区分纬度圈退化为点与时间环示意。封面 cover-v2.jpg 为本项目生成的说明性插图。
+
+实验现在可用“放到三维地球上看”把当前参考地点、节气、倾角及从当地正午走过的当日进度交给下方球体。赤道与北极圈在两处共用同一个参考坐标；进入后显示太阳视线近景、位置标记与同条件的城市读数，切回标准看为轨道全景。近景保留太阳照明，但不渲染可能挡住球体的太阳模型。手动换场景、地点或时间后，交接提示收起。儿童版只在对照图旁解释可见变化；完整成因、昼长关系式、当前变量、边界与资料链接在学术版展开。
+
+The comparison can pass its reference location, orbital phase, tilt and progress from local noon to the 3D globe. Both views use the same equator and Arctic Circle reference coordinates. The Earth close-up keeps sunlight and the selected marker; its foreground Sun prop is hidden so it cannot cover the globe. Changing the scene, place or time clears the handoff cue. Children see a short visual explanation; the academic version expands the daylight relation, current variables, boundary cases and source link.
 
 ## Presentation layout
 

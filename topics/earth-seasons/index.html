@@ -33,10 +33,10 @@
         <p class="intro">地球为什么一边是白昼一边是黑夜？<br>又是什么带来了春温夏热、秋凉冬寒？</p>
         <div class="story-divider"></div>
         <div class="academic-only model-readout" aria-label="地日动力学读数">
-          <span>日地运行天体读数 <small>黄赤交角 ε = 23.44°</small></span>
+          <span>日地运行天体读数 <small>地轴倾角 ε = <strong id="model-tilt">23.44°</strong></small></span>
           <div>
             <span>太阳直射纬度 <strong id="model-subsolar">0.0°</strong></span>
-            <span>北京正午高度角 <strong id="model-altitude">50.1°</strong></span>
+            <span><span id="model-altitude-label">北京正午高度角</span><strong id="model-altitude">50.1°</strong></span>
             <span>今日白昼时长 <strong id="model-daylight">12.0 小时</strong></span>
           </div>
         </div>
@@ -71,11 +71,12 @@
           </div>
         </div>
         <p class="route-description" id="route-description"></p>
+        <p class="bridge-context" id="bridge-context" hidden></p>
         <div class="tools-bar">
           <div class="solstice-strip" id="solstice-strip" role="toolbar" aria-label="快速跳转节气">
             <!-- Populated via JS -->
           </div>
-          <div class="city-strip" id="city-strip" role="toolbar" aria-label="观察世界城市">
+          <div class="city-strip" id="city-strip" role="toolbar" aria-label="观察地点">
             <!-- Populated via JS -->
           </div>
         </div>

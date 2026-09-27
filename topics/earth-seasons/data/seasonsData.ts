@@ -105,12 +105,21 @@ export const MAJOR_CITIES = [
   },
   {
     id: 'equator',
-    displayName: t("赤道 (新加坡)"),
-    nameEn: 'Equator (Singapore)',
-    lat: 1.35,
-    lon: 103.8,
-    country: t("赤道地区"),
-    desc: t("全年没有春夏秋冬，终年如夏，全年白昼和黑夜都接近 12 小时。")
+    displayName: t("赤道参考点"),
+    nameEn: 'Equator reference',
+    lat: 0,
+    lon: 0,
+    country: t("几何参考位置"),
+    desc: t("取赤道与本初子午线的交点作几何参考；并非一座城市。理想模型中的白昼全年约 12 小时，不能据此推断当地气温。")
+  },
+  {
+    id: 'arctic_circle',
+    displayName: t("北极圈参考点"),
+    nameEn: 'Arctic Circle reference',
+    lat: 66.56,
+    lon: 0,
+    country: t("几何参考位置"),
+    desc: t("取北极圈与本初子午线的交点；夏至附近的极昼与冬至附近的极夜，是几何模型的边界情况。")
   },
   {
     id: 'north_pole',

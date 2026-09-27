@@ -474,13 +474,16 @@ export class EarthSimulation {
 
   setView(view: string) {
     this.view = view;
+    // In an Earth-facing close view the long teaching lens retreats the camera
+    // past the illustrative Sun. Keep its light, but remove the foreground prop.
+    this.sunGroup.visible = ['seasons', 'notilt'].includes(this.scenario) && view === 'standard';
     this.cameraTransition = true;
     this.updateCameraTarget();
   }
 
   updateCameraTarget() {
     const anchor = this.earthAnchorGroup.position;
-    const closeDistance = ['seasons','notilt'].includes(this.scenario) ? 24 : 4.8;
+    const closeDistance = ['seasons','notilt'].includes(this.scenario) ? 20 : 4.8;
     const sun = this.illumination?.sunWorld ?? {x:0,y:0,z:-1};
     if (this.view === 'north') {
       this._camLookTarget.copy(anchor);

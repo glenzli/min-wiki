@@ -8,7 +8,9 @@ translateDocument(t);
 mountTopicNavigation('earth-seasons');
 
 import { mountDaylightLesson } from './learning/daylightLesson.ts';
+import type { DaylightSelection } from './learning/daylightLesson.ts';
 import { EarthSimulation } from './physics/earthSimulation.ts';
+import { rotationAtLocalNoon, wrapCycle } from './physics/solarGeometry.ts';
 import {
   EARTH_CONSTANTS,
   SOLAR_TERMS,
@@ -25,6 +27,8 @@ interface PageElements {
   'btn-about': HTMLButtonElement;
   'daylight-lesson': HTMLElement;
   'model-subsolar': HTMLElement;
+  'model-tilt': HTMLElement;
+  'model-altitude-label': HTMLElement;
   'model-altitude': HTMLElement;
   'model-daylight': HTMLElement;
   'story': HTMLElement;
@@ -37,6 +41,7 @@ interface PageElements {
   'phase-notice': HTMLElement;
   'phase-fact': HTMLElement;
   'route-description': HTMLElement;
+  'bridge-context': HTMLElement;
   'solstice-strip': HTMLElement;
   'city-strip': HTMLElement;
   'canvas-container': HTMLElement;
@@ -107,7 +112,7 @@ class EarthApp {
       $('scene-error').hidden = false;
     }
 
-    this.daylightLesson = mountDaylightLesson($('daylight-lesson'));
+    this.daylightLesson = mountDaylightLesson($('daylight-lesson'), selection => this.continueFromLesson(selection));
     this.initToolsBar();
     this.bindControls();
     this.buildStages();
@@ -216,6 +221,7 @@ class EarthApp {
 
     // Restart
     $('btn-restart').addEventListener('click', () => {
+      $('bridge-context').hidden = true;
       if (this.simulation) {
         if (['seasons','notilt'].includes(this.scenario)) {
           this.simulation.orbitProgress = 0.0;
@@ -231,6 +237,7 @@ class EarthApp {
     const scrubber = $('progress');
     scrubber.addEventListener('input', () => {
       if (!this.simulation) return;
+      $('bridge-context').hidden = true;
       this.pause();
       const frac = Number(scrubber.value) / 1000;
       if (['seasons','notilt'].includes(this.scenario)) {
@@ -298,6 +305,7 @@ class EarthApp {
   }
 
   selectScenario(sc: string) {
+    $('bridge-context').hidden = true;
     this.scenario = sc;
     document.querySelectorAll<HTMLElement>('[data-scenario]').forEach(b => {
       b.setAttribute('aria-pressed', String(b.dataset.scenario === sc));
@@ -312,6 +320,7 @@ class EarthApp {
   }
 
   selectSolstice(solsticeId: string) {
+    $('bridge-context').hidden = true;
     this.selectedSolstice = solsticeId;
     document.querySelectorAll<HTMLElement>('.solstice-tab').forEach(b => {
       b.classList.toggle('active', b.dataset.solstice === solsticeId);
@@ -327,6 +336,7 @@ class EarthApp {
   }
 
   selectCity(cityId: string) {
+    $('bridge-context').hidden = true;
     this.selectedCity = cityId;
     document.querySelectorAll<HTMLElement>('.city-tab').forEach(b => {
       b.classList.toggle('active', b.dataset.city === cityId);
@@ -340,6 +350,31 @@ class EarthApp {
 
   setView(viewName: string) {
     this.simulation?.setView(viewName === 'default' ? 'standard' : viewName);
+  }
+
+  continueFromLesson(selection: DaylightSelection) {
+    if (!this.simulation) return;
+    const {cityId, orbit, tilt, dayProgress} = selection;
+    const city = MAJOR_CITIES.find(item => item.id === cityId);
+    const term = SOLAR_TERMS.find(item => item.fractionOfYear === orbit);
+    if (!city || !term) return;
+    this.selectScenario(tilt < .005 ? 'notilt' : 'seasons');
+    this.simulation.currentTiltDeg = tilt;
+    this.simulation.targetTiltDeg = tilt;
+    this.selectCity(cityId);
+    this.selectSolstice(term.id);
+    this.simulation.rotationProgress = wrapCycle(rotationAtLocalNoon(orbit, tilt, city.lon) + dayProgress);
+    this.setView('sun');
+    document.querySelectorAll<HTMLElement>('[data-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === 'sun')));
+    const context = $('bridge-context');
+    context.textContent = t('延续上方实验：{{place}} · {{term}} · 地轴 {{tilt}}° · 从当地正午走过 {{hours}} 小时。红点和城市读数使用这一组条件；标准看可回到轨道全景。', {
+      place: city.displayName, term: term.displayName, tilt: tilt.toFixed(2), hours: (dayProgress * 24).toFixed(1)
+    });
+    context.hidden = false;
+    this.phaseKey = '';
+    this.updateUI();
+    const target = matchMedia('(max-width: 760px)').matches ? '#canvas-container' : '.experience';
+    document.querySelector(target)?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
   }
 
   pause() {
@@ -356,6 +391,7 @@ class EarthApp {
         button.setAttribute('aria-label', t("第{{v0}}步：{{v1}}", {v0: i + 1, v1: phase.label}));
         button.addEventListener('click', () => {
           if (this.simulation) {
+            $('bridge-context').hidden = true;
             this.pause();
             const key = ['seasons','notilt'].includes(this.scenario) ? 'orbitProgress' : 'rotationProgress';
             this.cancelStageMotion = animateValue({ from: this.simulation[key], to: phase.at, duration: 1000,
@@ -379,6 +415,7 @@ class EarthApp {
 
   togglePlay() {
     if (!this.simulation) return;
+    $('bridge-context').hidden = true;
     this.simulation.isPlaying = !this.simulation.isPlaying;
     this.syncPlayButton();
   }
@@ -462,12 +499,15 @@ class EarthApp {
     if (this.mode === 'academic') {
       const tilt = this.simulation.currentTiltDeg;
       const subsolarLat = calcSubsolarLatitude(this.simulation.orbitProgress, tilt);
-      const bjAltitude = calcNoonSolarAltitude(39.9, subsolarLat);
-      const bjDaylight = calcDaylightHours(39.9, subsolarLat);
+      const city = MAJOR_CITIES.find(item => item.id === this.selectedCity)!;
+      const cityAltitude = calcNoonSolarAltitude(city.lat, subsolarLat);
+      const cityDaylight = calcDaylightHours(city.lat, subsolarLat);
 
       $('model-subsolar').textContent = `${subsolarLat >= 0 ? '+' : ''}${subsolarLat.toFixed(1)}°`;
-      $('model-altitude').textContent = `${bjAltitude.toFixed(1)}°`;
-      $('model-daylight').textContent = bjDaylight === null ? t("地平线附近") : t("{{v0}} 小时", {v0: bjDaylight.toFixed(1)});
+      $('model-tilt').textContent = `${tilt.toFixed(2)}°`;
+      $('model-altitude-label').textContent = t('{{v0}}正午高度角', {v0: city.displayName});
+      $('model-altitude').textContent = `${cityAltitude.toFixed(1)}°`;
+      $('model-daylight').textContent = cityDaylight === null ? t("地平线附近") : t("{{v0}} 小时", {v0: cityDaylight.toFixed(1)});
     }
   }
 
@@ -506,4 +546,7 @@ class EarthApp {
 new EarthApp();
 
 mountPresentationFrame({ root: '#daylight-lesson', visual: '.lesson-comparison', paired: true, transport: '.lesson-action' });
-mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });
+const earthFrame = mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });
+// The readout belongs next to the globe; overlaid on the canvas it can hide
+// Earth at one side of the orbit during solstices.
+earthFrame?.notes.prepend($('city-card'));

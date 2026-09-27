@@ -3,7 +3,7 @@
   font-synthesis: none;
   --muted: #82909e;
   --line: #ffffff12;
-  --mint: #bce2d2;
+  --mint: #d6dee2;
   --gold: #e9b76c;
   --cyan: #38efef;
   --orange: #f97316;
@@ -437,7 +437,7 @@ button:disabled {
 }
 
 .route-dot.daynight-dot { background: #38bdf8; box-shadow: 0 0 6px #38bdf8; }
-.route-dot.seasons-dot { background: #22c55e; box-shadow: 0 0 6px #22c55e; }
+.route-dot.seasons-dot { background: #d4dce0; box-shadow: 0 0 6px #d4dce0; }
 .route-dot.angle-dot { background: #f59e0b; box-shadow: 0 0 6px #f59e0b; }
 .route-dot.notilt-dot { background: #a855f7; box-shadow: 0 0 6px #a855f7; }
 
@@ -447,6 +447,8 @@ button:disabled {
   margin: 0;
   min-height: 20px;
 }
+.bridge-context { margin:0; padding:9px 12px; border-left:2px solid var(--gold); background:rgba(233,183,108,.07); color:var(--ink); font-size:12px; line-height:1.6; }
+.model-readout small strong { color:var(--ink); font-variant-numeric:tabular-nums; }
 
 /* Quick Tools Bar (Solstices & Cities) */
 .tools-bar {
@@ -898,7 +900,10 @@ body[data-mode="kids"] .academic-only {
 
 /* Desktop presentation: retain topic geometry inside the selected scene. */
 @media(min-width:1000px){
-html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex:1; min-height:120px; height:0; } & .presentation-frame .theater { padding:0; gap:8px; } .presentation-frame .scenario-bar,.presentation-frame .tools-bar { padding:6px 10px; margin:0; } .presentation-frame .presentation-notes .story-panel { padding:0; } .presentation-frame .story-panel h1 { font-size:24px; margin:6px 0; } .presentation-frame .lesson-card { padding:8px; } .presentation-frame .lesson-card canvas { object-fit:contain; } .presentation-frame .lesson-controls { display:block; } .presentation-frame .lesson-control { margin-bottom:12px; }}
+html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex:1; min-height:260px; height:0; } & .presentation-frame .theater { padding:0; gap:8px; } .presentation-frame .scenario-bar,.presentation-frame .tools-bar { padding:6px 10px; margin:0; } .presentation-frame .presentation-notes .story-panel { padding:0; } .presentation-frame .story-panel h1 { font-size:24px; margin:6px 0; } .presentation-frame .lesson-card { padding:8px; } .presentation-frame .lesson-card canvas { object-fit:contain; } .presentation-frame .lesson-controls { display:block; } .presentation-frame .lesson-control { margin-bottom:12px; }}
+ html.presentation-page[data-topic-ui] .experience.presentation-frame { height:clamp(780px,calc(100dvh - 32px),960px); }
+ .experience.presentation-frame .playback-panel { gap:5px; padding:2px 4px; }
 }
 
 .presentation-frame .space-scene>canvas{width:100%!important;height:100%!important}
+.experience.presentation-frame .presentation-notes .city-card { position:static; left:auto; bottom:auto; width:100%; max-width:none; box-shadow:none; margin:0 0 12px; }

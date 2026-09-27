@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import {solarGeometry, surfaceNormal, cityIllumination} from '../physics/solarGeometry.ts';
-import {calcDaylightHours} from '../data/seasonsData.ts';
+import {solarGeometry, surfaceNormal, cityIllumination, rotationAtLocalNoon, wrapCycle} from '../physics/solarGeometry.ts';
+import {calcDaylightHours, calcNoonSolarAltitude, MAJOR_CITIES} from '../data/seasonsData.ts';
+import {daylightExperiment, lightAtDayProgress} from '../learning/daylightModel.ts';
 const near=(a,b)=>assert.ok(Math.abs(a-b)<1e-10,`${a} != ${b}`);
 test('render transforms and local city light agree through a full orbit and rotation',()=>{
   for (const orbit of [0,.13,.25,.5,.75,.98]) for(const spin of [0,.2,.5,.8]) {
@@ -28,5 +29,19 @@ test('zero tilt and equinox distinguish polar horizon from ordinary twelve-hour 
   assert.equal(calcDaylightHours(39.9,0),12);
   for(const phase of [0,.25,.5,.75]) {
     assert.equal(cityIllumination(90,0,solarGeometry(phase,.3,0).sunLocal).state,'horizon');
+  }
+});
+test('a chosen place and day progress carry the same illumination into the globe',()=>{
+  for(const city of MAJOR_CITIES) for(const orbit of [0,.25,.5,.75]) for(const tilt of [0,12,23.44]) {
+    const noon=rotationAtLocalNoon(orbit,tilt,city.lon);
+    const model=daylightExperiment(city.lat,orbit,tilt);
+    for(const progress of [0,.125,.25,.5,.75,.875]) {
+      const light=solarGeometry(orbit,wrapCycle(noon+progress),tilt);
+      const globe=cityIllumination(city.lat,city.lon,light.sunLocal);
+      const flat=lightAtDayProgress(model,progress);
+      assert.ok(Math.abs(globe.altitude-flat.altitude)<1e-8,`${city.id}: ${globe.altitude} != ${flat.altitude}`);
+      assert.equal(globe.state,flat.state);
+    }
+    near(cityIllumination(city.lat,city.lon,solarGeometry(orbit,noon,tilt).sunLocal).altitude,calcNoonSolarAltitude(city.lat,model.declination));
   }
 });

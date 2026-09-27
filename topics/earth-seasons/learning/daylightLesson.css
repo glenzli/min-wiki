@@ -40,6 +40,19 @@
 .lesson-read-key span:nth-child(2) i { background:#4e72a5; }
 .lesson-read-key span:nth-child(3) i { background:#ef7c69; }
 .lesson-limit { color:var(--muted); font-size:11px; line-height:1.7; margin:12px 0 0; }
+.lesson-kids-limit { color:var(--muted); font-size:12px; line-height:1.6; margin:12px 0 0; }
+.lesson-continuation { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-top:16px; padding:15px 18px; border:1px solid var(--line); border-radius:12px; background:var(--surface,#171e27); }
+.lesson-continuation strong { display:block; font-size:15px; font-weight:600; }
+.lesson-continuation p { margin:4px 0 0; color:var(--muted); font-size:12px; line-height:1.5; font-variant-numeric:tabular-nums; }
+.lesson-continuation button { flex:none; padding:10px 15px; border-radius:8px; border:1px solid #e9b76c; background:#e9b76c; color:#101924; font-weight:650; }
+.lesson-academic { display:none; margin-top:16px; padding:17px 20px; border:1px solid var(--line); border-radius:12px; background:var(--surface,#171e27); }
+.lesson-academic strong { font-size:15px; }
+.lesson-academic p { margin:8px 0; color:var(--muted); font-size:13px; line-height:1.7; }
+.lesson-academic .lesson-formula { color:var(--ink); font:17px/1.8 Georgia,'Times New Roman',serif; overflow-wrap:anywhere; }
+.lesson-academic a { display:inline-block; margin-top:3px; color:var(--accent); font-size:12px; }
+body[data-mode="academic"] .lesson-academic { display:block; }
+body[data-mode="academic"] .lesson-kids-limit { display:none; }
+body:not([data-mode="academic"]) .lesson-limit { display:none; }
 @media(max-width:680px) {
  .lesson-comparison { grid-template-columns:minmax(0,1fr); }
  .lesson-heading { gap:12px; flex-direction:column; }
@@ -48,6 +61,8 @@
  .lesson-action { gap:15px; }
  .lesson-tilt input { width:140px; }
  .lesson-controls { gap:12px; }
+ .lesson-continuation { align-items:stretch; flex-direction:column; gap:12px; }
+ .lesson-continuation button { align-self:flex-start; }
 }
 
 @media(max-width:680px){.lesson-control{max-width:100%;align-items:flex-start}.lesson-control>span{flex-shrink:0;padding-top:8px}.lesson-figures,.lesson-play{flex-wrap:wrap}.lesson-card header small{white-space:nowrap}}

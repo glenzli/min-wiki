@@ -7,7 +7,6 @@ import { CONTENT } from './content.ts';
 import { SCIENCE } from './science.ts';
 import { PHASES } from './phases.ts';
 import { TopicScene } from './scene.ts';
-import { readout } from './model.ts';
 import './style.css';
 translateDocument(t);
 mountTopicNavigation("earth-moon");
@@ -27,31 +26,37 @@ function seekStage(target: number) {
   cancelStageMotion = animateValue({ from: progress, to: target, duration: 1100,
     onUpdate: value => { progress = value; update(); } });
 }
-const positions = [0, 0.25, 0.5, 0.75];
-const labels: Record<string, string> = { favorable: t('较有利'), unfavorable: t('不利于组织'), storm: t('雷暴中的旋转'), tornado: t('触地旋转气柱'), weak: t('较弱的气流') };
+const positions = PHASES.map((_, index) => index / PHASES.length);
 function update() {
   const settings = { guides: checked('guides') };
-  const result = readout(progress, settings), stage = result.stage;
-  const science = SCIENCE[stage], limited = result.limited && progress > .45;
-  el('scene-title').textContent = el('story-title').textContent = result.limited && progress > .45 ? t('条件改变，结果也不同') : CONTENT.steps[stage];
+  const stage = Math.min(3, Math.floor(progress * 4));
+  const science = SCIENCE[stage];
+  const currentPhase = PHASES[phaseIndex(progress)];
+  document.body.dataset.mode = academic ? 'academic' : 'kids';
+  el('scene-title').textContent = currentPhase.title;
   el('scene-note').textContent = CONTENT.sceneNote;
-  el('story').textContent = academic ? science.body + (limited ? ' ' + CONTENT.blockedAcademic : '') : limited ? CONTENT.blocked : CONTENT.stories[stage];
-  el('metric').textContent = labels[result.value] ?? result.value;
+  el('story').textContent = science.body;
+  el('academic-brief-title').textContent = science.title;
+  el('academic-brief-formula').textContent = science.formula;
+  el('child-story').textContent = value('view') === 'scale'
+    ? t('按同一长度比例摆放后，月球小得多，地月之间也很空。这个排列不表示此刻的月相。')
+    : currentPhase.story;
+  el('metric').textContent = `${Math.round(litFraction(progress) * 100)}%`;
   el('metric-label').textContent = CONTENT.metricLabel;
-  el('prompt').textContent = CONTENT.prompt;
+  el('prompt').textContent = value('view') === 'scale'
+    ? t('数一数，两颗球的中心之间大约能排下多少个地球？')
+    : CONTENT.prompt;
   el('explanation').textContent = CONTENT.explanation;
   el('limits').textContent = CONTENT.limits;
   el('play').textContent = reducedMotion.matches ? t('下一月相') : playing ? t('暂停') : progress >= 1 ? t('重新播放') : t('开始观察');
   (el('progress') as HTMLInputElement).value = String(Math.round(progress * 1000));
   el('progress').setAttribute('aria-valuetext', PHASES[phaseIndex(progress)].title);
   el('elapsed').textContent = `${(progress * 28).toFixed(1)} / 28 s`;
-  el('steps').querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String(Math.abs(progress - positions[i]) < .015 || (i === 0 && progress > .985))));
+  el('steps').querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String(i === phaseIndex(progress))));
   document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.mode === 'academic') === academic)));
   
   
-  const currentPhase = PHASES[phaseIndex(progress)];
-  el('scene-title').textContent = el('story-title').textContent = currentPhase.title;
-  if (!academic) el('story').textContent = currentPhase.story;
+  el('story-title').textContent = science.title;
   el('elapsed').textContent = t('{{days}} / 29.5 天', { days: (progress * SYNODIC_DAYS).toFixed(1) });
   if (value('view') === 'scale') { el('scene-title').textContent = t('真实大小与距离'); el('metric').textContent = '384,400 km'; el('metric-label').textContent = t('地月平均中心距离'); el('scene-note').textContent = t('真实比例排列，用来比较大小与距离，不代表当前月相的位置。'); }
   if (value('view') === 'earth') el('scene-note').textContent = t('以地心方向为近似，月球北方朝上；月盘已放大，暗面微光为辨认轮廓而增强。');
@@ -62,7 +67,6 @@ function update() {
   el('science-terms').textContent = science.terms;
   el('science-caution').textContent = science.caution;
   el('observe').textContent = science.watch;
-  if (academic) el('story-title').textContent = science.title;
   scene?.draw(progress, settings, value('view')); 
 }
 function stop() { playing = false; cancelAnimationFrame(frame); frame = 0; }
@@ -90,7 +94,7 @@ el('reset').addEventListener('click', () => { stop(); progress = 0; update(); })
 el('progress').addEventListener('input', () => { stop(); progress = number('progress') / 1000; update(); });
 for (const id of ["view", "guides"]) el(id).addEventListener('input', update);
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });
-el('steps').replaceChildren(...CONTENT.steps.map((label, i) => { const b = document.createElement('button'); b.textContent = label; b.addEventListener('click', () => { stop(); seekStage(positions[i]); }); return b; }));
+el('steps').replaceChildren(...PHASES.map((phase, i) => { const b = document.createElement('button'); b.textContent = phase.title; b.addEventListener('click', () => { stop(); seekStage(i === 0 && progress > .875 ? 1 : positions[i]); }); return b; }));
 document.addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !(e.target as HTMLElement)?.closest('button,input,select,a,textarea,[contenteditable]')) { e.preventDefault(); toggle(); } });
 document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0; } else if (playing && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });
 window.addEventListener('pagehide', e => { cancelAnimationFrame(frame); frame = 0; if (!e.persisted) { stop(); reducedMotion.removeEventListener('change', onMotionPreference); scene?.dispose(); } });

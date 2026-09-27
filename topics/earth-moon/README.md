@@ -2,6 +2,10 @@
 
 月亮为什么有圆有缺？绕着地球走一圈，同时看太空中的月球和地面上看到的月相。
 
+八个可选月相沿同一条进度线定位；主图、地球视角月盘、受光比例和金色近侧标记保持同步。儿童版把当前月相的一两句话放在图旁；学术版在图旁给出当前机制和关系式，完整条件、读数与误区在图下展开。真实大小与距离是独立的尺度对照，不把排列误读为当前月相。
+
+Eight phase stops share one progress line, keeping the space view, Earth-facing disk, lit fraction and near-side marker in sync. The child view keeps the phase explanation next to the scene; the academic view places a compact mechanism cue beside it and expands conditions, live values and caveats below. The true-scale comparison is a separate scale study, not the current phase configuration.
+
 轨道和月相按几何关系演示，不是实时星历。地月大小与距离默认分开缩放；真实比例视图单独比较。月球天平动、椭圆轨道和日月食未模拟；表面贴图与云层为静态。
 
 Orbit and phase follow illustrative geometry, not a live ephemeris. Body sizes and distances are scaled separately by default; the true-scale view is separate. Libration, eccentricity and eclipses are omitted. Surface maps and clouds are static.
