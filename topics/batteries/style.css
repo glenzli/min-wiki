@@ -16,3 +16,15 @@
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] { .presentation-notes .control-layout,.presentation-notes .family-detail { display:block; } .presentation-notes .controls { display:block!important; } .presentation-notes .family-cards { display:grid; grid-template-columns:1fr 1fr; } .presentation-frame .specimen svg { min-height:0; max-height:none; } .chapter-nav { margin:8px 0; }}
 }
+
+.lab-lenses{display:flex;gap:8px;padding:8px 12px}.lab-lenses button{flex:1}.lab-lenses button[aria-pressed=true]{background:var(--ink);color:var(--page);border-color:var(--ink)}
+html[data-reading-mode="kids"] #lab .specimen-pair{grid-template-columns:minmax(0,1fr)}
+html[data-reading-mode="kids"] #lab[data-lens="circuit"] .cell-specimen,
+html[data-reading-mode="kids"] #lab[data-lens="cell"] .circuit-specimen,
+html[data-reading-mode="academic"] #lab .presentation-choices{display:none}
+@media(min-width:1000px){
+ html.presentation-page[data-topic-ui] #lab.presentation-frame{height:max(620px,calc(100dvh - var(--observation-top,180px)))}
+ html.presentation-page[data-topic-ui] #lab .presentation-pair{min-height:0}
+ html.presentation-page[data-topic-ui] #lab .specimen .scene-toolbar{min-height:50px;padding:7px 14px}
+ html.presentation-page[data-topic-ui] #lab .specimen figcaption{min-height:0;padding:8px 14px}
+}

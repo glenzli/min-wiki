@@ -496,7 +496,17 @@ class SolarApp {
 // Bootstrap
 new SolarApp();
 
-const solarFrame = mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });
+const theater = document.querySelector<HTMLElement>('.theater')!;
+const solarChoices = document.createElement('div');
+solarChoices.className = 'solar-choices';
+solarChoices.append(theater.querySelector('.scenario-bar')!, theater.querySelector('.planet-strip')!);
+theater.prepend(solarChoices);
+const solarVisual = document.createElement('div');
+solarVisual.className = 'solar-visual';
+const explorer = theater.querySelector('#explorer')!;
+explorer.before(solarVisual);
+solarVisual.append(explorer, theater.querySelector('#canvas-container')!);
+const solarFrame = mountPresentationFrame({ root: '.experience', visual: '.solar-visual', transport: '.transport', choices: '.solar-choices' });
 if (solarFrame) {
   const explorerNotes = document.createElement('div'); explorerNotes.className = 'explorer-external-notes';
   for (const node of document.querySelectorAll('.explorer-heading,.explorer-views,.explorer-site,.explorer-notes,.explorer-moons,.explorer-model')) explorerNotes.append(node);

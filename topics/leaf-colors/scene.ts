@@ -98,7 +98,10 @@ export class LeafScene {
     this.canvas.width = Math.round(this.width * dpr);
     this.canvas.height = Math.round(this.height * dpr);
     this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    this.scale = Math.min((this.width - 24) / 470, (this.height - 175) / 470);
+    // The title and hint sit at the sides of the compact presentation stage.
+    // Reserve a proportionate margin so the same blade stays legible there.
+    const verticalReserve = Math.min(175, Math.max(95, this.height * .24));
+    this.scale = Math.min((this.width - 24) / 470, Math.max(1, this.height - verticalReserve) / 470);
     this.render();
   }
   private destination() {
@@ -114,10 +117,11 @@ export class LeafScene {
     const destination = this.destination(), originalCamera = scaleCamera(this.position, destination), life = leafLifeAt(this.age);
     const tracked = leafPoint(originalCamera.x, originalCamera.y, this.age), follow = smooth(0, 1, this.position);
     const camera = { ...originalCamera, x: originalCamera.x * (1 - follow) + tracked.x * follow, y: originalCamera.y * (1 - follow) + tracked.y * follow, angle: originalCamera.angle + life.rotation * follow, magnification: originalCamera.magnification / (1 - follow + life.size * follow) };
+    const sceneScale = this.scale * camera.magnification * (1 + .38 * smooth(.75, 2, this.position));
     const entries: ScaleEntry[] = [...SCALE_ENTRIES, destination];
     const section = leafSectionAt(this.position), patch = entries[0];
     this.labels = [];
-    c.save(); c.translate(this.width / 2, this.height * .54); c.scale(this.scale * camera.magnification, this.scale * camera.magnification); c.rotate(-camera.angle); c.translate(-camera.x, -camera.y);
+    c.save(); c.translate(this.width / 2, this.height * .54); c.scale(sceneScale, sceneScale); c.rotate(-camera.angle); c.translate(-camera.x, -camera.y);
     if (this.position < 1.1) {
       c.save(); c.globalAlpha *= 1 - smooth(.25, 1.1, this.position);
       const bark = c.createLinearGradient(0, 222, 0, 276); bark.addColorStop(0, '#ae9270'); bark.addColorStop(.4, '#81684d'); bark.addColorStop(1, '#524d39');
@@ -204,8 +208,8 @@ export class LeafScene {
     for (let i = 0; i <= depth; i++) { x += entries[i].x * size; y += entries[i].y * size; size *= entries[i].size; }
     if(onSurface)y-=110*entries[0].size;
     const sample = leafPoint(x, y, this.age);
-    this.hotspot.style.left = `${this.width / 2 + ((sample.x-camera.x)*Math.cos(camera.angle)+(sample.y-camera.y)*Math.sin(camera.angle))*this.scale*camera.magnification}px`;
-    this.hotspot.style.top = `${this.height*.54 + (-(sample.x-camera.x)*Math.sin(camera.angle)+(sample.y-camera.y)*Math.cos(camera.angle))*this.scale*camera.magnification}px`;
+    this.hotspot.style.left = `${this.width / 2 + ((sample.x-camera.x)*Math.cos(camera.angle)+(sample.y-camera.y)*Math.sin(camera.angle))*sceneScale}px`;
+    this.hotspot.style.top = `${this.height*.54 + (-(sample.x-camera.x)*Math.sin(camera.angle)+(sample.y-camera.y)*Math.cos(camera.angle))*sceneScale}px`;
     this.hotspot.hidden = life.growth < .9 || life.fall > 0 || this.position > 2.15 || (!onSurface && Math.abs(this.position - Math.round(this.position)) > .12);
     this.canvas.dataset.scale = this.position.toFixed(4);
     this.canvas.dataset.camera = `${camera.x.toFixed(6)},${camera.y.toFixed(6)},${camera.magnification.toFixed(6)}`;
@@ -338,6 +342,19 @@ export class LeafScene {
     c.lineWidth=5.5;c.strokeStyle=rgb(mix(color,[101,98,48],.55));c.stroke();
     c.beginPath();c.moveTo(-4,165);c.bezierCurveTo(-3,196,-2,224,-19,244);
     c.lineWidth=1.4;c.strokeStyle=rgb(mix(color,[225,220,140],.7));c.stroke();
+    const life = leafLifeAt(this.age), recovery = life.recovery * (1 - life.separation);
+    if (recovery > .02 && this.position < .2) {
+      // A few route markers follow the same midrib towards the fixed petiole.
+      // They indicate partial nutrient remobilisation, not individual molecules.
+      c.save();c.globalAlpha *= recovery;
+      for(let i=0;i<4;i++){
+        const progress=(this.time*.17+i/4)%1, y=-125+progress*355;
+        c.beginPath();c.moveTo(-5,y-7);c.lineTo(0,y);c.lineTo(5,y-7);
+        c.strokeStyle='#f7dc87';c.lineWidth=2.8;c.lineCap='round';c.stroke();
+      }
+      c.restore();
+      this.label(t('部分养分回到枝条'), -166, -36, [0, 92], 140);
+    }
     c.lineWidth = .8; c.strokeStyle = rgb(mix(color,[57,77,30],.5),.55); c.stroke(shape);
     c.save();c.clip(shape);c.lineWidth=2.4;c.strokeStyle=rgb(mix(color,[227,223,132],.6),.32);c.stroke(shape);c.restore();
     c.restore();

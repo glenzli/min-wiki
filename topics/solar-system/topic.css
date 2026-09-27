@@ -925,3 +925,16 @@ html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex
 html.presentation-page[data-topic-ui] .presentation-frame:has(#explorer[hidden]) .explorer-external-notes{display:none}
 
 .presentation-frame .space-scene>canvas{width:100%!important;height:100%!important}
+
+@media(min-width:1000px){
+  html.presentation-page[data-topic-ui] .presentation-frame .solar-choices{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:14px;padding:7px 12px!important}
+  html.presentation-page[data-topic-ui] .presentation-frame .solar-choices .scenario-bar{padding:0;gap:10px;white-space:nowrap}
+  html.presentation-page[data-topic-ui] .presentation-frame .solar-choices .planet-strip{min-width:0;padding:0;align-self:center}
+  html.presentation-page[data-topic-ui] .presentation-frame .solar-visual{display:flex;flex:1;min-height:0;height:0}
+  html.presentation-page[data-topic-ui] .presentation-frame .solar-visual>.space-scene,
+  html.presentation-page[data-topic-ui] .presentation-frame .solar-visual>.planet-explorer{flex:1;min-height:0;height:100%;border-radius:0}
+  html.presentation-page[data-topic-ui] .presentation-frame .solar-visual>[hidden]{display:none}
+  html.presentation-page[data-topic-ui] .presentation-frame .presentation-notes .playback-panel{display:block;padding:0}
+  html.presentation-page[data-topic-ui] .presentation-frame .presentation-notes .stage-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+  html.presentation-page[data-topic-ui] .presentation-frame .presentation-notes .stage-buttons button{min-width:0;white-space:normal;text-align:left}
+}

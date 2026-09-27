@@ -14,7 +14,7 @@ const setText=(id:string,value:string)=>{const el=byId(id);if(el.textContent!==v
 const txt=(b:{zh:string;en:string})=>language==='en'?b.en:b.zh;
 translateDocument(t);createBatteryScene();
 const experiment=new BatteryExperiment();
-let chapter:Chapter=readChapter(location.search),playing=false,view=0,familyIndex=0,cut=0,packZoom=1,layer='wiring',series=4,parallel=3;
+let chapter:Chapter=readChapter(location.search),playing=false,view=0,familyIndex=0,cut=0,packZoom=1,layer='wiring',series=4,parallel=3,lens: 'circuit'|'cell'=chapter==='inside'?'cell':'circuit';
 if(chapter==='charge')experiment.configure({mode:'charge'});
 let cancelPlay=()=>{},cancelCamera=()=>{},cameraView=0,zoom=false;
 const range=byId<HTMLInputElement>('progress');
@@ -22,7 +22,8 @@ const chapterButtons=content.chapters.map(item=>{const b=document.createElement(
 function stop(){cancelPlay();playing=false;}
 function camera(target:number){cancelCamera();view=target;cancelCamera=animateValue({from:cameraView,to:target,duration:650,onUpdate:v=>{cameraView=v;byId('detail-scene').setAttribute('viewBox',`0 ${v*510} 600 480`);}});}
 function selectChapter(next:Chapter,push=false){
- stop();const wasCharge=chapter==='charge';chapter=next;
+ stop();const wasCharge=chapter==='charge',changed=chapter!==next;chapter=next;
+ if(changed)lens=next==='inside'?'cell':'circuit';
  if(wasCharge!==(chapter==='charge'))experiment.configure({mode:chapter==='charge'?'charge':'discharge',closed:false,charger:'none'});
  if(chapter==='inside'||chapter==='charge')camera(0);
  if(push){const url=new URL(location.href);url.searchParams.set('chapter',chapter);history.pushState(null,'',url);}
@@ -35,6 +36,8 @@ function render(){
  byId('chapter-number').textContent=`${String(chapters.indexOf(chapter)+1).padStart(2,'0')} / 06`;
  byId('chapter-question').textContent=txt(item.question);byId('chapter-body').textContent=txt(item.body);
  chapterButtons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.chapter===chapter)));
+ byId('lab').dataset.lens=lens;
+ document.querySelectorAll<HTMLButtonElement>('[data-lab-lens]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.labLens===lens)));
  byId('lab').hidden=chapter==='family'||chapter==='pack';byId('family').hidden=chapter!=='family';byId('pack').hidden=chapter!=='pack';
  byId('load-controls').hidden=charging;byId('charge-controls').hidden=!charging;byId('switch-controls').hidden=charging;
  byId('lab-kicker').textContent=charging?t('充电实验'):t('放电实验');byId('lab-title').textContent=charging?t('外部做功，重新储能'):t('一条完整的路，才能持续供电');
@@ -64,6 +67,7 @@ byId('reset').onclick=()=>{stop();experiment.reset();render();};
 document.querySelectorAll<HTMLButtonElement>('[data-load]').forEach(b=>b.onclick=()=>{stop();experiment.configure({load:b.dataset.load as Load});render();});
 byId<HTMLSelectElement>('charger').onchange=e=>{stop();experiment.configure({charger:(e.target as HTMLSelectElement).value as Charger});render();};
 document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(b=>b.onclick=()=>{camera(Number(b.dataset.view));render();});
+document.querySelectorAll<HTMLButtonElement>('[data-lab-lens]').forEach(b=>b.onclick=()=>{lens=b.dataset.labLens as 'circuit'|'cell';render();});
 byId('circuit-zoom').onclick=()=>{zoom=!zoom;byId('circuit-zoom').setAttribute('aria-pressed',String(zoom));byId('circuit-scene').setAttribute('viewBox',zoom?'170 55 410 284.7':'0 0 720 500');};
 const familyButtons=content.families.map((f,i)=>{const b=document.createElement('button');b.type='button';b.innerHTML=specimen(f.id,0,f.id);const name=document.createElement('span');name.textContent=txt(f.name);b.append(name);b.onclick=()=>{familyIndex=i;drawFamily();};byId('family-cards').append(b);return b;});
 function drawFamily(){const f=content.families[familyIndex]!;familyButtons.forEach((b,i)=>b.setAttribute('aria-pressed',String(i===familyIndex)));
@@ -84,6 +88,6 @@ window.addEventListener('popstate',()=>selectChapter(readChapter(location.search
 selectChapter(chapter);drawFamily();drawPack();mountReadingMode('.advanced');mountTopicNavigation('batteries');
 
 foldPresentationContext('.journey-intro');
-mountPresentationFrame({ root: '#lab', visual: '.specimen-pair', paired: true, transport: '.play-controls' });
+mountPresentationFrame({ root: '#lab', visual: '.specimen-pair', paired: true, transport: '.play-controls', choices: '#lab-lenses' });
 mountPresentationFrame({ root: '#family', visual: '#family-art' });
 mountPresentationFrame({ root: '#pack', visual: '.specimen-pair', paired: true });

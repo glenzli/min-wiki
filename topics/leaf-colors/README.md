@@ -1,5 +1,9 @@
 # 一片叶子的一生 / The life of a leaf
 
+## Main-scene pass · 2026-09-28
+
+The fitted desktop stage now reserves proportional space for corner labels, leaving more of its height for the same blade and its nested cell. A continuous extra zoom into tissue and cell views keeps the fixed sample point, hotspot and pigment compartments aligned. At 390 px the scene precedes the scale slider so the leaf appears earlier. During senescence, a few amber chevrons along the same midrib indicate partial nutrient remobilisation towards the petiole; they fade as the connection separates. Their speed and count are explanatory symbols, not tracked molecules or measured transport rates. The branch scar and earlier lifecycle conditions remain unchanged. Desktop leaf, cell and chloroplast endpoints and the mobile starting view were checked in the browser; other lifecycle and colour branches still need a full visual pass.
+
 ## Cell illustration refinement · 2026-09-21
 
 The cutaway uses a restrained botanical palette: thin wall/envelope lines, a pale liquid compartment distinct from the cytoplasm, and a softly outlined nucleus with clipped chromatin. Peripheral chloroplast sizes and orientations vary deterministically along the existing cell contour; the selected chloroplast retains its camera anchor. Miniature and enlarged chloroplasts share the same flat membrane-stack drawing, with static miniature detail cached by pigment/season state. No new 3D layer, biological process or camera stop is introduced. Vacuole fill, tint particles and membrane still consume the same cached path.

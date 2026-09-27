@@ -300,14 +300,14 @@ export function getTrueScaleLineupRadius(relativeEarthDiameter: number) {
 // 4. 真实大小排队时的水平排列 X 坐标（按从水星到海王星的顺序排布基准线，接受 1-8 索引）
 export function getLineupPositionX(planetIndex: number) {
   const offsets = [
-    -54, // 水星
-    -46, // 金星
-    -37, // 地球
-    -28, // 火星
-    -10, // 木星 (巨大，需要开阔空间)
-     14, // 土星 (带光环，需要空间)
-     36, // 天王星
-     48  // 海王星
+    -45, // 水星
+    -17, // 金星
+     11, // 地球
+     39, // 火星
+     75, // 木星 (巨大，需要开阔空间)
+    108, // 土星 (带光环，需要空间)
+    136, // 天王星
+    163  // 海王星
   ];
   return offsets[planetIndex - 1] ?? 0;
 }

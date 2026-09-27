@@ -1,4 +1,7 @@
 {
+  "选择观察位置": "Choose an observation view",
+  "看完整回路": "View the complete circuit",
+  "走进电芯": "Inside the cell",
   "初始示例已充足；先到负载章节用掉一些能量。": "The starting battery is full. Use some energy in the load chapter first.",
   "电池怎样让玩具动起来？": "How does a battery make a toy move?",
   "电池放进玩具，轮子就一定会转吗？先找开关里的小缺口，再走进电池和马达的放大图，看看能量怎样接力。": "Will a toy move just because a battery is inside? Find the gap at the switch, then explore enlarged battery and motor views to follow the energy.",

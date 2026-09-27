@@ -31,3 +31,19 @@
 @media(max-width:740px){.zoom-tabs button{flex:1 1 27%}.scene-top{background:none;backdrop-filter:none}.scene-top h2{font-size:16px}}
 
 @media(max-width:740px){.inspector{order:3}.season-controls{order:4}}
+
+/* Keep the specimen clear of the title and caption in the fitted stage. */
+@media(min-width:1000px){
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-top,
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-bottom{padding:0;background:none;backdrop-filter:none}
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-top>div,
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-top>.season-badge,
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-bottom>span,
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-bottom>button{background:#f6f8ebd9;border-radius:10px;padding:5px 8px}
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-top>div{max-width:36%}
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-bottom>span{max-width:42%}
+}
+@media(max-width:740px){
+  .presentation-frame .presentation-stage>.presentation-visual{order:0}
+  .presentation-frame .presentation-stage>.presentation-transport{order:1}
+}

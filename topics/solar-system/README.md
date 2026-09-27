@@ -1,5 +1,9 @@
 # 太阳系：太阳、行星与卫星 / Solar system explorer
 
+## Main-scene pass · 2026-09-28
+
+The desktop presentation now gives the orbital renderer its own stage. Scenario and planet choices remain above it, while story and stage steps live beside it; selecting a world keeps the same explorer controller and renderer. At a 1280×720 browser viewport the orbital canvas grows from about 143 px to 327 px high. The lineup spaces planet positions farther apart so Chinese and English names remain readable, while globe diameters still follow the same linear diameter scale. Lineup gaps are deliberately arranged for labeling and do not represent orbital distance. Globe, lineup, and Earth-focus browser views were checked; the full planet descent and all world surfaces still require a new visual pass.
+
 ## Worlds on one ruler / 同一把尺上的世界
 
 The integrated page now also owns `comparisonModel.ts`, `comparison.ts` and bilingual `comparison.json`: a two-world workbench separates true-diameter disks from linear mass/density bars. It reuses the existing eight-planet numerical table and adds sourced 55 Cancri e and WASP-39 b comparisons. Mean density is calculated from mass and spherical volume, not confused with surface density. The WASP-39 radius conversion explicitly uses the exoplanet convention of 71492 km per Jupiter radius rather than silently using Jupiter’s mean radius. These are dated rounded catalog values, not live queries. Illustration colors do not claim observed exoplanet surfaces; transit/radial-velocity inference and nonunique interiors are explained. Existing globe/descent/interior rendering is unchanged.
