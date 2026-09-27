@@ -76,5 +76,9 @@ select(chapter);mountReadingMode('details:not(.references)');mountTopicNavigatio
 foldPresentationContext('.motion-ref');
 mountPresentationFrame({ root: '#slide-panel .lab', visual: '.scene-wrap' });
 mountPresentationFrame({ root: '#contact-panel', visual: '.contact-motion>svg', transport: '#contact-play,#contact-reset' });
-mountPresentationFrame({ root: '#car-braking', visual: '.road-scene', transport: '.playback' });
+const brakingFrame=mountPresentationFrame({ root: '#car-braking', visual: '.road-scene', transport: '.playback' });
+if(brakingFrame){
+ brakingFrame.stage.querySelector('.road-scene svg')?.setAttribute('viewBox','0 80 900 270');
+ const metrics=document.querySelector('#braking-panel .metrics');if(metrics)brakingFrame.stage.append(metrics);
+}
 mountPresentationFrame({ root: '#restraints-panel .protection', visual: '.belt-art' });

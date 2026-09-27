@@ -86,6 +86,16 @@ test('car controls retain dry/wet, speed and progress; restraints persist withou
  h.chapter('braking');assert.equal(h.get('car-progress').value,'55');assert.equal(h.get('car-car').getAttribute('transform'),location);
  assert.equal(h.get('car-speed').value,'60');
 });
+test('the road position marker stays aligned with the same car while time is scrubbed both ways',()=>{
+ const h=harness('?chapter=braking');const marker=h.get('car-ruler').children.at(-1);
+ const aligned=()=>{
+  const carX=Number(h.get('car-car').getAttribute('transform').match(/translate\(([-\d.]+)/)[1])+175;
+  const markerX=Number(marker.getAttribute('transform').match(/translate\(([-\d.]+)/)[1]);
+  assert.ok(Math.abs(carX-markerX)<1e-8);
+ };
+ aligned();h.input('car-progress',72);aligned();h.input('car-progress',18);aligned();
+ h.input('car-progress',100);aligned();assert.equal(marker.children[1].getAttribute('fill'),'#405750');
+});
 test('shared energy follows real block and car state; reaction is not braking',()=>{
  const h=harness();h.input('time',4);assert.equal(h.get('motion-k-value').textContent,'0%');
  assert.equal(h.get('motion-t-value').textContent,'100%');

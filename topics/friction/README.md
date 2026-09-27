@@ -21,6 +21,8 @@ The journey adds conditions from sliding blocks to wheel contact, vehicle stoppi
 
 Three wheel-free blocks share an initial speed under three illustrative friction conditions. Playback pauses and time scrubs; a contact window follows the same displacement without resetting the comparison. Energy bars conserve initial energy as motion energy is transferred to the block and surface. Orange is not a temperature reading. No autoplay; hidden pages pause and reduced motion jumps to the end.
 
+The selected lane now carries a visible contact anchor in the overview. Its ring follows that block during scrubbing and identifies the sample enlarged in the adjacent contact window; the drawn asperities remain illustrative, not a measurement of the friction coefficient.
+
 `learning.json` contains three academic notes and four bilingual narration segments with separate visual directions. The constant-friction model and energy accounting have focused tests in `tests/model.test.js`.
 
 Primary textbook sources rechecked 2026-09-19:
@@ -41,6 +43,8 @@ NHTSA [child seats](https://www.nhtsa.gov/vehicle-safety/car-seats-and-booster-s
 ## Focused verification / 定向验证
 
 `node --import tsx --test topics/friction/tests/*.test.* topics/car-safety/tests/*.test.*` covers original models, no-slip geometry, routes and the actual combined source entry/controllers with a deterministic DOM/animation adapter. It exercises playback, backward scrubbing, contact selection, input resets, independent chapter state, car road/seat/belt behavior, live energy projection, history, reduced motion and hide cancellation. Layout, pointer behavior and packaged URLs still require the parent's browser checks.
+
+The braking scene carries a cursor at the car's front edge over the planned reaction/braking distance bar. The cursor follows the same modeled distance while time moves forward or backward. In the integrated presentation, the two segment readings and total sit directly below the road drawing; the road camera crops unused sky without changing distance geometry or the legacy route.
 
 ## Presentation layout
 

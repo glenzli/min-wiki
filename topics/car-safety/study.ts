@@ -23,6 +23,14 @@ for (const value of [0, 20, 40, 60, 80]) {
   text.setAttribute('text-anchor', 'middle'); text.textContent = t('{{value}} 米', { value });
   el('ruler').append(text);
 }
+const positionMarker = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+const markerStem = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+markerStem.setAttribute('d', 'M0 230V315'); markerStem.setAttribute('stroke-width', '2');
+markerStem.setAttribute('stroke-dasharray', '5 5');
+const markerDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+markerDot.setAttribute('cy', '300'); markerDot.setAttribute('r', '8');
+markerDot.setAttribute('stroke', '#fff9ee'); markerDot.setAttribute('stroke-width', '3');
+positionMarker.append(markerStem, markerDot); el('ruler').append(positionMarker);
 function draw() {
   const plan = stopping(speed(), road);
   const time = plan.totalTime * Number(progress.value) / 100;
@@ -30,6 +38,9 @@ function draw() {
   const kinetic=plan.speed===0?0:(state.speed/plan.speed)**2;
   onState({initialSpeed:plan.speed,speed:state.speed,time,phase:state.phase,kinetic,transferred:plan.speed===0?0:1-kinetic});
   el('car').setAttribute('transform', `translate(${5 + state.distance * 8} 120)`);
+  positionMarker.setAttribute('transform', `translate(${xFor(state.distance)} 0)`);
+  const markerColor=state.phase==='reaction'?'#bd883e':state.phase==='braking'?'#43816f':'#405750';
+  markerStem.setAttribute('stroke',markerColor);markerDot.setAttribute('fill',markerColor);
   const rotation = state.distance * 8 / 22 * 180 / Math.PI;
   el('rear-spoke').setAttribute('transform', `rotate(${rotation} 39 92)`);
   el('front-spoke').setAttribute('transform', `rotate(${rotation} 140 92)`);
