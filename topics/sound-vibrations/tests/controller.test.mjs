@@ -54,3 +54,19 @@ test('leaving a chapter invalidates pending audio; only explicit listen creates 
 test('ear lifecycle hides without continued motion and restored camera stays selected',()=>{
  const h=harness();h.chapter('ear');h.get('h-play').dispatch('click');h.advance(.3);const progress=h.get('h-progress').value;h.document.hidden=true;h.document.dispatch('visibilitychange');assert.ok(h.animations.every(a=>!a.active));h.window.dispatch('pagehide',{persisted:true});h.window.dispatch('pageshow',{persisted:true});assert.equal(h.get('h-progress').value,progress);assert.equal(h.get('h-pause').disabled,true);
 });
+
+
+test('ear pitch selection interpolates the response region and settles the chosen condition on exit',()=>{
+ const h=harness();h.chapter('ear');h.input('h-progress',62);
+ const before=Number(h.get('place-circle').getAttribute('cx'));
+ const high=h.get('ear-panel').querySelectorAll('[data-pitch]').find(b=>b.dataset.pitch==='1');
+ high.dispatch('click');
+ assert.equal(Number(h.get('place-circle').getAttribute('cx')),before);
+ assert.match(h.get('condition-summary').textContent,/392/);
+ h.advance(.5);const middle=Number(h.get('place-circle').getAttribute('cx'));
+ assert.ok(middle<before&&middle>54+.22*492);
+ assert.equal(h.get('h-progress').value,'62');
+ h.chapter('compare');h.chapter('ear');
+ assert.ok(Math.abs(Number(h.get('place-circle').getAttribute('cx'))-(54+.22*492))<1e-9);
+ assert.ok(h.animations.every(a=>!a.active));
+});

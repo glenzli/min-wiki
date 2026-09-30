@@ -10,9 +10,16 @@ Manual play runs one finite sequence. Scrubbing and stage buttons control the sa
 
 The drawings are at different scales and omit the round-window detail, a complete organ of Corti, outer-hair-cell active feedback, tectorial-membrane mechanics and detailed neural relays. Sound is mechanical before transduction; air never travels through nerves. A hair-cell receptor potential is distinguished from an auditory-nerve action potential. The amplitude slider is not a decibel scale, and the silent comparison is not a hearing test. Timing, geometry and colors are explanatory choices.
 
-Sources reviewed 2026-09-17:
+Sources reviewed 2026-09-30:
 - NIH / NIDCD, [How Do We Hear?](https://www.nidcd.nih.gov/health/how-do-we-hear)
 - UTHealth, [Auditory System: Structure and Function](https://nba.uth.tmc.edu/neuroscience/m/s2/chapter12.html)
 - NIH / NIDCD, [Sensory Cell Development and Function](https://www.nidcd.nih.gov/research/labs/section-sensory-cell-development-and-function)
 
-Focused model tests cover causal ordering, pitch/amplitude independence, input bounds and finite displacement. The coordinator owns catalog registration, the final full build, and production browser acceptance.
+Focused model tests cover causal ordering, pitch/amplitude independence, input bounds and finite displacement. Catalog registration belongs to the sound journey; acceptance includes the composed interface and the legacy entry redirect.
+
+
+## September 30 refinement
+
+The main illustration carries one short, stage-specific explanation. Children see one observation window at a time, with the selected closeup and process state retained when reading modes change. Academic mode keeps the whole ear and the detail together and adds a changing mechanism paragraph, variable definitions, model limits and a primary-source reading link beside the demonstration. The middle-ear pressure relation is an ideal force/area and lever approximation, not a computed transfer function or an energy source.
+
+Anchor A links the cochlear coil to its uncoiled schematic. Anchor B marks a representative inner hair cell in the qualitatively stronger-response region; it selects a different region when pitch changes. The detail is magnified again to explain transduction, not an image of a measured individual cell. Pitch interpolates from the current response position, independently of the process clock. Interrupted transitions settle at the selected conditions before another chapter resumes. Playback and lens controls share the observation toolbar to leave room for the anatomy.

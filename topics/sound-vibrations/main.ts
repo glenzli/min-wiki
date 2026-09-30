@@ -82,16 +82,17 @@ if (hearingFrame) {
  document.querySelector('main>header')?.append(el('label-toggle'));
  const figures=[...hearingFrame.stage.querySelectorAll<HTMLElement>('.specimen')];
  const lens=document.createElement('button');lens.type='button';lens.className='ear-lens';
- hearingFrame.stage.prepend(lens);
+ const earToolbar=hearingFrame.root.querySelector('.observation-toolbar');
+ earToolbar?.prepend(lens, el('h-ear-zoom'), hearingFrame.stage.querySelector('.play-controls')!);
  let closeup=false;
  function setEarLens(){
   const academic=document.documentElement.dataset.readingMode==='academic';
-  lens.hidden=academic;figures[0]!.hidden=!academic&&closeup;figures[1]!.hidden=!academic&&!closeup;
+  lens.hidden=academic;el('h-ear-zoom').hidden=!academic&&closeup;figures[0]!.hidden=!academic&&closeup;figures[1]!.hidden=!academic&&!closeup;
   lens.textContent=closeup?t('回看整只耳朵'):t('放大看耳蜗');
   lens.setAttribute('aria-pressed',String(closeup));
  }
  lens.addEventListener('click',()=>{closeup=!closeup;setEarLens();});
- document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>button.addEventListener('click',()=>{closeup=false;setEarLens();}));
+ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>button.addEventListener('click',setEarLens));
  setEarLens();
 }
 const comparisonFrame = mountPresentationFrame({ root: '#compare-panel', visual: '.compare-grid', paired: true });

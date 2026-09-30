@@ -84,5 +84,18 @@
   "进度 {{value}}%": "Progress {{value}}%",
   "示意振幅 {{value}}%": "Illustrated amplitude {{value}}%",
   "这里接收同一组音高与幅度条件；位置变化只表示趋势，不把合成音的赫兹数换算成耳蜗坐标。": "This study receives the same pitch and amplitude comparison. Position indicates a trend, not a conversion from synthesized hertz to anatomical cochlear coordinates.",
-  "声音：从振动到听见": "Sound: from vibration to hearing"
+  "声音：从振动到听见": "Sound: from vibration to hearing",
+  "沿着资料继续读 →": "Continue into the sources →",
+  "耳道尽头的薄膜，接住空气中的振动。": "The thin membrane at the end of the canal receives vibration from air.",
+  "鼓膜带动小骨头，再把振动交给耳蜗的液体。": "The eardrum moves the tiny bones, which pass vibration into cochlear fluid.",
+  "耳蜗里的膜运动，带动感觉细胞。": "The cochlear membrane moves, carrying sensory cells with it.",
+  "细胞改变电反应，神经接着传消息。": "The cell changes its electrical response, then the nerve carries a message.",
+  "声波在耳道中造成压强变化，鼓膜两侧的压差驱动膜运动；这还属于机械过程。真实响应受耳道共振、膜的机械性质和中耳负载共同影响。此图只用放大的位移标示接收过程，没有计算声压场或鼓膜频率响应。": "Sound causes pressure changes in the canal. A pressure difference across the eardrum drives its motion, which is still a mechanical process. The real response depends on canal resonance, membrane mechanics and middle-ear loading. Enlarged displacement here indicates reception; sound pressure and the eardrum frequency response are not computed.",
+  "中耳承担空气与内耳液体之间的阻抗匹配。理想力—面积近似可写成 pₒ/pₑ ≈ (Aₑ/Aₛ)r：pₑ、pₒ 分别为鼓膜侧与卵圆窗侧的压强变化，Aₑ、Aₛ 为有效鼓膜面积与镫骨底板面积，r 为杠杆力增益。真实传递随频率变化且有损耗；本页未代入这些量，也不把画中位移当成压力增益。": "The middle ear helps match acoustic impedance between air and inner-ear fluid. An ideal force–area approximation is pₒ/pₑ ≈ (Aₑ/Aₛ)r: pₑ and pₒ are pressure changes at the eardrum and oval-window sides, Aₑ and Aₛ are the effective eardrum and stapes-footplate areas, and r is lever force gain. Real transmission depends on frequency and has losses. These quantities are not evaluated here, and drawn displacement does not measure pressure gain.",
+  "振动在耳蜗中形成沿基底膜传播的行波。膜的机械性质沿长度变化，较高频率的响应峰偏基底端，较低频率偏顶端；响应占有一段区域。A 标记连接耳蜗整体与展开图，B 连接所选响应区域与代表性内毛细胞。金色范围及位置变化是定性编码，不是合成音赫兹数的解剖定位。": "Vibration forms a traveling wave along the basilar membrane. Its mechanical properties vary along its length: higher-frequency peaks lie toward the base and lower-frequency peaks toward the apex, with responses spread over a region. A links the cochlea to its uncoiled diagram; B links the selected response region to a representative inner hair cell. Gold and position changes are qualitative encodings, not anatomical locations for synthesized hertz values.",
+  "纤毛束偏转改变机械敏感通道的开放，内毛细胞产生受体电位；细胞基部的递质释放进一步影响听神经纤维的动作电位。受体电位与神经放电是两个环节。画中离子、递质和紫线只表达这一先后关系，未求解离子梯度、释放概率、放电率或脑内识别；外毛细胞的主动反馈也未模拟。": "Bundle deflection changes mechanically sensitive channel opening and the inner hair cell develops a receptor potential. Transmitter release at its base then affects auditory-nerve action potentials. Receptor potentials and nerve firing are separate steps. Ions, transmitter and purple traces illustrate their order, without solving ion gradients, release probability, firing rate or recognition in the brain. Outer-hair-cell active feedback is also omitted.",
+  "B：当前响应区域内的一枚代表性内毛细胞。换音高会改变响应区域；这里沿用同一种细胞结构解释换能，尺寸与时间再次放大。": "B: a representative inner hair cell in the current response region. Changing pitch changes that region; the same type of cell illustrates transduction, with scale and time enlarged again.",
+  "A：同一耳蜗的展开示意。金色范围表示较强响应区域；B 标出继续看细胞的位置。两幅图的倍率不同，未标定真实频率。": "A: the same cochlea, shown uncoiled. Gold marks the stronger response region; B locates the cell close-up. The views use different scales and are not calibrated to actual frequency.",
+  "A：把同一耳蜗展开": "A: the same cochlea, uncoiled",
+  "B：一枚内毛细胞的局部原理": "B: an inner hair cell, enlarged"
 }

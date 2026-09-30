@@ -31,6 +31,8 @@ export function createHearingScene(root: HTMLElement = document.body){
  <path id="nerve-route" d="M550 266Q582 246 612 238L670 221" fill="none" stroke="#8e6d99" stroke-width="4" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"/><circle id="nerve-dot" r="5" fill="#82638b" opacity="0"/>
  <g id="air-waves" fill="none" stroke="#557f83" stroke-width="3" stroke-linecap="round"></g><ellipse id="cochlea-glow" cx="532" cy="271" rx="67" ry="56" fill="#c5b971" opacity="0"/>
  <g id="brain-mark" transform="translate(674 217)" opacity="0"><circle r="17" fill="#ded5e0" stroke="#96749a"/><path d="M-8 2L0-7L9 1L1 9Z" fill="none" stroke="#96749a"/></g>
+ <ellipse id="ear-focus" cx="346" cy="251" rx="28" ry="42" fill="none" stroke="#a88a53" stroke-width="2" stroke-dasharray="4 5" opacity=".75"/>
+ <g class="scene-anchor"><path d="M575 313L603 337"/><circle cx="615" cy="348" r="14"/>${text(615,354,'A','middle')}</g>
  ${text(65,61,t('外耳'))}${text(335,88,t('中耳'))}${text(531,63,t('内耳'))}
  <path d="M244 45V96M428 45V96" stroke="#bdb3a1" stroke-dasharray="3 5"/>
  ${text(111,417,t('耳廓'),'middle')}${text(247,312,t('耳道'),'middle')}${text(325,353,t('鼓膜'),'middle')}<path d="M327 337L346 289" stroke="#968370"/>
@@ -40,12 +42,12 @@ export function createHearingScene(root: HTMLElement = document.body){
  const tinyCells=Array.from({length:18},(_,i)=>`<g id="strip-cell-${i}" transform="translate(${88+i*24} 231)"><path d="M-4-8Q-8-21-4-29H4Q9-15 4-8Z" fill="url(#micro-cell)" stroke="#8fa088" stroke-width=".8"/><path d="M-3-29v-7m3 7v-9m3 9v-11" stroke="#758b76" stroke-width="1.3"/></g>`).join('');
  const support=Array.from({length:5},(_,i)=>{const x=136+i*73;return `<path d="M${x} 742q17-15 29 0l16 122q-11 18-48 0Z" fill="url(#micro-cell)" fill-opacity=".53" stroke="#9baa8c" stroke-width="1"/><ellipse cx="${x+14}" cy="829" rx="7" ry="11" fill="#9f9c89" opacity=".4"/>`;}).join('');
  root.querySelector('#h-detail-art')!.innerHTML=defs('micro')+`<rect width="600" height="980" fill="url(#micro-paper)"/><rect width="600" height="980" fill="url(#micro-grain)"/>
- ${text(32,43,t('把耳蜗轻轻展开'))}${text(32,69,t('位置表示相对高低音，不标真实频率'))}
+ ${text(32,43,t('A：把同一耳蜗展开'))}${text(32,69,t('位置表示相对高低音，不标真实频率'))}
  <path d="M54 127Q254 109 546 96V226Q315 208 54 222Z" fill="url(#micro-fluid)" stroke="#9cae9f" stroke-width="2"/><path d="M54 235Q315 221 546 245V332Q330 347 54 291Z" fill="#c0d2c7" stroke="#9cae9f" stroke-width="2"/>
  <path d="M54 226Q306 213 546 233" stroke="#f4e8bb" stroke-width="13" fill="none"/>
  <path id="basilar-membrane" d="M54 230H546" stroke="#ab9162" stroke-width="3" fill="none"/>
  <path d="M68 140Q277 126 530 115" stroke="#f2f7e9" stroke-width="3" fill="none" opacity=".65"/>${tinyCells}
- <path id="response-envelope" fill="#c0a961" opacity=".16"/><path id="place-marker" d="M160 309V346" stroke="#ac8458" stroke-width="2"/><circle id="place-circle" cx="160" cy="230" r="24" fill="none" stroke="#b88856" stroke-width="1.5" stroke-dasharray="4 4"/>
+ <path id="response-envelope" fill="#c0a961" opacity=".16"/><ellipse id="sample-cell-focus" cx="448" cy="213" rx="9" ry="29" fill="none" stroke="#ac8b53" stroke-width="1.5" stroke-dasharray="3 3"/><g id="sample-cell-anchor" class="scene-anchor" transform="translate(448 345)"><circle r="13"/>${text(0,6,'B','middle')}</g><path id="place-marker" d="M160 309V346" stroke="#ac8458" stroke-width="2"/><circle id="place-circle" cx="160" cy="230" r="24" fill="none" stroke="#b88856" stroke-width="1.5" stroke-dasharray="4 4"/>
  ${text(67,379,t('基底端 · 偏高音'))}${text(542,379,t('顶端 · 偏低音'),'end')}${text(300,417,t('膜上不同位置，回应不同音高'),'middle')}
  <g id="cell-tissue"><path d="M90 731Q300 715 518 736V872H90Z" fill="#d9d7b7" stroke="#a8af8e" stroke-width="1.5"/>${support}
  <path d="M84 560Q279 548 521 565L518 731Q300 715 90 731Z" fill="url(#micro-fluid)" fill-opacity=".66"/>
@@ -59,13 +61,16 @@ export function createHearingScene(root: HTMLElement = document.body){
  <path d="M92 871H518" stroke="#bbaa82" stroke-width="7"/>
  </g>
  <g id="flow-arrows" fill="none" stroke="#658f8a" stroke-width="2"><path d="M173 610H223m-7-5 7 5-7 5M323 610H373m-7-5 7 5-7 5"/></g>
- ${text(31,541,t('一枚内毛细胞的局部原理'))}${text(47,614,t('液体'))}${text(341,659,t('纤毛束'))}<path d="M338 665L302 675" fill="none" stroke="#968370"/>
+ ${text(31,541,t('B：一枚内毛细胞的局部原理'))}${text(47,614,t('液体'))}${text(341,659,t('纤毛束'))}<path d="M338 665L302 675" fill="none" stroke="#968370"/>
  ${text(355,758,t('感觉细胞'))}${text(354,808,t('支持细胞'))}${text(433,912,t('神经'),'end')}
  ${text(32,956,t('尺度再次放大；略去盖膜和其他细胞'))}`;
 }
 function trace(root:HTMLElement,id:string,p:number){const path=root.querySelector(`#${id}`) as unknown as SVGPathElement;path.setAttribute('stroke-dashoffset',String(1-p));return path.getPointAtLength(path.getTotalLength()*p);}
 export function drawHearing(progress:number,pitch:number,strength:number,root:HTMLElement = document.body){
  const s=hearingSequence(progress,pitch,strength);
+ const focus = root.querySelector('#ear-focus')!;
+ const focusGeometry = [[346,251,28,42],[390,223,58,48],[532,272,70,58],[611,245,64,28]][s.phase]!;
+ ['cx','cy','rx','ry'].forEach((name,i) => focus.setAttribute(name,String(focusGeometry[i])));
  root.querySelector('#eardrum')!.setAttribute('transform',`translate(${s.deflection*3} 0)`);
  root.querySelector('#ossicles')!.setAttribute('transform',`rotate(${s.deflection*2.3} 369 201)`);
  root.querySelector('#air-waves')!.innerHTML=Array.from({length:5},(_,i)=>{const x=36+i*54+40*s.air;return `<path d="M${x} ${239-9*s.amplitude}q${5*s.amplitude} 17 0 ${34*s.amplitude}" opacity="${.15+.7*Math.sin(Math.PI*s.air)}"/>`;}).join('');
@@ -76,7 +81,14 @@ export function drawHearing(progress:number,pitch:number,strength:number,root:HT
  root.querySelector('#basilar-membrane')!.setAttribute('d',wave);
  const envelope=Array.from({length:91},(_,i)=>{const x=i/90;return `L${54+x*492} ${230-40*Math.exp(-Math.pow((x-s.place)/.18,2))*s.amplitude}`;}).join(' ');
  root.querySelector('#response-envelope')!.setAttribute('d',`M54 230${envelope}L546 230Z`);
- const marker=54+s.place*492;root.querySelector('#place-marker')!.setAttribute('d',`M${marker} 309V346`);root.querySelector('#place-circle')!.setAttribute('cx',String(marker));
+ const marker=54+s.place*492;
+ const sampleX=88+Math.round((marker-88)/24)*24;
+ const sampleY=239+membraneDisplacement((sampleX-54)/492,progress,pitch,strength)*24;
+ root.querySelector('#place-marker')!.setAttribute('d',`M${sampleX} ${sampleY+6}V330`);
+ root.querySelector('#place-circle')!.setAttribute('cx',String(marker));
+ root.querySelector('#sample-cell-anchor')!.setAttribute('transform',`translate(${sampleX} 345)`);
+ root.querySelector('#sample-cell-focus')!.setAttribute('cx',String(sampleX));
+ root.querySelector('#sample-cell-focus')!.setAttribute('cy',String(sampleY-20));
  for(let i=0;i<18;i++){const x=88+i*24;root.querySelector(`#strip-cell-${i}`)!.setAttribute('transform',`translate(${x} ${239+membraneDisplacement((x-54)/492,progress,pitch,strength)*24})`);}
  root.querySelector('#hair-cell')!.setAttribute('transform',`translate(0 ${s.deflection*2})`);
  root.querySelector('#stereocilia')!.setAttribute('transform',`skewX(${-s.deflection*10}) translate(${Math.tan(s.deflection*10*Math.PI/180)*704} 0)`);
