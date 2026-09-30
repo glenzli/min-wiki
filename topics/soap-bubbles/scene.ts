@@ -41,7 +41,7 @@ export class BubbleScene{
  draw(state:SceneState){
   this.state=state;this.makeTexture(state.drainage,state.angle);
   const c=this.begin(this.whole),shape=bubbleShape(state.deformation),r=144;
-  const bg=c.createLinearGradient(0,0,0,480);bg.addColorStop(0,'#192e35');bg.addColorStop(.7,'#263e3c');bg.addColorStop(1,'#4c5650');c.fillStyle=bg;c.fillRect(0,0,480,480);
+  const bg=c.createLinearGradient(0,0,0,480);bg.addColorStop(0,'#111b26');bg.addColorStop(.7,'#202b36');bg.addColorStop(1,'#3a4148');c.fillStyle=bg;c.fillRect(0,0,480,480);
   // Soft studio light and a reflected sill give the translucent film a material context.
   const glow=c.createRadialGradient(77,62,2,77,62,315);glow.addColorStop(0,'#d0ddba2b');glow.addColorStop(1,'#acc0bb00');c.fillStyle=glow;c.fillRect(0,0,480,480);
   c.fillStyle='#82957e10';c.beginPath();c.ellipse(404,326,100,190,-.3,0,Math.PI*2);c.fill();
@@ -62,7 +62,7 @@ export class BubbleScene{
   // The marker stays on the same piece of film during the camera move.
   const sy=state.sample*r*shape.b;
   c.strokeStyle='#f4dda0';c.lineWidth=1.3/Math.sqrt(zoom);c.setLineDash([3/zoom,3/zoom]);c.beginPath();c.ellipse(0,sy,17,10,0,0,Math.PI*2);c.stroke();c.setLineDash([]);
-  if(state.zoom<.5){c.strokeStyle='#f1dda29e';c.lineWidth=1;c.beginPath();c.moveTo(17,sy);c.lineTo(56,sy-15);c.lineTo(83,sy-15);c.stroke();}
+  if(state.zoom<.5){c.strokeStyle='#f1dda29e';c.lineWidth=1;c.beginPath();c.moveTo(17,sy);c.lineTo(56,sy-15);c.lineTo(83,sy-15);c.stroke();c.fillStyle='#fff1c9';c.font=`700 ${14/Math.sqrt(zoom)}px Inter, "PingFang SC", system-ui, sans-serif`;c.textAlign='left';c.fillText('A',87,sy-11);}
   c.restore();
   // Top/bottom liquid-flow cues are attached to the surface and only appear during drainage.
   if(state.drainage>.02&&state.zoom<.5){c.save();c.globalAlpha=state.drainage*(1-state.zoom*2)*.58;c.strokeStyle='#d7ede5';c.lineWidth=1.4;for(const side of [-1,1]){c.beginPath();c.moveTo(240+side*122*shape.a,212);c.quadraticCurveTo(240+side*135*shape.a,251,240+side*115*shape.a,283);c.stroke();c.beginPath();c.moveTo(240+side*115*shape.a-4,276);c.lineTo(240+side*115*shape.a,283);c.lineTo(240+side*115*shape.a+5,278);c.stroke();}c.restore();}
@@ -70,7 +70,7 @@ export class BubbleScene{
  }
  private drawSection(state:SceneState){
   const c=this.begin(this.section),thickness=filmThickness(state.sample,state.drainage),cosine=selectedIncidence(state.sample,state.angle),height=45+thickness/800*92,top=240-height/2,bottom=240+height/2;
-  const bg=c.createLinearGradient(0,0,0,480);bg.addColorStop(0,'#f5f1e4');bg.addColorStop(1,'#e6eee7');c.fillStyle=bg;c.fillRect(0,0,480,480);
+  const bg=c.createLinearGradient(0,0,0,480);bg.addColorStop(0,'#f5f2eb');bg.addColorStop(1,'#e7e9e8');c.fillStyle=bg;c.fillRect(0,0,480,480);
   // The water-rich interior is bounded by two surfactant-covered interfaces.
   const water=c.createLinearGradient(0,top,0,bottom);water.addColorStop(0,'#91bac09a');water.addColorStop(.45,'#d6e9de');water.addColorStop(1,'#80aeb899');c.fillStyle=water;c.fillRect(35,top,410,height);
   c.strokeStyle='#547f81';c.lineWidth=1.3;for(const y of [top,bottom]){c.beginPath();c.moveTo(35,y);c.lineTo(445,y);c.stroke();}

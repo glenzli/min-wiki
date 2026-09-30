@@ -29,3 +29,21 @@
   .hero>.reading-mode{margin:0}
   .lab-heading{margin-bottom:8px}
 }
+
+/* The two drawings share sample A; the child's explanation lives on the scene. */
+:root{--topic-accent:#5a626b}
+.specimen{border-color:#c9cdcf}
+.bubble{background:#111b26}
+.film{background:#f5f2eb;color:#364048}
+.bubble .scene-toolbar button{background:#2b3540;border-color:#69737e;color:#f4f4f2}
+.scene-toolbar .small,.film-labels{color:#5e666d}
+.film-labels span:nth-child(2){background:#f1f3f2c9}
+.canvas-wrap{position:relative;width:min(100%,360px);margin-inline:auto}
+.canvas-wrap canvas,.pair .canvas-wrap canvas{display:block;width:100%;height:auto;aspect-ratio:1;margin:0}
+.film-labels{inset:0}
+.film-labels span:first-child{top:33%}
+.scene-story{position:absolute;z-index:1;margin:0;padding:8px 11px;border-radius:9px;font-size:13px;line-height:1.45;max-width:calc(100% - 20px);pointer-events:none}
+#bubble-story{left:10px;right:10px;bottom:10px;background:#101820dc;color:#f6f5f0}
+#film-story{left:10px;top:10px;max-width:min(56%,200px);background:#fbfaf4e9;color:#303b42;border:1px solid #b8c1c3}
+html[data-reading-mode="academic"] .scene-story,
+html[data-reading-mode="kids"] .controls-grid :is(.status,.academic-only){display:none}

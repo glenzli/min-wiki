@@ -9,7 +9,7 @@ import {BubbleScene,type SceneState} from './scene.ts';
 translateDocument(t);
 const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;
 const state:SceneState={deformation:0,drainage:0,zoom:0,sample:-.75,angle:0,light:0};
-let scene:BubbleScene|undefined,playing=false,zoomed=false,lit=false;
+let scene:BubbleScene|undefined,playing=false,zoomed=false,lit=false,shapeInteracted=false;
 let cancelShape=()=>{},cancelDrain=()=>{},cancelZoom=()=>{},cancelSample=()=>{},cancelLight=()=>{};
 try{scene=new BubbleScene(el<HTMLCanvasElement>('bubble-scene'),el<HTMLCanvasElement>('film-scene'));}catch(error){el('scene-error').hidden=false;console.error(error);}
 function render(){
@@ -23,14 +23,18 @@ function render(){
  el('light').textContent=lit?t('收起光路'):t('显示两路反射光');el('light').setAttribute('aria-pressed',String(lit));
  const shapeText=state.deformation>.04?t('形状被拉长了。松开后，薄膜会趋向更小的表面积。'):t('自由、静止的小泡泡接近球形。');
  if(el('shape-note').textContent!==shapeText)el('shape-note').textContent=shapeText;
+ const bubbleStory=state.zoom>.2?t('镜头跟着 A 点靠近；还是同一颗泡泡。'):state.deformation>.04?t('泡泡暂时拉长，里面的空气没有变多。'):shapeInteracted?t('松开后，表面张力让薄膜缩小，泡泡趋向圆形。'):t('先看整颗泡泡：水膜包住一团空气。');
+ if(el('bubble-story').textContent!==bubbleStory)el('bubble-story').textContent=bubbleStory;
  const filmText=state.drainage<.05?t('先看薄膜，再慢慢推进；上方和下方会变得一样厚吗？'):state.sample<0?t('标记处在上方：液体向下重新分布，这里的薄膜逐渐变薄。'):t('标记处在下方：这里接收到上方流来的液体，薄膜逐渐变厚。');
  if(el('film-note').textContent!==filmText)el('film-note').textContent=filmText;
- el('sample-title').textContent=state.sample<0?t('上方薄膜的切面'):t('下方薄膜的切面');
+ const filmStory=state.light>.2?t('两路反射光从 A 点回来，厚度和角度会改变叠加结果。'):state.drainage<.05?t('右图就是左侧 A 点的局部薄膜。'):state.sample<0?t('A 点在上方；液体向下流，这里的膜逐渐变薄。'):t('A 点在下方；液体流来，这里的膜逐渐变厚。');
+ if(el('film-story').textContent!==filmStory)el('film-story').textContent=filmStory;
+ el('sample-title').textContent=state.sample<0?t('A · 上方薄膜的切面'):t('A · 下方薄膜的切面');
  el('area-readout').textContent=t('固定空气体积的形状比较：相对球形，表面积增加约 {{percent}}%。',{percent:((shape.relativeArea-1)*100).toFixed(1)});
  el('thickness-readout').textContent=t('选中位置的模型厚度：{{thickness}} nm。数值仅来自本页简化分布，不是实际泡泡的测量结果。',{thickness:Math.round(filmThickness(state.sample,state.drainage))});
 }
 function stopDrain(){cancelDrain();playing=false;}
-function shapeTo(target:number){cancelShape();cancelShape=animateValue({from:state.deformation,to:target,duration:1250,onUpdate:v=>{state.deformation=v;render();}});}
+function shapeTo(target:number){shapeInteracted=true;cancelShape();cancelShape=animateValue({from:state.deformation,to:target,duration:1250,onUpdate:v=>{state.deformation=v;render();}});}
 el('stretch').addEventListener('click',()=>shapeTo(1));el('release').addEventListener('click',()=>shapeTo(0));
 el('zoom').addEventListener('click',()=>{zoomed=!zoomed;cancelZoom();cancelZoom=animateValue({from:state.zoom,to:zoomed?1:0,duration:1050,onUpdate:v=>{state.zoom=v;render();}});});
 el('light').addEventListener('click',()=>{lit=!lit;cancelLight();cancelLight=animateValue({from:state.light,to:lit?1:0,duration:650,onUpdate:v=>{state.light=v;render();}});});

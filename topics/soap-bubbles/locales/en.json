@@ -63,5 +63,20 @@
   "标记处在下方：这里接收到上方流来的液体，薄膜逐渐变厚。": "The selected patch is near the bottom. It receives liquid from above and becomes thicker.",
   "下方薄膜的切面": "Film section near the bottom",
   "固定空气体积的形状比较：相对球形，表面积增加约 {{percent}}%。": "At fixed enclosed air volume, the surface area is about {{percent}}% greater than a sphere’s.",
-  "选中位置的模型厚度：{{thickness}} nm。数值仅来自本页简化分布，不是实际泡泡的测量结果。": "Model thickness at the selected patch: {{thickness}} nm. This comes from the simplified distribution, not a measurement of a real bubble."
+  "选中位置的模型厚度：{{thickness}} nm。数值仅来自本页简化分布，不是实际泡泡的测量结果。": "Model thickness at the selected patch: {{thickness}} nm. This comes from the simplified distribution, not a measurement of a real bubble.",
+  "一个透明肥皂泡，带着随厚度变化的干涉色；A 点虚线圈标记放大的同一块薄膜。": "A translucent soap bubble with thickness-dependent interference colors; the dashed ring at A marks the same patch shown in detail.",
+  "选上方或下方时，A 点会移到新位置；之后的拉长、排液和放大都跟着这块薄膜。": "Selecting top or bottom moves A to a new patch. Stretching, draining and zooming then follow that patch.",
+  "A · 上方薄膜的切面": "A · Upper film section",
+  "A · 下方薄膜的切面": "A · Lower film section",
+  "A 点局部转正的切面：空气、含水薄膜、空气；两侧的肥皂分子帮助稳定薄膜，两路反射光随厚度与角度发生干涉。": "A locally straightened section at A: air, water-rich film, air. Soap molecules help stabilize both interfaces; reflected light interferes as thickness and angle change.",
+  "切面沿 A 点转正，厚度极度放大。波线表示一种颜色的两路光；色块仅比较三个波长，不能测厚度。": "The section is straightened at A with greatly enlarged thickness. Wave lines show two paths of one color; three wavelength samples cannot measure thickness.",
+  "本页两光束教学式：I反射(λ) = [1 − cos(4πnt cosθₜ / λ)] / 2，其中 t 是 A 点膜厚、n 近似取 1.333、θₜ 是膜内折射角。画面只采样 610、540、460 nm，忽略真实反射率、光谱与多次反射；不能由 RGB 或三色块反推膜厚。": "This teaching two-ray model uses Ireflected(λ) = [1 − cos(4πnt cosθₜ / λ)] / 2, with film thickness t at A, n ≈ 1.333 and refracted angle θₜ within the film. The display samples only 610, 540 and 460 nm, omitting actual reflectances, full spectra and multiple reflections. Neither its RGB colors nor three swatches can determine real thickness.",
+  "镜头跟着 A 点靠近；还是同一颗泡泡。": "The camera follows A closer. It is still the same bubble.",
+  "泡泡暂时拉长，里面的空气没有变多。": "The bubble is stretched for a moment. It has no more air inside.",
+  "松开后，表面张力让薄膜缩小，泡泡趋向圆形。": "After release, surface tension reduces the film area and the bubble tends toward a sphere.",
+  "先看整颗泡泡：水膜包住一团空气。": "Start with the whole bubble: a watery film encloses air.",
+  "两路反射光从 A 点回来，厚度和角度会改变叠加结果。": "Two reflected paths return from A. Thickness and angle change how they combine.",
+  "右图就是左侧 A 点的局部薄膜。": "The right view shows the same patch at A on the left.",
+  "A 点在上方；液体向下流，这里的膜逐渐变薄。": "A is near the top. Liquid flows down and the film here gradually thins.",
+  "A 点在下方；液体流来，这里的膜逐渐变厚。": "A is near the bottom. Liquid arrives and the film here gradually thickens."
 }
