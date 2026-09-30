@@ -15,7 +15,7 @@
       },
       {
         "title": "理想弦模型的适用条件",
-        "body": "固定两端的理想弦基频为 f = (1/2L)√(T/μ)，其中 L 是长度，T 是张力，μ 是线密度。只有其余条件不变，张力增至四倍才使频率变为两倍。真实橡皮筋拉伸时长度、粗细和材料性质也会改变，并具有阻尼与非线性；本页固定两端位置与线密度，单独比较张力，不求解真实拉伸橡皮筋的频谱。空气视图用同一振动在不同位置的延迟，表示因果传播，并以位移梯度表示压缩与稀疏。"
+        "body": "固定两端的理想弦基频为 f = (1/2L)√(T/μ)，其中 L 是长度，T 是张力，μ 是线密度。只有其余条件不变，张力增至四倍才使频率变为两倍。真实橡皮筋拉伸时长度、粗细和材料性质也会改变，并具有阻尼与非线性；本页固定两端位置与线密度，单独比较张力，不求解真实拉伸橡皮筋的频谱。空气视图用同一振动在不同位置的延迟表示因果传播；小振幅线性近似下，压强变化 Δp ≈ −B∂u/∂x，但图中的深浅带只表达相对压缩与稀疏，不计算真实声压。"
       }
     ],
     "misconception": "更响不必更高；画里的慢摆动也不是实际听到的每秒振动次数。",
@@ -23,8 +23,8 @@
     "narration": [
       {
         "label": "听声音，也看振动",
-        "text": "橡皮筋来回动，会推动旁边的空气。先播放慢镜头，再切换到空气，看看变化怎样一段一段传向远处。金色小团的家在空心圈那里，它只在家附近来回，没有一路跑到耳朵。画面特意放慢了；如果想听真实的音高，再点一下听声音的按钮。",
-        "cue": "播放慢镜头，切到空气，在金色点离开空心圈时暂停；单独点击音频。"
+        "text": "橡皮筋来回动，会推动旁边的空气。先播放慢镜头，再切换到空气：左边还是同一根弦，变化一段一段传向右边的鼓膜。金色小团的家在空心圈那里，它只在家附近来回，没有一路跑到耳朵。画面特意放慢了；如果想听合成的实际音高，再单独点听声音的按钮。",
+        "cue": "播放慢镜头，切到空气，跟着前沿到达鼓膜，再进入耳朵；音频单独点击。"
       },
       {
         "label": "先只改变绷紧程度",
@@ -57,7 +57,7 @@
       },
       {
         "title": "Conditions of the ideal-string model",
-        "body": "For an ideal fixed-end string, f = (1/2L)√(T/μ), with length L, tension T and linear density μ. Quadrupling tension doubles frequency only with other quantities fixed. Real rubber changes length, thickness and material behavior as it stretches. The diagram fixes endpoints and linear density to isolate tension. Delayed source motion represents causal air propagation, with the displacement gradient determining compression and rarefaction."
+        "body": "For an ideal fixed-end string, f = (1/2L)√(T/μ), with length L, tension T and linear density μ. Quadrupling tension doubles frequency only with other quantities fixed. Real rubber changes length, thickness and material behavior as it stretches. The diagram fixes endpoints and linear density to isolate tension and does not calculate a real band's spectrum. Delayed copies of the same motion represent causal propagation through air. In the small-amplitude linear approximation, pressure variation Δp ≈ −B∂u/∂x; shading here shows relative compression and rarefaction, not calculated sound pressure."
       }
     ],
     "misconception": "Louder need not mean higher pitched, and slow visual motion is not the actual audible frequency.",
@@ -65,8 +65,8 @@
     "narration": [
       {
         "label": "Hear and watch",
-        "text": "The band moves back and forth and pushes nearby air. Start slow motion, then switch to air and follow the disturbance outward. The open circle marks the gold parcel’s home. It moves near home instead of running all the way to your ear. Our picture is deliberately slow. Click the audio button separately to hear the actual pitch.",
-        "cue": "Play, switch to air and pause when the gold parcel leaves its home circle; click audio separately."
+        "text": "The band moves back and forth and pushes nearby air. Start slow motion, then switch to air: the same string remains at left as the disturbance travels toward the eardrum. The open circle marks the gold parcel’s home. It moves near home instead of running all the way to your ear. Our picture is deliberately slow. Click the audio button separately to hear the synthesized tone at its actual pitch.",
+        "cue": "Play, switch to air, follow the front to the eardrum, then enter the ear; click audio separately."
       },
       {
         "label": "Change tension first",

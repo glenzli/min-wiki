@@ -1,13 +1,13 @@
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
-import { DURATION, frequency } from './model.ts';
+import { DURATION, frequency, receiverArrival } from './model.ts';
 import { SoundScene } from './scene.ts';
 export function mountSourceStudy(root: HTMLElement, changed: (tension: number, amplitude: number) => void, progress?: (time: number, airView: boolean) => void) {
 let active = true;
 const el = (id: string) => root.querySelector<HTMLElement>(`#${id}`)!;
 const input = (id: string) => el(id) as HTMLInputElement;
 const value = (id: string) => Number(input(id).value);
-const scene = new SoundScene(el('scene') as unknown as SVGElement);
+const scene = new SoundScene(el('scene') as unknown as SVGElement, root.querySelector<HTMLElement>('.scene-wrap')!);
 let time = 0, playing = false, frame = 0, last = 0, view = 0, targetView = 0, cancelView = () => {};
 let audio: AudioContext | undefined, oscillator: OscillatorNode | undefined, gainNode: GainNode | undefined, serial = 0;
 function update() {
@@ -17,7 +17,12 @@ function update() {
   el('pitch').textContent = t('实际音高约 {{frequency}} Hz', {frequency: Math.round(frequency(value('tension')))});
   el('clock').textContent = `${time.toFixed(1)} / ${DURATION} s`; input('phase').value = String(time * 100);
   el('play').textContent = playing ? t('暂停慢镜头') : time >= DURATION ? t('从头回看') : t('播放慢镜头');
-  const message = time === 0 ? t('先播放，再切换到空气。金色小团的“家”用空心圈标出。') : time < 4.75 ? t('橡皮筋附近先开始动；远处要等一等，变化才传得到。') : time < 9 ? t('金色空气小团只在空心圈附近来回；疏密变化继续向右传。') : time < 13.75 ? t('声源已经停下，先前发出的变化仍在空气中继续前进。') : t('最后一段变化已经离开。空气小团回到各自的平衡位置。');
+  const message = time === 0
+    ? targetView ? t('左边是刚才那根橡皮筋；金色小团和空心圈留在空气中的同一位置。') : t('播放慢镜头看橡皮筋振动，再切换视角追踪空气。')
+    : time < receiverArrival ? t('橡皮筋附近先开始动；远处要等一等，变化才传得到。')
+    : time < 9 ? t('金色空气小团只在空心圈附近来回；疏密变化继续向右传。')
+    : time < receiverArrival + 9 ? t('声源已经停下，先前发出的变化仍在空气中继续前进。')
+    : t('最后一段变化已经离开。空气小团回到各自的平衡位置。');
   if (el('readout').textContent !== message) el('readout').textContent = message;
   root.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(b => b.setAttribute('aria-pressed', String(Number(b.dataset.view) === targetView)));
 }
