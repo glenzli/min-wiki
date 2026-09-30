@@ -25,6 +25,10 @@ The lake case is another basin history, not a claim that the selected land cone 
 
 The mechanism is one recharge-driven scenario, with buoyancy and regional stress held fixed. Rock resistance is an illustrative aggregate barrier, not a measured strength. Pressure and connection bars are normalized conceptual indicators; there is no pressure-volume solver, calibrated fracture mechanics, or eruption forecast. Alternative tectonic triggers are described, not simulated. The lower feeder enters from greater depth: the shallow storage region is not the origin of melt and the drawing does not include the whole mantle. Cooling and crystallization are compressed teaching time.
 
+The default land-case chapter now opens with one underground episode in an already existing mountain, at the start of its own clock. A separate mountain-building chapter summarizes many deposits over a longer clock. These are not consecutive frames of one physically calibrated eruption. In the children view, four fixed outcomes compare a lava fountain, a lava flow, an ash-rich eruption, and an intrusion that stalls underground. Choosing a new outcome restarts this episode; the academic view retains continuous qualitative controls. Its explanation introduces net driving pressure Δp = p_m − σ_n and the fracture-mechanics roles of K_I and K_Ic as research entry points, while explicitly stating that neither is computed by the page. On a narrow screen, cases and chapters form compact horizontal choices so the current cutaway appears sooner and the selected case remains visible.
+
+The integrated submarine chapter follows its selected vent with a continuous camera that expands as the edifice grows. A separate ocean panorama preserves the larger spatial context; section and vent close-ups remain available. The land landscape and ecology cameras frame the whole selected mountain more closely. Their backgrounds extend beyond the canonical SVG view so responsive framing does not reveal empty side bands. Camera size responds to the presentation stage's current aspect ratio. These are changes of teaching lens, not physical growth speed or measured surveys.
+
 ## Sources
 
 - [Izu Peninsula Geopark: Omuroyama](https://izugeopark.org/geosites/omuroyama/)
@@ -33,6 +37,7 @@ The mechanism is one recharge-driven scenario, with buoyancy and regional stress
 - [USGS: Principal volcano types](https://pubs.usgs.gov/gip/volc/types.html)
 - [USGS: Intrusion versus eruption](https://www.usgs.gov/observatories/hvo/news/volcano-watch-eruption-intrusion-whats-difference)
 - [USGS: Failed magmatic eruptions](https://www.usgs.gov/publications/failed-magmatic-eruptions-late-stage-cessation-magma-ascent)
+- [USGS: Dike dilation and propagation](https://pubs.usgs.gov/pp/1202/report.pdf)
 - [USGS: Magma mixing and crystal mush](https://www.usgs.gov/observatories/hvo/news/volcano-watch-petrologic-monitoring-kilauea-volcano-update-rockhounds)
 - [NPS: Plants at Sunset Crater](https://www.nps.gov/sucr/learn/nature/plants.htm)
 - [USGS: 2018 Kīlauea eruption and summit collapse](https://www.usgs.gov/volcanoes/kilauea/science/2018-lower-east-rift-zone-eruption-and-summit-collapse-kilauea)

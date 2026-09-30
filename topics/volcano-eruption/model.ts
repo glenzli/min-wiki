@@ -81,7 +81,7 @@ export function observationCamera(view:ObservationView,vents:number):Observation
   if(view==='vent')return {x:0,y:-78,zoom:2.55};
   if(view==='flow')return {x:vents===3?185:108,y:vents===3?51:6,zoom:3};
   if(view==='plume')return {x:35,y:-120,zoom:1.55};
-  return {x:0,y:-12,zoom:.94};
+  return {x:0,y:24,zoom:.94};
 }
 
 /** Illustrative cooling, not thermometry. Surface heat is lost before interior heat. */

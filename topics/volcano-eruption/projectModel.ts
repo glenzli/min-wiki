@@ -2,7 +2,7 @@ export const CASES = ['shield', 'composite', 'scoria', 'submarine', 'lake'] as c
 export type VolcanoCase = typeof CASES[number];
 export type Landform = 'shield' | 'composite' | 'scoria';
 export type Chapter = 'landscape' | 'eruption' | 'life';
-export type View = 'landscape' | 'section' | 'vent' | 'plume' | 'storage';
+export type View = 'landscape' | 'section' | 'vent' | 'plume' | 'storage' | 'ocean';
 export type Aftermath = 'green' | 'eroded';
 export const bounded = (n: number) => Number.isFinite(n) ? Math.max(0, Math.min(1, n)) : 0;
 const ramp = (p: number, a: number, b: number) => { const u = bounded((p - a) / (b - a)); return u * u * (3 - 2 * u); };

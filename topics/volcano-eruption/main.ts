@@ -4,19 +4,19 @@ import { ecologyMarkup, soilMarkup } from './ecologyScene.ts';
 import { LIFE_STEPS, ecologyStory, ecologyClue, LIFE_WATCH, OMURO_NOTE } from './ecologyContent.ts';
 import { COLLAPSE } from '../volcanic-lakes/content.ts';
 import { magmaState } from './magmaSystem.ts';
-import { MECHANISM_STEPS, mechanismStory, mechanismStatus } from './mechanismContent.ts';
+import { MECHANISM_STEPS, mechanismStory, mechanismKidStory, mechanismStatus } from './mechanismContent.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
 import { CASES, caseFromSearch, landState, landCamera, type VolcanoCase, type Landform, type Chapter, type View, type Aftermath } from './projectModel.ts';
-import { CASE_CONTENT, LAND_STEPS, OCEAN_STEPS, LAKE_STEPS } from './projectContent.ts';
+import { CASE_CONTENT, KIDS_INTROS, KIDS_STORIES, LAND_STEPS, OCEAN_STEPS, LAKE_STEPS } from './projectContent.ts';
 import { landscapeMarkup } from './landscapeScene.ts';
 import { TopicScene as EruptionScene } from './scene.ts';
 import { TopicScene as LakeScene } from '../volcanic-lakes/scene.ts';
 import { createScene as createOcean, viewCamera } from '../submarine-volcanoes/scene.ts';
-import { submarineState, type Environment, type Supply } from '../submarine-volcanoes/model.ts';
+import { SEA_FLOOR, submarineState, type Environment, type Supply } from '../submarine-volcanoes/model.ts';
 import { waterFraction, type Settings as LakeSettings } from '../volcanic-lakes/model.ts';
 import { PRESETS, eruptionAppearance, type Settings, type EruptionStyle, type VolcanoStatus } from './model.ts';
 import { STYLE_NOTES, STATUS_NOTES } from './context.ts';
@@ -29,14 +29,15 @@ const select = (id: string) => el<HTMLSelectElement>(id).value;
 const number = (id: string) => Number(el<HTMLInputElement>(id).value);
 let volcano = caseFromSearch(location.search);
 const requestedChapter = new URLSearchParams(location.search).get('chapter');
-let chapter: Chapter = requestedChapter === 'eruption' || requestedChapter === 'life' ? requestedChapter : 'landscape';
+let chapter: Chapter = requestedChapter === 'eruption' || requestedChapter === 'life' || requestedChapter === 'landscape'
+  ? requestedChapter : volcano === 'lake' || volcano === 'submarine' ? 'landscape' : 'eruption';
 let view: View = 'landscape';
 let playing = false, frame = 0, last = 0, cameraMoving = false;
 let eruption: EruptionScene | undefined, lake: LakeScene | undefined;
 let cancelSeek = () => {}, cancelCamera = () => {};
 const memories = new Map<string, number>();
 const key = () => `${volcano}:${isLand() ? chapter : 'landscape'}`;
-const initial = () => isLand() && chapter !== 'landscape' ? .08 : volcano === 'lake' ? .08 : volcano === 'scoria' ? .94 : .58;
+const initial = () => .08;
 let progress = initial();
 let camera: [number, number, number, number] = [0, 0, 1000, 666.667], section = 0;
 const ocean = createOcean(document.getElementById('ocean-scene')! as unknown as SVGSVGElement);
@@ -50,8 +51,31 @@ function lakeSettings(): LakeSettings { return { basin: select('basin') as LakeS
 function weights(): [number, number, number] {
   return select('environment') === 'deep' ? [1, 0, 0] : select('environment') === 'shallow' ? [0, 1, 0] : [0, 0, 1];
 }
+function stageAspect() {
+  const bounds = document.querySelector('.scene-wrap')!.getBoundingClientRect();
+  return bounds.width && bounds.height ? bounds.width / bounds.height : 1.5;
+}
 function cameraTarget(): [number, number, number, number] {
-  if (volcano === 'submarine') return viewCamera(view === 'landscape' || view === 'plume' || view === 'storage' ? 'ocean' : view, progress, weights(), select('ocean-supply') === 'limited' ? 1 : 0);
+  if (volcano === 'submarine') {
+    if (view === 'landscape') {
+      const summit = submarineState(progress, select('environment') as Environment, select('ocean-supply') as Supply).summit;
+      const aspect = stageAspect();
+      const height = Math.max(260, SEA_FLOOR - summit + 150);
+      const width = height * aspect;
+      return [500 - width / 2, (summit + SEA_FLOOR - height) / 2, width, height];
+    }
+    return viewCamera(view === 'section' || view === 'vent' ? view : 'ocean', progress, weights(), select('ocean-supply') === 'limited' ? 1 : 0);
+  }
+  if (isLand() && chapter !== 'eruption' && view !== 'vent') {
+    const aspect = stageAspect();
+    if (aspect >= 1.5) {
+      const height = Math.max(390, 1000 / aspect);
+      const width = height * aspect;
+      return [500 - width / 2, 400 - height / 2, width, height];
+    }
+    const width = 666.667 * aspect;
+    return [500 - width / 2, 0, width, 666.667];
+  }
   return landCamera(view, volcano as Landform, chapter === 'life' ? 1 : progress);
 }
 function settleCamera() {
@@ -78,6 +102,12 @@ function stageAndSteps() {
 }
 function update() {
   const { stage, steps } = stageAndSteps(), content = CASE_CONTENT[volcano];
+  const academic = document.documentElement.dataset.readingMode === 'academic';
+  el('case-introduction').textContent = isLand() && chapter === 'life'
+    ? academic ? t('小山已经堆好了。接下来追踪一粒种子：它怎样来到这里，又为什么有时长不起来？') : t('山已经留下来。看看种子怎样来到山坡，又在哪里能长起来。')
+    : isLand() && chapter === 'eruption'
+      ? academic ? t('剖面中的山体已经存在；这里单独追踪一次地下活动。更长的建山历史用另一条时间轴呈现，不能把两条进度当成一次喷发的精确前后。') : t('这座山已经在这里。先追踪它地下的一次活动，再换长时间轴看山怎样堆起。')
+      : academic ? content.introduction : KIDS_INTROS[volcano];
   el('story-title').textContent = steps[stage];
   el('scene-badge').textContent = steps[stage];
   let story = isLand() && chapter === 'eruption' ? mechanismStory(magmaState(progress, settings())) : content.stories[stage];
@@ -90,7 +120,14 @@ function update() {
   if (isLand() && chapter === 'landscape' && stage === 3 && select('aftermath') === 'eroded') story = t('流水与风化逐渐削低、切割旧山体。虚线留下侵蚀前的轮廓；这是一种后期变化，不是判断火山熄灭的证据。');
   if (volcano === 'lake' && select('basin') === 'caldera') story = COLLAPSE[collapseStage()].body;
   if (isLand() && chapter === 'life') story = ecologyStory(lifeState());
+  if (!academic) {
+    story = isLand() && chapter === 'eruption' ? mechanismKidStory(magmaState(progress, settings()))
+      : isLand() && chapter === 'life' ? ecologyClue(lifeState()) : KIDS_STORIES[volcano][stage];
+    if (volcano === 'submarine' && stage === 2 && select('environment') === 'shallow') story = t('浅水里的岩浆和海水猛烈相遇，碎屑又落回水中。');
+    if (isLand() && chapter === 'landscape' && stage === 3 && select('aftermath') === 'eroded') story = t('很久以后，水和风慢慢削改这座旧山。');
+  }
   el('story').textContent = story;
+  el('watch').hidden = !academic;
   el('watch').textContent = isLand() && chapter === 'eruption' ? magmaState(progress, settings()).connected ? STYLE_NOTES[eruptionAppearance(settings()).style].watch : t('先追踪下方补给和向上推进的岩脉尖端，再比较过压与贯通程度。地下有活动，地表却可以没有喷出物。') : content.watch;
   if (isLand() && chapter === 'life') {
     el('watch').textContent = LIFE_WATCH;
@@ -119,9 +156,18 @@ function update() {
   if (isLand() && chapter === 'eruption') {
     const state = magmaState(progress, settings());
     el('mechanism-status').textContent = mechanismStatus(state);
+    el<HTMLSelectElement>('kid-path').value = !magmaState(1, settings()).connected ? 'stalled' : select('style') === 'custom' ? 'custom' : select('style');
     for (const [id, value] of [['recharge', state.recharge], ['pressure', state.pressure], ['front', state.front], ['gas', state.gasExpansion]] as const) {
       (document.getElementById(`${id}-meter`)! as HTMLMeterElement).value = value;
     }
+    const willConnect = magmaState(1, settings()).connected;
+    const canContinue = state.connected && progress >= .94;
+    el('bridge-copy').textContent = canContinue
+      ? t('这次岩脉已通到地表。换到较长的建山时间轴，看看多次堆积怎样留下山形；两条进度不是同一个时钟。')
+      : willConnect ? t('继续追踪这次岩脉。它通到地表后，才能看到喷发怎样减弱、留下岩石。')
+        : t('地下可以有活动，却没有这次的地表喷出物。换条件再试，或单独打开山体篇。');
+    el('bridge').hidden = !canContinue;
+    el('bridge').textContent = t('接着看山体怎样堆积 →');
   }
   memories.set(key(), progress);
   draw();
@@ -136,6 +182,7 @@ function positions() {
 }
 function buildViews() {
   const items: [View, string][] = volcano === 'lake' ? [['section', t('湖盆剖面')]]
+    : volcano === 'submarine' ? [['landscape', t('跟着山体生长')], ['ocean', t('看海洋全景')], ['section', t('打开剖面')], ['vent', t('靠近喷口')]]
     : chapter === 'life' && isLand() ? [['landscape', t('看整座山')], ['vent', t('靠近山坡')]]
     : chapter === 'eruption' && isLand() ? [['landscape', t('完整剖面')], ['storage', t('地下活动')], ['vent', t('靠近喷口')], ['section', t('追踪熔岩')], ['plume', t('灰柱与落灰')]]
     : [['landscape', t('看整体')], ['section', t('打开剖面')], ['vent', t('靠近喷口')]];
@@ -156,6 +203,7 @@ function mountCase() {
   stop(); cancelCamera(); eruption?.dispose(); lake?.dispose(); eruption = undefined; lake = undefined;
   const content = CASE_CONTENT[volcano], land = isLand(), detail = land && chapter === 'eruption';
   el('case-name').textContent = content.name; el('case-subtitle').textContent = content.subtitle; el('case-introduction').textContent = content.introduction;
+  if (detail) el('case-subtitle').textContent = t('这座火山地下，正在发生什么？');
   el('timescale').textContent = detail ? t('一次地下活动 · 时间压缩') : land && chapter === 'life' ? t('植物恢复 · 时间压缩') : volcano === 'submarine' && select('environment') !== 'island' ? t('水下喷发 · 时间压缩') : t('地貌故事 · 时间压缩');
   el('chapters').hidden = !land;
   el('life-guide').hidden = !(land && chapter === 'life');
@@ -186,14 +234,22 @@ function mountCase() {
     : volcano === 'submarine' ? [[t('蓝色：海水'), '#287c92'], [t('暗色：冷却的岩石'), '#596764'], [t('亮色：高温物质'), '#ed9b48']]
     : chapter === 'life' ? [[t('棕色：裂缝里积起的土'), '#725640'], [t('绿色：长成斑块的植物'), '#81975b'], [t('浅灰：新落下的厚灰'), '#b8ac98']] : detail ? [[t('岩层：留下的喷出物'), '#957860'], [t('亮色：高温物质'), '#ed9b48'], [t('灰云：细小岩石与玻璃碎片'), '#92908b']] : [[t('岩层：留下的喷出物'), '#957860'], [t('亮色：高温物质'), '#ed9b48'], [t('绿色：后来的植被'), '#81975b']];
   el('legend').replaceChildren(...legend.map(([label, color]) => { const span = document.createElement('span'); span.textContent = label; span.style.setProperty('--swatch', color); return span; }));
-  el('bridge-copy').textContent = volcano === 'lake' ? t('湖泊不是火山故事的必然终点，水下也可以有喷发。') : volcano === 'submarine' ? t('火山岛露出海面后，地表的堆积仍可能继续。') : t('留下凹地以后，水能不能留住？换一个案例接着观察。');
+  el('bridge-copy').textContent = volcano === 'lake' ? t('湖泊不是火山故事的必然终点，水下也可以有喷发。') : volcano === 'submarine' ? t('火山岛露出海面后，地表的堆积仍可能继续。') : t('换一个可能留下湖盆的火山案例，看看水能否留住；不是这座山必然变成湖。');
   el('bridge').textContent = volcano === 'lake' ? t('接着看水下喷发 →') : volcano === 'submarine' ? t('接着看陆地熔岩堆积 →') : t('接着看火山湖 →');
+  el('bridge').hidden = false;
   const url = new URL(location.href); url.searchParams.set('case', volcano); url.searchParams.set('chapter', land ? chapter : 'landscape'); history.replaceState(null, '', url);
   update();
 }
 function choose(next: VolcanoCase) {
   memories.set(key(), progress); volcano = next; view = 'landscape';
-  progress = memories.get(key()) ?? initial(); mountCase();
+  progress = memories.get(key()) ?? initial(); mountCase(); revealSelectedCase();
+}
+function revealSelectedCase() {
+  if (!matchMedia('(max-width: 720px)').matches) return;
+  const cases = el('cases');
+  const selected = cases.querySelector<HTMLButtonElement>('button[aria-pressed="true"]');
+  const first = cases.querySelector<HTMLButtonElement>('button');
+  if (selected && first) cases.scrollLeft = selected.offsetLeft - first.offsetLeft;
 }
 function thumbnail(id: VolcanoCase) {
   const shape = id === 'shield' ? 'M4 50Q44 42 70 21Q78 25 86 21Q109 42 156 50' : id === 'scoria' ? 'M20 50L64 13Q80 29 96 13L140 50' : 'M15 50L71 5L79 14L87 5L145 50';
@@ -231,9 +287,30 @@ for (const id of ['habitat', 'aftermath', 'style', 'vents', 'supply', 'gas', 'vi
     settleCamera(); update();
   });
 }
+el<HTMLSelectElement>('kid-path').addEventListener('change', () => {
+  stop();
+  const path = select('kid-path');
+  if (path === 'stalled') {
+    el<HTMLInputElement>('supply').value = '20';
+    el<HTMLInputElement>('resistance').value = '90';
+  } else if (path !== 'custom') {
+    const preset = PRESETS[path as EruptionStyle];
+    el<HTMLSelectElement>('style').value = path;
+    for (const field of ['gas', 'viscosity', 'supply'] as const) el<HTMLInputElement>(field).value = String((preset[field] ?? .7) * 100);
+    el<HTMLInputElement>('resistance').value = '35';
+  }
+  progress = 0;
+  settleCamera();
+  update();
+});
 document.querySelectorAll<HTMLButtonElement>('[data-collapse]').forEach(button => button.addEventListener('click', () => seek(Number(button.dataset.collapse))));
 el('life-entry').addEventListener('click', () => { memories.set(key(), progress); chapter = 'life'; view = 'landscape'; progress = memories.get(key()) ?? .08; mountCase(); el('chapters').scrollIntoView({block:'start', behavior:'instant'}); });
-el('bridge').addEventListener('click', () => { choose(volcano === 'lake' ? 'submarine' : volcano === 'submarine' ? 'shield' : 'lake'); el('cases').scrollIntoView({ block: 'start', behavior: 'instant' }); });
+el('bridge').addEventListener('click', () => {
+  if (isLand() && chapter === 'eruption') {
+    memories.set(key(), progress); chapter = 'landscape'; view = 'landscape'; progress = memories.get(key()) ?? initial(); mountCase();
+  } else choose(volcano === 'lake' ? 'submarine' : volcano === 'submarine' ? 'shield' : 'lake');
+  el('cases').scrollIntoView({ block: 'start', behavior: 'instant' });
+});
 function showStatus(status: VolcanoStatus) {
   const note = STATUS_NOTES[status];
   el('status-title').textContent = note.title; el('status-body').textContent = note.body; el('status-evidence').textContent = note.evidence; el('status-limit').textContent = note.limit;
@@ -244,6 +321,16 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) { sto
 window.addEventListener('pagehide', () => { stop(); cancelCamera(); eruption?.dispose(); lake?.dispose(); eruption = undefined; lake = undefined; });
 window.addEventListener('pageshow', event => { if (event.persisted) mountCase(); });
 document.addEventListener('keydown', event => { if (event.code === 'Space' && !event.repeat && !(event.target as HTMLElement)?.closest('button,input,select,a,textarea,summary,[contenteditable]')) { event.preventDefault(); el('play').click(); } });
+let resizeFrame = 0;
+const sceneResize = new ResizeObserver(() => {
+  cancelAnimationFrame(resizeFrame);
+  resizeFrame = requestAnimationFrame(() => { settleCamera(); update(); revealSelectedCase(); });
+});
+sceneResize.observe(document.querySelector('.scene-wrap')!);
 mountCase(); showStatus('dormant'); mountReadingMode('.advanced');
+document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button => button.addEventListener('click', update));
+update();
 
 mountPresentationFrame({ root: '.explorer', visual: '.scene-wrap', transport: '.playback', choices: '#cases, #chapters' });
+settleCamera(); update();
+revealSelectedCase();

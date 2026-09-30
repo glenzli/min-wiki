@@ -12,6 +12,15 @@ export function mechanismStory(state: MagmaState) {
   return state.stage === 4 ? t('这一情境中，深部补给逐渐减弱，排出与散失使过压下降，喷发随之减弱。已经喷出的碎屑继续飞行、落地，熔岩仍保留在坡面。')
     : t('喷出的熔岩与碎屑留下新的岩石；未喷出的部分留在地下。暗色表皮不代表内部已经冷透，地下结晶和地表冷却都需要时间。');
 }
+export function mechanismKidStory(state: MagmaState) {
+  if (state.stage === 0) return t('地下的岩浆得到新的补给，先在岩石里汇集。');
+  if (state.stage === 1) return t('更多岩浆挤进来，周围的岩石开始承受更大的压力。');
+  if (state.stage === 2) return t('岩浆沿裂隙向上走；它也可能停在地下。');
+  if (!state.connected) return t('这次岩浆没有到达地面，所以没有这次的喷出物。');
+  if (state.stage === 3) return t('岩脉通到地面，岩浆和气体才从喷口出来。');
+  if (state.stage === 4) return t('补给渐渐少了，喷发减弱；飞出的碎屑还会落下。');
+  return t('地上留下新岩石，地下也还有没有喷出的岩浆。');
+}
 export function mechanismStatus(state: MagmaState) {
   return state.connected ? t('已贯通地表') : state.p > .8 ? t('未贯通 · 留在地下') : state.front > .005 ? t('岩脉正在扩展') : t('岩浆正在汇集');
 }

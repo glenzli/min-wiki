@@ -57,10 +57,10 @@ export function landscapeMarkup(kind: Landform, progress: number, aftermath: Aft
     <linearGradient id="land-section" x2="0" y2="1"><stop stop-color="#b89b79"/><stop offset="1" stop-color="#514d46"/></linearGradient>
     <clipPath id="land-clip"><polygon points="${footprint}"/></clipPath>
   </defs>
-  <rect width="1000" height="700" fill="url(#land-sky)"/>
+  <rect x="-500" y="-100" width="2000" height="900" fill="url(#land-sky)"/>
   <circle cx="800" cy="124" r="43" fill="#fff0c8" opacity=".58"/>
-  <path d="M0 352Q130 279 252 333T490 320T730 343T1000 294V670H0Z" fill="#6e9292" opacity=".32"/>
-  <path d="M0 407Q180 345 310 394T590 389T830 376T1000 390V670H0Z" fill="#68867c" opacity=".36"/>
+  <path d="M-500 352Q-250 310 0 352Q130 279 252 333T490 320T730 343T1000 294Q1250 330 1500 294V670H-500Z" fill="#6e9292" opacity=".32"/>
+  <path d="M-500 407Q-250 370 0 407Q180 345 310 394T590 389T830 376T1000 390Q1250 355 1500 390V670H-500Z" fill="#68867c" opacity=".36"/>
   <ellipse cx="518" cy="445" rx="${n((kind === 'shield' ? 440 : kind === 'scoria' ? 280 : 300) * (.22 + .78 * Math.sqrt(state.growth)))}" ry="${n((kind === 'shield' ? 440 : kind === 'scoria' ? 280 : 300) * (kind === 'shield' ? .30 : kind === 'composite' ? .4 : .5) * (.22 + .78 * Math.sqrt(state.growth)))}" fill="#324e4622"/>
   <polygon points="${footprint}" fill="url(#land-section)" opacity="${n(section)}"/>
   <g clip-path="url(#land-clip)" opacity="${n(section)}">

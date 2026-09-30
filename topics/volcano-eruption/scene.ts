@@ -127,7 +127,11 @@ export class TopicScene {
     const mechanism = magmaState(progress, settings);
     progress = mechanism.surfaceClock;
     const terrain = settings.landform ? (x: number) => 115 - (426 - landSurface(x + 500, settings.landform!, 1)) * .75 + roughness(x) : defaultTerrain;
-    const s = this.surface, c = s.begin('#172535', '#b18b73');
+    const s = this.surface;
+    // This cutaway has no canvas-embedded labels: use its available height for
+    // rock and magma instead of the generic surface's large text margin.
+    s.scale = Math.min((s.width - 22) / 740, (s.height - 18) / 430);
+    const c = s.begin('#172535', '#b18b73');
     c.save();c.scale(this.camera.zoom,this.camera.zoom);c.translate(-this.camera.x,-this.camera.y);
     const vents = ventPositions(settings.vents), intensity = activity(progress), appearance=eruptionAppearance(settings);
     const profile: Point[] = Array.from({ length: 181 }, (_, i) => { const x = -378 + i * 4.2; return [x, terrain(x)]; });

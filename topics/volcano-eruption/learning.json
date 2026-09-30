@@ -23,7 +23,7 @@
     "narration": [
       {
         "label": "选择一座火山",
-        "text": "火山有很多模样。宽宽的山、圆圆的小山、藏在海里的大山，甚至山上的湖，都可能留下火山活动的故事。先选一座，把剖面打开。我们要跟着岩浆，看看它来到地面后去了哪里。",
+        "text": "火山有很多模样。宽宽的山、圆圆的小山、藏在海里的大山，甚至山上的湖，都可能留下火山活动的故事。先选一座，把剖面打开。我们要跟着岩浆，看看它能不能到地面，再看留下了什么。",
         "cue": "逐一展示五张案例卡，进入大室山式火山渣锥并打开剖面。"
       },
       {
@@ -65,7 +65,7 @@
     "narration": [
       {
         "label": "Choose a volcano",
-        "text": "Volcanoes have many shapes. A broad mountain, a round cone, a mountain under the sea and even a lake can tell a volcanic story. Choose one and open its cutaway. Follow magma and see where it goes after reaching the surface.",
+        "text": "Volcanoes have many shapes. A broad mountain, a round cone, a mountain under the sea and even a lake can tell a volcanic story. Choose one and open its cutaway. Follow magma to see whether it reaches the surface, then what remains.",
         "cue": "Show the five case cards, enter the Omuroyama-style cone and open the cutaway."
       },
       {
@@ -86,6 +86,10 @@
     ]
   },
   "references": [
+    {
+      "title": "USGS · Dike dilation and propagation",
+      "url": "https://pubs.usgs.gov/pp/1202/report.pdf"
+    },
     {
       "title": "USGS · How Do Volcanoes Erupt?",
       "url": "https://www.usgs.gov/faqs/how-do-volcanoes-erupt"
