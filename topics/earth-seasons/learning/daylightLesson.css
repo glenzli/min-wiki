@@ -1,5 +1,5 @@
 .daylight-lesson { padding:26px 0 34px; border-bottom:1px solid var(--line); }
-.lesson-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:24px; margin-bottom:22px; }
+.lesson-heading { display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-bottom:22px; }
 .lesson-heading h2 { font-size:clamp(23px,2.5vw,34px); line-height:1.3; margin:7px 0 9px; letter-spacing:-.03em; }
 .lesson-heading p { color:var(--muted); font-size:14px; line-height:1.7; max-width:760px; margin:0; }
 .lesson-kicker { color:var(--gold); letter-spacing:.12em; font-size:11px; }
@@ -17,6 +17,7 @@
 .lesson-card h3 { margin:0; font-size:17px; font-weight:600; }
 .lesson-card header small { color:var(--muted); font-size:12px; }
 .lesson-canvas { display:block; width:100%; aspect-ratio:520/270; background:#0b1422; }
+.lesson-canvas[data-layout="stacked"] { aspect-ratio:520/500; }
 .lesson-measures { padding:15px 20px 18px; }
 .lesson-figures { display:flex; justify-content:space-between; align-items:baseline; gap:8px; }
 .lesson-figures strong { font-size:23px; font-weight:600; color:var(--gold); }
@@ -55,7 +56,6 @@ body[data-mode="academic"] .lesson-kids-limit { display:none; }
 body:not([data-mode="academic"]) .lesson-limit { display:none; }
 @media(max-width:680px) {
  .lesson-comparison { grid-template-columns:minmax(0,1fr); }
- .lesson-heading { gap:12px; flex-direction:column; }
  .lesson-reset { font-size:11px; padding:7px; }
  .lesson-card header, .lesson-measures { padding-left:14px; padding-right:14px; }
  .lesson-action { gap:15px; }

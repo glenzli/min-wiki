@@ -90,7 +90,7 @@ class EarthApp {
   phaseKey!: string;
   dialog!: HTMLDialogElement;
   simulation!: EarthSimulation;
-  daylightLesson!: { dispose: () => void; };
+  daylightLesson!: { dispose: () => void; render: () => void; };
   frame!: number;
   resumePlayAfterDialog!: boolean;
 
@@ -172,6 +172,7 @@ class EarthApp {
         document.querySelectorAll<HTMLElement>('button[data-mode]').forEach(b => {
           b.setAttribute('aria-pressed', String(b === button));
         });
+        this.daylightLesson.render();
         this.updateStory();
       });
     });

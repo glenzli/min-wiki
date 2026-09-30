@@ -25,3 +25,23 @@ The comparison can pass its reference location, orbital phase, tilt and progress
 The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
 
 The retained day, night and cloud source maps also have quality-90 WebP delivery copies at their original pixel dimensions. `scripts/optimize-images.mjs` records source/output hashes; only encoding changes, not lighting, rotation, texture coordinates or source attribution.
+
+## Reading-mode picture hierarchy — 2026-09-28, local edits
+
+The paired 0° and selected-tilt experiments now draw larger Earth and unfolded
+latitude-circle views for children. The existing daylight duration and noon-altitude
+readouts remain below each picture. Academic desktop keeps the original three-part
+Earth/circle/noon-Sun geometry; on narrow screens the same condition is shown in a
+stacked second noon-Sun diagram so all three relationships remain readable. Mode and
+viewport changes redraw the pictures without resetting place, season, tilt or the
+current position in the day. Both reading modes continue using the same geometric
+model, including polar day, polar night and the degenerate polar-horizon case.
+The desktop explanation heading and reset control stack within the narrow side panel,
+so English text keeps the full panel width.
+
+The diagrams remain illustrative projections, not a common length scale for the
+Earth, the city's daily path and the local horizon. No temperature or weather is
+inferred from the drawn Sun height. Focused geometry tests (14), TypeScript, English
+coverage and an isolated build passed; Chinese desktop and English 390 px child and
+academic views were inspected in the browser, including North Pole winter and
+mid-animation mode changes. This batch remains uncommitted and undeployed.

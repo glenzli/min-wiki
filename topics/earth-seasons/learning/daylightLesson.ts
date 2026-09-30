@@ -15,9 +15,71 @@ function circle(ctx: CanvasRenderingContext2D,x: number,y: number,r: number,colo
 function arrow(ctx: CanvasRenderingContext2D,x: number,y: number,endX: number,endY: number,color='#f6ce77') {
  const angle=Math.atan2(endY-y,endX-x);ctx.strokeStyle=color;ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(endX,endY);ctx.stroke();ctx.beginPath();ctx.moveTo(endX,endY);ctx.lineTo(endX-6*Math.cos(angle-.5),endY-6*Math.sin(angle-.5));ctx.lineTo(endX-6*Math.cos(angle+.5),endY-6*Math.sin(angle+.5));ctx.closePath();ctx.fillStyle=color;ctx.fill();
 }
+function drawFocused(ctx: CanvasRenderingContext2D,model: ReturnType<typeof daylightExperiment>,progress: number) {
+ const gx=131,gy=140,gr=67,cx=366,cy=140,r=75;
+ text(ctx,t("先看地球"),gx,28,15,'#e3e9f0');
+ text(ctx,t("展开这条圈"),cx,28,15,'#e3e9f0');
+ text(ctx,t("阳光从左边来"),gx,50,13,'#a8b9cf');
+ text(ctx,t("黄色越长，白天越长"),cx,50,13,'#a8b9cf');
+ const gradient=ctx.createRadialGradient(gx-26,gy-26,3,gx,gy,gr);
+ gradient.addColorStop(0,'#39769e');gradient.addColorStop(1,'#17344d');
+ circle(ctx,gx,gy,gr,gradient);
+ ctx.save();ctx.beginPath();ctx.arc(gx,gy,gr,0,TAU);ctx.clip();ctx.fillStyle='#111e32';ctx.fillRect(gx,gy-gr,gr,2*gr);ctx.restore();
+ for(const y of [gy-29,gy,gy+29])arrow(ctx,13,y,48,y);
+ const lean=model.declination*Math.PI/180,ax=-Math.sin(lean),ay=Math.cos(lean)*Math.cos(.35);
+ ctx.strokeStyle='#b7d5dc';ctx.lineWidth=1.6;ctx.beginPath();ctx.moveTo(gx-ax*gr*1.29,gy+ay*gr*1.29);ctx.lineTo(gx+ax*gr*1.29,gy-ay*gr*1.29);ctx.stroke();
+ text(ctx,t("北"),gx+ax*gr*1.42,gy-ay*gr*1.42,14,'#d5e7ea');
+ for(let j=0;j<120;j++){
+  const a=latitudeCirclePoint(model,j/120),b=latitudeCirclePoint(model,(j+1)/120);
+  ctx.globalAlpha=a.depth<0?.35:1;ctx.strokeStyle=Math.abs(a.x)<1e-7?'#a3b0bb':a.x<0?'#f6ce77':'#4e72a5';ctx.lineWidth=4;
+  ctx.beginPath();ctx.moveTo(gx+a.x*gr,gy-a.y*gr);ctx.lineTo(gx+b.x*gr,gy-b.y*gr);ctx.stroke();
+ }
+ ctx.globalAlpha=1;
+ const city=latitudeCirclePoint(model,progress);circle(ctx,gx+city.x*gr,gy-city.y*gr,6,'#ef7c69');
+ arrow(ctx,221,gy,270,gy,'#899eb8');
+ const phi=model.latitude*Math.PI/180,delta=model.declination*Math.PI/180;
+ const lightOffset=Math.sin(phi)*Math.sin(delta),lightSpan=Math.cos(phi)*Math.cos(delta);
+ const boundary=lightSpan>1e-10?Math.max(-r,Math.min(r,lightOffset/lightSpan*r)):lightOffset>1e-10?r:lightOffset<-1e-10?-r:0;
+ circle(ctx,cx,cy,r,'#14253c');ctx.save();ctx.beginPath();ctx.arc(cx,cy,r,0,TAU);ctx.clip();ctx.fillStyle='#65502a';
+ if(model.daylight!==null)ctx.fillRect(cx-r,cy-r,r+boundary,2*r);
+ ctx.restore();
+ if(model.daylight!==null&&Math.abs(boundary)<r-.1){
+  const y=Math.sqrt(r*r-boundary*boundary);ctx.strokeStyle='#c2ba9e';ctx.setLineDash([3,4]);ctx.beginPath();ctx.moveTo(cx+boundary,cy-y);ctx.lineTo(cx+boundary,cy+y);ctx.stroke();ctx.setLineDash([]);
+ }
+ for(let j=0;j<180;j++){
+  const start=j*TAU/180,side=lightAtDayProgress(model,(j+.5)/180).state;
+  ctx.strokeStyle=side==='horizon'?'#a3b0bb':side==='day'?'#f6ce77':'#4e72a5';ctx.lineWidth=11;
+  ctx.beginPath();ctx.arc(cx,cy,r,Math.PI-start-TAU/180-.003,Math.PI-start+.003);ctx.stroke();
+ }
+ const h=progress*TAU,mx=cx-r*Math.cos(h),my=cy+r*Math.sin(h),state=lightAtDayProgress(model,progress);
+ circle(ctx,mx,my,10,'#0b1422');circle(ctx,mx,my,6,'#ef7c69');
+ circle(ctx,cx,cy,4,'#889eb8');text(ctx,t("地轴"),cx,cy+24,14);
+ text(ctx,t("城市所在的纬度圈"),gx,252,14,'#b1bfd0');
+ text(ctx,state.state==='day'?t("城市在亮面里 · 白天"):state.state==='night'?t("城市在暗面里 · 黑夜"):t("城市在晨昏交界"),cx,252,14,state.state==='day'?'#f6ce77':'#9bb6dd');
+}
+function drawMobileAltitude(ctx: CanvasRenderingContext2D,model: ReturnType<typeof daylightExperiment>) {
+ ctx.strokeStyle='#26384d';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(26,280);ctx.lineTo(494,280);ctx.stroke();
+ text(ctx,t("正午，太阳有多高？"),260,311,16,'#e3e9f0');
+ const gx=250,gy=430,r=106,alt=model.noonAltitude*Math.PI/180;
+ ctx.strokeStyle='#3b526c';ctx.setLineDash([4,5]);ctx.beginPath();ctx.arc(gx,gy,r,-Math.PI/2,0);ctx.stroke();ctx.setLineDash([]);
+ ctx.strokeStyle='#9cae96';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(74,gy);ctx.lineTo(446,gy);ctx.stroke();
+ text(ctx,t("当地地面"),378,gy+23,13,'#aeb9ad');
+ const sx=gx+r*Math.cos(alt),sy=gy-r*Math.sin(alt);
+ if(model.noonAltitude>=0){
+  circle(ctx,sx,sy,12,'#f6ce77');arrow(ctx,sx-15*Math.cos(alt),sy+15*Math.sin(alt),gx+12*Math.cos(alt),gy-12*Math.sin(alt));
+  ctx.strokeStyle='#f6ce77';ctx.lineWidth=2;ctx.beginPath();ctx.arc(gx,gy,40,-alt,0);ctx.stroke();
+ }else{circle(ctx,sx,Math.min(468,sy),10,'#516787');text(ctx,t("太阳低于地平线"),260,352,13,'#9bb6dd');}
+ circle(ctx,gx,gy-13,4,'#ef7c69');ctx.strokeStyle='#ef7c69';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(gx,gy-9);ctx.lineTo(gx,gy);ctx.stroke();
+ text(ctx,`${model.noonAltitude.toFixed(1)}°`,260,481,20,'#f6ce77');
+}
 function draw(canvas: HTMLCanvasElement,model: ReturnType<typeof daylightExperiment>,progress: number) {
+ const academic=document.body.dataset.mode==='academic',stacked=academic&&matchMedia('(max-width:680px)').matches;
+ const height=stacked?1000:540;
+ if(canvas.height!==height)canvas.height=height;
+ canvas.dataset.layout=stacked?'stacked':'wide';
  const ctx=canvas.getContext('2d'); if(!ctx)return;
- ctx.setTransform(2,0,0,2,0,0);ctx.clearRect(0,0,520,270);
+ ctx.setTransform(2,0,0,2,0,0);ctx.clearRect(0,0,520,stacked?500:270);
+ if(!academic||stacked){drawFocused(ctx,model,progress);if(stacked)drawMobileAltitude(ctx,model);return;}
  const cx=222,cy=146,r=56;
  text(ctx,t("先看地球"),78,26,13,'#e3e9f0');
  text(ctx,t("展开这条圈"),cx,26,13,'#e3e9f0');
@@ -142,5 +204,6 @@ export function mountDaylightLesson(host: HTMLElement, onContinue: (selection: D
   stop();const place=places.find(p=>p.lat===latitude)!;
   onContinue({cityId:place.id,latitude,orbit,tilt,dayProgress:progress});
  });
- refresh();return {dispose:stop};
+ window.addEventListener('resize',render);
+ refresh();return {dispose:()=>{stop();window.removeEventListener('resize',render);},render};
 }
