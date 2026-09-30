@@ -1,5 +1,12 @@
 # Battery journey validation — 2026-09-21
 
+## Local family and pack refinement — 2026-09-28
+
+- `topics/batteries/tests/*.test.ts`: 11/11 focused battery tests passed. `npm run build -- --outDir /tmp/mini-wiki-batteries-build-20260928` passed TypeScript, 6,879 i18n source messages across 67 English namespaces, 141 image copies and Vite; the isolated Vite output was refreshed after the final color adjustment. `git diff --check` passed. The existing mixed-import and large-chunk warnings remain.
+- In a real browser, the built Chinese desktop family view opened on the AA pair, with two equally framed exteriors and one shared cutaway. The development view also switched to the lithium and vehicle pairs; both changed the examples, selected detail and chapter question together. The academic view displayed material, structure and source notes; the child view kept a short conclusion.
+- The built English 390 px child pack view showed the four-cell series preset and its matching 14.4 V / 2 Ah / 28.8 Wh ideal values. Switching to academic kept that combination; both sliders read 4 and 1, matching the displayed result. The ideal relation and its limits appeared in the academic view. Document width and viewport width were both 390 px.
+- Browser checks covered selected family and pack states, the three pack layer buttons and the academic/child transition, not every possible slider value or every form factor. The preview server was stopped after inspection. The ordinary development server was left running. This batch remains uncommitted and undeployed.
+
 Local expansion of the existing batteries topic. Shared catalog and translations were edited only for this entry; inherited dirty work was preserved under the accepted Dev Mesh baseline. No commit, push or deployment.
 
 ## Automated evidence
