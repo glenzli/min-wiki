@@ -2,6 +2,12 @@
 
 This is the integrated entry for germination, cherry reproduction and seed dispersal. A condition map connects seed → conditional germination → seedling → maturity → pollination/fertilization → seeds and fruit → dispersal → a new establishment hurdle. Map status reads the actual retained case states; it does not pretend that a bean becomes a cherry, dandelion or burdock. Seedling-to-maturity is an explicit explanatory bridge, not a simulated growth stage.
 
+## Visible case path · 2026-09-28, local edits
+
+The opening view keeps three selectable comparison cases visible above the current scene: common bean germination, cherry flower to fruit, and dandelion/burdock dispersal. These are four species across three cases. Each case shows its own status from `cycleEvidence`; selecting a case or moving to the next question returns the viewport to that case's visual without resetting its retained controls or progress. The detailed six-stage condition map remains separately expandable.
+
+Child mode places one short, case-specific causal explanation beside the case path. Academic mode uses the fuller case background there and keeps the mechanism and source material in each study's existing panel. Narrow screens show all three case names at once and put the active status under the question. The status reflects a bounded teaching model; visiting one case does not make another species inherit its history, and landing still does not count as germination.
+
 ## Ownership and routes
 
 - `main.ts`: the condition map, question transitions, validated chapter navigation, at most three retained native study fragments, and the page lifetime. Only the active fragment is attached; this avoids duplicate SVG/label IDs. Switches pause finite animation and keep each case’s controls and stage. Hidden/page-exit/reduced-motion events stop movement; bfcache return does not automatically resume.

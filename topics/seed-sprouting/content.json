@@ -15,6 +15,29 @@
     "zh": "这张图串起开花植物的一般有性繁殖路线。菜豆、樱桃、蒲公英和牛蒡是不同物种的比较案例，不是同一棵植物变来变去；部分植物还有其他繁殖方式。",
     "en": "The map connects a typical sexual reproductive pathway of flowering plants. Bean, cherry, dandelion and burdock are different comparison species, not one plant changing identity; some plants also reproduce in other ways."
   },
+  "railNote": {
+    "zh": "三组案例、四种植物，沿同一条有条件的路线比较",
+    "en": "Three cases, four plant species along one conditional pathway"
+  },
+  "railNames": {
+    "germination": { "zh": "菜豆 · 萌发", "en": "Bean · Germination" },
+    "reproduction": { "zh": "樱桃 · 花与果", "en": "Cherry · Flower to fruit" },
+    "dispersal": { "zh": "蒲公英 / 牛蒡 · 传播", "en": "Dandelion / burdock · Dispersal" }
+  },
+  "childCue": {
+    "germination": {
+      "zh": "这粒菜豆要有适量的水、能得到氧气，还要温度合适，才会继续萌发。",
+      "en": "This bean needs enough water, access to oxygen and a suitable temperature to keep sprouting."
+    },
+    "reproduction": {
+      "zh": "花粉落到柱头只是开始；相容的花粉管继续生长，才可能完成受精并形成种子。",
+      "en": "Pollen landing on the stigma is only the start. A compatible pollen tube must grow before fertilization and seeds can follow."
+    },
+    "dispersal": {
+      "zh": "蒲公英的小果实借风走，牛蒡靠钩挂住动物；落地以后也不会自动发芽。",
+      "en": "Dandelion fruits ride the wind; burdock hooks onto animals. Landing still does not make either seed sprout automatically."
+    }
+  },
   "mature": {
     "zh": "幼苗 → 成熟植株",
     "en": "Seedling → mature plant"

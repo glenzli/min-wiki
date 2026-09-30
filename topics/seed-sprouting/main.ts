@@ -21,10 +21,20 @@ const route=readPlantRoute(location.search);
 let chapter:Chapter=route.chapter,disposed=false,lastEvidence='';
 const states:Record<Chapter,StudyState>={germination:route.bean,reproduction:route.flower,dispersal:route.travel};
 const studies=new Map<Chapter,{root:HTMLElement;study:PlantStudy}>();
-el('intro').textContent=text(copy.intro);el('map-title').textContent=text(copy.mapTitle);el('map-note').textContent=text(copy.mapNote);el('memory').textContent=text(copy.memory);
+el('intro').textContent=text(copy.intro);el('map-title').textContent=text(copy.mapTitle);el('map-note').textContent=text(copy.mapNote);el('memory').textContent=text(copy.memory);el('rail-note').textContent=text(copy.railNote);
 el('sources-title').textContent=text(copy.sources);el('boundary').textContent=text(copy.boundary);el('next-heading').textContent=text(copy.next);
 const map=el('cycle-map');
 const statuses:HTMLElement[]=[];
+const caseStatus=document.createElement('p');caseStatus.id='case-status';caseStatus.setAttribute('role','status');document.querySelector('.chapter-copy')?.append(caseStatus);
+const childCue=document.createElement('p');childCue.id='child-cue';document.querySelector('.chapter-copy')?.append(childCue);
+const railButtons={} as Record<Chapter,HTMLButtonElement>,railStatuses={} as Record<Chapter,HTMLElement>;
+for(const [index,ch] of CHAPTERS.entries()){
+  const button=document.createElement('button'),number=document.createElement('span'),name=document.createElement('strong'),status=document.createElement('span');
+  button.type='button';button.dataset.chapter=ch;button.onclick=()=>select(ch,true);
+  number.className='case-rail-number';number.textContent=String(index+1).padStart(2,'0');
+  name.textContent=text(copy.railNames[ch]);status.className='case-rail-status';
+  button.append(number,name,status);el('case-rail-items').append(button);railButtons[ch]=button;railStatuses[ch]=status;
+}
 function node(title:string,target:Chapter|undefined,description:string){const item=document.createElement('li'),head=document.createElement(target?'button':'h3'),note=document.createElement('p');head.textContent=title;if(target){head.onclick=()=>select(target,true);head.dataset.chapter=target;}note.textContent=description;item.append(head,note);map.append(item);statuses.push(note);}
 node(text(copy.germination.name),'germination','');
 node(text(copy.mature),undefined,text(copy.matureNote));
@@ -38,6 +48,10 @@ function updateMap(){
   statuses[0]!.textContent=text(copy.status[evidence.germination]);statuses[2]!.textContent=text(copy.status[evidence.reproduction]);
   statuses[3]!.textContent=text(evidence.reproduction==='fruit'?copy.fruitReady:evidence.reproduction==='developing'?copy.fruitGrowing:copy.fruitWaiting);
   statuses[4]!.textContent=text(copy.status[evidence.dispersal]);statuses[5]!.textContent=text(evidence.dispersal==='landed'?copy.landingAfter:copy.landingBefore);
+  railStatuses.germination.textContent=text(copy.status[evidence.germination]);
+  railStatuses.reproduction.textContent=text(copy.status[evidence.reproduction]);
+  railStatuses.dispersal.textContent=text(copy.status[evidence.dispersal]);
+  caseStatus.textContent=railStatuses[chapter].textContent;
 }
 function create(ch:Chapter){
   const config=ch==='germination'?{html:beanHTML,t,mount:mountBean}:ch==='reproduction'?{html:flowerHTML,t:flowerT,mount:mountFlower}:{html:travelHTML,t:travelT,mount:mountTravel};
@@ -53,9 +67,12 @@ function select(next:Chapter,write=false){
   el('study-host').replaceChildren(value.root);
   mountPresentationFrame({ root: value.root.querySelector<HTMLElement>('.lab')!, visual: '.scene', transport: '#next,#reset,#play,#restart' });
   for(const button of map.querySelectorAll<HTMLButtonElement>('button'))button.setAttribute('aria-current',String(button.dataset.chapter===chapter));
+  for(const ch of CHAPTERS)railButtons[ch].setAttribute('aria-current',ch===chapter?'step':'false');
   const current=copy[chapter];el('case-label').textContent=text(current.species);el('question').textContent=text(current.question);el('before').textContent=text(current.before);el('after').textContent=text(current.after);el('next-chapter').textContent=text(current.next);
-  if(write){const url=new URL(location.href);url.searchParams.set('chapter',chapter);history.pushState(null,'',url);}
+  childCue.textContent=text(copy.childCue[chapter]);
+  if(write){const url=new URL(location.href);url.searchParams.set('chapter',chapter);history.pushState(null,'',url);document.querySelector('.chapter-context')?.scrollIntoView({block:'start',behavior:'auto'});}
   updateMap();
+  caseStatus.textContent=railStatuses[chapter].textContent;
 }
 el('next-chapter').onclick=()=>select(CHAPTERS[(CHAPTERS.indexOf(chapter)+1)%CHAPTERS.length]!,true);
 const pause=()=>{for(const {study}of studies.values())study.pause();};
@@ -66,4 +83,4 @@ window.addEventListener('popstate',()=>select(readPlantRoute(location.search).ch
 for(const a of document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]'))a.href=languageHref(a.getAttribute('href')!);
 select(chapter);mountReadingMode('details:not(.references)');
 
-foldPresentationContext('.cycle-panel, .chapter-context');
+foldPresentationContext('.cycle-panel');
