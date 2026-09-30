@@ -65,3 +65,20 @@ Sources added: [Suda et al. 2020](https://www.nature.com/articles/s41477-020-007
 [Burri et al. 2020](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3000740),
 and [Ding et al. 2011](https://www.nature.com/articles/ncb2208).
 See [follow-up validation](../../docs/moving-plants-20260922.md) for current evidence.
+
+## Mechanism comparison — 2026-09-28, local edits
+
+The three stations now lead into one comparison below the main experiment. Each case uses
+the same four questions—trigger, moving tissue, visible result and qualitative pace—so a
+child can compare pulvinus-driven folding, trap-lobe closure and growth without treating
+them as one shared motor or clock. A case card returns to that plant without resetting its
+experiment. Academic mode expands the three distinct causal mechanisms, limitations and
+primary research links in place; child mode keeps those paragraphs out of the reading flow.
+The comparison does not put the three clocks on a measured common scale or claim that the
+diagrammed rates are field measurements.
+
+Focused model tests (12), typecheck, bilingual namespace check and an isolated Vite build
+passed. The rebuilt page was checked in a 390 px English browser for both reading modes,
+case-card return and retained flytrap progress after visiting the seedling; no horizontal
+overflow or browser warnings/errors were observed. The Chinese desktop comparison was
+visually checked in both modes. This batch remains uncommitted and undeployed.

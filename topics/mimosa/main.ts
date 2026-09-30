@@ -1,5 +1,6 @@
 import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { mountMovementStudy } from './movementStudy.ts';
+import { mountMovementComparison } from './movementComparison.ts';
 import { plantCase, type PlantCase } from './movementModel.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
@@ -76,7 +77,7 @@ for (const b of document.querySelectorAll<HTMLButtonElement>('[data-view]')) b.a
   cancelView = animateValue({from: viewDepth, to: target, duration: 720, onUpdate: value => { viewDepth = value; scene?.draw(progress, settings(), view, viewDepth); }});
 });
 el('wide-demo').addEventListener('click', () => { select('extent').value = 'whole'; touch(); });
-for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; movement?.setAcademic(academic); update(); });
+for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; movement?.setAcademic(academic); comparison?.setAcademic(academic); update(); });
 el('steps').replaceChildren(...steps.map((label, i) => { const b = document.createElement('button'); b.textContent = label; b.addEventListener('click', () => { seek([0, .21, .43, .62, .84][i]!); }); return b; }));
 document.addEventListener('visibilitychange', () => { if (document.hidden) cancel(); else if (playing) resume(); });
 window.addEventListener('pagehide', e => { cancelView(); viewDepth = view === 'plant' ? 0 : view === 'cell' ? 2 : 1; cancel(); if (!e.persisted) { stop(); scene?.dispose(); } });
@@ -85,6 +86,7 @@ update();
 
 // The journey coordinates selection and presentation; each experiment owns its own clock.
 const workspace=el('plant-workspace');
+const comparison=mountMovementComparison(workspace,value=>choosePlant(value,true));
 const inspector=workspace.querySelector<HTMLElement>('.inspector')!;
 inspector.prepend(workspace.querySelector('.story')!);
 inspector.append(el('science-panel'));
@@ -94,6 +96,7 @@ const observationTitle=document.createElement('h2');observationTitle.className='
 function choosePlant(value:PlantCase,push=false){
   stop();cancelView();viewDepth=view==='plant'?0:view==='cell'?2:1;
   selectedPlant=value;workspace.dataset.plant=value;
+  comparison.select(value);
   el('mimosa-study').hidden=value!=='mimosa';el('mimosa-details').hidden=value!=='mimosa';
   el('movement-study').hidden=value==='mimosa';el('movement-reading').hidden=value==='mimosa';
   document.querySelectorAll<HTMLButtonElement>('[data-plant]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.plant===value)));

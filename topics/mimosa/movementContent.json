@@ -35,6 +35,49 @@
     "curvature": "叶片弯曲 · 示意",
     "memoryNote": "柱高表示短时信号，不是思想、记忆力评分或实测钙浓度。",
     "growthNote": "颜色和细胞大小经过放大；比较同一幼茎两侧，不能套用到所有植物器官。",
+    "comparison": {
+      "title": "三种植物都在动，动法却不同",
+      "lead": "回看三个实验：什么触发了动作？真正改变的是哪一处？",
+      "trigger": "从哪里开始",
+      "mover": "哪里在改变",
+      "result": "最后看到",
+      "pace": "时间感觉",
+      "open": "回到这个实验",
+      "source": "研究入口",
+      "paceNote": "这里只比较快慢类别；三组演示时钟不共用一个时间标尺。",
+      "cases": {
+        "mimosa": {
+          "name": "含羞草",
+          "trigger": "碰到一条羽片",
+          "mover": "小叶基部的叶枕改变支撑",
+          "result": "小叶合拢，随后重新展开",
+          "pace": "迅速合拢，较慢恢复",
+          "science": "触碰可引出传播的电信号和钙信号。叶枕运动细胞的离子与水分重新分配，膨压差带动组织变形。主叶枕下垂只在较广响应的示例中出现；本页的含水数值与时间没有实测标定。",
+          "sourceTitle": "含羞草的钙信号与运动实验",
+          "sourceUrl": "https://www.nature.com/articles/s41467-022-34106-x"
+        },
+        "flytrap": {
+          "name": "捕蝇草",
+          "trigger": "触碰捕虫叶上的触发毛",
+          "mover": "整片捕虫叶改变弯曲形状",
+          "result": "叶片快速合拢",
+          "pace": "很快；本页放慢播放",
+          "science": "触发毛受刺激后出现电和钙信号，短间隔刺激可以达到闭合条件。快速闭合涉及叶片曲率改变和弹性失稳。本页的指数信号条与 30 秒界线是教学模型，不是每株植物的固定阈值；一次缓慢弯毛也可能产生多个信号。",
+          "sourceTitle": "触发毛后的钙信号实验",
+          "sourceUrl": "https://www.nature.com/articles/s41477-020-00773-1"
+        },
+        "seedling": {
+          "name": "向光的幼苗",
+          "trigger": "光主要从一侧照来",
+          "mover": "幼茎两侧伸长得不一样",
+          "result": "新的茎逐渐弯向光",
+          "pace": "随着生长，慢慢改变",
+          "science": "定向光参与调节幼茎的光感受、生长素运输与响应；背光侧伸长较多，使生长中的茎逐渐弯曲。两侧光对照仍继续向上生长。相对长度不是实测生长率，这个幼茎例子不能直接套用于根。",
+          "sourceTitle": "幼茎向光生长的生长素研究",
+          "sourceUrl": "https://www.nature.com/articles/ncb2208"
+        }
+      }
+    },
     "flytrap": {
       "name": "捕蝇草",
       "latin": "Dionaea muscipula",
@@ -135,6 +178,49 @@
     "curvature": "Lobe curvature · model",
     "memoryNote": "Bar height represents a short-lived signal, not thought, a memory score or measured calcium concentration.",
     "growthNote": "Colors and cells are enlarged. Compare the two sides of this shoot; do not generalize to every plant organ.",
+    "comparison": {
+      "title": "Three plants move in three different ways",
+      "lead": "Revisit the experiments: what starts each movement, and which part actually changes?",
+      "trigger": "What starts it",
+      "mover": "What changes",
+      "result": "What you see",
+      "pace": "Pace",
+      "open": "Return to this experiment",
+      "source": "Research source",
+      "paceNote": "These are qualitative pace categories; the three demonstrations do not share one time scale.",
+      "cases": {
+        "mimosa": {
+          "name": "Mimosa",
+          "trigger": "Touch a pinna",
+          "mover": "Pulvini at leaflet bases change their support",
+          "result": "Leaflets fold, then reopen",
+          "pace": "Fast folding, slower recovery",
+          "science": "Touch can initiate propagating electrical and calcium signals. Ions and water redistribute in pulvinus motor cells, and turgor differences deform the tissue. The main pulvinus droops only in the wider-response example; the water values and timing here are not measured.",
+          "sourceTitle": "Mimosa calcium-signaling and movement experiments",
+          "sourceUrl": "https://www.nature.com/articles/s41467-022-34106-x"
+        },
+        "flytrap": {
+          "name": "Venus flytrap",
+          "trigger": "Touch a trigger hair on the trap",
+          "mover": "The whole trap lobe changes curvature",
+          "result": "The trap closes rapidly",
+          "pace": "Fast; slowed down here",
+          "science": "Stimulating a trigger hair produces electrical and calcium signals; closely spaced stimulation can meet the closure condition. Curvature change and elastic instability contribute to rapid closure. The exponential signal bar and 30-second boundary here are teaching choices, not a fixed threshold for every plant; one slow bend can produce several signals.",
+          "sourceTitle": "Calcium signals after trigger-hair stimulation",
+          "sourceUrl": "https://www.nature.com/articles/s41477-020-00773-1"
+        },
+        "seedling": {
+          "name": "Young shoot",
+          "trigger": "Light comes mostly from one side",
+          "mover": "The two sides of the shoot elongate differently",
+          "result": "New growth gradually bends toward light",
+          "pace": "Slow change through growth",
+          "science": "Directional light affects light sensing, auxin transport and response in the shoot. More elongation on the shaded side gradually bends the growing stem. The two-sided-light control keeps growing upward. Relative lengths are not measured growth rates, and this shoot example does not transfer directly to roots.",
+          "sourceTitle": "Auxin research on shoot phototropism",
+          "sourceUrl": "https://www.nature.com/articles/ncb2208"
+        }
+      }
+    },
     "flytrap": {
       "name": "Venus flytrap",
       "latin": "Dionaea muscipula",
