@@ -131,5 +131,12 @@
   "金色小点始终朝向地球；同一月面上，改变的是我们看见的亮面。": "The gold marker keeps facing Earth; on the same lunar surface, the visible sunlit area changes.",
   "金色箭头：阳光 · 蓝色箭头：观察方向 · 金色小点：月面朝地球的一侧": "Gold arrows: sunlight · Blue arrow: viewing direction · Gold dot: the Earth-facing side",
   "按同一长度比例摆放后，月球小得多，地月之间也很空。这个排列不表示此刻的月相。": "At one length scale, the Moon is much smaller and the gap is vast. This lineup does not show the current phase.",
-  "数一数，两颗球的中心之间大约能排下多少个地球？": "Count how many Earths fit between the two centers."
+  "数一数，两颗球的中心之间大约能排下多少个地球？": "Count how many Earths fit between the two centers.",
+  "月相进度已保留；返回轨道可继续": "Phase progress saved; return to orbit to continue",
+  "用同一把尺比较大小与距离": "One ruler for size and distance",
+  "这幅排列把球体半径和中心距离都按同一长度比例缩小。月球半径约为地球的 0.273 倍；平均中心距离约为 384,400 km，相当于 30.2 个地球直径。画面中的两颗球没有为了好看而分别放大。": "This lineup scales body radii and center distances by the same factor. The Moon’s radius is about 0.273 times Earth’s; the mean center distance of about 384,400 km equals 30.2 Earth diameters. Neither body is enlarged separately for visibility.",
+  "R_M、R_E 分别是月球与地球的平均半径，d 是两颗球的中心距离。直径是半径的两倍；扣除两端的半径后，表面之间的空隙约为 29.5 个地球直径。": "R_M and R_E are the mean radii of the Moon and Earth; d is their center-to-center distance. Diameter is twice radius. Subtracting the two endpoint radii leaves a surface-to-surface gap of about 29.5 Earth diameters.",
+  "打开参考标记，从地球中心数到月球中心；再比较两颗球的直径。切回地月轨道，观察为什么教学视图需要压缩距离。": "Enable the guides and count from Earth’s center to the Moon’s center, then compare their diameters. Return to the orbit view to see why the teaching view compresses distance.",
+  "距离取平均值；真实月球沿椭圆轨道运行，距离会变化。这是独立尺度排列，不计算此刻的月相、月食或天空角直径。标签、光晕和定位标记都不是球体直径。": "The distance is a mean; the real Moon follows an elliptical orbit, so its distance varies. This independent scale lineup does not calculate the current phase, eclipses or apparent angular size. Labels, glows and locator marks are not body diameters.",
+  "平均中心距离：384,400 km\n月球 / 地球半径：{{ratio}}\n中心距离 / 地球直径：{{distance}}\n表面间空隙 / 地球直径：{{gap}}": "Mean center distance: 384,400 km\nMoon / Earth radius: {{ratio}}\nCenter distance / Earth diameter: {{distance}}\nSurface gap / Earth diameter: {{gap}}"
 }

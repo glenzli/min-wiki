@@ -3,7 +3,7 @@
   "topicId": "saturn-moons",
   "zh": {
     "question": "土星旁边大小不同的卫星，绕完一圈的时间会一样吗？",
-    "observe": "保持轨道全景播放，对照土卫一和土卫六的公转周期；再选择土卫二近景和真实大小比较，区分特点、大小与距离。",
+    "observe": "打开太阳系中的土星卫星视图，让轨道示意运行；依次选择土卫一和土卫六，比较公转周期与直径读数。再阅读土卫六、土卫二的发现说明，区分屏幕标记、实际尺寸与探测器证据。",
     "academic": [
       {
         "title": "共同引力场中的不同轨道",
@@ -14,12 +14,12 @@
         "body": "土卫六拥有浓厚的以氮为主的大气，表面已确认存在甲烷和乙烷组成的湖海，其液体循环并不等于地球的水循环。土卫二的冰壳下有全球海洋，南极附近裂隙喷出水汽与冰粒。卡西尼通过成像、光谱和粒子测量研究这些环境；有液态水和有机物不等于已经发现生命。"
       },
       {
-        "title": "用同一比例做大小比较",
-        "body": "大小比较按同一半径尺度排列卫星，因此圆球的直径可以互相比，球间空隙却只是排版。土卫六明显大于这里其余多数卫星，表面近景也不使用大小比较的统一尺度。七颗是教学选择，并不是土星卫星总数。新发现需要持续观测和轨道确认，因此完整目录与统计数量必须附上来源和更新时间。"
+        "title": "用直径读数比较大小",
+        "body": "选择一颗卫星，说明区会给出公转周期与直径。大小比较应使用这些带单位的直径读数：轨道图中的球体和距离分别调整，不能把屏幕上的圆球直径当作同一长度比例的测量。土卫六的实际直径远大于土卫二。七颗是教学选择，不是土星卫星总数；完整目录与数量统计需要来源和更新时间。"
       }
     ],
     "misconception": "土星不只有七颗卫星；本页挑选七颗做比较。土卫六的湖海不是液态水，土卫二喷流也不是已经发现生物的证据。",
-    "boundary": "采用圆轨道和示意相位，表面纹理表达代表特征而非实测完整地图。土星环、轨道视图与卫星近景不能混用同一长度比例。",
+    "boundary": "轨道采用圆周与示意相位，球体大小和轨道距离分别调整。当前视图用简化球体标记卫星；大气、海洋与南极喷流属于探测器发现的文字说明，不是图中可近观的表面或喷流模拟。没有共同真实比例的卫星大小工作台，比较尺寸应读直径数值。",
     "narration": [
       {
         "label": "光环外的伙伴",
@@ -28,24 +28,24 @@
       },
       {
         "label": "谁先绕完一圈",
-        "text": "按下播放，比较靠里的土卫一和远一些的土卫六。先暂停猜一猜：同样过了几天，谁会多绕几圈？等一小会儿，再接着看。你会发现，卫星虽然围着同一个土星，却不是排好队、用一样的速度前进，每个世界都有自己的节奏。",
+        "text": "让卫星继续绕行，比较靠里的土卫一和远一些的土卫六。先暂停猜一猜：同样一段播放时间，谁会多绕几圈？再选中它们，读一读公转周期。你会发现，卫星虽然围着同一个土星，却不是排好队、用一样的速度前进，每个世界都有自己的节奏。",
         "cue": "比较土卫一与土卫六；停顿约四秒。"
       },
       {
         "label": "两种特别的世界",
-        "text": "再靠近一点看。土卫六外面包着厚厚的大气，还有液体组成的湖海，不过那些液体不是我们喝的水。小小的土卫二则有明亮的冰壳，还会从南边喷出水汽和冰粒。我们看到的这些特点，来自探测器认真拍照和测量后的发现。",
-        "cue": "先选土卫六近景，再选土卫二看南极喷流。"
+        "text": "选中土卫六，读一读探测器发现的特点：它外面包着厚厚的大气，还有液体组成的湖海，不过那些液体不是我们喝的水。再选土卫二：它有明亮的冰壳，还会从南边喷出水汽和冰粒。这些发现来自探测器认真拍照和测量；眼前的圆球只是帮我们找到卫星，不会在图里展开那些地貌或喷流。",
+        "cue": "依次选择土卫六与土卫二，阅读对应发现；不切换近景或显示模拟喷流。"
       },
       {
-        "label": "把大小排清楚",
-        "text": "最后把卫星放到同一把尺子下，排在一起比大小。找找最大的土卫六，再找小一些的土卫二。球之间留的空位只是方便我们看，不是它们在太空中的实际距离。这些世界有许多值得研究的秘密，但有水的地方，也不能马上说一定住着生命。",
-        "cue": "切真实大小比较，强调间距不代表真实距离。"
+        "label": "读一读真正的大小",
+        "text": "最后用直径读数比大小。选中土卫六，记下它的直径，再读土卫二的直径。你会发现，土卫六大得多。画面为了让大家都看得见，分别调整了球体和距离；不能拿屏幕上的圆球或空位当尺子。这些世界有许多值得研究的秘密，但有水的地方，也不能马上说一定住着生命。",
+        "cue": "依次选择土卫六和土卫二，对照直径读数；保持轨道图，说明球体与间距不按共同真实比例显示。"
       }
     ]
   },
   "en": {
     "question": "Do differently sized moons around Saturn take the same time to finish an orbit?",
-    "observe": "Compare Mimas and Titan in the playing orbit view. Then inspect Enceladus up close and use the size view to separate features, size, and distance.",
+    "observe": "Open Saturn’s moon view in the Solar System explorer and let the orbit illustration run. Select Mimas and Titan in turn to compare period and diameter readouts. Read the discoveries about Titan and Enceladus, distinguishing screen markers, physical sizes and spacecraft evidence.",
     "academic": [
       {
         "title": "Different orbits in one gravitational field",
@@ -56,12 +56,12 @@
         "body": "Titan has a thick, mainly nitrogen atmosphere and confirmed surface lakes and seas of methane and ethane. Its liquid cycle is not Earth’s water cycle. Enceladus has a global ocean beneath its ice shell and releases water vapor and icy particles near its south pole. Cassini studied these environments using images, spectra, and particle measurements. Water and organic compounds do not establish the presence of life."
       },
       {
-        "title": "Compare sizes with one scale",
-        "body": "The size lineup uses a common radius scale, so diameters can be compared; gaps between bodies are only for layout. Titan is much larger than most other moons shown, and individual close-ups do not retain that common size scale. These seven are a teaching selection, not Saturn’s total. Discoveries need follow-up and orbit confirmation, so complete inventories require a source and date."
+        "title": "Compare diameter readouts",
+        "body": "Selecting a moon shows its orbital period and diameter. Compare the diameter values with their units: bodies and distances in the orbit view are scaled separately, so the displayed spheres are not a common-length measurement. Titan’s physical diameter is much larger than Enceladus’s. These seven are a teaching selection, not Saturn’s total; complete inventories and counts require a source and date."
       }
     ],
     "misconception": "Saturn has more than seven moons. Titan’s surface lakes are not liquid water, and Enceladus’s plumes do not prove life has been found.",
-    "boundary": "Circular orbits and illustrative phases simplify dynamics. Surface textures highlight features rather than reproducing measured global maps. Rings, orbit views, and close-ups use different scales.",
+    "boundary": "Circular orbits and illustrative phases simplify motion; body sizes and orbital distances are scaled separately. Moons appear as simplified spheres. Atmospheres, oceans and south-polar plumes are spacecraft discoveries described in text, not close-up surface or plume simulations in this view. There is no common true-scale moon-size workbench; compare the diameter values.",
     "narration": [
       {
         "label": "Partners beyond the rings",
@@ -70,18 +70,18 @@
       },
       {
         "label": "Who completes a lap?",
-        "text": "Press play and compare Mimas, farther in, with more distant Titan. Pause and predict: after the same number of days, which will have made more laps? Wait a moment, then continue. The moons share one Saturn, but they do not travel as a matching parade at one speed. Each has its own rhythm.",
+        "text": "Let the moons orbit and compare Mimas, farther in, with more distant Titan. Pause and predict: over the same playback interval, which makes more laps? Select each one and read its orbital period. The moons share one Saturn, but they do not travel as a matching parade at one speed. Each has its own rhythm.",
         "cue": "Compare Mimas and Titan; pause four seconds."
       },
       {
         "label": "Two unusual worlds",
-        "text": "Move closer. Titan has a thick atmosphere and lakes of liquid, but that liquid is not the water we drink. Smaller Enceladus has a bright icy shell and sprays water vapor and icy grains from its southern region. Spacecraft discovered these features by carefully taking pictures and making measurements.",
-        "cue": "Inspect Titan, then Enceladus and its south-polar plume."
+        "text": "Select Titan and read the spacecraft discoveries. It has a thick atmosphere and lakes of liquid, but that liquid is not the water we drink. Next select Enceladus: it has a bright icy shell and sprays water vapor and icy grains from its southern region. Spacecraft discovered these features with careful pictures and measurements. The spheres help us locate the moons; they do not unfold those landscapes or plumes in the picture.",
+        "cue": "Select Titan and Enceladus in turn and read their discoveries; do not switch to a close-up or show simulated plumes."
       },
       {
-        "label": "Use one ruler",
-        "text": "Finally, line the moons up with one ruler and compare their sizes. Find large Titan, then smaller Enceladus. The gaps simply help us see the objects; they do not show actual distances in space. These worlds hold many questions to investigate. Even where there is water, we cannot immediately conclude that something is living there.",
-        "cue": "Use size comparison and explain the layout spacing."
+        "label": "Read their physical sizes",
+        "text": "Finally, compare the diameter readouts. Select Titan and note its diameter, then read Enceladus’s diameter. Titan is much larger. To keep the moons visible, the picture adjusts body sizes and distances separately; its spheres and gaps cannot be used as a ruler. These worlds hold many questions to investigate. Even where there is water, we cannot immediately conclude that something is living there.",
+        "cue": "Select Titan and Enceladus in turn to compare diameter readouts. Keep the orbit view and explain that spheres and spacing do not share a true length scale."
       }
     ]
   },

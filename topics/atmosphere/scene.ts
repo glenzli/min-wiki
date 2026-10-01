@@ -334,7 +334,9 @@ export class AtmosphereScene {
   const a=this.point(-320,730),mid=this.point(-80,1000),b=this.point(160,755);
   c.beginPath();c.moveTo(a.x,a.y);c.quadraticCurveTo(mid.x,mid.y,b.x,b.y);c.strokeStyle='#a4d5dfbd';c.lineWidth=2;c.setLineDash([6,7]);c.stroke();c.setLineDash([]);
   if(step===1){
-   const x=-320+480*p,h=730+250*Math.sin(Math.PI*p),q=this.point(x,h);
+   // Follow the curve actually drawn after projection, including its endpoint.
+   // Projecting a separate height path would diverge under this radial camera.
+   const u=1-p,q={x:u*u*a.x+2*u*p*mid.x+p*p*b.x,y:u*u*a.y+2*u*p*mid.y+p*p*b.y};
    this.glow(q.x,q.y,14,'#b7e2e989');this.dot(q.x,q.y,4,'#dceef0');
   }else{
    const from=this.point(145,735),to=this.point(300,1110),end={x:from.x+(to.x-from.x)*p,y:from.y+(to.y-from.y)*p};

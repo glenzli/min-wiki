@@ -45,6 +45,10 @@ The journey includes a fixed five-band orientation rail (equal expanded bands, n
 
 Selecting an Earth layer begins a captioned process in the same Canvas as the continuous outside-camera journey. Animated marks stay at representative radial locations and crossfade between three steps while the same globe, coast and surface anchor remain fixed. The steps show a qualifying condition or alternate outcome where needed: moist versus drier rising air, radiation absorption, a meteor's possible fates, distinct thermospheric heating and auroral input, and retained versus escaping exospheric particles. Marker sizes, paths and the 2.8-second explanation intervals are teaching geometry and timing, not atmospheric particle or weather simulations. A user can pause or select a step directly; the model limits and source remain available in the subtitle. Reduced-motion preference leaves the first step still until the user acts. Narration disappears in the whole-Earth and planetary-comparison views without replacing the globe or surface anchor.
 
+The retained exospheric particle follows the same quadratic curve drawn in projected Canvas coordinates; its final point is retained in the following escape-comparison step. This is an illustrative path, not a computed orbit. The focused drawing regression checks intermediate positions and the endpoint across camera scales.
+
+外逸层中被引力留住的粒子沿投影后实际画出的同一条二次曲线移动，终点在下一步逃逸对照中保留；这是示意轨迹，不是计算得到的轨道。定向绘图回归覆盖不同相机尺度下的中间位置与终点。
+
 Planetary comparison rows are selectable in either column and expose both worlds' full paired explanation in the inspector. The aligned rows continue to describe representative phenomena, not equal altitudes or layer thicknesses.
 
 The distant globe projects the existing licensed day and cloud maps into bounded 1280 px Canvas caches; the locator reuses them. The authored 1536 px relief cache and vector shoreline take over during approach, then yield to the fixed local geometry under close zoom. The camera coordinate and surface marker do not jump. The near-coast landforms are authored illustrations, not observed detail; all caches are released with the scene.

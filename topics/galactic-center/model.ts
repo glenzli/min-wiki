@@ -48,12 +48,17 @@ export function windCaptureParcel(index: number, time: number) {
     const join = .58;
     if (age < join) {
         const u = age / join;
-        const x = bezier(u, startX, DONOR_X + 2.35, HOLE_X - 2.05, HOLE_X - .92);
-        const y = bezier(u, startY, startY * 1.7, -.82 + cone * .5, -.15);
-        const width = .10 + .34 * Math.sin(Math.PI * u);
+        const x = bezier(u, startX, DONOR_X + 2.35, HOLE_X - 2.05, HOLE_X - .96);
+        const y = bezier(u, startY, startY * 1.7, -.82 + cone * .5, 0);
+        // Focus into the same disk-entry point and spread used by the spiral.
+        // This is positional continuity of teaching parcels, not a flow solver.
+        const blendU = Math.max(0, Math.min(1, (u - .7) / .3));
+        const blend = blendU * blendU * (3 - 2 * blendU);
+        const spread = .10 + .34 * Math.sin(Math.PI * u);
+        const width = spread * (1 - blend);
         return { x: x + (seedValue(index + 451) - .5) * width, y: y + (seedValue(index + 1771) - .5) * width,
-            z: (seedValue(index + 7711) - .5) * width * 1.4, heat: u * .24,
-            alpha: Math.min(1, age * 18, (1 - age) * 24) * .62 };
+            z: (seedValue(index + 7711) - .5) * (spread * 1.4 * (1 - blend) + .08 * blend), heat: u * .24,
+            alpha: Math.min(1, age * 18, (1 - age) * 24) * (.62 + .04 * blend) };
     }
     const u = (age - join) / (1 - join), radius = .96 * (1 - u) + .09 * u;
     const theta = Math.PI - u * Math.PI * 6.4;

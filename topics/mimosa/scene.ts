@@ -1,7 +1,7 @@
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
 import { leafletFold, signalArrival, type TouchSettings } from './model.ts';
 import { t } from './i18n.ts';
-import { createMotorTissue, primaryPulvinus, tissuePoint, type Point, type TissueCell } from './anatomy.ts';
+import { createMotorTissue, primaryPulvinus, leafletPulvinus, leafletPairPose, tissuePoint, type Point, type TissueCell } from './anatomy.ts';
 import { plantPose, compoundPoint, pinnaPoint, leafletBase, PINNA_ANGLES, PINNA_LENGTHS, OBSERVED_PAIR } from './geometry.ts';
 
 const noise = (n: number) => { const x = Math.sin(n * 127.13 + 31.17) * 43758.5453; return x - Math.floor(x); };
@@ -24,12 +24,65 @@ export class MimosaScene extends CanvasSurface {
       g.addColorStop(0, i % 3 ? '#9bb77a22' : '#fffefca0'); g.addColorStop(1, '#d1dfbc00');
       this.ellipse(x, y, r, r, g);
     }
+    if (view === 'leaflet') {
+      this.tertiaryPulvinus(p, settings);
+      this.end();
+      return;
+    }
     if (depth < 1) {
       c.save(); c.globalAlpha = 1 - depth; c.scale(1 + depth * .7, 1 + depth * .7); c.translate(0, -depth * 50);
       this.plant(p, settings); c.restore();
     }
     if (depth > 0) { c.save(); c.globalAlpha = Math.min(1, depth); this.pulvinus(p, settings, Math.max(0, depth - 1)); c.restore(); }
     this.end();
+  }
+  private tertiaryPulvinus(p: number, settings: TouchSettings) {
+    const c = this.context, state = leafletPulvinus(p, settings), pose = leafletPairPose(state.fold);
+    // Looking along the rachilla, rather than reusing the primary organ's section.
+    // Both leaflets keep their own fixed joints and material lengths.
+    for (let side = 0; side < 2; side++) {
+      const [x, y] = pose.joints[side]!;
+      c.save(); c.globalAlpha = .18;
+      this.leaflet(x + (side ? 14 : -14), y, side ? 0 : Math.PI, pose.length, 19, 130 + side);
+      c.restore();
+      this.path([[side ? 9 : -9, pose.axis[1]], [x, y]], undefined, '#718650', 7);
+      const [lx, ly] = pose.leafBases[side]!, angle = pose.angles[side]!;
+      this.leaflet(lx, ly, angle, pose.length, 19, 130 + side);
+      // The proximal end stays on the rachilla while the distal end bends with
+      // this leaflet. The organ is a continuous bent neck, not a rotating bead.
+      c.beginPath(); c.moveTo(x + (side ? -10 : 10), y);
+      c.bezierCurveTo(x + (side ? -3 : 3), y, x + 4 * Math.cos(angle), y + 4 * Math.sin(angle), lx, ly);
+      c.lineCap = 'round'; c.lineWidth = 13; c.strokeStyle = '#899f5b'; c.stroke();
+      c.lineWidth = 5; c.strokeStyle = '#c7d69b'; c.stroke();
+      if (side === 1) { c.beginPath(); c.ellipse(x, y, 20, 17, 0, 0, Math.PI * 2); c.strokeStyle = '#ad863d'; c.lineWidth = 2; c.stroke(); }
+    }
+    this.ellipse(...pose.axis, 12, 9, '#75905d', '#5b764b');
+    this.ellipse(pose.axis[0] - 2, pose.axis[1] - 2, 6, 3, '#c8d5a0');
+    this.label(t('以羽轴为参照'), -245, 81, { width: 175, color: '#58663e', background: '#fffef2dc', anchor: pose.axis });
+    this.label(t('金圈处的小叶叶枕'), 232, 67, { width: 205, color: '#806a35', background: '#fffef2dc', anchor: pose.joints[1] });
+
+    // A separate, schematic tissue inset: no claim of a histological section,
+    // an upper/lower extensor identity or a calibrated water/pressure scale.
+    this.path([pose.joints[1], [70, 89], [60, 106]], undefined, '#ad863d88', 1.5);
+    c.fillStyle = '#fffef0cc'; c.fillRect(-172, 105, 344, 97);
+    const volume = 1 - state.fold * .18;
+    for (let i = 0; i < 4; i++) {
+      const x = -119 + i * 79, y = 152;
+      this.ellipse(x, y, 30, 25 * volume, '#dce4b7', '#829965');
+      this.ellipse(x, y, 26, 21 * volume, '#d3e1b3', '#599c9077');
+      const waterVolume = .44 + .30 * state.water;
+      this.ellipse(x + 2, y, 27 * waterVolume, 23 * waterVolume, '#7dbfc4', '#4b929e');
+      this.ellipse(x - 17, y - 7, 3.7, 3, '#a9a196');
+      if (state.flux > .005) {
+        c.save(); c.globalAlpha *= state.flux;
+        const from: Point = [x + 4, y + 6], to: Point = [x + 23, y + 33];
+        this.arrow(...(state.recovering ? to : from), ...(state.recovering ? from : to), '#3d95a6', 1.4);
+        const f = state.fold;
+        this.ellipse(from[0] + (to[0] - from[0]) * f, from[1] + (to[1] - from[1]) * f, 2.2, 2.2, '#cea451');
+        c.restore();
+      }
+    }
+    this.label(t('部分运动细胞：水相与体积示意'), 0, 213, { width: 560, background: '#fffef2dc', color: '#436c68' });
   }
   private leaflet(x: number, y: number, angle: number, length: number, width: number, seed: number, fold = 0) {
     const c = this.context;

@@ -1,10 +1,10 @@
 import { animateValue } from '../../src/visuals/transition.ts';
-import { SYNODIC_DAYS, SIDEREAL_DAYS, litFraction, phaseIndex } from './model.ts';
+import { SYNODIC_DAYS, SIDEREAL_DAYS, MOON_EARTH_RADIUS_RATIO, DISTANCE_EARTH_RADII, litFraction, phaseIndex } from './model.ts';
 import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { CONTENT } from './content.ts';
-import { SCIENCE } from './science.ts';
+import { SCIENCE, SCALE_SCIENCE } from './science.ts';
 import { PHASES } from './phases.ts';
 import { TopicScene } from './scene.ts';
 import './style.css';
@@ -30,7 +30,8 @@ const positions = PHASES.map((_, index) => index / PHASES.length);
 function update() {
   const settings = { guides: checked('guides') };
   const stage = Math.min(3, Math.floor(progress * 4));
-  const science = SCIENCE[stage];
+  const scaleView = value('view') === 'scale';
+  const science = scaleView ? SCALE_SCIENCE : SCIENCE[stage];
   const currentPhase = PHASES[phaseIndex(progress)];
   document.body.dataset.mode = academic ? 'academic' : 'kids';
   el('scene-title').textContent = currentPhase.title;
@@ -49,19 +50,24 @@ function update() {
   el('explanation').textContent = CONTENT.explanation;
   el('limits').textContent = CONTENT.limits;
   el('play').textContent = reducedMotion.matches ? t('下一月相') : playing ? t('暂停') : progress >= 1 ? t('重新播放') : t('开始观察');
+  for (const id of ['play', 'reset', 'rate', 'progress']) {
+    (el(id) as HTMLButtonElement | HTMLInputElement | HTMLSelectElement).disabled = scaleView;
+  }
   (el('progress') as HTMLInputElement).value = String(Math.round(progress * 1000));
   el('progress').setAttribute('aria-valuetext', PHASES[phaseIndex(progress)].title);
   el('elapsed').textContent = `${(progress * 28).toFixed(1)} / 28 s`;
-  el('steps').querySelectorAll('button').forEach((b, i) => b.setAttribute('aria-pressed', String(i === phaseIndex(progress))));
+  el('steps').querySelectorAll('button').forEach((b, i) => { b.disabled = scaleView; b.setAttribute('aria-pressed', String(i === phaseIndex(progress))); });
   document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.mode === 'academic') === academic)));
   
   
   el('story-title').textContent = science.title;
-  el('elapsed').textContent = t('{{days}} / 29.5 天', { days: (progress * SYNODIC_DAYS).toFixed(1) });
+  el('elapsed').textContent = scaleView ? t('月相进度已保留；返回轨道可继续') : t('{{days}} / 29.5 天', { days: (progress * SYNODIC_DAYS).toFixed(1) });
   if (value('view') === 'scale') { el('scene-title').textContent = t('真实大小与距离'); el('metric').textContent = '384,400 km'; el('metric-label').textContent = t('地月平均中心距离'); el('scene-note').textContent = t('真实比例排列，用来比较大小与距离，不代表当前月相的位置。'); }
   if (value('view') === 'earth') el('scene-note').textContent = t('以地心方向为近似，月球北方朝上；月盘已放大，暗面微光为辨认轮廓而增强。');
   const phaseAngle = Math.acos(-Math.cos(progress * Math.PI * 2)) * 180 / Math.PI;
-  el('science-live').textContent = t('月相周期经过 {{days}} 天 / 29.53 天\n相位角 α ≈ {{angle}}°；受光比例 k = {{fraction}}\n恒星月：{{sidereal}} 天', { days: (progress * SYNODIC_DAYS).toFixed(2), angle: phaseAngle.toFixed(1), fraction: litFraction(progress).toFixed(3), sidereal: SIDEREAL_DAYS.toFixed(2) });
+  el('science-live').textContent = scaleView
+    ? t('平均中心距离：384,400 km\n月球 / 地球半径：{{ratio}}\n中心距离 / 地球直径：{{distance}}\n表面间空隙 / 地球直径：{{gap}}', { ratio: MOON_EARTH_RADIUS_RATIO.toFixed(3), distance: (DISTANCE_EARTH_RADII / 2).toFixed(1), gap: ((DISTANCE_EARTH_RADII - 1 - MOON_EARTH_RADIUS_RATIO) / 2).toFixed(1) })
+    : t('月相周期经过 {{days}} 天 / 29.53 天\n相位角 α ≈ {{angle}}°；受光比例 k = {{fraction}}\n恒星月：{{sidereal}} 天', { days: (progress * SYNODIC_DAYS).toFixed(2), angle: phaseAngle.toFixed(1), fraction: litFraction(progress).toFixed(3), sidereal: SIDEREAL_DAYS.toFixed(2) });
   el('science-panel').hidden = !academic;
   el('science-formula').textContent = science.formula;
   el('science-terms').textContent = science.terms;
@@ -73,12 +79,17 @@ function stop() { playing = false; cancelAnimationFrame(frame); frame = 0; }
 function tick(now: number) {
   frame = 0;
   if (!playing || document.hidden) return;
-  progress = Math.min(1, progress + Math.min((now - last) / 1000, .1) * number('rate') / 28); last = now;
+  // A frame timestamp can precede the play handler's performance.now(). Keep
+  // that click-time anchor until frames catch up; never reverse or double-count.
+  const elapsed = Math.max(0, Math.min((now - last) / 1000, .1));
+  last = Math.max(last, now);
+  progress = Math.min(1, progress + elapsed * number('rate') / 28);
   if (progress >= 1) playing = false;
   update();
   if (playing) frame = requestAnimationFrame(tick);
 }
 function toggle() {
+  if (value('view') === 'scale') return;
   if (reducedMotion.matches) { stop(); progress = progress >= 1 ? 0 : Math.min(1, (Math.floor(progress * 8 + .00001) + 1) / 8); update(); return; }
   if (playing) stop();
   else { if (progress >= 1) progress = 0; playing = true; last = performance.now(); frame = requestAnimationFrame(tick); }
@@ -92,7 +103,8 @@ el('observer-toggle').addEventListener('click', () => {
 });
 el('reset').addEventListener('click', () => { stop(); progress = 0; update(); });
 el('progress').addEventListener('input', () => { stop(); progress = number('progress') / 1000; update(); });
-for (const id of ["view", "guides"]) el(id).addEventListener('input', update);
+el('view').addEventListener('input', () => { if (value('view') === 'scale') { stop(); cancelStageMotion(); } update(); });
+el('guides').addEventListener('input', update);
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });
 el('steps').replaceChildren(...PHASES.map((phase, i) => { const b = document.createElement('button'); b.textContent = phase.title; b.addEventListener('click', () => { stop(); seekStage(i === 0 && progress > .875 ? 1 : positions[i]); }); return b; }));
 document.addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !(e.target as HTMLElement)?.closest('button,input,select,a,textarea,summary,[contenteditable]')) { e.preventDefault(); toggle(); } });

@@ -8,6 +8,7 @@ Now part of the motion-and-stopping journey. The legacy entry redirects to the b
 
 - `model.ts`：反应后匀减速的一维停车模型。初速 20–60 km/h；反应时间固定 1 秒；干燥/湿滑情景减速度分别为 6/3 m/s²。反应距离与制动距离分开，停止后不倒退。参数为教学设定，不代表实测路面。路线标尺一致，汽车图标尺寸为便于观看而放大。
 - `study.ts`：速度/路面改变后回到起点；用户启动约 8 秒教学播放，可暂停、重播、拖动时间。遵循减少动态效果偏好（播放按钮直接展示终点，仍可手动拖动）；页面隐藏、切章和离开暂停并取消动画，往返缓存恢复保留进度，不自动续播，无音频。实时朗读只在三个物理阶段改变时更新，避免每帧刷屏。原 `main.ts` 仅为兼容跳转。
+- `restraintModel.ts` / `restraintStudy.ts`：独立、用户启动的一维受拉观察窗口，消费同一条确定轨迹。原本已贴合的理想弹性腰带沿刚性髋部投影的真正切点和前侧短弧连续接触；车体锚点固定，身体前移使路径伸长，均匀张力的水平分量向后。虚线参照省略水平约束、保持原先对地运动。进度可往返，第一相对前移最大处结束观察；按钮暂停、页面隐藏、切章和离开都停掉唯一时钟，返回不自动续播。减少动态效果时播放直接到观察终点，仍可拖动。无松带参数或危险佩带选项。
 - `panel.html` / `contact.html` / `panel.css`：有局部样式的 SVG 示意与分段讲解，按车轮接触、停车、约束职责放入主路径；肩带/腰带按钮高亮正确部位；后向、前向、增高座椅按钮同时改变图形、方向、解释。示意中车头向右，车辆座位靠背在左侧；后向儿童座椅壳体靠背在右侧，前向壳体靠背在左侧。暂停会取消高亮插值并保留所选部位。
 - `locales/en.json` / `i18n.ts`：正文、动态数值、图形说明与边界使用同一翻译机制。封面 `alt` 在专题中显式翻译。
 - `catalog-entry.json` / `catalog-en.json`：与主入口同为物理分类，保持 `parentTopic: friction`；共享目录由主任务登记。
@@ -18,7 +19,13 @@ Now part of the motion-and-stopping journey. The legacy entry redirects to the b
 
 儿童座椅依据儿童身高、体重、产品适用年龄与制造商要求选用，后向尽可能保持至对应上限，适用下一阶段后才转换。乘员在后排正确使用；前排启用气囊位置不安装后向座椅。图形不代替安装说明，不用一个固定生日判断转换，也不把美国建议写成中国法律。页面不鼓励道路实验，不用模型数字提供跟车距离。
 
-The topic connects stopping distance, brake and tire contacts, inertia, snug adult belt placement and correctly sized child restraints. All explanations and qualifications are available in English. The interactive model distinguishes constant-speed reaction travel from constant-deceleration braking, with no reversal after stopping. Its chosen parameters and illustrated car scale are educational, not measured road data or driving guidance. Passenger protection is qualitative: no crash, injury model, force percentage or survival score. Seat-stage changes depend on product eligibility and fit, not one fixed birthday. All motion starts with an explicit action and pauses on hide or departure.
+The topic connects stopping distance, brake and tire contacts, inertia, snug adult belt placement and correctly sized child restraints. All explanations and qualifications are available in English. The interactive model distinguishes constant-speed reaction travel from constant-deceleration braking, with no reversal after stopping. Its chosen parameters and illustrated car scale are educational, not measured road data or driving guidance. The independent belt window is a one-dimensional teaching model: a fitted elastic band contacts a rigid circular hip projection through exact tangents and a front arc. Its backward force follows path extension, while a dashed reference retains earlier ground motion. Its first relative turning point is not a complete stop; subsequent rebound, dissipation, the shoulder belt and real restraint mechanisms are omitted. There are no real body-load predictions, crash or injury model, force percentage or survival score. Seat-stage changes depend on product eligibility and fit, not one fixed birthday. All motion starts with an explicit action and pauses on hide or departure.
+
+## 受拉模型边界 / Belt-model boundaries
+
+`T = k max(L−L₀,0)`，`Fback = T (cosθupper + cosθlower)`；同一几何满足 `Fback = T dL/dx`。车固定参考系中的相对运动为 `m ẍ = m a_car − Fback`，其中 `a_car` 是坐标加速产生的相对运动项，图上只画真实带力，不画惯性推力。质量、刚度、减速度与时间采用教学相对单位（1、0.8、100）；不得当作人体、织带或真实碰撞测量。位移和伸长有意夸张，未模拟卷收器锁止、预紧器、限力器、身体转动、组织形变或耗能。真正三点式成人佩带与儿童座椅图保留原身份。
+
+The first maximum displacement is selected numerically from a single RK4 trajectory (relative time ≈1.763, travel ≈63.142 drawing units). Relative speed is then momentarily zero, yet the band still pulls backward; the ideal undamped model would rebound. The car/passenger need not have stopped relative to the ground. Zero additional extension at the initial fitted state does not claim real belts have no initial fitting tension.
 
 ## Sources / 资料
 
@@ -29,6 +36,7 @@ NHTSA seat/seat-belt and CDC prevention pages rechecked live on 2026-09-20; orig
 - [NHTSA: Seat Belt Safety](https://www.nhtsa.gov/vehicle-safety/seat-belts) — adult shoulder/chest and low hip fit, no belt under arm or behind back.
 - [OpenStax: Motion with Constant Acceleration](https://openstax.org/books/university-physics-volume-1/pages/3-4-motion-with-constant-acceleration) — reaction and braking distance model.
 - [Georgia State University: Auto Stopping Distance](https://hyperphysics.gsu.edu/hbase/crstp.html) — rolling versus locked tire friction.
+- [OpenStax: Simple Harmonic Motion](https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion) — ideal elastic force and turning-point/energy boundaries; no belt stiffness measurements adopted.
 - [OpenStax: Impulse and Collisions](https://openstax.org/books/university-physics-volume-1/pages/9-2-impulse-and-collisions) — momentum change and average force; no numerical human-impact example adopted.
 - [NHTSA: Light Vehicle ABS Performance](https://www.nhtsa.gov/sites/nhtsa.gov/files/nhtsaabst4finalrpt.pdf) — ABS does not universally shorten stops; loose-surface tradeoff.
 - [U.S. Department of Energy: Electricity Basics](https://afdc.energy.gov/fuels/electricity-basics) — energy recovery during regenerative braking.
@@ -37,7 +45,14 @@ NHTSA seat/seat-belt and CDC prevention pages rechecked live on 2026-09-20; orig
 
 `cover-v2.jpg` is a separate built-in imagegen illustration, 1200 × 800 pixels. The first generation incorrectly faced the child seat forward; a targeted edit corrected the adopted version to rear-facing. The complete prompts, original paths, correction and review are in `COVER.md`. No CLI fallback. Illustration is not a product installation diagram.
 
-## Focused validation
+## Round-two focused validation
+
+- `node --import tsx --test topics/car-safety/tests/*.test.* topics/friction/tests/*.test.*`: **19 tests passed**, including four new model groups and two real combined-controller/SVG groups. Hundreds of samples check exact contact/tangency, front arc identity, force/length derivative and relative-coordinate energy balance. The real source entry and HTML check anchors, body/band/force projection, reversible scrubbing, reference visibility, pause/resume, chapter restoration, page hiding, reduced motion and replay. These DOM adapters do not certify browser layout or pointer input.
+- Isolated strict TypeScript compilation of `study.ts` and its dependencies passed.
+- Astra independently checked the actual model at 1,001 progress values and verified tangent geometry, derivative/force equality and energy residual (≤1.82e−11 teaching energy units). This is scientific/model review, not production-browser visual acceptance.
+- Final production build, mobile/desktop and both-language screenshots remain assigned to the integrating parent.
+
+## Earlier validation
 
 - `node --import tsx --test topics/car-safety/tests/model.test.js`: 3 tests passed. Doubling-speed relationships, dry/wet separation, continuity, monotonic stopping and post-stop clamping.
 - Strict isolated TypeScript compilation from `topics/car-safety/main.ts`: passed.

@@ -1,4 +1,4 @@
-import { clamp, redCell, oxygenPacket, defenceState, repairState, vesselGap, engulfedTarget, type BloodProcess } from './model.ts';
+import { clamp, redCell, oxygenPacket, defenceState, immuneContour, VESSEL_CONTACT_BAND, repairState, vesselGap, engulfedTarget, type BloodProcess } from './model.ts';
 type Translator = (source: string) => string;
 const defs = `<defs>
   <linearGradient id="field" x2="0" y2="1"><stop stop-color="#f6eee6"/><stop offset="1" stop-color="#e9ded3"/></linearGradient>
@@ -16,11 +16,9 @@ const defs = `<defs>
 </defs>`;
 const label = (x:number,y:number,text:string,small=false) => `<text x="${x}" y="${y}" font-size="${small?14:19}" fill="#594653" font-weight="${small?450:650}" text-anchor="middle">${text}</text>`;
 function bloodCell(x:number,y:number,scale=1,angle=0) { return `<use href="#rbc" transform="translate(${x} ${y}) rotate(${angle}) scale(${scale})" filter="url(#soft-shadow)"/>`; }
-function immuneCell(x:number,y:number,squeeze:number,engulf:number) {
-  const points=Array.from({length:64},(_,i)=>{
-    const a=i/64*Math.PI*2,bulge=1+.033*Math.sin(a*9)+engulf*.2*Math.exp(-Math.pow(a-.55,2)/.2);
-    return `${x+Math.cos(a)*48*bulge*(1-squeeze*.4)},${y+Math.sin(a)*45*bulge*(1+squeeze*.48)}`;
-  }).join(' ');
+function immuneCell(state:ReturnType<typeof defenceState>) {
+  const {x,y,squeeze}=state;
+  const points=immuneContour(state).map(point=>`${point.x},${point.y}`).join(' ');
   const grains=Array.from({length:58},(_,i)=>{const a=i*2.399,r=12+(i*11)%29;return `<circle cx="${x+Math.cos(a)*r*(1-squeeze*.4)}" cy="${y+Math.sin(a)*r*(1+squeeze*.3)}" r="${.8+i%3*.4}" fill="#9b7c9c" opacity=".48"/>`;}).join('');
   return `<g filter="url(#soft-shadow)"><polygon points="${points}" fill="url(#white-cell)" stroke="#ae96a9" stroke-width="2"/><g transform="translate(${x} ${y}) scale(${1-squeeze*.36} ${1+squeeze*.3})"><path d="M-24 -15C-39 -15 -39 7 -24 9C-13 12 -13 22 -2 22C11 23 14 12 6 5C-4 -2 0 -4 12 -3C32 0 35 -22 21 -27C7 -29 6 -12 -7 -10C-15 -8 -10 -17 -24 -15Z" fill="url(#nucleus)" stroke="#6a517e" stroke-width="1.2"/></g>${grains}<path d="M${x-35} ${y-20}Q${x-28} ${y-39} ${x-10} ${y-39}" fill="none" stroke="#fffbee" stroke-width="3" opacity=".72"/></g>`;
 }
@@ -30,7 +28,7 @@ function vessel(kind:BloodProcess, progress:number) {
     const x=28+i*87;
     return `<path d="M${x} ${y}q41 -13 84 0l-3 17q-39 9 -78 0Z" fill="url(#wall)" stroke="#ae817f" stroke-opacity=".55"/><ellipse cx="${x+44}" cy="${y+8}" rx="13" ry="3.5" fill="#9c7587" opacity=".65"/>`;
   }).join('')).join('');
-  return `<defs><mask id="wall-opening"><rect width="980" height="550" fill="white"/><rect x="${gap.center-gap.halfWidth}" y="302" width="${2*gap.halfWidth}" height="45" fill="black"/></mask></defs><path d="M42 181Q490 157 938 181V306Q490 330 42 306Z" fill="url(#plasma)"/><g mask="url(#wall-opening)">${wallCells}<path d="M54 184Q470 168 926 184M54 301Q470 319 926 301" fill="none" stroke="#fff1da" stroke-width="2" opacity=".58"/></g>`;
+  return `<defs><mask id="wall-opening"><rect width="980" height="550" fill="white"/><rect x="${gap.center-gap.halfWidth}" y="${VESSEL_CONTACT_BAND.top}" width="${2*gap.halfWidth}" height="${VESSEL_CONTACT_BAND.bottom-VESSEL_CONTACT_BAND.top}" fill="black"/></mask></defs><path d="M42 181Q490 157 938 181V306Q490 330 42 306Z" fill="url(#plasma)"/><g mask="url(#wall-opening)">${wallCells}<path d="M54 184Q470 168 926 184M54 301Q470 319 926 301" fill="none" stroke="#fff1da" stroke-width="2" opacity=".58"/></g>`;
 }
 function tissueCells() {
   return Array.from({length:9},(_,i)=>{const x=56+i*106;return `<path d="M${x} 394q17 -22 47 -13l31 26-8 52-62 12-29-38Z" fill="url(#tissue)" stroke="#b89e96" stroke-width="1.5"/><ellipse cx="${x+32}" cy="428" rx="14" ry="10" fill="#b396a4" opacity=".6"/><path d="M${x+3} 397l23 -9 24 10" fill="none" stroke="#f8ecdb" stroke-width="2"/>`;}).join('');
@@ -46,7 +44,7 @@ export function renderBlood(kind:BloodProcess,progress:number,t:Translator) {
     process+=label(265,105,t('红细胞留在血管内'))+label(734,498,t('氧气进入周围组织'))+`<path d="M252 116L${r.x-15} 193M730 483v-27" stroke="#886b69" fill="none" stroke-dasharray="3 5"/>`;
   }else if(kind==='defence'){
     const s=defenceState(p),target=engulfedTarget(p);
-    process=immuneCell(s.x,s.y,s.squeeze,s.engulf);
+    process=immuneCell(s);
     if(s.engulf>0)process+=`<ellipse data-phagosome="true" cx="${target.x}" cy="${target.y}" rx="${20*s.engulf}" ry="${24*s.engulf}" fill="#f0e3bf" fill-opacity="${s.engulf*.85}" stroke="#9b9587" stroke-opacity="${s.engulf}"/>`;
     // Cutaway view: the same target remains visible inside the enclosing vesicle.
     process+=`<g data-bacterium="true" transform="translate(${target.x} ${target.y})"><path d="M-11 -4q11 -10 22 0v8q-11 9 -22 0Z" fill="#82957b" stroke="#627360" stroke-width="2"/><path d="M-7 -9l-2-7m10 7 4-7m-14 27-2 7m13-6 3 7" stroke="#627360" stroke-width="1.5"/></g>`;

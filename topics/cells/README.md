@@ -14,6 +14,14 @@ The question path and knowledge panel connect cells to the leaf lifecycle; bacte
 
 Focused tests cover route migration, per-example state isolation and the unchanged biological model invariants. Parent integration owns final full gates and real bilingual desktop/mobile browser acceptance. No commit, push or deployment is included. Earlier descriptions below document the retained structural/energy engine.
 
+## Muscle comparison · 2026-10-01
+
+The work chapter now composes the body-cells muscle apparatus rather than inventing a second model. `specialization.ts` owns retained spring stiffness and shortening/fixed-length selection; `body-cells/model.ts` owns equilibrium, tension and constraints, and its renderer owns the anchors, tendon junction, spring, clamp and force arrows. Phase-specific child captions and academic readouts explain the selected state. Playback, scrubbing, labels and example changes retain the same experiment; changing stiffness or constraint pauses playback. Under reduced motion, the play control visits peak activation before relaxation so a finite contraction does not disappear into the equal start/end geometry.
+
+肌肉提供全景、原有肌节近图和“看连接与拉力”三个同一 SVG 视野；放大不复制装置或重置参数。连接镜头由当前连接点与力箭头实际端点派生，包含右肌腱、外簧固定锚点与等长夹具，手机也能靠近查看拉力。相机切换、其他细胞样例切换保留肌肉进度、刚度和约束状态。固定长度不等于没有张力；外簧刚度不等于恒定重量；回长依赖可见外部牵拉。模型范围与原始来源见 [body-cells README](../body-cells/README.md)。
+
+The muscle-only `#muscle-forces` button inspects connection forces and returns to the overview; the existing `#work-zoom` still inspects the representative sarcomere. Both are native controls with `aria-pressed` and a minimum 44 px height. The connection camera is derived from the current production geometry, including the fixed spring anchor and all three junction-force endpoints. Focused controller regressions exercise real event handlers and production SVG output with finite DOM sinks; they do not certify browser layout, focus appearance or accessibility-tree behavior.
+
 双语儿童互动页面，比较典型动物细胞、叶肉植物细胞和细菌。六个结构按钮与整体图中的点击区域对应；局部窗口沿连续视野移动，直接引用同一套 SVG 结构。可切换内部剖视与半透明表面，细胞膜、细胞壁、核内染色质、大液泡、线粒体内膜和叶绿体膜片有不同的材质与层次。不属于所选细胞的结构保留按钮，通过缺失说明和整体对照解释。
 
 Children compare representative animal, leaf mesophyll and bacterial cells. Whole-cell, close-up and process windows reference one mounted SVG geometry. The cell specimens remain distinct rather than morphing into one another. Selection moves the observation cameras; a translucent surface appears over the same structures. Native buttons provide the keyboard equivalent of diagram hit testing.

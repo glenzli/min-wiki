@@ -59,7 +59,7 @@
       "theme": "light",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "cosmic-scale",
@@ -322,13 +322,13 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-10-01"
     },
     {
       "id": "saturn-moons",
       "title": "土星和它的卫星们",
       "category": "universe",
-      "summary": "土星的身边不只有光环。认识七颗代表卫星，比较绕行快慢、真实大小和不同的冰雪世界。",
+      "summary": "土星的身边不只有光环。认识七颗代表卫星，观察示意轨道与绕行快慢，并了解它们不同的冰雪世界。",
       "tags": [
         "土星",
         "卫星",
@@ -366,7 +366,7 @@
       "sceneTheme": "dark",
       "status": "published",
       "listed": false,
-      "updated": "2026-09-12"
+      "updated": "2026-10-01"
     },
     {
       "id": "volcano-eruption",
@@ -765,7 +765,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "butterfly-life",
@@ -1020,7 +1020,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "river-paths",
@@ -1082,7 +1082,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12",
+      "updated": "2026-10-01",
       "parentTopic": "rain-cycle"
     },
     {
@@ -1146,7 +1146,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "bacteria",
@@ -1285,7 +1285,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-20",
+      "updated": "2026-10-01",
       "parentTopic": "friction"
     },
     {
@@ -1351,7 +1351,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-16",
+      "updated": "2026-10-01",
       "parentTopic": "cells"
     },
     {
@@ -1374,7 +1374,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-16",
+      "updated": "2026-10-01",
       "parentTopic": "cells"
     },
     {

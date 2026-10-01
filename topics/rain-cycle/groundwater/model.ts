@@ -4,6 +4,17 @@ export const SOIL_CAPACITY = 12;
 export const AQUIFER_CAPACITY = 100;
 export const RIVER_HEAD = 0.38;
 export const INITIAL_STORAGE = 52;
+/** Fixed well elevations in the same normalized head coordinate as storage/river. */
+export const WELL = { wellheadHead: 1, screenTopHead: .22, intakeHead: .12, bottomHead: .10 } as const;
+/** Submerged screen fraction is a teaching supply response, not a well-yield equation. */
+export function wellState(storage: number) {
+  const head = Math.max(0, storage) / AQUIFER_CAPACITY;
+  return {
+    head,
+    available: Math.max(0, storage - WELL.intakeHead * AQUIFER_CAPACITY),
+    wetFraction: Math.max(0, Math.min(1, (head - WELL.intakeHead) / (WELL.screenTopHead - WELL.intakeHead))),
+  };
+}
 export interface Conditions { rain: number; permeability: number; pumping: number; rainStopsAt?: number }
 export const DEFAULT_CONDITIONS: Conditions = { rain: 0.65, permeability: 0.65, pumping: 0.12 };
 const bound = (value: number, low: number, high: number, fallback = low) =>
@@ -53,7 +64,10 @@ export function advance(previous: Frame, input: Conditions): Frame {
   let taggedGround = previous.taggedGround + taggedRecharge;
   // Withdraw before exchange so the displayed post-step head and river arrow
   // remain on the same side of the river boundary even during drawdown.
-  const pumped = Math.min(c.pumping, storage);
+  const well = wellState(storage);
+  // Water below this fixed intake remains underground. A partly exposed screen
+  // supplies less of the requested rate; drawing geometry never sets the limit.
+  const pumped = Math.min(c.pumping * well.wetFraction, well.available);
   const taggedPumped = storage > 0 ? taggedGround * pumped / storage : 0;
   storage -= pumped;
   taggedGround -= taggedPumped;

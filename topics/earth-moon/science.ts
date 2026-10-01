@@ -1,5 +1,15 @@
 import { t } from './i18n.ts';
 
+/** Independent scale study: phase progress is remembered, not interpreted here. */
+export const SCALE_SCIENCE = {
+  title: t('用同一把尺比较大小与距离'),
+  body: t('这幅排列把球体半径和中心距离都按同一长度比例缩小。月球半径约为地球的 0.273 倍；平均中心距离约为 384,400 km，相当于 30.2 个地球直径。画面中的两颗球没有为了好看而分别放大。'),
+  formula: 'R_M / R_E ≈ 0.273;  d / (2R_E) ≈ 30.2',
+  terms: t('R_M、R_E 分别是月球与地球的平均半径，d 是两颗球的中心距离。直径是半径的两倍；扣除两端的半径后，表面之间的空隙约为 29.5 个地球直径。'),
+  watch: t('打开参考标记，从地球中心数到月球中心；再比较两颗球的直径。切回地月轨道，观察为什么教学视图需要压缩距离。'),
+  caution: t('距离取平均值；真实月球沿椭圆轨道运行，距离会变化。这是独立尺度排列，不计算此刻的月相、月食或天空角直径。标签、光晕和定位标记都不是球体直径。'),
+};
+
 /** Topic-owned, stage-linked scientific explanations. */
 export const SCIENCE = [
   {

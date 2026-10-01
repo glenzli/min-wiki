@@ -3,7 +3,7 @@
   "topicId": "friction",
   "zh": {
     "question": "木块、车轮和乘员都要慢下来，它们各自需要什么作用，运动能量去了哪里？",
-    "observe": "先用相同初速比较三块木头，再在接触窗口追踪能量。换到轮胎金点，比较滚动与锁止滑动；进入汽车实验，分别改变初速和路面，分清反应与制动两段。最后检查肩带、腰带和儿童座椅的作用部位。切章保留各实验进度，阅读模式不重置。",
+    "observe": "先用相同初速比较三块木头，再在接触窗口追踪能量。换到轮胎金点，比较滚动与锁止滑动；进入汽车实验，分别改变初速和路面，分清反应与制动两段。最后检查肩带、腰带和儿童座椅的作用部位。切章保留各实验进度，阅读模式不重置。 在约束章拖动受拉进度，比较实线身体与虚线惯性参照，找到固定点、接触处和向后的带力；带子从起点就正确贴合。",
     "academic": [
       {
         "title": "接触、相对滑动与能量账",
@@ -15,11 +15,11 @@
       },
       {
         "title": "乘员惯性与合身的约束",
-        "body": "急停时身体会保持原先的运动趋势，需要安全带或儿童约束系统施力减速。合适的装置有助于把力作用在更能承受的身体部位并管理减速过程。儿童应使用适合身高体重的座椅，按制造商和当地要求安装；增高座椅帮助肩带经过肩胸、腰带低贴髋部，不能把成人安全带简单缩短就当成适配。 惯性不是额外的向前推力；减速来自真实外力。延长受控减速过程的解释不授权故意放松安全带。肩带不得放在腋下或背后，儿童在后排按产品身高、体重与适用要求使用保护；不能只按一个生日换座椅，也不把美国指南当作当地法规。"
+        "body": "急停时身体会保持原先的运动趋势，需要安全带或儿童约束系统施力减速。合适的装置有助于把力作用在更能承受的身体部位并管理减速过程。儿童应使用适合身高体重的座椅，按制造商和当地要求安装；增高座椅帮助肩带经过肩胸、腰带低贴髋部，不能把成人安全带简单缩短就当成适配。 惯性不是额外的向前推力；减速来自真实外力。延长受控减速过程的解释不授权故意放松安全带。肩带不得放在腋下或背后，儿童在后排按产品身高、体重与适用要求使用保护；不能只按一个生日换座椅，也不把美国指南当作当地法规。 侧向机制图只抽出理想腰带的水平作用：带子从固定点出发，与髋部投影相切并绕前侧接触；前移使路径变长，弹性张力向后拉身体。虚线参照没有这个水平约束，惯性仍不是前推力。第一相对速度为零时仍有带力，未表示车辆对地停下；无阻尼模型后续会回弹，观察窗口在这里结束。"
       }
     ],
     "misconception": "向前运动不等于接触处在滑，静摩擦不等于刹车片的滑动摩擦；惯性不是额外前推力，安全带也不能故意放松。",
-    "boundary": "三种系数是教学设定，不是材料实测值。接触窗口只表示少量接触区与相对滑动，未求解微观材料形变；橙色与能量条不表示温度。忽略空气阻力，停下后不会倒滑。 汽车另用固定 1 秒反应时间和 6/3 米每秒平方减速度，不把滑块系数套到汽车。车身平动能量比例不包含轮子转动；轮子观察时钟、滑块秒数与停车缩放时钟分开。不计算人体受力或伤害，不提供驾驶距离建议。",
+    "boundary": "三种系数是教学设定，不是材料实测值。接触窗口只表示少量接触区与相对滑动，未求解微观材料形变；橙色与能量条不表示温度。忽略空气阻力，停下后不会倒滑。 汽车另用固定 1 秒反应时间和 6/3 米每秒平方减速度，不把滑块系数套到汽车。车身平动能量比例不包含轮子转动；轮子观察时钟、滑块秒数与停车缩放时钟分开。不计算人体受力或伤害，不提供驾驶距离建议。 受拉窗口独立于停车时钟，质量、刚度与位移使用教学相对单位，身体前移及带子伸长被放大；不含肩带、身体转动、组织形变、耗能、卷收器或预紧器，不预测真实人体载荷或伤害。",
     "narration": [
       {
         "label": "从同样的起跑开始",
@@ -38,14 +38,14 @@
       },
       {
         "label": "身体也需要一起慢下来",
-        "text": "车受到作用慢下来，身体也需要真实的作用才能一起慢下来。安全带和合适的儿童座椅就在帮这个忙。我们看肩带经过肩膀和胸前，腰带低贴髋部。带子不能故意放松，也不藏在背后。请大人按孩子的大小、座椅和汽车的说明来选择和安装，坐好后每一程都保持正确保护。",
-        "cue": "依次看肩带、腰带，再检查后向、前向和增高座椅；不演示危险佩带或伤害。"
+        "text": "车受到作用慢下来，身体也需要真实的作用才能一起慢下来。安全带和合适的儿童座椅就在帮这个忙。我们看肩带经过肩膀和胸前，腰带低贴髋部。带子不能故意放松，也不藏在背后。请大人按孩子的大小、座椅和汽车的说明来选择和安装，坐好后每一程都保持正确保护。 带子从起点就贴合，身体相对车向前时，带子受到拉伸并向后拉身体。我们看到的是放大的原理示意，不是应该留下松带。",
+        "cue": "依次看肩带、腰带，再检查后向、前向和增高座椅；不演示危险佩带或伤害。 在正确贴合的受拉窗口对照 0、50、100% 进度；终点只称相对前移首次最大，不表示车对地停住。"
       }
     ]
   },
   "en": {
     "question": "What interactions slow a block, a wheel and a passenger, and where does motion energy go?",
-    "observe": "Compare three blocks at the same initial speed and follow their energy at the contact. Track a gold tread mark in rolling and locked-wheel sliding. Change car speed and road separately to distinguish reaction from braking. Finally inspect shoulder and lap belts and child-seat fit. Chapters preserve separate progress; reading mode never resets it.",
+    "observe": "Compare three blocks at the same initial speed and follow their energy at the contact. Track a gold tread mark in rolling and locked-wheel sliding. Change car speed and road separately to distinguish reaction from braking. Finally inspect shoulder and lap belts and child-seat fit. Chapters preserve separate progress; reading mode never resets it. In restraints, scrub belt loading and compare the solid passenger with the dashed inertia reference. Identify fixed anchors, contact and the backward belt force; the band fits snugly from the start.",
     "academic": [
       {
         "title": "Contact, relative sliding and energy",
@@ -57,11 +57,11 @@
       },
       {
         "title": "Passenger inertia and correctly fitted restraints",
-        "body": "During a sudden stop the body needs a force to change its motion. Correct restraints manage deceleration and load stronger body regions. Children need seats appropriate for their size and installed according to manufacturer and local requirements. Boosters position the shoulder belt across shoulder and chest and the lap belt low over hips. Inertia is not an additional forward force; deceleration requires real external forces. Explaining a managed slowing interval does not justify loosening a belt. Never route the shoulder belt under an arm or behind the back. Children use suitable restraints in the rear seat according to product size and eligibility limits, not one birthday; US guidance is not a statement of local law."
+        "body": "During a sudden stop the body needs a force to change its motion. Correct restraints manage deceleration and load stronger body regions. Children need seats appropriate for their size and installed according to manufacturer and local requirements. Boosters position the shoulder belt across shoulder and chest and the lap belt low over hips. Inertia is not an additional forward force; deceleration requires real external forces. Explaining a managed slowing interval does not justify loosening a belt. Never route the shoulder belt under an arm or behind the back. Children use suitable restraints in the rear seat according to product size and eligibility limits, not one birthday; US guidance is not a statement of local law. The side-view mechanism isolates an ideal lap band’s horizontal action. It runs from fixed anchors, touches the hip projection tangentially and wraps around its front. Forward travel lengthens the band and elastic tension pulls backward. The dashed reference lacks this horizontal restraint; inertia is still not a forward force. Belt force remains at the first zero relative speed, which does not mean the car has stopped relative to the ground. The undamped model would rebound afterward, so the observation window ends here."
       }
     ],
     "misconception": "Forward motion does not imply sliding contact; static road friction differs from pad–disc sliding. Inertia is not an extra forward force, and belts must not be deliberately loosened.",
-    "boundary": "The coefficients are illustrative, not measured values. The contact window depicts limited contact and relative sliding without solving microscopic deformation; orange and the energy bars do not measure temperature. Air drag is omitted and stopped blocks never reverse. The car separately uses a fixed one-second reaction and 6/3 m/s² decelerations; block coefficients are not applied to it. Vehicle energy fractions omit wheel rotation. Contact observation, block seconds and rescaled stopping time are separate clocks. No body forces, injuries or driving-distance advice are calculated.",
+    "boundary": "The coefficients are illustrative, not measured values. The contact window depicts limited contact and relative sliding without solving microscopic deformation; orange and the energy bars do not measure temperature. Air drag is omitted and stopped blocks never reverse. The car separately uses a fixed one-second reaction and 6/3 m/s² decelerations; block coefficients are not applied to it. Vehicle energy fractions omit wheel rotation. Contact observation, block seconds and rescaled stopping time are separate clocks. No body forces, injuries or driving-distance advice are calculated. The belt-loading window is independent of the stopping clock. Mass, stiffness and displacement use teaching units; body travel and belt extension are exaggerated. It omits the shoulder belt, rotation, tissue deformation, dissipation, retractors and pretensioners, and does not predict real body loads or injury.",
     "narration": [
       {
         "label": "Begin with the same start",
@@ -80,8 +80,8 @@
       },
       {
         "label": "The body must slow too",
-        "text": "Forces slow the car, and real forces must slow our bodies too. A correctly fitted belt and suitable child seat help. The shoulder belt crosses shoulder and chest; the lap belt lies low over the hips. Never loosen the belt deliberately or hide it behind the back. Adults choose and install protection using the child’s size and both manuals, and secure every trip.",
-        "cue": "Inspect shoulder and lap belts, then rear-facing, forward-facing and booster seats; show no unsafe-fit or injury experiment."
+        "text": "Forces slow the car, and real forces must slow our bodies too. A correctly fitted belt and suitable child seat help. The shoulder belt crosses shoulder and chest; the lap belt lies low over the hips. Never loosen the belt deliberately or hide it behind the back. Adults choose and install protection using the child’s size and both manuals, and secure every trip. The band is snug from the start. As the body advances relative to the car, the band stretches and pulls backward. This enlarged illustration explains the principle; it is no reason to leave belt slack.",
+        "cue": "Inspect shoulder and lap belts, then rear-facing, forward-facing and booster seats; show no unsafe-fit or injury experiment. Compare 0, 50 and 100% in the snug-band loading window. Call the endpoint the first maximum relative displacement, not a completed vehicle stop."
       }
     ]
   },
@@ -109,6 +109,10 @@
     {
       "title": "CDC · Preventing Child Passenger Injury",
       "url": "https://www.cdc.gov/child-passenger-safety/prevention/index.html"
+    },
+    {
+      "title": "OpenStax · Simple Harmonic Motion",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion"
     }
   ]
 }

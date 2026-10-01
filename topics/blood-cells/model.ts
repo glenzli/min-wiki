@@ -20,6 +20,28 @@ export function defenceState(progress: number) {
   return { x: 295 + 166 * ease(p / .3) + 152 * approach, y: 232 + 167 * exit,
     squeeze: Math.sin(Math.PI * exit), engulf: ease((p - .77) / .2), exit };
 }
+/** The polygon used by both the cell drawing and its wall-contact constraint. */
+export function immuneContour(state: ReturnType<typeof defenceState>) {
+  return Array.from({length:64},(_,i)=>{
+    const a=i/64*Math.PI*2,bulge=1+.033*Math.sin(a*9)+state.engulf*.2*Math.exp(-Math.pow(a-.55,2)/.2);
+    return {x:state.x+Math.cos(a)*48*bulge*(1-state.squeeze*.4),
+      y:state.y+Math.sin(a)*45*bulge*(1+state.squeeze*.48)};
+  });
+}
+// Includes the whole lower-wall drawing and room for both drawn outlines.
+export const VESSEL_CONTACT_BAND = { top:302, bottom:347, clearance:3 } as const;
+function crossingHalfWidth(progress:number,center:number) {
+  const band=VESSEL_CONTACT_BAND,top=band.top-band.clearance,bottom=band.bottom+band.clearance;
+  const contour=immuneContour(defenceState(progress)),contacts:number[]=[];
+  contour.forEach((point,i)=>{
+    const next=contour[(i+1)%contour.length]!;
+    if(point.y>=top&&point.y<=bottom)contacts.push(point.x);
+    for(const y of [top,bottom])if((point.y<y&&next.y>y)||(point.y>y&&next.y<y)){
+      contacts.push(point.x+(next.x-point.x)*(y-point.y)/(next.y-point.y));
+    }
+  });
+  return contacts.length?Math.max(...contacts.map(x=>Math.abs(x-center)))+band.clearance:0;
+}
 export function platelet(index: number, progress: number) {
   const delay = index * .048, p = ease((clamp(progress) - delay) / .44);
   const start = { x: 140 + index * 54, y: 208 + index % 3 * 31 };
@@ -34,7 +56,7 @@ export function repairState(progress: number) {
 /** A transient endothelial junction, or a fixed injury covered by the plug. */
 export function vesselGap(kind: BloodProcess, progress: number) {
   return { center: kind === 'defence' ? 461 : 524,
-    halfWidth: kind === 'defence' ? 36 * defenceState(progress).squeeze : kind === 'repair' ? 41 : 0 };
+    halfWidth: kind === 'defence' ? crossingHalfWidth(progress,461) : kind === 'repair' ? 41 : 0 };
 }
 export function engulfedTarget(progress: number) {
   const s = defenceState(progress);

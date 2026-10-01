@@ -12,6 +12,10 @@ The existing URL is retained, but the topic now explains a stellar-mass black ho
 
 Gas paths are continuous teaching curves, not a fluid solution. The shared finite-volume, non-spinning black-hole optics creates view-dependent disk images. Display scales and emissivity are illustrative and do not predict accretion rates or spectra.
 
+恒星风的捕获粒子在集中流与内侧螺旋的接点保持位置、厚度方向偏移、热度编码和透明度连续，不再在接点瞬移。捕获选择、时间比例及内侧轨迹保持原示意规则；这里保证的是位置连续，不宣称速度连续或由流体动力学计算捕获。
+
+Captured wind parcels now join the inner spiral continuously in position, out-of-plane offset, heat encoding and opacity. Capture selection, timeline scaling and the inner trajectory retain their existing illustrative rules. This is positional continuity, not a claim of continuous physical velocity or hydrodynamic capture.
+
 The photosphere now follows the same reversible teaching timeline as the gas and disk. Pausing
 freezes its illustrated activity, and scrubbing back returns the same surface phase. Reduced motion
 keeps surface evolution static and makes requested camera-view changes immediate; changing the
@@ -24,3 +28,5 @@ camera transition, resize or free-camera interaction.
 Sources: [NASA binary systems](https://www.nasa.gov/universe/nasa-visualization-rounds-up-the-best-known-black-hole-systems/), [NASA visualization](https://svs.gsfc.nasa.gov/4996/), [Cyg X-1 wind](https://ntrs.nasa.gov/citations/20110007118), [NASA warped light](https://www.nasa.gov/universe/nasa-visualization-shows-a-black-holes-warped-world/).
 
 Validation: `node --import tsx --test topics/galactic-center/tests/model.test.mjs`; integration: `npm run check` plus actual WebGL views in both languages and narrow screens.
+
+The wind regression samples the actual `windCaptureParcel` function used by the renderer on both sides of the join across more than fifty captured identities; the separate overflow-centerline test is not reused as evidence for this path. It also checks finite opacity/state, unchanged hidden parcels and deterministic reverse sampling. Existing production-scene tests cover paused state, camera changes and rapid scenario/view switching.

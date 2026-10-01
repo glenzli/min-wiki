@@ -3,7 +3,7 @@
   "topicId": "car-safety",
   "zh": {
     "question": "车速变成两倍，停车距离也只会变成两倍吗？",
-    "observe": "先在干燥路面播放三十千米每小时，再比较六十；分开观察金色反应距离和绿色制动距离。保持速度不变，切到湿滑路面。",
+    "observe": "先在干燥路面播放三十千米每小时，再比较六十；分开观察金色反应距离和绿色制动距离。保持速度不变，切到湿滑路面。 在约束章拖动受拉进度，比较实线身体与虚线惯性参照，找到固定点、接触处和向后的带力；带子从起点就正确贴合。",
     "academic": [
       {
         "title": "停车包含反应和制动两段",
@@ -15,11 +15,11 @@
       },
       {
         "title": "约束系统帮助身体一起减速",
-        "body": "急停时身体会保持原先的运动趋势，需要安全带或儿童约束系统施力减速。合适的装置有助于把力作用在更能承受的身体部位并管理减速过程。儿童应使用适合身高体重的座椅，按制造商和当地要求安装；增高座椅帮助肩带经过肩胸、腰带低贴髋部，不能把成人安全带简单缩短就当成适配。"
+        "body": "急停时身体会保持原先的运动趋势，需要安全带或儿童约束系统施力减速。合适的装置有助于把力作用在更能承受的身体部位并管理减速过程。儿童应使用适合身高体重的座椅，按制造商和当地要求安装；增高座椅帮助肩带经过肩胸、腰带低贴髋部，不能把成人安全带简单缩短就当成适配。 侧向机制图只抽出理想腰带的水平作用：带子从固定点出发，与髋部投影相切并绕前侧接触；前移使路径变长，弹性张力向后拉身体。虚线参照没有这个水平约束，惯性仍不是前推力。第一相对速度为零时仍有带力，未表示车辆对地停下；无阻尼模型后续会回弹，观察窗口在这里结束。"
       }
     ],
     "misconception": "刹车不是按下就瞬间停住；安全带也不是让身体完全不受力，而是以更合适的方式约束和减速。",
-    "boundary": "距离基于固定反应时间与恒定减速度，不用于实车安全间距；动画播放时间被教学缩放，座椅图不能代替安装说明。",
+    "boundary": "距离基于固定反应时间与恒定减速度，不用于实车安全间距；动画播放时间被教学缩放，座椅图不能代替安装说明。 受拉窗口独立于停车时钟，质量、刚度与位移使用教学相对单位，身体前移及带子伸长被放大；不含肩带、身体转动、组织形变、耗能、卷收器或预紧器，不预测真实人体载荷或伤害。",
     "narration": [
       {
         "label": "按下刹车以后",
@@ -38,14 +38,14 @@
       },
       {
         "label": "让身体也安全停下",
-        "text": "车慢下来时，我们的身体也要一起慢下来。合适的儿童座椅和正确系好的安全带，就在帮助身体受到合适的保护。看看肩带和腰带的位置，再请大人按你的大小选择座椅、认真安装。坐好以后不把肩带藏到背后，车开动以前就把保护准备好。",
-        "cue": "依次突出肩带、腰带和座椅示意。"
+        "text": "车慢下来时，我们的身体也要一起慢下来。合适的儿童座椅和正确系好的安全带，就在帮助身体受到合适的保护。看看肩带和腰带的位置，再请大人按你的大小选择座椅、认真安装。坐好以后不把肩带藏到背后，车开动以前就把保护准备好。 带子从起点就贴合，身体相对车向前时，带子受到拉伸并向后拉身体。我们看到的是放大的原理示意，不是应该留下松带。",
+        "cue": "依次突出肩带、腰带和座椅示意。 在正确贴合的受拉窗口对照 0、50、100% 进度；终点只称相对前移首次最大，不表示车对地停住。"
       }
     ]
   },
   "en": {
     "question": "If speed doubles, does stopping distance merely double too?",
-    "observe": "Play at thirty kilometers per hour on a dry road, then compare sixty. Inspect the gold reaction and green braking distances separately, then compare wet road at the same speed.",
+    "observe": "Play at thirty kilometers per hour on a dry road, then compare sixty. Inspect the gold reaction and green braking distances separately, then compare wet road at the same speed. In restraints, scrub belt loading and compare the solid passenger with the dashed inertia reference. Identify fixed anchors, contact and the backward belt force; the band fits snugly from the start.",
     "academic": [
       {
         "title": "Stopping has two stages",
@@ -57,11 +57,11 @@
       },
       {
         "title": "Restraints help the body slow down",
-        "body": "During a sudden stop the body needs a force to change its motion. Correct restraints manage deceleration and load stronger body regions. Children need seats appropriate for their size and installed according to manufacturer and local requirements. Boosters position the shoulder belt across shoulder and chest and the lap belt low over hips."
+        "body": "During a sudden stop the body needs a force to change its motion. Correct restraints manage deceleration and load stronger body regions. Children need seats appropriate for their size and installed according to manufacturer and local requirements. Boosters position the shoulder belt across shoulder and chest and the lap belt low over hips. The side-view mechanism isolates an ideal lap band’s horizontal action. It runs from fixed anchors, touches the hip projection tangentially and wraps around its front. Forward travel lengthens the band and elastic tension pulls backward. The dashed reference lacks this horizontal restraint; inertia is still not a forward force. Belt force remains at the first zero relative speed, which does not mean the car has stopped relative to the ground. The undamped model would rebound afterward, so the observation window ends here."
       }
     ],
     "misconception": "Braking does not stop a car instantly. Restraints do not eliminate forces; they manage how the body is restrained and slowed.",
-    "boundary": "Distances use fixed reaction time and constant deceleration and cannot set real following gaps. Playback time is rescaled; seat drawings do not replace installation instructions.",
+    "boundary": "Distances use fixed reaction time and constant deceleration and cannot set real following gaps. Playback time is rescaled; seat drawings do not replace installation instructions. The belt-loading window is independent of the stopping clock. Mass, stiffness and displacement use teaching units; body travel and belt extension are exaggerated. It omits the shoulder belt, rotation, tissue deformation, dissipation, retractors and pretensioners, and does not predict real body loads or injury.",
     "narration": [
       {
         "label": "After braking begins",
@@ -80,8 +80,8 @@
       },
       {
         "label": "Help the body stop safely",
-        "text": "As the car slows, our body must slow too. A suitable child seat and correctly fitted belt help protect us. Examine the shoulder and lap belt positions, then ask an adult to choose and install a seat for your size. Keep the shoulder belt in its proper place and be secured before the car moves.",
-        "cue": "Highlight shoulder belt, lap belt and child-seat diagram."
+        "text": "As the car slows, our body must slow too. A suitable child seat and correctly fitted belt help protect us. Examine the shoulder and lap belt positions, then ask an adult to choose and install a seat for your size. Keep the shoulder belt in its proper place and be secured before the car moves. The band is snug from the start. As the body advances relative to the car, the band stretches and pulls backward. This enlarged illustration explains the principle; it is no reason to leave belt slack.",
+        "cue": "Highlight shoulder belt, lap belt and child-seat diagram. Compare 0, 50 and 100% in the snug-band loading window. Call the endpoint the first maximum relative displacement, not a completed vehicle stop."
       }
     ]
   },
@@ -97,6 +97,10 @@
     {
       "title": "OpenStax · Motion with Constant Acceleration",
       "url": "https://openstax.org/books/university-physics-volume-1/pages/3-4-motion-with-constant-acceleration"
+    },
+    {
+      "title": "OpenStax · Simple Harmonic Motion",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion"
     }
   ]
 }

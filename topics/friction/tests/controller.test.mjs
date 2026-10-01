@@ -7,6 +7,7 @@ import {resolve} from 'node:path';
 import vm from 'node:vm';
 import ts from 'typescript';
 import {parse,parseFragment} from 'parse5';
+import {restraintAt} from '../../car-safety/restraintModel.ts';
 const root=resolve(process.cwd(),'topics/friction');
 function harness(search=''){
  const ids=new Map(),elements=[],rafs=new Map(),animations=[];
@@ -18,8 +19,8 @@ function harness(search=''){
   dispatch(type){for(const fn of this.listeners.get(type)??[])fn({type,target:this});}
  }
  class Element extends Target{
-  attributes={};dataset={};style={};value='';textContent='';hidden=false;disabled=false;children=[];
-  constructor(attrs=[]){super();for(const {name,value} of attrs)this.setAttribute(name,value);this.value=this.attributes.value??'';}
+  attributes={};dataset={};style={};value='';textContent='';hidden=false;disabled=false;checked=false;children=[];
+  constructor(attrs=[]){super();for(const {name,value} of attrs)this.setAttribute(name,value);this.value=this.attributes.value??'';this.checked='checked'in this.attributes;}
   setAttribute(name,value){this.attributes[name]=String(value);if(name.startsWith('data-'))this.dataset[name.slice(5).replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=String(value);}
   getAttribute(name){return this.attributes[name]??null;}
   set innerHTML(html){register(parseFragment(html));}
@@ -52,7 +53,9 @@ function harness(search=''){
   vm.runInNewContext(output,{...host,...dependencies,exports},{filename:name});return exports;
  }
  const model=load('model.ts'),project=load('projectModel.ts'),carModel=load('../car-safety/model.ts');
- const slider=load('slidingStudy.ts',model),contact=load('contactStudy.ts',project),car=load('../car-safety/study.ts',carModel);
+ const restraintModel=load('../car-safety/restraintModel.ts');
+ const restraint=load('../car-safety/restraintStudy.ts',restraintModel);
+ const slider=load('slidingStudy.ts',model),contact=load('contactStudy.ts',project),car=load('../car-safety/study.ts',{...carModel,...restraint});
  load('main.ts',{...slider,...contact,...car,...project,
   carPanel:readFileSync(resolve(root,'../car-safety/panel.html'),'utf8'),carContact:readFileSync(resolve(root,'../car-safety/contact.html'),'utf8'),languageHref:v=>v});
  const get=id=>document.getElementById(id);
@@ -123,4 +126,46 @@ test('hidden and pagehide stop car, slider and belt work; reduced motion keeps c
  h.chapter('slide');h.get('finish').dispatch('click');assert.equal(h.get('time').value,'4');assert.equal(h.rafs.size,0);
  h.input('time',.4);assert.equal(h.get('time').value,'0.4');
  h.window.dispatch('pagehide');assert.equal(h.rafs.size,0);
+});
+test('the real restraint controller renders the same passenger, tangent band and backward force at any scrubbed state',()=>{
+ const h=harness('?chapter=restraints');
+ const geometry=()=>['car-restraint-passenger','car-restraint-belt','car-restraint-upper-contact','car-restraint-lower-contact','car-restraint-force'].map(id=>({...h.get(id).attributes}));
+ assert.equal(h.get('car-restraint-force').getAttribute('visibility'),'hidden');
+ assert.equal(h.get('car-restraint-belt').getAttribute('data-tension'),'0');
+ const anchorsBefore=geometry()[1].d;
+ for(const value of [50,10,100,75,0,50]){
+  h.input('car-restraint-progress',value);const state=restraintAt(value/100);
+  assert.equal(h.get('car-restraint-passenger').getAttribute('transform'),`translate(${state.displacement} 0)`);
+  assert.equal(h.get('car-restraint-free').getAttribute('transform'),`translate(${state.freeDisplacement} 0)`);
+  assert.equal(h.get('car-restraint-belt').getAttribute('d'),state.belt.path);
+  assert.equal(Number(h.get('car-restraint-force').getAttribute('data-force')),state.belt.horizontalForce);
+  if(value>0){
+   const [start,tip]=h.get('car-restraint-force').getAttribute('d').match(/^M([\d.]+) [\d.]+H([\d.]+)/).slice(1).map(Number);
+   assert.ok(tip<start,'the real SVG force arrow points backward on the passenger');
+   assert.equal(h.get('car-restraint-force').getAttribute('visibility'),'visible');
+  }
+  assert.equal(Number(h.get('car-restraint-upper-contact').getAttribute('cx')),state.belt.upper.x);
+  assert.equal(Number(h.get('car-restraint-lower-contact').getAttribute('cy')),state.belt.lower.y);
+  assert.ok(state.belt.path.startsWith('M135 210L')&&state.belt.path.endsWith('L135 270'));
+ }
+ const before=geometry();h.input('car-restraint-progress',100);assert.notEqual(h.get('car-restraint-belt').getAttribute('d'),anchorsBefore);
+ assert.match(h.get('car-restraint-stage').textContent,/不代表身体或车已经对地停下/);
+ h.input('car-restraint-progress',50);assert.deepEqual(geometry(),before);
+ h.get('car-restraint-reference').checked=false;h.get('car-restraint-reference').dispatch('change');
+ assert.equal(h.get('car-restraint-free').getAttribute('visibility'),'hidden');assert.deepEqual(geometry(),before);
+ h.get('car-restraint-reference').checked=true;h.get('car-restraint-reference').dispatch('change');assert.equal(h.get('car-restraint-free').getAttribute('visibility'),'visible');
+});
+test('restraint playback, pause, replay and chapter return preserve one finite mechanism clock',()=>{
+ const h=harness('?chapter=restraints');assert.equal(h.rafs.size,0);
+ h.get('car-restraint-play').dispatch('click');h.tick();h.tick();const value=h.get('car-restraint-progress').value;
+ assert.ok(Number(value)>0);assert.equal(h.get('car-restraint-play').getAttribute('aria-pressed'),'true');
+ h.get('car-restraint-play').dispatch('click');assert.equal(h.rafs.size,0);h.tick();assert.equal(h.get('car-restraint-progress').value,value);
+ h.get('car-restraint-play').dispatch('click');h.tick();h.tick();const next=h.get('car-restraint-progress').value;assert.ok(Number(next)>Number(value));
+ h.chapter('braking');assert.equal(h.rafs.size,0);h.chapter('restraints');assert.equal(h.get('car-restraint-progress').value,next);assert.equal(h.rafs.size,0);
+ h.get('car-restraint-play').dispatch('click');h.document.hidden=true;h.document.dispatch('visibilitychange');assert.equal(h.rafs.size,0);
+ h.media.matches=true;h.get('car-restraint-play').dispatch('click');assert.equal(h.get('car-restraint-progress').value,'100');assert.equal(h.rafs.size,0);
+ h.get('car-restraint-play').dispatch('click');assert.equal(h.get('car-restraint-progress').value,'100');
+ h.input('car-restraint-progress',32);assert.equal(h.get('car-restraint-progress').value,'32');
+ h.media.matches=false;h.get('car-restraint-play').dispatch('click');h.window.dispatch('pagehide');assert.equal(h.rafs.size,0);
+ h.get('car-restraint-reset').dispatch('click');assert.equal(h.get('car-restraint-progress').value,'0');assert.equal(h.get('car-restraint-belt').getAttribute('data-tension'),'0');
 });

@@ -81,4 +81,5 @@ if(brakingFrame){
  brakingFrame.stage.querySelector('.road-scene svg')?.setAttribute('viewBox','0 80 900 270');
  const metrics=document.querySelector('#braking-panel .metrics');if(metrics)brakingFrame.stage.append(metrics);
 }
-mountPresentationFrame({ root: '#restraints-panel .protection', visual: '.belt-art' });
+mountPresentationFrame({ root: '#restraints-panel .restraint-mechanism', visual: '.restraint-scene', transport: '.restraint-controls' });
+mountPresentationFrame({ root: '#restraints-panel .protection-grid', visual: '.belt-art' });

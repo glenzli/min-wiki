@@ -1,8 +1,45 @@
-import { clamp, response, type TouchSettings } from './model.ts';
+import { clamp, response, leafletFold, signalArrival, OBSERVED_PAIR, type TouchSettings } from './model.ts';
 
 export type Point = [number, number];
 export interface TissueCell { id: number; center: Point; outline: Point[]; lower: boolean }
 const noise = (n: number) => { const x = Math.sin(n * 127.13 + 31.17) * 43758.5453; return x - Math.floor(x); };
+
+/** The ringed tertiary organ, independent of primary-pulvinus droop.
+ * Water/volume is a qualitative trend, not a measured concentration or pressure.
+ * The schematic intentionally does not assign the primary organ's lower-side
+ * extensor anatomy to a different leaflet-base organ.
+ */
+export function leafletPulvinus(progress: number, settings: TouchSettings) {
+  const fold = leafletFold(progress, settings.pinna, OBSERVED_PAIR, settings);
+  const before = leafletFold(progress - .002, settings.pinna, OBSERVED_PAIR, settings);
+  const after = leafletFold(progress + .002, settings.pinna, OBSERVED_PAIR, settings);
+  const arrived = clamp(progress) >= signalArrival(settings.pinna, OBSERVED_PAIR, settings);
+  const recovering = fold > 0 && after < before;
+  const phase: 'waiting' | 'arrived' | 'folding' | 'held' | 'recovering' | 'recovered' = !arrived ? 'waiting'
+    : recovering ? 'recovering' : clamp(progress) >= .7 && fold < .02 ? 'recovered'
+      : fold > .95 ? 'held' : fold > .02 ? 'folding' : 'arrived';
+  return {
+    fold, water: response(progress, settings).water,
+    arrived, phase,
+    flux: fold > 0 ? clamp(Math.abs(after - before) * 36) : 0,
+    recovering,
+  };
+}
+
+/** Side projection of a pair, with a fixed rachilla and distinct leaflet joints.
+ * Leaf lengths stay fixed; changing angles show upward folding, not growth.
+ */
+export function leafletPairPose(fold: number) {
+  const angle = clamp(fold) * 1.4;
+  const joints: [Point, Point] = [[-22, 30], [22, 30]];
+  const angles: [number, number] = [Math.PI + angle, -angle];
+  return {
+    axis: [0, 38] as Point,
+    joints, angles,
+    leafBases: joints.map(([x, y], i) => [x + 14 * Math.cos(angles[i]!), y + 14 * Math.sin(angles[i]!)] as Point),
+    length: 218,
+  };
+}
 
 /** Only the primary pulvinus drives petiole droop. Leaflet folding is a separate organ. */
 export function primaryPulvinus(progress: number, settings: TouchSettings) {

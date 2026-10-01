@@ -1,4 +1,4 @@
-import { clamp,muscleState,nerveSignal,barrierParticle,type CellKind } from './model.ts';
+import { clamp,muscleState,nerveSignal,barrierParticle,MUSCLE_APPARATUS,DEFAULT_MUSCLE,FORCE_ARROW_SCALE,type MuscleOptions,type CellKind } from './model.ts';
 type Translator=(source:string)=>string;
 const defs=`<defs>
   <linearGradient id="background" x2=".7" y2="1"><stop stop-color="#f4f1e5"/><stop offset="1" stop-color="#e2e4d3"/></linearGradient>
@@ -19,18 +19,39 @@ function epithelial(progress:number,t:Translator){
   const grains=Array.from({length:8},(_,i)=>{const s=barrierParticle(i,progress);return `<g transform="translate(${s.x} ${s.y}) rotate(${i*47})"><ellipse rx="9" ry="6" fill="#83987e" stroke="#697d66"/><path d="M-7-4l-4-4m13 0 4-5M-4 5l-3 5" stroke="#697d66"/></g>`;}).join('');
   return `${text(490,68,t('皮肤表面：层层相接的保护'))}<path d="M35 193Q490 172 944 193" stroke="#d3b497" stroke-width="19" fill="none"/><path d="M34 189Q490 168 945 189" stroke="#faf0d7" stroke-width="3" fill="none"/>${layers}${grains}<path d="M35 411Q490 396 945 411" stroke="#c3ba96" stroke-width="4" fill="none"/><g stroke="#b9b19a" stroke-opacity=".4" fill="none">${Array.from({length:8},(_,i)=>`<path d="M32 ${429+i*8}Q250 ${389+i*13} 484 ${440+i*6}T948 ${426+i*9}"/>`).join('')}</g>${text(229,510,t('表面细胞逐渐角化'),16)}${text(737,510,t('深处有活细胞持续更新'),16)}`;
 }
-function muscle(progress:number,t:Translator){
-  const s=muscleState(progress),width=s.right-s.left;
+function muscle(progress:number,t:Translator,options:MuscleOptions){
+  const s=muscleState(progress,options),width=s.length,a=MUSCLE_APPARATUS;
+  const height=43*Math.sqrt(s.restLength/width);
   // Keep the same repeat units and nuclei as the fiber shortens and relaxes.
-  const bands=Array.from({length:3},(_,i)=>`<g transform="translate(${s.left} ${174+i*49})"><rect width="${width}" height="43" rx="20" fill="url(#muscle)" stroke="#a5666c"/>
+  const bands=Array.from({length:3},(_,i)=>`<g transform="translate(${s.left} ${174+i*49+(43-height)/2})"><rect data-muscle-fibre="${i}" width="${width}" height="${height}" rx="20" fill="url(#muscle)" stroke="#a5666c"/>
     ${Array.from({length:34},(_,j)=>`<path data-muscle-band="${i}-${j}" d="M${13+(j+.5)*(width-26)/34} 4v35" stroke="#905a64" stroke-opacity=".34" stroke-width="${(width-26)/34*.24}"/><path d="M${13+(j+.7)*(width-26)/34} 4v35" stroke="#ffe0c0" stroke-opacity=".5" stroke-width="1.6"/>`).join('')}
     ${[.12,.48,.84].map(f=>`<ellipse cx="${width*f}" cy="${i%2?35:8}" rx="12" ry="4" fill="#8b6a83"/>`).join('')}<path d="M22 8H${width-24}" stroke="#ffdfc3" stroke-width="2" opacity=".5"/></g>`).join('');
-  const left=270+s.activation*72,right=710-s.activation*72;
-  return `${text(490,68,t('骨骼肌纤维：细丝滑动，整体变短'))}<g filter="url(#cell-shadow)">${bands}</g><path d="M${s.left} 168V322M${s.right} 168V322" stroke="#ad8e76" stroke-width="7" stroke-linecap="round"/><path d="M${s.left} 150H${s.right}" stroke="#8c7469" stroke-dasharray="4 6"/>${text(490,129,t('纤维长度会变'),16)}<path d="M445 332v24m90-24v24" stroke="#ac9181" stroke-dasharray="4 5"/>
+  const left=490-s.sarcomereSpan/2,right=490+s.sarcomereSpan/2;
+  const spring=Array.from({length:25},(_,i)=>{
+    const x=s.junction+8+(a.springAnchor-s.junction-16)*i/24;
+    return `${i?'L':'M'}${x} ${241+(i===0||i===24?0:i%2?8:-8)}`;
+  }).join(' ');
+  const force=(id:string,value:number,direction:number,y:number,color:string)=>{
+    const end=s.junction+direction*value*FORCE_ARROW_SCALE;
+    return `<g data-force="${id}" data-force-value="${value}" opacity="${value>1e-8?1:0}"><path d="M${s.junction} ${y}H${end}" stroke="${color}" stroke-width="3"/><path d="M${end-direction*7} ${y-5}L${end} ${y}L${end-direction*7} ${y+5}" fill="none" stroke="${color}" stroke-width="2.5"/></g>`;
+  };
+  const clampArt=s.mode==='isometric'?`<g data-endpoint-clamp="true"><rect x="${s.junction-12}" y="221" width="24" height="40" rx="4" fill="#8b9697" stroke="#53686e" stroke-width="2"/><path d="M${s.junction} 261V336M${s.junction-28} 336H${s.junction+28}" stroke="#758389" stroke-width="5"/><path d="M${s.junction-23} 339l-6 7m18-7-6 7m18-7-6 7m18-7-6 7" stroke="#758389" stroke-width="1.5"/></g>`:'';
+  return `<g data-muscle-mode="${s.mode}" data-muscle-length="${s.length}" data-muscle-tension="${s.tension}">${text(490,46,t('肌肉、连接组织与外部弹性负载'))}
+    <path d="M130 191V290M122 191v99" stroke="#758389" stroke-width="5"/><path d="M118 196l-12 11m12 9-12 11m12 9-12 11m12 9-12 11m12 9-12 11M910 203v76m8-76v76" stroke="#758389" stroke-width="2"/>
+    <path data-tendon="left" d="M130 238C160 238 165 174 185 174L185 315C164 315 160 244 130 244Z" fill="#d3bf9e" stroke="#a38f75" stroke-width="1.5"/>
+    <path data-tendon="right" d="M${s.right} 174C${s.right+18} 174 ${s.junction-10} 238 ${s.junction} 238V244C${s.junction-10} 244 ${s.right+18} 315 ${s.right} 315Z" fill="#d3bf9e" stroke="#a38f75" stroke-width="1.5"/>
+    <g filter="url(#cell-shadow)">${bands}</g>
+    <path data-load-spring="true" d="M${s.junction} 241H${s.junction+8}${spring.replace(/^M/,'L')}L${a.springAnchor} 241" fill="none" stroke="#56817c" stroke-width="${2+s.load}" stroke-linejoin="round"/>
+    ${clampArt}<circle data-force-junction="true" cx="${s.junction}" cy="241" r="4" fill="#eff3e4" stroke="#657779" stroke-width="2"/>
+    <path d="M${s.junction} 150V214" fill="none" stroke="#9aaca5" stroke-dasharray="3 5"/>
+    ${force('muscle',s.tension,-1,92,'#a76269')}${force('spring',s.springForce,1,116,'#56817c')}${force('clamp',s.clampForce,1,140,'#586b84')}
+    <path d="M${s.left} 153H${s.right}" stroke="#8c7469" stroke-dasharray="4 6"/>
+    ${text(137,330,t('固定端'),15)}${text(850,316,t('外部弹簧'),15)}
+    <circle cx="${(s.left+s.right)/2}" cy="241" r="17" fill="none" stroke="#b39363" stroke-width="1.5" stroke-dasharray="4 4"/><path d="M${(s.left+s.right)/2-12} 260L445 356M${(s.left+s.right)/2+12} 260L535 356" stroke="#ac9181" stroke-dasharray="4 5"/>
     <rect x="168" y="363" width="644" height="120" rx="20" fill="#fff7e6" stroke="#d4c5ad"/>
-    <path d="M${left} 382v81M${right} 382v81" stroke="#786479" stroke-width="5"/>
+    <path data-z-discs="true" d="M${left} 382v81M${right} 382v81" stroke="#786479" stroke-width="5"/>
     ${[398,420,442].map(y=>`<path d="M${left} ${y}h178M${right} ${y}h-178" stroke="#c17e6b" stroke-width="4"/><path d="M385 ${y+8}H595" stroke="#9c8ba4" stroke-width="8" stroke-linecap="round"/>`).join('')}
-    ${text(490,516,t('放大看：细丝长度不变，重叠增加'),16)}`;
+    ${text(490,516,t('放大同一纤维的代表肌节：细丝长度不变'),16)}</g>`;
 }
 function neuron(progress:number,t:Translator){
   const s=nerveSignal(progress);
@@ -43,6 +64,6 @@ function neuron(progress:number,t:Translator){
     ${text(214,397,t('细胞体'),16)}${text(520,397,t('有髓鞘的轴突'),16)}${text(843,397,t('突触'),16)}<path d="M217 374v-70M520 374v-107M843 374l23-87" fill="none" stroke="#aa9880" stroke-dasharray="3 5"/>
     ${text(490,495,t('信号沿膜传播，再把信息传给下一个细胞'),16)}`;
 }
-export function renderCell(kind:CellKind,progress:number,t:Translator){
-  return defs+`<rect width="980" height="550" rx="24" fill="url(#background)"/>`+(kind==='barrier'?epithelial(clamp(progress),t):kind==='muscle'?muscle(clamp(progress),t):neuron(clamp(progress),t));
+export function renderCell(kind:CellKind,progress:number,t:Translator,options:MuscleOptions=DEFAULT_MUSCLE){
+  return defs+`<rect width="980" height="550" rx="24" fill="url(#background)"/>`+(kind==='barrier'?epithelial(clamp(progress),t):kind==='muscle'?muscle(clamp(progress),t,options):neuron(clamp(progress),t));
 }

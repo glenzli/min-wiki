@@ -21,11 +21,23 @@
     {
       "title": "NIH / NIGMS · What Are Stem Cells?",
       "url": "https://www.nigms.nih.gov/biobeat/2024/11/what-are-stem-cells"
+    },
+    {
+      "title": "OpenStax · Skeletal Muscle: connective tissue and tendons",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle"
+    },
+    {
+      "title": "OpenStax · Nervous System Control of Muscle Tension",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-4-nervous-system-control-of-muscle-tension"
+    },
+    {
+      "title": "Gordon, Huxley and Julian (1966) · Isometric tension and sarcomere length",
+      "url": "https://physoc.onlinelibrary.wiley.com/doi/10.1113/jphysiol.1966.sp007909"
     }
   ],
   "zh": {
     "question": "身体里的细胞如果都长成同样的小圆球，还能做这么多不同的事情吗？",
-    "observe": "依次比较皮肤屏障、骨骼肌纤维和神经元。皮肤场景追踪外来颗粒；肌肉场景拖到中间和末尾比较长度；神经场景追踪轴突信号与突触递质。切换的是不同观察对象，不是一个细胞变成另一种。",
+    "observe": "比较皮肤屏障、骨骼肌纤维和神经元。在肌肉场景先找到两端的连接组织、外部弹簧与固定夹具；同一进度对照允许缩短和固定长度，再改变弹簧刚度。神经场景追踪轴突与突触。切换的是不同观察对象，不是一个细胞变成另一种。",
     "academic": [
       {
         "title": "分化把共同基础变成不同本领",
@@ -37,11 +49,11 @@
       },
       {
         "title": "收缩和传导使用不同机制",
-        "body": "骨骼肌纤维是通常多核的长细胞。钙离子调节肌动蛋白与肌球蛋白的相互作用，ATP 支持横桥循环，肌节缩短来自细丝相对滑动而非细丝变短。神经元的传导则依赖膜上的离子通道和电化学梯度；髓鞘由胶质细胞形成。页面只画有髓轴突与化学突触，其他神经结构以及真实时空尺度仍被简化。"
+        "body": "骨骼肌纤维是通常多核的长细胞。钙离子调节肌动蛋白与肌球蛋白相互作用，ATP 支持横桥循环；缩短来自细丝滑动，而非细丝变短。产生张力也不必整体缩短。本页用有效收缩元件与外部弹簧的准静态平衡，对照可移动端与固定夹具；总张力含起点预拉，放松回长由外部弹簧牵拉。真实整体等长不保证每个肌节固定，图中肌腱则视为不伸长。神经元的传导依赖膜上离子通道与电化学梯度；髓鞘由胶质细胞形成。本页选择有髓轴突与化学突触。"
       }
     ],
     "misconception": "细胞不会因为需要一项工作就立刻换成另一种细胞；肌肉细丝不会自己变短；神经信号也不是一颗小球在空管中流动。",
-    "boundary": "三类代表结构不是人体全部细胞。屏障颗粒、神经亮点、颜色和时间均为教学标记。肌肉放松后的回长还依赖负荷与其他结构，图中只规定一条观察路径；不由此推断疾病、伤口严重程度或实际反应速度。",
+    "boundary": "三类结构不是人体全部细胞。屏障颗粒、神经亮点、颜色与进度为教学标记。肌肉装置使用屏幕长度、相对力及自选刚度，未校准生理数据；激活改变有效参考长度，不分解真实主动/被动力，不求解横桥、肌腱顺应性、速度依赖、疲劳或主动延长。弹簧刚度不是重量，变硬会减少缩短，但最高档不是过载；不同刚度的初始预伸长也不同。回长来自可见外部弹簧。不由此推断疾病、伤口或实际反应速度。",
     "narration": [
       {
         "label": "不同的形状",
@@ -55,8 +67,8 @@
       },
       {
         "label": "滑动带来收缩",
-        "text": "再看细长的肌肉纤维。把进度拖到中间，纤维变短了；看下面的放大图，里面的细丝在彼此滑动，重叠得更多，并不是每根细丝都缩短了。继续到最后，肌肉放松。我们拿积木、走路和抬手时，都需要许多肌肉纤维配合着产生力。",
-        "cue": "切到肌肉，停在中段收缩和末段放松；对照下方细丝长度。"
+        "text": "再看细长的肌肉纤维。先找到左边固定的连接，再找到右边的弹簧。允许右端移动时，推进到中间，肌肉把弹簧拉长，自己变短；放大图里的细丝相对滑动，并没有变短。把弹簧调硬，同样的激活下，缩短会更少。再试固定长度：两端不动，力箭头还是变长了。原来肌肉可以产生张力，却不一定缩短。再回到允许缩短的对照里：激活减弱时，右边的弹簧把它拉回，不是肌肉自己向外推。",
+        "cue": "比较可移动端、较硬弹簧与固定端；每次停在同一进度看受力。再切回可移动端，观察放松时的外部回拉。"
       },
       {
         "label": "传信的长长连接",
@@ -67,7 +79,7 @@
   },
   "en": {
     "question": "Could body cells do all their different jobs if they were identical little balls?",
-    "observe": "Compare a skin barrier, skeletal muscle fibres and a neuron. Track outside particles at skin, compare muscle length at the middle and end, and follow the axon signal and synaptic transmitter. Switching changes the specimen; it does not turn one cell into another.",
+    "observe": "Compare a skin barrier, skeletal muscle fibres and a neuron. In the muscle study find the connective tissue, external spring and endpoint clamp. Compare shortening and fixed length at the same progress, then change spring stiffness. Follow axon and synapse in the neuron. These are distinct specimens, not one cell changing type.",
     "academic": [
       {
         "title": "Specialization builds on a shared foundation",
@@ -79,11 +91,11 @@
       },
       {
         "title": "Contraction and conduction use different mechanisms",
-        "body": "Skeletal muscle fibres are long, usually multinucleate cells. Calcium regulates actin–myosin interactions, and ATP supports cross-bridge cycling; sarcomeres shorten through sliding rather than shortening filaments. Neuronal conduction instead depends on membrane ion channels and electrochemical gradients. Glial cells form myelin. Only a myelinated axon and chemical synapse are shown, with other structures and real time and distance scales simplified."
+        "body": "Skeletal muscle fibres are long and usually multinucleate. Calcium regulates actin–myosin interactions and ATP supports cross-bridge cycling. Shortening comes from filament sliding, not shorter filaments; producing tension need not shorten the whole muscle. This page uses quasi-static balance between an effective contraction element and an external spring, comparing a movable endpoint with a clamp. Total tension includes initial preload, and the external spring restores length as activation falls. Real overall isometry does not fix every sarcomere; model tendons are inextensible. Neuronal conduction depends on membrane ion channels and electrochemical gradients. Glial cells form myelin; the chosen example has a myelinated axon and a chemical synapse."
       }
     ],
     "misconception": "Cells do not instantly become another cell type to take a job. Muscle filaments do not shorten, and a nerve signal is not a ball flowing through a hollow tube.",
-    "boundary": "The three structures are not all the body’s cells. Barrier particles, signal highlights, colours and timing are teaching choices. Muscle lengthening after relaxation also depends on loads and other structures; one prescribed path is shown. It does not predict disease, injury severity or real response speed.",
+    "boundary": "These are not all body cells. Particles, signal highlights, colours and progress are teaching choices. The muscle apparatus uses screen lengths, relative forces and chosen stiffnesses, not calibrated physiological data. Activation changes an effective reference length; real active/passive contributions, cross-bridges, tendon compliance, velocity dependence, fatigue and active lengthening are not solved. Stiffness is not weight: increasing it reduces shortening, but the highest setting is not overload. Initial prestretch also varies with stiffness. The visible external spring restores length. No disease, injury or real response-speed prediction is made.",
     "narration": [
       {
         "label": "Different shapes",
@@ -97,8 +109,8 @@
       },
       {
         "label": "Sliding creates contraction",
-        "text": "Now inspect the long muscle fibres. Scrub to the middle: the fibres shorten. In the close view below, filaments slide past one another and overlap more; the filaments themselves have not shortened. Continue to the end for relaxation. Picking up blocks, walking and lifting a hand require many muscle fibres working together to produce force.",
-        "cue": "Switch to muscle; pause at middle contraction and final relaxation, comparing filament lengths."
+        "text": "Inspect the long muscle fibres. Find the fixed connection on the left and the spring on the right. With the endpoint free, advance to the middle: muscle shortens and stretches the spring. In the close-up the filaments slide without becoming shorter. A stiffer spring allows less shortening at the same activation. Now fix the length: the endpoints stay still but the force arrows grow. Muscle can produce tension without shortening. Back in the shortening comparison, the external spring restores length as activation falls; the muscle is not pushing outward.",
+        "cue": "Compare a movable endpoint, a stiffer spring and a fixed endpoint at the same progress. Return to the movable endpoint to inspect external return during relaxation."
       },
       {
         "label": "Long connections carry messages",

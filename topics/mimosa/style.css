@@ -43,3 +43,6 @@
 .mechanism-return{align-self:flex-start;margin-top:auto;font-size:11px;padding:7px 10px}
 .mechanism-pace-note{line-height:1.6}
 @media(max-width:800px){.mechanism-compare{padding:17px;margin-top:18px}.mechanism-compare-grid{grid-template-columns:1fr;gap:9px;margin:15px 0}.mechanism-card{padding:14px}.mechanism-card h3{margin-bottom:8px}.mechanism-facts{grid-template-columns:76px minmax(0,1fr);margin-bottom:12px}}
+
+/* Both pulvinus organs remain separate, touch-sized observation choices. */
+.plant-workspace .view-tabs button{min-height:44px}
