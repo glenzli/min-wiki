@@ -69,8 +69,6 @@
   "本例展示一种急性保护性反应。图上的先后顺序帮助比较支路，不给出固定潜伏期，不适用于所有疼痛或所有反射。拖回较早阶段是回看演示，不表示身体会倒着收回信号。没有刺激强度、伤害量或疼痛分数之间的换算。": "This example shows one acute protective response. Its sequence helps compare branches; it specifies no fixed latency and does not represent every pain or reflex. Dragging backward reviews the demonstration, rather than reversing bodily signals. There is no conversion between stimulus intensity, tissue damage and pain scores.",
   "资料与插画说明": "Sources and illustration notes",
   "原生 SVG 教学插画；组织、颜色、数量、长度和时间均经简化。它不是诊断工具，也不模拟疾病、治疗或受伤实验。": "An original SVG teaching illustration, with simplified tissues, colors, counts, lengths and timing. It is not a diagnostic tool and does not simulate disease, treatment or injury experiments.",
-  "两条线概括许多神经元的联系；彩点不是“疼痛小球”。": "The two lines summarize many neural connections; the dots are not little balls of pain.",
-  "把不同位置的组织并排放大；彩点表示活动前沿，路径长度、细胞形状和时间都不按实际比例。": "Tissues from different locations are enlarged side by side. Colored dots mark activity fronts; path lengths, cell shapes and timing are not to scale.",
   "01 皮肤末梢": "01 Skin endings",
   "02 脊髓回路": "02 Spinal circuit",
   "03 多处脑区加工": "03 Brain processing",
@@ -93,8 +91,10 @@
   "两条线是功能概括，省略了神经交叉、更多中继及来自脑的调节。": "The two lines summarize functions and omit crossings, further relays and descending modulation from the brain.",
   "肌肉收缩，手可以先缩开，不必等脑先下一个决定。": "Muscle contracts and the hand can pull away without waiting for a conscious decision.",
   "示例中的保护性缩回由脊髓回路驱动肌肉；同时上行活动仍在继续。": "In this example, a spinal circuit drives the protective withdrawal while ascending activity continues.",
-  "这是可发生的顺序，不是每次疼痛或每种反射都遵守的固定计时。": "This sequence can occur; it is not a fixed timetable for every pain experience or reflex.",
   "脑会结合这些消息和身体的情况。疼不疼、怎么疼，是人的真实感受。": "The brain integrates these messages with the body's state. Whether and how it hurts is a real personal experience.",
   "疼痛是一种感觉和情绪体验，涉及多处脑区与生物、心理、社会因素；不能仅由感觉神经活动推出。": "Pain is a sensory and emotional experience involving several brain regions and biological, psychological and social factors; it cannot be inferred from sensory-neuron activity alone.",
-  "疼痛不是伤口大小的尺子；无可见损伤也不能否定一个人报告的疼痛。": "Pain is not a ruler for wound size; a lack of visible injury does not negate a person's report of pain."
+  "疼痛不是伤口大小的尺子；无可见损伤也不能否定一个人报告的疼痛。": "Pain is not a ruler for wound size; a lack of visible injury does not negate a person's report of pain.",
+  "肌肉缩短会牵拉连接端；这里没有画出关节。两条线概括神经联系，彩点不是“疼痛小球”。": "A shortening muscle pulls its attachment closer; joints are not drawn here. The lines summarize neural connections; dots are not balls of pain.",
+  "不同位置的组织并排放大；下方只示肌肉缩短牵拉连接端，省略骨、关节与多肌群动作。彩点表示活动前沿，形状、长度和时间不按实际比例。": "Tissues from different locations are enlarged side by side. The lower inset shows shortening pulling an attachment closer, omitting bones, joints and coordinated muscle groups. Dots mark activity fronts; shapes, lengths and timing are not to scale.",
+  "这是可发生的顺序，不是固定计时。下方只示牵拉关系，未画出关节与多肌群动作；移动方向不标定刺激的位置。": "This sequence can occur; it is not a fixed timetable. The lower inset shows only the pull, omitting joints and coordinated muscle groups. Its movement direction does not locate the stimulus."
 }

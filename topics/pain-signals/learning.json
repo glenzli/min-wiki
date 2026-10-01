@@ -11,7 +11,7 @@
       },
       {
         "title": "脊髓分路：反射与向脑传递并行",
-        "body": "来自身体的传入信号到达脊髓后，可以通过中间神经元联系运动神经元，协调屈肌与相关肌群，参与缩回反射；这条回路不需要先等一次有意识的决定。同时，其他神经元把信息向脑的多个中继与网络传递。图里用两条线说明分工，并不意味着神经只有一个分岔、没有突触，也不规定缩回与主观感觉在所有情形下都具有同样的时间间隔。"
+        "body": "来自身体的传入信号到达脊髓后，可以通过中间神经元联系运动神经元，协调屈肌与相关肌群，参与缩回反射；这条回路不需要先等一次有意识的决定。同时，其他神经元把信息向脑的多个中继与网络传递。图里用两条线说明分工，并不意味着神经只有一个分岔、没有突触，也不规定缩回与主观感觉在所有情形下都具有同样的时间间隔。 肌肉通过肌腱把牵拉传到骨，真实缩手涉及关节与多个肌群；下方只画出肌肉缩短、连接端靠近的关系，未复现整条手臂的解剖动作。"
       },
       {
         "title": "疼痛体验：不等于组织损伤刻度",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "“手缩回来”不证明此前已经清楚体验到疼痛；“看不见伤口”也不证明没有疼痛。反射、伤害性感受和疼痛体验需要分别理解。",
-    "boundary": "不同部位被并排放大，线路、细胞和突触高度简化，省略神经交叉与下行调节。进度只服务于观察，不是真实潜伏期、诊断、疼痛评分或伤害实验。回拖进度是回看画面。",
+    "boundary": "不同部位被并排放大，线路、细胞和突触高度简化，省略神经交叉与下行调节。进度只服务于观察，不是真实潜伏期、诊断、疼痛评分或伤害实验。回拖进度是回看画面。 肌肉与手的直线移动只示牵拉关系；肌腱在这幅示意中保持长度，不模拟其弹性，画面方向不标定刺激的实际位置。",
     "narration": [
       {
         "label": "从一条小消息开始",
@@ -53,7 +53,7 @@
       },
       {
         "title": "Spinal circuits: parallel reflex and ascending routes",
-        "body": "Input from the body can reach spinal interneurons and motor neurons, coordinating flexors and related muscle groups in withdrawal. The circuit need not await a conscious decision. Other neurons convey information toward multiple brain relays and networks at the same time. The two drawn routes summarize different roles; they do not imply one literal fork, an absence of synapses, or a universal interval between withdrawal and conscious sensation."
+        "body": "Input from the body can reach spinal interneurons and motor neurons, coordinating flexors and related muscle groups in withdrawal. The circuit need not await a conscious decision. Other neurons convey information toward multiple brain relays and networks at the same time. The two drawn routes summarize different roles; they do not imply one literal fork, an absence of synapses, or a universal interval between withdrawal and conscious sensation. Muscles transmit a pull through tendons to bones, and real withdrawal involves joints and several muscle groups. The lower inset shows only shortening bringing an attachment closer; it does not reproduce a whole arm’s anatomical movement."
       },
       {
         "title": "Pain: a personal experience, not a damage scale",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Withdrawing a hand does not establish that pain was already consciously experienced. An absence of visible injury does not establish an absence of pain. Reflexes, nociception and pain are distinct concepts.",
-    "boundary": "Enlarged tissues from different locations are placed together. Routes, cells and synapses are greatly simplified; crossing pathways and descending modulation are omitted. Progress is for observation, not measured latency, diagnosis, a pain score or an injury experiment. Scrubbing backward reviews the illustration.",
+    "boundary": "Enlarged tissues from different locations are placed together. Routes, cells and synapses are greatly simplified; crossing pathways and descending modulation are omitted. Progress is for observation, not measured latency, diagnosis, a pain score or an injury experiment. Scrubbing backward reviews the illustration. The muscle and linearly moving hand show only the pull. Tendon lengths stay fixed in this inset without modeling their elasticity, and movement direction does not locate the actual stimulus.",
     "narration": [
       {
         "label": "A small message begins",
@@ -101,6 +101,10 @@
     {
       "title": "NIH / NCCIH · Pain",
       "url": "https://www.nccih.nih.gov/health/pain"
+    },
+    {
+      "title": "OpenStax · Skeletal muscles, attachments and lever systems",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-1-interactions-of-skeletal-muscles-their-fascicle-arrangement-and-their-lever-systems"
     }
   ]
 }

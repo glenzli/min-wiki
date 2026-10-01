@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { painSequence } from '../model.ts';
+import { painSequence, withdrawalLinkage } from '../model.ts';
 
 test('the shared afferent route reaches the spinal relay before either branch', () => {
   for (const p of [0, .1, .3, .43]) {
@@ -32,5 +32,34 @@ test('finite bounded and monotone presentation states have stable endpoints', ()
     assert.equal(painSequence(-1)[field], 0);
     assert.equal(painSequence(2)[field], 1);
     assert.equal(painSequence(NaN)[field], 0);
+  }
+});
+
+test('shortening pulls the same far attachment closer without stretching the drawn tendons', () => {
+  const initial = withdrawalLinkage(0);
+  for (let i = 0; i <= 200; i++) {
+    const linkage = withdrawalLinkage(i / 200);
+    assert.equal(linkage.origin, initial.origin);
+    assert.equal(linkage.bellyStart - linkage.origin, 36);
+    assert.equal(linkage.attachment - linkage.bellyEnd, 37);
+    assert.ok(Math.abs(linkage.bellyCenter - linkage.bellyRadius - linkage.bellyStart) < 1e-10);
+    assert.ok(Math.abs(linkage.bellyCenter + linkage.bellyRadius - linkage.bellyEnd) < 1e-10);
+    assert.ok(Math.abs(linkage.attachment - initial.attachment - linkage.handOffset) < 1e-10);
+    assert.ok(linkage.attachment <= initial.attachment);
+    assert.ok(Math.abs(632 * linkage.fiberScale + linkage.fiberOffset - linkage.bellyCenter) < 1e-10);
+  }
+  const shortened = withdrawalLinkage(1);
+  assert.equal(shortened.bellyEnd - shortened.bellyStart, 92);
+  assert.equal(shortened.attachment, 705);
+  assert.equal(shortened.handOffset, -20);
+});
+
+test('linkage remains bounded for invalid progress and returns to the same geometry on replay', () => {
+  assert.deepEqual(withdrawalLinkage(NaN), withdrawalLinkage(0));
+  assert.deepEqual(withdrawalLinkage(-1), withdrawalLinkage(0));
+  assert.deepEqual(withdrawalLinkage(2), withdrawalLinkage(1));
+  for (const p of [.68, .76, .84, 1, .76, 0, .76]) {
+    const state = painSequence(p);
+    assert.deepEqual(state.linkage, withdrawalLinkage(state.withdrawal));
   }
 });

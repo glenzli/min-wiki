@@ -33,6 +33,8 @@ Aircraft observations and cloud-resolving experiments support evolving convectio
 
 Formation history is cached deterministically for reversible scrubbing; cache and GPU texture lifetimes belong to the scene. Nothing plays automatically. Hidden pages stop the observation clock; finite transitions finish or cancel through the shared transition helper. Reduced motion disables automatic animation from presets/actions; deliberate play remains available. Disposal releases camera controls, observers, geometry, materials and textures.
 
+Startup, resize, camera and state notifications now share one queued draw of the latest scene per animation frame; disposal cancels pending work. Unchanged canvas dimensions do not reset its drawing buffer. Known SwiftShader/llvmpipe software renderers use a backing-buffer budget of 128,000 pixels and at least 1.5 seconds between volume draws, while retaining the same CSS viewport, camera, cloud field, 112 ray samples and scientific state. Hardware renderers retain per-frame drawing and the original device-ratio cap of 1.5. The model and SVG airflow marker continue on their existing observation clock; a pending volume draw always uses the latest state, including the final paused state. Software rendering is a softer, stepped view rather than a smooth GPU animation; this prevents playback from flooding the CPU renderer and delaying native pause/parameter actions.
+
 ## Primary sources
 
 - [NASA · Hurricane structure and development](https://science.nasa.gov/earth/natural-disasters/hurricanes-typhoons/hurricanes-the-greatest-storms-on-earth/)
