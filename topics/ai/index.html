@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="zh-CN" data-content-theme="light" data-theme="light">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI 是什么？认识一种新工具</title>
+<meta name="description" content="从聊天、画画和认图片认识 AI，再练习提问、核查和保护隐私。">
+<script type="module" src="/src/platform/theme.ts"></script></head>
+<body><div id="encyclopedia-nav"></div><main>
+  <header class="hero"><div><p class="eyebrow">身边的科技 · 认识与判断</p><h1>AI 是什么？认识一种新工具</h1><p class="intro">手机里有个工具：你给它一句话，它能回话、给点子，有的还能画画或认图片。它叫 AI。它能帮忙，但说得像真的，也可能弄错。</p></div><figure class="hero-art"><img src="./cover.svg" alt="" width="900" height="600"><figcaption>计算机里的工具，怎样与我们一起完成任务？</figcaption></figure></header>
+  <p class="local-note">本页只有预写的本地示例，不是真实在线 AI。没有输入框，不会发送你的问题或照片。</p>
+
+  <section id="examples" class="lab" aria-labelledby="examples-title"><div class="section-heading"><span class="number">01</span><div><h2 id="examples-title">先看：AI 能帮什么？</h2><p>给它一个任务，再看它给出的东西。不同 AI 工具能做的事并不一样。</p></div></div>
+    <div class="choice-row" role="group" aria-label="选择 AI 用途"><button type="button" data-demo="chat">聊天与点子</button><button type="button" data-demo="image">画画</button><button type="button" data-demo="recognize">认图片</button></div>
+    <div class="example-workspace"><div class="request-card"><p class="eyebrow">给工具的任务</p><p id="request"></p><figure id="input-picture" hidden><div id="input-art" aria-hidden="true"></div><figcaption>给工具看的图片 · 纸船示意</figcaption></figure><button type="button" id="refine" aria-pressed="false">把要求说清楚</button><p id="prompt-hint" class="secondary"></p></div>
+      <div class="screen"><div class="screen-top"><span aria-hidden="true">● ● ●</span><span>预写示例</span></div><div class="output"><div id="output-art" aria-hidden="true"></div><p id="response"></p></div></div></div>
+    <p id="example-cause" class="live-cause" role="status"></p>
+    <details class="deeper"><summary>深入看：这是怎样的工具？</summary><p>AI 是一类由人设计的计算机系统。这里认识的是能处理文字或图片、给出建议或内容的 AI 工具，不是所有 AI 的完整清单。一次回答并不证明它理解了整个世界，也不保证它有资料、权限或能力完成别的任务。</p><p>把任务、背景和想要的形式说清楚，通常更容易得到有用的帮助。好问题仍不能保证答案正确；它给出的内容还需要人选择、检查和修改。</p></details>
+  </section>
+
+  <section id="differences" class="lab" aria-labelledby="differences-title"><div class="section-heading"><span class="number">02</span><div><h2 id="differences-title">AI、程序、机器人和人，是一回事吗？</h2><p>选一个看看。它们可以一起工作，但角色不同。</p></div></div><div class="choice-row" role="group" aria-label="选择要认识的对象"><button data-entity="person" type="button">人</button><button data-entity="program" type="button">普通程序</button><button data-entity="ai" type="button">AI 工具</button><button data-entity="robot" type="button">机器人</button></div>
+    <div class="entity-view"><div id="entity-art" aria-hidden="true"></div><div><h3 id="entity-title"></h3><p id="entity-copy"></p><p id="entity-example" class="secondary"></p></div></div>
+    <details class="deeper"><summary>深入看：它们会重叠吗？</summary><p>会。AI 工具也由程序实现，不是程序的反面。“普通程序”在这里指按明确规则处理任务的常见例子，不是软件的严格分类。机器人有能在现实中行动的机械身体；它可能按固定程序工作，也可能使用 AI。一个没有机械身体的聊天工具同样可以是 AI。</p><p>会用“我”、会写安慰的话，不等于它和人一样有感受或承担责任。人的观察、关系、判断和照顾不能交给一个会说话的工具全部替代。</p></details>
+  </section>
+
+  <section id="task-lab" class="lab" aria-labelledby="task-title"><div class="section-heading"><span class="number">03</span><div><h2 id="task-title">这一次，先做哪件事？</h2><p>不是猜“AI 永远能不能做”，而是为眼前的任务选一个合适的起点。</p></div></div><div id="task-tabs" class="task-tabs" role="group" aria-label="选择生活任务"></div>
+    <article class="task-card"><span id="task-number" class="number"></span><h3 id="task-question"></h3><p id="task-context"></p><div class="choice-row" role="group" aria-label="选择第一步"><button data-action="help" type="button">先请 AI 帮忙</button><button data-action="observe" type="button">先观察或问大人</button></div><p id="task-feedback" role="status" aria-live="polite"></p></article>
+  </section>
+
+  <section id="check-lab" class="lab" aria-labelledby="check-title"><div class="section-heading"><span class="number">04</span><div><h2 id="check-title">说得很肯定，就能相信吗？</h2><p>下面的回答全是我们写的练习。先找证据，再决定这句话能不能用。</p></div></div><div id="claim-tabs" class="choice-row" role="group" aria-label="选择要核查的示例"></div>
+    <div class="check-workspace"><div class="claim-card"><p class="eyebrow">模拟回答 · 未核查</p><blockquote id="claim-text"></blockquote><div id="claim-art" aria-hidden="true"></div></div><div class="evidence-card"><h3>我可以怎样核查？</h3><div class="evidence-actions"><button type="button" data-evidence="count">自己数一数</button><button type="button" data-evidence="test">看实物试验与资料</button><button type="button" data-evidence="adult">请大人查正式通知</button></div><p id="check-feedback" role="status" aria-live="polite"></p><p id="evidence-detail"></p><a id="evidence-link" hidden></a></div></div>
+    <p class="gentle">答案可能正确、错误，也可能现在没有足够信息。拿不准时可以停下来；再问同一个工具一次，并不等于多了一份独立证据。</p>
+  </section>
+
+  <section class="take-home"><p class="eyebrow">把工具用在合适的地方</p><h2>先说任务，留住自己的判断</h2><div class="take-home-grid"><article><h3>说清楚想要什么</h3><p>“给我三个故事开头，句子短一点。”告诉它任务和形式，再挑选、修改。你还是作品的主人。</p></article><article><h3>真实资料先核查</h3><p>观察实物、翻可靠资料、请大人一起确认。题目重要时，不能只凭一个 AI 回答作决定。</p></article><article><h3>私事不必拿出来</h3><p>练习提问不需要真实姓名、家里地址、密码或同学照片。使用真实服务前，和大人一起看年龄要求与隐私设置。</p></article><article><h3>人和人仍要相处</h3><p>AI 可以帮你想一句问候。想知道朋友的想法，还要认真听朋友说；需要帮助时，找信任的大人。</p></article></div></section>
+  <details class="deeper"><summary>给家长的深入说明与模型边界</summary><p>本页围绕工具类别、用途与判断来建立 AI 素养，不模拟学习过程，也不把聊天式 AI 当成全部 AI。示例结果是编辑预写的教学材料，不能用来估计任何真实模型的能力、正确率或安全性；画面中也没有执行真实图像识别或图像生成。</p><p>生活任务的推荐起点由情境决定，不是“AI 可用/禁用”清单。AI 可辅助查找或整理资料，但来源仍需确认。这里不输入、不保存也不上传儿童个人资料；真实产品的数据处理和适用年龄各有规定，需要监护人核对。</p></details>
+  <details class="references"><summary>参考资料</summary><ul id="source-list"></ul><p>资料核对：2026 年 10 月 1 日。插图为原创教学绘图。</p></details>
+  <section class="next-stops"><h2>继续认识身边的科技</h2><a href="../programs/">程序：机器怎样照着指令做事？</a><a href="../electronics-circuits/">电子与电路：开关怎样控制灯？</a><a href="../mobile-networks/">手机：消息怎样经过网络到远方？</a><a href="../magnets/">磁铁：用实物观察来检查说法</a></section>
+  <button id="restart" class="quiet" type="button">清空本页练习</button>
+</main><script type="module" src="./main.ts"></script></body></html>

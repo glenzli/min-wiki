@@ -1,0 +1,97 @@
+{
+  "version": 1,
+  "topicId": "electronics-circuits",
+  "zh": {
+    "question": "为什么只合上开关还不一定能让灯亮？夜灯又怎样根据亮暗接受控制？",
+    "observe": "先合上开关，再断开灯的回线，看两个缺口各自怎样影响灯。保留这块灯板进入自动控制，改变感光器附近亮暗、分界和规则；最后在控制要求点灯时断开回线，区分控制信息与供能条件。",
+    "academic": [
+      {
+        "title": "完整回路、载流电荷与能量",
+        "body": "正常低压直流灯需要源、负载和完整返回路径。本板机械开关与灯回线是两个独立必要条件；手动观察时电子开关保持导通。电池维持电势差，持续供能来自可利用化学能；灯丝把电能转成光和热，电荷并不作为燃料被灯消耗。金属导线本来含有可移动电子，开关变化后的电磁响应与电子平均漂移不能混为一谈。开路只是不能维持该支路的电流，不表示所有端点没有电压，也不是电池耗尽。"
+      },
+      {
+        "title": "感知与比较：自动控制不是理解房间",
+        "body": "光传感器将附近光照变化转为电信号，比较器按设定分界分类，输出控制电子开关。本页亮暗采用未标定的0–100刻度，低于分界归为暗，等于或高于归为亮；可选择天黑亮或天亮亮。固定比较规则可以用电子电路实现，也可由处理器执行程序，不必使用AI。传感器只取得特定输入，不能由单一亮暗读数推断谁在房间里或真正理解情境。"
+      },
+      {
+        "title": "信息路径、功率路径与失效条件",
+        "body": "晶体管可以用电信号控制导通而不移动机械接点；本图电子开关内部线条只是状态编码。虚线表示功能上的感知—比较—控制关系，不是实际单根接线；真实信号需要参考与返回路径，感光器和比较器也由电池供电。粗线表示灯的功率支路。即使控制要求点灯，回线断开仍不能供能。本例在感光输入不可用时禁止点灯；这是明示的教学失效策略，真实产品会按用途选择策略，不能把缺失输入当成零读数。"
+      }
+    ],
+    "misconception": "不是接上灯的一端就能让它持续亮，也不是控制信号替代电池给灯供能。所有用电设备不都以信号处理为主要职责；自动响应一条固定规则也不因此成为AI。",
+    "boundary": "只呈现正常低压直流回路的稳定通断，电池始终可供能；没有计算电压、电流大小、温度、灯丝冷却、开关瞬态或电磁传播。亮暗刻度不是lux，电子开关不是器件剖面。感光器与比较器供电支路、信号参考与返回路径省略；断开灯回线只影响灯支路。忽略噪声、采样、滞回和灯照到自身传感器的反馈。只在屏幕上接线，不是插座、充电器、电池拆解或维修指导。",
+    "narration": [
+      {
+        "label": "先找两个能断开的地方",
+        "text": "桌上有一块灯板。电池在左边，灯泡在右边，粗线绕了一圈。可是供电开关的两个接点还分开着。试着在屏幕上合上它，灯亮了。再看看下面那段回线。如果把它断开，开关虽然还合着，灯也不能持续亮。灯需要完整的路，少了一段也不行。我们只操作屏幕，真实电器交给大人。",
+        "cue": "初始手动开路，指向空气接点；合上开关后断开回线，保留合上的开关对照。"
+      },
+      {
+        "label": "谁提供能量，谁提供信息",
+        "text": "接好回线，来到自动控制。灯板没有换，电池和灯还在原来的位置。中间多了一条我们要仔细看的信息路径。感光器收到自己附近的亮暗，小比较器按设好的规则控制电子开关。小板也要用电池的能量。细虚线画的是控制信息，不能当作电池给灯供能的粗线。",
+        "cue": "修好回线后切到自动控制，依次指向感光器、比较器、电子开关；同步查看四格信号故事。"
+      },
+      {
+        "label": "同一个环境，也能换一条规则",
+        "text": "选择天黑时亮，先遮暗感光器，再照亮它。遮暗时，规则要求亮；照亮时，规则要求灭。现在保留同样的亮暗，只换成天亮时亮，结果又改变了。感光器没有突然看懂房间，它只报告亮暗，器件按我们设好的规则控制。这样自动工作，不需要把它叫作人工智能。",
+        "cue": "合上供电开关，在天黑亮规则下比较15与85，再保留85切换天亮亮；不把滑条当成真实照度。"
+      },
+      {
+        "label": "要求亮，也还得有完整回路",
+        "text": "把灯调到亮，再断开灯的回线。比较器还是要求点灯，电子开关也允许导通，可是灯灭了。信息说明应该做什么，能源和完整回路才让它做得到。接好回线，再试拔掉图中的感光信号线。这次不是很暗，而是没有读到输入。我们的例子选择先不点灯；真实产品的做法还要看设计。",
+        "cue": "自动模式在控制为开时断开回线，确认第三格导通而第四格灭；接回后拔掉传感信号，确认显示输入未接通。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Why might closing a switch still fail to light a lamp? How can a nightlight respond to nearby light?",
+    "observe": "Close the switch, then break the lamp return to compare two independent openings. Keep the same board for automatic control: change nearby light, the boundary and the rule. Finally break the return while the controller requests light to distinguish control information from power conditions.",
+    "academic": [
+      {
+        "title": "Complete circuits, charge carriers and energy",
+        "body": "A normal low-voltage DC lamp needs a source, load and complete return path. The mechanical switch and lamp return are independent necessary conditions; the electronic switch is held conducting in the manual view. A battery maintains a potential difference and supplies available chemical energy. The filament converts electrical energy into light and heat; charge is not consumed as lamp fuel. Metal wires already contain mobile electrons. Electromagnetic response after a switch change differs from average electron drift. An open circuit prevents sustained current in this branch; it does not imply that all endpoints have zero voltage or that the battery is depleted."
+      },
+      {
+        "title": "Sensing and comparing are not understanding a room",
+        "body": "A light sensor converts changes in nearby illumination into an electrical signal. A comparator classifies input against a chosen boundary and controls an electronic switch. This page uses an uncalibrated 0–100 light scale: below the boundary is dark, while equality and above are bright. The rule can be on when dark or on when bright. A fixed comparison can be implemented by electronic circuitry or by a processor running a program; AI is unnecessary. A sensor obtains a particular input and cannot infer who is in a room or understand its context from one light reading."
+      },
+      {
+        "title": "Information paths, power paths and failures",
+        "body": "A transistor can use an electrical signal to control conduction without moving mechanical contacts. The internal line shown here only encodes state. Dashed paths represent sensing–comparison–control roles, not literal single-wire connections. Real signals need reference and return paths; the sensor and comparator also receive battery power. Thick lines show the lamp power branch. Even an ON command cannot deliver power through a broken lamp return. This example inhibits the lamp when sensor input is unavailable. That is an explicit teaching failure policy; real products choose policies for their use, and missing input must not be treated as a zero reading."
+      }
+    ],
+    "misconception": "Connecting only one lamp terminal cannot sustain light. A control signal does not replace the battery as the lamp's energy source. Not every device using electricity primarily handles signals, and an automatic response to a fixed rule does not by itself make a device AI.",
+    "boundary": "Only stable switching in a normal low-voltage DC circuit is shown; battery power remains available. Voltage, current magnitude, temperature, filament cooling, switching transients and electromagnetic propagation are not calculated. Light units are not lux, and the electronic switch is not a cutaway. Sensor/comparator power wiring and signal reference/return paths are omitted. A broken lamp return affects only the lamp branch. Noise, sampling, hysteresis and the lamp shining onto its own sensor are omitted. Wiring is on screen only; this is not a guide to sockets, chargers, battery disassembly or repairs.",
+    "narration": [
+      {
+        "label": "Find two places that can open",
+        "text": "Here is a light board on our table. The battery is on the left, the bulb on the right, and thick lines trace a loop. But the supply switch contacts are still apart. Close them on screen and the lamp lights. Now look at the return below. Break it, and the lamp cannot stay on even though the switch is still closed. It needs a complete path, without a missing section. We use only screen controls; a grown-up handles real electrical devices.",
+        "cue": "Start in manual mode with an open switch. Point to the contact gap, close it, then break the return while keeping the switch closed."
+      },
+      {
+        "label": "Who supplies energy, and who supplies information?",
+        "text": "Reconnect the return and try automatic control. The board has not changed; the battery and lamp keep their places. Now look closely at the information path in the middle. The sensor receives nearby light. A little comparator follows our chosen rule to control the electronic switch. That small board also uses battery energy. Dashed lines show control information; they are different from the thick lamp power circuit.",
+        "cue": "Repair the return and enter automatic control. Point to sensor, comparator and electronic switch while following the four signal-story cards."
+      },
+      {
+        "label": "Keep the environment, change the rule",
+        "text": "Choose on when dark. Shade the sensor, then light it. Shading makes the rule request light; lighting the sensor makes it request no light. Now keep that same light level and choose on when bright. The result changes again. The sensor has not suddenly understood the room. It reports light, and the components follow a rule we chose. This automatic job does not need to be called artificial intelligence.",
+        "cue": "Close the supply switch; compare teaching levels 15 and 85 under the dark rule. Keep 85 and reverse the rule. Do not describe the scale as measured illuminance."
+      },
+      {
+        "label": "An ON request still needs a complete loop",
+        "text": "Make the lamp light, then break its return. The comparator still requests light and the electronic switch still allows conduction, but the lamp goes off. Information says what to do; energy and a complete loop make it possible. Reconnect the return, then unplug the illustrated sensor signal. That means no reading, rather than very dark. Our example keeps the lamp off for now. Real products may be designed differently.",
+        "cue": "In automatic mode, break the return while the command is ON; the third card conducts while the fourth says off. Repair it and disconnect sensor input; confirm unavailable input."
+      }
+    ]
+  },
+  "references": [
+    { "title": "U.S. EIA Energy Kids · Electricity travels in circuits", "url": "https://www.eia.gov/kids/energy-sources/electricity/science-of-electricity.php" },
+    { "title": "Micro:bit Educational Foundation · Sensors", "url": "https://microbit.org/get-started/features/sensors/" },
+    { "title": "Micro:bit Educational Foundation · Inputs, outputs and processors", "url": "https://microbit.org/get-started/features/inputs-outputs-and-processors/" },
+    { "title": "Micro:bit Educational Foundation · Nightlight", "url": "https://microbit.org/projects/make-it-code-it/nightlight/" },
+    { "title": "OpenStax · Current and drift", "url": "https://openstax.org/books/college-physics-2e/pages/20-1-current" },
+    { "title": "Texas Instruments · Introduction to Power MOSFETs", "url": "https://www.ti.com/lit/pdf/snva008" },
+    { "title": "U.S. DOE · Batteries", "url": "https://www.energy.gov/science/doe-explainsbatteries" }
+  ]
+}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN" data-content-theme="light" data-theme="light">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="让一辆桌面送货小车读指令卡：观察顺序、条件和找错，认识程序、输入和输出。"><title>程序是什么？</title><script type="module" src="/src/platform/theme.ts"></script></head>
+<body><div id="encyclopedia-nav"></div><main>
+  <header class="hero"><p class="eyebrow">身边的科技 · 把想法变成步骤</p><h1>程序是什么？</h1><p class="intro">手机能计时，小车能送货，是谁告诉它下一步做什么？程序是一套设备能够执行的指令。先给这辆小车一份清楚的计划，再看看它真的做了什么。</p></header>
+  <section class="program-lab" aria-label="送货程序观察台">
+    <div class="observation-toolbar"><div class="observation-title"><p class="eyebrow">同一辆小车，三次小实验</p><h2>先取货，再送到 B 点</h2></div><span class="small">本地模拟 · 不连接真实机器人</span></div>
+    <div class="chapters" role="group" aria-label="选择程序实验"><button type="button" data-scenario="sequence" aria-pressed="true">1 · 按顺序做</button><button type="button" data-scenario="condition" aria-pressed="false">2 · 看情况选路</button><button type="button" data-scenario="debug" aria-pressed="false">3 · 找出错误</button></div>
+    <div class="workspace"><div class="stage-column">
+      <div class="scene-shell"><svg id="program-scene" viewBox="0 0 880 450" role="img" aria-label="桌面送货小车、取货点、收货点，以及根据程序留下的行走轨迹"></svg></div>
+      <p class="scene-caption">绿色线是这次已经走过的路。包裹在取货点、小车上或收货点，只会出现在一个地方。</p><p class="scene-caption">桌面示意 · 每次移动一格；尺寸与时间不是实测值</p>
+      <div class="transport" role="group" aria-label="执行控制"><button type="button" id="step">执行下一条</button><button type="button" id="run">连续执行</button><button type="button" id="pause" disabled>暂停</button><button type="button" id="reset">重新试这份程序</button></div>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <div id="input-panel" class="experiment-panel" hidden><label class="sensor-toggle"><input type="checkbox" id="obstacle" checked><span>在路中间放一个箱子</span></label><p id="sensor-status" class="small"></p><p class="small">箱子是环境，传感器的读数是输入；选路规则是程序。它只在“看看前面”这条指令执行时读一次。后来再放箱子，屏幕保护会拒绝重叠的移动；真实小车若不重新检查，可能撞上。</p></div>
+      <div id="debug-panel" class="experiment-panel" hidden><p>先猜一猜，再逐条试：小车走开以后，还能在 A 点取到包裹吗？</p><div class="buttons"><button type="button" id="fix-order">交换前两张卡，再试</button><button type="button" id="break-order" hidden>再看原来的错误顺序</button></div><p class="small">改指令会明确开始一次新测试；切换实验和讲解方式会保留当前测试。</p></div>
+    </div><aside class="instruction-column" aria-label="程序与解释">
+      <div class="cards-heading"><h3>小车读的指令卡</h3><span id="command-count" class="small"></span></div><p class="small">箭头指向下一条；打勾表示已经执行。遇到条件卡，先读输入，再加入所选路线的卡片。</p>
+      <ol id="instruction-cards" class="instruction-cards"></ol>
+      <div id="branch-preview" class="branch-preview" hidden><p class="branch-label">条件卡里的两份计划</p><div data-branch="blocked"><strong>如果前面有箱子</strong><span>向上 → 向右三格 → 向下</span></div><div data-branch="clear"><strong>否则，前面没有箱子</strong><span>向右三格</span></div><p class="small">一次只执行其中一份，不会把两条路线都走一遍。</p></div>
+      <p id="child-note" class="child-note"></p>
+    </aside></div>
+  </section>
+  <section class="everyday" aria-labelledby="everyday-title"><h2 id="everyday-title">同一个想法，也藏在生活里</h2><div class="concept-grid">
+    <article><p class="eyebrow">可以摸到的部件</p><h3>硬件：小车的轮子和传感器</h3><p>轮子、电动机和芯片是硬件。程序属于软件，它规定这些部件什么时候做什么。有程序还需要能工作的硬件和电源，才会真的动起来。</p></article>
+    <article><p class="eyebrow">进来与出去的信息</p><h3>输入 → 按规则处理 → 输出</h3><p>按计时器的开始键是输入；程序开始计时，到了设定时间让声音响起是输出。这里的输入是障碍读数，输出是小车的移动和取放动作。</p></article>
+    <article><p class="eyebrow">人要先想清楚</p><h3>会执行，不等于知道你的心愿</h3><p>我们想“把货送到”，但还要写出取货、移动和卸货的具体步骤。这个小车不会猜出漏掉的步骤。机器人是机器，程序是指令；有些机器人会用 AI，这个例子没有用。</p></article>
+  </div></section>
+  <details class="boundaries"><summary>这幅图省略了什么？</summary><p>这是一个固定指令的小程序解释器。取放、转向和传感器均为教学动作，不是对真实机械手或传感器的模拟。每张移动卡精确走一格；真实车辆还要控制电动机、持续测量，并处理摩擦、定位误差和安全问题。</p><p>指令卡表示本页已经定义好、设备能执行的命令；真实编程可以使用图形积木或文字语言。很多程序会同时处理多项任务、反复检查输入；本页只跟踪一条简单流程，没有展示所有程序的样子。</p></details>
+  <section class="related"><h2>继续认识身边的科技</h2><div class="related-links"><a href="/topics/electronics-circuits/">电子与电路：开关怎样让设备工作？</a><a href="/topics/ai/">AI 是什么：它能帮忙做哪些事？</a><a href="/topics/mobile-networks/">手机通信：消息怎样走到远方？</a></div></section>
+  <details class="references"><summary>资料与教学依据</summary><ul><li><a href="https://www.barefootcomputing.org/concepts-and-approaches/programming" target="_blank" rel="noopener noreferrer">Barefoot Computing · Programming</a></li><li><a href="https://www.barefootcomputing.org/concepts-and-approaches/selection" target="_blank" rel="noopener noreferrer">Barefoot Computing · Selection</a></li><li><a href="https://www.barefootcomputing.org/concepts-and-approaches/debugging" target="_blank" rel="noopener noreferrer">Barefoot Computing · Debugging</a></li><li><a href="https://www.csunplugged.org/en/topics/kidbots/" target="_blank" rel="noopener noreferrer">University of Canterbury · CS Unplugged: Kidbots</a></li></ul><p>指令定义、顺序与条件依据 Barefoot 的编程教育说明；逐条测试、观察与修正依据其找错教学和 CS Unplugged 的小机器人活动。本页的小车、路线与指令卡均为原创教学设计。</p></details>
+</main><script type="module" src="./main.ts"></script></body></html>

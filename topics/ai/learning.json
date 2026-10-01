@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "topicId": "ai",
+  "zh": {
+    "question": "一个会聊天、画画或认图片的 AI，到底是什么？什么时候需要我们自己判断？",
+    "observe": "先看三种预写用途，比较简短与说清楚的任务。再选 AI、程序、机器人或人，看看角色差别。给五个生活任务选起点，最后为三句模拟回答找合适的证据。",
+    "academic": [
+      {
+        "title": "工具类别与生活用途",
+        "body": "AI 指一类人造计算机系统。这里以文字和图片工具认识其用途：提供点子、组织表达、生成图像或辨认图中对象。AI 不是单一产品，也不都能聊天；具体能力依工具和情境而定。AI 也由程序实现，机器人则是能在物理世界行动的机器，两者可以结合。"
+      },
+      {
+        "title": "输出与证据是两件事",
+        "body": "生成内容可能连贯、肯定，却有事实错误、遗漏或无依据的细节。对眼前几何可以直接观察，对材料需合适实验与资料，对真实学校时间需官方通知。反复询问同一工具不构成独立核查；一次正确也不证明所有回答可靠。"
+      },
+      {
+        "title": "人的选择与儿童隐私",
+        "body": "AI 可帮助起草或整理，采纳与使用仍需要人的判断。提问宜说明任务和需要的形式，不必加入无关个人信息。真实服务有各自年龄要求与数据规则，需监护人核对。聊天语气和“我”的用词不能证明人类感受或责任；真实的人际支持仍很重要。"
+      }
+    ],
+    "misconception": "AI 不是一个躲在手机里的人，也不是所有机器人都会用的“大脑”。会回话、画得漂亮或语气肯定，都不等于内容一定正确。",
+    "boundary": "所有回答、图片和判定均为本地预写材料，不调用模型，不执行真实识别或生成，不接收儿童文字或照片。推荐起点只适用于题给情境，不是能力排行榜或正确率测量。",
+    "narration": [
+      {
+        "label": "认识工具",
+        "text": "手机里有些工具能回话、给点子、画画或认图片。我们把这一类人造计算机系统叫作 AI。不同工具有不同本领。像别的工具一样，先知道要做什么，再看看它是否合适。",
+        "cue": "依次展示三种用途与预写示例标识。"
+      },
+      {
+        "label": "分清角色",
+        "text": "程序是机器要执行的指令。AI 也由程序做成。机器人有能在现实中行动的机械身体，它不一定使用 AI。人会亲自生活、观察和相处，工具给的点子还要由人判断。",
+        "cue": "选取人、程序、AI 和机器人，保留各自不同的图形。"
+      },
+      {
+        "label": "找证据",
+        "text": "说得像真的，也可能弄错。三角形可以自己数边，材料要看合适的观察和资料，学校时间要查正式通知。答案有时正确，有时错误，有时缺信息。再问一次，还不等于查过证据。",
+        "cue": "依次选择数边、材料说法和学校通知的核查情境。"
+      },
+      {
+        "label": "用得明白",
+        "text": "需要点子时，把任务说清楚，拿到建议后自己挑选和修改。真实资料要核查，私事不必随便告诉工具。与信任的大人一起认识它，用工具帮忙，也留住自己的观察和判断。",
+        "cue": "回到任务卡和页面末尾的提问、核查、隐私提示。"
+      }
+    ]
+  },
+  "en": {
+    "question": "What is an AI that chats, draws or recognizes pictures, and when do we need our own judgment?",
+    "observe": "Explore three prewritten uses and compare short and clearer requests. Select AI, program, robot or person to compare roles. Choose a starting point for five everyday tasks, then find suitable evidence for three simulated answers.",
+    "academic": [
+      {
+        "title": "A category of tools and everyday uses",
+        "body": "AI describes a category of human-made computer systems. This topic introduces text and image tools through idea suggestions, expression, picture generation and object recognition. AI is not one product and not all AI chats; abilities depend on the tool and context. AI is implemented with programs, while a robot is a machine that acts in the physical world. The two can be combined."
+      },
+      {
+        "title": "Outputs and evidence are different",
+        "body": "Generated content can be coherent and confident while containing factual errors, omissions or unsupported details. Visible geometry can be observed directly, material claims need suitable experiments and sources, and actual school hours require official notices. Repeatedly asking the same tool is not independent verification; one correct answer does not establish general reliability."
+      },
+      {
+        "title": "Human choice and children’s privacy",
+        "body": "AI can help draft or organize; people still judge what to adopt and use. State the task and desired format without adding irrelevant personal details. Real services have their own age requirements and data practices for a guardian to check. Conversational tone or the word “I” does not establish human feelings or responsibility; support from real people remains important."
+      }
+    ],
+    "misconception": "AI is not a person hiding inside a phone or a “brain” that every robot uses. Replies, attractive pictures and a confident tone do not establish that the content is correct.",
+    "boundary": "All answers, pictures and judgments are local prewritten materials. No model is called, no actual recognition or generation is performed, and no child’s text or photos are accepted. Recommended starting points apply to the stated contexts, not a capability ranking or accuracy measurement.",
+    "narration": [
+      {
+        "label": "Meet a tool",
+        "text": "Some computer tools can reply, suggest ideas, draw or identify things in pictures. AI is a name for this category of human-made computer systems. Different tools have different abilities. As with other tools, start with your task and consider whether the tool fits it.",
+        "cue": "Show the three uses and the prewritten-example label."
+      },
+      {
+        "label": "Separate the roles",
+        "text": "A program gives instructions for a machine to execute. AI is built with programs too. A robot has a mechanical body that acts in the physical world, and need not use AI. People live, observe and form relationships. A person still needs to judge a tool’s suggestions.",
+        "cue": "Select person, program, AI and robot while retaining their distinct pictures."
+      },
+      {
+        "label": "Look for evidence",
+        "text": "An answer that sounds true can still be wrong. You can count a triangle’s sides, check suitable observations and sources for materials, and read official notices for school hours. An answer may be correct, incorrect or missing information. Asking again is not the same as checking evidence.",
+        "cue": "Explore side-counting, the material claim and the school-notice example."
+      },
+      {
+        "label": "Use it thoughtfully",
+        "text": "When you want ideas, state your task clearly, then choose and edit the suggestions. Check factual information and keep private details private. Learn about tools with a trusted adult. Let a tool help while keeping your own observation and judgment.",
+        "cue": "Return to task cards and the request, checking and privacy reminders."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NIST · Artificial intelligence glossary",
+      "url": "https://csrc.nist.gov/glossary/term/artificial_intelligence"
+    },
+    {
+      "title": "UNICEF · Guidance on AI and children",
+      "url": "https://www.unicef.org/innocenti/reports/policy-guidance-ai-children"
+    },
+    {
+      "title": "UNESCO · Guidance for generative AI in education and research",
+      "url": "https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research"
+    },
+    {
+      "title": "IBM · What are AI hallucinations?",
+      "url": "https://www.ibm.com/think/topics/ai-hallucinations"
+    }
+  ]
+}

@@ -22,6 +22,18 @@ Browse by category, search by keyword, or navigate numbered pages with up to 24 
 
 See the [integration record (Chinese)](docs/science-journeys-20260920.md) for the scope and limits of the life, Earth and space learning paths. Contextual next-stop links connect topics without placing every subject on one page.
 
+The new everyday-technology path starts with five familiar questions. Each topic stands on its own and offers explicit next-stop links:
+
+| Everyday question | What to explore |
+| --- | --- |
+| [Circuits and electronics: a lamp responds to a signal](topics/electronics-circuits/) | Switch contacts, a complete circuit and a sensing nightlight; energy versus control signals |
+| [What is a program?](topics/programs/) | Execute instructions, select a conditional path and debug; a machine does not fill in omitted instructions |
+| [What is AI?](topics/ai/) | Compare uses and roles, practice requests and evidence; all activities are clearly labelled local prewritten examples |
+| [How does a phone send a message far away?](topics/mobile-networks/) | Follow the same numbered parts through stations and networks; distinguish offline, delivered and read |
+| [Why can an airplane take off?](topics/flight/) | A wing changes airflow; compare speed, angle of attack and stall, then use the same conditions at the runway |
+
+The existing [Batteries](topics/batteries/) topic retains its deeper energy, materials, charging and pack explanations. We do not add a duplicate battery entry. See the [scope and acceptance record](docs/modern-technology-20261001.md) for this addition.
+
 ## Reading and interaction
 
 - **Story view** offers stories, observation prompts and interactions for children and adults to explore together.

@@ -1,0 +1,24 @@
+{
+  "id": "programs",
+  "title": "程序是什么？",
+  "category": "engineering",
+  "summary": "给送货小车一张张指令卡：先预测、再执行，看看顺序、条件和找错怎样改变结果。",
+  "tags": [
+    "程序",
+    "编程",
+    "软件",
+    "硬件",
+    "指令",
+    "条件",
+    "机器人"
+  ],
+  "duration": "动手探索 · 约 8—12 分钟",
+  "modes": [
+    "儿童版",
+    "学术版"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-10-01"
+}

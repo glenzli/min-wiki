@@ -1,0 +1,363 @@
+{
+  "demos": {
+    "chat": {
+      "request": {
+        "zh": "帮我想一个故事。",
+        "en": "Help me think of a story."
+      },
+      "refinedRequest": {
+        "zh": "想三个关于纸箱小屋的故事开头。句子短一点，故事要温暖。",
+        "en": "Give me three story openings about a cardboard house. Keep the sentences short and the story warm."
+      },
+      "response": {
+        "zh": "有一天，一只小猫找到一间纸箱小屋……",
+        "en": "One day, a kitten found a little cardboard house…"
+      },
+      "refinedResponse": {
+        "zh": "① 小猫把纸箱小屋借给了淋雨的小鸟。\n② 两个朋友把小屋变成了图书角。\n③ 风吹走了屋顶，大家一起修好了它。",
+        "en": "① A kitten shared its cardboard house with a wet bird.\n② Two friends turned the house into a reading corner.\n③ The wind lifted the roof, and everyone helped repair it."
+      },
+      "cause": {
+        "zh": "它可以给你点子。接下来由你挑选、改写，故事不必照单全收。",
+        "en": "It can suggest ideas. You choose and rewrite; you do not have to accept every suggestion."
+      }
+    },
+    "image": {
+      "request": {
+        "zh": "画一幅小船的画。",
+        "en": "Draw a picture of a boat."
+      },
+      "refinedRequest": {
+        "zh": "画一艘纸船，放在浅浅的水面上，用蓝色和米白色。",
+        "en": "Draw a paper boat on shallow water, using blue and cream."
+      },
+      "response": {
+        "zh": "示例：一艘船、一片水。",
+        "en": "Example: a boat and some water."
+      },
+      "refinedResponse": {
+        "zh": "示例：纸船的折痕、浅水与两种主要颜色。画出的图不是船的照片，也不是造船说明书。",
+        "en": "Example: paper folds, shallow water and two main colors. A generated picture is not a boat photograph or a construction guide."
+      },
+      "cause": {
+        "zh": "有的 AI 能按描述生成图片。漂亮不等于真实：形状、细节和数量仍可能出错。",
+        "en": "Some AI tools generate pictures from descriptions. A beautiful image can still have wrong shapes, details or counts."
+      }
+    },
+    "recognize": {
+      "request": {
+        "zh": "这张图里有什么？",
+        "en": "What is in this picture?"
+      },
+      "refinedRequest": {
+        "zh": "请找图中的纸船，并说说你不确定的地方。",
+        "en": "Find the paper boat in the picture and say what you are unsure about."
+      },
+      "response": {
+        "zh": "模拟回答：可能是一艘纸船。",
+        "en": "Simulated answer: it may be a paper boat."
+      },
+      "refinedResponse": {
+        "zh": "模拟回答：折叠的形状像纸船。这里只看到了画面，不能确认它能不能浮起来。",
+        "en": "Simulated answer: the folded shape looks like a paper boat. The picture alone does not establish whether it will float."
+      },
+      "cause": {
+        "zh": "有的 AI 能辨认图片里的东西。图片只是部分信息；实际材料和情况还要观察。",
+        "en": "Some AI tools identify things in images. A picture gives partial information; real materials and conditions still need observation."
+      }
+    }
+  },
+  "entities": {
+    "person": {
+      "title": {
+        "zh": "人：有生活与关系",
+        "en": "A person: a life and relationships"
+      },
+      "body": {
+        "zh": "你会亲自看、摸、玩，也会有自己的感受。你可以判断要不要采用工具给的点子，并为自己的选择负责。",
+        "en": "You can look, touch and play for yourself, and have your own feelings. You judge whether to use a tool’s ideas and take responsibility for your choices."
+      },
+      "example": {
+        "zh": "想知道朋友怎么想，先听朋友说。",
+        "en": "To find out what a friend thinks, listen to your friend."
+      }
+    },
+    "program": {
+      "title": {
+        "zh": "普通程序：按明确指令做事",
+        "en": "An ordinary program: follows explicit instructions"
+      },
+      "body": {
+        "zh": "比如计算器收到“2 + 3”，就按计算规则给出“5”。人把要做的步骤与条件写进程序，机器来执行。",
+        "en": "A calculator receives “2 + 3” and applies calculation rules to return “5”. People write steps and conditions; the machine executes them."
+      },
+      "example": {
+        "zh": "程序也可能有错误。这里的例子不代表所有程序都简单。",
+        "en": "Programs can have errors too. This example does not mean all programs are simple."
+      }
+    },
+    "ai": {
+      "title": {
+        "zh": "AI：一类人造计算机工具",
+        "en": "AI: a kind of human-made computer tool"
+      },
+      "body": {
+        "zh": "它能在一定范围内处理文字、图片等信息，给出建议或内容。它也是由程序做成的；能回话不等于它是一个人。",
+        "en": "Within a particular scope, it processes information such as text or images and provides suggestions or content. It is built with programs too; replying does not make it a person."
+      },
+      "example": {
+        "zh": "聊天只是 AI 的一种用途。不同工具的本领和限制不同。",
+        "en": "Chatting is one use of AI. Different tools have different abilities and limits."
+      }
+    },
+    "robot": {
+      "title": {
+        "zh": "机器人：能在现实中行动的机器",
+        "en": "A robot: a machine that acts in the physical world"
+      },
+      "body": {
+        "zh": "机器人有机械身体，可以移动或操作东西。它可以只按固定程序工作，也可以用 AI 帮忙判断。",
+        "en": "A robot has a mechanical body that can move or manipulate things. It may follow fixed programs or use AI to help make decisions."
+      },
+      "example": {
+        "zh": "AI 不一定装在机器人里，机器人也不一定用 AI。",
+        "en": "AI does not need a robot body, and a robot need not use AI."
+      }
+    }
+  },
+  "tasks": [
+    {
+      "title": {
+        "zh": "想三个故事开头",
+        "en": "Think of three story openings"
+      },
+      "context": {
+        "zh": "你想写一个纸箱小屋的故事，先找些点子，再自己写。",
+        "en": "You want to write a cardboard-house story. First gather ideas, then write it yourself."
+      },
+      "feedback": {
+        "zh": "可以先让 AI 给点子，再挑选和改写。自己的想法同样值得放进去。",
+        "en": "You can start with AI suggestions, then choose and rewrite. Your own ideas belong in the story too."
+      },
+      "feedbackObserve": {
+        "zh": "先自己想，或和大人聊点子，也很合适。AI 是可选的帮助，不是创作的必经起点。",
+        "en": "Starting with your own ideas or talking with an adult is suitable too. AI help is optional, not a required first step in creativity."
+      }
+    },
+    {
+      "title": {
+        "zh": "帮忙整理一句话",
+        "en": "Help tidy a sentence"
+      },
+      "context": {
+        "zh": "给虚构故事的一句话换两种说法，意思要保持。没有真实姓名或私事。",
+        "en": "Rephrase a sentence from a fictional story in two ways while keeping its meaning. It has no real names or private details."
+      },
+      "feedback": {
+        "zh": "AI 可以提供不同写法。读一遍，看看是不是改了原来的意思；需要时请大人一起看。",
+        "en": "AI can suggest phrasings. Read them to check whether the meaning changed; ask an adult to help if needed."
+      },
+      "feedbackObserve": {
+        "zh": "先自己改写、读一读，或和大人讨论，同样可以。需要时再请工具提供别的写法。",
+        "en": "You can start by rewriting and reading it yourself, or discussing it with an adult. Ask a tool for alternatives if useful."
+      }
+    },
+    {
+      "title": {
+        "zh": "确认学校几点开门",
+        "en": "Confirm when school opens"
+      },
+      "context": {
+        "zh": "你明天要去学校，需要真实、准确的时间。AI 没有看到你学校的正式通知。",
+        "en": "You need the real opening time for your school tomorrow. The AI has not seen your school’s official notice."
+      },
+      "feedback": {
+        "zh": "先请大人一起查学校正式通知。AI 可以帮读一份提供给它的通知，但不能凭空保证实际时间。",
+        "en": "Start by checking the school’s official notice with an adult. AI might help read a notice it is given, but cannot guarantee the real time without it."
+      }
+    },
+    {
+      "title": {
+        "zh": "要不要告诉它住址",
+        "en": "Should I tell it my address?"
+      },
+      "context": {
+        "zh": "为了给纸箱机器人想名字，有必要把家里地址告诉工具吗？",
+        "en": "Does naming a cardboard robot require telling the tool your home address?"
+      },
+      "feedback": {
+        "zh": "不需要。只说想取名字的任务就够了。个人资料不要随便分享，使用真实服务前先和大人商量。",
+        "en": "No. Describe the naming task; your address is unnecessary. Do not casually share personal details, and discuss real services with an adult first."
+      }
+    },
+    {
+      "title": {
+        "zh": "知道朋友为什么难过",
+        "en": "Find out why a friend is sad"
+      },
+      "context": {
+        "zh": "朋友今天很安静。一个聊天工具看不到朋友的生活，也不能代替朋友回答。",
+        "en": "Your friend is quiet today. A chat tool cannot see your friend’s life or answer on your friend’s behalf."
+      },
+      "feedback": {
+        "zh": "先温柔地问候、认真听；需要时找信任的大人。AI 可以帮想一句问候，但不能保证猜中朋友的感受。",
+        "en": "Start with a kind question and careful listening; involve a trusted adult if needed. AI can suggest a greeting, but cannot guarantee a guess about your friend’s feelings."
+      }
+    }
+  ],
+  "claims": [
+    {
+      "label": {
+        "zh": "数一数",
+        "en": "Count it"
+      },
+      "text": {
+        "zh": "“这个三角形有三条边。”",
+        "en": "“This triangle has three sides.”"
+      },
+      "result": {
+        "zh": "这次回答与观察相符。",
+        "en": "This answer matches what you can observe."
+      },
+      "detail": {
+        "zh": "沿着同一个三角形数：一、二、三。它有三条边。正确也值得核查；不能从这次正确推出下一次也正确。",
+        "en": "Count around the same triangle: one, two, three. It has three sides. A correct answer is worth checking too; one success does not establish that the next answer is correct."
+      }
+    },
+    {
+      "label": {
+        "zh": "查说法",
+        "en": "Check a claim"
+      },
+      "text": {
+        "zh": "“所有金属都会被普通磁铁强烈吸住。”",
+        "en": "“Every metal is strongly attracted to an ordinary magnet.”"
+      },
+      "result": {
+        "zh": "这次回答把范围说得太大了。",
+        "en": "This answer makes the claim too broad."
+      },
+      "detail": {
+        "zh": "普通桌面实验里，铁制回形针可以明显被吸引，铝罐通常不会这样被吸住。“金属”不等于“会被普通磁铁强烈吸住”。想更细看材料差别，去磁铁专题。",
+        "en": "In an ordinary tabletop setup, an iron paper clip can be strongly attracted while an aluminum can generally is not picked up in the same way. Being metallic is not the same as being strongly attracted to an ordinary magnet. Explore materials in the magnet topic."
+      },
+      "link": "../magnets/",
+      "linkText": {
+        "zh": "打开磁铁专题看材料对照",
+        "en": "Explore the material comparison in Magnets"
+      }
+    },
+    {
+      "label": {
+        "zh": "缺信息",
+        "en": "Missing information"
+      },
+      "text": {
+        "zh": "“你的学校明天一定八点开门。”",
+        "en": "“Your school will definitely open at eight tomorrow.”"
+      },
+      "result": {
+        "zh": "现在没有足够信息确认。",
+        "en": "There is not enough information to confirm this."
+      },
+      "detail": {
+        "zh": "这个练习不知道是哪所学校，也没有正式通知。不能把很肯定的语气当成事实。请大人核对学校通知；这是虚构例句，不是你学校的开门时间。",
+        "en": "This activity does not know which school or have an official notice. A confident tone is not evidence. Ask an adult to check the school’s notice; this is a fictional statement, not your school’s opening time."
+      }
+    }
+  ],
+  "ui": {
+    "refine": {
+      "zh": "把要求说清楚",
+      "en": "Make the request clearer"
+    },
+    "simple": {
+      "zh": "回看简短要求",
+      "en": "Return to the short request"
+    },
+    "hintSimple": {
+      "zh": "比较前后：任务和想要的形式有没有更清楚？",
+      "en": "Compare the requests: are the task and format clearer?"
+    },
+    "hintRefined": {
+      "zh": "这里换的是预写示例，真实 AI 不保证给出同样结果。",
+      "en": "This switches a prewritten example. Real AI will not necessarily produce this result."
+    },
+    "taskInitial": {
+      "zh": "先选一个起点，再看看理由。",
+      "en": "Choose a starting point, then see the reason."
+    },
+    "taskGood": {
+      "zh": "这个起点适合眼前的任务。",
+      "en": "This is a suitable starting point for this task."
+    },
+    "taskOther": {
+      "zh": "看看这个选择还缺少什么。",
+      "en": "Consider what this choice is missing."
+    },
+    "evidenceInitial": {
+      "zh": "先选一种核查方法。",
+      "en": "Choose a way to check first."
+    },
+    "evidenceOther": {
+      "zh": "这种方法还不能确认眼前这句话。",
+      "en": "That method cannot establish this particular claim."
+    },
+    "evidenceQuestion": {
+      "zh": "看看它的对象：能直接数吗？需要材料对照吗？还是要真实通知？",
+      "en": "Consider the subject: can you count it directly, compare materials, or do you need a real notice?"
+    }
+  },
+  "sources": [
+    {
+      "title": "NIST · Artificial intelligence glossary",
+      "url": "https://csrc.nist.gov/glossary/term/artificial_intelligence",
+      "claim": {
+        "zh": "计算机系统的任务、预测与建议；AI 的范围比聊天更广。",
+        "en": "Computer-system tasks, predictions and recommendations; AI is broader than chat."
+      }
+    },
+    {
+      "title": "UNICEF · Guidance on AI and children",
+      "url": "https://www.unicef.org/innocenti/reports/policy-guidance-ai-children",
+      "claim": {
+        "zh": "儿童资料、隐私、透明说明与由人负责的使用。",
+        "en": "Children’s data, privacy, transparency and responsible human use."
+      }
+    },
+    {
+      "title": "UNESCO · Guidance for generative AI in education and research",
+      "url": "https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research",
+      "claim": {
+        "zh": "以人为主、年龄适用性与教育场景的核查。",
+        "en": "Human agency, age suitability and evaluation in education."
+      }
+    },
+    {
+      "title": "IBM · What are AI hallucinations?",
+      "url": "https://www.ibm.com/think/topics/ai-hallucinations",
+      "claim": {
+        "zh": "听起来可信的生成内容仍可能错误；不同错误类型。",
+        "en": "Plausible generated content can be incorrect; different kinds of errors."
+      }
+    }
+  ],
+  "choices": {
+    "help": {
+      "zh": "先请 AI 帮忙",
+      "en": "Start with AI help"
+    },
+    "observe": {
+      "zh": "先观察或问大人",
+      "en": "Start by observing or asking an adult"
+    },
+    "keep": {
+      "zh": "只说取名任务，保留住址",
+      "en": "Describe the naming task; keep my address private"
+    },
+    "share": {
+      "zh": "把住址也告诉它",
+      "en": "Share my address too"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" role="img" aria-label="Original illustration of a small lamp, battery holder and light-sensing circuit board">
+<defs><linearGradient id="paper" x2="1" y2="1"><stop stop-color="#f8f5e8"/><stop offset="1" stop-color="#e3e8de"/></linearGradient><linearGradient id="board" x2=".4" y2="1"><stop stop-color="#729a86"/><stop offset="1" stop-color="#385d4e"/></linearGradient><linearGradient id="metal"><stop stop-color="#7d8c89"/><stop offset=".35" stop-color="#f7f8e7"/><stop offset=".7" stop-color="#b5c2b7"/><stop offset="1" stop-color="#6e8179"/></linearGradient><linearGradient id="gold"><stop stop-color="#ab722e"/><stop offset=".3" stop-color="#f4d892"/><stop offset=".65" stop-color="#dca74e"/><stop offset="1" stop-color="#9d6b29"/></linearGradient><radialGradient id="light"><stop stop-color="#ffe49a" stop-opacity=".75"/><stop offset="1" stop-color="#ffe49a" stop-opacity="0"/></radialGradient><linearGradient id="glass" x2=".6" y2="1"><stop stop-color="#fff9da" stop-opacity=".95"/><stop offset="1" stop-color="#f8d077" stop-opacity=".47"/></linearGradient><filter id="shadow" x="-50%" y="-50%" width="200%" height="220%"><feDropShadow dx="3" dy="12" stdDeviation="11" flood-color="#344b3b" flood-opacity=".22"/></filter></defs>
+<rect width="900" height="600" fill="url(#paper)"/>
+<path d="M0 482Q420 414 900 484V600H0Z" fill="#dee3d4" opacity=".55"/>
+<ellipse cx="476" cy="469" rx="309" ry="44" fill="#708a74" opacity=".12"/>
+<g filter="url(#shadow)"><path d="M230 333L598 274 760 387 378 469Z" fill="#2d4f3f"/><path d="M230 318L598 259 760 372 378 454Z" fill="url(#board)" stroke="#83a896" stroke-width="2"/>
+<g stroke="#b3cb96" stroke-width="3" fill="none" opacity=".78"><path d="M272 330L393 311 456 346 559 327 650 378"/><path d="M296 376L380 362 450 406 554 384 603 414"/><path d="M399 426L447 417 514 450"/><path d="M649 321L611 327 646 348 699 338"/><path d="M286 344L358 390 396 384"/></g>
+<g fill="#bdd394" stroke="#284b3b" stroke-width="2"><ellipse cx="258" cy="322" rx="7" ry="4"/><ellipse cx="591" cy="273" rx="7" ry="4"/><ellipse cx="737" cy="372" rx="7" ry="4"/><ellipse cx="383" cy="436" rx="7" ry="4"/></g>
+<g fill="#202f2e" stroke="#677d6d" stroke-width="2"><path d="M431 325L497 313 541 342 473 355Z"/><path d="M431 325V345L473 375V355Z"/><path d="M473 355L541 342V361L473 375Z"/></g>
+<g stroke="#afbeb0" stroke-width="4"><path d="M447 331l-17 3 M462 341l-17 4 M477 350l-17 4 M502 320l13-3 M518 331l13-3 M532 341l13-3"/></g>
+<path d="M564 380L616 369 644 387 590 399Z" fill="#263f37" stroke="#8fa895"/>
+<path d="M575 382L615 376 629 387 590 393Z" fill="#8cd5a6" opacity=".6"/>
+<ellipse cx="356" cy="350" rx="32" ry="19" fill="#806a43" stroke="#c9a361" stroke-width="4"/><ellipse cx="356" cy="343" rx="29" ry="17" fill="#d1bd7f" stroke="#f3e5ae" stroke-width="2"/>
+<path d="M337 338l30 8-24 4 31-2-25-11" fill="none" stroke="#887645" stroke-width="3"/>
+</g>
+<g filter="url(#shadow)"><path d="M165 163L307 135 365 169 218 201Z" fill="#435c4c"/><path d="M165 163V291L218 332V201Z" fill="#354b3e"/><path d="M218 201L365 169V294L218 332Z" fill="#253f34"/>
+<g fill="url(#gold)" stroke="#a67c41" stroke-width="2"><path d="M191 176L213 167 253 179V300L230 313 191 287Z"/><path d="M256 161L279 153 320 165V284L296 297 256 273Z"/></g>
+<g fill="url(#metal)"><path d="M199 169L218 164 237 172 219 177Z"/><path d="M267 153L284 149 304 157 285 162Z"/></g>
+<g stroke="#795329" stroke-width="2"><path d="M215 210l18 6 M224 203v22 M282 195l18 6 M291 188v22"/></g>
+</g>
+<path d="M185 182C128 171 119 301 156 341S246 356 272 330" fill="none" stroke="#47674d" stroke-width="9" stroke-linecap="round"/>
+<path d="M344 186C408 147 482 164 548 175S672 178 676 230" fill="none" stroke="#98704c" stroke-width="9" stroke-linecap="round"/>
+<path d="M329 286C322 362 319 394 390 407" fill="none" stroke="#567b5b" stroke-width="9" stroke-linecap="round"/>
+<ellipse cx="677" cy="259" rx="163" ry="174" fill="url(#light)"/>
+<g filter="url(#shadow)"><path d="M647 309C647 289 617 284 617 238C617 159 737 154 737 238C737 282 707 288 707 309Z" fill="url(#glass)" stroke="#baaf82" stroke-width="3"/>
+<path d="M650 294L651 230 666 240 678 223 690 240 705 230 705 294" fill="none" stroke="#dda23f" stroke-width="5"/>
+<path d="M636 199C625 222 629 242 639 258" stroke="#fffde8" stroke-width="8" stroke-linecap="round" fill="none" opacity=".86"/>
+<path d="M646 305H709V348Q677 367 646 348Z" fill="url(#metal)" stroke="#7d8979" stroke-width="2"/>
+<g fill="none" stroke="#85917e" stroke-width="4"><path d="M648 313q29 13 59 0 M648 324q29 13 59 0 M648 336q29 13 59 0"/></g>
+<ellipse cx="677" cy="365" rx="61" ry="23" fill="#78906e"/><path d="M616 365V387Q678 417 738 387V365Q678 395 616 365Z" fill="#5a7757"/><ellipse cx="677" cy="366" rx="38" ry="13" fill="#c4b16d"/></g>
+<path d="M733 382Q793 432 705 449L636 407" fill="none" stroke="#477256" stroke-width="8" stroke-linecap="round"/>
+<g opacity=".6" stroke="#ead082" stroke-width="3" stroke-linecap="round"><path d="M339 269l7 40 M381 271l-15 32 M313 277l20 26"/></g>
+</svg>

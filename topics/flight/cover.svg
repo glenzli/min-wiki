@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+ <defs>
+  <linearGradient id="sky" x2=".8" y2="1"><stop stop-color="#d3e5e8"/><stop offset=".55" stop-color="#e7eeec"/><stop offset="1" stop-color="#f6efe0"/></linearGradient>
+  <linearGradient id="cloud" x2=".3" y2="1"><stop stop-color="#fffdf5" stop-opacity=".95"/><stop offset="1" stop-color="#d7e2df" stop-opacity=".4"/></linearGradient>
+  <linearGradient id="body" x1=".1" y1="0" x2=".4" y2="1"><stop stop-color="#fffef7"/><stop offset=".43" stop-color="#eaf1ef"/><stop offset=".7" stop-color="#b8d0d4"/><stop offset="1" stop-color="#809fab"/></linearGradient>
+  <linearGradient id="wing" x1=".1" y1="0" x2=".6" y2="1"><stop stop-color="#f0f3ed"/><stop offset=".5" stop-color="#bcd1d2"/><stop offset="1" stop-color="#7b9eab"/></linearGradient>
+  <linearGradient id="tail" x2=".3" y2="1"><stop stop-color="#517f8d"/><stop offset="1" stop-color="#2b586c"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#fffbea" stop-opacity=".7"/><stop offset="1" stop-color="#fffbea" stop-opacity="0"/></radialGradient>
+  <filter id="soft"><feGaussianBlur stdDeviation="13"/></filter>
+  <filter id="shadow"><feGaussianBlur stdDeviation="5"/></filter>
+ </defs>
+ <rect width="1200" height="800" fill="url(#sky)"/>
+ <ellipse cx="280" cy="160" rx="430" ry="310" fill="url(#glow)"/>
+ <g fill="url(#cloud)"><path d="M-120 638Q-27 546 91 582Q122 482 214 482Q299 466 349 544Q430 512 499 576Q591 558 636 638Q684 643 728 706H-120Z"/><path d="M651 734Q676 663 769 670Q794 593 884 594Q967 579 1015 653Q1103 615 1155 686Q1242 660 1310 743V860H651Z"/><path d="M779 170Q803 123 851 132Q884 82 941 113Q997 97 1030 145Q1083 124 1125 184Q1120 209 1032 213H779Z" opacity=".4"/></g>
+ <path d="M-20 694Q221 610 480 708T1200 690" fill="none" stroke="#f9fbf3" stroke-width="40" opacity=".3" filter="url(#soft)"/>
+ <g transform="translate(634 346) rotate(-13)">
+  <path d="M-262 52L262 52L56 245L-35 241L-116 127Z" fill="#527786" opacity=".14" filter="url(#shadow)"/>
+  <path d="M20-22L155-137L202-148L178-37L133 31" fill="url(#wing)" stroke="#8aa6b0" stroke-width="2"/>
+  <path d="M182-27L253-84L274-86L258-20" fill="url(#wing)" stroke="#8ba7b0" stroke-width="2"/>
+  <path d="M-308 18Q-293-11-246-23Q-104-43 149-27L254-47L282-20Q300-4 281 16Q263 35 216 37L-231 47Q-299 42-308 18Z" fill="url(#body)" stroke="#829eaa" stroke-width="2.5"/>
+  <path d="M-287 8Q-202-13-62-15L174-11" fill="none" stroke="#fcfff8" stroke-width="5" opacity=".8"/>
+  <path d="M206-29L238-147L268-151L285-12" fill="url(#tail)" stroke="#345d70" stroke-width="2.5"/>
+  <path d="M242-130L257-139L274-55L262-43Z" fill="#bdd3d5" opacity=".8"/>
+  <path d="M220 12L304 61L275 73L163 35" fill="url(#wing)" stroke="#7d9ca8" stroke-width="2"/>
+  <path d="M-72 8L86 17L29 220L-23 239L-73 44Z" fill="url(#wing)" stroke="#809fa9" stroke-width="2.5"/>
+  <path d="M-61 29L49 33L14 166" fill="none" stroke="#eef7f3" stroke-width="3" opacity=".75"/>
+  <path d="M12 183L-18 216L-24 237L28 221L40 180" fill="#568191"/>
+  <path d="M-277-4L-245-19L-212-17L-197-7L-222 4L-273 8Z" fill="#375d73"/>
+  <path d="M-260-7L-244-14L-224-12" fill="none" stroke="#a9cbd4" stroke-width="3"/>
+  <g fill="#608593"><ellipse cx="-171" cy="-2" rx="5" ry="6"/><ellipse cx="-147" cy="-3" rx="5" ry="6"/><ellipse cx="-123" cy="-4" rx="5" ry="6"/><ellipse cx="-99" cy="-4" rx="5" ry="6"/><ellipse cx="103" cy="-1" rx="5" ry="6"/><ellipse cx="126" cy="0" rx="5" ry="6"/><ellipse cx="149" cy="1" rx="5" ry="6"/><ellipse cx="172" cy="2" rx="5" ry="6"/></g>
+  <path d="M-113 77Q-122 91-116 113Q-101 123-58 116L-42 103L-54 81Z" fill="url(#body)" stroke="#738f9d" stroke-width="2"/>
+  <ellipse cx="-111" cy="98" rx="9" ry="16" fill="#466875"/><ellipse cx="-112" cy="98" rx="5" ry="11" fill="#264657"/>
+  <path d="M110-88Q98-80 95-68L142-57L157-68L150-82Z" fill="url(#body)" stroke="#829eaa" stroke-width="2"/>
+  <path d="M-308 18Q-287 39-231 42" fill="none" stroke="#7a9aa9" stroke-width="2"/>
+ </g>
+ <path d="M86 756Q224 697 337 737T536 735" fill="none" stroke="#fffef8" stroke-width="16" stroke-linecap="round" opacity=".4"/>
+</svg>

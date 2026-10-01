@@ -1518,6 +1518,132 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-21"
+    },
+    {
+      "id": "electronics-circuits",
+      "title": "电路与电子：让一盏灯听信号",
+      "category": "engineering",
+      "summary": "从闭合回路到感光夜灯，分清灯的能源、传感输入、控制规则和电子开关。",
+      "tags": [
+        "电子",
+        "电路",
+        "开关",
+        "感光器",
+        "传感器",
+        "夜灯",
+        "晶体管",
+        "控制信号",
+        "身边的科技"
+      ],
+      "duration": "自由探索 / 8–12 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01"
+    },
+    {
+      "id": "programs",
+      "title": "程序是什么？",
+      "category": "engineering",
+      "summary": "给送货小车一张张指令卡：先预测、再执行，看看顺序、条件和找错怎样改变结果。",
+      "tags": [
+        "程序",
+        "编程",
+        "软件",
+        "硬件",
+        "指令",
+        "条件",
+        "机器人",
+        "身边的科技"
+      ],
+      "duration": "动手探索 · 约 8—12 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01"
+    },
+    {
+      "id": "ai",
+      "title": "AI 是什么？认识一种新工具",
+      "category": "engineering",
+      "summary": "从聊天、画画和认图片认识 AI，比较程序与机器人，再练习提问、核查和保护隐私。",
+      "tags": [
+        "AI",
+        "人工智能",
+        "程序",
+        "机器人",
+        "信息",
+        "隐私",
+        "核查",
+        "身边的科技"
+      ],
+      "duration": "自由探索 / 10–15 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01"
+    },
+    {
+      "id": "flight",
+      "title": "飞机为什么能起飞？",
+      "summary": "看机翼怎样改变空气，比较速度、迎角和失速，再把同一组条件带到跑道。",
+      "category": "engineering",
+      "tags": [
+        "飞机",
+        "飞行",
+        "机翼",
+        "升力",
+        "空气",
+        "迎角",
+        "失速",
+        "起飞",
+        "身边的科技"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01"
+    },
+    {
+      "id": "mobile-networks",
+      "title": "手机怎样把消息送到远方？",
+      "summary": "跟随编号穿过基站与网络，比较离线等待、送达与已读。",
+      "category": "engineering",
+      "tags": [
+        "手机",
+        "通信",
+        "网络",
+        "无线电",
+        "基站",
+        "信息",
+        "身边的科技"
+      ],
+      "duration": "约 8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01"
     }
   ]
 }

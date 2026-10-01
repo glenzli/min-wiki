@@ -1,0 +1,13 @@
+{
+  "id": "electronics-circuits",
+  "title": "电路与电子：让一盏灯听信号",
+  "category": "engineering",
+  "summary": "从闭合回路到感光夜灯，分清灯的能源、传感输入、控制规则和电子开关。",
+  "tags": ["电子", "电路", "开关", "感光器", "传感器", "夜灯", "晶体管", "控制信号", "身边的科技"],
+  "duration": "自由探索 / 8–12 分钟",
+  "modes": ["儿童版", "学术版"],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-10-01"
+}
