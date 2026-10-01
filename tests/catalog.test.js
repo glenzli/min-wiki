@@ -47,7 +47,7 @@ test('editorial curation retains five published legacy pages outside discovery',
     assert.ok(existsSync(new URL(`..${topicHref(topic)}index.html`,import.meta.url)));
     assert.ok(!findTopics(catalog,{query:topic.title}).some(item=>item.id===id));
   }
-  assert.equal(findTopics(catalog).length,36);
+  assert.equal(findTopics(catalog).length,41);
 });
 test('shared links recover filters and tolerate unknown categories and long input',()=>{
   assert.deepEqual(readFilters('?category=universe&q=%E9%BB%91%E6%B4%9E',catalog),{category:'universe',query:'黑洞'});
