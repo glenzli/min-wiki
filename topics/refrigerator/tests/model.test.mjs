@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';
-import {initialState,advance,makeTimeline,sampleTimeline,refrigerantState,AIR_CAPACITY,FOOD_CAPACITY} from '../model.ts';
+import {initialState,advance,makeTimeline,sampleTimeline,refrigerantState,refrigerantPaths,parcelPosition,components,componentInterval,AIR_CAPACITY,FOOD_CAPACITY} from '../model.ts';
 test('inside energy and rejected heat conserve energy through door events and cycling',()=>{
  for(const plan of ['closed','visit']){
   const frames=makeTimeline(plan),initial=frames[0];
@@ -61,4 +61,39 @@ test('food heat direction reverses when open-door air becomes warmer than food',
  assert.ok(advance(warmAir,1,'visit').food>warmAir.food);
  assert.equal(foodHeatFlow({air:12,food:12}),0);
  const coolAir=sampleTimeline(makeTimeline('closed'),.44);assert.ok(foodHeatFlow(coolAir)>0);
+});
+
+test('pressure rises in the compressor rather than in its long suction pipe',()=>{
+ assert.equal(refrigerantState(.36).highPressure,0);
+ assert.equal(refrigerantState(.44).highPressure,0);
+ const [start,end]=componentInterval('compressor');
+ const inlet=(1+start)/4,outlet=(1+end)/4;
+ for(const [p,node] of [[inlet,3],[outlet,5]]){
+  const actual=parcelPosition(p),expected=refrigerantPaths[1][node];
+  assert.ok(Math.hypot(actual[0]-expected[0],actual[1]-expected[1])<1e-8);
+ }
+ assert.equal(refrigerantState(inlet-1e-7).highPressure,0);
+ assert.equal(refrigerantState(outlet+1e-7).highPressure,1);
+ for(let i=1;i<20;i++){
+  const p=inlet+(outlet-inlet)*i/20,[x,y]=parcelPosition(p),s=refrigerantState(p);
+  assert.ok(x>=547&&x<=622&&y>=473&&y<=511);
+  assert.ok(s.highPressure>0&&s.highPressure<1);assert.equal(s.vapor,1);
+ }
+});
+
+test('condensation and expansion stay in their drawn coils and preserve phase closure',()=>{
+ for(const name of ['condenser','capillary']){
+  const {stage,start,end}=components[name],[a,b]=componentInterval(name);
+  for(const [fraction,node] of [[a,start],[b,end]]){
+   const actual=parcelPosition((stage+fraction)/4),expected=refrigerantPaths[stage][node];
+   assert.ok(Math.hypot(actual[0]-expected[0],actual[1]-expected[1])<1e-8);
+  }
+  const before=refrigerantState((stage+a)/4-1e-7),after=refrigerantState((stage+b)/4+1e-7);
+  if(name==='condenser'){assert.equal(before.vapor,1);assert.equal(after.vapor,0);}
+  else {assert.equal(before.highPressure,1);assert.equal(before.vapor,0);assert.equal(after.highPressure,0);assert.equal(after.vapor,.15);}
+ }
+ for(const p of [.25,.5,.75,1]){
+  const a=refrigerantState(p-1e-8),b=refrigerantState(p===1?0:p+1e-8);
+  assert.ok(Math.abs(a.vapor-b.vapor)<1e-6);assert.ok(Math.abs(a.highPressure-b.highPressure)<1e-6);
+ }
 });

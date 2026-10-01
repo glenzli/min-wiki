@@ -118,5 +118,16 @@
   "已经进水": "flooded",
   "还在漂浮": "still floating",
   "也进水了": "flooded too",
-  "浮在水上": "floating"
+  "浮在水上": "floating",
+  "用悬线缓缓放低": "Lower it on a cord",
+  "看受力箭头": "Show force arrows",
+  "绳的张力": "Cord tension",
+  "悬线保持绷紧；每个位置都比较停稳后的受力。": "The cord stays taut. Compare the settled forces at each position.",
+  "进入水里的部分越多，水托得越多，绳子需要向上拉的力越小。": "As more of the block enters the water, buoyancy increases and the cord needs to pull up less.",
+  "已经全部进入水里，再缓缓放低，水托的力和绳的拉力都基本不变。": "Once it is fully underwater, lowering it further hardly changes buoyancy or cord tension.",
+  "缓缓放低，比较水的托力和绳的拉力；两者合起来托住相同的重量。": "Lower it slowly. Compare buoyancy and cord tension: together they support the same weight.",
+  "方块比同体积的水重，悬线始终绷紧。停稳时：水的托力 + 绳的拉力 = 向下的重力。": "The block is heavier than the same volume of water, so its cord stays taut. At rest: buoyancy + cord tension = weight.",
+  "浸深实验用悬线保持方块停稳。它比同体积的水重，绳始终绷紧；张力 T 加上浮力 F 等于重量 W。完全浸没后继续放低，两种向上的力都基本不变。落到底部的物品由箱底补足支持力。受力箭头采用同一标尺，位置为方便辨认而错开。": "A cord holds the immersion block at rest. It is heavier than the same volume of water, so the cord stays taut: tension T plus buoyancy F equals weight W. Lowering the fully immersed block hardly changes either upward force. Objects resting on the tank floor receive additional floor support. Force arrows share one scale and are offset for clarity.",
+  "浮力 {{force}} N + 张力 {{tension}} N ≈ 重力 {{weight}} N。": "Buoyancy {{force}} N + tension {{tension}} N ≈ weight {{weight}} N.",
+  "浮力 {{force}} N + 箱底支持力 {{support}} N ≈ 重力 {{weight}} N。": "Buoyancy {{force}} N + floor support {{support}} N ≈ weight {{weight}} N."
 }

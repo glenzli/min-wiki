@@ -4,6 +4,8 @@ export const smooth = (a: number, b: number, x: number) => { const u = Math.min(
 export function calderaState(progress: number) {
   return { withdrawal: smooth(.04, .24, progress), fracture: smooth(.18, .30, progress), subsidence: smooth(.27, .46, progress) };
 }
+/** Reading milestones match the same withdrawal, instability, collapse and filling clock. */
+export function calderaStage(progress:number){return progress<.18?0:progress<.27?1:progress<.48?2:3;}
 export function formationProgress(progress: number, kind: Settings['basin']) {
   return kind === 'caldera' ? calderaState(progress).subsidence : smooth(.14, .43, progress);
 }

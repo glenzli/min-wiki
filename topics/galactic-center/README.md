@@ -12,6 +12,15 @@ The existing URL is retained, but the topic now explains a stellar-mass black ho
 
 Gas paths are continuous teaching curves, not a fluid solution. The shared finite-volume, non-spinning black-hole optics creates view-dependent disk images. Display scales and emissivity are illustrative and do not predict accretion rates or spectra.
 
+The photosphere now follows the same reversible teaching timeline as the gas and disk. Pausing
+freezes its illustrated activity, and scrubbing back returns the same surface phase. Reduced motion
+keeps surface evolution static and makes requested camera-view changes immediate; changing the
+preference is read on the next chapter draw. A paused view renders again only for a state change,
+camera transition, resize or free-camera interaction.
+
+伴星表面与气流、吸积盘共用可倒拖的教学时间轴；暂停后保持表面状态。减少动态会静止表面演化，
+并直接切换到所选镜头，不改变该图像的物理范围说明。
+
 Sources: [NASA binary systems](https://www.nasa.gov/universe/nasa-visualization-rounds-up-the-best-known-black-hole-systems/), [NASA visualization](https://svs.gsfc.nasa.gov/4996/), [Cyg X-1 wind](https://ntrs.nasa.gov/citations/20110007118), [NASA warped light](https://www.nasa.gov/universe/nasa-visualization-shows-a-black-holes-warped-world/).
 
 Validation: `node --import tsx --test topics/galactic-center/tests/model.test.mjs`; integration: `npm run check` plus actual WebGL views in both languages and narrow screens.

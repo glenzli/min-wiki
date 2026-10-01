@@ -30,12 +30,14 @@ function render(){
  el('story').textContent=depthMode?(state.depth<100?t('进入水里的部分越多，排开的水越多，浮力也越大。'):t('现在方块全在水里。继续往深处移动，排开的水没有变多，浮力也基本不变。')):r.flooded?t('货物太多，水从船边流进来。空气能跑出去，船就不能再保持原来的排水空间了。'):boatMode?t('橡皮泥没有变轻！捏成船后，船壳围住的空间能让它在进水前排开更多水。'):r.floating?t('木块只要一部分进入水里，排开的水就已经足够重，能够把它托住。'):t('水也在向上托它，只是这个力小于向下的重力。到达箱底后，箱底一起把它托住。');
  el('try-next').textContent=state.experiment==='boat'?(boatMode?t('给船加货物：船会更深地进入水里，直到排开的水足以托住新重量。'):t('看看橡皮泥球和空心船：质量相同，结果却不同。')):t('浸入水里的体积不变时，换成密度更大的水，浮力会更大。已经漂浮的物品会浮高一点，最后浮力仍等于重力。');
  if(!academic){
-  el('story').textContent=depthMode?(state.depth<100?t('进入水里的部分越多，水向上托的力越大。'):t('已经全部进入水里，再往下压，水向上托的力基本不变。')):r.flooded?t('水从船边进来了，小船装不下这么多货物。'):boatMode?t('还是同一块橡皮泥。捏成空心船后，它能排开更多水。'):r.floating?t('水向上托着它。停稳时，向上和向下的力一样大。'):t('它沉下去了，但水仍然在向上托它。');
-  el('try-next').textContent=state.experiment==='boat'?t('先捏成船，再一点点加货物，看看船边离水面还有多远。'):depthMode?t('慢慢往下压，比较半浸入和全浸入时向上的箭头。'):t('换一个物品，先猜它会停在水面，还是箱底。');
+  el('story').textContent=depthMode?(state.depth<100?t('进入水里的部分越多，水托得越多，绳子需要向上拉的力越小。'):t('已经全部进入水里，再缓缓放低，水托的力和绳的拉力都基本不变。')):r.flooded?t('水从船边进来了，小船装不下这么多货物。'):boatMode?t('还是同一块橡皮泥。捏成空心船后，它能排开更多水。'):r.floating?t('水向上托着它。停稳时，向上和向下的力一样大。'):t('它沉下去了，但水仍然在向上托它。');
+  el('try-next').textContent=state.experiment==='boat'?t('先捏成船，再一点点加货物，看看船边离水面还有多远。'):depthMode?t('缓缓放低，比较水的托力和绳的拉力；两者合起来托住相同的重量。'):t('换一个物品，先猜它会停在水面，还是箱底。');
  }
  el('displaced').textContent=r.displaced.toFixed(0);el('mass').textContent=String(r.mass);
  el('cargo-count').textContent=t('货物 {{count}} 块',{count:state.cargo});el('depth-count').textContent=t('浸入 {{percent}}%',{percent:Math.min(100,state.depth)});
- el('numbers').textContent=t('浮力 {{force}} N；重力 {{weight}} N。',{force:r.force.toFixed(2),weight:r.weight.toFixed(2)});
+ el('numbers').textContent=depthMode?t('浮力 {{force}} N + 张力 {{tension}} N ≈ 重力 {{weight}} N。',{force:r.force.toFixed(2),tension:r.tension.toFixed(2),weight:r.weight.toFixed(2)}):r.floorSupport>0?t('浮力 {{force}} N + 箱底支持力 {{support}} N ≈ 重力 {{weight}} N。',{force:r.force.toFixed(2),support:r.floorSupport.toFixed(2),weight:r.weight.toFixed(2)}):t('浮力 {{force}} N；重力 {{weight}} N。',{force:r.force.toFixed(2),weight:r.weight.toFixed(2)});
+ el('force-balance').hidden=!depthMode;
+ el('force-balance').textContent=t('方块比同体积的水重，悬线始终绷紧。停稳时：水的托力 + 绳的拉力 = 向下的重力。');
  scene.set(state,r,(el('forces') as HTMLInputElement).checked,state.experiment==='depth');
 }
 document.querySelectorAll<HTMLButtonElement>('[data-experiment]').forEach(b=>b.addEventListener('click',()=>{state.experiment=b.dataset.experiment as Experiment;render();}));

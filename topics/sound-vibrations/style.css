@@ -5,6 +5,11 @@
 
 .view-tabs,.scene-legend{display:flex;flex-wrap:wrap;gap:12px;padding:14px 22px;align-items:center;border-bottom:1px solid var(--border)}.scene-legend{font-size:13px;color:var(--secondary)}.scene-legend output{margin-left:auto;font-variant-numeric:tabular-nums}.controls .timeline{flex-basis:100%;min-width:0}.timeline output{font-size:12px;color:var(--secondary)}.audio-note{font-size:13px;color:var(--secondary);padding:0 24px 16px;margin:0}.controls{gap:14px}.view-tabs button{flex:1}@media(max-width:620px){.view-tabs,.scene-legend{padding:12px;font-size:12px}.scene-legend output{margin-left:0;flex-basis:100%}.view-tabs button{font-size:13px}.audio-note{padding:0 18px 14px}.scene{min-height:200px}}
 
+#tension-value{font-size:12px;line-height:1.6;font-weight:400;color:var(--secondary)}
+.controls .force-toggle{flex-direction:row;align-items:center;min-height:44px;font-size:13px;font-weight:500;gap:9px}
+.force-toggle input{width:18px;height:18px;min-height:18px;flex:none;accent-color:var(--accent)}
+@media(min-width:1000px){html.presentation-page[data-topic-ui] .presentation-notes .controls .force-toggle{display:flex}}
+
 /* Desktop presentation: retain topic geometry inside the selected scene. */
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] { .presentation-notes .control-layout { display:block; } .presentation-notes .controls { display:block!important; } .presentation-notes .controls label { display:block; margin:10px 0; } .journey-nav { margin:8px 0; } #label-toggle { margin:4px 0; }}

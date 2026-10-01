@@ -83,11 +83,11 @@ export class ActivityBody {
   private disposed = false;
   private plasma: {mesh:THREE.Mesh; path:THREE.CatmullRomCurve3; phase:number}[] = [];
   private load(url:string,color=true) {
-    const texture = new THREE.TextureLoader().load(url, t=>{if(this.disposed)t.dispose();});
+    const texture = new THREE.TextureLoader().load(url, t=>{if(this.disposed)t.dispose();else this.invalidate();});
     texture.colorSpace=color?THREE.SRGBColorSpace:THREE.NoColorSpace;
     texture.wrapS=THREE.RepeatWrapping; texture.anisotropy=4; this.textures.push(texture); return texture;
   }
-  constructor(readonly id:BodyId) {
+  constructor(readonly id:BodyId,private invalidate:()=>void=()=>{}) {
     const giant=['jupiter','saturn','uranus','neptune'].includes(id);
     const color=id==='neptune'?'#92bbc5':id==='uranus'?'#a4c9cb':id==='sun'?'#ffc47b':id==='moon'?'#a7a49c':id==='titan'?'#d2a15c':PLANETS_DATA.find(p=>p.id===id)?.colorHex??'#b9c4c5';
     const map=maps[id]?this.load(maps[id]!):null;

@@ -1,5 +1,5 @@
 import {t} from './i18n.ts';
-import {clamp,foodHeatFlow,refrigerantState,refrigerantPaths as paths,parcelPosition,smooth,type ThermalState,type Point} from './model.ts';
+import {clamp,foodHeatFlow,refrigerantState,refrigerantPaths as paths,compressorShell,parcelPosition,smooth,type ThermalState,type Point} from './model.ts';
 const d=(points:Point[])=>points.map(([x,y],i)=>`${i?'L':'M'}${x} ${y}`).join('');
 const text=(x:number,y:number,value:string,anchor='middle',size=19)=>`<text x="${x}" y="${y}" text-anchor="${anchor}" font-size="${size}" fill="#385258">${value}</text>`;
 const number=(x:number,y:number,n:number,color:string)=>`<g transform="translate(${x} ${y})"><circle r="16" fill="${color}"/><text text-anchor="middle" y="6" font-size="18" fill="#fff">${n}</text></g>`;
@@ -33,7 +33,7 @@ export function drawScene({thermal:s,view,parcel,inspect}:Illustration){
  <g opacity="${pipeOpacity}">
  ${Array.from({length:16},(_,i)=>`<path d="M${666+i*8} 155V354" stroke="#8f9482" stroke-width="2" opacity=".45"/>`).join('')}
  ${paths.map((points,i)=>`<path d="${d(points)}" fill="none" stroke="#5c6c64" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="${d(points)}" fill="none" stroke="${colors[i]}" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="${d(points)}" fill="none" stroke="#f6f8dc" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/>`).join('')}
- <path d="M547 473C542 438 605 428 622 466V511Q584 531 547 513Z" fill="#596b65" stroke="#364e4b" stroke-width="3"/><ellipse cx="584" cy="470" rx="36" ry="23" fill="#71847b"/><path d="M551 481Q583 503 618 481" fill="none" stroke="#b2b5a0" opacity=".6"/><rect x="553" y="515" width="69" height="9" rx="3" fill="#364e4b"/>
+ <path d="${compressorShell}" fill="#596b65" stroke="#364e4b" stroke-width="3"/><ellipse cx="584" cy="470" rx="36" ry="23" fill="#71847b"/><path d="M551 481Q583 503 618 481" fill="none" stroke="#b2b5a0" opacity=".6"/><rect x="553" y="515" width="69" height="9" rx="3" fill="#364e4b"/>
  <path d="M584 525V552H651" fill="none" stroke="#5c6660" stroke-width="4"/><path d="M650 547v10m8-10v10" stroke="#5c6660" stroke-width="3"/>
  <circle cx="603" cy="482" r="4" fill="${inspect||s.on?'#dbbe69':'#aeb3a1'}"/>
  </g>

@@ -22,6 +22,7 @@ export class ExplorerController {
   private siteSelect=document.createElement('select');
   private siteBar=document.createElement('div');
   private progress=0;private time=0;private travel=false;
+  private viewProgress=new Map<string,number>();
   private activity=!matchMedia('(prefers-reduced-motion: reduce)').matches;
   private academic=false;private suspended=false;
   private selectedMoon='';private lastStage='';private labels=new Map<string,HTMLElement>();
@@ -32,7 +33,7 @@ export class ExplorerController {
     this.siteSelect.id='explorer-site';this.siteSelect.setAttribute('aria-label',u('sites'));label.append(this.siteSelect);
     const note=document.createElement('span');note.id='explorer-site-location';this.siteBar.append(label,note);
     document.querySelector('.explorer-views')!.after(this.siteBar);
-    this.siteSelect.onchange=()=>{this.siteKey=siteFor(this.body,this.siteSelect.value).id;this.progress=0;this.travel=false;this.writeUrl();this.update();};
+    this.siteSelect.onchange=()=>{this.rememberProgress();this.siteKey=siteFor(this.body,this.siteSelect.value).id;this.viewProgress.delete(this.progressKey('descent'));if(this.view==='descent')this.progress=0;this.travel=false;this.writeUrl();this.update();};
     el('explorer-back').onclick=()=>this.select('');
     el('explorer-parent').onclick=()=>{const parent=parentOf(this.body);if(parent)this.select(parent);};
     document.querySelectorAll<HTMLButtonElement>('[data-explore-view]').forEach(b=>b.onclick=()=>this.switchView(b.dataset.exploreView as ExploreView));
@@ -47,18 +48,22 @@ export class ExplorerController {
     catch{el('explorer-error').hidden=false;}
   }
   open(body:BodyId,view:ExploreView='globe'){
-    const params=new URLSearchParams(location.search);this.siteKey=siteFor(body,params.get('body')===body?params.get('site'):undefined).id;
+    this.rememberProgress();
+    const params=new URLSearchParams(location.search),siteKey=siteFor(body,params.get('body')===body?params.get('site'):undefined).id;
+    this.siteKey=siteKey;
     this.siteSelect.replaceChildren(...sitesFor(body).map(site=>{const option=document.createElement('option');option.value=site.id;option.textContent=text(site.name);return option;}));
-    this.active=true;this.body=body;this.progress=0;this.travel=false;this.selectedMoon='';
+    this.active=true;this.body=body;this.progress=this.viewProgress.get(this.progressKey())??0;this.travel=false;this.selectedMoon='';
     el('explorer').hidden=false;document.body.classList.add('exploring');this.ensureScene();this.switchView(canView(body,view)?view:'globe');
   }
-  close(){this.active=false;this.travel=false;el('explorer').hidden=true;document.body.classList.remove('exploring');this.writeUrl();}
+  close(){this.rememberProgress();this.active=false;this.travel=false;el('explorer').hidden=true;document.body.classList.remove('exploring');this.writeUrl();}
   setAcademic(value:boolean){this.academic=value;if(this.active)this.update();}
   toggleActivity(){this.activity=!this.activity;this.update();}
   suspend(value:boolean){this.suspended=value;}
   private writeUrl(){const url=new URL(location.href);if(this.active){url.searchParams.set('body',this.body);url.searchParams.set('view',this.view);url.searchParams.set('site',this.siteKey);}else{url.searchParams.delete('body');url.searchParams.delete('view');url.searchParams.delete('site');}history.replaceState(null,'',url);}
+  private progressKey(view=this.view){return `${this.body}:${view}${view==='descent'?':'+this.siteKey:''}`;}
+  private rememberProgress(){this.viewProgress.set(this.progressKey(),this.progress);}
   private switchView(view:ExploreView){
-    this.view=view;this.travel=false;this.progress=0;this.lastStage='';this.writeUrl();
+    this.rememberProgress();this.view=view;this.travel=false;this.progress=this.viewProgress.get(this.progressKey())??0;this.lastStage='';this.writeUrl();
     const list=SATELLITES[this.body]??[];this.labels.clear();el('moon-labels').replaceChildren();el('explorer-moons').replaceChildren();
     if(view==='moons')list.forEach(moon=>{
       const button=document.createElement('button');button.textContent=text(moonText[moon.id].name);button.onclick=()=>{this.selectedMoon=moon.id;this.update();};button.dataset.moon=moon.id;el('explorer-moons').append(button);

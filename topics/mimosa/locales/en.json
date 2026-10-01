@@ -132,5 +132,15 @@
   "含羞草 · 碰触合拢": "Mimosa · folds on touch",
   "捕蝇草 · 触发夹合": "Flytrap · triggered closure",
   "幼苗 · 向光生长": "Seedling · grows toward light",
-  "会。含羞草也有与昼夜节律有关的睡眠运动。它和触碰反应都利用叶枕，但触发机制与时间过程不同；含羞草这一站只演示触碰。": "Yes. Mimosa also has sleep movements associated with circadian rhythms. These and touch responses both use pulvini, but their triggers and timing differ. The mimosa station demonstrates touch only."
+  "会。含羞草也有与昼夜节律有关的睡眠运动。它和触碰反应都利用叶枕，但触发机制与时间过程不同；含羞草这一站只演示触碰。": "Yes. Mimosa also has sleep movements associated with circadian rhythms. These and touch responses both use pulvini, but their triggers and timing differ. The mimosa station demonstrates touch only.",
+  "主叶枕组织": "Primary pulvinus tissue",
+  "主叶枕 · 叶柄基部": "Primary pulvinus · petiole base",
+  "羽片汇合处": "Pinna junction",
+  "小叶基部叶枕": "Leaflet-base pulvinus",
+  "金圈标出所选羽片中部的小叶基部叶枕。先看小叶合拢，再进入“主叶枕组织”观察叶柄基部；两处的响应不同。": "The gold ring marks a leaflet-base pulvinus midway along the selected pinna. Watch the leaflet fold, then choose “Primary pulvinus tissue” to inspect the petiole base. These two sites respond differently.",
+  "短叶柄连接主叶枕与羽片汇合处。几何是定性投影，亮点只标信号。": "A short petiole links the primary pulvinus to the pinna junction. Geometry is qualitative; bright dots only mark signals.",
+  "这里另看叶柄基部的主叶枕。局部轻触让金圈处的小叶合拢，本例的主叶枕保持原状。": "This view compares the primary pulvinus at the petiole base. Local touch folds the leaflet at the gold ring; the primary pulvinus stays unchanged in this example.",
+  "茎先连接主叶枕，再经短叶柄连到四条羽片。较广刺激时，图中的叶柄与整片复叶围绕主叶枕一起下垂。金圈标出的小叶基部叶枕负责局部合拢；本页没有绘制它的组织剖面。转角与形状只是定性投影，没有求解三维姿态或组织力学。": "The stem connects to the primary pulvinus, then a short petiole leads to the four pinnae. With wider stimulation, the illustrated petiole and entire compound leaf droop together about the primary pulvinus. The gold ring marks a leaflet-base pulvinus responsible for local folding; its tissue section is not drawn here. Angles and shapes are qualitative projections, not a solution of three-dimensional posture or tissue mechanics.",
+  "主叶枕连接茎与叶柄的实时成像（原始研究）": "Real-time imaging of the primary pulvinus linking stem and petiole (original research)",
+  "金圈处小叶叶枕的含水趋势": "Water trend at the ringed leaflet pulvinus"
 }

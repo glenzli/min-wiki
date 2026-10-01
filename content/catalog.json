@@ -81,7 +81,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "stars",
@@ -129,7 +129,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "black-hole",
@@ -177,7 +177,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "earth-seasons",
@@ -251,7 +251,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-11",
+      "updated": "2026-10-01",
       "parentTopic": "black-holes"
     },
     {
@@ -302,7 +302,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "earth-moon",
@@ -343,7 +343,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-12",
+      "updated": "2026-10-01",
       "parentTopic": "solar-system"
     },
     {
@@ -392,7 +392,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "submarine-volcanoes",
@@ -435,7 +435,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12",
+      "updated": "2026-10-01",
       "parentTopic": "volcano-eruption"
     },
     {
@@ -555,7 +555,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-22"
+      "updated": "2026-10-01"
     },
     {
       "id": "flower-colors",
@@ -641,7 +641,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-10-01"
     },
     {
       "id": "buoyancy",
@@ -662,7 +662,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12"
+      "updated": "2026-10-01"
     },
     {
       "id": "shadows",
@@ -741,7 +741,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "friction",
@@ -958,7 +958,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-12",
+      "updated": "2026-10-01",
       "parentTopic": "leaf-colors"
     },
     {
@@ -1396,7 +1396,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-17",
+      "updated": "2026-10-01",
       "parentTopic": "sound-vibrations"
     },
     {
@@ -1464,7 +1464,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-20"
+      "updated": "2026-10-01"
     },
     {
       "id": "refrigerator",
@@ -1488,7 +1488,7 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-17"
+      "updated": "2026-10-01"
     },
     {
       "id": "batteries",

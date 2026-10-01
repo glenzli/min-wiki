@@ -30,3 +30,9 @@ The animated clay outline is a continuity cue, not a mechanics solver or a timed
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
+
+## Suspended immersion / 悬线浸深 · 2026-10-01
+
+浸深实验的 1200 g 方块由悬线缓缓放低，不是向下压。模型将绳张力和触底支持力分别归属到实际施力对象；受力箭头统一为 8 示意长度单位/N，显示停稳状态下 `T + F浮 = W`。浸入增加，浮力增大、张力减小；完全浸没后继续降低，两者基本不变。淡水和海水中悬线均保持绷紧。本实验不计算放线或运动中的加速度。
+
+The heavier-than-water block is lowered on a taut cord. Cord tension and tank-floor support are distinct model outputs. All force arrows share one scale and show settled balance, not transition dynamics. Children compare both upward forces; academic readings report their sum and weight. [OpenStax's buoyancy and apparent-weight explanation](https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy) was checked for this relation.

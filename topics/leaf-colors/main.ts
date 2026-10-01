@@ -9,9 +9,9 @@ import { journeyScale, JOURNEY_DURATION, pigmentsAt, routeLevel, SCALE_STOPS, ep
 import type { LeafKind } from './model.ts';
 import { LeafScene } from './scene.ts';
 import { LIFE_STOPS, leafLifeAt, readLeafRoute, type LeafView } from './lifecycle.ts';
-import { lifeContent, waterStories } from './lifeContent.ts';
+import { lifeContent, waterStory } from './lifeContent.ts';
 import { mountWaterScene } from '../plant-water/scene.ts';
-import { WATER_STOPS, waterAt } from '../plant-water/model.ts';
+import { WATER_STOPS } from '../plant-water/model.ts';
 import './style.css';
 
 translateDocument(t);
@@ -33,7 +33,7 @@ function update() {
   season = life.senescence;
   const inspectable = life.growth > .9 && life.fall === 0;
   if (!inspectable && view === 'inside') { insidePosition = position; view = 'life'; position = 0; touring = false; }
-  if ((life.growth <= .9 || life.transport < .1) && waterPlaying) waterPlaying = false;
+  if (!life.waterAvailable && waterPlaying) waterPlaying = false;
   zoom = routeLevel(Math.round(position), kind);
   const atSurface=epidermisVisible(position);
   const data = atSurface ? epidermisContent : scaleContent(zoom, kind), pigments = pigmentsAt(season, kind);
@@ -77,13 +77,13 @@ function update() {
   document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.view === view)); button.disabled = button.dataset.view === 'inside' && !inspectable; });
   el('inside-availability').hidden = inspectable;
   el('water-panel').hidden = view !== 'water';
-  const waterActive = life.growth > .9 && life.transport > .1;
+  const waterActive = life.waterAvailable;
   (el('water-play') as HTMLButtonElement).disabled = !waterActive;
   (el('water-progress') as HTMLInputElement).disabled = !waterActive;
   el('water-play').textContent = waterPlaying ? t('暂停') : waterProgress >= 1 ? t('再看一次') : t('播放水的旅行');
   el('water-play').setAttribute('aria-pressed', String(waterPlaying));
   (el('water-progress') as HTMLInputElement).value = String(Math.round(waterProgress * 1000));
-  el('water-status').textContent = waterStories[waterAt(waterProgress).stage]!;
+  el('water-status').textContent = waterStory(waterProgress);
   el('water-availability').textContent = waterActive ? t('水的进度与叶龄分开：切换视角会保留两者。临近脱落时，这条连接逐渐停止输水。') : t('当前不在成熟叶运输的观察范围内：幼叶尚未展开，或连接正在中断、已经脱落。可以回到成熟阶段。');
   el('water-map').style.filter = waterActive ? '' : 'grayscale(.8)';
   el('return-mature').hidden = waterActive;
@@ -105,7 +105,7 @@ function update() {
   const science = SCIENCE[zoom];
   el('science-panel').hidden = !academic;
   for (const key of ['title', 'body', 'formula', 'terms', 'watch', 'caution'] as const) el(`science-${key}`).textContent = science[key];
-  scene?.setLife(age, view === 'water', waterProgress);
+  scene?.setLife(age, view === 'water' && waterActive, waterProgress);
   scene?.set(position, season, kind);
 }
 function seekScale(target: number) {
@@ -187,7 +187,7 @@ function changeView(next: LeafView, write = true) {
 }
 document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(button => button.addEventListener('click', () => changeView(button.dataset.view as LeafView)));
 el('water-play').addEventListener('click', () => {
-  if (leafLifeAt(age).transport <= .1 || leafLifeAt(age).growth <= .9) return;
+  if (!leafLifeAt(age).waterAvailable) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { waterPlaying = false; waterProgress = WATER_STOPS.find(stop => stop > waterProgress + .01) ?? 0; update(); return; }
   waterPlaying = !waterPlaying; if (waterPlaying && waterProgress >= 1) waterProgress = 0;
   last = performance.now(); if (waterPlaying && !frame) frame = requestAnimationFrame(tick); update();

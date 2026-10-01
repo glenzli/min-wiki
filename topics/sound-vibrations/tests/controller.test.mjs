@@ -14,7 +14,7 @@ function harness(){
   children=[];attributes={};dataset={};value='';textContent='';hidden=false;style={};classList={toggle:()=>false};
   constructor(tag='div',attrs=[]){super();this.tag=tag;for(const a of attrs)this.setAttribute(a.name,a.value);this.value=this.attributes.value??'';}
   setAttribute(k,v){this.attributes[k]=String(v);if(k.startsWith('data-'))this.dataset[k.slice(5)]=String(v);}
-  getAttribute(k){return this.attributes[k]??null;}append(e){e.parent=this;this.children.push(e);}after(e){if(!this.parent)return;e.parent=this.parent;this.parent.children.splice(this.parent.children.indexOf(this)+1,0,e);}
+  getAttribute(k){return this.attributes[k]??null;}append(e){e.parent=this;this.children.push(e);}insertBefore(e,ref){e.parent=this;const i=this.children.indexOf(ref);if(i<0)this.children.push(e);else this.children.splice(i,0,e);}after(e){if(!this.parent)return;e.parent=this.parent;this.parent.children.splice(this.parent.children.indexOf(this)+1,0,e);}
   querySelectorAll(selector){const all=this.children.flatMap(e=>[e,...e.querySelectorAll('*')]);return all.filter(e=>selector==='*'||e.tag===selector||selector[0]==='#'&&e.attributes.id===selector.slice(1)||selector[0]==='.'&&(e.attributes.class??e.className)?.split(/\s+/).includes(selector.slice(1))||/^\[/.test(selector)&&selector.slice(1,-1) in e.attributes);}
   querySelector(s){return this.querySelectorAll(s)[0]??null;}
   set innerHTML(html){this.children=[];register(parseFragment(html),this);}
@@ -47,6 +47,18 @@ test('the receiver handoff appears only after the air-front arrival and keeps th
 });
 test('shared presets drive real source controls and ear geometry without moving pitch on amplitude change',()=>{
  const h=harness();h.chapter('ear');h.input('h-progress',62);h.preset('base');const before=h.get('place-circle').getAttribute('cx');h.preset('amplitude');assert.equal(h.get('amplitude').value,'50');assert.equal(h.get('place-circle').getAttribute('cx'),before);assert.equal(h.get('h-progress').value,'62');h.preset('pitch');assert.equal(h.get('tension').value,'4');assert.ok(Number(h.get('place-circle').getAttribute('cx'))<Number(before));assert.match(h.get('condition-summary').textContent,/392/);
+});
+test('the real instrument renders changing tension and a reversible overlay without resetting progress',()=>{
+ const h=harness();h.input('tension',1);h.input('phase',250);
+ const low=h.get('left-pull').getAttribute('d');
+ h.input('tension',4);assert.equal(h.get('phase').value,'0');
+ const high=h.get('left-pull').getAttribute('d');assert.notEqual(high,low);
+ assert.match(h.get('string-tension-caption').textContent,/4\.0/);
+ h.input('phase',250);const string=h.get('string').getAttribute('d');
+ h.get('show-string-forces').checked=false;h.get('show-string-forces').dispatch('change');
+ assert.equal(h.get('string-forces').getAttribute('opacity'),'0');assert.equal(h.get('phase').value,'250');
+ h.get('show-string-forces').checked=true;h.get('show-string-forces').dispatch('change');
+ assert.equal(h.get('string-forces').getAttribute('opacity'),'1');assert.equal(h.get('string').getAttribute('d'),string);
 });
 test('leaving a chapter invalidates pending audio; only explicit listen creates a bounded tone',async()=>{
  const h=harness();assert.equal(h.audio.created,0);h.get('pluck').dispatch('click');h.chapter('ear');h.audio.resume.shift()();await new Promise(setImmediate);assert.equal(h.audio.created,0);h.chapter('source');h.get('pluck').dispatch('click');h.audio.resume.shift()();await new Promise(setImmediate);assert.equal(h.audio.created,1);h.document.hidden=true;h.document.dispatch('visibilitychange');assert.ok(h.audio.stopped>=1);assert.ok(h.audio.disconnected>=1);

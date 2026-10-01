@@ -29,13 +29,13 @@ function update() {
   el('status').textContent = s.recovering ? t('重新舒展') : s.fold > .95 ? t('已经合拢') : s.fold > .02 ? t('正在收拢') : t('小叶展开');
   const primary = primaryPulvinus(progress, config), enlarged = view !== 'plant';
   el('scene-title').textContent = view === 'plant' ? t('四条羽片，许多对小叶') : view === 'cell' ? t('下侧运动细胞：从壁到液泡') : t('主叶枕纵切：两侧共同支撑叶柄');
-  el('scene-note').textContent = view === 'plant' ? t('颜色标出信号的位置，不是植物发光。') : t('结构与颜色经过教学放大；不是显微照片，也不按同一比例。');
+  el('scene-note').textContent = view === 'plant' ? t('短叶柄连接主叶枕与羽片汇合处。几何是定性投影，亮点只标信号。') : t('结构与颜色经过教学放大；不是显微照片，也不按同一比例。');
   const water = enlarged ? primary.lowerWater : s.water;
   el('water-value').textContent = `${Math.round(water * 100)}%`; el('water-bar').style.width = `${water * 100}%`;
-  el('water-label').textContent = enlarged ? t('主叶枕下侧细胞的含水趋势') : t('一侧运动细胞的含水趋势');
+  el('water-label').textContent = enlarged ? t('主叶枕下侧细胞的含水趋势') : t('金圈处小叶叶枕的含水趋势');
   el('zoom-guide').hidden = !enlarged;
   el('explore-hint').hidden = enlarged;
-  el('zoom-context').textContent = config.extent === 'local' ? t('局部轻触只让这条羽片的小叶合拢；本例的主叶枕没有下垂。') : progress === 1 ? t('水分与两侧支撑已恢复，叶柄重新抬起。') : primary.recovering ? t('水分重新分配，两侧支撑逐渐恢复，叶柄抬起。') : primary.contraction > .05 ? t('下侧伸展组织失水，膨压降低；连续的组织带着叶柄向下弯。') : t('这是主叶枕；信号到达后，再观察下侧细胞与叶柄。');
+  el('zoom-context').textContent = config.extent === 'local' ? t('这里另看叶柄基部的主叶枕。局部轻触让金圈处的小叶合拢，本例的主叶枕保持原状。') : progress === 1 ? t('水分与两侧支撑已恢复，叶柄重新抬起。') : primary.recovering ? t('水分重新分配，两侧支撑逐渐恢复，叶柄抬起。') : primary.contraction > .05 ? t('下侧伸展组织失水，膨压降低；连续的组织带着叶柄向下弯。') : t('这是主叶枕；信号到达后，再观察下侧细胞与叶柄。');
   el('upper-pressure').style.width = `${primary.upperTurgor * 100}%`;
   el('lower-pressure').style.width = `${primary.lowerTurgor * 100}%`;
   el('touch').textContent = config.extent === 'local' ? t('轻触选中的羽片') : t('演示较广刺激');

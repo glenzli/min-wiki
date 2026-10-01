@@ -15,7 +15,7 @@
       },
       {
         "title": "密度、深度与实验控制",
-        "body": "在均匀且近似不可压缩的水中，刚性物体完全浸没后继续下移，其排水体积不变，浮力基本不变，尽管各处压强都增大。换更密的液体，在相同浸没体积下浮力会增大；自由漂浮物则会升高一点直到再次平衡。比较时需说清固定的是体积、质量还是平衡状态，不能混用这些条件。"
+        "body": "在均匀且近似不可压缩的水中，刚性物体完全浸没后继续下移，其排水体积不变，浮力基本不变，尽管各处压强都增大。换更密的液体，在相同浸没体积下浮力会增大；自由漂浮物则会升高一点直到再次平衡。比较时需说清固定的是体积、质量还是平衡状态，不能混用这些条件。 本例方块由绷紧的悬线保持静止，T + F浮 = W；浸入增多时浮力增大、张力减小，完全浸没后两者基本不变。"
       }
     ],
     "misconception": "轻的必浮、重的必沉不成立；浮沉要比较重量、可排开的液体和所受其他支持。",
@@ -38,8 +38,8 @@
       },
       {
         "label": "全部进入水里以后",
-        "text": "最后，用装置慢慢把方块压进水里。开始时，进去的部分越多，水托的力越大。等整个方块都在水里了，再往下移，排开的水没有继续变多，向上的力也基本不变。发现了吗？想解释浮力，要问水被排开多少，还要问物体有多重。",
-        "cue": "比较半浸、全浸与更深位置。"
+        "text": "最后，用悬线把方块缓缓放低。开始时，进入水里的部分越多，水托得越多，绳子需要拉的力越小。等整个方块都在水里，再往下移，排开的水没有继续变多，浮力和绳的拉力都基本不变。看，水的托力加上绳的拉力，一起托住同样的重量。",
+        "cue": "比较半浸、全浸与更深位置；追踪浮力和张力箭头，保持重力不变。"
       }
     ]
   },
@@ -57,7 +57,7 @@
       },
       {
         "title": "Control density, depth and equilibrium",
-        "body": "For a rigid object fully immersed in nearly incompressible uniform water, moving deeper does not change displaced volume or buoyancy much, although pressure increases. Denser liquid increases buoyancy at fixed immersion. A freely floating object instead rises until balance returns. Comparisons must state which quantities are held fixed."
+        "body": "For a rigid object fully immersed in nearly incompressible uniform water, moving deeper does not change displaced volume or buoyancy much, although pressure increases. Denser liquid increases buoyancy at fixed immersion. A freely floating object instead rises until balance returns. Comparisons must state which quantities are held fixed. A taut cord holds this block at rest: T + F_b = W. Increasing immersion increases buoyancy and reduces tension; both stay nearly constant after full immersion."
       }
     ],
     "misconception": "Light always floats and heavy always sinks is false. Compare weight, possible displacement and any other supporting forces.",
@@ -80,8 +80,8 @@
       },
       {
         "label": "After complete immersion",
-        "text": "Finally, use the support to lower the block. At first, more of it enters the water and the upward push grows. Once the whole rigid block is underwater, moving it deeper does not displace more water, so the push stays nearly the same. Buoyancy questions need both displacement and the object’s weight.",
-        "cue": "Compare partial, complete and deeper immersion."
+        "text": "Finally, lower the block slowly on a cord. As more of it enters the water, buoyancy increases and the cord needs to pull up less. Once the entire block is underwater, lowering it further does not displace more water: buoyancy and tension stay nearly the same. Together, the water and the cord support the same weight.",
+        "cue": "Compare partial, full and deeper immersion; track buoyancy and tension while weight stays fixed."
       }
     ]
   },

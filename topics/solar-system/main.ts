@@ -275,7 +275,7 @@ class SolarApp {
       if (
         event.code !== 'Space' ||
         event.repeat ||
-        (event.target as HTMLElement).closest('button,input,select,textarea,a,[contenteditable]') ||
+        (event.target as HTMLElement).closest('button,input,select,textarea,a,summary,[contenteditable]') ||
         this.dialog.open
       ) {
         return;

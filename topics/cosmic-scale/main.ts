@@ -46,11 +46,11 @@ function saveRoute(){const url=new URL(location.href);url.searchParams.set('mode
 function setChapter(chapter:Chapter){stop();comparison.stop();exploration.chapter=chapter;update(true);}
 function syncStudy(){
   const stage=stageFor(state.progress);
-  const key=exploration.chapter==='compare'?`compare:${Math.round(exploration.pair)}`:exploration.chapter==='homes'?`home:${exploration.home}`:`zoom:${stage}`;
+  const key=exploration.chapter==='compare'?`compare:${Math.round(exploration.pair)}`:exploration.chapter==='homes'?`home:${exploration.home}`:`zoom:${state.origin}:${stage}`;
   if(key===studyKey||!reading)return;
   studyKey=key;
   reading.setChildTarget(exploration.chapter==='zoom'?el('explain'):comparisonNote);
-  reading.set(exploration.chapter==='compare'?pairStudy(Math.round(exploration.pair)):exploration.chapter==='homes'?homeStudy(exploration.home):zoomStudy(stage));
+  reading.set(exploration.chapter==='compare'?pairStudy(Math.round(exploration.pair)):exploration.chapter==='homes'?homeStudy(exploration.home):zoomStudy(stage,state.origin));
 }
 for(const [i,chapter] of (['compare','homes','zoom'] as const).entries()){const b=document.createElement('button');b.textContent=words.chapters[i]!;b.dataset.chapter=chapter;b.onclick=()=>setChapter(chapter);el('journey-chapters').append(b);}
 function update(sync=false){

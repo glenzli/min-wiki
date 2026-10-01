@@ -17,6 +17,18 @@ test('buoyancy increases with immersed volume, not further depth after complete 
  const at=depth=>buoyancy({...base,experiment:'depth',depth});
  assert.equal(at(0).force,0); assert.equal(at(50).displaced,500); assert.equal(at(100).force,at(150).force);
 });
+test('a suspended immersion block balances buoyancy and taut-cord tension at every depth', () => {
+ for(const salt of [false,true]){
+  const at=depth=>buoyancy({...base,experiment:'depth',salt,depth});
+  const samples=[0,25,50,75,100,125,150].map(at);
+  for(const r of samples){assert.ok(r.tension>0);assert.equal(r.floorSupport,0);assert.ok(Math.abs(r.tension+r.force-r.weight)<1e-12);}
+  assert.ok(at(0).tension>at(50).tension&&at(50).tension>at(100).tension);
+  assert.equal(at(100).tension,at(150).tension);
+ }
+ const stone=buoyancy({...base,object:'stone'});
+ assert.equal(stone.tension,0);assert.ok(Math.abs(stone.floorSupport+stone.force-stone.weight)<1e-12);
+ const wood=buoyancy(base);assert.equal(wood.tension,0);assert.equal(wood.floorSupport,0);
+});
 test('salt water supports the same floating weight at less displacement',()=>{
  const fresh=buoyancy(base), salt=buoyancy({...base,salt:true});
  assert.ok(salt.displaced<fresh.displaced); assert.ok(Math.abs(salt.force-salt.weight)<1e-10);

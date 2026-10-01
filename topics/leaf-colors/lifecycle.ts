@@ -6,6 +6,7 @@ const bounded = (x: number) => Number.isFinite(x) ? Math.max(0, Math.min(1, x)) 
 export function leafLifeAt(value: number) {
   const age = bounded(value), growth = smooth(0, .28, age), senescence = smooth(.46, .86, age);
   const separation = smooth(.77, .87, age), fall = smooth(.87, 1, age);
+  const transport = growth * (1 - separation);
   return {
     age, growth, senescence, separation, fall,
     stage: age < .22 ? 'bud' : age < .48 ? 'mature' : age < .87 ? 'senescent' : 'fallen',
@@ -13,7 +14,8 @@ export function leafLifeAt(value: number) {
     rotation: fall * .9, x: -185 * fall, y: 40 * fall,
     browning: smooth(.85, 1, age),
     // Observation excludes active transport before expansion and after detachment.
-    transport: growth * (1 - separation),
+    transport,
+    waterAvailable: growth > .9 && transport > .1,
     recovery: smooth(.47, .81, age),
   } as const;
 }

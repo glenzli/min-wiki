@@ -1,5 +1,5 @@
 import { t } from './i18n.ts';
-import { hearingSequence, membraneDisplacement } from './model.ts';
+import { hearingSequence, membraneDisplacement, HAIR_CELL_POSITIONS, selectedHairCell } from './model.ts';
 const text=(x:number,y:number,value:string,anchor='start')=>`<text x="${x}" y="${y}" text-anchor="${anchor}">${value}</text>`;
 const defs=(prefix:string)=>`<defs>
 <linearGradient id="${prefix}-paper" x2=".7" y2="1"><stop stop-color="#fcf8ef"/><stop offset="1" stop-color="#e8e6d7"/></linearGradient>
@@ -39,7 +39,7 @@ export function createHearingScene(root: HTMLElement = document.body){
  ${text(371,145,t('听小骨'),'middle')}<path d="M376 152L377 189" stroke="#968370"/>
  ${text(526,365,t('耳蜗'),'middle')}<path d="M528 348V327" stroke="#968370"/>
  ${text(652,189,t('向脑'),'middle')}${text(641,421,t('概念纵切面'),'end')}`;
- const tinyCells=Array.from({length:18},(_,i)=>`<g id="strip-cell-${i}" transform="translate(${88+i*24} 231)"><path d="M-4-8Q-8-21-4-29H4Q9-15 4-8Z" fill="url(#micro-cell)" stroke="#8fa088" stroke-width=".8"/><path d="M-3-29v-7m3 7v-9m3 9v-11" stroke="#758b76" stroke-width="1.3"/></g>`).join('');
+ const tinyCells=HAIR_CELL_POSITIONS.map((x,i)=>`<g id="strip-cell-${i}" transform="translate(${54+x*492} 231)"><path d="M-4-8Q-8-21-4-29H4Q9-15 4-8Z" fill="url(#micro-cell)" stroke="#8fa088" stroke-width=".8"/><path d="M-3-29v-7m3 7v-9m3 9v-11" stroke="#758b76" stroke-width="1.3"/></g>`).join('');
  const support=Array.from({length:5},(_,i)=>{const x=136+i*73;return `<path d="M${x} 742q17-15 29 0l16 122q-11 18-48 0Z" fill="url(#micro-cell)" fill-opacity=".53" stroke="#9baa8c" stroke-width="1"/><ellipse cx="${x+14}" cy="829" rx="7" ry="11" fill="#9f9c89" opacity=".4"/>`;}).join('');
  root.querySelector('#h-detail-art')!.innerHTML=defs('micro')+`<rect width="600" height="980" fill="url(#micro-paper)"/><rect width="600" height="980" fill="url(#micro-grain)"/>
  ${text(32,43,t('A：把同一耳蜗展开'))}${text(32,69,t('位置表示相对高低音，不标真实频率'))}
@@ -73,6 +73,7 @@ export function drawHearing(progress:number,pitch:number,strength:number,root:HT
  ['cx','cy','rx','ry'].forEach((name,i) => focus.setAttribute(name,String(focusGeometry[i])));
  root.querySelector('#eardrum')!.setAttribute('transform',`translate(${s.deflection*3} 0)`);
  root.querySelector('#ossicles')!.setAttribute('transform',`rotate(${s.deflection*2.3} 369 201)`);
+ root.querySelector('#air-waves')!.setAttribute('opacity',s.amplitude>0?'1':'0');
  root.querySelector('#air-waves')!.innerHTML=Array.from({length:5},(_,i)=>{const x=36+i*54+40*s.air;return `<path d="M${x} ${239-9*s.amplitude}q${5*s.amplitude} 17 0 ${34*s.amplitude}" opacity="${.15+.7*Math.sin(Math.PI*s.air)}"/>`;}).join('');
  root.querySelector('#cochlea-glow')!.setAttribute('opacity',String(.18*Math.sin(Math.PI*s.cochlea)));
  const pt=trace(root,'nerve-route',s.nerve);const dot=root.querySelector('#nerve-dot')!;dot.setAttribute('cx',String(pt.x));dot.setAttribute('cy',String(pt.y));dot.setAttribute('opacity',s.nerve>0&&s.nerve<1?'1':'0');
@@ -81,19 +82,23 @@ export function drawHearing(progress:number,pitch:number,strength:number,root:HT
  root.querySelector('#basilar-membrane')!.setAttribute('d',wave);
  const envelope=Array.from({length:91},(_,i)=>{const x=i/90;return `L${54+x*492} ${230-40*Math.exp(-Math.pow((x-s.place)/.18,2))*s.amplitude}`;}).join(' ');
  root.querySelector('#response-envelope')!.setAttribute('d',`M54 230${envelope}L546 230Z`);
+ root.querySelector('#response-envelope')!.setAttribute('opacity',s.amplitude>0?'1':'0');
  const marker=54+s.place*492;
- const sampleX=88+Math.round((marker-88)/24)*24;
- const sampleY=239+membraneDisplacement((sampleX-54)/492,progress,pitch,strength)*24;
+ const sample=selectedHairCell(progress,pitch,strength),sampleX=54+sample.x*492;
+ const sampleY=239+sample.displacement*24;
  root.querySelector('#place-marker')!.setAttribute('d',`M${sampleX} ${sampleY+6}V330`);
  root.querySelector('#place-circle')!.setAttribute('cx',String(marker));
  root.querySelector('#sample-cell-anchor')!.setAttribute('transform',`translate(${sampleX} 345)`);
  root.querySelector('#sample-cell-focus')!.setAttribute('cx',String(sampleX));
  root.querySelector('#sample-cell-focus')!.setAttribute('cy',String(sampleY-20));
- for(let i=0;i<18;i++){const x=88+i*24;root.querySelector(`#strip-cell-${i}`)!.setAttribute('transform',`translate(${x} ${239+membraneDisplacement((x-54)/492,progress,pitch,strength)*24})`);}
- root.querySelector('#hair-cell')!.setAttribute('transform',`translate(0 ${s.deflection*2})`);
- root.querySelector('#stereocilia')!.setAttribute('transform',`skewX(${-s.deflection*10}) translate(${Math.tan(s.deflection*10*Math.PI/180)*704} 0)`);
- root.querySelector('#flow-arrows')!.setAttribute('transform',`translate(${s.deflection*8} 0)`);
- root.querySelector('#ions')!.innerHTML=Array.from({length:5},(_,i)=>{const phase=Math.max(0,Math.min(1,s.transduction*2-i*.2));return `<circle cx="${259+i*7}" cy="${614+phase*89}" r="3" opacity="${Math.sin(Math.PI*phase)}"/>`;}).join('');
- trace(root,'cell-signal',s.nerve);root.querySelector('#vesicles')!.setAttribute('transform',`translate(0 ${5*Math.sin(Math.PI*s.transduction)})`);
+ HAIR_CELL_POSITIONS.forEach((x,i)=>root.querySelector(`#strip-cell-${i}`)!.setAttribute('transform',`translate(${54+x*492} ${239+membraneDisplacement(x,progress,pitch,strength)*24})`));
+ // The close-up shares B's local arrival and motion. These enlarged projections
+ // explain causal order, not a measured membrane/bundle phase relationship.
+ root.querySelector('#hair-cell')!.setAttribute('transform',`translate(0 ${sample.displacement*2})`);
+ root.querySelector('#stereocilia')!.setAttribute('transform',`skewX(${-sample.displacement*10}) translate(${Math.tan(sample.displacement*10*Math.PI/180)*704} 0)`);
+ root.querySelector('#flow-arrows')!.setAttribute('transform',`translate(${sample.displacement*8} 0)`);
+ root.querySelector('#flow-arrows')!.setAttribute('opacity',String(sample.arrived?sample.active:0));
+ root.querySelector('#ions')!.innerHTML=Array.from({length:5},(_,i)=>{const phase=Math.max(0,Math.min(1,sample.transduction*2-i*.2));return `<circle cx="${259+i*7}" cy="${614+phase*89}" r="3" opacity="${phase===0||phase===1?0:Math.sin(Math.PI*phase)}"/>`;}).join('');
+ trace(root,'cell-signal',sample.nerve);root.querySelector('#vesicles')!.setAttribute('transform',`translate(0 ${sample.transduction===1?0:5*Math.sin(Math.PI*sample.transduction)})`);
  return s;
 }

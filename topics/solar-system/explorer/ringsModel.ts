@@ -27,8 +27,8 @@ export function localRingParticle(index:number,time:number):[number,number,numbe
   const along=((initial-x*time*.045+3.5)%7+7)%7-3.5;
   return [x,(hash(index+231)-.5)*.16,along];
 }
-export function legacySaturnMoonTarget(search:string){
-  const old=new URLSearchParams(search),next=new URLSearchParams({body:'saturn',view:'moons'});
-  next.set('lang',old.get('lang')==='en'?'en':'zh');
-  return `/topics/solar-system/?${next}`;
+/** Retain reading/filter state; the entry applies the shared language and base path. */
+export function legacySaturnMoonTarget(search:string,hash=''){
+  const next=new URLSearchParams(search);next.set('body','saturn');next.set('view','moons');
+  return `/topics/solar-system/?${next}${hash}`;
 }

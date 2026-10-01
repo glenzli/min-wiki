@@ -95,7 +95,7 @@ el('progress').addEventListener('input', () => { stop(); progress = number('prog
 for (const id of ["view", "guides"]) el(id).addEventListener('input', update);
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });
 el('steps').replaceChildren(...PHASES.map((phase, i) => { const b = document.createElement('button'); b.textContent = phase.title; b.addEventListener('click', () => { stop(); seekStage(i === 0 && progress > .875 ? 1 : positions[i]); }); return b; }));
-document.addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !(e.target as HTMLElement)?.closest('button,input,select,a,textarea,[contenteditable]')) { e.preventDefault(); toggle(); } });
+document.addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !(e.target as HTMLElement)?.closest('button,input,select,a,textarea,summary,[contenteditable]')) { e.preventDefault(); toggle(); } });
 document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0; } else if (playing && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });
 window.addEventListener('pagehide', e => { cancelAnimationFrame(frame); frame = 0; if (!e.persisted) { stop(); reducedMotion.removeEventListener('change', onMotionPreference); scene?.dispose(); } });
 window.addEventListener('pageshow', () => { if (playing && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });

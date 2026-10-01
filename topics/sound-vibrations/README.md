@@ -25,3 +25,9 @@ The delayed copy in the diagram is a traveling-wave teaching model; see [OpenSta
 ## Presentation layout
 
 The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+
+## Tension and displacement / 拉力与位移 · 2026-10-01
+
+保持两支点之间的有效振动长度。调弦旋钮提示张力变化，成对蓝灰箭头沿当前弦的端部切线指向外侧，长度按相对张力采用同一比例；金色线显示同一中点相对虚线平衡位置的位移。力、位移和频率分别有可观察的编码，不把更大的拨动幅度画成更大张力。该示意不计算端点附近的完整受力场或弦的非线性伸长。
+
+The entire instrument geometry remains visible without cropping. The low setting is still taut: the supported `T=1–4` ideal-string model never enters a slack-string branch. The force overlay can be hidden without resetting progress or audio conditions. [OpenStax's stretched-string derivation](https://openstax.org/books/university-physics-volume-1/pages/16-3-wave-speed-on-a-stretched-string) was checked for tangent tension and transverse restoring components. Force arrows encode relative tension, not calibrated newtons; midpoint displacement remains an exaggerated teaching projection.

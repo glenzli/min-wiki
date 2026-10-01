@@ -31,7 +31,6 @@ export class CompanionScene {
     private currentView: View = 'overview';
     private width = 1;
     private height = 1;
-    private lastSurfaceFrame = -Infinity;
     constructor(private canvas: HTMLCanvasElement) {
         this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
         this.renderer.setClearColor(0x030812);
@@ -99,11 +98,11 @@ export class CompanionScene {
         this.gas.material.uniforms.uHeight.value = box.height; }
     draw(progress: number, scenario: Scenario, guides: boolean, view: View, showOrbit = false) {
         const now = performance.now();
-        const key = [progress, scenario, guides, view, showOrbit].join(":");
-        // The photosphere keeps boiling even when the teaching timeline is paused.
-        // Bound it to 30 fps so the continuous surface does not monopolize the GPU.
-        if (key === this.lastKey && !this.needsRender && now - this.cameraStarted >= 900 && now - this.lastSurfaceFrame < 33) return;
-        this.lastSurfaceFrame = now;
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const key = [progress, scenario, guides, view, showOrbit, reducedMotion].join(":");
+        // Surface, gas and disk share the reversible teaching timeline. A paused
+        // chapter has no wall-clock surface work; view transitions can finish.
+        if (key === this.lastKey && !this.needsRender && (reducedMotion || now - this.cameraStarted >= 900)) return;
         this.lastKey = key;
         const time = progress * 32;
         this.root.rotation.z = showOrbit ? progress * Math.PI * 2 : 0;
@@ -111,7 +110,7 @@ export class CompanionScene {
         // A slight Roche-side bulge remains physical, while the narrow teaching
         // lens—not a wide-angle stretch—owns the apparent size on screen.
         this.star.scale.set(radius * (scenario === 'overflow' ? 1.035 : 1), radius, radius);
-        this.star.material.uniforms.uTime.value = now / 1000;
+        this.star.material.uniforms.uTime.value = reducedMotion ? 0 : time;
         this.star.material.uniforms.uBlue.value = scenario === 'wind' ? 1 : 0;
         this.hole.setAccretion(time, scenario === 'detached' ? 0 : scenario === 'wind' ? .65 : .9);
         this.guides.visible = guides && scenario !== 'wind';
@@ -143,7 +142,7 @@ export class CompanionScene {
         this.tracer.visible = scenario !== 'detached' && progress < .995;
         if (view !== this.currentView) {
             this.fromCamera.copy(this.camera.position); this.fromTarget.copy(this.controls.target); this.fromUp.copy(this.camera.up);
-            this.cameraStarted = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? -Infinity : performance.now();
+            this.cameraStarted = reducedMotion ? -Infinity : now;
             this.currentView = view;
             this.controls.enabled = view === 'free';
         }
@@ -156,7 +155,7 @@ export class CompanionScene {
             this.camera.up.set(0, 0, 1);
             if (view === 'top')
                 this.camera.up.set(0, 1, 0);
-            const elapsed = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : Math.min(1, Math.max(0, (performance.now() - this.cameraStarted) / 900));
+            const elapsed = reducedMotion ? 1 : Math.min(1, Math.max(0, (now - this.cameraStarted) / 900));
             const blend = elapsed * elapsed * (3 - 2 * elapsed);
             if (blend < 1) {
                 this.camera.position.lerpVectors(this.fromCamera, this.camera.position.clone(), blend);

@@ -40,9 +40,9 @@
 .learning-companion a:hover { color: var(--ink); }
 .learning-toolbar { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; align-items: center; padding: 6px 0 23px; }
 .learning-downloads { display: flex; gap: 8px; flex-wrap: wrap; }
-.learning-companion :is(button, .learning-download) { display: inline-flex; align-items: center; text-decoration: none; width: auto; min-width: 0; min-height: 42px; padding: 9px 15px; font: 500 12px/1.5 var(--ui-font); border: 1px solid var(--border); border-radius: 8px; color: var(--ink); background: var(--surface); cursor: pointer; }
+.learning-companion :is(button, .learning-download) { display: inline-flex; align-items: center; text-decoration: none; width: auto; min-width: 0; min-height: 44px; padding: 9px 15px; font: 500 12px/1.5 var(--ui-font); border: 1px solid var(--border); border-radius: 8px; color: var(--ink); background: var(--surface); cursor: pointer; }
 .learning-companion :is(button, .learning-download):hover { background: var(--tint); border-color: var(--secondary); }
-.learning-companion .learning-cue-toggle { display: flex; flex: none; flex-direction: row; gap: 8px; align-items: center; color: var(--secondary); font-size: 12px; font-weight: 400; min-width: 0; min-height: 36px; }
+.learning-companion .learning-cue-toggle { display: flex; flex: none; flex-direction: row; gap: 8px; align-items: center; color: var(--secondary); font-size: 12px; font-weight: 400; min-width: 0; min-height: 44px; }
 .learning-cue-toggle input { width: 16px; height: 16px; accent-color: var(--learning-color); }
 .learning-script { list-style: none; margin: 0; padding: 0; max-width: 920px; }
 .learning-segment { display: grid; grid-template-columns: 35px minmax(0, 1fr); gap: 18px; padding: 22px 0; border-top: 1px solid var(--border); }
@@ -52,7 +52,7 @@
 .learning-companion .learning-cue { font-size: 12px; line-height: 1.8; border-left: 2px solid var(--border); padding: 2px 0 2px 13px; margin-top: 14px; }
 .learning-companion [hidden] { display: none !important; }
 .learning-companion :is(button, summary, a, input):focus-visible { outline: 2px solid var(--ink); outline-offset: 5px; }
-.encyclopedia-nav .learning-jump { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; min-height: 36px; line-height: 20px; }
+.encyclopedia-nav .learning-jump { box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; min-height: 44px; line-height: 20px; }
 #learning-companion, #academic-notes, #narration { scroll-margin-top: 25px; }
 @media (max-width: 620px) {
   .learning-companion { margin-top: 38px; padding-top: 27px; }

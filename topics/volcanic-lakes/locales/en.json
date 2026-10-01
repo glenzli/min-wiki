@@ -127,5 +127,9 @@
   "岩浆喷出或侧向迁移后，储存区压力可能下降，上方岩体受到的支撑随之改变。覆岩自重和应力使裂隙发展，达到失稳条件后，岩体可沿环状断裂下沉。这是一种常见的塌陷机制，不要求岩浆完全排空。": "Eruption or lateral magma migration can lower reservoir pressure and change support for the overlying rock. Overburden weight and stresses promote fractures; after failure, rock may subside along ring faults. This common collapse mechanism does not require complete evacuation of the magma.",
   "岩浆量、裂隙和沉降的画面只表示过程关系，不是实测压力、岩石强度或位移。真实塌陷可以与喷发同时发生；这里分步呈现，方便看清原因。": "Displayed magma, fractures and subsidence illustrate a sequence, not measured pressures, rock strengths or displacements. Real collapse may overlap with eruption; the animation separates steps to make the cause clear.",
   "支撑减弱 + 重力作用 → 岩体沿断裂下沉": "Reduced support + gravity → subsidence along faults",
-  "岩石的重量仍在": "The rock remains heavy"
+  "岩石的重量仍在": "The rock remains heavy",
+  "先追踪地下的岩浆：一部分流向别处，上面的岩石还没有下沉。": "Follow the magma underground: some moves elsewhere while the rock above has not yet sunk.",
+  "地下支撑减弱，裂隙开始发展。先看两侧的裂隙，这时地面还没有下沉。": "Support below weakens and fractures begin to develop. Look at the fractures on either side; the ground has not yet sunk.",
+  "同样的岩层沿断裂向下移动，留下宽大的凹地。这时还没有湖水。": "The same rock layers move down along faults, leaving a broad depression. There is no lake water yet.",
+  "先留下湖盆，后来才可能积水。增加进水或减少渗漏，看看水能不能留下来。": "The basin remains first; water may collect later. Increase the input or reduce leakage and see whether water can stay."
 }

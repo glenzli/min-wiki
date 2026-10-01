@@ -26,6 +26,22 @@ Orbital motion solves Kepler's equation with the existing data table. True-diame
 
 Activity initially runs unless reduced motion is requested, with a visible pause control. Descent starts only on request and can be scrubbed, paused and reset separately. Hidden pages and the about dialog suspend updates. Entering another world stops descent. WebGL failure leaves navigation and explanations available. Disposal releases controls, geometries, materials and textures.
 
+View changes stop travel and retain independent descent, interior and ring positions for each
+world during the current visit. Descent memory belongs to its selected observation site; explicitly
+choosing a different site restarts that approach. Reset affects the current view only. These positions
+are session state, while the URL continues to identify the world, view and site.
+
+切换视图会停止行进，并保留各星球独立的下降、剖面和环分区进度。下降位置与观察地点对应；
+明确更换地点会重新开始该次下降。返回起点只重置当前视图，刷新页面仍按网址选择起点。
+
+Paused explorer frames are reused until the observed state, activity time, viewport, camera or
+loaded textures change. Camera damping and keyboard movement remain active while activity is
+paused. This avoids submitting identical GPU frames; it does not reduce cloud sampling, material
+detail or the cost of a newly drawn/animated cloud view on a software GPU such as SwiftShader.
+
+暂停时复用相同观察状态的画面；尺寸、相机或纹理加载变化会重新绘制，键盘相机与拖动惯性仍可用。
+云层采样和材质细节保持原值，软件 GPU 的首帧与动态云层成本仍需实际浏览器确认。
+
 Focused validation: `node --import tsx --test topics/solar-system/tests/*.test.js topics/planet-surfaces/tests/*.test.js`. Production gates: `npm run typecheck`, `npm run check:i18n`, `npm run build`. Browser checks must include intermediate descent, independent pause, every planetary core, parent/moon navigation, old URL routing and narrow English/Chinese layouts.
 
 Sources: [NASA Sun](https://science.nasa.gov/sun/facts/), [NASA Jupiter](https://science.nasa.gov/jupiter/jupiter-facts/), [NASA Uranus](https://science.nasa.gov/uranus/facts/), [NASA Saturn](https://science.nasa.gov/saturn/facts/), [NASA Moon](https://science.nasa.gov/moon/facts/), [JPL satellite elements](https://ssd.jpl.nasa.gov/sats/elem/) and [physical parameters](https://ssd.jpl.nasa.gov/sats/phys_par/). Existing interior profiles retain their study-specific sources. Texture license and attribution remain in `assets/ATTRIBUTION.md`.

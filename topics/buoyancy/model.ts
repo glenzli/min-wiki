@@ -17,5 +17,10 @@ export function buoyancy(s: Settings) {
   const displaced = held ? object.volume * Math.min(1, Math.max(0, s.depth / 100)) : floating ? mass / density : solidVolume;
   const force = displaced * density * 9.81 / 1000;
   const weight = mass * 9.81 / 1000;
-  return { density, mass, capacity, solidVolume, displaced, force, weight, floating, flooded, held, fraction: floating ? displaced / capacity : 1, support: Math.max(0, weight - force), reserve: isBoat ? Math.max(0, capacity * density - mass) : 0, displacedMass: displaced * density };
+  const support = Math.max(0, weight - force);
+  // The immersion block is heavier than either supported liquid and hangs from
+  // a taut cord. Settled sinking objects instead contact the tank floor.
+  const tension = held ? support : 0;
+  const floorSupport = !held && !floating ? support : 0;
+  return { density, mass, capacity, solidVolume, displaced, force, weight, floating, flooded, held, fraction: floating ? displaced / capacity : 1, support, tension, floorSupport, reserve: isBoat ? Math.max(0, capacity * density - mass) : 0, displacedMass: displaced * density };
 }

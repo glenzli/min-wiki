@@ -3,7 +3,7 @@
   "topicId": "plant-water",
   "zh": {
     "question": "植物没有水泵，水为什么能从根走到高处的叶子？",
-    "observe": "播放根到空气的完整水旅程，可暂停或拖回。蓝色实心标记表示液态水，空心圈表示水汽；切换叶片近看，沿叶脉、叶内空隙与气孔检查同一段过程。",
+    "observe": "播放根到空气的完整水旅程，可暂停或拖回。蓝色实心标记表示液态水，空心圈表示水汽；切换叶片近看，先找到湿润叶肉表面到叶内空隙的蒸发，再观察水汽从本例的下侧气孔离开。",
     "academic": [
       {
         "title": "吸水由水势差驱动",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "How can water reach a leaf above the roots without a mechanical pump?",
-    "observe": "Play the complete root-to-air journey and pause or scrub backward. Filled blue markers indicate liquid water; open circles indicate vapour. Switch to the leaf detail to trace veins, internal air spaces and the pore.",
+    "observe": "Play the complete root-to-air journey and pause or scrub backward. Filled blue markers indicate liquid water; open circles indicate vapour. In the leaf detail, first find evaporation from wet mesophyll surfaces into internal air spaces, then trace vapour leaving through the lower pore selected for this example.",
     "academic": [
       {
         "title": "Water potential drives uptake",

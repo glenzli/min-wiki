@@ -1,6 +1,6 @@
 import { createCloudTexture } from '../../src/visuals/cloudTexture.ts';
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
-import { lightningState, leaderPath, clamp } from './model.ts';
+import { lightningState, leaderPath, connectorPath, pathThrough, groundPoint, mastTip, attachmentPoint } from './model.ts';
 import type { Settings } from './model.ts';
 import { t } from './i18n.ts';
 const noise=(i:number)=>{const v=Math.sin(i*127.1+311.7)*43758.5453;return v-Math.floor(v);};
@@ -43,16 +43,16 @@ export class TopicScene{
    if(progress>.20)label(t('尖端附近电荷更集中，局部电场更强'),107,76,360);
   }
   // A grounded mast provides a visible sharp point for the upward connector.
-  s.path([[2,141],[15,103],[28,141]],'#5d6f76','#334a55',1.2);s.path([[15,103],[15,91]],undefined,'#dae4df',1.5);
+  s.path([[groundPoint[0]-13,groundPoint[1]],[mastTip[0],mastTip[1]+12],[groundPoint[0]+13,groundPoint[1]]],'#5d6f76','#334a55',1.2);s.path([[mastTip[0],mastTip[1]+12],mastTip],undefined,'#dae4df',1.5);
   if(state.field>.45&&state.leader<.92){const glow=c.createRadialGradient(15,91,0,15,91,9+state.field*7);glow.addColorStop(0,'#d9d0ff99');glow.addColorStop(1,'#c5b8ff00');s.ellipse(15,91,10+state.field*7,10+state.field*7,glow);}
   if(state.leader>0){
-   const count=Math.max(2,Math.floor(1+state.leader*(path.length-1))),visible=path.slice(0,count);
+   const visible=pathThrough(path,state.leader),count=Math.floor(state.leader*(path.length-1))+1;
    s.path(visible,undefined,'#7761b085',1.25);
    for(const i of [5,9,14,19,23]){if(i>=count)continue;const [x,y]=path[i],sign=i%2?1:-1,length=18+noise(i+65)*21,branch:[number,number][]=[[x,y],[x+sign*12,y+8],[x+sign*19,y+6],[x+sign*length,y+27],[x+sign*(length+10),y+40]];s.path(branch,undefined,progress<.68?'#8770a98c':'#d1cdec42',.9);}
-   if(state.leader>.7){const u=clamp((state.leader-.7)/.3);s.path([[15,91],[21,86-13*u],[13,80-24*u]],undefined,'#806bb4b8',1.4);}
-   if(progress>.60){const start=Math.floor((1-state.returnStroke)*(path.length-1)),stroke=path.slice(start);c.save();c.shadowColor='#e7ddff';c.shadowBlur=19;c.globalAlpha=progress<.70?1:.42;s.path(stroke,undefined,'#cfc9ff55',9);s.path(stroke,undefined,'#e6e7ff',4.5);s.path(stroke,undefined,'#ffffff',1.55);c.restore();}
-   if(progress>.32&&progress<.60){label(t('分步先导'),70,-28,230);if(progress>.50)label(t('向上连接通道'),105,106,250);}
-   if(progress>=.60&&progress<.70)label(t('明亮回击向上发展'),111,-14,300);
+   if(state.connector>0)s.path(pathThrough(connectorPath(),state.connector),undefined,'#806bb4b8',1.4);
+   if(state.returnStroke>0){const stroke=[...connectorPath(),...pathThrough([...path].reverse(),state.returnStroke).slice(1)];c.save();c.shadowColor='#e7ddff';c.shadowBlur=19;c.globalAlpha=progress<.70?1:.42;s.path(stroke,undefined,'#cfc9ff55',9);s.path(stroke,undefined,'#e6e7ff',4.5);s.path(stroke,undefined,'#ffffff',1.55);s.ellipse(attachmentPoint[0],attachmentPoint[1],2.5,2.5,'#ffffff');c.restore();}
+   if(progress>.32&&!state.connected){label(t('分步先导'),70,-28,230);if(state.connector>0)label(t('向上连接通道'),105,106,250);}
+   if(state.returnStroke>0&&progress<.70)label(t('明亮回击向上发展'),111,-14,300);
   }
   // A substantial building marks an indoor observer, not a figure sheltering under a tree.
   c.fillStyle='#dbd5b9';c.fillRect(observerX-17,119,34,27);s.path([[observerX-22,119],[observerX-2,104],[observerX+22,119]],'#6b7d87');c.fillStyle=state.heard?'#f1d591':'#bdd6db';c.fillRect(observerX-9,124,9,10);c.fillStyle='#7b887d';c.fillRect(observerX+5,129,7,17);

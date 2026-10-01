@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { leafLifeAt, leafPoint, legacyWaterURL, readLeafRoute } from '../lifecycle.ts';
 import { pigmentsAt } from '../model.ts';
 import { waterAt } from '../../plant-water/model.ts';
+import { LeafScene } from '../scene.ts';
 
 test('one leaf expands at a fixed attachment before separation and fall', () => {
   for (let i = 0; i <= 87; i++) {
@@ -43,4 +44,19 @@ test('legacy root-water links preserve language, base, hash and precise leaf vie
   assert.equal(target.searchParams.get('lang'), 'en'); assert.equal(target.searchParams.get('view'), 'water'); assert.equal(target.hash, '#sources');
   assert.deepEqual(readLeafRoute('?view=water&age=.7'), { view: 'water', age: .7 });
   assert.deepEqual(readLeafRoute('?view=bad&age=oops'), { view: 'life', age: 0 });
+});
+test('retained mature water progress is hidden on both young and detached leaves', () => {
+  const sceneState = { age: .34, waterVisible: true, waterProgress: .78, lifeDirty: false };
+  for (const age of [.34, .15, .34, .86, 1, .34]) {
+    LeafScene.prototype.setLife.call(sceneState as unknown as LeafScene, age, true, .78);
+    assert.equal(sceneState.waterVisible, leafLifeAt(age).waterAvailable);
+    assert.equal(sceneState.waterProgress, .78);
+    assert.equal(sceneState.age, age);
+  }
+  assert.equal(leafLifeAt(.15).waterAvailable, false);
+  assert.equal(leafLifeAt(.34).waterAvailable, true);
+  assert.equal(leafLifeAt(.86).waterAvailable, false);
+  assert.equal(leafLifeAt(1).waterAvailable, false);
+  LeafScene.prototype.setLife.call(sceneState as unknown as LeafScene, .34, false, .78);
+  assert.equal(sceneState.waterVisible, false);
 });

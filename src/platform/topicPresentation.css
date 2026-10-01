@@ -59,7 +59,7 @@ html[data-topic-ui] main select {
 }
 html[data-topic-ui] :is(.modes, .reading-mode, .mode-switch, .learning-modes) button {
   background: transparent; border-color: transparent; color: var(--secondary);
-  min-width: 88px; min-height: 40px; padding: 8px 14px; margin: 0;
+  min-width: 88px; min-height: var(--ui-control-height); padding: 8px 14px; margin: 0;
 }
 html[data-topic-ui] :is(
   .controls, .buttons, .toolbar, .views, .view-controls, .observation-views,

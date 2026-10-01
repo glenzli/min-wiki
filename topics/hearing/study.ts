@@ -10,6 +10,7 @@ export function mountHearingStudy(root: HTMLElement, changed: (pitch: number, st
   const strengthInput = byId<HTMLInputElement>('strength');
   let progress = 0, pitch = 0, pitchTarget = 0, strength = .55, playing = false;
   let view = 0, viewTarget = 0, earZoom = 0, earTarget = 0, lastPhase = -1;
+  let lastHasInput: boolean | undefined;
   let cancelPlay = () => {}, cancelPitch = () => {}, cancelView = () => {}, cancelEar = () => {};
   const phases = [
     {
@@ -30,7 +31,7 @@ export function mountHearingStudy(root: HTMLElement, changed: (pitch: number, st
       title: t('耳蜗里的膜和细胞回应'),
       text: t('展开耳蜗，比较较高音和较低音的响应位置；再看感觉细胞顶端的纤毛束怎样偏转。'),
       story: t('耳蜗里的膜运动，带动感觉细胞。'),
-      mechanism: t('振动在耳蜗中形成沿基底膜传播的行波。膜的机械性质沿长度变化，较高频率的响应峰偏基底端，较低频率偏顶端；响应占有一段区域。A 标记连接耳蜗整体与展开图，B 连接所选响应区域与代表性内毛细胞。金色范围及位置变化是定性编码，不是合成音赫兹数的解剖定位。'),
+      mechanism: t('振动在耳蜗中形成沿基底膜传播的行波。膜的机械性质沿长度变化，较高频率的响应峰偏基底端，较低频率偏顶端；响应占有一段区域。A 标记连接耳蜗整体与展开图，B 连接所选响应区域与代表性内毛细胞。金色范围及位置变化是定性编码，不是合成音赫兹数的解剖定位。') + ' ' + t('波前到达 B 处后，近景才随这处膜运动。细胞、纤毛束和液体的放大动作只连接因果，不表示它们在真实耳蜗中严格同相。'),
       reference: 'https://www.nidcd.nih.gov/health/how-do-we-hear',
     },
     {
@@ -51,15 +52,17 @@ export function mountHearingStudy(root: HTMLElement, changed: (pitch: number, st
     strengthInput.setAttribute('aria-valuetext', t('示意振幅 {{value}}%', { value: Math.round(strength * 100) }));
     byId<HTMLButtonElement>('play').disabled = playing;
     byId<HTMLButtonElement>('pause').disabled = !playing;
-    if (state.phase !== lastPhase) {
+    const hasInput = state.amplitude > 0;
+    if (state.phase !== lastPhase || hasInput !== lastHasInput) {
       lastPhase = state.phase;
+      lastHasInput = hasInput;
       const phase = phases[state.phase]!;
       root.setAttribute('data-hearing-phase', String(state.phase));
       byId('phase-count').textContent = `0${state.phase + 1} / 04`;
-      byId('phase-title').textContent = phase.title;
-      byId('phase-text').textContent = phase.text;
+      byId('phase-title').textContent = hasInput ? phase.title : t('当前没有输入振动');
+      byId('phase-text').textContent = hasInput ? phase.text : t('振幅为 0%，所以本图不显示这段声音引起的机械和神经响应。把振幅调高，再比较同一位置。');
       byId('stage-number').textContent = `0${state.phase + 1}`;
-      byId('stage-story').textContent = phase.story;
+      byId('stage-story').textContent = hasInput ? phase.story : t('振幅为 0%：这段声音没有引起响应。');
       byId('phase-mechanism').textContent = phase.mechanism;
       byId<HTMLAnchorElement>('phase-source').href = phase.reference;
       root.querySelectorAll<HTMLButtonElement>('[data-stage]').forEach((button, i) => button.setAttribute('aria-pressed', String(i === state.phase)));
@@ -113,7 +116,7 @@ export function mountHearingStudy(root: HTMLElement, changed: (pitch: number, st
     root.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(other => other.setAttribute('aria-pressed', String(button === other)));
     byId('detail-name').textContent = viewTarget ? t('毛细胞的放大原理') : t('耳蜗里的不同位置');
     byId('detail-caption').textContent = viewTarget
-      ? t('B：当前响应区域内的一枚代表性内毛细胞。换音高会改变响应区域；这里沿用同一种细胞结构解释换能，尺寸与时间再次放大。')
+      ? t('B：先等振动到达这处膜，再看细胞怎样回应。换音高会改变选中的响应区域；近景动作是放大的定性示意。')
       : t('A：同一耳蜗的展开示意。金色范围表示较强响应区域；B 标出继续看细胞的位置。两幅图的倍率不同，未标定真实频率。');
     cancelView = animateValue({ from: view, to: viewTarget, duration: 850, onUpdate: v => { view = v; camera(); } });
   }));

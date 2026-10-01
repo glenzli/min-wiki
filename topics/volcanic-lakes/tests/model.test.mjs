@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
 import { waterFraction, netSupply, terrain, basinDimensions } from '../model.ts';
 test('water needs input and is bounded by basin capacity', () => {
   for (const basin of ['crater', 'caldera']) { const s = { basin, supply: 0, leak: 'low' }; assert.equal(waterFraction(1, s), 0); assert.equal(waterFraction(.4, { ...s, supply: 1 }), 0); for (let p = 0; p <= 1; p += .01) assert.ok(waterFraction(p, { ...s, supply: 1 }) <= 1); }
@@ -35,4 +36,18 @@ test('caldera subsidence preserves the outer flanks and water stays below the ri
  const d=basinDimensions('caldera');
  for(const x of [-375,-220,-180,180,220,375]) assert.equal(terrain(x,1,'caldera'),terrain(x,0,'caldera'));
  assert.ok(d.floor-d.maxDepth>d.rim);
+});
+
+test('child caldera observations follow fracture, subsidence and water on the same clock',async()=>{
+ const {calderaStage,calderaState}=await import('../model.ts'),{COLLAPSE}=await import('../content.ts');
+ const english=JSON.parse(await readFile(new URL('../locales/en.json',import.meta.url),'utf8'));
+ const beforeCollapse=COLLAPSE[calderaStage(.23)];
+ assert.equal(calderaState(.23).subsidence,0);assert.match(beforeCollapse.kid,/裂隙.*没有下沉/);
+ assert.match(english[beforeCollapse.kid],/fractures.*not yet sunk/);
+ const collapsing=COLLAPSE[calderaStage(.36)];
+ assert.ok(calderaState(.36).subsidence>0);assert.equal(waterFraction(.36,{basin:'caldera',supply:1,leak:'low'}),0);
+ assert.match(collapsing.kid,/沿断裂向下.*没有湖水/);assert.match(english[collapsing.kid],/down along faults.*no lake water yet/);
+ const later=COLLAPSE[calderaStage(.72)];
+ assert.match(later.kid,/可能积水/);assert.match(english[later.kid],/may collect/);
+ assert.equal(waterFraction(.72,{basin:'caldera',supply:0,leak:'low'}),0);
 });
