@@ -3,10 +3,9 @@ import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { t } from './i18n.ts';
 translateDocument(t);
-mountTopicNavigation('camouflage');
+
 const el = <T extends Element = HTMLElement>(id: string): T => document.getElementById(id)! as unknown as T;
 const report = (n: number, title: string, text: string) => { el('badge').textContent = String(n); el('state-title').textContent = title; el('state-text').textContent = text; };
 const found = new Set<number>();let plain=false; let forestOpacity=1; let cancelBackground: () => void = () => {};

@@ -6,10 +6,9 @@ import { animateValue } from '../../src/visuals/transition.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import type { Planet } from './data/planetsData.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import './shell.css';
 translateDocument(t);
-mountTopicNavigation('solar-system');
+
 
 import { SolarSimulation } from './physics/solarSimulation.ts';
 import { PLANETS_DATA, SUN_DATA } from './data/planetsData.ts';
@@ -275,7 +274,7 @@ class SolarApp {
       if (
         event.code !== 'Space' ||
         event.repeat ||
-        (event.target as HTMLElement).closest('button,input,select,textarea,a,[contenteditable]') ||
+        (event.target as HTMLElement).closest('button,input,select,textarea,a,summary,[contenteditable]') ||
         this.dialog.open
       ) {
         return;

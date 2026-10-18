@@ -58,10 +58,10 @@ export function createPainScene() {
     <circle cx="472" cy="320" r="7" fill="#fbf3e6" stroke="#9f7c59" stroke-width="2"/>
     <text x="313" y="249" class="scene-small academic-label" data-wide-label>${t('传入神经')}</text><text x="572" y="287" class="scene-small academic-label" data-wide-label>${t('向脑通路')}</text><text x="556" y="390" class="scene-small academic-label" data-wide-label>${t('运动支路')}</text>
 
-    <g id="muscle-drawing" filter="url(#tissue-shadow)"><path id="muscle-tendons" d="M540 430H577M686 430H725" stroke="#d9c3a0" stroke-width="11" stroke-linecap="round"/><ellipse id="muscle-body" cx="632" cy="430" rx="56" ry="25" fill="url(#muscle)" stroke="#945f51" stroke-width="2"/><g id="muscle-fibers" fill="none" stroke="#edbda6" stroke-width="1.6" opacity=".7"><path d="M585 420Q632 405 679 420M580 430Q632 416 684 430M585 440Q632 423 679 440"/></g></g>
+    <g id="muscle-drawing" filter="url(#tissue-shadow)"><path id="muscle-tendons" d="M540 430H576M688 430H725" stroke="#d9c3a0" stroke-width="11" stroke-linecap="round"/><ellipse id="muscle-body" cx="632" cy="430" rx="56" ry="25" fill="url(#muscle)" stroke="#945f51" stroke-width="2"/><g id="muscle-fibers" fill="none" stroke="#edbda6" stroke-width="1.6" opacity=".7"><path d="M585 420Q632 405 679 420M580 430Q632 416 684 430M585 440Q632 423 679 440"/></g></g>
     <text x="630" y="483" text-anchor="middle" data-wide-label>${t('肌肉收缩')}</text>
     <g id="hand" transform="translate(0 0)"><path d="M720 416L771 415Q790 400 811 407L861 421Q874 428 866 435Q862 439 852 436L831 431L858 447Q868 454 861 460Q855 464 844 459L822 447L844 467Q850 475 843 479Q837 483 827 475L805 455Q787 469 768 462L720 455Z" fill="url(#skin)" stroke="#ad806d" stroke-width="2"/><path d="M734 423L765 423Q791 409 807 416" fill="none" stroke="#fff1de" stroke-width="3" opacity=".7"/></g>
-    <path id="move-arrow" d="M803 378H860m-16-13 16 13-16 13" fill="none" stroke="#447f72" stroke-width="3" stroke-linecap="round" opacity="0"/>
+    <path id="move-arrow" d="M860 378H803m16-13-16 13 16 13" fill="none" stroke="#447f72" stroke-width="3" stroke-linecap="round" opacity="0"/>
     <text x="807" y="496" text-anchor="middle" data-wide-label>${t('手缩回')}</text>
   `;
 }
@@ -82,10 +82,12 @@ export function drawPain(progress: number, focus: Focus) {
   document.getElementById('route-ascending')!.setAttribute('opacity', focus === 'reflex' ? '.17' : '1');
   document.getElementById('ending-halo')!.setAttribute('opacity', String(.24 * state.ending));
   document.getElementById('brain-network')!.setAttribute('opacity', String(state.processing));
-  document.getElementById('muscle-tendons')!.setAttribute('d', `M540 430H${577 + 10 * state.withdrawal}M${686 - 10 * state.withdrawal} 430H${725 + 27 * state.withdrawal}`);
-  document.getElementById('muscle-body')!.setAttribute('rx', String(56 - 10 * state.withdrawal));
-  document.getElementById('muscle-body')!.setAttribute('ry', String(25 + 6 * state.withdrawal));
-  document.getElementById('muscle-fibers')!.setAttribute('transform', `translate(${632 * .14 * state.withdrawal} 0) scale(${1 - .14 * state.withdrawal} 1)`);
-  document.getElementById('hand')!.setAttribute('transform', `translate(${27 * state.withdrawal} ${-9 * state.withdrawal})`);
+  const linkage = state.linkage;
+  document.getElementById('muscle-tendons')!.setAttribute('d', `M${linkage.origin} 430H${linkage.bellyStart}M${linkage.bellyEnd} 430H${linkage.attachment}`);
+  document.getElementById('muscle-body')!.setAttribute('cx', String(linkage.bellyCenter));
+  document.getElementById('muscle-body')!.setAttribute('rx', String(linkage.bellyRadius));
+  document.getElementById('muscle-body')!.setAttribute('ry', String(linkage.bellyHeight));
+  document.getElementById('muscle-fibers')!.setAttribute('transform', `translate(${linkage.fiberOffset} 0) scale(${linkage.fiberScale} 1)`);
+  document.getElementById('hand')!.setAttribute('transform', `translate(${linkage.handOffset} 0)`);
   document.getElementById('move-arrow')!.setAttribute('opacity', String(state.withdrawal));
 }

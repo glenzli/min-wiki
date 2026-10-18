@@ -1,5 +1,4 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { initialMotion, stepMotion, type Settings, type ObjectKind, type MotionPhase } from './model.ts';
@@ -8,7 +7,7 @@ import './style.css';
 import { mountCompass } from './compass.ts';
 
 translateDocument(t);
-mountTopicNavigation('magnets');
+
 const el = (id: string) => document.getElementById(id)!;
 const near = el('near') as HTMLInputElement;
 const select = el('object') as HTMLSelectElement;

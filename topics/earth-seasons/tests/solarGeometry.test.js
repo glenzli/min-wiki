@@ -32,7 +32,7 @@ test('zero tilt and equinox distinguish polar horizon from ordinary twelve-hour 
   }
 });
 test('a chosen place and day progress carry the same illumination into the globe',()=>{
-  for(const city of MAJOR_CITIES) for(const orbit of [0,.25,.5,.75]) for(const tilt of [0,12,23.44]) {
+  for(const city of MAJOR_CITIES) for(const orbit of [0,.13,.25,.5,.75]) for(const tilt of [0,12,23.44]) {
     const noon=rotationAtLocalNoon(orbit,tilt,city.lon);
     const model=daylightExperiment(city.lat,orbit,tilt);
     for(const progress of [0,.125,.25,.5,.75,.875]) {

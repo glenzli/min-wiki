@@ -1,6 +1,5 @@
 import { mountPresentationFrame, presentationGroup } from '../../src/platform/presentation.ts';
 import { language, translateDocument, languageHref } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { t } from './i18n.ts';
 import copy from './content.json';
@@ -13,7 +12,7 @@ import { wingPreparation } from '../butterfly-life/model.ts';
 import './style.css';
 
 translateDocument(t);
-mountTopicNavigation('frog-life');
+
 const text=(v:{zh:string;en:string})=>language==='en'?v.en:v.zh;
 const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');

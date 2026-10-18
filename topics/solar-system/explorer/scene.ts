@@ -43,6 +43,9 @@ export class ExplorerScene {
   private time=0;
   private disposed=false;
   private lost=false;
+  private needsRender=true;
+  private lastRenderKey='';
+  private invalidate=()=>{this.needsRender=true;};
   private framing=1;
   onFailure?:()=>void;
   onInteraction?:()=>void;
@@ -51,6 +54,7 @@ export class ExplorerScene {
     this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.05;
     this.controls=new OrbitControls(this.camera,canvas);this.controls.enableDamping=true;this.controls.enablePan=false;
     this.controls.addEventListener('start',()=>this.onInteraction?.());
+    this.controls.addEventListener('change',this.invalidate);
     this.scene.add(this.fill,new THREE.AmbientLight('#d9e5ec',.65));
     this.scene.add(new THREE.HemisphereLight('#f1f4ef','#3d332d',1.6));
     const sun=new THREE.DirectionalLight('#fff5db',2.6);sun.position.set(-3,6,5);this.scene.add(sun);
@@ -69,7 +73,7 @@ export class ExplorerScene {
     s.radius=Math.max(this.controls.minDistance,Math.min(this.controls.maxDistance,s.radius*(e.key==='+'?.9:e.key==='-'?1.1:1)));
     this.camera.position.copy(new THREE.Vector3().setFromSpherical(s).applyQuaternion(up.invert()).add(this.controls.target));this.controls.update();
   };
-  private resize(){if(this.disposed)return;const w=Math.max(1,this.canvas.clientWidth),h=Math.max(1,this.canvas.clientHeight);this.renderer.setSize(w,h,false);this.camera.aspect=w/h;this.camera.updateProjectionMatrix();this.fitCamera();}
+  private resize(){if(this.disposed)return;this.invalidate();const w=Math.max(1,this.canvas.clientWidth),h=Math.max(1,this.canvas.clientHeight);this.renderer.setSize(w,h,false);this.camera.aspect=w/h;this.camera.updateProjectionMatrix();this.fitCamera();}
   private fitCamera(){
     const next=this.view==='rings'?Math.max(1,1.2/this.camera.aspect):this.view==='moons'?Math.max(1,1.45/this.camera.aspect):this.view==='globe'&&['saturn','uranus'].includes(this.body??'')?Math.max(1.8,1.8/this.camera.aspect):1;
     this.camera.position.sub(this.controls.target).multiplyScalar(next/this.framing).add(this.controls.target);this.framing=next;
@@ -84,7 +88,7 @@ export class ExplorerScene {
     if(this.terrain){this.scene.remove(this.terrain.group);this.terrain.dispose();this.terrain=undefined;}
     if(this.interior){this.section.remove(this.interior.group);this.interior.dispose();}
     this.section.remove(this.marker);this.clearGroup(this.section);this.clearGroup(this.satellites);this.moonMeshes=[];
-    this.activity=new ActivityBody(id);this.scene.add(this.activity.group);
+    this.activity=new ActivityBody(id,this.invalidate);this.scene.add(this.activity.group);
     if(['earth','jupiter','saturn','uranus','neptune'].includes(id)){this.cloudVolume=new RegionalAtmosphere(id,this.activity.cloudTexture);this.scene.add(this.cloudVolume.mesh);}
     const world=worldFor(id);
     if(world?.surface){this.terrain=new TerrainPatch(world,site.terrain);this.terrain.group.scale.setScalar(.003);this.scene.add(this.terrain.group);}
@@ -132,10 +136,17 @@ export class ExplorerScene {
     this.draw(time);
   }
   draw(time:number){
-    if(this.disposed||this.lost||!this.body||!this.activity)return;this.time=time;
+    if(this.disposed||this.lost||!this.body||!this.activity)return;
     const descent=this.view==='descent',near=this.view==='landscape',p=near?1:descent?this.progress:0;
+    this.controls.enabled=!descent;
+    // Keep OrbitControls damping alive while paused; its change event invalidates
+    // the frame. Images that finish loading and viewport changes do so as well.
+    if(!descent)this.controls.update();
+    const key=[this.body,this.view,this.site?.id,this.progress,time].join(':');
+    if(key===this.lastRenderKey&&!this.needsRender)return;
+    this.time=time;
     const state=descentState(this.body,p),world=worldFor(this.body),solid=state.solid;
-    this.controls.enabled=!descent;this.activity.group.visible=this.view!=='section'&&!(this.view==='rings'&&ringView(this.progress)==='particles');
+    this.activity.group.visible=this.view!=='section'&&!(this.view==='rings'&&ringView(this.progress)==='particles');
     this.activity.setRingsVisible(this.view!=='rings');
     if(this.rings){this.rings.group.visible=this.view==='rings';if(this.rings.group.visible)this.rings.update(time,ringView(this.progress),this.activity.group.quaternion);}
     this.section.visible=this.view==='section';this.satellites.visible=this.view==='moons';
@@ -156,7 +167,7 @@ export class ExplorerScene {
       this.camera.position.copy(this.local(0,1+altitude,altitude*.32));
       const horizon=smooth(.5,1,p);
       this.camera.lookAt(this.local(0,horizon*(solid?1.007:.988),-horizon*.055));
-    }else this.controls.update();
+    }
     this.cloudVolume?.update(time,p,this.camera.position,this.activity.group.quaternion);
     if(this.view==='section'){
       if(this.sectionShell)this.sectionShell.material.uniforms.uTime.value=time;
@@ -167,6 +178,7 @@ export class ExplorerScene {
     if(this.view==='moons')(SATELLITES[this.body]??[]).forEach((moon,i)=>this.moonMeshes[i].position.set(...moonPosition(moon,i,time*.16)));
     this.canvas.dataset.site=this.site?.id??'';this.canvas.dataset.body=this.body;this.canvas.dataset.view=this.view;this.canvas.dataset.progress=this.progress.toFixed(4);this.canvas.dataset.activityTime=time.toFixed(3);
     this.renderer.render(this.scene,this.camera);
+    this.lastRenderKey=key;this.needsRender=false;
   }
   labels(){const points=this.view==='rings'?this.rings?.labels()??[]:this.moonMeshes.map(mesh=>({id:mesh.userData.id as string,position:mesh.position}));return points.map(point=>{const p=point.position.clone().project(this.camera);return{id:point.id,x:(p.x+1)*.5,y:(1-p.y)*.5,visible:p.z>-1&&p.z<1&&Math.abs(p.x)<1&&Math.abs(p.y)<1};});}
   dispose(){if(this.disposed)return;this.disposed=true;this.observer.disconnect();this.controls.dispose();this.canvas.removeEventListener('webglcontextlost',this.contextLost);this.canvas.removeEventListener('keydown',this.keyDown);this.activity?.dispose();this.rings?.dispose();this.cloudVolume?.dispose();this.terrain?.dispose();if(this.interior){this.section.remove(this.interior.group);this.interior.dispose();}this.pin.geometry.dispose();this.pin.material.dispose();this.section.remove(this.marker);this.clearGroup(this.section);this.clearGroup(this.satellites);this.marker.geometry.dispose();this.marker.material.dispose();this.stars.geometry.dispose();(this.stars.material as THREE.Material).dispose();this.renderer.dispose();}

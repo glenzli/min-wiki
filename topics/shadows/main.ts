@@ -1,13 +1,12 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { shadowTip } from './model.ts';
 import { drawShadowScene } from './scene.ts';
 import './style.css';
-translateDocument(t); mountTopicNavigation('shadows');
+translateDocument(t);
 const el = (id: string) => document.getElementById(id)!;
 const input = (id: string) => el(id) as HTMLInputElement;
 let playing = false, frame = 0, last = 0, view = 0, targetView = 0;
@@ -64,4 +63,4 @@ window.addEventListener('pagehide', () => { stop(); cancelView(); });
 update(); mountReadingMode('main > details');
 
 const presentation = mountPresentationFrame({"root": ".lab", "visual": ".scene-wrap"});
-if (presentation) presentation.notes.append(...document.querySelectorAll<HTMLDetailsElement>('main > details'));
+if (presentation) presentation.notes.append(...document.querySelectorAll<HTMLDetailsElement>('[data-wiki-document] .study-content > details'));

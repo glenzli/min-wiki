@@ -13,11 +13,9 @@ The source illustrations and topic models remain editorial inputs. Delivery opti
 
 Learning documents remain bilingual at their authored paths. `src/platform/learning/buildProjection.ts` projects explicitly queried JSON into one complete language payload at build time; ordinary JSON imports and the export script keep the original document. The browser invokes only the loader for its current topic and language. Notes, references, narration, visual cues and downloads retain their existing interface.
 
-Build into a fresh directory with `npm run build -- --manifest --outDir /tmp/wiki-payload-check`, then run `npm run report:payload -- /tmp/wiki-payload-check`. The report follows Vite's static entry imports and CSS, excludes dynamic content/worker/image loads from its initial-code totals, and reports all emitted files separately. Gzip values are calculated estimates, not server transfer measurements.
+Use the Reader build (`npm run build`) and inspect `dist/wiki-build.json` for the exact source identity. Generated assets have content fingerprints; ordinary image/font/worker files stay separate from scripts. For a task-private output use the Reader command with `--out /private/tmp/wiki-payload-check`.
 
-Do not use an old output directory for total-size comparisons: Vite can retain orphaned files when an external output directory is reused. A useful comparison must also distinguish all deployed images from images selected on one page. A high-density phone may correctly select the 960-pixel image.
-
-This environment does not expose Chrome DevTools trace tooling. This release therefore claims verified byte savings and browser behavior, not measured LCP, INP, CLS, or a Lighthouse score. The existing Three.js bundle is used by interactive 3D topics and remains shared and cached; moving its bytes among files solely to silence a size warning would not demonstrate a loading improvement.
+Measure actual first-load requests and the selected entry in the browser. Total output size includes lazy studies and compatibility routes and is not a first-load measurement. Compressed byte estimates are not server transfer evidence. The old Vite-specific payload-report command was removed with that build mode.
 
 ## 2026-09-17 release evidence
 

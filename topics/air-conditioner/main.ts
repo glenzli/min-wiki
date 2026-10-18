@@ -5,7 +5,6 @@ import '../refrigerator/panel.css';
 import refrigeratorPanel from '../refrigerator/panel.html?raw';
 import {t} from './i18n.ts';
 import {translateDocument,languageHref} from '../../src/platform/i18n.ts';
-import {mountTopicNavigation} from '../../src/platform/topicNavigation.ts';
 import {mountReadingMode} from '../../src/platform/readingMode.ts';
 import {animateValue} from '../../src/visuals/transition.ts';
 import {mountAirStudy,type AirBudget} from './airStudy.ts';
@@ -88,7 +87,7 @@ function restoreAnchor(){
 }
 window.addEventListener('popstate',()=>{select(readChapter(location.search));restoreAnchor();});
 window.addEventListener('hashchange',restoreAnchor);
-select(chapter);mountReadingMode('.advanced');mountTopicNavigation('air-conditioner');restoreAnchor();
+select(chapter);mountReadingMode('.advanced');restoreAnchor();
 
 foldPresentationContext('.heat-map');
 mountPresentationFrame({ root: '#air-panel .lab', visual: '#scene', transport: '#play,#pause,#reset' });

@@ -1,0 +1,25 @@
+01 · After braking begins
+[Play the lower-speed case and pause in the reaction phase.]
+
+You may notice that a car still travels some distance when the driver brakes. We will investigate on screen, never by experimenting on a road. Start the model car and watch the two colored sections. In the gold section the driver is still reacting to the need to stop, so the car keeps moving.
+
+---
+
+02 · Slowing needs distance
+[Compare both sections at thirty and sixty.]
+
+In the green section, braking is working and the car slows until it stops. Increase the starting speed and watch again. Pause and compare: has the green section become much longer? Faster cars generally need more space to stop. A car looking some distance away is not a promise that it can stop in time.
+
+---
+
+03 · The road matters too
+[Switch to wet road and inspect the stopping marker.]
+
+Keep speed unchanged and choose a wet road. Tires must work with the road surface to slow the car, and this model wet road makes stopping harder. Can you find the new stopping point? Real roads differ in many ways, so these numbers are for comparison, not a ruler for deciding when to cross.
+
+---
+
+04 · Help the body stop safely
+[Highlight shoulder belt, lap belt and child-seat diagram. Compare 0, 50 and 100% in the snug-band loading window. Call the endpoint the first maximum relative displacement, not a completed vehicle stop.]
+
+As the car slows, our body must slow too. A suitable child seat and correctly fitted belt help protect us. Examine the shoulder and lap belt positions, then ask an adult to choose and install a seat for your size. Keep the shoulder belt in its proper place and be secured before the car moves. The band is snug from the start. As the body advances relative to the car, the band stretches and pulls backward. This enlarged illustration explains the principle; it is no reason to leave belt slack.

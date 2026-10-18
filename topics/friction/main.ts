@@ -7,7 +7,6 @@ import carContact from '../car-safety/contact.html?raw';
 import {t} from './i18n.ts';
 import {t as carT} from '../car-safety/i18n.ts';
 import {translateDocument,languageHref} from '../../src/platform/i18n.ts';
-import {mountTopicNavigation} from '../../src/platform/topicNavigation.ts';
 import {mountReadingMode} from '../../src/platform/readingMode.ts';
 import {mountSlidingStudy,type SlidingSnapshot} from './slidingStudy.ts';
 import {mountContactStudy} from './contactStudy.ts';
@@ -71,7 +70,7 @@ function restoreAnchor(){
  target?.closest?.('details')?.setAttribute('open','');target?.scrollIntoView?.({block:'start'});
 }
 window.addEventListener('popstate',()=>{select(readMotionChapter(location.search));restoreAnchor();});window.addEventListener('hashchange',restoreAnchor);
-select(chapter);mountReadingMode('details:not(.references)');mountTopicNavigation('friction');restoreAnchor();
+select(chapter);mountReadingMode('details:not(.references)');restoreAnchor();
 
 foldPresentationContext('.motion-ref');
 mountPresentationFrame({ root: '#slide-panel .lab', visual: '.scene-wrap' });
@@ -81,4 +80,5 @@ if(brakingFrame){
  brakingFrame.stage.querySelector('.road-scene svg')?.setAttribute('viewBox','0 80 900 270');
  const metrics=document.querySelector('#braking-panel .metrics');if(metrics)brakingFrame.stage.append(metrics);
 }
-mountPresentationFrame({ root: '#restraints-panel .protection', visual: '.belt-art' });
+mountPresentationFrame({ root: '#restraints-panel .restraint-mechanism', visual: '.restraint-scene', transport: '.restraint-controls' });
+mountPresentationFrame({ root: '#restraints-panel .protection-grid', visual: '.belt-art' });

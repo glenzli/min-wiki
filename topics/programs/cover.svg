@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+<title id="title">A delivery cart and its ordered instruction cards</title><desc id="desc">Original editorial illustration of a small wheeled cart carrying a cardboard parcel along a tabletop route, beside three tangible arrow cards. It represents planning and execution rather than a real robot design.</desc>
+<defs>
+<linearGradient id="bg" x2="0" y2="1"><stop stop-color="#e8efe7"/><stop offset="1" stop-color="#d3dfd5"/></linearGradient>
+<linearGradient id="desk" x2="1" y2="1"><stop stop-color="#faf2df"/><stop offset="1" stop-color="#e1cdb0"/></linearGradient>
+<linearGradient id="metal" x2=".2" y2="1"><stop stop-color="#f3f5ee"/><stop offset=".5" stop-color="#b9cebf"/><stop offset="1" stop-color="#819e90"/></linearGradient>
+<linearGradient id="box" x2="1" y2="1"><stop stop-color="#eacb91"/><stop offset="1" stop-color="#c29355"/></linearGradient>
+<filter id="shadow" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#5d7965" flood-opacity=".2"/></filter>
+<filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+</defs>
+<path fill="url(#bg)" d="M0 0H960V640H0Z"/>
+<circle cx="820" cy="78" r="205" fill="#f6f5e9" opacity=".4"/>
+<path d="M-48 361L382 126L990 348L575 618Z" fill="#b39a75"/>
+<path d="M-48 343L382 110L990 330L575 600Z" fill="url(#desk)" stroke="#e3d0b0" stroke-width="3"/>
+<path d="M43 333L391 145M114 369L464 166M185 407L537 193M550 549L891 333" stroke="#ceb88f" opacity=".24" stroke-width="2"/>
+<path d="M87 349L459 214L831 349" fill="none" stroke="#bfc6af" stroke-width="30" stroke-linecap="round"/>
+<path d="M90 349L459 214L831 349" fill="none" stroke="#f4f2dc" stroke-width="3" stroke-dasharray="10 14" stroke-linecap="round"/>
+<ellipse cx="107" cy="343" rx="52" ry="23" fill="#5c9180" opacity=".24"/>
+<ellipse cx="818" cy="348" rx="52" ry="23" fill="#5c9180" opacity=".24"/>
+<ellipse cx="430" cy="325" rx="147" ry="36" fill="#748970" opacity=".27" filter="url(#soft)"/>
+<g filter="url(#shadow)">
+<g transform="translate(337 306) rotate(-24)"><ellipse rx="19" ry="27" fill="#263d33"/><ellipse cx="7" rx="16" ry="27" fill="#354a3e" stroke="#253c32" stroke-width="2"/><ellipse cx="8" rx="8" ry="14" fill="#829684"/><ellipse cx="9" rx="3" ry="5" fill="#c4d0bc"/></g>
+<g transform="translate(514 255) rotate(-24)"><ellipse rx="18" ry="27" fill="#263d33"/><ellipse cx="7" rx="15" ry="27" fill="#354a3e" stroke="#253c32" stroke-width="2"/><ellipse cx="8" rx="8" ry="14" fill="#829684"/></g>
+<g transform="translate(377 357) rotate(-24)"><ellipse rx="19" ry="27" fill="#21372d"/><ellipse cx="7" rx="16" ry="27" fill="#354a3e" stroke="#20372c" stroke-width="2"/><ellipse cx="8" rx="8" ry="14" fill="#9dad94"/><ellipse cx="9" rx="3" ry="5" fill="#d0d9c1"/></g>
+<g transform="translate(547 308) rotate(-24)"><ellipse rx="18" ry="27" fill="#21372d"/><ellipse cx="7" rx="15" ry="27" fill="#354a3e" stroke="#20372c" stroke-width="2"/><ellipse cx="8" rx="8" ry="14" fill="#9dad94"/><ellipse cx="9" rx="3" ry="5" fill="#d0d9c1"/></g>
+<path d="M295 259L467 197Q481 191 497 201L567 264Q580 276 572 290L397 355Q381 361 367 349L298 291Q286 279 295 259Z" fill="#6f9380" stroke="#50755f" stroke-width="3"/>
+<path d="M295 250L467 188Q481 183 497 193L566 253Q578 265 568 277L397 340Q381 346 367 334L299 278Q286 267 295 250Z" fill="url(#metal)" stroke="#809e8a" stroke-width="3"/>
+<path d="M450 205L483 193L551 249L514 264Z" fill="#3d725d" stroke="#2b5748" stroke-width="2"/>
+<path d="M514 266L551 253V276L514 290Z" fill="#315e4c"/>
+<ellipse cx="553" cy="262" rx="6" ry="9" fill="#22443a"/><ellipse cx="535" cy="269" rx="6" ry="9" fill="#22443a"/>
+<path d="M315 246L411 211L477 266L380 302Z" fill="#d4e0cf" stroke="#8da78e" stroke-width="3"/>
+<path d="M325 252L388 306M346 243L409 296M367 236L430 289M388 228L451 281" stroke="#b4c9ad" stroke-width="3"/>
+<path d="M340 193L414 165L472 214L398 242Z" fill="#f1d6a1" stroke="#b9955f" stroke-width="2"/>
+<path d="M340 193L398 242V299L340 247Z" fill="url(#box)" stroke="#ac8550" stroke-width="2"/>
+<path d="M398 242L472 214V271L398 299Z" fill="#b68a4d" stroke="#9d763f" stroke-width="2"/>
+<path d="M373 181L432 229L444 224L385 176Z" fill="#f5e0af"/><path d="M432 229V287L444 283V224Z" fill="#dec28b"/>
+<path d="M348 215L376 240M349 223L367 239" stroke="#a5793f" stroke-width="3"/>
+<path d="M447 240L462 234V252L447 258Z" fill="#f3e8c9"/>
+<circle cx="489" cy="223" r="4" fill="#bfdfae"/>
+</g>
+<g filter="url(#shadow)">
+<path d="M568 380L630 352L710 403L648 435Z" fill="#9eb6a0"/><path d="M568 372L630 344L710 395L648 427Z" fill="#fffbee" stroke="#d7dac1" stroke-width="3"/>
+<path d="M598 378L647 406M624 365L647 406L668 393" fill="none" stroke="#457d62" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M654 428L716 397L796 449L734 480Z" fill="#9eb6a0"/><path d="M654 420L716 389L796 441L734 472Z" fill="#fffbee" stroke="#d7dac1" stroke-width="3"/>
+<path d="M684 426L733 453M710 412L733 453L754 441" fill="none" stroke="#457d62" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M742 472L804 442L884 493L822 524Z" fill="#9eb6a0"/><path d="M742 464L804 434L884 485L822 516Z" fill="#fffbee" stroke="#d7dac1" stroke-width="3"/>
+<path d="M783 464L809 481L800 497M809 481L831 470" fill="none" stroke="#bb8950" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path d="M650 280L671 291M675 269L696 281M702 260L723 271" stroke="#ddba77" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+</svg>

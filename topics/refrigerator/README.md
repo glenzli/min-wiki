@@ -18,6 +18,12 @@ Cumulative rejected heat equals extracted heat plus electrical work. Room net ex
 
 ## Focused verification
 
+### Component-local refrigerant changes · 2026-10-01
+
+示踪冷媒只有进入压缩机后才升压；冷凝和节流也分别限制在画出的散热盘管和毛细管内。部件区间按同一封闭管路的节点和长度计算，四段交界的压力、气相比例保持连续。这仍是教学循环，不模拟具体冷媒或实测压力。
+
+Pressure previously rose along the long suction pipe before the marked parcel reached the painted compressor. Compressor, condenser and capillary windows now derive their positions from the same sealed pipe nodes used by the scene. Pressure rises only between the compressor's inlet and outlet; condensation and expansion likewise occur within their corresponding coil portions. The compressor shell is shared with the model's geometry. Phase and pressure remain continuous around the complete cycle, and the independent air/food heat budget is unchanged. The [Danfoss component explanation](https://www.danfoss.com/en-us/service-and-support/case-stories/dcs/walk-in-coolers-compressors-and-heat-exchangers/) supports compression before heat rejection. Focused geometry/phase tests are source evidence; they do not establish browser visual acceptance.
+
 `node --import tsx --test topics/refrigerator/tests/model.test.mjs` checks energy conservation, bounded temperatures, thermostat restarts, continuous door load, recovery, zero-time invariance and cycle phase closure. Run the scoped strict TypeScript and topic translation checks before handoff. Root registers the topic and performs final build / 390 px production proof.
 
 Sources: US DOE Consumer Guide to Kitchen Appliances; Danfoss compressor/heat-exchanger and temperature-control engineering explanations; Rice University/OpenStax University Physics 2 §4.3. URLs and qualifications are kept with the page and learning material.

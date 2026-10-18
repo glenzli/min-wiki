@@ -1,6 +1,5 @@
 import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { mountSceneReading } from '../../src/platform/sceneReading.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { language, languageHref, translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { AtmosphereScene } from './scene.ts';
@@ -11,7 +10,7 @@ import translations from './content.json';
 import { overviewStudy, layerStudies, worldStudies } from './study.ts';
 import './style.css';
 
-translateDocument(t);mountTopicNavigation('atmosphere');
+translateDocument(t);
 const text=language==='en'?translations.en:translations.zh,journeyText=text.journey;
 const el=(id:string)=>document.getElementById(id)!;
 const input=(id:string)=>el(id) as HTMLInputElement;

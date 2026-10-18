@@ -1,18 +1,33 @@
 import type content from './content.json';
-import { RIVER_HEAD, type Frame } from './model';
+import { RIVER_HEAD, WELL, initialFrame, wellState, type Frame } from './model';
 export type Copy = typeof content.en;
 export const escape = (text: string): string => text.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
-export const headY = (head: number): number => 410 - head * 260;
+/** Non-metric teaching projection: zero at base, river at its drawn surface,
+ * full storage at the fixed wellhead. It preserves head order, not distances. */
+export const HEAD_PROJECTION = { baseY: 410, riverY: 311.2, wellheadY: 258 } as const;
+const headSpan = HEAD_PROJECTION.baseY - HEAD_PROJECTION.wellheadY;
+const riverFraction = (HEAD_PROJECTION.baseY - HEAD_PROJECTION.riverY) / headSpan;
+const projectionShape = RIVER_HEAD * (1 - riverFraction) / (riverFraction * (1 - RIVER_HEAD));
+export const headY = (head: number): number => HEAD_PROJECTION.baseY - headSpan * head / (projectionShape + (1 - projectionShape) * head);
+export const wellGeometry = { x: 535, mouthY: headY(WELL.wellheadHead), screenTopY: headY(WELL.screenTopHead), intakeY: headY(WELL.intakeHead), bottomY: headY(WELL.bottomHead) };
+export type SectionView = 'full' | 'well';
+export const SECTION_VIEWS = { full: '0 0 840 450', well: '450 215 210 225' } as const;
+/** Change only the camera on the retained SVG; all model nodes stay in place. */
+export function setSectionView(svg: SVGSVGElement, view: SectionView): void {
+  svg.setAttribute('viewBox', SECTION_VIEWS[view]); svg.setAttribute('data-view', view);
+}
 const land = 'M35 180 C110 153 180 141 250 165 S410 189 470 236 S592 277 646 309 Q674 334 705 329 Q730 316 752 314 L805 314 L805 410 L35 410 Z';
 /** Static ground grains, landscape and sample sites are made once, never shuffled. */
 export function sceneMarkup(copy: Copy, id: string): string {
   const e = escape;
+  const riverY = headY(RIVER_HEAD);
+  const initial = sceneValues(initialFrame());
   const grains = Array.from({ length: 132 }, (_, i) => {
     const x = 43 + (i % 22) * 36 + (Math.floor(i / 22) % 2) * 14;
     const y = 202 + Math.floor(i / 22) * 37 + Math.sin(i * 2.37) * 6;
     return `<ellipse data-grain="${i}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" rx="${10 + i % 5}" ry="${7 + i % 4}" transform="rotate(${i * 37 % 80 - 40} ${x} ${y})" fill="${['#c9b392', '#ac987e', '#dccbad', '#b9a88d'][i % 4]}" stroke="#847a65" stroke-width=".7"/>`;
   }).join('');
-  return `<svg viewBox="0 0 840 450" role="img" aria-labelledby="${id}-title ${id}-desc">
+  return `<svg class="gw-section-svg" data-view="full" viewBox="${SECTION_VIEWS.full}" role="img" aria-labelledby="${id}-title ${id}-desc">
     <title id="${id}-title">${e(copy.sceneTitle)}</title><desc id="${id}-desc">${e(copy.sceneDesc)}</desc>
     <defs>
       <linearGradient id="${id}-sky" x2="0" y2="1"><stop stop-color="#dcedec"/><stop offset="1" stop-color="#f4f2e2"/></linearGradient>
@@ -22,30 +37,46 @@ export function sceneMarkup(copy: Copy, id: string): string {
       <marker id="${id}-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#11627b" stroke-width="2"/></marker>
     </defs>
     <rect width="840" height="450" rx="22" fill="url(#${id}-sky)"/>
+    <text x="35" y="34" fill="#234b49" font-size="12">${e(copy.heightProjection)}</text>
     <path d="M0 137 Q95 83 180 131 T345 112 T570 148 T840 130 V235 H0Z" fill="#98ada1" opacity=".2"/>
     <g fill="#698878" opacity=".35"><path d="M54 151 70 92 86 145 78 143 79 165H69V149Z"/><path d="M436 202 451 146 469 210 456 207 456 220H446V202Z"/></g>
     <path d="${land}" fill="url(#${id}-soil)"/>
     <g clip-path="url(#${id}-land)">
-      <rect data-gw="saturation" x="35" y="275" width="770" height="135" fill="url(#${id}-water)" opacity=".86"/>
-      <rect data-gw="tag-water" x="35" y="275" width="770" height="135" fill="#eebd54" opacity="0"/>
+      <rect data-gw="saturation" x="35" y="${initial.y}" width="770" height="${initial.height}" fill="url(#${id}-water)" opacity=".86"/>
+      <rect data-gw="tag-water" x="35" y="${initial.y}" width="770" height="${initial.height}" fill="#eebd54" opacity="0"/>
       <g opacity=".91">${grains}</g>
       <path d="M40 242Q225 215 412 259T810 362 M36 293Q220 271 400 315T810 389" fill="none" stroke="#8c806a" stroke-width="1.2" opacity=".4"/>
-      <path data-gw="table" d="M35 275H805" fill="none" stroke="#146d85" stroke-width="3"/>
+      <path data-gw="table" d="M35 ${initial.y}H805" fill="none" stroke="#146d85" stroke-width="3"/>
       <path data-gw="soil-tag" d="M205 175 Q245 168 287 188 L285 214 Q242 201 205 210Z" fill="#eabb52" opacity="0"/>
     </g>
     <path d="M35 180 C110 153 180 141 250 165 S410 189 470 236 S592 277 646 309" fill="none" stroke="#647b48" stroke-width="7" stroke-linecap="round"/>
     <g stroke="#799557" stroke-width="2" fill="none"><path d="m166 146-4-17m4 17 8-14m40 18-2-12m2 12 6-9m311 109-2-11m2 11 6-8"/></g>
     <path d="M35 410H805V440H35Z" fill="#7b817a"/><path d="m40 424 140 10 112-9 90 12 173-10 118 7 126-10" fill="none" stroke="#aeb2a8" opacity=".5"/>
-    <path d="M648 311H805V326Q752 317 717 333Q674 351 648 311Z" fill="#7dc3d7" stroke="#4291ac" stroke-width="1"/>
-    <path d="M661 316H699M722 317H749M763 316H790" stroke="#e4f6f7" stroke-width="2" stroke-linecap="round"/>
-    <path d="M560 ${headY(RIVER_HEAD)}H811" fill="none" stroke="#678d9a" stroke-width="1.5" stroke-dasharray="4 5"/>
+    <path data-gw="river-water" d="M648 ${riverY}H805V${riverY + 15}Q752 ${riverY + 6} 717 ${riverY + 22}Q674 ${riverY + 40} 648 ${riverY}Z" fill="#7dc3d7" stroke="#4291ac" stroke-width="1"/>
+    <path d="M661 ${riverY + 5}H699M722 ${riverY + 6}H749M763 ${riverY + 5}H790" stroke="#e4f6f7" stroke-width="2" stroke-linecap="round"/>
+    <path d="M560 ${riverY}H811" fill="none" stroke="#678d9a" stroke-width="1.5" stroke-dasharray="4 5"/>
     <g data-gw="rain" stroke="#549cb1" stroke-width="2.5" stroke-linecap="round"><path d="m194 89-6 17m26-25-6 17m26-25-6 17m26-6-6 17m26-18-6 17m26-6-6 17"/></g>
     <g data-gw="infiltration" fill="none" stroke="#216d83" stroke-width="2" marker-end="url(#${id}-arrow)"><path d="M226 177v44"/><path d="M265 187v42"/></g>
     <path data-gw="recharge" d="M284 224v59" fill="none" stroke="#216d83" stroke-width="2.5" marker-end="url(#${id}-arrow)"/>
-    <path data-gw="exchange" d="M475 349Q591 361 726 321" fill="none" stroke="#11627b" stroke-width="3" marker-end="url(#${id}-arrow)"/>
-    <g><path d="M529 258V389H541V258" fill="#e4e3cf" stroke="#697876" stroke-width="2"/><path d="M532 352h6m-6 7h6m-6 7h6m-6 7h6m-6 7h6" stroke="#697876" stroke-width="2"/><path d="M527 260h24v-9h-15" fill="none" stroke="#546d66" stroke-width="5"/><path data-gw="pump" d="M535 347V274" fill="none" stroke="#216d83" stroke-width="2.5" marker-end="url(#${id}-arrow)"/></g>
+    <path data-gw="exchange" d="${initial.exchangePath}" opacity="0" fill="none" stroke="#11627b" stroke-width="3" marker-end="url(#${id}-arrow)"/>
+    <g data-well="fixed"><path d="M529 ${wellGeometry.mouthY}V${wellGeometry.bottomY}H541V${wellGeometry.mouthY}" fill="#e4e3cf" stroke="#697876" stroke-width="2"/>
+      <rect data-gw="well-water" x="531" y="${initial.wellWaterY}" width="8" height="${initial.wellWaterHeight}" fill="#74c7d7" opacity=".78"/>
+      <path d="${Array.from({length:6},(_,i)=>`M531 ${wellGeometry.screenTopY + i / 5 * (wellGeometry.intakeY - wellGeometry.screenTopY)}h8`).join('')}" stroke="#697876" stroke-width="1.5"/>
+      <path data-gw="wet-screen" d="${initial.wetScreenPath}" fill="none" stroke="#146d85" stroke-width="3"/>
+      <path d="M527 ${wellGeometry.mouthY + 2}h24v-9h-15" fill="none" stroke="#546d66" stroke-width="5"/>
+      <circle cx="${wellGeometry.x}" cy="${wellGeometry.intakeY}" r="2.3" fill="#546d66"/>
+      <path data-gw="pump" d="M${wellGeometry.x} ${wellGeometry.intakeY}V${wellGeometry.mouthY + 16}" opacity="0" fill="none" stroke="#216d83" stroke-width="2.5" marker-end="url(#${id}-arrow)"/></g>
+    <g class="gw-well-details" fill="#234b49" font-family="system-ui,sans-serif" font-size="13">
+      <g data-gw="well-water-note"><path data-gw="well-water-label" d="M539 ${initial.wellWaterY}H548L553 296" fill="none" stroke="#39717b" stroke-width="1"/>
+      <text x="557" y="300">${e(copy.wellWater)}</text></g>
+      <path d="M542 ${(wellGeometry.screenTopY + wellGeometry.intakeY) / 2}L551 341" fill="none" stroke="#697876" stroke-width="1"/>
+      <text x="557" y="345">${e(copy.screen)}</text>
+      <path d="M538 ${wellGeometry.intakeY}L551 382" fill="none" stroke="#697876" stroke-width="1"/>
+      <text x="557" y="386">${e(copy.intake)}</text>
+      <text x="458" y="430">${e(copy.closeProjection)}</text>
+    </g>
     <g class="gw-map-label"><text x="192" y="61">${e(copy.rainLabel)}</text><text x="511" y="236">${e(copy.well)}</text><text x="709" y="282">${e(copy.river)}</text><text x="52" y="122">②</text><text x="55" y="429" class="gw-small-label">${e(copy.bedrock)}</text></g>
-    <g class="gw-map-label gw-label-halo"><text x="67" y="206">${e(copy.soil)}</text><text x="60" y="390">${e(copy.aquifer)}</text><text data-gw="table-label" x="63" y="266">${e(copy.waterTable)}</text></g>
+    <g class="gw-map-label gw-label-halo"><text x="67" y="206">${e(copy.soil)}</text><text x="60" y="390">${e(copy.aquifer)}</text><text data-gw="table-label" x="63" y="${initial.y - 9}">${e(copy.waterTable)}</text></g>
     <g class="gw-sample" data-marker="A" transform="translate(246 210)"><circle r="13"/><text y="5">A</text></g>
     <g class="gw-sample" data-marker="B" transform="translate(359 351)"><circle r="13"/><text y="5">B</text></g>
     <g class="gw-sample" data-marker="C" transform="translate(759 305)"><circle r="13"/><text y="5">C</text></g>
@@ -55,18 +86,24 @@ export function sceneValues(frame: Frame) {
   const y = headY(frame.head);
   const reverse = frame.flux.river < 0;
   const flowY = Math.min(401, Math.max(349, y + 14));
+  const well = wellState(frame.storage), waterHeight = Math.max(0, wellGeometry.bottomY - y);
+  const waterY = wellGeometry.bottomY - waterHeight, riverFlowY = headY(RIVER_HEAD) + 10;
+  const wetTop = Math.max(wellGeometry.screenTopY, y);
   return {
     y, height: 410 - y,
-    exchangePath: reverse ? `M726 321Q591 ${flowY + 5} 475 ${flowY}` : `M475 ${flowY}Q591 ${flowY + 5} 726 321`,
+    exchangePath: reverse ? `M726 ${riverFlowY}Q591 ${flowY + 5} 475 ${flowY}` : `M475 ${flowY}Q591 ${flowY + 5} 726 ${riverFlowY}`,
     exchangeOpacity: Math.abs(frame.flux.river) < .0005 ? 0 : .35 + Math.min(.65, Math.abs(frame.flux.river)),
     soilTagOpacity: frame.soil > 0 ? .75 * frame.taggedSoil / frame.soil : 0,
     groundTagOpacity: frame.storage > 0 ? Math.min(.8, 4 * frame.taggedGround / frame.storage) : 0,
+    wellWaterY: waterY, wellWaterHeight: waterHeight,
+    wetScreenPath: well.wetFraction > 0 ? `M529 ${wetTop}V${wellGeometry.intakeY}M541 ${wetTop}V${wellGeometry.intakeY}` : '',
+    pumpOpacity: well.wetFraction > 0 ? Math.min(1, frame.flux.pumped * 2) : 0,
   };
 }
 export function mountSection(host: HTMLElement, copy: Copy, id: string): (frame: Frame) => void {
   host.innerHTML = sceneMarkup(copy, id);
   const find = (name: string) => host.querySelector<SVGElement>(`[data-gw="${name}"]`)!;
-  const nodes = Object.fromEntries(['saturation', 'tag-water', 'table', 'table-label', 'rain', 'infiltration', 'recharge', 'exchange', 'soil-tag', 'pump'].map(key => [key, find(key)]));
+  const nodes = Object.fromEntries(['saturation', 'tag-water', 'table', 'table-label', 'rain', 'infiltration', 'recharge', 'exchange', 'soil-tag', 'pump', 'well-water', 'wet-screen', 'well-water-label', 'well-water-note'].map(key => [key, find(key)]));
   return (frame: Frame) => {
     const v = sceneValues(frame);
     for (const key of ['saturation', 'tag-water']) {
@@ -83,6 +120,10 @@ export function mountSection(host: HTMLElement, copy: Copy, id: string): (frame:
     nodes.exchange.setAttribute('d', v.exchangePath);
     nodes.exchange.setAttribute('opacity', String(v.exchangeOpacity));
     nodes.exchange.setAttribute('stroke-width', String(1.5 + Math.min(3, Math.abs(frame.flux.river) * 3)));
-    nodes.pump.setAttribute('opacity', String(Math.min(1, frame.flux.pumped * 2)));
+    nodes['well-water'].setAttribute('y', String(v.wellWaterY)); nodes['well-water'].setAttribute('height', String(v.wellWaterHeight));
+    nodes['well-water-label'].setAttribute('d', `M539 ${v.wellWaterY}H548L553 296`);
+    nodes['well-water-note'].setAttribute('opacity', v.wellWaterHeight > 0 ? '1' : '0');
+    nodes['wet-screen'].setAttribute('d', v.wetScreenPath);
+    nodes.pump.setAttribute('opacity', String(v.pumpOpacity));
   };
 }

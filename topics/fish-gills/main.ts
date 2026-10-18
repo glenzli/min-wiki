@@ -3,11 +3,10 @@ import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { t } from './i18n.ts';
 import { oxygenAt } from './model.ts';
 import { conditionAt, waterConditions, type WaterCondition } from './exchangeStudy.ts';
-translateDocument(t); mountTopicNavigation('fish-gills');
+translateDocument(t);
 const el=<T extends Element = HTMLElement>(id:string):T=>document.getElementById(id)! as unknown as T;
 const titles=[t('水里溶着氧气'),t('鳃像许多薄薄的小片'),t('氧气穿过薄薄的表面'),t('水流出去，继续换新水')];const texts=[t('鱼嘴吸入水。水中溶解的氧气不是图里这么大的小球，也不是必须看见的气泡。'),t('水流过鳃。放大镜里，粉红色小片有很大的表面积，里面有细小血管。'),t('水中的一部分氧气进入血液，由血液送到身体各处。鱼不是把水拆成氧气。'),t('水从鳃盖附近流出去。不断有新水流过鳃，带来新的氧气；二氧化碳也能由鳃进入水中。')];
 

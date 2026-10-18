@@ -1,6 +1,6 @@
 # 病毒是什么？为什么需要细胞？ / What are viruses, and why do they need cells?
 
-2026-09-20：独立 UI 已收归 [微生物统一工作区](../microbes-everywhere/README.md)。本目录 `main.ts` / `index.html` 只保留兼容入口，强制进入 `?chapter=viruses`，保留有效 host/view/p、语言、部署 base 和 hash。旧页面 CSS 已移除；模型、精细场景和封面保持。局部 catalog 已标注 `parentTopic`，正式登记仍以根目录为准。
+2026-09-20：独立 UI 已收归 [微生物统一工作区](../microbes-everywhere/README.md)。本目录 `main.ts` / `reader.html` 只保留兼容入口，强制进入 `?chapter=viruses`，保留有效 host/view/p、语言、部署 base 和 hash。旧页面 CSS 已移除；模型、精细场景和封面保持。局部 catalog 已标注 `parentTopic`，正式登记仍以根目录为准。
 
 The old page controller is replaced by compatibility routing. The unified workspace directly consumes this model/renderer and retains separate host progress, finite camera transitions and stopped-host branches. The 2026-09-17 validation below is historical; current focused tests cover the new owner and routing rather than the removed controller.
 

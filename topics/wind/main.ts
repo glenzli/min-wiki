@@ -1,5 +1,4 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountTopicLearning } from '../../src/platform/learning/mount.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
@@ -10,7 +9,7 @@ import { StormScale } from './stormScale.ts';
 import { SceneSlot } from './sceneSlot.ts';
 import { t } from './i18n.ts';
 import './style.css';
-translateDocument(t);mountTopicNavigation('wind',{learning:false});
+translateDocument(t);
 const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;
 const input=(id:string)=>el<HTMLInputElement>(id);
 const text=(id:string,value:string)=>{if(el(id).textContent!==value)el(id).textContent=value;};

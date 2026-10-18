@@ -1,5 +1,6 @@
 import { t } from './i18n.ts';
 import { leafLifeAt } from './lifecycle.ts';
+import { waterAt } from '../plant-water/model.ts';
 export function lifeContent(age: number) {
   const life = leafLifeAt(age);
   if (life.stage === 'bud') return {
@@ -33,3 +34,10 @@ export const waterStories = [
   t('水到达叶脉和叶肉。上方叶片也出现同一观察批次的标记；两幅图使用不同放大比例。'),
   t('水在叶内蒸发，水汽经气孔扩散出去。实心变空心表示相态变化，不是液滴直接从气孔喷出来。'),
 ];
+export function waterStory(progress: number) {
+  const state = waterAt(progress);
+  if (state.stage < 3) return waterStories[state.stage]!;
+  if (state.vapour < 1) return t('液态水先从湿润的叶肉表面蒸发到叶内空隙，标记在这里从实心变为空心。');
+  if (!state.leftLeaf) return t('水已经变成叶内空隙里的水汽，正在向气孔扩散；此时还没有离开叶片。');
+  return t('空心水汽标记经这片示意叶的下侧气孔离开。气孔位置已放大；真实水汽通常看不见，不是叶子喷出水滴。');
+}

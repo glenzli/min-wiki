@@ -2,6 +2,7 @@ import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, leaf
 import type { LeafKind, Pigments, ScaleEntry } from './model.ts';
 import { t } from './i18n.ts';
 import { leafLifeAt, leafPoint } from './lifecycle.ts';
+import { waterAt } from '../plant-water/model.ts';
 
 type Point = [number, number];
 export class LeafScene {
@@ -65,6 +66,7 @@ export class LeafScene {
   setLabels(enabled: boolean) { this.showLabels = enabled; this.render(); }
   setMotion(enabled: boolean) { this.motion = enabled; this.wake(); }
   setLife(age: number, waterVisible = false, waterProgress = 0) {
+    waterVisible &&= leafLifeAt(age).waterAvailable;
     this.lifeDirty ||= age !== this.age || waterVisible !== this.waterVisible || waterProgress !== this.waterProgress;
     this.age = age; this.waterVisible = waterVisible; this.waterProgress = waterProgress;
   }
@@ -228,7 +230,7 @@ export class LeafScene {
     // reaches its leaf stage. Hollow markers distinguish vapour from liquid.
     const u = Math.max(0, Math.min(1, (p - .61) / .39));
     if (p >= .61) {
-      const evaporation = smooth(.5, .72, u), x = u < .55 ? 19 + 16 * u / .55 : 35 + 64 * (u - .55) / .45;
+      const evaporation = waterAt(p).vapour, x = u < .55 ? 19 + 16 * u / .55 : 35 + 64 * (u - .55) / .45;
       const y = u < .55 ? 245 - 257 * u / .55 : -12 - 105 * (u - .55) / .45;
       c.beginPath(); c.arc(x, y, 7, 0, Math.PI * 2); c.fillStyle = `rgba(45,151,181,${1 - evaporation})`; c.fill(); c.strokeStyle = '#2c8fa7'; c.lineWidth = 2; c.stroke();
     }

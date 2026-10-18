@@ -1,8 +1,11 @@
 import { t } from '../i18n.ts';
 import './daylightLesson.css';
 import {daylightExperiment,lightAtDayProgress,daylightDifference,latitudeCirclePoint} from './daylightModel.ts';
+import { CHINA_CITIES } from '../data/seasonsData.ts';
+import { wrapCycle } from '../physics/solarGeometry.ts';
 const TAU=Math.PI*2;
 const places=[{id:'beijing',name:t("北京 · 北纬 39.9°"),lat:39.9},{id:'sydney',name:t("悉尼 · 南纬 33.9°"),lat:-33.9},{id:'equator',name:t("赤道 · 纬度 0°"),lat:0},{id:'arctic_circle',name:t("北极圈 · 北纬 66.56°"),lat:66.56},{id:'north_pole',name:t("北极点 · 北纬 90°"),lat:90}];
+places.push(...CHINA_CITIES.filter(city=>city.id!=='beijing').map(city=>({id:city.id,lat:city.lat,name:t('{{place}} · 北纬 {{latitude}}°',{place:city.displayName,latitude:city.lat.toFixed(1)})})));
 const seasons: [string,number][]=[[t("春分"),0],[t("夏至"),.25],[t("秋分"),.5],[t("冬至"),.75]];
 const hours=(x: number | null) =>x===null?t("地平线附近"):t("{{v0}} 小时", {v0: x.toFixed(1)});
 function card(title: string,subtitle: string,key: string) {
@@ -139,7 +142,7 @@ export interface DaylightSelection { cityId: string; latitude: number; orbit: nu
 export function mountDaylightLesson(host: HTMLElement, onContinue: (selection: DaylightSelection) => void) {
  let latitude=39.9,orbit=.25,tilt=23.44,progress=0,playing=false,frame=0,lastTime=0;
  host.className='daylight-lesson';
- host.innerHTML=`<div class="lesson-heading"><div><span class="lesson-kicker">${t("先做一个小实验")}</span><h2>${t("地球歪一点，白天会变多长？")}</h2><p>${t("先选一个地方。想象你站在那里，跟着地球转一天：")}<strong>${t("黄色的路在阳光里，蓝色的路在黑夜里。")}</strong>${t("两边转得一样快，哪边会在阳光里待得更久？")}</p></div><button class="lesson-reset" type="button">${t("回到北京夏至")}</button></div>
+ host.innerHTML=`<div class="lesson-heading"><div><span class="lesson-kicker">${t("再做一个小实验")}</span><h2>${t("地球歪一点，白天会变多长？")}</h2><p>${t("先选一个地方。想象你站在那里，跟着地球转一天：")}<strong>${t("黄色的路在阳光里，蓝色的路在黑夜里。")}</strong>${t("两边转得一样快，哪边会在阳光里待得更久？")}</p></div><button class="lesson-reset" type="button">${t("回到北京夏至")}</button></div>
  <div class="lesson-controls"><label class="lesson-control"><span>${t("我站在")}</span><select aria-label="${t("实验观察地点")}">${places.map(p=>`<option value="${p.lat}">${p.name}</option>`).join('')}</select></label><div class="lesson-control"><span>${t("公转到")}</span><div class="lesson-seasons" role="group" aria-label="${t("实验节气")}">${seasons.map(([name,value])=>`<button type="button" data-orbit="${value}" aria-pressed="${value===orbit}">${name}</button>`).join('')}</div></div></div>
  <div class="lesson-comparison">${card(t("如果地轴不倾斜"),t("倾角 0°"),'zero')}${card(t("把地轴倾斜一点"),t("倾角 23.44°"),'tilted')}</div>
  <div class="lesson-action"><label class="lesson-tilt">${t("慢慢改变右边的倾角")}<input aria-label="${t("实验地轴倾角")}" type="range" min="0" max="23.44" step="0.01" value="23.44"><output>23.44°</output></label><div class="lesson-play"><button type="button" data-walk>${t("▶ 让城市走一天")}</button><span class="lesson-turn">${t("从正午出发")}</span></div></div>
@@ -152,11 +155,11 @@ export function mountDaylightLesson(host: HTMLElement, onContinue: (selection: D
  const select=host.querySelector<HTMLSelectElement>('select')!,slider=host.querySelector<HTMLInputElement>('input')!,output=host.querySelector<HTMLOutputElement>('output')!,walk=host.querySelector<HTMLElement>('[data-walk]')!,turn=host.querySelector<HTMLElement>('.lesson-turn')!;
  const cards=[...host.querySelectorAll<HTMLElement>('.lesson-card')]; let models: ReturnType<typeof daylightExperiment>[]=[];
  function render() {cards.forEach((card,i)=>draw(card.querySelector<HTMLCanvasElement>('canvas')!,models[i],progress));turn.textContent=progress===0?t("从正午出发"):progress>=1?t("走完一天，回到正午"):t("已走过 {{v0}} 小时", {v0: (progress*24).toFixed(1)});
-  host.querySelector<HTMLElement>('[data-selection-summary]')!.textContent=t("{{place}} · {{term}} · 地轴 {{tilt}}° · 从正午走过 {{hours}} 小时",{place:places.find(p=>p.lat===latitude)!.name,term:seasons.find(([,value])=>value===orbit)![0],tilt:tilt.toFixed(2),hours:(progress*24).toFixed(1)});
+  host.querySelector<HTMLElement>('[data-selection-summary]')!.textContent=t("{{place}} · {{term}} · 地轴 {{tilt}}° · 从正午走过 {{hours}} 小时",{place:places.find(p=>p.lat===latitude)!.name,term:seasons.find(([,value])=>value===orbit)?.[0]??t('当前公转位置'),tilt:tilt.toFixed(2),hours:(progress*24).toFixed(1)});
  }
  function stop(){playing=false;cancelAnimationFrame(frame);walk.textContent=t("▶ 让城市走一天");}
- function refresh(){
-  stop();progress=0;models=[daylightExperiment(latitude,orbit,0),daylightExperiment(latitude,orbit,tilt)];
+ function refresh(resetProgress=true){
+  stop();if(resetProgress)progress=0;models=[daylightExperiment(latitude,orbit,0),daylightExperiment(latitude,orbit,tilt)];
   select.value=String(latitude);slider.value=String(tilt);output.value=`${tilt.toFixed(2)}°`;
   host.querySelectorAll<HTMLElement>('[data-orbit]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.orbit)===orbit)));
   cards.forEach((card,i)=>{
@@ -205,5 +208,11 @@ export function mountDaylightLesson(host: HTMLElement, onContinue: (selection: D
   onContinue({cityId:place.id,latitude,orbit,tilt,dayProgress:progress});
  });
  window.addEventListener('resize',render);
- refresh();return {dispose:()=>{stop();window.removeEventListener('resize',render);},render};
+ function setSelection(selection: DaylightSelection) {
+  const place=places.find(p=>p.id===selection.cityId);
+  if(!place)return;
+  latitude=place.lat;orbit=wrapCycle(selection.orbit);tilt=Math.max(0,Math.min(23.44,selection.tilt));progress=wrapCycle(selection.dayProgress);
+  refresh(false);
+ }
+ refresh();return {dispose:()=>{stop();window.removeEventListener('resize',render);},render,setSelection};
 }

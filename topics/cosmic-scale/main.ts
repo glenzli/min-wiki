@@ -1,7 +1,6 @@
 import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { mountSceneReading } from '../../src/platform/sceneReading.ts';
 import { language, translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { t } from './i18n.ts';
 import data from './content.json';
 import { readJourney, originStart, stageFor, stops, zoomRoute, scaleState, formatLength, halfWidthKm, LIGHT_YEAR_KM, anchorForScale } from './model.ts';
@@ -12,7 +11,7 @@ import {readExploration,type Chapter} from './comparisonModel.ts';
 import comparisonWords from './comparisonContent.json';
 import { pairStudy, homeStudy, zoomStudy } from './study.ts';
 import './style.css';
-translateDocument(t);mountTopicNavigation('cosmic-scale');
+translateDocument(t);
 const text=(v:{zh:string;en:string})=>language==='en'?v.en:v.zh;
 const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;
 const state={...readJourney(location.search),tilt:.35};
@@ -46,11 +45,11 @@ function saveRoute(){const url=new URL(location.href);url.searchParams.set('mode
 function setChapter(chapter:Chapter){stop();comparison.stop();exploration.chapter=chapter;update(true);}
 function syncStudy(){
   const stage=stageFor(state.progress);
-  const key=exploration.chapter==='compare'?`compare:${Math.round(exploration.pair)}`:exploration.chapter==='homes'?`home:${exploration.home}`:`zoom:${stage}`;
+  const key=exploration.chapter==='compare'?`compare:${Math.round(exploration.pair)}`:exploration.chapter==='homes'?`home:${exploration.home}`:`zoom:${state.origin}:${stage}`;
   if(key===studyKey||!reading)return;
   studyKey=key;
   reading.setChildTarget(exploration.chapter==='zoom'?el('explain'):comparisonNote);
-  reading.set(exploration.chapter==='compare'?pairStudy(Math.round(exploration.pair)):exploration.chapter==='homes'?homeStudy(exploration.home):zoomStudy(stage));
+  reading.set(exploration.chapter==='compare'?pairStudy(Math.round(exploration.pair)):exploration.chapter==='homes'?homeStudy(exploration.home):zoomStudy(stage,state.origin));
 }
 for(const [i,chapter] of (['compare','homes','zoom'] as const).entries()){const b=document.createElement('button');b.textContent=words.chapters[i]!;b.dataset.chapter=chapter;b.onclick=()=>setChapter(chapter);el('journey-chapters').append(b);}
 function update(sync=false){

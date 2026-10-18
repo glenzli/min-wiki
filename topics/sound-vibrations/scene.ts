@@ -1,4 +1,4 @@
-import { parcelDisplacement, relativeDensity, sourceDisplacement, packetSpan, receiverArrival } from './model.ts';
+import { parcelDisplacement, relativeDensity, sourceDisplacement, packetSpan, receiverArrival, stringProjection } from './model.ts';
 import { t } from './i18n.ts';
 export class SoundScene {
   private dots: SVGCircleElement[];
@@ -6,6 +6,7 @@ export class SoundScene {
   private story: HTMLParagraphElement;
   private sourceLabel: SVGTextElement;
   private receiverLabel: SVGTextElement;
+  private tensionLabel: SVGTextElement;
   constructor(private svg: SVGElement, wrap: HTMLElement) {
     const ns = 'http://www.w3.org/2000/svg';
     const air=svg.querySelector('#air-view')!;
@@ -13,10 +14,14 @@ export class SoundScene {
     // vanishes and is never replaced by a second, unrelated "source" icon.
     const instrument=svg.querySelector('#instrument')!;
     svg.append(instrument);
-    const smallScreen=typeof window.matchMedia==='function'?window.matchMedia('(max-width:620px)'):undefined;
-    const fitScene=()=>svg.setAttribute('preserveAspectRatio',smallScreen?.matches?'xMidYMid meet':'xMidYMid slice');
-    smallScreen?.addEventListener('change',fitScene);
-    fitScene();
+    // End supports and force arrows carry the explanation. Keep the complete
+    // geometry visible at every viewport ratio instead of cropping its ends.
+    svg.setAttribute('preserveAspectRatio','xMidYMid meet');
+    const forceLayer=document.createElementNS(ns,'g');
+    forceLayer.setAttribute('id','string-forces');
+    forceLayer.innerHTML=`<defs><marker id="string-pull-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="3" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#557580"/></marker><marker id="string-offset-head" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="3" markerHeight="3" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#cfad57"/></marker></defs><path id="string-equilibrium" d="M172 230H728" fill="none" stroke="#dce6df" stroke-width="2" stroke-dasharray="5 6"/><g fill="none" stroke="#557580" stroke-width="4" marker-end="url(#string-pull-head)"><path id="left-pull"/><path id="right-pull"/></g><path id="string-offset" fill="none" stroke="#cfad57" stroke-width="3" marker-end="url(#string-offset-head)"/><circle id="string-middle" cx="450" cy="230" r="7" fill="#edcb72" stroke="#fff1c6" stroke-width="1.5"/><text id="string-tension-caption" x="450" y="112" text-anchor="middle" font-size="17" fill="#405c65"></text>`;
+    instrument.insertBefore(forceLayer,svg.querySelector('#string'));
+    this.tensionLabel=forceLayer.querySelector('#string-tension-caption')!;
     for(const [tag,attrs] of [
       ['rect',{id:'packet-window',y:'121',height:'218',rx:'8',fill:'#d9ad63',opacity:'.16'}],
       ['path',{id:'packet-front',fill:'none',stroke:'#a86f27','stroke-width':'2.5','stroke-dasharray':'5 6'}],
@@ -36,8 +41,20 @@ export class SoundScene {
     this.sourceLabel.textContent=t('同一根橡皮筋');
     this.receiverLabel.textContent=t('鼓膜（示意）');
   }
-  draw(time: number, tension: number, amplitude: number, airView: number) {
+  draw(time: number, tension: number, amplitude: number, airView: number, showForces=true) {
     const source = sourceDisplacement(time, tension, amplitude);
+    const string=stringProjection(source*2,tension);
+    const pair=(a:number[],b:number[])=>`M${a[0]} ${a[1]}L${b[0]} ${b[1]}`;
+    const forces=this.svg.querySelector('#string-forces')!;
+    forces.setAttribute('opacity',String(showForces?1-airView:0));
+    forces.setAttribute('aria-hidden',String(!showForces||airView>.5));
+    this.svg.querySelector('#left-pull')!.setAttribute('d',pair(string.left,string.pullLeft));
+    this.svg.querySelector('#right-pull')!.setAttribute('d',pair(string.right,string.pullRight));
+    this.svg.querySelector('#string-offset')!.setAttribute('d',pair([450,230],string.middle));
+    this.svg.querySelector('#string-offset')!.setAttribute('opacity',Math.abs(source)>.75?'1':'0');
+    this.svg.querySelector('#string-middle')!.setAttribute('cy',String(string.middle[1]));
+    this.tensionLabel.textContent=t('相对张力 {{tension}} × · 低档仍绷紧',{tension:tension.toFixed(1)});
+    this.svg.querySelector('#tuning-grip')!.setAttribute('transform',`rotate(${-45*(tension-1)} 792 230)`);
     const packet = packetSpan(time);
     this.svg.querySelector('#instrument')!.setAttribute('transform',`translate(${-20*airView} ${175*airView}) scale(${1-.76*airView})`);
     this.svg.querySelector('#air-view')!.setAttribute('opacity', String(airView));

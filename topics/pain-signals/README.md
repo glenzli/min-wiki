@@ -37,4 +37,16 @@ The topic selects its existing scene and controls for the shared viewport-fitted
 
 The portrait diagram has been composed as a wide, continuous route: the same skin ending, spinal circuit, muscle/hand and brain remain in place as the activity fronts advance. The skin zoom keeps that ending as its anchor and reveals epidermis, free ending and afferent fiber labels. The muscle-to-hand connector now reaches the withdrawing hand throughout the movement. Tissues remain enlarged side by side; routes are functional summaries, not a single literal neuron fork.
 
+The SVG clips to its current observation window. Magnified tissue outside that window cannot cover the native return button; zooming back retains progress and the same linkage geometry.
+
 The child mode places a one-sentence explanation at the top of the controls, while the academic mode adds phase-specific mechanism and model limits in the same sidebar. Both modes retain the existing playback and stage selection; mode and camera changes do not reset progress. On a 390 px screen the compact introduction leaves the illustration and playback entrance in the first viewport. The IASP distinction between nociception and pain and the UTHealth description of free nerve endings, spinal relays and differing fibers were rechecked; no physiological speed, damage or pain score is calculated.
+
+## Bounded withdrawal repair 2026-10-01
+
+The previous drawing had no bones or joints. It shortened the belly by 20 SVG units but moved the hand 27 units away from the fixed near attachment; the far tendon consequently grew from 39 to 76 units. That contradicted the illustrated shortening-and-pull relationship. The coupled model now fixes the near attachment and both idealized tendon lengths (36 and 37 units): a 112-to-92-unit belly draws the same far attachment and hand symbol 20 units closer. The fibers follow the belly’s center and length. These are teaching coordinates, not measured physiological shortening.
+
+下方只示肌肉缩短牵拉连接端，不复现手臂解剖：骨、关节与多肌群动作未绘，肌腱长度在示意中固定，不模拟弹性。并排放大的组织及移动方向不标定刺激的位置。
+
+The lower inset shows only shortening pulling an attachment closer. Bones, joints and coordinated muscle groups are omitted; fixed drawn tendon lengths do not simulate tendon elasticity. Side-by-side enlargements and movement direction do not locate the stimulus. The scene caption, phase boundary and deeper notes state equivalent qualifications in both languages.
+
+The existing NCBI withdrawal reference and [OpenStax’s muscle attachment and lever explanation](https://openstax.org/books/anatomy-and-physiology-2e/pages/11-1-interactions-of-skeletal-muscles-their-fascicle-arrangement-and-their-lever-systems) were checked on 2026-10-01. They support withdrawal involving flexors and coordinated joints, and transmission of muscle pull through tendons to bones; the inset is not attributed to a particular named muscle. Focused regressions exercise the actual SVG attributes across withdrawal, branch emphasis and replay, in addition to sequence ordering.

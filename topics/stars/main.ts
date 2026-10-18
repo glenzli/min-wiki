@@ -1,7 +1,6 @@
 import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { mountSceneReading } from '../../src/platform/sceneReading.ts';
 import { language, languageHref, translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { t } from './i18n.ts';
 import data from './content.json';
 import evolutionWords from './evolutionContent.json';
@@ -13,7 +12,7 @@ import { StellarScene, type ViewState } from './scene.ts';
 import { ThreeBodyExperiment } from './threeBody/controller.ts';
 import { anatomyStudies, evolutionStudy, orbitStudies, threeBodyStudy, sunDistanceStudy, typesStudy } from './study.ts';
 import './style.css';
-translateDocument(t);mountTopicNavigation('stars');
+translateDocument(t);
 const text=(value:{zh:string;en:string})=>language==='en'?value.en:value.zh;
 const u=(key:keyof typeof data.ui)=>text(data.ui[key]);
 const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;

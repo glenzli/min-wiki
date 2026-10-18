@@ -1,0 +1,4 @@
+{
+  "id": "flight", "title": "飞机为什么能起飞？", "summary": "看机翼怎样改变空气，比较速度、迎角和失速，再把同一组条件带到跑道。", "category": "engineering",
+  "tags": ["飞机", "飞行", "机翼", "升力", "空气", "迎角", "失速", "起飞"], "duration": "互动探索", "modes": ["儿童版", "学术版"], "theme": "light", "sceneTheme": "light", "status": "published", "updated": "2026-10-01"
+}

@@ -1,0 +1,23 @@
+{
+  "id": "mobile-networks",
+  "title": "手机怎样把消息送到远方？",
+  "summary": "跟随编号穿过基站与网络，比较离线等待、送达与已读。",
+  "category": "engineering",
+  "tags": [
+    "手机",
+    "通信",
+    "网络",
+    "无线电",
+    "基站",
+    "信息"
+  ],
+  "duration": "约 8 分钟",
+  "modes": [
+    "儿童版",
+    "学术版"
+  ],
+  "theme": "light",
+  "sceneTheme": "light",
+  "status": "published",
+  "updated": "2026-10-01"
+}

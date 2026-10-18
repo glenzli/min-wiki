@@ -19,7 +19,7 @@ const require=createRequire(resolve(root,'package.json'));
 const ts=require('typescript');
 const {parse,parseFragment}=await import(require.resolve('parse5'));
 const topic=resolve(root,'topics/air-conditioner');
-const html=readFileSync(resolve(topic,'index.html'),'utf8');
+const html=readFileSync(resolve(topic,'reader.html'),'utf8');
 
 function harness(controllerSource,{project=false,search=''}={}) {
  const ids=new Map(),elements=[];

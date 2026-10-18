@@ -1,9 +1,8 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { SCIENCE_EXPLANATIONS } from './science.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import './shell.css';
-mountTopicNavigation('rainbow');
+
 import { RainbowSimulation } from './physics/rainbowSimulation.ts';
 import { SPECTRUM_COLORS } from './data/rainbowData.ts';
 import { SCENARIO_DESCRIPTIONS, STORIES, ACADEMIC, stageAt } from './story.ts';

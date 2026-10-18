@@ -4,6 +4,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { organization, airParcel, circulationDirection, smooth, type Settings } from './model.ts';
 import { relief, eyewalls, eyeRadius, type StormStructure } from './cloudField.ts';
 import { CloudEvolution } from './evolution.ts';
+import { RenderQueue } from './renderQueue.ts';
+import { isSoftwareRenderer, volumePixelRatio } from './renderPolicy.ts';
 export type SceneView='natural'|'flow'|'section';
 export type CameraView='oblique'|'top'|'side';
 export interface SceneState { progress:number; circulation:number; settings:Settings; view:SceneView; structure:StormStructure; replacement:number; feature:string }
@@ -110,8 +112,13 @@ export class TopicScene {
   private convection=new THREE.DataTexture(this.cloudPixels,this.evolution.size,this.evolution.size);private cloudProgress=-1;
   private material:THREE.ShaderMaterial;private cloud:THREE.Mesh;private points:THREE.Points;private pointPositions=new Float32Array(144*3);private pointColors=new Float32Array(144*3);private pointAlpha=new Float32Array(144);
   private highlight:THREE.Mesh;private outerHighlight:THREE.Mesh;private guides=new THREE.Group();private disposed=false;private cancelCamera=()=>{};private cancelStructure=()=>{};private cancelSlice=()=>{};private structure:StormStructure='eye';private sliced=false;private guideKey='';
+  private width=0;private height=0;private pixelRatio=0;private software=false;
+  private renderQueue:RenderQueue;
   constructor(private canvas:HTMLCanvasElement){
     this.renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
+    const gl=this.renderer.getContext(),debug=gl.getExtension('WEBGL_debug_renderer_info');
+    this.software=Boolean(debug&&isSoftwareRenderer(String(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL))));
+    this.renderQueue=new RenderQueue(()=>this.renderer.render(this.world,this.camera),callback=>requestAnimationFrame(callback),frame=>cancelAnimationFrame(frame),this.software?1500:0);
     this.renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));this.renderer.setClearColor('#b5c9ce');this.renderer.outputColorSpace=THREE.SRGBColorSpace;
     this.world.fog=new THREE.Fog('#b5c9ce',650,1450);
     this.camera.position.set(280,490,365);this.controls=new OrbitControls(this.camera,canvas);this.controls.target.set(0,47,0);
@@ -161,8 +168,8 @@ export class TopicScene {
     const u=this.material.uniforms,from=[u.coverage.value,u.replacementMode.value],to=[structure==='covered'?1:0,structure==='replacement'?1:0];
     this.cancelStructure=animateValue({from:0,to:1,duration:800,onUpdate:p=>{u.coverage.value=from[0]+(to[0]-from[0])*p;u.replacementMode.value=from[1]+(to[1]-from[1])*p;this.render();}});
   }
-  private resize(){if(this.disposed)return;const w=this.canvas.clientWidth,h=this.canvas.clientHeight;this.renderer.setSize(w,h,false);this.camera.aspect=w/Math.max(1,h);this.camera.zoom=Math.min(1,this.camera.aspect/1.3);this.camera.updateProjectionMatrix();this.render();}
-  readonly render=()=>{if(!this.disposed)this.renderer.render(this.world,this.camera);};
+  private resize(){if(this.disposed)return;const w=this.canvas.clientWidth,h=this.canvas.clientHeight,ratio=volumePixelRatio(w,h,devicePixelRatio,this.software);if(!w||!h||w===this.width&&h===this.height&&ratio===this.pixelRatio)return;this.width=w;this.height=h;if(ratio!==this.pixelRatio){this.pixelRatio=ratio;this.renderer.setPixelRatio(ratio);}this.renderer.setSize(w,h,false);this.camera.aspect=w/h;this.camera.zoom=Math.min(1,this.camera.aspect/1.3);this.camera.updateProjectionMatrix();this.render();}
+  readonly render=()=>{if(!this.disposed)this.renderQueue.request();};
   setCamera(view:CameraView){
     const distance=this.canvas.clientWidth<500?740:680;
     const positions={top:[0,distance,.1],oblique:[distance*.4,distance*.72,distance*.53],side:[0,distance*.21,distance]};
@@ -195,5 +202,5 @@ export class TopicScene {
     this.highlight.scale.setScalar(radius);this.highlight.position.y=state.feature==='wall'?115:state.feature==='eye'?6:50;
     this.render();
   }
-  dispose(){this.cancelCamera();this.cancelStructure();this.cancelSlice();this.disposed=true;this.observer.disconnect();this.controls.removeEventListener('change',this.render);this.controls.dispose();this.world.traverse(object=>{const mesh=object as THREE.Mesh;if(mesh.geometry)mesh.geometry.dispose();if(mesh.material){for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material])m.dispose();}});this.evolution.dispose();this.field.dispose();this.convection.dispose();this.grain.dispose();this.renderer.dispose();}
+  dispose(){this.cancelCamera();this.cancelStructure();this.cancelSlice();this.disposed=true;this.renderQueue.dispose();this.observer.disconnect();this.controls.removeEventListener('change',this.render);this.controls.dispose();this.world.traverse(object=>{const mesh=object as THREE.Mesh;if(mesh.geometry)mesh.geometry.dispose();if(mesh.material){for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material])m.dispose();}});this.evolution.dispose();this.field.dispose();this.convection.dispose();this.grain.dispose();this.renderer.dispose();}
 }

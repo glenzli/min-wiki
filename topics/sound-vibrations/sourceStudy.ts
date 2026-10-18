@@ -13,7 +13,10 @@ let audio: AudioContext | undefined, oscillator: OscillatorNode | undefined, gai
 function update() {
   root.dataset.soundView=targetView?'air':'source';
   progress?.(time,targetView===1);
-  scene.draw(time, value('tension'), value('amplitude'), view);
+  scene.draw(time, value('tension'), value('amplitude'), view, input('show-string-forces').checked);
+  root.querySelectorAll<HTMLElement>('[data-air-legend]').forEach(node=>node.hidden=targetView===0);
+  root.querySelectorAll<HTMLElement>('[data-string-legend]').forEach(node=>node.hidden=targetView===1||!input('show-string-forces').checked);
+  el('tension-value').textContent=t('相对张力 {{tension}} ×；振动长度保持不变。',{tension:value('tension').toFixed(1)});
   el('pitch').textContent = t('实际音高约 {{frequency}} Hz', {frequency: Math.round(frequency(value('tension')))});
   el('clock').textContent = `${time.toFixed(1)} / ${DURATION} s`; input('phase').value = String(time * 100);
   el('play').textContent = playing ? t('暂停慢镜头') : time >= DURATION ? t('从头回看') : t('播放慢镜头');
@@ -46,6 +49,7 @@ el('stop').addEventListener('click', () => { pause(); stopAudio(); time = 0; upd
 el('pluck').addEventListener('click', () => { void listen(); });
 for (const id of ['tension', 'amplitude']) el(id).addEventListener('input', () => { pause(); stopAudio(); time = 0; changed(value('tension'), value('amplitude')); update(); });
 el('phase').addEventListener('input', () => { pause(); time = value('phase') / 100; update(); });
+el('show-string-forces').addEventListener('change',update);
 for (const b of root.querySelectorAll<HTMLButtonElement>('[data-view]')) b.addEventListener('click', () => { cancelView(); targetView = Number(b.dataset.view); cancelView = animateValue({from: view, to: targetView, duration: 500, onUpdate: v => { view = v; update(); }}); });
 document.addEventListener('visibilitychange', () => { if (document.hidden) { pause(); cancelView(); view = targetView; stopAudio(); void audio?.suspend(); update(); } });
 window.addEventListener('pagehide', event => { pause(); cancelView(); stopAudio(); if (event.persisted) void audio?.suspend(); else void audio?.close(); });

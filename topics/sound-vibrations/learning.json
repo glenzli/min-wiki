@@ -7,7 +7,7 @@
     "academic": [
       {
         "title": "振动传递扰动而非运走空气",
-        "body": "橡皮筋振动带动附近空气，产生向外传播的压强和密度变化。空气中的声波通常是纵波，空气小团的平均位移方向与传播方向平行；这与弯曲弦的横向位移不同。图中实心点表示小团空气的平均位置，不是单个分子的热运动轨迹。扰动携带能量向远处走，小团空气在平衡位置附近往复；声源停止后，已经发出的波仍会继续传播。没有适合的介质时，机械声波不能这样传播。 固体也可以传递机械波；独立真空对照假定没有支架等固体连接路径。"
+        "body": "橡皮筋振动带动附近空气，产生向外传播的压强和密度变化。空气中的声波通常是纵波，空气小团的平均位移方向与传播方向平行；这与弯曲弦的横向位移不同。图中实心点表示小团空气的平均位置，不是单个分子的热运动轨迹。扰动携带能量向远处走，小团空气在平衡位置附近往复；声源停止后，已经发出的波仍会继续传播。没有适合的介质时，机械声波不能这样传播。 固体也可以传递机械波；独立真空对照假定没有支架等固体连接路径。 本页低档仍然绷紧。两支点的有效振动长度不变，成对箭头随相对张力改变；弦偏离静止位置后，拉力的横向分量提供回复。金色位移线与蓝灰力箭头分别编码位移和力，不应混读。"
       },
       {
         "title": "频率与振幅描述不同性质",
@@ -49,7 +49,7 @@
     "academic": [
       {
         "title": "Sound carries disturbances through a medium",
-        "body": "A vibrating band creates pressure and density disturbances in nearby air. Airborne sound is longitudinal: mean parcel displacement is parallel to propagation, unlike transverse string motion. Dots represent average parcel positions, not individual molecular thermal trajectories. Energy propagates while parcels oscillate locally. A previously emitted wave keeps traveling after its source stops; such mechanical waves need a suitable medium. Solids can also carry mechanical waves; the separate vacuum comparison excludes solid connecting paths such as supports."
+        "body": "A vibrating band creates pressure and density disturbances in nearby air. Airborne sound is longitudinal: mean parcel displacement is parallel to propagation, unlike transverse string motion. Dots represent average parcel positions, not individual molecular thermal trajectories. Energy propagates while parcels oscillate locally. A previously emitted wave keeps traveling after its source stops; such mechanical waves need a suitable medium. Solids can also carry mechanical waves; the separate vacuum comparison excludes solid connecting paths such as supports. Even the low setting remains taut. The speaking length between supports stays fixed; paired arrows encode relative tension. When the string is displaced, transverse components of tension provide restoring forces. Gold displacement and blue-gray force arrows encode different quantities."
       },
       {
         "title": "Frequency and amplitude differ",

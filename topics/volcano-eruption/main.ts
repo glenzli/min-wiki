@@ -5,7 +5,6 @@ import { LIFE_STEPS, ecologyStory, ecologyClue, LIFE_WATCH, OMURO_NOTE } from '.
 import { COLLAPSE } from '../volcanic-lakes/content.ts';
 import { magmaState } from './magmaSystem.ts';
 import { MECHANISM_STEPS, mechanismStory, mechanismKidStory, mechanismStatus } from './mechanismContent.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
@@ -17,13 +16,13 @@ import { TopicScene as EruptionScene } from './scene.ts';
 import { TopicScene as LakeScene } from '../volcanic-lakes/scene.ts';
 import { createScene as createOcean, viewCamera } from '../submarine-volcanoes/scene.ts';
 import { SEA_FLOOR, submarineState, type Environment, type Supply } from '../submarine-volcanoes/model.ts';
-import { waterFraction, type Settings as LakeSettings } from '../volcanic-lakes/model.ts';
+import { waterFraction, calderaStage, type Settings as LakeSettings } from '../volcanic-lakes/model.ts';
 import { PRESETS, eruptionAppearance, type Settings, type EruptionStyle, type VolcanoStatus } from './model.ts';
 import { STYLE_NOTES, STATUS_NOTES } from './context.ts';
 import './project.css';
 
 translateDocument(t);
-mountTopicNavigation('volcano-eruption');
+
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 const select = (id: string) => el<HTMLSelectElement>(id).value;
 const number = (id: string) => Number(el<HTMLInputElement>(id).value);
@@ -46,7 +45,7 @@ function settings(): Settings {
   return { vents: number('vents'), gas: number('gas') / 100, viscosity: number('viscosity') / 100, supply: number('supply') / 100, resistance: number('resistance') / 100, landform: volcano as Landform };
 }
 function lifeState() { return ecologyState(progress, select('habitat') as Habitat); }
-function collapseStage() { return progress < .18 ? 0 : progress < .27 ? 1 : progress < .48 ? 2 : 3; }
+function collapseStage() { return calderaStage(progress); }
 function lakeSettings(): LakeSettings { return { basin: select('basin') as LakeSettings['basin'], supply: number('water') / 100, leak: select('leak') as LakeSettings['leak'] }; }
 function weights(): [number, number, number] {
   return select('environment') === 'deep' ? [1, 0, 0] : select('environment') === 'shallow' ? [0, 1, 0] : [0, 0, 1];
@@ -122,7 +121,8 @@ function update() {
   if (isLand() && chapter === 'life') story = ecologyStory(lifeState());
   if (!academic) {
     story = isLand() && chapter === 'eruption' ? mechanismKidStory(magmaState(progress, settings()))
-      : isLand() && chapter === 'life' ? ecologyClue(lifeState()) : KIDS_STORIES[volcano][stage];
+      : isLand() && chapter === 'life' ? ecologyClue(lifeState())
+      : volcano === 'lake' && select('basin') === 'caldera' ? COLLAPSE[stage].kid : KIDS_STORIES[volcano][stage];
     if (volcano === 'submarine' && stage === 2 && select('environment') === 'shallow') story = t('浅水里的岩浆和海水猛烈相遇，碎屑又落回水中。');
     if (isLand() && chapter === 'landscape' && stage === 3 && select('aftermath') === 'eroded') story = t('很久以后，水和风慢慢削改这座旧山。');
   }

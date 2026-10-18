@@ -4,6 +4,7 @@ import { BODY_IDS, readSelection, descentState, canView, parentOf, SATELLITES, m
 import { INTERIORS } from '../../planet-surfaces/interior.ts';
 import bodies from '../explorer/bodies.json' with {type:'json'};
 import moons from '../explorer/moons.json' with {type:'json'};
+import { languageHref, resolveLanguage } from '../../../src/platform/i18n.ts';
 
 test('deep links reject stale input and preserve valid parent-child exploration',()=>{
   assert.deepEqual(readSelection('?body=earth&view=descent'),{body:'earth',view:'descent'});
@@ -91,7 +92,13 @@ test('rings are Saturn-only and legacy satellite routes preserve language',()=>{
   for(const body of BODY_IDS.filter(id=>id!=='saturn'))assert.equal(canView(body,'rings'),false);
   for(const lang of ['zh','en'])assert.deepEqual(readSelection(legacySaturnMoonTarget('?lang='+lang).split('?')[1]),{body:'saturn',view:'moons'});
   assert.match(legacySaturnMoonTarget('?lang=en&body=jupiter&view=section'),/lang=en/);
-  assert.match(legacySaturnMoonTarget('?lang=unknown'),/lang=zh/);
+  const migrated=legacySaturnMoonTarget('?lang=en&reading=academic&body=jupiter&view=section&compareA=earth','#world-comparison');
+  const target=new URL(languageHref(migrated,'en','/wiki/'),'https://wiki.test');
+  assert.equal(target.pathname,'/wiki/topics/solar-system/');assert.equal(target.hash,'#world-comparison');
+  assert.equal(target.searchParams.get('reading'),'academic');assert.equal(target.searchParams.get('compareA'),'earth');
+  assert.equal(target.searchParams.get('body'),'saturn');assert.equal(target.searchParams.get('view'),'moons');
+  assert.equal(new URL(languageHref(legacySaturnMoonTarget(''),resolveLanguage(null,'en','zh')),'https://wiki.test').searchParams.get('lang'),'en');
+  assert.equal(new URL(languageHref(legacySaturnMoonTarget('?lang=unknown'),resolveLanguage('unknown','en','zh')),'https://wiki.test').searchParams.get('lang'),'en');
 });
 test('ring regions are ordered above the planet and the Cassini Division retains material',()=>{
   let end=SATURN_RADIUS_KM;

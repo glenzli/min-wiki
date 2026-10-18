@@ -82,3 +82,53 @@ passed. The rebuilt page was checked in a 390 px English browser for both readin
 case-card return and retained flytrap progress after visiting the seedling; no horizontal
 overflow or browser warnings/errors were observed. The Chinese desktop comparison was
 visually checked in both modes. This batch remains uncommitted and undeployed.
+
+
+## Mimosa joint identity — 2026-10-01
+
+The plant drawing now separates the fixed stem, primary pulvinus, short petiole and
+pinna junction. Wider-response `droop` rotates the petiole and all four pinnae as one
+compound leaf around the stem-side primary pulvinus; the pinnae no longer acquire
+unrelated extra angles. Local touch leaves this joint still while the existing
+`leafletFold` sequence closes the selected pinna's leaflets. A gold ring and its leader
+track the same leaflet-base pulvinus at pair 6 of the selected pinna. The tissue/cell
+views still examine the primary pulvinus and consume its existing `droop` state; they
+do not masquerade as a section through the ringed leaflet joint. Its tissue is not
+simulated. Short petiole length and bounded rotation are qualitative layout geometry,
+not measured anatomy, a three-dimensional pose model or an elastic-tissue solution.
+
+全株图明确区分茎、主叶枕、短叶柄和羽片汇合处。较广刺激由同一个主叶枕状态
+带动叶柄与整片复叶一起下垂；局部轻触保持主叶枕不动。金圈跟随所选羽片第七对
+小叶的一侧基部叶枕，组织与细胞图则明确观察叶柄基部的主叶枕。小叶叶枕的组织
+剖面没有模拟，转角和短叶柄均为定性几何，不代表组织力学求解或实测比例。
+
+Morphology reference: [Song, Yeom & Lee (2014), *Real-time imaging of pulvinus
+bending in Mimosa pudica*](https://www.nature.com/articles/srep06466), Introduction
+and Fig. 5 (stem–pulvinus–petiole connection). [Hagihara et al. (2022), Fig. 1](https://pubmed.ncbi.nlm.nih.gov/36376294/) links tertiary-pulvinus signals to local
+leaflet movement. Canvas-command regression and geometry invariants check retained
+anchors, a fixed primary joint, one compound-leaf rotation, recovery and leaf-tip
+fit. Real-browser layout and interaction acceptance is owned by the root task.
+
+## Tertiary leaflet-base view — 2026-10-01, second refinement
+
+`Leaflet pulvini` follows the same ringed seventh pair (`OBSERVED_PAIR`) and the
+same `leafletFold`/signal-arrival clock as the plant portrait. In a side projection,
+the rachilla and proximal joint sites stay fixed in this local frame (which follows
+the drooping compound leaf during the wider response); two separate, continuously bent
+leaflet-base organs move the blades upward. Blade lengths do not change. A faint
+open reference makes the geometric change visible when paused. Returning to the
+portrait, primary tissue or a different plant retains the experiment state.
+
+The linked tissue inset represents **some** motor cells with a qualitative water
+and volume trend, not a histological section or a pressure measurement. It does not
+identify which side of the tertiary organ loses water, does not transplant the
+primary pulvinus's lower-side anatomy, and does not represent every cell shrinking
+uniformly. Its guides appear only during the illustrative transition and reverse
+on recovery. The existing primary tissue and its selected cell remain independent.
+
+Primary evidence: Tran et al. (2021), *Mechanosensitive ion channels contribute to
+mechanically evoked rapid leaflet movement in Mimosa pudica*, Plant Physiology
+187, 1704–1712, [Fig. 1 and Results](https://academic.oup.com/plphys/article/187/3/1704/6347591);
+Visnovitz et al. (2007), [tertiary-pulvinus receptor/motor tissue](https://pmc.ncbi.nlm.nih.gov/articles/PMC2634336/).
+These support the leaflet-base organ identity and folding mechanism. They do not
+calibrate this scene's angles, water quantities, timing or motor-cell volume.

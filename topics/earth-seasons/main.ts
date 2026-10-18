@@ -2,19 +2,21 @@ import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import './shell.css';
 translateDocument(t);
-mountTopicNavigation('earth-seasons');
+
 
 import { mountDaylightLesson } from './learning/daylightLesson.ts';
 import type { DaylightSelection } from './learning/daylightLesson.ts';
 import { EarthSimulation } from './physics/earthSimulation.ts';
-import { rotationAtLocalNoon, wrapCycle } from './physics/solarGeometry.ts';
+import { rotationAtLocalNoon, solarGeometry, wrapCycle } from './physics/solarGeometry.ts';
+import { clockText, referenceClockHours, rotationAtReferenceClock } from './physics/dayNightClock.ts';
+import { DayNightObservation } from './observation/dayNightObservation.ts';
 import {
   EARTH_CONSTANTS,
   SOLAR_TERMS,
   MAJOR_CITIES,
+  CHINA_CITIES,
   calcSubsolarLatitude,
   calcNoonSolarAltitude,
   calcDaylightHours,
@@ -25,6 +27,7 @@ import { SCENARIO_DESCRIPTIONS, STORIES, ACADEMIC, stageAt } from './story.ts';
 interface PageElements {
   'encyclopedia-nav': HTMLElement;
   'btn-about': HTMLButtonElement;
+  'btn-tilt-experiment': HTMLButtonElement;
   'daylight-lesson': HTMLElement;
   'model-subsolar': HTMLElement;
   'model-tilt': HTMLElement;
@@ -90,7 +93,8 @@ class EarthApp {
   phaseKey!: string;
   dialog!: HTMLDialogElement;
   simulation!: EarthSimulation;
-  daylightLesson!: { dispose: () => void; render: () => void; };
+  observation!: DayNightObservation;
+  daylightLesson!: ReturnType<typeof mountDaylightLesson>;
   frame!: number;
   resumePlayAfterDialog!: boolean;
 
@@ -100,22 +104,28 @@ class EarthApp {
     this.scenario = 'daynight';
     this.selectedCity = 'beijing';
     this.cityCardOpen = true;
-    this.selectedSolstice = 'spring_equinox';
+    this.selectedSolstice = 'summer_solstice';
     this.lastFrame = performance.now();
     this.phaseKey = '';
     this.dialog = $('about-dialog');
 
     try {
       this.simulation = new EarthSimulation($('canvas-container'));
+      this.simulation.orbitProgress = .25;
+      this.simulation.rotationProgress = rotationAtReferenceClock(.25, this.simulation.currentTiltDeg, 4.5);
+      this.simulation.selectCity(this.selectedCity);
+      this.simulation.setView('china');
     } catch (error) {
       console.error('Earth 3D initialization failed:', error);
       $('scene-error').hidden = false;
     }
 
     this.daylightLesson = mountDaylightLesson($('daylight-lesson'), selection => this.continueFromLesson(selection));
+    this.observation = new DayNightObservation(id => this.selectCity(id), id => this.simulation?.cityLabelPosition(id) ?? { x: 0, y: 0, visible: false });
     this.initToolsBar();
     this.bindControls();
     this.buildStages();
+    this.updateTimeLabels();
     this.updateUI();
 
     this.animate = this.animate.bind(this);
@@ -163,6 +173,15 @@ class EarthApp {
   }
 
   bindControls() {
+    $('btn-tilt-experiment').addEventListener('click', () => {
+      if (!this.simulation) return;
+      const city = MAJOR_CITIES.find(item => item.id === this.selectedCity)!;
+      const { orbitProgress: orbit, currentTiltDeg: tilt, rotationProgress } = this.simulation;
+      this.pause();
+      this.daylightLesson.setSelection({ cityId: city.id, latitude: city.lat, orbit, tilt,
+        dayProgress: wrapCycle(rotationProgress - rotationAtLocalNoon(orbit, tilt, city.lon)) });
+      $('daylight-lesson').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    });
     // Mode toggle: Kids vs Academic
     document.querySelectorAll<HTMLElement>('[data-mode]').forEach(button => {
       if (button.tagName !== 'BUTTON') return;
@@ -205,9 +224,6 @@ class EarthApp {
       button.addEventListener('click', () => {
         const view = button.dataset.view!;
         this.setView(view);
-        document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => {
-          b.setAttribute('aria-pressed', String(b === button));
-        });
       });
     });
 
@@ -226,6 +242,9 @@ class EarthApp {
       if (this.simulation) {
         if (['seasons','notilt'].includes(this.scenario)) {
           this.simulation.orbitProgress = 0.0;
+        } else if (this.scenario === 'daynight') {
+          this.simulation.orbitProgress = .25;
+          this.simulation.rotationProgress = rotationAtReferenceClock(.25, this.simulation.currentTiltDeg, 4.5);
         } else {
           this.simulation.rotationProgress = 0.0;
         }
@@ -240,14 +259,15 @@ class EarthApp {
       if (!this.simulation) return;
       $('bridge-context').hidden = true;
       this.pause();
-      const frac = Number(scrubber.value) / 1000;
+      const frac = Number(scrubber.value) / Number(scrubber.max);
       if (['seasons','notilt'].includes(this.scenario)) {
         this.simulation.orbitProgress = frac;
+      } else if (this.scenario === 'daynight') {
+        this.simulation.rotationProgress = rotationAtReferenceClock(this.simulation.orbitProgress, this.simulation.currentTiltDeg, frac * 24);
       } else {
         this.simulation.rotationProgress = frac;
       }
-      this.updateStory();
-      this.updateCityCard();
+      this.updateUI();
     });
 
     // Speed select
@@ -306,6 +326,7 @@ class EarthApp {
   }
 
   selectScenario(sc: string) {
+    const clock = this.currentClockHours();
     $('bridge-context').hidden = true;
     this.scenario = sc;
     document.querySelectorAll<HTMLElement>('[data-scenario]').forEach(b => {
@@ -314,7 +335,9 @@ class EarthApp {
 
     this.pause();
     this.simulation?.selectScenario(sc);
-    document.querySelectorAll<HTMLElement>('[data-view]').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.view==='default')));
+    if (this.simulation) this.simulation.rotationProgress = rotationAtReferenceClock(this.simulation.orbitProgress, this.simulation.currentTiltDeg, clock);
+    this.setView(sc === 'daynight' ? 'china' : 'default');
+    document.querySelector<HTMLElement>('[data-view="china"]')!.hidden = sc !== 'daynight';
     this.buildStages();
     this.updateTimeLabels();
     this.updateUI();
@@ -329,10 +352,11 @@ class EarthApp {
 
     const term = SOLAR_TERMS.find(t => t.id === solsticeId);
     if (term && this.simulation) {
+      const clock = this.currentClockHours();
       this.pause();
       this.simulation.setSolsticeTerm(term.fractionOfYear);
-      this.syncScrubber();
-      this.updateCityCard();
+      this.simulation.rotationProgress = rotationAtReferenceClock(term.fractionOfYear, this.simulation.currentTiltDeg, clock);
+      this.updateUI();
     }
   }
 
@@ -347,10 +371,15 @@ class EarthApp {
     this.cityCardOpen = true;
     this.simulation?.selectCity(cityId);
     this.updateCityCard();
+    this.updateObservation();
   }
 
   setView(viewName: string) {
+    if (viewName === 'china' && !CHINA_CITIES.some(city => city.id === this.selectedCity)) this.selectCity('beijing');
     this.simulation?.setView(viewName === 'default' ? 'standard' : viewName);
+    document.querySelectorAll<HTMLElement>('[data-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === viewName)));
+    this.updateCityCard();
+    this.updateObservation();
   }
 
   continueFromLesson(selection: DaylightSelection) {
@@ -358,18 +387,19 @@ class EarthApp {
     const {cityId, orbit, tilt, dayProgress} = selection;
     const city = MAJOR_CITIES.find(item => item.id === cityId);
     const term = SOLAR_TERMS.find(item => item.fractionOfYear === orbit);
-    if (!city || !term) return;
+    if (!city) return;
     this.selectScenario(tilt < .005 ? 'notilt' : 'seasons');
     this.simulation.currentTiltDeg = tilt;
     this.simulation.targetTiltDeg = tilt;
     this.selectCity(cityId);
-    this.selectSolstice(term.id);
+    if (term) this.selectSolstice(term.id);
+    else this.simulation.orbitProgress = orbit;
     this.simulation.rotationProgress = wrapCycle(rotationAtLocalNoon(orbit, tilt, city.lon) + dayProgress);
     this.setView('sun');
     document.querySelectorAll<HTMLElement>('[data-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === 'sun')));
     const context = $('bridge-context');
     context.textContent = t('延续上方实验：{{place}} · {{term}} · 地轴 {{tilt}}° · 从当地正午走过 {{hours}} 小时。红点和城市读数使用这一组条件；标准看可回到轨道全景。', {
-      place: city.displayName, term: term.displayName, tilt: tilt.toFixed(2), hours: (dayProgress * 24).toFixed(1)
+      place: city.displayName, term: term?.displayName ?? t('当前公转位置'), tilt: tilt.toFixed(2), hours: (dayProgress * 24).toFixed(1)
     });
     context.hidden = false;
     this.phaseKey = '';
@@ -394,9 +424,13 @@ class EarthApp {
           if (this.simulation) {
             $('bridge-context').hidden = true;
             this.pause();
-            const key = ['seasons','notilt'].includes(this.scenario) ? 'orbitProgress' : 'rotationProgress';
-            this.cancelStageMotion = animateValue({ from: this.simulation[key], to: phase.at, duration: 1000,
-              onUpdate: value => { this.simulation[key] = value; this.syncScrubber(); this.updateStory(); this.updateCityCard(); } });
+            this.cancelStageMotion = animateValue({ from: this.timelineProgress(), to: phase.at, duration: 1000,
+              onUpdate: value => {
+                if (['seasons','notilt'].includes(this.scenario)) this.simulation.orbitProgress = value;
+                else this.simulation.rotationProgress = this.scenario === 'daynight'
+                  ? rotationAtReferenceClock(this.simulation.orbitProgress, this.simulation.currentTiltDeg, value * 24) : value;
+                this.updateUI();
+              } });
           }
         });
         return button;
@@ -407,6 +441,11 @@ class EarthApp {
   }
 
   updateTimeLabels() {
+    $('progress-label').textContent = this.scenario === 'daynight' ? t('北京时间（模型）') : t('时间轴进度');
+    $('progress').max = this.scenario === 'daynight' ? '1440' : '1000';
+    $('progress').removeAttribute('aria-valuetext');
+    $('btn-restart').setAttribute('aria-label', this.scenario === 'daynight' ? t('回到夏至清晨') : t('从头观察'));
+    $('btn-restart').title = this.scenario === 'daynight' ? t('回到夏至清晨') : t('从头观察');
     if (['seasons','notilt'].includes(this.scenario)) {
       $('duration').textContent = t("365 天 (1年)");
     } else {
@@ -430,8 +469,8 @@ class EarthApp {
 
   syncScrubber() {
     if (!this.simulation) return;
-    const norm = ['seasons','notilt'].includes(this.scenario) ? this.simulation.orbitProgress : this.simulation.rotationProgress;
-    const val = Math.round(norm * 1000);
+    const norm = this.timelineProgress();
+    const val = Math.round(norm * Number($('progress').max));
     const scrubber = $('progress');
     scrubber.value = String(val);
     scrubber.style.setProperty('--progress', `${norm * 100}%`);
@@ -439,6 +478,9 @@ class EarthApp {
     if (['seasons','notilt'].includes(this.scenario)) {
       const days = Math.round(norm * 365.25);
       $('elapsed').textContent = t("春分起 {{v0}} 天", {v0: days});
+    } else if (this.scenario === 'daynight') {
+      $('elapsed').textContent = t('北京时间 {{time}}', { time: clockText(this.currentClockHours()) });
+      scrubber.setAttribute('aria-valuetext', t('北京时间 {{time}}', { time: clockText(this.currentClockHours()) }));
     } else {
       const totalMinutes = Math.round(norm * 24 * 60);
       const h = Math.floor(totalMinutes / 60)
@@ -463,12 +505,12 @@ class EarthApp {
     const labels = {day:t("白天 ☀"),night:t("黑夜 ☾"),horizon:t("晨昏交界")};
     $('card-city-status').textContent = labels[state.state];
     $('card-city-status').style.color = state.state === 'day' ? '#38bdf8' : '#e9b76c';
-    $('city-card').hidden = !this.cityCardOpen;
+    $('city-card').hidden = !this.cityCardOpen || this.simulation.view === 'china';
   }
 
   updateStory() {
     if (!this.simulation) return;
-    const norm = ['seasons','notilt'].includes(this.scenario) ? this.simulation.orbitProgress : this.simulation.rotationProgress;
+    const norm = this.timelineProgress();
     const stories = STORIES[this.scenario] || STORIES.daynight;
     const academic = ACADEMIC[this.scenario] || ACADEMIC.daynight;
     const index = stageAt(norm, this.scenario);
@@ -517,6 +559,23 @@ class EarthApp {
     this.syncScrubber();
     this.updateStory();
     this.updateCityCard();
+    this.updateObservation();
+  }
+
+  currentClockHours() {
+    if (!this.simulation) return 4.5;
+    return referenceClockHours(solarGeometry(this.simulation.orbitProgress, this.simulation.rotationProgress, this.simulation.currentTiltDeg).sunLocal);
+  }
+
+  timelineProgress() {
+    if (['seasons','notilt'].includes(this.scenario)) return this.simulation.orbitProgress;
+    return this.scenario === 'daynight' ? this.currentClockHours() / 24 : this.simulation.rotationProgress;
+  }
+
+  updateObservation() {
+    if (!this.simulation || !this.observation) return;
+    this.observation.update({ orbit: this.simulation.orbitProgress, rotation: this.simulation.rotationProgress,
+      tilt: this.simulation.currentTiltDeg, cityId: this.selectedCity, view: this.simulation.view, scenario: this.scenario });
   }
 
   animate(now: number) {
@@ -528,6 +587,7 @@ class EarthApp {
       this.syncScrubber();
       this.updateStory();
       this.updateCityCard();
+      this.updateObservation();
       const phase = this.simulation.orbitProgress;
       document.querySelectorAll<HTMLElement>('.solstice-tab').forEach(button => {
         const term = SOLAR_TERMS.find(item => item.id === button.dataset.solstice!);
@@ -546,8 +606,13 @@ class EarthApp {
 // Bootstrap
 new EarthApp();
 
+// Keep the question and clock before the controls, and group viewing choices
+// with seasonal choices to leave more room for the geographic observation.
+document.querySelector('.theater')!.prepend($('daynight-heading'));
+document.querySelector('.tools-bar')!.append(document.querySelector('.view-controls')!);
+
 mountPresentationFrame({ root: '#daylight-lesson', visual: '.lesson-comparison', paired: true, transport: '.lesson-action' });
 const earthFrame = mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });
 // The readout belongs next to the globe; overlaid on the canvas it can hide
 // Earth at one side of the orbit during solstices.
-earthFrame?.notes.prepend($('city-card'));
+earthFrame?.notes.prepend($('regional-comparison'), $('city-card'));

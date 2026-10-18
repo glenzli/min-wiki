@@ -1,0 +1,25 @@
+01 · Heavy, and still heavy
+[Begin with airplane and runway, then show the wing section under unchanged settings; retain the explanation of weight.]
+
+A heavy airplane can leave the ground, but its weight has not disappeared. The engine helps it move forward so air passes the wings. Look at a slice through one wing to find out what air and wing do together.
+
+---
+
+02 · What if no air passes?
+[Compare zero relative speed with a moderate wing angle. Point to both surfaces; do not pair particles for equal transit.]
+
+Start without motion between wing and air. Even raising the wing nose cannot produce the lift for this flight. Now let air pass. It goes above and below the wing, and flow direction and pressure change together. In common lifting flow, air turns downward overall and exerts an upward force on the wing. The two routes have no rule requiring an on-time meeting.
+
+---
+
+03 · More angle is not always better
+[Compare 12° and 26° at 38m/s. Identify brown dashed routes and drag; 15° is only this page's teaching threshold.]
+
+Keep the same initial speed and raise the wing nose farther. Flow separates noticeably above the surface. Exceeding a critical angle of attack causes a stall: lift coefficient falls and drag grows. The engine need not stop and lift need not become zero. Raising the wing nose ever higher does not make flight ever easier.
+
+---
+
+04 · Take the conditions to the runway
+[Advance, pause, seek backward and advance again. Compare lift-off and ground contact, explaining held horizontal speed and the short window.]
+
+Take the same conditions to the runway. If the upward aerodynamic force is too small, the ground continues to support the wheels. Only an upward net force begins upward acceleration. Ascent changes relative airflow direction and angle of attack too. Real takeoff has many other conditions; this small window helps explain relationships, not how to fly an airplane.

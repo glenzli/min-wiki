@@ -1789,6 +1789,78 @@
       "bytes": 26956
     },
     {
+      "source": "topics/solar-system/assets/2k_earth_daymap.jpg",
+      "output": "topics/solar-system/assets/2k_earth_daymap.webp",
+      "quality": 90,
+      "sourceSha256": "767ee1dc6eb3802699bfccf6f264880f8acd0b80de3191cd24984fe279b07b7c",
+      "sha256": "11b8a2dd52523c64768a3938aa3cf04d0a061e1d9bcf066000fd10c598d48ed8",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 224430
+    },
+    {
+      "source": "topics/solar-system/assets/2k_earth_clouds.jpg",
+      "output": "topics/solar-system/assets/2k_earth_clouds.webp",
+      "quality": 90,
+      "sourceSha256": "fffd7f68d41b37274822150e54a6ef605af1d3ec35624d9f628c3b896bfa42ed",
+      "sha256": "bd8adeffb7dfcf0b1e35e80b423e4721de4773f9a0bcdb8834ebf3d7b8190c9f",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 694126
+    },
+    {
+      "source": "topics/solar-system/assets/2k_moon.jpg",
+      "output": "topics/solar-system/assets/2k_moon.webp",
+      "quality": 90,
+      "sourceSha256": "2764ba6535ea0481a062846ee033cc7a909dae05b31a8fd13f3e98f3a7fd92bd",
+      "sha256": "63cfe9d4962722edf874bcd0b045416ac356acdca776849a2915c81ef5b426ee",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 779106
+    },
+    {
+      "source": "topics/earth-moon/assets/2k_earth_daymap.jpg",
+      "output": "topics/earth-moon/assets/2k_earth_daymap.webp",
+      "quality": 90,
+      "sourceSha256": "767ee1dc6eb3802699bfccf6f264880f8acd0b80de3191cd24984fe279b07b7c",
+      "sha256": "11b8a2dd52523c64768a3938aa3cf04d0a061e1d9bcf066000fd10c598d48ed8",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 224430
+    },
+    {
+      "source": "topics/earth-moon/assets/2k_earth_clouds.jpg",
+      "output": "topics/earth-moon/assets/2k_earth_clouds.webp",
+      "quality": 90,
+      "sourceSha256": "fffd7f68d41b37274822150e54a6ef605af1d3ec35624d9f628c3b896bfa42ed",
+      "sha256": "bd8adeffb7dfcf0b1e35e80b423e4721de4773f9a0bcdb8834ebf3d7b8190c9f",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 694126
+    },
+    {
+      "source": "topics/earth-moon/assets/2k_moon.jpg",
+      "output": "topics/earth-moon/assets/2k_moon.webp",
+      "quality": 90,
+      "sourceSha256": "2764ba6535ea0481a062846ee033cc7a909dae05b31a8fd13f3e98f3a7fd92bd",
+      "sha256": "63cfe9d4962722edf874bcd0b045416ac356acdca776849a2915c81ef5b426ee",
+      "pixels": [
+        2048,
+        1024
+      ],
+      "bytes": 779106
+    },
+    {
       "source": "topics/earth-seasons/assets/earth_atmos_2048.jpg",
       "output": "topics/earth-seasons/assets/earth_atmos_2048.webp",
       "quality": 90,

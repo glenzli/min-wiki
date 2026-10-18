@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { energyRatio, smooth } from './model.ts';
+import { energyRatio, smooth, IMPACT_PROGRESS } from './model.ts';
 import type { Settings } from './model.ts';
 
 const TERRAIN_WIDTH = 14;
@@ -24,7 +24,7 @@ function baseRelief(x: number, z: number) {
 
 function terrainHeight(x: number, z: number, progress: number, settings: Settings) {
   const radius = craterScale(settings);
-  const formation = smooth(.35, .67, progress);
+  const formation = smooth(IMPACT_PROGRESS, .67, progress);
   const settled = smooth(.68, .95, progress);
   const distance = Math.hypot(x, z);
   const u = distance / radius;
@@ -201,7 +201,7 @@ export class TopicScene {
   private updateTerrain(progress: number, settings: Settings) {
     const position = this.terrainGeometry.getAttribute('position') as THREE.BufferAttribute;
     const radius = craterScale(settings);
-    const formation = smooth(.35, .67, progress);
+    const formation = smooth(IMPACT_PROGRESS, .67, progress);
     const color = new THREE.Color();
     for (let i = 0; i < position.count; i++) {
       const x = this.baseXZ[i * 2];
@@ -219,16 +219,40 @@ export class TopicScene {
     this.terrainGeometry.computeVertexNormals();
   }
 
+  /** Interpolate the actual terrain triangles under a point, including relief. */
+  private groundHeightAt(x: number, z: number) {
+    const gx = (x / TERRAIN_WIDTH + .5) * SEGMENTS_X;
+    const gz = (z / TERRAIN_DEPTH + .5) * SEGMENTS_Z;
+    const ix = Math.max(0, Math.min(SEGMENTS_X - 1, Math.floor(gx)));
+    const iz = Math.max(0, Math.min(SEGMENTS_Z - 1, Math.floor(gz)));
+    const fx = gx - ix, fz = gz - iz;
+    const positions = this.terrainGeometry.getAttribute('position');
+    const a = iz * (SEGMENTS_X + 1) + ix;
+    const b = a + SEGMENTS_X + 1, c = b + 1, d = a + 1;
+    // PlaneGeometry splits each cell along b–d before rotation onto x/z.
+    return fx + fz <= 1
+      ? positions.getY(a) + (positions.getY(d) - positions.getY(a)) * fx + (positions.getY(b) - positions.getY(a)) * fz
+      : positions.getY(c) + (positions.getY(b) - positions.getY(c)) * (1 - fx) + (positions.getY(d) - positions.getY(c)) * (1 - fz);
+  }
+
   private updateMeteor(progress: number, settings: Settings) {
-    const beforeImpact = progress < .35;
-    const u = Math.min(1, progress / .35);
+    const beforeImpact = progress < IMPACT_PROGRESS;
+    const u = Math.min(1, progress / IMPACT_PROGRESS);
     const travel = .08 * u + .92 * u * u * u;
-    const start = new THREE.Vector3(2.1, 3.65, 2.25);
-    const end = new THREE.Vector3(0, .11, 0);
-    this.meteor.position.lerpVectors(start, end, travel);
     const size = .66 + Math.min(1.1, settings.diameter / 250);
     this.meteor.scale.setScalar(size);
     this.meteor.rotation.set(progress * 8.2, progress * 5.7, progress * 3.8);
+    // Fit the current irregular rock against the same rendered ground. Its size
+    // and rotation must not make it sink into the surface before the flash.
+    const positions = this.meteor.geometry.getAttribute('position');
+    const vertex = new THREE.Vector3();
+    let contactY = -Infinity;
+    for (let i = 0; i < positions.count; i++) {
+      vertex.fromBufferAttribute(positions, i).multiplyScalar(size).applyQuaternion(this.meteor.quaternion);
+      contactY = Math.max(contactY, this.groundHeightAt(vertex.x, vertex.z) - vertex.y);
+    }
+    const start = new THREE.Vector3(0, 3.65, 0);
+    this.meteor.position.set(0, THREE.MathUtils.lerp(start.y, contactY, travel), 0);
     this.meteor.visible = beforeImpact;
     this.trail.visible = beforeImpact && progress > .025;
     if (this.trail.visible) {
@@ -241,14 +265,14 @@ export class TopicScene {
   }
 
   private updateImpact(progress: number, settings: Settings) {
-    const impact = Math.max(0, Math.min(1, (progress - .35) / .075));
+    const impact = Math.max(0, Math.min(1, (progress - IMPACT_PROGRESS) / .075));
     const fade = 1 - impact;
     const flashMaterial = this.flash.material as THREE.MeshBasicMaterial;
-    this.flash.visible = impact > 0 && impact < 1;
+    this.flash.visible = progress >= IMPACT_PROGRESS && impact < 1;
     this.flash.scale.setScalar(.12 + impact * 1.45);
     flashMaterial.opacity = fade * .8;
-    this.flashLight.intensity = fade * 24;
-    const shock = Math.max(0, Math.min(1, (progress - .355) / .18));
+    this.flashLight.intensity = this.flash.visible ? fade * 24 : 0;
+    const shock = Math.max(0, Math.min(1, (progress - IMPACT_PROGRESS - .005) / .18));
     const shockMaterial = this.shockwave.material as THREE.MeshBasicMaterial;
     this.shockwave.visible = shock > 0 && shock < 1;
     this.shockwave.scale.setScalar(.12 + shock * craterScale(settings) * 1.15);

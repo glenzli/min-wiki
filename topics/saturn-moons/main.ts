@@ -1,6 +1,5 @@
 import { animateValue } from '../../src/visuals/transition.ts';
 
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { CONTENT } from './content.ts';
@@ -10,7 +9,7 @@ import { readout, MOONS } from './model.ts';
 import { MOON_TEXT } from './moons.ts';
 import './style.css';
 translateDocument(t);
-mountTopicNavigation("saturn-moons");
+
 const el = (id: string) => document.getElementById(id)!;
 const value = (id: string) => (el(id) as HTMLInputElement | HTMLSelectElement).value;
 const number = (id: string) => Number(value(id));

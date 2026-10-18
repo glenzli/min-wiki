@@ -1,7 +1,8 @@
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
-import { leafletFold, response, signalArrival, type TouchSettings } from './model.ts';
+import { leafletFold, signalArrival, type TouchSettings } from './model.ts';
 import { t } from './i18n.ts';
-import { createMotorTissue, primaryPulvinus, tissuePoint, type Point, type TissueCell } from './anatomy.ts';
+import { createMotorTissue, primaryPulvinus, leafletPulvinus, leafletPairPose, tissuePoint, type Point, type TissueCell } from './anatomy.ts';
+import { plantPose, compoundPoint, pinnaPoint, leafletBase, PINNA_ANGLES, PINNA_LENGTHS, OBSERVED_PAIR } from './geometry.ts';
 
 const noise = (n: number) => { const x = Math.sin(n * 127.13 + 31.17) * 43758.5453; return x - Math.floor(x); };
 export class MimosaScene extends CanvasSurface {
@@ -23,12 +24,65 @@ export class MimosaScene extends CanvasSurface {
       g.addColorStop(0, i % 3 ? '#9bb77a22' : '#fffefca0'); g.addColorStop(1, '#d1dfbc00');
       this.ellipse(x, y, r, r, g);
     }
+    if (view === 'leaflet') {
+      this.tertiaryPulvinus(p, settings);
+      this.end();
+      return;
+    }
     if (depth < 1) {
       c.save(); c.globalAlpha = 1 - depth; c.scale(1 + depth * .7, 1 + depth * .7); c.translate(0, -depth * 50);
       this.plant(p, settings); c.restore();
     }
     if (depth > 0) { c.save(); c.globalAlpha = Math.min(1, depth); this.pulvinus(p, settings, Math.max(0, depth - 1)); c.restore(); }
     this.end();
+  }
+  private tertiaryPulvinus(p: number, settings: TouchSettings) {
+    const c = this.context, state = leafletPulvinus(p, settings), pose = leafletPairPose(state.fold);
+    // Looking along the rachilla, rather than reusing the primary organ's section.
+    // Both leaflets keep their own fixed joints and material lengths.
+    for (let side = 0; side < 2; side++) {
+      const [x, y] = pose.joints[side]!;
+      c.save(); c.globalAlpha = .18;
+      this.leaflet(x + (side ? 14 : -14), y, side ? 0 : Math.PI, pose.length, 19, 130 + side);
+      c.restore();
+      this.path([[side ? 9 : -9, pose.axis[1]], [x, y]], undefined, '#718650', 7);
+      const [lx, ly] = pose.leafBases[side]!, angle = pose.angles[side]!;
+      this.leaflet(lx, ly, angle, pose.length, 19, 130 + side);
+      // The proximal end stays on the rachilla while the distal end bends with
+      // this leaflet. The organ is a continuous bent neck, not a rotating bead.
+      c.beginPath(); c.moveTo(x + (side ? -10 : 10), y);
+      c.bezierCurveTo(x + (side ? -3 : 3), y, x + 4 * Math.cos(angle), y + 4 * Math.sin(angle), lx, ly);
+      c.lineCap = 'round'; c.lineWidth = 13; c.strokeStyle = '#899f5b'; c.stroke();
+      c.lineWidth = 5; c.strokeStyle = '#c7d69b'; c.stroke();
+      if (side === 1) { c.beginPath(); c.ellipse(x, y, 20, 17, 0, 0, Math.PI * 2); c.strokeStyle = '#ad863d'; c.lineWidth = 2; c.stroke(); }
+    }
+    this.ellipse(...pose.axis, 12, 9, '#75905d', '#5b764b');
+    this.ellipse(pose.axis[0] - 2, pose.axis[1] - 2, 6, 3, '#c8d5a0');
+    this.label(t('以羽轴为参照'), -245, 81, { width: 175, color: '#58663e', background: '#fffef2dc', anchor: pose.axis });
+    this.label(t('金圈处的小叶叶枕'), 232, 67, { width: 205, color: '#806a35', background: '#fffef2dc', anchor: pose.joints[1] });
+
+    // A separate, schematic tissue inset: no claim of a histological section,
+    // an upper/lower extensor identity or a calibrated water/pressure scale.
+    this.path([pose.joints[1], [70, 89], [60, 106]], undefined, '#ad863d88', 1.5);
+    c.fillStyle = '#fffef0cc'; c.fillRect(-172, 105, 344, 97);
+    const volume = 1 - state.fold * .18;
+    for (let i = 0; i < 4; i++) {
+      const x = -119 + i * 79, y = 152;
+      this.ellipse(x, y, 30, 25 * volume, '#dce4b7', '#829965');
+      this.ellipse(x, y, 26, 21 * volume, '#d3e1b3', '#599c9077');
+      const waterVolume = .44 + .30 * state.water;
+      this.ellipse(x + 2, y, 27 * waterVolume, 23 * waterVolume, '#7dbfc4', '#4b929e');
+      this.ellipse(x - 17, y - 7, 3.7, 3, '#a9a196');
+      if (state.flux > .005) {
+        c.save(); c.globalAlpha *= state.flux;
+        const from: Point = [x + 4, y + 6], to: Point = [x + 23, y + 33];
+        this.arrow(...(state.recovering ? to : from), ...(state.recovering ? from : to), '#3d95a6', 1.4);
+        const f = state.fold;
+        this.ellipse(from[0] + (to[0] - from[0]) * f, from[1] + (to[1] - from[1]) * f, 2.2, 2.2, '#cea451');
+        c.restore();
+      }
+    }
+    this.label(t('部分运动细胞：水相与体积示意'), 0, 213, { width: 560, background: '#fffef2dc', color: '#436c68' });
   }
   private leaflet(x: number, y: number, angle: number, length: number, width: number, seed: number, fold = 0) {
     const c = this.context;
@@ -52,8 +106,10 @@ export class MimosaScene extends CanvasSurface {
     c.restore();
   }
   private plant(p: number, settings: TouchSettings) {
-    const c = this.context, state = response(p, settings), origin: [number, number] = [-8, 50 + state.droop * 28];
-    c.lineCap = 'round'; c.beginPath(); c.moveTo(80, 250); c.bezierCurveTo(25, 181, 66, 97, ...origin);
+    const c = this.context, pose = plantPose(p, settings);
+    // The stem and flower stay fixed. The primary pulvinus is at the stem–petiole
+    // junction, separated from the four pinna bases by an explicit short petiole.
+    c.lineCap = 'round'; c.beginPath(); c.moveTo(80, 250); c.bezierCurveTo(25, 181, 66, 137, ...pose.primary);
     c.lineWidth = 8; c.strokeStyle = '#718650'; c.stroke(); c.lineWidth = 2; c.strokeStyle = '#bbc387'; c.stroke();
     c.beginPath(); c.moveTo(58, 177); c.quadraticCurveTo(190, 130, 221, 55); c.strokeStyle = '#7e9362'; c.lineWidth = 3; c.stroke();
     for (let i = 0; i < 84; i++) {
@@ -62,13 +118,16 @@ export class MimosaScene extends CanvasSurface {
       c.beginPath(); c.moveTo(219, 54); c.lineTo(x, y); c.strokeStyle = '#c287a56e'; c.lineWidth = .6; c.stroke();
       this.ellipse(x, y, .7 + noise(i + 930), 1, noise(i + 20) > .5 ? '#d8a0c0' : '#eec8dc');
     }
-    const angles = [-2.95, -2.12, -1.37, -.52], lengths = [223, 257, 245, 213];
+    c.save(); c.translate(...pose.primary); c.rotate(pose.rotation);
+    c.beginPath(); c.moveTo(0, 0); c.lineTo(...pose.petiole);
+    c.lineWidth = 5.2; c.strokeStyle = '#819b58'; c.stroke(); c.lineWidth = 1.4; c.strokeStyle = '#c5d19a'; c.stroke();
+    c.translate(...pose.petiole);
     for (let pinna = 0; pinna < 4; pinna++) {
-      const angle = angles[pinna] + state.droop * (pinna < 2 ? -.29 : .34), length = lengths[pinna];
-      c.save(); c.translate(...origin); c.rotate(angle);
+      const angle = PINNA_ANGLES[pinna], length = PINNA_LENGTHS[pinna];
+      c.save(); c.rotate(angle);
       c.beginPath(); c.moveTo(0, 0); c.quadraticCurveTo(length * .55, -7 + pinna * 3, length, 0); c.strokeStyle = '#759051'; c.lineWidth = 2.4; c.stroke();
       for (let pair = 0; pair < 12; pair++) {
-        const xx = 25 + pair * (length - 33) / 12, bend = Math.sin(xx / length * Math.PI) * (-3 + pinna * 2);
+        const [xx, bend] = leafletBase(pinna, pair);
         const fold = leafletFold(p, pinna, pair, settings), seed = pinna * 120 + pair * 3;
         const ll = (28 + 18 * Math.sin((pair + 1) / 13 * Math.PI)) * (.9 + noise(seed) * .2);
         for (const side of [-1, 1]) {
@@ -78,15 +137,26 @@ export class MimosaScene extends CanvasSurface {
         }
         const arrival = signalArrival(pinna, pair, settings), glow = Math.max(0, 1 - Math.abs(p - arrival) / .035);
         if (glow > 0) { const g = c.createRadialGradient(xx, bend, 0, xx, bend, 19); g.addColorStop(0, `rgba(238,188,54,${glow * .9})`); g.addColorStop(1, '#f2bf2b00'); this.ellipse(xx, bend, 19, 19, g); }
+        if (pinna === settings.pinna && pair === OBSERVED_PAIR) {
+          // Retain the same actual leaflet base through folding and whole-leaf droop.
+          c.beginPath(); c.ellipse(xx, bend + 2, 7, 5, 0, 0, Math.PI * 2);
+          c.strokeStyle = '#a88234'; c.lineWidth = 1.5; c.stroke();
+        }
       }
       if (pinna === settings.pinna && p < .12) {
         c.beginPath(); c.arc(length - 6, -6, 19, 0, Math.PI * 2); c.strokeStyle = '#b88f38bb'; c.lineWidth = 1.4; c.setLineDash([3, 4]); c.stroke(); c.setLineDash([]);
       }
       c.restore();
     }
-    this.ellipse(origin[0], origin[1] + 4, 11, 6.5, '#8a9e5e', '#647844');
-    this.label(t('主叶枕'), 165, 126, { background: '#fcfbf1db', color: '#405941', anchor: [origin[0] + 4, origin[1] + 7], width: 110 });
-    this.label(t('点一下，观察收拢'), -184, 165, { background: '#fcfbf1db', color: '#58663e', width: 230 });
+    this.ellipse(0, 0, 5.5, 4, '#8a9e5e', '#647844');
+    c.restore();
+    c.save(); c.translate(...pose.primary); c.rotate(Math.atan2(pose.petiole[1], pose.petiole[0]) + pose.rotation / 2);
+    this.ellipse(0, 0, 12, 7, '#8a9e5e', '#647844');
+    this.ellipse(-2, -1.5, 7, 2.3, '#b9ca8d99'); c.restore();
+    const base = leafletBase(settings.pinna, OBSERVED_PAIR);
+    this.label(t('主叶枕 · 叶柄基部'), 165, 100, { background: '#fcfbf1db', color: '#405941', anchor: pose.primary, width: 240 });
+    this.label(t('羽片汇合处'), -170, 169, { background: '#fcfbf1db', color: '#58663e', anchor: compoundPoint([0, 0], pose), width: 165 });
+    this.label(t('小叶基部叶枕'), 215, -158, { background: '#fcfbf1db', color: '#806a35', anchor: pinnaPoint([base[0], base[1] + 2], settings.pinna, pose), width: 175 });
   }
   private roundedPath(points: Point[]) {
     const c = this.context, last = points[points.length - 1]!, first = points[0]!;

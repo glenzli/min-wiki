@@ -1,106 +1,36 @@
-# 百科框架与新增专题
+# 内容、演示与 Wiki Reader
 
-## 当前选择
+Mini Wiki 只维护条目、科学模型、双语解释、素材与内容检查。导航、黑白灰明暗外观、预览服务和静态交付由独立的 [Wiki Reader](https://github.com/glenzli/wiki-reader) 负责。本仓库没有独立首页、Vite 多页站点配置或第二种展示模式。
 
-使用多页结构：`/` 是百科目录，`/topics/<id>/` 是专题。目录和专题之间采用真实链接导航。这样每个专题可独立选择 WebGL、Canvas、SVG 或普通文图，专属代码不会进入首页包；离开页面由浏览器销毁文档，专题仍负责在 `pagehide` 中停止音频、动画和后台任务。若页面进入往返缓存，应保留其状态并处理隐藏/恢复，不在同一页面中重复挂载引擎。
+## 唯一登记表
 
-没有引入通用动画播放器、巨型全局状态或专题组件注册中心。黑洞的轨道切换、采样缓存与时间压缩仍属于黑洞专题。后续出现第二种真实需求时再提取共同能力。
+`wiki.json` 同时登记条目标识、双语标题与摘要、目录元数据、Markdown 正文和演示入口。`categories` 与 `tags` 服务于编辑分类和搜索。`src/catalog/data.mjs` 只把清单投影为内容检查需要的形状，不维护另一份登记数据。
 
-## 内容登记
+`id` 决定 `/encyclopedia/topics/<id>/`。语言使用 `?lang=zh|en`，不改变条目身份。`parentTopic` 表示已整合子条目的归属，`listed:false` 只影响目录收录；两者都不删除直达路由。兼容入口继续调用各专题原有的路由模型，把有效参数和锚点交给对应章节。
 
-`content/catalog.json` 分为 `categories` 与 `topics`。
+## 演示生命周期
 
-| 字段 | 用途 |
-| --- | --- |
-| `id` | 稳定的小写字母、数字和连字符标识；决定 `/topics/<id>/`，发布后尽量不改 |
-| `title`、`summary` | 目录名称与问题简介 |
-| `category`、`tags` | 一个主分类与多个检索标签；标签可跨学科 |
-| `duration`、`modes` | 描述真实播放时长与已支持的讲解方式 |
-| `theme` | 页面默认明暗，`light` 或 `dark` |
-| `sceneTheme` | 画布设计约定，由专题实现；不随全站阅读主题强制变化 |
-| `status` | `draft` 或 `published`；只有后者进入正式构建，默认也进入目录 |
-| `listed` | 可选；已发布的顶层专题设为 `false` 时仅从目录、分类计数和搜索中收起，直接 URL 仍进入正式构建 |
-| `updated` | 内容最后修订日期 |
+全部 71 条发布路由以 `document` 声明 `reader.html` 演示片段和专题控制器。它们是 Reader 页面中的原生 DOM，没有 iframe，也没有另一套站点外壳。Reader 打包控制器、样式、Worker 与资源；样式限制在演示范围，不能改变 Reader 导航。专题可以保留自己的多章节、对象身份、独立时钟与有限缓存，不强行改成一种播放器。
 
-封面可放在 `topics/<id>/cover.svg`，目录自动收集 URL；没有封面时使用分类符号。封面不导入模拟器，不在目录运行动画。
+原生文档演示每次打开条目拥有一个完整文档生命周期。离开、语言切换或进入只读说明时，旧文档和它的模块、Worker、GPU 资源随页面结束；专题原有的 `pagehide`、隐藏与往返缓存处理继续生效。专注观察保留同一文档和实验实例。只读说明不加载专题脚本；它保留 URL 参数，重新进入演示时恢复程度由该题的路由模型决定，不能宣称所有题都支持任意瞬间存档。
 
-构建验证登记数据和公开入口。草稿没有构建入口，仍需避免从公开文件导入草稿内容；草稿字段不是保密边界。未完成的选题放到计划文档，不把空页面伪装成已有知识。
+`reader.html` 是 Reader 的外层演示片段。已有的 `study.html`、`panel.html` 与 SVG 是专题内部组件，仍由对应控制器消费，不能用外层入口覆盖它们。
 
-已发布但暂不作为独立目录入口的主题保留 `status: "published"`，按需使用 `listed: false`。这用于编辑收录判断，不代表页面内容已更新，也不会自动把旧主题并入别的主题；直接访问旧 URL 仍可用。重新收录前需按专题设计原则验证实际知识链、画面和双语体验。
+## 内容与双语
 
-## 添加一个专题
+专题拥有模型、场景、参数、进度、限定条件、来源与测试。共享演示排版、阅读深度和说明区的实现由 Reader 提供；`src/platform/` 只保留薄导出和内容本身的翻译、学习数据投影。
 
-1. 创建 `topics/<id>/index.html`、`main.ts`、专题样式、知识说明、参考资料与所需资源。测试放在专题的 `tests/` 目录。
-2. 在目录登记真实元数据。先用 `draft`，内容可用并完成检查后再改为 `published`。
-3. HTML 根节点设置 `data-content-theme` 与 `data-theme` 为专题默认明暗。头部加载 `/src/platform/theme.ts`；页面预留 `<div id="encyclopedia-nav"></div>`。
-4. 专题入口调用 `mountTopicNavigation('<id>')`（来自 `../../src/platform/topicNavigation.ts`）。用公共语义变量 `--page`、`--surface`、`--ink`、`--secondary`、`--border`、`--accent` 实现阅读界面；为画布单独设置适合知识内容的颜色。
-5. 为动画实现停止、隐藏、恢复和资源释放。禁止加载后自动播放配乐。提供键盘和触摸可操作的控制，以及画面不可用时仍可理解的讲解。
-6. 运行 `npm test` 与 `npm run build`。从 `dist` 预览验证直接访问、刷新、返回目录、主题切换、移动布局、主要交互与错误提示；新增专题无需改 Vite 的入口清单。
+中文消息与英文命名空间继续由 `i18next` 本地提供。Reader 在导入控制器前确定语言，`translateDocument` 只处理本题演示区域；公式中的参数与状态标识不翻译。中英科学条件必须等价。
 
-未来的明亮专题可把整个画布也设为浅色；独立于页面偏好并不意味着每个画布都必须是深色。不要对 WebGL 画布套反色滤镜。
+`learning.json` 保存原有的三节学术笔记、误解、模型边界、来源和四段解说。`npm run prepare:entries` 把它们投影到 Markdown 的标记区间和纯口播/分镜文本；标记区间之外允许手写补充。`check:entries` 验证投影没有过期。静态阅读与语音导出因此使用同一份原文，纯口播不混入画面提示。
 
-### 专题界面的一致性
+动态章节的学习面板仍按题目和语言懒加载，Reader 的通用 JSON 字段选择只打包该语言与来源。学科数据不进入 Reader 仓库。
 
-所有专题挂载导航后使用 `src/platform/topicPresentation.css` 的阅读界面规范：相同的页面宽度与边距、标题层级、44px 基础控件高度、讲解模式选中状态和卡片边框。普通页面与侧栏剧场分别适配，避免把剧场的内层 `main` 再缩窄一次。新增主题应沿用现有语义类或明确补充其布局适配；不要通过重复放大字号或增加局部页宽形成另一套界面。
+## 工作流与验收
 
-公共样式只处理阅读和操作区域，不设统一的科学画布比例，不覆盖 SVG 图元、粒子颜色或模拟时序。图例与操作说明仍由专题提供；共享知识笔记沿用自己的命名空间并对齐页面边界。
+- `npm ci` 安装锁定依赖；Reader 的版本与内容依赖分开管理。
+- `npm run dev` / `npm run preview` 都调用 Wiki Reader。
+- `npm run build` 执行类型、双语、图片与正文投影检查，再用 Reader 输出 `dist/`。
+- `npm run check` 再加全量测试和要求完整覆盖的路由检查。
 
-## 知识内容约定
-
-每个专题至少说明：它回答什么问题、读者能改变什么条件、应观察什么、解释依据与参考资料、哪些是教学简化。儿童版和深入版可以共享同一演示；若不提供某种模式，目录不能宣称已提供。数学或科学模型的测试只能证明实现满足给定假设，不能代替科学审校。
-
-## 渐进扩展
-
-当前元数据全部载入，搜索按标题、简介、分类与标签匹配，显示按 24 条分批；动画始终按页面隔离。内容增多后可先增加静态索引或更好的搜索，再视实际需求拆分类索引、增加关联阅读与本机学习进度。账户、后台、多人编辑、全文服务和离线包没有在本轮实现。
-
-仓库目录暂保留 `black-hole`，项目展示名称为「小小百科」，不影响专题 URL 和未来更名。
-
-## TypeScript 与双语
-
-运行时代码、模拟器、Worker 和构建配置使用严格 TypeScript。`npm run typecheck` 只检查类型，Vite 负责转译和打包；`npm run build` 先执行类型及翻译检查，输出静态多页站点。原有 Node 测试通过 `tsx` 加载 TypeScript，`npm run check` 是提交前完整检查入口。依赖使用 npm 安装并提交 `package-lock.json`，不从 CDN 动态载入代码。
-
-`src/platform/i18n.ts` 负责语言选择、链接参数和 i18next 初始化。优先级为 URL 的 `lang`、本机选择、浏览器语言、中文默认值。语言切换采用完整页面导航，保留当前路径、筛选和锚点，重新初始化专题；不承诺保留模拟进度。存储不可用时，URL 仍能确定语言。
-
-中文原文作为消息键与默认文案，英文放在 `locales/en.json`。公共文案与目录元数据的翻译属于 `src/platform/locales/en.json`；专题讲解、模型说明、动态读数和画布标签的翻译属于 `topics/<id>/locales/en.json`，通过该专题的 `i18n.ts` 注册。所有资源随页面打包，无需翻译服务。物理公式的数值、标识和状态键不随语言改变。
-
-静态 HTML 由入口在启动控制器前调用 `translateDocument(t)`；动态文案显式调用 `t('中文消息')`，变量使用 i18next 插值。DOM 结构保留在源码，翻译仅负责文案。文本写入 `textContent`，HTML 模板只接收专题自有的可信数据，不拼入用户输入。新增条目需要同时补齐目录和专题英文，并运行 `npm run check:i18n` 检查遗漏、插值和模板结构。科学内容的范围与限制必须在两种语言中一致。
-
-## Adding a topic and translations
-
-### 观察、学术笔记与解说
-
-`topics/<id>/learning.json` 与该题的模型和资料一起维护。`zh`、`en` 分别包含观察问题、操作线索、三节深入原理、误解纠正、模型边界，以及四段带独立画面提示的解说。`references` 保存对应的参考资料；内容审核需要确认资料支持具体主张，字段完整不等于科学结论已获证明。
-
-共享 `src/platform/learning/` 仅负责按当前专题懒加载、语言选择、排版、展开状态和下载，不持有模拟状态。没有逐场景导读的专题，学术笔记跟随页面的讲解方式；用户也可单独展开。模式切换不重置实验。口播导出排除分镜提示，生成语音仍是后续制作步骤。`scripts/export-narration.mjs` 支持一次导出所有已发布专题的两种语言。
-
-需要逐场景阅读深度的题可调用 `src/platform/sceneReading.ts`：儿童版在场景侧栏保留当前现象的简短解释，让演示占主导；学术版在同一侧栏展开机制、可适用的关系式、证据与研究入口、模型边界。侧栏应允许独立滚动；内容确实放不下时，专题可另设画面下方的延伸区，而非默认把学术解释移出当前观察。内容与当前阶段的选择仍由 `topics/<id>/study.ts` 维护；共享组件只负责双语呈现和布局，不控制实验。`reading=academic` 可保留阅读选择，既有章节参数继续由题内处理。全题 `learning.json` 的学术笔记保持可单独展开，使用逐场景导读的题不会在切模式时同时自动展开它。
-
-时间、物体位置和相机的连续过渡仍由专题决定。`src/visuals/transition.ts` 提供有限时长、支持减少动态效果的数值插值，不代替物理模型；新的播放或拖动操作必须取消旧的过渡，避免过期帧写回。
-
-### 子路径托管 / Subpath hosting
-
-可使用 `npm run build -- --base=/encyclopedia/` 指定 Vite 资源前缀；运行时的目录、专题和语言切换链接也使用同一 `BASE_URL`，默认独立托管仍为 `/`。宿主注入的站外导航可标记 `data-host-link`，不参与百科内部的路径与语言转换。无 JavaScript 的链接应由托管同步工具添加同一前缀。
-
-Build with `npm run build -- --base=/encyclopedia/` to mount under a host site. Runtime catalog, topic and language links share Vite's base; standalone hosting still defaults to `/`. Host navigation may use `data-host-link` to opt out of app-link translation. The host sync tool must also prefix static fallback links for use without JavaScript.
-
-1. Add `topics/<id>/index.html`, a TypeScript entry, styles, content, references and tests. Register the topic in `content/catalog.json`; only published topics enter the production build.
-2. Create a topic-local `i18n.ts` that calls the platform's `translator('<id>', english)` with its `locales/en.json`. Chinese source messages are the fallback keys. Add English catalog metadata to the shared dictionary.
-3. Call `translateDocument(t)` before starting dynamic controllers, then mount shared navigation. Use `t()` for dynamic text, including canvas labels and accessible descriptions; keep markup in the source and interpolate only trusted local content into HTML templates.
-4. Preserve model identifiers and numeric data across languages. Keep all scientific qualifications and model limits in both versions.
-5. Run `npm run check`. Preview `dist/` and test both languages, direct links, language switching, narrow layouts and the topic's main interactions. Build entries and translation checks both discover published topics from the registry.
-
-### 一个主题下的多个章节
-
-登记项可使用 `parentTopic` 指向同分类、已发布的顶层主题，只支持一层。子章节继续保持 `published`，保留原 URL、构建入口、双语和解说资源。首页与分类计数仅展示顶层主题；搜索同时检查已发布子章节的标题、简介与标签，返回父主题。通用导航提供父级入口，具体章节顺序、说明与互动仍由专题管理。不要用 `draft` 隐藏已发布章节，否则旧链接不会进入构建。
-
-Published chapters may set `parentTopic` to a published top-level topic in the same category. Catalog discovery and counts show the parent, and search includes its published chapters. Chapter routes, build entries and localized learning resources remain independently reachable. The topic owns chapter order and interactions.
-
-An independent published topic may set `listed: false` to leave the directory, category counts and search while keeping its built page and direct URL. This is an editorial hold, not a chapter merge or a content repair. `listed` is not used on child topics or drafts.
-
-### 宽屏演示与沉浸布局
-
-专题可显式调用 `mountPresentationFrame`，选定自己的演示根节点、画面、播放控件和章节选择。共享层只把现有节点组织为画面、控制条和可收起的解说栏，不重建实验、不持有模型或播放状态。多章项目应为各实验选择自己的容器；异步实验在挂载成功后接入。只有画面才进入主舞台，细节说明仍可展开阅读。
-
-桌面按视口剩余高度安排画面，SVG 保留 viewBox 比例；Canvas 渲染器仍由专题决定缩放和像素分辨率。移动端保留自然纵向阅读，不把双画面强压进固定高度。`observationMode` 统一管理沉浸、Esc、焦点及滚动恢复，各实例生成独立的面板标识。样式不等于验收：需实际检查正常/沉浸、语言、窄屏和关键章节，不能用首页正常推断全部章节正常。
-
-Topics explicitly opt into presentation framing. Shared code owns DOM layout and reversible immersion only; models, geometry, scientific qualifications and clocks remain topic-owned. Reparenting must preserve controller scope and existing listeners. Validate the actual rendered scenes and chapter transitions, not only page scroll dimensions.
+提交前应验证最终 Reader 产物：直接访问、旧参数/锚点、中英手机布局、重点交互、隐藏/暂停和资源失败。测试通过不等于科学结论已审校，也不等于已经推送或部署。

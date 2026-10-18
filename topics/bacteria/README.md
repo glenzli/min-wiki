@@ -1,6 +1,6 @@
 # 细菌是什么？都会让人生病吗？ / What are bacteria?
 
-2026-09-20：独立 UI 已收归 [微生物统一工作区](../microbes-everywhere/README.md)。本目录 `main.ts` / `index.html` 只保留兼容跳转，进入 `?chapter=bacteria` 并保留有效参数、语言、base 和 hash；旧页面 CSS 已移除。`model.ts`、`scene.ts`、`habitats.ts` 及封面仍保留，前述科学模型和插画由新工作区直接消费。局部 catalog 片段已标记 `parentTopic`；根 `content/catalog.json` 才是正式登记。
+2026-09-20：独立 UI 已收归 [微生物统一工作区](../microbes-everywhere/README.md)。本目录 `main.ts` / `reader.html` 只保留兼容跳转，进入 `?chapter=bacteria` 并保留有效参数、语言、base 和 hash；旧页面 CSS 已移除。`model.ts`、`scene.ts`、`habitats.ts` 及封面仍保留，前述科学模型和插画由新工作区直接消费。局部 catalog 片段已标记 `parentTopic`；根 `wiki.json` 才是正式登记。
 
 The standalone UI is integrated into the microbial workspace. Compatibility entries redirect to its bacteria chapter; models, detailed renderers, community illustrations and covers remain. The descriptions below document the retained science, not an independently mounted old controller.
 

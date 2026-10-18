@@ -1,6 +1,5 @@
 import './style.css';
 import {translateDocument} from '../../src/platform/i18n.ts';
-import {mountTopicNavigation} from '../../src/platform/topicNavigation.ts';
 import {mountReadingMode} from '../../src/platform/readingMode.ts';
 import {animateValue} from '../../src/visuals/transition.ts';
 import {t} from './i18n.ts';
@@ -50,4 +49,4 @@ el('reset').addEventListener('click',()=>{stopDrain();state.drainage=0;render();
 function stopAll(){stopDrain();cancelShape();cancelZoom();cancelSample();cancelLight();}
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stopAll();render();}});
 window.addEventListener('pagehide',event=>{stopAll();if(!event.persisted)scene?.dispose();});
-render();mountTopicNavigation('soap-bubbles');mountReadingMode('details.advanced');
+render();mountReadingMode('details.advanced');

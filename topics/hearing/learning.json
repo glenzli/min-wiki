@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "声音不是钻进耳朵的一群小颗粒，更不会作为空气沿神经跑进脑。机械振动在内耳被转为细胞电反应，再影响神经信号。",
-    "boundary": "耳部、展开的耳蜗和单细胞使用不同尺度。振幅、颜色、细胞数量和时间均为教学调整；未模拟真实频率、外毛细胞反馈、完整盖膜结构或全部神经中继。静音比较不测听力，单细胞图也不是完整柯蒂器切面。",
+    "boundary": "耳部、展开的耳蜗和单细胞使用不同尺度。振幅、颜色、细胞数量和时间均为教学调整；未模拟真实频率、外毛细胞反馈、完整盖膜结构或全部神经中继。B 处近景等局部波前到达后才运动；细胞、纤毛束与液体的放大动作表示因果联系，不表示真实动作严格同相。静音比较不测听力，单细胞图也不是完整柯蒂器切面。 0% 振幅表示无输入振动；本图只显示输入引起的响应，不模拟安静时的自发神经活动。正振幅没有换算为听觉阈值、放电率或响度。",
     "narration": [
       {
         "label": "接住轻轻的振动",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Sound is not a swarm of particles entering the ear, and air does not travel along nerves into the brain. Mechanical vibration becomes a cellular electrical response that then influences neural signaling.",
-    "boundary": "The ear, uncoiled cochlea and single-cell view use different scales. Displacement, colors, cell counts and timing are teaching choices. Actual frequencies, outer-hair-cell feedback, the full tectorial membrane and all neural relays are not simulated. This silent comparison does not test hearing, and the cell drawing is not a complete section of the organ of Corti.",
+    "boundary": "The ear, uncoiled cochlea and single-cell view use different scales. Displacement, colors, cell counts and timing are teaching choices. Actual frequencies, outer-hair-cell feedback, the full tectorial membrane and all neural relays are not simulated. The close-up at B moves only after its local wavefront arrives; enlarged cell, bundle and fluid movements indicate causal links, not exactly matched phases in real tissue. This silent comparison does not test hearing, and the cell drawing is not a complete section of the organ of Corti. Zero amplitude means no input vibration. The diagram shows input-evoked responses, not spontaneous neural activity in quiet. Positive amplitude is not converted into hearing thresholds, firing rates or loudness.",
     "narration": [
       {
         "label": "Receiving a gentle vibration",

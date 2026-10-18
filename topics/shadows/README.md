@@ -1,3 +1,5 @@
+> Reader 入口为 `reader.html`、专题控制器 `main.ts` 与双语 `entry.*.md`；独立站点外壳已移除，以下科学模型、素材与观察边界继续适用。
+
 # 影子 / Shadows
 
 A simplified wooden figure is sampled in three dimensions and its surface points are projected from a point source to a flat receiving plane. Each body part forms a convex projected footprint. Changing lamp height or horizontal position continuously recomputes the rays, without swapping shadow pictures. Oblique and overhead views share this geometry. The complete footprint remains when the centerline length reaches zero overhead.

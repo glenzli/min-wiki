@@ -1,0 +1,106 @@
+{
+  "version": 1,
+  "topicId": "programs",
+  "zh": {
+    "question": "小车到达 B 点，就一定把包裹送到了吗？指令顺序和路上的箱子会怎样改变这次送货？",
+    "observe": "先逐条执行取货、移动和卸货。再切到选路实验，在执行判断卡之前改变箱子，比较两条路线。最后找出错误顺序里第一步不符合计划的地方，交换前两张卡并重新测试。",
+    "academic": [
+      {
+        "title": "程序、硬件与执行状态",
+        "body": "程序用设备能执行的指令表达计划；硬件是执行这些任务所需的物理部件。本页把取货、网格移动和卸货定义为有限命令，每次执行一条。指针标记下一条，包裹状态与位置记录已经发生的事。程序的结果取决于指令、顺序和起始条件，而非仅取决于最终到达的位置。真实设备还需要电源、运行软件的处理器和连接输入输出的部件。"
+      },
+      {
+        "title": "输入、条件与分支",
+        "body": "传感器给出的读数是输入，程序中的规则决定如何处理它，移动或取放是输出。判断卡执行时，本页读取前方那一格是否有箱子；只把对应分支的命令加入当前流程，再回到共同的卸货步骤。改变判断前的输入会改变路线，改变判断后的环境不会改写过去的读数。真实系统可反复检查输入；这里刻意保留一次判断，方便看清采样时刻与选择。"
+      },
+      {
+        "title": "调试是一种有依据的检查",
+        "body": "先说明目标，再预测行为、观察实际状态、定位差异、修正并重试。错误例子先离开取货点，所以下一条取货无法完成；失败时包裹的位置是原因线索。交换顺序后从相同起点测试，可以检查这项修正是否有效。真实程序可能有更多输入、分支和错误处理，单次成功不能证明所有情形都正确。"
+      }
+    ],
+    "misconception": "程序不是小车，也不是“送到吧”这个愿望；它是设备能执行的指令。条件选择不表示小车像人一样懂道路，这里也没有使用 AI。",
+    "boundary": "这是固定命令、精确网格和理想传感器的本地教学解释器。取放与时间没有模拟真实机械过程。判断后再加箱子，屏幕防重叠保护会拒绝移动，这不是再次感知；真实机器人若不重新测量可能碰撞，还需要误差处理和安全策略。切实验保留状态，改指令或重试明确从头开始。",
+    "narration": [
+      {
+        "label": "是谁安排下一步",
+        "text": "手机可以帮我们计时，洗衣机可以按步骤洗衣服。它们里面都有让设备执行任务的程序。你能摸到的轮子、电动机和芯片叫硬件；告诉设备怎样做事的指令属于软件。看看这辆小车。我们希望它把包裹从取货点送到收货点。只有一个愿望还不够，还要把该做的事安排成清楚的步骤。",
+        "cue": "展示 A 点的小车与包裹，再展示旁边的完整指令列表；暂不执行。"
+      },
+      {
+        "label": "每一步都有前后",
+        "text": "第一步先取货。接下来向右走，走到收货点，最后放下包裹。小车每次只执行下一条。绿色线记下已经走过的路，打勾的卡片记下已经做过的事。走到收货点和把货送到，是一回事吗？如果忘了先取货，小车到了，包裹却没有跟来。顺序会改变结果。",
+        "cue": "单步取货，推进到中途并暂停，最后卸货；指向包裹连续保留的位置。"
+      },
+      {
+        "label": "看看输入，再选一条路",
+        "text": "现在路中间可能有一个箱子。小车到路口，执行看看前面这一条时，才读取传感器。我们已经写好规则：有箱子，就走旁边的小路；没有箱子，就直走。一次只走其中一条。同一份程序，遇到不同输入，能做出不同的动作。这不是小车自己懂了道路，而是程序规定了怎么选。",
+        "cue": "分别重试有箱子和无箱子两种输入，在判断卡前停留；展示所选分支卡片，另一分支保持不执行。"
+      },
+      {
+        "label": "找出第一处不对",
+        "text": "最后试试这份有错误的程序。小车先走开，下一条却要它在取货点取货。包裹还在原来的地方，动作做不成。我们可以先猜，再一条条试，找出哪里与计划不同，改一改，再从同一个起点检查。做程序常常需要这样的找错。第一次没成功，是发现问题的机会；送到了，也还可以换别的条件再试。",
+        "cue": "执行错误顺序直到取货失败；交换前两卡明确重置，逐条完成新测试。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Does arriving at B always mean the parcel was delivered? How do instruction order and a box on the road change this delivery?",
+    "observe": "Step through pickup, movement and unloading. Switch to the route experiment and change the box before executing the decision card to compare two routes. Finally locate the first mismatch in the faulty order, swap the first two cards and test again.",
+    "academic": [
+      {
+        "title": "Programs, hardware and execution state",
+        "body": "A program expresses a plan using instructions a device can execute; hardware is the physical equipment needed to perform those tasks. Here, pickup, grid movement and unloading form a finite command set, executed one command at a time. A pointer marks the next instruction, while parcel state and position record what has happened. Results depend on instructions, order and starting conditions, not simply final location. Real devices also need power, a processor to run software and components connecting inputs and outputs."
+      },
+      {
+        "title": "Inputs, conditions and branches",
+        "body": "A sensor reading is an input; rules in the program determine how it is handled; movement and parcel actions are outputs. When the decision card executes, this page reads whether the next square contains a box. Only the corresponding branch is inserted into the flow, before returning to the shared unloading step. Changing the input before the decision changes the route. Changing the environment afterwards does not rewrite the earlier reading. Real systems can check repeatedly; one decision is retained here to make sampling time and selection clear."
+      },
+      {
+        "title": "Debugging uses observable evidence",
+        "body": "State the goal, predict behavior, observe actual state, locate the difference, correct it and retest. In the faulty example, the cart leaves pickup first, so the next pickup cannot be completed; the parcel’s location is a clue to the cause. Testing the swapped order from the same starting state checks whether this correction works. Real programs may have more inputs, branches and error handling. One successful test does not establish correctness in every situation."
+      }
+    ],
+    "misconception": "A program is neither the cart nor the wish “deliver it”; it is instructions a device can execute. Choosing a branch does not mean human-like understanding of a road. This example does not use AI.",
+    "boundary": "This local teaching interpreter has fixed commands, an exact grid and an ideal sensor. Pickup and time do not simulate real mechanics. A box added after the decision invokes a screen-overlap guard, not a new sensor reading. Real robots could collide without further sensing and also need uncertainty handling and safety strategies. Switching experiments retains state; editing instructions or retesting explicitly starts again.",
+    "narration": [
+      {
+        "label": "Who plans the next step?",
+        "text": "A phone can time things, and a washing machine can wash in steps. Inside, programs let the devices carry out tasks. Wheels, motors and chips you can touch are hardware. Instructions that tell a device how to do things are software. Look at this cart. We want it to carry a parcel from pickup to delivery. A wish alone is not enough: we need clear steps for the things it must do.",
+        "cue": "Show the cart and parcel at A alongside the full instruction list, without executing yet."
+      },
+      {
+        "label": "Each step has a before and after",
+        "text": "Pick up first. Then move right, reach delivery and put the parcel down. The cart executes just the next instruction each time. The green line records the route already travelled, and checked cards record completed actions. Is arriving the same as delivering? If pickup is forgotten, the cart can arrive without the parcel. Order changes the result.",
+        "cue": "Step through pickup, pause mid-route, then unload; follow the one retained parcel’s location."
+      },
+      {
+        "label": "Read the input, choose one route",
+        "text": "Now there may be a box on the road. At the junction, the cart reads its sensor when the look-ahead instruction executes. We have already written a rule: a box means use the side route; no box means go straight. It follows just one route each time. One program can produce different actions for different inputs. The cart has not come to understand roads itself; the program specifies the choice.",
+        "cue": "Retest with and without a box, pausing before the decision. Show the chosen branch cards while the other branch remains unexecuted."
+      },
+      {
+        "label": "Find the first mismatch",
+        "text": "Finally, try this faulty program. The cart moves away, but its next instruction asks it to pick up at the pickup station. The parcel is still in the original place, so the action cannot work. We can predict, test one instruction at a time, locate a mismatch, change it and check again from the same starting point. Making programs often involves this kind of debugging. A failed first try helps us find a problem; a successful delivery can still be tested with other conditions.",
+        "cue": "Execute the wrong order until pickup fails. Swap the first two cards, explicitly reset, and complete the new test step by step."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Barefoot Computing · Programming",
+      "url": "https://www.barefootcomputing.org/concepts-and-approaches/programming"
+    },
+    {
+      "title": "Barefoot Computing · Selection",
+      "url": "https://www.barefootcomputing.org/concepts-and-approaches/selection"
+    },
+    {
+      "title": "Barefoot Computing · Debugging",
+      "url": "https://www.barefootcomputing.org/concepts-and-approaches/debugging"
+    },
+    {
+      "title": "University of Canterbury · CS Unplugged: Kidbots",
+      "url": "https://www.csunplugged.org/en/topics/kidbots/"
+    }
+  ]
+}

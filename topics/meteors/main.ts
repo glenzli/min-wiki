@@ -1,7 +1,6 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { createMeteorScene } from './scene.ts';
 import type { JourneyKind } from './model.ts';
@@ -9,7 +8,7 @@ import { t } from './i18n.ts';
 import './style.css';
 
 translateDocument(t);
-mountTopicNavigation('meteors');
+
 const el = (id: string) => document.getElementById(id)!;
 const journey = el('journey') as HTMLInputElement;
 const kind = el('kind') as HTMLSelectElement;

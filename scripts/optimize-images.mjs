@@ -1,3 +1,4 @@
+import {readCatalog} from '../src/catalog/data.mjs';
 import { readFile, writeFile, access } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -6,7 +7,7 @@ import { resolve } from 'node:path';
 // Originals remain the editorial source. Only these delivery copies are published.
 const root = fileURLToPath(new URL('../', import.meta.url));
 const manifestPath = resolve(root, 'scripts/image-delivery.json');
-const catalog = JSON.parse(await readFile(resolve(root, 'content/catalog.json'), 'utf8'));
+const catalog = readCatalog();
 const exists = async path => { try { await access(resolve(root, path)); return true; } catch { return false; } };
 const digest = bytes => createHash('sha256').update(bytes).digest('hex');
 const jobs = [];
@@ -20,6 +21,12 @@ jobs.push({ source: 'topics/rainbow/assets/rain-afterglow.png', output: 'topics/
 // Keep the attributed source maps and their pixel dimensions. Only delivery encoding changes.
 for (const name of ['mercury', 'venus_atmosphere', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune']) {
   jobs.push({ source: `topics/solar-system/assets/2k_${name}.jpg`, output: `topics/solar-system/assets/2k_${name}.webp`, quality: 90 });
+}
+// Shared Earth/Moon scenes use the same original-size delivery policy.
+for (const topic of ['solar-system', 'earth-moon']) {
+  for (const name of ['earth_daymap', 'earth_clouds', 'moon']) {
+    jobs.push({ source: `topics/${topic}/assets/2k_${name}.jpg`, output: `topics/${topic}/assets/2k_${name}.webp`, quality: 90 });
+  }
 }
 for (const [name, extension] of [['earth_atmos_2048', 'jpg'], ['earth_lights_2048', 'png'], ['earth_clouds_1024', 'png']]) {
   jobs.push({ source: `topics/earth-seasons/assets/${name}.${extension}`, output: `topics/earth-seasons/assets/${name}.webp`, quality: 90 });

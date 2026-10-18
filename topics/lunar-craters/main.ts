@@ -1,7 +1,6 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { impactEnergy, DENSITY } from './model.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { CONTENT } from './content.ts';
@@ -10,7 +9,7 @@ import { TopicScene } from './scene.ts';
 import { readout } from './model.ts';
 import './style.css';
 translateDocument(t);
-mountTopicNavigation("lunar-craters");
+
 const el = (id: string) => document.getElementById(id)!;
 const value = (id: string) => (el(id) as HTMLInputElement | HTMLSelectElement).value;
 const number = (id: string) => Number(value(id));
@@ -78,7 +77,7 @@ el('progress').addEventListener('input', () => { stop(); progress = number('prog
 for (const id of ["diameter", "speed"]) el(id).addEventListener('input', update);
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.addEventListener('click', () => { academic = b.dataset.mode === 'academic'; update(); });
 el('steps').replaceChildren(...CONTENT.steps.map((label, i) => { const b = document.createElement('button'); b.textContent = label; b.addEventListener('click', () => { stop(); seekStage(positions[i]); }); return b; }));
-document.addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !(e.target as HTMLElement)?.closest('button,input,select,a,textarea,[contenteditable]')) { e.preventDefault(); toggle(); } });
+document.addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !(e.target as HTMLElement)?.closest('button,input,select,a,textarea,summary,[contenteditable]')) { e.preventDefault(); toggle(); } });
 document.addEventListener('visibilitychange', () => { if (document.hidden) { cancelAnimationFrame(frame); frame = 0; } else if (playing && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });
 window.addEventListener('pagehide', e => { cancelAnimationFrame(frame); frame = 0; if (!e.persisted) { stop(); scene?.dispose(); } });
 window.addEventListener('pageshow', () => { if (playing && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });

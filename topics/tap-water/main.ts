@@ -1,6 +1,5 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
@@ -8,7 +7,7 @@ import { composition, treatmentFrame, particleMotion, type Component, type Scena
 import './style.css';
 
 translateDocument(t);
-mountTopicNavigation('tap-water');
+
 const el = (id: string) => document.getElementById(id)!;
 const write=(id:string,text:string)=>{if(el(id).textContent!==text)el(id).textContent=text;};
 let component: Component = 'water';

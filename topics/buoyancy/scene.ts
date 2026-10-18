@@ -22,6 +22,8 @@ const definitions = `<defs>
  <clipPath id="buoy-tank-clip"><rect x="81" y="89" width="530" height="353" rx="20"/></clipPath>
  <marker id="buoy-up" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="2.3" markerHeight="2.3" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#178b70"/></marker>
  <marker id="buoy-down" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="2.3" markerHeight="2.3" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b77c3e"/></marker>
+ <marker id="buoy-cord" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="2.3" markerHeight="2.3" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#647782"/></marker>
+ <marker id="buoy-floor" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="2.3" markerHeight="2.3" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#71807a"/></marker>
  </defs>`;
 
 function geometry(state: Settings, result: Result): Geometry {
@@ -136,16 +138,20 @@ export class BuoyancyScene {
   };
   this.frame=requestAnimationFrame(tick);
  }
- private settle(){cancelAnimationFrame(this.frame);this.frame=0;if(this.target){this.current={...this.target};this.form=this.state?.experiment==='boat'&&this.state.boat?1:0;this.draw(this.current,0,true);}this.svg.setAttribute('aria-busy','false');this.status.textContent=t('换个物品，或慢慢加一点货物。');}
+ private settle(){cancelAnimationFrame(this.frame);this.frame=0;if(this.target){this.current={...this.target};this.form=this.state?.experiment==='boat'&&this.state.boat?1:0;this.draw(this.current,0,true);}this.svg.setAttribute('aria-busy','false');this.status.textContent=this.state?.experiment==='depth'?t('悬线保持绷紧；每个位置都比较停稳后的受力。'):t('换个物品，或慢慢加一点货物。');}
  private draw(g:Geometry,ripple:number,settled:boolean,reshaping?:number){
   if(!this.state||!this.result)return;
   const s=this.state,r=this.result,{body,air,cargo,floodedInterior}=objectMarkup(s,g,r.flooded,reshaping);
   const x=365-g.width/2,y=g.bottom-g.height,amplitude=2+ripple*12;
   const surface=`M82 ${g.water}Q170 ${g.water-amplitude} 260 ${g.water}T440 ${g.water}T610 ${g.water}`;
-  const support=s.experiment==='depth'?`<g><path d="M320 56H410" stroke="#7c8f86" stroke-width="10" stroke-linecap="round"/><path d="M324 53H406" stroke="#e0e8d8" stroke-width="3" stroke-linecap="round"/><path d="M365 56V${y+3}" stroke="#82958d" stroke-width="3"/><path d="M364 59V${y}" stroke="#f6f7e9" stroke-width=".8"/></g>`:'';
-  const upStart=Math.min(g.bottom+9,427),downStart=Math.min(y-8,427-r.weight*10);
-  const supportForce = this.forces && settled && !r.floating && s.experiment !== 'depth' ? `<path d="M365 481V${481-Math.max(0,r.weight-r.force)*10}" stroke="#71807a" stroke-width="5" marker-end="url(#buoy-up)"/>${text(455,477,t('箱底也在托住'),14,'#586c62')}` : '';
-  const arrows=this.forces&&settled?`${r.force>0?`<path d="M${x-48} ${upStart}V${upStart-r.force*10}" stroke="#178b70" stroke-width="6" stroke-linecap="round" marker-end="url(#buoy-up)"/>`:''}${text(x-48,upStart>405?477:upStart+35,t('浮力'),18,'#147b64')}<path d="M${x+g.width+46} ${downStart}V${downStart+r.weight*10}" stroke="#b77c3e" stroke-width="6" stroke-linecap="round" marker-end="url(#buoy-down)"/>${text(x+g.width+46,downStart-17,t('重力'),18,'#946230')}`:'';
+  const support=s.experiment==='depth'?`<g id="taut-cord"><path d="M320 56H410" stroke="#7c8f86" stroke-width="10" stroke-linecap="round"/><path d="M324 53H406" stroke="#e0e8d8" stroke-width="3" stroke-linecap="round"/><path d="M365 56V${y+3}" stroke="#647782" stroke-width="3"/><path d="M364 59V${y}" stroke="#f6f7e9" stroke-width=".8"/></g>`:'';
+  // All three vectors share one scale (8 diagram units per newton). They show
+  // settled forces, not the uncomputed acceleration of the visual transition.
+  const forceScale=8,upStart=Math.min(g.bottom+9,427),downStart=Math.min(y-8,427-r.weight*forceScale);
+  const supportForce = this.forces && settled && r.floorSupport>0 ? `<path id="floor-force" data-newtons="${r.floorSupport}" d="M365 481V${481-r.floorSupport*forceScale}" stroke="#71807a" stroke-width="5" marker-end="url(#buoy-floor)"/>${text(455,477,t('箱底也在托住'),14,'#586c62')}` : '';
+  const cordEnd=y-4-r.tension*forceScale;
+  const cordForce=this.forces&&settled&&r.held?`<path id="cord-force" data-newtons="${r.tension}" d="M365 ${y-4}V${cordEnd}" stroke="#647782" stroke-width="5" stroke-linecap="round" marker-end="url(#buoy-cord)"/>${text(480,48,t('绳的张力'),18,'#526975')}`:'';
+  const arrows=this.forces&&settled?`${r.force>0?`<path id="buoyancy-force" data-newtons="${r.force}" d="M${x-48} ${upStart}V${upStart-r.force*forceScale}" stroke="#178b70" stroke-width="6" stroke-linecap="round" marker-end="url(#buoy-up)"/>`:''}${text(x-48,upStart>405?477:upStart+35,t('浮力'),18,'#147b64')}<path id="weight-force" data-newtons="${r.weight}" d="M${x+g.width+46} ${downStart}V${downStart+r.weight*forceScale}" stroke="#b77c3e" stroke-width="6" stroke-linecap="round" marker-end="url(#buoy-down)"/>${text(x+g.width+46,downStart-17,t('重力'),18,'#946230')}`:'';
   const compact=window.matchMedia('(max-width:750px)').matches;
   const rimX=Math.min(570,365+g.width/2+15);
   const rimLabel=r.flooded?(compact?t('进水'):t('水越过船沿')):(compact?t('船沿'):t('船沿到水面'));
@@ -167,7 +173,7 @@ export class BuoyancyScene {
   <path d="M96 418Q173 405 247 422T416 418T595 427M105 434Q205 416 309 431T579 433" stroke="#d1f4e2" stroke-width="3" opacity=".15" fill="none"/>
   <path d="M97 ${g.water+15}V417Q97 432 111 433" stroke="#f4fffa" stroke-width="7" opacity=".4" fill="none"/>
   ${ripple>0?`<ellipse cx="365" cy="${g.water}" rx="${g.width*.55+35*(1-ripple)}" ry="${5+ripple*8}" fill="none" stroke="#e8ffec" stroke-width="2" opacity="${ripple*.65}"/>`:''}
-  </g>${air}${cargo}${arrows}${supportForce}${rim}
+  </g>${air}${cargo}${arrows}${supportForce}${cordForce}${rim}
   ${text(compact?135:200,239,datumLabel,17,'#637e80')}
   <path d="M79 89V428Q79 450 102 450H588Q614 450 614 428V89" fill="none" stroke="#87a9a9" stroke-width="6"/>
   <path d="M86 94V426Q86 442 104 442H584" fill="none" stroke="#f8fff6" stroke-width="3" opacity=".8"/>

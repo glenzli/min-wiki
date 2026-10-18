@@ -1,9 +1,11 @@
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
 import { stopping, stateAt, type Road } from './model.ts';
+import { mountRestraintStudy } from './restraintStudy.ts';
 
 export interface BrakingSnapshot {initialSpeed:number;speed:number;time:number;phase:'reaction'|'braking'|'stopped';kinetic:number;transferred:number;}
 export function mountCarStudy(onState:(state:BrakingSnapshot)=>void=()=>{}) {
+const restraint = mountRestraintStudy();
 const el = (id: string) => document.getElementById('car-'+id)!;
 const speedInput = el('speed') as HTMLInputElement;
 const progress = el('progress') as HTMLInputElement;
@@ -145,10 +147,10 @@ function selectSeat(seat: Seat) {
   for (const button of document.querySelectorAll('[data-seat]')) button.setAttribute('aria-pressed', String((button as HTMLElement).dataset.seat === seat));
 }
 for (const button of document.querySelectorAll<HTMLButtonElement>('[data-seat]')) button.addEventListener('click', () => selectSeat(button.dataset.seat as Seat));
-function suspend(){pause();cancelBelt();selectFit(fitTarget,false);}
-const onVisibility=()=>{if(document.hidden)suspend();},onShow=()=>{suspend();draw();};
+function suspend(){pause();restraint.suspend();cancelBelt();selectFit(fitTarget,false);}
+const onVisibility=()=>{if(document.hidden)suspend();},onShow=()=>{suspend();draw();restraint.refresh();};
 document.addEventListener('visibilitychange',onVisibility);
 window.addEventListener('pagehide',suspend);window.addEventListener('pageshow',onShow);
 selectFit('shoulder',false);selectSeat('rear');updatePlan();
-return {setActive(active:boolean){if(!active)suspend();else draw();},dispose(){suspend();document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('pagehide',suspend);window.removeEventListener('pageshow',onShow);}};
+return {setActive(active:boolean){if(!active)suspend();else {draw();restraint.refresh();}},dispose(){suspend();document.removeEventListener('visibilitychange',onVisibility);window.removeEventListener('pagehide',suspend);window.removeEventListener('pageshow',onShow);}};
 }

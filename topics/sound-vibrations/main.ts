@@ -7,7 +7,6 @@ import earPanel from '../hearing/panel.html?raw';
 import { t } from './i18n.ts';
 import { t as earT } from '../hearing/i18n.ts';
 import { translateDocument, languageHref } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountSourceStudy } from './sourceStudy.ts';
 import { mountHearingStudy } from '../hearing/study.ts';
@@ -67,10 +66,10 @@ document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(b=>b.addE
 document.querySelectorAll<HTMLButtonElement>('[data-condition]').forEach(b=>b.addEventListener('click',()=>setConditions(b.dataset.condition==='pitch'?4:1,b.dataset.condition==='amplitude'?50:28,'preset')));
 el('medium').addEventListener('change',()=>{medium=el<HTMLSelectElement>('medium').value==='vacuum'?'vacuum':'air';renderComparison();});
 el('previous').addEventListener('click',()=>select(chapters[Math.max(0,chapters.indexOf(chapter)-1)]!,true));el('next').addEventListener('click',()=>select(chapters[Math.min(2,chapters.indexOf(chapter)+1)]!,true));
-el('label-toggle').addEventListener('click',()=>{const hidden=document.querySelector('main')!.classList.toggle('no-labels');el('label-toggle').setAttribute('aria-pressed',String(hidden));el('label-toggle').textContent=hidden?t('显示图内文字'):t('隐藏图内文字');});
+el('label-toggle').addEventListener('click',()=>{const hidden=document.querySelector('[data-wiki-document] .study-content')!.classList.toggle('no-labels');el('label-toggle').setAttribute('aria-pressed',String(hidden));el('label-toggle').textContent=hidden?t('显示图内文字'):t('隐藏图内文字');});
 function restoreAnchor(){let id:string;try{id=decodeURIComponent(location.hash.slice(1));}catch{return;}if(!id)return;const target=document.getElementById(chapter==='ear'&&!id.startsWith('h-')?'h-'+id:id)??document.getElementById(id);target?.closest('details')?.setAttribute('open','');target?.scrollIntoView?.({block:'start'});}
 window.addEventListener('popstate',()=>{select(readSoundChapter(location.search));restoreAnchor();});window.addEventListener('hashchange',restoreAnchor);
-select(chapter);renderComparison();mountReadingMode('.advanced, #source-panel details:not(.references)');mountTopicNavigation('sound-vibrations');restoreAnchor();
+select(chapter);renderComparison();mountReadingMode('.advanced, #source-panel details:not(.references)');restoreAnchor();
 document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>button.addEventListener('click',renderHandoff));renderHandoff();
 
 foldPresentationContext('.causal-bridge');
@@ -79,7 +78,7 @@ sourceFrame?.stage.querySelector('.presentation-transport')?.append(arrivalButto
 const hearingFrame = mountPresentationFrame({ root: '#ear-panel .lab', visual: '.specimen-pair', paired: true, transport: '.play-controls' });
 if (hearingFrame) {
  for (const caption of hearingFrame.stage.querySelectorAll('figcaption')) hearingFrame.notes.append(caption);
- document.querySelector('main>header')?.append(el('label-toggle'));
+ document.querySelector('[data-wiki-document] .study-content>header')?.append(el('label-toggle'));
  const figures=[...hearingFrame.stage.querySelectorAll<HTMLElement>('.specimen')];
  const lens=document.createElement('button');lens.type='button';lens.className='ear-lens';
  const earToolbar=hearingFrame.root.querySelector('.observation-toolbar');

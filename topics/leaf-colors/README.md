@@ -36,6 +36,16 @@ Sources for the added connections: [USGS — evapotranspiration](https://www.usg
 
 Focused model/route checks are in `tests/lifecycle.test.ts` and the retained pigment tests. Production build, bilingual desktop/mobile interaction and final visual acceptance are performed by the integrating task; older validation statements below describe their original dated implementation, not fresh proof of this integration. No commit, push or deployment is included.
 
+## 2026-10-01 水运输状态一致 / Consistent water-transport state
+
+叶龄模型的同一个 `waterAvailable` 决定播放、滑条、根到叶路线和主画布标记是否可用。成熟阶段保留的水进度仍可回访，但在幼叶尚未展开或离层已中断连接时，两幅图都不再显示活动运输。回到成熟阶段会在原进度继续观察。这里限制的是成熟叶教学示例，不能推断真实幼叶从不吸水。
+
+One lifecycle-owned `waterAvailable` gates playback, scrubbing, the root-to-leaf route and markers on the main canvas. Water progress is retained for inspection, while both views hide active transport before leaf expansion or after the abscission connection closes. Returning to maturity revisits that progress. This is the observation range of the mature-leaf example; it does not imply that real young leaves never take up water.
+
+整株路线和放大剖面现使用同一叶内蒸发状态，在选定的下侧气孔穿出；主画布的实心/空心提示也采用同一相态。短提示分别解释叶内蒸发、尚未离开的水汽、通过气孔后的水汽。尺寸、时间与批次仍是示意，未添加输水张力或气孔反馈求解。`tests/lifecycle.test.ts` 与 `../plant-water/scene.test.ts` 回归实际状态门控和 SVG 属性；完整浏览器与构建验收属于整合任务。
+
+Whole-plant and enlarged routes now share the evaporation state and leave through a selected lower pore; the main canvas uses the same filled/hollow phase cue. Short prompts distinguish evaporation inside the leaf, vapour still inside, and vapour passing the pore. Dimensions, timing and cohorts remain illustrative; no tension or pore-feedback solver was added. Lifecycle and SVG projection regressions cover the actual state gates. The integrating task owns complete build and browser acceptance.
+
 ## Earlier colour-observation implementation
 
 独立互动专题 `/topics/leaf-colors/`，支持 `?lang=zh` 与 `?lang=en`。点击“一键走进叶子”或叶片上的圆圈，26 秒连续旅程会依次停留并深入组织和细胞，再按变色类型进入叶绿体（黄叶）或液泡（红叶）；可暂停、继续或直接选择尺度。季节滑块、三个季节停靠点及 18 秒播放共享同一色素状态，切换观察尺度保留季节。两种教学路径分别呈现黄色显现与花青素积累。

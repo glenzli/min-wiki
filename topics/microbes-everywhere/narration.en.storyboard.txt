@@ -1,0 +1,25 @@
+01 · What is missing after arrival?
+[Compare the four habitats and zoom within the same illustration; retain one habitat as the reference.]
+
+Tiny residents may occur between soil grains, in pond water and on skin. Air can carry spores or bacteria-bearing droplets too. Reaching a new place does not establish survival, let alone making more. Different habitats suit different residents. These illustrations are not photographs of newly collected samples. Keep one habitat beside the observation workspace.
+
+---
+
+02 · Borrow a reference cell to inspect its tools
+[Inspect wall, membrane, DNA and ribosomes; play the selected membrane routes once.]
+
+Now switch to reference cell B. It is not a species identified in the earlier picture; it is an example for studying structure. A wall supports it, and an inner membrane regulates selected exchanges. Purple lines represent DNA without a nuclear membrane. Ribosomes make proteins from information. A virus has no ribosomes of its own.
+
+---
+
+03 · Conditions support the next step
+[Run growth-supporting and limited conditions to their endpoints; return to verify separately retained progress.]
+
+Follow one growth sequence. The cell adds material, copies and separates genetic information, then forms a partition and becomes two daughter cells. One genome is not simply cut in half. In the resource-limited comparison, the sequence stops early. This means conditions are insufficient in this example, not that all bacteria stop at that stage or that this cell has died.
+
+---
+
+04 · A virus needs another gate
+[Compare all three host cases; pause during entry, assembly and release, then return to the habitat.]
+
+Finally, switch explicitly to host H. Its outer membrane and thinner wall differ from B. This phage must encounter a suitable cell before its DNA can enter and use cellular conditions to make parts. A mismatched surface blocks entry; effective internal defense blocks offspring even after entry. In the successful pathway, parts assemble and the boundary opens before new phages escape. Arrival, bacterial growth and viral replication are not the same thing.

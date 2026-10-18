@@ -1,4 +1,5 @@
 import type { SceneStudy } from '../../src/platform/sceneReading.ts';
+import type { Origin } from './model.ts';
 
 const w = (zh: string, en: string) => ({ zh, en });
 const solar = { title: 'NASA · Solar System facts', url: 'https://science.nasa.gov/solar-system/solar-system-facts/' };
@@ -103,7 +104,7 @@ export const homeStudies: readonly SceneStudy[] = [
   {
     child: w('我们能看到的范围有极限，但那条虚线不是宇宙的墙。它只表示光来得及把消息带到我们的范围。', 'There is a limit to what we can observe, but the dashed circle is not a wall. It marks the region from which light has had time to reach us.'),
     title: w('可观测宇宙：边界属于观察者', 'Observable universe: a boundary of observation'),
-    theory: w('宇宙年龄约 138 亿年，但空间在光传播期间持续膨胀。因此“今天的距离”和“光走了多久”不相同；给出的约 920 亿光年直径是模型下当前距离的近似，而不是宇宙整体的直径。', 'The universe is about 13.8 billion years old, yet space expanded while light travelled. Present-day distance and light-travel time are different quantities. An approximately 92-billion-light-year observable diameter is a model-based present-day estimate, not the diameter of all space.'),
+    theory: w('宇宙年龄约 138 亿年，但空间在光传播期间持续膨胀。因此“今天的距离”和“光走了多久”不相同；给出的约 930 亿光年直径是模型下当前距离的近似，而不是宇宙整体的直径。', 'The universe is about 13.8 billion years old, yet space expanded while light travelled. Present-day distance and light-travel time are different quantities. An approximately 93-billion-light-year observable diameter is a model-based present-day estimate, not the diameter of all space.'),
     formula: 'χₕ = c ∫₀ᵗ⁰ dt / a(t)',
     terms: w('χₕ 是共动粒子视界距离，a(t) 为宇宙尺度因子；取 a(t₀)=1 时才可把它表述为今天的距离。', 'χₕ is comoving particle-horizon distance and a(t) the cosmic scale factor; with a(t₀)=1 it can be expressed as a present-day distance.'),
     evidence: w('红移、宇宙微波背景和宇宙学距离模型共同限定可观测范围；不同距离定义需要单独说明。', 'Redshifts, the cosmic microwave background and cosmological distance models constrain the observable region; different distance definitions must be stated explicitly.'),
@@ -134,12 +135,22 @@ const zoomChildren = [
   homeStudies[5]!.child,
   homeStudies[6]!.child,
 ] as const;
-export function zoomStudy(stage: number): SceneStudy {
+const sunCloseup: SceneStudy = {
+  child: w('从太阳出发，先用千米标尺看它的大小。继续拉远时，同一颗太阳会小到只剩位置提示；外面的光晕不算直径。', 'Begin at the Sun and use the kilometer ruler to read its size. As we zoom out, the same Sun becomes a location marker; its glow does not count as its diameter.'),
+  title: w('太阳起点：光球直径与物理标尺', 'Starting at the Sun: photospheric diameter and a physical ruler'),
+  theory: w('太阳是恒星。这里用代表性光球半径绘制约 139 万千米的直径，圆盘和标尺共用线性长度换算。拉远改变的是镜头范围，不是太阳的物理大小；圆盘小到无法分辨后，定位符继续标出它的位置。', 'The Sun is a star. A representative photospheric radius gives a diameter of about 1.39 million kilometers; its disk and the ruler use one linear length conversion. Zooming changes the camera span, not the Sun’s physical size. A locator retains its position when the disk becomes too small to resolve.'),
+  formula: 'D☉ = 2R☉ ≈ 1.39 × 10⁶ km',
+  terms: w('R☉ 是本模型所取的太阳光球半径，D☉ 是直径。光晕、标签和定位符都不是可量取的太阳边缘。', 'R☉ is the representative solar photospheric radius used here, and D☉ is its diameter. Glow, labels and locators are not measurable solar edges.'),
+  evidence: w('太阳大小由观测确定；近景表面与发光效果只是帮助辨认恒星，不是实时太阳图像。', 'Observations establish the Sun’s size; the illustrated surface and glow identify the star and are not live solar images.'),
+  limits: w('本镜头比较长度，不计算太阳活动、轨道运动或光照变化。', 'This camera compares lengths; it does not calculate solar activity, orbital motion or changing illumination.'),
+  sources: [{ title: 'NASA · Sun facts', url: 'https://science.nasa.gov/sun/facts/' }],
+};
+export function zoomStudy(stage: number, origin: Origin = 'earth'): SceneStudy {
   const bases = [homeStudies[0]!,homeStudies[0]!,nearbyStars,homeStudies[1]!,homeStudies[2]!,homeStudies[3]!,homeStudies[4]!,homeStudies[5]!,homeStudies[6]!];
   const i = Math.max(0,Math.min(8,stage));
-  const base = bases[i]!;
+  const base = i === 0 && origin === 'sun' ? sunCloseup : bases[i]!;
   const camera = w('这一章只有镜头视野宽度按对数变化；每一帧内部仍共用线性长度标尺。远处丝线与点不是可测量的星系目录。', 'Only camera width changes logarithmically; geometry within each frame keeps one linear length ruler. Distant filaments and points are not a measurable galaxy catalogue.');
-  return { ...base, child:zoomChildren[i]!, limits:{ zh: `${base.limits.zh} ${camera.zh}`, en: `${base.limits.en} ${camera.en}` } };
+  return { ...base, child:i === 0 && origin === 'sun' ? base.child : zoomChildren[i]!, limits:{ zh: `${base.limits.zh} ${camera.zh}`, en: `${base.limits.en} ${camera.en}` } };
 }
 
 export function homeStudy(index: number): SceneStudy { return homeStudies[Math.max(0,Math.min(6,index))]!; }

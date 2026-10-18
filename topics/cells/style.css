@@ -1,9 +1,23 @@
 @import '../../src/platform/shell.css';
 
 [hidden]{display:none!important}
+#muscle-forces[aria-pressed=true]{border-color:var(--accent);background:var(--tint);box-shadow:inset 0 0 0 1px var(--accent)}
 #work-science-content a{display:block;margin:10px 0;overflow-wrap:anywhere}
+.muscle-study{border-top:1px solid var(--border);padding-top:12px;margin:12px 0}
+.muscle-constraint{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.muscle-constraint button{min-height:44px;flex:1 1 110px;padding:8px 12px;border:1px solid var(--border);border-radius:10px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}
+.muscle-constraint button[aria-pressed=true]{border-color:var(--accent);background:var(--tint);box-shadow:inset 0 0 0 1px var(--accent)}
+.muscle-load input{display:block;width:100%;min-height:36px;accent-color:var(--accent)}
+.muscle-load-ends{display:flex;justify-content:space-between;font-size:12px}
+.muscle-load>span,.muscle-load>output{font-size:12px;margin-right:7px}
+.muscle-question{color:var(--ink);font-weight:600}
+.muscle-legend,.muscle-scale{font-size:12px;line-height:1.7}
+#muscle-academic{display:none;border-top:1px solid var(--border);padding-top:10px;font-size:13px}
+html[data-reading-mode="academic"] #muscle-academic{display:block}
+#muscle-academic code{display:block;white-space:normal;overflow-wrap:anywhere;line-height:1.8;color:var(--ink)}
 .chapter-path{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 12px}.chapter-path button,.specialization button,.chapter-next button{min-height:44px;padding:10px 16px;border:1px solid var(--border);border-radius:12px;background:var(--surface);color:var(--ink);font:inherit;cursor:pointer}.chapter-path button[aria-pressed=true],.work-options button[aria-pressed=true]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent);background:var(--tint)}.chapter-question{max-width:850px;line-height:1.8;color:var(--secondary);margin:0 0 22px}.work-options{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.work-layout{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(240px,1fr);gap:24px}.work-illustration{min-width:0;background:#f6eee6;border-radius:18px;overflow:hidden}#work-scene{display:block;width:100%;aspect-ratio:980/550}#work-scene[data-labels=false] text{display:none}.work-view{display:flex;flex-wrap:wrap;gap:8px;padding:12px}.work-explanation{line-height:1.9;color:var(--secondary)}.work-explanation h3{color:var(--ink)}.work-playback{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:22px 0}.work-playback input{width:100%;accent-color:var(--accent);min-height:36px}.work-playback label{margin-left:auto}.chapter-bridge{padding:16px;border-left:3px solid var(--accent);background:var(--tint);line-height:1.8}.chapter-next{display:flex;justify-content:space-between;align-items:center;gap:18px;border-top:1px solid var(--border);margin-top:24px;padding-top:20px}.chapter-next p{max-width:650px;line-height:1.8;color:var(--secondary)}.cell-connections{display:flex;flex-wrap:wrap;gap:18px;margin:24px 0;font-size:14px}.specialization .lab-top{flex-wrap:wrap}
 @media(max-width:740px){.work-layout{grid-template-columns:1fr}.chapter-path button{flex:1;min-width:100px;font-size:13px}.chapter-next{align-items:stretch;flex-direction:column}.work-options button{flex:1 1 30%;padding:8px;font-size:13px}.specialization .tiny-note{white-space:normal}.work-playback label{margin-left:0}.work-explanation{font-size:15px}}
+@media(max-width:740px){#work-scene[data-case=muscle][data-muscle-view=forces]{aspect-ratio:auto;height:clamp(300px,90vw,360px)}}
 
 :root { font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color:var(--ink); background:var(--page); font-synthesis:none; }
 * { box-sizing:border-box; }

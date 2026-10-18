@@ -37,11 +37,13 @@ export function sampleTimeline(frames:ThermalState[],progress:number):ThermalSta
  const position=clamp(progress)*(frames.length-1),i=Math.floor(position),a=frames[i]!,b=frames[Math.min(i+1,frames.length-1)]!,f=position-i;
  const result={...a};for(const key of ['time','air','food','door','removed','work','roomGain','leaked','runSeconds','activity'] as const)result[key]=a[key]+(b[key]-a[key])*f;return result;
 }
-/** One parcel in a sealed operating cycle. Phase boundaries are illustrative. */
+/** One parcel in a sealed operating cycle. Changes occur within the drawn components. */
 export function refrigerantState(progress:number){
- const p=clamp(progress),stage=Math.min(3,Math.floor(p*4));
- const vapor=p<.25?.15+.85*smooth(0,.25,p):p<.5?1:p<.75?1-smooth(.53,.73,p):.15*smooth(.84,.96,p);
- return {stage,vapor,highPressure:smooth(.28,.44,p)*(1-smooth(.79,.9,p))};
+ const p=clamp(progress),stage=Math.min(3,Math.floor(p*4)),local=p===1?1:p*4-stage;
+ const compression=componentProgress('compressor',local),condensation=componentProgress('condenser',local),expansion=componentProgress('capillary',local);
+ const vapor=stage===0?.15+.85*smooth(0,1,local):stage===1?1:stage===2?1-condensation:.15*expansion;
+ const highPressure=stage===0?0:stage===1?compression:stage===2?1:1-expansion;
+ return {stage,vapor,highPressure};
 }
 
 /** Coordinates of the same sealed tube drawn in every view. */
@@ -52,6 +54,15 @@ export const refrigerantPaths:Point[][]=[
  [[615,490],[690,490],[690,350],[790,350],[790,300],[675,300],[675,250],[790,250],[790,200],[675,200],[675,145],[640,145]],
  [[640,145],[620,100],[555,100],[555,125],[530,125],[530,95],[505,95],[505,125],[480,125],[480,95],[455,95],[455,110],[270,110],[270,130]],
 ];
+/** Pipe nodes and the compressor's painted shell have one topic-owned geometry. */
+export const compressorShell='M547 473C542 438 605 428 622 466V511Q584 531 547 513Z';
+export const components={compressor:{stage:1,start:3,end:5},condenser:{stage:2,start:2,end:10},capillary:{stage:3,start:2,end:11}} as const;
+export function componentInterval(name:keyof typeof components):[number,number]{
+ const {stage,start,end}=components[name],points=refrigerantPaths[stage];
+ const lengths=[0];for(let i=1;i<points.length;i++)lengths.push(lengths[i-1]+Math.hypot(points[i][0]-points[i-1][0],points[i][1]-points[i-1][1]));
+ const total=lengths[lengths.length-1];return [lengths[start]/total,lengths[end]/total];
+}
+function componentProgress(name:keyof typeof components,local:number){const [start,end]=componentInterval(name);return smooth(start,end,local);}
 function onPath(points:Point[],fraction:number):Point{
  const lengths=points.slice(1).map((point,i)=>Math.hypot(point[0]-points[i]![0],point[1]-points[i]![1]));
  let distance=clamp(fraction)*lengths.reduce((a,b)=>a+b,0);

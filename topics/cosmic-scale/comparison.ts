@@ -1,7 +1,7 @@
 import content from './comparisonContent.json';
 import {bodies,lastPair,homeRoute,homeSideViews,homeContext,homeRoutePosition,stepHomeRoute,comparisonFrame,stellarOrbitFrame,stellarEstimateSources,type Chapter} from './comparisonModel.ts';
 import {clamp,smooth} from './model.ts';
-import earthMap from '../solar-system/assets/2k_earth_daymap.jpg';
+import earthMap from '../solar-system/assets/2k_earth_daymap.webp';
 import jupiterMap from '../solar-system/assets/2k_jupiter.webp';
 import { MembershipScene } from './membershipScene.ts';
 

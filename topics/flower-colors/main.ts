@@ -1,5 +1,4 @@
 import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
-import {mountTopicNavigation} from '../../src/platform/topicNavigation.ts';
 import {mountReadingMode} from '../../src/platform/readingMode.ts';
 import {translateDocument,language} from '../../src/platform/i18n.ts';
 import {t} from '../hydrangea/i18n.ts';
@@ -10,7 +9,7 @@ import content from './content.json';
 import './style.css';
 const el=(id:string)=>document.getElementById(id)!;
 const legacy=location.pathname.includes('/hydrangea/');
-translateDocument(t);mountTopicNavigation('flower-colors');mountReadingMode('details:not(.references)');
+translateDocument(t);mountReadingMode('details:not(.references)');
 const w=language==='en'?content.en:content.zh;
 let state=readFlowerState(location.search,legacy);
 let hydrangea:ReturnType<typeof mountHydrangeaStudy>|undefined;

@@ -1,5 +1,20 @@
 import test from 'node:test';import assert from 'node:assert/strict';import {frequency} from '../model.ts';test('quadruple ideal tension doubles pitch and zero tension is rejected',()=>{assert.equal(frequency(4),2*frequency(1));assert.throws(()=>frequency(0));});
-import { DISPLAY_SPEED, DURATION, RECEIVER_DISTANCE, packetSpan, receiverArrival, parcelDisplacement, relativeDensity, sourceDisplacement } from '../model.ts';
+import { DISPLAY_SPEED, DURATION, RECEIVER_DISTANCE, packetSpan, receiverArrival, parcelDisplacement, relativeDensity, sourceDisplacement, stringProjection } from '../model.ts';
+
+test('the taut-string supports stay fixed and tension vectors encode force independently of displacement',()=>{
+  const low=stringProjection(0,1),high=stringProjection(0,4);
+  assert.deepEqual(low.left,high.left);assert.deepEqual(low.right,high.right);
+  assert.equal(high.length,4*low.length);
+  for(const tension of [1,2,4])for(const displacement of [-32,-8,0,8,32]){
+    const s=stringProjection(displacement,tension);
+    for(const [origin,end] of [[s.left,s.pullLeft],[s.right,s.pullRight]]){
+      assert.ok(Math.abs(Math.hypot(end[0]-origin[0],end[1]-origin[1])-s.length)<1e-10);
+      assert.ok((end[1]-origin[1])*displacement<=0);
+    }
+    assert.equal(s.middle[1]-230,displacement);
+  }
+  assert.throws(()=>stringProjection(0,0));
+});
 
 test('the finite packet reaches the receiver before its trailing edge leaves the path',()=>{
   assert.equal(receiverArrival,RECEIVER_DISTANCE/DISPLAY_SPEED);

@@ -1,0 +1,25 @@
+01 · Suitable starting conditions
+[Compare dry, flooded and damp conditions at the bean’s starting state, then restore conditions and observe the root.]
+
+A bean holds a tiny new plant. Water helps it become active again, but staying underwater is not good: it also needs oxygen. With suitable conditions, a little root usually appears first.
+
+---
+
+02 · A seedling does not flower immediately
+[Keep the bean’s true-leaf state, note that growth to maturity is not simulated, then switch to cherry with an explicit species change.]
+
+The shoot rises and true leaves unfold. It still needs light, water, nutrients and more growth before it can flower. Next we move to an already mature cherry tree. This is a different comparison case.
+
+---
+
+03 · Arriving pollen is not enough
+[Compare compatible and incompatible cases in the same cherry cutaway, noting the arrested tube and absence of fruit.]
+
+A bee brings pollen to the flower. A compatible pollen tube can keep growing before fertilization may occur. Sometimes pollen arrives without succeeding. When a cherry develops, its seed is hidden inside the stone.
+
+---
+
+04 · Ask again after landing
+[Observe wind-borne landing and burdock contact, transport and release. Read the condition map and return to the retained bean comparison.]
+
+Two other plants show different journeys: dandelion fruits ride the wind and burdock hooks catch on animal fur. Reaching a new place does not automatically make a seedling. Ask again: are water, air and temperature suitable here?
