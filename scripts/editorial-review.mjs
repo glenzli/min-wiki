@@ -29,6 +29,8 @@ export function reviewPlan(wiki){
 export function reviewReport(wiki){
   const plan=reviewPlan(wiki),owners=wiki.entries.filter(entry=>!entry.parentTopic),children=wiki.entries.filter(entry=>entry.parentTopic);
   const latestReview=owners.map(entry=>entry.review.reviewedOn).sort().at(-1);
+  const latestOwners=owners.filter(entry=>entry.review.reviewedOn===latestReview).length;
+  const reviewRecord=`strict-visual-review-${latestReview.replaceAll('-','')}.md`;
   const listedOwners=owners.filter(entry=>entry.listed!==false).length;
   const cell=text=>text.replaceAll('|','／').replaceAll('\n',' ');
   const link=entry=>`[${cell(entry.title.zh)}](../topics/${entry.id}/${existsSync(new URL('../topics/'+entry.id+'/README.md',import.meta.url))?'README.md':'entry.zh.md'})`;
@@ -42,15 +44,15 @@ export function reviewReport(wiki){
 
 ## 观察范围与判断方法
 
-- 本轮重新查看 ${owners.length} 个独立主题的桌面首屏，并在可直接操作的条目查看进度或条件变化；没有把无可操作控件、重启或短暂播放算作完整的条件对照。人体、细胞、叶片及新降稿项目另查看关键局部与阶段，范围见[严格视觉复审记录](strict-visual-review-20261018.md)。
+- 本报告汇总各主题最近一次评估。最新复审为 **${latestReview}**，该日更新 **${latestOwners} 个独立主题**；具体画面、条件、保留与降稿理由见[逐项复审记录](${reviewRecord})。报告日期不表示其他条目也在该日重新完成验收。
 - 主体的形态、组织层次、材料边缘、连接与接触应足以解释当前对象；只有通用色块、机械重复模板或过小的关键结构，不因按钮可用而通过。细节须有依据，不能为了精美编造内部结构或运动。
-- 复用未修改模型、内容与既有路由验证；本轮没有重新逐参数、逐来源和遍历所有分支进行独立科学审校。新增绘图另检查中英桌面及390px页面，局部精修不自动提升整题状态。过渡截图只作为中间态。
+- 浏览器观察、科学来源复核、模型测试、界面适配和构建检查分别记录，范围以逐项记录为准。首屏、短暂播放或过渡截图不能代替有意义的条件对照；局部精修不自动提升整题状态。
 
 ## 值得保留的做法
 
 地月让两个观察位置共享同一月面；影子和浮力能围绕一个变量做对照；开花植物明确不同物种间的接力；程序与消息传输把“动作发生”与“目标完成”分开。叶片的对象与区室连续性也应保留，但它不能代替组织绘图质量的验收。
 
-这轮有12个原完成稿降为草稿：叶片、花色、变态发育、蚂蚁、鱼鳃、鸭蹼、仙人掌、微生物、洗手、疼痛、味嗅觉和消化。主要问题是生物形态过于概括、关键组织或接触界面偏小，以及不同尺度的精细度不一致。叶片、细胞和消化已精修部分绘图，仍需按表中事项完成整题验收。原有13个草稿继续保留；菜单已收起不表示主线和绘图问题已经解决。
+当前状态和重新验收条件以以下表格为准，历次变更数量保留在各日复审记录中。形态过于概括、关键接触界面缺失、状态跨视图不一致或核心分支互相矛盾，均可阻止整题成为完成稿。菜单收起或单张画面精修不表示这些问题已经解决。
 
 ## 完成稿
 
@@ -79,9 +81,9 @@ ${children.map(entry=>`| \`${entry.id}\` | \`${entry.parentTopic}\` | ${entry.re
 - \`npm run review:prepare\`：从登记表更新本报告；不要只改生成报告。
 - \`npm run review:check\`：检查每个条目的状态、理由、整合关系和报告是否同步。
 - \`npm run review:plan\`：输出完成稿／草稿的机器可读清单。
-- \`npm run build:sync\`：调用支持 \`--complete-only\` 的 Wiki Reader，只打包完成稿内容；草稿旧 URL 输出简短“整理中”页，正文、封面与独占演示不进入该产物。
+- \`npm run build:sync\`：调用支持 \`--complete-only\` 及草稿归属资源筛选的 Wiki Reader，只打包完成稿内容；草稿旧 URL 输出简短“整理中”页。所用Reader版本、资源检查及本地覆盖方式见逐项复审记录，不能仅凭页面隐藏判断全部草稿资源已排除。
 
-完成稿仍可消费其他目录里共享的模型；同步选择的是内容入口，不是按文件夹粗暴删代码。\`dist/\` 为完整本地检查输出，\`sync-dist/\` 为完成稿同步输出，均由同一个 Reader 生成。宿主的旧同步脚本尚未切换到这个 Reader 产物；本轮没有执行宿主同步或线上部署。
+完成稿仍可消费其他目录里共享的模型；同步选择的是内容入口，不是按文件夹粗暴删代码。\`dist/\` 为完整本地检查输出，\`sync-dist/\` 为完成稿同步输出，均由同一个 Reader 生成。宿主同步和线上部署须独立执行；评估或构建通过不表示已经部署。
 `;
 }
 

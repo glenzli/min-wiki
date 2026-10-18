@@ -31,3 +31,15 @@ test('missing reasons, missing reviews and inconsistent integrated status cannot
 test('the checked editorial report is exactly projected from the manifest',async()=>{
   assert.equal(await readFile(new URL('../docs/editorial-review.md',import.meta.url),'utf8'),reviewReport(wiki));
 });
+
+test('a partial review reports its actual date and scope rather than repeating a previous full audit',()=>{
+  const changed=structuredClone(wiki);
+  for(const entry of changed.entries)entry.review.reviewedOn='2026-10-18';
+  const owner=changed.entries.find(entry=>!entry.parentTopic);
+  owner.review.reviewedOn='2026-10-20';
+  const report=reviewReport(changed);
+  assert.match(report,/最新复审为 \*\*2026-10-20\*\*，该日更新 \*\*1 个独立主题\*\*/);
+  assert.match(report,/\]\(strict-visual-review-20261020\.md\)/);
+  assert.ok(!report.includes('strict-visual-review-20261018.md'));
+  assert.ok(!report.includes('这轮有12个原完成稿降为草稿'));
+});
