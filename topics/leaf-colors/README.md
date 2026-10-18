@@ -1,5 +1,15 @@
 # 一片叶子的一生 / The life of a leaf
 
+## One spatial scale from blade to tissue · 2026-10-19
+
+The earlier turn joined a separately exaggerated section to the blade. Calling it exaggerated did not make that transition scientifically coherent. The active model now maps a 60 mm mature blade, 200 µm lamina thickness and 30 µm mean epidermal grid pitch through one `UNITS_PER_UM` conversion. These are rounded teaching assumptions, not measurements of a named tree or species. The nested mesophyll cell and its compartments inherit the same conversion; no independent thickness multiplier remains.
+
+The camera first approaches the permanent sample and resolves the same periodic epidermal sheet across the visible surface. At slider positions .60–.84 only the orthographic viewing direction changes: magnification stays fixed and the same upper wall intersections meet the section. A further uniform zoom begins after the turn. The old lateral extrusion and adaptive mid-turn pullback were removed. A 1/2/5 model scale bar is computed from the actual rendered pixels per micrometre, including the later uniform framing adjustment. The title, scale readout and accessible slider value name the same turn. The minor blade-contour pass softens terminal teeth and the lower taper without changing length, tip, petiole or sample identity.
+
+叶长、叶厚、表皮细胞网格与剖面共用一套长度单位。本例成熟叶长 60 mm、厚 200 µm，表皮网格平均间距 30 µm，均为教学设定，不是特定树种的实测值。先在同一叶面连续放大、看清表皮，再以固定倍率转向横切面；转向结束后才继续等比例放大。厚度不单独拉伸，也不在侧转中偷偷缩放镜头。标尺随实际绘制倍率更新；组织形状、色素符号和时间仍为简化示意。显微入口只对完全展开且尚未脱落的叶片开放。
+
+[Buckley et al., Plant Physiology (2015), Table IV](https://pmc.ncbi.nlm.nih.gov/articles/PMC4528767/) documents substantial interspecific variation in epidermal and mesophyll dimensions; it supports treating those dimensions as explicit assumptions rather than assigning one drawing a species-wide measured thickness. [OpenStax — Leaves](https://openstax.org/books/biology-2e/pages/30-4-leaves) remains the qualitative anatomy reference. Neither source is the measured specimen behind this drawing. This supersedes the compressed-scale/exaggerated-thickness descriptions in the historical records below. The entry remains a draft; no push or deployment is included.
+
 ## Continuous surface approach and botanical artwork · 2026-10-19
 
 `bladeArtwork.ts` owns the retained blade's authored ovate silhouette, vein hierarchy, material, petiole and bounded pose cache. It consumes the existing finite unfolding/curl pose; it has no clock. `epidermis.ts` owns one deterministic, shared-wall pavement-cell sheet across the blade, a single transparent texture cache, and intersections with the fixed sample edge. The whole visible surface reveals these walls progressively as the camera approaches. The surrounding blade is retained through the epidermis observation stop; only the subsequent explanatory side-turn isolates the sample. The upper row of the tissue section uses those same wall intersections. This replaces the earlier local texture patch, which looked like a separate image appearing on the leaf.

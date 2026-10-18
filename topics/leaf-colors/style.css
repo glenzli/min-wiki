@@ -50,7 +50,7 @@
   /* The epidermal field is darker than the whole-leaf backdrop. Keep the
      small caption legible without putting a bar across the specimen. */
   html.presentation-page[data-topic-ui] .presentation-frame .scene-top>div{
-    max-width:100%;background:#f6f8ebe8;border-radius:8px;padding:7px 9px;color:#293f2d;
+    max-width:calc(100% - 94px);background:#f6f8ebe8;border-radius:8px;padding:7px 9px;color:#293f2d;
   }
   html.presentation-page[data-topic-ui] .presentation-frame .scene-top .eyebrow{color:#536b48}
   /* Microscopic anatomy labels need the lower edge on narrow screens. */
@@ -60,3 +60,4 @@
 
 /* The scene sample keeps its own circular marker and a full touch target. */
 .hotspot{width:44px;height:44px}
+.metric-caption{grid-column:1/-1;margin:0;font-size:12px;line-height:1.6;color:var(--secondary);font-weight:400}

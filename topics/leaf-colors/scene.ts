@@ -1,11 +1,11 @@
-import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, leafSectionAt, LEAF_SECTION, cellEdge, VACUOLE, vacuolePoint, epidermisBoundary, BLADE_ANGLE } from './model.ts';
+import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, leafSectionAt, LEAF_SECTION, cellEdge, VACUOLE, vacuolePoint, epidermisBoundary, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SECTION_TURN_END, metricScaleBar } from './model.ts';
 import type { LeafKind, Pigments, ScaleEntry } from './model.ts';
 import { t } from './i18n.ts';
 import { leafLifeAt, leafPoint } from './lifecycle.ts';
 import { waterAt, BLADE_WATER_ROUTE } from '../plant-water/model.ts';
 import { createLeafMotion } from './leafMotion.ts';
 import { BladeArtwork } from './bladeArtwork.ts';
-import { EpidermisSurface, epidermisSeam } from './epidermis.ts';
+import { EpidermisSurface } from './epidermis.ts';
 
 type Point = [number, number];
 export class LeafScene {
@@ -13,7 +13,6 @@ export class LeafScene {
   private showLabels = true;
   private surface = new EpidermisSurface();
   private upperCellEdges: number[] = [];
-  private sideCellEdges: number[] = [];
   private plastidPlate = document.createElement('canvas');
   private plastidKey = '';
   private bladeArt = new BladeArtwork();
@@ -63,12 +62,9 @@ export class LeafScene {
       const wx = patch.x + x * patch.size, wy = patch.y + y * patch.size;
       return [wx * Math.cos(-BLADE_ANGLE) - wy * Math.sin(-BLADE_ANGLE), wx * Math.sin(-BLADE_ANGLE) + wy * Math.cos(-BLADE_ANGLE)];
     };
-    this.upperCellEdges = epidermisSeam(this.surface.geometry,
+    this.upperCellEdges = this.surface.seam(
       bladePointAt(LEAF_SECTION.left), bladePointAt(LEAF_SECTION.right))
       .map(u => LEAF_SECTION.left + (LEAF_SECTION.right - LEAF_SECTION.left) * u);
-    this.sideCellEdges = epidermisSeam(this.surface.geometry,
-      bladePointAt(LEAF_SECTION.left, -185), bladePointAt(LEAF_SECTION.left))
-      .map(u => -185 + 185 * u);
     this.observer = new ResizeObserver(() => this.resize());
     this.observer.observe(canvas);
     this.resize();
@@ -135,35 +131,14 @@ export class LeafScene {
     backdrop.addColorStop(0, '#fbf9e9'); backdrop.addColorStop(.55, '#e8eed9'); backdrop.addColorStop(1, '#cbd8ba');
     c.fillStyle = backdrop; c.fillRect(0, 0, this.width, this.height);
     const destination = this.destination(), originalCamera = scaleCamera(this.position, destination), life = leafLifeAt(this.age);
-    const tracked = leafPoint(originalCamera.x, originalCamera.y, this.age), follow = smooth(0, 1, this.position);
+    const tracked = leafPoint(originalCamera.x, originalCamera.y, this.age), follow = smooth(0, .18, this.position);
     const camera = { ...originalCamera, x: originalCamera.x * (1 - follow) + tracked.x * follow, y: originalCamera.y * (1 - follow) + tracked.y * follow, angle: originalCamera.angle + life.rotation * follow, magnification: originalCamera.magnification / (1 - follow + life.size * follow) };
     // Narrow canvases need breathing room around the complete sampled cell.
     const detailBoost = .18 + .2 * smooth(420,760,this.width);
-    let sceneScale = this.scale * camera.magnification * (1 + detailBoost * smooth(.75, 2, this.position));
-    let frameY = this.height * (.46 + .08 * smooth(.2, 1, this.position));
+    const sceneScale = this.scale * camera.magnification * (1 + detailBoost * smooth(SECTION_TURN_END, 2, this.position));
+    const frameY = this.height * (.46 + .08 * smooth(.2, 1, this.position));
     const entries: ScaleEntry[] = [...SCALE_ENTRIES, destination];
     const section = leafSectionAt(this.position), patch = entries[0];
-    if (section.angle > 0 && this.position < 1) {
-      // The exaggerated thickness increases the footprint midway through the
-      // turn. Pull back only enough to keep the sampled volume inside the stage.
-      const [a,b,cc,d,e,f] = section.surfaceTransform;
-      const surface = epidermisBoundary.map(([x,y]) => {
-        const wx = patch.x + x * patch.size, wy = patch.y + y * patch.size;
-        return [a*wx+cc*wy+e,b*wx+d*wy+f];
-      });
-      const [aa,bb,ccc,dd] = section.sectionTransform;
-      const front = [LEAF_SECTION.left,LEAF_SECTION.right].flatMap(x => [LEAF_SECTION.top,LEAF_SECTION.bottom]
-        .map(y => [patch.x+(aa*x+ccc*y)*patch.size,patch.y+(bb*x+dd*y)*patch.size]));
-      const footprint = [...surface,...front];
-      const left = Math.min(...footprint.map(p=>p[0])), right = Math.max(...footprint.map(p=>p[0]));
-      const top = Math.min(...footprint.map(p=>p[1])), bottom = Math.max(...footprint.map(p=>p[1]));
-      sceneScale *= Math.min(1, (this.width-36)/((right-left)*sceneScale*life.size*life.unfold),
-        Math.max(1,this.height-136)/((bottom-top)*sceneScale*life.size));
-      const turnWeight = Math.sin(2*section.angle)**2;
-      const focus = leafPoint((left+right)/2,(top+bottom)/2,this.age);
-      camera.x += (focus.x-camera.x)*turnWeight; camera.y += (focus.y-camera.y)*turnWeight;
-      frameY += (this.height/2-frameY)*turnWeight;
-    }
     this.labels = [];
     c.save(); c.translate(this.width / 2, frameY); c.scale(sceneScale, sceneScale); c.rotate(-camera.angle); c.translate(-camera.x, -camera.y);
     if (this.position < 1.1) {
@@ -178,7 +153,7 @@ export class LeafScene {
     // Every detail stays at the same location in one nested world. Reversing the
     // slider reverses the same camera, rather than starting another dissolve.
     const drawNested = (depth: number) => {
-      this.labelsVisible = Math.abs(this.position - depth) < .14;
+      this.labelsVisible = depth === 0 ? this.position < .06 : Math.abs(this.position - depth) < .14;
       c.save();
       if (depth === 0) {
         c.globalAlpha *= section.bladeOpacity;
@@ -218,20 +193,6 @@ export class LeafScene {
       if(depth === 0) {
         // This face is perpendicular to the leaf surface, not pasted on it.
         // Both meet at y=LEAF_SECTION.top for every camera angle.
-        const [ca,,sa] = section.surfaceTransform;
-        // The left depth face closes the volume between the sampled upper
-        // surface and its front section, instead of looking like a folded card.
-        c.save();c.transform(sa,ca*section.surfaceScale,0,section.sectionScale,
-          ca*LEAF_SECTION.left,-sa*section.surfaceScale*LEAF_SECTION.left);
-        const side=c.createLinearGradient(0,LEAF_SECTION.top,0,LEAF_SECTION.bottom);
-        side.addColorStop(0,'#b5c38e');side.addColorStop(.25,'#9dac78');side.addColorStop(1,'#b8c494');
-        c.fillStyle=side;c.fillRect(-185,LEAF_SECTION.top,185,LEAF_SECTION.bottom-LEAF_SECTION.top);
-        c.fillStyle='#c8d4a7';c.fillRect(-185,-153,185,8);
-        c.fillStyle='#c0cca0';c.fillRect(-185,112,185,23);
-        c.strokeStyle='#768d6155';c.lineWidth=1;
-        for(const y of [-112,10,112]) {c.beginPath();c.moveTo(-185,y);c.lineTo(0,y);c.stroke();}
-        this.tissueSide(p);
-        c.restore();
         c.save(); c.transform(...section.sectionTransform);
         c.beginPath(); c.rect(LEAF_SECTION.left,LEAF_SECTION.top,
           LEAF_SECTION.right-LEAF_SECTION.left,LEAF_SECTION.bottom-LEAF_SECTION.top); c.clip();
@@ -254,6 +215,18 @@ export class LeafScene {
       this.drawLabel(label.text,point.x/dpr,point.y/dpr,anchor && [anchor.x/dpr,anchor.y/dpr],Math.min(label.width,this.width-32));
       c.restore();
     }
+    const pixelsPerUm = sceneScale * life.size * UNITS_PER_UM;
+    const bar = metricScaleBar(pixelsPerUm,this.width<600?72:100);
+    const bx = this.width-24-bar.pixels, by = this.width<600?111:94;
+    c.save(); c.setTransform(dpr,0,0,dpr,0,0);
+    c.fillStyle='#f6f8ebee'; c.fillRect(bx-9,by-35,bar.pixels+18,48);
+    c.fillStyle='#304b35'; c.font='12px -apple-system, sans-serif'; c.textAlign='center';
+    c.fillText(t('示意标尺'),bx+bar.pixels/2,by-20); c.fillText(bar.label,bx+bar.pixels/2,by-5);
+    c.strokeStyle='#304b35'; c.lineWidth=1.3; c.beginPath(); c.moveTo(bx,by+3); c.lineTo(bx+bar.pixels,by+3);
+    c.moveTo(bx,by);c.lineTo(bx,by+6);c.moveTo(bx+bar.pixels,by);c.lineTo(bx+bar.pixels,by+6);c.stroke();c.restore();
+    this.canvas.dataset.scaleBarUm=String(bar.lengthUm); this.canvas.dataset.scaleBarPixels=String(bar.pixels);
+    this.canvas.dataset.modelThicknessUm=String(LEAF_METRIC.thicknessUm);
+    this.canvas.dataset.pixelsPerUm=String(pixelsPerUm);
     const onSurface=Math.abs(this.position-.5)<.08;
     const depth = onSurface ? 0 : Math.min(2, Math.round(this.position));
     let x = 0, y = 0, size = 1;
@@ -262,7 +235,7 @@ export class LeafScene {
     const sample = leafPoint(x, y, this.age);
     this.hotspot.style.left = `${this.width / 2 + ((sample.x-camera.x)*Math.cos(camera.angle)+(sample.y-camera.y)*Math.sin(camera.angle))*sceneScale}px`;
     this.hotspot.style.top = `${frameY + (-(sample.x-camera.x)*Math.sin(camera.angle)+(sample.y-camera.y)*Math.cos(camera.angle))*sceneScale}px`;
-    this.hotspot.hidden = life.growth < .9 || life.fall > 0 || this.position > 2.15 || (!onSurface && Math.abs(this.position - Math.round(this.position)) > .12);
+    this.hotspot.hidden = !life.microscopyAvailable || this.position > 2.15 || (!onSurface && Math.abs(this.position - Math.round(this.position)) > .12);
     this.canvas.dataset.scale = this.position.toFixed(4);
     this.canvas.dataset.camera = `${camera.x.toFixed(6)},${camera.y.toFixed(6)},${camera.magnification.toFixed(6)}`;
     this.canvas.dataset.leafAge = this.age.toFixed(4);
@@ -339,7 +312,10 @@ export class LeafScene {
     const pose = this.leafMotion.sample(life.growth, life.fall);
     this.bladeKey = Object.values(pose).map(value => value.toFixed(3)).join(':');
     c.save(); c.rotate(BLADE_ANGLE);
-    this.bladeArt.draw(c, p, pose, life.browning);
+    const micro = smooth(.22,.42,this.position);
+    c.fillStyle = rgb(leafRGB(p)); c.fill(this.bladeArt.outline(pose));
+    c.save(); c.globalAlpha *= 1-micro;
+    this.bladeArt.draw(c, p, pose, life.browning); c.restore();
     const texture = leafSectionAt(this.position).textureOpacity;
     if (texture > 0) {
       c.save(); c.clip(this.bladeArt.outline(pose)); c.globalAlpha *= texture;
@@ -402,7 +378,7 @@ export class LeafScene {
 
   private epidermalRow(edges: readonly number[], color: string) {
     const c = this.ctx;
-    // Same surface-wall intersections, continued down the exaggerated cut edge.
+    // Same surface-wall intersections, continued down the metric cut edge.
     for (let i = 1; i < edges.length; i++) {
       const left = edges[i - 1], right = edges[i];
       const bottom = -113 + 1.5 * Math.sin(i * 2.1), bend = Math.min(2.2, (right - left) * .12);
@@ -412,38 +388,6 @@ export class LeafScene {
       c.bezierCurveTo(left + bend, -119, left - bend, -139, left, -148); c.closePath();
       c.fillStyle = color; c.fill(); c.strokeStyle = '#9aaf87'; c.lineWidth = .8; c.stroke();
     }
-  }
-  private tissueSide(p: Pigments) {
-    const c = this.ctx;
-    c.save(); c.beginPath(); c.rect(-185, LEAF_SECTION.top, 185, LEAF_SECTION.bottom - LEAF_SECTION.top); c.clip();
-    this.epidermalRow(this.sideCellEdges, '#c9d6b0');
-    for (let i = 0; i < 5; i++) {
-      const x = -171 + i * 39, y = -51 + Math.sin(i * 2.3) * 2, seed = 2 + i * 1.7;
-      this.cellOutline(x, y, 17, 54, seed, .72);
-      c.fillStyle = '#c3d1a6'; c.fill(); c.strokeStyle = '#819b70'; c.lineWidth = .85; c.stroke();
-      this.cellOutline(x, y, 8, 33, seed, .72);
-      c.fillStyle = rgb(mix([215,226,189], [206,152,162], p.anthocyanins)); c.fill();
-      this.peripheralPlastids(x, y, 17, 54, seed, 5, 4, p, .72);
-    }
-    for (let i = 0; i < 7; i++) {
-      const x = -177 + (i % 4) * 51 + (i > 3 ? 18 : 0), y = i < 4 ? 35 + Math.sin(i) * 4 : 85 + Math.sin(i) * 5;
-      const seed = 3 + i * 2.1;
-      this.cellOutline(x, y, 21 + i % 3, 17, seed, .9);
-      c.fillStyle = '#cad7b1'; c.fill(); c.strokeStyle = '#839d72'; c.lineWidth = .85; c.stroke();
-      this.cellOutline(x, y, 11, 8, seed, .9);
-      c.fillStyle = rgb(mix([224,232,205], [213,157,168], p.anthocyanins)); c.fill();
-      this.peripheralPlastids(x, y, 23, 17, seed, 4, 3.4, p, .9);
-    }
-    for (let i = 0; i < 6; i++) {
-      this.cellOutline(-176 + i * 35, 124, 17, 9, 2 + i * 1.8, .7);
-      c.fillStyle = '#d7dfbf'; c.fill(); c.strokeStyle = '#91a47e'; c.lineWidth = .7; c.stroke();
-    }
-    // Lighting distinguishes this lateral plane without replacing its anatomy
-    // with an empty solid wall. The retained selected cell stays on the front.
-    const shade = c.createLinearGradient(-185, 0, 0, 0);
-    shade.addColorStop(0, '#2f492c18'); shade.addColorStop(1, '#2f492c04');
-    c.fillStyle = shade; c.fillRect(-185, LEAF_SECTION.top, 185, LEAF_SECTION.bottom - LEAF_SECTION.top);
-    c.restore();
   }
   private tissue(p: Pigments) {
     const c = this.ctx;

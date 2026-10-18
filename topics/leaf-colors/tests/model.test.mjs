@@ -1,6 +1,37 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SCALE_ENTRIES, BLADE_ANGLE } from '../model.ts';
+import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SCALE_ENTRIES, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SURFACE_CELL_SCALE, SECTION_TURN_END, SURFACE_FRAMING, scaleCamera, metricScaleBar } from '../model.ts';
+
+test('macro blade, microscopic thickness and surface cell pitch share one length unit',()=>{
+  const sample=SCALE_ENTRIES[0];
+  assert.equal(LEAF_METRIC.bladeLength/UNITS_PER_UM,60000);
+  assert.ok(Math.abs((LEAF_SECTION.bottom-LEAF_SECTION.top)*sample.size/UNITS_PER_UM-200)<1e-10);
+  assert.ok(Math.abs(7*SURFACE_CELL_SCALE/UNITS_PER_UM-30)<1e-10);
+  assert.ok((LEAF_SECTION.bottom-LEAF_SECTION.top)*sample.size/LEAF_METRIC.bladeLength<.004,
+    'a submillimetre lamina cannot become a centimetre-scale block');
+});
+
+test('view rotation finishes before uniform zoom resumes, without an independent thickness multiplier',()=>{
+  const destination={x:4,y:-2,size:.8};
+  const fixed=SURFACE_FRAMING/SCALE_ENTRIES[0].size;
+  for(let i=0;i<=60;i++){
+    const position=.6+(SECTION_TURN_END-.6)*i/60;
+    assert.ok(Math.abs(scaleCamera(position,destination).magnification-fixed)<1e-9);
+    const section=leafSectionAt(position);
+    assert.ok(Math.abs(section.surfaceScale**2+section.sectionScale**2-1)<1e-12);
+    assert.equal(section.sectionTransform[0],1,'section width is not stretched by the turn');
+  }
+  assert.equal(leafSectionAt(SECTION_TURN_END).sectionScale,1);
+  assert.ok(scaleCamera(.95,destination).magnification>fixed);
+});
+
+test('scale bars report the rendered model length across millimetres and micrometres',()=>{
+  for(const pixelsPerUm of [.003,.08,1.2,12,80]){
+    const bar=metricScaleBar(pixelsPerUm,96);
+    assert.ok(bar.pixels<=96+1e-9 && bar.pixels>=30);
+    assert.ok(Math.abs(bar.pixels/pixelsPerUm-bar.lengthUm)<1e-8);
+  }
+});
 
 test('epidermis has a motionless inspection interval before the tissue turn', async () => {
   const {scaleCamera,epidermisVisible,SCALE_STOPS}=await import('../model.ts');
@@ -32,8 +63,8 @@ test('cell detail fills the visible blade before its marked sample is isolated',
 });
 
 test('the full epidermal sheet has no gaps or duplicate coverage and supplies the cut seam', async () => {
-  const {createEpidermisGeometry,epidermisSeam}=await import('../epidermis.ts');
-  const sheet=createEpidermisGeometry();
+  const {EpidermisSurface,epidermisSeam}=await import('../epidermis.ts');
+  const surface=new EpidermisSurface(),sheet=surface.geometry;
   const cells=sheet.cells.map(cell=>({ ...cell,
     left:Math.min(...cell.contour.map(p=>p[0])),right:Math.max(...cell.contour.map(p=>p[0])),
     top:Math.min(...cell.contour.map(p=>p[1])),bottom:Math.max(...cell.contour.map(p=>p[1])),
@@ -58,12 +89,15 @@ test('the full epidermal sheet has no gaps or duplicate coverage and supplies th
     return [wx*Math.cos(-BLADE_ANGLE)-y*Math.sin(-BLADE_ANGLE),wx*Math.sin(-BLADE_ANGLE)+y*Math.cos(-BLADE_ANGLE)];
   };
   const from=point(LEAF_SECTION.left),to=point(LEAF_SECTION.right);
-  const seam=epidermisSeam(sheet,from,to);
+  const seam=surface.seam(from,to);
   assert.equal(seam[0],0);assert.equal(seam.at(-1),1);
   assert.ok(seam.length>8,'the cut intersects multiple existing surface cells');
   assert.ok(seam.every((t,i)=>i===0||t>seam[i-1]));
-  assert.deepEqual(epidermisSeam(sheet,to,from).map(t=>1-t).reverse().map(t=>+t.toFixed(8)),
+  assert.deepEqual(surface.seam(to,from).map(t=>1-t).reverse().map(t=>+t.toFixed(8)),
     seam.map(t=>+t.toFixed(8)),'both viewing directions intersect the same walls');
+  const rawFrom=from.map(v=>v/SURFACE_CELL_SCALE),rawTo=to.map(v=>v/SURFACE_CELL_SCALE);
+  assert.deepEqual(epidermisSeam(sheet,rawFrom.map((v,i)=>v+[378,420][i]),rawTo.map((v,i)=>v+[378,420][i])).map(t=>+t.toFixed(7)),
+    seam.map(t=>+t.toFixed(7)),'the texture tile and physical cut share periodic walls without a sampling seam');
 });
 
 test('all vacuolar pigment positions use the same bounded membrane contour', async () => {

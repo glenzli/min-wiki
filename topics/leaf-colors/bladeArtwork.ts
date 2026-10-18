@@ -33,8 +33,8 @@ const spine = (t: number): Point => [4 * Math.sin(Math.PI * t) - 3 * t, -204 + 3
 // An authored ovate blade, rather than a sine envelope. The broad shoulders
 // continue into a rounded lower blade; only the last part of the tip is narrow.
 const profile = [0, .055, .14, .28, .43, .56, .69, .81, .91, 1];
-const leftWidths = [0, 9, 35, 82, 122, 138, 131, 104, 61, 0];
-const rightWidths = [0, 9.5, 38, 86, 127, 139, 134, 109, 64, 0];
+const leftWidths = [0, 9, 35, 82, 122, 138, 133, 107, 57, 0];
+const rightWidths = [0, 9.5, 38, 86, 127, 139, 136, 111, 60, 0];
 
 function profileSlopes(widths: number[]) {
   const deltas = widths.slice(1).map((width, i) => (width - widths[i]) / (profile[i + 1] - profile[i]));
@@ -63,9 +63,9 @@ function widthAt(t: number, side: Side) {
 function margin(t: number, side: Side): Point {
   if (t <= 0) return [0, -204];
   if (t >= 1) return [-3, 164];
-  const [x, y] = spine(t), taper = Math.sin(Math.PI * t) ** .65;
+  const [x, y] = spine(t), taper = Math.sin(Math.PI * t) ** .82;
   const phase = 29.4 * t + .19 * Math.sin(t * 18 + side) + side * .21;
-  const tooth = (Math.max(0, Math.cos(phase * Math.PI * 2)) ** 5 - .17) * 1.5 * taper;
+  const tooth = (Math.max(0, Math.cos(phase * Math.PI * 2)) ** 5 - .17) * 1.3 * taper;
   const drift = 1 + .006 * Math.sin(t * 22 + side * 1.2) + .003 * Math.sin(t * 47 - side);
   return [x + side * (widthAt(t, side) * drift + tooth), y];
 }

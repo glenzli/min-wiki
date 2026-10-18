@@ -29,16 +29,25 @@ export function leafRGB(p: Pigments) {
 export const rgb = (c: number[], alpha = 1) => `rgba(${c.map(Math.round).join(',')},${alpha})`;
 /** Blade-art coordinates into the permanent leaf/sample plane. */
 export const BLADE_ANGLE = -.15;
+/** Explicit teaching-model dimensions, not measurements of a named specimen.
+ * Every spatial level uses this one conversion; time and pigment marks remain
+ * illustrative. The 200 µm thickness is never enlarged independently. */
+export const LEAF_METRIC = { bladeLengthUm: 60000, thicknessUm: 200, cellPitchUm: 30, bladeLength: 368 } as const;
+export const UNITS_PER_UM = LEAF_METRIC.bladeLength / LEAF_METRIC.bladeLengthUm;
+export const LEAF_SECTION = { left: -217, right: 217, top: -153, bottom: 135 } as const;
+const SAMPLE_SIZE = LEAF_METRIC.thicknessUm * UNITS_PER_UM / (LEAF_SECTION.bottom - LEAF_SECTION.top);
+export const SURFACE_CELL_SCALE = LEAF_METRIC.cellPitchUm * UNITS_PER_UM / 7;
+export const SECTION_TURN_END = .84;
+export const SURFACE_FRAMING = .68;
 
-/** Orthographic turn from the upper surface to an illustrative cross-section.
- * Surface and section share the same upper edge. Thickness is exaggerated for
- * teaching, not a measurement or an animation of tissue growth. */
+/** Orthographic rotation of a fixed microscopic volume. Its dimensions do not
+ * change with angle: y/z merely project with cosine/sine, in the same units. */
 export function leafSectionAt(position: number) {
   // Approach and inspect the epidermis before changing viewing direction.
-  const turn = smooth(.60, 1, position), angle = turn * Math.PI / 2;
+  const turn = smooth(.60, SECTION_TURN_END, position), angle = turn * Math.PI / 2;
   const surfaceScale = Math.cos(angle), sectionScale = Math.sin(angle);
   const entry = SCALE_ENTRIES[0];
-  const yaw = .5 * Math.sin(2*angle), ca=Math.cos(yaw), sa=Math.sin(yaw);
+  const ca=1, sa=0;
   const surfaceTransform = [ca,-sa*surfaceScale,sa,ca*surfaceScale,
     entry.x*(1-ca)-entry.y*sa,
     entry.y*(1-ca*surfaceScale)+entry.x*sa*surfaceScale+LEAF_SECTION.top*entry.size*sectionScale] as const;
@@ -48,13 +57,12 @@ export function leafSectionAt(position: number) {
     surfaceTransform, sectionTransform,
     // The whole visible blade reveals the same epidermal sheet. Isolate its
     // marked sample only while turning to the explanatory section, not earlier.
-    contextOpacity: 1 - smooth(.62,.96,position),
+    contextOpacity: 1 - smooth(.62,SECTION_TURN_END,position),
     bladeOpacity: 1 - smooth(1,1.3,position),
     textureOpacity: smooth(.1,.42,position),
   };
 }
 
-export const LEAF_SECTION = { left: -217, right: 217, top: -153, bottom: 135 } as const;
 export const SCALE_STOPS = [0, .5, 1, 2, 3] as const;
 export const epidermisVisible = (position: number) => position >= .32 && position < .65;
 /** Stable teaching contours; the vacuole fill, membrane and pigment clip share these points. */
@@ -81,7 +89,7 @@ export interface ScaleEntry { x: number; y: number; size: number; angle?: number
 export interface ScaleCamera { x: number; y: number; magnification: number; angle: number }
 /** Child coordinates live permanently inside their parent cutaway. */
 export const SCALE_ENTRIES: readonly ScaleEntry[] = [
-  { x: 78, y: -12, size: .18 },
+  { x: 78, y: -12, size: SAMPLE_SIZE },
   { x: -181 + 210 + Math.sin(8.1) * 5, y: 40 + Math.cos(5.4) * 4, size: .118 },
 ];
 export function scaleCamera(position: number, destination: ScaleEntry): ScaleCamera {
@@ -94,12 +102,23 @@ export function scaleCamera(position: number, destination: ScaleEntry): ScaleCam
   const scale = Math.max(0, Math.min(3, position)), lower = Math.min(2, Math.floor(scale));
   if (scale < 1) {
     const approach = smooth(0,.44,scale), section=leafSectionAt(scale);
-    const yaw=.5*Math.sin(2*section.angle), sample=frames[1];
-    return { x:(sample.x-110*Math.sin(yaw)*sample.size)*approach,
+    const sample=frames[1];
+    return { x:sample.x*approach,
       y:(sample.y-110*section.surfaceScale*sample.size)*approach,
-      angle:0, magnification:Math.exp(-Math.log(sample.size)*approach) };
+      // The turn uses one fixed magnification. Only after it is complete does
+      // a second, uniform zoom fill the frame with the cross-section.
+      angle:0, magnification:Math.exp(Math.log(SURFACE_FRAMING/sample.size)*approach)
+        * Math.exp(-Math.log(SURFACE_FRAMING)*smooth(SECTION_TURN_END,1,scale)) };
   }
   const u = smooth(0, 1, scale - lower), a = frames[lower], b = frames[lower + 1];
   return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u, angle: a.angle + (b.angle - a.angle) * u, magnification: Math.exp(-Math.log(a.size) * (1-u) - Math.log(b.size) * u) };
 }
 export const journeyScale = (seconds: number) => clamp(seconds / JOURNEY_DURATION) * 3;
+
+/** A 1/2/5 scale bar, derived from rendered pixels per model micrometre. */
+export function metricScaleBar(pixelsPerUm: number, maxPixels = 100) {
+  const target = maxPixels / pixelsPerUm, decade = 10 ** Math.floor(Math.log10(target));
+  const lengthUm = [1,2,5].reduce((best,n)=>n*decade<=target?n*decade:best,decade);
+  return { lengthUm, pixels: lengthUm * pixelsPerUm,
+    label: lengthUm >= 1000 ? `${Number((lengthUm/1000).toPrecision(3))} mm` : `${Number(lengthUm.toPrecision(3))} µm` };
+}

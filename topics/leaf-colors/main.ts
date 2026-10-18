@@ -4,7 +4,7 @@ import { SCIENCE } from './science.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { scaleContent, seasonStory, kidsStories, observations, epidermisContent } from './content.ts';
-import { journeyScale, JOURNEY_DURATION, pigmentsAt, routeLevel, SCALE_STOPS, epidermisVisible } from './model.ts';
+import { journeyScale, JOURNEY_DURATION, pigmentsAt, routeLevel, SCALE_STOPS, epidermisVisible, LEAF_METRIC, SECTION_TURN_END } from './model.ts';
 import type { LeafKind } from './model.ts';
 import { LeafScene } from './scene.ts';
 import { LIFE_STOPS, leafLifeAt, readLeafRoute, type LeafView } from './lifecycle.ts';
@@ -23,6 +23,7 @@ let cancelWaterZoom: () => void = () => {}, waterZoom = 0;
 let frame = 0, last = 0, scene: LeafScene | undefined;
 const initialRoute = readLeafRoute(location.search);
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+el('metric-caption').textContent = t('成熟叶模型：叶长 {{length}} mm，叶厚 {{thickness}} µm；标尺随镜头更新，组织形状为示意。', {length:LEAF_METRIC.bladeLengthUm/1000,thickness:LEAF_METRIC.thicknessUm});
 let age = initialRoute.age, view: LeafView = initialRoute.view, insidePosition = 0;
 let waterProgress = 0, waterPlaying = false, waterClose = false;
 const waterScene = mountWaterScene(el('water-map') as unknown as SVGSVGElement);
@@ -32,20 +33,22 @@ catch (error) { el('scene-error').hidden = false; el('hotspot').hidden = true; c
 function update() {
   const life = leafLifeAt(age), story = lifeContent(age);
   season = life.senescence;
-  const inspectable = life.growth > .9 && life.fall === 0;
+  const inspectable = life.microscopyAvailable;
   if (!inspectable && view === 'inside') { insidePosition = position; view = 'life'; position = 0; touring = false; }
   if (!life.waterAvailable && waterPlaying) waterPlaying = false;
   zoom = routeLevel(Math.round(position), kind);
   const atSurface=epidermisVisible(position);
   const data = atSurface ? epidermisContent : scaleContent(zoom, kind), pigments = pigmentsAt(season, kind);
-  el('scale-title').textContent = el('detail-title').textContent = data.title;
+  const scaleTitle = position > .6 && position < SECTION_TURN_END ? t('同一倍率，转向横切面') : data.title;
+  el('scale-title').textContent = el('detail-title').textContent = scaleTitle;
   el('scale-note').textContent = data.scale;
+  if (position > .03 && position < .32) el('scale-note').textContent = t('逐级放大 · 留意当前标尺');
   el('journey').textContent = touring ? t('暂停深入') : journey >= JOURNEY_DURATION ? t('重新走进叶子') : journey > 0 ? t('继续深入') : t('一键走进叶子');
   el('journey').setAttribute('aria-pressed', String(touring));
   (el('scale') as HTMLInputElement).value = String(Math.round(position * 1000));
   (el('scale') as HTMLInputElement).disabled = !inspectable;
-  el('scale').setAttribute('aria-valuetext', data.title);
-  el('scale-readout').textContent = data.title;
+  el('scale').setAttribute('aria-valuetext', scaleTitle);
+  el('scale-readout').textContent = scaleTitle;
   el('journey-status').textContent = touring ? t('正在连续探索 · 可随时暂停') : kind === 'red' ? t('叶片 → 上表皮 → 组织 → 细胞 → 液泡') : t('叶片 → 上表皮 → 组织 → 细胞 → 叶绿体');
   el('scene-hint').textContent = position < 2.9 && !touring ? t('拖动尺度滑条，可以随时停下或退回。') : data.hint;
   el('scene-hint').parentElement!.dataset.closeup = String(view === 'inside' && position > .85);
@@ -55,9 +58,8 @@ function update() {
   document.querySelectorAll<HTMLElement>('[data-academic-only]').forEach(node => node.hidden = !academic);
   document.querySelectorAll<HTMLElement>('[data-kids-only]').forEach(node => node.hidden = academic);
   scene?.setAcademic(academic);
-  if(position >= .65 && position < .95) el('scale-title').textContent = t('转过来看叶片的厚度');
-  if (view === 'inside' && position > .65 && position < 1.15) {
-    el('scale-note').textContent = t('侧向剖面示意 · 厚度已夸大');
+  if (view === 'inside' && position > .6 && position < 1.15) {
+    el('scale-note').textContent = position < SECTION_TURN_END ? t('只转向，不改变尺寸或倍率') : t('横切面 · 长宽厚统一比例');
   }
   const seasonName = story.title;
   el('season-badge').textContent = seasonName;
@@ -104,7 +106,7 @@ function update() {
   document.querySelectorAll<HTMLButtonElement>('[data-kind]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.kind === kind)));
   document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String((b.dataset.mode === 'academic') === academic)));
   document.querySelectorAll<HTMLButtonElement>('[data-age]').forEach(b => b.setAttribute('aria-pressed', String(Math.abs(Number(b.dataset.age) - age) < .01)));
-  el('science-live').textContent = t('当前尺度：{{scale}}\n季节：{{season}}\n色素条是相对趋势，不是浓度或分子计数', { scale: data.title, season: seasonName });
+  el('science-live').textContent = t('当前尺度：{{scale}}\n季节：{{season}}\n色素条是相对趋势，不是浓度或分子计数', { scale: scaleTitle, season: seasonName });
   const science = SCIENCE[zoom];
   el('science-panel').hidden = !academic;
   for (const key of ['title', 'body', 'formula', 'terms', 'watch', 'caution'] as const) el(`science-${key}`).textContent = science[key];
@@ -113,7 +115,7 @@ function update() {
 }
 function seekScale(target: number) {
   touring = false; cancelSeek();
-  const duration = position < 1 && target <= 1 ? 1550 : 1050;
+  const duration = position < .5 && target <= .5 ? 2400 : position < 1 && target <= 1 ? 1900 : 1050;
   cancelSeek = animateValue({ from: position, to: target, duration, onUpdate: value => {
     position = value; journey = position / 3 * JOURNEY_DURATION; update();
   }});

@@ -19,6 +19,8 @@ export function leafLifeAt(value: number) {
     // Observation excludes active transport before expansion and after detachment.
     transport,
     waterAvailable: growth > .9 && transport > .1,
+    // Metric anatomy belongs to the fully expanded reference blade.
+    microscopyAvailable: growth === 1 && fall === 0,
     recovery: smooth(.47, .81, age),
   } as const;
 }

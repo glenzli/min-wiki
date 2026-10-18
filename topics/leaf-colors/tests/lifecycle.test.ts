@@ -5,6 +5,14 @@ import { pigmentsAt } from '../model.ts';
 import { waterAt } from '../../plant-water/model.ts';
 import { LeafScene } from '../scene.ts';
 
+test('metric microscopy is available only after full expansion and before detachment',()=>{
+  for(const age of [0,.22,.26,.279,1])assert.equal(leafLifeAt(age).microscopyAvailable,false);
+  for(const age of [.28,.34,.7,.85]){
+    const leaf=leafLifeAt(age);assert.equal(leaf.microscopyAvailable,true);
+    assert.equal(leaf.size,1);assert.equal(leaf.unfold,1);
+  }
+});
+
 test('one leaf expands at a fixed attachment before separation and fall', () => {
   for (let i = 0; i <= 87; i++) {
     const state = leafLifeAt(i / 100);
