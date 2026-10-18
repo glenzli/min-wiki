@@ -3,9 +3,9 @@
 <section class="black-hole-project study-content">
   <header class="hero">
     <div><p class="eyebrow">宇宙观察室 · 黑洞</p><h1>黑洞</h1><p class="lead">先认识黑洞，再看不同的天体怎样与它相遇。</p></div>
-    <div class="modes" aria-label="讲解方式"><button data-mode="kids" aria-pressed="true">儿童版</button><button data-mode="academic" aria-pressed="false">学术版</button></div>
+    <div class="modes" aria-label="讲解方式" data-reader-menu="options"><button data-mode="kids" aria-pressed="true">儿童版</button><button data-mode="academic" aria-pressed="false">学术版</button></div>
   </header>
-  <nav class="chapters" aria-label="黑洞探索章节">
+  <nav class="chapters" aria-label="黑洞探索章节" data-reader-menu="chapters">
     <a data-chapter="anatomy" href="?chapter=anatomy"><span>01</span><strong>认识黑洞</strong><small>本体与光像</small></a>
     <a data-chapter="star" href="?chapter=star"><span>02</span><strong>恒星路过黑洞</strong><small>飞掠与瓦解</small></a>
     <a data-chapter="planet" href="?chapter=planet"><span>03</span><strong>行星路过黑洞</strong><small>密度与潮汐</small></a>
@@ -16,7 +16,7 @@
   <section class="chapter-intro" aria-labelledby="chapter-title"><div><p class="eyebrow" id="chapter-number"></p><h2 id="chapter-title">认识黑洞</h2></div><p id="chapter-intro"></p></section>
   <div class="layout">
     <section class="theater" aria-label="互动观察">
-      <div class="scale-views" id="scale-views" hidden="" role="group" aria-label="尺度观察方式"><button data-scale-view="pair" aria-pressed="true">并排比大小</button><button data-scale-view="zoom" aria-pressed="false">连续拉远</button></div>
+      <div class="scale-views" id="scale-views" hidden="" role="group" aria-label="尺度观察方式" data-reader-menu="chapters"><button data-scale-view="pair" aria-pressed="true">并排比大小</button><button data-scale-view="zoom" aria-pressed="false">连续拉远</button></div>
       <div class="viewport"><div id="scene-host" aria-label="黑洞专题三维演示，讲解位于画面外"></div><div id="scene-loading" role="status">正在准备这一章…</div><div id="scene-error" role="alert" hidden=""><p>画面暂时无法显示。你仍可以阅读讲解，或重新加载这一章。</p><button id="retry">重新加载</button></div></div>
       <p class="scale-note" id="scale-note"></p>
       <div class="controls"><button id="play" disabled="">开始观察</button><button id="reset" disabled="">回到开始</button><label>速度 <select id="speed"><option value="0.5">0.5×</option><option value="1" selected="">1×</option><option value="2">2×</option></select></label><output id="elapsed">0 / 32 s</output><div class="scrub"><input id="progress" type="range" min="0" max="1000" value="0" aria-label="演示进度"></div></div>

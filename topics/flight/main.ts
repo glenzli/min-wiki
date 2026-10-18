@@ -1,3 +1,4 @@
+import {mountPresentationFrame} from '../../src/platform/presentation.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
@@ -6,6 +7,7 @@ import { flightSnapshot, type FlightSnapshot, type Conditions } from './model.ts
 import { drawWing, drawRunway } from './scene.ts';
 
 translateDocument(t);
+mountPresentationFrame({root:'#flight-lab',visual:'.flight-visual',transport:'.transport,.legend',choices:'.presets,.chapter-switch'});
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 let conditions: Conditions = { speed: 38, pitch: 8 }, progress = 0, playing = false, frame = 0;
 let chapter: 'wing' | 'runway' = new URLSearchParams(location.search).get('chapter') === 'runway' ? 'runway' : 'wing';

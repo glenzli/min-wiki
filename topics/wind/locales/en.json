@@ -247,5 +247,11 @@
   "从上方看旋转": "Look down at the rotation",
   "已形成风暴的侧面路线简图 · 不展示全部气流 · 各图不同比例": "Side routes in an established storm · not all airflow is shown · views use different scales",
   "城区宽 20 千米": "City area: 20 km wide",
-  "暂停追踪": "Pause tracing"
+  "暂停追踪": "Pause tracing",
+  "镜头与标记": "View and airflow markers",
+  "这次观察什么？": "What will you observe?",
+  "地形对照": "Compare terrain",
+  "结构与位置": "Structure and location",
+  "沿着空气路线观察": "Follow the airflow",
+  "延伸观察：风暴有多大？": "Explore further: how large is a storm?"
 }

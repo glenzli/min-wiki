@@ -32,7 +32,7 @@ export class ComparisonJourney {
   homeSideViews.forEach((i,n)=>{const b=make('button',w.homeSideNames[n]!);b.onclick=()=>{this.home=i;this.changed(this.pair,this.home);this.paint();};this.sideViews.append(b);});
   this.homePath.append(make('p',w.homeRouteLabel),this.homes);
   this.homeAside.append(make('p',w.homeSideLabel),this.sideViews);
-  const heading=make('div','','comparison-heading'),choices=make('div','','comparison-choices');choices.append(this.pairs,this.solarButton,this.surfaceButton);this.surfaceButton.onclick=()=>this.setSurface(!this.surfacePlaying);heading.append(this.title,choices,this.homePath,this.homeAside);
+  const heading=make('div','','comparison-heading'),choices=make('div','','comparison-choices');choices.append(this.pairs,this.solarButton);this.surfaceButton.onclick=()=>this.setSurface(!this.surfacePlaying);heading.append(this.title,choices,this.homePath,this.homeAside);
   const label=make('label',w.scrub);this.slider.type='range';this.slider.min='0';this.slider.max=String(lastPair);this.slider.step='any';this.slider.setAttribute('aria-label',w.scrub);label.append(this.slider);
   this.slider.oninput=()=>{this.stop();this.pair=Number(this.slider.value);this.changed(this.pair,this.home);this.paint();};
   this.previous.textContent=w.previous;this.previous.onclick=()=>this.animate(Math.max(0,Math.ceil(this.pair)-1));
@@ -43,7 +43,7 @@ export class ComparisonJourney {
   this.homeProgress.className='comparison-home-progress';this.homeTransport.append(this.homePrevious,this.homeProgress,this.homeNext);
   this.onward.onclick=()=>this.navigate(this.chapter==='compare'?'homes':'zoom');
   this.source.textContent=w.source;this.source.target='_blank';this.source.rel='noreferrer';
-  const controls=make('div','','comparison-transport');controls.append(this.previous,label,this.next);
+  const controls=make('div','','comparison-transport');controls.append(this.previous,label,this.next,this.surfaceButton);
   const copy=make('div','','comparison-copy');this.estimate.append(make('summary',w.estimateDetails),this.estimateText);copy.append(this.note,this.estimate,this.source,this.onward);
   const credit=make('a',w.credit,'comparison-credit');credit.href='https://www.solarsystemscope.com/textures/';credit.target='_blank';credit.rel='noreferrer';
   copy.append(credit);root.append(heading,this.canvas,this.cards,controls,this.homeTransport,this.homeCues,this.boundary,copy);
@@ -51,7 +51,7 @@ export class ComparisonJourney {
   for(const url of [earthMap,jupiterMap]){const image=new Image();image.onload=()=>{if(!this.disposed)this.paint();};image.src=url;this.maps.push(image);}
   this.setSurface(this.surfacePlaying);
  }
- show(chapter:Chapter,pair:number,home:number){if(this.chapter!==chapter)this.stop();this.chapter=chapter;this.pair=pair;this.home=home;this.root.hidden=chapter==='zoom';if(chapter!=='compare')this.pauseSurface();this.paint();}
+ show(chapter:Chapter,pair:number,home:number){if(this.chapter!==chapter)this.stop();this.chapter=chapter;this.pair=pair;this.home=home;this.root.hidden=chapter==='zoom';this.pairs.parentElement!.hidden=chapter!=='compare';this.homePath.hidden=chapter!=='homes';this.homeAside.hidden=chapter!=='homes';if(chapter!=='compare')this.pauseSurface();this.paint();}
  setChildSummary(summary:()=>string){this.childSummary=summary;this.paint();}
  pauseSurface(){this.setSurface(false);}
  private setSurface(active:boolean){this.surfacePlaying=active;cancelAnimationFrame(this.surfaceFrame);this.surfaceFrame=0;this.surfaceButton.textContent=active?this.words.pauseSurface:this.words.playSurface;this.surfaceButton.setAttribute('aria-pressed',String(active));if(active&&!this.disposed&&!document.hidden){this.surfaceLast=performance.now();this.surfaceFrame=requestAnimationFrame(now=>this.tickSurface(now));}}

@@ -1,9 +1,9 @@
 <section class="study-content">
-<header><p class="eyebrow">岩石、云层与液体世界</p><h1>系外行星：可能的熔岩世界</h1><p class="intro">离开太阳系，观察巨蟹座 55 e 的候选熔融表面；再回到太阳系比较岩石、海水和云层。</p><div class="modes"><button data-mode="kids" aria-pressed="true">儿童版</button><button data-mode="academic" aria-pressed="false">学术版</button></div></header>
+<header><p class="eyebrow">岩石、云层与液体世界</p><h1>系外行星：可能的熔岩世界</h1><p class="intro">离开太阳系，观察巨蟹座 55 e 的候选熔融表面；再回到太阳系比较岩石、海水和云层。</p><div class="modes" data-reader-menu="options"><button data-mode="kids" aria-pressed="true">儿童版</button><button data-mode="academic" aria-pressed="false">学术版</button></div></header>
 <nav class="worlds" id="worlds" aria-label="选择一个世界"></nav>
 <section class="explorer" aria-label="表面观察室">
-  <div class="views"><button data-view="globe" aria-pressed="false">从太空看</button><button data-view="landscape" aria-pressed="true">靠近看一看</button><button data-view="section" aria-pressed="false">剖开看内部</button><span>示意地貌，不是实拍</span></div>
-  <div class="camera-controls" id="camera-controls" hidden=""><span>观察角度</span><button data-angle="front">正面</button><button data-angle="oblique">斜看</button><button data-angle="overhead">俯看</button><output id="camera-readout"></output></div>
+  <div class="views" data-reader-menu="chapters"><button data-view="globe" aria-pressed="false">从太空看</button><button data-view="landscape" aria-pressed="true">靠近看一看</button><button data-view="section" aria-pressed="false">剖开看内部</button><span>示意地貌，不是实拍</span></div>
+  <div class="camera-controls" id="camera-controls" hidden="" data-reader-menu="chapters"><span>观察角度</span><button data-angle="front">正面</button><button data-angle="oblique">斜看</button><button data-angle="overhead">俯看</button><output id="camera-readout"></output></div>
   <div class="viewport"><canvas id="scene" role="img" aria-label="行星、卫星的地貌与深度层次示意"></canvas><p id="scene-preparing" role="status" hidden="">正在靠近这个世界…</p><p id="scene-error" hidden="">画面暂时无法显示，仍可阅读下方讲解。</p></div>
   <p class="gesture-hint" id="gesture-hint" hidden="">拖动画面转动视角，滚轮缩放；也可选角度按钮。画面获得焦点后，方向键转动，加减键缩放。</p>
   <p class="view-note" id="view-note"></p>

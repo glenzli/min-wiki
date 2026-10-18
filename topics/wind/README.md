@@ -33,3 +33,7 @@ Validate with topic/session tests, existing storm and catalog tests, strict type
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
+
+## 稿件整理（2026-10-18）
+
+首屏保留环境、观察问题、播放和直接影响结果的条件。镜头、地形、台风结构与尺度对照改为可展开的次级观察；选择气流路径时打开递进观察，不重置各环境的实验状态。模型条件与原有科学限定不变。本轮仍列为草稿，后续需继续检查三种环境的主线和小屏可辨识度。

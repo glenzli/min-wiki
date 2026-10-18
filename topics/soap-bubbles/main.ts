@@ -1,3 +1,4 @@
+import {mountPresentationFrame} from '../../src/platform/presentation.ts';
 import './style.css';
 import {translateDocument} from '../../src/platform/i18n.ts';
 import {mountReadingMode} from '../../src/platform/readingMode.ts';
@@ -6,6 +7,7 @@ import {t} from './i18n.ts';
 import {bubbleShape,filmThickness} from './model.ts';
 import {BubbleScene,type SceneState} from './scene.ts';
 translateDocument(t);
+mountPresentationFrame({root:'.lab',visual:'.pair',paired:true,transport:'#stretch,#release,label[for=drainage],#drainage,#play,#pause,#reset',choices:'.sample-buttons'});
 const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;
 const state:SceneState={deformation:0,drainage:0,zoom:0,sample:-.75,angle:0,light:0};
 let scene:BubbleScene|undefined,playing=false,zoomed=false,lit=false,shapeInteracted=false;

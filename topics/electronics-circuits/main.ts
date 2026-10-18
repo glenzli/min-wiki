@@ -1,3 +1,4 @@
+import {mountPresentationFrame} from '../../src/platform/presentation.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountSceneReading } from '../../src/platform/sceneReading.ts';
@@ -21,6 +22,7 @@ const returnWire = get<HTMLButtonElement>('return-wire');
 const sensorLink = get<HTMLButtonElement>('sensor-link');
 const light = get<HTMLInputElement>('light-level');
 const threshold = get<HTMLInputElement>('threshold');
+mountPresentationFrame({root:'#observation',visual:'.scene-column',transport:'.controls>.buttons,#reset',choices:'.experiments'});
 const reading = mountSceneReading(get('observation'), { id: 'circuit-reading', controls: get('reading-controls') });
 // Keep scientific depth next to the controls, while the live child cause remains state-specific.
 get('child-explain').after(reading.element);

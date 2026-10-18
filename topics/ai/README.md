@@ -21,3 +21,9 @@ Sources checked on 2026-10-01:
 The material example links to the existing topic-owned magnet experiment and its sources. The triangle is directly observable geometry. The school statement is explicitly fictional and cannot provide actual opening hours. These are teaching examples authored here, not quotations or measurements of AI error rates.
 
 Browser selectors: `[data-demo]`, `#refine`, `[data-entity]`, `[data-task]`, `[data-action]`, `[data-claim]`, `[data-evidence]`, `#restart`. Correct evidence methods for the three claims are `count`, `test`, `adult`. Creative tasks accept both human-first and AI-assisted starting points. Privacy offers direct keep/share choices; school-notice and friend situations recommend real observation or an adult. Returning to a card retains its response; restart clears only this page's exercise history.
+
+## Reader layout · 2026-10-18
+
+默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。任务与结果继续并列对照；手机按任务到结果的顺序显示，不以空白填满视口。
+
+The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.

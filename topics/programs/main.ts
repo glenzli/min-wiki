@@ -1,3 +1,4 @@
+import {mountPresentationFrame} from '../../src/platform/presentation.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountSceneReading } from '../../src/platform/sceneReading.ts';
@@ -9,6 +10,7 @@ import { createProgram, stepProgram, playProgram, pauseProgram, tickProgram, res
 translateDocument(t);
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 const lab = document.querySelector<HTMLElement>('.program-lab')!;
+mountPresentationFrame({root:lab,visual:'.scene-shell',transport:'.transport,#status,#input-panel,#debug-panel',choices:'.chapters'});
 const reading = mountSceneReading(lab, { id: 'program-study', childTarget: el('child-note') });
 const states: Record<Scenario, ProgramState> = { sequence: createProgram('sequence'), condition: createProgram('condition'), debug: createProgram('debug') };
 const raw = new URLSearchParams(location.search).get('experiment');

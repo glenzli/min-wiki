@@ -23,6 +23,7 @@ const threeBody=new ThreeBodyExperiment(text);observatory.after(threeBody.root);
 const layerKey=document.createElement('ol');layerKey.className='stellar-layer-key';layerKey.hidden=true;el('stellar-canvas').after(layerKey);
 const surfaceNote=document.createElement('p');surfaceNote.className='scale-note';surfaceNote.textContent=u('surfaceNote');layerKey.after(surfaceNote);
 const observationRoot=document.createElement('section');observationRoot.id='stellar-observation';observationRoot.setAttribute('aria-label',u('workspace'));
+observationRoot.dataset.readerChoices='#chapters';
 observatory.before(observationRoot);observationRoot.append(el('chapters'),observatory,threeBody.root);
 const stage=document.createElement('div');stage.className='stellar-stage';const notes=document.createElement('aside');notes.className='stellar-notes';
 stage.append(observatory.querySelector('.scene-heading')!,el('stellar-canvas'),el('canvas-fallback'),el('scale-note'),el('controls'));

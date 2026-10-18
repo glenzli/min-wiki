@@ -3,23 +3,23 @@
   <p class="local-note">本页只有预写的本地示例，不是真实在线 AI。没有输入框，不会发送你的问题或照片。</p>
 
   <section id="examples" class="lab" aria-labelledby="examples-title"><div class="section-heading"><span class="number">01</span><div><h2 id="examples-title">先看：AI 能帮什么？</h2><p>给它一个任务，再看它给出的东西。不同 AI 工具能做的事并不一样。</p></div></div>
-    <div class="choice-row" role="group" aria-label="选择 AI 用途"><button type="button" data-demo="chat">聊天与点子</button><button type="button" data-demo="image">画画</button><button type="button" data-demo="recognize">认图片</button></div>
+    <div class="choice-row" role="group" aria-label="选择 AI 用途" data-reader-menu="chapters"><button type="button" data-demo="chat">聊天与点子</button><button type="button" data-demo="image">画画</button><button type="button" data-demo="recognize">认图片</button></div>
     <div class="example-workspace"><div class="request-card"><p class="eyebrow">给工具的任务</p><p id="request"></p><figure id="input-picture" hidden=""><div id="input-art" aria-hidden="true"></div><figcaption>给工具看的图片 · 纸船示意</figcaption></figure><button type="button" id="refine" aria-pressed="false">把要求说清楚</button><p id="prompt-hint" class="secondary"></p></div>
       <div class="screen"><div class="screen-top"><span aria-hidden="true">● ● ●</span><span>预写示例</span></div><div class="output"><div id="output-art" aria-hidden="true"></div><p id="response"></p></div></div></div>
     <p id="example-cause" class="live-cause" role="status"></p>
     <details class="deeper"><summary>深入看：这是怎样的工具？</summary><p>AI 是一类由人设计的计算机系统。这里认识的是能处理文字或图片、给出建议或内容的 AI 工具，不是所有 AI 的完整清单。一次回答并不证明它理解了整个世界，也不保证它有资料、权限或能力完成别的任务。</p><p>把任务、背景和想要的形式说清楚，通常更容易得到有用的帮助。好问题仍不能保证答案正确；它给出的内容还需要人选择、检查和修改。</p></details>
   </section>
 
-  <section id="differences" class="lab" aria-labelledby="differences-title"><div class="section-heading"><span class="number">02</span><div><h2 id="differences-title">AI、程序、机器人和人，是一回事吗？</h2><p>选一个看看。它们可以一起工作，但角色不同。</p></div></div><div class="choice-row" role="group" aria-label="选择要认识的对象"><button data-entity="person" type="button">人</button><button data-entity="program" type="button">普通程序</button><button data-entity="ai" type="button">AI 工具</button><button data-entity="robot" type="button">机器人</button></div>
+  <section id="differences" class="lab" aria-labelledby="differences-title"><div class="section-heading"><span class="number">02</span><div><h2 id="differences-title">AI、程序、机器人和人，是一回事吗？</h2><p>选一个看看。它们可以一起工作，但角色不同。</p></div></div><div class="choice-row" role="group" aria-label="选择要认识的对象" data-reader-menu="chapters"><button data-entity="person" type="button">人</button><button data-entity="program" type="button">普通程序</button><button data-entity="ai" type="button">AI 工具</button><button data-entity="robot" type="button">机器人</button></div>
     <div class="entity-view"><div id="entity-art" aria-hidden="true"></div><div><h3 id="entity-title"></h3><p id="entity-copy"></p><p id="entity-example" class="secondary"></p></div></div>
     <details class="deeper"><summary>深入看：它们会重叠吗？</summary><p>会。AI 工具也由程序实现，不是程序的反面。“普通程序”在这里指按明确规则处理任务的常见例子，不是软件的严格分类。机器人有能在现实中行动的机械身体；它可能按固定程序工作，也可能使用 AI。一个没有机械身体的聊天工具同样可以是 AI。</p><p>会用“我”、会写安慰的话，不等于它和人一样有感受或承担责任。人的观察、关系、判断和照顾不能交给一个会说话的工具全部替代。</p></details>
   </section>
 
-  <section id="task-lab" class="lab" aria-labelledby="task-title"><div class="section-heading"><span class="number">03</span><div><h2 id="task-title">这一次，先做哪件事？</h2><p>不是猜“AI 永远能不能做”，而是为眼前的任务选一个合适的起点。</p></div></div><div id="task-tabs" class="task-tabs" role="group" aria-label="选择生活任务"></div>
+  <section id="task-lab" class="lab" aria-labelledby="task-title"><div class="section-heading"><span class="number">03</span><div><h2 id="task-title">这一次，先做哪件事？</h2><p>不是猜“AI 永远能不能做”，而是为眼前的任务选一个合适的起点。</p></div></div><div id="task-tabs" class="task-tabs" role="group" aria-label="选择生活任务" data-reader-menu="chapters"></div>
     <article class="task-card"><span id="task-number" class="number"></span><h3 id="task-question"></h3><p id="task-context"></p><div class="choice-row" role="group" aria-label="选择第一步"><button data-action="help" type="button">先请 AI 帮忙</button><button data-action="observe" type="button">先观察或问大人</button></div><p id="task-feedback" role="status" aria-live="polite"></p></article>
   </section>
 
-  <section id="check-lab" class="lab" aria-labelledby="check-title"><div class="section-heading"><span class="number">04</span><div><h2 id="check-title">说得很肯定，就能相信吗？</h2><p>下面的回答全是我们写的练习。先找证据，再决定这句话能不能用。</p></div></div><div id="claim-tabs" class="choice-row" role="group" aria-label="选择要核查的示例"></div>
+  <section id="check-lab" class="lab" aria-labelledby="check-title"><div class="section-heading"><span class="number">04</span><div><h2 id="check-title">说得很肯定，就能相信吗？</h2><p>下面的回答全是我们写的练习。先找证据，再决定这句话能不能用。</p></div></div><div id="claim-tabs" class="choice-row" role="group" aria-label="选择要核查的示例" data-reader-menu="chapters"></div>
     <div class="check-workspace"><div class="claim-card"><p class="eyebrow">模拟回答 · 未核查</p><blockquote id="claim-text"></blockquote><div id="claim-art" aria-hidden="true"></div></div><div class="evidence-card"><h3>我可以怎样核查？</h3><div class="evidence-actions"><button type="button" data-evidence="count">自己数一数</button><button type="button" data-evidence="test">看实物试验与资料</button><button type="button" data-evidence="adult">请大人查正式通知</button></div><p id="check-feedback" role="status" aria-live="polite"></p><p id="evidence-detail"></p><a id="evidence-link" hidden=""></a></div></div>
     <p class="gentle">答案可能正确、错误，也可能现在没有足够信息。拿不准时可以停下来；再问同一个工具一次，并不等于多了一份独立证据。</p>
   </section>

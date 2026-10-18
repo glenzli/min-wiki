@@ -105,4 +105,4 @@ bind(); update();
 
 mountReadingMode('details:not(.references)');
 
-mountPresentationFrame({ root: '#explore', visual: '.view' });
+mountPresentationFrame({ root: '#explore', visual: '.view', paired: true });

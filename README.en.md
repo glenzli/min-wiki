@@ -18,3 +18,11 @@ npm run build
 After editing `learning.json`, run `npm run prepare:entries`. It updates the marked manuscript sections and exact spoken/storyboard exports; prose outside the markers can be edited directly. Builds check that these projections are current. Asset licenses and qualifications remain in each topic README.
 
 Read the [design principles](docs/design-principles.md), [architecture](docs/architecture.md) and [source boundaries](SKELETON.md). Set `WIKI_READER_ROOT` only when intentionally using another reader checkout.
+
+## Editorial readiness
+
+`wiki.json.review` records `complete` or `draft`, independently of publication and discovery. Integrated entries inherit their owner’s assessment. The [editorial review](docs/editorial-review.md) records visual, content and interaction findings for each owner. `review:prepare`, `review:check` and `review:plan` update, validate and inspect this selection. `build:sync` exports complete content to `sync-dist/`, retaining draft URLs as revision notices. The normal build remains complete in `dist/`. The host must explicitly adopt the selected artifact; no host sync or deployment is implied.
+
+For local Reader development, set `WIKI_READER_ROOT` to its working copy; otherwise the locked dependency is used. Complete-only export requires the new Reader support and older versions reject the flag. The pinned Reader includes editorial selection and the scene-first default layout.
+
+See the [scene-first layout review](docs/layout-review.md) for the inspection scope.

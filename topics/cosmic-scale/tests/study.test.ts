@@ -20,6 +20,11 @@ test('both close-up origins explain the object that actually occupies the physic
       assert.match(study.child.en,/glow does not count/);
       assert.equal(study.sources[0]!.url,'https://science.nasa.gov/sun/facts/');
       assert.doesNotMatch(study.child.en,/Earth/);
+    }else{
+      assert.match(study.title.en,/Earth/);
+      assert.equal(study.formula,'D = 2R');
+      assert.doesNotMatch(study.theory.en,/semimajor|astronomical unit/i);
+      assert.equal(study.sources[0]!.url,'https://science.nasa.gov/earth/facts/');
     }
   }
   // Returning to either origin must not alter the larger-scale explanation.

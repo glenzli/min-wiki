@@ -63,7 +63,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/atmosphere/learning.json"
+      "learning": "topics/atmosphere/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "整球、地面锚点和分层连续，主体清楚；高层粒子和小读数略密。",
+        "content": "从同一地点向外观察，分层、现象与不同世界的条件交代完整。",
+        "interaction": "一条旅程滑杆配层级停靠点，能形成明确观察顺序。",
+        "next": "建议把高层技术读数继续留给深入阅读，避免进一步加层级按钮。"
+      }
     },
     {
       "id": "cosmic-scale",
@@ -111,7 +119,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/cosmic-scale/learning.json"
+      "learning": "topics/cosmic-scale/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "直径对照有同尺参照，大尺度图主动区分定位符和真实尺寸。",
+        "content": "把大小、所属结构与连续拉远分开讲，估计值和不确定性有交代。",
+        "interaction": "分段对比能保留上一对象作为参照；需要按任务使用，不宜同时展开所有结构。",
+        "next": "建议缩短每站首次提示，保留“大小”和“住在哪里”的区别。"
+      }
     },
     {
       "id": "stars",
@@ -159,7 +175,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-20",
-      "learning": "topics/stars/learning.json"
+      "learning": "topics/stars/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "云核和遗骸的尺度对照有价值，但暗背景中的早期云团、轨道和标注偏细。",
+        "content": "质量分叉、太阳、多星和数值三体均有边界，主线却横跨过多问题。",
+        "interaction": "四个大章再叠加质量、阶段、视角和数值实验，初次入口负担较大。",
+        "next": "先收成“出生—发光—不同结局”的主线；太阳和多星作为延伸，再复核小天体与暗部可辨识度。"
+      }
     },
     {
       "id": "black-holes",
@@ -211,7 +235,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/black-holes/learning.json"
+      "learning": "topics/black-holes/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "黑洞本体、弯光和伴星有清楚的主体与层次，阶段标签不压住主体。",
+        "content": "视界、阴影、一次遭遇、持续供气和尺寸比较分得较清楚。",
+        "interaction": "按章进入实验，当前画面只保留主要播放和相应条件。",
+        "next": "建议继续改善遭遇章远处小天体的定位提示；不增加同屏参数。"
+      }
     },
     {
       "id": "black-hole",
@@ -261,7 +293,12 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-07",
-      "learning": "topics/black-hole/learning.json"
+      "learning": "topics/black-hole/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "black-holes"
+      }
     },
     {
       "id": "solar-system",
@@ -311,7 +348,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/solar-system/learning.json"
+      "learning": "topics/solar-system/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "贴图、卫星和接近地面的基础丰富，但观察窗被多层工具栏及并列窗口挤小。",
+        "content": "覆盖公转、大小、地貌、内部和卫星，资料多而首次问题不够集中。",
+        "interaction": "天体、模式、地点、下降、公转和活动时钟同时可见，儿童仍会遇到技术读数。",
+        "next": "以“选天体—选一个问题—观察”为主，收起轨道技术读数和次要镜头；逐天体复核近景后再升为完成稿。"
+      }
     },
     {
       "id": "earth-seasons",
@@ -361,7 +406,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-07",
-      "learning": "topics/earth-seasons/learning.json"
+      "learning": "topics/earth-seasons/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "受光几何和地图能解释问题，但地图、地轴对照、城市列表并列，主体焦点分散。",
+        "content": "自转、公转、昼长和天气边界写得扎实，开篇同时引入的参照较多。",
+        "interaction": "城市、日期、时钟、倾角和对照窗口叠加；部分浅色文字对比不足。",
+        "next": "先分清“同一地点的一天”和“同一时刻的一年”，每步只显示必要控制，重做窄屏和低对比文字验收。"
+      }
     },
     {
       "id": "rainbow",
@@ -412,6 +465,14 @@
       "document": {
         "template": "topics/rainbow/reader.html",
         "entry": "topics/rainbow/reader-entry.ts"
+      },
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "天空与雨滴光路基础好，但照片背景、场景页签及参数区在 Reader 内显得拥挤。",
+        "content": "折射、反射、双虹和棱镜均有解释，核心问题被多个并列演示稀释。",
+        "interaction": "场景、代表色、观察方式和进度同时竞争；简单看虹与深入追光线的边界不够清楚。",
+        "next": "先做“天空中的虹—进入一滴雨”两段主线；双虹与棱镜后置，收起非当前任务的参数并复查手机光路线条。"
       }
     },
     {
@@ -464,7 +525,12 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/galactic-center/learning.json"
+      "learning": "topics/galactic-center/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "black-holes"
+      }
     },
     {
       "id": "planet-black-hole",
@@ -514,7 +580,12 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-11",
-      "learning": "topics/planet-black-hole/learning.json"
+      "learning": "topics/planet-black-hole/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "black-holes"
+      }
     },
     {
       "id": "leaf-colors",
@@ -566,7 +637,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/leaf-colors/learning.json"
+      "learning": "topics/leaf-colors/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "同一叶片、枝条、组织和细胞有连续锚点，黄红分支与区室能被分辨。",
+        "content": "成长、运水、衰老与脱落有机制，明确不同色素及叶龄不是同一时钟。",
+        "interaction": "三条观察线保存状态，局部放大仍指向同一叶面。",
+        "next": "建议减少同时出现的观察点说明，让下一步提示更短；保持区室和叶片身份。"
+      }
     },
     {
       "id": "earth-moon",
@@ -612,6 +691,14 @@
       "document": {
         "template": "topics/earth-moon/reader.html",
         "entry": "topics/earth-moon/main.ts"
+      },
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "轨道与地球视角共享同一月面，亮面、月海和比例对照可辨。",
+        "content": "月相与地影、同步自转及两种周期的区别讲得清楚。",
+        "interaction": "月相预设、进度和三种观察方式形成直接对照，比例模式会暂停。",
+        "next": "建议将次要月相预设折叠到一个列表，保留上弦、满月、下弦作为直接入口。"
       }
     },
     {
@@ -660,7 +747,12 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/saturn-moons/learning.json"
+      "learning": "topics/saturn-moons/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "solar-system"
+      }
     },
     {
       "id": "lunar-craters",
@@ -708,7 +800,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/lunar-craters/learning.json"
+      "learning": "topics/lunar-craters/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "最终坑有凹陷与坑缘，但月面材质、抛出物和尺度参照仍显粗略。",
+        "content": "动能、成坑阶段和定性坑形的区别交代完整。",
+        "interaction": "能改速度与直径，但亮闪、碎屑、地形变化之间的观察线索不够突出。",
+        "next": "重做接触—挖掘—回落三段关键画面及标注，增强同一撞击体和抛出物的可追踪性。"
+      }
     },
     {
       "id": "volcano-eruption",
@@ -760,7 +860,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/volcano-eruption/learning.json"
+      "learning": "topics/volcano-eruption/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "地下剖面和不同地貌已有基础，主场景偏小，部分形态与植被细节不够醒目。",
+        "content": "补给、贯通、喷发、堆积及后期变化有条件，材料与地貌边界保留得好。",
+        "interaction": "案例、问题、观察尺度、地貌故事及一次喷发具有多层入口和独立进度。",
+        "next": "先按“为什么喷发—留下什么—以后怎样”组织主线；把岩层、通道和植被高级条件放到对应研究里，逐案例复审。"
+      }
     },
     {
       "id": "submarine-volcanoes",
@@ -809,7 +917,12 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-18",
-      "learning": "topics/submarine-volcanoes/learning.json"
+      "learning": "topics/submarine-volcanoes/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "volcano-eruption"
+      }
     },
     {
       "id": "volcanic-lakes",
@@ -856,7 +969,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/volcanic-lakes/learning.json"
+      "learning": "topics/volcanic-lakes/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "volcano-eruption"
+      }
     },
     {
       "id": "wind",
@@ -906,7 +1024,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-20",
-      "learning": "topics/wind/learning.json"
+      "learning": "topics/wind/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "海岸、台风与龙卷有各自场景，空气路径细线与背景间的层次还需加强。",
+        "content": "机制和尺度区别写得好，没有把三种环境当作强弱等级。",
+        "interaction": "首轮已把镜头、地形、台风结构与尺度扩展折叠，问题入口收成一个选择器；环境条件可保留。三环境主线与长说明仍需继续收敛。",
+        "next": "沿海岸的一条空气路线完成初次观察，再进入风暴；继续减少并行说明，检查三环境和小屏下箭头、风眼与近地涡旋的可辨识度。"
+      }
     },
     {
       "id": "typhoon",
@@ -954,7 +1080,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/typhoon/learning.json"
+      "learning": "topics/typhoon/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "wind"
+      }
     },
     {
       "id": "tornado",
@@ -1002,7 +1133,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/tornado/learning.json"
+      "learning": "topics/tornado/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "wind"
+      }
     },
     {
       "id": "planet-surfaces",
@@ -1056,7 +1192,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-20",
-      "learning": "topics/planet-surfaces/learning.json"
+      "learning": "topics/planet-surfaces/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "solar-system"
+      }
     },
     {
       "id": "mimosa",
@@ -1105,7 +1246,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/mimosa/learning.json"
+      "learning": "topics/mimosa/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "含羞草、捕蝇草和幼苗形态可辨，动作部位有层级和放大提示。",
+        "content": "膨压、快速闭合和差异生长分开解释，时标及刺激条件有边界。",
+        "interaction": "每站可重试并比较有效与无效刺激，换视角保留实验。",
+        "next": "建议把器官名称与剖面选项继续后置，首步只要求一次明确操作。"
+      }
     },
     {
       "id": "flower-colors",
@@ -1155,7 +1304,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-22",
-      "learning": "topics/flower-colors/learning.json"
+      "learning": "topics/flower-colors/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "花朵、花瓣细胞与绣球有可辨层次；玫瑰花瓣略程式化但不妨碍色素对照。",
+        "content": "品种色素、铝条件、开放和紫外花纹各有科学限定，没有用酸碱解释一切。",
+        "interaction": "按案例比较原因，切换观察尺度保持题目身份。",
+        "next": "建议进一步自然化玫瑰花瓣，并缩短章节首次说明；保留下一轮花与即时变色的区别。"
+      }
     },
     {
       "id": "hydrangea",
@@ -1202,7 +1359,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/hydrangea/learning.json"
+      "learning": "topics/hydrangea/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "flower-colors"
+      }
     },
     {
       "id": "rain-formation",
@@ -1249,7 +1411,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/rain-formation/learning.json"
+      "learning": "topics/rain-formation/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "rain-cycle"
+      }
     },
     {
       "id": "lightning-thunder",
@@ -1295,7 +1462,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/lightning-thunder/learning.json"
+      "learning": "topics/lightning-thunder/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "云、先导、连接通道和声波都有可跟踪的阶段，远近参照清楚。",
+        "content": "能回答先闪后响，放电与雷声的前置过程及安全边界完整。",
+        "interaction": "距离与温度可以分别改变，阶段和同一进度可回看。",
+        "next": "建议默认只露出距离，温度作为深入条件；不使用模型延迟判断户外安全。"
+      }
     },
     {
       "id": "buoyancy",
@@ -1342,6 +1517,14 @@
       "document": {
         "template": "topics/buoyancy/reader.html",
         "entry": "topics/buoyancy/main.ts"
+      },
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "透明容器、水线、同一块泥和受力箭头清楚，船形与载荷直接对应结果。",
+        "content": "排水、重力、形状和浸没程度区分充分，有不浮和触底的对照。",
+        "interaction": "三个问题明确；同一团泥和四块货物能控制变量比较。",
+        "next": "建议首屏少放读数，保留水线和浮沉结果，受力与临界条件按需展开。"
       }
     },
     {
@@ -1386,6 +1569,14 @@
       "document": {
         "template": "topics/shadows/reader.html",
         "entry": "topics/shadows/main.ts"
+      },
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "木偶、光源、地面和投影关系一眼能找出，斜视与俯视互补。",
+        "content": "核心问题具体，中心线公式和整个影子轮廓的区别有交代。",
+        "interaction": "固定左右位置改灯高、换左右、比较面积光源，都能直接验证关系。",
+        "next": "建议保留为简单专题的参考，避免继续叠加参数。"
       }
     },
     {
@@ -1431,7 +1622,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/water-states/learning.json"
+      "learning": "topics/water-states/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "杯中冰水、相界与局部结构有清楚层次，变化仍属于同一份样本。",
+        "content": "区分潜热、温度与相变，并把敞口杯实验明确作为另一份水。",
+        "interaction": "供热、取热、隔热能保留中间状态，不把变更条件当作重新播放。",
+        "next": "建议先呈现一组冰水实验，局部晶粒和分子观察保持可选。"
+      }
     },
     {
       "id": "magnets",
@@ -1476,7 +1675,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/magnets/learning.json"
+      "learning": "topics/magnets/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "托盘、条形磁铁和物品清楚，接近后吸附能辨认，背景不抢主体。",
+        "content": "材料响应、磁极和小磁针方向是不同问题，未把磁力当成硬阈值。",
+        "interaction": "先选物再靠近，第二站比较磁针；条件单纯且有不吸引对照。",
+        "next": "建议维持简洁，不加入装饰性密集磁力线；加强磁针 N 端标识。"
+      }
     },
     {
       "id": "sound-vibrations",
@@ -1525,7 +1732,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/sound-vibrations/learning.json"
+      "learning": "topics/sound-vibrations/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "振动物、空气小团和耳内结构有独立且有联系的观察窗。",
+        "content": "频率、幅度、介质和神经信号分得清，没有把空气整体运向耳朵。",
+        "interaction": "可保持一个条件改变另一个，声音需主动点击，两站保留各自进度。",
+        "next": "建议给儿童首步只开放音高/幅度对照，理想弦参数和耳蜗细节按需展开。"
+      }
     },
     {
       "id": "friction",
@@ -1575,7 +1790,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/friction/learning.json"
+      "learning": "topics/friction/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "三条并列轨道便于比较停止位置，轮胎、停车与约束有各自观察窗。",
+        "content": "摩擦、反应距离、制动和乘员惯性分开讲，教学数字不当作驾驶建议。",
+        "interaction": "先同速比较再换条件；各章节保态，不混用滑块与汽车系数。",
+        "next": "建议减少约束章首屏的辅助标记，保留接触点和力的方向。"
+      }
     },
     {
       "id": "butterfly-life",
@@ -1621,7 +1844,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-20",
-      "learning": "topics/butterfly-life/learning.json"
+      "learning": "topics/butterfly-life/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "frog-life"
+      }
     },
     {
       "id": "frog-life",
@@ -1668,7 +1896,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-20",
-      "learning": "topics/frog-life/learning.json"
+      "learning": "topics/frog-life/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "卵、蝌蚪、幼蛙和蝴蝶的主要形态能辨认，放大与并排观察有作用。",
+        "content": "结构、取食、呼吸和运动相连，明确不是所有动物都经历蛹。",
+        "interaction": "双侧独立进度，能选择比较角度，不强迫相同天数对齐。",
+        "next": "建议保持四个比较问题的短句表达，避免把说明扩写为更多面板。"
+      }
     },
     {
       "id": "ant-trails",
@@ -1716,7 +1952,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-20",
-      "learning": "topics/ant-trails/learning.json"
+      "learning": "topics/ant-trails/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "工蚁身体结构、W1 身份、食物路线和巢内记录可区分。",
+        "content": "踪迹出现有前置行为，弱信号与路被挡不混淆，蚁后不作总指挥。",
+        "interaction": "四站有递进，能改变线索并回到同一只工蚁观察。",
+        "next": "建议放大觅食视图的关键个体，把全部标注留作可选。"
+      }
     },
     {
       "id": "fish-gills",
@@ -1763,7 +2007,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/fish-gills/learning.json"
+      "learning": "topics/fish-gills/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "整鱼与局部鳃同时可见，水与血的方向以及氧点跨越薄面有对应。",
+        "content": "溶解氧、交换面与通水条件明确，没有要求鱼先吞气泡。",
+        "interaction": "能分别改变含氧和换水，并放慢回看同一次过程。",
+        "next": "建议保持简短的两条件对照，主图仅保留关键方向箭头。"
+      }
     },
     {
       "id": "duck-feet",
@@ -1810,7 +2062,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/duck-feet/learning.json"
+      "learning": "topics/duck-feet/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "鸭身下的脚与圆形放大窗对应同一动作，展开和收拢形状可辨。",
+        "content": "推水、反作用和回程阻力形成一个完整问题。",
+        "interaction": "三阶段可暂停回拖，隐藏蹼只作形状对照，不冒充速度实验。",
+        "next": "建议扩大脚与水的相对运动提示，继续保持少量控件。"
+      }
     },
     {
       "id": "camouflage",
@@ -1858,7 +2118,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/camouflage/learning.json"
+      "learning": "topics/camouflage/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "枝叶、三只昆虫和素色背景组成清楚的找寻对照，风格一致。",
+        "content": "固定动物、改变背景的实验问题明确，区分难发现和误认枝叶。",
+        "interaction": "能找寻、揭示与近看，背景变化不偷偷移动动物。",
+        "next": "建议明确“找到了”与“更容易发现”的区别；暂不恢复目录卡片，保留现有直达策略。"
+      }
     },
     {
       "id": "seed-sprouting",
@@ -1909,7 +2177,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-20",
-      "learning": "topics/seed-sprouting/learning.json"
+      "learning": "topics/seed-sprouting/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "菜豆、土壤孔隙、樱桃花与传播案例有层次，幼苗最终形态清楚。",
+        "content": "用条件图串起环节，明确不同物种、授粉与受精、到达与萌发的区别。",
+        "interaction": "三案例分别保态，水/氧/温度和相容性会产生真实的停滞对照。",
+        "next": "建议保持接力问题，继续收起完整条件图；不要再增加并列物种。"
+      }
     },
     {
       "id": "seed-travel",
@@ -1956,7 +2232,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/seed-travel/learning.json"
+      "learning": "topics/seed-travel/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "seed-sprouting"
+      }
     },
     {
       "id": "plant-water",
@@ -2003,7 +2284,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/plant-water/learning.json"
+      "learning": "topics/plant-water/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "leaf-colors"
+      }
     },
     {
       "id": "flower-fruit",
@@ -2050,7 +2336,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/flower-fruit/learning.json"
+      "learning": "topics/flower-fruit/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "seed-sprouting"
+      }
     },
     {
       "id": "cactus-water",
@@ -2096,7 +2387,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/cactus-water/learning.json"
+      "learning": "topics/cactus-water/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "茎、储水细胞和表皮视角清楚，膨缩与水路能对应。",
+        "content": "储水、气孔安排和结构适应互相补充，限定为典型 CAM 案例。",
+        "interaction": "降雨、干燥和昼夜能比较，放大仍跟随同一株仙人掌。",
+        "next": "建议把白天/夜晚和降雨的观察目的先说清，避免当作浇水建议。"
+      }
     },
     {
       "id": "rain-cycle",
@@ -2142,7 +2441,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/rain-cycle/learning.json"
+      "learning": "topics/rain-cycle/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "流域、云、地表和地下有明确位置，批次编号与水库能对应。",
+        "content": "相变、分流和储存完整，区分一批水和长期收支的独立时钟。",
+        "interaction": "可跟踪同一批水，改变补给/去向时有不同结果，长期研究另有入口。",
+        "next": "建议默认收起水量总表和长期研究参数，先让读者跟住一条路径。"
+      }
     },
     {
       "id": "river-paths",
@@ -2189,7 +2496,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/river-paths/learning.json"
+      "learning": "topics/river-paths/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "rain-cycle"
+      }
     },
     {
       "id": "sand-journey",
@@ -2236,7 +2548,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/sand-journey/learning.json"
+      "learning": "topics/sand-journey/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "主画面的河海、颗粒和金色追踪圈过小，大片空白让对象难以跟住。",
+        "content": "来源、磨蚀、搬运和沉积的区别交代不错。",
+        "interaction": "阶段按钮和进度都有，但画面变化不足以支撑“跟着同一粒”的承诺。",
+        "next": "先重做主画面尺度与颗粒连续近看，明确岩石和贝壳两条路径的起点，再复审。"
+      }
     },
     {
       "id": "ground-water",
@@ -2283,7 +2603,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/ground-water/learning.json"
+      "learning": "topics/ground-water/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "rain-cycle"
+      }
     },
     {
       "id": "sun-star",
@@ -2330,7 +2655,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/sun-star/learning.json"
+      "learning": "topics/sun-star/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "stars"
+      }
     },
     {
       "id": "meteors",
@@ -2377,7 +2707,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/meteors/learning.json"
+      "learning": "topics/meteors/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "轨迹和大气层有基本结构，但碎片与余迹在暗背景中偏小，强弱变化不够清楚。",
+        "content": "流星体、发光现象与陨石区分充分，也解释了暗飞行。",
+        "interaction": "能比较两种结局，但关键转折过度依赖旁边文字。",
+        "next": "加强亮头、留在原处的余迹、消散碎片与残块的视觉区别，补中间态专项验收。"
+      }
     },
     {
       "id": "cells",
@@ -2424,7 +2762,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/cells/learning.json"
+      "learning": "topics/cells/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "结构图有基础，但分工章的细胞样本占画面过小，外形与工作关系不够突出。",
+        "content": "细胞结构、能量与六种分工覆盖广，限定条件相当充分。",
+        "interaction": "三条观察线下仍有多层样本、部位、过程和辅助标注，入口不够聚焦。",
+        "next": "每次只突出一个细胞与一项工作；先放大组织位置和关键结构，再收起六种分工的次要控制并逐案例复审。"
+      }
     },
     {
       "id": "bacteria",
@@ -2472,7 +2818,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/bacteria/learning.json"
+      "learning": "topics/bacteria/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "microbes-everywhere"
+      }
     },
     {
       "id": "viruses",
@@ -2520,7 +2871,12 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/viruses/learning.json"
+      "learning": "topics/viruses/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "microbes-everywhere"
+      }
     },
     {
       "id": "microbes-everywhere",
@@ -2571,7 +2927,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-20",
-      "learning": "topics/microbes-everywhere/learning.json"
+      "learning": "topics/microbes-everywhere/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "环境、参考细菌与宿主的形态和观察尺度分开，剖面能显示膜与内部。",
+        "content": "到达、生长、分裂与病毒复制有清楚的条件差别，并明确换了参考对象。",
+        "interaction": "三站可比较资源不足、宿主不匹配与防御等不发生的结果。",
+        "next": "建议进一步放大环境中的被选细节，首次只显示一个可变条件。"
+      }
     },
     {
       "id": "tap-water",
@@ -2622,7 +2986,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/tap-water/learning.json"
+      "learning": "topics/tap-water/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "杯水与成分类别可辨，但微小符号和颜色承担了过多解释任务。",
+        "content": "清澈、灭活、溶解物和化学污染分得清，使用边界严谨。",
+        "interaction": "加热变化主要是类别符号的改变，读者需要较多文字才能理解发生了什么。",
+        "next": "用更直观的前后对照解释“失活仍在”和“化学污染仍在”，压缩重复提示，再做面向儿童的阅读复审。"
+      }
     },
     {
       "id": "handwashing",
@@ -2670,7 +3042,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-12",
-      "learning": "topics/handwashing/learning.json"
+      "learning": "topics/handwashing/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "双手与同一处皮肤的放大窗互相对应，用皂、松动和冲走分开显示。",
+        "content": "操作步骤、覆盖区域与机制结合，没有用泡沫或粒子数冒充效果读数。",
+        "interaction": "逐步推进、按区域练习，未完成覆盖时不能直接跳过。",
+        "next": "建议保持区域提示短而具体，不再增加卫生分数或倒计时竞赛。"
+      }
     },
     {
       "id": "car-safety",
@@ -2720,7 +3100,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/car-safety/learning.json"
+      "learning": "topics/car-safety/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "friction"
+      }
     },
     {
       "id": "pain-signals",
@@ -2767,7 +3152,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-16",
-      "learning": "topics/pain-signals/learning.json"
+      "learning": "topics/pain-signals/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "皮肤、脊髓分路、肌肉与手的牵拉关系可辨，颜色编码有图例。",
+        "content": "伤害性感受、缩回反射与疼痛体验分开，避免把伤口大小当疼痛刻度。",
+        "interaction": "能在同一进度突出不同支路，并放大末梢，不必切到另一个实验。",
+        "next": "建议把神经部位按钮留给深入观察，儿童先看缩回和向脑传递两条路线。"
+      }
     },
     {
       "id": "taste-smell",
@@ -2814,7 +3207,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-16",
-      "learning": "topics/taste-smell/learning.json"
+      "learning": "topics/taste-smell/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "口鼻位置与味蕾局部有锚点，味觉与后鼻嗅觉两条路线可区分。",
+        "content": "从溶入唾液到感受与整合有顺序，纠正舌区地图而不制造新的分区。",
+        "interaction": "可固定进度只比较是否计入嗅觉贡献，食物选择不要求输入个人信息。",
+        "next": "建议把食物与嗅觉两项作为主控，细胞和传入细节后置。"
+      }
     },
     {
       "id": "blood-cells",
@@ -2864,7 +3265,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/blood-cells/learning.json"
+      "learning": "topics/blood-cells/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "cells"
+      }
     },
     {
       "id": "body-cells",
@@ -2913,7 +3319,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/body-cells/learning.json"
+      "learning": "topics/body-cells/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "inherits": "cells"
+      }
     },
     {
       "id": "hearing",
@@ -2961,7 +3372,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/hearing/learning.json"
+      "learning": "topics/hearing/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "sound-vibrations"
+      }
     },
     {
       "id": "soap-bubbles",
@@ -3008,7 +3424,15 @@
       "sceneTheme": "dark",
       "status": "published",
       "updated": "2026-09-17",
-      "learning": "topics/soap-bubbles/learning.json"
+      "learning": "topics/soap-bubbles/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "泡形、同一点的膜剖面和颜色有清楚对应，内外气液面可辨。",
+        "content": "表面积、排液和干涉分步解释，模型条件不过度承诺。",
+        "interaction": "先拉长/松开，再排液，再比较上下和反射光，层次较清楚。",
+        "next": "建议默认收起观察角度参数，始终保留膜上 A 点与剖面的对应。"
+      }
     },
     {
       "id": "digestion",
@@ -3055,7 +3479,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-17",
-      "learning": "topics/digestion/learning.json"
+      "learning": "topics/digestion/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "器官路径与局部管腔、绒毛有对应，食物产物能沿同一路径观察。",
+        "content": "分解、吸收和不同运输路线分得清，不把食物进胃当成消失。",
+        "interaction": "五阶段顺序清楚，能比较两类产物和血管/淋巴路线。",
+        "next": "建议放大正在经过的器官标记，首步只保留一类食物与主要进度。"
+      }
     },
     {
       "id": "air-conditioner",
@@ -3106,7 +3538,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/air-conditioner/learning.json"
+      "learning": "topics/air-conditioner/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "设备、冷媒与空气/房间边界有分工，空调和冰箱有可辨外形。",
+        "content": "冷端吸热、输入功与热端放热形成完整账本，门开闭与室内热源问题讲得清楚。",
+        "interaction": "空调、冰箱与边界实验各自保态，实际条件能导致不同温度响应。",
+        "next": "建议保持三段递进，把压力与相态细节放在深入观察中。"
+      }
     },
     {
       "id": "refrigerator",
@@ -3156,7 +3596,12 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-10-01",
-      "learning": "topics/refrigerator/learning.json"
+      "learning": "topics/refrigerator/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "inherits": "air-conditioner"
+      }
     },
     {
       "id": "batteries",
@@ -3211,7 +3656,15 @@
       "sceneTheme": "light",
       "status": "published",
       "updated": "2026-09-21",
-      "learning": "topics/batteries/learning.json"
+      "learning": "topics/batteries/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "玩具负载、电芯与电池包各有画面，首屏却被次级切换和多项账本压缩。",
+        "content": "化学能、电荷与能量去向严谨，充电明确需要外部供能。",
+        "interaction": "六个章节加内部观察和载荷选择，主问题被电池家族、包结构等延伸稀释。",
+        "next": "先集中“闭合回路—能量用去哪里—外部充电”；家族与电池包移到延伸，儿童默认收起归一化数字账本。"
+      }
     },
     {
       "id": "electronics-circuits",
@@ -3263,6 +3716,14 @@
           "zh": "专题封面插画，不是测量结果或当前实验状态。",
           "en": "Topic cover illustration, not a measurement or the current experiment state."
         }
+      },
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "同一块灯板把供能实线与控制虚线分开，传感与开关状态可见。",
+        "content": "能源、完整回路、感知和规则不混淆，等于阈值及断回线的情况有交代。",
+        "interaction": "先手动闭合，再进入自动控制，能在要求点灯时断开供能形成对照。",
+        "next": "建议保留一块灯板，阈值与反向规则按当前任务逐项展开。"
       }
     },
     {
@@ -3314,6 +3775,14 @@
           "zh": "专题封面插画，不是测量结果或当前实验状态。",
           "en": "Topic cover illustration, not a measurement or the current experiment state."
         }
+      },
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "小车、包裹、格点和指令卡对应清楚，执行位置能被跟踪。",
+        "content": "从顺序到分支再到调试，目标与实际结果的差异有具体例子。",
+        "interaction": "逐条执行和纠错有反馈，包裹不会随小车无条件传送，改卡后明确重试。",
+        "next": "建议保持三个递进实验，减少同时显示的技术说明。"
       }
     },
     {
@@ -3365,6 +3834,14 @@
           "zh": "专题封面插画，不是测量结果或当前实验状态。",
           "en": "Topic cover illustration, not a measurement or the current experiment state."
         }
+      },
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-18",
+        "visual": "预写示例有一致风格，但各节以卡片和文字为主，任务画面与按钮较分散。",
+        "content": "用途、工具角色、核查与隐私边界清楚，不冒充真实模型运行。",
+        "interaction": "多用途、角色、五个情景和证据练习在一页堆叠，缺少清楚的一次练习结束点。",
+        "next": "先围绕一个具体任务贯穿“说清要求—看结果—核查—决定”，把其余卡片改为后续练习；保留预写示例标识。"
       }
     },
     {
@@ -3417,6 +3894,14 @@
           "zh": "专题封面插画，不是测量结果或当前实验状态。",
           "en": "Topic cover illustration, not a measurement or the current experiment state."
         }
+      },
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "翼面、相对气流、力箭头和跑道观察分开，几何能随条件变化。",
+        "content": "速度、迎角、失速、支持力与竖直响应有条件，不把升力归于一个口号。",
+        "interaction": "无迎面气流、合适角度和大角度可直接对照，两窗口保留相同起点。",
+        "next": "建议首轮只用三个预设，速度和迎角留作“自己试试”；保持模型非性能预测的说明。"
       }
     },
     {
@@ -3467,6 +3952,14 @@
           "zh": "专题封面插画，不是测量结果或当前实验状态。",
           "en": "Topic cover illustration, not a measurement or the current experiment state."
         }
+      },
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-18",
+        "visual": "两部手机、基站和中间网络有固定身份，编号能沿同一链路追踪。",
+        "content": "无线接入后仍需基础设施，等待、送达与已读是不同结果。",
+        "interaction": "三处断连可分别阻止下一段，恢复后继续，不把历史数据清空。",
+        "next": "建议首步只突出一个编号和一处断连，其余条件在需要时展开。"
       }
     }
   ],

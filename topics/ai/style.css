@@ -13,3 +13,16 @@ h1 {font-size:clamp(2rem,4vw,3.2rem);line-height:1.18;max-width:17ch;} h2 {font-
 .take-home {padding:1.5rem 0;} .take-home-grid {display:grid;grid-template-columns:1fr 1fr;gap:1rem 2rem;} .take-home article {border-top:1px solid var(--border);} details {border-top:1px solid var(--border);padding:1rem 0;margin-top:1rem;} summary {cursor:pointer;font-weight:600;min-height:44px;display:list-item;} details p {max-width:75ch;} .next-stops {display:flex;flex-direction:column;gap:.8rem;padding:1.5rem 0;} a {color:var(--ink);text-underline-offset:.2em;} .references li {margin:.7rem 0;} .references small {display:block;color:var(--secondary);} [hidden] {display:none!important;}
 @media(max-width:700px) {main {padding:1rem 18px 3rem;} .hero {grid-template-columns:1fr;gap:1rem;} .hero-art {max-width:400px;} .hero-art img {max-height:220px;object-fit:cover;} .lab {padding:1rem;} .example-workspace,.check-workspace,.take-home-grid {grid-template-columns:1fr;} #request {min-height:0;} .entity-view {grid-template-columns:100px 1fr;gap:.75rem;} #entity-art svg {width:100px;height:110px;} .choice-row button,.task-tabs button {flex:1 1 auto;} .output {min-height:180px;}}
 @media(prefers-reduced-motion:reduce) {*,*::before,*::after {scroll-behavior:auto!important;transition:none!important;}}
+
+:root[data-wiki-document] #examples .example-workspace.presentation-visual{display:grid;grid-template-columns:minmax(180px,.7fr) minmax(0,1.3fr);gap:12px;padding:12px}
+:root[data-wiki-document] #examples .screen{min-height:0;overflow:auto}
+:root[data-wiki-document] #examples #output-art svg{max-height:40dvh}
+@media(max-width:600px){:root[data-wiki-document] #examples .example-workspace.presentation-visual{grid-template-columns:1fr;min-height:0}:root[data-wiki-document] #examples .example-workspace .request-card{padding:12px}:root[data-wiki-document] #examples .output{padding:12px}}
+
+:root[data-wiki-document] .local-note{font-size:12px;line-height:1.5;margin:4px 0;padding:6px 12px}
+:root[data-wiki-document] #examples.presentation-frame{height:auto!important;min-height:0}
+:root[data-wiki-document] #examples .example-workspace.presentation-visual{height:auto!important;min-height:420px}
+:root[data-wiki-document] #examples #output-art svg{height:clamp(180px,30dvh,320px)}
+@media(max-width:600px){:root[data-wiki-document] #examples .example-workspace.presentation-visual{min-height:0}}
+
+:root[data-wiki-document] #request{min-height:0;margin:8px 0;font-size:17px}:root[data-wiki-document] #prompt-hint{font-size:12px;margin:8px 0}:root[data-wiki-document] .request-card>.eyebrow{margin:0 0 8px}

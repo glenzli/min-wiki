@@ -34,3 +34,9 @@ Mini Wiki 只维护条目、科学模型、双语解释、素材与内容检查�
 - `npm run check` 再加全量测试和要求完整覆盖的路由检查。
 
 提交前应验证最终 Reader 产物：直接访问、旧参数/锚点、中英手机布局、重点交互、隐藏/暂停和资源失败。测试通过不等于科学结论已审校，也不等于已经推送或部署。
+
+## 稿件成熟度
+
+`wiki.json.review.status` 使用 `complete`／`draft`，`reviewedOn` 与主题拥有的绘图、内容、交互、下一步理由共同形成编辑评估。兼容入口仅记录 `inherits` 和继承状态。它不修改可访问性或原有科学结论；目录隐藏不等于草稿。`scripts/editorial-review.mjs` 是报告和选择清单的唯一投影。完整预览由 Reader 显示两种状态；完成稿同步产物由 Reader 的 `--complete-only` 生成，草稿旧路由只输出整理中提示。宿主同步仍需单独接入，不重建内容仓库的网站模式。
+
+默认展示以当前演示为主。专题可在已有章节/视角组上标记 `data-reader-menu="chapters"`，次要选项标记 `data-reader-menu="options"`；Reader 负责原位折叠、当前项摘要、焦点和关闭行为。不要把播放、进度或必要读数放进这些组。专用示意和参数归属仍在专题内，不能由 Reader 猜测。Reader 内的根状态样式使用 `:root[data-wiki-document]`，编译后对应作用域根。窄屏 SVG 保持原有比例，不用拉高空白来伪造更大画面。

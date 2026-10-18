@@ -6,3 +6,8 @@
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] {& body>main>header.hero { min-height:0; display:block; } .presentation-notes .world-context { display:block; padding:0; } .presentation-notes .world-context>* { width:auto; } .presentation-notes .questions { display:flex; flex-wrap:wrap; }}
 }
+
+/* Secondary viewpoints stay available without competing with the current condition. */
+.wind-options,.wind-extension{border-top:1px solid var(--border);margin-top:16px;padding-top:12px}.wind-options>summary,.wind-extension>summary{cursor:pointer;min-height:40px;padding:8px 0;font-size:13px;color:var(--ink)}.wind-options .viewbar{padding-inline:0;flex-wrap:wrap}.wind-extension>summary{padding-inline:20px}.wind-extension .air-journey{border:0}.wind-extension .storm-scale{margin-top:0}.inspector>label[for=lens]{margin-top:0}.wind-options .parts{margin-bottom:12px}
+
+@media(max-width:520px){.worlds span{display:none}.worlds button{min-height:64px}.world-bar .modes button{font-size:12px;min-height:40px}.wind-options>summary,.wind-extension>summary{min-height:44px}}

@@ -18,3 +18,5 @@ Selected source explanations were rechecked; the linked institutional material a
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
+
+Reader 中的透明图内点击区显式标记 `data-scene-hit-target`，保留透明背景与可见键盘焦点，避免通用按钮明暗配色盖住动物。按钮位置和尺寸仍从当前 SVG 投影计算，发现标记与背景对照保持不变。

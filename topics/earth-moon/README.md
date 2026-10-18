@@ -44,3 +44,9 @@ Playback clamps elapsed frame time to a nonnegative value and retains a monotoni
 The space view and Earth view share the same lunar mesh geometry, texture and material. The texture's central meridian is rotated onto the local Earth-facing +z axis. The observer renderer uses that fixed local frame, with the world Sun direction projected onto its right/up/toward-Earth basis. First quarter is therefore right-lit and last quarter left-lit without flipping or replacing the albedo map. Enlarging the observer window changes its display area; it does not move the Moon, reset time or synthesize a different surface.
 
 地球视角固定月球北方朝上，沿地心方向观察；月盘角直径放大，暗面亮度仅为辨认轮廓而增强。这不是地照光计算，也不是针对某地某时刻的天空方向。真实的视差、月球天平动、月盘相对地平线的转动及反射亮度特性未求解。两套图共用照明与近侧几何，不能据此把简化模型当成实时星历。
+
+## Reader layout · 2026-10-18
+
+默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。月相进度、地球视角小窗与真实比例对照继续使用同一绘图实例。
+
+The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.

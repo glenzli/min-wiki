@@ -42,3 +42,9 @@ Production browser matrix for integration:
 5. Repeat desktop/mobile and zh/en, light/dark; native keyboard operation, visible focus, reduced motion, direct `?experiment=condition|debug` routing and sibling links.
 
 Parent integration owns final full `npm run check`, built-production browser evidence and publication decisions. This contribution does not claim those checks before they run.
+
+## Reader layout · 2026-10-18
+
+默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。下一条指令和运行结果留在状态栏；完整指令卡、输入与分支证据可按需展开。
+
+The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.

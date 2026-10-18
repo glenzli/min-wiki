@@ -169,6 +169,11 @@ window.addEventListener('pagehide',()=>{stop();cancelCamera();cancelSurface();wh
 window.addEventListener('pageshow',()=>{setCameras(whole,detail);render();});
 createScene();setCameras(whole,detail);render();mountReadingMode('details:not(.references)');
 
+// Chapter and specimen choices share one disclosure; their original controls stay live.
+const cellNavigation=document.createElement('div');cellNavigation.dataset.readerMenu='chapters';
+const chapterPath=document.querySelector<HTMLElement>('.chapter-path')!;chapterPath.before(cellNavigation);
+cellNavigation.append(chapterPath,el('cell-options'));
+
 const initialRoute = readCellRoute(location.search);
 let chapter: Chapter = initialRoute.chapter;
 const specialization = mountSpecialization(initialRoute.example, example => {

@@ -53,7 +53,7 @@ function harness(language='zh-CN',reduced=false){
   }
   const context={...model,t,document,window,matchMedia:()=>media,TopicScene,console,
     performance:{now:()=>now},requestAnimationFrame:fn=>{frames.set(++nextFrame,fn);return nextFrame;},cancelAnimationFrame:id=>frames.delete(id),
-    mountTopicNavigation(){},translateDocument(){}};
+    mountTopicNavigation(){},translateDocument(){},mountPresentationFrame(){}};
   function load(path){const moduleContext={...context,exports:{}};vm.runInNewContext(standalone(path),moduleContext,{filename:path});return moduleContext.exports;}
   Object.assign(context,load(resolve(root,'science.ts')),load(resolve(root,'content.ts')),load(resolve(root,'phases.ts')),
     load(resolve(root,'../../src/visuals/transition.ts')));

@@ -33,11 +33,11 @@ const words=language==='en'?comparisonWords.en:comparisonWords.zh;
 const comparison=new ComparisonJourney(el('comparison-panel'),language,(pair,home)=>{exploration.pair=pair;exploration.home=home;saveRoute();syncStudy();},setChapter);
 const zoomSettings=document.createElement('aside');zoomSettings.className='cosmic-settings';zoomSettings.id='cosmic-settings';
 zoomSettings.append(el('origin-controls'),el('galaxy-controls'));el('cosmic-observation').append(zoomSettings);
+el('cosmic-observation').dataset.readerChoices='#journey-chapters,.comparison-choices,.comparison-home-path,.comparison-home-aside';
 const observation=mountObservationMode(el('cosmic-observation'),{enter:t('沉浸演示'),exit:t('退出沉浸 · Esc')},{fit:true,panels:[
   {label:t('解说'),elements:[document.querySelector<HTMLElement>('.comparison-copy')!,document.querySelector<HTMLElement>('.explanation')!,note]},
   {label:t('设置'),elements:[zoomSettings],open:false},
 ]});
-const observationTitle=document.createElement('strong');observationTitle.className='observation-title';observationTitle.textContent=t('星系与宇宙尺度');observation.toolbar.prepend(observationTitle);
 const comparisonNote=document.querySelector<HTMLElement>('.comparison-copy p')!;
 reading=mountSceneReading(el('cosmic-observation'),{id:'cosmic-science-guide',childTarget:comparisonNote});
 comparison.setChildSummary(()=>text(exploration.chapter==='compare'?pairStudy(Math.round(exploration.pair)).child:homeStudy(exploration.home).child));

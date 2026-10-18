@@ -5,6 +5,7 @@
 - `src/catalog/`: editorial validation and search semantics; its data projection reads `wiki.json` and has no catalog UI.
 - `src/platform/i18n.ts`, `locales/`, `learning/`: authored translations, local data selection and narration semantics. Presentation facades point to the independent Reader.
 - `src/visuals/`: shared mathematical/rendering primitives, without a site shell or topic scientific state.
+- `scripts/editorial-review.mjs`: validates per-entry maturity and inherited assessments; generates the editorial review report and selection plan from `wiki.json`.
 - `scripts/prepare-entries.mjs`: checked Markdown and narration projection from authored learning data.
 - `scripts/wiki-reader.mjs`: thin command bridge to the installed/selected Reader; no server or build implementation.
 - `scripts/reader-coverage.mjs`, `tests/`: completeness, routing, content, model and production-controller contracts.

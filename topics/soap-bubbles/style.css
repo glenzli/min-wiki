@@ -47,3 +47,14 @@
 #film-story{left:10px;top:10px;max-width:min(56%,200px);background:#fbfaf4e9;color:#303b42;border:1px solid #b8c1c3}
 html[data-reading-mode="academic"] .scene-story,
 html[data-reading-mode="kids"] .controls-grid :is(.status,.academic-only){display:none}
+
+:root[data-wiki-document] .pair.presentation-visual .canvas-wrap{flex:0 1 auto;min-height:0;width:min(100%,60dvh);height:auto;aspect-ratio:1;margin-inline:auto}
+:root[data-wiki-document] .pair.presentation-visual .canvas-wrap canvas{width:100%;height:auto;min-height:0;aspect-ratio:1}
+:root[data-wiki-document] .pair.presentation-visual .scene-toolbar{padding:6px 10px;font-size:12px;flex-shrink:0}
+:root[data-wiki-document] .pair.presentation-visual .scene-caption{font-size:11px;line-height:1.45;margin:6px 10px}
+:root[data-wiki-document] .presentation-transport>#drainage{flex:1 1 150px;min-width:0;padding:0}
+:root[data-wiki-document] .presentation-transport>label{padding:0;font-size:12px}
+@media(max-width:999px){:root[data-wiki-document] .pair.presentation-visual{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}:root[data-wiki-document] .pair.presentation-visual .canvas-wrap{height:auto;min-height:0;flex:none}:root[data-wiki-document] .pair.presentation-visual .scene-toolbar{flex-wrap:wrap;min-height:76px}:root[data-wiki-document] .pair.presentation-visual .scene-caption{font-size:10px}:root[data-wiki-document] .pair.presentation-visual .film-labels{font-size:8px}}
+
+@media(max-width:600px){:root[data-wiki-document] .pair.presentation-visual{grid-template-columns:1fr}:root[data-wiki-document] .pair.presentation-visual .scene-toolbar{min-height:44px}}
+@media(min-width:1000px){:root[data-wiki-document] .pair.presentation-visual .canvas-wrap{width:min(100%,calc(100dvh - 420px));flex:none;margin:auto}:root[data-wiki-document] .pair.presentation-visual .scene-caption{min-height:0;flex-shrink:0;padding:6px 10px}}

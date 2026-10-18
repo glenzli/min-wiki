@@ -30,3 +30,13 @@ npm run build           # 仅由 Reader 生成 dist/
 Markdown 标记区间由 `learning.json` 投影，外部可保留手写说明。静态说明、模型边界、资料与纯口播/分镜文本在没有演示脚本时仍可阅读。图片插画不作为测量或观测证据；各专题 README 保留素材来源、许可和科学条件。
 
 开始修改前阅读 [设计原则](docs/design-principles.md)、[架构](docs/architecture.md) 与 [源码归属](SKELETON.md)。迁移和验证记录见 [Reader 切换说明](docs/reader-migration.md)。
+
+## 稿件质量与同步
+
+所有条目在 `wiki.json.review` 记录完成稿／草稿；它与已发布路由、是否列入目录独立。整合入口继承所属主题的评估。逐项理由和下一步见 [稿件质量评估](docs/editorial-review.md)。
+
+`npm run review:prepare` 更新评估报告，`npm run review:check` 校验状态和理由，`npm run review:plan` 输出选择清单。`npm run build:sync` 输出 `sync-dist/`，只包含完成稿内容并保留草稿旧链接的整理中提示。完整构建仍输出 `dist/`。这两个输出均由 Wiki Reader 生成，宿主需显式选择同步产物。
+
+开发阅读器的新功能时，可用 `WIKI_READER_ROOT=/path/to/wiki-reader npm run build:sync` 指向独立工作副本；没有该变量时使用锁定的依赖。稿件筛选需使用支持 `--complete-only` 的阅读器版本，旧版本会明确拒绝该参数。本仓库锁定的 Reader 版本已包含稿件筛选与演示优先布局。
+
+演示优先布局与本轮检查范围见 [布局检查](docs/layout-review.md)。

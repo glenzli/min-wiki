@@ -41,3 +41,9 @@ Focused command: `node --import tsx --test topics/electronics-circuits/tests/mod
 Integration must run the repository gates after registration, then verify production artifacts in Chinese/English at desktop and 390px. Native selectors: `[data-control=manual|automatic]`, `#supply-switch`, `#return-wire`, `#light-level`, `[data-light=15|85]`, `[data-rule=dark|bright]`, `#threshold`, `#sensor-link`, `[data-mode=kids|academic]`, `#reset`. SVG reports `data-lamp=on|off`, `data-command=on|off`, `data-return=intact|broken`, `data-switch=closed|open`; `#switch-contact` endpoint moves only on a mechanical action, while `#electronic-channel` keeps geometry and changes encoding. `#signal-input`, `#signal-compare`, `#signal-switch`, `#signal-output` provide accessible causal evidence. Verify a controller ON/lamp OFF return-break contrast, threshold equality, absent-input state, repeated view/depth/theme switches preserving conditions, keyboard focus, direct route and history.
 
 Actual topic-author checks and source-preview evidence are recorded in [VALIDATION.md](VALIDATION.md). Do not infer production acceptance from model tests or the source preview. Root integration owns catalog, shared translations, full gates, final production screenshots, coverage matrix and checkpoint commit. No push or deployment is authorized for this batch.
+
+## Reader layout · 2026-10-18
+
+默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。供电开关、回线与复位留在画面旁；感光条件与阈值在设置中保留。
+
+The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.

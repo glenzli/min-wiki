@@ -12,3 +12,6 @@ reader-dist/
 .vite/
 
 error.log
+
+# Complete manuscript export
+sync-dist/

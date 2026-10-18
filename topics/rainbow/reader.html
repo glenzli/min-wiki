@@ -6,8 +6,8 @@
         <span class="brand-orbit" aria-hidden="true">◒</span>
         <span>光与颜色实验室<small>A LITTLE WINDOW INTO OPTICS</small></span>
       </div>
-      <div class="header-actions">
-        <div class="mode-switch" role="group" aria-label="讲解版本">
+      <div class="header-actions" data-reader-menu="options">
+        <div class="mode-switch" role="group" aria-label="讲解版本" data-reader-menu="options">
           <button data-mode="kids" aria-pressed="true">儿童版<span>看故事</span></button>
           <button data-mode="academic" aria-pressed="false">学术版<span>理解与讲述</span></button>
         </div>
@@ -50,7 +50,7 @@
       <section class="theater" aria-label="光路与彩虹互动示意">
         <div class="scenario-bar">
           <span class="small-label">探索情景</span>
-          <div class="segmented" role="group" aria-label="选择探索情景">
+          <div class="segmented" role="group" aria-label="选择探索情景" data-reader-menu="chapters">
             <button aria-label="天空全圆彩虹" data-scenario="sky" aria-pressed="true"><span class="route-dot sky-dot"></span>天空全圆彩虹</button>
             <button aria-label="雨滴内部光路" data-scenario="raindrop" aria-pressed="false"><span class="route-dot raindrop-dot"></span>雨滴内部光路</button>
             <button aria-label="双彩虹与暗带" data-scenario="double" aria-pressed="false"><span class="route-dot double-dot"></span>双彩虹与暗带</button>
@@ -73,7 +73,7 @@
             <!-- Populated via JS -->
           </div>
           <button id="btn-toggle-recombine" class="feature-toggle-btn" aria-pressed="false" hidden="">汇聚光谱</button>
-          <div class="segmented" id="sky-view-modes">
+          <div class="segmented" id="sky-view-modes" data-reader-menu="chapters">
             <button data-skyview="ground" aria-pressed="true" class="view-mode-btn active">地面视野</button>
             <button data-skyview="unobstructed" aria-pressed="false" class="view-mode-btn">无遮挡全圆</button>
           </div>

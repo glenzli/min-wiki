@@ -39,7 +39,7 @@ const observation = mountObservationMode(workspace, { enter: t('沉浸演示'), 
   { label: t('设置'), elements: [el('experiment-settings')], open: false },
 ] });
 const title = el('chapter-title'); title.classList.add('observation-title'); observation.toolbar.prepend(title);
-const chapterJump = document.createElement('select'); chapterJump.className = 'chapter-jump'; chapterJump.setAttribute('aria-label', t('切换章节'));
+const chapterJump = document.createElement('select'); chapterJump.className = 'chapter-jump'; chapterJump.dataset.readerMenu='chapters'; chapterJump.setAttribute('aria-label', t('切换章节'));
 for (const id of CHAPTERS) { const option = document.createElement('option'); option.value = id; option.textContent = document.querySelector('[data-chapter="' + id + '"] strong')!.textContent; chapterJump.append(option); }
 chapterJump.addEventListener('change', () => { void selectChapter(chapterJump.value as ChapterId, true); });
 observation.toolbar.insertBefore(chapterJump, observation.toolbar.children[1] ?? null);

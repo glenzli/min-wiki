@@ -612,7 +612,7 @@ document.querySelector('.theater')!.prepend($('daynight-heading'));
 document.querySelector('.tools-bar')!.append(document.querySelector('.view-controls')!);
 
 mountPresentationFrame({ root: '#daylight-lesson', visual: '.lesson-comparison', paired: true, transport: '.lesson-action' });
-const earthFrame = mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel' });
+const earthFrame = mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel', choices: '.scenario-bar,#solstice-strip,#city-strip,.view-controls' });
 // The readout belongs next to the globe; overlaid on the canvas it can hide
 // Earth at one side of the orbit during solstices.
 earthFrame?.notes.prepend($('regional-comparison'), $('city-card'));

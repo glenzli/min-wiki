@@ -2,11 +2,11 @@
 
 This is the integrated entry for germination, cherry reproduction and seed dispersal. A condition map connects seed → conditional germination → seedling → maturity → pollination/fertilization → seeds and fruit → dispersal → a new establishment hurdle. Map status reads the actual retained case states; it does not pretend that a bean becomes a cherry, dandelion or burdock. Seedling-to-maturity is an explicit explanatory bridge, not a simulated growth stage.
 
-## Visible case path · 2026-09-28, local edits
+## Case selection and retained evidence
 
-The opening view keeps three selectable comparison cases visible above the current scene: common bean germination, cherry flower to fruit, and dandelion/burdock dispersal. These are four species across three cases. Each case shows its own status from `cycleEvidence`; selecting a case or moving to the next question returns the viewport to that case's visual without resetting its retained controls or progress. The detailed six-stage condition map remains separately expandable.
+The opening view shows the current case and one causal question above a large scene. A collapsed menu provides common bean germination, cherry flower to fruit, and dandelion/burdock dispersal: four species across three cases. Expanding it reveals each case’s status from `cycleEvidence`; selecting a case or moving to the next question retains its controls and progress. The detailed six-stage condition map is separately expandable below the study.
 
-Child mode places one short, case-specific causal explanation beside the case path. Academic mode uses the fuller case background there and keeps the mechanism and source material in each study's existing panel. Narrow screens show all three case names at once and put the active status under the question. The status reflects a bounded teaching model; visiting one case does not make another species inherit its history, and landing still does not count as germination.
+Child mode keeps one short case-specific explanation visible. Academic mode retains the mechanisms and sources in the study’s optional panel. Narrow screens keep the menu compact and show all case choices when expanded. These are bounded teaching states: visiting a case does not transfer history between species, and landing does not count as germination.
 
 ## Ownership and routes
 
@@ -62,3 +62,7 @@ Checks cover water/oxygen/temperature gates, fractional growth history, pollen c
 ## Presentation layout
 
 The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+
+## 默认画面优先 · 2026-10-18
+
+三个物种案例与讲解深度改在默认收起的切换菜单中选择，当前案例和观察问题继续可见。完整六阶段条件图移到实验下方保留展开入口，直接操作与原有各案例历史不变。

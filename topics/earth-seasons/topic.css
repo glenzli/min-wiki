@@ -907,3 +907,7 @@ html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex
 
 .presentation-frame .space-scene>canvas{width:100%!important;height:100%!important}
 .experience.presentation-frame .presentation-notes .city-card { position:static; left:auto; bottom:auto; width:100%; max-width:none; box-shadow:none; margin:0 0 12px; }
+
+:root[data-wiki-document] .daynight-heading{padding:8px 12px;margin:0;gap:8px}:root[data-wiki-document] .daynight-heading h2{font-size:17px;margin:0}:root[data-wiki-document] .daynight-heading p{font-size:12px;margin:4px 0}:root[data-wiki-document] .reference-clock strong{font-size:24px}
+
+@media(max-width:680px){:root[data-wiki-document] .daynight-heading{display:flex;flex-direction:row!important;align-items:center;justify-content:space-between}:root[data-wiki-document] .daynight-heading>div:first-child{flex:1;min-width:0}:root[data-wiki-document] .daynight-heading p{max-width:200px}:root[data-wiki-document] .reference-clock{flex:0 0 90px;font-size:10px}:root[data-wiki-document] .reference-clock strong{font-size:22px}}

@@ -67,6 +67,7 @@ function select(next:Chapter,write=false){
   mountPresentationFrame({ root: value.root.querySelector<HTMLElement>('.lab')!, visual: '.scene', transport: '#next,#reset,#play,#restart' });
   for(const button of map.querySelectorAll<HTMLButtonElement>('button'))button.setAttribute('aria-current',String(button.dataset.chapter===chapter));
   for(const ch of CHAPTERS)railButtons[ch].setAttribute('aria-current',ch===chapter?'step':'false');
+  (document.querySelector('.plant-case-menu') as HTMLDetailsElement).open=false;el('case-menu-title').textContent=t('切换案例与讲解')+' · '+text(copy.railNames[chapter]);
   const current=copy[chapter];el('case-label').textContent=text(current.species);el('question').textContent=text(current.question);el('before').textContent=text(current.before);el('after').textContent=text(current.after);el('next-chapter').textContent=text(current.next);
   childCue.textContent=text(copy.childCue[chapter]);
   if(write){const url=new URL(location.href);url.searchParams.set('chapter',chapter);history.pushState(null,'',url);document.querySelector('.chapter-context')?.scrollIntoView({block:'start',behavior:'auto'});}
@@ -80,6 +81,13 @@ matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change',event=>
 window.addEventListener('pagehide',event=>{pause();if(!event.persisted){disposed=true;for(const {study}of studies.values())study.dispose();studies.clear();}});
 window.addEventListener('popstate',()=>select(readPlantRoute(location.search).chapter));
 for(const a of document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]'))a.href=languageHref(a.getAttribute('href')!);
-select(chapter);mountReadingMode('details:not(.references)');
+select(chapter);mountReadingMode('details:not(.references):not(.plant-case-menu)');
 
 foldPresentationContext('.cycle-panel');
+const caseMenu=document.querySelector<HTMLDetailsElement>('.plant-case-menu')!;const readingControl=document.querySelector('.reading-mode')!;const oldMenu=readingControl.closest('.reading-mode-disclosure');caseMenu.querySelector('.plant-case-options')!.append(readingControl);oldMenu?.remove();
+caseMenu.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();caseMenu.open=false;el('case-menu-title').focus();}});
+const mapDisclosure=document.querySelector<HTMLElement>('.cycle-panel')!.parentElement!;
+document.querySelector('.cycle-bridge')!.after(mapDisclosure);
+
+caseMenu.addEventListener('click',event=>{if((event.target as Element).closest('[data-mode]')){caseMenu.open=false;el('case-menu-title').focus({preventScroll:true});}});
+document.addEventListener('click',event=>{if(caseMenu.open&&!caseMenu.contains(event.target as Node))caseMenu.open=false;});

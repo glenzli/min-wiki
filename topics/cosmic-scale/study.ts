@@ -135,6 +135,16 @@ const zoomChildren = [
   homeStudies[5]!.child,
   homeStudies[6]!.child,
 ] as const;
+const earthCloseup: SceneStudy = {
+  child: zoomChildren[0],
+  title: w('地球起点：同一颗地球与物理标尺', 'Starting at Earth: one globe and a physical ruler'),
+  theory: w('起点球体使用模型给定的地球半径。球体、位置和标尺共用线性长度换算；拉远改变的是镜头所容纳的范围，不是地球本身的大小。圆盘太小时，定位符继续帮助找到同一处起点。', 'The starting globe uses the Earth radius specified by the model. The globe, positions and ruler share a linear length conversion. Zooming changes the camera span, not the size of Earth; a locator retains the same origin when its disk becomes too small to distinguish.'),
+  formula: 'D = 2R',
+  terms: w('R 是模型采用的代表半径，D 是直径。定位环和文字标签不属于地球的边缘。', 'R is the representative radius used by the model; D is the diameter. Locator rings and labels are not part of the globe’s edge.'),
+  evidence: w('地球半径是模型输入；地表与云层贴图帮助识别对象，不表示当前天气。', 'Earth’s radius is a model input. Surface and cloud maps identify the object; they do not show current weather.'),
+  limits: w('这是长度与视野的对照，不计算地表地形、天气或地球运动。', 'This is a comparison of length and camera span, not a calculation of terrain, weather or Earth’s motion.'),
+  sources: [{ title: 'NASA · Earth facts', url: 'https://science.nasa.gov/earth/facts/' }],
+};
 const sunCloseup: SceneStudy = {
   child: w('从太阳出发，先用千米标尺看它的大小。继续拉远时，同一颗太阳会小到只剩位置提示；外面的光晕不算直径。', 'Begin at the Sun and use the kilometer ruler to read its size. As we zoom out, the same Sun becomes a location marker; its glow does not count as its diameter.'),
   title: w('太阳起点：光球直径与物理标尺', 'Starting at the Sun: photospheric diameter and a physical ruler'),
@@ -148,7 +158,7 @@ const sunCloseup: SceneStudy = {
 export function zoomStudy(stage: number, origin: Origin = 'earth'): SceneStudy {
   const bases = [homeStudies[0]!,homeStudies[0]!,nearbyStars,homeStudies[1]!,homeStudies[2]!,homeStudies[3]!,homeStudies[4]!,homeStudies[5]!,homeStudies[6]!];
   const i = Math.max(0,Math.min(8,stage));
-  const base = i === 0 && origin === 'sun' ? sunCloseup : bases[i]!;
+  const base = i === 0 ? (origin === 'sun' ? sunCloseup : earthCloseup) : bases[i]!;
   const camera = w('这一章只有镜头视野宽度按对数变化；每一帧内部仍共用线性长度标尺。远处丝线与点不是可测量的星系目录。', 'Only camera width changes logarithmically; geometry within each frame keeps one linear length ruler. Distant filaments and points are not a measurable galaxy catalogue.');
   return { ...base, child:i === 0 && origin === 'sun' ? base.child : zoomChildren[i]!, limits:{ zh: `${base.limits.zh} ${camera.zh}`, en: `${base.limits.en} ${camera.en}` } };
 }

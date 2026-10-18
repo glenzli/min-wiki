@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "node scripts/wiki-reader.mjs serve --port 5175 --base /encyclopedia/",
-    "build": "npm run typecheck && npm run check:i18n && npm run check:images && npm run check:entries && npm run reader:build",
+    "build": "npm run typecheck && npm run check:i18n && npm run check:images && npm run check:entries && npm run review:check && npm run reader:build",
     "preview": "node scripts/wiki-reader.mjs serve --port 5175 --base /encyclopedia/",
     "test": "node --import tsx --test",
     "typecheck": "tsc --noEmit",
@@ -18,12 +18,16 @@
     "reader:coverage": "node scripts/reader-coverage.mjs",
     "check": "npm test && npm run build && npm run reader:coverage -- --require-all",
     "prepare:entries": "node scripts/prepare-entries.mjs",
-    "check:entries": "node scripts/prepare-entries.mjs --check"
+    "check:entries": "node scripts/prepare-entries.mjs --check",
+    "review:prepare": "node scripts/editorial-review.mjs",
+    "review:check": "node scripts/editorial-review.mjs --check",
+    "review:plan": "node scripts/editorial-review.mjs --json",
+    "build:sync": "npm run typecheck && npm run check:i18n && npm run check:images && npm run check:entries && npm run review:check && node scripts/wiki-reader.mjs build --complete-only --out sync-dist --base /encyclopedia/"
   },
   "dependencies": {
+    "@glenzli/wiki-reader": "github:glenzli/wiki-reader#c1fc4c9c89aa8a5c9d4939ba0a26268de8d15210",
     "i18next": "^26.4.2",
-    "three": "^0.170.0",
-    "@glenzli/wiki-reader": "git+ssh://git@github.com/glenzli/wiki-reader.git#edffa5438afaf5fdd47bdece8fae43debdd4fea4"
+    "three": "^0.170.0"
   },
   "devDependencies": {
     "@types/node": "^22.20.1",

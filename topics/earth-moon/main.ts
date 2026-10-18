@@ -1,3 +1,4 @@
+import {mountPresentationFrame} from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { SYNODIC_DAYS, SIDEREAL_DAYS, MOON_EARTH_RADIUS_RATIO, DISTANCE_EARTH_RADII, litFraction, phaseIndex } from './model.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
@@ -9,6 +10,7 @@ import { TopicScene } from './scene.ts';
 import './style.css';
 translateDocument(t);
 
+mountPresentationFrame({root:'.explorer',visual:'.viewport',transport:'.theater>.controls',choices:'#steps'});
 const el = (id: string) => document.getElementById(id)!;
 const value = (id: string) => (el(id) as HTMLInputElement | HTMLSelectElement).value;
 const number = (id: string) => Number(value(id));

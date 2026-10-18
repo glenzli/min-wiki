@@ -6,8 +6,8 @@
         <span class="brand-orbit" aria-hidden="true">◒</span>
         <span>小小自然探索站<small>A LITTLE WINDOW INTO EARTH</small></span>
       </div>
-      <div class="header-actions">
-        <div class="mode-switch" role="group" aria-label="讲解版本">
+      <div class="header-actions" data-reader-menu="options">
+        <div class="mode-switch" role="group" aria-label="讲解版本" data-reader-menu="options">
           <button data-mode="kids" aria-pressed="true">儿童版<span>看故事</span></button>
           <button data-mode="academic" aria-pressed="false">学术版<span>理解与讲述</span></button>
         </div>
@@ -64,7 +64,7 @@
       <section class="theater" aria-label="三维地球与四季探索控制">
         <div class="scenario-bar">
           <span class="small-label">探索情景</span>
-          <div class="segmented" role="group" aria-label="选择探索模式">
+          <div class="segmented" role="group" aria-label="选择探索模式" data-reader-menu="chapters">
             <button data-scenario="daynight" aria-pressed="true"><span class="route-dot daynight-dot"></span>昼夜交替</button>
             <button data-scenario="seasons" aria-pressed="false"><span class="route-dot seasons-dot"></span>四季公转</button>
             <button data-scenario="angle" aria-pressed="false"><span class="route-dot angle-dot"></span>直射与斜射</button>
@@ -85,7 +85,7 @@
           <div><h2>同一时刻，天亮到哪里了？</h2><p>先看夏至清晨，再切到冬至比较。</p></div>
           <div class="reference-clock"><div><span>北京时间（模型）</span><span id="clock-season">夏至</span></div><strong id="reference-clock">04:30</strong></div>
         </div>
-          <div class="view-controls" role="group" aria-label="观察视角">
+          <div class="view-controls" role="group" aria-label="观察视角" data-reader-menu="chapters">
             <button data-view="china" aria-pressed="true">中国晨昏</button>
             <button data-view="default" aria-pressed="false">标准看</button>
             <button data-view="north" aria-pressed="false">北极俯视</button>

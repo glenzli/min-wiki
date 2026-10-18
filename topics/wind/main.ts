@@ -16,6 +16,7 @@ const text=(id:string,value:string)=>{if(el(id).textContent!==value)el(id).textC
 const s=createSession();Object.assign(s,readRoute(location.search,location.hash));
 let frame=0,last=0,lastText=0,disposed=false,abort=new AbortController(),learningMounted=false,cancelHeat=()=>{};
 let heatTarget:number|null=null;
+let previousLens:Lens|undefined;
 const slot=new SceneSlot(el('scene-host'),status=>{el('scene-status').hidden=status==='ready';el('retry').hidden=status!=='error';text('scene-status',status==='error'?t('画面暂时无法显示，仍可阅读讲解。'):t('正在准备画面…'));});
 const journey=new AirJourney(el('air-journey'),running=>{s.lens='flow';s.traces=true;s.camera='side';if(s.world==='typhoon')s.typhoon.section=true;s.playing=running&&!matchMedia('(prefers-reduced-motion: reduce)').matches;controls();writeRoute();slot.camera(s);update();play();},world=>{s.lens='flow';s.traces=true;s.camera='side';if(world==='typhoon')s.typhoon.section=true;void changeWorld(world,true);},()=>{s.camera='top';s.typhoon.section=false;controls();slot.camera(s);update();el('scene-host').scrollIntoView({block:'center',behavior:'instant'});});
 const stormScale=new StormScale(el('storm-scale'));
@@ -27,6 +28,8 @@ function controls(){
   input('traces').checked=s.traces;
 }
 function update(){
+  el<HTMLSelectElement>('lens').value=s.lens;
+  if(s.lens!==previousLens){el<HTMLDetailsElement>('air-journey-section').open=s.lens==='flow';previousLens=s.lens;}
   const c=describe(s);text('world-intro',c.intro);text('scale-note',c.scale);text('scene-badge',c.badge);text('scene-caption',c.caption);text('readout',c.readout);text('condition-note',c.condition);
   text('story-title',c.title);text('story',c.body);text('observe',c.watch);text('science',c.science);text('science-limit',c.limit);
   text('story-kicker',s.lens==='cause'?t('形成条件'):s.lens==='flow'?t('气流路径'):t('影响与力量'));
@@ -39,7 +42,7 @@ function update(){
   text('play',s.playing?t('暂停观察'):t('开始观察'));el('play').setAttribute('aria-pressed',String(s.playing));
   text('play-status',s.playing?(s.world==='coast'&&Math.abs(s.coast.heat)<.01?t('本例环流静止'):t('空气仍在运动')):t('已暂停'));
   if(s.world!=='coast')input('progress').value=String(Math.round(s[s.world].progress*1000));
-  for(const [key,value] of [['world',s.world],['lens',s.lens],['camera',s.camera],['mode',s.academic?'academic':'kids'],['part',s.typhoon.feature]])document.querySelectorAll<HTMLButtonElement>(`[data-${key}]`).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset[key]===value)));
+  for(const [key,value] of [['world',s.world],['camera',s.camera],['mode',s.academic?'academic':'kids'],['part',s.typhoon.feature]])document.querySelectorAll<HTMLButtonElement>(`[data-${key}]`).forEach(b=>b.setAttribute('aria-pressed',String(b.dataset[key]===value)));
   const stageNames=stages(s);el('stage-buttons').hidden=!stageNames.length;
   if(el('stage-buttons').dataset.world!==s.world){el('stage-buttons').replaceChildren(...stageNames.map((name,i)=>{const b=document.createElement('button');b.textContent=name;b.addEventListener('click',()=>{if(s.world==='coast')return;s[s.world].progress=[0,.3,.6,1][i];s.playing=false;stop();update();});return b;}));el('stage-buttons').dataset.world=s.world;}
   if(s.world!=='coast')el('stage-buttons').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',String(i===(s[s.world as 'typhoon'|'tornado'].progress<(s.world==='tornado'?.22:.2)?0:s[s.world as 'typhoon'|'tornado'].progress<.48?1:s[s.world as 'typhoon'|'tornado'].progress<.8?2:3))));
@@ -55,7 +58,7 @@ async function loadLearning(){
 }
 async function changeWorld(world:World,scroll=false){cancelHeat();if(heatTarget!==null){s.coast.heat=heatTarget;heatTarget=null;}selectWorld(s,world);stop();controls();writeRoute();update();void loadLearning();await slot.select(s);update();if(scroll)el('scene-host').scrollIntoView({block:'center',behavior:'instant'});}
 document.querySelectorAll<HTMLButtonElement>('[data-world],[data-compare]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.compare)s.lens='flow';void changeWorld((b.dataset.world??b.dataset.compare) as World,Boolean(b.dataset.compare));}));
-document.querySelectorAll<HTMLButtonElement>('[data-lens]').forEach(b=>b.addEventListener('click',()=>{s.lens=b.dataset.lens as Lens;writeRoute();update();}));
+el('lens').addEventListener('change',()=>{s.lens=el<HTMLSelectElement>('lens').value as Lens;writeRoute();update();});
 document.querySelectorAll<HTMLButtonElement>('[data-camera]').forEach(b=>b.addEventListener('click',()=>{s.camera=b.dataset.camera as Camera;slot.camera(s);update();}));
 document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b=>b.addEventListener('click',()=>{s.academic=b.dataset.mode==='academic';update();}));
 document.querySelectorAll<HTMLButtonElement>('[data-part]').forEach(b=>b.addEventListener('click',()=>{s.typhoon.feature=s.typhoon.feature===b.dataset.part?'none':b.dataset.part!;s.lens='flow';writeRoute();update();}));

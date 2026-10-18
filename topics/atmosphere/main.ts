@@ -20,6 +20,7 @@ let scene:AtmosphereScene|undefined;
 function createScene(){try{scene=new AtmosphereScene(el('atmo-canvas') as HTMLCanvasElement,text);el('render-error').hidden=true;draw();}catch(error){el('render-error').hidden=false;console.error(error);}}
 const workspace=document.querySelector<HTMLElement>('.atmo-workspace')!,inspector=document.querySelector<HTMLElement>('.atmo-inspector')!,stage=document.querySelector<HTMLElement>('.atmo-stage')!;
 const observationRoot=document.createElement('section');observationRoot.id='atmo-observation';observationRoot.setAttribute('aria-label',t('大气观察'));
+observationRoot.dataset.readerChoices='.atmo-tabs,#journey-controls,#world-controls,.atmo-caption>label';
 workspace.before(observationRoot);observationRoot.append(document.querySelector('.atmo-tabs')!,workspace);
 inspector.append(document.querySelector('.atmo-story')!);
 const worldNotes=document.createElement('div');worldNotes.setAttribute('aria-live','polite');inspector.append(worldNotes);

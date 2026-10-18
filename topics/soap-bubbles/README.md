@@ -30,3 +30,9 @@ The film section expands nanometre thickness into a visible band, and the ray pa
 Check both languages, stretch/release, finite drainage playback/pause, upper/lower selection during zoom, and angle changes with light paths shown. Controls are native keyboard/touch controls; reduced motion resolves finite transitions immediately. Leaving/hiding stops animation work, and non-persisted page departure releases resize observers. Root integration owns catalog registration and the production build.
 
 Sources: Exploratorium's original bubble explanations, Monier et al. (Physical Review Fluids 9, 124001), and Rice University/OpenStax thin-film optics. Exact links are in `reader.html` and `learning.json`.
+
+## Reader layout · 2026-10-18
+
+默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。完整泡泡和 A 点局部仍同步；手机按整体到局部的顺序显示，画布保持正方形。
+
+The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.
