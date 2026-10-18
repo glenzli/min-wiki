@@ -33,8 +33,16 @@ export class StormArtwork {
  get status(){return this.failed.size?'failed':this.pending.size?'loading':'ready';}
  private prepare(name:AssetName,image:HTMLImageElement){
   const target=this[name];target.width=image.naturalWidth;target.height=image.naturalHeight;
-  const c=target.getContext('2d')!;c.drawImage(image,0,0);
+  const c=target.getContext('2d')!;
+  // Background-only grading is baked once. Keep relief/site identity while
+  // suppressing high-frequency grass/hedge detail behind the teaching layers.
+  if(name==='terrain')c.filter='saturate(55%) contrast(72%) blur(1.1px)';
+  c.drawImage(image,0,0);c.filter='none';
   if(name==='terrain'){
+   c.globalCompositeOperation='source-atop';
+   const haze=c.createLinearGradient(0,0,0,target.height);
+   haze.addColorStop(0,'#6a7b8b77');haze.addColorStop(.65,'#7886804d');haze.addColorStop(1,'#53696a66');
+   c.fillStyle=haze;c.fillRect(0,0,target.width,target.height);
    // Fade the retained panorama into matching ground on tall/wide canvases.
    // Alpha at the horizon remains the authored irregular hillside silhouette.
    c.globalCompositeOperation='destination-in';
@@ -62,7 +70,7 @@ export class StormArtwork {
  paintLandscape(c:CanvasRenderingContext2D,flash:number,halfWidth:number,bottom:number){
   const width=Math.max(900,halfWidth*2+100),height=this.terrain.width>1?width*this.terrain.height/this.terrain.width:302,y=95-height*.32;
   const base=c.createLinearGradient(0,100,0,340);
-  base.addColorStop(0,'#596557');base.addColorStop(.4,'#454f3e');base.addColorStop(1,'#343d30');
+  base.addColorStop(0,'#626f70');base.addColorStop(.4,'#58655f');base.addColorStop(1,'#4f5b58');
   const foot=y+height*.77;
   c.fillStyle=base;c.fillRect(-halfWidth,foot,halfWidth*2,Math.max(0,Math.max(340,bottom)-foot));
   if(this.terrain.width>1){

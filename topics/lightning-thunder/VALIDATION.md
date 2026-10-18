@@ -1,5 +1,15 @@
 # Lightning/thunder artwork validation · 2026-10-19
 
+## Follow-up: compact charge fields and subordinate terrain
+
+- Base `36f2250b4b4838d4c6f2ac1a0f815c0e14d5fb0d`. Replaced large circular badges with fourteen retained, mildly irregular sign pairs and a compact induced-charge field. Dark under-strokes and warm/cool cores provide contrast without round backplates. Existing region labels and the not-particles qualification remain. Same sign identities and separation progress; count/spacing are illustrative, not a density measurement.
+- Terrain-only cache preparation reduces saturation/contrast, softly filters fine grass/hedge detail and applies alpha-preserving haze once. Cloud, tower, house, charge and channel layers stay crisp. Matching ground-edge colors avoid a new cache seam. Original assets, five retained cache dimensions, model, route/controller clocks and geometry/attachment anchors are unchanged.
+- Final runtime SHA-256: `scene.ts` `9872bdc6e0954649bd704cbae2acf9fef7f3ae62f61ecee43bff46f3e46fc422`; `stormArtwork.ts` `8df79559d8972d9edbe19de30b032c97beeb8fa6b52554231355d4cf895e1447`.
+- Reader build passed TypeScript, 6,907 localized messages / 72 namespaces, 151 checked images, entry projections, editorial review and 71 routes; built source digest `1649f20a480dbc977eff41699dbb55000c881e9cd47e3d67faf9c2d85be353f3`. This validation note was appended afterward without another runtime change. Existing six model-test evidence is reused for unchanged model/test inputs; unrelated repository tests and device performance profiling were not repeated.
+- Actual Chinese 1152 × 1106 mixed and .27 separated views inspected; final .27 screenshot shows compact signs, readable labels, lower-detail terrain and unchanged tower/house relationship. Chinese and English 390 × 844 mixed/separated views inspected; client/scroll width both 390 px. Mild irregular spacing replaced the initial rigid two-row look, retaining deterministic positions.
+- English mobile dark .675 return inspected: the fixed bright channel and local light remain prominent while the ground stays subordinate. Reverse return → mixed → separated worked, captured warnings/errors were empty, and responsive/theme/language overrides were restored. Primary Chinese preview is paused at .27.
+- Screenshots: `/private/tmp/wiki-storm-art-20261019/final-compact-charges-quiet-ground.png`, `balance-v2-mobile-zh.png`, `balance-v2-mobile-en-mixed.png`, `balance-v2-mobile-en-separated.png`, `balance-v2-mobile-return-dark.png`. Local preview/commit only; no editorial promotion, push or deployment.
+
 ## Follow-up: readable charge regions and grounded tower
 
 - Base `8804eeb3a699404b90f14ff69ca2a51c962f4705`. Replaced dense small signs with three persistent signed pairs, larger contrasting badges, restrained region washes and bilingual on-scene region labels. The existing small lower positive pocket remains; induced ground charge follows the existing field progress. A visible caption identifies these as charge-region symbols, not particles. Ice/flow artwork is behind the symbols, and charge annotations yield emphasis to the developing channel.

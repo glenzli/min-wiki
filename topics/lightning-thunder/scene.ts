@@ -50,16 +50,12 @@ export class TopicScene{
   }
   if(progress<.70){
    c.save();
-   const chargeFade=1-smooth(.46,.61,progress),radius=Math.max(12,9.25/s.scale);
-   const charge=(positive:boolean,x:number,y:number,r=radius)=>{
-    const fill=c.createLinearGradient(x,y-r,x,y+r);
-    fill.addColorStop(0,positive?'#65523eed':'#31556ced');fill.addColorStop(1,positive?'#3b3028f5':'#182e42f5');
-    c.shadowColor='#0c1c2b99';c.shadowBlur=3;
-    s.ellipse(x,y,r,r,fill);c.shadowBlur=0;
-    c.strokeStyle=positive?'#efcf94':'#b3dcf2';c.lineWidth=1/s.scale;c.stroke();
-    c.strokeStyle=positive?'#ffe3aa':'#e1f4ff';c.lineWidth=1.6/s.scale;c.lineCap='round';
-    c.beginPath();c.moveTo(x-r*.47,y);c.lineTo(x+r*.47,y);
-    if(positive){c.moveTo(x,y-r*.47);c.lineTo(x,y+r*.47);}c.stroke();
+   const chargeFade=1-smooth(.46,.61,progress),markSize=Math.max(4.2,3.5/s.scale);
+   const charge=(positive:boolean,x:number,y:number,r=markSize)=>{
+    c.beginPath();c.moveTo(x-r,y);c.lineTo(x+r,y);
+    if(positive){c.moveTo(x,y-r);c.lineTo(x,y+r);}
+    c.lineCap='round';c.strokeStyle='#192b40e8';c.lineWidth=3.15/s.scale;c.stroke();
+    c.strokeStyle=positive?'#ffe2a4':'#e1f4ff';c.lineWidth=1.2/s.scale;c.stroke();
    };
    const region=(x:number,y:number,rx:number,ry:number,color:string)=>{
     c.save();c.translate(x,y);c.scale(rx,ry);
@@ -68,23 +64,26 @@ export class TopicScene{
    };
    c.globalAlpha=state.separation*chargeFade;
    region(-105,-226,142,38,'#ffda9638');region(-105,-128,154,31,'#81c3ee4f');
-   // Three retained pairs separate without crossing or being re-randomized.
-   // Badges label charge regions, not visible particles or electron trajectories.
+   // Retained, mildly irregular sign fields separate from the same mixed band.
+   // Signs label regions, not visible particles or electron trajectories.
    c.globalAlpha=chargeFade;
-   for(let i=0;i<3;i++){
-    const x=-200+i*95,start=-173+(i%2?5:-3),u=state.separation;
-    charge(true,x-23*(1-u),start+(-226-start)*u);
-    charge(false,x+23*(1-u),start+(-128-start)*u);
+   for(let i=0;i<14;i++){
+    const row=Math.floor(i/7),x=-221+i%7*36+row*12+(noise(i+220)-.5)*10;
+    const start=-190+row*29+(noise(i+280)-.5)*15,u=state.separation;
+    const upper=-241+row*27+(noise(i+501)-.5)*15,lower=-145+row*25+(noise(i+612)-.5)*15;
+    charge(true,x-8*(1-u),start+(upper-start)*u);
+    charge(false,x+8*(1-u),start+(lower-start)*u);
    }
    c.globalAlpha=smooth(.35,.8,state.separation)*chargeFade;
-   s.label(t('上部：正电荷'),130,-226,{width:170,color:'#ffe1ad',background:'#26313be8',anchor:[14,-226]});
-   s.label(t('中下部：负电荷'),137,-128,{width:185,color:'#d1efff',background:'#243340e8',anchor:[17,-128]});
+   s.label(t('上部：正电荷'),130,-226,{width:170,color:'#ffe1ad',background:'#26313be8',anchor:[31,-226]});
+   s.label(t('中下部：负电荷'),137,-128,{width:185,color:'#d1efff',background:'#243340e8',anchor:[33,-128]});
    // The small lower positive pocket belongs to the existing teaching model.
    c.globalAlpha=smooth(.6,1,state.separation)*chargeFade;
-   region(-165,-90,34,15,'#ffdc8c38');charge(true,-165,-90,radius*.68);
+   region(-165,-90,34,15,'#ffdc8c38');
+   for(let i=0;i<3;i++)charge(true,-180+i*15,-92+(i%2)*5,markSize*.75);
    c.globalAlpha=smooth(0,.45,state.field)*chargeFade;
    region(-65,151,121,17,'#f5c97755');
-   for(const x of [-132,-88,-44,0])charge(true,x,158,radius*.8);
+   for(let i=0;i<12;i++)charge(true,-132+i%6*24+(noise(i+848)-.5)*6,151+Math.floor(i/6)*16+(noise(i+947)-.5)*5,markSize*.9);
    s.label(t('地面：感应正电荷'),-65,202,{width:320,color:'#ffe1ad',background:'#28312be8'});
    if(progress<.32){
     c.globalAlpha=1;

@@ -40,13 +40,17 @@ The anvil ends are shorter, flatter, softer and asymmetric, retaining the origin
 
 ## Charge-region and tower readability · 2026-10-19
 
-把密集小符号改为三对较大、有正负形状区分的区域标记，沿同一分离进度移向上部正区和中下部负区；配色、淡薄区域底色与引线只辅助辨认净电荷分区，不表示实测浓度、单个粒子或电子轨迹。保留云底较小的正电区，并在负电区下方的地面标出感应正电荷。分区与限定文字在画面上直接可见，进入通道阶段逐渐淡出，不遮住回击。主要起电、上下分层和地面感应仍依据 [NWS 说明](https://www.weather.gov/safety/lightning-science-electrification)，具体极性和层次仍有简化。
+以较小、较密且略有不规则的正负符号群表达电荷区域，去掉大圆形底托，依靠暗色描边、暖冷色及分区引线保持辨识。符号保留同一身份，沿同一分离进度移向上部正区和中下部负区；配色与淡薄区域底色不表示实测浓度、单个粒子或电子轨迹。保留云底较小的正电区，并在负电区下方的地面标出感应正电荷。分区与限定文字在画面上直接可见，进入通道阶段逐渐淡出，不遮住回击。主要起电、上下分层和地面感应仍依据 [NWS 说明](https://www.weather.gov/safety/lightning-science-electrification)，具体极性和层次仍有简化。
 
-Three larger retained sign pairs replace the tiny symbol cloud and separate with the existing progress. Sign shape, restrained warm/cool color, soft region washes and labelled leaders identify net-charge regions; they do not measure concentration, represent individual particles or plot electron trajectories. The small lower positive pocket remains, with induced positive charge marked on the ground below the negative core. The on-scene qualification and labels fade as the discharge takes emphasis. [NWS electrification guidance](https://www.weather.gov/safety/lightning-science-electrification) supports the existing simplified separation and induction sequence, rather than prescribing the illustration's badge count or layout.
+Compact, moderately dense and mildly irregular sign fields separate with the existing progress. Dark outlines and warm/cool signs replace the large circular badges. The retained signs, soft region washes and labelled leaders identify net-charge regions; they do not measure concentration, represent individual particles or plot electron trajectories. The small lower positive pocket remains, with induced positive charge marked on the ground below the negative core. The on-scene qualification and labels fade as the discharge takes emphasis. [NWS electrification guidance](https://www.weather.gov/safety/lightning-science-electrification) supports the existing simplified separation and induction sequence, rather than prescribing the illustration's sign count or layout.
 
 接地塔增加较宽的支撑脚、混凝土基座、交叉撑杆、侧面结构和明暗金属边缘，初始电荷阶段显示名称引线。塔顶、向上连接通道与地面锚点保持原模型坐标；视觉轮廓加宽没有改变连接关系，也没有提供建筑尺寸或户外安全范围。
 
 The grounded tower has wider footings, a concrete base, crossed braces, side depth and contrasting galvanized edges, plus a label during the initial charge phase. Its tip, upward connector and ground anchors retain their exact model coordinates. The wider illustrative silhouette changes neither attachment geometry nor any physical building dimension or safety boundary.
+
+地景只作空间参照：原山坡与树林素材保留，地形缓存一次性降低饱和度和局部反差，轻微柔化并叠加保留透明轮廓的雾色。主云体、塔、房屋、电荷与通道没有套用背景处理，地点与投影锚点不变。没有新增图片、缓存或动画时钟，也不据此宣称实测帧率改善。
+
+Terrain stays a spatial reference. The same terrain cache receives one background-only desaturation, contrast reduction, mild softening and alpha-preserving haze treatment. Cloud, tower, house, signs and channels retain their own crisp drawing; site and projection anchors remain unchanged. Original assets, cache count/dimensions and animation clocks are unchanged. No measured frame-rate improvement is claimed.
 
 ## Attachment geometry · 2026-10-01
 
