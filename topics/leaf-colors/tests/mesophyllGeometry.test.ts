@@ -35,12 +35,14 @@ function pointSegmentDistance(p: Point, a: Point, b: Point): number {
 
 function edgesCross(a: Point, b: Point, c: Point, d: Point): boolean {
   const ab: Point = [b[0] - a[0], b[1] - a[1]], cd: Point = [d[0] - c[0], d[1] - c[1]];
-  const denominator = ab[0] * cd[1] - ab[1] * cd[0];
-  if (Math.abs(denominator) < 1e-10) return false;
-  const ac: Point = [c[0] - a[0], c[1] - a[1]];
-  const t = (ac[0] * cd[1] - ac[1] * cd[0]) / denominator;
-  const u = (ac[0] * ab[1] - ac[1] * ab[0]) / denominator;
-  return t > 1e-9 && t < 1 - 1e-9 && u > 1e-9 && u < 1 - 1e-9;
+  const lengthAB=Math.hypot(...ab),lengthCD=Math.hypot(...cd);
+  if(!lengthAB||!lengthCD)return false;
+  // Match contains()'s spatial boundary tolerance. Dividing by a nearly zero
+  // intersection denominator otherwise turns 1e-12 roundoff on a shared wall
+  // into a supposed crossing well inside the segment's parameter interval.
+  const side=(origin:Point,edge:Point,length:number,p:Point)=>(edge[0]*(p[1]-origin[1])-edge[1]*(p[0]-origin[0]))/length;
+  const opposite=(x:number,y:number)=>(x>1e-8&&y< -1e-8)||(y>1e-8&&x< -1e-8);
+  return opposite(side(a,ab,lengthAB,c),side(a,ab,lengthAB,d))&&opposite(side(c,cd,lengthCD,a),side(c,cd,lengthCD,b));
 }
 
 function coversSegment(shape: Polygon, segment: readonly [Point, Point]): boolean {
@@ -253,6 +255,30 @@ test('palisade profiles are narrow, closely apposed columns with occasional shor
     }))) apposed++;
   }
   assert.ok(apposed >= cells.length * .8, 'Most palisade profiles must share substantial lateral wall portions');
+});
+
+test('rounded profiles avoid widespread tiny kinks and square palisade ends', () => {
+  const sharpestTurn=(cell:MesophyllCell)=>{
+    const edges=cell.contour.map((a,i)=>[a,cell.contour[(i+1)%cell.contour.length]] as const);
+    const lengths=edges.map(([a,b])=>Math.hypot(b[0]-a[0],b[1]-a[1])),perimeter=lengths.reduce((a,b)=>a+b,0);
+    const count=Math.ceil(perimeter/.5),step=perimeter/count;
+    let edge=0,offset=0;
+    const samples=Array.from({length:count},(_,i)=>{
+      const distance=i*step;
+      while(edge<edges.length-1&&offset+lengths[edge]<distance)offset+=lengths[edge++];
+      const [a,b]=edges[edge],u=(distance-offset)/(lengths[edge]||1);
+      return [a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u] as const;
+    });
+    return Math.max(...samples.map((p,i)=>{
+      const a=samples[(i+count-1)%count],b=samples[(i+1)%count],dx=p[0]-a[0],dy=p[1]-a[1],ex=b[0]-p[0],ey=b[1]-p[1];
+      return Math.abs(Math.atan2(dx*ey-dy*ex,dx*ex+dy*ey));
+    }));
+  };
+  // This is an illustration-quality guard at fixed drawing resolution, not a
+  // biological curvature measurement. Exact retained-wall joins may differ.
+  const spongy=mesophyllBand(0);
+  assert.ok(spongy.filter(cell=>sharpestTurn(cell)<.7).length>=spongy.length*.8);
+  assert.ok(palisadeBand(0).every(cell=>sharpestTurn(cell)<.45));
 });
 
 test('periodic bands preserve entire cells across seams without introducing lateral cuts', () => {

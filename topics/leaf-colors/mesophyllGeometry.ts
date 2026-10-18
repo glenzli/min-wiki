@@ -1,4 +1,4 @@
-import { SCALE_ENTRIES, SECTION_SPAN, mesophyllCellEdge } from './model.ts';
+import { SCALE_ENTRIES, SECTION_SPAN, mesophyllCellEdge, smooth } from './model.ts';
 
 export type Point = readonly [number, number];
 export interface MesophyllCell {
@@ -176,21 +176,47 @@ function simplify(points: readonly Point[]): Point[] {
   return result;
 }
 
-/** Round only outward corners. Inward pore arcs and the middle portions of
- * native shared walls remain; there is no subsequent contact-neck extrusion. */
-function roundConvexCorners(points: readonly Point[]): readonly Point[] {
-  const area = Math.abs(points.reduce((sum, p, i) => { const q = points[(i + 1) % points.length]; return sum + p[0] * q[1] - q[0] * p[1]; }, 0)) / 2;
-  const bend = Math.min(12, Math.sqrt(area) * .24), result: Point[] = [];
-  for (let i = 0; i < points.length; i++) {
-    const a = points[(i + points.length - 1) % points.length], b = points[i], c = points[(i + 1) % points.length];
-    if (cross(a, b, c) <= 1e-7) { result.push(b); continue; }
-    const length0 = Math.hypot(a[0] - b[0], a[1] - b[1]), length1 = Math.hypot(c[0] - b[0], c[1] - b[1]);
-    const q0 = Math.min(.36, bend / length0), q1 = Math.min(.36, bend / length1);
-    const start: Point = [b[0] + (a[0] - b[0]) * q0, b[1] + (a[1] - b[1]) * q0];
-    const end: Point = [b[0] + (c[0] - b[0]) * q1, b[1] + (c[1] - b[1]) * q1];
-    for (let j = 0; j <= 6; j++) { const t = j / 6, s = 1 - t; result.push([s * s * start[0] + 2 * s * t * b[0] + t * t * end[0], s * s * start[1] + 2 * s * t * b[1] + t * t * end[1]]); }
-  }
-  return result;
+/** Smooth a whole boundary at a fixed spatial scale, including the concave
+ * joins left by pore clipping. Arc-length sampling prevents tiny ray-casting
+ * edges from preserving a sharp tip despite adding many curve vertices.
+ * Weighted averages remain in each cell's convex ownership partition; long
+ * shared straight walls keep their middle portions rather than drifting apart.
+ * The retained cell and its immediate contact boundary are left exact. */
+function softenProfile(points: readonly Point[]): readonly Point[] {
+  const edges=segments(points),lengths=edges.map(([a,b])=>Math.hypot(b[0]-a[0],b[1]-a[1]));
+  const perimeter=lengths.reduce((sum,length)=>sum+length,0),count=Math.max(32,Math.ceil(perimeter/.7)),step=perimeter/count;
+  let edge=0,offset=0;
+  const samples=Array.from({length:count},(_,i)=>{
+    const distance=i*step;
+    while(edge<edges.length-1&&offset+lengths[edge]<distance)offset+=lengths[edge++];
+    const [a,b]=edges[edge],u=lengths[edge]?(distance-offset)/lengths[edge]:0;
+    return [a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u] as const;
+  });
+  const sigma=2.8,support=Math.ceil(3*sigma/step),selectedEdges=segments(retainedWorld);
+  const weights=Array.from({length:support*2+1},(_,i)=>Math.exp(-(((i-support)*step)**2)/(2*sigma*sigma)));
+  const weightSum=weights.reduce((sum,weight)=>sum+weight,0);
+  const clearanceAt=(point:Point)=>Math.min(...selectedEdges.map(([a,b])=>{
+    const dx=b[0]-a[0],dy=b[1]-a[1],squared=dx*dx+dy*dy;
+    const u=squared?Math.max(0,Math.min(1,((point[0]-a[0])*dx+(point[1]-a[1])*dy)/squared)):0;
+    return Math.hypot(point[0]-a[0]-u*dx,point[1]-a[1]-u*dy);
+  }));
+  const softened=samples.map((point,i)=>{
+    let x=0,y=0;
+    for(let j=-support;j<=support;j++) {
+      const sample=samples[(i+j+count)%count],weight=weights[j+support];
+      x+=sample[0]*weight;y+=sample[1]*weight;
+    }
+    const amount=smooth(2,6,clearanceAt(point));
+    return {distance:i*step,point:[point[0]+(x/weightSum-point[0])*amount,point[1]+(y/weightSum-point[1])*amount] as Point};
+  });
+  // Keep every original knot beside the selected wall. Uniform resampling
+  // alone could chord across its convex corners even if its samples stay put.
+  let distance=0;
+  points.forEach((point,i)=>{
+    if(clearanceAt(point)<=2+1e-8)softened.push({distance,point});
+    distance+=lengths[i];
+  });
+  return simplify(softened.sort((a,b)=>a.distance-b.distance).map(sample=>sample.point));
 }
 
 const retainedWorld = retainedContour.map(([x, y]) => [x + retainedSite.x, y + retainedSite.y] as const);
@@ -207,7 +233,7 @@ const poreOutlines = pockets.map(pocket => {
 });
 const obstacles = [-SECTION_SPAN, 0, SECTION_SPAN].flatMap(shift =>
   [retainedWorld, ...poreOutlines].map(outline => translated(outline, shift)));
-const worldContours = sites.map(site => site.retained ? retainedWorld : roundConvexCorners(visibleContour(site, bodyPartition(site), obstacles)));
+const worldContours = sites.map(site => site.retained ? retainedWorld : softenProfile(visibleContour(site, bodyPartition(site), obstacles)));
 
 function sharedSegments(a: readonly Point[], b: readonly Point[]): Segment[] {
   const result: Segment[] = [];
@@ -247,21 +273,49 @@ const columnSplits = new Map([[2, -39], [8, -25], [14, -49], [18, -18]]);
 // rather than a different chord approximation that could cross the first wall.
 const wallKnots = [...new Set([-112, 10, ...columnBottoms, ...columnSplits.values(),
   ...Array.from({ length: 16 }, (_, i) => -112 + i * 8)])].sort((a, b) => a - b);
-function wall(index: number, y: number): Point { return [columnEdges[index] + columnBows[index] * Math.sin((y + 112) / 122 * Math.PI), y]; }
+function wall(index: number, y: number): Point {
+  const xAt=(yy:number)=>columnEdges[index]+columnBows[index]*Math.sin((yy+112)/122*Math.PI);
+  const upper=wallKnots.findIndex(knot=>knot>=y);
+  if(upper<=0)return [xAt(y),y];
+  const a=wallKnots[upper-1],b=wallKnots[upper],u=(y-a)/(b-a);
+  return [xAt(a)+(xAt(b)-xAt(a))*u,y];
+}
+function wallSlope(index:number,y:number):number {
+  const upper=wallKnots.findIndex(knot=>knot>y);
+  const i=Math.max(1,upper<0?wallKnots.length-1:upper),a=wall(index,wallKnots[i-1]),b=wall(index,wallKnots[i]);
+  return (b[0]-a[0])/(b[1]-a[1]);
+}
 function palisadeProfile(index: number, top: number, bottom: number): readonly Point[] {
-  const ys = [top, ...wallKnots.filter(y => y > top && y < bottom), bottom];
-  const polygon = [wall(index, top), ...ys.map(y => wall(index + 1, y)), wall(index, bottom), ...ys.slice(1, -1).reverse().map(y => wall(index, y))];
-  const corners = new Set([0, 1, ys.length, ys.length + 1]), result: Point[] = [];
-  for (let i = 0; i < polygon.length; i++) {
-    const b = polygon[i];
-    if (!corners.has(i)) { result.push(b); continue; }
-    const a = polygon[(i + polygon.length - 1) % polygon.length], c = polygon[(i + 1) % polygon.length];
-    const q0 = Math.min(.3, 2.3 / Math.hypot(a[0] - b[0], a[1] - b[1])), q1 = Math.min(.3, 2.3 / Math.hypot(c[0] - b[0], c[1] - b[1]));
-    const start: Point = [b[0] + (a[0] - b[0]) * q0, b[1] + (a[1] - b[1]) * q0];
-    const end: Point = [b[0] + (c[0] - b[0]) * q1, b[1] + (c[1] - b[1]) * q1];
-    for (let j = 0; j <= 5; j++) { const t = j / 5, s = 1 - t; result.push([s * s * start[0] + 2 * s * t * b[0] + t * t * end[0], s * s * start[1] + 2 * s * t * b[1] + t * t * end[1]]); }
-  }
-  return result;
+  const rx=Math.min(9,(columnEdges[index+1]-columnEdges[index])*.38),ry=Math.min(rx,(bottom-top)*.18);
+  const lt=wall(index,top),rt=wall(index+1,top),lb=wall(index,bottom),rb=wall(index+1,bottom);
+  const result:Point[]=[[lt[0]+rx,top],[rt[0]-rx,top]];
+  const cap=(from:Point,control:Point,to:Point)=>{
+    const times=Array.from({length:16},(_,i)=>(i+1)/16);
+    const aa=from[1]-2*control[1]+to[1],bb=2*(control[1]-from[1]);
+    // Include every shared side-wall knot crossed by this cap, so the sampled
+    // curve stays inside the same piecewise-linear strip as its neighbour.
+    for(const y of wallKnots)if(y>Math.min(from[1],to[1])&&y<Math.max(from[1],to[1])) {
+      const cc=from[1]-y,root=Math.sqrt(Math.max(0,bb*bb-4*aa*cc));
+      for(const t of Math.abs(aa)<1e-12?[-cc/bb]:[(-bb+root)/(2*aa),(-bb-root)/(2*aa)])if(t>0&&t<1)times.push(t);
+    }
+    for(const t of times.sort((a,b)=>a-b)) {
+      const u=1-t,y=u*u*from[1]+2*u*t*control[1]+t*t*to[1];
+      const x=u*u*from[0]+2*u*t*control[0]+t*t*to[0];
+      result.push([Math.max(wall(index,y)[0],Math.min(wall(index+1,y)[0],x)),y]);
+    }
+  };
+  const rightTop=wall(index+1,top+ry),rightBottom=wall(index+1,bottom-ry);
+  cap(result[result.length-1],[rightTop[0]-wallSlope(index+1,top+ry)*ry,top],rightTop);
+  for(const y of wallKnots)if(y>top+ry&&y<bottom-ry)result.push(wall(index+1,y));
+  result.push(rightBottom);
+  cap(rightBottom,[rightBottom[0]+wallSlope(index+1,bottom-ry-1e-8)*ry,bottom],[rb[0]-rx,bottom]);
+  result.push([lb[0]+rx,bottom]);
+  const leftBottom=wall(index,bottom-ry),leftTop=wall(index,top+ry);
+  cap(result[result.length-1],[leftBottom[0]+wallSlope(index,bottom-ry-1e-8)*ry,bottom],leftBottom);
+  for(const y of [...wallKnots].reverse())if(y>top+ry&&y<bottom-ry)result.push(wall(index,y));
+  result.push(leftTop);
+  cap(leftTop,[leftTop[0]-wallSlope(index,top+ry)*ry,top],result[0]);
+  return simplify(result);
 }
 const palisadeTemplate: MesophyllCell[] = [];
 for (let i = 0; i < columnEdges.length - 1; i++) {

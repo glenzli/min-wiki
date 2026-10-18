@@ -1,5 +1,11 @@
 # 一片叶子的一生 / The life of a leaf
 
+## Softer tissue boundaries · 2026-10-19
+
+The first microscopy-informed version still overemphasised angular, unusual profiles. `mesophyllGeometry.ts` now samples each ordinary spongy boundary by arc length and smooths the complete contour at a fixed spatial scale, including inward pore joins. This blunts narrow tips and small zigzags while retaining larger shape/size differences and unequal air cavities. Weighted positions stay within the cell's convex ownership region; middle portions of long shared straight walls remain coincident. The retained cell and its immediate contact knots stay exact, preserving its 97-point identity through zoom.
+
+Palisade tips now use broader rounded caps joined to the same shared side-wall polylines. Cap samples include crossed side-wall knots, rather than adding independent rounded overlays. These are illustration choices, not a claim that every real leaf cell is circular or that the drawing reproduces a named specimen. The original model units, selected cell/compartment anatomy and seasonal state remain the same. The topic stays a draft; local preview and local commit only, no push or deployment.
+
 ## Microscopy-informed transverse section · 2026-10-19
 
 The current drawing replaces the earlier two rows of almost equal convex cells, narrow engineered contact necks and uniform grey-green gutters. Topic-owned `mesophyllGeometry.ts` now owns heterogeneous transverse profiles and irregular air cavities, with local shared boundaries rather than a required planar spanning tree. The parallel-to-leaf honeycomb arrangements discussed in Borsuk et al. are not copied into this transverse view. No fixed occupied-area percentage is a biological or aesthetic target; a two-dimensional section cannot establish three-dimensional porosity or all cell contacts.
