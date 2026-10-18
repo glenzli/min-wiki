@@ -263,6 +263,7 @@ class ScaleScene {
   }
   private mountQuestions() {
     this.questions.className = 'scale-questions';
+    this.questions.setAttribute('data-reader-prose', '');
     const heading = document.createElement('h2'); heading.textContent = copy.questionsTitle;
     const distance = document.createElement('details'), summary = document.createElement('summary'); summary.textContent = copy.distanceTitle;
     const intro = document.createElement('p'); intro.textContent = copy.distanceIntro;

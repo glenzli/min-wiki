@@ -3967,35 +3967,50 @@
   "categories": [
     {
       "id": "universe",
-      "name": "宇宙与星空",
+      "name": {
+        "zh": "宇宙与星空",
+        "en": "Space & Astronomy"
+      },
       "symbol": "✦",
       "theme": "dark",
       "description": "从恒星的旅程开始，观察引力怎样改变运动。"
     },
     {
       "id": "earth",
-      "name": "地球与自然",
+      "name": {
+        "zh": "地球与自然",
+        "en": "Earth & Nature"
+      },
       "symbol": "◒",
       "theme": "light",
       "description": "山川、海洋、天气，以及我们生活的这颗星球。"
     },
     {
       "id": "life",
-      "name": "生命与身体",
+      "name": {
+        "zh": "生命与身体",
+        "en": "Life & the Body"
+      },
       "symbol": "❋",
       "theme": "light",
       "description": "从一片叶子到我们的身体，认识生命怎样运转。"
     },
     {
       "id": "physics",
-      "name": "物质与现象",
+      "name": {
+        "zh": "物质与现象",
+        "en": "Physics & Matter"
+      },
       "symbol": "◎",
       "theme": "light",
       "description": "光、声音、力与变化，藏在日常生活里的问题。"
     },
     {
       "id": "engineering",
-      "name": "科技与工程",
+      "name": {
+        "zh": "科技与工程",
+        "en": "Technology & Engineering"
+      },
       "symbol": "⌘",
       "theme": "light",
       "description": "观察工具、机器和结构，理解它们怎样工作。"

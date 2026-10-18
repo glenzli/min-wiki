@@ -14,7 +14,7 @@ export function mountGlacierStudy(host:HTMLElement,language:'zh'|'en'):GlacierSt
  <div class="glacier-metrics" aria-label="${text.historyTitle}"></div><p class="glacier-equation" data-role="equation"></p>
  <p>${text.conditionNote}</p><section class="glacier-story"><h3 data-role="status"></h3><p data-role="explanation"></p></section>
  <div class="glacier-analysis"><section><h3>${text.annual}</h3><p data-role="annual-values"></p><svg data-role="budget" viewBox="0 0 600 160" role="img" aria-label="${text.annualLegend}"></svg><p>${text.annualLegend}</p></section><section class="glacier-column"><div><h3>${text.layerTitle}</h3><p>${text.layerNote}</p><p>${text.stores.snow} · ${text.stores.firn} · ${text.stores.ice}</p></div><svg data-role="layers" viewBox="0 0 280 255" role="img" aria-label="${text.layerNote}"></svg></section></div>
- <details><summary>${text.disclosure}</summary><p>${text.boundary}</p><h3>${text.sources}</h3><ul><li><a href="https://nsidc.org/learn/parts-cryosphere/glaciers/science-glaciers">NSIDC · Science of glaciers</a></li><li><a href="https://pubs.usgs.gov/fs/2009/3046/">USGS · Glacier mass balance</a></li></ul></details>`;
+ <details data-reader-prose><summary>${text.disclosure}</summary><p>${text.boundary}</p><h3>${text.sources}</h3><ul><li><a href="https://nsidc.org/learn/parts-cryosphere/glaciers/science-glaciers">NSIDC · Science of glaciers</a></li><li><a href="https://pubs.usgs.gov/fs/2009/3046/">USGS · Glacier mass balance</a></li></ul></details>`;
  host.append(root);
  const el=(role:string)=>root.querySelector<HTMLElement>(`[data-role="${role}"]`)!;
  const input=(role:string)=>el(role) as HTMLInputElement;

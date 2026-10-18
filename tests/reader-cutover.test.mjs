@@ -5,6 +5,15 @@ import {readCatalog} from '../src/catalog/data.mjs';
 import {narrationText,narrationStoryboard} from '../src/platform/learning/model.ts';
 const wiki=JSON.parse(readFileSync(new URL('../wiki.json',import.meta.url),'utf8'));
 const read=path=>readFileSync(new URL('../'+path,import.meta.url),'utf8');
+test('Reader categories carry bilingual names while editorial tools retain their Chinese projection',()=>{
+ const catalog=readCatalog();
+ assert.equal(catalog.categories.length,wiki.categories.length);
+ for(const category of wiki.categories){
+  for(const language of wiki.languages)assert.ok(category.name[language]?.trim(),category.id+' '+language);
+  assert.equal(catalog.categories.find(item=>item.id===category.id).name,category.name.zh);
+ }
+ for(const entry of wiki.entries)assert.ok(wiki.categories.some(category=>category.id===entry.category),entry.id);
+});
 test('every published identity has a Reader source and no stand-alone page shell',()=>{
  const catalog=readCatalog();assert.equal(wiki.entries.length,catalog.topics.length);
  for(const entry of wiki.entries){

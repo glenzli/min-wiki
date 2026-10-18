@@ -73,7 +73,7 @@
           <div id="explorer-travel" class="explorer-travel" hidden=""><button id="descent-play">开始下降</button><button id="descent-reset">返回起点</button><label><span id="explorer-progress-label">下降进度</span><input id="explorer-progress" type="range" min="0" max="1000" value="0" step="1"></label><output id="explorer-progress-text"></output></div>
           <div id="explorer-moons" class="explorer-moons" hidden=""></div>
           <p class="explorer-hint" id="explorer-hint"></p>
-          <details class="explorer-model"><summary>画面怎样表达真实世界</summary><p>整球参考观测外观，局部地貌是代表性重建。下降路线、云层运动、太阳活动和卫星绕行经过简化与加速，不是实时观测，也不表示飞行器能够承受这些环境。剖面厚度与颜色为教学示意。</p><p>卫星视图分别调整了天体大小与轨道间距，只展示代表成员；绕行周期的相对关系保留。太阳活动采用强调结构的颜色和尺度，不是肉眼或某个波段的实拍。</p><a href="/topics/planet-surfaces/?world=cancri">延伸：太阳系外的熔岩世界 →</a></details>
+          <details class="explorer-model" data-reader-prose><summary>画面怎样表达真实世界</summary><p>整球参考观测外观，局部地貌是代表性重建。下降路线、云层运动、太阳活动和卫星绕行经过简化与加速，不是实时观测，也不表示飞行器能够承受这些环境。剖面厚度与颜色为教学示意。</p><p>卫星视图分别调整了天体大小与轨道间距，只展示代表成员；绕行周期的相对关系保留。太阳活动采用强调结构的颜色和尺度，不是肉眼或某个波段的实拍。</p><a href="/topics/planet-surfaces/?world=cancri">延伸：太阳系外的熔岩世界 →</a></details>
         </section>
         <div id="canvas-container" class="space-scene">
           <div class="scene-corner"><span class="live-dot"></span><span id="scene-status">太阳居于中心 · 引力统领八星</span></div>
@@ -154,7 +154,7 @@
     <p>公转图按数据表中的偏心率与周期求解开普勒方程，表现椭圆轨道和快慢变化。每条轨道单独缩放，天体也经过放大，因此屏幕上的距离与球体大小不能直接比较。</p>
     <p>排排队将太阳与八大行星按同一个直径尺度绘制，并使用正交相机避免远近造成大小变化。天体间的间隔用于排版，补光用于看清轮廓。</p>
     <p>初始相位和轨道朝向为示意，不对应真实日期。模型不含多体摄动，月球和小行星带仅供辨认。时间轴一轮表示十二个模拟年；学术版的 a³/T² 由所选行星的数据表计算，单位为 AU³/年²。</p>
-    <div class="sources">
+    <div class="sources" data-reader-prose>
       <span class="small-label">数据来源与权威资料</span>
       <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noreferrer">行星贴图：Solar System Scope / INOVE ↗</a>
       <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">贴图许可：CC BY 4.0（球面映射、补光与云图叠加）↗</a>

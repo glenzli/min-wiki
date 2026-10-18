@@ -21,7 +21,7 @@
         <div id="regional-city-list" class="regional-city-list"></div>
         <p>日出取约值，均为本模型的北京时间。天色还受天气、大气和地形影响。</p>
         <button id="btn-tilt-experiment" class="regional-next" type="button">带着这座城市，比较地轴倾角 →</button>
-        <details class="academic-only regional-method">
+        <details class="academic-only regional-method" data-reader-prose>
           <summary>时钟与曙暮光怎么算？</summary>
           <p>北京时间按 UTC+8 显示。本模型将东经 120° 的地方太阳时作为钟表时间，省略均时差；城市坐标取约值。几何日出以太阳中心高度 0° 为界，不含折射和太阳视半径，不能用作日出预报。</p>
           <p>太阳中心在 −6° 到 0° 之间标为民用曙暮光；低于 −6° 仍可能有航海或天文曙暮光。地图颜色用于区分受光区域，不是天空亮度测量。</p>
@@ -172,7 +172,7 @@
     <p>采用圆轨道、固定地轴、球形地球与平行光。公转画面放大了地球，大小与轨道距离不按同一比例。四季场景一周公转仅显示八次自转，方便观察。昼夜场景的北京时间是省略均时差的 UTC+8 教学近似；其他场景的时间轴是模拟进度，均不表示当前真实日期和时刻。</p>
     <p>城市卡片的此刻太阳高度与昼夜贴图使用同一太阳方向。白昼时长是点太阳几何值，不含折射、地形和太阳视半径；极点在春秋分的太阳位于理想地平线，单独提示。</p>
     <p>“假如地轴不倾斜”保留公转，将倾角设为零，用于比较倾角造成的日照变化。“光照角度”只比较几何投影，不计算天气或温度。</p>
-    <div class="sources">
+    <div class="sources" data-reader-prose>
       <span class="small-label">权威资料与科学延伸</span>
       <a href="https://science.nasa.gov/earth/facts/" target="_blank" rel="noreferrer">NASA 地球科学档案 ↗</a>
       <a href="https://visibleearth.nasa.gov/collection/1484/blue-marble" target="_blank" rel="noreferrer">NASA Visible Earth: Blue Marble ↗</a>
