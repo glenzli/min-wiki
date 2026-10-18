@@ -68,6 +68,10 @@ export const SOLAR_TERMS = [
 
 export const MAJOR_CITIES = [
   {
+    id: 'harbin', displayName: t("哈尔滨"), nameEn: 'Harbin', lat: 45.8, lon: 126.6,
+    country: t("中国"), desc: t("与深圳比较：纬度更高，也更靠东。夏季日出较早同时受到纬度与经度影响。")
+  },
+  {
     id: 'beijing',
     displayName: t("北京"),
     nameEn: 'Beijing',
@@ -75,6 +79,18 @@ export const MAJOR_CITIES = [
     lon: 116.4,
     country: t("中国"),
     desc: t("北温带典型季风气候，四季分明。夏至白昼近 15 小时，冬至白昼仅 9 小时。")
+  },
+  {
+    id: 'shenzhen', displayName: t("深圳"), nameEn: 'Shenzhen', lat: 22.5, lon: 114.1,
+    country: t("中国"), desc: t("纬度比北京低，夏冬白昼长短的差别较小。和东北城市使用同一个北京时间。")
+  },
+  {
+    id: 'urumqi', displayName: t("乌鲁木齐"), nameEn: 'Urumqi', lat: 43.8, lon: 87.6,
+    country: t("中国"), desc: t("比北京更靠西，纬度也略高。北京时间下，太阳正午更晚；昼长还取决于纬度和季节。")
+  },
+  {
+    id: 'chengdu', displayName: t("成都"), nameEn: 'Chengdu', lat: 30.7, lon: 104.1,
+    country: t("中国"), desc: t("位于中国西南，比深圳更靠西、纬度更高。沿同一个时钟比较日出，可以一起观察经度与纬度的作用。")
   },
   {
     id: 'london',
@@ -131,6 +147,9 @@ export const MAJOR_CITIES = [
     desc: t("终年冰雪覆盖。一年只有一次日出和日落：半年是连续白昼（极昼），半年是连续黑夜（极夜）。")
   }
 ];
+
+// Approximate urban coordinates, shared by globe markers and readouts.
+export const CHINA_CITIES = MAJOR_CITIES.filter(city => ['harbin', 'beijing', 'shenzhen', 'urumqi', 'chengdu'].includes(city.id));
 
 /**
  * 计算公转进度下的太阳直射点纬度 (Subsolar Declination)

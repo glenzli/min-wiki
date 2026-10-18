@@ -2,7 +2,6 @@ import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import './style.css';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
 import { focusBox,wholeBox,mixBox,hasPart,hitPart,processFor,processState,respirationState,type Cell,type Part,type Process } from './model.ts';
@@ -168,7 +167,7 @@ el('cell-scene').addEventListener('click',(event)=>{
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();render();}});
 window.addEventListener('pagehide',()=>{stop();cancelCamera();cancelSurface();whole=wholeBox(cell);detail=focusBox(cell,part);outer=outerTarget;});
 window.addEventListener('pageshow',()=>{setCameras(whole,detail);render();});
-createScene();setCameras(whole,detail);render();mountReadingMode('details:not(.references)');mountTopicNavigation('cells');
+createScene();setCameras(whole,detail);render();mountReadingMode('details:not(.references)');
 
 const initialRoute = readCellRoute(location.search);
 let chapter: Chapter = initialRoute.chapter;

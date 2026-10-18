@@ -40,7 +40,7 @@ function harness(language='zh-CN',reduced=false){
     for(const child of node.childNodes??[])register(child,next);
     if(next?.tag==='select')next.value=(next.children.find(e=>'selected'in e.attributes)??next.children[0])?.value??'';
   }
-  register(parse(readFileSync(resolve(root,'index.html'),'utf8')));
+  register(parse(readFileSync(resolve(root,'reader.html'),'utf8')));
   const get=id=>{assert.ok(ids.has(id),'authored HTML contains '+id);return ids.get(id);};
   const document=new Target();document.hidden=false;document.body=new Element('body');document.getElementById=get;
   document.createElement=tag=>new Element(tag);document.querySelectorAll=selector=>{assert.equal(selector,'[data-mode]');return elements.filter(e=>'mode'in e.dataset);};

@@ -1,6 +1,5 @@
 import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { translateDocument, languageHref } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountTopicLearning } from '../../src/platform/learning/mount.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
@@ -11,7 +10,7 @@ import type { ChapterState, ChapterScene, ChapterDefinition, ViewOptions } from 
 import './style.css';
 
 translateDocument(t);
-mountTopicNavigation('black-holes', { learning: false });
+
 const el = (id: string) => document.getElementById(id)!;
 const input = (id: string) => el(id) as HTMLInputElement;
 const loaders = {

@@ -25,7 +25,7 @@ export class RainbowSimulation {
     ctx: CanvasRenderingContext2D;
     resizeObserver: ResizeObserver;
     private environment = new Image();
-    constructor(public container: HTMLElement) {
+    constructor(public container: HTMLElement, environmentURL = new URL('../assets/rain-afterglow.webp', import.meta.url).href) {
         const context = this.canvas.getContext('2d');
         if (!context)
             throw new Error('Canvas 2D unavailable');
@@ -36,7 +36,7 @@ export class RainbowSimulation {
         this.resizeObserver = new ResizeObserver(() => this.render());
         this.resizeObserver.observe(container);
         this.environment.onload = () => { this.lastRenderKey = ''; this.render(); };
-        this.environment.src = new URL('../assets/rain-afterglow.webp', import.meta.url).href;
+        this.environment.src = environmentURL;
         this.render();
     }
     selectScenario(sc: Scenario) { this.scenario = sc; this.progress = 0; this.isPlaying = false; this.render(); }

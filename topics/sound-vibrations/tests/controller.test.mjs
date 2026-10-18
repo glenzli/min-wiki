@@ -22,7 +22,7 @@ function harness(){
  }
  function register(tree,parent){if(tree.tagName){const el=new Element(tree.tagName,tree.attrs);parent.append(el);parent=el;}for(const child of tree.childNodes??[])register(child,parent);}
  const document=new Target(),body=new Element();document.hidden=false;document.body=body;document.documentElement=body;document.createElement=tag=>new Element(tag);document.createElementNS=()=>new Element();document.querySelectorAll=s=>body.querySelectorAll(s);document.querySelector=s=>body.querySelector(s);document.getElementById=id=>body.querySelector('#'+id);
- const root=path.resolve('topics/sound-vibrations');register(parseFragment(fs.readFileSync(path.join(root,'index.html'),'utf8')),body);
+ const root=path.resolve('topics/sound-vibrations');register(parseFragment(fs.readFileSync(path.join(root,'reader.html'),'utf8')),body);
  const window=new Target(),animations=[],frames=new Map();let frameId=0;const audio={created:0,stopped:0,disconnected:0,resume:[]};
  class AudioContext{currentTime=0;destination={};resume(){return new Promise(resolve=>audio.resume.push(resolve));}suspend(){}close(){}createOscillator(){audio.created++;return{frequency:{},connect(){},start(){},stop(){audio.stopped++;},disconnect(){audio.disconnected++;}};}createGain(){return{gain:{setValueAtTime(){},linearRampToValueAtTime(){},exponentialRampToValueAtTime(){}},connect(){},disconnect(){}};}}
  const location=new URL('https://wiki.test/topics/sound-vibrations/?lang=en&keep=1');

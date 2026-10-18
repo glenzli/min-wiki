@@ -1,9 +1,10 @@
+import {readCatalog} from '../src/catalog/data.mjs';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { narrationText, narrationStoryboard } from '../src/platform/learning/model.ts';
 
 const output = resolve(process.argv[2] ?? '/tmp/mini-wiki-narration');
-const catalog = JSON.parse(readFileSync(new URL('../content/catalog.json', import.meta.url), 'utf8'));
+const catalog = readCatalog();
 const english = JSON.parse(readFileSync(new URL('../src/platform/locales/en.json', import.meta.url), 'utf8'));
 mkdirSync(output, { recursive: true });
 const index = [];

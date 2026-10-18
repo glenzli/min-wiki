@@ -42,7 +42,7 @@ function harness(language='zh-CN',reduced=false){
     if(node.tagName){next=new Element(node.tagName,node.attrs);elements.push(next);parent?.append(next);if(next.attributes.id)ids.set(next.attributes.id,next);}
     for(const child of node.childNodes??[])register(child,next);
   }
-  register(parse(readFileSync(resolve(root,'index.html'),'utf8')));
+  register(parse(readFileSync(resolve(root,'reader.html'),'utf8')));
   const get=id=>{assert.ok(ids.has(id),'production markup must contain '+id);return ids.get(id);};
   const matches=(e,selector)=>selector==='.explorer-views'?e.attributes.class?.split(' ').includes('explorer-views'):selector==='[data-explore-view]'?'exploreView'in e.dataset:false;
   const document={hidden:false,body:new Element('body'),getElementById:get,

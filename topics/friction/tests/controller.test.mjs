@@ -33,7 +33,7 @@ function harness(search=''){
   }
   for(const child of node.childNodes??[])register(child);
  }
- register(parse(readFileSync(resolve(root,'index.html'),'utf8')));
+ register(parse(readFileSync(resolve(root,'reader.html'),'utf8')));
  const document=new Target();document.hidden=false;
  document.getElementById=id=>{assert.ok(ids.has(id),'real markup must contain '+id);return ids.get(id);};
  document.querySelectorAll=selector=>{const m=/^\[([\w-]+)\]$/.exec(selector);assert.ok(m,'unexpected selector '+selector);return elements.filter(e=>m[1] in e.attributes);};

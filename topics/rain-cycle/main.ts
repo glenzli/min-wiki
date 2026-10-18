@@ -1,5 +1,4 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument, language, languageHref } from '../../src/platform/i18n.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
@@ -18,7 +17,7 @@ translateDocument(t);
 const copy=language==='en'?content.en:content.zh;
 const studyLanguage=language==='en'?'en':'zh';
 document.title=copy.title;
-const root=document.querySelector('main')!;
+const root=document.querySelector('[data-wiki-document] .study-content')!;
 root.innerHTML=`<header class="hero"><p class="eyebrow">MINI WIKI · EARTH</p><h1>${copy.title}</h1><p class="intro">${copy.intro}</p></header>
 <div class="experiments" id="views" aria-label="${copy.views.basin}"></div>
 <nav class="slow-jumps" aria-label="${copy.longTime}"><span>${copy.longTime}</span><button data-study="ground">${copy.groundStudy}</button><button data-study="ice">${copy.glacierStudy}</button></nav>
@@ -36,7 +35,7 @@ root.innerHTML=`<header class="hero"><p class="eyebrow">MINI WIKI · EARTH</p><h
 ${(['ground','ice'] as const).map(id=>`<section class="long-study" id="${id}-study" hidden aria-label="${id==='ground'?copy.groundStudy:copy.glacierStudy}"><p class="study-bridge">${id==='ground'?copy.groundBridge:copy.iceBridge}</p><div class="study-status" id="${id}-study-status"><p role="status">${copy.loadingStudy}</p><button id="${id}-study-retry" hidden>${copy.retryStudy}</button></div><div id="${id}-study-host"></div><button class="return-to-batch" data-return="${id}">${copy.backToBatch}</button></section>`).join('')}
 <details class="grownups"><summary>${copy.notesTitle}</summary><p>${copy.notes}</p><h2>${copy.sources}</h2><ul><li><a href="https://www.usgs.gov/water-science-school/water-cycle">USGS · Water cycle</a></li><li><a href="https://gpm.nasa.gov/resources/faq/what-are-clouds-made-are-they-more-likely-form-polluted-air-or-pristine-air">NASA · Cloud droplets and ice</a></li><li><a href="https://wa.water.usgs.gov/pubs/fs/fs_rainier.html">USGS · Glacier flow</a></li></ul></details>
 <nav class="related"><h2>${copy.connections}</h2><a href="${languageHref('/topics/atmosphere/?view=motion')}">${copy.atmosphere}</a><a href="${languageHref('/topics/water-states/')}">${copy.phase}</a><a href="${languageHref('/topics/wind/')}">${copy.wind}</a></nav>`;
-mountTopicNavigation('rain-cycle');
+
 mountReadingMode('details:not(.references)');
 const el=(id:string)=>document.getElementById(id)!;
 const input=(id:string)=>el(id) as HTMLInputElement;

@@ -1,23 +1,29 @@
 {
   "name": "little-encyclopedia",
   "version": "1.0.0",
-  "description": "Interactive encyclopedia with independent learning topics and content-aware themes",
+  "description": "Bilingual science entries and topic-owned interactive studies for Wiki Reader",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npm run typecheck && npm run check:i18n && npm run check:images && vite build",
-    "preview": "vite preview",
+    "dev": "node scripts/wiki-reader.mjs serve --port 5175 --base /encyclopedia/",
+    "build": "npm run typecheck && npm run check:i18n && npm run check:images && npm run check:entries && npm run reader:build",
+    "preview": "node scripts/wiki-reader.mjs serve --port 5175 --base /encyclopedia/",
     "test": "node --import tsx --test",
     "typecheck": "tsc --noEmit",
     "check:i18n": "node scripts/check-i18n.mjs",
     "optimize:images": "node scripts/optimize-images.mjs",
     "check:images": "node scripts/optimize-images.mjs --check",
-    "report:payload": "node scripts/report-payload.mjs",
-    "check": "npm test && npm run build"
+    "reader:dev": "node scripts/wiki-reader.mjs serve --port 5175 --base /encyclopedia/",
+    "reader:build": "node scripts/wiki-reader.mjs build --out dist --base /encyclopedia/",
+    "reader:check": "node scripts/wiki-reader.mjs check --base /encyclopedia/",
+    "reader:coverage": "node scripts/reader-coverage.mjs",
+    "check": "npm test && npm run build && npm run reader:coverage -- --require-all",
+    "prepare:entries": "node scripts/prepare-entries.mjs",
+    "check:entries": "node scripts/prepare-entries.mjs --check"
   },
   "dependencies": {
     "i18next": "^26.4.2",
-    "three": "^0.170.0"
+    "three": "^0.170.0",
+    "@glenzli/wiki-reader": "git+ssh://git@github.com/glenzli/wiki-reader.git#edffa5438afaf5fdd47bdece8fae43debdd4fea4"
   },
   "devDependencies": {
     "@types/node": "^22.20.1",
@@ -25,8 +31,7 @@
     "parse5": "^8.0.1",
     "sharp": "0.35.4",
     "tsx": "^4.23.13",
-    "typescript": "~5.9.3",
-    "vite": "^6.0.0"
+    "typescript": "~5.9.3"
   },
   "engines": {
     "node": ">=22.12.0"

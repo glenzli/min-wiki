@@ -258,8 +258,8 @@
   "显示画面标注": "Show diagram labels",
   "当前不在成熟叶运输的观察范围内：幼叶尚未展开，或连接正在中断、已经脱落。可以回到成熟阶段。": "This is outside the mature-leaf transport example: the leaf has not expanded, or its connection is closing or detached. Return to maturity to explore.",
   "显微观察覆盖展开后的组织；幼芽内部发育与脱落后的细胞崩解未模拟。": "Microscopy covers expanded tissue; internal bud development and cellular breakdown after detachment are not simulated.",
-  "路线图不是上方枝条的等比例地图。这里选叶片下侧气孔为出口，并将它放大；实心液态水先在叶内变为空心水汽，再穿过气孔。": "This route is not a scale map of the branch above. This example uses an enlarged pore on the underside of the leaf. Filled liquid markers become hollow vapour markers inside the leaf before passing through the pore.",
   "液态水先从湿润的叶肉表面蒸发到叶内空隙，标记在这里从实心变为空心。": "Liquid water first evaporates from wet mesophyll surfaces into internal air spaces. Here the marker changes from filled to hollow.",
   "水已经变成叶内空隙里的水汽，正在向气孔扩散；此时还没有离开叶片。": "The water is now vapour in internal leaf air spaces, diffusing toward the pore. It has not left the leaf yet.",
+  "路线图不是上方枝条的等比例地图。这里选叶片下侧气孔为出口，并将它放大；实心液态水先在叶内变为空心水汽，再穿过气孔。": "This route is not a scale map of the branch above. This example uses an enlarged pore on the underside of the leaf. Filled liquid markers become hollow vapour markers inside the leaf before passing through the pore.",
   "空心水汽标记经这片示意叶的下侧气孔离开。气孔位置已放大；真实水汽通常看不见，不是叶子喷出水滴。": "The hollow vapour marker leaves through an enlarged pore on the underside of this illustrative leaf. Real vapour is normally invisible; the leaf is not spraying drops."
 }

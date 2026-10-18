@@ -1,7 +1,6 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { impactEnergy, DENSITY } from './model.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { CONTENT } from './content.ts';
@@ -10,7 +9,7 @@ import { TopicScene } from './scene.ts';
 import { readout } from './model.ts';
 import './style.css';
 translateDocument(t);
-mountTopicNavigation("lunar-craters");
+
 const el = (id: string) => document.getElementById(id)!;
 const value = (id: string) => (el(id) as HTMLInputElement | HTMLSelectElement).value;
 const number = (id: string) => Number(value(id));

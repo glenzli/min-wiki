@@ -1,4 +1,3 @@
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument, language } from '../../src/platform/i18n.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { t } from './i18n.ts';
@@ -8,7 +7,7 @@ import { initialState, selectDemo, selectTask, answerTask, selectClaim, checkCla
 import './style.css';
 
 translateDocument(t);
-mountTopicNavigation('ai');
+
 const pick = (words: { zh: string; en: string }) => language === 'en' ? words.en : words.zh;
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 let state = initialState();

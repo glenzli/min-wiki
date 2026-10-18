@@ -1,4 +1,3 @@
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
@@ -6,7 +5,7 @@ import { MessageJourney, HOP_COUNT, TOTAL_STEPS, stationForPosition, type Part, 
 import { t } from './i18n.ts';
 import './style.css';
 translateDocument(t);
-mountTopicNavigation('mobile-networks');
+
 const journey = new MessageJourney();
 const el = (id: string): HTMLElement => document.getElementById(id)!;
 const input = (id: string) => el(id) as HTMLInputElement;

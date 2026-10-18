@@ -1,14 +1,15 @@
+import {readCatalog} from '../src/catalog/data.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { findTopics, readFilters, validateCatalog, topicHref, PAGE_SIZE, paginate, readPage } from '../src/catalog/model.ts';
-import { resolveTheme, themePreference } from '../src/platform/theme.ts';
-const catalog=JSON.parse(readFileSync(new URL('../content/catalog.json',import.meta.url),'utf8'));
+import { resolveTheme, themePreference } from '@glenzli/wiki-reader/theme';
+const catalog=readCatalog();
 
 test('published topics have unique safe routes, known categories and deployable pages',()=>{
   assert.equal(validateCatalog(catalog),catalog);
   for(const topic of catalog.topics.filter(item=>item.status==='published')) {
-    assert.ok(existsSync(new URL(`..${topicHref(topic)}index.html`,import.meta.url)));
+    assert.ok(existsSync(new URL(`..${topicHref(topic)}entry.zh.md`,import.meta.url)));
   }
   for(const patch of [{id:'../escape'}, {category:'missing'}, {theme:'purple'}]) {
     const invalid=structuredClone(catalog); Object.assign(invalid.topics[0],patch);
@@ -28,7 +29,7 @@ test('published but unlisted topics keep their direct routes without appearing i
   const fixture=structuredClone(catalog);
   fixture.topics[0].listed=false;
   assert.equal(validateCatalog(fixture),fixture);
-  assert.ok(existsSync(new URL(`..${topicHref(fixture.topics[0])}index.html`,import.meta.url)));
+  assert.ok(existsSync(new URL(`..${topicHref(fixture.topics[0])}entry.zh.md`,import.meta.url)));
   assert.ok(!findTopics(fixture).some(item=>item.id===fixture.topics[0].id));
   assert.deepEqual(findTopics(fixture,{query:fixture.topics[0].title}),[]);
   for(const listed of ['false',null,0]) {
@@ -44,7 +45,7 @@ test('editorial curation retains five published legacy pages outside discovery',
     const topic=catalog.topics.find(item=>item.id===id);
     assert.equal(topic.status,'published');
     assert.equal(topic.listed,false);
-    assert.ok(existsSync(new URL(`..${topicHref(topic)}index.html`,import.meta.url)));
+    assert.ok(existsSync(new URL(`..${topicHref(topic)}entry.zh.md`,import.meta.url)));
     assert.ok(!findTopics(catalog,{query:topic.title}).some(item=>item.id===id));
   }
   assert.equal(findTopics(catalog).length,41);

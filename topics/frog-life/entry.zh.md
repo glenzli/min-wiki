@@ -1,0 +1,70 @@
+<!-- wiki-learning:start -->
+
+长大只是身体变大吗？蝌蚪、毛毛虫和蝗虫的成长路线有什么不同？
+
+分别观察蛙的四肢与尾巴、蝶蛹内部及羽化后的翅膀准备；进入并排比较，切换身体、食物、呼吸和运动四个角度。两侧进度独立，不按同样天数或大小对齐。
+
+## 同一个体，连续发育；两种案例，不同时间
+
+本页保留蛙的连续形态变化和蝴蝶的阶段观察，并以共同问题比较生活方式。典型蛙类的后腿先明显可见，前腿随后露出，四肢与尾巴会共存；尾吸收涉及调控的细胞死亡、组织分解与材料回收。蛙苗只是变态后的幼体，还需继续生长到性成熟。蝴蝶的卵、幼虫、蛹、成虫也是同一个体的阶段；循环回到卵表示繁殖产生下一代，而不是成年个体倒退。配对按钮只对齐问题，不把两种动物的年龄、体长或持续时间设为相同。
+
+## 结构改变与取食、呼吸、运动互相联系
+
+外形变化只是发育的一部分。蛙的口部与消化道调整，鳃、皮肤和肺的气体交换贡献发生变化；肺功能在有些蝌蚪阶段就已出现，不是四肢长好才突然开启。蝴蝶幼虫通过取食积累储备，蛹期外部活动减少但代谢与组织重塑持续；并非所有组织溶为一团无结构的液体。昆虫的气门与气管系统不同于蛙的肺。羽化后的翅需要体液辅助展开并逐渐硬化；可见翅膀并不表示立即适合飞行。
+
+## 比较路线，不用一条路线概括所有动物
+
+蝴蝶卵—幼虫—蛹—成虫的路线是昆虫完全变态；蝗虫卵—若虫—成虫的路线没有独立蛹期，属于昆虫不完全变态。若虫通常与成虫较相似，在多次蜕皮中继续发育；这些昆虫类别不用于给蛙归类。部分蛙直接在卵内发育，没有自由游泳的蝌蚪期。食谱、寄主植物、发育速度也依物种和环境变化。第三案例仅为路线图，蛹透视是解释图；图形不提供解剖测量、统一发育天数或真实运动模拟。
+
+## 容易误解的地方
+
+蛙尾逐渐吸收，不是整条掉下；蛹仍在发育，不是在睡觉。不是所有变态都有蛹，蛙也不属于昆虫完全／不完全变态的分类。
+
+## 模型边界
+
+代表性、放大的形态示意，不对应特定物种的天数、大小或器官测量。部分蛙直接发育、没有自由游泳蝌蚪；蝴蝶各阶段是同一个体的观察快照，不是连续解剖重建。图中蛙苗还需生长成熟，下一代卵来自之后的繁殖。观察野生动物请留在原处，不触碰蛹或翅。
+
+## 资料来源
+
+- [Australian Museum — Frog life cycle](https://australian.museum/learn/teachers/learning/frog-life-cycle/)
+- [Natural History Museum — Tadpole vision and development](https://www.nhm.ac.uk/discover/news/2022/november/tadpoles-have-eye-on-future-as-vision-develops.html)
+- [Wang et al. — Gene Expression Program Underlying Tail Resorption During Thyroid Hormone-Dependent Metamorphosis](https://www.frontiersin.org/journals/endocrinology/articles/10.3389/fendo.2019.00011/full)
+- [Florida Museum — Butterfly and moth frequently asked questions](https://www.floridamuseum.ufl.edu/discover-butterflies/faq/)
+- [U.S. Fish and Wildlife Service — Monarch life cycle](https://www.fws.gov/species/monarch-danaus-plexippus)
+- [Smithsonian Gardens — About Butterflies](https://gardens.si.edu/learn/for-educators/cultivating-habitat/butterfly-gardening/about-butterflies/)
+- [Natural History Museum — Frogspawn, tadpoles and froglets](https://www.nhm.ac.uk/discover/frogspawn-tadpoles-and-froglets.html)
+- [AMNH — Metamorphosis in arthropods](https://www.amnh.org/learn-teach/curriculum-collections/biodiversity-counts/arthropod-identification/arthropod-morphology/metamorphosis-in-arthropods)
+- [NSW Department of Education — Grasshopper fact sheet](https://fieldofmar-e.schools.nsw.gov.au/fact-sheets/invertebrates/grasshopper-fact-sheet)
+- [Oregon State University — Insect internal anatomy](https://open.oregonstate.education/entomology-lab-manual/chapter/lab-2-assignment-internal-anatomy/)
+- [Burggren & West (1982) — Changing respiratory importance of gills, lungs and skin during metamorphosis in the bullfrog](https://pubmed.ncbi.nlm.nih.gov/6803316/)
+- [Australian Biological Resources Study — Amphibian morphology and physiology](https://www.dcceew.gov.au/sites/default/files/env/pages/dc11235d-8b3b-43f7-b991-8429f477a1d4/files/04-fauna-2a-amphibia-morphology.pdf)
+
+## 讲给孩子听 {#narration}
+
+[下载纯口播稿](narration.zh.txt?download) · [下载分镜稿](narration.zh.storyboard.txt?download)
+
+### 长大不只是变大
+
+先看看池塘里的卵。孵出来的蝌蚪有长尾巴，却和岸边的青蛙很不一样。再去叶片上看看蝴蝶的卵，它出来的是毛毛虫，不是小翅膀蝴蝶。我们跟着两只不同的小动物，各自记住成长进度，看看身体会带来哪些新本领。
+
+*画面提示: 分别访问蛙和蝶的幼体观察，再回到蛙。*
+
+### 腿长出来，尾巴还在
+
+把蛙的进度慢慢往前推。先看后腿，再找前腿。现在停一停：四条腿已经出现，尾巴还在！尾巴会慢慢被身体吸收，一些材料重新利用，不是整条掉到水里。最后出现的蛙苗还没成熟，它以后还要继续长大。
+
+*画面提示: 暂停在四肢与尾巴共存处，再缓慢观察尾吸收。*
+
+### 蛹里不是睡大觉
+
+来到蝴蝶这边，选中蛹并打开内部示意。外面安静，里面却在继续发育。幼虫攒下的储备帮助身体变化。选成虫后再慢慢观察翅膀：先小而皱，再展开，还要等它逐渐硬化。画面让我们看清步骤，并不是蝴蝶真实生活只需要这么几秒。
+
+*画面提示: 揭示蛹内部，再播放和暂停羽化后的独立翅膀进度。*
+
+### 同一个问题，不同的答案
+
+把两只动物并排看，换成食物、呼吸或运动，你发现什么？它们不是同时出生、同样快长大。再看蝗虫的路线：卵、若虫、成虫，中间没有蛹。原来动物有不同的成长方法。观察真实小动物时，让它留在自己的家里，不去碰脆弱的蛹和翅膀。
+
+*画面提示: 进入比较页，切换四个角度，最后观察蝗虫无蛹路线图。*
+
+<!-- wiki-learning:end -->

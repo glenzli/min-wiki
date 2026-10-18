@@ -1,12 +1,11 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { buoyancy, type Settings, type Experiment, type ObjectKind } from './model.ts';
 import './style.css';
 import { BuoyancyScene } from './scene.ts';
 translateDocument(t);
-mountTopicNavigation('buoyancy');
+
 const el = (id:string)=>document.getElementById(id)!;
 const state:Settings={experiment:'objects',object:'wood',boat:false,cargo:0,salt:false,depth:50,boatCapacity:1400};
 let academic=false;

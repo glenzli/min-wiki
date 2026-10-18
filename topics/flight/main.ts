@@ -1,6 +1,5 @@
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { t } from './i18n.ts';
 import { flightSnapshot, type FlightSnapshot, type Conditions } from './model.ts';
@@ -62,4 +61,4 @@ function pauseHidden() { stop(); update(); }
 document.addEventListener('visibilitychange', () => { if (document.hidden) pauseHidden(); });
 window.addEventListener('pagehide', pauseHidden); reduced.addEventListener('change', pauseHidden);
 matchMedia('(max-width: 600px)').addEventListener('change', update);
-update(); mountTopicNavigation('flight'); mountReadingMode('details.advanced');
+update();  mountReadingMode('details.advanced');

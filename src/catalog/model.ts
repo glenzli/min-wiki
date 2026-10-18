@@ -1,6 +1,5 @@
-import type catalogData from '../../content/catalog.json';
-export type Topic = (typeof catalogData)['topics'][number] & { parentTopic?: string; listed?: boolean };
-export type Catalog = Omit<typeof catalogData, 'topics'> & { topics: Topic[] };
+export interface Topic {id:string;title:string;summary:string;category:string;tags:string[];duration:string;modes:string[];theme:string;sceneTheme:string;status:string;updated:string;parentTopic?:string;listed?:boolean;}
+export interface Catalog {categories:{id:string;name:string;theme:string;symbol:string;description:string}[];topics:Topic[];}
 export const PAGE_SIZE = 24;
 const ID = /^[a-z][a-z0-9-]*$/;
 export const topicHref = (topic: Pick<Topic, "id">) => `/topics/${topic.id}/`;

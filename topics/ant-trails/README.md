@@ -10,7 +10,7 @@
 - `renderer.ts`：固定工蚁/踪迹 DOM 节点、镜头、形态高亮、有限照料动作。暂停时镜头收敛到已选站，不改旅程进度；旧回调无效。
 - `workspace.ts`：双语工作台、控件、解释、页面/可见性清理与 URL。没有外部模型、iframe、后台循环或网络依赖。
 - `content.json`：完整中英正文；`learning.json` 的3条 academic 与4条 narration 是共享伴读摘要，不是正文上限。
-- `catalog-entry.json`/`catalog-en.json` 是本专题登记片段；`content/catalog.json` 才是 canonical 注册。原封面保留，来源见 `COVER.md`。
+- `catalog-entry.json`/`catalog-en.json` 是本专题登记片段；`wiki.json` 才是 canonical 注册。原封面保留，来源见 `COVER.md`。
 
 ## 连贯观察路径
 

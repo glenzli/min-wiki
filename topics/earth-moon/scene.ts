@@ -2,9 +2,9 @@ import { animateValue } from '../../src/visuals/transition.ts';
 import { teachingDistanceScale, updateTeachingLens, retreatPosition } from '../../src/visuals/teachingCamera.ts';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import earthURL from './assets/2k_earth_daymap.jpg';
-import moonURL from './assets/2k_moon.jpg';
-import cloudURL from './assets/2k_earth_clouds.jpg';
+import earthURL from './assets/2k_earth_daymap.webp';
+import moonURL from './assets/2k_moon.webp';
+import cloudURL from './assets/2k_earth_clouds.webp';
 import { moonPosition, DISTANCE_EARTH_RADII, MOON_EARTH_RADIUS_RATIO, SYNODIC_DAYS, phaseIndex, LUNAR_MAP_ROTATION } from './model.ts';
 import { MoonObserver } from './observer.ts';
 import type { Settings } from './model.ts';
@@ -40,7 +40,7 @@ export class TopicScene {
   private width = 1;
   private height = 1;
   private caption = document.createElement('div');
-  constructor(private canvas: HTMLCanvasElement) {
+  constructor(private canvas: HTMLCanvasElement, private root: ParentNode = document) {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false });
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     this.world.background = new THREE.Color('#091423');
@@ -78,12 +78,13 @@ export class TopicScene {
     this.controls.addEventListener('start', () => { this.cancelViewMotion(); this.viewBlend = 1; });
     for (const text of [t('地球'), t('月球')]) { const label = document.createElement('div'); label.className = 'object-label'; label.textContent = text; canvas.parentElement!.append(label); this.labels.push(label); }
     this.caption.className = 'scene-caption'; canvas.parentElement!.append(this.caption);
-    this.phaseCanvas = document.getElementById('phase') as HTMLCanvasElement;
+    this.phaseCanvas = this.root.querySelector('#phase') as HTMLCanvasElement;
     this.moonObserver = new MoonObserver(this.phaseCanvas, lunarSurface, this.marker);
     this.observer = new ResizeObserver(() => this.resize()); this.observer.observe(canvas); this.resize();
   }
   private resize() { this.cancelViewMotion(); this.viewBlend = 1;
     this.width = this.canvas.clientWidth; this.height = this.canvas.clientHeight;
+    if (!this.width || !this.height || this.disposed) return;
     this.renderer.setSize(this.width, this.height, false); this.camera.aspect = this.width / this.height; updateTeachingLens(this.camera, this.controls.target); const lensScale = teachingDistanceScale(this.camera.aspect, 42); this.controls.minDistance = 8 * lensScale; this.controls.maxDistance = 200 * lensScale;
     this.setCamera(); this.render();
   }
@@ -110,7 +111,7 @@ export class TopicScene {
     this.canvas.parentElement!.classList.toggle('observer-focus', earthView);
     this.controls.enabled = !earthView;
     this.canvas.setAttribute('aria-hidden', String(earthView));
-    const observerToggle = document.getElementById('observer-toggle')!;
+    const observerToggle = this.root.querySelector('#observer-toggle')!;
     observerToggle.textContent = earthView ? t('回到地月轨道') : t('放大地球视角');
     observerToggle.setAttribute('aria-expanded', String(earthView));
     this.earth.position.set(real ? -DISTANCE_EARTH_RADII / 2 : 0, 0, 0); this.earth.scale.setScalar(real ? 1 : 2.2);
@@ -139,13 +140,20 @@ export class TopicScene {
   private drawPhase(p: number) {
     this.moonObserver.draw(p, this.settings.guides);
     const names = [t('新月'), t('娥眉月'), t('上弦月'), t('盈凸月'), t('满月'), t('亏凸月'), t('下弦月'), t('残月')];
-    document.getElementById('phase-title')!.textContent = names[phaseIndex(p)];
+    this.root.querySelector('#phase-title')!.textContent = names[phaseIndex(p)];
   }
   private render() {
     if (this.disposed) return;
     this.renderer.render(this.world, this.camera);
     if (!this.labels.length) return;
     [this.earth, this.moon].forEach((body, i) => { const v = body.position.clone().add(new THREE.Vector3(0, -body.scale.x - .6, 0)).project(this.camera); const label = this.labels[i]; label.style.left = `${Math.max(30, Math.min(this.width - 35, (v.x + 1) * .5 * this.width))}px`; label.style.top = `${(1 - v.y) * .5 * this.height}px`; label.hidden = this.view === 'earth' || v.z > 1 || v.z < -1; });
+  }
+  /** Settle presentation motion without changing the selected physical state. */
+  settleView() {
+    const moving = this.viewBlend < 1;
+    this.cancelViewMotion(); this.viewBlend = 1;
+    if (moving) { this.camera.position.copy(this.toCamera); this.controls.target.copy(this.toTarget); this.controls.update(); }
+    this.draw(this.progress, this.settings, this.view);
   }
   dispose() {
     this.cancelViewMotion(); this.disposed = true; this.observer.disconnect(); this.moonObserver.dispose(); this.controls.dispose(); this.textures.forEach(t => t.dispose()); this.labels.forEach(l => l.remove()); this.caption.remove();

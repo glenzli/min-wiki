@@ -1,3 +1,4 @@
+import {readCatalog} from '../src/catalog/data.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
@@ -7,7 +8,7 @@ import { legacyWaterURL } from '../topics/leaf-colors/lifecycle.ts';
 import { waterHref } from '../topics/rain-cycle/watershedModel.ts';
 import { stellarDestination } from '../topics/sun-star/migration.ts';
 
-const catalog = JSON.parse(readFileSync(new URL('../content/catalog.json', import.meta.url), 'utf8'));
+const catalog = readCatalog();
 const parents = { 'body-cells':'cells', 'blood-cells':'cells', 'plant-water':'leaf-colors', 'rain-formation':'rain-cycle', 'ground-water':'rain-cycle', 'river-paths':'rain-cycle', 'sun-star':'stars' };
 test('learning journeys have one discoverable owner and retain buildable old entries', () => {
   validateCatalog(catalog);
@@ -16,7 +17,7 @@ test('learning journeys have one discoverable owner and retain buildable old ent
     const topic = catalog.topics.find(t => t.id === child);
     assert.equal(topic.parentTopic, parent);
     assert.ok(!visible.includes(child)); assert.ok(visible.includes(parent));
-    assert.ok(existsSync(new URL(`../topics/${child}/index.html`, import.meta.url)));
+    assert.ok(existsSync(new URL(`../topics/${child}/reader.html`, import.meta.url)));
     assert.ok(findTopics(catalog, { query: topic.title }).some(t => t.id === parent));
   }
   for (const independent of ['atmosphere', 'cosmic-scale', 'wind', 'water-states', 'earth-moon', 'black-holes']) assert.ok(visible.includes(independent));

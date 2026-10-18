@@ -2,14 +2,14 @@ import type { Planet } from '../data/planetsData.ts';
 import * as THREE from 'three';
 import mercury from '../assets/2k_mercury.webp';
 import venus from '../assets/2k_venus_atmosphere.webp';
-import earth from '../assets/2k_earth_daymap.jpg';
-import clouds from '../assets/2k_earth_clouds.jpg';
+import earth from '../assets/2k_earth_daymap.webp';
+import clouds from '../assets/2k_earth_clouds.webp';
 import mars from '../assets/2k_mars.webp';
 import jupiter from '../assets/2k_jupiter.webp';
 import saturn from '../assets/2k_saturn.webp';
 import uranus from '../assets/2k_uranus.webp';
 import neptune from '../assets/2k_neptune.webp';
-import moon from '../assets/2k_moon.jpg';
+import moon from '../assets/2k_moon.webp';
 import rings from '../assets/2k_saturn_ring_alpha.png';
 const urls: Record<string,string>={mercury,venus,earth,mars,jupiter,saturn,uranus,neptune,moon};
 

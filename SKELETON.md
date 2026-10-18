@@ -1,11 +1,17 @@
-# Source boundaries
+# Mini Wiki source responsibilities
 
-- `content/catalog.json`: lightweight category and topic registry; no simulation state or imports.
-- `src/catalog/`: encyclopedia discovery, URL filters, bounded list projection and generic covers. `model.ts` is the build/runtime metadata contract.
-- `src/visuals/`: content-free rendering utilities. `blackHoleOptics.ts` owns camera-dependent ray integration and material disposal; `canvasSurface.ts` owns Canvas sizing and drawing primitives. `cloudTexture.ts` owns cached procedural cloud density and lighting textures; topic dynamics remain local. `teachingCamera.ts` owns the content-free narrow-lens projection and distance compensation. These utilities do not own topic dynamics, controls or language.
-- `src/platform/`: language selection and URL propagation (`i18n.ts`), shared English messages (`locales/en.json`), appearance preferences, semantic color tokens and topic navigation. `topicPresentation.css` owns the topic reading width, typography, control metrics and card treatment across layout families; scientific scene geometry and palettes remain topic-owned. No topic renderer dependencies.
-- `topics/<id>/`: complete independent topic, including HTML entry, renderer, content, references, styles, cover and focused tests. Full-page navigation owns the document lifetime.
-- `topics/black-hole/`: migrated black-hole experience. Physics, worker, rendering and audio retain their previous boundaries; `main.ts` composes topic controls and shared navigation.
+- `wiki.json`: the single bilingual entry, editorial metadata and compatibility-route registry.
+- `topics/<id>/`: each topic owns science, clocks, observations, renderer, interaction, manuscript, learning data, sources, assets and tests. `reader.html` is the outer experiment fragment; internal `study.html`/`panel.html` files remain owned by their substudies.
+- `src/catalog/`: editorial validation and search semantics; its data projection reads `wiki.json` and has no catalog UI.
+- `src/platform/i18n.ts`, `locales/`, `learning/`: authored translations, local data selection and narration semantics. Presentation facades point to the independent Reader.
+- `src/visuals/`: shared mathematical/rendering primitives, without a site shell or topic scientific state.
+- `scripts/prepare-entries.mjs`: checked Markdown and narration projection from authored learning data.
+- `scripts/wiki-reader.mjs`: thin command bridge to the installed/selected Reader; no server or build implementation.
+- `scripts/reader-coverage.mjs`, `tests/`: completeness, routing, content, model and production-controller contracts.
+
+Reader owns navigation, themes, preview, static compilation, assets/Workers, scoped study presentation and the Codex preview plugin. Details: [architecture](docs/architecture.md). Topic scientific boundaries below remain applicable.
+
+- `topics/black-hole/`: migrated black-hole experience. Physics, worker, rendering and audio retain their previous boundaries; `main.ts` retains the content-owned compatibility redirect into `black-holes`.
 - `topics/galactic-center/`: companion binary with detached, overflowing and wind-fed scenarios; barycenter, gas paths and Three.js scene stay here. The old URL is retained.
 - `topics/planet-black-hole/`: independent density comparison and continuous parcel encounter; deterministic frame buffers belong to its model, Three.js rendering and bounded cache to its scene.
 - `topics/leaf-colors/`: owns one leaf's lifecycle, shared branch/leaf deformation, yellow/red pigment pathways and whole-leaf-to-compartment continuity. Water transport consumes the timer-free renderer in `plant-water/scene.ts`; its old entry redirects to the leaf water view.
@@ -13,8 +19,8 @@
 - `topics/saturn-moons/`: compatibility entry redirects to the integrated Saturn satellite view; its sourced satellite dataset remains consumed by solar-system. Legacy scene files are no longer entry points.
 - `topics/lunar-craters/`: impact energy, ballistic ejecta and illustrative simple-crater excavation.
 - `topics/volcano-eruption/`: unified case/chapter/view/playback and landform history; `projectModel.ts` and `landscapeScene.ts` own persistent deposit growth and later vegetation/erosion. The existing eruption model/scene retain single-eruption physics.
-- `topics/submarine-volcanoes/`: underwater process model and renderer consumed by the unified volcano owner; main/index preserve compatibility through redirects.
-- `topics/volcanic-lakes/`: lake process model and renderer consumed by the unified volcano owner; main/index preserve compatibility through redirects.
+- `topics/submarine-volcanoes/`: underwater process model and renderer consumed by the unified volcano owner; main/reader preserve compatibility through redirects.
+- `topics/volcanic-lakes/`: lake process model and renderer consumed by the unified volcano owner; main/reader preserve compatibility through redirects.
 - `topics/typhoon/`: ocean/shear/hemisphere conditions and broad tropical-cyclone circulation.
 - `topics/tornado/`: a supercell-related vorticity pathway with condensation visibility independent of near-ground circulation.
 - `topics/planet-surfaces/`: eight worlds with draggable terrain, orbital globe and center-reaching cutaway views. `interior-data.json` owns bilingual layer/evidence profiles; `interior.ts` owns radial selection. `camera.ts` owns bounded camera motion; `terrain3d.ts` owns stable relief and materials; `scene3d.ts` owns GPU resources and gestures. `scene.ts` coordinates lazy 3D, Canvas fallback, cancellable worker preparation and bounded caches. `surfacePainter.ts` / `surfaceWorker.ts` own deterministic raster textures. The topic UI owns travel, camera playback and external layer explanations. Shapes and thicknesses are illustrative, not observed maps or measured depths.
@@ -35,45 +41,30 @@
 - `topics/microbes-everywhere/`: unified habitat/cell/host exploration and bounded chapter state; `bacteria/` retains reference-cell structure, exchange and division, while `viruses/` retains phage-host compatibility and continuous replication geometry. Their old entries route to the corresponding chapter. Reference bacteria, environmental communities and the phage host are explicitly different examples. Cell/organism-wide specialization remains independently owned by `cells/`.
 - `topics/tap-water/`, `handwashing/`: water composition and boiling limits, and soap-assisted handwashing; each owns its everyday-safety illustrations, bounded interactions, bilingual explanations and primary references.
 - `topics/<id>/i18n.ts` and `locales/en.json`: topic-owned translations, loaded only with that topic. Chinese source messages are the fallback; do not import another topic to reuse its text.
-- `scripts/check-i18n.mjs`: source/HTML/metadata translation coverage, interpolation and template-contract checks.
-- `tsconfig.json`: strict TypeScript for browser code, simulations, workers and build configuration; Vite emits the static site.
-- `tests/`: catalog and shared platform contracts. The native Node runner also discovers tests inside each topic.
-- `vite.config.ts`: registered published topics become actual multi-page build entries. `dist/` is generated, not versioned.
-
-Start with `docs/architecture.md` when adding a topic. Do not move simulation engines or scientific content into the catalog or platform merely to reuse a layout.
-
-- `src/platform/readingMode.ts`: content-free reading-mode controls for step-based topics; each topic selects its own deeper notes. Switching preserves experiment state and sources remain accessible.
-- `src/platform/observationMode.ts` and its CSS own reversible immersive presentation, optional panel disclosure, viewport fitting, focus and scroll restoration. Scientific state, playback and canvas geometry remain topic-owned.
-- `src/platform/presentation.ts` and `presentation.css`: opt-in scene/transport/notes framing for topic-selected DOM. Reparents existing nodes without replacing controllers or owning scientific state; topics retain scene geometry, model qualifiers and chapter integration. Mobile uses natural reading flow; desktop and immersive layouts share the existing observation-mode lifecycle.
-- `src/platform/learning/`: lazy presentation of topic-owned bilingual observation prompts, academic notes and narration; exports spoken text separately from visual directions. Topic prose lives in `topics/<id>/learning.json` and loads only for the current page.
-- `src/platform/sceneReading.ts` and CSS: shared layout and reading-mode state for scene-specific child summaries and below-stage academic guides. Science, source links and scene selection stay in each participating `topics/<id>/study.ts`; the i18n checker validates their explicit `w(zh, en)` pairs.
-- `src/platform/disclosure.ts`: finite native-details transitions, including rapid reversal. `src/visuals/transition.ts` owns reduced-motion-aware numeric interpolation; model state and trajectories remain with topics.
-- `scripts/export-narration.mjs`: exports all published topic scripts and storyboards; `docs/narration.md` documents the audio-production boundary.
-- `topics/electronics-circuits/`: owns a manual battery/lamp loop and a separately powered sensing/control branch. Its deterministic state keeps power, return-wire continuity, switch contacts, sensed light and electronic switching distinct; battery chemistry remains in `batteries/`.
-- `topics/programs/`: owns a finite instruction interpreter, persistent cart/parcel states, single sampled branch input and debugging scenarios. The overlap guard is a screen-model constraint, not undocumented physical sensing. No user code is evaluated.
-- `topics/ai/`: owns concept comparisons and prewritten local tasks/examples, including supplied-image versus generated-image roles, situational choice history, privacy choices and evidence prompts. It implements no real model API, training, image inference or child-data input.
-- `topics/mobile-networks/`: owns the recorded message-part snapshots, launch-station identities, connection gates, bounded replay and distinct delivered/read state. The SVG depicts a representative online-chat topology, not a cellular protocol or security simulation.
-- `topics/flight/`: owns a hypothetical coefficient model, relative-flow/angle geometry, force vectors, unilateral ground support and deterministic vertical response. Its illustrative streamlines are not CFD, measured airfoil data or an aircraft-performance model.
-
 - `topics/pain-signals/`: nociceptive pathways, spinal withdrawal reflex and conscious pain, with a safe virtual stimulus and explicit model limits.
 - `topics/taste-smell/`: oral/nasal anatomy, taste-bud signal transduction and retronasal smell; flavor is distinct from the five taste qualities.
 - `topics/blood-cells/`: red-cell oxygen delivery, neutrophil migration/phagocytosis and platelet/fibrin clotting as three independent processes.
 - `topics/body-cells/`: epithelial barrier, skeletal-muscle filament sliding and a myelinated-neuron chemical synapse, with topic-owned state and illustrations.
-
 - `topics/sound-vibrations/`: sound-journey composition, common pitch/amplitude conditions, ideal-string and causal air-parcel study, plus fixed-time frequency/amplitude and independent air/vacuum comparisons. `topics/hearing/` retains air-conduction mechanics, cochlear place comparison and inner-hair-cell transduction in a scoped scene/study; its old entry routes to the ear chapter. Conditions are shared but clocks are independent; qualitative cochlear coordinates are not calibrated to synthesized frequencies.
 - `topics/soap-bubbles/`: fixed-volume shape comparison, spherical-film drainage and two-interface interference; whole-bubble and enlarged-film views share the selected patch and thickness.
 - `topics/digestion/`: connected digestive-tract journey, intestinal peristalsis and epithelial absorption; whole-body and villus observation windows distinguish bloodstream and lymphatic transport.
-
 - `topics/air-conditioner/`: cooling-journey composition and room-boundary comparison, plus its original closed refrigerant path, phase/pressure and cooling/fan-only/condensate model. Device states have independent clocks and units under a common cold-end/work/hot-end explanation.
 - `topics/refrigerator/`: cabinet/food heat balances, thermostat cycling, door loads and circuit study, consumed by the cooling journey; its old entry redirects to the fridge chapter. It does not become a universal refrigerant-property engine.
 - `topics/batteries/`: one retained battery experiment across load, cell, depletion and externally powered charging chapters. `journeyModel.ts` owns energy history, replay and compatibility conditions; `scene.ts` projects circuit/cell/load anatomy. `journeyContent.json` and `familyScene.ts` own the orthogonal battery-family comparison and ideal series/parallel pack illustration, separate from the chemical-state clock. `main.ts` owns navigation and finite observation lifetime; the original URL remains canonical.
-
 - `topics/solar-system/explorer/`: integrated Sun, eight-planet and selected-moon exploration; `model.ts` owns selection, continuous descent and illustrative satellite motion, `activity.ts` owns animated atmospheric/solar materials, `scene.ts` owns one renderer across globe/descent/terrain/cutaway/moon/ring views, and `controller.ts` owns navigation and independent playback clocks. `ringsModel.ts` owns sourced ring boundaries, circular orbital periods and local shear; `ringsScene.ts` renders annuli, enlarged ice particles and tracers. Bilingual scientific descriptions stay in topic JSON. Surface profiles and terrain remain owned by `topics/planet-surfaces/` and are consumed directly by the integrated renderer. The old surfaces URL enters solar descent; `?world=cancri` retains the independent exoplanet extension.
-
 - `topics/wind/`: owns a single wind observation workspace, a persistent 3D coastal environment, unified question lenses and playback, and lazy in-page typhoon/tornado adapters; original storm directories retain scientific models/renderers, and their main entries redirect into the workspace.
-
 - `topics/black-holes/`: unified chapter shell, route compatibility, lazy scene adapters and anatomy close-up; original topic directories retain physical models, renderers and learning content.
-
 - `topics/cells/`: owns structure, matter/energy and specialization selections with per-sample progress; consumes the original `body-cells` and `blood-cells` model/rendering pairs without duplicating them. Those old entries redirect to particular specialization cases.
 - `topics/atmosphere/`: owns the reference atmosphere profile, one continuous whole-Earth/coast/radial-ascent camera path, and Earth comparisons with five other worlds. The Canvas scene retains one globe and surface anchor; the model owns journey coordinates and legacy-route migration. `layerMechanism.ts` owns each layer's finite, pausable close-up explanation; `profileView.ts` owns paired-world illustrations and selected-row explanations. Cross-links to water, wind and the Solar System do not create ownership dependencies.
 - `topics/solar-system/comparison*`: sourced size/mass/density workbench and bounded planet-type comparisons; independent of the existing 3D explorer's GPU lifecycle. Do not classify all planet descriptors as mutually exclusive categories.
+- `topics/earth-seasons/`: shared solar geometry, regional day/night observation, orbit/tilt views and latitude-circle comparison. `physics/dayNightClock.ts` owns the qualified UTC+8 teaching clock and geometric sunrise; `observation/` projects the same state into fixed-ground labels and comparisons, without another timer.
+
+- `topics/electronics-circuits/`: owns a manual battery/lamp loop and a separately powered sensing/control branch. Its deterministic state keeps power, return-wire continuity, switch contacts, sensed light and electronic switching distinct; battery chemistry remains in `batteries/`.
+
+- `topics/programs/`: owns a finite instruction interpreter, persistent cart/parcel states, single sampled branch input and debugging scenarios. The overlap guard is a screen-model constraint, not undocumented physical sensing. No user code is evaluated.
+
+- `topics/ai/`: owns concept comparisons and prewritten local tasks/examples, including supplied-image versus generated-image roles, situational choice history, privacy choices and evidence prompts. It implements no real model API, training, image inference or child-data input.
+
+- `topics/mobile-networks/`: owns the recorded message-part snapshots, launch-station identities, connection gates, bounded replay and distinct delivered/read state. The SVG depicts a representative online-chat topology, not a cellular protocol or security simulation.
+
+- `topics/flight/`: owns a hypothetical coefficient model, relative-flow/angle geometry, force vectors, unilateral ground support and deterministic vertical response. Its illustrative streamlines are not CFD, measured airfoil data or an aircraft-performance model.

@@ -1,6 +1,5 @@
 import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import { language, translateDocument, languageHref } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { t } from './i18n.ts';
 import { t as flowerT } from '../flower-fruit/i18n.ts';
@@ -14,7 +13,7 @@ import { mountStudy as mountFlower } from '../flower-fruit/study.ts';
 import { mountStudy as mountTravel } from '../seed-travel/study.ts';
 import { CHAPTERS, readPlantRoute, cycleEvidence, type Chapter, type PlantStudy, type StudyState } from './lifecycleModel.ts';
 import { studyHost } from './studyHost.ts';
-translateDocument(t);mountTopicNavigation('seed-sprouting');
+translateDocument(t);
 const text=(v:{zh:string;en:string})=>language==='en'?v.en:v.zh;
 const el=(id:string)=>document.getElementById(id)!;
 const route=readPlantRoute(location.search);

@@ -1,7 +1,6 @@
 import { mountObservationMode } from '../../src/platform/observationMode.ts';
 import { mountSceneReading } from '../../src/platform/sceneReading.ts';
 import { language, translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { t } from './i18n.ts';
 import data from './content.json';
 import { readJourney, originStart, stageFor, stops, zoomRoute, scaleState, formatLength, halfWidthKm, LIGHT_YEAR_KM, anchorForScale } from './model.ts';
@@ -12,7 +11,7 @@ import {readExploration,type Chapter} from './comparisonModel.ts';
 import comparisonWords from './comparisonContent.json';
 import { pairStudy, homeStudy, zoomStudy } from './study.ts';
 import './style.css';
-translateDocument(t);mountTopicNavigation('cosmic-scale');
+translateDocument(t);
 const text=(v:{zh:string;en:string})=>language==='en'?v.en:v.zh;
 const el=<T extends HTMLElement=HTMLElement>(id:string)=>document.getElementById(id)! as T;
 const state={...readJourney(location.search),tilt:.35};

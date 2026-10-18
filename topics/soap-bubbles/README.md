@@ -29,4 +29,4 @@ The film section expands nanometre thickness into a visible band, and the ray pa
 
 Check both languages, stretch/release, finite drainage playback/pause, upper/lower selection during zoom, and angle changes with light paths shown. Controls are native keyboard/touch controls; reduced motion resolves finite transitions immediately. Leaving/hiding stops animation work, and non-persisted page departure releases resize observers. Root integration owns catalog registration and the production build.
 
-Sources: Exploratorium's original bubble explanations, Monier et al. (Physical Review Fluids 9, 124001), and Rice University/OpenStax thin-film optics. Exact links are in `index.html` and `learning.json`.
+Sources: Exploratorium's original bubble explanations, Monier et al. (Physical Review Fluids 9, 124001), and Rice University/OpenStax thin-film optics. Exact links are in `reader.html` and `learning.json`.

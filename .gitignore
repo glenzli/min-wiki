@@ -1,5 +1,6 @@
 node_modules/
 dist/
+reader-dist/
 .dev-mesh/
 .DS_Store
 *.local
@@ -9,3 +10,5 @@ dist/
 
 # Local Vite dependency cache
 .vite/
+
+error.log

@@ -1,6 +1,5 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
@@ -8,7 +7,7 @@ import { stages, stories } from './content.ts';
 import { draw } from './scene.ts';
 import './style.css';
 translateDocument(t);
-mountTopicNavigation('sand-journey');
+
 const el = (id: string) => document.getElementById(id)!;
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 let progress = 0, condition = 0, frame = 0, playing = false, zoom = 0, close = false;

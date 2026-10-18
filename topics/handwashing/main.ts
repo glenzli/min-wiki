@@ -1,14 +1,13 @@
 import { mountPresentationFrame, foldPresentationContext } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { initialPractice, reviewRegion, advance, canAdvance, regions, type Region, type Stage } from './model.ts';
 import { t } from './i18n.ts';
 import './style.css';
 
 translateDocument(t);
-mountTopicNavigation('handwashing');
+
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 let state = initialPractice();
 type Comparison = 'soap' | 'water';

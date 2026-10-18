@@ -1,6 +1,5 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { clamp, phaseState, moleculePosition, icePosition, waterRoute, routeMoleculePosition, type Process } from './model.ts';
@@ -9,7 +8,7 @@ import { createIceRenderer } from './iceRenderer.ts';
 import './style.css';
 import { heatState, changeCondition, type HeatSegment, type HeatCondition } from './heatModel.ts';
 translateDocument(t);
-mountTopicNavigation('water-states');
+
 const el = (id: string) => document.getElementById(id)!;
 const setText=(id:string,value:string)=>{if(el(id).textContent!==value)el(id).textContent=value;};
 const range=el('progress') as HTMLInputElement;

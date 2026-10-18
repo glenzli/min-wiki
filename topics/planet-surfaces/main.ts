@@ -1,5 +1,4 @@
 import { animateValue } from '../../src/visuals/transition.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument, language } from '../../src/platform/i18n.ts';
 import { WORLDS, type View } from './model.ts';
 import { INTERIORS, interiorAt, layerStop, type Bilingual } from './interior.ts';
@@ -8,7 +7,7 @@ import { CONTENT, DETAILS } from './content.ts';
 import { TopicScene } from './scene.ts';
 import { t } from './i18n.ts';
 import './style.css';
-translateDocument(t); mountTopicNavigation('planet-surfaces');
+translateDocument(t);
 const el = (id: string) => document.getElementById(id)!;
 const text = (pair: Bilingual) => language === 'en' ? pair.en : pair.zh;
 let world: typeof WORLDS[number] = WORLDS.find(w => w.id === 'cancri')!, view: View = 'landscape', academic = false, progress = 0, phase = 0;

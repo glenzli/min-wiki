@@ -1,5 +1,4 @@
 import './style.css';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountSceneReading } from '../../src/platform/sceneReading.ts';
 import { t } from './i18n.ts';
@@ -8,7 +7,7 @@ import { renderCircuit } from './scene.ts';
 import { studyFor } from './study.ts';
 
 translateDocument(t);
-mountTopicNavigation('electronics-circuits');
+
 const get = <T extends HTMLElement>(id: string) => {
   const element = document.getElementById(id);
   if (!element) throw new Error(`Missing electronics element: ${id}`);

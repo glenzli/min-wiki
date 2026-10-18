@@ -3,9 +3,9 @@ import { anchorForScale, cameraFrameScale, AU_KM, LIGHT_YEAR_KM as LY, EARTH_RAD
 import { GalaxyVolume } from './galaxy.ts';
 import { MacroScene } from './macroScene.ts';
 import data from './content.json';
-import earthMap from '../solar-system/assets/2k_earth_daymap.jpg';
-import cloudMap from '../solar-system/assets/2k_earth_clouds.jpg';
-import moonMap from '../solar-system/assets/2k_moon.jpg';
+import earthMap from '../solar-system/assets/2k_earth_daymap.webp';
+import cloudMap from '../solar-system/assets/2k_earth_clouds.webp';
+import moonMap from '../solar-system/assets/2k_moon.webp';
 
 type Layers={disk:boolean;bulge:boolean;halo:boolean;dark:boolean};
 import { ORBIT_RADII_AU as ORBITS } from './model.ts';

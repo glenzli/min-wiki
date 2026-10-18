@@ -1,3 +1,4 @@
+import {readCatalog} from '../src/catalog/data.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync,existsSync} from 'node:fs';
@@ -7,12 +8,12 @@ import {motionHref,readMotionChapter,legacyCarChapter} from '../topics/friction/
 import {metamorphosisDestination,readMetamorphosisRoute} from '../topics/frog-life/metamorphosisModel.ts';
 import {languageHref} from '../src/platform/i18n.ts';
 import {parseFragment} from 'parse5';
-const catalog=JSON.parse(readFileSync(new URL('../content/catalog.json',import.meta.url),'utf8'));
+const catalog=readCatalog();
 const english=JSON.parse(readFileSync(new URL('../src/platform/locales/en.json',import.meta.url),'utf8'));
 const absorbed={'butterfly-life':'frog-life','car-safety':'friction',hearing:'sound-vibrations'};
 test('depth round removes duplicate cards, retaining all published compatibility entries and searchable old titles',()=>{
  validateCatalog(catalog);const visible=findTopics(catalog);
- for(const [id,parent]of Object.entries(absorbed)){const item=catalog.topics.find(t=>t.id===id),owner=catalog.topics.find(t=>t.id===parent);assert.equal(item.parentTopic,parent);assert.equal(item.status,'published');assert.equal(item.category,owner.category);assert.ok(!visible.some(t=>t.id===id));assert.ok(findTopics(catalog,{query:item.title}).some(t=>t.id===parent));assert.ok(existsSync(new URL(`../topics/${id}/index.html`,import.meta.url)));}
+ for(const [id,parent]of Object.entries(absorbed)){const item=catalog.topics.find(t=>t.id===id),owner=catalog.topics.find(t=>t.id===parent);assert.equal(item.parentTopic,parent);assert.equal(item.status,'published');assert.equal(item.category,owner.category);assert.ok(!visible.some(t=>t.id===id));assert.ok(findTopics(catalog,{query:item.title}).some(t=>t.id===parent));assert.ok(existsSync(new URL(`../topics/${id}/reader.html`,import.meta.url)));}
  const prior=structuredClone(catalog);for(const t of prior.topics)if(t.id in absorbed)delete t.parentTopic;assert.equal(findTopics(prior).length-visible.length,3);
  const localized=structuredClone(catalog);for(const t of localized.topics){t.title=english[t.title]??t.title;t.summary=english[t.summary]??t.summary;t.tags=[...t.tags,...t.tags.map(v=>english[v]??v)];}
  for(const [id,parent]of Object.entries(absorbed))assert.ok(findTopics(localized,{query:localized.topics.find(t=>t.id===id).title}).some(t=>t.id===parent));
@@ -20,8 +21,8 @@ test('depth round removes duplicate cards, retaining all published compatibility
 test('short but meaningful independent experiments remain listed when their mechanism is clear',()=>{
  const visible=findTopics(catalog).map(t=>t.id);for(const id of ['ant-trails','shadows','magnets','duck-feet','handwashing'])assert.ok(visible.includes(id));
 });
-test('all four primary entries retain the navigation host and theme initialization shell',()=>{
- for(const id of ['ant-trails','frog-life','friction','sound-vibrations']){const html=readFileSync(new URL(`../topics/${id}/index.html`,import.meta.url),'utf8');assert.match(html,/id="encyclopedia-nav"/);assert.match(html,/src="\/src\/platform\/theme\.ts"/);assert.match(html,/data-content-theme="light"/);}
+test('primary studies keep authored content while the reader owns navigation and theme',()=>{
+ for(const id of ['ant-trails','frog-life','friction','sound-vibrations']){const html=readFileSync(new URL(`../topics/${id}/reader.html`,import.meta.url),'utf8');assert.match(html,/study-content/);assert.doesNotMatch(html,/encyclopedia-nav|theme\.ts|<(?:html|head|script)\b/);}
 });
 test('composed sound fragments keep bilingual prose beyond the fixed learning summary schema',()=>{
  const translations={...english,...JSON.parse(readFileSync(new URL('../topics/sound-vibrations/locales/en.json',import.meta.url),'utf8')),...JSON.parse(readFileSync(new URL('../topics/hearing/locales/en.json',import.meta.url),'utf8'))};

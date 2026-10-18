@@ -69,19 +69,19 @@ export function mountLanguageControl(host: HTMLElement): void {
 }
 
 /** Translate authored HTML once, before a page starts its dynamic controllers. */
-export function translateDocument(translate: Translate = t): void {
+export function translateDocument(translate: Translate = t, root: HTMLElement = document.querySelector<HTMLElement>('[data-wiki-document]') ?? document.documentElement): void {
   document.documentElement.lang = language;
-  const walker = document.createTreeWalker(document.documentElement, NodeFilter.SHOW_TEXT);
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
     if (node.parentElement?.closest('script, style')) continue;
     const value = node.textContent ?? '', source = value.trim();
     if (/[\u3400-\u9fff]/.test(source)) node.textContent = value.replace(source, translate(source));
   }
-  for (const element of document.querySelectorAll('[aria-label], [title], [placeholder], meta[name="description"]')) {
+  for (const element of root.querySelectorAll('[aria-label], [title], [placeholder], meta[name="description"]')) {
     for (const attribute of ['aria-label', 'title', 'placeholder', 'content']) {
       const source = element.getAttribute(attribute);
       if (source && /[\u3400-\u9fff]/.test(source)) element.setAttribute(attribute, translate(source));
     }
   }
-  for (const link of document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]:not([data-host-link])')) link.href = languageHref(link.getAttribute('href')!);
+  for (const link of root.querySelectorAll<HTMLAnchorElement>('a[href^="/"]:not([data-host-link])')) link.href = languageHref(link.getAttribute('href')!);
 }

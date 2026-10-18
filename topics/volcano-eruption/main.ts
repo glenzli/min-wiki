@@ -5,7 +5,6 @@ import { LIFE_STEPS, ecologyStory, ecologyClue, LIFE_WATCH, OMURO_NOTE } from '.
 import { COLLAPSE } from '../volcanic-lakes/content.ts';
 import { magmaState } from './magmaSystem.ts';
 import { MECHANISM_STEPS, mechanismStory, mechanismKidStory, mechanismStatus } from './mechanismContent.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
@@ -23,7 +22,7 @@ import { STYLE_NOTES, STATUS_NOTES } from './context.ts';
 import './project.css';
 
 translateDocument(t);
-mountTopicNavigation('volcano-eruption');
+
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 const select = (id: string) => el<HTMLSelectElement>(id).value;
 const number = (id: string) => Number(el<HTMLInputElement>(id).value);

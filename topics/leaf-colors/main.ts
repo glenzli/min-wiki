@@ -1,7 +1,6 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { SCIENCE } from './science.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { scaleContent, seasonStory, kidsStories, observations, epidermisContent } from './content.ts';
@@ -15,7 +14,7 @@ import { WATER_STOPS } from '../plant-water/model.ts';
 import './style.css';
 
 translateDocument(t);
-mountTopicNavigation('leaf-colors');
+
 const el = (id: string) => document.getElementById(id)!;
 let position = 0, zoom = 0, season = 0, kind: LeafKind = 'yellow', academic = false, playing = false;
 let touring = false, journey = 0;

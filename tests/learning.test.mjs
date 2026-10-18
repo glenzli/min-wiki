@@ -1,9 +1,10 @@
+import {readCatalog} from '../src/catalog/data.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { narrationText, narrationStoryboard } from '../src/platform/learning/model.ts';
 
-const catalog = JSON.parse(readFileSync(new URL('../content/catalog.json', import.meta.url), 'utf8'));
+const catalog = readCatalog();
 
 for (const topic of catalog.topics.filter(topic => topic.status === 'published')) {
   test(`${topic.id}: complete bilingual science notes and spoken narration`, () => {

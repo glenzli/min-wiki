@@ -1,8 +1,8 @@
 import { EARTH_RADIUS, journeyFrame, layerEdges, radialPoint, type Settings } from './model.ts';
 import type content from './content.json';
 import type { MechanismFrame } from './layerMechanism.ts';
-import earthDayMap from '../solar-system/assets/2k_earth_daymap.jpg';
-import earthCloudMap from '../solar-system/assets/2k_earth_clouds.jpg';
+import earthDayMap from '../solar-system/assets/2k_earth_daymap.webp';
+import earthCloudMap from '../solar-system/assets/2k_earth_clouds.webp';
 
 type Text=typeof content.zh;
 const noise=(i:number)=>{const n=Math.sin(i*127.1+91.7)*43758.5453;return n-Math.floor(n);};

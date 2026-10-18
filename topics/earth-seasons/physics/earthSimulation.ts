@@ -1,5 +1,6 @@
 import { teachingDistanceScale, updateTeachingLens, retreatPosition } from '../../../src/visuals/teachingCamera.ts';
 import { solarGeometry, cityIllumination, surfaceNormal } from './solarGeometry.ts';
+import { daylightState } from './dayNightClock.ts';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import dayMapUrl from '../assets/earth_atmos_2048.webp';
@@ -11,7 +12,8 @@ import {
   calcNoonSolarAltitude,
   calcDaylightHours,
   calcSolarHeatFlux,
-  MAJOR_CITIES
+  MAJOR_CITIES,
+  CHINA_CITIES
 } from '../data/seasonsData.ts';
 
 export class EarthSimulation {
@@ -37,6 +39,8 @@ export class EarthSimulation {
   _camPosTarget!: THREE.Vector3;
   _camLookTarget!: THREE.Vector3;
   _projected!: THREE.Vector3;
+  private markerWorld = new THREE.Vector3();
+  private cameraDirection = new THREE.Vector3();
   systemGroup!: THREE.Group<THREE.Object3DEventMap>;
   sunGroup!: THREE.Group<THREE.Object3DEventMap>;
   orbitCurveGroup!: THREE.Group<THREE.Object3DEventMap>;
@@ -62,6 +66,7 @@ export class EarthSimulation {
   citiesGroup!: THREE.Group<THREE.Object3DEventMap>;
   cityMeshMap!: Map<string, {city: (typeof MAJOR_CITIES)[number]; mesh: THREE.Mesh<THREE.SphereGeometry, THREE.MeshBasicMaterial>}>;
   subsolarRing!: THREE.Mesh<THREE.RingGeometry, THREE.MeshBasicMaterial, THREE.Object3DEventMap>;
+  terminator!: THREE.LineLoop;
   directBeamLine!: THREE.Line<THREE.BufferGeometry<THREE.NormalBufferAttributes>, THREE.LineBasicMaterial, THREE.Object3DEventMap>;
   slantBeamLine!: THREE.Line<THREE.BufferGeometry<THREE.NormalBufferAttributes>, THREE.LineBasicMaterial, THREE.Object3DEventMap>;
   illumination!: { orbit: { x: number; y: number; z: number; }; sunWorld: { x: number; y: number; z: number; }; sunLocal: { x: number; y: number; z: number; }; declination: number; };
@@ -84,6 +89,7 @@ export class EarthSimulation {
 
     // Three.js Core
     this.scene = new THREE.Scene();
+    this.scene.background = new THREE.Color(0x02050e);
     this.camera = new THREE.PerspectiveCamera(42, this.width / this.height, 0.1, 12000);
     updateTeachingLens(this.camera, new THREE.Vector3());
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
@@ -146,6 +152,7 @@ export class EarthSimulation {
     this.initGuides();
     this.initCityMarkers();
     this.initSubsolarMarker();
+    this.initTerminator();
     this.initSunbeams();
 
     // Resize handler
@@ -271,7 +278,10 @@ export class EarthSimulation {
         uNightMap: { value: this.nightTexture },
         uSunDir: { value: new THREE.Vector3(-1, 0, 0) }, // In earthSpinGroup local space
         uCityHighlight: { value: new THREE.Vector3(0, 0, 0) },
-        uHasCityHighlight: { value: 0.0 }
+        uCityHighlightRadius: { value: .012 },
+        uCityHighlightWidth: { value: .002 },
+        uHasCityHighlight: { value: 0.0 },
+        uRegionalView: { value: 0.0 }
       },
       vertexShader: `
         varying vec3 vNormal;
@@ -295,7 +305,10 @@ export class EarthSimulation {
         uniform sampler2D uNightMap;
         uniform vec3 uSunDir;
         uniform vec3 uCityHighlight;
+        uniform float uCityHighlightRadius;
+        uniform float uCityHighlightWidth;
         uniform float uHasCityHighlight;
+        uniform float uRegionalView;
 
         varying vec3 vNormal;
         varying vec2 vUv;
@@ -329,6 +342,17 @@ export class EarthSimulation {
           // Final mix between day and night
           vec3 color = mix(nightTotal, dayTotal, dayFactor);
 
+          // In the fixed regional view keep coastlines readable in the dark.
+          // This palette illustrates illumination, not measured sky brightness.
+          if (uRegionalView > 0.5) {
+            float twilight = smoothstep(-0.104528, 0.0, sunDot);
+            float light = smoothstep(-0.005, 0.018, sunDot);
+            vec3 darkLand = dayTex.rgb * 0.16 + vec3(0.012, 0.026, 0.045);
+            vec3 dawnLand = dayTex.rgb * 0.46 + vec3(0.035, 0.04, 0.06);
+            vec3 litLand = dayTex.rgb * vec3(1.25, 1.35, 1.4) + vec3(0.035, 0.065, 0.07);
+            color = mix(mix(darkLand + nightLights * 0.08, dawnLand, twilight), litLand, light);
+          }
+
           // Atmospheric limb rim glow
           float viewDot = max(0.0, dot(normalize(vViewPos), n));
           float rim = pow(1.0 - viewDot, 2.8);
@@ -337,9 +361,10 @@ export class EarthSimulation {
           // City pulse circle marker
           if (uHasCityHighlight > 0.5) {
             float dist = distance(normalize(vPosition), normalize(uCityHighlight));
-            if (dist < 0.055) {
-              float ring = smoothstep(0.035, 0.045, dist) - smoothstep(0.045, 0.055, dist);
-              color = mix(color, vec3(1.0, 0.85, 0.2), ring * 0.95);
+            if (dist < uCityHighlightRadius + uCityHighlightWidth) {
+              float ring = smoothstep(uCityHighlightRadius - uCityHighlightWidth, uCityHighlightRadius, dist)
+                - smoothstep(uCityHighlightRadius, uCityHighlightRadius + uCityHighlightWidth, dist);
+              color = mix(color, vec3(1.0, 0.85, 0.2), ring * 0.78);
             }
           }
 
@@ -441,6 +466,17 @@ export class EarthSimulation {
     this.earthSpinGroup.add(this.subsolarRing);
   }
 
+  initTerminator() {
+    const points = Array.from({ length: 257 }, (_, i) => {
+      const angle = i / 256 * Math.PI * 2;
+      return new THREE.Vector3(Math.cos(angle), Math.sin(angle), 0).multiplyScalar(1.004);
+    });
+    this.terminator = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points),
+      new THREE.LineBasicMaterial({ color: 0xe8c47f, transparent: true, opacity: .9 }));
+    this.terminator.visible = false;
+    this.earthSpinGroup.add(this.terminator);
+  }
+
   initSunbeams() {
     // Visualization of parallel rays hitting Equator vs 60°N for 'angle' scenario
     const beamMatDirect = new THREE.LineBasicMaterial({ color: 0xffcc00, transparent: true, opacity: 0.75 });
@@ -474,6 +510,9 @@ export class EarthSimulation {
 
   setView(view: string) {
     this.view = view;
+    this.controls.enabled = view !== 'china';
+    this.controls.enableDamping = view !== 'china';
+    this.controls.minDistance = view === 'china' ? 1.05 : 1.8 * teachingDistanceScale(this.camera.aspect);
     // In an Earth-facing close view the long teaching lens retreats the camera
     // past the illustrative Sun. Keep its light, but remove the foreground prop.
     this.sunGroup.visible = ['seasons', 'notilt'].includes(this.scenario) && view === 'standard';
@@ -485,6 +524,23 @@ export class EarthSimulation {
     const anchor = this.earthAnchorGroup.position;
     const closeDistance = ['seasons','notilt'].includes(this.scenario) ? 20 : 4.8;
     const sun = this.illumination?.sunWorld ?? {x:0,y:0,z:-1};
+    if (this.view === 'china') {
+      // Look at the same ground throughout the day. Both camera and north-up
+      // direction follow the exact tilt/spin transform of the Earth surface.
+      const tilt = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 0, 1), THREE.MathUtils.degToRad(this.currentTiltDeg));
+      const spin = new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), this.rotationProgress * Math.PI * 2);
+      const rotation = tilt.multiply(spin);
+      const normal = surfaceNormal(38, 105);
+      const direction = new THREE.Vector3(normal.x, normal.y, normal.z).applyQuaternion(rotation);
+      const framing = Math.min(2.6, Math.max(1.8, this.camera.aspect + .8));
+      const projectedRadius = framing * Math.min(1, this.camera.aspect);
+      const distance = Math.sqrt(1 + 1 / (Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2)) * projectedRadius) ** 2);
+      this._camLookTarget.copy(anchor);
+      this._camPosTarget.copy(anchor).addScaledVector(direction, distance * this.earthAnchorGroup.scale.x);
+      this.camera.up.set(0, 1, 0).applyQuaternion(rotation);
+      return;
+    }
+    this.camera.up.set(0, 1, 0);
     if (this.view === 'north') {
       this._camLookTarget.copy(anchor);
       const axis = new THREE.Vector3(0,1,0).applyAxisAngle(new THREE.Vector3(0,0,1), THREE.MathUtils.degToRad(this.currentTiltDeg));
@@ -547,7 +603,7 @@ export class EarthSimulation {
     this.camera.aspect = this.width / this.height;
     updateTeachingLens(this.camera, this.controls.target);
     this.controls.maxDistance = 300 * teachingDistanceScale(this.camera.aspect);
-    this.controls.minDistance = 1.8 * teachingDistanceScale(this.camera.aspect);
+    this.controls.minDistance = this.view === 'china' ? 1.05 : 1.8 * teachingDistanceScale(this.camera.aspect);
     this.renderer.setSize(this.width, this.height);
     if(this.view !== 'free') { this.updateCameraTarget(); this.cameraTransition = true; }
   }
@@ -563,6 +619,17 @@ export class EarthSimulation {
         this._projected.z > -1 &&
         this._projected.z < 1
     };
+  }
+
+  cityLabelPosition(cityId: string) {
+    const item = this.cityMeshMap.get(cityId);
+    if (!item) return { x: 0, y: 0, visible: false };
+    const point = item.mesh.getWorldPosition(new THREE.Vector3());
+    const position = this.labelPosition(point);
+    const centre = this.earthAnchorGroup.getWorldPosition(new THREE.Vector3());
+    const outward = point.clone().sub(centre).normalize();
+    position.visible &&= outward.dot(this.camera.position.clone().sub(point)) > 0;
+    return position;
   }
 
   update(deltaSeconds: number) {
@@ -601,17 +668,52 @@ export class EarthSimulation {
       .add(new THREE.Vector3(sunWorld.x,sunWorld.y,sunWorld.z).multiplyScalar(50));
     this.subsolarRing.position.set(sunLocal.x,sunLocal.y,sunLocal.z).multiplyScalar(1.008);
     this.subsolarRing.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),new THREE.Vector3(sunLocal.x,sunLocal.y,sunLocal.z));
+    this.terminator.quaternion.copy(this.subsolarRing.quaternion);
     this.beamGroup.quaternion.setFromUnitVectors(new THREE.Vector3(-1,0,0),new THREE.Vector3(sunWorld.x,sunWorld.y,sunWorld.z));
+
+    const regional = this.view === 'china';
+    (this.scene.background as THREE.Color).setHex(regional ? 0x081824 : 0x02050e);
+    this.earthMaterial.uniforms.uRegionalView.value = regional ? 1 : 0;
+    this.terminator.visible = regional;
+    this.guidesGroup.visible = this.guidesVisible && !regional;
+    this.subsolarRing.visible = !regional;
+    this.cloudsMesh.visible = !regional;
+    this.stars.visible = !regional;
 
     if(this.view !== 'free') this.updateCameraTarget();
     const tracking = ['seasons','notilt'].includes(this.scenario) && ['north','sun'].includes(this.view);
-    if (this.cameraTransition || tracking) {
+    if (regional) {
+      this.camera.position.copy(this._camPosTarget);
+      this.controls.target.copy(this._camLookTarget);
+      this.cameraTransition = false;
+    } else if (this.cameraTransition || tracking) {
       const fraction = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 1 - Math.exp(-dt * 7);
       this.camera.position.lerp(this._camPosTarget, fraction);
       this.controls.target.lerp(this._camLookTarget, fraction);
       if(!tracking && this.camera.position.distanceTo(this._camPosTarget)<.003) this.cameraTransition = false;
     }
     this.controls.update();
+
+    // Markers are location symbols. Keep their screen size modest as the camera
+    // and globe scale change, while label buttons retain their touch target.
+    this.camera.getWorldDirection(this.cameraDirection);
+    for (const { city, mesh } of this.cityMeshMap.values()) {
+      mesh.visible = !regional || CHINA_CITIES.includes(city);
+      mesh.getWorldPosition(this.markerWorld);
+      const depth = this.markerWorld.sub(this.camera.position).dot(this.cameraDirection);
+      const localUnitsPerPixel = 2 * Math.max(.1, depth) * Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2))
+        / this.height / this.earthAnchorGroup.scale.x;
+      const selected = city.id === this.selectedCityId;
+      mesh.scale.setScalar((selected ? 3.2 : 2.5) * localUnitsPerPixel / mesh.geometry.parameters.radius);
+      if (selected) {
+        this.earthMaterial.uniforms.uCityHighlightRadius.value = 5.5 * localUnitsPerPixel;
+        this.earthMaterial.uniforms.uCityHighlightWidth.value = .8 * localUnitsPerPixel;
+      }
+      if (regional) {
+        const state = daylightState(cityIllumination(city.lat, city.lon, sunLocal).altitude);
+        mesh.material.color.setHex(state === 'day' ? 0xffd485 : state === 'twilight' ? 0xed9770 : 0x81abd4);
+      } else mesh.material.color.setHex(0xff3b30);
+    }
 
     this.renderer.render(this.scene, this.camera);
   }

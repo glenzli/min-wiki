@@ -1,6 +1,5 @@
 import { animateValue } from '../../src/visuals/transition.ts';
 import { SYNODIC_DAYS, SIDEREAL_DAYS, MOON_EARTH_RADIUS_RATIO, DISTANCE_EARTH_RADII, litFraction, phaseIndex } from './model.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
 import { CONTENT } from './content.ts';
@@ -9,7 +8,7 @@ import { PHASES } from './phases.ts';
 import { TopicScene } from './scene.ts';
 import './style.css';
 translateDocument(t);
-mountTopicNavigation("earth-moon");
+
 const el = (id: string) => document.getElementById(id)!;
 const value = (id: string) => (el(id) as HTMLInputElement | HTMLSelectElement).value;
 const number = (id: string) => Number(value(id));

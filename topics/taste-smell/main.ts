@@ -1,7 +1,6 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
@@ -49,6 +48,6 @@ window.addEventListener('pageshow',render);
 render();mountReadingMode('.advanced');
 document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>button.addEventListener('click',render));
 render();
-mountTopicNavigation('taste-smell');
+
 
 mountPresentationFrame({"root": ".lab", "visual": ".taste-pair", "transport": ".play-controls", "paired": true});

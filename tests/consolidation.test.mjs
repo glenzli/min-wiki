@@ -1,3 +1,4 @@
+import {readCatalog} from '../src/catalog/data.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
@@ -6,7 +7,7 @@ import { plantDestination, readPlantRoute } from '../topics/seed-sprouting/lifec
 import { microbialHref, readWorkspace } from '../topics/microbes-everywhere/workspaceModel.ts';
 import { coolingHref, readChapter } from '../topics/air-conditioner/projectModel.ts';
 
-const catalog=JSON.parse(readFileSync(new URL('../content/catalog.json',import.meta.url),'utf8'));
+const catalog=readCatalog();
 const english=JSON.parse(readFileSync(new URL('../src/platform/locales/en.json',import.meta.url),'utf8'));
 const absorbed={bacteria:'microbes-everywhere',viruses:'microbes-everywhere','seed-travel':'seed-sprouting','flower-fruit':'seed-sprouting',refrigerator:'air-conditioner'};
 test('consolidation removes only duplicate discovery entries, not published compatibility routes',()=>{
@@ -16,7 +17,7 @@ test('consolidation removes only duplicate discovery entries, not published comp
     const topic=catalog.topics.find(t=>t.id===id);
     assert.equal(topic.parentTopic,parent);assert.equal(topic.status,'published');
     assert.ok(!visible.includes(id));assert.ok(visible.includes(parent));
-    assert.ok(existsSync(new URL(`../topics/${id}/index.html`,import.meta.url)));
+    assert.ok(existsSync(new URL(`../topics/${id}/reader.html`,import.meta.url)));
     assert.ok(findTopics(catalog,{query:topic.title}).some(t=>t.id===parent));
   }
   const previous=structuredClone(catalog);for(const topic of previous.topics)if(topic.id in absorbed)delete topic.parentTopic;

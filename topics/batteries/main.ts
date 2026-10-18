@@ -2,7 +2,6 @@ import { mountPresentationFrame, foldPresentationContext } from '../../src/platf
 import './style.css';
 import { t } from './i18n.ts';
 import { language, translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { createBatteryScene,drawJourney } from './scene.ts';
@@ -130,7 +129,7 @@ window.addEventListener('pagehide',()=>{stop();cancelCamera();});
 window.addEventListener('popstate',()=>selectChapter(readChapter(location.search)));
 selectChapter(chapter);drawFamily();mountReadingMode('.advanced');drawPack();
 document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b=>b.addEventListener('click',drawPack));
-mountTopicNavigation('batteries');
+
 
 foldPresentationContext('.journey-intro');
 document.querySelector<HTMLElement>('.presentation-context>summary')!.textContent=byId('chapter-question').textContent;

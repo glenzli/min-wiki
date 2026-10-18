@@ -1,3 +1,4 @@
+import {readCatalog} from '../../../src/catalog/data.mjs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFlowerState,morningState,roses} from '../model.ts';
@@ -7,7 +8,7 @@ test('new entry begins with pigments while legacy hydrangea remains reachable',(
  assert.equal(readFlowerState('').case,'pigments');assert.equal(readFlowerState('',true).case,'hydrangea');
  assert.equal(readFlowerState('?case=guides',true).case,'guides');
  assert.deepEqual(readFlowerState('?rose=99&opening=NaN&case=unknown&uv=1'),{case:'pigments',rose:3,opening:0,uv:true,close:false});
- const catalog=JSON.parse(readFileSync(new URL('../../../content/catalog.json',import.meta.url)));
+ const catalog=readCatalog();
  const matches=findTopics(catalog,{query:'绣球'});assert.ok(matches.some(t=>t.id==='flower-colors'));assert.ok(!matches.some(t=>t.id==='hydrangea'));
 });
 test('opening and coloration stay coupled, reversible and bounded for the specific morning glory',()=>{

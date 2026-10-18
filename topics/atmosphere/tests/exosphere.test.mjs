@@ -6,7 +6,7 @@ import {journeyAtHeight,journeyFrame,radialPoint} from '../model.ts';
 // Exercise the actual Canvas paint method without loading browser image assets.
 register('data:text/javascript,'+encodeURIComponent(`
  export async function load(url,context,nextLoad){
-  if(url.endsWith('.jpg'))return {format:'module',source:'export default "test-image";',shortCircuit:true};
+  if(/\\.(?:jpe?g|webp|png)$/.test(url))return {format:'module',source:'export default "test-image";',shortCircuit:true};
   return nextLoad(url,context);
  }
 `),import.meta.url);

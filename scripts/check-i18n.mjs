@@ -1,9 +1,10 @@
+import {readCatalog} from '../src/catalog/data.mjs';
 import ts from 'typescript';
 import { parse, parseFragment } from 'parse5';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, existsSync } from 'node:fs';
 
 const han = /[\u3400-\u9fff]/;
-const catalog = JSON.parse(readFileSync('content/catalog.json', 'utf8'));
+const catalog = readCatalog();
 const groups = ['common', ...catalog.topics.filter(topic => topic.status === 'published').map(topic => topic.id)];
 const catalogs = Object.fromEntries(groups.map(group => [group, JSON.parse(readFileSync(
   group === 'common' ? 'src/platform/locales/en.json' : `topics/${group}/locales/en.json`, 'utf8'))]));
@@ -42,7 +43,9 @@ for (const root of ['src', 'topics']) {
   }
 }
 for (const group of groups) {
-  const file = group === 'common' ? 'index.html' : `topics/${group}/index.html`;
+  if(group==='common')continue;
+  const file = `topics/${group}/reader.html`;
+  if(!existsSync(file))continue;
   function visit(node) {
     if (node.tagName === 'script' || node.tagName === 'style') return;
     if (node.nodeName === '#text') check(group, node.value.trim());

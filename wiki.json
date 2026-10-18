@@ -1,0 +1,3511 @@
+{
+  "formatVersion": 1,
+  "id": "mini-wiki",
+  "title": {
+    "zh": "小小百科",
+    "en": "Mini Wiki"
+  },
+  "description": {
+    "zh": "从一个问题开始，动手改变条件，看看事情为什么发生。",
+    "en": "Start with a question. Change a condition and see why things happen."
+  },
+  "languages": [
+    "zh",
+    "en"
+  ],
+  "defaultLanguage": "zh",
+  "entries": [
+    {
+      "id": "atmosphere",
+      "title": {
+        "zh": "大气：包围星球的空气",
+        "en": "Atmospheres: the air around worlds"
+      },
+      "summary": {
+        "zh": "从地球全景走近同一处地面，再沿高度观察各层现象，比较其他世界的天空。",
+        "en": "Approach the same surface site from a whole-Earth view, explore atmospheric phenomena with height, then compare other worlds."
+      },
+      "pages": {
+        "zh": "topics/atmosphere/entry.zh.md",
+        "en": "topics/atmosphere/entry.en.md"
+      },
+      "search": {
+        "zh": "大气：包围星球的空气 从地球全景走近同一处地面，再沿高度观察各层现象，比较其他世界的天空。 大气 对流层 平流层 空气 云 水循环 土卫六",
+        "en": "Atmospheres: the air around worlds Approach the same surface site from a whole-Earth view, explore atmospheric phenomena with height, then compare other worlds. Atmosphere Troposphere Stratosphere Air Clouds Water cycle Titan"
+      },
+      "document": {
+        "template": "topics/atmosphere/reader.html",
+        "entry": "topics/atmosphere/main.ts"
+      },
+      "fallback": {
+        "src": "topics/atmosphere/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "大气",
+        "对流层",
+        "平流层",
+        "空气",
+        "云",
+        "水循环",
+        "土卫六"
+      ],
+      "duration": "互动探索 / 三条观察路径",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/atmosphere/learning.json"
+    },
+    {
+      "id": "cosmic-scale",
+      "title": {
+        "zh": "星系与宇宙尺度",
+        "en": "Galaxies and cosmic scales"
+      },
+      "summary": {
+        "zh": "从地球连续拉远，经太阳系、银河系和本星系群，直到可观测宇宙；辨认真实距离与结构示意。",
+        "en": "Zoom continuously from Earth through the Solar System, Milky Way, and Local Group to the observable universe, distinguishing physical distances from structure diagrams."
+      },
+      "pages": {
+        "zh": "topics/cosmic-scale/entry.zh.md",
+        "en": "topics/cosmic-scale/entry.en.md"
+      },
+      "search": {
+        "zh": "星系与宇宙尺度 从地球连续拉远，经太阳系、银河系和本星系群，直到可观测宇宙；辨认真实距离与结构示意。 宇宙 星系 银河系 尺度 本星系群",
+        "en": "Galaxies and cosmic scales Zoom continuously from Earth through the Solar System, Milky Way, and Local Group to the observable universe, distinguishing physical distances from structure diagrams. space Galaxies Milky Way Scale Local Group"
+      },
+      "document": {
+        "template": "topics/cosmic-scale/reader.html",
+        "entry": "topics/cosmic-scale/main.ts"
+      },
+      "fallback": {
+        "src": "topics/cosmic-scale/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "宇宙",
+        "星系",
+        "银河系",
+        "尺度",
+        "本星系群"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/cosmic-scale/learning.json"
+    },
+    {
+      "id": "stars",
+      "title": {
+        "zh": "恒星与多星系统",
+        "en": "Stars and multiple-star systems"
+      },
+      "summary": {
+        "zh": "比较恒星怎样形成、发光、膨胀并走向不同结局，再探索太阳表面、双星与数值三体。",
+        "en": "Compare how stars form, shine, expand, and reach different endings; then explore the Sun's surface, binaries, and a numerical three-body experiment."
+      },
+      "pages": {
+        "zh": "topics/stars/entry.zh.md",
+        "en": "topics/stars/entry.en.md"
+      },
+      "search": {
+        "zh": "恒星与多星系统 比较恒星怎样形成、发光、膨胀并走向不同结局，再探索太阳表面、双星与数值三体。 恒星 太阳 双星 三星 质心 太阳也是一颗星星吗？ 把观察者带远一些：太阳看起来变小了，它本身有变小吗？ 恒星 太阳 远近",
+        "en": "Stars and multiple-star systems Compare how stars form, shine, expand, and reach different endings; then explore the Sun's surface, binaries, and a numerical three-body experiment. star Sun Binary stars Triple stars Center of mass Is the Sun a star too? Move the observer farther away: the Sun looks smaller, but has the Sun itself shrunk? star Sun Near and far"
+      },
+      "document": {
+        "template": "topics/stars/reader.html",
+        "entry": "topics/stars/main.ts"
+      },
+      "fallback": {
+        "src": "topics/stars/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "恒星",
+        "太阳",
+        "双星",
+        "三星",
+        "质心"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-20",
+      "learning": "topics/stars/learning.json"
+    },
+    {
+      "id": "black-holes",
+      "title": {
+        "zh": "黑洞",
+        "en": "black hole"
+      },
+      "summary": {
+        "zh": "从黑洞本体与天体相遇，探索到银河系中心和更大的黑洞尺度。",
+        "en": "Explore black-hole structure and encounters, then travel to the scale of our galactic center and beyond."
+      },
+      "pages": {
+        "zh": "topics/black-holes/entry.zh.md",
+        "en": "topics/black-holes/entry.en.md"
+      },
+      "search": {
+        "zh": "黑洞 从黑洞本体与天体相遇，探索到银河系中心和更大的黑洞尺度。 黑洞 恒星 行星 伴星 引力 潮汐 吸积 人马座 A* 超大质量黑洞 恒星路过黑洞 恒星会被吞掉吗？换一条路线，观察引力、瓦解与气体的不同去向。 黑洞 恒星 引力 宇宙 潮汐 吸积 黑洞与伴星 恒星没有一下子消失，却有气体不断流向身边的黑洞。跟着一小团气体，看懂双星中的持续吸积。 黑洞 伴星 双星 恒星 引力 洛希瓣溢流 恒星风 吸积 行星遇到黑洞 如果路过黑洞的不是太阳，而是一颗蓝色岩石行星，或一颗条纹气态巨行星，会发生什么？ 黑洞 引力 吸积 行星 潮汐 岩石与气体",
+        "en": "black hole Explore black-hole structure and encounters, then travel to the scale of our galactic center and beyond. black hole star Planets Companion star gravity Tides Accretion Sagittarius A* Supermassive black holes A star passes a black hole Will the star be swallowed? Change its route and compare gravity, disruption and the paths of the gas. black hole star gravity space Tides Accretion A black hole and its companion The star remains, while gas keeps flowing toward its black hole companion. Follow a parcel to explore accretion in a binary system. black hole Companion star Binary stars star gravity Roche-lobe overflow Stellar wind Accretion A planet meets a black hole What if the visitor is a blue rocky planet or a striped gas giant, instead of a star? black hole gravity Accretion Planets Tides Rock and gas"
+      },
+      "document": {
+        "template": "topics/black-holes/reader.html",
+        "entry": "topics/black-holes/main.ts"
+      },
+      "fallback": {
+        "src": "topics/black-holes/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "黑洞",
+        "恒星",
+        "行星",
+        "伴星",
+        "引力",
+        "潮汐",
+        "吸积",
+        "人马座 A*",
+        "超大质量黑洞"
+      ],
+      "duration": "互动探索 / 五个章节",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/black-holes/learning.json"
+    },
+    {
+      "id": "black-hole",
+      "title": {
+        "zh": "恒星路过黑洞",
+        "en": "A star passes a black hole"
+      },
+      "summary": {
+        "zh": "恒星会被吞掉吗？换一条路线，观察引力、瓦解与气体的不同去向。",
+        "en": "Will the star be swallowed? Change its route and compare gravity, disruption and the paths of the gas."
+      },
+      "pages": {
+        "zh": "topics/black-hole/entry.zh.md",
+        "en": "topics/black-hole/entry.en.md"
+      },
+      "parentTopic": "black-holes",
+      "search": {
+        "zh": "恒星路过黑洞 恒星会被吞掉吗？换一条路线，观察引力、瓦解与气体的不同去向。 黑洞 恒星 引力 宇宙 潮汐 吸积",
+        "en": "A star passes a black hole Will the star be swallowed? Change its route and compare gravity, disruption and the paths of the gas. black hole star gravity space Tides Accretion"
+      },
+      "document": {
+        "template": "topics/black-hole/reader.html",
+        "entry": "topics/black-hole/reader-entry.ts"
+      },
+      "fallback": {
+        "src": "topics/black-hole/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "黑洞",
+        "恒星",
+        "引力",
+        "宇宙",
+        "潮汐",
+        "吸积"
+      ],
+      "duration": "48 秒–2 分钟 / 路线",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-07",
+      "learning": "topics/black-hole/learning.json"
+    },
+    {
+      "id": "solar-system",
+      "title": {
+        "zh": "太阳系：太阳、行星与卫星",
+        "en": "Solar system: Sun, planets and moons"
+      },
+      "summary": {
+        "zh": "从太阳系全景进入八大行星，观察动态云层与太阳活动，下降到代表性地貌，再探索内部和卫星。",
+        "en": "Enter all eight planets from the solar-system view. Observe moving clouds and solar activity, descend toward representative terrain, and explore interiors and moons."
+      },
+      "pages": {
+        "zh": "topics/solar-system/entry.zh.md",
+        "en": "topics/solar-system/entry.en.md"
+      },
+      "search": {
+        "zh": "太阳系：太阳、行星与卫星 从太阳系全景进入八大行星，观察动态云层与太阳活动，下降到代表性地貌，再探索内部和卫星。 太阳系 八大行星 开普勒定律 大小比较 地球 木星 引力 土星和它的卫星们 土星的身边不只有光环。认识七颗代表卫星，观察示意轨道与绕行快慢，并了解它们不同的冰雪世界。 土星 卫星 土卫六 土卫二 从太空落向行星 直接进入太阳系下降模式：从完整星球靠近云层、岩石或海岸，随时暂停，再查看内部结构。 行星 岩石行星 海洋 气态巨行星 冰巨星 火星 液态表面 土卫六 熔岩海 系外行星",
+        "en": "Solar system: Sun, planets and moons Enter all eight planets from the solar-system view. Observe moving clouds and solar activity, descend toward representative terrain, and explore interiors and moons. Solar system Eight planets Kepler's laws Size comparison Earth Jupiter gravity Saturn and its moons Saturn has more than rings. Meet seven representative moons, observe schematic orbits and relative orbital speeds, and learn about their different icy worlds. Saturn Moons Titan Enceladus Descend from space toward a planet Enter the solar-system descent mode: approach clouds, rock or coasts from the whole globe, pause at any point, then inspect the interior. Planets Rocky planets Ocean Gas giants Ice giants Mars Liquid surfaces Titan Magma oceans Exoplanets"
+      },
+      "document": {
+        "template": "topics/solar-system/reader.html",
+        "entry": "topics/solar-system/reader-entry.ts"
+      },
+      "fallback": {
+        "src": "topics/solar-system/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "太阳系",
+        "八大行星",
+        "开普勒定律",
+        "大小比较",
+        "地球",
+        "木星",
+        "引力"
+      ],
+      "duration": "连续探索 / 多种尺度",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/solar-system/learning.json"
+    },
+    {
+      "id": "earth-seasons",
+      "title": {
+        "zh": "为什么会有白天黑夜与四季更迭",
+        "en": "Why do we have day, night and seasons?"
+      },
+      "summary": {
+        "zh": "真实三维地球呈现：地球为什么一边是白昼一边是黑夜？又是什么带来了春夏秋冬？直观理解自转与地轴倾角 23.44° 的奥秘。",
+        "en": "Explore a 3D Earth: why is one side in daylight and the other in darkness? See how rotation and a 23.44° axial tilt shape the seasons."
+      },
+      "pages": {
+        "zh": "topics/earth-seasons/entry.zh.md",
+        "en": "topics/earth-seasons/entry.en.md"
+      },
+      "search": {
+        "zh": "为什么会有白天黑夜与四季更迭 真实三维地球呈现：地球为什么一边是白昼一边是黑夜？又是什么带来了春夏秋冬？直观理解自转与地轴倾角 23.44° 的奥秘。 白天黑夜 四季 地球自转 公转 地轴倾角 太阳高度角 节气",
+        "en": "Why do we have day, night and seasons? Explore a 3D Earth: why is one side in daylight and the other in darkness? See how rotation and a 23.44° axial tilt shape the seasons. Day & night Seasons Earth's rotation Orbit Axial tilt Solar altitude Equinoxes & solstices"
+      },
+      "document": {
+        "template": "topics/earth-seasons/reader.html",
+        "entry": "topics/earth-seasons/reader-entry.ts"
+      },
+      "fallback": {
+        "src": "topics/earth-seasons/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "白天黑夜",
+        "四季",
+        "地球自转",
+        "公转",
+        "地轴倾角",
+        "太阳高度角",
+        "节气"
+      ],
+      "duration": "动态探索 / 四大情景",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-07",
+      "learning": "topics/earth-seasons/learning.json"
+    },
+    {
+      "id": "rainbow",
+      "title": {
+        "zh": "彩虹是怎么诞生的",
+        "en": "How do rainbows form?"
+      },
+      "summary": {
+        "zh": "把阳光拆开，跟着光线穿过一滴雨。动手探索色散、双彩虹，以及太阳高度如何改变天空中的彩虹。",
+        "en": "Split sunlight and follow a ray through a raindrop. Explore dispersion, double rainbows, and how the height of the Sun changes the bow."
+      },
+      "pages": {
+        "zh": "topics/rainbow/entry.zh.md",
+        "en": "topics/rainbow/entry.en.md"
+      },
+      "fallback": {
+        "src": "topics/rainbow/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，仅作静态说明，不表示当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "search": {
+        "zh": "彩虹是怎么诞生的 把阳光拆开，跟着光线穿过一滴雨。动手探索色散、双彩虹，以及太阳高度如何改变天空中的彩虹。 彩虹 色散 折射与反射 三棱镜 牛顿实验 双彩虹 亚历山大暗带 全圆彩虹",
+        "en": "How do rainbows form? Split sunlight and follow a ray through a raindrop. Explore dispersion, double rainbows, and how the height of the Sun changes the bow. Rainbow Dispersion Refraction & reflection Prism Newton's experiment Double rainbow Alexander's dark band Circular rainbow"
+      },
+      "category": "physics",
+      "tags": [
+        "彩虹",
+        "色散",
+        "折射与反射",
+        "三棱镜",
+        "牛顿实验",
+        "双彩虹",
+        "亚历山大暗带",
+        "全圆彩虹"
+      ],
+      "duration": "互动探索 / 四大情景",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-11",
+      "learning": "topics/rainbow/learning.json",
+      "document": {
+        "template": "topics/rainbow/reader.html",
+        "entry": "topics/rainbow/reader-entry.ts"
+      }
+    },
+    {
+      "id": "galactic-center",
+      "title": {
+        "zh": "黑洞与伴星",
+        "en": "A black hole and its companion"
+      },
+      "summary": {
+        "zh": "恒星没有一下子消失，却有气体不断流向身边的黑洞。跟着一小团气体，看懂双星中的持续吸积。",
+        "en": "The star remains, while gas keeps flowing toward its black hole companion. Follow a parcel to explore accretion in a binary system."
+      },
+      "pages": {
+        "zh": "topics/galactic-center/entry.zh.md",
+        "en": "topics/galactic-center/entry.en.md"
+      },
+      "parentTopic": "black-holes",
+      "search": {
+        "zh": "黑洞与伴星 恒星没有一下子消失，却有气体不断流向身边的黑洞。跟着一小团气体，看懂双星中的持续吸积。 黑洞 伴星 双星 恒星 引力 洛希瓣溢流 恒星风 吸积",
+        "en": "A black hole and its companion The star remains, while gas keeps flowing toward its black hole companion. Follow a parcel to explore accretion in a binary system. black hole Companion star Binary stars star gravity Roche-lobe overflow Stellar wind Accretion"
+      },
+      "document": {
+        "template": "topics/galactic-center/reader.html",
+        "entry": "topics/galactic-center/main.ts"
+      },
+      "fallback": {
+        "src": "topics/galactic-center/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "黑洞",
+        "伴星",
+        "双星",
+        "恒星",
+        "引力",
+        "洛希瓣溢流",
+        "恒星风",
+        "吸积"
+      ],
+      "duration": "互动探索 / 三大情景",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/galactic-center/learning.json"
+    },
+    {
+      "id": "planet-black-hole",
+      "title": {
+        "zh": "行星遇到黑洞",
+        "en": "A planet meets a black hole"
+      },
+      "summary": {
+        "zh": "如果路过黑洞的不是太阳，而是一颗蓝色岩石行星，或一颗条纹气态巨行星，会发生什么？",
+        "en": "What if the visitor is a blue rocky planet or a striped gas giant, instead of a star?"
+      },
+      "pages": {
+        "zh": "topics/planet-black-hole/entry.zh.md",
+        "en": "topics/planet-black-hole/entry.en.md"
+      },
+      "parentTopic": "black-holes",
+      "search": {
+        "zh": "行星遇到黑洞 如果路过黑洞的不是太阳，而是一颗蓝色岩石行星，或一颗条纹气态巨行星，会发生什么？ 黑洞 引力 吸积 行星 潮汐 岩石与气体",
+        "en": "A planet meets a black hole What if the visitor is a blue rocky planet or a striped gas giant, instead of a star? black hole gravity Accretion Planets Tides Rock and gas"
+      },
+      "document": {
+        "template": "topics/planet-black-hole/reader.html",
+        "entry": "topics/planet-black-hole/main.ts"
+      },
+      "fallback": {
+        "src": "topics/planet-black-hole/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "黑洞",
+        "引力",
+        "吸积",
+        "行星",
+        "潮汐",
+        "岩石与气体"
+      ],
+      "duration": "互动探索 / 三大情景",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-11",
+      "learning": "topics/planet-black-hole/learning.json"
+    },
+    {
+      "id": "leaf-colors",
+      "title": {
+        "zh": "一片叶子的一生",
+        "en": "The life of a leaf"
+      },
+      "summary": {
+        "zh": "守着同一片叶，从芽中展开、运水与制造糖，看到衰老、黄红分支和脱落，再走进它的细胞。",
+        "en": "Follow the same leaf as it unfolds, transports water and makes sugar, then ages, turns yellow or red and falls; zoom into its cells."
+      },
+      "pages": {
+        "zh": "topics/leaf-colors/entry.zh.md",
+        "en": "topics/leaf-colors/entry.en.md"
+      },
+      "search": {
+        "zh": "一片叶子的一生 守着同一片叶，从芽中展开、运水与制造糖，看到衰老、黄红分支和脱落，再走进它的细胞。 叶子的颜色 叶子 叶绿素 叶绿体 细胞 秋天 花青素 类胡萝卜素 光合作用 根喝到的水怎样到叶子里？ 一起跟着蓝色水滴，从土里出发，走过根和茎，最后来到叶子。 植物 水 蒸腾",
+        "en": "The life of a leaf Follow the same leaf as it unfolds, transports water and makes sugar, then ages, turns yellow or red and falls; zoom into its cells. The colors of leaves Leaves Chlorophyll Chloroplasts Cells Autumn Anthocyanins Carotenoids Photosynthesis How does water reach the leaves? Follow the blue water markers from soil through roots and stem, all the way to a leaf. Plants Water Transpiration"
+      },
+      "document": {
+        "template": "topics/leaf-colors/reader.html",
+        "entry": "topics/leaf-colors/main.ts"
+      },
+      "fallback": {
+        "src": "topics/leaf-colors/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "叶子的颜色",
+        "叶子",
+        "叶绿素",
+        "叶绿体",
+        "细胞",
+        "秋天",
+        "花青素",
+        "类胡萝卜素",
+        "光合作用"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/leaf-colors/learning.json"
+    },
+    {
+      "id": "earth-moon",
+      "title": {
+        "zh": "地球和月亮",
+        "en": "Earth and the Moon"
+      },
+      "summary": {
+        "zh": "月亮为什么有圆有缺？绕着地球走一圈，同时看太空中的月球和地面上看到的月相。",
+        "en": "Why does the Moon change shape? Follow its orbit and compare the view from space with the phase seen from Earth."
+      },
+      "pages": {
+        "zh": "topics/earth-moon/entry.zh.md",
+        "en": "topics/earth-moon/entry.en.md"
+      },
+      "fallback": {
+        "src": "topics/earth-moon/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，仅作静态说明，不表示当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "search": {
+        "zh": "地球和月亮 月亮为什么有圆有缺？绕着地球走一圈，同时看太空中的月球和地面上看到的月相。 月球 月相 潮汐锁定",
+        "en": "Earth and the Moon Why does the Moon change shape? Follow its orbit and compare the view from space with the phase seen from Earth. Moon Moon phases Tidal locking"
+      },
+      "category": "universe",
+      "tags": [
+        "月球",
+        "月相",
+        "潮汐锁定"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/earth-moon/learning.json",
+      "document": {
+        "template": "topics/earth-moon/reader.html",
+        "entry": "topics/earth-moon/main.ts"
+      }
+    },
+    {
+      "id": "saturn-moons",
+      "title": {
+        "zh": "土星和它的卫星们",
+        "en": "Saturn and its moons"
+      },
+      "summary": {
+        "zh": "土星的身边不只有光环。认识七颗代表卫星，观察示意轨道与绕行快慢，并了解它们不同的冰雪世界。",
+        "en": "Saturn has more than rings. Meet seven representative moons, observe schematic orbits and relative orbital speeds, and learn about their different icy worlds."
+      },
+      "pages": {
+        "zh": "topics/saturn-moons/entry.zh.md",
+        "en": "topics/saturn-moons/entry.en.md"
+      },
+      "parentTopic": "solar-system",
+      "search": {
+        "zh": "土星和它的卫星们 土星的身边不只有光环。认识七颗代表卫星，观察示意轨道与绕行快慢，并了解它们不同的冰雪世界。 土星 卫星 土卫六 土卫二",
+        "en": "Saturn and its moons Saturn has more than rings. Meet seven representative moons, observe schematic orbits and relative orbital speeds, and learn about their different icy worlds. Saturn Moons Titan Enceladus"
+      },
+      "document": {
+        "template": "topics/saturn-moons/reader.html",
+        "entry": "topics/saturn-moons/entry.ts"
+      },
+      "fallback": {
+        "src": "topics/saturn-moons/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "土星",
+        "卫星",
+        "土卫六",
+        "土卫二"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/saturn-moons/learning.json"
+    },
+    {
+      "id": "lunar-craters",
+      "title": {
+        "zh": "月球上的陨石坑",
+        "en": "Craters on the Moon"
+      },
+      "summary": {
+        "zh": "一块太空岩石撞上月球后会怎样？改变大小和速度，看岩石飞散、地面凹陷，留下一个撞击坑。",
+        "en": "What happens when a space rock hits the Moon? Change its size and speed, then watch excavation, ejecta and the crater left behind."
+      },
+      "pages": {
+        "zh": "topics/lunar-craters/entry.zh.md",
+        "en": "topics/lunar-craters/entry.en.md"
+      },
+      "listed": false,
+      "search": {
+        "zh": "月球上的陨石坑 一块太空岩石撞上月球后会怎样？改变大小和速度，看岩石飞散、地面凹陷，留下一个撞击坑。 月球 陨石坑 撞击 抛射物",
+        "en": "Craters on the Moon What happens when a space rock hits the Moon? Change its size and speed, then watch excavation, ejecta and the crater left behind. Moon Impact craters Impact Ejecta"
+      },
+      "document": {
+        "template": "topics/lunar-craters/reader.html",
+        "entry": "topics/lunar-craters/main.ts"
+      },
+      "fallback": {
+        "src": "topics/lunar-craters/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "月球",
+        "陨石坑",
+        "撞击",
+        "抛射物"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/lunar-craters/learning.json"
+    },
+    {
+      "id": "volcano-eruption",
+      "title": {
+        "zh": "火山：从岩浆到山、岛与湖",
+        "en": "Volcanoes: from magma to mountains, islands and lakes"
+      },
+      "summary": {
+        "zh": "选择盾状火山、成层火山、大室山式火山渣锥、海底火山或火山湖，追踪喷发、堆积与后来的地貌变化。",
+        "en": "Choose a shield volcano, a composite volcano, an Omuroyama-inspired scoria cone, an underwater volcano or a volcanic lake. Follow eruptions, deposits and later landscapes."
+      },
+      "pages": {
+        "zh": "topics/volcano-eruption/entry.zh.md",
+        "en": "topics/volcano-eruption/entry.en.md"
+      },
+      "search": {
+        "zh": "火山：从岩浆到山、岛与湖 选择盾状火山、成层火山、大室山式火山渣锥、海底火山或火山湖，追踪喷发、堆积与后来的地貌变化。 火山 岩浆 火山灰 休眠火山 喷发方式 海底火山 火山湖 大室山 火山渣锥 海底火山怎样长成岛？ 潜到海面下，比较枕状熔岩、浅水喷发与反复堆积，看看一座岛水下的大山。 海底火山 火山岛 枕状熔岩 海洋 地质 火山湖是怎样形成的 火山喷发之后，为什么可能留下一座湖？比较火山口和破火山口，试着让雨水积起来，或从地下漏走。 火山湖 破火山口 水循环",
+        "en": "Volcanoes: from magma to mountains, islands and lakes Choose a shield volcano, a composite volcano, an Omuroyama-inspired scoria cone, an underwater volcano or a volcanic lake. Follow eruptions, deposits and later landscapes. Volcanoes Magma Volcanic ash Dormant volcanoes Eruption styles Submarine volcanoes Volcanic lakes Omuroyama Scoria cones How can an underwater volcano build an island? Explore pillow lava, shallow eruptions and repeated accumulation to discover the underwater mountain beneath a volcanic island. Submarine volcanoes Volcanic islands Pillow lava Ocean Geology How volcanic lakes form Why can a lake form after volcanism? Compare a crater and a caldera, then let water accumulate or drain through the ground. Volcanic lakes Calderas Water cycle"
+      },
+      "document": {
+        "template": "topics/volcano-eruption/reader.html",
+        "entry": "topics/volcano-eruption/main.ts"
+      },
+      "fallback": {
+        "src": "topics/volcano-eruption/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "火山",
+        "岩浆",
+        "火山灰",
+        "休眠火山",
+        "喷发方式",
+        "海底火山",
+        "火山湖",
+        "大室山",
+        "火山渣锥"
+      ],
+      "duration": "互动探索 / 五种案例",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/volcano-eruption/learning.json"
+    },
+    {
+      "id": "submarine-volcanoes",
+      "title": {
+        "zh": "海底火山怎样长成岛？",
+        "en": "How can an underwater volcano build an island?"
+      },
+      "summary": {
+        "zh": "潜到海面下，比较枕状熔岩、浅水喷发与反复堆积，看看一座岛水下的大山。",
+        "en": "Explore pillow lava, shallow eruptions and repeated accumulation to discover the underwater mountain beneath a volcanic island."
+      },
+      "pages": {
+        "zh": "topics/submarine-volcanoes/entry.zh.md",
+        "en": "topics/submarine-volcanoes/entry.en.md"
+      },
+      "parentTopic": "volcano-eruption",
+      "search": {
+        "zh": "海底火山怎样长成岛？ 潜到海面下，比较枕状熔岩、浅水喷发与反复堆积，看看一座岛水下的大山。 海底火山 火山岛 枕状熔岩 海洋 地质",
+        "en": "How can an underwater volcano build an island? Explore pillow lava, shallow eruptions and repeated accumulation to discover the underwater mountain beneath a volcanic island. Submarine volcanoes Volcanic islands Pillow lava Ocean Geology"
+      },
+      "document": {
+        "template": "topics/submarine-volcanoes/reader.html",
+        "entry": "topics/submarine-volcanoes/main.ts"
+      },
+      "fallback": {
+        "src": "topics/submarine-volcanoes/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "海底火山",
+        "火山岛",
+        "枕状熔岩",
+        "海洋",
+        "地质"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-18",
+      "learning": "topics/submarine-volcanoes/learning.json"
+    },
+    {
+      "id": "volcanic-lakes",
+      "title": {
+        "zh": "火山湖是怎样形成的",
+        "en": "How volcanic lakes form"
+      },
+      "summary": {
+        "zh": "火山喷发之后，为什么可能留下一座湖？比较火山口和破火山口，试着让雨水积起来，或从地下漏走。",
+        "en": "Why can a lake form after volcanism? Compare a crater and a caldera, then let water accumulate or drain through the ground."
+      },
+      "pages": {
+        "zh": "topics/volcanic-lakes/entry.zh.md",
+        "en": "topics/volcanic-lakes/entry.en.md"
+      },
+      "parentTopic": "volcano-eruption",
+      "search": {
+        "zh": "火山湖是怎样形成的 火山喷发之后，为什么可能留下一座湖？比较火山口和破火山口，试着让雨水积起来，或从地下漏走。 火山湖 破火山口 水循环",
+        "en": "How volcanic lakes form Why can a lake form after volcanism? Compare a crater and a caldera, then let water accumulate or drain through the ground. Volcanic lakes Calderas Water cycle"
+      },
+      "document": {
+        "template": "topics/volcanic-lakes/reader.html",
+        "entry": "topics/volcanic-lakes/main.ts"
+      },
+      "fallback": {
+        "src": "topics/volcanic-lakes/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "火山湖",
+        "破火山口",
+        "水循环"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/volcanic-lakes/learning.json"
+    },
+    {
+      "id": "wind",
+      "title": {
+        "zh": "风：从微风到风暴",
+        "en": "Wind: from breezes to storms"
+      },
+      "summary": {
+        "zh": "空气为什么会动？改变受热、观察海陆风和绕流，再走进台风与龙卷风，探索风的力量和影响。",
+        "en": "Why does air move? Change heating, explore coastal breezes and flow around obstacles, then investigate typhoons, tornadoes and what wind can do."
+      },
+      "pages": {
+        "zh": "topics/wind/entry.zh.md",
+        "en": "topics/wind/entry.en.md"
+      },
+      "search": {
+        "zh": "风：从微风到风暴 空气为什么会动？改变受热、观察海陆风和绕流，再走进台风与龙卷风，探索风的力量和影响。 风 空气 气压 海陆风 台风 龙卷风 风能 台风是怎样形成的 暖海水怎样帮助风暴成长？改变海温、风切变和半球，看雷雨能否组织成带有螺旋云带的热带气旋。 台风 热带气旋 风切变 海洋 龙卷风是怎样形成的 从不同高度的风开始，观察雷暴中的旋转怎样发展。漏斗云和触地的旋转气流，是不是同一回事？ 龙卷风 雷暴 漏斗云 上升气流",
+        "en": "Wind: from breezes to storms Why does air move? Change heating, explore coastal breezes and flow around obstacles, then investigate typhoons, tornadoes and what wind can do. Wind Air Air pressure Sea and land breezes Typhoons Tornadoes Wind energy How typhoons form How does warm ocean water help a storm grow? Change sea temperature, wind shear and hemisphere to explore tropical cyclone organization. Typhoons Tropical cyclones Wind shear Ocean How tornadoes form Start with winds at different heights and explore rotation in a thunderstorm. Is a visible funnel cloud the same as a ground-reaching vortex? Tornadoes Thunderstorms Funnel clouds Updrafts"
+      },
+      "document": {
+        "template": "topics/wind/reader.html",
+        "entry": "topics/wind/main.ts"
+      },
+      "fallback": {
+        "src": "topics/wind/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "风",
+        "空气",
+        "气压",
+        "海陆风",
+        "台风",
+        "龙卷风",
+        "风能"
+      ],
+      "duration": "互动探索 / 五个章节",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-20",
+      "learning": "topics/wind/learning.json"
+    },
+    {
+      "id": "typhoon",
+      "title": {
+        "zh": "台风是怎样形成的",
+        "en": "How typhoons form"
+      },
+      "summary": {
+        "zh": "暖海水怎样帮助风暴成长？改变海温、风切变和半球，看雷雨能否组织成带有螺旋云带的热带气旋。",
+        "en": "How does warm ocean water help a storm grow? Change sea temperature, wind shear and hemisphere to explore tropical cyclone organization."
+      },
+      "pages": {
+        "zh": "topics/typhoon/entry.zh.md",
+        "en": "topics/typhoon/entry.en.md"
+      },
+      "parentTopic": "wind",
+      "search": {
+        "zh": "台风是怎样形成的 暖海水怎样帮助风暴成长？改变海温、风切变和半球，看雷雨能否组织成带有螺旋云带的热带气旋。 台风 热带气旋 风切变 海洋",
+        "en": "How typhoons form How does warm ocean water help a storm grow? Change sea temperature, wind shear and hemisphere to explore tropical cyclone organization. Typhoons Tropical cyclones Wind shear Ocean"
+      },
+      "document": {
+        "template": "topics/typhoon/reader.html",
+        "entry": "topics/typhoon/main.ts"
+      },
+      "fallback": {
+        "src": "topics/typhoon/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "台风",
+        "热带气旋",
+        "风切变",
+        "海洋"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/typhoon/learning.json"
+    },
+    {
+      "id": "tornado",
+      "title": {
+        "zh": "龙卷风是怎样形成的",
+        "en": "How tornadoes form"
+      },
+      "summary": {
+        "zh": "从不同高度的风开始，观察雷暴中的旋转怎样发展。漏斗云和触地的旋转气流，是不是同一回事？",
+        "en": "Start with winds at different heights and explore rotation in a thunderstorm. Is a visible funnel cloud the same as a ground-reaching vortex?"
+      },
+      "pages": {
+        "zh": "topics/tornado/entry.zh.md",
+        "en": "topics/tornado/entry.en.md"
+      },
+      "parentTopic": "wind",
+      "search": {
+        "zh": "龙卷风是怎样形成的 从不同高度的风开始，观察雷暴中的旋转怎样发展。漏斗云和触地的旋转气流，是不是同一回事？ 龙卷风 雷暴 漏斗云 上升气流",
+        "en": "How tornadoes form Start with winds at different heights and explore rotation in a thunderstorm. Is a visible funnel cloud the same as a ground-reaching vortex? Tornadoes Thunderstorms Funnel clouds Updrafts"
+      },
+      "document": {
+        "template": "topics/tornado/reader.html",
+        "entry": "topics/tornado/main.ts"
+      },
+      "fallback": {
+        "src": "topics/tornado/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "龙卷风",
+        "雷暴",
+        "漏斗云",
+        "上升气流"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/tornado/learning.json"
+    },
+    {
+      "id": "planet-surfaces",
+      "title": {
+        "zh": "从太空落向行星",
+        "en": "Descend from space toward a planet"
+      },
+      "summary": {
+        "zh": "直接进入太阳系下降模式：从完整星球靠近云层、岩石或海岸，随时暂停，再查看内部结构。",
+        "en": "Enter the solar-system descent mode: approach clouds, rock or coasts from the whole globe, pause at any point, then inspect the interior."
+      },
+      "pages": {
+        "zh": "topics/planet-surfaces/entry.zh.md",
+        "en": "topics/planet-surfaces/entry.en.md"
+      },
+      "parentTopic": "solar-system",
+      "search": {
+        "zh": "从太空落向行星 直接进入太阳系下降模式：从完整星球靠近云层、岩石或海岸，随时暂停，再查看内部结构。 行星 岩石行星 海洋 气态巨行星 冰巨星 火星 液态表面 土卫六 熔岩海 系外行星",
+        "en": "Descend from space toward a planet Enter the solar-system descent mode: approach clouds, rock or coasts from the whole globe, pause at any point, then inspect the interior. Planets Rocky planets Ocean Gas giants Ice giants Mars Liquid surfaces Titan Magma oceans Exoplanets"
+      },
+      "document": {
+        "template": "topics/planet-surfaces/reader.html",
+        "entry": "topics/planet-surfaces/entry.ts"
+      },
+      "fallback": {
+        "src": "topics/planet-surfaces/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "行星",
+        "岩石行星",
+        "海洋",
+        "气态巨行星",
+        "冰巨星",
+        "火星",
+        "液态表面",
+        "土卫六",
+        "熔岩海",
+        "系外行星"
+      ],
+      "duration": "互动探索 / 连续下降",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-20",
+      "learning": "topics/planet-surfaces/learning.json"
+    },
+    {
+      "id": "mimosa",
+      "title": {
+        "zh": "会动的植物",
+        "en": "Plants in motion"
+      },
+      "summary": {
+        "zh": "比较含羞草的合拢、捕蝇草的夹合与幼苗的向光生长，发现没有肌肉的植物怎样改变姿态。",
+        "en": "Compare mimosa folding, Venus flytrap closure and shoots growing toward light to discover how plants change posture without muscles."
+      },
+      "pages": {
+        "zh": "topics/mimosa/entry.zh.md",
+        "en": "topics/mimosa/entry.en.md"
+      },
+      "search": {
+        "zh": "会动的植物 比较含羞草的合拢、捕蝇草的夹合与幼苗的向光生长，发现没有肌肉的植物怎样改变姿态。 植物 生物学 细胞 含羞草 捕蝇草 向光性",
+        "en": "Plants in motion Compare mimosa folding, Venus flytrap closure and shoots growing toward light to discover how plants change posture without muscles. Plants Biology Cells Mimosa Venus flytrap Phototropism"
+      },
+      "document": {
+        "template": "topics/mimosa/reader.html",
+        "entry": "topics/mimosa/main.ts"
+      },
+      "fallback": {
+        "src": "topics/mimosa/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "植物",
+        "生物学",
+        "细胞",
+        "含羞草",
+        "捕蝇草",
+        "向光性"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/mimosa/learning.json"
+    },
+    {
+      "id": "flower-colors",
+      "title": {
+        "zh": "花为什么五颜六色？",
+        "en": "Why are flowers so colorful?"
+      },
+      "summary": {
+        "zh": "从玫瑰的色素、绣球的显色到牵牛花开放与向日葵的隐藏花纹，探索花色的不同原因。",
+        "en": "Explore flower colors through rose pigments, hydrangea chemistry, opening morning glories and hidden sunflower patterns."
+      },
+      "pages": {
+        "zh": "topics/flower-colors/entry.zh.md",
+        "en": "topics/flower-colors/entry.en.md"
+      },
+      "search": {
+        "zh": "花为什么五颜六色？ 从玫瑰的色素、绣球的显色到牵牛花开放与向日葵的隐藏花纹，探索花色的不同原因。 植物 花朵 化学 绣球 玫瑰 牵牛花 向日葵 绣球花为什么有不同颜色？ 从土壤到萼片细胞，观察酸度、铝和品种如何共同影响绣球花的蓝、紫、粉与白。 植物 花朵 化学",
+        "en": "Why are flowers so colorful? Explore flower colors through rose pigments, hydrangea chemistry, opening morning glories and hidden sunflower patterns. Plants Flowers Chemistry Hydrangea Rose Morning glory Sunflower Why do hydrangeas have different colors? From soil to sepal cells, explore how acidity, aluminum and cultivar shape blue, purple, pink and white hydrangea blooms. Plants Flowers Chemistry"
+      },
+      "document": {
+        "template": "topics/flower-colors/reader.html",
+        "entry": "topics/flower-colors/main.ts"
+      },
+      "fallback": {
+        "src": "topics/flower-colors/cover.svg",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "植物",
+        "花朵",
+        "化学",
+        "绣球",
+        "玫瑰",
+        "牵牛花",
+        "向日葵"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-22",
+      "learning": "topics/flower-colors/learning.json"
+    },
+    {
+      "id": "hydrangea",
+      "title": {
+        "zh": "绣球花为什么有不同颜色？",
+        "en": "Why do hydrangeas have different colors?"
+      },
+      "summary": {
+        "zh": "从土壤到萼片细胞，观察酸度、铝和品种如何共同影响绣球花的蓝、紫、粉与白。",
+        "en": "From soil to sepal cells, explore how acidity, aluminum and cultivar shape blue, purple, pink and white hydrangea blooms."
+      },
+      "pages": {
+        "zh": "topics/hydrangea/entry.zh.md",
+        "en": "topics/hydrangea/entry.en.md"
+      },
+      "parentTopic": "flower-colors",
+      "search": {
+        "zh": "绣球花为什么有不同颜色？ 从土壤到萼片细胞，观察酸度、铝和品种如何共同影响绣球花的蓝、紫、粉与白。 植物 花朵 化学",
+        "en": "Why do hydrangeas have different colors? From soil to sepal cells, explore how acidity, aluminum and cultivar shape blue, purple, pink and white hydrangea blooms. Plants Flowers Chemistry"
+      },
+      "document": {
+        "template": "topics/hydrangea/reader.html",
+        "entry": "topics/hydrangea/reader-route.ts"
+      },
+      "fallback": {
+        "src": "topics/hydrangea/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "植物",
+        "花朵",
+        "化学"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/hydrangea/learning.json"
+    },
+    {
+      "id": "rain-formation",
+      "title": {
+        "zh": "雨是怎样形成的",
+        "en": "How rain forms"
+      },
+      "summary": {
+        "zh": "云里的小水滴，怎样变成落到地面的雨？走进云中，比较暖云、冰晶和干燥空气带来的不同结果。",
+        "en": "How do tiny cloud droplets become rain at the ground? Look inside a cloud and compare warm droplets, ice growth and evaporation in dry air."
+      },
+      "pages": {
+        "zh": "topics/rain-formation/entry.zh.md",
+        "en": "topics/rain-formation/entry.en.md"
+      },
+      "parentTopic": "rain-cycle",
+      "search": {
+        "zh": "雨是怎样形成的 云里的小水滴，怎样变成落到地面的雨？走进云中，比较暖云、冰晶和干燥空气带来的不同结果。 云 水循环 降雨",
+        "en": "How rain forms How do tiny cloud droplets become rain at the ground? Look inside a cloud and compare warm droplets, ice growth and evaporation in dry air. Clouds Water cycle Rainfall"
+      },
+      "document": {
+        "template": "topics/rain-formation/reader.html",
+        "entry": "topics/rain-formation/main.ts"
+      },
+      "fallback": {
+        "src": "topics/rain-formation/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "云",
+        "水循环",
+        "降雨"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/rain-formation/learning.json"
+    },
+    {
+      "id": "lightning-thunder",
+      "title": {
+        "zh": "闪电和雷声是怎样形成的",
+        "en": "How lightning and thunder form"
+      },
+      "summary": {
+        "zh": "云里怎样积累电荷？闪电为什么会分叉，为什么总是先看见闪电再听见雷声？把一次放电放慢，看清光与声音各自的旅程。",
+        "en": "How does a cloud separate charge? Why does lightning branch, and why does thunder arrive later? Slow down one discharge and follow the journeys of light and sound."
+      },
+      "pages": {
+        "zh": "topics/lightning-thunder/entry.zh.md",
+        "en": "topics/lightning-thunder/entry.en.md"
+      },
+      "search": {
+        "zh": "闪电和雷声是怎样形成的 云里怎样积累电荷？闪电为什么会分叉，为什么总是先看见闪电再听见雷声？把一次放电放慢，看清光与声音各自的旅程。 雷电 电荷 声波",
+        "en": "How lightning and thunder form How does a cloud separate charge? Why does lightning branch, and why does thunder arrive later? Slow down one discharge and follow the journeys of light and sound. Lightning Charge Sound waves"
+      },
+      "document": {
+        "template": "topics/lightning-thunder/reader.html",
+        "entry": "topics/lightning-thunder/main.ts"
+      },
+      "fallback": {
+        "src": "topics/lightning-thunder/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "雷电",
+        "电荷",
+        "声波"
+      ],
+      "duration": "互动探索 / 条件与过程",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/lightning-thunder/learning.json"
+    },
+    {
+      "id": "buoyancy",
+      "title": {
+        "zh": "水为什么能托住小船？",
+        "en": "Why can water hold up a boat?"
+      },
+      "summary": {
+        "zh": "从一块木头、一团橡皮泥开始，亲眼看看水向上托的力。",
+        "en": "Start with wood and clay. See the upward push of water."
+      },
+      "pages": {
+        "zh": "topics/buoyancy/entry.zh.md",
+        "en": "topics/buoyancy/entry.en.md"
+      },
+      "fallback": {
+        "src": "topics/buoyancy/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，仅作静态说明，不表示当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "search": {
+        "zh": "水为什么能托住小船？ 从一块木头、一团橡皮泥开始，亲眼看看水向上托的力。 浮力 浮沉 排水量 橡皮泥小船",
+        "en": "Why can water hold up a boat? Start with wood and clay. See the upward push of water. Buoyancy Floating and sinking Displacement Clay boats"
+      },
+      "category": "physics",
+      "tags": [
+        "浮力",
+        "浮沉",
+        "排水量",
+        "橡皮泥小船"
+      ],
+      "duration": "互动探索 / 三个实验",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/buoyancy/learning.json",
+      "document": {
+        "template": "topics/buoyancy/reader.html",
+        "entry": "topics/buoyancy/main.ts"
+      }
+    },
+    {
+      "id": "shadows",
+      "title": {
+        "zh": "影子为什么变长变短？",
+        "en": "Why do shadows grow and shrink?"
+      },
+      "summary": {
+        "zh": "移动小灯，看看小木偶的影子躲到了哪一边。",
+        "en": "Move the lamp and watch which way the wooden puppet’s shadow points."
+      },
+      "pages": {
+        "zh": "topics/shadows/entry.zh.md",
+        "en": "topics/shadows/entry.en.md"
+      },
+      "fallback": {
+        "src": "topics/shadows/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，仅作静态说明，不表示当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "search": {
+        "zh": "影子为什么变长变短？ 移动小灯，看看小木偶的影子躲到了哪一边。 光与影",
+        "en": "Why do shadows grow and shrink? Move the lamp and watch which way the wooden puppet’s shadow points. Light and shadow"
+      },
+      "category": "physics",
+      "tags": [
+        "光与影"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/shadows/learning.json",
+      "document": {
+        "template": "topics/shadows/reader.html",
+        "entry": "topics/shadows/main.ts"
+      }
+    },
+    {
+      "id": "water-states",
+      "title": {
+        "zh": "冰变成水，水又去哪儿了？",
+        "en": "Ice melts. Where does the water go?"
+      },
+      "summary": {
+        "zh": "给同一杯水换个环境，观察结冰、融化、蒸发和凝结。",
+        "en": "Change the surroundings of one cup of water and explore freezing, melting, evaporation and condensation."
+      },
+      "pages": {
+        "zh": "topics/water-states/entry.zh.md",
+        "en": "topics/water-states/entry.en.md"
+      },
+      "search": {
+        "zh": "冰变成水，水又去哪儿了？ 给同一杯水换个环境，观察结冰、融化、蒸发和凝结。 水的变化 日常生活",
+        "en": "Ice melts. Where does the water go? Change the surroundings of one cup of water and explore freezing, melting, evaporation and condensation. Changes of water Everyday life"
+      },
+      "document": {
+        "template": "topics/water-states/reader.html",
+        "entry": "topics/water-states/main.ts"
+      },
+      "fallback": {
+        "src": "topics/water-states/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "physics",
+      "tags": [
+        "水的变化",
+        "日常生活"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/water-states/learning.json"
+    },
+    {
+      "id": "magnets",
+      "title": {
+        "zh": "磁铁会吸住什么？",
+        "en": "What will a magnet attract?"
+      },
+      "summary": {
+        "zh": "先挑一个物品，再让磁铁靠近。换成另一块磁铁，还能试试“推开”。",
+        "en": "Choose an object and move the magnet closer. Try a second magnet to discover a push as well as a pull."
+      },
+      "pages": {
+        "zh": "topics/magnets/entry.zh.md",
+        "en": "topics/magnets/entry.en.md"
+      },
+      "search": {
+        "zh": "磁铁会吸住什么？ 先挑一个物品，再让磁铁靠近。换成另一块磁铁，还能试试“推开”。 磁铁 材料",
+        "en": "What will a magnet attract? Choose an object and move the magnet closer. Try a second magnet to discover a push as well as a pull. Magnets Materials"
+      },
+      "document": {
+        "template": "topics/magnets/reader.html",
+        "entry": "topics/magnets/main.ts"
+      },
+      "fallback": {
+        "src": "topics/magnets/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "physics",
+      "tags": [
+        "磁铁",
+        "材料"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/magnets/learning.json"
+    },
+    {
+      "id": "sound-vibrations",
+      "title": {
+        "zh": "声音：从振动到听见",
+        "en": "Sound: from vibration to hearing"
+      },
+      "summary": {
+        "zh": "追踪声源、空气、鼓膜与耳蜗，比较音高、幅度和传播条件，区分机械振动与神经消息。",
+        "en": "Trace the source, air, eardrum and cochlea; compare pitch, amplitude and transmission, and distinguish mechanical vibration from neural signals."
+      },
+      "pages": {
+        "zh": "topics/sound-vibrations/entry.zh.md",
+        "en": "topics/sound-vibrations/entry.en.md"
+      },
+      "search": {
+        "zh": "声音：从振动到听见 追踪声源、空气、鼓膜与耳蜗，比较音高、幅度和传播条件，区分机械振动与神经消息。 声音 振动 听觉 耳蜗 声音是怎样出来的？ 耳朵怎样听见声音？ 耳朵怎样听见声音？ 放大耳朵、耳蜗和感觉细胞，追踪振动怎样变成传向脑的消息。 听觉 耳朵 声音 身体",
+        "en": "Sound: from vibration to hearing Trace the source, air, eardrum and cochlea; compare pitch, amplitude and transmission, and distinguish mechanical vibration from neural signals. Sound Vibration Hearing Cochlea How is sound made? How do ears hear sound? How do ears hear sound? Explore the ear, cochlea and sensory cells as vibration becomes a message to the brain. Hearing Ears Sound Body"
+      },
+      "document": {
+        "template": "topics/sound-vibrations/reader.html",
+        "entry": "topics/sound-vibrations/main.ts"
+      },
+      "fallback": {
+        "src": "topics/sound-vibrations/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "physics",
+      "tags": [
+        "声音",
+        "振动",
+        "听觉",
+        "耳蜗",
+        "声音是怎样出来的？",
+        "耳朵怎样听见声音？"
+      ],
+      "duration": "互动探索 / 三条观察路径",
+      "modes": [
+        "儿童版",
+        "家长深入版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/sound-vibrations/learning.json"
+    },
+    {
+      "id": "friction",
+      "title": {
+        "zh": "运动、摩擦与停下来",
+        "en": "Motion, friction and coming to a stop"
+      },
+      "summary": {
+        "zh": "从滑块接触与能量变化，到轮胎抓地、反应与制动距离，再到乘员惯性和合身约束，逐层理解怎样停下来。",
+        "en": "From sliding contacts and energy transfer to tire grip, reaction and braking distances, then passenger inertia and correctly fitted restraints."
+      },
+      "pages": {
+        "zh": "topics/friction/entry.zh.md",
+        "en": "topics/friction/entry.en.md"
+      },
+      "search": {
+        "zh": "运动、摩擦与停下来 从滑块接触与能量变化，到轮胎抓地、反应与制动距离，再到乘员惯性和合身约束，逐层理解怎样停下来。 摩擦 运动 刹车 惯性 安全带 儿童座椅 滑出去的玩具为什么会停？ 刹车了，为什么还要系安全带？ 汽车停下需要一段路，身体也需要一起慢下来。看看轮胎、刹车和儿童座椅怎样接力保护我们。 交通安全 刹车 摩擦 惯性 安全带 儿童安全座椅",
+        "en": "Motion, friction and coming to a stop From sliding contacts and energy transfer to tire grip, reaction and braking distances, then passenger inertia and correctly fitted restraints. Friction Motion Braking Inertia Seat belts Child restraints Why does a sliding toy stop? If the car brakes, why wear a seat belt? A car needs distance to stop, and our bodies need to slow down too. Explore how tires, brakes and child seats work together. Road safety Braking Friction Inertia Seat belts Child car seats"
+      },
+      "document": {
+        "template": "topics/friction/reader.html",
+        "entry": "topics/friction/main.ts"
+      },
+      "fallback": {
+        "src": "topics/friction/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "physics",
+      "tags": [
+        "摩擦",
+        "运动",
+        "刹车",
+        "惯性",
+        "安全带",
+        "儿童座椅",
+        "滑出去的玩具为什么会停？"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "家长深入版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/friction/learning.json"
+    },
+    {
+      "id": "butterfly-life",
+      "title": {
+        "zh": "毛毛虫怎样变成蝴蝶？",
+        "en": "How does a caterpillar become a butterfly?"
+      },
+      "summary": {
+        "zh": "从卵到成虫，看见毛毛虫的成长和蛹里面的变化。",
+        "en": "Follow a butterfly from egg to adult and explore the changes inside a chrysalis."
+      },
+      "pages": {
+        "zh": "topics/butterfly-life/entry.zh.md",
+        "en": "topics/butterfly-life/entry.en.md"
+      },
+      "parentTopic": "frog-life",
+      "search": {
+        "zh": "毛毛虫怎样变成蝴蝶？ 从卵到成虫，看见毛毛虫的成长和蛹里面的变化。 蝴蝶 生命周期 变态发育",
+        "en": "How does a caterpillar become a butterfly? Follow a butterfly from egg to adult and explore the changes inside a chrysalis. Butterflies Life cycle Metamorphosis"
+      },
+      "document": {
+        "template": "topics/butterfly-life/reader.html",
+        "entry": "topics/butterfly-life/main.ts"
+      },
+      "fallback": {
+        "src": "topics/butterfly-life/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "蝴蝶",
+        "生命周期",
+        "变态发育"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-20",
+      "learning": "topics/butterfly-life/learning.json"
+    },
+    {
+      "id": "frog-life",
+      "title": {
+        "zh": "变态发育：动物怎样长大",
+        "en": "Metamorphosis: how animals grow up"
+      },
+      "summary": {
+        "zh": "跟随蝌蚪和毛毛虫，比较身体、食物、呼吸环境与运动方式怎样改变；找出有蛹和无蛹发育的差别。",
+        "en": "Follow tadpoles and caterpillars as their bodies, food, breathing and movement change, and compare development with and without a pupa."
+      },
+      "pages": {
+        "zh": "topics/frog-life/entry.zh.md",
+        "en": "topics/frog-life/entry.en.md"
+      },
+      "search": {
+        "zh": "毛毛虫怎样变成蝴蝶？ 从卵到成虫，看见毛毛虫的成长和蛹里面的变化。 蝴蝶 生命周期 变态发育 变态发育：动物怎样长大 跟随蝌蚪和毛毛虫，比较身体、食物、呼吸环境与运动方式怎样改变；找出有蛹和无蛹发育的差别。 变态发育 青蛙 蝴蝶 生命周期",
+        "en": "How does a caterpillar become a butterfly? Follow a butterfly from egg to adult and explore the changes inside a chrysalis. Butterflies Life cycle Metamorphosis Metamorphosis: how animals grow up Follow tadpoles and caterpillars as their bodies, food, breathing and movement change, and compare development with and without a pupa. Metamorphosis Frogs Butterflies Life cycle"
+      },
+      "document": {
+        "template": "topics/frog-life/reader.html",
+        "entry": "topics/frog-life/main.ts"
+      },
+      "fallback": {
+        "src": "topics/frog-life/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "变态发育",
+        "青蛙",
+        "蝴蝶",
+        "生命周期"
+      ],
+      "duration": "自由探索 / 8–12 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-20",
+      "learning": "topics/frog-life/learning.json"
+    },
+    {
+      "id": "ant-trails",
+      "title": {
+        "zh": "蚂蚁与蚁群",
+        "en": "Ants and their colony"
+      },
+      "summary": {
+        "zh": "跟随一只工蚁，认识身体与触角，发现食物与踪迹线索，再进入巢内观察幼体成长和分工。",
+        "en": "Follow one worker through its anatomy, food discovery and changing scent trails, then explore brood development and life inside the nest."
+      },
+      "pages": {
+        "zh": "topics/ant-trails/entry.zh.md",
+        "en": "topics/ant-trails/entry.en.md"
+      },
+      "search": {
+        "zh": "蚂蚁与蚁群 跟随一只工蚁，认识身体与触角，发现食物与踪迹线索，再进入巢内观察幼体成长和分工。 蚂蚁 昆虫 信息素 动物行为 生命周期",
+        "en": "Ants and their colony Follow one worker through its anatomy, food discovery and changing scent trails, then explore brood development and life inside the nest. Ants Insects Pheromones Animal behavior Life cycle"
+      },
+      "document": {
+        "template": "topics/ant-trails/reader.html",
+        "entry": "topics/ant-trails/main.ts"
+      },
+      "fallback": {
+        "src": "topics/ant-trails/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "蚂蚁",
+        "昆虫",
+        "信息素",
+        "动物行为",
+        "生命周期"
+      ],
+      "duration": "自由探索 / 8–12 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-20",
+      "learning": "topics/ant-trails/learning.json"
+    },
+    {
+      "id": "fish-gills",
+      "title": {
+        "zh": "鱼在水里怎样呼吸？",
+        "en": "How do fish breathe underwater?"
+      },
+      "summary": {
+        "zh": "跟随水流经过鱼鳃，看溶在水里的氧气进入血液。",
+        "en": "Follow water across the gills and see dissolved oxygen enter the blood."
+      },
+      "pages": {
+        "zh": "topics/fish-gills/entry.zh.md",
+        "en": "topics/fish-gills/entry.en.md"
+      },
+      "search": {
+        "zh": "鱼在水里怎样呼吸？ 跟随水流经过鱼鳃，看溶在水里的氧气进入血液。 鱼 鳃 呼吸 氧气",
+        "en": "How do fish breathe underwater? Follow water across the gills and see dissolved oxygen enter the blood. Fish Gills Breathing Oxygen"
+      },
+      "document": {
+        "template": "topics/fish-gills/reader.html",
+        "entry": "topics/fish-gills/main.ts"
+      },
+      "fallback": {
+        "src": "topics/fish-gills/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "鱼",
+        "鳃",
+        "呼吸",
+        "氧气"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/fish-gills/learning.json"
+    },
+    {
+      "id": "duck-feet",
+      "title": {
+        "zh": "鸭子的脚为什么像船桨？",
+        "en": "Why are duck feet like paddles?"
+      },
+      "summary": {
+        "zh": "放大鸭子的蹼足，观察向后推水和收脚回程的不同形状。",
+        "en": "Enlarge a duck foot to compare the push and return phases of paddling."
+      },
+      "pages": {
+        "zh": "topics/duck-feet/entry.zh.md",
+        "en": "topics/duck-feet/entry.en.md"
+      },
+      "search": {
+        "zh": "鸭子的脚为什么像船桨？ 放大鸭子的蹼足，观察向后推水和收脚回程的不同形状。 鸭子 蹼 游泳 力",
+        "en": "Why are duck feet like paddles? Enlarge a duck foot to compare the push and return phases of paddling. Ducks Webbed feet Swimming Forces"
+      },
+      "document": {
+        "template": "topics/duck-feet/reader.html",
+        "entry": "topics/duck-feet/main.ts"
+      },
+      "fallback": {
+        "src": "topics/duck-feet/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "鸭子",
+        "蹼",
+        "游泳",
+        "力"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/duck-feet/learning.json"
+    },
+    {
+      "id": "camouflage",
+      "title": {
+        "zh": "谁藏在树叶和树枝里？",
+        "en": "Who is hiding among the leaves?"
+      },
+      "summary": {
+        "zh": "在树林里寻找三只动物，换背景比较保护色和拟态。",
+        "en": "Find three animals and change their background to explore camouflage and resemblance."
+      },
+      "pages": {
+        "zh": "topics/camouflage/entry.zh.md",
+        "en": "topics/camouflage/entry.en.md"
+      },
+      "listed": false,
+      "search": {
+        "zh": "谁藏在树叶和树枝里？ 在树林里寻找三只动物，换背景比较保护色和拟态。 保护色 拟态 昆虫 观察",
+        "en": "Who is hiding among the leaves? Find three animals and change their background to explore camouflage and resemblance. Camouflage Resemblance Insects Observation"
+      },
+      "document": {
+        "template": "topics/camouflage/reader.html",
+        "entry": "topics/camouflage/main.ts"
+      },
+      "fallback": {
+        "src": "topics/camouflage/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "保护色",
+        "拟态",
+        "昆虫",
+        "观察"
+      ],
+      "duration": "自由探索 / 3–5 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/camouflage/learning.json"
+    },
+    {
+      "id": "seed-sprouting",
+      "title": {
+        "zh": "开花植物：从种子到下一代",
+        "en": "Flowering plants: from seed to next generation"
+      },
+      "summary": {
+        "zh": "比较萌发、授粉受精与传播，发现一粒种子成为下一代需要哪些条件。",
+        "en": "Compare germination, pollination, fertilization and dispersal to discover what a new plant generation needs."
+      },
+      "pages": {
+        "zh": "topics/seed-sprouting/entry.zh.md",
+        "en": "topics/seed-sprouting/entry.en.md"
+      },
+      "search": {
+        "zh": "开花植物：从种子到下一代 比较萌发、授粉受精与传播，发现一粒种子成为下一代需要哪些条件。 植物 种子 发芽 一粒豆子怎样发芽？ 植物生命周期 萌发 受精 种子传播 种子怎样去远方？ 轻轻的绒毛、小小的钩子，都能帮种子离开妈妈身边。选一种，再送它一程。 植物 种子 传播 花为什么会变成果实？ 让蜜蜂把合适的花粉带到樱桃花上，再看花里面慢慢发生什么。 植物 授粉 果实",
+        "en": "Flowering plants: from seed to next generation Compare germination, pollination, fertilization and dispersal to discover what a new plant generation needs. Plants Seeds Germination How does a bean sprout? Plant life cycle Germination Fertilization Seed dispersal How do seeds travel? Fluffy hairs and tiny hooks can help seeds leave their parent plant. Pick one and send it on its way. Plants Seeds Dispersal How does a flower become fruit? Help a bee bring compatible pollen to a cherry flower, then see what happens inside. Plants Pollination Fruit"
+      },
+      "document": {
+        "template": "topics/seed-sprouting/reader.html",
+        "entry": "topics/seed-sprouting/reader-entry.ts"
+      },
+      "fallback": {
+        "src": "topics/seed-sprouting/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "植物",
+        "种子",
+        "发芽",
+        "一粒豆子怎样发芽？",
+        "植物生命周期",
+        "萌发",
+        "受精",
+        "种子传播"
+      ],
+      "duration": "互动探索 / 三条观察路径",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-20",
+      "learning": "topics/seed-sprouting/learning.json"
+    },
+    {
+      "id": "seed-travel",
+      "title": {
+        "zh": "种子怎样去远方？",
+        "en": "How do seeds travel?"
+      },
+      "summary": {
+        "zh": "轻轻的绒毛、小小的钩子，都能帮种子离开妈妈身边。选一种，再送它一程。",
+        "en": "Fluffy hairs and tiny hooks can help seeds leave their parent plant. Pick one and send it on its way."
+      },
+      "pages": {
+        "zh": "topics/seed-travel/entry.zh.md",
+        "en": "topics/seed-travel/entry.en.md"
+      },
+      "parentTopic": "seed-sprouting",
+      "search": {
+        "zh": "种子怎样去远方？ 轻轻的绒毛、小小的钩子，都能帮种子离开妈妈身边。选一种，再送它一程。 植物 种子 传播",
+        "en": "How do seeds travel? Fluffy hairs and tiny hooks can help seeds leave their parent plant. Pick one and send it on its way. Plants Seeds Dispersal"
+      },
+      "document": {
+        "template": "topics/seed-travel/reader.html",
+        "entry": "topics/seed-travel/main.ts"
+      },
+      "fallback": {
+        "src": "topics/seed-travel/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "植物",
+        "种子",
+        "传播"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/seed-travel/learning.json"
+    },
+    {
+      "id": "plant-water",
+      "title": {
+        "zh": "根喝到的水怎样到叶子里？",
+        "en": "How does water reach the leaves?"
+      },
+      "summary": {
+        "zh": "一起跟着蓝色水滴，从土里出发，走过根和茎，最后来到叶子。",
+        "en": "Follow the blue water markers from soil through roots and stem, all the way to a leaf."
+      },
+      "pages": {
+        "zh": "topics/plant-water/entry.zh.md",
+        "en": "topics/plant-water/entry.en.md"
+      },
+      "parentTopic": "leaf-colors",
+      "search": {
+        "zh": "根喝到的水怎样到叶子里？ 一起跟着蓝色水滴，从土里出发，走过根和茎，最后来到叶子。 植物 水 蒸腾",
+        "en": "How does water reach the leaves? Follow the blue water markers from soil through roots and stem, all the way to a leaf. Plants Water Transpiration"
+      },
+      "document": {
+        "template": "topics/plant-water/reader.html",
+        "entry": "topics/plant-water/reader-entry.ts"
+      },
+      "fallback": {
+        "src": "topics/plant-water/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "植物",
+        "水",
+        "蒸腾"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/plant-water/learning.json"
+    },
+    {
+      "id": "flower-fruit",
+      "title": {
+        "zh": "花为什么会变成果实？",
+        "en": "How does a flower become fruit?"
+      },
+      "summary": {
+        "zh": "让蜜蜂把合适的花粉带到樱桃花上，再看花里面慢慢发生什么。",
+        "en": "Help a bee bring compatible pollen to a cherry flower, then see what happens inside."
+      },
+      "pages": {
+        "zh": "topics/flower-fruit/entry.zh.md",
+        "en": "topics/flower-fruit/entry.en.md"
+      },
+      "parentTopic": "seed-sprouting",
+      "search": {
+        "zh": "花为什么会变成果实？ 让蜜蜂把合适的花粉带到樱桃花上，再看花里面慢慢发生什么。 植物 授粉 果实",
+        "en": "How does a flower become fruit? Help a bee bring compatible pollen to a cherry flower, then see what happens inside. Plants Pollination Fruit"
+      },
+      "document": {
+        "template": "topics/flower-fruit/reader.html",
+        "entry": "topics/flower-fruit/main.ts"
+      },
+      "fallback": {
+        "src": "topics/flower-fruit/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "植物",
+        "授粉",
+        "果实"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/flower-fruit/learning.json"
+    },
+    {
+      "id": "cactus-water",
+      "title": {
+        "zh": "仙人掌怎样留住水？",
+        "en": "How does a cactus save water?"
+      },
+      "summary": {
+        "zh": "给沙漠下一场雨，看看胖胖的茎怎样储水，再打开白天和夜晚的窗口。",
+        "en": "Bring rain to the desert, watch the thick stem store water, and switch between day and night."
+      },
+      "pages": {
+        "zh": "topics/cactus-water/entry.zh.md",
+        "en": "topics/cactus-water/entry.en.md"
+      },
+      "search": {
+        "zh": "仙人掌怎样留住水？ 给沙漠下一场雨，看看胖胖的茎怎样储水，再打开白天和夜晚的窗口。 植物 仙人掌 沙漠",
+        "en": "How does a cactus save water? Bring rain to the desert, watch the thick stem store water, and switch between day and night. Plants Cacti Deserts"
+      },
+      "document": {
+        "template": "topics/cactus-water/reader.html",
+        "entry": "topics/cactus-water/reader-entry.ts"
+      },
+      "fallback": {
+        "src": "topics/cactus-water/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "植物",
+        "仙人掌",
+        "沙漠"
+      ],
+      "duration": "3–6 分钟 / 自由探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/cactus-water/learning.json"
+    },
+    {
+      "id": "rain-cycle",
+      "title": {
+        "zh": "水循环：水的许多旅程",
+        "en": "The water cycle: many journeys"
+      },
+      "summary": {
+        "zh": "从海面到云、山坡、土壤和河湖，探索水的多条旅程与冰川慢时间。",
+        "en": "From sea to cloud, hillside, soil, rivers and lakes: explore many water journeys and slow time in glaciers."
+      },
+      "pages": {
+        "zh": "topics/rain-cycle/entry.zh.md",
+        "en": "topics/rain-cycle/entry.en.md"
+      },
+      "search": {
+        "zh": "雨是怎样形成的 云里的小水滴，怎样变成落到地面的雨？走进云中，比较暖云、冰晶和干燥空气带来的不同结果。 云 水循环 降雨 水循环：水的许多旅程 从海面到云、山坡、土壤和河湖，探索水的多条旅程与冰川慢时间。 水循环 蒸发 凝结 小河为什么弯弯曲曲？ 让水从山坡流下来，看看它怎样绕开石头，又怎样改变河岸。 河流 冲刷 沉积 雨水落到地上以后呢？ 给不同的地面下一场雨，看看水流走了、渗下去了，还是留下来了。 雨水 入渗 地表径流",
+        "en": "How rain forms How do tiny cloud droplets become rain at the ground? Look inside a cloud and compare warm droplets, ice growth and evaporation in dry air. Clouds Water cycle Rainfall The water cycle: many journeys From sea to cloud, hillside, soil, rivers and lakes: explore many water journeys and slow time in glaciers. Water cycle Evaporation Condensation Why do rivers bend? Send water downhill. Watch it pass rocks and reshape the banks. Rivers Erosion Deposition What happens to rain on the ground? Rain on different surfaces. Does the water run off, soak in, or stay? Rainwater Infiltration Surface runoff"
+      },
+      "document": {
+        "template": "topics/rain-cycle/reader.html",
+        "entry": "topics/rain-cycle/main.ts"
+      },
+      "fallback": {
+        "src": "topics/rain-cycle/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "水循环",
+        "蒸发",
+        "凝结"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/rain-cycle/learning.json"
+    },
+    {
+      "id": "river-paths",
+      "title": {
+        "zh": "小河为什么弯弯曲曲？",
+        "en": "Why do rivers bend?"
+      },
+      "summary": {
+        "zh": "让水从山坡流下来，看看它怎样绕开石头，又怎样改变河岸。",
+        "en": "Send water downhill. Watch it pass rocks and reshape the banks."
+      },
+      "pages": {
+        "zh": "topics/river-paths/entry.zh.md",
+        "en": "topics/river-paths/entry.en.md"
+      },
+      "parentTopic": "rain-cycle",
+      "search": {
+        "zh": "小河为什么弯弯曲曲？ 让水从山坡流下来，看看它怎样绕开石头，又怎样改变河岸。 河流 冲刷 沉积",
+        "en": "Why do rivers bend? Send water downhill. Watch it pass rocks and reshape the banks. Rivers Erosion Deposition"
+      },
+      "document": {
+        "template": "topics/river-paths/reader.html",
+        "entry": "topics/river-paths/main.ts"
+      },
+      "fallback": {
+        "src": "topics/river-paths/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "河流",
+        "冲刷",
+        "沉积"
+      ],
+      "duration": "互动探索 / 四步观察",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/river-paths/learning.json"
+    },
+    {
+      "id": "sand-journey",
+      "title": {
+        "zh": "沙滩上的沙子从哪里来？",
+        "en": "Where does beach sand come from?"
+      },
+      "summary": {
+        "zh": "跟着一粒小沙子，看岩石和贝壳怎样留下海边的颗粒。",
+        "en": "Follow a grain and discover how rocks and shells supply beach sediment."
+      },
+      "pages": {
+        "zh": "topics/sand-journey/entry.zh.md",
+        "en": "topics/sand-journey/entry.en.md"
+      },
+      "listed": false,
+      "search": {
+        "zh": "沙滩上的沙子从哪里来？ 跟着一粒小沙子，看岩石和贝壳怎样留下海边的颗粒。 沙滩 沙子 风化",
+        "en": "Where does beach sand come from? Follow a grain and discover how rocks and shells supply beach sediment. Beaches Sand Weathering"
+      },
+      "document": {
+        "template": "topics/sand-journey/reader.html",
+        "entry": "topics/sand-journey/main.ts"
+      },
+      "fallback": {
+        "src": "topics/sand-journey/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "沙滩",
+        "沙子",
+        "风化"
+      ],
+      "duration": "互动探索 / 四步观察",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/sand-journey/learning.json"
+    },
+    {
+      "id": "ground-water",
+      "title": {
+        "zh": "雨水落到地上以后呢？",
+        "en": "What happens to rain on the ground?"
+      },
+      "summary": {
+        "zh": "给不同的地面下一场雨，看看水流走了、渗下去了，还是留下来了。",
+        "en": "Rain on different surfaces. Does the water run off, soak in, or stay?"
+      },
+      "pages": {
+        "zh": "topics/ground-water/entry.zh.md",
+        "en": "topics/ground-water/entry.en.md"
+      },
+      "parentTopic": "rain-cycle",
+      "search": {
+        "zh": "雨水落到地上以后呢？ 给不同的地面下一场雨，看看水流走了、渗下去了，还是留下来了。 雨水 入渗 地表径流",
+        "en": "What happens to rain on the ground? Rain on different surfaces. Does the water run off, soak in, or stay? Rainwater Infiltration Surface runoff"
+      },
+      "document": {
+        "template": "topics/ground-water/reader.html",
+        "entry": "topics/ground-water/main.ts"
+      },
+      "fallback": {
+        "src": "topics/ground-water/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "雨水",
+        "入渗",
+        "地表径流"
+      ],
+      "duration": "互动探索 / 四步观察",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/ground-water/learning.json"
+    },
+    {
+      "id": "sun-star",
+      "title": {
+        "zh": "太阳也是一颗星星吗？",
+        "en": "Is the Sun a star too?"
+      },
+      "summary": {
+        "zh": "把观察者带远一些：太阳看起来变小了，它本身有变小吗？",
+        "en": "Move the observer farther away: the Sun looks smaller, but has the Sun itself shrunk?"
+      },
+      "pages": {
+        "zh": "topics/sun-star/entry.zh.md",
+        "en": "topics/sun-star/entry.en.md"
+      },
+      "parentTopic": "stars",
+      "search": {
+        "zh": "太阳也是一颗星星吗？ 把观察者带远一些：太阳看起来变小了，它本身有变小吗？ 恒星 太阳 远近",
+        "en": "Is the Sun a star too? Move the observer farther away: the Sun looks smaller, but has the Sun itself shrunk? star Sun Near and far"
+      },
+      "document": {
+        "template": "topics/sun-star/reader.html",
+        "entry": "topics/sun-star/main.ts"
+      },
+      "fallback": {
+        "src": "topics/sun-star/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "恒星",
+        "太阳",
+        "远近"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/sun-star/learning.json"
+    },
+    {
+      "id": "meteors",
+      "title": {
+        "zh": "流星是星星掉下来了吗？",
+        "en": "Is a meteor a falling star?"
+      },
+      "summary": {
+        "zh": "跟着一小块太空碎片，看看它进入大气时发生什么。",
+        "en": "Follow a small piece of space debris and see what happens when it enters the atmosphere."
+      },
+      "pages": {
+        "zh": "topics/meteors/entry.zh.md",
+        "en": "topics/meteors/entry.en.md"
+      },
+      "listed": false,
+      "search": {
+        "zh": "流星是星星掉下来了吗？ 跟着一小块太空碎片，看看它进入大气时发生什么。 流星 陨石 太空",
+        "en": "Is a meteor a falling star? Follow a small piece of space debris and see what happens when it enters the atmosphere. Meteors Meteorites Space"
+      },
+      "document": {
+        "template": "topics/meteors/reader.html",
+        "entry": "topics/meteors/main.ts"
+      },
+      "fallback": {
+        "src": "topics/meteors/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "流星",
+        "陨石",
+        "太空"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/meteors/learning.json"
+    },
+    {
+      "id": "cells",
+      "title": {
+        "zh": "细胞：结构与分工",
+        "en": "Cells: structure and teamwork"
+      },
+      "summary": {
+        "zh": "从膜与细胞器，到物质和能量，再看皮肤、肌肉、神经与血液的分工。",
+        "en": "From membranes and organelles to matter and energy, then explore teamwork in skin, muscle, nerves and blood."
+      },
+      "pages": {
+        "zh": "topics/cells/entry.zh.md",
+        "en": "topics/cells/entry.en.md"
+      },
+      "search": {
+        "zh": "细胞：结构与分工 从膜与细胞器，到物质和能量，再看皮肤、肌肉、神经与血液的分工。 细胞 细菌 DNA 微观世界 红细胞和白细胞在做什么？ 放大看血液中的分工：运氧气、参与防御，以及一起帮助止血。 血细胞 红细胞 白细胞 血小板 氧气运输 身体 身体里的细胞为什么长得不一样？ 比较皮肤、肌肉与神经元，观察形状怎样帮助它们保护、运动和传递信息。 细胞分工 皮肤 肌肉 神经元 组织",
+        "en": "Cells: structure and teamwork From membranes and organelles to matter and energy, then explore teamwork in skin, muscle, nerves and blood. Cells Bacteria DNA Microscopic world What do red and white blood cells do? Explore jobs in blood: carrying oxygen, immune defence and working together to stop bleeding. Blood cells Red blood cells White blood cells Platelets Oxygen transport Body Why do body cells have different shapes? Compare skin, muscle and neurons. See how structure supports protection, movement and communication. Cell specialization Skin Muscle Neurons Tissues"
+      },
+      "document": {
+        "template": "topics/cells/reader.html",
+        "entry": "topics/cells/main.ts"
+      },
+      "fallback": {
+        "src": "topics/cells/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "细胞",
+        "细菌",
+        "DNA",
+        "微观世界"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/cells/learning.json"
+    },
+    {
+      "id": "bacteria",
+      "title": {
+        "zh": "细菌是什么？都会让人生病吗？",
+        "en": "What are bacteria? Do they all make us sick?"
+      },
+      "summary": {
+        "zh": "放大一颗细菌，看看身体结构，再去酸奶、土壤和肠道里找它们的不同角色。",
+        "en": "Look inside a bacterium, then explore the different roles of bacteria in yogurt, soil, and the gut."
+      },
+      "pages": {
+        "zh": "topics/bacteria/entry.zh.md",
+        "en": "topics/bacteria/entry.en.md"
+      },
+      "parentTopic": "microbes-everywhere",
+      "search": {
+        "zh": "细菌是什么？都会让人生病吗？ 放大一颗细菌，看看身体结构，再去酸奶、土壤和肠道里找它们的不同角色。 细菌 微生物 细胞 发酵",
+        "en": "What are bacteria? Do they all make us sick? Look inside a bacterium, then explore the different roles of bacteria in yogurt, soil, and the gut. Bacteria Microbes Cells Fermentation"
+      },
+      "document": {
+        "template": "topics/bacteria/reader.html",
+        "entry": "topics/bacteria/main.ts"
+      },
+      "fallback": {
+        "src": "topics/bacteria/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "细菌",
+        "微生物",
+        "细胞",
+        "发酵"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/bacteria/learning.json"
+    },
+    {
+      "id": "viruses",
+      "title": {
+        "zh": "病毒是什么？为什么需要细胞？",
+        "en": "What are viruses, and why do they need cells?"
+      },
+      "summary": {
+        "zh": "换一个宿主，逐步看噬菌体如何借助细菌制造新的病毒。",
+        "en": "Change the host and see, step by step, how a phage uses a bacterial cell to make new viruses."
+      },
+      "pages": {
+        "zh": "topics/viruses/entry.zh.md",
+        "en": "topics/viruses/entry.en.md"
+      },
+      "parentTopic": "microbes-everywhere",
+      "search": {
+        "zh": "病毒是什么？为什么需要细胞？ 换一个宿主，逐步看噬菌体如何借助细菌制造新的病毒。 病毒 噬菌体 宿主 微生物",
+        "en": "What are viruses, and why do they need cells? Change the host and see, step by step, how a phage uses a bacterial cell to make new viruses. Viruses Bacteriophages Hosts Microbes"
+      },
+      "document": {
+        "template": "topics/viruses/reader.html",
+        "entry": "topics/viruses/main.ts"
+      },
+      "fallback": {
+        "src": "topics/viruses/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "病毒",
+        "噬菌体",
+        "宿主",
+        "微生物"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/viruses/learning.json"
+    },
+    {
+      "id": "microbes-everywhere",
+      "title": {
+        "zh": "微生物：细胞、环境与病毒",
+        "en": "Microbes: cells, habitats and viruses"
+      },
+      "summary": {
+        "zh": "从小环境走进细菌，比较细胞怎样生长，以及病毒为什么离不开合适宿主。",
+        "en": "Explore microbial habitats, bacterial growth and why viruses need suitable host cells."
+      },
+      "pages": {
+        "zh": "topics/microbes-everywhere/entry.zh.md",
+        "en": "topics/microbes-everywhere/entry.en.md"
+      },
+      "search": {
+        "zh": "细菌是什么？都会让人生病吗？ 放大一颗细菌，看看身体结构，再去酸奶、土壤和肠道里找它们的不同角色。 细菌 微生物 细胞 发酵 病毒是什么？为什么需要细胞？ 换一个宿主，逐步看噬菌体如何借助细菌制造新的病毒。 病毒 噬菌体 宿主 微生物 微生物：细胞、环境与病毒 从小环境走进细菌，比较细胞怎样生长，以及病毒为什么离不开合适宿主。 微生物 栖息地 传播 细菌 病毒 微生物为什么几乎无处不在？ 二分裂 生态",
+        "en": "What are bacteria? Do they all make us sick? Look inside a bacterium, then explore the different roles of bacteria in yogurt, soil, and the gut. Bacteria Microbes Cells Fermentation What are viruses, and why do they need cells? Change the host and see, step by step, how a phage uses a bacterial cell to make new viruses. Viruses Bacteriophages Hosts Microbes Microbes: cells, habitats and viruses Explore microbial habitats, bacterial growth and why viruses need suitable host cells. Microbes Habitats Dispersal Bacteria Viruses Why are microbes almost everywhere? Binary fission Ecology"
+      },
+      "document": {
+        "template": "topics/microbes-everywhere/reader.html",
+        "entry": "topics/microbes-everywhere/main.ts"
+      },
+      "fallback": {
+        "src": "topics/microbes-everywhere/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "微生物",
+        "栖息地",
+        "传播",
+        "细菌",
+        "病毒",
+        "微生物为什么几乎无处不在？",
+        "二分裂",
+        "生态"
+      ],
+      "duration": "互动探索 / 三条观察路径",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-20",
+      "learning": "topics/microbes-everywhere/learning.json"
+    },
+    {
+      "id": "tap-water",
+      "title": {
+        "zh": "自来水里有什么？",
+        "en": "What is in tap water?"
+      },
+      "summary": {
+        "zh": "放大一杯水，比较煮沸前后：病原体、矿物质和化学污染，并不会发生同样的变化。",
+        "en": "Look inside a glass of water and compare before and after boiling: pathogens, minerals and chemical contamination do not all change in the same way."
+      },
+      "pages": {
+        "zh": "topics/tap-water/entry.zh.md",
+        "en": "topics/tap-water/entry.en.md"
+      },
+      "listed": false,
+      "search": {
+        "zh": "自来水里有什么？ 放大一杯水，比较煮沸前后：病原体、矿物质和化学污染，并不会发生同样的变化。 饮水 自来水 煮沸 卫生 矿物质 安全 生活安全",
+        "en": "What is in tap water? Look inside a glass of water and compare before and after boiling: pathogens, minerals and chemical contamination do not all change in the same way. Drinking water Tap water Boiling Hygiene Minerals Safety Everyday safety"
+      },
+      "document": {
+        "template": "topics/tap-water/reader.html",
+        "entry": "topics/tap-water/main.ts"
+      },
+      "fallback": {
+        "src": "topics/tap-water/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "engineering",
+      "tags": [
+        "饮水",
+        "自来水",
+        "煮沸",
+        "卫生",
+        "矿物质",
+        "安全",
+        "生活安全"
+      ],
+      "duration": "亲子探索 / 5–8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/tap-water/learning.json"
+    },
+    {
+      "id": "handwashing",
+      "title": {
+        "zh": "肥皂为什么能帮忙洗手？",
+        "en": "How does soap help wash our hands?"
+      },
+      "summary": {
+        "zh": "沿着掌心、手背和指尖找一找：肥皂、搓洗与流动清水怎样合作，把污物带走？",
+        "en": "Explore palms, backs and fingertips: how do soap, rubbing and running water work together to carry dirt away?"
+      },
+      "pages": {
+        "zh": "topics/handwashing/entry.zh.md",
+        "en": "topics/handwashing/entry.en.md"
+      },
+      "search": {
+        "zh": "肥皂为什么能帮忙洗手？ 沿着掌心、手背和指尖找一找：肥皂、搓洗与流动清水怎样合作，把污物带走？ 洗手 卫生 肥皂 微生物 生活安全",
+        "en": "How does soap help wash our hands? Explore palms, backs and fingertips: how do soap, rubbing and running water work together to carry dirt away? Handwashing Hygiene Soap Microbes Everyday safety"
+      },
+      "document": {
+        "template": "topics/handwashing/reader.html",
+        "entry": "topics/handwashing/main.ts"
+      },
+      "fallback": {
+        "src": "topics/handwashing/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "洗手",
+        "卫生",
+        "肥皂",
+        "微生物",
+        "生活安全"
+      ],
+      "duration": "慢慢玩 · 约 5—8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-12",
+      "learning": "topics/handwashing/learning.json"
+    },
+    {
+      "id": "car-safety",
+      "title": {
+        "zh": "刹车了，为什么还要系安全带？",
+        "en": "If the car brakes, why wear a seat belt?"
+      },
+      "summary": {
+        "zh": "汽车停下需要一段路，身体也需要一起慢下来。看看轮胎、刹车和儿童座椅怎样接力保护我们。",
+        "en": "A car needs distance to stop, and our bodies need to slow down too. Explore how tires, brakes and child seats work together."
+      },
+      "pages": {
+        "zh": "topics/car-safety/entry.zh.md",
+        "en": "topics/car-safety/entry.en.md"
+      },
+      "parentTopic": "friction",
+      "search": {
+        "zh": "刹车了，为什么还要系安全带？ 汽车停下需要一段路，身体也需要一起慢下来。看看轮胎、刹车和儿童座椅怎样接力保护我们。 交通安全 刹车 摩擦 惯性 安全带 儿童安全座椅",
+        "en": "If the car brakes, why wear a seat belt? A car needs distance to stop, and our bodies need to slow down too. Explore how tires, brakes and child seats work together. Road safety Braking Friction Inertia Seat belts Child car seats"
+      },
+      "document": {
+        "template": "topics/car-safety/reader.html",
+        "entry": "topics/car-safety/main.ts"
+      },
+      "fallback": {
+        "src": "topics/car-safety/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "physics",
+      "tags": [
+        "交通安全",
+        "刹车",
+        "摩擦",
+        "惯性",
+        "安全带",
+        "儿童安全座椅"
+      ],
+      "duration": "慢慢玩 · 约 6—9 分钟",
+      "modes": [
+        "儿童版",
+        "家长深入版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/car-safety/learning.json"
+    },
+    {
+      "id": "pain-signals",
+      "title": {
+        "zh": "为什么会感觉疼？",
+        "en": "Why do we feel pain?"
+      },
+      "summary": {
+        "zh": "跟随皮肤到脊髓的信号，比较缩回反射与向脑传递的两条路径。",
+        "en": "Follow a signal from skin to spinal cord and compare withdrawal and ascending routes."
+      },
+      "pages": {
+        "zh": "topics/pain-signals/entry.zh.md",
+        "en": "topics/pain-signals/entry.en.md"
+      },
+      "search": {
+        "zh": "为什么会感觉疼？ 跟随皮肤到脊髓的信号，比较缩回反射与向脑传递的两条路径。 疼痛 神经 反射 身体",
+        "en": "Why do we feel pain? Follow a signal from skin to spinal cord and compare withdrawal and ascending routes. Pain Nerves Reflexes Body"
+      },
+      "document": {
+        "template": "topics/pain-signals/reader.html",
+        "entry": "topics/pain-signals/main.ts"
+      },
+      "fallback": {
+        "src": "topics/pain-signals/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "疼痛",
+        "神经",
+        "反射",
+        "身体"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-16",
+      "learning": "topics/pain-signals/learning.json"
+    },
+    {
+      "id": "taste-smell",
+      "title": {
+        "zh": "为什么会尝到味道？",
+        "en": "Why do we taste flavors?"
+      },
+      "summary": {
+        "zh": "放大舌乳头与味蕾，比较味觉和后鼻嗅觉怎样共同参与风味。",
+        "en": "Enlarge a papilla and taste bud, and compare taste with retronasal smell in flavor."
+      },
+      "pages": {
+        "zh": "topics/taste-smell/entry.zh.md",
+        "en": "topics/taste-smell/entry.en.md"
+      },
+      "search": {
+        "zh": "为什么会尝到味道？ 放大舌乳头与味蕾，比较味觉和后鼻嗅觉怎样共同参与风味。 味觉 嗅觉 味蕾 身体",
+        "en": "Why do we taste flavors? Enlarge a papilla and taste bud, and compare taste with retronasal smell in flavor. Taste Smell Taste buds Body"
+      },
+      "document": {
+        "template": "topics/taste-smell/reader.html",
+        "entry": "topics/taste-smell/main.ts"
+      },
+      "fallback": {
+        "src": "topics/taste-smell/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "味觉",
+        "嗅觉",
+        "味蕾",
+        "身体"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-16",
+      "learning": "topics/taste-smell/learning.json"
+    },
+    {
+      "id": "blood-cells",
+      "title": {
+        "zh": "红细胞和白细胞在做什么？",
+        "en": "What do red and white blood cells do?"
+      },
+      "summary": {
+        "zh": "放大看血液中的分工：运氧气、参与防御，以及一起帮助止血。",
+        "en": "Explore jobs in blood: carrying oxygen, immune defence and working together to stop bleeding."
+      },
+      "pages": {
+        "zh": "topics/blood-cells/entry.zh.md",
+        "en": "topics/blood-cells/entry.en.md"
+      },
+      "parentTopic": "cells",
+      "search": {
+        "zh": "红细胞和白细胞在做什么？ 放大看血液中的分工：运氧气、参与防御，以及一起帮助止血。 血细胞 红细胞 白细胞 血小板 氧气运输 身体",
+        "en": "What do red and white blood cells do? Explore jobs in blood: carrying oxygen, immune defence and working together to stop bleeding. Blood cells Red blood cells White blood cells Platelets Oxygen transport Body"
+      },
+      "document": {
+        "template": "topics/blood-cells/reader.html",
+        "entry": "topics/blood-cells/main.ts"
+      },
+      "fallback": {
+        "src": "topics/blood-cells/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "血细胞",
+        "红细胞",
+        "白细胞",
+        "血小板",
+        "氧气运输",
+        "身体"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/blood-cells/learning.json"
+    },
+    {
+      "id": "body-cells",
+      "title": {
+        "zh": "身体里的细胞为什么长得不一样？",
+        "en": "Why do body cells have different shapes?"
+      },
+      "summary": {
+        "zh": "比较皮肤、肌肉与神经元，观察形状怎样帮助它们保护、运动和传递信息。",
+        "en": "Compare skin, muscle and neurons. See how structure supports protection, movement and communication."
+      },
+      "pages": {
+        "zh": "topics/body-cells/entry.zh.md",
+        "en": "topics/body-cells/entry.en.md"
+      },
+      "parentTopic": "cells",
+      "search": {
+        "zh": "身体里的细胞为什么长得不一样？ 比较皮肤、肌肉与神经元，观察形状怎样帮助它们保护、运动和传递信息。 细胞分工 皮肤 肌肉 神经元 组织",
+        "en": "Why do body cells have different shapes? Compare skin, muscle and neurons. See how structure supports protection, movement and communication. Cell specialization Skin Muscle Neurons Tissues"
+      },
+      "document": {
+        "template": "topics/body-cells/reader.html",
+        "entry": "topics/body-cells/main.ts"
+      },
+      "fallback": {
+        "src": "topics/body-cells/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "细胞分工",
+        "皮肤",
+        "肌肉",
+        "神经元",
+        "组织"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/body-cells/learning.json"
+    },
+    {
+      "id": "hearing",
+      "title": {
+        "zh": "耳朵怎样听见声音？",
+        "en": "How do ears hear sound?"
+      },
+      "summary": {
+        "zh": "放大耳朵、耳蜗和感觉细胞，追踪振动怎样变成传向脑的消息。",
+        "en": "Explore the ear, cochlea and sensory cells as vibration becomes a message to the brain."
+      },
+      "pages": {
+        "zh": "topics/hearing/entry.zh.md",
+        "en": "topics/hearing/entry.en.md"
+      },
+      "parentTopic": "sound-vibrations",
+      "search": {
+        "zh": "耳朵怎样听见声音？ 放大耳朵、耳蜗和感觉细胞，追踪振动怎样变成传向脑的消息。 听觉 耳朵 声音 身体",
+        "en": "How do ears hear sound? Explore the ear, cochlea and sensory cells as vibration becomes a message to the brain. Hearing Ears Sound Body"
+      },
+      "document": {
+        "template": "topics/hearing/reader.html",
+        "entry": "topics/hearing/main.ts"
+      },
+      "fallback": {
+        "src": "topics/hearing/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "physics",
+      "tags": [
+        "听觉",
+        "耳朵",
+        "声音",
+        "身体"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/hearing/learning.json"
+    },
+    {
+      "id": "soap-bubbles",
+      "title": {
+        "zh": "肥皂泡为什么是圆的？",
+        "en": "Why are soap bubbles round?"
+      },
+      "summary": {
+        "zh": "拉长再松开泡泡，放大薄膜，观察表面张力、液体排流和干涉色。",
+        "en": "Stretch and release a bubble, then enlarge its film to explore surface tension, drainage and interference colors."
+      },
+      "pages": {
+        "zh": "topics/soap-bubbles/entry.zh.md",
+        "en": "topics/soap-bubbles/entry.en.md"
+      },
+      "search": {
+        "zh": "肥皂泡为什么是圆的？ 拉长再松开泡泡，放大薄膜，观察表面张力、液体排流和干涉色。 肥皂泡 表面张力 薄膜 光",
+        "en": "Why are soap bubbles round? Stretch and release a bubble, then enlarge its film to explore surface tension, drainage and interference colors. Soap bubbles Surface tension Thin films Light"
+      },
+      "document": {
+        "template": "topics/soap-bubbles/reader.html",
+        "entry": "topics/soap-bubbles/main.ts"
+      },
+      "fallback": {
+        "src": "topics/soap-bubbles/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "physics",
+      "tags": [
+        "肥皂泡",
+        "表面张力",
+        "薄膜",
+        "光"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-09-17",
+      "learning": "topics/soap-bubbles/learning.json"
+    },
+    {
+      "id": "digestion",
+      "title": {
+        "zh": "食物吃下去以后去哪儿？",
+        "en": "Where does food go after we eat?"
+      },
+      "summary": {
+        "zh": "跟随食物走过消化管，放大小肠绒毛，比较营养进入血液与淋巴的路线。",
+        "en": "Follow food through the digestive tract, enlarge a villus, and compare nutrient routes into blood and lymph."
+      },
+      "pages": {
+        "zh": "topics/digestion/entry.zh.md",
+        "en": "topics/digestion/entry.en.md"
+      },
+      "search": {
+        "zh": "食物吃下去以后去哪儿？ 跟随食物走过消化管，放大小肠绒毛，比较营养进入血液与淋巴的路线。 消化 营养 肠道 身体",
+        "en": "Where does food go after we eat? Follow food through the digestive tract, enlarge a villus, and compare nutrient routes into blood and lymph. Digestion Nutrients Intestines Body"
+      },
+      "document": {
+        "template": "topics/digestion/reader.html",
+        "entry": "topics/digestion/main.ts"
+      },
+      "fallback": {
+        "src": "topics/digestion/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "life",
+      "tags": [
+        "消化",
+        "营养",
+        "肠道",
+        "身体"
+      ],
+      "duration": "自由探索 / 5–7 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-17",
+      "learning": "topics/digestion/learning.json"
+    },
+    {
+      "id": "air-conditioner",
+      "title": {
+        "zh": "制冷：热量怎样被搬走",
+        "en": "Cooling: where does the heat go?"
+      },
+      "summary": {
+        "zh": "从冷媒回路到空调与冰箱，追踪冷端吸热、输入功与热端放热，比较房间和柜体的边界。",
+        "en": "Follow heat uptake, work input and heat rejection through air conditioners and refrigerators, comparing room and cabinet boundaries."
+      },
+      "pages": {
+        "zh": "topics/air-conditioner/entry.zh.md",
+        "en": "topics/air-conditioner/entry.en.md"
+      },
+      "search": {
+        "zh": "制冷：热量怎样被搬走 从冷媒回路到空调与冰箱，追踪冷端吸热、输入功与热端放热，比较房间和柜体的边界。 空调 热量 家用电器 日常科学 空调怎样让房间凉下来？ 冷媒 热量收支 温控 冰箱怎样让食物变凉？ 透视冰箱，跟着密闭管路里的冷媒，把热量从食物送到房间。 冰箱 热量 制冷 能量 日常科学 家用电器",
+        "en": "Cooling: where does the heat go? Follow heat uptake, work input and heat rejection through air conditioners and refrigerators, comparing room and cabinet boundaries. Air conditioning Heat Home appliances Everyday science How does an air conditioner cool a room? Refrigerant Heat budget Temperature control How does a refrigerator cool food? Look inside a refrigerator and follow its sealed refrigerant circuit as heat moves from food into the room. Refrigerator Heat Refrigeration Energy Everyday science Home appliances"
+      },
+      "document": {
+        "template": "topics/air-conditioner/reader.html",
+        "entry": "topics/air-conditioner/main.ts"
+      },
+      "fallback": {
+        "src": "topics/air-conditioner/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "engineering",
+      "tags": [
+        "空调",
+        "热量",
+        "家用电器",
+        "日常科学",
+        "空调怎样让房间凉下来？",
+        "冷媒",
+        "热量收支",
+        "温控"
+      ],
+      "duration": "互动探索 / 三条观察路径",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/air-conditioner/learning.json"
+    },
+    {
+      "id": "refrigerator",
+      "title": {
+        "zh": "冰箱怎样让食物变凉？",
+        "en": "How does a refrigerator cool food?"
+      },
+      "summary": {
+        "zh": "透视冰箱，跟着密闭管路里的冷媒，把热量从食物送到房间。",
+        "en": "Look inside a refrigerator and follow its sealed refrigerant circuit as heat moves from food into the room."
+      },
+      "pages": {
+        "zh": "topics/refrigerator/entry.zh.md",
+        "en": "topics/refrigerator/entry.en.md"
+      },
+      "parentTopic": "air-conditioner",
+      "search": {
+        "zh": "冰箱怎样让食物变凉？ 透视冰箱，跟着密闭管路里的冷媒，把热量从食物送到房间。 冰箱 热量 制冷 能量 日常科学 家用电器",
+        "en": "How does a refrigerator cool food? Look inside a refrigerator and follow its sealed refrigerant circuit as heat moves from food into the room. Refrigerator Heat Refrigeration Energy Everyday science Home appliances"
+      },
+      "document": {
+        "template": "topics/refrigerator/reader.html",
+        "entry": "topics/refrigerator/main.ts"
+      },
+      "fallback": {
+        "src": "topics/refrigerator/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "engineering",
+      "tags": [
+        "冰箱",
+        "热量",
+        "制冷",
+        "能量",
+        "日常科学",
+        "家用电器"
+      ],
+      "duration": "自由探索 / 4–6 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "learning": "topics/refrigerator/learning.json"
+    },
+    {
+      "id": "batteries",
+      "title": {
+        "zh": "电池：把能量带在身边",
+        "en": "Batteries: energy to take with you"
+      },
+      "summary": {
+        "zh": "从灯与电机到电芯内部、充放电、电池家族和汽车电池包，追踪同一份能量。",
+        "en": "From lights and motors to cells, discharge, charging, battery families and vehicle packs: follow the energy."
+      },
+      "pages": {
+        "zh": "topics/batteries/entry.zh.md",
+        "en": "topics/batteries/entry.en.md"
+      },
+      "search": {
+        "zh": "电池：把能量带在身边 从灯与电机到电芯内部、充放电、电池家族和汽车电池包，追踪同一份能量。 电池 电路 能量 充电 锂离子 镍氢 铅酸 纽扣电池 AA 汽车电池 电池包 玩具",
+        "en": "Batteries: energy to take with you From lights and motors to cells, discharge, charging, battery families and vehicle packs: follow the energy. Batteries Circuits Energy Charging Lithium-ion NiMH Lead-acid Coin cells AA Vehicle batteries Battery packs Toys"
+      },
+      "document": {
+        "template": "topics/batteries/reader.html",
+        "entry": "topics/batteries/main.ts"
+      },
+      "fallback": {
+        "src": "topics/batteries/cover-960.webp",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      },
+      "category": "engineering",
+      "tags": [
+        "电池",
+        "电路",
+        "能量",
+        "充电",
+        "锂离子",
+        "镍氢",
+        "铅酸",
+        "纽扣电池",
+        "AA",
+        "汽车电池",
+        "电池包",
+        "玩具"
+      ],
+      "duration": "自由探索 / 10–15 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-09-21",
+      "learning": "topics/batteries/learning.json"
+    },
+    {
+      "id": "electronics-circuits",
+      "pages": {
+        "zh": "topics/electronics-circuits/entry.zh.md",
+        "en": "topics/electronics-circuits/entry.en.md"
+      },
+      "learning": "topics/electronics-circuits/learning.json",
+      "category": "engineering",
+      "tags": [
+        "电子",
+        "电路",
+        "开关",
+        "感光器",
+        "传感器",
+        "夜灯",
+        "晶体管",
+        "控制信号",
+        "身边的科技"
+      ],
+      "duration": "自由探索 / 8–12 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "title": {
+        "zh": "电路与电子：让一盏灯听信号",
+        "en": "Circuits and electronics: controlling a lamp"
+      },
+      "summary": {
+        "zh": "从闭合回路到感光夜灯，分清灯的能源、传感输入、控制规则和电子开关。",
+        "en": "From a complete circuit to a light-sensing nightlight: distinguish power, sensor input, control rules and an electronic switch."
+      },
+      "search": {
+        "zh": "电路与电子：让一盏灯听信号 从闭合回路到感光夜灯，分清灯的能源、传感输入、控制规则和电子开关。 电子 电路 开关 感光器 传感器 夜灯 晶体管 控制信号 身边的科技",
+        "en": "Circuits and electronics: controlling a lamp From a complete circuit to a light-sensing nightlight: distinguish power, sensor input, control rules and an electronic switch. Electronics Circuits Switches Light sensors Sensors Nightlights Transistors Control signals Everyday technology"
+      },
+      "document": {
+        "template": "topics/electronics-circuits/reader.html",
+        "entry": "topics/electronics-circuits/main.ts"
+      },
+      "fallback": {
+        "src": "topics/electronics-circuits/cover.svg",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      }
+    },
+    {
+      "id": "programs",
+      "pages": {
+        "zh": "topics/programs/entry.zh.md",
+        "en": "topics/programs/entry.en.md"
+      },
+      "learning": "topics/programs/learning.json",
+      "category": "engineering",
+      "tags": [
+        "程序",
+        "编程",
+        "软件",
+        "硬件",
+        "指令",
+        "条件",
+        "机器人",
+        "身边的科技"
+      ],
+      "duration": "动手探索 · 约 8—12 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "title": {
+        "zh": "程序是什么？",
+        "en": "What is a program?"
+      },
+      "summary": {
+        "zh": "给送货小车一张张指令卡：先预测、再执行，看看顺序、条件和找错怎样改变结果。",
+        "en": "Give a delivery cart instruction cards: predict, execute and discover how order, conditions and debugging change the result."
+      },
+      "search": {
+        "zh": "程序是什么？ 给送货小车一张张指令卡：先预测、再执行，看看顺序、条件和找错怎样改变结果。 程序 编程 软件 硬件 指令 条件 机器人 身边的科技",
+        "en": "What is a program? Give a delivery cart instruction cards: predict, execute and discover how order, conditions and debugging change the result. Programs Programming Software Hardware Instructions Conditions Robots Everyday technology"
+      },
+      "document": {
+        "template": "topics/programs/reader.html",
+        "entry": "topics/programs/main.ts"
+      },
+      "fallback": {
+        "src": "topics/programs/cover.svg",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      }
+    },
+    {
+      "id": "ai",
+      "pages": {
+        "zh": "topics/ai/entry.zh.md",
+        "en": "topics/ai/entry.en.md"
+      },
+      "learning": "topics/ai/learning.json",
+      "category": "engineering",
+      "tags": [
+        "AI",
+        "人工智能",
+        "程序",
+        "机器人",
+        "信息",
+        "隐私",
+        "核查",
+        "身边的科技"
+      ],
+      "duration": "自由探索 / 10–15 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "title": {
+        "zh": "AI 是什么？认识一种新工具",
+        "en": "What is AI? Meet a new tool"
+      },
+      "summary": {
+        "zh": "从聊天、画画和认图片认识 AI，比较程序与机器人，再练习提问、核查和保护隐私。",
+        "en": "Meet AI through chat, images and recognition, compare programs and robots, and practice requests, checking and privacy."
+      },
+      "search": {
+        "zh": "AI 是什么？认识一种新工具 从聊天、画画和认图片认识 AI，比较程序与机器人，再练习提问、核查和保护隐私。 AI 人工智能 程序 机器人 信息 隐私 核查 身边的科技",
+        "en": "What is AI? Meet a new tool Meet AI through chat, images and recognition, compare programs and robots, and practice requests, checking and privacy. AI Artificial intelligence Programs Robots Information Privacy Checking Everyday technology"
+      },
+      "document": {
+        "template": "topics/ai/reader.html",
+        "entry": "topics/ai/main.ts"
+      },
+      "fallback": {
+        "src": "topics/ai/cover.svg",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      }
+    },
+    {
+      "id": "flight",
+      "pages": {
+        "zh": "topics/flight/entry.zh.md",
+        "en": "topics/flight/entry.en.md"
+      },
+      "learning": "topics/flight/learning.json",
+      "category": "engineering",
+      "tags": [
+        "飞机",
+        "飞行",
+        "机翼",
+        "升力",
+        "空气",
+        "迎角",
+        "失速",
+        "起飞",
+        "身边的科技"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "title": {
+        "zh": "飞机为什么能起飞？",
+        "en": "Why can an airplane take off?"
+      },
+      "summary": {
+        "zh": "看机翼怎样改变空气，比较速度、迎角和失速，再把同一组条件带到跑道。",
+        "en": "See how a wing changes airflow, compare speed, angle of attack and stall, then take the same conditions to the runway."
+      },
+      "search": {
+        "zh": "飞机为什么能起飞？ 看机翼怎样改变空气，比较速度、迎角和失速，再把同一组条件带到跑道。 飞机 飞行 机翼 升力 空气 迎角 失速 起飞 身边的科技",
+        "en": "Why can an airplane take off? See how a wing changes airflow, compare speed, angle of attack and stall, then take the same conditions to the runway. Airplanes Flight Wings Lift Air Angle of attack Stall Takeoff Everyday technology"
+      },
+      "document": {
+        "template": "topics/flight/reader.html",
+        "entry": "topics/flight/main.ts"
+      },
+      "fallback": {
+        "src": "topics/flight/cover.svg",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      }
+    },
+    {
+      "id": "mobile-networks",
+      "pages": {
+        "zh": "topics/mobile-networks/entry.zh.md",
+        "en": "topics/mobile-networks/entry.en.md"
+      },
+      "learning": "topics/mobile-networks/learning.json",
+      "category": "engineering",
+      "tags": [
+        "手机",
+        "通信",
+        "网络",
+        "无线电",
+        "基站",
+        "信息",
+        "身边的科技"
+      ],
+      "duration": "约 8 分钟",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-01",
+      "title": {
+        "zh": "手机怎样把消息送到远方？",
+        "en": "How does a phone send a message far away?"
+      },
+      "summary": {
+        "zh": "跟随编号穿过基站与网络，比较离线等待、送达与已读。",
+        "en": "Follow numbered parts through base stations and networks, comparing waiting offline, delivery and reading."
+      },
+      "search": {
+        "zh": "手机怎样把消息送到远方？ 跟随编号穿过基站与网络，比较离线等待、送达与已读。 手机 通信 网络 无线电 基站 信息 身边的科技",
+        "en": "How does a phone send a message far away? Follow numbered parts through base stations and networks, comparing waiting offline, delivery and reading. Mobile phones Communication Networks Radio Base stations Information Everyday technology"
+      },
+      "document": {
+        "template": "topics/mobile-networks/reader.html",
+        "entry": "topics/mobile-networks/main.ts"
+      },
+      "fallback": {
+        "src": "topics/mobile-networks/cover.svg",
+        "alt": {
+          "zh": "专题封面插画，不是测量结果或当前实验状态。",
+          "en": "Topic cover illustration, not a measurement or the current experiment state."
+        }
+      }
+    }
+  ],
+  "base": "/encyclopedia/",
+  "categories": [
+    {
+      "id": "universe",
+      "name": "宇宙与星空",
+      "symbol": "✦",
+      "theme": "dark",
+      "description": "从恒星的旅程开始，观察引力怎样改变运动。"
+    },
+    {
+      "id": "earth",
+      "name": "地球与自然",
+      "symbol": "◒",
+      "theme": "light",
+      "description": "山川、海洋、天气，以及我们生活的这颗星球。"
+    },
+    {
+      "id": "life",
+      "name": "生命与身体",
+      "symbol": "❋",
+      "theme": "light",
+      "description": "从一片叶子到我们的身体，认识生命怎样运转。"
+    },
+    {
+      "id": "physics",
+      "name": "物质与现象",
+      "symbol": "◎",
+      "theme": "light",
+      "description": "光、声音、力与变化，藏在日常生活里的问题。"
+    },
+    {
+      "id": "engineering",
+      "name": "科技与工程",
+      "symbol": "⌘",
+      "theme": "light",
+      "description": "观察工具、机器和结构，理解它们怎样工作。"
+    }
+  ]
+}

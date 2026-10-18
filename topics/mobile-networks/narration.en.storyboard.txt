@@ -1,0 +1,25 @@
+01 · Why a distant screen lights up
+[Begin with all three numbers on the sender, pointing out both phones and the base stations.]
+
+We want to tell a friend far away, “See you at the park!” A phone cannot shout that far, and no wire directly joins it to the friend’s phone. It represents the message as digital information, reaches a nearby connection and travels through networks. Our picture uses three numbered parts so we can follow them. They are not three little balls that really fly through the air.
+
+---
+
+02 · An antenna has an onward link
+[Step part 1 along the route, comparing the gold radio dashes and green wired links.]
+
+Follow the first number. The phone uses invisible radio signals to connect to a base station. Reaching the station does not mean reaching the friend! The station connects to a larger network. Our green lines represent cables and fibre, continuing through networks and a messaging service into the friend’s network. Equipment forwards information along the next link. Words do not find their own way.
+
+---
+
+03 · What if one link is unavailable
+[Reset, disable recipient access and reach step five. Reconnect. Compare the sender and middle-network blocks separately.]
+
+If the friend’s phone is not connected, the last link cannot finish. A part waits in our picture, and the inbox is incomplete. We cannot say the message is delivered yet. Reconnect and continue. Compare a sender without access and an unavailable middle path: parts wait in different places. Real services sometimes wait, and sometimes report that sending failed.
+
+---
+
+04 · Delivery is different from reading
+[Reach step eighteen, compare delivery before and after simulating the recipient opening it.]
+
+All three numbers arrive, and the phone can show the whole message. Receiving it does not mean the friend has read it. Opening it is a separate event. Real apps can use different signs. Before sending a real message, check the recipient with an adult. Do not send strangers your address, passwords or private photos. This little experiment needs no personal message from you.

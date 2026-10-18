@@ -1,6 +1,5 @@
 import './style.css';
 import { translateDocument } from '../../src/platform/i18n.ts';
-import { mountTopicNavigation } from '../../src/platform/topicNavigation.ts';
 import { mountSceneReading } from '../../src/platform/sceneReading.ts';
 import { t } from './i18n.ts';
 import { ProgramScene } from './scene.ts';
@@ -88,4 +87,4 @@ el('fix-order').addEventListener('click', () => { stop(); states[scenario] = fix
 el('break-order').addEventListener('click', () => { stop(); states[scenario] = fixOrder(current(), false); cardsSignature = ''; render(); el('fix-order').focus(); });
 document.addEventListener('visibilitychange', () => { if (document.hidden) { stop(); render(); } });
 window.addEventListener('pagehide', event => { stop(); if (!event.persisted) scene.dispose(); });
-reading.set(studies[scenario]); render(); mountTopicNavigation('programs');
+reading.set(studies[scenario]); render(); 
