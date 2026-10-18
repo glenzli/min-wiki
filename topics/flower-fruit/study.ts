@@ -38,5 +38,5 @@ el('pollen').addEventListener('change',()=>{
 });
 draw();
 function read():StudyState{return {progress:shown,compatible};}
-return {read,pause(){playback.pause();cancelCamera();},dispose(){playback.dispose();cancelCamera();root.replaceChildren();}};
+return {read,pause(){playback.pause();cancelCamera();},dispose(){playback.dispose();cancelCamera();drawing.dispose();root.replaceChildren();}};
 }

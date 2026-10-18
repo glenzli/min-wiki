@@ -51,10 +51,10 @@ Reader 首页提供缩略图和列表总览，分类与关键词可以组合筛�
 
 模型限定按当前画面安排：直接影响读图的一句话仍在图旁；当前章节的详细限制放入解说中的默认折叠区，并保留资料入口；跨章节通用边界放入完整正文。黑洞的 `#limits` 仍由原控制器更新，只调整位置，不复制或改写科学条件。手机双菜单工具栏在同一区域内换行，避免用难辨认的省略文字代替菜单名称。
 
-## 2D 动画制作工具的候选方向 · 2026-10-19
+## 可选 2D 动画引擎 · 2026-10-19
 
-用户希望成熟动画库与 AI 制作工具降低重复手写的成本。当前植物案例使用原生 SVG 的分层形态与有限进度时钟；这轮蜜蜂精修尚未接入第三方动画库。后续共用引擎的优先候选为 GSAP + SVG：时间线、路径、缓动和形变可由可选的 Reader 适配层提供，按需加载；专题继续拥有科学状态、作者绘制的轨迹、器官连接和暂停/回放语义。共用库不会自动承担授粉、组织分化等科学规则。
+已比较 Anime.js、GSAP、PixiJS、Rive 与 Lottie，结合现有 SVG 图稿、可逆取样、单一专题时钟、按条目加载和分发需求，采用 Reader 的 Anime.js 4.5.0 + SVG 引擎。完整需求矩阵、官方资料与同口径小样见 [Reader 选型记录](https://github.com/glenzli/wiki-reader/blob/main/docs/animation2d.md)。GSAP 的既有建议经更细比较后调整为备选，非能力不足；复杂纹理/粒子场景再评估 PixiJS，角色资产制作再评估 Rive。
 
-可视化角色资产制作可评估 Rive，纹理、精灵和大量对象的 2D 渲染可评估 PixiJS，成片解说动画可评估 Remotion。它们分别解决不同制作责任，不要求每个条目统一重写。具体库接入仍需真实案例验证，不能将候选选型描述为已经实现的引擎。
+`@glenzli/wiki-reader/animation2d` 提供有限的 `create2DMotion` 与 SVG 工具。Reader 拥有依赖、时间线取样和释放机制；内容调用 `seek(milliseconds)`，保留自身模型、科学条件、时钟、插画轨迹与器官连接。创建不自动播放，拖动不触发科学回调，周期动作也读取同一专题时间。条目卸载调用 `dispose()`；减少动态的选择仍由条目按过程语义处理。
 
-依据：[GSAP 时间线](https://gsap.com/docs/v3/GSAP/Timeline/)、[MotionPath](https://gsap.com/docs/v3/Plugins/MotionPathPlugin/)、[GSAP 官方 AI Skills](https://github.com/greensock/gsap-skills)、[Rive 状态机](https://rive.app/docs/editor/state-machine/state-machine)、[PixiJS 网格](https://pixijs.com/8.x/guides/components/scene-objects/mesh)、[Remotion AI 工具链](https://www.remotion.dev/docs/ai)。
+植物首批消费：`beeMotion.ts` 将振翅改为非对称上下行和投影变化；`petalMotion.ts` 将卷曲定义为连续轮廓关键帧；`leafMotion.ts` 保留叶柄/叶脉锚点，展开叶片轮廓，避免主要依靠纵向缩放。它们消费既有生长进度，未将条件变化或果实生成交给动画库。首页与静态阅读不导入引擎；其他条目继续使用原有渲染器，后续按需求迁移。

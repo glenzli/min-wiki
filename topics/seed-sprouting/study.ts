@@ -56,5 +56,5 @@ el('reset').addEventListener('click',()=>{
 });
 draw();
 function read():StudyState{return {progress:shownGrowth,water:el<HTMLSelectElement>('water').value,air:el<HTMLSelectElement>('air').value,temp:el<HTMLSelectElement>('temp').value};}
-return {read,pause(){playback.pause();},dispose(){playback.dispose();root.replaceChildren();}};
+return {read,pause(){playback.pause();},dispose(){playback.dispose();scene.dispose();root.replaceChildren();}};
 }

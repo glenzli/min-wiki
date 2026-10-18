@@ -1,4 +1,5 @@
 import {beanGeometry,primaryRootPoint} from './growthGeometry.ts';
+import {createLeafUnfold} from './leafMotion.ts';
 // Deterministic illustration detail keeps soil grains still while conditions change.
 const soilGrains = Array.from({ length: 190 }, (_, i) => {
   const x = 23 + ((i * 137.73) % 716), y = 322 + ((i * 37.47) % 207);
@@ -25,18 +26,17 @@ const defs = `<defs>
   <filter id="root-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="1.5" dy="2" stdDeviation="2" flood-color="#171711" flood-opacity=".42"/></filter>
   <filter id="leaf-shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="1" dy="4" stdDeviation="3" flood-color="#32492a" flood-opacity=".15"/></filter>
   <clipPath id="earth-mask"><path d="M0 318 Q155 309 295 317 T560 316 T760 315 V530 H0Z"/></clipPath>
-  <path id="leaf-shape" d="M0 0 C30 -15 34 -43 77 -43 C111 -44 130 -21 158 0 C125 15 113 43 77 41 C38 40 29 11 0 0Z"/>
-  <clipPath id="leaf-mask"><use href="#leaf-shape"/></clipPath>
 </defs>`;
 
 const cotShape='M0 -30 C-30 -45 -57 -24 -56 4 C-53 33 -22 39 0 22 Q-11 -3 0 -30Z';
 function leafMarkup(side:string){
   const veins=Array.from({length:7},(_,i)=>{const x=21+i*17,h=34*Math.sin(x/158*Math.PI);return `<path d="M${x} 0 Q${x+7} ${-h*.65} ${x+20} ${-h} M${x} 0 Q${x+7} ${h*.65} ${x+20} ${h}"/><path d="M${x+9} ${-h*.55}q-1-7 5-11 M${x+10} ${h*.55}q1 7 7 10" stroke-width=".5" opacity=".5"/>`;}).join('');
-  return `<g data-part="leaf-${side}" filter="url(#leaf-shadow)"><use href="#leaf-shape" fill="url(#bean-leaf)" stroke="#557f3d" stroke-width="1.2"/><use href="#leaf-shape" fill="url(#leaf-fold)"/><g clip-path="url(#leaf-mask)" stroke="#d6e2ad" stroke-width="1" stroke-opacity=".62" fill="none">${veins}<path d="M0 0 Q83 -3 157 0" stroke-width="2"/></g></g>`;
+  return `<g data-part="leaf-${side}" filter="url(#leaf-shadow)"><defs><path id="leaf-shape-${side}" data-part="leaf-shape-${side}"/><clipPath id="leaf-mask-${side}"><use href="#leaf-shape-${side}"/></clipPath></defs><use href="#leaf-shape-${side}" fill="url(#bean-leaf)" stroke="#557f3d" stroke-width="1.2"/><use href="#leaf-shape-${side}" fill="url(#leaf-fold)"/><g clip-path="url(#leaf-mask-${side})" stroke="#d6e2ad" stroke-width="1" stroke-opacity=".62" fill="none">${veins}<path d="M0 0 Q83 -3 157 0" stroke-width="2"/></g></g>`;
 }
 function cotyledon(side:string,mirror:number){return `<g data-part="cot-${side}"><g transform="scale(${mirror} 1)"><path d="${cotShape}" fill="#ded3a0" stroke="#91a25a" stroke-width=".8"/><path data-part="green-${side}" d="${cotShape}" fill="url(#cotyledon)"/><path d="M-7 -18 Q-33 -22 -46 -3 M-7 -8 Q-21 2 -32 15 M-8 12 Q-20 22 -37 21" fill="none" stroke="#e6e5af" stroke-width="1.4" opacity=".55"/><path d="M-44 -15 Q-35 -28 -20 -25" fill="none" stroke="#fff5cf" stroke-width="2.7" opacity=".4"/></g></g>`;}
 function coat(side:string,mirror:number){const spots=Array.from({length:26},(_,i)=>`<ellipse cx="${-10-(i*13)%39}" cy="${-25+(i*17)%55}" rx="${1+i%3*.6}" ry=".9" fill="#7d5841" opacity=".3"/>`).join('');return `<g data-part="coat-${side}"><g transform="scale(${mirror} 1)"><path d="${cotShape}" fill="url(#bean-coat)" stroke="#896745" stroke-width="1"/>${spots}<path d="M-3 -25 Q-15 -4 -3 17" fill="none" stroke="#f4e5c0" stroke-width="2"/><path d="M-44 -15 Q-35 -28 -20 -25" fill="none" stroke="#fff1ce" stroke-width="3" opacity=".45"/></g></g>`;}
 export function createBeanScene(scene:SVGSVGElement,t:(s:string)=>string){
+  const leafMotions=[createLeafUnfold(),createLeafUnfold()];
   const backdrop = `<rect width="760" height="530" fill="url(#air-light)"/><circle cx="606" cy="91" r="190" fill="url(#sun-glow)"/><g filter="url(#soft-background)" opacity=".32"><path d="M-15 342 Q26 242 4 163 Q103 165 58 288 Q127 205 142 264 L157 336Z" fill="#9cab75"/><path d="M695 332 Q632 273 658 217 Q688 247 696 273 Q715 160 754 149 L789 333Z" fill="#aebc7d"/><circle cx="93" cy="59" r="48" fill="#bdc797"/><circle cx="664" cy="273" r="39" fill="#f5e3ad"/></g><g opacity=".32" fill="#fffbe2"><circle cx="112" cy="160" r="9"/><circle cx="585" cy="144" r="6"/><circle cx="647" cy="202" r="11"/></g>`;
   const terrain = `<g clip-path="url(#earth-mask)"><rect data-part="earth" y="306" width="760" height="224" fill="url(#earth)"/><path d="M0 380 Q168 341 332 380 T760 369" fill="none" stroke="#b28a53" stroke-opacity=".13" stroke-width="25"/><path d="M0 480 Q189 414 399 459 T760 455" fill="none" stroke="#191f1c" stroke-opacity=".2" stroke-width="24"/>${soilGrains}</g><path d="M0 316 Q155 310 295 317 T560 316 T760 315" fill="none" stroke="#493e2a" stroke-width="5"/><g data-part="moss" opacity=".87">${moss}</g>`;
 
@@ -49,7 +49,7 @@ export function createBeanScene(scene:SVGSVGElement,t:(s:string)=>string){
   const parts=new Map(Array.from(scene.querySelectorAll<SVGElement>('[data-part]'),node=>[node.dataset.part!,node]));
   const attr=(id:string,key:string,value:string|number)=>parts.get(id)!.setAttribute(key,String(value));
   const cue=[t('种子吸水，慢慢膨胀'),t('种皮裂开，胚根伸出'),t('胚轴弯成钩，抬起子叶'),t('子叶张开，种皮松脱'),t('第一对真叶舒展开来'),t('真叶展开，幼苗继续生长')];
-  return {update(progress:number,water:string,air:string){
+  return {dispose(){leafMotions.forEach(m=>m.dispose());},update(progress:number,water:string,air:string){
     const g=beanGeometry(progress),{cot,leafNode}=g;
     attr('root','stroke-dashoffset',1-g.root);attr('root-light','stroke-dashoffset',1-g.root);
     for(let i=0;i<12;i++){const at=.15+i*.061,amount=Math.max(0,Math.min(1,(g.root-at-.035)*4));
@@ -64,7 +64,8 @@ export function createBeanScene(scene:SVGSVGElement,t:(s:string)=>string){
       const unfold=i===0?g.leafLeft:g.leafRight;
       const a={x:leafNode.x+sign*15*g.shoot,y:leafNode.y-4*g.shoot};
       attr(`petiole-${side}`,'d',`M${leafNode.x} ${leafNode.y} Q${leafNode.x+sign*8*g.shoot} ${leafNode.y-7*g.shoot} ${a.x} ${a.y}`);
-      attr(`leaf-${side}`,'transform',`translate(${a.x} ${a.y}) rotate(${i===0?g.leafAngleLeft:g.leafAngleRight}) scale(${.88*unfold} ${.88*unfold*(.12+.88*unfold)})`);
+      attr(`leaf-shape-${side}`,'d',leafMotions[i]!.sample(unfold));
+      attr(`leaf-${side}`,'transform',`translate(${a.x} ${a.y}) rotate(${i===0?g.leafAngleLeft:g.leafAngleRight}) scale(${.88*unfold} ${.88*unfold*(.65+.35*unfold)})`);
     }
     attr('bud','transform',`translate(${leafNode.x} ${leafNode.y}) scale(${g.shoot})`);
     attr('earth','fill',`url(#${water==='dry'?'dry-earth':'earth'})`);attr('moss','opacity',water==='dry'?.22:.87);

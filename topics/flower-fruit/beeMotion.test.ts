@@ -1,6 +1,8 @@
-import test from 'node:test';
+import test,{after} from 'node:test';
 import assert from 'node:assert/strict';
-import {beeMotion} from './beeMotion.ts';
+import {createBeeMotion} from './beeMotion.ts';
+const motion=createBeeMotion(),beeMotion=motion.sample;
+after(()=>motion.dispose());
 import {BEE_VISIT,pollinationFrame} from './model.ts';
 function numbers(value:unknown):number[]{return typeof value==='number'?[value]:Array.isArray(value)?value.flatMap(numbers):value&&typeof value==='object'?Object.values(value).flatMap(numbers):[];}
 

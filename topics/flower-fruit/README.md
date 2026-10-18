@@ -42,3 +42,8 @@ The same finite progress clock drives articulation, small leaf flex and falling-
 蜜蜂的膜翅、绒毛、分节足与接触动作采用固定视角科学插画；翅脉是可辨认的简化纹理，不按翅室数量测绘。振翅以示意节奏配合透明残影表现，不把屏幕上的摆动频率称为真实频率，也不模拟升力、气流或翅钩接合的力学。停靠与离开的时长是教学编排；到达柱头仍只是授粉，相容花粉管随后才能帮助完成受精。
 
 Motion reference: [Altshuler et al., PNAS (2005), honeybee wing strokes](https://pmc.ncbi.nlm.nih.gov/articles/PMC1312389/) describes rapid, short-amplitude honeybee wingbeats. This scene illustrates their visual impression; it does not replay the measured frequency or claim that its projected wing angles reconstruct the paper's kinematics.
+
+
+## Reader 2D engine integration · 2026-10-19
+
+`createBeeMotion()` uses the Reader's seek-only Anime.js timeline for a finite asymmetric wing stroke, sampled from the original topic time. `petalMotion.ts` interpolates authored compatible-topology curl poses with the same retained base; the scientific morphology still decides when each petal curls/drops. `growthScene.ts` owns these instances and disposes them with the study. The route, fixed pollen contact, compatibility arrest, fruit/seed identity, reduced-motion qualifications and single topic playback clock remain unchanged. This is illustration interpolation, not measured wing/tissue dynamics.

@@ -87,3 +87,10 @@ This is an epigeal common-bean illustration, not a physiological simulation. Hyp
 All three cases expose one authored `.study-transport` to the Reader. Dispersal’s existing `travel`/`progress` controls and live result join that surface without changing its wind/fur model or clock; case-specific conditions remain in settings.
 
 The first true-leaf pair now opens with a small change in attachment angle as well as separate length/width unfolding; the final mature seedling retains the same geometry. Cherry motion uses `../flower-fruit/beeMotion.ts`, with no independent ambient clock.
+
+
+## Reader 2D engine integration · 2026-10-19
+
+`leafMotion.ts` samples the optional Reader Anime.js engine to unfold the retained leaf blade through authored folded/opening/open contours. Each leaf has its own retained path and clipping mask; its base, midrib and petiole attachment remain at the geometry owner's coordinates. Growth extent, conditions and biological sequence still come from `beanGeometry`/`lifecycleModel`; no autonomous animation advances the seed. Final disposal releases the engine tracks.
+
+The content's pinned Reader commit must provide `@glenzli/wiki-reader/animation2d`. When developing paired unpushed repositories, use a local Reader checkout explicitly; do not substitute an older cached plugin and call the new engine verified. Push remains a separate action.

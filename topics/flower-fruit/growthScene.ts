@@ -1,5 +1,6 @@
 import {fruitGeometry,pollinationFrame} from './model.ts';
-import {beeMotion} from './beeMotion.ts';
+import {createBeeMotion} from './beeMotion.ts';
+import {createPetalCurl} from './petalMotion.ts';
 const defs = `<defs>
   <linearGradient id="orchard" x2="0" y2="1"><stop stop-color="#dfe6d2"/><stop offset=".52" stop-color="#f8f0db"/><stop offset="1" stop-color="#d0dac2"/></linearGradient>
   <radialGradient id="sunlight"><stop stop-color="#fffae3" stop-opacity=".94"/><stop offset="1" stop-color="#fffae3" stop-opacity="0"/></radialGradient>
@@ -74,6 +75,7 @@ function bee(){
 }
 
 export function createCherryScene(scene:SVGSVGElement,t:(s:string)=>string){
+  const beeArticulation=createBeeMotion(),petalCurls=Array.from({length:5},()=>createPetalCurl());
   const backdrop = `<rect width="760" height="530" fill="url(#orchard)"/><circle cx="527" cy="113" r="270" fill="url(#sunlight)"/><g filter="url(#background-soft)" opacity=".36"><path d="M-32 526 Q116 246 75 -21" stroke="#8a9b71" stroke-width="27" fill="none"/><ellipse cx="60" cy="91" rx="110" ry="46" fill="#8ca377" transform="rotate(-25 60 91)"/><ellipse cx="731" cy="295" rx="105" ry="54" fill="#a5b68b" transform="rotate(-45 731 295)"/><circle cx="81" cy="369" r="47" fill="#fff7ec"/><circle cx="388" cy="443" r="58" fill="#a3b988"/></g><g fill="#fffbea" opacity=".5"><circle cx="413" cy="52" r="18"/><circle cx="66" cy="288" r="12"/><circle cx="704" cy="68" r="23"/></g>`;
   const barkMarks = Array.from({ length: 18 }, (_, i) => `<path d="M${49 + i * 23} ${143 - 34 * Math.pow((49 + i * 23 - 200) / 270, 2)} l${4 + i % 5} ${-2 + i % 3}" stroke="${i % 2 ? '#bfab83' : '#3f3c2e'}" stroke-width="1.4" opacity=".65"/>`).join('');
 
@@ -82,14 +84,14 @@ export function createCherryScene(scene:SVGSVGElement,t:(s:string)=>string){
   const parts=new Map(Array.from(scene.querySelectorAll<SVGElement>('[data-part]'),node=>[node.dataset.part!,node]));
   const attr=(id:string,key:string,value:string|number)=>parts.get(id)!.setAttribute(key,String(value));
   const cue=[t('蜜蜂靠近，花粉还在身上'),t('花粉留在柱头，花粉管向内生长'),t('受精完成，子房开始膨大'),t('花瓣凋落，幼果慢慢长大'),t('果肉增厚，硬果核包住种子'),t('樱桃成熟，种子留在果核里')];
-  return {update(progress:number,compatible:boolean,reducedMotion=false){
-    const p=Math.max(0,Math.min(3,progress)),pollination=pollinationFrame(p,compatible),g=fruitGeometry(p,compatible),motion=beeMotion(p,reducedMotion);
+  return {dispose(){beeArticulation.dispose();petalCurls.forEach(m=>m.dispose());},update(progress:number,compatible:boolean,reducedMotion=false){
+    const p=Math.max(0,Math.min(3,progress)),pollination=pollinationFrame(p,compatible),g=fruitGeometry(p,compatible),motion=beeArticulation.sample(p,reducedMotion);
     attr('ovary-body','transform',`translate(${g.center.x} ${g.center.y}) scale(${g.scale})`);attr('ripe-skin','opacity',g.ripe);
     for(const [i,petal]of g.petals.entries()){
       attr(`petal-${i}`,'transform',`translate(${petal.x} ${petal.y}) rotate(${petal.angle+(i>=3?motion.contactFlex*(1-g.wilt):0)}) scale(${petal.width} ${petal.length})`);
       attr(`petal-${i}`,'opacity',petal.opacity);
-      const c=petal.curl;
-      attr(`petal-shape-${i}`,'d',`M0 9 C-27 -12 ${-57+12*c} -51 ${-48+10*c} ${-81+20*c} C${-42+12*c} ${-106+30*c} -17 ${-119+40*c} ${-4+15*c} ${-112+48*c} Q${17*c} ${-103+52*c} ${5+14*c} ${-112+48*c} C${29+8*c} ${-117+40*c} ${51-20*c} ${-98+22*c} ${49-24*c} ${-76+10*c} C${51-18*c} -44 22 -7 0 9Z`);
+      const petalPose=petalCurls[i]!.sample(petal.curl),c=petalPose.curl;
+      attr(`petal-shape-${i}`,'d',petalPose.d);
       attr(`petal-age-${i}`,'opacity',.14*c);
       attr(`petal-fold-${i}`,'d',`M${5+14*c} ${-112+48*c} Q${32-5*c} ${-105+40*c} ${43-22*c} ${-84+19*c} Q${21+3*c} ${-92+36*c} ${5+14*c} ${-112+48*c}Z`);
       attr(`petal-fold-${i}`,'opacity',c*.65);

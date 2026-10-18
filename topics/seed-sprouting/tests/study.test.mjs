@@ -9,7 +9,9 @@ import {parseFragment} from 'parse5';
 import * as beanGeometry from '../growthGeometry.ts';
 import * as lifecycle from '../lifecycleModel.ts';
 import * as cherryModel from '../../flower-fruit/model.ts';
-import {beeMotion} from '../../flower-fruit/beeMotion.ts';
+import {createBeeMotion} from '../../flower-fruit/beeMotion.ts';
+import {createPetalCurl} from '../../flower-fruit/petalMotion.ts';
+import {createLeafUnfold} from '../leafMotion.ts';
 
 function study(kind='bean',initial={progress:0}){
  let now=0,frameId=0;const frames=new Map(),updates=[];
@@ -39,7 +41,7 @@ function study(kind='bean',initial={progress:0}){
   vm.runInNewContext(output,{...host,...deps,exports},{filename:relative});return exports;
  }
  const playback=load('../growthPlayback.ts');
- const renderer=kind==='bean'?load('../growthScene.ts',beanGeometry):load('../../flower-fruit/growthScene.ts',{...cherryModel,beeMotion});
+ const renderer=kind==='bean'?load('../growthScene.ts',{...beanGeometry,createLeafUnfold}):load('../../flower-fruit/growthScene.ts',{...cherryModel,createBeeMotion,createPetalCurl});
  const controller=load(kind==='bean'?'../study.ts':'../../flower-fruit/study.ts',{...lifecycle,...playback,...renderer});
  const mounted=controller.mountStudy(root,initial,state=>updates.push({...state})),get=id=>root.querySelector('#'+id);
  return {root,media,frames,updates,mounted,get,
@@ -83,4 +85,17 @@ test('articulated bee wings share the process clock, freeze on pause and replay 
  h.input('journey',900);assert.ok(Number(part('bee-wing-envelope').getAttribute('opacity'))>0);
  h.media.matches=true;h.input('journey',200);assert.equal(part('bee-wing-envelope').getAttribute('opacity'),'0');assert.equal(h.frames.size,0);
  h.mounted.dispose();assert.equal(h.frames.size,0);
+});
+
+test('engine-driven leaf and petal contours retain attachment sites and rewind exactly',()=>{
+ for(const kind of ['bean','cherry']){
+  const h=study(kind),svg=h.get('scene'),id=kind==='bean'?'leaf-shape-left':'petal-shape-0';
+  const shape=svg.querySelectorAll('[data-part]').find(n=>n.dataset.part===id);
+  const set=p=>h.input(kind==='bean'?'stage':'journey',kind==='bean'?p:p*1000);
+  set(kind==='bean'?2.45:1.3);const middle=shape.getAttribute('d');
+  assert.match(middle,kind==='bean'?/^M0 0 /:/^M0 9 /);
+  set(3);assert.notEqual(shape.getAttribute('d'),middle);
+  set(kind==='bean'?2.45:1.3);assert.equal(shape.getAttribute('d'),middle);
+  assert.equal(svg.htmlWrites,1);h.mounted.dispose();assert.equal(h.frames.size,0);
+ }
 });
