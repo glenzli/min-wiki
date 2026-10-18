@@ -101,9 +101,24 @@ export class TopicScene{
    c.restore();
    if(state.returnStroke>0){
     const stroke=[...connectorPath(),...pathThrough([...path].reverse(),state.returnStroke).slice(1)],fade=1-smooth(.70,.80,progress);
-    c.save();c.globalAlpha=fade;c.shadowColor='#d9e6ff';c.shadowBlur=14;
-    s.path(stroke,undefined,'#b0c6ef38',10);s.path(stroke,undefined,'#c6d6ef7a',4.5);s.path(stroke,undefined,'#e9efff',2);s.path(stroke,undefined,'#ffffff',.75);
-    const tip=stroke.at(-1)!;s.ellipse(tip[0],tip[1],1.5,1.5,'#fff');c.restore();
+    c.save();c.globalAlpha=fade;c.globalCompositeOperation='screen';
+    const core=(points:Point[],color:string,width:number)=>{
+     c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));
+     c.lineJoin='miter';c.miterLimit=2;c.lineCap='butt';c.strokeStyle=color;c.lineWidth=width;c.stroke();
+    };
+    c.shadowColor='#bdd5ff';c.shadowBlur=22;
+    s.path(stroke,undefined,'#aecbff55',12);s.path(stroke,undefined,'#c9ddffb0',5);
+    // White stationary core and restrained branch light replace the roaming
+    // bright bead. The front still follows the existing attached channel.
+    c.shadowBlur=0;
+    core(stroke,'#f0f6ff',2);core(stroke,'#ffffff',.95);
+    for(const branch of this.branches){
+     const reached=smooth(1-branch.index/(path.length-1),1-branch.index/(path.length-1)+.055,state.returnStroke);
+     if(reached<=0)continue;
+     c.globalAlpha=fade*reached*.65;c.shadowBlur=7;
+     s.path(branch.points,undefined,'#bcd5ff63',3);c.shadowBlur=0;core(branch.points,'#e9f2ffd9',.65);
+    }
+    c.restore();
    }
    if(s.width>650&&progress>.32&&!state.connected){
     const tip=visible.at(-1)!;label(t('分步先导'),tip[0]-74,tip[1]-5,190);
@@ -111,7 +126,7 @@ export class TopicScene{
    }
    if(s.width>650&&state.returnStroke>0&&progress<.70)label(t('明亮回击向上发展'),117,-15,250);
   }
-  this.artwork.paintHouse(c,observerX,flash*.6);
+  this.artwork.paintHouse(c,observerX,flash*.8);
   if(progress>=.70){
    const radius=projectDistance(state.soundRadiusKm),frontX=Math.min(observerX,15+radius);
    // The one leading boundary and the ground track share one distance map.

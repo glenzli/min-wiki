@@ -2,7 +2,7 @@
  * scientific state nor a second animation clock; every light samples the scene. */
 const cloudBounds={x:-350,y:-300,width:720,height:240};
 const imageURLs={
- cloud:new URL('./assets/storm-cloud-v1.webp',import.meta.url).href,
+ cloud:new URL('./assets/storm-cloud-v2.webp',import.meta.url).href,
  house:new URL('./assets/observer-house-v1.webp',import.meta.url).href,
  terrain:new URL('./assets/storm-terrain-v1.webp',import.meta.url).href,
 };
@@ -51,7 +51,7 @@ export class StormArtwork {
   if(name==='cloud'){
    const sx=target.width/cloudBounds.width,sy=target.height/cloudBounds.height;
    const glow=light.createRadialGradient((-67-cloudBounds.x)*sx,(-107-cloudBounds.y)*sy,0,(-67-cloudBounds.x)*sx,(-107-cloudBounds.y)*sy,150*sx);
-   glow.addColorStop(0,'#e5efffd9');glow.addColorStop(.32,'#b2c7e66b');glow.addColorStop(1,'#91a8c400');
+   glow.addColorStop(0,'#ffffff');glow.addColorStop(.32,'#dae6ffa0');glow.addColorStop(1,'#91a8c400');
    light.fillStyle=glow;
   }else{
    const edge=light.createLinearGradient(0,0,mask.width,mask.height*.55);
@@ -69,7 +69,7 @@ export class StormArtwork {
    c.drawImage(this.terrain,-width/2,y,width,height);
   }
   if(flash<=0)return;
-  c.save();c.globalCompositeOperation='screen';c.globalAlpha=flash*.22;
+  c.save();c.globalCompositeOperation='screen';c.globalAlpha=flash*.33;
   const glow=c.createRadialGradient(15,141,0,15,141,175);
   glow.addColorStop(0,'#bed4e4');glow.addColorStop(.22,'#9ab9cd99');glow.addColorStop(1,'#8baab800');
   c.fillStyle=glow;c.fillRect(-160,118,350,Math.max(340,bottom)-118);c.restore();
@@ -78,7 +78,7 @@ export class StormArtwork {
   if(this.cloud.width<=1)return;
   const a=cloudBounds;c.drawImage(this.cloud,a.x,a.y,a.width,a.height);
   if(flash<=0)return;
-  c.save();c.globalCompositeOperation='screen';c.globalAlpha=flash*.8;
+  c.save();c.globalCompositeOperation='screen';c.globalAlpha=flash;
   c.drawImage(this.cloudLight,a.x,a.y,a.width,a.height);c.restore();
  }
  paintHouse(c:CanvasRenderingContext2D,x:number,flash:number){
@@ -93,7 +93,7 @@ export class StormArtwork {
   c.fillStyle=contact;c.fillRect(-34,-34,68,68);c.restore();
   c.drawImage(this.house,left,top,width,height);
   if(flash<=0)return;
-  c.save();c.globalCompositeOperation='screen';c.globalAlpha=flash*.3;
+  c.save();c.globalCompositeOperation='screen';c.globalAlpha=flash*.4;
   c.drawImage(this.houseLight,left,top,width,height);c.restore();
  }
  dispose(){

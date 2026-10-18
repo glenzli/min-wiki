@@ -4,13 +4,25 @@ These are AI-generated educational illustrations, not photographs or observed we
 
 | Source | Delivery | Role |
 | --- | --- | --- |
-| storm-cloud-v1.png | storm-cloud-v1.webp | Nonmetric storm-cloud material and silhouette |
+| storm-cloud-v1.png | storm-cloud-v1.webp | Retained original and edit reference; no longer loaded by the scene |
+| storm-cloud-v2.png | storm-cloud-v2.webp | Current cloud, with shorter asymmetric anvil edges |
 | observer-house-v1.png | observer-house-v1.webp | Enlarged indoor architectural reference |
 | storm-terrain-v1.png | storm-terrain-v1.webp | Illustrative rural terrain, no real location |
 
 The cloud and landscape are fixed-view artwork; their light masks sample the connected return stroke. The house's left ground-floor window is anchored to the observer distance projection. Architecture, terrain and cloud sizes are independently illustrative; none gives a calibrated physical length. See ../README.md for the causal model and ../VALIDATION.md for actual browser evidence. Rebuild delivery copies with `npm run optimize:images` and verify with `npm run check:images`.
 
 ## Exact generation prompts
+
+### Cloud v2 edit
+
+Built-in imagegen edit of the retained `storm-cloud-v1.png`; genuine alpha preserved. Only the anvil silhouette was requested to change; the scene retains its existing cloud/channel anchors. A cumulonimbus anvil is a spreading cloud top, rather than a pair of upward-facing wings ([NWS definition](https://forecast.weather.gov/glossary.php?word=Anvil)). The silhouette remains illustrative, not calibrated weather geometry.
+
+```text
+Use case: precise-object-edit.
+Edit target: the attached transparent thunderstorm-cloud illustration. Preserve the large central billowing cloud tower, lower dense dark cloud base, realistic detail, existing illumination and blue-gray palette, fixed canvas proportions and placement.
+Change ONLY the long upper anvil's silhouette: retract the far-left and far-right projections by roughly 40 percent, remove both upturned sharp wing-like tips. Replace them with a shorter, flatter, subtly asymmetric anvil shelf whose soft, irregular fibrous edges dissolve naturally. One side can extend modestly farther than the other; no mirror symmetry and no bird-wing silhouette. The remaining anvil must still look like a believable mature cumulonimbus top, joined continuously to the existing main updraft body.
+Keep the entire dark base and central updraft's position unchanged so an overlaid scientific channel can retain its anchor. Preserve the natural-history illustration quality and genuine alpha transparency. No sky or rectangular backdrop, no lightning, rain, symbols, text, landscape or new objects. No painted checkerboard.
+```
 
 ### cloud
 

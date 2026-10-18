@@ -1,5 +1,14 @@
 # Lightning/thunder artwork validation · 2026-10-19
 
+## Follow-up: anvil silhouette and steady brighter channel
+
+- Base `abcf8c553be13b32f37b8909b3d7b82a761878a5`. Replaced the exaggerated, symmetric, upturned anvil tips with the shorter asymmetric cloud v2; original PNG and full built-in imagegen edit prompt are retained in [provenance](assets/PROVENANCE.md). Cloud tower/base placement, numerical model, path geometry, sound clock and controller are unchanged.
+- Removed the travelling bright bead. A narrow, sharper white core, diffuse halo and restrained branch afterglow use the existing fixed geometry. Branch light starts only after the modeled return front reaches each root; cloud/ground/house light remains gated by attachment and that same return state. No new time source, jitter, strobe or ground contact.
+- Final source SHA-256: `scene.ts` `73192b64bb229e9af5a4a5d6d4bc309e9dad119340dbb70628f8f6c0042d53db`; `stormArtwork.ts` `5220e0cdca478437f00a88372287e617ff03ce15cf3aec729ffb8f5d73bcefcd`. Three current delivery images total 547,956 bytes; only cloud v2 is referenced by the built scene. The original cloud v1 is archival. Retained pixel dimensions/resource bounds are unchanged.
+- Final Reader build passed TypeScript, 6,903 source messages / 72 namespaces, 151 checked delivery images, entry projections, review status and 71 routes; source digest `a55720c2c687894a4ec9c9d72b94a35b08f41726686c10965885cae3f29c89d2`. Existing six model-test results below are reused for unchanged scientific inputs; full unrelated tests were not repeated.
+- Actual primary Chinese 1152 × 1106 and English 390 × 844 full-return images inspected after the final core refinement. Earlier checks in this follow-up inspected Chinese .5 km at .59 (still faint) and .675 (full return), plus English .61 and .675. The late core-edge change applies only after return begins; it does not change pre-attachment output. Mobile document/client width was 390 px; captured error/warning logs were empty. Reverse .55 → .675 keeps the same channel. Preview remains `127.0.0.1:64494`; responsive override reset, Chinese primary tab paused at the full return.
+- Final screenshots: `/private/tmp/wiki-storm-art-20261019/final-cloud-v2-flash.png` and `final-cloud-v2-mobile-en.png`. No editorial status changes, push or deployment. Source masks are illustrative local lighting, not a calibrated light-intensity calculation.
+
 Base: `5a98e483b6b7c2ad8ca01d009b48fffd2d9f9120`. Scope: topic-owned fixed-view cloud, landscape and indoor building materials, deterministic branches/charges, and progress-sampled local light. The numerical model, path anchors, distance/temperature inputs and controller clock are unchanged. This records implementation and browser checks, not empirical weather accuracy or editorial promotion.
 
 ## Final runtime identity

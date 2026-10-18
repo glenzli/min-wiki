@@ -30,7 +30,13 @@ Three separately generated illustration layers describe the anvil, billowing clo
 
 One leading sound boundary, faint trailing arcs and an arrival track share the original distance projection and physical sound-speed result. The drawing is explicitly labelled a sound-front illustration. Its arcs do not encode measured wavelength or loudness; the ground-centered arc is a simplified reference, while thunder originates around the full lightning channel. The nearby observer remains visually magnified and separated from the mast.
 
-Three WebP assets total 627,472 bytes: cloud 1600 × 533, house 512 × 445, terrain 1600 × 538. Five retained Canvas layers (cloud/house plus their light masks, and terrain) hold about 12.1 MB of RGBA pixels, with at most three source-image decodes in addition; browser overhead is not included. Each layer is prepared once after loading. Loading/failure captions leave the channel controls usable, and final exit clears image callbacks, references and Canvas buffers; late callbacks cannot redraw a disposed scene. Terrain edges fade into matching ground, without a rectangular horizon or bottom seam. Scientific channels, wave fronts, distance and progress remain independent of the artwork. This is a resource bound, not a measured frame-rate or physical-device performance claim.
+Three current WebP assets total 547,956 bytes: cloud v2 1600 × 533, house 512 × 445, terrain 1600 × 538. The original cloud v1 remains as the edit reference and is not loaded. Five retained Canvas layers (cloud/house plus their light masks, and terrain) hold about 12.1 MB of RGBA pixels, with at most three source-image decodes in addition; browser overhead is not included. Each layer is prepared once after loading. Loading/failure captions leave the channel controls usable, and final exit clears image callbacks, references and Canvas buffers; late callbacks cannot redraw a disposed scene. Terrain edges fade into matching ground, without a rectangular horizon or bottom seam. Scientific channels, wave fronts, distance and progress remain independent of the artwork. This is a resource bound, not a measured frame-rate or physical-device performance claim.
+
+### Cloud silhouette and steady channel · 2026-10-19
+
+云顶的两端收短为不对称、较平的柔和砧顶，保留原云塔和云底锚点。闪电去掉沿通道游走的亮点，增强固定白色核心、细分叉余辉和局部照明；分叉只在模型回击前沿到达其根部后变亮，不新增接地点或独立频闪。接通前仍是微弱先导，接通后明亮前沿仍沿同一通道向上推进。形状不随帧重新生成，暂停和回拖保持同一通道。
+
+The anvil ends are shorter, flatter, softer and asymmetric, retaining the original tower and base anchors. A stronger white core and fine branch afterglow replace the travelling bright bead. A branch brightens only after the existing return front reaches its root; this adds neither another ground contact nor a strobe. The pre-attachment leader stays faint, and the post-attachment luminosity front still progresses upward along the same fixed channel. Pausing and reverse seeking retain its geometry.
 
 ## Attachment geometry · 2026-10-01
 

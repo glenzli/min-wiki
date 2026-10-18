@@ -1718,6 +1718,19 @@
       "bytes": 216852
     },
     {
+      "source": "topics/lightning-thunder/assets/storm-cloud-v2.png",
+      "output": "topics/lightning-thunder/assets/storm-cloud-v2.webp",
+      "width": 1600,
+      "quality": 90,
+      "sourceSha256": "9ac139e1b8574eb8d2ae04d2a679b5fa34c0be9729e49c637fa99bad0d5467ab",
+      "sha256": "869e0d296c2cdb7526125913ab92d7d480df852b0f1920befc527ee03cd9089c",
+      "pixels": [
+        1600,
+        533
+      ],
+      "bytes": 137336
+    },
+    {
       "source": "topics/lightning-thunder/assets/observer-house-v1.png",
       "output": "topics/lightning-thunder/assets/observer-house-v1.webp",
       "width": 512,

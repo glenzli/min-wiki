@@ -19,7 +19,7 @@ for (const topic of catalog.topics.filter(topic => topic.status === 'published')
 }
 jobs.push({ source: 'topics/rainbow/assets/rain-afterglow.png', output: 'topics/rainbow/assets/rain-afterglow.webp', quality: 90 });
 // Nonmetric storm artwork: preserve alpha; load compact delivery sprites only.
-for (const [name, width] of [['storm-cloud-v1', 1600], ['observer-house-v1', 512], ['storm-terrain-v1', 1600]]) {
+for (const [name, width] of [['storm-cloud-v1', 1600], ['storm-cloud-v2', 1600], ['observer-house-v1', 512], ['storm-terrain-v1', 1600]]) {
   jobs.push({ source: `topics/lightning-thunder/assets/${name}.png`, output: `topics/lightning-thunder/assets/${name}.webp`, width, quality: 90 });
 }
 // Keep the attributed source maps and their pixel dimensions. Only delivery encoding changes.
