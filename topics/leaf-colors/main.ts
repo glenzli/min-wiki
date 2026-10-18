@@ -43,6 +43,7 @@ function update() {
   el('journey').textContent = touring ? t('暂停深入') : journey >= JOURNEY_DURATION ? t('重新走进叶子') : journey > 0 ? t('继续深入') : t('一键走进叶子');
   el('journey').setAttribute('aria-pressed', String(touring));
   (el('scale') as HTMLInputElement).value = String(Math.round(position * 1000));
+  (el('scale') as HTMLInputElement).disabled = !inspectable;
   el('scale').setAttribute('aria-valuetext', data.title);
   el('scale-readout').textContent = data.title;
   el('journey-status').textContent = touring ? t('正在连续探索 · 可随时暂停') : kind === 'red' ? t('叶片 → 上表皮 → 组织 → 细胞 → 液泡') : t('叶片 → 上表皮 → 组织 → 细胞 → 叶绿体');
@@ -60,6 +61,7 @@ function update() {
   }
   const seasonName = story.title;
   el('season-badge').textContent = seasonName;
+  el('season-badge').hidden = view !== 'inside';
   (el('season') as HTMLInputElement).value = String(Math.round(age * 1000));
   el('season').setAttribute('aria-valuetext', seasonName);
   el('season-story').textContent = life.stage === 'bud' || life.stage === 'fallen' ? story.observe : seasonStory(season, kind === 'red', academic);
@@ -111,7 +113,8 @@ function update() {
 }
 function seekScale(target: number) {
   touring = false; cancelSeek();
-  cancelSeek = animateValue({ from: position, to: target, duration: 850, onUpdate: value => {
+  const duration = position < 1 && target <= 1 ? 1550 : 1050;
+  cancelSeek = animateValue({ from: position, to: target, duration, onUpdate: value => {
     position = value; journey = position / 3 * JOURNEY_DURATION; update();
   }});
 }
@@ -134,7 +137,11 @@ function startJourney() {
   update();
 }
 el('hotspot').addEventListener('click', () => { if (view !== 'inside') changeView('inside'); seekScale(SCALE_STOPS.find(stop=>stop>position+.01) ?? 3); });
-el('scale').addEventListener('input', () => { cancelSeek(); touring = false; position = Number((el('scale') as HTMLInputElement).value) / 1000; journey = position / 3 * JOURNEY_DURATION; update(); });
+el('scale').addEventListener('input', () => {
+  const selected = Number((el('scale') as HTMLInputElement).value) / 1000;
+  if (view !== 'inside') changeView('inside');
+  cancelSeek(); touring = false; position = selected; journey = position / 3 * JOURNEY_DURATION; update();
+});
 el('journey').addEventListener('click', startJourney);
 el('motion').addEventListener('click', () => {
   const enabled = el('motion').getAttribute('aria-pressed') !== 'true';

@@ -1,5 +1,17 @@
 # 一片叶子的一生 / The life of a leaf
 
+## Continuous surface approach and botanical artwork · 2026-10-19
+
+`bladeArtwork.ts` owns the retained blade's authored ovate silhouette, vein hierarchy, material, petiole and bounded pose cache. It consumes the existing finite unfolding/curl pose; it has no clock. `epidermis.ts` owns one deterministic, shared-wall pavement-cell sheet across the blade, a single transparent texture cache, and intersections with the fixed sample edge. The whole visible surface reveals these walls progressively as the camera approaches. The surrounding blade is retained through the epidermis observation stop; only the subsequent explanatory side-turn isolates the sample. The upper row of the tissue section uses those same wall intersections. This replaces the earlier local texture patch, which looked like a separate image appearing on the leaf.
+
+叶形、叶脉层级、叶面材质和叶柄共用已有的展开／卷曲姿态，不另设动画时钟。放大时，整片可见叶面逐渐显出同一张固定的表皮细胞网，叶脉继续作为位置参照；表皮停留阶段保留周围叶片，侧转时才隔离已标记的样本。组织剖面上缘的细胞边界来自同一张表皮网。后退沿原路径返回，不生成另一块细胞图。
+
+The sheet is a general teaching illustration of upper epidermis, distinct from the mesophyll underneath. Wall shape and density are illustrative; scale differences are compressed, and section thickness is exaggerated. The surface texture is transparent over the blade material, not a map of pigment concentrations or proof that epidermal cells contain mesophyll organelles. The permanent mesophyll cell, vacuole and chloroplast destinations, pigment trends and water/lifecycle conditions are unchanged. This distinction follows [OpenStax — Leaves](https://openstax.org/books/biology-2e/pages/30-4-leaves), especially the epidermis and mesophyll sections.
+
+这是一幅概括性的上表皮示意，不是某树种的实测细胞图。细胞边界与密度经过简化，尺度差异被压缩，剖面厚度已夸大；透过表皮纹理看到的叶色不能读成表皮中色素的实测浓度，也不表示表皮具有叶肉细胞的全部细胞器。下方固定的叶肉细胞、液泡／叶绿体去向、色素趋势与叶龄／水运输条件保持不变。
+
+The scale slider now enters the inside lens explicitly, keeping its title and explanations aligned with the drawing. It is unavailable before expansion or after detachment, matching the existing inspection conditions. The first approach/side-turn seeks take longer to read; manual scrubbing remains immediate and reduced-motion navigation retains its existing stops. The topic remains a draft. Local preview and a commit do not authorize push or deployment. Earlier dated sections below describe their original implementations and acceptance only.
+
 ## Botanical motion and transport refinement · 2026-10-19
 
 `leafMotion.ts` authors finite Reader Anime.js poses for asymmetric unfolding and a slight curl after detachment. The petiole seam is fixed; unfolding is complete before microscopy is available, so the original sample, section, cell and pigment-compartment anchors remain unchanged. Veins and surface grain deform with the blade. The lifecycle model retains the bounded drifting path and all water-availability conditions; curling and drift are illustrations, not calibrated tissue mechanics, drying rates or a wind solver.

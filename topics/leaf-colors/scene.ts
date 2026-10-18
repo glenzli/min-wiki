@@ -1,21 +1,22 @@
-import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, leafSectionAt, LEAF_SECTION, cellEdge, VACUOLE, vacuolePoint, epidermisBoundary } from './model.ts';
+import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, leafSectionAt, LEAF_SECTION, cellEdge, VACUOLE, vacuolePoint, epidermisBoundary, BLADE_ANGLE } from './model.ts';
 import type { LeafKind, Pigments, ScaleEntry } from './model.ts';
 import { t } from './i18n.ts';
 import { leafLifeAt, leafPoint } from './lifecycle.ts';
 import { waterAt, BLADE_WATER_ROUTE } from '../plant-water/model.ts';
-import { createLeafMotion, bladePoint } from './leafMotion.ts';
+import { createLeafMotion } from './leafMotion.ts';
+import { BladeArtwork } from './bladeArtwork.ts';
+import { EpidermisSurface, epidermisSeam } from './epidermis.ts';
 
 type Point = [number, number];
 export class LeafScene {
   private academic = false;
   private showLabels = true;
-  private epidermalCells: Path2D[] = [];
-  private epidermalCenters: Point[] = [];
-  private epidermalPlate = document.createElement('canvas');
-  private epidermalKey = '';
+  private surface = new EpidermisSurface();
+  private upperCellEdges: number[] = [];
+  private sideCellEdges: number[] = [];
   private plastidPlate = document.createElement('canvas');
   private plastidKey = '';
-  private bladeGeometry?: { outline: Path2D; veins: Path2D[]; mesh: Path2D; areoles: Path2D; grain: Path2D };
+  private bladeArt = new BladeArtwork();
   private bladeKey = '';
   private leafMotion = createLeafMotion();
   private ctx: CanvasRenderingContext2D;
@@ -57,7 +58,17 @@ export class LeafScene {
     this.vacuolePath.closePath();
     epidermisBoundary.forEach(([x,y],i)=>i?this.surfacePath.lineTo(x,y):this.surfacePath.moveTo(x,y));
     this.surfacePath.closePath();
-    this.buildEpidermis();
+    const patch = SCALE_ENTRIES[0];
+    const bladePointAt = (x: number, y = 0): Point => {
+      const wx = patch.x + x * patch.size, wy = patch.y + y * patch.size;
+      return [wx * Math.cos(-BLADE_ANGLE) - wy * Math.sin(-BLADE_ANGLE), wx * Math.sin(-BLADE_ANGLE) + wy * Math.cos(-BLADE_ANGLE)];
+    };
+    this.upperCellEdges = epidermisSeam(this.surface.geometry,
+      bladePointAt(LEAF_SECTION.left), bladePointAt(LEAF_SECTION.right))
+      .map(u => LEAF_SECTION.left + (LEAF_SECTION.right - LEAF_SECTION.left) * u);
+    this.sideCellEdges = epidermisSeam(this.surface.geometry,
+      bladePointAt(LEAF_SECTION.left, -185), bladePointAt(LEAF_SECTION.left))
+      .map(u => -185 + 185 * u);
     this.observer = new ResizeObserver(() => this.resize());
     this.observer.observe(canvas);
     this.resize();
@@ -128,17 +139,36 @@ export class LeafScene {
     const camera = { ...originalCamera, x: originalCamera.x * (1 - follow) + tracked.x * follow, y: originalCamera.y * (1 - follow) + tracked.y * follow, angle: originalCamera.angle + life.rotation * follow, magnification: originalCamera.magnification / (1 - follow + life.size * follow) };
     // Narrow canvases need breathing room around the complete sampled cell.
     const detailBoost = .18 + .2 * smooth(420,760,this.width);
-    const sceneScale = this.scale * camera.magnification * (1 + detailBoost * smooth(.75, 2, this.position));
-    const frameY = this.height * (.46 + .08 * smooth(.2, 1, this.position));
+    let sceneScale = this.scale * camera.magnification * (1 + detailBoost * smooth(.75, 2, this.position));
+    let frameY = this.height * (.46 + .08 * smooth(.2, 1, this.position));
     const entries: ScaleEntry[] = [...SCALE_ENTRIES, destination];
     const section = leafSectionAt(this.position), patch = entries[0];
+    if (section.angle > 0 && this.position < 1) {
+      // The exaggerated thickness increases the footprint midway through the
+      // turn. Pull back only enough to keep the sampled volume inside the stage.
+      const [a,b,cc,d,e,f] = section.surfaceTransform;
+      const surface = epidermisBoundary.map(([x,y]) => {
+        const wx = patch.x + x * patch.size, wy = patch.y + y * patch.size;
+        return [a*wx+cc*wy+e,b*wx+d*wy+f];
+      });
+      const [aa,bb,ccc,dd] = section.sectionTransform;
+      const front = [LEAF_SECTION.left,LEAF_SECTION.right].flatMap(x => [LEAF_SECTION.top,LEAF_SECTION.bottom]
+        .map(y => [patch.x+(aa*x+ccc*y)*patch.size,patch.y+(bb*x+dd*y)*patch.size]));
+      const footprint = [...surface,...front];
+      const left = Math.min(...footprint.map(p=>p[0])), right = Math.max(...footprint.map(p=>p[0]));
+      const top = Math.min(...footprint.map(p=>p[1])), bottom = Math.max(...footprint.map(p=>p[1]));
+      sceneScale *= Math.min(1, (this.width-36)/((right-left)*sceneScale*life.size*life.unfold),
+        Math.max(1,this.height-136)/((bottom-top)*sceneScale*life.size));
+      const turnWeight = Math.sin(2*section.angle)**2;
+      const focus = leafPoint((left+right)/2,(top+bottom)/2,this.age);
+      camera.x += (focus.x-camera.x)*turnWeight; camera.y += (focus.y-camera.y)*turnWeight;
+      frameY += (this.height/2-frameY)*turnWeight;
+    }
     this.labels = [];
     c.save(); c.translate(this.width / 2, frameY); c.scale(sceneScale, sceneScale); c.rotate(-camera.angle); c.translate(-camera.x, -camera.y);
     if (this.position < 1.1) {
       c.save(); c.globalAlpha *= 1 - smooth(.25, 1.1, this.position);
-      const bark = c.createLinearGradient(0, 222, 0, 276); bark.addColorStop(0, '#ae9270'); bark.addColorStop(.4, '#81684d'); bark.addColorStop(1, '#524d39');
-      c.beginPath(); c.moveTo(-310, 295); c.bezierCurveTo(-155, 267, 76, 242, 314, 224); c.lineWidth = 25; c.lineCap = 'round'; c.strokeStyle = bark; c.stroke();
-      for (let i = 0; i < 17; i++) { const x = -285 + i * 35, y = 263 - x * .106; c.beginPath(); c.moveTo(x, y); c.lineTo(x + 18, y - 2); c.strokeStyle = i % 2 ? '#b8a18770' : '#3d443350'; c.lineWidth = 1.5; c.stroke(); }
+      this.branch();
       if (life.separation > 0) { c.beginPath(); c.ellipse(19, 251, 7, 3.5, -.1, 0, Math.PI * 2); c.fillStyle = '#d0ba8d'; c.globalAlpha *= life.separation; c.fill(); }
       c.restore();
     }
@@ -152,8 +182,8 @@ export class LeafScene {
       c.save();
       if (depth === 0) {
         c.globalAlpha *= section.bladeOpacity;
-        // Turn the whole surface, then de-emphasize the surrounding leaf while
-        // retaining the exact same sampled surface. No hole is punched in it.
+        // First approach a continuous epidermal sheet across the whole blade.
+        // Isolate its sample only during the turn, keeping every cell registered.
         c.transform(...section.surfaceTransform);
         if (section.contextOpacity < 1) {
           const sample = new Path2D(); sample.addPath(this.surfacePath,new DOMMatrix([patch.size,0,0,patch.size,patch.x,patch.y]));
@@ -168,9 +198,12 @@ export class LeafScene {
       const p=pigmentsAt(this.season,this.kind);
       if (depth===0 && section.bladeOpacity>0) {
         this.leaf(p);
-        c.save();c.translate(patch.x,patch.y);c.scale(patch.size,patch.size);
-        c.clip(this.surfacePath);c.globalAlpha*=section.textureOpacity;
-        c.translate(0,-110);this.epidermis(p);c.restore();
+        const cut = smooth(.48,.66,this.position) * (1-smooth(.94,1.1,this.position));
+        if (cut > 0) {
+          c.save(); c.translate(patch.x,patch.y); c.scale(patch.size,patch.size);
+          c.globalAlpha *= cut; c.strokeStyle = '#345d486b'; c.lineWidth = .8;
+          c.setLineDash([4,4]); c.stroke(this.surfacePath); c.restore();
+        }
       } else if(depth===1) this.tissue(p);
       c.restore();
       // Tissue owns the actual selected cell. Further scales change only the
@@ -197,6 +230,7 @@ export class LeafScene {
         c.fillStyle='#c0cca0';c.fillRect(-185,112,185,23);
         c.strokeStyle='#768d6155';c.lineWidth=1;
         for(const y of [-112,10,112]) {c.beginPath();c.moveTo(-185,y);c.lineTo(0,y);c.stroke();}
+        this.tissueSide(p);
         c.restore();
         c.save(); c.transform(...section.sectionTransform);
         c.beginPath(); c.rect(LEAF_SECTION.left,LEAF_SECTION.top,
@@ -234,8 +268,35 @@ export class LeafScene {
     this.canvas.dataset.leafAge = this.age.toFixed(4);
     this.canvas.dataset.leafIdentity = 'branch-leaf-01';
     this.canvas.dataset.sectionAngle = section.angle.toFixed(6);
+    this.canvas.dataset.surfaceField = 'whole-blade';
+    this.canvas.dataset.surfaceDetail = section.textureOpacity.toFixed(4);
+    this.canvas.dataset.surfaceContext = section.contextOpacity.toFixed(4);
     this.canvas.dataset.anatomyRenderer = 'continuous-canvas';
     this.canvas.dataset.leafPose = this.bladeKey;
+  }
+  private branch() {
+    const c = this.ctx;
+    const bark = c.createLinearGradient(0, 235, 0, 269);
+    bark.addColorStop(0, '#b29b78'); bark.addColorStop(.32, '#95825e');
+    bark.addColorStop(.7, '#72684e'); bark.addColorStop(1, '#504d3d');
+    c.beginPath(); c.moveTo(-330, 284); c.bezierCurveTo(-151, 253, 84, 230, 330, 213);
+    c.lineTo(330, 234); c.bezierCurveTo(77, 252, -156, 281, -330, 309); c.closePath();
+    c.save(); c.fillStyle = bark; c.fill(); c.clip();
+    for (let i = 0; i < 53; i++) {
+      const x = -324 + (i * 97 % 650), offset = Math.sin(i * 3.7) * 8;
+      const y = 252 - x * .112 + offset, length = 12 + (i * 19 % 39);
+      c.beginPath(); c.moveTo(x, y);
+      c.bezierCurveTo(x + length * .3, y - .5, x + length * .64, y - 3.5, x + length, y - length * .108);
+      c.strokeStyle = i % 3 ? '#c7b28d36' : '#45493640'; c.lineWidth = .55 + (i % 4) * .2; c.stroke();
+      if (i % 4 === 0) {
+        c.beginPath(); c.ellipse(x + 6, y + 2, 2.2 + i % 3, .7, -.1, 0, Math.PI * 2);
+        c.fillStyle = '#c6b18c88'; c.fill();
+      }
+    }
+    // A small swollen node and contact shading seat the petiole in the twig.
+    const node = c.createRadialGradient(17, 244, 1, 19, 249, 15);
+    node.addColorStop(0, '#c2b38b9c'); node.addColorStop(.45, '#6c705c48'); node.addColorStop(1, '#56604700');
+    c.fillStyle = node; c.fillRect(3, 234, 34, 30); c.restore();
   }
   private waterOnLeaf(active: number) {
     const c = this.ctx, p = this.waterProgress;
@@ -274,124 +335,28 @@ export class LeafScene {
     c.fillStyle = '#39543b'; lines.forEach((l, i) => c.fillText(l, x, y + i * lineHeight));
   }
   private leaf(p: Pigments) {
-    const c = this.ctx;
-    c.save(); c.rotate(-.15);
-    // Fixed blade coordinates preserve the petiole attachment and tissue anchor.
-    // Cache the fine geometry: neither the venation nor grain changes each frame.
-    const life = leafLifeAt(this.age), pose = this.leafMotion.sample(life.growth, life.fall);
-    const poseKey = Object.values(pose).map(value => value.toFixed(3)).join(':');
-    const bend = (x: number, y: number): Point => bladePoint(x, y, pose);
-    const center = (t: number) => 7 * Math.sin(Math.PI * t) - 3 * t;
-    const edge = (t: number, side: -1|1): Point => {
-      const envelope = Math.pow(Math.max(0, Math.sin(Math.PI*t)), 1.08) * (.78 + .32*t);
-      const teeth = 1 + .008 * Math.sin(t*Math.PI*62 + side*.6) + .004*Math.sin(t*Math.PI*110 + Math.sin(t*21));
-      const asymmetry = side < 0 ? .95 + .025*Math.sin(t*9) : 1.03 + .02*Math.cos(t*11);
-      return bend(center(t) + side*146*envelope*teeth*asymmetry, -204 + 368*t);
-    };
-    if (!this.bladeGeometry || this.bladeKey !== poseKey) {
-      const outline = new Path2D(); outline.moveTo(...edge(0, 1));
-      for (let i=1;i<=256;i++) outline.lineTo(...edge(i/256,1));
-      for (let i=255;i>=0;i--) outline.lineTo(...edge(i/256,-1));
-      outline.closePath();
-      const veins: Path2D[] = [], mesh = new Path2D(), areoles = new Path2D(), grain = new Path2D();
-      for (const side of [-1,1] as const) {
-        for (let row=0;row<10;row++) {
-          const t = .95-row*.086 + (side < 0 ? -.018 : 0);
-          const start = bend(center(t), -204+368*t);
-          const end = edge(Math.max(.018,t-.19), side);
-          const control: Point = [start[0]+(end[0]-start[0])*.66, start[1]-23];
-          const at = (u: number): Point => [
-            (1-u)**2*start[0]+2*(1-u)*u*control[0]+u*u*end[0],
-            (1-u)**2*start[1]+2*(1-u)*u*control[1]+u*u*end[1],
-          ];
-          const vein = new Path2D(); vein.moveTo(...start); vein.quadraticCurveTo(...control,...end); veins.push(vein);
-          // Fine cross-veins meet the next curved side vein, never cross the midrib.
-          if (row < 9) for (let j=1;j<=8;j++) {
-            const u = j/10, a = at(u);
-            const nextT = t-.086, nextEnd = edge(Math.max(.018,nextT-.19),side);
-            const nextStart = bend(center(nextT),-204+368*nextT);
-            const v = Math.min(.96,u+.035*Math.sin(row*3+j));
-            const b: Point = [
-              (1-v)**2*nextStart[0]+2*(1-v)*v*(nextStart[0]+(nextEnd[0]-nextStart[0])*.66)+v*v*nextEnd[0],
-              (1-v)**2*nextStart[1]+2*(1-v)*v*(nextStart[1]-23)+v*v*nextEnd[1],
-            ];
-            mesh.moveTo(...a); mesh.bezierCurveTo(a[0]+side*4,a[1]-7,b[0]-side*3,b[1]+7,...b);
-            if (j > 1 && j < 7) {
-              const middle: Point = [(a[0]+b[0])*.5,(a[1]+b[1])*.5];
-              const next = at(Math.min(.96,u+.082));
-              areoles.moveTo(...middle);
-              areoles.quadraticCurveTo(middle[0]+side*3,middle[1]-2,(next[0]+b[0])*.5,(next[1]+b[1])*.5);
-            }
-          }
-        }
-      }
-      // Tiny irregular grain, not a visible pattern of large circles.
-      for (let i=0;i<2400;i++) {
-        const [x,y]=bend(Math.sin(i*17.23)*151,Math.cos(i*9.41)*204);
-        grain.moveTo(x,y); grain.lineTo(x+.35+(i%5)*.12,y-.25);
-      }
-      this.bladeGeometry = { outline, veins, mesh, areoles, grain }; this.bladeKey = poseKey;
+    const c = this.ctx, life = leafLifeAt(this.age);
+    const pose = this.leafMotion.sample(life.growth, life.fall);
+    this.bladeKey = Object.values(pose).map(value => value.toFixed(3)).join(':');
+    c.save(); c.rotate(BLADE_ANGLE);
+    this.bladeArt.draw(c, p, pose, life.browning);
+    const texture = leafSectionAt(this.position).textureOpacity;
+    if (texture > 0) {
+      c.save(); c.clip(this.bladeArt.outline(pose)); c.globalAlpha *= texture;
+      this.surface.draw(c); c.restore();
     }
-    const { outline: shape, veins, mesh, areoles, grain } = this.bladeGeometry;
-    const color = mix(leafRGB(p), [125, 84, 48], leafLifeAt(this.age).browning * .76);
-    const grad = c.createLinearGradient(-130,-80,145,90);
-    grad.addColorStop(0,rgb(mix(color,[209,230,111],.3)));
-    grad.addColorStop(.48,rgb(mix(color,[169,196,89],.06)));
-    grad.addColorStop(.7,rgb(color));
-    grad.addColorStop(1,rgb(mix(color,[31,57,29],.26)));
-    c.shadowColor = '#294a3428'; c.shadowBlur = 17; c.shadowOffsetY = 10;
-    c.fillStyle=grad; c.fill(shape); c.shadowColor='transparent';
-    c.save(); c.clip(shape);
-    for (let i = 0; i < 45; i++) {
-      const [x,y] = bend(Math.sin(i * 7.31) * 155, Math.cos(i * 3.79) * 195);
-      const radius=18+i%6*7, patch=c.createRadialGradient(x,y,0,x,y,radius);
-      patch.addColorStop(0,rgb(mix(color,i%2 ? [252,216,93] : [24,65,29],.65),.16));
-      patch.addColorStop(1,rgb(color,0)); c.fillStyle=patch;
-      c.fillRect(x-radius,y-radius,radius*2,radius*2);
-    }
-    c.lineCap='round';
-    // Fine veins only: repeated bright/dark ridges made the blade look quilted.
-    veins.forEach((vein, index) => {
-      c.strokeStyle=rgb(mix(color,[237,229,147],.48),.5);
-      c.lineWidth=.45+.66*(1-(index%10)/10); c.stroke(vein);
-    });
-    c.strokeStyle=rgb(mix(color,[225,229,157],.5),.22); c.lineWidth=.37; c.stroke(mesh);
-    c.strokeStyle=rgb(mix(color,[218,225,148],.5),.15); c.lineWidth=.25; c.stroke(areoles);
-    c.strokeStyle='#f1f2c421'; c.lineWidth=.6; c.stroke(grain);
-    const shine=c.createRadialGradient(-55,-110,5,-20,-50,195);
-    shine.addColorStop(0,'#f9ffcd25');shine.addColorStop(.65,'#ffffdf00');shine.addColorStop(1,'#153b2415');c.fillStyle=shine;c.fill(shape);
-    if (pose.foldShade > 0) {
-      const fold=c.createLinearGradient(-34,0,36,0);
-      fold.addColorStop(0,'#223b2500');fold.addColorStop(.48,`rgba(28,51,29,${pose.foldShade*.3})`);fold.addColorStop(.57,`rgba(240,241,184,${pose.foldShade*.22})`);fold.addColorStop(1,'#f0f1b800');
-      c.fillStyle=fold;c.fill(shape);
-    }
-    c.restore();
-    // A tapered midrib grows directly out of the same petiole, not a straight wire.
-    c.beginPath(); c.moveTo(...bend(-5.6,165)); c.bezierCurveTo(...bend(2,77),...bend(6,-97),...bend(0,-204));
-    c.bezierCurveTo(...bend(12,-95),...bend(8,78),...bend(-.4,165)); c.closePath();
-    const rib=c.createLinearGradient(-5,0,8,0);
-    rib.addColorStop(0,rgb(mix(color,[81,101,43],.6)));
-    rib.addColorStop(.5,rgb(mix(color,[244,231,146],.8)));
-    rib.addColorStop(1,rgb(mix(color,[169,175,88],.7))); c.fillStyle=rib;c.fill();
-    c.beginPath();c.moveTo(-3,164);c.bezierCurveTo(-2,195,-1,225,-18,246);
-    c.lineWidth=5.5;c.strokeStyle=rgb(mix(color,[101,98,48],.55));c.stroke();
-    c.beginPath();c.moveTo(-4,165);c.bezierCurveTo(-3,196,-2,224,-19,244);
-    c.lineWidth=1.4;c.strokeStyle=rgb(mix(color,[225,220,140],.7));c.stroke();
     const recovery = life.recovery * (1 - life.separation);
     if (recovery > .02 && this.position < .2) {
-      // A few route markers follow the same midrib towards the fixed petiole.
-      // They indicate partial nutrient remobilisation, not individual molecules.
-      c.save();c.globalAlpha *= recovery;
-      for(let i=0;i<4;i++){
-        const progress=(this.time*.17+i/4)%1, y=-125+progress*355;
-        c.beginPath();c.moveTo(-5,y-7);c.lineTo(0,y);c.lineTo(5,y-7);
-        c.strokeStyle='#f7dc87';c.lineWidth=2.8;c.lineCap='round';c.stroke();
+      // Route markers indicate partial nutrient remobilisation, not molecules.
+      c.save(); c.globalAlpha *= recovery;
+      for (let i = 0; i < 4; i++) {
+        const progress = (this.time * .17 + i / 4) % 1, y = -125 + progress * 355;
+        c.beginPath(); c.moveTo(-5, y - 7); c.lineTo(0, y); c.lineTo(5, y - 7);
+        c.strokeStyle = '#f7dc87'; c.lineWidth = 2.8; c.lineCap = 'round'; c.stroke();
       }
       c.restore();
       this.label(t('部分养分回到枝条'), -166, -36, [0, 92], 140);
     }
-    c.lineWidth = .8; c.strokeStyle = rgb(mix(color,[57,77,30],.5),.55); c.stroke(shape);
-    c.save();c.clip(shape);c.lineWidth=2.4;c.strokeStyle=rgb(mix(color,[227,223,132],.6),.32);c.stroke(shape);c.restore();
     c.restore();
     this.label(t('叶脉'), -145, 142, [-16, 107], 75);
     this.label(t('叶片'), 147, -125, [94, -86], 75);
@@ -434,57 +399,52 @@ export class LeafScene {
       this.plastid(x + dx * .77, y + dy * .77, size*(.9+.1*Math.sin(seed+j*1.7)), p, Math.atan2(after[1] - before[1], after[0] - before[0]));
     }
   }
-  private buildEpidermis() {
-    const sites: Point[] = [];
-    for(let row=0;row<10;row++) for(let col=0;col<14;col++) {
-      const n=row*14+col;
-      sites.push([-250+(col+.5)*500/14+Math.sin(n*17.2)*9,-180+(row+.5)*360/10+Math.cos(n*11.7)*9]);
-    }
-    for(const [sx,sy] of sites) {
-      let polygon: Point[]=[[-250,-180],[250,-180],[250,180],[-250,180]];
-      for(const [tx,ty] of sites) {
-        if(sx===tx&&sy===ty)continue;
-        const nx=tx-sx,ny=ty-sy,d=(tx*tx+ty*ty-sx*sx-sy*sy)/2;
-        const clipped: Point[]=[];
-        for(let i=0;i<polygon.length;i++) {
-          const a=polygon[i],b=polygon[(i+1)%polygon.length],da=a[0]*nx+a[1]*ny-d,db=b[0]*nx+b[1]*ny-d;
-          if(da<=0)clipped.push(a);
-          if((da<=0)!==(db<=0)){const u=da/(da-db);clipped.push([a[0]+(b[0]-a[0])*u,a[1]+(b[1]-a[1])*u]);}
-        }
-        polygon=clipped;
-        if(!polygon.length)break;
-      }
-      if(polygon.length){
-        const path=new Path2D();path.moveTo(...polygon[0]);
-        for(let i=0;i<polygon.length;i++) {
-          const a=polygon[i],b=polygon[(i+1)%polygon.length],dx=b[0]-a[0],dy=b[1]-a[1],length=Math.hypot(dx,dy);
-          const mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2;
-          // Canonical edge direction gives both neighbours the same curved wall.
-          const sign=a[0]<b[0]||(a[0]===b[0]&&a[1]<b[1])?1:-1;
-          const wave=Math.min(3,length*.1)*Math.sin(mx*.07+my*.05)*sign;
-          path.quadraticCurveTo(mx-dy/length*wave,my+dx/length*wave,...b);
-        }
-        path.closePath();this.epidermalCells.push(path);this.epidermalCenters.push([sx,sy]);
-      }
-    }
-  }
-  private epidermis(p: Pigments) {
-    const key=Object.values(p).map(v=>v.toFixed(2)).join(':');
-    if(key!==this.epidermalKey){
-      this.epidermalKey=key;
-      const plate=this.epidermalPlate;plate.width=1000;plate.height=720;
-      const c=plate.getContext('2d')!,base=leafRGB(p);c.scale(2,2);c.translate(250,180);
-      this.epidermalCells.forEach((path,i)=>{
-        c.fillStyle=rgb(mix(base,[239,242,210],.78+(Math.sin(i*3.1)+1)*.04));c.fill(path);
-        c.strokeStyle='#fafbe5';c.lineWidth=2.4;c.stroke(path);
-        c.strokeStyle='#8b9f7288';c.lineWidth=.85;c.stroke(path);
-        const [x,y]=this.epidermalCenters[i];
-        c.save();c.clip(path);c.beginPath();c.ellipse(x+5,y-3,3.5,2.5,.4,0,Math.PI*2);c.fillStyle='#9b9e7f35';c.fill();c.restore();
-      });
-    }
-    this.ctx.drawImage(this.epidermalPlate,-250,-180,500,360);
-  }
 
+  private epidermalRow(edges: readonly number[], color: string) {
+    const c = this.ctx;
+    // Same surface-wall intersections, continued down the exaggerated cut edge.
+    for (let i = 1; i < edges.length; i++) {
+      const left = edges[i - 1], right = edges[i];
+      const bottom = -113 + 1.5 * Math.sin(i * 2.1), bend = Math.min(2.2, (right - left) * .12);
+      c.beginPath(); c.moveTo(left, -148); c.lineTo(right, -148);
+      c.bezierCurveTo(right - bend, -139, right + bend, -119, right, bottom);
+      c.quadraticCurveTo((left + right) * .5, bottom + 2, left, bottom);
+      c.bezierCurveTo(left + bend, -119, left - bend, -139, left, -148); c.closePath();
+      c.fillStyle = color; c.fill(); c.strokeStyle = '#9aaf87'; c.lineWidth = .8; c.stroke();
+    }
+  }
+  private tissueSide(p: Pigments) {
+    const c = this.ctx;
+    c.save(); c.beginPath(); c.rect(-185, LEAF_SECTION.top, 185, LEAF_SECTION.bottom - LEAF_SECTION.top); c.clip();
+    this.epidermalRow(this.sideCellEdges, '#c9d6b0');
+    for (let i = 0; i < 5; i++) {
+      const x = -171 + i * 39, y = -51 + Math.sin(i * 2.3) * 2, seed = 2 + i * 1.7;
+      this.cellOutline(x, y, 17, 54, seed, .72);
+      c.fillStyle = '#c3d1a6'; c.fill(); c.strokeStyle = '#819b70'; c.lineWidth = .85; c.stroke();
+      this.cellOutline(x, y, 8, 33, seed, .72);
+      c.fillStyle = rgb(mix([215,226,189], [206,152,162], p.anthocyanins)); c.fill();
+      this.peripheralPlastids(x, y, 17, 54, seed, 5, 4, p, .72);
+    }
+    for (let i = 0; i < 7; i++) {
+      const x = -177 + (i % 4) * 51 + (i > 3 ? 18 : 0), y = i < 4 ? 35 + Math.sin(i) * 4 : 85 + Math.sin(i) * 5;
+      const seed = 3 + i * 2.1;
+      this.cellOutline(x, y, 21 + i % 3, 17, seed, .9);
+      c.fillStyle = '#cad7b1'; c.fill(); c.strokeStyle = '#839d72'; c.lineWidth = .85; c.stroke();
+      this.cellOutline(x, y, 11, 8, seed, .9);
+      c.fillStyle = rgb(mix([224,232,205], [213,157,168], p.anthocyanins)); c.fill();
+      this.peripheralPlastids(x, y, 23, 17, seed, 4, 3.4, p, .9);
+    }
+    for (let i = 0; i < 6; i++) {
+      this.cellOutline(-176 + i * 35, 124, 17, 9, 2 + i * 1.8, .7);
+      c.fillStyle = '#d7dfbf'; c.fill(); c.strokeStyle = '#91a47e'; c.lineWidth = .7; c.stroke();
+    }
+    // Lighting distinguishes this lateral plane without replacing its anatomy
+    // with an empty solid wall. The retained selected cell stays on the front.
+    const shade = c.createLinearGradient(-185, 0, 0, 0);
+    shade.addColorStop(0, '#2f492c18'); shade.addColorStop(1, '#2f492c04');
+    c.fillStyle = shade; c.fillRect(-185, LEAF_SECTION.top, 185, LEAF_SECTION.bottom - LEAF_SECTION.top);
+    c.restore();
+  }
   private tissue(p: Pigments) {
     const c = this.ctx;
     c.save();c.globalAlpha*=1-smooth(1.18,1.92,this.position);
@@ -495,9 +455,9 @@ export class LeafScene {
     c.fillStyle = '#c2d0a8'; c.fillRect(-217, 133, 434, 2);
     for (let i = 0; i < 10; i++) {
       c.fillStyle = '#f0f2de'; c.strokeStyle = '#91ab82'; c.lineWidth = 1.1;
-      this.cellOutline(-195 + i * 43, -127 + Math.sin(i * 1.9), 19.5, 13, i * 1.8, .7); c.fill(); c.stroke();
       this.cellOutline(-195 + i * 43, 123 + Math.cos(i * 1.5), 19.5, 10.5, i * 2.1 + 4, .7); c.fill(); c.stroke();
     }
+    this.epidermalRow(this.upperCellEdges, '#e9eed7');
     for (let i = 0; i < 8; i++) {
       const x = -207 + i * 53, cy = -49 + Math.sin(i * 2.1) * 3, rx = 23.5 + Math.sin(i * 1.7), ry = 54 + Math.cos(i * 2.7) * 4;
       const cellFill=c.createLinearGradient(x,-108,x+48,9);cellFill.addColorStop(0,'#dce8c3');cellFill.addColorStop(1,'#e9efd6'); c.fillStyle = cellFill; c.strokeStyle = '#90aa78';c.lineWidth=1.1;
@@ -656,5 +616,5 @@ export class LeafScene {
     this.ellipse(5, 150, 4, 4, '#dca526'); this.label(t('类胡萝卜素'), 88, 150, undefined, 155);
     if (this.kind === 'red' && this.season > .4) this.label(t('红色花青素在液泡，不在这里'), 0, 180, undefined, 360);
   }
-  dispose() { this.disposed = true; cancelAnimationFrame(this.frame); this.leafMotion.dispose(); this.observer.disconnect(); this.intersection.disconnect(); document.removeEventListener('visibilitychange', this.wake); this.motionPreference.removeEventListener('change', this.preferenceChanged); }
+  dispose() { this.disposed = true; cancelAnimationFrame(this.frame); this.leafMotion.dispose(); this.surface.dispose(); this.observer.disconnect(); this.intersection.disconnect(); document.removeEventListener('visibilitychange', this.wake); this.motionPreference.removeEventListener('change', this.preferenceChanged); }
 }

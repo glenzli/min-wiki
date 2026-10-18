@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SCALE_ENTRIES } from '../model.ts';
+import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SCALE_ENTRIES, BLADE_ANGLE } from '../model.ts';
 
 test('epidermis has a motionless inspection interval before the tissue turn', async () => {
   const {scaleCamera,epidermisVisible,SCALE_STOPS}=await import('../model.ts');
@@ -8,12 +8,62 @@ test('epidermis has a motionless inspection interval before the tissue turn', as
   for(const position of [.44,.5,.56,.6]) {
     assert.equal(leafSectionAt(position).angle,0);
     assert.equal(leafSectionAt(position).textureOpacity,1);
-    assert.equal(leafSectionAt(position).contextOpacity,0);
+    assert.equal(leafSectionAt(position).contextOpacity,1,'the surrounding surface remains until the section turn');
     assert.deepEqual(scaleCamera(position,destination),scaleCamera(.5,destination));
     assert.ok(epidermisVisible(position));
   }
   assert.deepEqual(SCALE_STOPS,[0,.5,1,2,3]);
   assert.ok(leafSectionAt(.7).angle>0);
+});
+
+test('cell detail fills the visible blade before its marked sample is isolated', () => {
+  let last = 0;
+  for (let position = 0; position <= .6; position += .01) {
+    const state = leafSectionAt(position);
+    assert.equal(state.contextOpacity,1,'no detached texture tile during approach');
+    assert.equal(state.sectionScale,0,'the surface does not already imply exposed mesophyll');
+    assert.ok(state.textureOpacity >= last && state.textureOpacity <= 1);
+    last = state.textureOpacity;
+  }
+  assert.equal(leafSectionAt(0).textureOpacity,0);
+  assert.equal(leafSectionAt(.5).textureOpacity,1);
+  assert.ok(leafSectionAt(.8).contextOpacity>0 && leafSectionAt(.8).contextOpacity<1);
+  assert.equal(leafSectionAt(1).contextOpacity,0);
+});
+
+test('the full epidermal sheet has no gaps or duplicate coverage and supplies the cut seam', async () => {
+  const {createEpidermisGeometry,epidermisSeam}=await import('../epidermis.ts');
+  const sheet=createEpidermisGeometry();
+  const cells=sheet.cells.map(cell=>({ ...cell,
+    left:Math.min(...cell.contour.map(p=>p[0])),right:Math.max(...cell.contour.map(p=>p[0])),
+    top:Math.min(...cell.contour.map(p=>p[1])),bottom:Math.max(...cell.contour.map(p=>p[1])),
+  }));
+  for(let j=0;j<13;j++)for(let i=0;i<15;i++) {
+    const x=-150+i*20.31,y=-200+j*29.13;
+    let count=0;
+    for(const cell of cells) {
+      if(x<cell.left||x>cell.right||y<cell.top||y>cell.bottom)continue;
+      let inside=false;
+      cell.contour.forEach((a,k)=>{
+        const b=cell.contour[(k+1)%cell.contour.length];
+        if((a[1]>y)!==(b[1]>y)&&x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])inside=!inside;
+      });
+      if(inside)count++;
+    }
+    assert.equal(count,1,`continuous sheet at ${x},${y}`);
+  }
+  const {x,y,size}=SCALE_ENTRIES[0];
+  const point=(localX)=>{
+    const wx=x+localX*size;
+    return [wx*Math.cos(-BLADE_ANGLE)-y*Math.sin(-BLADE_ANGLE),wx*Math.sin(-BLADE_ANGLE)+y*Math.cos(-BLADE_ANGLE)];
+  };
+  const from=point(LEAF_SECTION.left),to=point(LEAF_SECTION.right);
+  const seam=epidermisSeam(sheet,from,to);
+  assert.equal(seam[0],0);assert.equal(seam.at(-1),1);
+  assert.ok(seam.length>8,'the cut intersects multiple existing surface cells');
+  assert.ok(seam.every((t,i)=>i===0||t>seam[i-1]));
+  assert.deepEqual(epidermisSeam(sheet,to,from).map(t=>1-t).reverse().map(t=>+t.toFixed(8)),
+    seam.map(t=>+t.toFixed(8)),'both viewing directions intersect the same walls');
 });
 
 test('all vacuolar pigment positions use the same bounded membrane contour', async () => {

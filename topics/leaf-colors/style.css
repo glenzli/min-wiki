@@ -47,6 +47,12 @@
 @media(max-width:740px){
   .presentation-frame .presentation-stage>.presentation-visual{order:0}
   .presentation-frame .presentation-stage>.presentation-transport{order:1}
+  /* The epidermal field is darker than the whole-leaf backdrop. Keep the
+     small caption legible without putting a bar across the specimen. */
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-top>div{
+    max-width:100%;background:#f6f8ebe8;border-radius:8px;padding:7px 9px;color:#293f2d;
+  }
+  html.presentation-page[data-topic-ui] .presentation-frame .scene-top .eyebrow{color:#536b48}
   /* Microscopic anatomy labels need the lower edge on narrow screens. */
   .scene-bottom[data-closeup="true"]{background:none;padding:0}
   .scene-bottom[data-closeup="true"]>span{display:none}

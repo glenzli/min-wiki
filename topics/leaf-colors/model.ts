@@ -27,6 +27,8 @@ export function leafRGB(p: Pigments) {
   return mix(mix([232, 181, 40], [51, 125, 55], smooth(.06, .8, p.chlorophyll)), [183, 43, 49], p.anthocyanins);
 }
 export const rgb = (c: number[], alpha = 1) => `rgba(${c.map(Math.round).join(',')},${alpha})`;
+/** Blade-art coordinates into the permanent leaf/sample plane. */
+export const BLADE_ANGLE = -.15;
 
 /** Orthographic turn from the upper surface to an illustrative cross-section.
  * Surface and section share the same upper edge. Thickness is exaggerated for
@@ -44,9 +46,11 @@ export function leafSectionAt(position: number) {
   return {
     angle, surfaceScale, sectionScale,
     surfaceTransform, sectionTransform,
-    contextOpacity: 1 - smooth(.24,.44,position),
+    // The whole visible blade reveals the same epidermal sheet. Isolate its
+    // marked sample only while turning to the explanatory section, not earlier.
+    contextOpacity: 1 - smooth(.62,.96,position),
     bladeOpacity: 1 - smooth(1,1.3,position),
-    textureOpacity: smooth(.18,.44,position),
+    textureOpacity: smooth(.1,.42,position),
   };
 }
 

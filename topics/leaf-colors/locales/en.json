@@ -4,7 +4,6 @@
   "上表皮俯视示意 · 尚未侧转": "Upper epidermis from above · before the turn",
   "继续深入，转到薄片的侧面": "Continue to see the sheet from the side",
   "先停在叶子的表面。这里是挨在一起的上表皮细胞，还不是下面的叶肉。接着转到侧面，看看它们下面藏着什么。": "Pause at the leaf surface. These neighbouring cells form the upper epidermis, not the mesophyll beneath it. Next, turn to the side to see what lies below.",
-  "先观察同一取样位置的上表皮俯视图，再用正交侧转连接组织横切面。取样边缘不规则；侧转时组织厚度经过夸大。这是观察方向的切换，不是细胞变形或叶肉生长。": "Inspect the same sample's upper epidermis from above, then turn orthographically to its tissue cross-section. The sample has irregular edges and exaggerated thickness. The viewing direction changes; cells are not deforming and mesophyll is not growing.",
   "找找相邻细胞共同的边界。准备好后点“继续深入”，再看下面的叶肉。": "Look for the shared boundaries between cells. When ready, choose Continue inward to see the mesophyll below.",
   "叶片 → 上表皮 → 组织 → 细胞 → 液泡": "Leaf → epidermis → tissue → cell → vacuole",
   "叶片 → 上表皮 → 组织 → 细胞 → 叶绿体": "Leaf → epidermis → tissue → cell → chloroplast",
@@ -261,5 +260,6 @@
   "液态水先从湿润的叶肉表面蒸发到叶内空隙，标记在这里从实心变为空心。": "Liquid water first evaporates from wet mesophyll surfaces into internal air spaces. Here the marker changes from filled to hollow.",
   "水已经变成叶内空隙里的水汽，正在向气孔扩散；此时还没有离开叶片。": "The water is now vapour in internal leaf air spaces, diffusing toward the pore. It has not left the leaf yet.",
   "路线图不是上方枝条的等比例地图。这里选叶片下侧气孔为出口，并将它放大；实心液态水先在叶内变为空心水汽，再穿过气孔。": "This route is not a scale map of the branch above. This example uses an enlarged pore on the underside of the leaf. Filled liquid markers become hollow vapour markers inside the leaf before passing through the pore.",
-  "空心水汽标记经这片示意叶的下侧气孔离开。气孔位置已放大；真实水汽通常看不见，不是叶子喷出水滴。": "The hollow vapour marker leaves through an enlarged pore on the underside of this illustrative leaf. Real vapour is normally invisible; the leaf is not spraying drops."
+  "空心水汽标记经这片示意叶的下侧气孔离开。气孔位置已放大；真实水汽通常看不见，不是叶子喷出水滴。": "The hollow vapour marker leaves through an enlarged pore on the underside of this illustrative leaf. Real vapour is normally invisible; the leaf is not spraying drops.",
+  "放大时，可见叶面逐步显出连续的上表皮细胞边界，叶脉仍保留作参照。随后标出同一取样位置，侧转连接组织横切面；剖面上缘承接这些表皮细胞。尺度差异经过压缩，侧转时厚度已夸大；这是观察示意，不是叶片变成细胞或组织生长。": "As the view approaches, a continuous sheet of upper-epidermal cell walls becomes visible across the leaf surface, with veins retained as landmarks. The same sample is then marked and turned to reveal a tissue section; its upper edge continues those epidermal cells. Scale differences are compressed and thickness is exaggerated. This is an explanatory view, not a leaf turning into cells or tissue growing."
 }
