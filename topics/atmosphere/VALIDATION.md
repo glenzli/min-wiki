@@ -1,5 +1,13 @@
 # Atmosphere visual refinement — 2026-09-21
 
+## Height guide refinement · 2026-10-19
+
+Scope: CSS presentation only. A faint right-side spine, short layer ticks, heavier current-layer label and outlined moving dot replace full-width row rules, row fills and the solid triangle. Rail width, height mapping, expanded-band qualification, labels, camera and scientific mechanisms are unchanged. CSS SHA-256: `d2256e6d20d078c6a4f308f6e3b12aef5b26dfcba0b84d2aa4d45ffbb12f6360`.
+
+- Actual Reader preview `127.0.0.1:64494`: Chinese 1280 × 720 at the 3 km troposphere stop; English 390 × 844 at 300 km in light and dark appearances. Spine/ticks/dot stay neutral, layer names fit, and mobile width/scrollWidth both measured 390 px. All five band labels had matching client/scroll widths of 92 px. The 3 km view and Chinese/desktop settings were restored; screenshots are in `/private/tmp/wiki-storm-art-20261019/`.
+- Final shared Reader build passed TypeScript, 6,903 source messages / 72 namespaces, 150 image copies, authored-entry projections, editorial review and 71 routes. Source digest `a51958fa6451aebb3a756853933484963ef9c59517b99ef299d89434f483a2d7`. Existing model/projection evidence below is reused because those inputs did not change; no new numerical or drawing-mirror tests were needed for this CSS change.
+- Contribution `atmosphere-height-guide-css-20261019` was reviewed and integrated into the root task. No editorial promotion, push or deployment.
+
 Scope: topic-local illustrated layer column, paired planetary columns, bilingual explanatory text and retained parcel experiment. Existing dirty topic files were reviewed and accepted through Dev Mesh; unrelated work was not included.
 
 ## Neutral display palette — 2026-10-19

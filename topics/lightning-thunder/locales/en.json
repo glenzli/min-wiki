@@ -109,7 +109,7 @@
   "分步先导": "Stepped leader",
   "向上连接通道": "Upward connecting channel",
   "明亮回击向上发展": "Bright return stroke travels upward",
-  "声波向外传播": "Sound travels outward",
+  "声波传播示意": "Sound-front illustration",
   "雷声到达室内观察者": "Thunder reaches the indoor observer",
   "声波还在路上": "Sound is still travelling",
   "室内观察点": "Indoor observer",
@@ -147,5 +147,7 @@
   "观察回击从连接点向云内发展，别把它和先导方向混在一起。": "Follow the return stroke upward from attachment and distinguish it from the leader.",
   "比较 1 km 和 6 km；在同一时刻，声波可能只到达较近的观察点。": "Compare 1 km and 6 km. At the same instant, sound may have reached only the nearer observer.",
   "云里的水怎样变成雨？ →": "How does cloud water become rain? →",
-  "台风里的云怎样旋转？ →": "How do clouds rotate in a typhoon? →"
+  "台风里的云怎样旋转？ →": "How do clouds rotate in a typhoon? →",
+  "正在载入场景插画": "Loading scene artwork",
+  "插画加载失败，可刷新重试；通道示意仍可操作": "Artwork unavailable. Reload to retry; the channel diagram remains interactive."
 }

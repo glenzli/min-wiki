@@ -1,75 +1,136 @@
-import { createCloudTexture } from '../../src/visuals/cloudTexture.ts';
 import { CanvasSurface } from '../../src/visuals/canvasSurface.ts';
-import { lightningState, leaderPath, connectorPath, pathThrough, groundPoint, mastTip, attachmentPoint } from './model.ts';
-import type { Settings } from './model.ts';
+import { lightningState, leaderPath, connectorPath, pathThrough, groundPoint, mastTip, attachmentPoint, clamp } from './model.ts';
+import type { Settings, Point } from './model.ts';
+import { StormArtwork } from './stormArtwork.ts';
 import { t } from './i18n.ts';
 const noise=(i:number)=>{const v=Math.sin(i*127.1+311.7)*43758.5453;return v-Math.floor(v);};
-// Magnify the first 0.5 km so the indoor house stays separate from the mast.
-// The same screen mapping is used for the sound front, so it still reaches
-// the house at the model's arrival time. It is illustrative, not a scale bar.
+const smooth=(a:number,b:number,x:number)=>{const u=clamp((x-a)/(b-a));return u*u*(3-2*u);};
+// The same nonmetric screen mapping joins the sound front and indoor observer.
+// Magnifying the first .5 km keeps that observer separate from the mast.
 const projectDistance=(km:number)=>35*km+30*(1-Math.exp(-km/.25));
 export class TopicScene{
- private cloudTexture=createCloudTexture({bounds:[-424, -284, 706, 234],lobes:[[-99,-210,288,25],[-146,-191,136,45],[-183,-210,68,44],[-80,-180,93,58],[-126,-125,130,51],[-118,-86,77,27],[112,-200,135,17]],seed:77});
+ private readonly artwork:StormArtwork;
+ private readonly channel=leaderPath();
+ private readonly branches=[4,8,12,17,22].map(index=>{
+  const [x,y]=this.channel[index],side=index%2?1:-1,length=17+noise(index+65)*22;
+  const points:Point[]=[[x,y],[x+side*7,y+6],[x+side*16,y+5],[x+side*(length*.7),y+18],[x+side*length,y+25],[x+side*(length+6),y+35]];
+  return {index,points};
+ });
  private surface:CanvasSurface;private progress=0;private settings:Settings={distanceKm:3,temperature:20};
- constructor(canvas:HTMLCanvasElement){this.surface=new CanvasSurface(canvas);this.surface.onResize(()=>this.draw(this.progress,this.settings));}
+ constructor(canvas:HTMLCanvasElement){
+  this.surface=new CanvasSurface(canvas);
+  this.artwork=new StormArtwork(()=>this.draw(this.progress,this.settings));
+  this.surface.onResize(()=>this.draw(this.progress,this.settings));
+ }
  draw(progress:number,settings:Settings){
   this.progress=progress;this.settings=settings;
-  const s=this.surface,c=s.begin('#9db4c8','#dddcca'),state=lightningState(progress,settings),path=leaderPath(),observerX=15+projectDistance(settings.distanceKm);
-  const label=(text:string,x:number,y:number,width=300)=>s.label(text,x,y,{width,color:'#304b67',background:'#f1f3eceb'});
-  const distant=c.createLinearGradient(0,110,0,250);distant.addColorStop(0,'#9daf9e');distant.addColorStop(1,'#718a70');
-  s.path([[-450,142],[-361,113],[-291,131],[-225,107],[-168,120],[-79,111],[10,133],[104,112],[178,130],[291,117],[372,136],[450,119],[450,300],[-450,300]],'#a2b4af');
-  s.path([[-450,154],[-322,140],[-237,149],[-131,139],[-40,147],[48,140],[140,149],[231,143],[335,151],[450,143],[450,300],[-450,300]],distant);
-  for(let i=0;i<170;i++){const x=-440+noise(i+53)*880,y=155+noise(i+144)*130;s.path([[x,y],[x+2+noise(i)*4,y-2-noise(i+22)*8]],undefined,'#46674438',.8);}
-  // An uneven cumulonimbus/anvil; the single flash stays local to its channel.
-  const cloud=this.cloudTexture;c.drawImage(cloud.canvas,cloud.x,cloud.y,cloud.width,cloud.height);
-  for(let i=0;i<60;i++){const u=(noise(i+131)+progress*1.6)%1,x=-241+noise(i+641)*102-u*5,y=-73+u*222;s.path([[x,y],[x-1,y+8]],undefined,'#5b7f9c33',.8);}
-  if(progress<.70){c.save();c.font='600 18px -apple-system,sans-serif';c.textAlign='center';c.textBaseline='middle';
-   c.globalAlpha=.12+.88*state.separation;
-   for(let i=0;i<15;i++){const x=-224+noise(i+266)*242,y=-211+noise(i+721)*48;c.fillStyle='#a46f40';c.fillText('+',x,y);}
-   for(let i=0;i<15;i++){const x=-214+noise(i+300)*204,y=-137+noise(i+174)*40;c.fillStyle='#28598f';c.fillText('−',x,y);}
-   for(let i=0;i<4;i++){c.fillStyle='#a46f40';c.fillText('+',-140+i*17,-73-noise(i+940)*8);}
-   c.globalAlpha=.12+.88*state.field;
-   for(let i=0;i<14;i++){const proximity=1-Math.abs(i-6.5)/7,x=15+(i-6.5)*(12-7*proximity),y=146-36*proximity*proximity;c.fillStyle='#a46f40';c.fillText('+',x,y);}
-   c.restore();
+  const s=this.surface,c=s.begin('#53677d','#9ca9aa'),state=lightningState(progress,settings),path=this.channel,observerX=15+projectDistance(settings.distanceKm);
+  const flash=state.connected?smooth(0,.22,state.returnStroke)*(1-smooth(.675,.75,progress)):0;
+  const label=(text:string,x:number,y:number,width=240)=>{
+   const half=s.width/(2*s.scale)-14/s.scale,w=Math.min(width,half*2-12),safeX=Math.max(-half+w/2,Math.min(half-w/2,x));
+   s.label(text,safeX,y,{width:w,color:'#f0f3f0',background:'#1d2b32dc'});
+  };
+  this.artwork.paintLandscape(c,flash,s.width/(2*s.scale)+2,s.height*.46/s.scale+2);
+  // Local rain is behind the channel and belongs to this cloud's rain shaft.
+  c.save();
+  const rainVeil=c.createLinearGradient(-160,-80,-185,146);rainVeil.addColorStop(0,'#758b9c00');rainVeil.addColorStop(.28,'#728c9c19');rainVeil.addColorStop(1,'#7c9aab00');
+  c.fillStyle=rainVeil;c.beginPath();c.moveTo(-265,-90);c.lineTo(-80,-85);c.lineTo(-113,147);c.lineTo(-305,147);c.closePath();c.fill();
+  for(let i=0;i<100;i++){
+   const u=(noise(i+131)+progress*1.6)%1,x=-250+noise(i+641)*145-u*19,y=-80+u*228;
+   s.path([[x,y],[x-1.5,y+5+noise(i+73)*5]],undefined,i%4?'#c3d1d92b':'#d3e0e13c',.55);
+  }c.restore();
+  this.artwork.paintCloud(c,flash*smooth(.32,.9,state.returnStroke));
+  if(progress<.70){
+   c.save();c.font=`600 ${Math.max(17,12/s.scale)}px -apple-system,sans-serif`;c.textAlign='center';c.textBaseline='middle';
+   c.globalAlpha=(.82+.18*state.separation)*(1-smooth(.40,.64,progress));
+   c.shadowColor='#152e45';c.shadowBlur=3;
+   const charge=(symbol:string,x:number,y:number,color:string)=>{
+    c.strokeStyle='#1b2c4199';c.lineWidth=1.7/s.scale;c.strokeText(symbol,x,y);
+    c.fillStyle=color;c.fillText(symbol,x,y);
+   };
+   // Persistent symbols move from a mixed region into separated regions.
+   // Positions and colors are illustrative, not measured charge trajectories.
+   for(let i=0;i<13;i++){
+    const x=-235+noise(i+266)*253,start=-178+noise(i+412)*64,target=-224+noise(i+721)*38;
+    charge('+',x,start+(target-start)*state.separation,'#f4d4a2');
+   }
+   for(let i=0;i<13;i++){
+    const x=-228+noise(i+300)*232,start=-174+noise(i+377)*60,target=-139+noise(i+174)*34;
+    charge('−',x,start+(target-start)*state.separation,'#b3d5ed');
+   }
+   c.shadowBlur=0;c.globalAlpha=state.field*(1-smooth(.40,.64,progress));
+   for(let i=0;i<12;i++){
+    const proximity=1-Math.abs(i-5.5)/6,x=15+(i-5.5)*(13-7*proximity),y=146-38*proximity*proximity;
+    charge('+',x,y,'#f2d6ab');
+   }c.restore();
   }
   if(progress<.32){
-   for(let i=0;i<18;i++){const u=(progress*.9+noise(i+44))%1,x=-205+noise(i+330)*172,y=-87-u*128;s.ellipse(x,y,1.2+i%3*.45,2.4+i%2,'#d7e4e8aa');}
-   s.arrow(-205,-120,-190,-186,'#ab7743',2);s.arrow(-52,-183,-38,-124,'#587b9d',2);label(t('碰撞转移电荷，气流再把粒子分开'),-56,9,410);
+   c.save();c.globalAlpha=.8;
+   for(let i=0;i<18;i++){
+    const u=(progress*.9+noise(i+44))%1,x=-205+noise(i+330)*172,y=-92-u*122;
+    s.ellipse(x,y,1.2+i%3*.45,2.4+i%2,'#d7e4e899');
+   }
+   s.arrow(-205,-126,-190,-188,'#e8c28b',1.5);s.arrow(-49,-184,-37,-127,'#a6c9df',1.5);c.restore();
+   if(s.width>650&&progress<.20)label(t('碰撞转移电荷，气流再把粒子分开'),-112,-32,340);
   }
   if(state.field>0&&progress<.60){
-   c.save();c.globalAlpha=state.field*.28;
-   for(let i=0;i<7;i++){const x=-150+i*54;s.path([[x,-103],[x*.58+6,118]],undefined,'#6e77a0',.7);}
-   c.restore();
-   if(progress>.20)label(t('尖端附近电荷更集中，局部电场更强'),107,76,360);
+   c.save();c.globalAlpha=state.field*.24;
+   for(let i=0;i<7;i++){
+    const x=-150+i*54;c.beginPath();c.moveTo(x,-103);c.bezierCurveTo(x*.9,-20,x*.55+8,59,x*.58+6,118);c.strokeStyle='#c2c2d7';c.lineWidth=.7;c.stroke();
+   }c.restore();
+   if(s.width>650&&progress>.20&&progress<.36)label(t('尖端附近电荷更集中，局部电场更强'),134,39,290);
   }
-  // A grounded mast provides a visible sharp point for the upward connector.
-  s.path([[groundPoint[0]-13,groundPoint[1]],[mastTip[0],mastTip[1]+12],[groundPoint[0]+13,groundPoint[1]]],'#5d6f76','#334a55',1.2);s.path([[mastTip[0],mastTip[1]+12],mastTip],undefined,'#dae4df',1.5);
-  if(state.field>.45&&state.leader<.92){const glow=c.createRadialGradient(15,91,0,15,91,9+state.field*7);glow.addColorStop(0,'#d9d0ff99');glow.addColorStop(1,'#c5b8ff00');s.ellipse(15,91,10+state.field*7,10+state.field*7,glow);}
+  // A slim grounded truss, with the original model tip and attachment site.
+  s.ellipse(groundPoint[0]+2,groundPoint[1]+2,16,3,'#1b363d77');
+  c.fillStyle='#7f9292';c.fillRect(groundPoint[0]-12,groundPoint[1]-2,24,4);
+  s.path([[7,140],[15,103],[23,140]],undefined,'#4a616a',2);
+  s.path([[10,126],[21,137],[12,116],[18,116],[9,137]],undefined,'#a4b4b4',.8);
+  s.path([[mastTip[0],103],mastTip],undefined,'#d5dfdf',1.6);
+  if(state.field>.45&&state.leader<.92){
+   const glow=c.createRadialGradient(15,91,0,15,91,9+state.field*7);glow.addColorStop(0,'#c4cbec70');glow.addColorStop(1,'#c5b8ff00');s.ellipse(15,91,10+state.field*7,10+state.field*7,glow);
+  }
   if(state.leader>0){
-   const visible=pathThrough(path,state.leader),count=Math.floor(state.leader*(path.length-1))+1;
-   s.path(visible,undefined,'#7761b085',1.25);
-   for(const i of [5,9,14,19,23]){if(i>=count)continue;const [x,y]=path[i],sign=i%2?1:-1,length=18+noise(i+65)*21,branch:[number,number][]=[[x,y],[x+sign*12,y+8],[x+sign*19,y+6],[x+sign*length,y+27],[x+sign*(length+10),y+40]];s.path(branch,undefined,progress<.68?'#8770a98c':'#d1cdec42',.9);}
-   if(state.connector>0)s.path(pathThrough(connectorPath(),state.connector),undefined,'#806bb4b8',1.4);
-   if(state.returnStroke>0){const stroke=[...connectorPath(),...pathThrough([...path].reverse(),state.returnStroke).slice(1)];c.save();c.shadowColor='#e7ddff';c.shadowBlur=19;c.globalAlpha=progress<.70?1:.42;s.path(stroke,undefined,'#cfc9ff55',9);s.path(stroke,undefined,'#e6e7ff',4.5);s.path(stroke,undefined,'#ffffff',1.55);s.ellipse(attachmentPoint[0],attachmentPoint[1],2.5,2.5,'#ffffff');c.restore();}
-   if(progress>.32&&!state.connected){label(t('分步先导'),70,-28,230);if(state.connector>0)label(t('向上连接通道'),105,106,250);}
-   if(state.returnStroke>0&&progress<.70)label(t('明亮回击向上发展'),111,-14,300);
+   const visible=pathThrough(path,state.leader),reference=progress<.70?1:1-smooth(.70,.85,progress)*.87;
+   c.save();c.globalAlpha=reference;
+   s.path(visible,undefined,'#b9c3e345',3.8);s.path(visible,undefined,'#655f94c9',1.05);
+   for(const branch of this.branches){
+    const growth=clamp((state.leader*(path.length-1)-branch.index)/4);if(growth<=0)continue;
+    s.path(pathThrough(branch.points,growth),undefined,'#807eaa8c',.65);
+   }
+   if(state.connector>0){s.path(pathThrough(connectorPath(),state.connector),undefined,'#bdc9eb5c',4);s.path(pathThrough(connectorPath(),state.connector),undefined,'#71679fcf',1.1);}
+   c.restore();
+   if(state.returnStroke>0){
+    const stroke=[...connectorPath(),...pathThrough([...path].reverse(),state.returnStroke).slice(1)],fade=1-smooth(.70,.80,progress);
+    c.save();c.globalAlpha=fade;c.shadowColor='#d9e6ff';c.shadowBlur=14;
+    s.path(stroke,undefined,'#b0c6ef38',10);s.path(stroke,undefined,'#c6d6ef7a',4.5);s.path(stroke,undefined,'#e9efff',2);s.path(stroke,undefined,'#ffffff',.75);
+    const tip=stroke.at(-1)!;s.ellipse(tip[0],tip[1],1.5,1.5,'#fff');c.restore();
+   }
+   if(s.width>650&&progress>.32&&!state.connected){
+    const tip=visible.at(-1)!;label(t('分步先导'),tip[0]-74,tip[1]-5,190);
+    if(state.connector>0)label(t('向上连接通道'),113,36,200);
+   }
+   if(s.width>650&&state.returnStroke>0&&progress<.70)label(t('明亮回击向上发展'),117,-15,250);
   }
-  // A substantial building marks an indoor observer, not a figure sheltering under a tree.
-  c.fillStyle='#dbd5b9';c.fillRect(observerX-17,119,34,27);s.path([[observerX-22,119],[observerX-2,104],[observerX+22,119]],'#6b7d87');c.fillStyle=state.heard?'#f1d591':'#bdd6db';c.fillRect(observerX-9,124,9,10);c.fillStyle='#7b887d';c.fillRect(observerX+5,129,7,17);
+  this.artwork.paintHouse(c,observerX,flash*.6);
   if(progress>=.70){
    const radius=projectDistance(state.soundRadiusKm),frontX=Math.min(observerX,15+radius);
-   // The sound front and the same indoor observer share one visual distance map.
-   s.path([[15,166],[observerX,166]],undefined,'#e5e9dd93',1.25);
-   s.path([[15,166],[frontX,166]],undefined,'#765b9bdc',3.4);
-   s.path([[15,161],[15,171]],undefined,'#e5e9dd',1.4);
-   s.path([[observerX,161],[observerX,171]],undefined,'#e5e9dd',1.4);
-   if(state.heard)s.ellipse(observerX,166,8,8,'#e5cb8547','#d9b96b');
-   s.ellipse(frontX,166,3.5,3.5,'#765b9b');
+   // The one leading boundary and the ground track share one distance map.
+   // Thin trailing arcs are schematic, not wavelength or loudness readings.
    c.save();c.beginPath();c.rect(-430,-70,870,218);c.clip();
-   for(let i=0;i<3;i++){const r=radius-i*7;if(r<=0)continue;c.beginPath();c.arc(15,141,r,Math.PI,Math.PI*2);c.strokeStyle=i===0?'#765b9bbb':'#765b9b35';c.lineWidth=i===0?2:1;c.stroke();}c.restore();
+   for(let i=0;i<3;i++){
+    const r=radius-i*10;if(r<=0)continue;
+    if(i===0){c.beginPath();c.arc(15,141,r,Math.PI,Math.PI*2);c.strokeStyle='#e4c99420';c.lineWidth=7;c.stroke();}
+    c.beginPath();c.arc(15,141,r,Math.PI,Math.PI*2);c.strokeStyle=i===0?'#efd8a9d9':'#e4c99432';c.lineWidth=i===0?1.6:.7;c.stroke();
+   }c.restore();
+   s.path([[15,166],[observerX,166]],undefined,'#d4ddd45c',1.1);s.path([[15,166],[frontX,166]],undefined,'#e7c990',2.4);
+   for(const x of [15,observerX])s.path([[x,162],[x,170]],undefined,'#d4ddd4',1);
+   if(state.heard)s.ellipse(observerX,166,7,7,'#e5cb8533','#e8d4a4');
+   s.ellipse(frontX,166,2.6,2.6,'#f1d9a8');
+   label(t('声波传播示意'),(15+observerX)/2,191,230);
   }
-  label(t('室内'),observerX,88,110);
+  label(t('室内'),observerX+22,78,110);
+  if(this.artwork.status!=='ready')label(this.artwork.status==='loading'?t('正在载入场景插画'):t('插画加载失败，可刷新重试；通道示意仍可操作'),0,210,510);
   s.end();
  }
- dispose(){this.surface.dispose();}
+ dispose(){this.artwork.dispose();this.surface.dispose();}
 }

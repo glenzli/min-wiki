@@ -154,6 +154,19 @@ html[data-topic-ui] body>main>header.atmo-hero h1{font-size:26px;margin:0;line-h
 #atmo-observation #layer-mechanism .mechanism-steps button b,#atmo-observation #layer-mechanism .mechanism-steps button[aria-pressed="true"] b{width:auto;height:auto;border:0;color:inherit;font-size:14px;font-variant-numeric:tabular-nums}
 #atmo-observation .mechanism-steps button span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 #atmo-observation .mechanism-steps button i{background:currentColor}
-#atmo-observation .height-band{font-size:12px;line-height:1.4;word-break:normal;overflow-wrap:normal}
-#atmo-observation #height-rail strong{font-size:12px}#atmo-observation #height-rail small{font-size:11px;line-height:1.5}
-@media(max-width:699px){#atmo-observation #journey-visual{grid-template-columns:106px minmax(0,1fr)}#atmo-observation #height-rail{padding:10px 6px}#atmo-observation .height-band{padding:4px 2px;font-size:11px}#atmo-observation .mechanism-steps{gap:6px}}
+/* The five expanded bands remain an orientation guide, not a metric ruler.
+   A continuous spine replaces row boxes; its dot keeps the model's position. */
+#atmo-observation #height-rail{border-right:0}
+#atmo-observation #height-rail strong{font-size:12px;line-height:1.4;color:var(--reader-text)}
+#atmo-observation #height-rail small{font-size:11px;line-height:1.5}
+#atmo-observation .height-track{margin:5px 2px 6px 0}
+#atmo-observation .height-track::before{content:"";position:absolute;inset:0 0 0 auto;width:1px;background:var(--reader-line)}
+#atmo-observation .height-track::after{content:"";position:absolute;top:0;right:0;width:6px;height:1px;background:var(--reader-line)}
+#atmo-observation .height-band{position:relative;padding:6px 13px 6px 0;border:0;background:transparent;box-shadow:none;color:var(--reader-muted);font-size:12px;font-weight:400;line-height:1.4;word-break:normal;overflow-wrap:normal}
+#atmo-observation .height-band::before{content:"";position:absolute;bottom:0;right:0;width:6px;height:1px;background:var(--reader-line)}
+#atmo-observation .height-band.current{background:transparent;box-shadow:none;color:var(--reader-text);font-weight:600}
+#atmo-observation .height-band.current::after{content:"";position:absolute;top:0;bottom:0;right:0;width:1px;background:var(--reader-text);opacity:.65}
+#atmo-observation .height-marker{z-index:2;right:0;display:block;width:10px;height:10px;padding:0;border:1px solid currentColor;border-radius:50%;background:var(--reader-paper);color:var(--reader-text);box-shadow:0 0 0 2px var(--reader-paper);font-size:0;line-height:0;transform:translate(50%,50%);pointer-events:none}
+#atmo-observation .height-marker::after{content:"";position:absolute;inset:2px;border-radius:50%;background:currentColor}
+html[lang^=en] #atmo-observation .height-band{letter-spacing:-.01em}
+@media(max-width:699px){#atmo-observation #journey-visual{grid-template-columns:106px minmax(0,1fr)}#atmo-observation #height-rail{padding:10px 6px}#atmo-observation .height-band{padding:4px 12px 4px 0;font-size:11px}#atmo-observation .mechanism-steps{gap:6px}}

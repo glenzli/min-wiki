@@ -1705,6 +1705,45 @@
       "bytes": 345064
     },
     {
+      "source": "topics/lightning-thunder/assets/storm-cloud-v1.png",
+      "output": "topics/lightning-thunder/assets/storm-cloud-v1.webp",
+      "width": 1600,
+      "quality": 90,
+      "sourceSha256": "3d253e5ef8e3d0d2e0e6d25c1f090a4b1da984923b125adeb488b906da03b59f",
+      "sha256": "b124e76d7d256b72d3fe8041ca4a888c16e2b07936fee5406cbb0e8dec6a435d",
+      "pixels": [
+        1600,
+        533
+      ],
+      "bytes": 216852
+    },
+    {
+      "source": "topics/lightning-thunder/assets/observer-house-v1.png",
+      "output": "topics/lightning-thunder/assets/observer-house-v1.webp",
+      "width": 512,
+      "quality": 90,
+      "sourceSha256": "0e77cb0effc9891b49de846579ce06d3a5c6715e869ac641617f54936b472595",
+      "sha256": "bb73c19bf1eeab514ee5323c54bb25b1dcdf4fa35893951c096cdfbb825e5be8",
+      "pixels": [
+        512,
+        445
+      ],
+      "bytes": 69296
+    },
+    {
+      "source": "topics/lightning-thunder/assets/storm-terrain-v1.png",
+      "output": "topics/lightning-thunder/assets/storm-terrain-v1.webp",
+      "width": 1600,
+      "quality": 90,
+      "sourceSha256": "5410fc38ea317797f3ed3a6e5d24205927ebf967c5e1deb5df59eba0d7d23a20",
+      "sha256": "ea3aaeb572e65922368db87ed737e8f8a2a2dca9c760db383a2550bbd6d741e3",
+      "pixels": [
+        1600,
+        538
+      ],
+      "bytes": 341324
+    },
+    {
       "source": "topics/solar-system/assets/2k_mercury.jpg",
       "output": "topics/solar-system/assets/2k_mercury.webp",
       "quality": 90,

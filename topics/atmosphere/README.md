@@ -61,9 +61,9 @@ The GPU surface uses a 256 × 192 sphere, a 257 × 321 curved coastal grid and t
 
 ## Presentation / 展示
 
-Height navigation, captions and reading cards use Reader's neutral theme tokens in both light and dark appearances. Expanded height bands are separated by rules; the current band adds a contrasting inset line, weight and a moving pointer instead of unrelated layer colors. These are navigation bands, not observed colors or equal physical thicknesses. The dark scene subtitle uses local neutral control tokens so its controls remain legible without bright white tiles. Warm gold is reserved for the in-scene surface/height reference; natural atmosphere and phenomenon colors remain topic-owned.
+Height navigation, captions and reading cards use Reader's neutral theme tokens in both light and dark appearances. Expanded height bands share a faint vertical spine with short boundary ticks; the current segment is stronger, with heavier text and a small outlined moving dot. This replaces full-width row rules, large selected fills and the triangular pointer. The navigation remains nonmetric. The dark scene subtitle uses local neutral control tokens so its controls remain legible without bright white tiles. Warm gold is reserved for the in-scene surface/height reference; natural atmosphere and phenomenon colors remain topic-owned.
 
-高度导航、图注和阅读卡沿用 Reader 黑白灰明暗主题。各层用细线分隔，当前层通过竖线、字重和位置指针共同识别，不再用不同色块暗示真实层色或等厚。画内解说采用中性深灰，并给共享控件局部配色；暖金保留给地面与高度参照，天空和现象保留自身自然色。
+高度导航、图注和阅读卡沿用 Reader 黑白灰明暗主题。高度导览使用一条淡竖轴和短边界刻度，当前段加深、层名加重，小圆点标记当前位置，减少整行分隔线、大片底色和三角指针的表格感。导览继续是展开示意，不表示真实层色或等厚。画内解说采用中性深灰，并给共享控件局部配色；暖金保留给地面与高度参照，天空和现象保留自身自然色。
 
 The two views share a viewport-fitted observation workspace with a collapsible explanation panel and reversible immersion. The paired-world illustrations occupy the stage; the Earth-layer process and its live caption stay with the main scene. The inspector retains reference readings and detailed qualifications. World selection, journey coordinates and playback are retained when changing layout. On narrow screens the caption follows the scene at full width and the comparison returns to natural document flow.
 
