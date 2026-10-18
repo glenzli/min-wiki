@@ -1,6 +1,30 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SECTION_SPAN, sectionContextTiles, SCALE_ENTRIES, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SURFACE_CELL_SCALE, SECTION_TURN_END, SURFACE_FRAMING, scaleCamera, metricScaleBar } from '../model.ts';
+import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SECTION_SPAN, sectionContextTiles, SCALE_ENTRIES, CHLOROPLAST_ENTRY, cellEdge, vacuolePoint, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SURFACE_CELL_SCALE, SECTION_TURN_END, SURFACE_FRAMING, scaleCamera, metricScaleBar } from '../model.ts';
+
+test('the retained chloroplast fits in the cell cortex and uses the same calibrated micrometres',()=>{
+  const sample=SCALE_ENTRIES[0],cell=SCALE_ENTRIES[1],entry=CHLOROPLAST_ENTRY;
+  const chloroplastWidthUm=420*entry.size*cell.size*sample.size/UNITS_PER_UM;
+  assert.ok(Math.abs(chloroplastWidthUm-4)<1e-10,'the chosen teaching organelle is about 4 µm, not independently enlarged');
+  const outline=Array.from({length:192},(_,i)=>{const [x,y]=cellEdge(i/192*Math.PI*2,171,134,1.4,.85);return [x,y-2];});
+  const vacuole=Array.from({length:192},(_,i)=>vacuolePoint(i/192*Math.PI*2));
+  const contains=(polygon,x,y)=>{
+    let inside=false;
+    for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){
+      const a=polygon[i],b=polygon[j];
+      if((a[1]>y)!==(b[1]>y) && x<(b[0]-a[0])*(y-a[1])/(b[1]-a[1])+a[0])inside=!inside;
+    }return inside;
+  };
+  for(let i=0;i<192;i++){
+    const a=i/192*Math.PI*2,dx=210*Math.cos(a)*entry.size,dy=109.2*Math.sin(a)*entry.size;
+    const x=entry.x+dx*Math.cos(entry.angle)-dy*Math.sin(entry.angle),y=entry.y+dx*Math.sin(entry.angle)+dy*Math.cos(entry.angle);
+    assert.ok(contains(outline,x,y),'the selected organelle cannot cross the cell wall');
+    assert.ok(!contains(vacuole,x,y),'a chloroplast must remain in cytoplasm, outside the vacuole');
+  }
+  const camera=scaleCamera(3,entry),wholeCell=scaleCamera(2,entry);
+  assert.ok(Math.abs((camera.x-wholeCell.x)/(cell.size*sample.size)-entry.x)<1e-9);
+  assert.ok(Math.abs((camera.y-wholeCell.y)/(cell.size*sample.size)-entry.y)<1e-9);
+});
 
 test('macro blade, microscopic thickness and surface cell pitch share one length unit',()=>{
   const sample=SCALE_ENTRIES[0];
@@ -30,6 +54,22 @@ test('scale bars report the rendered model length across millimetres and microme
     const bar=metricScaleBar(pixelsPerUm,96);
     assert.ok(bar.pixels<=96+1e-9 && bar.pixels>=30);
     assert.ok(Math.abs(bar.pixels/pixelsPerUm-bar.lengthUm)<1e-8);
+  }
+});
+
+test('zooming towards a retained cell or organelle never drives its center farther from the frame center',()=>{
+  for(const destination of [CHLOROPLAST_ENTRY,{x:4,y:-2,size:.92,angle:0}]) {
+    for(const lower of [1,2]) {
+      const target=scaleCamera(lower+1,destination);
+      let previous=Infinity;
+      for(let i=0;i<=200;i++) {
+        const position=lower+i/200,camera=scaleCamera(position,destination);
+        const distance=Math.hypot(target.x-camera.x,target.y-camera.y)*camera.magnification;
+        assert.ok(distance<=previous+1e-8,`target moved away during scale ${position}`);
+        previous=distance;
+      }
+      assert.equal(previous,0,'the approached object finishes at the frame center');
+    }
   }
 });
 

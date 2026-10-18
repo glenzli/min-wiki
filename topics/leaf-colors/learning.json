@@ -7,7 +7,7 @@
     "academic": [
       {
         "title": "幼叶展开，成熟叶连接植物与空气",
-        "body": "本例从芽中的叶开始，不从种子开始。幼叶生长展开后，叶脉中的木质部为叶肉供应水；叶内蒸发、水分子内聚和水势梯度参与维持从根到叶的运输，水汽经气孔扩散出去。气孔调节气体交换与失水，并非始终固定开度。光合作用利用光能，糖的碳来自二氧化碳；植物活细胞白天和夜晚也呼吸。根到叶的水运路线图是结构示意，不是枝条的等比例地图。"
+        "body": "本例从芽中的叶开始，不从种子开始。幼叶生长展开后，叶脉中的木质部为叶肉供应水；叶内蒸发、水分子内聚和水势梯度参与维持从根到叶的运输，水汽经气孔扩散出去。气孔调节气体交换与失水，并非始终固定开度。光合作用利用光能，糖的碳来自二氧化碳；植物活细胞白天和夜晚也呼吸。根到叶的水运路线图是结构示意，不是枝条的等比例地图。 栅栏细胞较紧密；海绵细胞之间的含气间隙与气孔相通，细胞仍构成有接触的组织。细胞外的空气间隙不是细胞内的液泡。"
       },
       {
         "title": "衰老中的资源回收与色素变化",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "红叶不是所有叶子的终点；黄色不一定变红，叶绿素也不是变成另一种色素。植物不只在夜里呼吸，常绿也不表示一片叶永远不落。",
-    "boundary": "同一叶片身份贯穿展开、衰老与脱落，回退只重访教学状态。各图有不同放大比例；形变、色素趋势、运输标记和时序均为定性示意，不能当作特定物种预测。显微图覆盖展开后至脱落前的代表组织，不展示幼芽内部发育或死亡后崩解。首版未模拟落叶分解与生态循环。 本例成熟叶的空间模型长 60 mm、厚 200 µm，叶片、表皮和组织使用同一长度单位，镜头等比例放大；这些是教学设定，组织形态为概括示意，不是特定树种的实测。 横切视图只移去遮挡的前方叶面；周围组织连续，颜色与暗部用于区分结构，不是各区室的实测颜色或色素浓度。",
+    "boundary": "同一叶片身份贯穿展开、衰老与脱落，回退只重访教学状态。各图有不同放大比例；形变、色素趋势、运输标记和时序均为定性示意，不能当作特定物种预测。显微图覆盖展开后至脱落前的代表组织，不展示幼芽内部发育或死亡后崩解。首版未模拟落叶分解与生态循环。 本例成熟叶的空间模型长 60 mm、厚 200 µm，叶片、表皮和组织使用同一长度单位，镜头等比例放大；这些是教学设定，组织形态为概括示意，不是特定树种的实测。 横切视图只移去遮挡的前方叶面；周围组织连续，颜色与暗部用于区分结构，不是各区室的实测颜色或色素浓度。 海绵组织的二维排列用于表达邻接细胞和空气间隙，不测量三维孔隙率。选定叶绿体的模型长径约 4 µm，继承同一长度单位；内部基粒、连接膜的排列、膜厚和色素点为辨识而简化，不能按标尺反推真实膜厚或分子大小。",
     "narration": [
       {
         "label": "从芽中开始",
@@ -49,7 +49,7 @@
     "academic": [
       {
         "title": "An expanding leaf connects the plant and air",
-        "body": "This example starts with a leaf in a bud, not a seed. As it expands, xylem in its veins supplies mesophyll with water. Evaporation within leaves, water cohesion and water-potential gradients help maintain root-to-leaf transport; vapour diffuses through stomata. Stomata regulate exchange and water loss rather than remaining at a fixed opening. Light powers photosynthesis, while sugar carbon comes from carbon dioxide. Living plant cells also respire in day and night. The root-to-leaf diagram is structural, not a scale map of the branch."
+        "body": "This example starts with a leaf in a bud, not a seed. As it expands, xylem in its veins supplies mesophyll with water. Evaporation within leaves, water cohesion and water-potential gradients help maintain root-to-leaf transport; vapour diffuses through stomata. Stomata regulate exchange and water loss rather than remaining at a fixed opening. Light powers photosynthesis, while sugar carbon comes from carbon dioxide. Living plant cells also respire in day and night. The root-to-leaf diagram is structural, not a scale map of the branch. Palisade cells are closely packed; air spaces between spongy cells communicate with stomata, while cells retain contacts within the tissue. Intercellular air spaces are distinct from intracellular vacuoles."
       },
       {
         "title": "Resource recovery and pigment changes during senescence",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Not every leaf ends red: yellow need not turn red and chlorophyll does not become another pigment. Plants do not respire only at night, and evergreen does not mean an individual leaf lasts forever.",
-    "boundary": "The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated. The mature spatial model is 60 mm long and 200 µm thick. Blade, epidermis and tissue share one length unit and the camera zooms uniformly. These are teaching assumptions with schematic anatomy, not measurements of a particular species. The transverse view removes only the concealing foreground; surrounding tissue remains continuous. Colour and shading distinguish structures, not measured compartment colours or pigment concentrations.",
+    "boundary": "The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated. The mature spatial model is 60 mm long and 200 µm thick. Blade, epidermis and tissue share one length unit and the camera zooms uniformly. These are teaching assumptions with schematic anatomy, not measurements of a particular species. The transverse view removes only the concealing foreground; surrounding tissue remains continuous. Colour and shading distinguish structures, not measured compartment colours or pigment concentrations. The 2D spongy-tissue arrangement illustrates cell neighbours and air spaces, not measured 3D porosity. The selected chloroplast is about 4 µm across in the same model units. Internal grana, connecting membranes, their thickness and pigment symbols are simplified for recognition; the scale bar cannot establish actual membrane thickness or molecular size.",
     "narration": [
       {
         "label": "Starting in a bud",
@@ -105,6 +105,14 @@
     {
       "title": "Schaberg et al. — Association of red coloration with senescence of sugar maple leaves",
       "url": "https://research.fs.usda.gov/treesearch/15618"
+    },
+    {
+      "title": "Borsuk et al. — Structural organization of the spongy mesophyll",
+      "url": "https://doi.org/10.1111/nph.17971"
+    },
+    {
+      "title": "Shimoni et al. — Three-dimensional organization of higher-plant chloroplast thylakoid membranes",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1197436/"
     }
   ]
 }

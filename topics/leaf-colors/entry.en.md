@@ -6,7 +6,7 @@ Follow a young leaf unfolding on the same branch, pause at maturity and track wa
 
 ## An expanding leaf connects the plant and air
 
-This example starts with a leaf in a bud, not a seed. As it expands, xylem in its veins supplies mesophyll with water. Evaporation within leaves, water cohesion and water-potential gradients help maintain root-to-leaf transport; vapour diffuses through stomata. Stomata regulate exchange and water loss rather than remaining at a fixed opening. Light powers photosynthesis, while sugar carbon comes from carbon dioxide. Living plant cells also respire in day and night. The root-to-leaf diagram is structural, not a scale map of the branch.
+This example starts with a leaf in a bud, not a seed. As it expands, xylem in its veins supplies mesophyll with water. Evaporation within leaves, water cohesion and water-potential gradients help maintain root-to-leaf transport; vapour diffuses through stomata. Stomata regulate exchange and water loss rather than remaining at a fixed opening. Light powers photosynthesis, while sugar carbon comes from carbon dioxide. Living plant cells also respire in day and night. The root-to-leaf diagram is structural, not a scale map of the branch. Palisade cells are closely packed; air spaces between spongy cells communicate with stomata, while cells retain contacts within the tissue. Intercellular air spaces are distinct from intracellular vacuoles.
 
 ## Resource recovery and pigment changes during senescence
 
@@ -22,7 +22,7 @@ Not every leaf ends red: yellow need not turn red and chlorophyll does not becom
 
 ## Model limits
 
-The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated. The mature spatial model is 60 mm long and 200 µm thick. Blade, epidermis and tissue share one length unit and the camera zooms uniformly. These are teaching assumptions with schematic anatomy, not measurements of a particular species. The transverse view removes only the concealing foreground; surrounding tissue remains continuous. Colour and shading distinguish structures, not measured compartment colours or pigment concentrations.
+The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated. The mature spatial model is 60 mm long and 200 µm thick. Blade, epidermis and tissue share one length unit and the camera zooms uniformly. These are teaching assumptions with schematic anatomy, not measurements of a particular species. The transverse view removes only the concealing foreground; surrounding tissue remains continuous. Colour and shading distinguish structures, not measured compartment colours or pigment concentrations. The 2D spongy-tissue arrangement illustrates cell neighbours and air spaces, not measured 3D porosity. The selected chloroplast is about 4 µm across in the same model units. Internal grana, connecting membranes, their thickness and pigment symbols are simplified for recognition; the scale bar cannot establish actual membrane thickness or molecular size.
 
 ## Sources
 
@@ -31,6 +31,8 @@ The same leaf persists through expansion, senescence and detachment; backward sc
 - [OpenStax — Leaves](https://openstax.org/books/biology/pages/30-4-leaves)
 - [USGS — Evapotranspiration and the Water Cycle](https://www.usgs.gov/water-science-school/science/evapotranspiration-and-water-cycle)
 - [Schaberg et al. — Association of red coloration with senescence of sugar maple leaves](https://research.fs.usda.gov/treesearch/15618)
+- [Borsuk et al. — Structural organization of the spongy mesophyll](https://doi.org/10.1111/nph.17971)
+- [Shimoni et al. — Three-dimensional organization of higher-plant chloroplast thylakoid membranes](https://pmc.ncbi.nlm.nih.gov/articles/PMC1197436/)
 
 ## Narration {#narration}
 

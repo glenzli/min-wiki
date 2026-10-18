@@ -95,8 +95,14 @@ export interface ScaleCamera { x: number; y: number; magnification: number; angl
 /** Child coordinates live permanently inside their parent cutaway. */
 export const SCALE_ENTRIES: readonly ScaleEntry[] = [
   { x: 78, y: -12, size: SAMPLE_SIZE },
-  { x: -181 + 210 + Math.sin(8.1) * 5, y: 40 + Math.cos(5.4) * 4, size: .118 },
+  { x: -181 + 210 + Math.sin(8.1) * 5, y: 40 + Math.cos(5.4) * 4, size: .16 },
 ];
+/** The renderer, camera and hotspot enter the same peripheral chloroplast.
+ * Its 420-unit outline inherits the cell's scale, about 4 µm in this model. */
+export const CHLOROPLAST_ENTRY: Readonly<ScaleEntry> = Object.freeze({
+  x: Math.cos(-Math.PI/4)*146, y: Math.sin(-Math.PI/4)*110,
+  size: 18/210, angle: Math.PI/4,
+});
 export function scaleCamera(position: number, destination: ScaleEntry): ScaleCamera {
   const entries = [...SCALE_ENTRIES, destination];
   const frames: Array<{ x: number; y: number; size: number; angle: number }> = [{ x: 0, y: 0, size: 1, angle: 0 }];
@@ -116,7 +122,14 @@ export function scaleCamera(position: number, destination: ScaleEntry): ScaleCam
         * Math.exp(-Math.log(SURFACE_FRAMING)*smooth(SECTION_TURN_END,1,scale)) };
   }
   const u = smooth(0, 1, scale - lower), a = frames[lower], b = frames[lower + 1];
-  return { x: a.x + (b.x - a.x) * u, y: a.y + (b.y - a.y) * u, angle: a.angle + (b.angle - a.angle) * u, magnification: Math.exp(-Math.log(a.size) * (1-u) - Math.log(b.size) * u) };
+  const magnification=Math.exp(-Math.log(a.size)*(1-u)-Math.log(b.size)*u);
+  // A world-linear pan combined with a logarithmic zoom pushes the destination
+  // further off-screen halfway through a large magnification change. Instead,
+  // its projected distance from the frame centre decreases throughout the seek.
+  // Geometry and endpoint magnifications stay fixed; only camera travel changes.
+  const pan=1-(1-u)/(magnification*a.size);
+  return { x:a.x+(b.x-a.x)*pan,y:a.y+(b.y-a.y)*pan,
+    angle:a.angle+(b.angle-a.angle)*u,magnification };
 }
 export const journeyScale = (seconds: number) => clamp(seconds / JOURNEY_DURATION) * 3;
 

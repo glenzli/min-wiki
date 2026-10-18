@@ -117,7 +117,7 @@ function update() {
 }
 function seekScale(target: number) {
   touring = false; cancelSeek();
-  const duration = position < .5 && target <= .5 ? 2400 : position < 1 && target <= 1 ? 2600 : 1050;
+  const duration = position < .5 && target <= .5 ? 2400 : position < 1 && target <= 1 ? 2600 : target > 2 || position > 2 ? 2400 : 2200;
   cancelSeek = animateValue({ from: position, to: target, duration, onUpdate: value => {
     position = value; journey = position / 3 * JOURNEY_DURATION; update();
   }});
