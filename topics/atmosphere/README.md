@@ -14,7 +14,9 @@ Two views: a continuous Earth-to-space journey and Earth beside one of five othe
 ## Owners and routes
 
 - `model.ts`: standard lower-air profile, fixed 6371 km Earth reference radius, continuous overview/approach/ascent camera mapping, radial feature positions, route sanitation and representative planetary data.
-- `scene.ts`: one retained Canvas globe, Earth-map far view, illustrative local coast, ground anchor and feature population; deterministic rendering and resize disposal. This orthographic external observation is not a first-person descent. The local shore is not surveyed terrain.
+- `scene.ts`: composes the retained Canvas annotations, ground anchor and layer phenomena over the GPU surface; owns the complete Canvas artwork fallback, map loading and combined disposal.
+- `surfaceModel.ts`: geographic basis and shared map projection, bounded authored relief and continuous display pitch. The scientific journey model remains in `model.ts`.
+- `surfaceScene.ts`: one retained Three.js globe and curved coastal mesh, map/material resources, orthographic camera and redraw cache. It owns no clock. `cloudVolume.ts` prepares deterministic 3D density fields and integrates illustrative sunlight through them.
 - `layerMechanism.ts`: one topic-owned, pausable three-step narration clock per selected Earth layer. It sends the current step and progress to the retained scene and owns only the subtitle, controls, hidden-page pause and disposal.
 - `profileView.ts`: paired SVG/DOM planetary columns, selected-row explanations, and rare-cloud/aurora context. Earth is always the left reference and cannot be selected on the right.
 - `main.ts`: view/journey/reading-mode state, user-started finite camera playback, hidden-page suspension and bfcache restoration. Selecting a stop moves the camera immediately, including under reduced-motion preferences; the three-step narration advances inside the same camera view.
@@ -24,7 +26,11 @@ Canonical parameters: `view=layers|worlds`, `journey=0..1`, `world=venus|mars|ti
 
 ## Scientific and visual boundaries
 
-The opening approach changes the camera scale while retaining the same sphere and marked coastal region; the outward segment keeps the site and observation marker on the same radius. The distant Earth uses an orthographic projection of the Solar System Scope / INOVE 2k day and cloud maps (CC BY 4.0; see `../solar-system/assets/ATTRIBUTION.md`). The near-site coast dissolves into authored terrain as texture resolution runs out. This preserves the anchor and ocean/land orientation, but the local shoreline is not a survey of Norway. The source maps combine NASA-based imagery, edited colors and plausible fills; their cloud field is static, not live weather. Feature centers and layer boundaries use reference kilometer coordinates. Their drawn clouds, arrows, particles and glow are enlarged teaching marks. A small locator preserves the globe context under close zoom.
+The opening approach retains the same sphere and marked coastal region; the outward segment keeps the site and observation marker on the same radius. The globe and curved coastal patch sample the same Solar System Scope / INOVE 2k day map in one geographic basis (CC BY 4.0; see `../solar-system/assets/ATTRIBUTION.md`). The anchor is an approximate coastal pixel at 60.2° N, 5.35° E. As resolution runs out, lit green/rock/water materials gradually replace map color without replacing its sea/land distribution. Authored relief is limited to 1.65 km, tapers to zero at the site and patch edges, and is not measured elevation, a surveyed coast or a detailed representation of that location. The source map combines NASA-based imagery, edited colors and plausible fills; its separate cloud map is static, not live weather. A locator retains globe context.
+
+The display remains an external orthographic observation, not a first-person flight. A continuous 0–1.2° display pitch reveals nearby relief; the Canvas markers and GPU camera share that projection. This changes the view angle, not the scientific reference radius, altitude readings or journey mapping. Clouds use deterministic density volumes with approximate light absorption and scattering. Their sizes and the arrows, particles and glow are enlarged teaching marks; cloud shapes, optical density, shadows, sea glints and apparent weather are not measurements. They need not occur simultaneously. Volume depth testing uses the box entry face, not a terrain depth texture; this is not a full atmosphere, cloud microphysics or weather simulation.
+
+全景与近岸共用同一地理投影和海陆底图，放大后逐渐显露示意起伏与材质，不另换海岸轮廓。起伏上限 1.65 km，在地面锚点和网格边缘归零，不是该地点的实测地形。画面采用连续的小幅俯角表现厚度，标记使用同一投影；参考地球半径、高度读数和旅程映射不变。云体为确定性的三维密度和近似光传输示意，云形、大小、阴影与海面反光不能读成实测天气；体积遮挡按包围盒入口判断，未实现地形深度纹理裁切或云微物理。
 
 Layer reference boundaries are 11/50/85/600 km. The lower profile integrates dry hydrostatic lapse layers through 84.852 geopotential km; UI heights are rounded reference heights, not a site sounding. Above this range temperature and pressure are not extrapolated. The 1000 km journey endpoint is not the atmosphere's physical end. Height progression is logarithmic; boundaries vary in nature.
 
@@ -51,7 +57,7 @@ The retained exospheric particle follows the same quadratic curve drawn in proje
 
 Planetary comparison rows are selectable in either column and expose both worlds' full paired explanation in the inspector. The aligned rows continue to describe representative phenomena, not equal altitudes or layer thicknesses.
 
-The distant globe projects the existing licensed day and cloud maps into bounded 1280 px Canvas caches; the locator reuses them. The authored 1536 px relief cache and vector shoreline take over during approach, then yield to the fixed local geometry under close zoom. The camera coordinate and surface marker do not jump. The near-coast landforms are authored illustrations, not observed detail; all caches are released with the scene.
+The GPU surface uses a 256 × 192 sphere, a 257 × 321 curved coastal grid and three bounded 72 × 52 × 40 density textures; device pixel ratio is capped at 1.5. Cloud light integration uses at most 56 primary samples per fragment and sparse secondary sunlight samples. GPU frames are reused until journey, viewport or cloud-opacity inputs change. No additional animation loop is introduced. Shader/context failure falls back to the retained Canvas globe/coast artwork; context restoration invalidates the render cache. The existing bounded Canvas map, relief and cloud caches serve that fallback and the locator. Geometry, textures, materials, caches and context listeners are released with the scene.
 
 ## Presentation / 展示
 
@@ -60,19 +66,13 @@ The two views share a viewport-fitted observation workspace with a collapsible e
 16:9 桌面优先显示完整观察区；可收起解说或进入沉浸演示，Esc 返回。布局切换不重置世界、旅程或模型；详情与定量边界仍在解说中。
 
 儿童版在当前全景、地球层或对照世界旁只给短解释。`study.ts` 为各站提供对应的学术版机制、关系式（适用时）、证据入口和模型边界，阅读卡排在观察区下方；全题 `learning.json` 留作可选的综合笔记。切换阅读版不改变旅程、比较世界或图中机制阶段。
-## Local terrain finish · 2026-10-19
+## Atmosphere artwork refinement · 2026-10-19
 
-近岸陆地使用固定在球面绘图坐标中的克制纹理，从已有地球贴图过渡到近岸插画时逐渐出现。材质裁切在陆地轮廓内，不改变海陆朝向、观察标记或相机路径；这些明暗不是实测地形、土地覆盖或新增高度数据。
-
-Deterministic near-coast texture fades in within the land contour and globe coordinates. It stays attached during approach and ascent, without changing the camera, surface anchor or atmospheric feature coordinates. The local terrain remains authored illustration rather than surveyed detail.
-
-### Atmosphere artwork refinement · 2026-10-19
-
-近景云采用两张 768 × 384 缓存：积云示例保留鼓起的亮部和偏冷暗底，高云示例使用细丝；雨线只接示例雨云。1536 × 768 陆地材质通过周期场无缝平铺，避免中间缩放时露出矩形贴片；近岸轮廓增加圆滑的小湾，仍经过同一地面锚点。远景贴图直接淡化到近景插画，地图就绪时不再叠加另一张粗略海岸缓存。海岸、材质和大气蓝色边缘仍是示意，不能按像素读成实测宽度或密度。
+近景积云改为有内部遮光的密度体，亮边、云底与前后云团由同一光照方向衔接；高云保留细丝示意，雨线仍只接示例雨云。球面地表加入有界的地形法线、远处薄雾和克制的海面反光，全景与近景始终复用同一海陆底图。Canvas 回退保留两张 768 × 384 云缓存和周期陆地材质。海岸、材质和大气蓝色边缘仍是示意，不能按像素读成实测宽度或密度。
 
 臭氧吸收后的能量增加用局部、无定向的短线表示，不再用上升箭头暗示强对流。流星亮头和渐淡尾迹沿同一路径推进；极光保持原有径向高度，以不均匀的细光束和柔和褶皱表现，不随 300 km 观察站移动。所有变化仍读取原有旅程或分步进度，没有增加隐藏时钟。新增缓存及材质引用随场景释放。
 
-Two bounded cloud caches distinguish lit cumulus lobes from fine upper-cloud wisps. The periodic land material is clipped in world coordinates, with no rectangular patch edge during zoom; the illustrative bays still pass through the same marked ground site. Once the licensed map is ready, it dissolves directly into the local illustration rather than another coarse coastline image. These materials and the blue atmospheric rim remain illustrative, not measurements of terrain, shoreline width or air density.
+Near clouds now integrate light through deterministic volumes, distinguishing luminous billows from cooler, shaded interiors. Fine upper-cloud wisps and conditional rain remain separate marks. A lit curved surface, distant haze and restrained sea reflections reveal depth while preserving the globe's sea/land map. Canvas fallback retains its bounded cloud caches and periodic land material. The blue atmospheric rim and all material detail remain illustrative, not measurements of terrain, shoreline width or air density.
 
 Ozone absorption uses short, non-directed energy marks instead of upward convection arrows. The meteor has one advancing head with a tapered wake. Fine auroral folds retain their original radial region rather than following the 300 km observation stop. Existing journey/mechanism progress remains the only animation input; caches and the Canvas pattern are released with the scene.
 

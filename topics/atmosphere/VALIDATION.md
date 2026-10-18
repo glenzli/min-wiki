@@ -2,6 +2,18 @@
 
 Scope: topic-local illustrated layer column, paired planetary columns, bilingual explanatory text and retained parcel experiment. Existing dirty topic files were reviewed and accepted through Dev Mesh; unrelated work was not included.
 
+## Surface depth and volume clouds — 2026-10-19
+
+Scope: the Earth journey's topic-owned Three.js globe/coast, bounded relief, density clouds and Canvas composition/fallback. Globe and coast share the same licensed map and geographic basis. The renderer adds a continuous 0–1.2° view pitch; scientific reference heights, journey mapping, comparison data, routes and narration clocks are unchanged. Relief, cloud density and lighting are authored teaching materials rather than measured terrain or weather.
+
+- Base: `6f5efe342a508daa2a14582fe4064370d7901949`. Runtime SHA-256: `scene.ts` `56f71879b3fdcb72548299fdc6c15e0d82058b0012bc05249508f8208d13a956`; `surfaceModel.ts` `cdf6ce039b7156d8edcae3e683dfc5b839e32ec5743e6b2fbd3f9439e2e065ae`; `surfaceScene.ts` `1310309d187e28d2cecaae72c2d18c50a0241b43c28f6f20aaaaa43d5b6b9b5a`; `cloudVolume.ts` `d159514316d9595ad1a112ddce4fd1bffb25ce915c6b1f181c6be106b6c0ab00`.
+- Typecheck and the three topic test files passed: 12 tests covering the existing atmosphere/routes/particle contracts plus agreement between the actual Three camera and Canvas marker projection across 201 journey positions and three viewports, continuous bounded pitch, one map reference and bounded deterministic relief. These establish geometry and implementation contracts, not terrain or weather calibration.
+- `WIKI_READER_ROOT=/Users/g4i/lab/wiki-reader npm run build` passed typecheck, 6,900 localized messages / 72 English namespaces, 147 image copies, entry projections, editorial status and packaging. Built 71 entry routes, source digest `906cd6964cba4c2aca39b7e470c2398f5cf973010ad7d04099daef294720b967`. Reader source/dependency pins were not changed.
+- Actual managed Reader preview on `127.0.0.1:64494`: whole Earth, journey .09/.16/.22, coast and all five representative layer stops visually inspected at 1440 × 1000. Sea/land identity persists; the near surface reveals shaded relief and sea glints, and cloud billows have lit edges and cooler interiors. Reverse seeking to .16 and returning to the coast were also inspected at the normal 1280 × 720 viewport. Camera playback advanced from .09 through the coastal approach, then paused successfully.
+- Actual 390 × 844 Chinese and English coastal views inspected, with WebGL active and document/client widths both 390 px. Language switching retained the 3 km journey. Temporary viewport overrides were reset. Captured browser warning/error logs were empty. Screenshots: `/private/tmp/wiki-atmo-depth-20261019/`.
+- Resource limits: coastal mesh 257 × 321 vertices, three 72 × 52 × 40 single-channel density textures, at most 56 primary integration samples, GPU DPR capped at 1.5. Renderer cache follows journey/viewport/cloud-opacity changes and adds no timer. Cleanup and Canvas/context fallback were inspected in source; actual context-loss recovery and physical-device GPU performance were not exercised.
+- Local preview and local source work only; no push or deployment. The full repository test suite and unrelated comparison artwork checks were not repeated for this topic-owned surface change.
+
 ## Artwork refinement — 2026-10-19
 
 Scope: retained Canvas cloud/coast/sky materials, ozone-energy marks, meteor wake and auroral curtains; static comparison artwork and its image hit regions. The reference atmosphere, radial coordinates, camera mapping, routes, narration clocks and world data are unchanged. The authored coast has smaller smooth bays around the same ground anchor; it remains illustrative terrain.

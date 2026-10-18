@@ -3,6 +3,8 @@ import type content from './content.json';
 import type { MechanismFrame } from './layerMechanism.ts';
 import earthDayMap from '../solar-system/assets/2k_earth_daymap.webp';
 import earthCloudMap from '../solar-system/assets/2k_earth_clouds.webp';
+import { AtmosphereSurface } from './surfaceScene.ts';
+import { surfaceBasis, surfaceViewFrame } from './surfaceModel.ts';
 
 type Text=typeof content.zh;
 const noise=(i:number)=>{const n=Math.sin(i*127.1+91.7)*43758.5453;return n-Math.floor(n);};
@@ -17,6 +19,7 @@ export class AtmosphereScene {
  private mechanism:MechanismFrame|null=null;
  private disposed=false;
  private w=1;private h=1;private scale=1;private cy=0;
+ private projectionCos=1;
  private cloud:HTMLCanvasElement;
  private cloudWisps:HTMLCanvasElement;
  private localTerrain:HTMLCanvasElement;
@@ -24,6 +27,8 @@ export class AtmosphereScene {
  private globe:HTMLCanvasElement;
  private photoSurface:HTMLCanvasElement|null=null;
  private photoClouds:HTMLCanvasElement|null=null;
+ private surface:AtmosphereSurface|null=null;
+ private surfaceFrame:HTMLCanvasElement|null=null;
  private coast=new Path2D('M0 -6500 C0 -6440 -2 -6390 0 -6371 C-.7 -6368 2.6 -6367 1.1 -6364 C.4 -6361 3.6 -6358 2.1 -6354 C1.8 -6350 5.2 -6348 4.7 -6343 C4 -6338 6 -6328 5 -6320 L90 -6070 310 -5920 270 -5730 580 -5590 730 -5270 570 -5010 780 -4780 1050 -4690 970 -4460 1260 -4200 1450 -3990 1400 -3720 1650 -3480 1490 -3250 1230 -3140 1180 -2860 1370 -2680 1320 -2380 1620 -2090 1790 -2150 1900 -1940 2240 -1830 2490 -1620 2630 -1710 2850 -1540 2990 -1260 2790 -1130 2540 -1210 2370 -950 2690 -790 3030 -880 3120 -670 3500 -570 3810 -860 4130 -760 4320 -1120 4650 -1220 4920 -1630 5300 -1740 5680 -2180 6080 -2470 6800 -2650 7000 -6500Z');
  private south=new Path2D('M-4750 -1920 L-4310 -2310 -3870 -2140 -3620 -2260 -3380 -2060 -3000 -1990 -2690 -1700 -2380 -1690 -2260 -1380 -1930 -1240 -1700 -810 -1790 -570 -1450 -310 -1280 70 -1420 430 -1700 650 -1750 1090 -2040 1390 -1900 1710 -1660 1910 -1570 2270 -1310 2390 -1110 2760 -1300 3010 -1690 3170 -1810 3510 -2150 3720 -2280 4060 -2620 4470 -2820 4700 -3090 4350 -3030 4000 -3350 3720 -3230 3370 -3510 3020 -3520 2710 -3860 2410 -3900 2100 -4200 1750 -4030 1430 -4280 980 -4170 620 -4500 370 -4440 40 -4800 -200 -4700 -570 -4980 -970 -4820 -1400Z');
  constructor(private canvas:HTMLCanvasElement,private text:Text){
@@ -31,6 +36,7 @@ export class AtmosphereScene {
   this.cloud=this.makeCloud();this.cloudWisps=this.makeCloud(true);this.globe=this.makeGlobe();this.localTerrain=this.makeLocalTerrain();
   this.terrainPaint=c.createPattern(this.localTerrain,'repeat');
   this.terrainPaint?.setTransform(new DOMMatrix([320/this.localTerrain.width,0,0,160/this.localTerrain.height,-80,-EARTH_RADIUS]));
+  try{this.surface=new AtmosphereSurface(()=>{if(this.state)this.draw(this.state,this.labels,this.mechanism);});}catch{/* Canvas remains usable without WebGL. */}
   this.observer=new ResizeObserver(()=>{if(this.state)this.draw(this.state,this.labels,this.mechanism);});this.observer.observe(canvas);
   void this.loadEarthMaps();
  }
@@ -44,6 +50,7 @@ export class AtmosphereScene {
    const maps=this.projectEarthMaps(day,clouds);
    if(this.disposed){maps.surface.width=maps.clouds.width=0;return;}
    this.photoSurface=maps.surface;this.photoClouds=maps.clouds;
+   try{this.surface?.setMaps(day,clouds);}catch{this.surface?.dispose();this.surface=null;}
    if(this.state)this.draw(this.state,this.labels,this.mechanism);
   }catch{/* The retained illustrative globe remains usable if a map cannot load. */}
  }
@@ -61,11 +68,7 @@ export class AtmosphereScene {
   const face=sc.createImageData(size,size),weather=cc.createImageData(size,size);
   // A Norwegian coastal reference keeps north up, ocean to the left and
   // land to the right as the same marked region is enlarged.
-  const latitude=60*Math.PI/180,longitude=5*Math.PI/180;
-  const site=[Math.cos(latitude)*Math.cos(longitude),Math.cos(latitude)*Math.sin(longitude),Math.sin(latitude)];
-  const north=[-Math.sin(latitude)*Math.cos(longitude),-Math.sin(latitude)*Math.sin(longitude),Math.cos(latitude)];
-  const eye=north.map(v=>-v);
-  const right=[site[1]*eye[2]-site[2]*eye[1],site[2]*eye[0]-site[0]*eye[2],site[0]*eye[1]-site[1]*eye[0]];
+  const site=surfaceBasis.up,eye=surfaceBasis.eye,right=surfaceBasis.right;
   const sourceWidth=source.width,sourceHeight=source.height,radius=size/2;
   for(let y=0;y<size;y++)for(let x=0;x<size;x++){
    const sx=(x+.5-radius)/radius,sy=(radius-y-.5)/radius,r2=sx*sx+sy*sy;
@@ -175,7 +178,7 @@ export class AtmosphereScene {
   c.restore();
   return a;
  }
- private point(x:number,height:number){const p=radialPoint(x,height);return {x:this.w/2+p.x*this.scale,y:this.h/2+(p.y-this.cy)*this.scale};}
+ private point(x:number,height:number){const p=radialPoint(x,height);return {x:this.w/2+p.x*this.scale,y:this.h/2+(p.y-this.cy)*this.scale*this.projectionCos};}
  private line(points:{x:number;y:number}[],color:string|CanvasGradient,width=1){const c=this.c;c.beginPath();points.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle=color;c.lineWidth=width;c.stroke();}
  private dot(x:number,y:number,r:number,color:string){const c=this.c;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=color;c.fill();}
  private label(text:string,x:number,y:number,color='#dcebf1',align:CanvasTextAlign='left'){
@@ -187,10 +190,13 @@ export class AtmosphereScene {
   this.w=w;this.h=h;const dpr=Math.min(devicePixelRatio||1,2);
   if(this.canvas.width!==Math.round(w*dpr)||this.canvas.height!==Math.round(h*dpr)){this.canvas.width=Math.round(w*dpr);this.canvas.height=Math.round(h*dpr);}
   const c=this.c,f=journeyFrame(state.journey);this.scale=Math.min(w,h)/(2*f.halfSpan);this.cy=f.centerY;
+  this.surfaceFrame=this.surface?.draw(state,mechanism,w,h)??null;
+  this.projectionCos=this.surfaceFrame?surfaceViewFrame(state.journey,w,h).cos:1;
+  this.canvas.dataset.surfaceRenderer=this.surfaceFrame?'webgl':'canvas';
   c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
   const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,'#040b16');sky.addColorStop(1,'#0c1c2e');c.fillStyle=sky;c.fillRect(0,0,w,h);
   // Fixed background stars fade below the high atmosphere; no per-frame random population.
-  const starAlpha=f.phase!=='ascent'?.6: .65*smooth(65,220,f.height);
+  const starAlpha=f.phase==='ascent'?.65*smooth(65,220,f.height):.6*(1-smooth(.04,.13,state.journey));
   for(let i=0;i<70;i++)this.dot(noise(i)*w,noise(i+80)*h,.5+noise(i+140)*.5,`rgba(210,226,239,${starAlpha*noise(i+200)})`);
   this.earth();this.boundaries(f.height);
   this.weather(state.journey,!mechanism ? 1 : mechanism.layer===0 ? .4 : .55);
@@ -210,8 +216,9 @@ export class AtmosphereScene {
  }
  private earth(){
   const c=this.c,R=EARTH_RADIUS,scale=this.scale;
-  c.save();c.translate(this.w/2,this.h/2-this.cy*scale);c.scale(scale,scale);
+  c.save();c.translate(this.w/2,this.h/2-this.cy*scale*this.projectionCos);c.scale(scale,scale);
   const air=c.createRadialGradient(0,0,R-1,0,0,R+130);air.addColorStop(0,'#8acbdbc4');air.addColorStop(.065,'#5fa9cd9c');air.addColorStop(.18,'#337ba357');air.addColorStop(.42,'#234a711e');air.addColorStop(1,'#234a7100');c.fillStyle=air;c.beginPath();c.arc(0,0,R+130,0,Math.PI*2);c.fill();
+  if(this.surfaceFrame){c.restore();c.drawImage(this.surfaceFrame,0,0,this.w,this.h);return;}
   c.beginPath();c.arc(0,0,R,0,Math.PI*2);c.clip();
   const sea=c.createLinearGradient(-R,-R,R,R);sea.addColorStop(0,'#438fa5');sea.addColorStop(.5,'#205976');sea.addColorStop(1,'#091e35');c.fillStyle=sea;c.fillRect(-R,-R,R*2,R*2);
   const close=smooth(.3,1.5,scale);
@@ -265,7 +272,7 @@ export class AtmosphereScene {
   let lastLabelY=-Infinity;
   for(const h of layerEdges.slice(1,-1).reverse()){
    const p=this.point(0,h);if(p.y<18||p.y>this.h-18)continue;
-   c.save();c.setLineDash([3,8]);c.beginPath();c.arc(this.w/2,this.h/2-this.cy*this.scale,(R+h)*this.scale,Math.PI*1.1,Math.PI*1.9);c.strokeStyle='#b8d3e536';c.lineWidth=1;c.stroke();c.restore();
+   c.save();c.setLineDash([3,8]);c.translate(this.w/2,this.h/2-this.cy*this.scale*this.projectionCos);c.scale(1,this.projectionCos);c.beginPath();c.arc(0,0,(R+h)*this.scale,Math.PI*1.1,Math.PI*1.9);c.strokeStyle='#b8d3e536';c.lineWidth=1;c.stroke();c.restore();
    if(this.labels&&Math.abs(h-height)>3&&p.y-lastLabelY>=24){this.label(`${h} km`,this.w-12,p.y-6,'#b9d3df','right');lastLabelY=p.y;}
   }
  }
@@ -273,6 +280,7 @@ export class AtmosphereScene {
   const c=this.c,s=this.scale;if(s<.3)return;
   c.save();c.globalAlpha=smooth(.3,3,s)*opacity;
   for(const [x,h,size,thin] of [[-9,3,15,0],[6,7,18,1],[14,2,8,0]]){
+   if(this.surfaceFrame&&!thin)continue;
    const p=this.point(x,h);c.drawImage(thin?this.cloudWisps:this.cloud,p.x-size*s/2,p.y-size*s*.3,size*s,size*s*.5);
   }
   // Rain belongs to this one illustrative rain bank, not to every cloud.
@@ -365,7 +373,7 @@ export class AtmosphereScene {
    const wet=this.point(-2,5),dry=this.point(6,5);
    c.setLineDash([4,5]);this.line([this.point(-3,1),wet],'#aee2ed',2);this.line([this.point(5,1),dry],'#aee2ed86',1.5);c.setLineDash([]);
    const size=Math.min(180,Math.max(72,this.scale*9));c.globalAlpha*=smooth(0,.65,p);
-   c.drawImage(this.cloud,wet.x-size/2,wet.y-size*.3,size,size*.5);
+   if(!this.surfaceFrame)c.drawImage(this.cloud,wet.x-size/2,wet.y-size*.3,size,size*.5);
    for(let i=0;i<9;i++){const q=this.point(-4+i*.45,4.6+noise(i+21)*.45);this.dot(q.x,q.y,1.1,'#e5f4f5bd');}
    c.beginPath();c.arc(dry.x,dry.y,8,0,Math.PI*2);c.strokeStyle='#b2d4e19c';c.lineWidth=1.5;c.stroke();
   }
@@ -475,5 +483,5 @@ export class AtmosphereScene {
   const shade=c.createLinearGradient(x-r,y-r,x+r,y+r);shade.addColorStop(0,'#04132100');shade.addColorStop(1,'#041321a0');c.fillStyle=shade;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fill();c.beginPath();c.arc(x,y,r,Math.PI,Math.PI*2);c.strokeStyle='#92d1dd';c.lineWidth=1;c.stroke();const offset=height/EARTH_RADIUS*r;
   this.line([{x,y:y-r},{x,y:y-r-offset}],'#ffe1a0',1);this.dot(x,y-r-offset,2.5,'#ffe1a0');c.restore();
  }
- dispose(){this.disposed=true;this.observer.disconnect();this.terrainPaint=null;for(const cache of [this.cloud,this.cloudWisps,this.localTerrain,this.globe,this.photoSurface,this.photoClouds])if(cache)cache.width=cache.height=0;this.photoSurface=this.photoClouds=null;}
+ dispose(){this.disposed=true;this.observer.disconnect();this.surface?.dispose();this.surface=null;this.surfaceFrame=null;this.terrainPaint=null;for(const cache of [this.cloud,this.cloudWisps,this.localTerrain,this.globe,this.photoSurface,this.photoClouds])if(cache)cache.width=cache.height=0;this.photoSurface=this.photoClouds=null;}
 }
