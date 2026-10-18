@@ -1,5 +1,13 @@
 # 一片叶子的一生 / The life of a leaf
 
+## Microscopic material without a fixed green wash · 2026-10-19
+
+The previous colour update still left a permanent green canvas gradient, intercellular substrate, cell sap/cytoplasm, nuclei and wall tones. Microscopic views now use a warm neutral illumination and non-pigmented material palette. The macro woodland surround is retained and gives way smoothly before the transverse view; this is an illustration choice, not an optical or spectral calculation. Air spaces and cell sap are not painted yellow/red as though they were chloroplasts.
+
+Neighbouring mesophyll cells continue to consume the same chloroplast/vacuolar pigment state as the retained cell. Green/yellow stays in plastids and anthocyanin tint stays inside each drawn vacuole. Neutral translucent epidermal texture lets the underlying leaf colour show through, while chloroplast envelope rims now follow their plastid colour rather than retaining a fixed green edge. Geometry, age/colour curves, cut-plane units, camera and animation clocks are unchanged. The existing reference qualifications remain: species, section and imaging affect appearance; this palette is not universal tissue true colour.
+
+先前同步色素时漏掉了固定青绿的环境底色与非色素材质。这轮将显微背景、组织间隙、细胞质、无红色素时的胞液、细胞壁和细胞核改为中性暖灰；周围叶肉与选中细胞仍共用同一色素状态。表皮纹理与叶绿体包膜也去掉固定绿染。只修正表达，不改变细胞形态、叶龄、倍率或色素区室；继续保留草稿，仅本地预览和提交。
+
 ## Direct scale and colour controls · 2026-10-19
 
 The specimen now retains a compact pair of controls when explanation/settings are closed: observation scale, and leaf-colour progression with yellow/red pathways and its own play/pause action. Desktop places the axes side by side; narrow layouts stack them without a second rounded container. Both axes have native sliders, current-state labels and full touch targets. Scale presets remain shortcuts to the same camera positions; the guided journey, complete leaf lifecycle and model details stay in the secondary panel.

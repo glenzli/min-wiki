@@ -124,12 +124,12 @@ export class EpidermisSurface {
       for (const [i, cell] of this.geometry.cells.entries()) for(const [ox,oy] of copies(cell.contour)) {
         c.save(); c.translate(ox,oy);
         c.beginPath(); cell.contour.forEach(([x, y], k) => k ? c.lineTo(x, y) : c.moveTo(x, y)); c.closePath();
-        c.fillStyle = `rgba(247,250,215,${.1 + hash(i + 81) * .09})`; c.fill();
+        c.fillStyle = `rgba(250,246,226,${.1 + hash(i + 81) * .09})`; c.fill();
         // Sparse material variation is bound to each cell rather than a moving overlay.
         c.save(); c.clip();
         const [x, y] = cell.center;
         const body = c.createRadialGradient(x - 1.5, y - 2, .3, x, y, 4.8);
-        body.addColorStop(0, '#ffffe51e'); body.addColorStop(1, '#183b2010');
+        body.addColorStop(0, '#fff8e91e'); body.addColorStop(1, '#4d493310');
         c.fillStyle = body; c.fillRect(x - 7, y - 7, 14, 14); c.restore();
         c.restore();
       }
@@ -137,8 +137,8 @@ export class EpidermisSurface {
       for (const wall of this.geometry.walls) for(const [ox,oy] of copies(wall))
         wall.forEach(([x,y],k)=>k?c.lineTo(x+ox,y+oy):c.moveTo(x+ox,y+oy));
       c.lineJoin = 'round'; c.lineCap = 'round';
-      c.strokeStyle = '#294f3559'; c.lineWidth = .24; c.stroke();
-      c.strokeStyle = '#edf4cbd9'; c.lineWidth = .11; c.stroke();
+      c.strokeStyle = '#625b4759'; c.lineWidth = .24; c.stroke();
+      c.strokeStyle = '#f4eddbd9'; c.lineWidth = .11; c.stroke();
       this.plate = plate;
     }
     if(!this.pattern) {
