@@ -134,3 +134,11 @@ qualifications in both languages. Its related link resolves to pair 5 of the cur
 WOH links land on that retained final comparison. Ratios still compare horizon diameter with
 stellar diameter; they are not measurements of how many stars would be swallowed. Provenance
 and focused validation: [extreme-star record](../../docs/giant-stars-20260922.md).
+
+
+Current-chapter model notes live in a closed disclosure inside the explanation panel.
+The caption retains qualifications needed to interpret the image; general cross-chapter
+scale and playback limits are authored once in `learning.json` and projected into the
+full entry. The original `limits` ID still receives each chapter's unchanged caution.
+Reader markers identify the outer visual, short caption and playback row; scientific
+models and controls retain their existing state and events.

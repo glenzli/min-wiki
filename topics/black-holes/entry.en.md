@@ -22,7 +22,7 @@ The disk is not a black-hole surface, and a shadow edge is not simply the event 
 
 ## Model limits
 
-This project illustrates structures and mechanisms, not a complete simulation of an observed system. Matter dynamics and optics use separate approximations and display scales.
+This project illustrates structures and mechanisms, not a complete simulation of an observed system. Matter dynamics and optics use separate approximations and display scales. Chapters use different educational scales. On-screen sizes, particle counts, colors and playback seconds are not real measurements.
 
 ## Sources
 

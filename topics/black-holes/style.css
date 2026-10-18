@@ -104,3 +104,8 @@
 @media(max-width:560px){.reference-picker{flex-basis:100%}.reference-picker summary{width:100%}.reference-picker summary::after{margin-left:auto}.reference-choices{top:90px;grid-template-columns:repeat(3,minmax(0,1fr));max-height:calc(100% - 100px)}.comparison-footer{gap:6px}.black-hole-workspace .hole-comparison>canvas{height:210px}}
 
 @media(max-width:560px){.black-hole-workspace.observation-expanded .hole-comparison>canvas{flex:1 1 140px;height:0;min-height:120px}}
+
+/* Reader keeps one scene boundary and a common caption/control inset. */
+.black-hole-workspace #story-panel>.model-notes{padding:0;margin-top:12px;border-top:1px solid var(--border)}
+.black-hole-workspace #story-panel>.model-notes>a{display:inline-block;font-size:13px;margin-bottom:12px}
+.chapter-footer #next-chapter{margin-inline-start:auto}

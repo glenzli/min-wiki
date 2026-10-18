@@ -4,10 +4,10 @@
 <section class="explorer" aria-label="表面观察室">
   <div class="views" data-reader-menu="chapters"><button data-view="globe" aria-pressed="false">从太空看</button><button data-view="landscape" aria-pressed="true">靠近看一看</button><button data-view="section" aria-pressed="false">剖开看内部</button><span>示意地貌，不是实拍</span></div>
   <div class="camera-controls" id="camera-controls" hidden="" data-reader-menu="chapters"><span>观察角度</span><button data-angle="front">正面</button><button data-angle="oblique">斜看</button><button data-angle="overhead">俯看</button><output id="camera-readout"></output></div>
-  <div class="viewport"><canvas id="scene" role="img" aria-label="行星、卫星的地貌与深度层次示意"></canvas><p id="scene-preparing" role="status" hidden="">正在靠近这个世界…</p><p id="scene-error" hidden="">画面暂时无法显示，仍可阅读下方讲解。</p></div>
+  <div class="viewport" data-reader-stage><canvas id="scene" role="img" aria-label="行星、卫星的地貌与深度层次示意"></canvas><p id="scene-preparing" role="status" hidden="">正在靠近这个世界…</p><p id="scene-error" hidden="">画面暂时无法显示，仍可阅读下方讲解。</p></div>
   <p class="gesture-hint" id="gesture-hint" hidden="">拖动画面转动视角，滚轮缩放；也可选角度按钮。画面获得焦点后，方向键转动，加减键缩放。</p>
-  <p class="view-note" id="view-note"></p>
-  <div class="controls" id="controls"><button id="play">环绕巡视</button><button id="orbit" hidden="">环绕看剖面</button><button id="reset" hidden="">回到表层</button><button id="center" hidden="">直接到中心</button><label id="depth-control" hidden=""><span>表层</span><input id="depth" aria-label="从表层到中心的位置" type="range" min="0" max="1000" value="0"><span>中心</span></label><output id="layer"></output></div>
+  <p class="view-note" id="view-note" data-reader-caption></p>
+  <div class="controls" id="controls" data-reader-transport><button id="play">环绕巡视</button><button id="orbit" hidden="">环绕看剖面</button><button id="reset" hidden="">回到表层</button><button id="center" hidden="">直接到中心</button><label id="depth-control" hidden=""><span>表层</span><input id="depth" aria-label="从表层到中心的位置" type="range" min="0" max="1000" value="0"><span>中心</span></label><output id="layer"></output></div>
   <div class="scene-facts" id="scene-facts"><p><span>这里是什么</span><strong id="material"></strong></p><p><span>留心看</span><strong id="feature"></strong></p><p class="evidence" id="evidence"></p></div>
   <div class="layer-card" id="layer-card" hidden=""><div><p class="eyebrow">黄色标记走到了这里</p><h2 id="current-layer"></h2><span id="layer-status"></span></div><p id="layer-description"></p></div>
   <ol id="section-legend" class="section-legend" aria-label="由浅到深的层次" hidden=""></ol>

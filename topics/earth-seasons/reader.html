@@ -91,7 +91,7 @@
             <button data-view="north" aria-pressed="false">北极俯视</button>
             <button data-view="sun" aria-pressed="false">太阳视线</button>
           </div>
-        <div id="canvas-container" class="space-scene">
+        <div id="canvas-container" class="space-scene" data-reader-stage>
           <div class="scene-corner"><span class="live-dot"></span><span id="scene-status">地球自转中 · 昼夜平滑交替</span></div>
           <div id="regional-labels" class="regional-labels"></div>
           <div class="city-card" id="city-card" hidden="">
@@ -127,7 +127,7 @@
         <div id="regional-legend" class="regional-legend"><span class="terminator-key">晨昏线：太阳中心在地平线上</span><span>地图固定看地面，明暗随自转移动。</span></div>
         <div class="playback-panel">
           <div id="stage-buttons" class="stage-buttons" role="group" aria-label="故事步骤"></div>
-          <div class="transport">
+          <div class="transport" data-reader-transport>
             <button id="btn-play" class="play-button" aria-label="暂停运转"><span id="play-icon" aria-hidden="true">Ⅱ</span><span id="play-text">暂停运转</span></button>
             <button id="btn-restart" class="restart-button" aria-label="从头观察" title="从头观察">↺</button>
             <div class="scrubber">

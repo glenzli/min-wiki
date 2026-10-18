@@ -31,3 +31,8 @@ body[data-mode="academic"] .child-cue,body[data-mode="academic"] .hint{display:n
 .steps button{min-height:42px}
 @media(max-width:760px){.child-cue{margin-top:16px}.steps button{font-size:10px;min-height:48px}}
 @media(max-width:760px){.scene-caption{bottom:86px;left:12px;max-width:calc(100% - 148px);padding:3px 5px;border-radius:4px;background:#091423d9;font-size:9px;line-height:1.35}.scene-note{background:#091423ed}.phase-inset{bottom:69px}}
+
+/* The inset grows with readable controls instead of shrinking a wrapped label. */
+.viewport:not(.observer-focus) .phase-inset{height:auto;min-height:224px}
+.phase-inset button{flex-shrink:0}
+@media(max-width:760px){.viewport:not(.observer-focus) .phase-inset{min-height:174px}}

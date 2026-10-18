@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "发光的盘不是黑洞表面，阴影边缘也不能直接当作事件视界。路过、瓦解、回返和最终内落是不同过程。",
-    "boundary": "这是结构与机制的互动教学项目，不是某个真实系统的完整模拟。物质模型与光学模型使用独立的近似及显示尺度。",
+    "boundary": "这是结构与机制的互动教学项目，不是某个真实系统的完整模拟。物质模型与光学模型使用独立的近似及显示尺度。 各章节使用不同的教学尺度。画面大小、粒子数、颜色与播放秒数不能直接当作真实测量值。",
     "narration": [
       {
         "label": "先看整体",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "The disk is not a black-hole surface, and a shadow edge is not simply the event horizon. Passing, disruption, return and infall are distinct processes.",
-    "boundary": "This project illustrates structures and mechanisms, not a complete simulation of an observed system. Matter dynamics and optics use separate approximations and display scales.",
+    "boundary": "This project illustrates structures and mechanisms, not a complete simulation of an observed system. Matter dynamics and optics use separate approximations and display scales. Chapters use different educational scales. On-screen sizes, particle counts, colors and playback seconds are not real measurements.",
     "narration": [
       {
         "label": "Look at the whole scene",
