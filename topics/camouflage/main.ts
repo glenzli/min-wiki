@@ -23,6 +23,7 @@ el('view').addEventListener('change',changeView);
 el('contrast').addEventListener('input',()=>{cancelBackground();forestOpacity=Number(el<HTMLInputElement>('contrast').value)/1000;el('forest').setAttribute('opacity',String(forestOpacity));el('forest-button').setAttribute('aria-pressed',String(forestOpacity===1));el('plain-button').setAttribute('aria-pressed',String(forestOpacity===0));report(found.size,t('动物没变，背景变了'),t('慢慢移走周围的枝叶，看看轮廓在哪里开始显眼。动物的颜色、大小和形状保持不变。'));});
 const observer=new ResizeObserver(anchors);observer.observe(svg);anchors();
 window.addEventListener('pagehide',()=>{cancelCamera();cancelBackground();observer.disconnect();});
+window.addEventListener('pageshow',()=>{observer.observe(svg);anchors();});
 mountReadingMode('details:not(.references)');
 
 const presentation=mountPresentationFrame({root:'.lab',visual:'.scene',transport:'#forest-button,#plain-button,#reveal,#reset'});

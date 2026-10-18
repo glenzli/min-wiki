@@ -31,3 +31,9 @@ Regression parses the production SVG and independently clips its polygon against
 The paler centre and thicker rim suggest a biconcave red cell without reconstructing three-dimensional optics. Neutrophil granules and the lobed nucleus are clipped to the existing model-owned contour. Platelet processes follow the original activation value, and fibrin retains its existing timing. No oxygen trajectory, wall-opening constraint, migration sequence, target identity or engulfment timing was changed. Colours, proportions and counts remain schematic; the three processes remain independent. Cells and its blood-cell child route remain draft and are not deployed.
 
 形态复核补充：[OpenStax · Erythrocytes](https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes)，以及上列 Leukocytes and Platelets。插画未模拟染色机制、流体力学、细胞骨架受力或完整凝血级联。
+
+## 血管环境与轮廓 · 2026-10-19
+
+红细胞轮廓与中央浅区增加轻微不对称，内皮细胞改为更细长、略有差异的连续壁面，周围组织补充克制的间质线索。中性粒细胞的内部膜缘仍裁切在原有轮廓内；血小板突起中的线条只跟随已有激活状态。位置、运氧轨迹、穿壁开口及其接触约束、吞入对象、凝血顺序均未改变。线条、数量和颜色用于辨认，并非新的组织测量或力学模型。
+
+Red-cell outlines and pale central regions have slight asymmetry; endothelial profiles form a thinner, varied continuous wall, with restrained interstitial context outside it. The neutrophil's interior rim remains clipped by the existing contour. Platelet process details follow the existing activation state. No carrier position, oxygen trajectory, wall opening/contact constraint, engulfed-target identity or clotting order changed. These lines, counts and colours aid identification rather than adding histological measurements or mechanical predictions. The three processes remain independent draft examples.

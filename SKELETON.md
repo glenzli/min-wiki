@@ -66,6 +66,6 @@ Reader owns navigation, themes, preview, static compilation, assets/Workers, sco
 
 - `topics/ai/`: owns concept comparisons and prewritten local tasks/examples, including supplied-image versus generated-image roles, situational choice history, privacy choices and evidence prompts. It implements no real model API, training, image inference or child-data input.
 
-- `topics/mobile-networks/`: owns the recorded message-part snapshots, launch-station identities, connection gates, bounded replay and distinct delivered/read state. The SVG depicts a representative online-chat topology, not a cellular protocol or security simulation.
+- `topics/mobile-networks/`: owns the recorded message-part snapshots, launch-station identities, connection gates, bounded replay and distinct delivered/read state. `scene.ts` retains the three numbered SVG identities and samples finite Reader 2D transit from the topic clock, while `model.ts` still gates and commits each hop. The SVG depicts a representative online-chat topology, not a cellular protocol, measured latency or security simulation.
 
 - `topics/flight/`: owns a hypothetical coefficient model, relative-flow/angle geometry, force vectors, unilateral ground support and deterministic vertical response. Its illustrative streamlines are not CFD, measured airfoil data or an aircraft-performance model.

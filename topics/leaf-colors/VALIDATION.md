@@ -1,5 +1,15 @@
 # Leaf illustration validation — 2026-09-21
 
+## Botanical drawing and finite motion · 2026-10-19
+
+- Leaf drawing and water-section pass only: authored Reader Anime.js unfolding/detached curl, shared blade detail deformation, finer venation, irregular spongy tissue, constrained pigment compartments and a finite water framing track. The lifecycle model owns its changed illustrative drift; water trajectories remain in `plant-water/model.ts`, including the retained blade projection at the original sample. Both routes remain drafts.
+- `node --import tsx --test topics/leaf-colors/tests/model.test.mjs topics/leaf-colors/tests/lifecycle.test.ts topics/leaf-colors/tests/leafMotion.test.ts topics/plant-water/model.test.ts topics/plant-water/scene.test.ts`: 25 passed. These establish state, seam, compartment, route and reversible Anime.js sampling contracts, not aesthetic or biological measurement claims.
+- Focused strict TypeScript passed for `src/reader.d.ts`, `topics/leaf-colors/main.ts` and `topics/plant-water/scene.ts` plus their imports. The first isolated invocation omitted the repository's `ImportMeta.env` ambient declaration; including the existing declaration resolved that harness error without changing source.
+- A linked esbuild consumer bundle of the leaf entry and legacy water entry passed using the installed public Reader package. Output is `/private/tmp/mini-wiki-polish-leaves-consumer/`; no dependency or shared build configuration changed. Root integration owns the required full repository gates.
+- The actual SVG source was rendered with Sharp and inspected at progress 0.78: root connections, vein detail, cuticle/epidermis, mesophyll spaces, wet-wall cue, guard-cell gap and liquid/vapour symbol were visible. This is static drawing QA; it does not replace live browser checks.
+- Hidden documents and dynamic reduced-motion changes explicitly cancel both finite selection/scale seeks and water zoom at their reached pose. Final page exit disposes leaf and water Anime.js tracks. Browser acceptance must still verify quick zoom reversal, hidden/preference interruption, leaf age/inside/water history, both colour destinations and 390 px layout in Chinese/English.
+- Scoped whitespace check passed. No commit, push, deployment or draft promotion was performed. Earlier dated evidence below covers earlier source identities.
+
 ## Follow-up: cell illustration aesthetics
 
 - Refined only `scene.ts` and topic documentation: tissue/cytoplasm/liquid palette separation, lighter contour lines, deterministic peripheral organelle variation, clipped nuclear detail and flat chloroplast membrane stacks. Miniature plastids reuse a cached version of the enlarged cutaway. Model, controller, camera anchors, lifecycle and pigment curves remain unchanged.

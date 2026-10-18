@@ -11,8 +11,8 @@ const defs = `<defs>
   <radialGradient id="platelet" cx=".3" cy=".2" r=".9"><stop stop-color="#eadbdc"/><stop offset=".6" stop-color="#c3a0b4"/><stop offset="1" stop-color="#9e809d"/></radialGradient>
   <filter id="soft-shadow" x="-30%" y="-40%" width="160%" height="190%"><feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#693c3c" flood-opacity=".14"/></filter>
   <clipPath id="inside-vessel"><path d="M42 184Q490 158 938 184V301Q490 328 42 301Z"/></clipPath>
-  <g id="rbc"><ellipse rx="42" ry="27" fill="url(#red-disc)" stroke="#a14d59" stroke-width="1.1"/>
-    <ellipse cx="-1" cy="-1" rx="16" ry="8" fill="#edb5a5" opacity=".45"/>
+  <g id="rbc"><path d="M-42-1C-43-16-27-27-7-27C12-29 34-20 40-7C48 8 32 24 12 27C-10 31-40 20-42-1Z" fill="url(#red-disc)" stroke="#a14d59" stroke-width="1.1"/>
+    <path d="M-17-3C-16-10-3-13 9-10C20-8 21-1 15 5C6 12-14 9-17-3Z" fill="#edb5a5" opacity=".48"/>
     <path d="M-33 -9C-26 -21 -5 -24 14 -19" stroke="#f5c4af" stroke-width="1.7" stroke-linecap="round" fill="none" opacity=".65"/>
     <path d="M-29 15C-13 25 17 24 32 9" stroke="#823c4e" stroke-width="1.1" fill="none" opacity=".4"/>
     <path d="M-14 -4C-8 -10 7 -11 15 -4" stroke="#c47877" stroke-width=".7" fill="none" opacity=".4"/></g>
@@ -24,9 +24,10 @@ function immuneCell(state:ReturnType<typeof defenceState>) {
   const contour=immuneContour(state),points=contour.map(point=>`${point.x},${point.y}`).join(' ');
   const clip=`M${contour.map(point=>`${point.x} ${point.y}`).join('L')}Z`;
   const grains=Array.from({length:76},(_,i)=>{const a=i*2.399,r=12+(i*11)%31;return `<circle cx="${x+Math.cos(a)*r*(1-squeeze*.4)}" cy="${y+Math.sin(a)*r*(1+squeeze*.3)}" r="${.65+i%3*.3}" fill="${i%3?'#a88fa9':'#c7afbd'}" opacity=".55"/>`;}).join('');
+  const inner=contour.map((point,i)=>`${i?'L':'M'}${x+(point.x-x)*.94} ${y+(point.y-y)*.94}`).join('')+'Z';
   return `<defs><clipPath id="immune-interior"><path d="${clip}"/></clipPath></defs>
     <g filter="url(#soft-shadow)"><polygon points="${points}" fill="url(#white-cell)" stroke="#ab96ad" stroke-width="1.5"/>
-    <g clip-path="url(#immune-interior)">${grains}<g transform="translate(${x} ${y}) scale(${1-squeeze*.36} ${1+squeeze*.3})">
+    <g clip-path="url(#immune-interior)"><path d="${inner}" fill="none" stroke="#fffaf5" stroke-width="1.1" opacity=".7"/>${grains}<g transform="translate(${x} ${y}) scale(${1-squeeze*.36} ${1+squeeze*.3})">
       <path d="M-24 -15C-39 -15 -39 7 -24 9C-13 12 -13 22 -2 22C11 23 14 12 6 5C-4 -2 0 -4 12 -3C32 0 35 -22 21 -27C7 -29 6 -12 -7 -10C-15 -8 -10 -17 -24 -15Z" fill="url(#nucleus)" stroke="#776184" stroke-width="1.1"/>
       <path d="M-28-9q-6 5 0 11m7 0q6 0 6 8m10 6q8 0 6-7m14-23q9-4 10 5m-9 4q-8 1-10 5" stroke="#c1adc9" stroke-width="1.2" stroke-linecap="round" fill="none" opacity=".7"/>
       <path d="M-30 0l6 4m1-11 5 2m15 15 4 3m13-29 4 2m-1 5 6-2" stroke="#64516f" stroke-width="1" opacity=".6"/>
@@ -35,18 +36,18 @@ function immuneCell(state:ReturnType<typeof defenceState>) {
 function vessel(kind:BloodProcess, progress:number) {
   const gap=vesselGap(kind,progress);
   const wallCells = [163,319].map(y=>Array.from({length:11},(_,i)=>{
-    const x=28+i*87;
+    const x=28+i*87+Math.sin(i*1.7)*9,end=28+(i+1)*87+Math.sin((i+1)*1.7)*9,cx=(x+end)/2;
     const shift=(i%3-1)*2;
-    return `<g><path d="M${x} ${y}q${38+shift} -11 84 0l-3 17q-39 9 -78 0Z" fill="url(#wall)" stroke="#b68d8d" stroke-width="1"/>
-      <ellipse cx="${x+44+shift}" cy="${y+8}" rx="${12+i%3}" ry="3.8" fill="#9e8198" opacity=".7"/>
-      <path d="M${x+12} ${y+1}q29-6 55 0M${x+36} ${y+7}h13" stroke="#fae4d6" stroke-width=".8" fill="none" opacity=".6"/></g>`;
+    return `<g><path d="M${x} ${y+3}Q${cx+shift} ${y-5} ${end} ${y+3}L${end-3} ${y+16}Q${cx-4} ${y+22} ${x-2} ${y+16}Z" fill="url(#wall)" stroke="#b68d8d" stroke-width=".85"/>
+      <path d="M${cx-13+shift} ${y+9}q10-5 23-1q6 3-3 5q-13 3-20-1Z" fill="#9e8198" opacity=".7"/>
+      <path d="M${x+12} ${y+3}Q${cx} ${y-1} ${end-13} ${y+3}M${cx-5} ${y+9}h9" stroke="#fae4d6" stroke-width=".8" fill="none" opacity=".65"/></g>`;
   }).join('')).join('');
   return `<defs><mask id="wall-opening"><rect width="980" height="550" fill="white"/><rect x="${gap.center-gap.halfWidth}" y="${VESSEL_CONTACT_BAND.top}" width="${2*gap.halfWidth}" height="${VESSEL_CONTACT_BAND.bottom-VESSEL_CONTACT_BAND.top}" fill="black"/></mask></defs><path d="M42 181Q490 157 938 181V306Q490 330 42 306Z" fill="url(#plasma)"/><g mask="url(#wall-opening)"><path d="M35 163Q490 147 945 163V181Q490 190 35 181ZM35 319Q490 305 945 319V337Q490 347 35 337Z" fill="url(#wall)"/>${wallCells}<path d="M54 184Q470 168 926 184M54 301Q470 319 926 301" fill="none" stroke="#fff1da" stroke-width="2" opacity=".58"/></g>`;
 }
 function tissueCells() {
   return Array.from({length:9},(_,i)=>{
     const x=56+i*106,dy=(i%3-1)*8;
-    return `<g transform="translate(${x} ${430+dy}) rotate(${i%2?7:-5})"><path d="M-24-13C-26-40 2-51 25-45C42-47 58-29 63-9C74 15 56 35 34 38C9 48-16 32-23 12C-29 5-27-5-24-13Z" fill="url(#tissue)" stroke="#b2a995" stroke-width="1.2"/>
+    return `<g transform="translate(${x} ${430+dy}) rotate(${i%2?7:-5}) scale(${.86+(i%3)*.08} ${.88+(i%2)*.13})"><path d="M-24-13C-29-31-12-43 9-42L34-45Q59-38 63-15L71 8Q59 31 37 38L7 43Q-16 29-23 12C-29 5-27-5-24-13Z" fill="url(#tissue)" stroke="#b2a995" stroke-width="1.2"/>
       <ellipse cx="17" cy="-3" rx="14" ry="11" fill="#aa9aa8" opacity=".7"/><circle cx="21" cy="-3" r="3" fill="#887e94" opacity=".5"/>
       <path d="M-14-18Q-4-39 17-36m-26 54q20 15 42 7" fill="none" stroke="#fff7e8" stroke-width="1.2" opacity=".65"/>
       <path d="M41-20q8 1 7 7t-8 6M-9 1q-8 4-3 10" fill="none" stroke="#b7a791" stroke-width="1.3"/></g>`;
@@ -76,11 +77,13 @@ export function renderBlood(kind:BloodProcess,progress:number,t:Translator) {
       const outline=points.map((point,j)=>{const next=points[(j+1)%points.length]!;return `Q${point.x} ${point.y} ${(point.x+next.x)/2} ${(point.y+next.y)/2}`;}).join('');
       const first=points[0]!,last=points.at(-1)!;
       process+=`<g data-platelet="${i}" transform="translate(${v.x} ${v.y}) rotate(${i*29})"><path d="M${(first.x+last.x)/2} ${(first.y+last.y)/2}${outline}Z" fill="url(#platelet)" stroke="#947a96" stroke-width="1"/>
+        <g stroke="#a083a0" stroke-width=".65" opacity="${v.activation*.65}" fill="none">${points.filter((_,j)=>j%2===0).map(point=>`<path d="M${point.x*.35} ${point.y*.35}L${point.x*.76} ${point.y*.76}"/>`).join('')}</g>
         <ellipse cx="-1" cy="-1" rx="3.5" ry="2.7" fill="#b28da8"/><g fill="#826e91" opacity=".65"><circle cx="-2" cy="0" r=".85"/><circle cx="1" cy="-2" r=".7"/><circle cx="2" cy="1" r=".8"/></g>
         <path d="M-4-3q3-3 6-1" fill="none" stroke="#f8e4e5" stroke-width=".8"/></g>`;
     });
     process+=`<g opacity="${s.fibrin}" stroke="#b0947b" stroke-width="1.25" stroke-linecap="round" fill="none">`+Array.from({length:12},(_,i)=>`<path d="M${480+i*7} 280Q${512-i*4} 310 ${570-i*4} 341M479 ${283+i*5}Q521 ${291+i*4} 567 ${295+i*3}"/>`).join('')+'</g>';
     process+=label(276,105,t('血小板：细胞的一小部分'))+label(723,498,t('血小板聚集，纤维蛋白加固'));
   }
-  return defs+`<rect width="980" height="550" fill="url(#field)"/><g opacity=".3">${tissueCells()}</g>${vessel(kind,p)}<g clip-path="url(#inside-vessel)" opacity=".63">${ambient}</g>${process}<path d="M54 130h51m-10-6 10 6-10 6" fill="none" stroke="#967e73" stroke-width="2"/>${label(80,114,t('血流'),true)}${label(844,363,t('血管壁'),true)}`;
+  const matrix=`<g stroke="#c1b6a0" stroke-width=".8" opacity=".25" fill="none">${Array.from({length:6},(_,i)=>`<path d="M34 ${383+i*18}C170 ${365+i*16} 244 ${419+i*8} 392 ${390+i*16}S725 ${377+i*19} 946 ${405+i*13}"/>`).join('')}</g>`;
+  return defs+`<rect width="980" height="550" fill="url(#field)"/>${matrix}<g opacity=".35">${tissueCells()}</g>${vessel(kind,p)}<g clip-path="url(#inside-vessel)" opacity=".63">${ambient}</g>${process}<path d="M54 130h51m-10-6 10 6-10 6" fill="none" stroke="#967e73" stroke-width="2"/>${label(80,114,t('血流'),true)}${label(844,363,t('血管壁'),true)}`;
 }

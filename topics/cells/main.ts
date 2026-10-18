@@ -4,8 +4,9 @@ import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
-import { focusBox,wholeBox,mixBox,hasPart,hitPart,processFor,processState,respirationState,type Cell,type Part,type Process } from './model.ts';
+import { focusBox,wholeBox,hasPart,hitPart,processFor,processState,respirationState,type Cell,type Part,type Process } from './model.ts';
 import { createScene,setCameras,selectPart,drawProcess } from './scene.ts';
+import { createInspectionMotion, createCutawayMotion } from './inspectionMotion.ts';
 import { CHAPTERS, readCellRoute, type Chapter } from './exploration.ts';
 import { mountSpecialization } from './specialization.ts';
 translateDocument(t);
@@ -83,9 +84,16 @@ const academicPartSources:Record<Part,{label:string;url:string}> = {
 
 function currentProcess(){return processFor(cell,choice);}
 function currentProgress(){const process=currentProcess();return process?progress[cell][process]:0;}
-function moveCamera(){
- cancelCamera();const fromWhole=whole,fromDetail=detail,toWhole=wholeBox(cell),toDetail=focusBox(cell,part);
- cancelCamera=animateValue({from:0,to:1,duration:850,onUpdate:v=>{whole=mixBox(fromWhole,toWhole,v);detail=mixBox(fromDetail,toDetail,v);setCameras(whole,detail);}});
+function moveCamera(changedSpecimen=false){
+ cancelCamera();const toWhole=wholeBox(cell),toDetail=focusBox(cell,part);
+ // Different specimens are separate observations. Start at the new whole
+ // specimen rather than flying through the other specimens on the SVG board.
+ const fromWhole=changedSpecimen?toWhole:whole,fromDetail=changedSpecimen?toWhole:detail;
+ const motion=createInspectionMotion();
+ const cancel=animateValue({from:0,to:1,duration:changedSpecimen?620:760,onUpdate:v=>{
+  whole=motion.sample(fromWhole,toWhole,v);detail=motion.sample(fromDetail,toDetail,v);setCameras(whole,detail);
+ },onComplete:()=>motion.dispose()});
+ cancelCamera=()=>{cancel();motion.dispose();};
 }
 function renderProgress(){
  const process=currentProcess(),p=currentProgress();
@@ -151,9 +159,14 @@ function render(){
  el('detail-scene').setAttribute('aria-label',present?t('同一细胞的{{part}}局部放大',{part:partNames[part]}):t('整体对照：这里没有{{part}}',{part:partNames[part]}));
 }
 function stop(){cancelPlay();playing=false;}
-for(const b of document.querySelectorAll<HTMLButtonElement>('[data-cell]'))b.addEventListener('click',()=>{stop();cell=b.dataset.cell as Cell;render();moveCamera();});
+for(const b of document.querySelectorAll<HTMLButtonElement>('[data-cell]'))b.addEventListener('click',()=>{stop();const previous=cell;cell=b.dataset.cell as Cell;render();moveCamera(previous!==cell);});
 for(const b of document.querySelectorAll<HTMLButtonElement>('[data-part]'))b.addEventListener('click',()=>{part=b.dataset.part as Part;render();moveCamera();});
-for(const b of document.querySelectorAll<HTMLButtonElement>('[data-surface]'))b.addEventListener('click',()=>{cancelSurface();outerTarget=Number(b.dataset.surface);render();cancelSurface=animateValue({from:outer,to:outerTarget,duration:700,onUpdate:v=>{outer=v;selectPart(cell,part,outer);}});});
+for(const b of document.querySelectorAll<HTMLButtonElement>('[data-surface]'))b.addEventListener('click',()=>{
+ cancelSurface();outerTarget=Number(b.dataset.surface);render();
+ const motion=createCutawayMotion(outer,outerTarget);
+ const cancel=animateValue({from:0,to:1,duration:560,onUpdate:v=>{outer=motion.sample(v);selectPart(cell,part,outer);},onComplete:()=>motion.dispose()});
+ cancelSurface=()=>{cancel();motion.dispose();};
+});
 for(const b of document.querySelectorAll<HTMLButtonElement>('[data-process]'))b.addEventListener('click',()=>{stop();choice=b.dataset.process as Process;render();});
 el('play').addEventListener('click',()=>{const process=currentProcess();if(!process||playing)return;playing=true;const specimen=cell;render();cancelPlay=animateValue({from:progress[specimen][process],to:1,duration:9000*(1-progress[specimen][process]),onUpdate:v=>{progress[specimen][process]=v;renderProgress();},onComplete:()=>{playing=false;render();}});});
 el('pause').addEventListener('click',()=>{stop();render();});

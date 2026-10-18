@@ -246,6 +246,20 @@ html[data-reading-mode="kids"] .detail-context>p:last-child { display:none; }
  #structure-panel.presentation-frame #detail-scene{flex:0 1 auto;height:auto;aspect-ratio:720/490}
 }
 #specialization-panel .work-current #work-story{color:#526257}
+/* Fit the drawings to their authored planes. A tall desktop window must not
+   turn the wide specimen desk into a portrait SVG with empty letterboxing. */
+@media(min-width:1000px){
+ :root[data-wiki-document] :is(#structure-panel,#energy-panel,#specialization-panel).presentation-frame:not(.observation-expanded){height:auto;min-height:0}
+ :root[data-wiki-document] :is(#structure-panel,#energy-panel,#specialization-panel) .presentation-body{flex:none;align-items:start}
+ :root[data-wiki-document] :is(#structure-panel,#energy-panel,#specialization-panel) .presentation-visual{height:auto;flex:none}
+ :root[data-wiki-document] :is(#structure-panel,#energy-panel,#specialization-panel) .presentation-notes{max-height:min(78dvh,850px)}
+ #structure-panel.presentation-frame .specimen{grid-template-rows:auto auto auto}
+ #structure-panel.presentation-frame #cell-scene{height:auto!important;aspect-ratio:720/490;align-self:start}
+ #structure-panel.presentation-frame .specimen .detail-window{justify-content:flex-start;align-self:stretch;height:100%}
+ #structure-panel.presentation-frame #detail-scene{height:auto!important;flex:none;aspect-ratio:720/490}
+ #energy-panel.presentation-frame #behavior-scene{height:auto!important;flex:none;aspect-ratio:720/490}
+ #specialization-panel.presentation-frame #work-scene{height:auto!important;flex:none;aspect-ratio:980/550}
+}
 @media(max-width:540px){
  .presentation-frame .observation-toolbar>button[aria-controls]{font-size:12px;padding-inline:9px}
  .presentation-frame .reading-mode-disclosure>summary{font-size:12px;padding-inline:9px}

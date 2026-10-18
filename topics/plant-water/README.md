@@ -1,5 +1,13 @@
 # 根喝到的水怎样到叶子里？
 
+## Botanical section and continuous framing · 2026-10-19
+
+The persistent SVG now uses curved leaf veins, tapered roots, a quieter plant palette, irregular mesophyll cells with peripheral chloroplasts, a wet cell-wall cue and a retained pair of guard cells. The same cohort remains filled through xylem and reaches the wet mesophyll before becoming hollow in the air space; its lower-pore exit and model progress are unchanged. `model.ts` also owns the retained whole-blade projection, which reaches the fixed microscopic sample at progress 0.74 while the cohort is liquid. This projection indicates depth; it is not an equal-scale map of the enlarged section.
+
+整株图保留同一条根—木质部—叶脉路线；放大剖面以不规则的叶肉细胞、周边叶绿体、湿润细胞壁与一对保卫细胞区分组织和空气空间。水标记先到湿润叶肉，再在叶内空隙中变为空心，最后经本例的下侧气孔离开。整叶投影也由模型提供：进度 0.74 时，仍为液态的标记到达固定显微采样点。整叶图用投影提示深度，与放大剖面并非等比例的实测坐标。
+
+Reader Anime.js only interpolates the finite viewBox framing track. The leaf controller owns the reversible 700 ms camera approach and cancels superseded motion. Hidden documents and dynamic reduced-motion changes cancel camera/selection transitions at the reached pose, without auto-resuming them; final page exit disposes the track. 页面隐藏或减少动态偏好生效时，有限的镜头／选择过渡停在已到达的位置，不会自动续播。No autonomous library clock, xylem-tension model or dynamic stomatal regulation was added. Focused tests cover viewBox reversal without cohort movement, phase order, connection closure and the added blade projection; visual browser acceptance remains with the integrating task. Both routes retain draft status. Mechanism sources: [OpenStax — Leaves](https://openstax.org/books/biology-2e/pages/30-4-leaves), [OpenStax — Transport of Water and Solutes in Plants](https://openstax.org/books/biology-2e/pages/30-5-transport-of-water-and-solutes-in-plants).
+
 ## Integrated entry · 2026-09-20
 
 This URL now enters `/topics/leaf-colors/?view=water`; `main.ts` is compatibility routing only. `model.ts` retains the water cohort and phase-change contract. `scene.ts` owns the original persistent root, xylem, leaf and enlarged pore geometry, with no timers, controls or global event listeners. The leaf lifecycle controller supplies water progress and a bounded transport-availability state; it retains leaf age separately and stops this mature-leaf example before expansion or when the connection closes. The transport map is explicitly a structural illustration, not an equal-scale map of the branch. Existing scientific notes and provenance below remain applicable to that model; earlier standalone playback descriptions are historical. Final integration/browser checks belong to the root task.

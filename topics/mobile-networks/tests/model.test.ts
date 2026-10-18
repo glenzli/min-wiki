@@ -34,3 +34,20 @@ test('replay restores recorded conditions, while editing an earlier frame create
  m.seek(0);m.configure({receiverOnline:false});m.seek(18);assert.equal(m.state.completedSteps,5);assert.equal(m.status,'travelling');assert.equal(m.blockedAt,'receiver');
  const n=new MessageJourney();n.seek(18);n.seek(17);n.play();for(let i=0;i<10;i++)n.tick(.1);assert.equal(n.state.completedSteps,18);assert.equal(n.playing,false);
 });
+test('fractional transit freezes on pause, resumes from that pose, and is reset by an explicit observation change',()=>{
+ const m=new MessageJourney();m.play();m.tick(.12);m.tick(.12);const phase=m.playbackPhase;
+ assert.ok(phase>0&&phase<1);assert.equal(m.state.completedSteps,0);
+ m.pause();m.tick(20);assert.equal(m.playbackPhase,phase);
+ m.play();m.tick(.1);assert.ok(m.playbackPhase>phase);assert.equal(m.state.completedSteps,0);
+ m.pause();m.step();assert.equal(m.playbackPhase,0);assert.equal(m.state.completedSteps,1);
+ m.play();m.tick(.1);m.seek(0);assert.equal(m.playbackPhase,0);
+ m.play();m.tick(.1);m.configure({position:90});assert.equal(m.playbackPhase,0);assert.equal(m.playing,false);
+ m.play();m.tick(.1);m.reset();assert.equal(m.playbackPhase,0);
+});
+test('playback stops exactly before an unavailable next link and never displays transit across it',()=>{
+ const m=new MessageJourney();m.configure({backboneOnline:false});m.play();
+ for(let i=0;i<20;i++)m.tick(.1);
+ assert.equal(m.state.completedSteps,1);assert.equal(m.playing,false);assert.equal(m.blockedAt,'network');assert.equal(m.playbackPhase,0);
+ assert.deepEqual(m.state.parts.map(p=>p.hop),[1,0,0]);
+ m.configure({backboneOnline:true});m.play();m.tick(.1);assert.ok(m.playbackPhase>0);assert.equal(m.state.completedSteps,1);
+});

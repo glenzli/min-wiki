@@ -11,17 +11,43 @@ const defs=`<defs>
   <filter id="cell-shadow" x="-20%" y="-25%" width="140%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#665751" flood-opacity=".1"/></filter>
 </defs>`;
 const text=(x:number,y:number,value:string,size=18)=>`<text x="${x}" y="${y}" text-anchor="middle" fill="#504c45" font-size="${size}" font-weight="${size>16?650:450}">${value}</text>`;
+function dendriteRibbon(points:readonly (readonly [number,number])[],width=8){
+  const samples:{x:number;y:number}[]=[];
+  for(let i=0;i<points.length-1;i++)for(let j=0;j<=10;j++){
+    if(i&&j===0)continue;
+    const a=points[Math.max(0,i-1)]!,b=points[i]!,c=points[i+1]!,d=points[Math.min(points.length-1,i+2)]!,u=j/10;
+    const coord=(k:0|1)=>.5*(2*b[k]+(-a[k]+c[k])*u+(2*a[k]-5*b[k]+4*c[k]-d[k])*u*u+(-a[k]+3*b[k]-3*c[k]+d[k])*u*u*u);
+    samples.push({x:coord(0),y:coord(1)});
+  }
+  const sides=[1,-1].map(side=>samples.map((point,i)=>{
+    const a=samples[Math.max(0,i-1)]!,b=samples[Math.min(samples.length-1,i+1)]!,length=Math.hypot(b.x-a.x,b.y-a.y)||1;
+    const radius=(width*Math.pow(1-i/(samples.length-1),1.25)+.35)/2;
+    return {x:point.x-side*(b.y-a.y)/length*radius,y:point.y+side*(b.x-a.x)/length*radius};
+  }));
+  return [...sides[0]!,...[...sides[1]!].reverse()].map((point,i)=>`${i?'L':'M'}${point.x.toFixed(2)} ${point.y.toFixed(2)}`).join('')+'Z';
+}
 function epithelial(progress:number,t:Translator){
   // A continuous, layered epidermis: flatter at the surface, taller at its base.
-  // These profiles illustrate differentiation; they do not count real tissue layers.
-  const rows=[{y:211,h:14},{y:243,h:23},{y:286,h:25},{y:334,h:27},{y:385,h:27}];
-  const layers=rows.map(({y,h},row)=>Array.from({length:11},(_,col)=>{
-    const x=23+col*91+(row%2?43:0),lean=((col*7+row*3)%9)-4;
-    const outline=`M-47 ${-h*.5}Q-35 ${-h-3} -8 ${-h}Q22 ${-h-2} 43 ${-h*.55}Q52 0 43 ${h*.65}Q19 ${h+3} -8 ${h}Q-35 ${h+2} -47 ${h*.45}Q-53 0 -47 ${-h*.5}Z`;
-    return `<g transform="translate(${x} ${y}) rotate(${lean/3})"><path d="${outline}" fill="url(#epithelial)" stroke="#b58e91" stroke-width="1.35"/>
-      <path d="M-36 ${-h*.5}Q-15 ${-h*.82} 17 ${-h*.62}" fill="none" stroke="#fff4e8" stroke-width="1.4" opacity=".7"/>
-      ${row===0?`<path d="M-29 -2Q-4 -6 28 -1M-23 5Q0 2 34 5" fill="none" stroke="#bb9690" stroke-width=".7" opacity=".5"/>`:`<ellipse cx="${lean}" cy="1" rx="${row===1?18:13}" ry="${row===1?5:row===4?15:11}" fill="url(#cell-nucleus)" stroke="#927889" stroke-width=".7"/><path d="M${lean-7} -3q5-5 12-1m-11 8q5 3 11-1" stroke="#d9c6d7" stroke-width=".8" fill="none" opacity=".65"/><circle cx="${lean+4}" cy="3" r="2.1" fill="#73617b" opacity=".7"/>`}
-    </g>`;
+  // Shared edges, rather than separate oval tiles, keep the tissue packed.
+  // The selected profiles and layer counts are illustrative, not a histology map.
+  const levels=[193,216,249,292,349,411],columns=14;
+  const grid=levels.map((y,row)=>Array.from({length:columns+1},(_,col)=>{
+    const x=35+col*910/columns+(col===0||col===columns?0:(row%2?16:-9)+Math.sin(col*1.9+row)*5);
+    return {x,y:y-(21-row*1.2)*Math.sin((x-35)/910*Math.PI)+(row===0||row===5?0:Math.sin(col*1.6+row)*4)};
+  }));
+  const edge=(a:{x:number;y:number},b:{x:number;y:number},bend:number,vertical=false)=>
+    `Q${(a.x+b.x)/2+(vertical?bend:0)} ${(a.y+b.y)/2+(vertical?0:bend)} ${b.x} ${b.y}`;
+  const layers=Array.from({length:5},(_,row)=>Array.from({length:columns},(_,col)=>{
+    const tl=grid[row]![col]!,tr=grid[row]![col+1]!,bl=grid[row+1]![col]!,br=grid[row+1]![col+1]!;
+    const outline=`M${tl.x} ${tl.y}${edge(tl,tr,Math.sin(col*.9+row)*2)}${edge(tr,br,Math.sin((col+1)*1.7+row)*2.5,true)}${edge(br,bl,Math.sin(col*.9+row+1)*2)}${edge(bl,tl,Math.sin(col*1.7+row)*2.5,true)}Z`;
+    const x=(tl.x+tr.x+bl.x+br.x)/4,y=(tl.y+tr.y+bl.y+br.y)/4,h=(bl.y+br.y-tl.y-tr.y)/2;
+    const tint=['#ead7c2','#ebccba','#e6c1b3','#dfb5ab','#d8aaa4'][row];
+    const nucleus=row===0?'':`<ellipse cx="${x+Math.sin(col)*3}" cy="${y+2}" rx="${row===1?12:row===4?9:12}" ry="${row===1?3.2:row===4?16:10}" fill="url(#cell-nucleus)" stroke="#967b8d" stroke-width=".65"/><path d="M${x-6} ${y}q5-4 11-1m-10 7q5 3 10-1" stroke="#d8c3d1" stroke-width=".75" fill="none" opacity=".65"/>${row>1?`<circle cx="${x+3}" cy="${y+4}" r="2.2" fill="#76627d" opacity=".65"/>`:''}`;
+    const texture=row<2
+      ?`<path d="M${x-21} ${y-h*.18}q18-3 40 0m-34 7q14-2 27 0" stroke="#bd9c8b" stroke-width=".7" opacity=".48" fill="none"/>`
+      :`<path d="M${x-24} ${y-9}q6 6 11 5m25-8q-6 7-10 7m-23 19q6-3 10-2m18-1q4 0 9 5" stroke="#b69088" stroke-width=".7" opacity=".35" fill="none"/>`;
+    return `<g data-epidermal-cell="${row}-${col}"><path d="${outline}" fill="${tint}" stroke="#ba9691" stroke-width=".9"/>
+      <path d="M${tl.x+9} ${tl.y+5}Q${x} ${(tl.y+tr.y)/2+2} ${tr.x-10} ${tr.y+5}" stroke="#fff2e2" stroke-width="1" opacity=".65" fill="none"/>${texture}${nucleus}</g>`;
   }).join('')).join('');
   const grains=Array.from({length:8},(_,i)=>{const s=barrierParticle(i,progress);return `<g transform="translate(${s.x} ${s.y}) rotate(${i*47})"><ellipse rx="8" ry="5.5" fill="#8ba091" stroke="#667e73" stroke-width="1.2"/><ellipse cx="-2" cy="-1" rx="3.5" ry="1.6" fill="#c5d2bf" opacity=".75"/><path d="M-7-3l-3-2m14 1 3-2M-3 4l-1 3" stroke="#667e73" stroke-width=".8" stroke-linecap="round"/></g>`;}).join('');
   const surface='M35 193Q490 172 945 193V411Q490 396 35 411Z';
@@ -66,25 +92,29 @@ function muscle(progress:number,t:Translator,options:MuscleOptions){
     <rect x="168" y="363" width="644" height="120" rx="20" fill="#f7f6ed" stroke="#cfd3c5"/>
     <path data-z-discs="true" d="M${left} 382v81M${right} 382v81" stroke="#786479" stroke-width="5"/>
     ${[398,420,442].map(y=>`<path d="M${left} ${y}h178M${right} ${y}h-178" stroke="#c17e6b" stroke-width="4"/><path d="M385 ${y+8}H595" stroke="#9c8ba4" stroke-width="8" stroke-linecap="round"/>`).join('')}
+    <g data-filament-detail="true">${[398,420,442].map(y=>`
+      <g fill="#ebbb9d" stroke="#a46e65" stroke-width=".5">${Array.from({length:21},(_,i)=>`<circle cx="${left+7+i*8}" cy="${y}" r="1.9"/><circle cx="${right-7-i*8}" cy="${y}" r="1.9"/>`).join('')}</g>
+      <path d="${Array.from({length:10},(_,i)=>{const x=400+i*20,side=i<5?-1:1;return `M${x} ${y+5}l${side*4}-4m${-side*4} 4l${side*4} 0`;}).join('')}" fill="none" stroke="#786a87" stroke-width="1.2" stroke-linecap="round"/>
+      <path d="M391 ${y+9}H589" fill="none" stroke="#c4b9ca" stroke-width="1.2" opacity=".8"/>`).join('')}</g>
     ${text(490,516,t('放大同一纤维的代表肌节：细丝长度不变'),16)}</g>`;
 }
 function neuron(progress:number,t:Translator){
   const s=nerveSignal(progress);
   // Curved, tapering dendrites branch away from the single axon.
-  const dendrites=[
-    ['M207 226C177 208 167 186 162 157S153 118 132 96','M162 157C139 153 123 138 111 117M155 134C171 123 176 104 173 88'],
-    ['M194 240C167 236 140 224 117 205S91 168 66 169','M117 205C99 210 80 206 61 195M92 181C95 165 88 149 77 138'],
-    ['M188 259C156 258 142 272 115 278S83 274 58 285','M115 278C108 295 92 306 77 308M88 278C76 267 63 265 48 267'],
-    ['M203 279C174 300 173 318 153 343S135 372 110 384','M153 343C130 339 113 347 99 361M139 365C146 385 139 399 130 413'],
-    ['M225 281C232 312 249 326 253 354S251 391 264 411','M253 354C272 360 282 376 287 392M251 332C264 321 267 309 264 298'],
-    ['M231 216C244 194 245 175 241 150S236 120 246 99','M241 150C260 142 269 126 272 110M239 130C223 123 217 108 219 94'],
+  const dendrites:{points:[number,number][];twigs:string}[]=[
+    {points:[[207,226],[183,204],[169,184],[162,157],[151,122],[132,96]],twigs:'M162 157C139 153 123 138 111 117M155 134C171 123 176 104 173 88'},
+    {points:[[194,240],[163,232],[140,223],[117,205],[90,178],[66,169]],twigs:'M117 205C99 210 80 206 61 195M92 181C95 165 88 149 77 138'},
+    {points:[[188,259],[157,261],[140,272],[115,278],[83,277],[58,285]],twigs:'M115 278C108 295 92 306 77 308M88 278C76 267 63 265 48 267'},
+    {points:[[203,279],[181,300],[169,323],[153,343],[135,370],[110,384]],twigs:'M153 343C130 339 113 347 99 361M139 365C146 385 139 399 130 413'},
+    {points:[[225,281],[233,309],[247,332],[253,354],[254,389],[264,411]],twigs:'M253 354C272 360 282 376 287 392M251 332C264 321 267 309 264 298'},
+    {points:[[231,216],[242,193],[244,174],[241,150],[239,121],[246,99]],twigs:'M241 150C260 142 269 126 272 110M239 130C223 123 217 108 219 94'},
   ];
-  const branches=dendrites.map(([stem,twigs])=>`<path d="${stem}" fill="none" stroke="#b39a7e" stroke-width="7" stroke-linecap="round"/><path d="${stem}" fill="none" stroke="#e3d2b6" stroke-width="3.8" stroke-linecap="round"/><path d="${twigs}" fill="none" stroke="#b6a087" stroke-width="2.3" stroke-linecap="round"/>`).join('');
+  const branches=dendrites.map(({points,twigs})=>`<path d="${dendriteRibbon(points)}" fill="#d8c2a1" stroke="#ae957a" stroke-width=".65"/><path d="${twigs}" fill="none" stroke="#b6a087" stroke-width="1.5" stroke-linecap="round"/>`).join('');
   const sheath=Array.from({length:7},(_,i)=>`<g transform="translate(${335+i*67} 240)"><rect width="56" height="29" rx="14.5" fill="url(#myelin)" stroke="#ad9a7c" stroke-width="1.1"/>
     <path d="M8 6Q4 15 8 23M13 4Q9 15 13 25M43 4q4 11 0 21M48 6q4 9 0 17" stroke="#b39f7c" stroke-width=".9" fill="none" opacity=".65"/>
     <path d="M16 7H39" stroke="#fff5d9" stroke-width="2" stroke-linecap="round" opacity=".75"/>
     <ellipse cx="26" cy="26" rx="7" ry="2.5" fill="#9c8a90" opacity=".7"/></g>`).join('');
-  const spark=progress>0&&progress<.8?`<ellipse data-signal="axon" cx="${s.x}" cy="254" rx="17" ry="14" fill="#e7b95c" opacity=".65"/><circle cx="${s.x}" cy="254" r="4.5" fill="#fff2bd" stroke="#d3ab5c"/>`:'';
+  const spark=progress>0&&progress<.8?`<g data-signal="axon"><ellipse cx="${s.x}" cy="254" rx="18" ry="12" fill="#e7b95c" opacity=".2"/><path d="M${s.x-10} 249h20m-20 10h20" fill="none" stroke="#dbac50" stroke-width="3" stroke-linecap="round"/><path d="M${s.x-5} 250h10m-10 8h10" fill="none" stroke="#fff0bb" stroke-width="1.2" stroke-linecap="round"/></g>`:'';
   const soma='M191 227C192 211 204 203 217 210C228 213 239 200 250 217C260 229 254 242 265 252C278 264 260 278 246 279C231 279 223 296 210 289C196 283 200 274 186 269C171 263 174 245 186 238Z';
   return `${text(490,52,t('神经元：结构连得远，信号传得快'))}<g filter="url(#cell-shadow)">${branches}
     <path d="M253 254H828q18 0 23-15m-23 15 23 14" stroke="#ad9276" stroke-width="9" stroke-linecap="round" fill="none"/><path d="M266 252H822" stroke="#e7d2b3" stroke-width="3" fill="none"/>
@@ -93,8 +123,8 @@ function neuron(progress:number,t:Translator){
     <ellipse cx="218" cy="250" rx="22" ry="25" fill="url(#cell-nucleus)" stroke="#927b93" stroke-width="1.1"/>
     <path d="M209 234q12-5 18 4m-22 10q9-8 23 0m-24 9q11 8 22 2" stroke="#d3bfd1" stroke-width="1" fill="none" opacity=".65"/>
     <circle cx="222" cy="248" r="6" fill="#816c8a"/><path d="M199 226q8-6 16-3m24 47q10-2 13-9" stroke="#a99085" stroke-width="1.4" fill="none"/>
-    <g fill="#d3b996" stroke="#ab927e" stroke-width="1"><ellipse cx="853" cy="238" rx="9" ry="6" transform="rotate(-25 853 238)"/><ellipse cx="853" cy="269" rx="9" ry="6" transform="rotate(25 853 269)"/></g>
-    <g fill="#f6e8cc" opacity=".8"><circle cx="851" cy="236" r="1.6"/><circle cx="856" cy="239" r="1.5"/><circle cx="851" cy="267" r="1.6"/><circle cx="856" cy="270" r="1.5"/></g></g>
+    <g fill="url(#soma)" stroke="#ab927e" stroke-width="1"><path d="M841 242C844 240 842 232 849 231C859 227 866 234 864 241C862 248 850 249 845 245Z"/><path d="M841 264C845 264 845 257 852 260C863 260 868 269 862 275C855 281 845 275 844 270Z"/></g>
+    <g fill="#f6e8cc" stroke="#b49c7e" stroke-width=".45">${[[850,235],[856,235],[859,240],[851,242],[852,265],[859,268],[855,273],[849,270]].map(([x,y])=>`<circle cx="${x}" cy="${y}" r="1.7"/>`).join('')}</g></g>
     ${spark}<path d="M888 211C877 230 878 274 888 297" stroke="#b39d92" stroke-width="8" fill="none"/><path d="M903 217C894 235 895 274 903 291" stroke="#e1d4bd" stroke-width="6" fill="none"/>
     <g stroke="#a58d83" stroke-width="1.7" fill="none"><path d="M882 240h5m-6 14h5m-3 14h5"/></g>
     ${Array.from({length:5},(_,i)=>`<circle cx="${853+s.transmitter*28}" cy="${236+i*8}" r="2.6" fill="#ac8357" opacity="${s.transmitter>0?1:0}"/>`).join('')}

@@ -5,6 +5,9 @@ const mix = (a: number, b: number, u: number) => a + (b - a) * u;
  * Both views are structural diagrams with different magnifications, not measured paths. */
 export const WATER_ROUTE = [[0,259,440],[.24,375,364],[.61,375,180],[.74,463,138],[.8,464,151],[.88,471,165],[1,488,211]] as const;
 export const LEAF_WATER_ROUTE = [[.61,530,275],[.74,563,319],[.8,605,341],[.88,614,370],[1,614,413]] as const;
+/** The retained blade marks the same sampled region before the separately
+ * magnified section is read. Depth and pore departure are projected symbols. */
+export const BLADE_WATER_ROUTE = [[.61,19,245],[.7,9,8],[.74,78,-12],[.8,84,0],[.88,87,12],[1,112,58]] as const;
 type Route = readonly (readonly [number, number, number])[];
 function routeAt(route: Route, p: number) {
   const i = Math.max(0, route.findIndex(([end]) => p <= end) - 1);
@@ -14,8 +17,9 @@ function routeAt(route: Route, p: number) {
 }
 /** A marked cohort, not a count or a delay estimate for real molecules. */
 export function waterAt(progress: number) {
-  const p = clamp(progress), detail = routeAt(LEAF_WATER_ROUTE, p);
+  const p = clamp(progress), detail = routeAt(LEAF_WATER_ROUTE, p), blade = routeAt(BLADE_WATER_ROUTE, p);
   return { ...routeAt(WATER_ROUTE, p), detailX: detail.x, detailY: detail.y,
+    bladeX: blade.x, bladeY: blade.y,
     vapour: clamp((p-.74)/.06), stage: p < .24 ? 0 : p < .61 ? 1 : p < .74 ? 2 : 3,
     leafProgress: clamp((p-.61)/.39), leafVisible: p >= .61, leftLeaf: p >= .88 };
 }

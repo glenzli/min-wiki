@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {hasPart,processFor,processState,respirationState,respirationFrame,focusBox,wholeBox,mixBox,curvePoint,hitPart,cellOffset,type Cell,type Part} from '../model.ts';
+import {hasPart,processFor,processState,respirationState,respirationFrame,focusBox,wholeBox,mixBox,curvePoint,hitPart,cellOffset,animalPoint,type Cell,type Part} from '../model.ts';
 test('shared structures and genuinely absent structures stay distinct',()=>{
  for(const cell of ['animal','plant','bacterium'] as Cell[]){assert.ok(hasPart(cell,'dna'));assert.ok(hasPart(cell,'membrane'));}
  for(const part of ['nucleus','mitochondrion','chloroplast','vacuole'] as Part[])assert.equal(hasPart('bacterium',part),false);
@@ -14,6 +14,15 @@ test('plants can be examined in both processes; neither is imposed on all bacter
 test('an absent organelle returns the inspection to the same whole specimen',()=>{
  assert.deepEqual(focusBox('bacterium','nucleus'),wholeBox('bacterium'));assert.deepEqual(focusBox('animal','chloroplast'),wholeBox('animal'));
  assert.ok(focusBox('plant','chloroplast').width<wholeBox('plant').width);
+});
+test('membrane inspection frames the actual boundary landmark with useful inside and outside context',()=>{
+ const landmarks={animal:animalPoint(3.55,3.5),plant:{x:148,y:165},bacterium:{x:144,y:245}};
+ for(const cell of ['animal','plant','bacterium'] as const){
+  const box=focusBox(cell,'membrane'),point=landmarks[cell];
+  const x=(point.x+cellOffset[cell]-box.x)/box.width,y=(point.y-box.y)/box.height;
+  assert.ok(x>=.15&&x<=.4,`${cell} has a deliberate exterior margin, rather than a mostly empty crop`);
+  assert.ok(y>=.3&&y<=.7,`${cell} keeps the selected membrane protein inside the central inspection band`);
+ }
 });
 test('camera interpolation is continuous and keeps the viewport aspect',()=>{
  const start=focusBox('animal','membrane'),end=focusBox('plant','mitochondrion');

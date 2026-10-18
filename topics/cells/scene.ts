@@ -2,16 +2,19 @@ import { animalOutline,animalPoint,cellOffset,curvePoint,hasPart,processState,re
 const $=(id:string)=>document.getElementById(id)!;
 function organelle(x:number,y:number,angle:number,kind:'mitochondrion'|'chloroplast',scale=1){
  const green=kind==='chloroplast',id=`organelle-${kind}-${x}-${y}`;
+ const envelope=green
+  ?'M-43-1C-43-16-23-24-3-23C21-24 43-15 43 0C42 15 21 23-2 22C-24 23-43 13-43-1Z'
+  :'M-43-2C-42-19-22-27-5-21C9-16 16-18 28-14C49-9 46 10 29 19C13 27 0 14-13 18C-32 24-45 15-43-2Z';
  const inside=green
   ? `<path d="M-24 2Q-13 8-4 2T17 2" fill="none" stroke="#639277" stroke-width="1.8"/>${[-23,-4,16].map((cx,i)=>Array.from({length:4},(_,j)=>`<ellipse cx="${cx}" cy="${-8+j*5+(i%2)*2}" rx="10" ry="3.1" fill="url(#thylakoid)" stroke="#3e755b" stroke-width=".7"/><path d="M${cx-7} ${-9+j*5+(i%2)*2}q7-2 14 0" fill="none" stroke="#d6e8af" stroke-width=".65" opacity=".85"/>`).join('')).join('')}`
-  : '<path d="M-35 0C-35-12-28-16-22-16C-16-16-21 9-13 9S-15-18-5-17S-7 11 3 11S1-16 12-15S12 8 22 6S20-10 27-8C43 0 30 18 5 18S-31 15-35 0Z" fill="#e4b49c" stroke="#a46664" stroke-width="1.6"/><path d="M-33-1C-32-10-28-13-23-13C-20-13-24 12-13 12S-12-16-5-14S-5 14 3 14S5-14 12-12S13 11 23 8" fill="none" stroke="#ffe5c9" stroke-width="1.05"/>';
+  : '<path d="M-35-3C-36-13-27-18-23-15C-19-12-25 5-18 8C-9 12-16-17-8-16C1-15-9 10 0 11C9 12 2-13 10-12C18-11 9 10 18 12C26 13 21-9 28-8C38-6 35 4 30 9" fill="none" stroke="#a96967" stroke-width="2.5" stroke-linecap="round"/><path d="M-34-4C-33-12-29-15-25-14C-21-11-26 8-18 10C-7 13-14-14-8-14C-2-14-7 13 0 13C11 15 5-11 10-10C15-9 10 14 18 14C28 15 24-6 28-6" fill="none" stroke="#ffe5cb" stroke-width=".95" stroke-linecap="round"/>';
  const stroma=Array.from({length:14},(_,i)=>{const a=i*2.399,r=6+(i*7)%24;return `<circle cx="${Math.cos(a)*r}" cy="${Math.sin(a)*r*.48}" r=".65" fill="${green?'#4b795d':'#995e5e'}" opacity=".22"/>`;}).join('');
  return `<g data-structure="${kind}" transform="translate(${x} ${y}) rotate(${angle}) scale(${scale})">
-  <defs><clipPath id="${id}"><ellipse rx="37.5" ry="17.8"/></clipPath></defs>
-  <ellipse cy="3.4" rx="42" ry="22" fill="#45534b" opacity=".1"/>
-  <ellipse rx="43" ry="23" fill="url(#${green?'chloroplast':'mitochondrion'})" stroke="${green?'#537c63':'#a36d66'}" stroke-width="1.55"/>
-  <ellipse rx="39.7" ry="19.7" fill="none" stroke="${green?'#e0ebc2':'#ffe6cd'}" stroke-width="1.45"/>
-  <ellipse rx="37.7" ry="17.9" fill="none" stroke="${green?'#769975':'#b77f76'}" stroke-width=".75"/>
+  <defs><clipPath id="${id}"><path d="${envelope}" transform="scale(.86 .76)"/></clipPath></defs>
+  <path d="${envelope}" transform="translate(0 3.4)" fill="#45534b" opacity=".1"/>
+  <path d="${envelope}" fill="url(#${green?'chloroplast':'mitochondrion'})" stroke="${green?'#537c63':'#a36d66'}" stroke-width="1.55"/>
+  <path d="${envelope}" transform="scale(.925 .87)" fill="none" stroke="${green?'#e0ebc2':'#ffe6cd'}" stroke-width="1.45"/>
+  <path d="${envelope}" transform="scale(.877 .79)" fill="none" stroke="${green?'#769975':'#b77f76'}" stroke-width=".75"/>
   <g clip-path="url(#${id})">${stroma}${inside}</g>
   <path d="M-30-13Q-10-23 17-15" fill="none" stroke="#ffffee" stroke-width="1.3" opacity=".75"/>
   <path d="M-29 14Q0 23 27 13" fill="none" stroke="${green?'#3f6b53':'#915857'}" stroke-width=".85" opacity=".45"/>

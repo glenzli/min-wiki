@@ -42,3 +42,9 @@ Focused verification uses model equilibrium and force direction invariants, pars
 The refined illustrations distinguish flattened cornified surface cells from deeper epidermal cells, retain peripheral nuclei and stable striations in muscle, and show curved dendritic branches, segmented myelin and synaptic terminals. These are selected, coloured teaching profiles rather than histological sections at a common scale. No division/migration model or new electrical physiology was added. Muscle attachment, filament length, repeat identities, force balance, timing and retained experiment state are unchanged.
 
 形态复核补充：[OpenStax · Epithelial Tissue](https://openstax.org/books/anatomy-and-physiology-2e/pages/4-2-epithelial-tissue) 与上列 Nervous Tissue。来源支持形态与结构关系，不为插画的具体数量和位置赋予生理精度。此轮仍为 Cells 草稿，不部署。
+
+## 连续组织与局部细节 · 2026-10-19
+
+表皮改用共享边缘连接的细胞轮廓，表面扁平、深部较高，避免把组织画成彼此分离的胶囊。图示层数、细胞数与着色仍不表示组织切片测量，也没有加入分裂、迁移或角化的时间模拟。神经树突沿同一分叉位置逐渐变细，末端保留囊泡示意；轴突亮色以短段膜提示信号位置，不把信号画成奔跑的实物小球。肌节增加静态细丝与粗丝表面细节，原有粗细丝长度、连接、重复单元与力平衡不变；这些细节不模拟分子工作循环。
+
+The epidermal profiles share continuous edges instead of appearing as detached capsules; flattened surface and taller basal profiles remain an illustrative tissue comparison. Layer counts, cell counts and colours are not histological measurements, and no division, migration or keratinisation clock was added. Dendrites taper along the same branches; vesicle details remain schematic. Short membrane highlights identify the existing axonal signal position rather than a travelling material ball. Static filament details preserve filament lengths, repeat identities, attachment geometry and force balance; they do not simulate molecular cycling. The integrated Cells workspace owns the sampled inspection camera and reduced-motion checkpoints.

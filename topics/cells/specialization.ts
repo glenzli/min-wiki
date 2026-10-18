@@ -9,6 +9,7 @@ import { clamp, DEFAULT_MUSCLE, muscleForceViewport, type CellKind, type MuscleM
 import type { BloodProcess } from '../blood-cells/model.ts';
 import { t } from './i18n.ts';
 import { createWorkState, workPhase, type Specialism } from './exploration.ts';
+import { createInspectionMotion } from './inspectionMotion.ts';
 import bodyLearning from '../body-cells/learning.json';
 import bloodLearning from '../blood-cells/learning.json';
 import { language } from '../../src/platform/i18n.ts';
@@ -19,8 +20,9 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
   const scene = el<SVGSVGElement>('work-scene'), states = createWorkState();
   const muscleOptions = { ...DEFAULT_MUSCLE };
   let muscleView:'whole'|'sarcomere'|'forces'='whole';
-  let lastMuscleCamera:MuscleViewport={x:0,y:0,width:980,height:550};
-  let muscleCamera={from:lastMuscleCamera,blend:1};
+  let lastCamera:MuscleViewport={x:0,y:0,width:980,height:550};
+  let cameraFrom=lastCamera,cameraBlend=1;
+  let inspection:ReturnType<typeof createInspectionMotion>|null=null;
   const node = <K extends keyof HTMLElementTagNameMap>(tag:K, value='') => {
     const element=document.createElement(tag); element.textContent=value; return element;
   };
@@ -46,7 +48,7 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
   academic.append(numbers,theory,formula,terms,boundary);
   musclePanel.append(constraint,loadBox,muscleQuestion,legend,scaleNote,comparisonNote,academic);
   el('work-observe').after(musclePanel);
-  let kind = initial, playing = false, cancel = () => {}, cancelZoom = () => {}, explained = '';
+  let kind = initial, playing = false, cancel = () => {}, cancelZoom = () => {}, explained = '', painted = '';
   const examples = [...body, ...blood];
   const current = () => examples.find(item => item.id === kind)!;
   const setText=(target:HTMLElement,value:string)=>{if(target.textContent!==value)target.textContent=value;};
@@ -54,22 +56,27 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
     const state = states[kind], info = current(), phase = workPhase(kind, state.progress);
     const muscleCopy=kind==='muscle'?muscleExplanation(state.progress,muscleOptions):undefined;
     // Renderer IDs are namespaced because the detailed cellular SVG stays mounted.
-    const art = kind === 'barrier' || kind === 'muscle' || kind === 'neuron'
-      ? renderCell(kind as CellKind, state.progress, bodyText, muscleOptions) : renderBlood(kind as BloodProcess, state.progress, bloodText);
-    scene.innerHTML = art.replace(/id="([^"]+)"/g, 'id="work-$1"').replace(/url\(#([^\)]+)\)/g, 'url(#work-$1)').replace(/href="#([^"]+)"/g, 'href="#work-$1"');
-    const focus = kind === 'barrier' ? { x: 490, y: 270 } : kind === 'muscle' ? { x: 490, y: 417 } : kind === 'neuron' ? { x: 859, y: 255 } : kind === 'oxygen' ? { x: 570, y: 295 } : { x: 530, y: 317 };
-    const width = 980 / (1 + state.zoom * (kind==='muscle'?.85:1.2)), height = width * 550 / 980;
+    const paintKey=`${kind}:${state.progress}:${muscleOptions.mode}:${muscleOptions.load}`;
+    if(painted!==paintKey){
+      painted=paintKey;
+      const art = kind === 'barrier' || kind === 'muscle' || kind === 'neuron'
+        ? renderCell(kind as CellKind, state.progress, bodyText, muscleOptions) : renderBlood(kind as BloodProcess, state.progress, bloodText);
+      scene.innerHTML = art.replace(/id="([^"]+)"/g, 'id="work-$1"').replace(/url\(#([^\)]+)\)/g, 'url(#work-$1)').replace(/href="#([^"]+)"/g, 'href="#work-$1"');
+    }
+    const focus = kind === 'barrier' ? { x: 490, y: 270 } : kind === 'muscle' ? { x: 490, y: 417 } : kind === 'neuron' ? { x: 871, y: 255 } : kind === 'oxygen' ? { x: 570, y: 295 } : { x: 530, y: 317 };
+    // The synaptic gap is much smaller than a tissue-scale working region;
+    // its inspection view must reveal vesicles and receptors on narrow screens.
+    const width = 980 / (1 + state.zoom * (kind==='muscle'?.85:kind==='neuron'?3:1.2)), height = width * 550 / 980;
     const x = 490 + (focus.x - 490) * state.zoom, y = 275 + (focus.y - 275) * state.zoom;
     let camera={x:x-width/2,y:y-height/2,width,height};
     if(muscleCopy) {
       const target=muscleView==='whole'?{x:0,y:0,width:980,height:550}
         :muscleView==='forces'?muscleForceViewport(muscleCopy.state)
         :{x:490-980/1.85/2,y:417-550/1.85/2,width:980/1.85,height:550/1.85};
-      const from=muscleCamera.from,blend=muscleCamera.blend;
-      camera={x:from.x+(target.x-from.x)*blend,y:from.y+(target.y-from.y)*blend,
-        width:from.width+(target.width-from.width)*blend,height:from.height+(target.height-from.height)*blend};
-      lastMuscleCamera=camera;
+      camera=target;
     }
+    if(inspection)camera=inspection.sample(cameraFrom,camera,cameraBlend);
+    lastCamera=camera;
     scene.setAttribute('viewBox', `${camera.x} ${camera.y} ${camera.width} ${camera.height}`);
     scene.setAttribute('aria-label', info.subject);
     scene.dataset.case = kind; scene.dataset.progress = state.progress.toFixed(4);
@@ -113,12 +120,17 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
     }
   }
   function pause() { cancel(); playing = false; draw(); }
-  function stopCamera(){cancelZoom();muscleCamera.blend=1;}
+  function stopCamera(){cancelZoom();inspection?.dispose();inspection=null;cameraBlend=1;}
   function select(next: Specialism) { pause(); stopCamera(); kind = next; draw(); onSelect(kind); }
+  function inspect(){
+    cancelZoom();inspection?.dispose();cameraFrom=lastCamera;cameraBlend=0;
+    const motion=createInspectionMotion();inspection=motion;
+    const cancel=animateValue({from:0,to:1,duration:560,onUpdate:value=>{cameraBlend=value;draw();},
+      onComplete:()=>{motion.dispose();if(inspection===motion)inspection=null;}});
+    cancelZoom=()=>{cancel();motion.dispose();};
+  }
   function inspectMuscle(next:typeof muscleView) {
-    cancelZoom();muscleView=next;muscleCamera={from:lastMuscleCamera,blend:0};
-    states.muscle.zoom=next==='whole'?0:1;
-    cancelZoom=animateValue({from:0,to:1,duration:500,onUpdate:value=>{muscleCamera.blend=value;draw();}});
+    muscleView=next;states.muscle.zoom=next==='whole'?0:1;inspect();
   }
   const options = el('work-options');
   for (const info of examples) {
@@ -128,8 +140,9 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
   el('work-play').addEventListener('click', () => {
     if (playing) { pause(); return; }
     cancel(); const state = states[kind]; if (state.progress >= 1) state.progress = 0;
-    if(kind==='muscle' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      state.progress=state.progress<.5?.5:1;draw();return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const stops=kind==='muscle'?[.5,1]:kind==='neuron'?[.18,.8,1]:kind==='defence'?[.16,.77,1]:[.26,.72,1];
+      state.progress=stops.find(stop=>stop>state.progress+1e-6)??1;draw();return;
     }
     playing = true; draw();
     cancel = animateValue({ from: state.progress, to: 1, duration: 8500 * (1 - state.progress), onUpdate: p => { state.progress = p; draw(); }, onComplete: () => { playing = false; draw(); } });
@@ -138,7 +151,7 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
   el('work-progress').addEventListener('input', () => { const value = Number(el<HTMLInputElement>('work-progress').value) / 1000; pause(); states[kind].progress = value; draw(); });
   el('work-zoom').addEventListener('click', () => {
     if(kind==='muscle'){inspectMuscle(muscleView==='sarcomere'?'whole':'sarcomere');return;}
-    cancelZoom(); const state = states[kind]; cancelZoom = animateValue({ from: state.zoom, to: state.zoom > .5 ? 0 : 1, duration: 500, onUpdate: value => { state.zoom = value; draw(); } });
+    const state = states[kind];state.zoom=state.zoom>.5?0:1;inspect();
   });
   forceView.addEventListener('click',()=>{if(kind==='muscle')inspectMuscle(muscleView==='forces'?'whole':'forces');});
   el('work-labels').addEventListener('click', () => { const enabled = scene.dataset.labels !== 'true'; scene.dataset.labels = String(enabled); el('work-labels').setAttribute('aria-pressed', String(enabled)); });
@@ -146,8 +159,8 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
     pause();muscleOptions.mode=button.dataset.muscleMode as MuscleMode;draw();
   }));
   load.addEventListener('input',()=>{const value=clamp(Number(load.value)/100);pause();muscleOptions.load=value;draw();});
-  document.addEventListener('visibilitychange', () => { if (document.hidden) { pause(); stopCamera(); } });
-  window.addEventListener('pagehide', () => { pause(); stopCamera(); });
+  document.addEventListener('visibilitychange', () => { if (document.hidden) { pause(); stopCamera();draw(); } });
+  window.addEventListener('pagehide', () => { pause(); stopCamera();draw(); });
   draw();
-  return { pause: () => { pause(); stopCamera(); }, select };
+  return { pause: () => { pause(); stopCamera();draw(); }, select };
 }

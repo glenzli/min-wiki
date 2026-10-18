@@ -11,6 +11,8 @@
 
 ## Ownership and replay
 
+`scene.ts` owns the retained SVG illustration and a finite Reader 2D sampler. The current numbered part moves continuously along its next available link; only the topic's existing clock supplies progress. The same three SVG identities survive intermediate poses, pause, replay and layout changes. Pausing preserves the in-flight pose; explicit stepping, seeking or changing conditions returns to the selected recorded node. Reaching that next node still requires the original gate and snapshot commit. Easing and travel durations are teaching choices, not measured latency or a picture of physical packets. Reduced motion retains discrete node observations.
+
 `model.ts` owns finite snapshots and condition gates. `main.ts` renders the same snapshot and the fixed local message; it does not ask for names, content, credentials or a remote API. Controls can branch from a recorded step: a condition edit discards only future snapshots. The already completed part positions and launched station identities survive. Scrubbing previous snapshots restores their recorded connections and sender position and is replay, not sending again; new forward seeking cannot bypass a disconnected gate. A part launched through A keeps A when the phone moves into area B. A later unsent part uses B. This is not a real handover simulation.
 
 Playback starts with a button, has bounded elapsed-time updates and pauses on hidden/pagehide. Reduced motion has no decorative animation; deterministic manual stepping and all explanatory states remain available. SVG has compact vertical coordinates below 700 px and wider horizontal coordinates above; it is a topology illustration, not a geographic map. Radio access is gold dashed; this example’s wired route is green; stable data identities are blue. Off states also show status words and a blocked-link cross. Sources remain available in the children’s mode.
@@ -29,7 +31,7 @@ GSMA backhaul and 3GPP overview were discovered, but full pages returned 403 in 
 
 ## Validation and browser handoff
 
-Focused command: `node --import tsx --test topics/mobile-networks/tests/model.test.ts` (seven deterministic tests). Root performs the full repository gate and production browser validation after catalog integration.
+Focused command: `node --import tsx --test topics/mobile-networks/tests/*.test.ts` (11 deterministic tests, including fractional pause/resume, gate stops, dock continuity and retained SVG identities). Root performs the full repository gate and production browser validation after integration.
 
 Key selectors: `#network-scene [data-part="1"]` exposes current `data-hop` and immutable `data-station`; `#progress` 0–18; `#play`, `#step`, `#reset`; `#sender-online`, `#backbone-online`, `#receiver-online`; `#phone-position`; `#status`; `#received-parts [data-arrived]`; `#read-message`; shared `[data-mode]` and theme/language controls.
 

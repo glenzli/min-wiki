@@ -1,17 +1,26 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { waterAt, WATER_ROUTE, LEAF_WATER_ROUTE } from './model.ts';
+import { waterAt, WATER_ROUTE, LEAF_WATER_ROUTE, BLADE_WATER_ROUTE } from './model.ts';
 test('water remains liquid from roots through xylem before the leaf departure',()=>{
  assert.equal(waterAt(0).x,259);assert.equal(waterAt(.4).x,375);assert.equal(waterAt(.7).vapour,0);assert.equal(waterAt(1).vapour,1);
  assert.ok(waterAt(.64).leafProgress>0);assert.equal(waterAt(.5).leafProgress,0);
 });
 test('the marked water parcel crosses every segment boundary continuously',()=>{
- for(const p of [...new Set([...WATER_ROUTE,...LEAF_WATER_ROUTE].map(([p])=>p))].filter(p=>p>0&&p<1)){
+ for(const p of [...new Set([...WATER_ROUTE,...LEAF_WATER_ROUTE,...BLADE_WATER_ROUTE].map(([p])=>p))].filter(p=>p>0&&p<1)){
   const a=waterAt(p-1e-7),b=waterAt(p+1e-7);
   assert.ok(Math.hypot(a.x-b.x,a.y-b.y)<.001);
   assert.ok(Math.hypot(a.detailX-b.detailX,a.detailY-b.detailY)<.001);
+  assert.ok(Math.hypot(a.bladeX-b.bladeX,a.bladeY-b.bladeY)<.001);
   assert.ok(Math.abs(a.vapour-b.vapour)<.00001);
  }
+});
+test('the retained blade reaches the tissue sample while the cohort is still liquid', () => {
+ const sample=waterAt(.74);
+ assert.deepEqual([sample.bladeX,sample.bladeY],[78,-12]);
+ assert.equal(sample.vapour,0);
+ const air=waterAt(.88);
+ assert.equal(air.vapour,1);
+ assert.ok(air.bladeY>sample.bladeY);
 });
 test('liquid evaporates inside the leaf before vapour passes the same lower pore in both views',()=>{
  const liquid=waterAt(.74), vapour=waterAt(.8), pore=waterAt(.88), air=waterAt(1);

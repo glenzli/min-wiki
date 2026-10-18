@@ -11,7 +11,8 @@ import { muscleExplanation } from '../../body-cells/content.ts';
 function fixture(reduced=true){
   const ids=new Map(),all=[],frames=new Map();let frameId=0;
   class Element {
-    dataset={};attributes=new Map();listeners=new Map();children=[];textContent='';innerHTML='';value='';hidden=false;
+    dataset={};attributes=new Map();listeners=new Map();children=[];textContent='';markup='';paints=0;value='';hidden=false;
+    set innerHTML(value){this.markup=value;this.paints++;}get innerHTML(){return this.markup;}
     set id(value){this._id=value;ids.set(value,this);}get id(){return this._id;}
     setAttribute(name,value){this.attributes.set(name,String(value));}getAttribute(name){return this.attributes.get(name);}
     append(...nodes){this.children.push(...nodes);}replaceChildren(...nodes){this.children=[...nodes];}
@@ -70,6 +71,33 @@ test('reduced-motion playback exposes peak tension before relaxation, including 
   const peak=f.projected();f.ids.get('work-play').emit('click');
   assert.equal(f.scene.dataset.progress,'1.0000');assert.ok(f.projected()<peak);
   assert.equal(f.ids.get('work-play').getAttribute('aria-pressed'),'false');
+});
+test('all six reduced-motion cases retain their causal checkpoints without scheduling animation',t=>{
+  const f=fixture();t.after(f.restore);
+  for(const [kind,stops] of [['barrier',[.26,.72,1]],['muscle',[.5,1]],['neuron',[.18,.8,1]],['oxygen',[.26,.72,1]],['defence',[.16,.77,1]],['repair',[.26,.72,1]]]){
+    f.controller.select(kind);
+    for(const progress of stops){
+      f.ids.get('work-play').emit('click');
+      assert.equal(f.scene.dataset.progress,progress.toFixed(4));
+      assert.equal(f.ids.get('work-play').getAttribute('aria-pressed'),'false');
+      assert.equal(f.frames.size,0);
+    }
+  }
+});
+test('inspection retains the actual specimen markup and cancelling a view change rejects its old frame',t=>{
+  const f=fixture(false);t.after(f.restore);f.controller.select('neuron');f.seek(.45);
+  const art=f.scene.innerHTML,paints=f.scene.paints;
+  f.ids.get('work-zoom').emit('click');assert.equal(f.frames.size,1);
+  const callback=[...f.frames.values()][0];callback(performance.now()+180);
+  assert.equal(f.scene.innerHTML,art);assert.equal(f.scene.paints,paints);
+  assert.equal(f.scene.dataset.progress,'0.4500');
+  f.controller.select('oxygen');const camera=f.scene.getAttribute('viewBox'),current=f.scene.innerHTML;
+  assert.equal(f.frames.size,0);callback(performance.now()+3000);
+  assert.equal(f.scene.dataset.case,'oxygen');assert.equal(f.scene.getAttribute('viewBox'),camera);assert.equal(f.scene.innerHTML,current);
+  f.controller.select('neuron');assert.equal(f.scene.dataset.progress,'0.4500');
+  const close=f.scene.getAttribute('viewBox');f.ids.get('work-zoom').emit('click');
+  assert.equal(f.frames.size,1);f.document.hidden=true;f.document.emit('visibilitychange');
+  assert.equal(f.frames.size,0);assert.notEqual(f.scene.getAttribute('viewBox'),close);
 });
 test('changing stiffness cancels active playback so an old frame cannot overwrite the selected state',t=>{
   const f=fixture(false);t.after(f.restore);

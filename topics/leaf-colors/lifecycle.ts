@@ -11,7 +11,10 @@ export function leafLifeAt(value: number) {
     age, growth, senescence, separation, fall,
     stage: age < .22 ? 'bud' : age < .48 ? 'mature' : age < .87 ? 'senescent' : 'fallen',
     size: .13 + .87 * growth, unfold: .22 + .78 * growth,
-    rotation: fall * .9, x: -185 * fall, y: 40 * fall,
+    // A bounded drifting illustration after separation, not a wind/gravity solver.
+    rotation: fall * .9 + .18 * Math.sin(2 * Math.PI * fall) * Math.sin(Math.PI * fall),
+    x: -185 * fall + 22 * Math.sin(2 * Math.PI * fall) * Math.sin(Math.PI * fall),
+    y: 40 * fall + 12 * Math.sin(Math.PI * fall) ** 2,
     browning: smooth(.85, 1, age),
     // Observation excludes active transport before expansion and after detachment.
     transport,

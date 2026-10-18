@@ -1,5 +1,17 @@
 # 一片叶子的一生 / The life of a leaf
 
+## Botanical motion and transport refinement · 2026-10-19
+
+`leafMotion.ts` authors finite Reader Anime.js poses for asymmetric unfolding and a slight curl after detachment. The petiole seam is fixed; unfolding is complete before microscopy is available, so the original sample, section, cell and pigment-compartment anchors remain unchanged. Veins and surface grain deform with the blade. The lifecycle model retains the bounded drifting path and all water-availability conditions; curling and drift are illustrations, not calibrated tissue mechanics, drying rates or a wind solver.
+
+叶片从不对称折叠的姿态展开，叶柄连接位置保持不变；显微观察开放前，形态已完全展开。侧脉、细脉与表面纹理跟随同一片叶，固定采样点、组织、细胞和色素区室的坐标不变。脱落后的轻微卷曲与漂移是形态示意，不计算真实组织力学、干燥速率或风场。
+
+The tissue drawing now separates tightly arranged palisade cells from an irregular spongy layer and its visible intercellular spaces. Unconstrained air-space tracers were removed. Pigment curves, vacuole clipping and yellow/red compartment destinations are unchanged. The retained blade now reaches the same fixed sample while its marked water cohort is still liquid; phase change continues from wet mesophyll into air space before the selected lower pore. The whole-blade departure is a depth-projection cue, while the separately magnified water section shows the chosen underside explicitly. The water camera seeks a finite Anime.js track; model time and particle trajectories remain topic-owned. Hidden documents and dynamic reduced-motion changes cancel finite camera/selection transitions at the reached pose, without restarting them. Reduced motion also stops active finite journeys.
+
+紧密的栅栏组织与疏松、形状不规则的海绵组织保留区别；空隙由细胞间的几何关系显示，不再让未受区室约束的小点穿过组织。色素趋势、液泡裁切和黄／红路线的最终区室保持不变。整叶中的水标记仍为液态时到达同一个固定采样点，之后才在湿润叶肉与叶内空隙之间改变相态，再经本例下侧气孔离开。整叶上的离开方向表示深度投影；另一幅放大剖面明确显示选定的下侧出口。镜头运动只改变观察框，模型仍拥有水的进度与路径。页面隐藏或减少动态偏好生效时，有限的镜头／选择过渡停在已到达的位置，不自动续播；减少动态也会停止正在播放的有限探索。
+
+Anatomy and mechanism references rechecked for this pass: [OpenStax — Leaves](https://openstax.org/books/biology-2e/pages/30-4-leaves), [OpenStax — Transport of Water and Solutes in Plants](https://openstax.org/books/biology-2e/pages/30-5-transport-of-water-and-solutes-in-plants), and [Wisconsin Horticulture — Leaf Color Change in Autumn](https://hort.extension.wisc.edu/articles/leaf-color-change-autumn/). These support the qualitative anatomy and causal order, not the drawn shapes, timing or distances. Both integrated routes remain drafts pending editorial and browser acceptance.
+
 ## Main-scene pass · 2026-09-28
 
 The fitted desktop stage now reserves proportional space for corner labels, leaving more of its height for the same blade and its nested cell. A continuous extra zoom into tissue and cell views keeps the fixed sample point, hotspot and pigment compartments aligned. At 390 px the scene precedes the scale slider so the leaf appears earlier. During senescence, a few amber chevrons along the same midrib indicate partial nutrient remobilisation towards the petiole; they fade as the connection separates. Their speed and count are explanatory symbols, not tracked molecules or measured transport rates. The branch scar and earlier lifecycle conditions remain unchanged. Desktop leaf, cell and chloroplast endpoints and the mobile starting view were checked in the browser; other lifecycle and colour branches still need a full visual pass.

@@ -1,8 +1,10 @@
 import { magnetX, magnetEdge, type Motion, type Settings } from './model.ts';
+import { createTurningMagnet } from './magnetTurn.ts';
 
 export interface Scene {
   svg: SVGSVGElement; mover: SVGGElement; item: SVGGElement; itemShape: SVGGElement;
   impact: SVGGElement; trails: SVGPathElement; gap: SVGPathElement; itemShadow: SVGEllipseElement;
+  turningMagnet?: ReturnType<typeof createTurningMagnet>;
 }
 const magnet = (width: number, flipped = false) => {
   const half = width / 2, first = flipped ? 'blue' : 'red', second = flipped ? 'red' : 'blue';
@@ -69,17 +71,23 @@ export function createScene(svg: SVGSVGElement): Scene {
   return { svg, mover: get('mover'), item: get('item'), itemShape: get('item-shape'), impact: get('contact-glint'), trails: get('motion-trails'), gap: get('gap-line'), itemShadow: get('item-shadow') };
 }
 export function drawObject(scene: Scene, settings: Settings) {
-  scene.itemShape.innerHTML = settings.kind === 'magnet' ? magnet(140, settings.flipped)
+  scene.turningMagnet = undefined;
+  scene.itemShape.innerHTML = settings.kind === 'magnet' ? ''
     : settings.kind === 'iron' ? `<g transform="translate(0 20)"><path d="M24 8H73C102 8 102 48 73 48H19C-4 48 -4 17 19 17H70C86 17 86 38 70 38H25" fill="none" stroke="#687c83" stroke-width="8" stroke-linecap="round"/><path d="M24 7H73C102 7 102 47 73 47H19C-4 47 -4 16 19 16H70C86 16 86 37 70 37H25" fill="none" stroke="url(#steel)" stroke-width="6" stroke-linecap="round"/><path d="M26 5H70M20 45H68" stroke="#fff" stroke-width="1.5" opacity=".8"/></g>`
     : settings.kind === 'copper' ? `<path d="M0 18L95 8L116 66L20 79Z" fill="#92503b"/><path d="M0 14L95 4L116 62L20 75Z" fill="url(#copper)" stroke="#bc7956"/><path d="M4 15L93 7M21 72L111 60" stroke="#ffdcbb" stroke-width="2" opacity=".7"/><g stroke="#985c42" opacity=".17">${Array.from({length:13},(_,i)=>`<path d="M${7+i*6} 19l17 43"/>`).join('')}</g>`
     : settings.kind === 'aluminum' ? `<rect x="8" y="-30" width="76" height="102" rx="15" fill="url(#can)" stroke="#8c9ea0"/><ellipse cx="46" cy="-27" rx="36" ry="10" fill="#d6e0dd" stroke="#91a4a6"/><ellipse cx="46" cy="-27" rx="29" ry="6" fill="#b9c8c9"/><path d="M42 -30q18 -3 11 6h-14Z" fill="#edf4f0" stroke="#95a7a9" stroke-width="2"/><path d="M13 62Q45 71 79 62" fill="none" stroke="#f4faf6" stroke-width="2"/><path d="M10 -4Q46 5 82 -4V45Q46 54 10 45Z" fill="#5a958a" opacity=".88"/><path d="M40 29Q30 6 59 8Q57 28 40 29ZM40 29L51 15" fill="#d5e6bd" stroke="#e6f1d2"/><path d="M20 -16V56" stroke="#fff" stroke-width="5" opacity=".45"/>`
     : `<path d="M0 8L18 -7H107L88 8Z" fill="#f1d6a8"/><path d="M88 8L107 -7V59L88 76Z" fill="#ae7b4f"/><rect y="8" width="89" height="68" rx="5" fill="url(#wood)"/><g fill="none" stroke="#ae7d4c" stroke-width="1.4" opacity=".6"><path d="M5 22Q31 14 83 23M4 34Q45 25 83 33M5 61Q32 72 83 62M7 49Q23 45 27 49T80 49"/><ellipse cx="55" cy="46" rx="19" ry="9"/><ellipse cx="55" cy="46" rx="11" ry="4"/><path d="M20 -3Q60 4 97 -3"/></g><path d="M5 12H84" stroke="#ffe3b9" stroke-width="2"/>`;
   scene.itemShadow.setAttribute('rx', settings.kind === 'magnet' ? '0' : settings.kind === 'copper' ? '63' : '48');
+  if (settings.kind === 'magnet') {
+    scene.turningMagnet = createTurningMagnet(scene.itemShape);
+    scene.turningMagnet.draw(settings.flipped ? 180 : 0);
+  }
 }
-export function renderScene(scene: Scene, settings: Settings, motion: Motion, reduced: boolean) {
+export function renderScene(scene: Scene, settings: Settings, motion: Motion, reduced: boolean, turnAngle = settings.flipped ? 180 : 0) {
   const x = magnetX(settings.near), contact = magnetEdge(settings.near);
   scene.mover.setAttribute('transform', `translate(${x.toFixed(2)} 207)`);
   scene.item.setAttribute('transform', `translate(${motion.x.toFixed(2)} 207)`);
+  if (settings.kind === 'magnet') scene.turningMagnet?.draw(turnAngle);
   scene.item.dataset.phase = motion.phase;
   scene.item.dataset.position = motion.x.toFixed(2);
   scene.itemShadow.setAttribute('cx', String(motion.x + 50));

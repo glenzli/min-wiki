@@ -13,6 +13,8 @@ The existing static background-match comparison is retained deliberately: invent
 
 Camera and backdrop transitions are finite and respect reduced motion. Page exit cancels transitions and disconnects the resize observer. Existing insect geometry, identification boundaries and bilingual narration are preserved. Root task owns desktop/mobile browser acceptance.
 
+Returning from the browser's page cache reattaches the observer and recomputes the SVG-projected hit targets. It preserves the found insects, view and backdrop; interrupted camera/backdrop motion stays paused. Later responsive resizing can then update the same hit targets.
+
 Selected source explanations were rechecked; the linked institutional material and primary research support the mechanism, not the drawn timing, dimensions or trajectories. No external figures were copied.
 
 ## Presentation layout

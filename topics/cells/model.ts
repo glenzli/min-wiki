@@ -15,9 +15,11 @@ export function processFor(cell:Cell,choice:Process):Process|null {
 }
 export function wholeBox(cell:Cell):Box {return {x:cellOffset[cell],y:0,width:720,height:490};}
 const focus:Record<Cell,Record<Part,[number,number,number]>>={
- animal:{membrane:[139,174,168],dna:[345,248,214],nucleus:[345,248,235],chloroplast:[360,245,720],mitochondrion:[478,331,156],vacuole:[360,245,720]},
- plant:{membrane:[143,164,163],dna:[215,248,151],nucleus:[215,248,175],chloroplast:[484,110,170],mitochondrion:[212,358,152],vacuole:[397,249,330]},
- bacterium:{membrane:[145,245,158],dna:[361,245,255],nucleus:[360,245,720],chloroplast:[360,245,720],mitochondrion:[360,245,720],vacuole:[360,245,720]},
+ // Inspect a real membrane arc/channel with a small exterior margin. The
+ // remaining field shows the boundary's relation to cytoplasm (and cell wall).
+ animal:{membrane:[202,179,148],dna:[345,248,214],nucleus:[345,248,235],chloroplast:[360,245,720],mitochondrion:[478,331,156],vacuole:[360,245,720]},
+ plant:{membrane:[185,164,144],dna:[215,248,151],nucleus:[215,248,175],chloroplast:[484,110,170],mitochondrion:[212,358,152],vacuole:[397,249,330]},
+ bacterium:{membrane:[180,245,136],dna:[361,245,255],nucleus:[360,245,720],chloroplast:[360,245,720],mitochondrion:[360,245,720],vacuole:[360,245,720]},
 };
 export function focusBox(cell:Cell,part:Part):Box {
  if(!hasPart(cell,part))return wholeBox(cell);

@@ -20,6 +20,8 @@ export class MessageJourney {
   private elapsed = 0;
   playing = false;
   get state(): JourneyState { return clone(this.frames[this.cursor]!); }
+  /** Presentation phase within the next gated hop. Pausing preserves this observation. */
+  get playbackPhase(): number { return this.blockedAt ? 0 : bounded(this.elapsed / STEP_SECONDS, 1); }
   get recordedSteps(): number { return this.frames.length - 1; }
   get activePart(): Part | null { return this.state.parts.find(p => p.hop < HOP_COUNT) ?? null; }
   get blockedAt(): BlockedAt {
@@ -39,7 +41,7 @@ export class MessageJourney {
     const next = { ...this.conditions, ...change };
     next.position = bounded(next.position, 100);
     if (Object.keys(next).every(key => next[key as keyof Conditions] === this.conditions[key as keyof Conditions])) return;
-    this.pause();
+    this.pause(); this.elapsed=0;
     this.conditions = next;
     // Changed conditions branch from the current observation. Completed hops and launched identities survive.
     this.frames = this.frames.slice(0, this.cursor + 1);
@@ -47,10 +49,11 @@ export class MessageJourney {
     this.conditionFrames[this.cursor] = { ...this.conditions };
   }
   step(): boolean {
+    this.elapsed=0;
     if (this.cursor === TOTAL_STEPS) { this.pause(); return false; }
     if (this.cursor < this.recordedSteps) {
       this.cursor++; this.conditions = { ...this.conditionFrames[this.cursor]! };
-      if (this.cursor === TOTAL_STEPS) this.pause();
+      if (this.cursor === TOTAL_STEPS || this.blockedAt) this.pause();
       return true;
     }
     if (this.blockedAt) { this.pause(); return false; }
@@ -61,29 +64,31 @@ export class MessageJourney {
     next.completedSteps++;
     next.read = false;
     this.frames.push(next); this.conditionFrames.push({ ...this.conditions }); this.cursor++;
-    if (this.cursor === TOTAL_STEPS) this.pause();
+    if (this.cursor === TOTAL_STEPS || this.blockedAt) this.pause();
     return true;
   }
   seek(value: number): void {
-    this.pause();
+    this.pause(); this.elapsed=0;
     const target = Math.round(bounded(value, TOTAL_STEPS));
     if (target <= this.recordedSteps) { this.cursor = target; this.conditions = { ...this.conditionFrames[this.cursor]! }; return; }
     this.cursor = this.recordedSteps; this.conditions = { ...this.conditionFrames[this.cursor]! };
     while (this.cursor < target && this.step()) { /* A seek cannot manufacture a hop across a disconnected gate. */ }
   }
-  play(): void { if (this.cursor < TOTAL_STEPS && !this.blockedAt) { this.playing = true; this.elapsed = 0; } }
-  pause(): void { this.playing = false; this.elapsed = 0; }
+  play(): void { if (this.cursor < TOTAL_STEPS && !this.blockedAt) { this.playing = true; } }
+  pause(): void { this.playing = false; }
   tick(seconds: number): boolean {
     if (!this.playing || !Number.isFinite(seconds) || seconds <= 0) return false;
     // Background suspension must not finish a message in one large elapsed-time jump.
     this.elapsed += Math.min(seconds, .15);
     if (this.elapsed < STEP_SECONDS) return false;
-    this.elapsed -= STEP_SECONDS;
-    return this.step();
+    const remainder=this.elapsed-STEP_SECONDS;
+    const changed=this.step();
+    if(changed&&this.playing)this.elapsed=remainder;
+    return changed;
   }
   markRead(): boolean {
     if (this.cursor !== TOTAL_STEPS) return false;
     this.frames[this.cursor] = { ...this.state, read: true }; return true;
   }
-  reset(): void { this.pause(); this.frames = [initial()]; this.conditionFrames = [{ ...this.conditions }]; this.cursor = 0; }
+  reset(): void { this.pause(); this.elapsed=0; this.frames = [initial()]; this.conditionFrames = [{ ...this.conditions }]; this.cursor = 0; }
 }

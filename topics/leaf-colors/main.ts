@@ -19,8 +19,10 @@ const el = (id: string) => document.getElementById(id)!;
 let position = 0, zoom = 0, season = 0, kind: LeafKind = 'yellow', academic = false, playing = false;
 let touring = false, journey = 0;
 let cancelSeek: () => void = () => {};
+let cancelWaterZoom: () => void = () => {}, waterZoom = 0;
 let frame = 0, last = 0, scene: LeafScene | undefined;
 const initialRoute = readLeafRoute(location.search);
+const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
 let age = initialRoute.age, view: LeafView = initialRoute.view, insidePosition = 0;
 let waterProgress = 0, waterPlaying = false, waterClose = false;
 const waterScene = mountWaterScene(el('water-map') as unknown as SVGSVGElement);
@@ -119,7 +121,7 @@ for (const b of document.querySelectorAll<HTMLButtonElement>('[data-mode]')) b.a
 for (const b of document.querySelectorAll<HTMLButtonElement>('[data-age]')) b.addEventListener('click', () => { stop(); cancelSeek(); cancelSeek = animateValue({from: age, to: Number(b.dataset.age), duration: 950, onUpdate: value => { age = value; update(); }}); });
 function startJourney() {
   cancelSeek();
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  if (motionPreference.matches) {
     touring = false; position = SCALE_STOPS.find(stop=>stop>position+.01) ?? 0; journey = position / 3 * JOURNEY_DURATION; update(); return;
   }
   if (touring) touring = false;
@@ -166,19 +168,25 @@ function tick(now: number) {
 }
 el('play').addEventListener('click', () => {
   cancelSeek();
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { stop(); age = LIFE_STOPS.find(stop => stop > age + .01) ?? 0; update(); return; }
+  if (motionPreference.matches) { stop(); age = LIFE_STOPS.find(stop => stop > age + .01) ?? 0; update(); return; }
   if (playing) stop();
   else { if (age >= 1) age = 0; playing = true; last = performance.now(); if (!frame) frame = requestAnimationFrame(tick); }
   update();
 });
 document.addEventListener('visibilitychange', () => {
-  if (document.hidden) { cancelAnimationFrame(frame); frame = 0; }
+  if (document.hidden) { cancelSeek(); cancelWaterZoom(); cancelAnimationFrame(frame); frame = 0; }
   else if ((playing || touring || waterPlaying) && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); }
 });
-window.addEventListener('pagehide', event => { cancelAnimationFrame(frame); frame = 0; cancelSeek(); if (!event.persisted) { touring = false; waterPlaying = false; stop(); scene?.dispose(); } });
+const reduceMotion = () => {
+  if (!motionPreference.matches) return;
+  cancelSeek(); cancelWaterZoom(); stop(); touring = false; waterPlaying = false; cancelAnimationFrame(frame); frame = 0; update();
+};
+motionPreference.addEventListener('change', reduceMotion);
+window.addEventListener('pagehide', event => { cancelAnimationFrame(frame); frame = 0; cancelSeek(); cancelWaterZoom(); if (!event.persisted) { touring = false; waterPlaying = false; stop(); scene?.dispose(); waterScene.dispose(); motionPreference.removeEventListener('change', reduceMotion); } });
 window.addEventListener('pageshow', () => { if ((playing || touring || waterPlaying) && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });
 function changeView(next: LeafView, write = true) {
-  cancelSeek(); touring = false; waterPlaying = false;
+  cancelSeek(); cancelWaterZoom(); touring = false; waterPlaying = false;
+  waterZoom = waterClose ? 1 : 0; waterScene.zoom(waterZoom);
   if (view === 'inside') insidePosition = position;
   view = next; position = view === 'inside' ? insidePosition : 0;
   if (write) { const url = new URL(location.href); url.searchParams.set('view', view); url.searchParams.set('age', age.toFixed(4)); history.pushState(null, '', url); }
@@ -187,13 +195,17 @@ function changeView(next: LeafView, write = true) {
 document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(button => button.addEventListener('click', () => changeView(button.dataset.view as LeafView)));
 el('water-play').addEventListener('click', () => {
   if (!leafLifeAt(age).waterAvailable) return;
-  if (matchMedia('(prefers-reduced-motion: reduce)').matches) { waterPlaying = false; waterProgress = WATER_STOPS.find(stop => stop > waterProgress + .01) ?? 0; update(); return; }
+  if (motionPreference.matches) { waterPlaying = false; waterProgress = WATER_STOPS.find(stop => stop > waterProgress + .01) ?? 0; update(); return; }
   waterPlaying = !waterPlaying; if (waterPlaying && waterProgress >= 1) waterProgress = 0;
   last = performance.now(); if (waterPlaying && !frame) frame = requestAnimationFrame(tick); update();
 });
 el('water-reset').addEventListener('click', () => { waterPlaying = false; waterProgress = 0; update(); });
 el('water-progress').addEventListener('input', () => { waterProgress = Number((el('water-progress') as HTMLInputElement).value) / 1000; waterPlaying = false; update(); });
-el('water-close').addEventListener('click', () => { waterClose = !waterClose; waterScene.zoom(waterClose ? 1 : 0); el('water-close').setAttribute('aria-pressed', String(waterClose)); });
+el('water-close').addEventListener('click', () => {
+  cancelWaterZoom(); waterClose = !waterClose;
+  el('water-close').setAttribute('aria-pressed', String(waterClose));
+  cancelWaterZoom = animateValue({ from: waterZoom, to: waterClose ? 1 : 0, duration: 700, onUpdate: value => { waterZoom = value; waterScene.zoom(value); } });
+});
 el('return-mature').addEventListener('click', () => { stop(); age = .34; update(); });
 window.addEventListener('popstate', () => { const route = readLeafRoute(location.search); stop(); age = route.age; changeView(route.view, false); });
 if (view === 'inside') position = 2;

@@ -5,6 +5,7 @@ import { initialMotion, stepMotion, type Settings, type ObjectKind, type MotionP
 import { createScene, renderScene, drawObject } from './scene.ts';
 import './style.css';
 import { mountCompass } from './compass.ts';
+import { createMagnetTurn } from './magnetTurn.ts';
 
 translateDocument(t);
 
@@ -34,6 +35,8 @@ let lastStatus = '';
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const names: Record<ObjectKind, string> = { iron: t('铁制回形针'), copper: t('铜片'), aluminum: t('铝罐'), wood: t('木块'), magnet: t('另一块磁铁') };
 const scene = createScene(el('scene') as unknown as SVGSVGElement);
+const poleTurn = createMagnetTurn();
+let turnAngle = poleTurn.settle(settings.flipped);
 
 function updateStatus() {
   const key = `${settings.kind}-${settings.flipped}-${motion.phase}`;
@@ -56,7 +59,7 @@ function updateStatus() {
     : t('拖动左边的磁铁，或者点一下“靠近试试”。先猜，再观察。');
 }
 function paint() {
-  renderScene(scene, settings, motion, reducedMotion.matches);
+  renderScene(scene, settings, motion, reducedMotion.matches, turnAngle);
   updateStatus();
 }
 function syncControls() {
@@ -75,21 +78,24 @@ function setNear(amount: number) {
   schedule();
 }
 function reset() {
-  demoStart = null; motion = initialMotion(); setNear(0);
+  demoStart = null; turnAngle = poleTurn.settle(settings.flipped); motion = initialMotion(); setNear(0);
 }
 function flip() {
+  const now = performance.now();
+  turnAngle = poleTurn.sample(now);
   settings.flipped = !settings.flipped;
   if (!motion.attached) motion.phase = 'ready';
-  drawObject(scene, settings);
-  scene.itemShape.classList.remove('turning');
-  if (!reducedMotion.matches) requestAnimationFrame(() => scene.itemShape.classList.add('turning'));
+  if (reducedMotion.matches) turnAngle = poleTurn.settle(settings.flipped);
+  else poleTurn.turn(settings.flipped, now);
   syncControls();
   if (reducedMotion.matches) setNear(settings.near);
+  else paint();
   schedule();
 }
 near.addEventListener('input', () => { demoStart = null; setNear(Number(near.value) / 100); });
 select.addEventListener('change', () => {
   settings.kind = select.value as ObjectKind; settings.flipped = false;
+  turnAngle = poleTurn.settle(false);
   drawObject(scene, settings); reset();
 });
 el('flip').addEventListener('click', flip);
@@ -129,8 +135,9 @@ function tick(time: number) {
     settings.near = p * p * (3 - 2 * p); syncControls();
     if (p === 1) demoStart = null;
   }
+  turnAngle = poleTurn.sample(time);
   motion = stepMotion(motion, settings, elapsed); paint();
-  if (demoStart !== null || Math.abs(motion.velocity) > .1 || motion.impact > 0 || motion.phase === 'pulling') schedule();
+  if (poleTurn.active || demoStart !== null || Math.abs(motion.velocity) > .1 || motion.impact > 0 || motion.phase === 'pulling') schedule();
   else lastTime = 0;
 }
 function schedule() {
@@ -138,11 +145,12 @@ function schedule() {
 }
 document.addEventListener('visibilitychange', () => {
   cancelAnimationFrame(animation); animation = 0; lastTime = 0;
-  if (document.hidden) demoStart = null;
+  if (document.hidden) { demoStart = null; turnAngle = poleTurn.settle(settings.flipped); paint(); }
   else schedule();
 });
-window.addEventListener('pagehide', () => { cancelAnimationFrame(animation); animation = 0; lastTime = 0; demoStart = null; });
+window.addEventListener('pagehide', event => { cancelAnimationFrame(animation); animation = 0; lastTime = 0; demoStart = null; turnAngle = poleTurn.settle(settings.flipped); if (!event.persisted) poleTurn.dispose(); });
 window.addEventListener('pageshow', () => schedule());
+reducedMotion.addEventListener('change', () => { if (reducedMotion.matches) { turnAngle = poleTurn.settle(settings.flipped); paint(); } });
 drawObject(scene, settings); syncControls(); paint();
 schedule();
 
@@ -157,6 +165,7 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-mode]'))
 mountCompass(el('compass-study'));
 document.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(button=>button.addEventListener('click',()=>{
  study=button.dataset.study!;cancelAnimationFrame(animation);animation=0;lastTime=0;demoStart=null;
+ turnAngle=poleTurn.settle(settings.flipped);paint();
  el('motion-study').hidden=study!=='motion';el('compass-study').hidden=study!=='compass';
  el('child-prompt').hidden=academic||study!=='motion';
  document.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.study===study)));

@@ -82,3 +82,13 @@ These original drawing details follow the compartment relationships described in
 The three specimens remain teaching cutaways, not micrographs or molecular reconstructions. Added membrane proteins, nuclear pores, chromatin and organelle texture are illustrative details, not measured populations or a transport model. The original structure-presence rules, hit regions, material trajectories and independent specimen/process progress remain unchanged. Each viewport clips to its live world-coordinate camera as well as its physical bounds, including camera transitions.
 
 六种分工图继续由 [body-cells](../body-cells/README.md) 与 [blood-cells](../blood-cells/README.md) 原专题持有。表皮、肌纤维、神经元、红细胞、中性粒细胞与血小板均细化；不是让同一细胞依次变形，也没有新增生理预测能力。具体改动、验证与仍待改进处见 [本轮记录](../../docs/cells-refinement-20261019.md)。基础细胞结构复核采用上列 OpenStax Biology 2e；组织与血细胞补充来源见各所有者 README。
+
+## Reader 取样动作与构图 · 2026-10-19
+
+`inspectionMotion.ts` 用 Reader 的有限时间线取样观察镜头与表面遮罩。镜头以连续的缩放接近所选位置，中途略微带出周围结构；专题原有时钟仍负责启动、暂停和取消，代谢与组织模型不交给时间线。更换细胞样本时先明确切到新样本的整体，再靠近它的结构，不再横穿其他标本。膜的局部窗围绕实际膜弧与膜蛋白位置取景，给外侧留一小段空间，并显示与细胞质、植物细胞壁的关系。桌面图形按原有宽高比排版，避免高窗口把主图拉成留白很大的竖幅。
+
+细胞器采用略有不规则的膜轮廓和贴合轮廓的内部裁切。它们仍是原标本中的同一结构，位置、点击区域、结构是否存在及物质轨迹均未改变。分工镜头切换只改观察窗口，不重建当前 SVG；播放推进后仍按原模型取样。减少动态时，六个分工样本改为逐次显示已有过程的观察节点；肌肉会先显示峰值，再显示放松，不跳过中间的受力对照。节点、缩放、膜厚与纹理都不是生理时间或尺寸测量。
+
+`inspectionMotion.ts` samples finite Reader timelines for inspection cameras and the retained surface veil. The existing topic clock owns start, pause, cancellation and visibility handling; scientific trajectories remain model-owned. A specimen change explicitly selects the new whole specimen before inspecting its detail. Membrane crops include the actual boundary/channel landmark with deliberate exterior and cytoplasmic context, including the plant cell wall. Desktop SVGs keep their authored aspect ratios. Camera-only specialist changes retain the current SVG nodes. Reduced-motion observation advances through existing causal checkpoints in all six examples, including peak tension before muscle relaxation. Camera easing, checkpoints, textures and membrane thickness are illustrative, not physiological measurements. Cells remains a draft.
+
+Focused verification covers exact/replayable camera endpoints, finite framing, membrane landmarks, veil bounds, retained markup during inspection, cancelled-frame rejection and all six reduced-motion checkpoint sequences, alongside the existing scientific and SVG geometry checks. Final Reader build and actual bilingual desktop/phone interaction checks belong to the integrator.
