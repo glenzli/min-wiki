@@ -149,5 +149,10 @@
   "云里的水怎样变成雨？ →": "How does cloud water become rain? →",
   "台风里的云怎样旋转？ →": "How do clouds rotate in a typhoon? →",
   "正在载入场景插画": "Loading scene artwork",
-  "插画加载失败，可刷新重试；通道示意仍可操作": "Artwork unavailable. Reload to retry; the channel diagram remains interactive."
+  "插画加载失败，可刷新重试；通道示意仍可操作": "Artwork unavailable. Reload to retry; the channel diagram remains interactive.",
+  "地面：感应正电荷": "Ground: induced positive charge",
+  "电荷区域示意 · 符号不是粒子": "Charge-region diagram · signs are not particles",
+  "接地塔": "Grounded tower",
+  "上部：正电荷": "Upper: positive",
+  "中下部：负电荷": "Mid/lower: negative"
 }

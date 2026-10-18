@@ -38,6 +38,16 @@ Three current WebP assets total 547,956 bytes: cloud v2 1600 × 533, house 512 �
 
 The anvil ends are shorter, flatter, softer and asymmetric, retaining the original tower and base anchors. A stronger white core and fine branch afterglow replace the travelling bright bead. A branch brightens only after the existing return front reaches its root; this adds neither another ground contact nor a strobe. The pre-attachment leader stays faint, and the post-attachment luminosity front still progresses upward along the same fixed channel. Pausing and reverse seeking retain its geometry.
 
+## Charge-region and tower readability · 2026-10-19
+
+把密集小符号改为三对较大、有正负形状区分的区域标记，沿同一分离进度移向上部正区和中下部负区；配色、淡薄区域底色与引线只辅助辨认净电荷分区，不表示实测浓度、单个粒子或电子轨迹。保留云底较小的正电区，并在负电区下方的地面标出感应正电荷。分区与限定文字在画面上直接可见，进入通道阶段逐渐淡出，不遮住回击。主要起电、上下分层和地面感应仍依据 [NWS 说明](https://www.weather.gov/safety/lightning-science-electrification)，具体极性和层次仍有简化。
+
+Three larger retained sign pairs replace the tiny symbol cloud and separate with the existing progress. Sign shape, restrained warm/cool color, soft region washes and labelled leaders identify net-charge regions; they do not measure concentration, represent individual particles or plot electron trajectories. The small lower positive pocket remains, with induced positive charge marked on the ground below the negative core. The on-scene qualification and labels fade as the discharge takes emphasis. [NWS electrification guidance](https://www.weather.gov/safety/lightning-science-electrification) supports the existing simplified separation and induction sequence, rather than prescribing the illustration's badge count or layout.
+
+接地塔增加较宽的支撑脚、混凝土基座、交叉撑杆、侧面结构和明暗金属边缘，初始电荷阶段显示名称引线。塔顶、向上连接通道与地面锚点保持原模型坐标；视觉轮廓加宽没有改变连接关系，也没有提供建筑尺寸或户外安全范围。
+
+The grounded tower has wider footings, a concrete base, crossed braces, side depth and contrasting galvanized edges, plus a label during the initial charge phase. Its tip, upward connector and ground anchors retain their exact model coordinates. The wider illustrative silhouette changes neither attachment geometry nor any physical building dimension or safety boundary.
+
 ## Attachment geometry · 2026-10-01
 
 向下的微弱先导和向上连接通道在尖端上方的同一个模型点连接。连接前两端保持分离，不画回击；连接后明亮前沿沿同一通道向云发展。回拖保持通道几何。这是因果示意，不是电场解或标定的长度、时间比例；真实浏览器外观仍需独立验收。

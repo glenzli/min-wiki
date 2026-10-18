@@ -1,5 +1,15 @@
 # Lightning/thunder artwork validation · 2026-10-19
 
+## Follow-up: readable charge regions and grounded tower
+
+- Base `8804eeb3a699404b90f14ff69ca2a51c962f4705`. Replaced dense small signs with three persistent signed pairs, larger contrasting badges, restrained region washes and bilingual on-scene region labels. The existing small lower positive pocket remains; induced ground charge follows the existing field progress. A visible caption identifies these as charge-region symbols, not particles. Ice/flow artwork is behind the symbols, and charge annotations yield emphasis to the developing channel.
+- The grounded tower now has wider footings, concrete base, crossed braces, side depth and contrasting metal edges. The original `mastTip`, `groundPoint`, leader and connecting geometry, controller and model are unchanged. The widened silhouette remains illustrative and stays separated from the nearest .5 km house.
+- Final runtime SHA-256: `scene.ts` `e165799b76d7597d07c3f388fafb97503d94c9c0cda242e2618fca491d74f4df`; `locales/en.json` `836e8d05d73ede4522b23d137fb34244ffefbf6e7d715af2ab7f5a1bdb9e9b25`. No new resources or dependency changes.
+- Final Reader build passed TypeScript, 6,907 source messages / 72 namespaces, 151 checked images, entry projections, editorial review and 71 routes; source digest `520d090d3a99873647a45a4881c3991477ccafe1518445afdbfb8d4a1a5625c9`. The unchanged six model-test results below were reused; unrelated full tests were not repeated for these drawing/localization changes.
+- Actual Chinese 1152 × 1106 mixed/separated states inspected, including final .27; Chinese and English 390 × 844 at .28 show readable region labels, separated badges, tower and induction labels with no horizontal overflow (client/scroll widths 390). Shortened narrow labels and badge-anchor spacing were corrected before the final checks.
+- English 390 px, .5 km: .59 remains faint and .675 lights the same connection; tower/house silhouettes remain separate. Reverse .675 → 0 → .27 retains the same pair identities, and play/pause advanced from .27 to .282. Captured warnings/errors were empty. Responsive override reset; the primary Chinese preview is paused at .27, with the original Atmosphere tab retained.
+- Screenshot evidence: `/private/tmp/wiki-storm-art-20261019/final-charge-regions-and-tower.png`, `charges-v2-mobile-zh.png`, `charges-v2-mobile-en.png`, and near attachment/return captures in the same directory. No empirical charge-density/field calculation, editorial promotion, push or deployment is claimed.
+
 ## Follow-up: anvil silhouette and steady brighter channel
 
 - Base `abcf8c553be13b32f37b8909b3d7b82a761878a5`. Replaced the exaggerated, symmetric, upturned anvil tips with the shorter asymmetric cloud v2; original PNG and full built-in imagegen edit prompt are retained in [provenance](assets/PROVENANCE.md). Cloud tower/base placement, numerical model, path geometry, sound clock and controller are unchanged.

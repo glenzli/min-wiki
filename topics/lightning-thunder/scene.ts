@@ -40,30 +40,6 @@ export class TopicScene{
    s.path([[x,y],[x-1.5,y+5+noise(i+73)*5]],undefined,i%4?'#c3d1d92b':'#d3e0e13c',.55);
   }c.restore();
   this.artwork.paintCloud(c,flash*smooth(.32,.9,state.returnStroke));
-  if(progress<.70){
-   c.save();c.font=`600 ${Math.max(17,12/s.scale)}px -apple-system,sans-serif`;c.textAlign='center';c.textBaseline='middle';
-   c.globalAlpha=(.82+.18*state.separation)*(1-smooth(.40,.64,progress));
-   c.shadowColor='#152e45';c.shadowBlur=3;
-   const charge=(symbol:string,x:number,y:number,color:string)=>{
-    c.strokeStyle='#1b2c4199';c.lineWidth=1.7/s.scale;c.strokeText(symbol,x,y);
-    c.fillStyle=color;c.fillText(symbol,x,y);
-   };
-   // Persistent symbols move from a mixed region into separated regions.
-   // Positions and colors are illustrative, not measured charge trajectories.
-   for(let i=0;i<13;i++){
-    const x=-235+noise(i+266)*253,start=-178+noise(i+412)*64,target=-224+noise(i+721)*38;
-    charge('+',x,start+(target-start)*state.separation,'#f4d4a2');
-   }
-   for(let i=0;i<13;i++){
-    const x=-228+noise(i+300)*232,start=-174+noise(i+377)*60,target=-139+noise(i+174)*34;
-    charge('−',x,start+(target-start)*state.separation,'#b3d5ed');
-   }
-   c.shadowBlur=0;c.globalAlpha=state.field*(1-smooth(.40,.64,progress));
-   for(let i=0;i<12;i++){
-    const proximity=1-Math.abs(i-5.5)/6,x=15+(i-5.5)*(13-7*proximity),y=146-38*proximity*proximity;
-    charge('+',x,y,'#f2d6ab');
-   }c.restore();
-  }
   if(progress<.32){
    c.save();c.globalAlpha=.8;
    for(let i=0;i<18;i++){
@@ -71,7 +47,50 @@ export class TopicScene{
     s.ellipse(x,y,1.2+i%3*.45,2.4+i%2,'#d7e4e899');
    }
    s.arrow(-205,-126,-190,-188,'#e8c28b',1.5);s.arrow(-49,-184,-37,-127,'#a6c9df',1.5);c.restore();
-   if(s.width>650&&progress<.20)label(t('碰撞转移电荷，气流再把粒子分开'),-112,-32,340);
+  }
+  if(progress<.70){
+   c.save();
+   const chargeFade=1-smooth(.46,.61,progress),radius=Math.max(12,9.25/s.scale);
+   const charge=(positive:boolean,x:number,y:number,r=radius)=>{
+    const fill=c.createLinearGradient(x,y-r,x,y+r);
+    fill.addColorStop(0,positive?'#65523eed':'#31556ced');fill.addColorStop(1,positive?'#3b3028f5':'#182e42f5');
+    c.shadowColor='#0c1c2b99';c.shadowBlur=3;
+    s.ellipse(x,y,r,r,fill);c.shadowBlur=0;
+    c.strokeStyle=positive?'#efcf94':'#b3dcf2';c.lineWidth=1/s.scale;c.stroke();
+    c.strokeStyle=positive?'#ffe3aa':'#e1f4ff';c.lineWidth=1.6/s.scale;c.lineCap='round';
+    c.beginPath();c.moveTo(x-r*.47,y);c.lineTo(x+r*.47,y);
+    if(positive){c.moveTo(x,y-r*.47);c.lineTo(x,y+r*.47);}c.stroke();
+   };
+   const region=(x:number,y:number,rx:number,ry:number,color:string)=>{
+    c.save();c.translate(x,y);c.scale(rx,ry);
+    const g=c.createRadialGradient(0,0,0,0,0,1);g.addColorStop(0,color);g.addColorStop(1,'#ffffff00');
+    c.fillStyle=g;c.fillRect(-1,-1,2,2);c.restore();
+   };
+   c.globalAlpha=state.separation*chargeFade;
+   region(-105,-226,142,38,'#ffda9638');region(-105,-128,154,31,'#81c3ee4f');
+   // Three retained pairs separate without crossing or being re-randomized.
+   // Badges label charge regions, not visible particles or electron trajectories.
+   c.globalAlpha=chargeFade;
+   for(let i=0;i<3;i++){
+    const x=-200+i*95,start=-173+(i%2?5:-3),u=state.separation;
+    charge(true,x-23*(1-u),start+(-226-start)*u);
+    charge(false,x+23*(1-u),start+(-128-start)*u);
+   }
+   c.globalAlpha=smooth(.35,.8,state.separation)*chargeFade;
+   s.label(t('上部：正电荷'),130,-226,{width:170,color:'#ffe1ad',background:'#26313be8',anchor:[14,-226]});
+   s.label(t('中下部：负电荷'),137,-128,{width:185,color:'#d1efff',background:'#243340e8',anchor:[17,-128]});
+   // The small lower positive pocket belongs to the existing teaching model.
+   c.globalAlpha=smooth(.6,1,state.separation)*chargeFade;
+   region(-165,-90,34,15,'#ffdc8c38');charge(true,-165,-90,radius*.68);
+   c.globalAlpha=smooth(0,.45,state.field)*chargeFade;
+   region(-65,151,121,17,'#f5c97755');
+   for(const x of [-132,-88,-44,0])charge(true,x,158,radius*.8);
+   s.label(t('地面：感应正电荷'),-65,202,{width:320,color:'#ffe1ad',background:'#28312be8'});
+   if(progress<.32){
+    c.globalAlpha=1;
+    label(t('电荷区域示意 · 符号不是粒子'),-105,-32,365);
+   }
+   c.restore();
   }
   if(state.field>0&&progress<.60){
    c.save();c.globalAlpha=state.field*.24;
@@ -80,12 +99,35 @@ export class TopicScene{
    }c.restore();
    if(s.width>650&&progress>.20&&progress<.36)label(t('尖端附近电荷更集中，局部电场更强'),134,39,290);
   }
-  // A slim grounded truss, with the original model tip and attachment site.
-  s.ellipse(groundPoint[0]+2,groundPoint[1]+2,16,3,'#1b363d77');
-  c.fillStyle='#7f9292';c.fillRect(groundPoint[0]-12,groundPoint[1]-2,24,4);
-  s.path([[7,140],[15,103],[23,140]],undefined,'#4a616a',2);
-  s.path([[10,126],[21,137],[12,116],[18,116],[9,137]],undefined,'#a4b4b4',.8);
-  s.path([[mastTip[0],103],mastTip],undefined,'#d5dfdf',1.6);
+  // The tower retains the exact model tip/ground anchors. Wider footings,
+  // dark edge separation and lit galvanized faces make its truss readable.
+  c.save();
+  s.ellipse(groundPoint[0]+2,groundPoint[1]+4,23,5,'#172d2ca6');
+  s.path([[-3,139],[27,139],[33,143],[3,143]],'#bec5b9','#dce2d6',.7);
+  s.path([[3,143],[33,143],[33,147],[3,147]],'#677871','#3e514e',.8);
+  s.path([[31,139],[19,102]],undefined,'#243941',4);
+  s.path([[31,139],[19,102]],undefined,'#98aaa8',1.6);
+  const half=(y:number)=>1.6+(y-102)/39*10.4;
+  for(const [top,bottom] of [[103,115],[115,128],[128,141]]){
+   const lt:Point=[15-half(top),top],rt:Point=[15+half(top),top];
+   const lb:Point=[15-half(bottom),bottom],rb:Point=[15+half(bottom),bottom];
+   s.path([lt,rb],undefined,'#263b42',2.9);s.path([rt,lb],undefined,'#263b42',2.9);
+   s.path([lt,rb],undefined,'#d0d8c8',1);s.path([rt,lb],undefined,'#9cafa8',1);
+   s.path([lb,rb],undefined,'#bac8bd',1.25);
+  }
+  for(const foot of [3,27]){
+   const top=foot<15?13.4:16.6;
+   s.path([[foot,141],[top,102]],undefined,'#22343d',4.1);
+   s.path([[foot-.45,141],[top-.45,102]],undefined,'#e3e4cc',1.7);
+   s.ellipse(foot,141,2.1,1,'#c5caba','#3e514e');
+  }
+  s.path([[mastTip[0],103],mastTip],undefined,'#253b43',4.6);
+  s.path([[mastTip[0]-.35,103],[mastTip[0]-.35,mastTip[1]]],undefined,'#f6f1d6',2);
+  s.ellipse(mastTip[0],mastTip[1],1,1,'#fff5d5');
+  if(progress<.32){
+   s.label(t('接地塔'),-88,91,{width:155,color:'#f1f4ed',background:'#243139e8',anchor:[5,120]});
+  }
+  c.restore();
   if(state.field>.45&&state.leader<.92){
    const glow=c.createRadialGradient(15,91,0,15,91,9+state.field*7);glow.addColorStop(0,'#c4cbec70');glow.addColorStop(1,'#c5b8ff00');s.ellipse(15,91,10+state.field*7,10+state.field*7,glow);
   }
