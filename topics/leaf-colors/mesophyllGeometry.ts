@@ -1,53 +1,76 @@
-import { SCALE_ENTRIES, SECTION_SPAN, cellEdge } from './model.ts';
+import { SCALE_ENTRIES, SECTION_SPAN, mesophyllCellEdge } from './model.ts';
 
 export type Point = readonly [number, number];
-
 export interface MesophyllCell {
   id: string;
   x: number;
   y: number;
-  /** An implicitly closed contour in cell-local coordinates, without rotation. */
+  /** Implicitly closed, star-shaped outline relative to this cell's center. */
   contour: readonly Point[];
   selected: boolean;
 }
-
 export interface MesophyllContact {
   cellA: string;
   cellB: string;
-  /** A shared boundary segment, in the owning band's local coordinates. */
+  /** A shared boundary segment in the owning band's local coordinates. */
   points: readonly [Point, Point];
 }
-
 interface Site { x: number; y: number; retained?: boolean }
-interface Contact { a: number; b: number; offset: number; points: readonly [Point, Point]; length: number }
-
-const TOP = 10, BOTTOM = 113, WALL_INSET = 2.1;
+interface Contact { a: number; b: number; offset: number; points: readonly [Point, Point] }
+type Segment = readonly [Point, Point];
+const TOP = 10, BOTTOM = 113, TAU = Math.PI * 2;
 const entry = SCALE_ENTRIES[1];
 const retainedSite: Site = { x: entry.x, y: entry.y - 2 * entry.size, retained: true };
-const retainedContour: readonly Point[] = Object.freeze(Array.from({ length: 97 }, (_, i) => {
-  const [x, y] = cellEdge(i / 96 * Math.PI * 2, 171, 134, 1.4, .85);
-  return Object.freeze([x * entry.size, y * entry.size] as const);
+const retainedContour: readonly Point[] = freezePoints(Array.from({ length: 97 }, (_, i) => {
+  const [x, y] = mesophyllCellEdge(i / 96 * TAU);
+  return [x * entry.size, y * entry.size];
 }));
 
-/** An authored, periodic section of irregular cells. These are illustration
- * parameters, not a species-specific anatomy or a measured 3D porosity.
- *
- * Spongy mesophyll has intercellular air spaces and an organized cell network:
- * https://openstax.org/books/biology-2e/pages/30-4-leaves
+/** Authored transverse-section anatomy, not a traced specimen or a porosity
+ * calibration. Varied profiles and pockets follow the UTokyo micrograph of
+ * Chenopodium album; the paradermal three-armed cells in Borsuk et al. must not
+ * be copied as the appearance of every transverse profile.
+ * https://www.u-tokyo.ac.jp/focus/ja/features/z1304_00207.html
+ * https://www.u-tokyo.ac.jp/content/400200842.jpg
  * https://doi.org/10.1111/nph.17971
- * A 2D section cannot establish the tissue's 3D contact topology. */
+ * A section need not expose every contact in a three-dimensional tissue. */
 const sites: readonly Site[] = [
-  { x: -194, y: 31 }, { x: -139, y: 39 }, { x: -81, y: 30 }, { x: -26, y: 36 },
-  retainedSite, { x: 92, y: 30 }, { x: 147, y: 40 }, { x: 196, y: 29 },
-  { x: -214, y: 88 }, { x: -165, y: 85 }, { x: -111, y: 94 }, { x: -56, y: 82 },
-  { x: -5, y: 96 }, { x: 55, y: 88 }, { x: 111, y: 95 }, { x: 169, y: 86 },
+  { x: -204, y: 25 }, { x: -169, y: 51 }, { x: -130, y: 24 }, { x: -111, y: 76 },
+  retainedSite, { x: -68, y: 40 }, { x: -34, y: 21 }, { x: -12, y: 72 },
+  { x: 73, y: 22 }, { x: 91, y: 63 }, { x: 135, y: 38 }, { x: 163, y: 19 },
+  { x: 190, y: 57 }, { x: 215, y: 24 }, { x: -211, y: 93 }, { x: -160, y: 99 },
+  { x: -132, y: 61 }, { x: -75, y: 99 }, { x: -40, y: 94 }, { x: 39, y: 98 },
+  { x: 70, y: 76 }, { x: 115, y: 98 }, { x: 157, y: 80 }, { x: 203, y: 102 },
+  { x: -185, y: 24 }, { x: -144, y: 81 }, { x: -89, y: 20 }, { x: -48, y: 76 },
+  { x: -18, y: 39 }, { x: 12, y: 78 }, { x: 61, y: 105 }, { x: 104, y: 20 },
+  { x: 126, y: 89 }, { x: 177, y: 35 }, { x: 181, y: 90 }, { x: 216, y: 50 },
 ];
 
-/** Intersect a convex polygon with n·p <= limit. */
+/** Pockets and their occasional narrow extensions determine wall concavities.
+ * These are explicit spatial objects, rather than independent random wiggles
+ * applied to each cell. Several pockets share a narrow mouth; broad chambers,
+ * flattened faces and crooked branches deliberately have different curvature. */
+const pockets: readonly (readonly Point[])[] = [
+  [[-205,47],[-200,43],[-194,49],[-193,61],[-182,63],[-176,57],[-166,64],[-168,73],[-163,79],[-177,87],[-192,90],[-202,80],[-199,69],[-208,61]],
+  [[-151,32],[-142,29],[-132,35],[-128,39],[-108,40],[-109,28],[-100,22],[-90,34],[-91,50],[-98,60],[-108,56],[-112,46],[-132,46],[-142,52],[-153,45]],
+  [[-96,70],[-89,66],[-79,65],[-71,68],[-59,68],[-59,75],[-68,80],[-83,83],[-93,78]],
+  [[-46,39],[-35,40],[-25,50],[-21,59],[-30,68],[-39,67],[-48,59]],
+  [[-13,98],[-8,88],[3,88],[12,95],[16,87],[25,94],[32,107],[26,116],[5,121],[-5,111],[-16,109]],
+  [[68,42],[73,34],[81,34],[85,39],[91,42],[87,51],[81,56],[74,54],[66,49]],
+  [[102,65],[111,60],[120,62],[125,66],[144,62],[147,56],[154,47],[164,43],[178,47],[181,57],[171,65],[157,62],[150,67],[131,70],[123,75],[116,83],[106,82],[101,74]],
+  [[201,65],[209,62],[215,65],[220,75],[219,82],[210,90],[205,87],[200,80]],
+];
+
+function freezePoints(points: readonly Point[]): readonly Point[] {
+  return Object.freeze(points.map(([x, y]) => Object.freeze([x, y] as const)));
+}
+const cross = (a: Point, b: Point, c: Point) => (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+function segments(points: readonly Point[]): Segment[] { return points.map((p, i) => [p, points[(i + 1) % points.length]]); }
+function translated(points: readonly Point[], shift: number): Point[] { return points.map(([x, y]) => [x + shift, y]); }
+
 function clip(polygon: readonly Point[], nx: number, ny: number, limit: number): Point[] {
   const result: Point[] = [];
-  for (let i = 0; i < polygon.length; i++) {
-    const a = polygon[i], b = polygon[(i + 1) % polygon.length];
+  for (const [a, b] of segments(polygon)) {
     const da = nx * a[0] + ny * a[1] - limit, db = nx * b[0] + ny * b[1] - limit;
     if (da <= 1e-9) result.push(a);
     if ((da < 0 && db > 0) || (da > 0 && db < 0)) {
@@ -58,209 +81,226 @@ function clip(polygon: readonly Point[], nx: number, ny: number, limit: number):
   return result;
 }
 
-function inset(polygon: readonly Point[], distance: number): readonly Point[] {
-  let result = polygon;
-  for (let i = 0; i < polygon.length; i++) {
-    const a = polygon[i], b = polygon[(i + 1) % polygon.length];
-    const nx = b[1] - a[1], ny = a[0] - b[0];
-    result = clip(result, nx, ny, nx * a[0] + ny * a[1] - distance * Math.hypot(nx, ny));
-  }
-  return result;
-}
-
-function rounded(polygon: readonly Point[], seed: number): readonly Point[] {
-  const result: Point[] = [];
-  for (let i = 0; i < polygon.length; i++) {
-    const a = polygon[(i + polygon.length - 1) % polygon.length], b = polygon[i], c = polygon[(i + 1) % polygon.length];
-    const q = .44 + .04 * Math.sin(seed * 1.73 + i * 2.41);
-    const start: Point = [b[0] + (a[0] - b[0]) * q, b[1] + (a[1] - b[1]) * q];
-    const end: Point = [b[0] + (c[0] - b[0]) * q, b[1] + (c[1] - b[1]) * q];
-    for (let j = 0; j <= 6; j++) {
-      const t = j / 6, s = 1 - t;
-      result.push([s * s * start[0] + 2 * s * t * b[0] + t * t * end[0],
-        s * s * start[1] + 2 * s * t * b[1] + t * t * end[1]]);
-    }
-  }
-  return result;
-}
-
-function neighbourPartition(site: Site): readonly Point[] {
-  // Periodic neighbours, rather than a clip at the band edge, determine the
-  // lateral boundaries. Cells can therefore cross a tile seam intact.
+function partition(site: Site): readonly Point[] {
   let polygon: readonly Point[] = [[site.x - SECTION_SPAN / 2, TOP], [site.x + SECTION_SPAN / 2, TOP],
     [site.x + SECTION_SPAN / 2, BOTTOM], [site.x - SECTION_SPAN / 2, BOTTOM]];
-  for (const shift of [-SECTION_SPAN, 0, SECTION_SPAN]) {
-    for (const other of sites) {
-      if (other === site && shift === 0) continue;
-      const x = other.x + shift, y = other.y, nx = x - site.x, ny = y - site.y;
-      polygon = clip(polygon, nx, ny, (x * x + y * y - site.x * site.x - site.y * site.y) / 2);
-    }
-    // The retained cell is not replaced by its Voronoi polygon. Keep every
-    // neighbour outside a supporting line of its exact existing outline.
-    const x = retainedSite.x + shift, nx = site.x - x, ny = site.y - retainedSite.y;
-    const support = Math.max(...retainedContour.map(p => p[0] * nx + p[1] * ny));
-    polygon = clip(polygon, -nx, -ny, -nx * x - ny * retainedSite.y - support - 1.2 * Math.hypot(nx, ny));
+  for (const shift of [-SECTION_SPAN, 0, SECTION_SPAN]) for (const other of sites) {
+    if (other.retained || (other === site && !shift)) continue;
+    const x = other.x + shift, y = other.y, nx = x - site.x, ny = y - site.y;
+    polygon = clip(polygon, nx, ny, (x * x + y * y - site.x * site.x - site.y * site.y) / 2);
   }
   return polygon;
 }
 
-const cross = (a: Point, b: Point, c: Point) => (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
-
-function convexHull(points: readonly Point[]): Point[] {
-  const sorted = [...points].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
-  const unique = sorted.filter((p, i) => !i || Math.hypot(p[0] - sorted[i - 1][0], p[1] - sorted[i - 1][1]) > 1e-9);
-  const lower: Point[] = [], upper: Point[] = [];
-  for (const point of unique) {
-    while (lower.length > 1 && cross(lower[lower.length - 2], lower[lower.length - 1], point) <= 1e-10) lower.pop();
-    lower.push(point);
+/** Unequal oval section profiles occupy only part of their spatial partition.
+ * Local neighbour distances set their four extents. Where profiles press into
+ * a shared partition face a broad wall remains; elsewhere the cell is rounded
+ * and separated by air. Outermost ends do not all flatten onto the layer edge. */
+function bodyPartition(site: Site): readonly Point[] {
+  let polygon = partition(site);
+  const box = bounds(polygon), left = (site.x - box[0]) * 1.1, right = (box[1] - site.x) * 1.1;
+  const top = (site.y - box[2]) * (Math.abs(box[2] - TOP) < 1e-7 ? .96 : 1.12);
+  const bottom = (box[3] - site.y) * (Math.abs(box[3] - BOTTOM) < 1e-7 ? .96 : 1.12);
+  const envelope = Array.from({ length: 96 }, (_, i) => {
+    const angle = i / 96 * TAU, x = Math.cos(angle), y = Math.sin(angle);
+    return [site.x + x * (x < 0 ? left : right), site.y + y * (y < 0 ? top : bottom)] as const;
+  });
+  for (const [a, b] of segments(envelope)) {
+    const nx = b[1] - a[1], ny = a[0] - b[0];
+    polygon = clip(polygon, nx, ny, nx * a[0] + ny * a[1]);
   }
-  for (const point of unique.reverse()) {
-    while (upper.length > 1 && cross(upper[upper.length - 2], upper[upper.length - 1], point) <= 1e-10) upper.pop();
-    upper.push(point);
-  }
-  return [...lower.slice(0, -1), ...upper.slice(0, -1)];
+  return polygon;
 }
 
-/** Restore only the middle of a common partition edge. Its ends remain well
- * away from the multi-cell junctions, where the larger air pores are retained. */
-function sharedSegment(a: readonly Point[], b: readonly Point[]): { points: readonly [Point, Point]; length: number } | undefined {
-  for (let i = 0; i < a.length; i++) {
-    const start = a[i], end = a[(i + 1) % a.length], dx = end[0] - start[0], dy = end[1] - start[1];
-    const length = Math.hypot(dx, dy);
-    if (length < 16) continue;
-    for (let j = 0; j < b.length; j++) {
-      const p = b[j], q = b[(j + 1) % b.length];
-      if (Math.abs(cross(start, end, p)) > 1e-7 * length || Math.abs(cross(start, end, q)) > 1e-7 * length) continue;
+function bounds(points: readonly Point[]): readonly [number, number, number, number] {
+  return [Math.min(...points.map(p => p[0])), Math.max(...points.map(p => p[0])),
+    Math.min(...points.map(p => p[1])), Math.max(...points.map(p => p[1]))];
+}
+function intersects(a: readonly Point[], b: readonly Point[]): boolean {
+  const p = bounds(a), q = bounds(b);
+  return p[0] <= q[1] && q[0] <= p[1] && p[2] <= q[3] && q[2] <= p[3];
+}
+function rayDistance(origin: Point, angle: number, edges: readonly Segment[]): number {
+  const dx = Math.cos(angle), dy = Math.sin(angle);
+  let nearest = Infinity;
+  for (const [a, b] of edges) {
+    const ex = b[0] - a[0], ey = b[1] - a[1], denominator = dx * ey - dy * ex;
+    if (Math.abs(denominator) < 1e-12) continue;
+    const ax = a[0] - origin[0], ay = a[1] - origin[1];
+    const t = (ax * ey - ay * ex) / denominator, u = (ax * dy - ay * dx) / denominator;
+    if (t >= 0 && u >= -1e-9 && u <= 1 + 1e-9) nearest = Math.min(nearest, t);
+  }
+  return nearest;
+}
+
+/** Keep the center-visible part of a cell's partition around explicit pores
+ * and the unchanged retained cell. All obstacle vertices contribute critical
+ * rays, so curved/concave obstacle boundaries cannot be cut by a coarse chord.
+ * No convex hull or narrow connector is added after the pores are cut. */
+function visibleContour(site: Site, polygon: readonly Point[], obstacles: readonly (readonly Point[])[]): readonly Point[] {
+  const localObstacles = obstacles.filter(obstacle => intersects(polygon, obstacle)).map(obstacle => {
+    let clipped = obstacle;
+    for (const [a, b] of segments(polygon)) {
+      const nx = b[1] - a[1], ny = a[0] - b[0];
+      clipped = clip(clipped, nx, ny, nx * a[0] + ny * a[1]);
+    }
+    return clipped;
+  }).filter(obstacle => obstacle.length >= 3);
+  const edges = [polygon, ...localObstacles].flatMap(segments), origin: Point = [site.x, site.y];
+  const vertices = [polygon, ...localObstacles].flat();
+  const angles = Array.from({ length: 80 }, (_, i) => i / 80 * TAU);
+  for (const point of vertices) {
+    const angle = Math.atan2(point[1] - site.y, point[0] - site.x);
+    angles.push(angle - 1e-8, angle, angle + 1e-8);
+  }
+  const points = angles.map(angle => ((angle % TAU) + TAU) % TAU).sort((a, b) => a - b).map(angle => {
+    const radius = rayDistance(origin, angle, edges);
+    const point: Point = [site.x + Math.cos(angle) * radius, site.y + Math.sin(angle) * radius];
+    return vertices.find(vertex => Math.hypot(point[0] - vertex[0], point[1] - vertex[1]) < 1e-6) ?? point;
+  });
+  return simplify(points);
+}
+
+function simplify(points: readonly Point[]): Point[] {
+  const result: Point[] = [];
+  const between = (a: Point, p: Point, b: Point) => Math.abs(cross(a, p, b)) < 1e-8 * Math.max(1, Math.hypot(b[0] - a[0], b[1] - a[1])) &&
+    (p[0] - a[0]) * (p[0] - b[0]) + (p[1] - a[1]) * (p[1] - b[1]) <= 1e-8;
+  for (const point of points) {
+    if (result.length && Math.hypot(point[0] - result[result.length - 1][0], point[1] - result[result.length - 1][1]) < 1e-7) continue;
+    while (result.length > 1 && between(result[result.length - 2], result[result.length - 1], point)) result.pop();
+    result.push(point);
+  }
+  if (result.length > 1 && Math.hypot(result[0][0] - result[result.length - 1][0], result[0][1] - result[result.length - 1][1]) < 1e-7) result.pop();
+  while (result.length > 3 && between(result[result.length - 1], result[0], result[1])) result.shift();
+  while (result.length > 3 && between(result[result.length - 2], result[result.length - 1], result[0])) result.pop();
+  return result;
+}
+
+/** Round only outward corners. Inward pore arcs and the middle portions of
+ * native shared walls remain; there is no subsequent contact-neck extrusion. */
+function roundConvexCorners(points: readonly Point[]): readonly Point[] {
+  const area = Math.abs(points.reduce((sum, p, i) => { const q = points[(i + 1) % points.length]; return sum + p[0] * q[1] - q[0] * p[1]; }, 0)) / 2;
+  const bend = Math.min(12, Math.sqrt(area) * .24), result: Point[] = [];
+  for (let i = 0; i < points.length; i++) {
+    const a = points[(i + points.length - 1) % points.length], b = points[i], c = points[(i + 1) % points.length];
+    if (cross(a, b, c) <= 1e-7) { result.push(b); continue; }
+    const length0 = Math.hypot(a[0] - b[0], a[1] - b[1]), length1 = Math.hypot(c[0] - b[0], c[1] - b[1]);
+    const q0 = Math.min(.36, bend / length0), q1 = Math.min(.36, bend / length1);
+    const start: Point = [b[0] + (a[0] - b[0]) * q0, b[1] + (a[1] - b[1]) * q0];
+    const end: Point = [b[0] + (c[0] - b[0]) * q1, b[1] + (c[1] - b[1]) * q1];
+    for (let j = 0; j <= 6; j++) { const t = j / 6, s = 1 - t; result.push([s * s * start[0] + 2 * s * t * b[0] + t * t * end[0], s * s * start[1] + 2 * s * t * b[1] + t * t * end[1]]); }
+  }
+  return result;
+}
+
+const retainedWorld = retainedContour.map(([x, y]) => [x + retainedSite.x, y + retainedSite.y] as const);
+const poreOutlines = pockets.map(pocket => {
+  const result: Point[] = [];
+  for (let i = 0; i < pocket.length; i++) {
+    const a = pocket[(i + pocket.length - 1) % pocket.length], b = pocket[i], c = pocket[(i + 1) % pocket.length];
+    const q = cross(a, b, c) < 0 ? .28 : .42;
+    const start: Point = [b[0] + (a[0] - b[0]) * q, b[1] + (a[1] - b[1]) * q];
+    const end: Point = [b[0] + (c[0] - b[0]) * q, b[1] + (c[1] - b[1]) * q];
+    for (let j = 0; j <= 6; j++) { const t = j / 6, s = 1 - t; result.push([s * s * start[0] + 2 * s * t * b[0] + t * t * end[0], s * s * start[1] + 2 * s * t * b[1] + t * t * end[1]]); }
+  }
+  return result;
+});
+const obstacles = [-SECTION_SPAN, 0, SECTION_SPAN].flatMap(shift =>
+  [retainedWorld, ...poreOutlines].map(outline => translated(outline, shift)));
+const worldContours = sites.map(site => site.retained ? retainedWorld : roundConvexCorners(visibleContour(site, bodyPartition(site), obstacles)));
+
+function sharedSegments(a: readonly Point[], b: readonly Point[]): Segment[] {
+  const result: Segment[] = [];
+  for (const [start, end] of segments(a)) {
+    const dx = end[0] - start[0], dy = end[1] - start[1], length = Math.hypot(dx, dy);
+    if (length < .75) continue;
+    for (const [p, q] of segments(b)) {
+      if (Math.abs(cross(start, end, p)) > 1e-6 * length || Math.abs(cross(start, end, q)) > 1e-6 * length) continue;
       const t0 = ((p[0] - start[0]) * dx + (p[1] - start[1]) * dy) / (length * length);
       const t1 = ((q[0] - start[0]) * dx + (q[1] - start[1]) * dy) / (length * length);
-      const lo = Math.max(0, Math.min(t0, t1)), hi = Math.min(1, Math.max(t0, t1)), commonLength = (hi - lo) * length;
-      if (commonLength < 16) continue;
-      const middle = (lo + hi) / 2, half = Math.min(7, commonLength * .28) / length / 2;
-      return { points: [[start[0] + dx * (middle - half), start[1] + dy * (middle - half)],
-        [start[0] + dx * (middle + half), start[1] + dy * (middle + half)]], length: commonLength };
+      const lo = Math.max(0, Math.min(t0, t1)), hi = Math.min(1, Math.max(t0, t1));
+      if ((hi - lo) * length < .75) continue;
+      result.push([[start[0] + dx * lo, start[1] + dy * lo], [start[0] + dx * hi, start[1] + dy * hi]]);
     }
+  }
+  return result;
+}
+const contacts: Contact[] = [];
+for (let a = 0; a < sites.length; a++) for (let b = 0; b < sites.length; b++) for (const offset of [0, 1]) {
+  if (!offset && a >= b) continue;
+  const other = translated(worldContours[b], offset * SECTION_SPAN);
+  if (!intersects(worldContours[a], other)) continue;
+  for (const points of sharedSegments(worldContours[a], other)) contacts.push({ a, b, offset,
+    points: Object.freeze([Object.freeze(points[0]), Object.freeze(points[1])] as const) });
+}
+const template = sites.map((site, i) => Object.freeze({ id: 'mesophyll-' + i, x: site.x, y: site.y,
+  contour: site.retained ? retainedContour : freezePoints(worldContours[i].map(([x, y]) => [x - site.x, y - site.y])),
+  selected: !!site.retained }));
+
+// Narrow, closely apposed columns share the same gently bowed lateral walls.
+// A few shorter profiles represent different cuts/ends, not another uniform row.
+const columnEdges = [-217, -199, -175, -155, -131, -105, -87, -62, -38, -18, 7, 25, 49, 73, 90, 117, 140, 164, 184, 204, 217];
+const columnBows = [.8, -1.8, 2.2, -.7, 1.5, -2, .5, 1.8, -1.2, .7, -1.5, 1.1, -2.1, .6, 1.8, -.8, 1.2, -1.7, .4, -1.1, .8];
+const columnBottoms = [7, 2, 10, 6, 9, -4, 3, 10, 5, -2, 8, 1, 9, 6, 10, -3, 5, 10, 2, 7];
+const columnSplits = new Map([[2, -39], [8, -25], [14, -49], [18, -18]]);
+// A neighbour ending part-way down a bowed wall uses the same polyline knots,
+// rather than a different chord approximation that could cross the first wall.
+const wallKnots = [...new Set([-112, 10, ...columnBottoms, ...columnSplits.values(),
+  ...Array.from({ length: 16 }, (_, i) => -112 + i * 8)])].sort((a, b) => a - b);
+function wall(index: number, y: number): Point { return [columnEdges[index] + columnBows[index] * Math.sin((y + 112) / 122 * Math.PI), y]; }
+function palisadeProfile(index: number, top: number, bottom: number): readonly Point[] {
+  const ys = [top, ...wallKnots.filter(y => y > top && y < bottom), bottom];
+  const polygon = [wall(index, top), ...ys.map(y => wall(index + 1, y)), wall(index, bottom), ...ys.slice(1, -1).reverse().map(y => wall(index, y))];
+  const corners = new Set([0, 1, ys.length, ys.length + 1]), result: Point[] = [];
+  for (let i = 0; i < polygon.length; i++) {
+    const b = polygon[i];
+    if (!corners.has(i)) { result.push(b); continue; }
+    const a = polygon[(i + polygon.length - 1) % polygon.length], c = polygon[(i + 1) % polygon.length];
+    const q0 = Math.min(.3, 2.3 / Math.hypot(a[0] - b[0], a[1] - b[1])), q1 = Math.min(.3, 2.3 / Math.hypot(c[0] - b[0], c[1] - b[1]));
+    const start: Point = [b[0] + (a[0] - b[0]) * q0, b[1] + (a[1] - b[1]) * q0];
+    const end: Point = [b[0] + (c[0] - b[0]) * q1, b[1] + (c[1] - b[1]) * q1];
+    for (let j = 0; j <= 5; j++) { const t = j / 5, s = 1 - t; result.push([s * s * start[0] + 2 * s * t * b[0] + t * t * end[0], s * s * start[1] + 2 * s * t * b[1] + t * t * end[1]]); }
+  }
+  return result;
+}
+const palisadeTemplate: MesophyllCell[] = [];
+for (let i = 0; i < columnEdges.length - 1; i++) {
+  const split = columnSplits.get(i);
+  const stops = split === undefined ? [-112, columnBottoms[i]] : [-112, split, columnBottoms[i]];
+  for (let j = 1; j < stops.length; j++) {
+    const y = (stops[j - 1] + stops[j]) / 2, x = (wall(i, y)[0] + wall(i + 1, y)[0]) / 2;
+    palisadeTemplate.push(Object.freeze({ id: 'palisade-' + i + '-' + j, x, y, selected: false,
+      contour: freezePoints(palisadeProfile(i, stops[j - 1], stops[j]).map(([px, py]) => [px - x, py - y])) }));
   }
 }
 
-const ordinary = sites.map((_, i) => i).filter(i => !sites[i].retained);
-const partitions = sites.map(site => site.retained ? [] : neighbourPartition(site));
-const roundedContours = partitions.map((polygon, i) => polygon.length ? rounded(inset(polygon, WALL_INSET), i) : []);
-
-function ownsOrdinaryRegion(index: number, point: Point): boolean {
-  const site = sites[index], distance = (point[0] - site.x) ** 2 + (point[1] - site.y) ** 2;
-  return ordinary.every(j => [-SECTION_SPAN, 0, SECTION_SPAN].every(shift =>
-    distance <= (point[0] - sites[j].x - shift) ** 2 + (point[1] - sites[j].y) ** 2 + 1e-7));
-}
-
-function buildContacts(): { contours: readonly (readonly Point[])[]; contacts: readonly Contact[] } {
-  const candidates: Contact[] = [];
-  for (const a of ordinary) {
-    for (const b of ordinary) {
-      for (const offset of [0, 1]) {
-        if (!offset && a >= b) continue;
-        const other = partitions[b].map(([x, y]) => [x + offset * SECTION_SPAN, y] as const);
-        const edge = sharedSegment(partitions[a], other);
-        if (edge) candidates.push({ a, b, offset, ...edge });
-      }
-    }
-  }
-  candidates.sort((a, b) => b.length - a.length || a.a - b.a || a.b - b.b);
-  // A same-band spanning tree guarantees actual contacts connect the tissue.
-  // Additional possible neighbours retain open gaps instead of closing every
-  // adjacency. One cross-band contact continues that tree over each seam.
-  const roots = sites.map((_, i) => i), contacts: Contact[] = [];
-  const root = (i: number): number => roots[i] === i ? i : root(roots[i]);
-  for (const contact of candidates.filter(c => !c.offset)) {
-    const a = root(contact.a), b = root(contact.b);
-    if (a === b) continue;
-    contacts.push(contact); roots[a] = b;
-  }
-  const seam = candidates.find(c => c.offset === 1);
-  if (seam) contacts.push(seam);
-  const additions: Point[][] = sites.map(() => []);
-  for (const contact of contacts) {
-    additions[contact.a].push(...contact.points);
-    additions[contact.b].push(...contact.points.map(([x, y]) => [x - contact.offset * SECTION_SPAN, y] as const));
-  }
-  const contours = roundedContours.map((points, i) => points.length ? convexHull([...points, ...additions[i]]) : []);
-  const selected = sites.findIndex(site => site.retained);
-  const retained = retainedContour.slice(0, -1).map(([x, y]) => [x + retainedSite.x, y + retainedSite.y] as const);
-  const retainedCandidates: Contact[] = [];
-  for (const b of ordinary) {
-    let best: Contact | undefined;
-    for (let i = 0; i < retained.length; i++) {
-      const p = retained[i], q = retained[(i + 1) % retained.length], length = Math.hypot(q[0] - p[0], q[1] - p[1]);
-      // A supporting facet separates the complete retained cell from the
-      // neighbour hull. Both endpoints must also belong to that neighbour's
-      // ordinary-cell Voronoi region, so other cells cannot be crossed.
-      if (retained.some(point => cross(p, q, point) < -1e-8) || contours[b].some(point => cross(p, q, point) > 1e-8)) continue;
-      if (!ownsOrdinaryRegion(b, p) || !ownsOrdinaryRegion(b, q)) continue;
-      if (!best || length > best.length) best = { a: selected, b, offset: 0, points: [p, q], length };
-    }
-    if (best) retainedCandidates.push(best);
-  }
-  retainedCandidates.sort((a, b) => b.length - a.length);
-  const retainedContacts: Contact[] = [];
-  for (const contact of retainedCandidates) {
-    const direction: Point = [sites[contact.b].x - retainedSite.x, sites[contact.b].y - retainedSite.y];
-    if (retainedContacts.some(other => {
-      const otherDirection: Point = [sites[other.b].x - retainedSite.x, sites[other.b].y - retainedSite.y];
-      return (direction[0] * otherDirection[0] + direction[1] * otherDirection[1]) > .5 * Math.hypot(...direction) * Math.hypot(...otherDirection);
-    })) continue;
-    contours[contact.b] = convexHull([...contours[contact.b], ...contact.points]);
-    retainedContacts.push(contact);
-    if (retainedContacts.length === 2) break;
-  }
-  return { contours, contacts: [...contacts, ...retainedContacts] };
-}
-
-// Geometry is constructed once. Requesting arbitrarily many bands retains no
-// growing map of tiles; each band only qualifies the same local identities.
-const geometry = buildContacts();
-const template = sites.map((site, i) => Object.freeze({
-  id: `mesophyll-${i}`, x: site.x, y: site.y,
-  contour: site.retained ? retainedContour : Object.freeze(geometry.contours[i].map(([x, y]) =>
-    Object.freeze([x - site.x, y - site.y] as const))),
-  selected: !!site.retained,
-}));
-const contactTemplate = geometry.contacts.map(contact => Object.freeze({ ...contact,
-  points: Object.freeze([Object.freeze(contact.points[0]), Object.freeze(contact.points[1])] as const),
-}));
-
-/** Cell centers are local to a SECTION_SPAN-wide tile. Translate the whole band
- * by tile * SECTION_SPAN; do not clip individual cells to the tile rectangle.
- * Only tile zero owns the cell that is magnified by the nested-scale scene. */
+function validateTile(tile: number) { if (!Number.isSafeInteger(tile)) throw new RangeError('Mesophyll tile must be a safe integer'); }
+/** Translate the complete local band by tile*SECTION_SPAN; do not cut cells at
+ * a tile seam. Geometry is constructed once and no growing tile map is kept. */
 export function mesophyllBand(tile: number): readonly MesophyllCell[] {
-  if (!Number.isSafeInteger(tile)) throw new RangeError('Mesophyll tile must be a safe integer');
-  return template.map(cell => ({ ...cell, id: `${tile}/${cell.id}`, selected: tile === 0 && cell.selected }));
+  validateTile(tile);
+  return template.map(cell => ({ ...cell, id: String(tile) + '/' + cell.id, selected: tile === 0 && cell.selected }));
 }
-
-/** Each shared wall is returned once. cellA belongs to tile; cellB belongs to
- * tile or tile+1. Translate both endpoints by tile * SECTION_SPAN, just as for
- * the band's cells. These segments are exact parts of both cell boundaries. */
+/** Contacts are observed shared contour portions, not proximity links. A cell
+ * pair may have several adjacent segments, especially beside the retained cell.
+ * cellA is in tile and cellB in tile or tile+1; endpoints are tile-local. */
 export function mesophyllContacts(tile: number): readonly MesophyllContact[] {
-  if (!Number.isSafeInteger(tile)) throw new RangeError('Mesophyll tile must be a safe integer');
-  return contactTemplate.map(contact => ({ cellA: `${tile}/mesophyll-${contact.a}`,
-    cellB: `${tile + contact.offset}/mesophyll-${contact.b}`, points: contact.points }));
+  validateTile(tile);
+  return contacts.map(contact => ({ cellA: String(tile) + '/mesophyll-' + contact.a,
+    cellB: String(tile + contact.offset) + '/mesophyll-' + contact.b, points: contact.points }));
+}
+/** Closely apposed palisade profiles in the existing -112..10 layer. */
+export function palisadeBand(tile: number): readonly MesophyllCell[] {
+  validateTile(tile);
+  return palisadeTemplate.map(cell => ({ ...cell, id: String(tile) + '/' + cell.id }));
 }
 
-/** Sample a star-shaped cell contour along a polar ray. The radius is a
- * fraction of the distance to its wall, useful for clipped local organelles.
- * It is independent of the contour's vertex spacing and returns cell-local
- * coordinates. Empty contours or non-finite angle/radius return the center. */
+/** Sample a star-shaped cell along a polar ray; radius is a fraction of the
+ * wall distance. Empty contours/non-finite angle or radius return the center. */
 export function contourPoint(contour: readonly Point[], angle: number, radius = 1): Point {
   if (contour.length < 3 || !Number.isFinite(angle) || !Number.isFinite(radius)) return [0, 0];
-  const dx = Math.cos(angle), dy = Math.sin(angle);
-  let distance = Infinity;
-  for (let i = 0; i < contour.length; i++) {
-    const a = contour[i], b = contour[(i + 1) % contour.length], ex = b[0] - a[0], ey = b[1] - a[1];
-    const denominator = dx * ey - dy * ex;
-    if (Math.abs(denominator) < 1e-12) continue;
-    const t = (a[0] * ey - a[1] * ex) / denominator;
-    const u = (a[0] * dy - a[1] * dx) / denominator;
-    if (t >= 0 && u >= -1e-9 && u <= 1 + 1e-9) distance = Math.min(distance, t);
-  }
+  const distance = rayDistance([0, 0], angle, segments(contour));
   if (!Number.isFinite(distance)) return [0, 0];
   const r = distance * Math.max(0, Math.min(1, radius));
-  return [dx * r, dy * r];
+  return [Math.cos(angle) * r, Math.sin(angle) * r];
 }

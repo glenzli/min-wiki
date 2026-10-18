@@ -1,4 +1,4 @@
-import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, CHLOROPLAST_ENTRY, leafSectionAt, LEAF_SECTION, SECTION_SPAN, sectionContextTiles, cellEdge, VACUOLE, vacuolePoint, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SECTION_TURN_END, metricScaleBar } from './model.ts';
+import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, CHLOROPLAST_ENTRY, leafSectionAt, LEAF_SECTION, SECTION_SPAN, sectionContextTiles, cellEdge, mesophyllCellEdge, MESOPHYLL_PLASTIDS, VACUOLE, vacuolePoint, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SECTION_TURN_END, metricScaleBar } from './model.ts';
 import type { LeafKind, Pigments, ScaleEntry } from './model.ts';
 import { t } from './i18n.ts';
 import { leafLifeAt, leafPoint } from './lifecycle.ts';
@@ -6,13 +6,14 @@ import { waterAt, BLADE_WATER_ROUTE } from '../plant-water/model.ts';
 import { createLeafMotion } from './leafMotion.ts';
 import { BladeArtwork } from './bladeArtwork.ts';
 import { EpidermisSurface } from './epidermis.ts';
-import { mesophyllBand, mesophyllContacts, contourPoint, type MesophyllCell } from './mesophyllGeometry.ts';
+import { palisadeBand, mesophyllBand, mesophyllContacts, contourPoint, type MesophyllCell } from './mesophyllGeometry.ts';
 
 type Point = [number, number];
 interface MesophyllArtwork {
   outlines:Path2D[];
-  plastids:Array<{x:number;y:number;angle:number;size:number}>;
-  nucleus:readonly[number,number];
+  plastids:Array<{x:number;y:number;angle:number;size:number;opacity:number}>;
+  nucleus:readonly[number,number]|null;
+  tone:number;
 }
 // A connected membrane section, with stable variation rather than identical
 // columns. Fine membrane spacing and pigment symbols remain illustrative.
@@ -46,6 +47,8 @@ export class LeafScene {
   private labelsVisible = true;
   private labels: Array<{ text: string; x: number; y: number; anchor?: Point; width: number; matrix: DOMMatrix }> = [];
   private vacuolePath = new Path2D();
+  private mesophyllWall = new Path2D();
+  private mesophyllInnerWall = new Path2D();
   private season = 0;
   private age = .34;
   private lifeDirty = true;
@@ -67,8 +70,14 @@ export class LeafScene {
     for (let i=0;i<=96;i++) {
       const point=vacuolePoint(i/96*Math.PI*2);
       if(i) this.vacuolePath.lineTo(...point); else this.vacuolePath.moveTo(...point);
+      const wall=mesophyllCellEdge(i/96*Math.PI*2);
+      for(const [path,r] of [[this.mesophyllWall,1],[this.mesophyllInnerWall,.987]] as const) {
+        const x=wall[0]*r,y=-2+wall[1]*r;
+        if(i)path.lineTo(x,y);else path.moveTo(x,y);
+      }
     }
     this.vacuolePath.closePath();
+    this.mesophyllWall.closePath();this.mesophyllInnerWall.closePath();
     this.observer = new ResizeObserver(() => this.resize());
     this.observer.observe(canvas);
     this.resize();
@@ -141,7 +150,11 @@ export class LeafScene {
     const camera = { ...originalCamera, x: originalCamera.x * (1 - follow) + tracked.x * follow, y: originalCamera.y * (1 - follow) + tracked.y * follow, angle: originalCamera.angle + life.rotation * follow, magnification: originalCamera.magnification / (1 - follow + life.size * follow) };
     // Narrow canvases need breathing room around the complete sampled cell.
     const detailBoost = .18 + .2 * smooth(420,760,this.width);
-    const sceneScale = this.scale * camera.magnification * (1 + detailBoost * smooth(SECTION_TURN_END, 2, this.position));
+    // The expanded desktop explanation panel can leave a tall, narrow stage.
+    // Fit the 420-unit organelle with the same uniform framing at every deeper
+    // scale. This does not stretch anatomy or alter the fixed-magnification turn.
+    const detailFit=Math.min(1,(this.width-(this.width<480?32:48))/(this.scale*420*(1+detailBoost)));
+    const sceneScale = this.scale * camera.magnification * (1 + detailBoost * smooth(SECTION_TURN_END, 2, this.position)) * (1-(1-detailFit)*smooth(1,2,this.position));
     const frameY = this.height * (.46 + .08 * smooth(.2, 1, this.position));
     const entries: ScaleEntry[] = [...SCALE_ENTRIES, destination];
     const section = leafSectionAt(this.position), patch = entries[0];
@@ -397,15 +410,6 @@ export class LeafScene {
     }
     c.closePath();
   }
-  private peripheralPlastids(x: number, y: number, rx: number, ry: number, seed: number, count: number, size: number, p: Pigments, power = 1) {
-    for (let j = 0; j < count; j++) {
-      const a = j / count * Math.PI * 2 + .08 * Math.sin(seed + j * 2.3) + .015 * Math.sin(this.time * .25 + j);
-      const [dx, dy] = this.cellEdge(a, rx, ry, seed, power);
-      const before = this.cellEdge(a - .025, rx, ry, seed, power), after = this.cellEdge(a + .025, rx, ry, seed, power);
-      this.plastid(x + dx * .77, y + dy * .77, size*(.9+.1*Math.sin(seed+j*1.7)), p, Math.atan2(after[1] - before[1], after[0] - before[0]));
-    }
-  }
-
   private sectionEdges(first:number,last:number) {
     const key=`${first}:${last}`;
     let edges=this.upperCellEdges.get(key);
@@ -423,14 +427,13 @@ export class LeafScene {
     return edges;
   }
   private tissuePalette(p:Pigments) {
-    // Translucent botanical illustration under soft transmitted light. Only
-    // chloroplasts carry green/yellow pigment marks; anthocyanin tints vacuoles.
-    const plastid=leafRGB({...p,anthocyanins:0});
+    // A transmitted-light-inspired illustration, not a calibrated microscope
+    // image. Green stays in plastids; clear cell sap is not green pigment.
     return {
-      light:rgb(mix(plastid,[222,231,181],.84)),
-      body:rgb(mix(plastid,[183,207,143],.78)),
-      edge:rgb(mix(plastid,[126,164,106],.8)),
-      liquid:rgb(mix([208,224,177],[230,158,187],p.anthocyanins)),
+      light:'#edf0dc',
+      body:'#dfe7cd',
+      edge:'#d0ddbf',
+      liquid:rgb(mix([231,237,215],[232,176,194],p.anthocyanins)),
     };
   }
   private epidermalRow(edges: readonly number[], color: string) {
@@ -444,53 +447,42 @@ export class LeafScene {
       c.bezierCurveTo(right - bend, -139, right + bend, -119, right, bottom);
       c.quadraticCurveTo((left + right) * .5, bottom + 2, left, bottom);
       c.bezierCurveTo(left + bend, -119, left - bend, -139, left, -148); c.closePath();
-      c.fillStyle = color; c.fill(); c.strokeStyle = '#728b59'; c.lineWidth = .8; c.stroke();
+      c.fillStyle = color; c.fill(); c.strokeStyle = '#889778'; c.lineWidth = .55; c.stroke();
     }
   }
   private tissue(p: Pigments) {
-    const c=this.ctx, palette=this.tissuePalette(p), inverse=c.getTransform().inverse();
+    const c=this.ctx, inverse=c.getTransform().inverse();
     const xs=[[0,0],[this.canvas.width,0],[0,this.canvas.height],[this.canvas.width,this.canvas.height]]
       .map(([x,y])=>inverse.transformPoint(new DOMPoint(x,y)).x);
     const left=Math.min(...xs)-2,right=Math.max(...xs)+2;
     c.save(); c.beginPath();c.rect(left,LEAF_SECTION.top,right-left,LEAF_SECTION.bottom-LEAF_SECTION.top);c.clip();
     if(this.position<2.15) {
     c.save();c.globalAlpha*=1-smooth(1.45,2.15,this.position);
-    // Air spaces are outside the cells. A restrained neutral recess separates
-    // them from the warmer, translucent cell contents, without a white cut face.
-    const body=c.createLinearGradient(0,-145,0,134);body.addColorStop(0,'#7c8978');body.addColorStop(.55,'#879187');body.addColorStop(1,'#9ca697');
+    // The spaces transmit light rather than looking like deep, opaque trenches.
+    // Their shape comes from real contour separation, not a painted gap layer.
+    const body=c.createLinearGradient(0,-145,0,134);body.addColorStop(0,'#d5dfc3');body.addColorStop(.55,'#c5d3b5');body.addColorStop(1,'#dce3ce');
     c.fillStyle=body;c.fillRect(left,-145,right-left,280);
-    c.fillStyle='#8eab69';c.fillRect(left,-153,right-left,5);
-    c.fillStyle='#c1d29e';c.fillRect(left,-148,right-left,3);
-    c.fillStyle='#77945f';c.fillRect(left,133,right-left,2);
+    c.fillStyle='#a3b382';c.fillRect(left,-153,right-left,3);
+    c.fillStyle='#d8e1bc';c.fillRect(left,-150,right-left,2);
+    c.fillStyle='#9eaf83';c.fillRect(left,133,right-left,1);
     const tiles=sectionContextTiles(left-32,right+32);
     // One seam across the complete visible cut: band boundaries cannot invent
     // extra epidermal walls or restart the shape of an already visible cell.
-    this.epidermalRow(this.sectionEdges(tiles[0],tiles[tiles.length-1]), '#b8cc94');
+    this.epidermalRow(this.sectionEdges(tiles[0],tiles[tiles.length-1]), '#dce4c7');
     for(const tile of tiles) {
       c.save();c.translate(tile*SECTION_SPAN,0);
       for (let i = 0; i < 10; i++) {
         const id=i+tile*10;
-        c.fillStyle = '#c1d09d'; c.strokeStyle = '#758c5e'; c.lineWidth = 1.1;
+        c.fillStyle = '#dce4c9'; c.strokeStyle = '#8b9d7b'; c.lineWidth = .55;
         this.cellOutline(-195 + i * 43, 123 + Math.cos(id * 1.5), 19.5, 10.5, id * 2.1 + 4, .7); c.fill(); c.stroke();
       }
-      for (let i = 0; i < 8; i++) {
-        const id=i+tile*8,seed=id*2.3;
-        const x = -207 + i * 53, cy = -49 + Math.sin(id * 2.1) * 3, rx = 23.5 + Math.sin(id * 1.7), ry = 54 + Math.cos(id * 2.7) * 4;
-        const cellFill=c.createLinearGradient(x,-108,x+48,9);cellFill.addColorStop(0,palette.body);cellFill.addColorStop(1,palette.light); c.fillStyle = cellFill; c.strokeStyle = '#66824f';c.lineWidth=1.1;
-        this.cellOutline(x + 24, cy, rx, ry, seed, .72); c.fill(); c.stroke();
-        this.cellOutline(x + 24, cy, rx-1.4, ry-1.4, seed, .72);c.strokeStyle='#dce9ba';c.lineWidth=.65;c.stroke();
-        this.cellOutline(x + 24, cy, rx * .52, ry * .64, seed, .72); c.fillStyle = palette.liquid; c.fill();
-        c.strokeStyle=rgb(mix([157,184,136],[177,123,148],p.anthocyanins),.48);c.lineWidth=.45;c.stroke();
-        this.ellipse(x+24+rx*.56,cy+ry*.57,2.8,3.8,'#d0c3db','#a69bb8');
-        // Organelles follow the cell's contour within the cytoplasm, outside the liquid compartment.
-        this.peripheralPlastids(x + 24, cy, rx, ry, seed, 6, 5.2, p, .72);
-      }
+      for (const cell of palisadeBand(tile)) this.mesophyllCell(cell,p);
       for (const cell of mesophyllBand(tile)) if (!cell.selected) this.mesophyllCell(cell,p);
       c.restore();
     }
     // Both contours own each contact segment. This line identifies their shared
     // wall; it does not paint a connector across an air-filled gap.
-    c.strokeStyle='#71875d';c.lineWidth=.55;
+    c.strokeStyle='#7f9471';c.lineWidth=.3;
     for(const tile of tiles) {
       c.save();c.translate(tile*SECTION_SPAN,0);
       for(const contact of mesophyllContacts(tile)) {
@@ -500,7 +492,7 @@ export class LeafScene {
     }
     this.label(t('上表皮'), -125, -180, [-125, -132], 100);
     this.label(t('叶肉细胞'), 133, -181, [133, -62], 120);
-    this.label(t('细胞间隙 · 含空气'), 80, 161, [65, 62], 150);
+    this.label(t('细胞间隙 · 含空气'), 80, 161, [110, 72], 150);
     this.label(t('下表皮'), -139, 161, [-139, 123], 100);
     c.restore();
     }
@@ -515,73 +507,82 @@ export class LeafScene {
     const c=this.ctx, palette=this.tissuePalette(p);
     let art=this.mesophyllArt.get(cell.contour);
     if(!art) {
-      const outlines=[1,.98,.955,.93,.67].map(factor=>{
+      const seed=cell.contour.reduce((sum,[x,y],i)=>sum+(x+y*.71)*Math.sin(i*.39),0);
+      const tone=.5+.5*Math.sin(seed*.17);
+      const outlines=[1,.987,.73+.055*Math.sin(seed)].map(factor=>{
         const path=new Path2D();cell.contour.forEach(([x,y],i)=>i?path.lineTo(x*factor,y*factor):path.moveTo(x*factor,y*factor));path.closePath();return path;
       });
-      const plastids=Array.from({length:9},(_,i)=>{
-        const a=i*Math.PI*2/9+.035*Math.sin(i*2.7),point=contourPoint(cell.contour,a,.83),
-          before=contourPoint(cell.contour,a-.02),after=contourPoint(cell.contour,a+.02);
-        return {x:point[0],y:point[1],size:2.55+.25*Math.sin(i*1.9),angle:Math.atan2(after[1]-before[1],after[0]-before[0])};
+      const lengths=cell.contour.map(([x,y],i)=>{const next=cell.contour[(i+1)%cell.contour.length];return Math.hypot(next[0]-x,next[1]-y);});
+      const perimeter=lengths.reduce((sum,length)=>sum+length,0);
+      const count=Math.max(9,Math.min(27,Math.round(perimeter/8.2)));
+      const plastids=Array.from({length:count},(_,i)=>{
+        // Arc length avoids piling equal-angle samples at a long profile's ends.
+        let distance=(((i+.5+.29*Math.sin(seed+i*1.7))/count+tone*.13)%1)*perimeter;
+        let segment=0;while(segment<lengths.length-1&&distance>lengths[segment])distance-=lengths[segment++];
+        const from=cell.contour[segment],to=cell.contour[(segment+1)%cell.contour.length],u=lengths[segment]?distance/lengths[segment]:0,
+          radius=.86+.035*Math.sin(seed+i*2.13),x=(from[0]+(to[0]-from[0])*u)*radius,y=(from[1]+(to[1]-from[1])*u)*radius;
+        return {x,y,size:2.4+.48*Math.sin(seed*.7+i*1.9),opacity:.57+.4*(.5+.5*Math.sin(seed+i*2.3)),angle:Math.atan2(to[1]-from[1],to[0]-from[0])};
       });
-      art={outlines,plastids,nucleus:contourPoint(cell.contour,2.57,.74)};
+      // A thin optical section need not pass through every cell's nucleus.
+      art={outlines,plastids,tone,nucleus:tone>.94?contourPoint(cell.contour,2.57+.5*Math.sin(seed),.67):null};
       this.mesophyllArt.set(cell.contour,art);
     }
     c.save();c.translate(cell.x,cell.y);
-    const fill=c.createLinearGradient(-20,-25,25,28);fill.addColorStop(0,palette.light);fill.addColorStop(1,palette.edge);
-    c.fillStyle=fill;c.fill(art.outlines[0]);c.strokeStyle='#aac38a';c.lineWidth=1.1;c.stroke(art.outlines[0]);
-    c.strokeStyle='#789264';c.lineWidth=.23;c.stroke(art.outlines[1]);
-    c.strokeStyle='#e2ecc3';c.lineWidth=.28;c.stroke(art.outlines[2]);
-    c.save();c.clip(art.outlines[3]);
-    const liquid=c.createRadialGradient(-7,-8,.6,2,3,26);
-    liquid.addColorStop(0,rgb(mix([225,234,196],[248,205,218],p.anthocyanins)));
-    liquid.addColorStop(.65,palette.liquid);liquid.addColorStop(1,rgb(mix([171,198,143],[200,119,155],p.anthocyanins)));
-    c.fillStyle=liquid;c.fill(art.outlines[4]);c.strokeStyle=rgb(mix([139,169,125],[169,104,138],p.anthocyanins),.6);c.lineWidth=.2;c.stroke(art.outlines[4]);
-    for(const plastid of art.plastids)this.plastid(plastid.x,plastid.y,plastid.size,p,plastid.angle);
+    const fill=c.createLinearGradient(-20,-25,25,28);fill.addColorStop(0,rgb(mix([234,239,216],[218,230,201],art.tone*.32)));fill.addColorStop(1,palette.body);
+    c.fillStyle=fill;c.fill(art.outlines[0]);c.strokeStyle='#879a75';c.lineWidth=.42;c.stroke(art.outlines[0]);
+    c.strokeStyle='#f2f2db9c';c.lineWidth=.19;c.stroke(art.outlines[1]);
+    c.save();c.clip(art.outlines[1]);
+    c.fillStyle=palette.liquid;c.globalAlpha*=.36+.5*p.anthocyanins;c.fill(art.outlines[2]);c.restore();
+    c.save();c.clip(art.outlines[1]);
+    for(const plastid of art.plastids) {
+      c.save();c.globalAlpha*=plastid.opacity;this.plastid(plastid.x,plastid.y,plastid.size,p,plastid.angle);c.restore();
+    }
     const nucleus=art.nucleus;
-    const nuclear=c.createRadialGradient(nucleus[0]-.8,nucleus[1]-.8,.2,nucleus[0],nucleus[1],3.6);
-    nuclear.addColorStop(0,'#eee7ee');nuclear.addColorStop(.62,'#d6cadd');nuclear.addColorStop(1,'#b4a4c4');
-    this.cellOutline(...nucleus,3.1,2.6,.7);c.fillStyle=nuclear;c.fill();c.lineWidth=.2;c.strokeStyle='#a396b3';c.stroke();
-    this.ellipse(nucleus[0]-.8,nucleus[1]-.4,.8,.65,'#b2a0c0');
+    if(nucleus) {
+      c.save();c.globalAlpha*=.45;
+      this.cellOutline(...nucleus,2.7,2.2,.7);c.fillStyle='#c5cfb8';c.fill();c.lineWidth=.18;c.strokeStyle='#83937e';c.stroke();
+      this.ellipse(nucleus[0]-.6,nucleus[1]-.3,.6,.5,'#8f9b85');c.restore();
+    }
     c.restore();c.restore();
   }
   private cell(p: Pigments) {
-    const c = this.ctx;
+    const c = this.ctx,detail=smooth(1.4,2,this.position);
     c.save();
     if(this.kind==='yellow')c.globalAlpha*=1-smooth(2.32,2.92,this.position);
-    this.cellOutline(0,-2,171,134,1.4,.85);
-    const cytoplasm=c.createRadialGradient(-65,-64,4,18,16,205);
+    const cytoplasm=c.createLinearGradient(-70,-115,80,115);
     const palette=this.tissuePalette(p);
-    cytoplasm.addColorStop(0,palette.light);cytoplasm.addColorStop(.58,palette.body);cytoplasm.addColorStop(1,palette.edge);
-    c.fillStyle=cytoplasm;c.fill();c.lineWidth=6.5;c.strokeStyle='#aac38a';c.stroke();
-    c.lineWidth=1.1;c.strokeStyle='#809c70';c.stroke();
-    this.cellOutline(0,-2,167,130,1.4,.85);c.strokeStyle='#e5edc9';c.lineWidth=1.5;c.stroke();
-    this.cellOutline(0,-2,163,126,1.4,.85);c.strokeStyle='#839b6b';c.lineWidth=.8;c.stroke();
-    this.vacuole(p);
-    for (let i=0;i<16;i++) {
-      if(i===6||i===14)continue;
-      const a=i*Math.PI*2/16+.035*Math.sin(i*2.7);
-      const [dx,dy]=this.cellEdge(a,171,134,1.4,.85);
-      const before=this.cellEdge(a-.02,171,134,1.4,.85),after=this.cellEdge(a+.02,171,134,1.4,.85);
-      this.plastid(dx*.84,-2+dy*.84,15.5+1.5*Math.sin(i*1.9),p,Math.atan2(after[1]-before[1],after[0]-before[0]));
+    cytoplasm.addColorStop(0,palette.light);cytoplasm.addColorStop(1,palette.body);
+    c.fillStyle=cytoplasm;c.fill(this.mesophyllWall);c.lineWidth=2.2;c.strokeStyle='#8b9e7b';c.stroke(this.mesophyllWall);
+    c.strokeStyle='#eef1d8a6';c.lineWidth=.7;c.stroke(this.mesophyllInnerWall);
+    c.save();c.clip(this.mesophyllInnerWall);
+    this.vacuole(p,detail);
+    for (const [i,plastid] of MESOPHYLL_PLASTIDS.entries()) {
+      c.save();c.globalAlpha*=.74+.2*(.5+.5*Math.sin(i*2.3));
+      this.plastid(plastid.x,plastid.y,plastid.size,p,plastid.angle);c.restore();
     }
-    for (let i=0;i<48;i++) {
-      const a=i*2.399, r=.75+(i%5)*.017;
-      const [x,y]=this.cellEdge(a,171,134,1.4,.85);
-      if(Math.hypot(x*r+113,y*r-74)>26) this.ellipse(x*r,y*r-2,.65+i%2*.25,.65,'#6c95602b');
+    c.save();c.globalAlpha*=detail;
+    for (let i=0;i<24;i++) {
+      const a=i*2.399,wall=mesophyllCellEdge(a),liquid=vacuolePoint(a);
+      const x=liquid[0]+(wall[0]-liquid[0])*.46,y=liquid[1]+(wall[1]-2-liquid[1])*.46;
+      if(Math.hypot(x+113,y-72)>26)this.ellipse(x,y,.55+i%2*.2,.5,'#7e937b29');
     }
+    c.restore();
+    c.save();c.globalAlpha*=.2+.8*detail;
     this.cellOutline(-113,72,22,19,.7);
-    const nucleoplasm=c.createRadialGradient(-120,65,2,-111,74,25);
-    nucleoplasm.addColorStop(0,'#f1eaf2');nucleoplasm.addColorStop(.6,'#dbd0e4');nucleoplasm.addColorStop(1,'#b2a2c3');
-    c.fillStyle=nucleoplasm;c.fill();c.strokeStyle='#a396b3';c.lineWidth=1;c.stroke();
+    const nucleoplasm=c.createLinearGradient(-126,58,-100,88);
+    nucleoplasm.addColorStop(0,'#e4e9d6');nucleoplasm.addColorStop(1,'#b6c2aa');
+    c.fillStyle=nucleoplasm;c.fill();c.strokeStyle='#8b9d88';c.lineWidth=.8;c.stroke();
     c.save();c.clip();
-    c.strokeStyle='#a99ab970';c.lineWidth=.65;
+    c.globalAlpha*=detail;c.strokeStyle='#8e9b8260';c.lineWidth=.55;
     for(let i=0;i<3;i++) {
       c.beginPath();
       for(let j=0;j<=40;j++) {const a=j/40*Math.PI*2,x=-113+Math.cos(a)*(11+Math.sin(a*3+i)*4),y=72+Math.sin(a*2+i)*10;j?c.lineTo(x,y):c.moveTo(x,y);}c.stroke();
     }
-    this.ellipse(-119,68,5.5,4.7,'#b09bbd');this.ellipse(-120,67,2.6,2,'#c9b8d1');c.restore();
+    this.ellipse(-119,68,4.7,4,'#8f9f87');this.ellipse(-120,67,2.1,1.7,'#b9c6ab');c.restore();c.restore();
+    c.restore();
     this.label(t('液泡'), 5, 0, undefined, 100);
-    this.label(t('细胞壁'), -137, -175, [-159, -118], 90);
+    const wallAnchor=mesophyllCellEdge(-2.45);
+    this.label(t('细胞壁'), -137, -175, [wallAnchor[0],wallAnchor[1]-2], 90);
     this.label(t('叶绿体'), 130, -175, [104, -78], 105);
     this.label(t('细胞核'), -118, 170, [-113, 74], 100);
     this.label(this.kind === 'red' && this.season > .4 ? t('花青素积累在液泡中') : t('叶绿素藏在叶绿体里'), 68, 170, [56, this.kind === 'red' && this.season > .4 ? 58 : 103], 180);
@@ -598,12 +599,11 @@ export class LeafScene {
     const saved=this.labelsVisible;this.labelsVisible=this.kind==='yellow'&&this.position>2.86;
     this.chloroplast(p);this.labelsVisible=saved;c.restore();
   }
-  private vacuole(p: Pigments) {
+  private vacuole(p: Pigments,detail:number) {
     const c = this.ctx;
-    const fill=c.createRadialGradient(-38,-43,3,15,17,150);
-    fill.addColorStop(0,rgb(mix([225,234,196],[248,205,218],p.anthocyanins)));
-    fill.addColorStop(.65,rgb(mix([208,224,177],[230,158,187],p.anthocyanins)));
-    fill.addColorStop(1,rgb(mix([171,198,143],[200,119,155],p.anthocyanins)));
+    const fill=c.createLinearGradient(-45,-70,45,78);
+    fill.addColorStop(0,rgb(mix([237,241,220],[243,201,214],p.anthocyanins)));
+    fill.addColorStop(1,this.tissuePalette(p).liquid);
     c.save();c.clip(this.vacuolePath);c.fillStyle=fill;c.fill(this.vacuolePath);
     // Stable, distributed solute symbols. Concentration changes throughout the
     // liquid; neither the pigment field nor a reveal mask expands from a centre.
@@ -613,10 +613,8 @@ export class LeafScene {
       const visible=smooth(((i*37)%163)/163-.08,((i*37)%163)/163+.08,p.anthocyanins);
       this.ellipse(x+Math.sin(this.time*.24+i)*.65,y+Math.cos(this.time*.19+i*2)*.5,.6+i%3*.15,.6,`rgba(135,49,88,${visible*.27})`);
     }
-    c.restore();c.strokeStyle=rgb(mix([139,169,125],[169,104,138],p.anthocyanins),.75);
-    c.lineWidth=1.1;c.stroke(this.vacuolePath);
-    c.save();c.clip(this.vacuolePath);c.translate(-.6,-.8);
-    c.strokeStyle='#ffffff80';c.lineWidth=.8;c.stroke(this.vacuolePath);c.restore();
+    c.restore();c.strokeStyle=rgb(mix([143,164,127],[171,114,141],p.anthocyanins),.12+.42*detail);
+    c.lineWidth=.8;c.stroke(this.vacuolePath);
   }
   private chloroplast(p: Pigments, miniature = false) {
     const c = this.ctx;
@@ -674,21 +672,23 @@ export class LeafScene {
       }
       c.restore();
     }
-    // The selected organelle starts with the same translucent cover as its
-    // miniature neighbours. Progressively reveal its registered interior while
-    // keeping the lenticular silhouette and seasonal palette unchanged.
+    // Tissue-scale chloroplasts are green profiles, not tiny diagrams exposing
+    // resolvable grana. The same outline opens into a registered explanatory
+    // cutaway only as we approach; this is not simulated microscope resolution.
     const opening=miniature?0:smooth(2.14,2.78,this.position);
     const cover=c.createLinearGradient(0,-103,0,103);
-    cover.addColorStop(0,rgb(mix(base,[166,194,119],.38),.7*(1-opening)));
-    cover.addColorStop(.46,rgb(mix(base,[132,167,90],.28),.78*(1-opening)));
-    cover.addColorStop(1,rgb(mix(base,[94,135,67],.38),.8*(1-opening)));
+    cover.addColorStop(0,rgb(mix(base,[154,181,103],.29),.98*(1-opening)));
+    cover.addColorStop(.46,rgb(mix(base,[117,153,77],.2),.985*(1-opening)));
+    cover.addColorStop(1,rgb(mix(base,[85,121,62],.28),.99*(1-opening)));
     c.fillStyle=cover;c.fillRect(-211,-110,422,220);
     c.restore();
-    // A chloroplast has a double envelope. The narrow highlight is surface
-    // lighting on that pair, not a third membrane or a halo around a new image.
+    // Envelope detail belongs to the explanation layer; the ordinary profiles
+    // do not pretend to resolve two membranes in a light-microscope section.
     c.beginPath();c.ellipse(0,0,210,109.2,0,0,Math.PI*2);c.strokeStyle='#607d47';c.lineWidth=1.5;c.stroke();
+    c.save();c.globalAlpha*=opening;
     c.beginPath();c.ellipse(0,0,205,104.2,0,0,Math.PI*2);c.strokeStyle='#829b58';c.lineWidth=1.1;c.stroke();
     c.beginPath();c.ellipse(-.5,-.8,208,107,0,Math.PI*1.06,Math.PI*1.85);c.strokeStyle='#e2ecbca8';c.lineWidth=1;c.stroke();
+    c.restore();
     if(miniature)return;
     this.label(t('叶绿体包膜'), -129, -148, [-172, -66], 135);
     this.label(t('基粒 · 堆叠的类囊体'), 111, -148, [95,-43], 170);

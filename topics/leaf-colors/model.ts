@@ -73,11 +73,36 @@ export function cellEdge(a: number, rx: number, ry: number, seed: number, power 
   const ca=Math.cos(a), sa=Math.sin(a);
   return [rx*Math.sign(ca)*Math.abs(ca)**power*r+ry*.035*Math.sin(a*2+seed), ry*Math.sign(sa)*Math.abs(sa)**power*r];
 }
+/** Fixed, asymmetric mesophyll profile. Concave wall arcs distinguish a
+ * section through lobed tissue from an inflated rounded tile. This remains
+ * authored anatomy, not a traced or measured specimen. Coordinates are local
+ * to the same wall centre used by the tissue and detailed-cell renderers. */
+export function mesophyllCellEdge(angle:number,radius=1):[number,number] {
+  const [x,y]=cellEdge(angle,171,134,1.4,.85);
+  const lobe=(at:number,width:number)=>Math.exp(-((Math.atan2(Math.sin(angle-at),Math.cos(angle-at))/width)**2));
+  const shape=1-.17*lobe(2.83,.24)+.08*lobe(2.02,.32)-.16*lobe(1.12,.24)+.065*lobe(.48,.3);
+  return [x*shape*radius,y*shape*radius];
+}
 export const VACUOLE = { x: 4, y: -2, rx: 115, ry: 87, seed: 2.6 } as const;
 export function vacuolePoint(angle: number, radius = 1): [number, number] {
   const [x,y]=cellEdge(angle,VACUOLE.rx,VACUOLE.ry,VACUOLE.seed);
   return [VACUOLE.x+x*clamp(radius),VACUOLE.y+y*clamp(radius)];
 }
+
+// Fixed cross-sectional profiles in the peripheral cytoplasm. The retained
+// destination at CHLOROPLAST_ENTRY is drawn separately, once, at all scales.
+export const MESOPHYLL_PLASTIDS = Object.freeze(Array.from({length:16},(_,i)=>i)
+  .filter(i=>i!==6&&i!==7&&i!==14).map(i=>{
+    const a=i*Math.PI*2/16+.055*Math.sin(i*2.7);
+    const wall=mesophyllCellEdge(a),liquid=vacuolePoint(a),
+      before=mesophyllCellEdge(a-.02),after=mesophyllCellEdge(a+.02);
+    return Object.freeze({
+      x:liquid[0]+(wall[0]-liquid[0])*.58,
+      y:liquid[1]+(wall[1]-2-liquid[1])*.58,
+      size:13.8+1.2*Math.sin(i*1.9),
+      angle:Math.atan2(after[1]-before[1],after[0]-before[0]),
+    });
+  }));
 /** Bounded visible bands of one continuous section, never independent samples.
  * Tile zero owns the retained cell; neighbours only extend its tissue context. */
 export function sectionContextTiles(left: number, right: number) {

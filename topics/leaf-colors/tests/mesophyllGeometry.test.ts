@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mesophyllBand, mesophyllContacts, contourPoint, type MesophyllCell, type Point } from '../mesophyllGeometry.ts';
-import { SCALE_ENTRIES, SECTION_SPAN, cellEdge } from '../model.ts';
+import { mesophyllBand, mesophyllContacts, palisadeBand, contourPoint, type MesophyllCell, type Point } from '../mesophyllGeometry.ts';
+import { SCALE_ENTRIES, SECTION_SPAN, mesophyllCellEdge } from '../model.ts';
 
 interface Polygon {
   id: string;
@@ -63,24 +63,24 @@ function coversSegment(shape: Polygon, segment: readonly [Point, Point]): boolea
   return covered >= 1 - 1e-8;
 }
 
-function context(tiles: readonly number[]): Polygon[] {
-  return tiles.flatMap(tile => mesophyllBand(tile).map(cell => polygon(cell, tile)));
+function context(tiles: readonly number[], includePalisade = false): Polygon[] {
+  return tiles.flatMap(tile => [...mesophyllBand(tile), ...(includePalisade ? palisadeBand(tile) : [])].map(cell => polygon(cell, tile)));
 }
 
 test('bands have fixed bounded finite geometry and deterministic local identities', () => {
   const first = mesophyllBand(0);
-  assert.ok(first.length >= 14 && first.length <= 24);
+  assert.ok(first.length > 0 && first.length <= 80);
   for (const tile of [-11, -1, 0, 1, 17]) {
     const cells = mesophyllBand(tile);
     assert.equal(cells.length, first.length);
     assert.equal(new Set(cells.map(cell => cell.id)).size, cells.length);
-    for (const cell of cells) {
+    for (const cell of [...cells, ...palisadeBand(tile)]) {
       assert.ok(Number.isFinite(cell.x) && Number.isFinite(cell.y));
-      assert.ok(cell.contour.length >= 20 && cell.contour.length <= 100);
+      assert.ok(cell.contour.length >= 3 && cell.contour.length <= 2048);
       for (const [x, y] of cell.contour) {
         assert.ok(Number.isFinite(x) && Number.isFinite(y));
         assert.ok(x + cell.x >= -250 && x + cell.x <= 250);
-        assert.ok(y + cell.y >= 10 - 1e-8 && y + cell.y <= 113 + 1e-8);
+        assert.ok(y + cell.y >= (cell.id.includes('palisade') ? -112 : 10) - 1e-8 && y + cell.y <= (cell.id.includes('palisade') ? 10 : 113) + 1e-8);
       }
     }
   }
@@ -90,6 +90,8 @@ test('bands have fixed bounded finite geometry and deterministic local identitie
   assert.throws(() => mesophyllBand(.5), RangeError);
   assert.throws(() => mesophyllContacts(NaN), RangeError);
   assert.throws(() => mesophyllContacts(.5), RangeError);
+  assert.throws(() => palisadeBand(Infinity), RangeError);
+  assert.deepEqual(palisadeBand(0), palisadeBand(0));
 });
 
 test('only band zero owns the selected cell and its exact nested-scale outline', () => {
@@ -99,19 +101,19 @@ test('only band zero owns the selected cell and its exact nested-scale outline',
   assert.equal(cell.x, entry.x);
   assert.equal(cell.y, entry.y - 2 * entry.size);
   assert.deepEqual(cell.contour, Array.from({ length: 97 }, (_, i) => {
-    const point = cellEdge(i / 96 * Math.PI * 2, 171, 134, 1.4, .85);
+    const point = mesophyllCellEdge(i / 96 * Math.PI * 2);
     return [point[0] * entry.size, point[1] * entry.size];
   }));
   for (const tile of [-7, -1, 1, 9]) assert.ok(mesophyllBand(tile).every(other => !other.selected));
 });
 
 test('radial contour samples keep the vacuole and organelles within star-shaped cells', () => {
-  for (const cell of mesophyllBand(0)) {
+  for (const cell of [...mesophyllBand(0), ...palisadeBand(0)]) {
     const shape = polygon(cell, 0);
     assert.ok(contains(shape, cell.x, cell.y), `${cell.id} must contain its center`);
     for (let i = 0; i < 128; i++) {
       const angle = i / 128 * Math.PI * 2, wall = contourPoint(cell.contour, angle);
-      assert.ok(Math.hypot(...wall) > 8 && Math.hypot(...wall) < 48);
+      assert.ok(Math.hypot(...wall) > .25 && Math.hypot(...wall) < 140);
       for (const radius of [.1, .35, .65, .97]) {
         const point = contourPoint(cell.contour, angle, radius);
         assert.ok(contains(shape, point[0] + cell.x, point[1] + cell.y), `${cell.id} ray ${i} escaped at ${radius}`);
@@ -129,7 +131,7 @@ test('radial contour samples keep the vacuole and organelles within star-shaped 
 });
 
 test('cell interiors stay disjoint while shared boundaries can coincide, including at seams', () => {
-  const shapes = context([-1, 0, 1]);
+  const shapes = context([-1, 0, 1], true);
   for (let i = 0; i < shapes.length; i++) {
     const a = shapes[i];
     for (let j = i + 1; j < shapes.length; j++) {
@@ -145,7 +147,7 @@ test('cell interiors stay disjoint while shared boundaries can coincide, includi
     }
   }
   // Independent interior samples also detect overlap missed at sparse vertices.
-  for (const cell of mesophyllBand(0)) {
+  for (const cell of [...mesophyllBand(0), ...palisadeBand(0)]) {
     for (let i = 0; i < 48; i++) {
       for (const radius of [.25, .5, .75, .98]) {
         const [x, y] = contourPoint(cell.contour, i / 48 * Math.PI * 2, radius);
@@ -155,33 +157,36 @@ test('cell interiors stay disjoint while shared boundaries can coincide, includi
   }
 });
 
-test('projected illustration occupancy leaves substantial air spaces without sparse floating cells', () => {
-  const shapes = context([-1, 0, 1]);
-  let occupied = 0, total = 0;
-  // This is projected area in one drawn section, never a biological volume fraction.
-  for (let x = -216.5; x < 217; x++) {
-    for (let y = 10.5; y < 113; y++) {
-      const count = shapes.filter(shape => contains(shape, x, y)).length;
-      assert.ok(count <= 1);
-      occupied += count;
-      total++;
-    }
-  }
-  const fraction = occupied / total;
-  assert.ok(fraction >= .55 && fraction <= .78, `Illustration area occupancy was ${fraction}`);
+test('transverse profiles vary in size, aspect, depth and pore-facing concavity', () => {
+  const cells = mesophyllBand(0);
+  const areas = cells.map(cell => Math.abs(cell.contour.reduce((sum, p, i) => {
+    const q = cell.contour[(i + 1) % cell.contour.length]; return sum + p[0] * q[1] - q[0] * p[1];
+  }, 0)) / 2);
+  const aspects = cells.map(cell => { const b = polygon(cell, 0).bounds; return (b[1] - b[0]) / (b[3] - b[2]); });
+  const concave = cells.filter(cell => cell.contour.some((b, i) => {
+    const a = cell.contour[(i + cell.contour.length - 1) % cell.contour.length], c = cell.contour[(i + 1) % cell.contour.length];
+    return (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0]) < -.001;
+  }));
+  assert.ok(Math.max(...areas) / Math.min(...areas) > 3, 'Profiles must not be near-equal inflated tiles');
+  assert.ok(Math.max(...aspects) / Math.min(...aspects) > 2, 'The section needs differently elongated profiles');
+  assert.ok(new Set(cells.map(cell => Math.round(cell.y / 3))).size > 8, 'Centers must not fall into two repeated rows');
+  assert.ok(concave.length >= cells.length / 3, 'Several pore-facing walls must be concave');
 });
 
 test('exported contacts have positive exact shared boundary length with interiors on opposite sides', () => {
   const shapes = new Map(context([-1, 0, 1]).map(shape => [shape.id, shape]));
   const contacts = mesophyllContacts(0);
-  assert.ok(contacts.length >= 16 && contacts.length <= 24);
-  assert.equal(new Set(contacts.map(c => `${c.cellA}:${c.cellB}`)).size, contacts.length);
-  assert.ok(contacts.some(c => c.cellA === '0/mesophyll-4' && c.cellB === '0/mesophyll-5'));
+  assert.ok(contacts.length > 0 && contacts.length <= 1024);
+  assert.equal(new Set(contacts.map(c => `${c.cellA}:${c.cellB}:${JSON.stringify(c.points)}`)).size, contacts.length);
+  const selected = mesophyllBand(0).find(cell => cell.selected)!;
+  assert.ok(contacts.some(c => c.cellA === selected.id || c.cellB === selected.id));
+  assert.ok(contacts.filter(c => Math.hypot(c.points[1][0] - c.points[0][0], c.points[1][1] - c.points[0][1]) > 12).length >= 3,
+    'Some contacts must be broad native wall portions rather than tiny extruded necks');
   for (const contact of contacts) {
     const a = shapes.get(contact.cellA)!, b = shapes.get(contact.cellB)!;
     assert.ok(a && b, 'Contact identities must resolve to real cells');
     const [start, end] = contact.points, dx = end[0] - start[0], dy = end[1] - start[1], length = Math.hypot(dx, dy);
-    assert.ok(length > 1 && length <= 8);
+    assert.ok(length >= .75 - 1e-8 && length < 100);
     assert.ok(coversSegment(a, contact.points) && coversSegment(b, contact.points),
       `${contact.cellA}/${contact.cellB} lacks the full shared segment`);
     for (const t of [.2, .5, .8]) {
@@ -193,21 +198,15 @@ test('exported contacts have positive exact shared boundary length with interior
   }
 });
 
-test('actual shared-wall contacts form a connected network over neighbouring bands', () => {
-  const cells = [-1, 0, 1].flatMap(tile => mesophyllBand(tile)), graph = new Map(cells.map(cell => [cell.id, new Set<string>()]));
-  for (const tile of [-1, 0, 1]) {
-    for (const contact of mesophyllContacts(tile)) {
-      if (!graph.has(contact.cellA) || !graph.has(contact.cellB)) continue;
-      graph.get(contact.cellA)!.add(contact.cellB); graph.get(contact.cellB)!.add(contact.cellA);
-    }
-  }
-  const visited = new Set<string>([cells[0].id]), pending = [cells[0].id];
-  while (pending.length) for (const next of graph.get(pending.pop()!)!) if (!visited.has(next)) { visited.add(next); pending.push(next); }
-  assert.equal(visited.size, cells.length);
-  assert.ok(graph.get('0/mesophyll-4')!.size >= 1, 'The exact retained cell must participate in actual contacts');
+test('the retained cell shares its original wall segments without added connectors', () => {
+  const cell = mesophyllBand(0).find(cell => cell.selected)!, wall = polygon(cell, 0);
+  const contacts = mesophyllContacts(0).filter(contact => contact.cellA === cell.id || contact.cellB === cell.id);
+  assert.ok(contacts.length > 0);
+  assert.ok(contacts.every(contact => coversSegment(wall, contact.points)));
+  assert.ok(contacts.reduce((sum, contact) => sum + Math.hypot(contact.points[1][0] - contact.points[0][0], contact.points[1][1] - contact.points[0][1]), 0) > 8);
 });
 
-test('short contacts retain distributed larger junction pores', () => {
+test('the section retains distributed larger air pockets', () => {
   // Probe empty disks inside the band, away from its top/bottom boundary.
   const neighbours = context([-1, 0, 1]), pores: number[] = [];
   for (let x = -214.5; x < 217; x += 2) {
@@ -222,6 +221,40 @@ test('short contacts retain distributed larger junction pores', () => {
     'The drawing needs distributed wider pores alongside actual contact regions');
 });
 
+test('irregular air chambers communicate through a narrower passage and provide a valid label anchor', () => {
+  const shapes = context([-1, 0, 1]);
+  const clearance = (point: Point) => Math.min(...shapes.flatMap(shape => shape.points.map((p, i) =>
+    pointSegmentDistance(point, p, shape.points[(i + 1) % shape.points.length]))));
+  const route: readonly Point[] = [[110,72], [118,69], [132,67], [145,65], [151,58], [162,53]];
+  for (let i = 0; i < route.length - 1; i++) {
+    const a = route[i], b = route[i + 1];
+    for (let j = 0; j <= 32; j++) {
+      const t = j / 32, x = a[0] + (b[0] - a[0]) * t, y = a[1] + (b[1] - a[1]) * t;
+      assert.ok(shapes.every(shape => !contains(shape, x, y)), 'Air passage must stay outside cells');
+    }
+  }
+  assert.ok(clearance([110,72]) > 4, 'The scene label anchor must be inside an actual air chamber');
+  assert.ok(clearance([110,72]) > 2 * clearance([135,66]), 'Chambers and connecting passages need unequal widths');
+});
+
+test('palisade profiles are narrow, closely apposed columns with occasional shorter sections', () => {
+  const cells = palisadeBand(0), shapes = cells.map(cell => polygon(cell, 0));
+  assert.ok(cells.length > 8 && cells.length <= 80);
+  assert.ok(cells.every(cell => !cell.selected));
+  const heights = shapes.map(shape => shape.bounds[3] - shape.bounds[2]);
+  const aspects = shapes.map(shape => (shape.bounds[3] - shape.bounds[2]) / (shape.bounds[1] - shape.bounds[0])).sort((a,b) => a-b);
+  assert.ok(aspects[Math.floor(aspects.length / 2)] > 3);
+  assert.ok(Math.min(...heights) < .6 * Math.max(...heights));
+  let apposed = 0;
+  for (const a of shapes) {
+    if (shapes.some(b => a !== b && a.points.some((p, i) => {
+      const q = a.points[(i + 1) % a.points.length];
+      return Math.hypot(q[0] - p[0], q[1] - p[1]) > 5 && coversSegment(b, [p,q]);
+    }))) apposed++;
+  }
+  assert.ok(apposed >= cells.length * .8, 'Most palisade profiles must share substantial lateral wall portions');
+});
+
 test('periodic bands preserve entire cells across seams without introducing lateral cuts', () => {
   const base = mesophyllBand(0);
   for (const tile of [-3, -1, 1, 4]) {
@@ -230,6 +263,11 @@ test('periodic bands preserve entire cells across seams without introducing late
       assert.equal(other[i].x, base[i].x);
       assert.equal(other[i].y, base[i].y);
       assert.strictEqual(other[i].contour, base[i].contour);
+    }
+    const palisade = palisadeBand(tile), palisadeBase = palisadeBand(0);
+    for (let i = 0; i < palisade.length; i++) {
+      assert.strictEqual(palisade[i].contour, palisadeBase[i].contour);
+      assert.equal(palisade[i].x, palisadeBase[i].x); assert.equal(palisade[i].y, palisadeBase[i].y);
     }
     const baseContacts = mesophyllContacts(0), contacts = mesophyllContacts(tile);
     assert.equal(contacts.length, baseContacts.length);

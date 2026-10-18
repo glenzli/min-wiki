@@ -1,13 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SECTION_SPAN, sectionContextTiles, SCALE_ENTRIES, CHLOROPLAST_ENTRY, cellEdge, vacuolePoint, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SURFACE_CELL_SCALE, SECTION_TURN_END, SURFACE_FRAMING, scaleCamera, metricScaleBar } from '../model.ts';
+import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SECTION_SPAN, sectionContextTiles, SCALE_ENTRIES, CHLOROPLAST_ENTRY, cellEdge, mesophyllCellEdge, MESOPHYLL_PLASTIDS, vacuolePoint, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SURFACE_CELL_SCALE, SECTION_TURN_END, SURFACE_FRAMING, scaleCamera, metricScaleBar } from '../model.ts';
 
 test('the retained chloroplast fits in the cell cortex and uses the same calibrated micrometres',()=>{
   const sample=SCALE_ENTRIES[0],cell=SCALE_ENTRIES[1],entry=CHLOROPLAST_ENTRY;
   const chloroplastWidthUm=420*entry.size*cell.size*sample.size/UNITS_PER_UM;
   assert.ok(Math.abs(chloroplastWidthUm-4)<1e-10,'the chosen teaching organelle is about 4 µm, not independently enlarged');
-  const outline=Array.from({length:192},(_,i)=>{const [x,y]=cellEdge(i/192*Math.PI*2,171,134,1.4,.85);return [x,y-2];});
+  const outline=Array.from({length:192},(_,i)=>{const [x,y]=mesophyllCellEdge(i/192*Math.PI*2);return [x,y-2];});
   const vacuole=Array.from({length:192},(_,i)=>vacuolePoint(i/192*Math.PI*2));
+  const nuclearOutline=Array.from({length:192},(_,i)=>{const [x,y]=cellEdge(i/192*Math.PI*2,22,19,.7);return [x-113,y+72];});
   const contains=(polygon,x,y)=>{
     let inside=false;
     for(let i=0,j=polygon.length-1;i<polygon.length;j=i++){
@@ -20,6 +21,17 @@ test('the retained chloroplast fits in the cell cortex and uses the same calibra
     const x=entry.x+dx*Math.cos(entry.angle)-dy*Math.sin(entry.angle),y=entry.y+dx*Math.sin(entry.angle)+dy*Math.cos(entry.angle);
     assert.ok(contains(outline,x,y),'the selected organelle cannot cross the cell wall');
     assert.ok(!contains(vacuole,x,y),'a chloroplast must remain in cytoplasm, outside the vacuole');
+    assert.ok(contains(outline,...vacuole[i]),'the central vacuole must not cross a concave cell wall');
+    const nucleus=cellEdge(a,22,19,.7);
+    assert.ok(contains(outline,nucleus[0]-113,nucleus[1]+72),'the nuclear outline must remain in the selected cell');
+    for(const plastid of MESOPHYLL_PLASTIDS) {
+      const px=Math.cos(a)*plastid.size,py=Math.sin(a)*plastid.size*109.2/210,
+        x=plastid.x+px*Math.cos(plastid.angle)-py*Math.sin(plastid.angle),
+        y=plastid.y+px*Math.sin(plastid.angle)+py*Math.cos(plastid.angle);
+      assert.ok(contains(outline,x,y),'every peripheral chloroplast remains inside the concave wall');
+      assert.ok(!contains(vacuole,x,y),'every peripheral chloroplast stays outside the central vacuole');
+      assert.ok(!contains(nuclearOutline,x,y),'peripheral chloroplasts must not cross the nuclear envelope');
+    }
   }
   const camera=scaleCamera(3,entry),wholeCell=scaleCamera(2,entry);
   assert.ok(Math.abs((camera.x-wholeCell.x)/(cell.size*sample.size)-entry.x)<1e-9);
