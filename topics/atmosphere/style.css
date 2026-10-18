@@ -135,7 +135,7 @@ html[data-topic-ui] body>main>header.atmo-hero h1{font-size:26px;margin:0;line-h
 #atmo-observation .world-focus strong{color:var(--ink)}
 @media(min-width:1000px){
   #atmo-observation .world-words{padding:5px;display:flex;align-items:center}
-  #atmo-observation .world-words strong{font-size:11px}
+  #atmo-observation .world-words strong{font-size:13px;line-height:1.5}
   #atmo-observation .world-words span{display:none}
 }
 

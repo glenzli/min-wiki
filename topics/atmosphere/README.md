@@ -62,6 +62,20 @@ The two views share a viewport-fitted observation workspace with a collapsible e
 儿童版在当前全景、地球层或对照世界旁只给短解释。`study.ts` 为各站提供对应的学术版机制、关系式（适用时）、证据入口和模型边界，阅读卡排在观察区下方；全题 `learning.json` 留作可选的综合笔记。切换阅读版不改变旅程、比较世界或图中机制阶段。
 ## Local terrain finish · 2026-10-19
 
-近岸陆地增加固定在球面绘图坐标中的克制纹理，从已有地球贴图过渡到近岸插画时逐渐出现。纹理裁切在原有陆地轮廓内，不改变海陆朝向、观察标记或相机路径；这些明暗块不是实测地形、土地覆盖或新增高度数据。
+近岸陆地使用固定在球面绘图坐标中的克制纹理，从已有地球贴图过渡到近岸插画时逐渐出现。材质裁切在陆地轮廓内，不改变海陆朝向、观察标记或相机路径；这些明暗不是实测地形、土地覆盖或新增高度数据。
 
-Deterministic near-coast texture fades in within the original land contour and globe coordinates. It stays attached during approach and ascent, without changing the camera, surface anchor or atmospheric feature coordinates. The local terrain remains authored illustration rather than surveyed detail.
+Deterministic near-coast texture fades in within the land contour and globe coordinates. It stays attached during approach and ascent, without changing the camera, surface anchor or atmospheric feature coordinates. The local terrain remains authored illustration rather than surveyed detail.
+
+### Atmosphere artwork refinement · 2026-10-19
+
+近景云采用两张 768 × 384 缓存：积云示例保留鼓起的亮部和偏冷暗底，高云示例使用细丝；雨线只接示例雨云。1536 × 768 陆地材质通过周期场无缝平铺，避免中间缩放时露出矩形贴片；近岸轮廓增加圆滑的小湾，仍经过同一地面锚点。远景贴图直接淡化到近景插画，地图就绪时不再叠加另一张粗略海岸缓存。海岸、材质和大气蓝色边缘仍是示意，不能按像素读成实测宽度或密度。
+
+臭氧吸收后的能量增加用局部、无定向的短线表示，不再用上升箭头暗示强对流。流星亮头和渐淡尾迹沿同一路径推进；极光保持原有径向高度，以不均匀的细光束和柔和褶皱表现，不随 300 km 观察站移动。所有变化仍读取原有旅程或分步进度，没有增加隐藏时钟。新增缓存及材质引用随场景释放。
+
+Two bounded cloud caches distinguish lit cumulus lobes from fine upper-cloud wisps. The periodic land material is clipped in world coordinates, with no rectangular patch edge during zoom; the illustrative bays still pass through the same marked ground site. Once the licensed map is ready, it dissolves directly into the local illustration rather than another coarse coastline image. These materials and the blue atmospheric rim remain illustrative, not measurements of terrain, shoreline width or air density.
+
+Ozone absorption uses short, non-directed energy marks instead of upward convection arrows. The meteor has one advancing head with a tapered wake. Fine auroral folds retain their original radial region rather than following the 300 km observation stop. Existing journey/mechanism progress remains the only animation input; caches and the Canvas pattern are released with the scene.
+
+The qualitative comparison artwork uses coherent upper-left lighting, distinct cloud/haze materials, irregular Titan lake shores, and shaded lunar/Mercury crater bowls. Its row buttons are scientific image hit regions (`data-scene-hit-target`), retaining the authored sky backgrounds and square row boundaries under Reader's common control styling. The rows stay qualitative; their height, colors and material detail are not cross-world measurements.
+
+行星对照图细化光照、云雾、湖岸和陨坑明暗；图中各行声明为科学图形的点击区域，保留天空底色与方正行界，不套用普通白色按钮卡片。对齐行仍不是等高度、等厚度或等色彩的定量比较。

@@ -6,6 +6,7 @@ import earthCloudMap from '../solar-system/assets/2k_earth_clouds.webp';
 
 type Text=typeof content.zh;
 const noise=(i:number)=>{const n=Math.sin(i*127.1+91.7)*43758.5453;return n-Math.floor(n);};
+const smooth=(a:number,b:number,x:number)=>{const t=Math.max(0,Math.min(1,(x-a)/(b-a)));return t*t*(3-2*t);};
 /** One retained globe, coast, radial path and feature population under one camera.
  * Orthographic side observation, not a first-person flight or a weather forecast. */
 export class AtmosphereScene {
@@ -17,14 +18,19 @@ export class AtmosphereScene {
  private disposed=false;
  private w=1;private h=1;private scale=1;private cy=0;
  private cloud:HTMLCanvasElement;
+ private cloudWisps:HTMLCanvasElement;
+ private localTerrain:HTMLCanvasElement;
+ private terrainPaint:CanvasPattern|null=null;
  private globe:HTMLCanvasElement;
  private photoSurface:HTMLCanvasElement|null=null;
  private photoClouds:HTMLCanvasElement|null=null;
- private coast=new Path2D('M0 -6500 C0 -6400 0 -6350 5 -6320 L90 -6070 310 -5920 270 -5730 580 -5590 730 -5270 570 -5010 780 -4780 1050 -4690 970 -4460 1260 -4200 1450 -3990 1400 -3720 1650 -3480 1490 -3250 1230 -3140 1180 -2860 1370 -2680 1320 -2380 1620 -2090 1790 -2150 1900 -1940 2240 -1830 2490 -1620 2630 -1710 2850 -1540 2990 -1260 2790 -1130 2540 -1210 2370 -950 2690 -790 3030 -880 3120 -670 3500 -570 3810 -860 4130 -760 4320 -1120 4650 -1220 4920 -1630 5300 -1740 5680 -2180 6080 -2470 6800 -2650 7000 -6500Z');
+ private coast=new Path2D('M0 -6500 C0 -6440 -2 -6390 0 -6371 C-.7 -6368 2.6 -6367 1.1 -6364 C.4 -6361 3.6 -6358 2.1 -6354 C1.8 -6350 5.2 -6348 4.7 -6343 C4 -6338 6 -6328 5 -6320 L90 -6070 310 -5920 270 -5730 580 -5590 730 -5270 570 -5010 780 -4780 1050 -4690 970 -4460 1260 -4200 1450 -3990 1400 -3720 1650 -3480 1490 -3250 1230 -3140 1180 -2860 1370 -2680 1320 -2380 1620 -2090 1790 -2150 1900 -1940 2240 -1830 2490 -1620 2630 -1710 2850 -1540 2990 -1260 2790 -1130 2540 -1210 2370 -950 2690 -790 3030 -880 3120 -670 3500 -570 3810 -860 4130 -760 4320 -1120 4650 -1220 4920 -1630 5300 -1740 5680 -2180 6080 -2470 6800 -2650 7000 -6500Z');
  private south=new Path2D('M-4750 -1920 L-4310 -2310 -3870 -2140 -3620 -2260 -3380 -2060 -3000 -1990 -2690 -1700 -2380 -1690 -2260 -1380 -1930 -1240 -1700 -810 -1790 -570 -1450 -310 -1280 70 -1420 430 -1700 650 -1750 1090 -2040 1390 -1900 1710 -1660 1910 -1570 2270 -1310 2390 -1110 2760 -1300 3010 -1690 3170 -1810 3510 -2150 3720 -2280 4060 -2620 4470 -2820 4700 -3090 4350 -3030 4000 -3350 3720 -3230 3370 -3510 3020 -3520 2710 -3860 2410 -3900 2100 -4200 1750 -4030 1430 -4280 980 -4170 620 -4500 370 -4440 40 -4800 -200 -4700 -570 -4980 -970 -4820 -1400Z');
  constructor(private canvas:HTMLCanvasElement,private text:Text){
   const c=canvas.getContext('2d');if(!c)throw new Error('Canvas 2D unavailable');this.c=c;
-  this.cloud=this.makeCloud();this.globe=this.makeGlobe();
+  this.cloud=this.makeCloud();this.cloudWisps=this.makeCloud(true);this.globe=this.makeGlobe();this.localTerrain=this.makeLocalTerrain();
+  this.terrainPaint=c.createPattern(this.localTerrain,'repeat');
+  this.terrainPaint?.setTransform(new DOMMatrix([320/this.localTerrain.width,0,0,160/this.localTerrain.height,-80,-EARTH_RADIUS]));
   this.observer=new ResizeObserver(()=>{if(this.state)this.draw(this.state,this.labels,this.mechanism);});this.observer.observe(canvas);
   void this.loadEarthMaps();
  }
@@ -83,12 +89,66 @@ export class AtmosphereScene {
   sc.putImageData(face,0,0);cc.putImageData(weather,0,0);source.width=source.height=0;
   return {surface,clouds:cloudLayer};
  }
- private makeCloud(){
-  const a=document.createElement('canvas');a.width=400;a.height=220;const c=a.getContext('2d')!;
-  for(let i=0;i<180;i++){
-   const x=60+noise(i)*280,y=140-Math.sin((x-30)/340*Math.PI)*(20+noise(i+20)*62),r=14+noise(i+60)*28;
-   const g=c.createRadialGradient(x-r*.25,y-r*.4,1,x,y,r);g.addColorStop(0,'#fffce86b');g.addColorStop(.55,'#e1eff64d');g.addColorStop(1,'#c1d3df00');c.fillStyle=g;c.fillRect(x-r,y-r,2*r,2*r);
-  }return a;
+ /** Cached, lit cloud lobes. A shared silhouette carries the shaded base and
+  * small-scale billows; translucent wisps soften its edge without a blur filter. */
+ private makeCloud(wisps=false){
+  const a=document.createElement('canvas');a.width=768;a.height=384;const c=a.getContext('2d')!;
+  if(wisps){
+   for(let i=0;i<48;i++){
+    const x=30+noise(i+700)*330,y=190+noise(i+720)*55,length=120+noise(i+750)*250;
+    const g=c.createLinearGradient(x,y,x+length,y);g.addColorStop(0,'#dbe8e700');g.addColorStop(.28,'#dbe8e747');g.addColorStop(.65,'#f2f2e97d');g.addColorStop(1,'#f2f2e900');
+    c.strokeStyle=g;c.lineWidth=.7+noise(i+800)*3.2;c.beginPath();c.moveTo(x,y);
+    c.bezierCurveTo(x+length*.24,y-20,x+length*.68,y-14,x+length,y-35-noise(i+820)*25);c.stroke();
+   }return a;
+  }
+  const lobes:Array<{x:number;y:number;rx:number;ry:number}>=[];
+  for(let i=0;i<18;i++){
+   const t=i/17,x=62+t*646,y=228-Math.pow(Math.sin(t*Math.PI),1.2)*(38+noise(i+34)*48);
+   lobes.push({x,y,rx:30+noise(i+11)*55,ry:27+Math.sin(t*Math.PI)*45+noise(i+27)*18});
+  }
+  const shape=new Path2D();
+  for(const q of lobes){shape.moveTo(q.x+q.rx,q.y);shape.ellipse(q.x,q.y,q.rx,q.ry,0,0,Math.PI*2);}
+  // A very faint halo stays outside the body; the body itself has volume.
+  for(const q of lobes){
+   const g=c.createRadialGradient(q.x,q.y,0,q.x,q.y,q.rx*1.3);
+   g.addColorStop(0,'#c9dce123');g.addColorStop(1,'#c9dce100');c.fillStyle=g;c.fillRect(q.x-q.rx*1.3,q.y-q.rx*1.3,q.rx*2.6,q.rx*2.6);
+  }
+  c.save();c.clip(shape);
+  const body=c.createLinearGradient(0,105,35,282);body.addColorStop(0,'#fcfbec');body.addColorStop(.38,'#e9f0ed');body.addColorStop(.68,'#bdced5');body.addColorStop(1,'#647e90');
+  c.fillStyle=body;c.fillRect(0,0,a.width,a.height);
+  for(let i=0;i<135;i++){
+   const q=lobes[i%lobes.length],x=q.x+(noise(i+87)-.5)*q.rx*1.5,y=q.y+(noise(i+180)-.5)*q.ry*1.4,r=10+noise(i+232)*32;
+   const g=c.createRadialGradient(x-r*.28,y-r*.38,0,x,y,r);
+   g.addColorStop(0,i%4===0?'#5d788c35':'#fffff38c');g.addColorStop(.52,i%4===0?'#6d8a9a18':'#f4f8ef36');g.addColorStop(1,'#e2e9e700');
+   c.fillStyle=g;c.fillRect(x-r,y-r,2*r,2*r);
+  }
+  // Broken fine filaments, rather than a heavy outline around every lobe.
+  c.strokeStyle='#f7faee40';c.lineWidth=1.3;
+  for(let i=0;i<40;i++){const x=55+noise(i+800)*660,y=205+noise(i+850)*45;c.beginPath();c.moveTo(x,y);c.quadraticCurveTo(x+14,y-5,x+24+noise(i+920)*20,y-2);c.stroke();}
+  c.restore();return a;
+ }
+ /** An authored coastal material, cached once and fixed in globe kilometers.
+  * Multi-scale fields suggest relief/vegetation; none are surveyed land cover. */
+ private makeLocalTerrain(){
+  const a=document.createElement('canvas');a.width=1536;a.height=768;const c=a.getContext('2d')!;
+  const pixels=c.createImageData(a.width,a.height),grid=new Float32Array(128*128);
+  for(let i=0;i<grid.length;i++)grid[i]=noise(i+4100);
+  const field=(x:number,y:number,period:number)=>{
+   const ix=Math.floor(x),iy=Math.floor(y),fx=smooth(0,1,x-ix),fy=smooth(0,1,y-iy);
+   const at=(dx:number,dy:number)=>grid[((iy+dy)&(period-1))*128+((ix+dx)&(period-1))];
+   return (at(0,0)*(1-fx)+at(1,0)*fx)*(1-fy)+(at(0,1)*(1-fx)+at(1,1)*fx)*fy;
+  };
+  const relief=(x:number,y:number)=>field(x,y,8)*.5+field(x*2,y*2,16)*.27+field(x*4,y*4,32)*.15+field(x*8,y*8,64)*.08;
+  for(let y=0;y<a.height;y++)for(let x=0;x<a.width;x++){
+   const u=x/a.width*8,v=y/a.height*8,n=relief(u,v),slope=relief(u-.025,v-.035)-n;
+   const meadow=smooth(.36,.67,n),rock=smooth(.6,.8,n),light=slope*170;
+   const grain=(grid[((y*71+x*31)&16383)]-.5)*4,offset=(y*a.width+x)*4;
+   pixels.data[offset]=46+meadow*25+rock*32+light+grain;
+   pixels.data[offset+1]=74+meadow*22+rock*14+light+grain;
+   pixels.data[offset+2]=58+meadow*9+rock*11+light*.8+grain;
+   pixels.data[offset+3]=255;
+  }
+  c.putImageData(pixels,0,0);return a;
  }
  private makeGlobe(){
   const a=document.createElement('canvas');a.width=a.height=1536;
@@ -99,7 +159,7 @@ export class AtmosphereScene {
   const land=new Path2D();land.addPath(this.coast);land.addPath(this.south);
   // Small islands and ragged polar land remain attached to this same globe.
   for(let i=0;i<23;i++){const x=2300+Math.sin(i*.65)*620+i*92,y=180+Math.cos(i*.8)*200+i*85;land.moveTo(x+45,y);land.ellipse(x,y,35+noise(i+12)*75,60+noise(i+18)*125,-.45,0,Math.PI*2);}
-  c.strokeStyle='#41a6ae55';c.lineWidth=130;c.stroke(land);c.strokeStyle='#7eb9a766';c.lineWidth=38;c.stroke(land);
+  c.strokeStyle='#41a6ae55';c.lineWidth=32;c.stroke(land);c.strokeStyle='#7eb9a766';c.lineWidth=8;c.stroke(land);
   c.fillStyle='#62856a';c.fill(land);c.save();c.clip(land);
   const terrain=c.createLinearGradient(0,-R,0,R);terrain.addColorStop(0,'#b1b9a0');terrain.addColorStop(.22,'#769578');terrain.addColorStop(.42,'#beaa75');terrain.addColorStop(.54,'#567951');terrain.addColorStop(.76,'#426d56');terrain.addColorStop(1,'#b2b6a0');c.fillStyle=terrain;c.fillRect(-R,-R,2*R,2*R);
   for(let i=0;i<2100;i++){
@@ -128,14 +188,14 @@ export class AtmosphereScene {
   if(this.canvas.width!==Math.round(w*dpr)||this.canvas.height!==Math.round(h*dpr)){this.canvas.width=Math.round(w*dpr);this.canvas.height=Math.round(h*dpr);}
   const c=this.c,f=journeyFrame(state.journey);this.scale=Math.min(w,h)/(2*f.halfSpan);this.cy=f.centerY;
   c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);
-  const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,'#070f20');sky.addColorStop(1,'#142e43');c.fillStyle=sky;c.fillRect(0,0,w,h);
+  const sky=c.createLinearGradient(0,0,0,h);sky.addColorStop(0,'#040b16');sky.addColorStop(1,'#0c1c2e');c.fillStyle=sky;c.fillRect(0,0,w,h);
   // Fixed background stars fade below the high atmosphere; no per-frame random population.
-  const starAlpha=f.phase!=='ascent'?.6:Math.min(.7,f.height/400);
+  const starAlpha=f.phase!=='ascent'?.6: .65*smooth(65,220,f.height);
   for(let i=0;i<70;i++)this.dot(noise(i)*w,noise(i+80)*h,.5+noise(i+140)*.5,`rgba(210,226,239,${starAlpha*noise(i+200)})`);
   this.earth();this.boundaries(f.height);
-  this.weather(state.journey,!mechanism ? 1 : mechanism.layer===0 ? (mechanism.step<2 ? .16 : 1) : .55);
-  this.ozone(!mechanism ? 1 : mechanism.layer===1 ? 1 : .2);this.meteor(!mechanism ? 1 : mechanism.layer===2 ? .13 : .22);
-  this.aurora(!mechanism ? 1 : mechanism.layer===3&&mechanism.step===2 ? 1 : .13);this.outerParticles();
+  this.weather(state.journey,!mechanism ? 1 : mechanism.layer===0 ? .4 : .55);
+  this.ozone(!mechanism ? 1 : mechanism.layer===1 ? 1 : .04);this.meteor(!mechanism ? 1 : mechanism.layer===2 ? 0 : .22);
+  this.aurora(!mechanism ? 1 : .13);this.outerParticles();
   if(mechanism)this.focus(mechanism);
   const site=this.point(0,0),probe=this.point(0,f.height),top=this.point(0,1000);
   c.setLineDash([3,6]);this.line([site,top],'#f5d89a50');c.setLineDash([]);
@@ -151,28 +211,36 @@ export class AtmosphereScene {
  private earth(){
   const c=this.c,R=EARTH_RADIUS,scale=this.scale;
   c.save();c.translate(this.w/2,this.h/2-this.cy*scale);c.scale(scale,scale);
-  const air=c.createRadialGradient(0,0,R-1,0,0,R+130);air.addColorStop(0,'#88d6ec75');air.addColorStop(.08,'#77bcd755');air.addColorStop(.3,'#4384b42b');air.addColorStop(1,'#467dab00');c.fillStyle=air;c.beginPath();c.arc(0,0,R+130,0,Math.PI*2);c.fill();
+  const air=c.createRadialGradient(0,0,R-1,0,0,R+130);air.addColorStop(0,'#8acbdbc4');air.addColorStop(.065,'#5fa9cd9c');air.addColorStop(.18,'#337ba357');air.addColorStop(.42,'#234a711e');air.addColorStop(1,'#234a7100');c.fillStyle=air;c.beginPath();c.arc(0,0,R+130,0,Math.PI*2);c.fill();
   c.beginPath();c.arc(0,0,R,0,Math.PI*2);c.clip();
   const sea=c.createLinearGradient(-R,-R,R,R);sea.addColorStop(0,'#438fa5');sea.addColorStop(.5,'#205976');sea.addColorStop(1,'#091e35');c.fillStyle=sea;c.fillRect(-R,-R,R*2,R*2);
-  c.fillStyle='#658b65';c.fill(this.coast);c.fillStyle='#587e61';c.fill(this.south);
+  const close=smooth(.3,1.5,scale);
+  if(close>0){
+   c.save();c.globalAlpha=close;
+   const shelf=c.createLinearGradient(-65,-R,5,-R);shelf.addColorStop(0,'#23516a00');shelf.addColorStop(.45,'#23556899');shelf.addColorStop(1,'#568f92d9');
+   c.fillStyle=shelf;c.fillRect(-R,-R,R*2,R*2);c.restore();
+  }
+  c.fillStyle='#4d7158';c.fill(this.coast);c.fillStyle='#496e57';c.fill(this.south);
   // Authored local texture stays in globe coordinates as the camera passes from
   // the cached relief into the close coast. It is not surveyed topography.
-  if(scale>.35){
-   c.save();c.globalAlpha=Math.min(.6,(scale-.35)/1.2);c.clip(this.coast);
-   for(let i=0;i<110;i++){
-    const x=2+noise(i+980)*95,y=-R-6+noise(i+1200)*70;
-    c.fillStyle=i%3===0?'#c4c5933b':'#244d3c20';
-    c.beginPath();c.ellipse(x,y,.6+noise(i+1500)*4,.3+noise(i+1700)*1.6,-.4,0,Math.PI*2);c.fill();
-   }
+  if(close>0&&this.terrainPaint){
+   c.save();c.globalAlpha=close;c.clip(this.coast);
+   // Periodic fields tile seamlessly in world space, so an intermediate camera
+   // cannot reveal a rectangular material patch or move the detail on the land.
+   c.fillStyle=this.terrainPaint;c.fillRect(-R,-R,R*2,R*2);
    c.restore();
   }
   // Coast geometry is unchanged under zoom; deliberately illustrative, not a geographic map.
-  c.strokeStyle='#bfd1a688';c.lineWidth=5;c.stroke(this.coast);c.stroke(this.south);
+  c.save();
+  // Thin shallow-water and beach marks replace the former five-kilometer stripe.
+  c.strokeStyle='#78a99b55';c.lineWidth=5-4.7*smooth(.12,1.4,scale);c.stroke(this.coast);c.stroke(this.south);
+  if(close>0){c.globalAlpha=close;c.strokeStyle='#b4bd9866';c.lineWidth=.16;c.stroke(this.coast);}
+  c.restore();
   // The licensed far-view map dissolves into a locally authored coast while
   // the camera, marked site and sea/land sides retain their positions.
-  if(scale<.9){c.globalAlpha=Math.min(1,(.9-scale)/.45);c.drawImage(this.globe,-R,-R,R*2,R*2);c.globalAlpha=1;}
+  if(!this.photoSurface&&scale<.9){c.globalAlpha=Math.min(1,(.9-scale)/.45);c.drawImage(this.globe,-R,-R,R*2,R*2);c.globalAlpha=1;}
   if(this.photoSurface){
-   const blend=Math.max(0,Math.min(1,(scale-.35)/.3));
+   const blend=Math.max(0,Math.min(1,(scale-.22)/.43));
    c.globalAlpha=1-blend*blend*(3-2*blend);
    if(c.globalAlpha>0)c.drawImage(this.photoSurface,-R,-R,R*2,R*2);
    c.globalAlpha=1;
@@ -185,7 +253,11 @@ export class AtmosphereScene {
   const shade=c.createRadialGradient(-R*.4,-R*.5,R*.2,R*.35,R*.35,R*1.7);shade.addColorStop(0,'#06111b00');shade.addColorStop(.65,'#06111b24');shade.addColorStop(1,'#010816ef');c.fillStyle=shade;c.fillRect(-R,-R,R*2,R*2);
   c.restore();
   // Local sea ripples are anchored in kilometers, never in screen coordinates.
-  if(scale>2){c.save();c.globalAlpha=Math.min(1,(scale-2)/5);for(let i=0;i<18;i++){const x=-2-noise(i+175)*30,y=-.4-noise(i+185)*5;const a=this.point(x,y),b=this.point(x+1.4,y);this.line([a,b],'#afd7dd50');}c.restore();}
+  if(scale>2){c.save();c.globalAlpha=smooth(2,7,scale);for(let i=0;i<80;i++){
+   const x=-2-noise(i+175)*58,y=-.08-noise(i+185)*10;
+   const a=this.point(x,y),b=this.point(x+.12+noise(i+201)*1.4,y);
+   this.line([a,b],i%3===0?'#aad7d14d':'#7fc0c32b',Math.min(1,scale*.045));
+  }c.restore();}
  }
  private boundaries(height:number){
   const c=this.c,R=EARTH_RADIUS;
@@ -199,28 +271,48 @@ export class AtmosphereScene {
  }
  private weather(progress:number,opacity=1){
   const c=this.c,s=this.scale;if(s<.3)return;
-  c.save();c.globalAlpha=Math.min(1,s/3)*opacity;
-  for(const [x,h,size] of [[-7,3,8],[5,7,6],[10,2,4]]){const p=this.point(x,h);c.drawImage(this.cloud,p.x-size*s/2,p.y-size*s*.34,size*s,size*s*.55);}
-  for(let i=0;i<12;i++){const h=.3+(noise(i+123)+progress*2)%1*2.5,p=this.point(-9+noise(i+197)*4,h);this.line([p,{x:p.x-.15*s,y:p.y+.5*s}],'#b8e5f5b0',Math.min(1.5,s*.12));}
+  c.save();c.globalAlpha=smooth(.3,3,s)*opacity;
+  for(const [x,h,size,thin] of [[-9,3,15,0],[6,7,18,1],[14,2,8,0]]){
+   const p=this.point(x,h);c.drawImage(thin?this.cloudWisps:this.cloud,p.x-size*s/2,p.y-size*s*.3,size*s,size*s*.5);
+  }
+  // Rain belongs to this one illustrative rain bank, not to every cloud.
+  for(let i=0;i<30;i++){
+   const height=.15+(noise(i+123)+progress*1.1)%1*2.1,p=this.point(-13+noise(i+197)*8,height);
+   this.line([p,{x:p.x-.09*s,y:p.y+.28*s}],`rgba(176,217,231,${.25+noise(i+321)*.35})`,Math.min(1,s*.065));
+  }
   const flow=(x:number,h:number,dx:number,dh:number,color:string)=>{const a=this.point(x,h),b=this.point(x+dx,h+dh),mid=this.point(x+dx*.25,h+dh*.7);c.beginPath();c.moveTo(a.x,a.y);c.quadraticCurveTo(mid.x,mid.y,b.x,b.y);c.strokeStyle=color;c.lineWidth=1.5;c.stroke();const angle=Math.atan2(b.y-mid.y,b.x-mid.x);this.line([{x:b.x-Math.cos(angle-.5)*5,y:b.y-Math.sin(angle-.5)*5},b,{x:b.x-Math.cos(angle+.5)*5,y:b.y-Math.sin(angle+.5)*5}],color,1.5);};
   flow(-14,1,3,4,'#f4d19d');flow(14,7,2,-5,'#a3d6f2');flow(-4,1,6,0,'#dbe9ef');c.restore();
  }
  private ozone(opacity=1){
-  const c=this.c,s=this.scale;if(s<.15)return;c.save();c.globalAlpha=Math.min(.75,s/2)*opacity;
-  for(let i=0;i<15;i++){const p=this.point(-20+noise(i+120)*45,18+noise(i+424)*15);this.dot(p.x,p.y,Math.min(2,s*.6),'#d4b7ee');}
-  for(const x of [-16,15]){const pts=[];for(let i=0;i<8;i++)pts.push(this.point(x+(i%2?1:-1),47-i*2.6));this.line(pts,'#d8b1f0b0',1.5);const end=pts[pts.length-1];this.dot(end.x,end.y,3,'#e9c6f7');}c.restore();
+  const c=this.c,s=this.scale;if(s<.15)return;c.save();c.globalAlpha=smooth(.15,2,s)*opacity*.55;
+  // Enlarged false-color O3 symbols, not visible purple gas or a sealed shell.
+  for(let i=0;i<11;i++){
+   const p=this.point(-28+noise(i+120)*58,18+noise(i+424)*15),r=Math.min(2.3,s*.4);
+   this.line([{x:p.x-r*1.3,y:p.y+r*.5},{x:p.x,y:p.y-r},{x:p.x+r*1.3,y:p.y+r*.5}],'#aebcdb77',.7);
+   for(const [dx,dy]of [[-1.3,.5],[0,-1],[1.3,.5]])this.dot(p.x+dx*r,p.y+dy*r,r*.65,'#bbcae0');
+  }
+  c.restore();
  }
  private meteor(opacity=1){
-  const c=this.c,s=this.scale;if(s<.05)return;const a=this.point(-64,83),b=this.point(-14,60);
+  const c=this.c,s=this.scale;if(s<.05||opacity===0)return;const a=this.point(-48,82),b=this.point(-8.4,62.56);
   c.save();c.globalAlpha=Math.min(1,s*2)*opacity;const g=c.createLinearGradient(a.x,a.y,b.x,b.y);g.addColorStop(0,'#ffd6aa00');g.addColorStop(.5,'#ffd8b733');g.addColorStop(1,'#fff0cbe6');
   const angle=Math.atan2(b.y-a.y,b.x-a.x),width=Math.min(3,s*.9);c.beginPath();c.moveTo(a.x,a.y);c.lineTo(b.x-Math.sin(angle)*width,b.y+Math.cos(angle)*width);c.lineTo(b.x+Math.sin(angle)*width,b.y-Math.cos(angle)*width);c.closePath();c.fillStyle=g;c.fill();
   const glow=c.createRadialGradient(b.x,b.y,0,b.x,b.y,12);glow.addColorStop(0,'#ffe7b9a0');glow.addColorStop(1,'#ffcb8d00');this.disk(b.x,b.y,12,glow);this.dot(b.x,b.y,Math.min(2.5,s*1.2),'#fff4d9');c.restore();
  }
  private disk(x:number,y:number,r:number,color:CanvasGradient){const c=this.c;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=color;c.fill();}
- private aurora(opacity=1){
-  const c=this.c,s=this.scale;if(s<.06)return;c.save();c.globalAlpha=Math.min(1,(s-.06)*10)*opacity;
-  for(let i=0;i<75;i++){const x=-240+i*5.5,base=145+Math.sin(i*.1)*32,a=this.point(x,base+90),b=this.point(x,base);const g=c.createLinearGradient(a.x,a.y,b.x,b.y);g.addColorStop(0,'#aaf3d400');g.addColorStop(.7,'#94eac34d');g.addColorStop(1,'#8bebbe00');this.line([a,b],g,Math.max(.6,s*1.8));}
-  for(let i=0;i<3;i++){const x=-160+i*135,a=this.point(x-30,350),b=this.point(x,190);this.line([a,this.point(x-32,285),b],'#f7d49b85',1);this.dot(b.x,b.y,3,'#b6efd9');}c.restore();
+ private aurora(opacity=1,phase=0){
+  const c=this.c,s=this.scale;if(s<.06)return;c.save();c.globalAlpha*=smooth(.06,.16,s)*opacity;
+  // Fine folded curtains remain in the original ~110–270 km region; the
+  // observation stop at 300 km must not drag this geometry toward the camera.
+  const ridge:Array<{x:number;y:number}>=[];
+  for(let i=0;i<190;i++){
+   const u=i/189,x=-240+u*410,fold=Math.sin(u*10.2+phase*.5),base=143+Math.sin(u*7.5)*24+fold*7;
+   const a=this.point(x+4*Math.sin(u*12),base+65+noise(i+714)*29),b=this.point(x,base),strength=(.22+Math.pow(.5+.5*Math.sin(u*23+phase),2)*.55)*smooth(0,.09,u)*(1-smooth(.9,1,u));
+   const g=c.createLinearGradient(a.x,a.y,b.x,b.y);g.addColorStop(0,'#64bcbc00');g.addColorStop(.3,`rgba(86,176,157,${strength*.18})`);g.addColorStop(.83,`rgba(119,229,172,${strength})`);g.addColorStop(1,'#a9f2bc08');
+   this.line([a,b],g,Math.max(.55,s*2.4));ridge.push(this.point(x,base+8));
+  }
+  const rim=c.createLinearGradient(ridge[0].x,ridge[0].y,ridge.at(-1)!.x,ridge.at(-1)!.y);rim.addColorStop(0,'#a5edbe00');rim.addColorStop(.12,'#a5edbe35');rim.addColorStop(.85,'#a5edbe35');rim.addColorStop(1,'#a5edbe00');
+  this.line(ridge,rim,Math.max(.6,s*1.2));c.restore();
  }
  private outerParticles(){
   if(this.scale<.06)return;const c=this.c;c.save();c.globalAlpha=Math.min(.85,(this.scale-.06)*8);
@@ -263,15 +355,18 @@ export class AtmosphereScene {
   }else if(step===1){
    const from=this.point(-1,1),to=this.point(0,1+4.5*p);
    this.line([from,to],'#ffe0a39c',2);this.glow(to.x,to.y,23+18*p,'#ffdc9960');
-   c.beginPath();c.arc(to.x,to.y,11+10*p,0,Math.PI*2);c.strokeStyle='#ffe5bd';c.lineWidth=2;c.stroke();
+   c.beginPath();c.ellipse(to.x,to.y,15+14*p,11+10*p,-.15,0,Math.PI*2);c.strokeStyle='#ffe5bda8';c.lineWidth=1.5;c.stroke();
+   for(let i=0;i<8;i++){
+    const angle=i*Math.PI/4,q={x:to.x+Math.cos(angle)*(8+12*p),y:to.y+Math.sin(angle)*(5+8*p)};
+    this.dot(q.x,q.y,1.3,'#ffe9bfab');
+   }
    this.arrow(this.point(3,1),this.point(3,1+3*p),'#a8d9e7b8',1.5);
   }else{
    const wet=this.point(-2,5),dry=this.point(6,5);
    c.setLineDash([4,5]);this.line([this.point(-3,1),wet],'#aee2ed',2);this.line([this.point(5,1),dry],'#aee2ed86',1.5);c.setLineDash([]);
-   const size=Math.min(135,Math.max(60,this.scale*5));c.globalAlpha*=Math.min(1,p*2);
-   c.drawImage(this.cloud,wet.x-size/2,wet.y-size*.28,size,size*.55);
-   this.glow(wet.x,wet.y,26,'#b5e6ee65');
-   for(let i=0;i<5;i++){const q=this.point(-3+i*.5,4.6+noise(i+21)*.6);this.dot(q.x,q.y,2,'#e5f4f5');}
+   const size=Math.min(180,Math.max(72,this.scale*9));c.globalAlpha*=smooth(0,.65,p);
+   c.drawImage(this.cloud,wet.x-size/2,wet.y-size*.3,size,size*.5);
+   for(let i=0;i<9;i++){const q=this.point(-4+i*.45,4.6+noise(i+21)*.45);this.dot(q.x,q.y,1.1,'#e5f4f5bd');}
    c.beginPath();c.arc(dry.x,dry.y,8,0,Math.PI*2);c.strokeStyle='#b2d4e19c';c.lineWidth=1.5;c.stroke();
   }
  }
@@ -284,12 +379,18 @@ export class AtmosphereScene {
    }
   }else if(step===1){
    for(const x of [-10,0,10]){
-    const q=this.point(x,27+noise(x+19)*7),r=10+5*Math.sin(p*Math.PI);
-    this.glow(q.x,q.y,r*2,'#dfb7f47d');this.dot(q.x,q.y,3,'#e7c8f8');
-    c.beginPath();c.arc(q.x,q.y,r,0,Math.PI*2);c.strokeStyle='#ebcffa';c.lineWidth=1.5;c.stroke();
+    const q=this.point(x,27+noise(x+19)*7),r=7+3*Math.sin(p*Math.PI);
+    this.glow(q.x,q.y,r*2,'#d6c5ee43');
+    const atoms=[{x:q.x-4,y:q.y+2},{x:q.x,y:q.y-3},{x:q.x+4,y:q.y+2}];
+    this.line(atoms,'#b9b5d1',1);for(const a of atoms)this.dot(a.x,a.y,2.2,'#e1daee');
     this.arrow(this.point(x-2,40),q,'#d4b4f4a8',1.5);
+    // Absorption transfers energy locally. Short non-directed agitation marks
+    // avoid implying that stratospheric heating launches strong convection.
+    for(let i=0;i<6;i++){
+     const angle=i*Math.PI/3+p*.3,inner=12+3*p,outer=inner+4+2*Math.sin(p*Math.PI);
+     this.line([{x:q.x+Math.cos(angle)*inner,y:q.y+Math.sin(angle)*inner},{x:q.x+Math.cos(angle)*outer,y:q.y+Math.sin(angle)*outer}],'#eacb92b0',1.2);
+    }
    }
-   for(const x of [-5,5])this.arrow(this.point(x,23),this.point(x,23+4*p),'#ffd89ec9',2);
   }else{
    for(const h of [23,30,37]){
     const a=this.point(-14,h),b=this.point(-14+25*p,h+.7*Math.sin(p*Math.PI));
@@ -304,9 +405,23 @@ export class AtmosphereScene {
   const t=step===0?.05+.25*p:step===1?.3+.42*p:.73+.22*p;
   const head=at(t),tail=at(Math.max(0,t-(step===0?.08:.2)));
   c.setLineDash(step===0?[4,6]:[]);this.line([at(0),tail],step===0?'#bcd0db95':'#f6c38a7a',step===0?1.5:2);c.setLineDash([]);
-  this.line([tail,head],step===0?'#d1d9dd':step===1?'#ffdbad':'#e2c9ad7a',step===1?3:2);
-  if(step===1)this.glow(head.x,head.y,25,'#ffbb72b4');
-  this.dot(head.x,head.y,step===1?5:3,step===1?'#fff3d4':'#ccd6d9');
+  if(step===1){
+   const angle=Math.atan2(head.y-tail.y,head.x-tail.x),normal={x:-Math.sin(angle),y:Math.cos(angle)},width=2.6;
+   const wake=c.createLinearGradient(tail.x,tail.y,head.x,head.y);wake.addColorStop(0,'#d7955900');wake.addColorStop(.55,'#e9b3724a');wake.addColorStop(1,'#ffe3acd9');
+   c.beginPath();c.moveTo(tail.x,tail.y);c.lineTo(head.x+normal.x*width,head.y+normal.y*width);c.lineTo(head.x-normal.x*width,head.y-normal.y*width);c.closePath();c.fillStyle=wake;c.fill();
+   this.glow(head.x,head.y,18,'#ffc37f83');this.line([at(Math.max(0,t-.08)),head],'#fff0c7da',1.5);
+   this.dot(head.x,head.y,2.8,'#fff6d8');
+   for(let i=0;i<7;i++){
+    const u=(i+1)/9,q=at(t-u*.12),spread=(noise(i+977)-.5)*u*9;
+    this.dot(q.x+normal.x*spread,q.y+normal.y*spread,.5+noise(i+912)*.6,`rgba(251,199,132,${(1-u)*.55})`);
+   }
+  }else{
+   this.line([tail,head],step===0?'#bdcbd2ad':'#d0b99765',1);
+   c.beginPath();for(let i=0;i<8;i++){
+    const angle=i/8*Math.PI*2,r=(step===0?3.7:2)*(0.8+noise(i+441)*.3),x=head.x+Math.cos(angle)*r,y=head.y+Math.sin(angle)*r;
+    if(i===0)c.moveTo(x,y);else c.lineTo(x,y);
+   }c.closePath();const rock=c.createLinearGradient(head.x-3,head.y-3,head.x+3,head.y+3);rock.addColorStop(0,'#c3c8c7');rock.addColorStop(1,'#535d63');c.fillStyle=rock;c.fill();
+  }
   if(step===2){
    const last=this.point(20,47);c.setLineDash([3,7]);this.line([head,last],'#d4c6b38a',1.2);c.setLineDash([]);
    this.dot(last.x,last.y,2,'#d3c6b4a0');
@@ -326,13 +441,12 @@ export class AtmosphereScene {
     this.line([a,b],'#a9d3e58f',1.3);this.dot(b.x,b.y,3.4,'#d7f0ef');
    }
   }else{
-   for(const x of [-72,-28,18,62])this.arrow(this.point(x-15,340),this.point(x,215),'#c9d9ed9e',1.5);
-   for(let i=0;i<15;i++){
-    const x=-78+i*11,h=152+Math.sin(i*.5+p*1.7)*18;
-    const a=this.point(x,h+60+22*p),b=this.point(x,h);
-    const g=c.createLinearGradient(a.x,a.y,b.x,b.y);g.addColorStop(0,'#7edbb900');g.addColorStop(.55,'#8ee8c386');g.addColorStop(1,'#acf4d000');
-    this.line([a,b],g,Math.max(2,this.scale*5));
+   for(const x of [-112,-64,-16,32]){
+    const a=this.point(x-15,340),b=this.point(x,200),head={x:a.x+(b.x-a.x)*p,y:a.y+(b.y-a.y)*p};
+    c.setLineDash([2,7]);this.line([a,b],'#bbd5d64d',1);c.setLineDash([]);
+    this.glow(head.x,head.y,6,'#c3e8dc68');this.dot(head.x,head.y,1.8,'#e0ecdf');
    }
+   this.aurora(smooth(0,.6,p),p);
   }
  }
  private focusExosphere(step:number,p:number){
@@ -361,5 +475,5 @@ export class AtmosphereScene {
   const shade=c.createLinearGradient(x-r,y-r,x+r,y+r);shade.addColorStop(0,'#04132100');shade.addColorStop(1,'#041321a0');c.fillStyle=shade;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fill();c.beginPath();c.arc(x,y,r,Math.PI,Math.PI*2);c.strokeStyle='#92d1dd';c.lineWidth=1;c.stroke();const offset=height/EARTH_RADIUS*r;
   this.line([{x,y:y-r},{x,y:y-r-offset}],'#ffe1a0',1);this.dot(x,y-r-offset,2.5,'#ffe1a0');c.restore();
  }
- dispose(){this.disposed=true;this.observer.disconnect();this.cloud.width=0;this.cloud.height=0;this.globe.width=0;this.globe.height=0;if(this.photoSurface)this.photoSurface.width=0;if(this.photoClouds)this.photoClouds.width=0;this.photoSurface=this.photoClouds=null;}
+ dispose(){this.disposed=true;this.observer.disconnect();this.terrainPaint=null;for(const cache of [this.cloud,this.cloudWisps,this.localTerrain,this.globe,this.photoSurface,this.photoClouds])if(cache)cache.width=cache.height=0;this.photoSurface=this.photoClouds=null;}
 }
