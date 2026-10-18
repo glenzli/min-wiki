@@ -67,7 +67,7 @@ function select(next:Chapter,write=false){
   const value=studies.get(chapter)??create(chapter);
   // Detached fragments retain controls and finite state, without duplicate SVG/label ids in the document.
   el('study-host').replaceChildren(value.root);
-  const presentation=mountPresentationFrame({ root: value.root.querySelector<HTMLElement>('.lab')!, visual: '.scene', transport: '#next,#reset,#play,#restart' });
+  const presentation=mountPresentationFrame({ root: value.root.querySelector<HTMLElement>('.lab')!, visual: '.scene', transport: '.study-transport' });
   const toolbar=value.root.querySelector<HTMLElement>('.observation-toolbar')!;
   toolbar.prepend(caseMenu);
   const stage=presentation?.stage??value.root.querySelector<HTMLElement>('.presentation-stage')!;

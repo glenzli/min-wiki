@@ -126,3 +126,30 @@ html[data-reading-mode=academic] .chapter-copy #child-cue{display:none}
 .plant-study .observation-toolbar>.plant-case-menu{flex:1 1 140px;min-width:0;padding:0}
 .plant-study .observation-toolbar>.plant-case-menu>summary{width:100%;font-size:13px;white-space:normal;word-break:normal;overflow-wrap:normal}
 @media(min-width:700px){.plant-study .observation-toolbar>.plant-case-menu{flex:0 1 auto}}
+
+/* A single quiet transport, shared by the two growth observations. The Reader
+   supplies its outer gutter; these children add no second frame or inset. */
+.plant-study .study-transport{display:grid;grid-template-columns:auto minmax(130px,1fr);gap:8px 18px;width:100%;min-width:0;border:0;border-radius:0;padding:0;background:transparent}
+.plant-study .growth-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.plant-study .study-transport button{width:auto;min-height:44px;font-size:14px;line-height:1.4;padding:9px 13px;border:1px solid var(--border);border-radius:8px;box-shadow:none;color:var(--ink);background:var(--surface)}
+.plant-study .study-transport button.primary{font-weight:650;background:var(--ink);color:var(--surface)}
+.plant-study .growth-progress{display:flex;flex-direction:column;justify-content:center;gap:4px;margin:0;min-width:0;font-size:12px;line-height:1.4;color:var(--secondary)}
+.plant-study .growth-progress input{margin:0;min-width:0;width:100%;min-height:24px;padding:0}
+.plant-study .growth-cue{grid-column:1/-1;margin:0;font-size:14px;line-height:1.6;min-height:1.6em;color:var(--ink);border:0;padding:0;background:transparent}
+.plant-study .growth-time-note{grid-column:1/-1;margin:0;font-size:12px;line-height:1.5;color:var(--secondary)}
+@media(max-width:650px){.plant-study .study-transport{grid-template-columns:1fr;gap:8px}.plant-study .study-transport button{padding:9px 11px}.plant-study .growth-progress{font-size:12px}.plant-study .growth-cue{font-size:13px}}
+
+.plant-study .scene svg .stage-caption{font-size:15px}
+@media(max-width:999px){
+ .plant-study .presentation-stage>.scene.presentation-visual{align-self:stretch;width:100%}
+ .plant-study .presentation-stage>.scene>svg{aspect-ratio:auto}
+}
+
+.plant-study .scene svg .cutaway .small{font-size:16px!important}
+.plant-study .study-transport :is(button,input):focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+@media(max-width:650px){
+ .plant-study .growth-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:7px}
+ .plant-study .study-transport .growth-actions button{width:100%;height:100%;padding:9px 8px}
+}
+
+@media(max-width:650px){.plant-study .growth-actions-pair{grid-template-columns:repeat(2,minmax(0,1fr))}}

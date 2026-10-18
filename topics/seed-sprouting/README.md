@@ -46,7 +46,7 @@ Routes: `/topics/seed-sprouting/?chapter=germination|reproduction|dispersal`. De
 - [University of Minnesota · Seed physiology](https://open.lib.umn.edu/horticulture/chapter/9-2-seed-physiology/)
 - [University of Minnesota · Germination](https://blog-nwcrops.extension.umn.edu/2023/05/its-magic-neat-process-of-soybean.html)
 
-Interaction advances only on user input. Bean growth uses cancellable finite transitions; the cherry and dispersal studies use finite user-started playback. No audio or background workers. On narrow screens tiny redundant SVG labels are omitted; the external case heading, control values, result and map preserve their explanation. Cherry cutaway zoom retains its readable labels.
+Interaction advances only on user input. Bean growth and cherry reproduction each provide a finite, user-started 24-second observation; dispersal keeps its own finite playback. No audio or background workers. On narrow screens tiny redundant SVG labels are omitted; the external case heading, control values, result and map preserve their explanation. Cherry cutaway zoom retains its readable labels.
 
 ## Shared scientific evidence
 
@@ -70,4 +70,18 @@ The topic opts its existing scene and controls into shared viewport fitting and 
 
 菜豆真叶细化轮廓、中央折光、分级叶脉和柔和投影；同一组叶形、原有茎根连接与成长进度继续被保留。局部叶脉纹理不代表测量到的组织数量或新增运输机制。
 
-Refined leaf contours, subdued fold shading and secondary vein details retain the original specimen geometry and growth state. They do not add a physiological model or turn the illustrated developmental stages into measured ages.
+Refined leaf contours, subdued fold shading and secondary vein details retain the specimen identity and growth state. They do not add a physiological model or turn the illustrated developmental stages into measured ages.
+
+## Continuous organ development · 2026-10-19
+
+`growthGeometry.ts` owns the qualitative common-bean morphology: a fixed root origin, hypocotyl arch lifting the cotyledonary node, opening of that same cotyledon pair, coat separation and drop, and the first opposite true-leaf pair unfurling above it. Leaf length and folded width develop separately. `growthScene.ts` mounts the botanical SVG once, then updates those organs’ attributes; the soil and leaf detail do not get replaced on every animation frame. The true leaves do not replace the cotyledons. Stem paint uses illustration coordinates so a perfectly vertical stem remains visible.
+
+`growthPlayback.ts` owns only the finite clock used by this journey’s bean and cherry observations. The studies still own their morphology, conditions, results and camera. Play/pause, reset and review progress remain below the scene; conditions stay in the optional panel. Playback starts only on user input, pauses at the actually shown fractional extent, and cannot finish a cancelled seek after switching cases. A condition failure preserves already observed growth; restoration does not automatically resume it. Reduced motion advances one named stage without a frame loop. Scrubbing reviews the compressed illustration rather than reversing plant development.
+
+插图连续性不是生理仿真：本例为菜豆的子叶出土型萌发。胚轴拱起、种皮脱落、子叶张开与真叶展开的相对时间是教学编排；不计算顶土力、膨压、器官尺寸、干物质或实际天数。落下种皮的两片形状简化了真实种皮撕裂。幼苗到开花成年的阶段仍明确省略，菜豆不会在动画中变成樱桃。
+
+Primary morphology reference: [University of Minnesota · Introduction to seed germination](https://open.lib.umn.edu/horticulture/chapter/2-2-introduction-to-seed-germination/), including common bean (*Phaseolus vulgaris*) epigeal emergence. The illustrated hypocotyl, cotyledonary node and root preserve that relationship; their precise trajectory is authored illustration.
+
+This is an epigeal common-bean illustration, not a physiological simulation. Hypocotyl arching, coat shedding, cotyledon opening and leaf unfolding use authored relative timing. Soil forces, turgor, organ sizes, biomass and elapsed days are not calculated. Two coat pieces simplify a real tear. Seedling-to-flowering maturity is still omitted explicitly, and the bean never turns into a cherry.
+
+All three cases expose one authored `.study-transport` to the Reader. Dispersal’s existing `travel`/`progress` controls and live result join that surface without changing its wind/fur model or clock; case-specific conditions remain in settings.
