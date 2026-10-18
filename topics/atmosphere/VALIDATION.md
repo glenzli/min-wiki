@@ -2,6 +2,15 @@
 
 Scope: topic-local illustrated layer column, paired planetary columns, bilingual explanatory text and retained parcel experiment. Existing dirty topic files were reviewed and accepted through Dev Mesh; unrelated work was not included.
 
+## Neutral display palette — 2026-10-19
+
+- Base: `fbfd8feb0fc981a88229cbc62231a21f7d176a39`. Only topic CSS and presentation/validation documentation changed. Final `style.css` SHA-256: `1cbea9d3e62fab23c98fa9cc12def828318db6d591412279daa0f09ea8f04917`. Scientific geometry, shaders, models, clocks, routes and content are unchanged; the preceding 12 focused model/projection tests are reused for those unchanged inputs.
+- Height navigation, captions and enrichment-card text now inherit Reader's neutral theme. Current height remains identifiable by an inset rule, heavier text and pointer; separate blue/green/purple layer fills are removed. Scene subtitles use local charcoal control tokens. Paired-world selections use a neutral outline and titles while their scientific artwork retains its colors.
+- Final `WIKI_READER_ROOT=/Users/g4i/lab/wiki-reader npm run build` passed typecheck, localization, images, entry projections, review status and 71-route packaging; digest `78abab64f6adf5ebe89d168eefe32bf4edc4996b74432f77aa2db45bc5189745`. `git diff --check` passed.
+- Actual local Reader browser: light overview/coast, all five current-height bands, dark 300 km and Earth/Venus comparison inspected at the user's normal 1152 × 1106 viewport. The selected band follows each stop; comparison and return retain the selected journey. Actual shared subtitle controls resolve to neutral dark fills rather than white cards, including selected state.
+- Actual 390 × 844 Chinese light and English dark views inspected, including the English subtitle's numbered steps, play button and journey transport. Both document widths/scroll widths are 390 px. Navigation/selected-text color pairs measured from resolved CSS give contrast ratios 4.74/16.01 in light appearance and 6.97/12.93 in dark appearance; subtitle button text is 13.21 (selected 9.45). The top caption was strengthened to Reader's main text color. These are sampled UI pairs, not a complete accessibility audit of every diagram pixel.
+- Browser warnings/errors were empty. Viewport, Chinese language, light theme and the original whole-Earth/Venus route were restored. Screenshots: `/private/tmp/wiki-atmo-palette-20261019/`. Local preview only; no push or deployment, no Reader source change, no repeat of unrelated repository tests.
+
 ## Surface depth and volume clouds — 2026-10-19
 
 Scope: the Earth journey's topic-owned Three.js globe/coast, bounded relief, density clouds and Canvas composition/fallback. Globe and coast share the same licensed map and geographic basis. The renderer adds a continuous 0–1.2° view pitch; scientific reference heights, journey mapping, comparison data, routes and narration clocks are unchanged. Relief, cloud density and lighting are authored teaching materials rather than measured terrain or weather.
