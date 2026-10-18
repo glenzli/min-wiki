@@ -64,7 +64,7 @@ export function createBeanScene(scene:SVGSVGElement,t:(s:string)=>string){
       const unfold=i===0?g.leafLeft:g.leafRight;
       const a={x:leafNode.x+sign*15*g.shoot,y:leafNode.y-4*g.shoot};
       attr(`petiole-${side}`,'d',`M${leafNode.x} ${leafNode.y} Q${leafNode.x+sign*8*g.shoot} ${leafNode.y-7*g.shoot} ${a.x} ${a.y}`);
-      attr(`leaf-${side}`,'transform',`translate(${a.x} ${a.y}) rotate(${i===0?-154:-26}) scale(${.88*unfold} ${.88*unfold*(.12+.88*unfold)})`);
+      attr(`leaf-${side}`,'transform',`translate(${a.x} ${a.y}) rotate(${i===0?g.leafAngleLeft:g.leafAngleRight}) scale(${.88*unfold} ${.88*unfold*(.12+.88*unfold)})`);
     }
     attr('bud','transform',`translate(${leafNode.x} ${leafNode.y}) scale(${g.shoot})`);
     attr('earth','fill',`url(#${water==='dry'?'dry-earth':'earth'})`);attr('moss','opacity',water==='dry'?.22:.87);

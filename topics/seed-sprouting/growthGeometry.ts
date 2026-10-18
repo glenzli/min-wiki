@@ -16,6 +16,7 @@ export function beanGeometry(progress:number){
   return {p,rootOrigin:{x:380,y:350},cot,leafNode,root,shoot,lift,split,coatFall,
     swell:1+.12*phase(p,0,.45),cotOpen:phase(p,1.55,2.45),
     cotGreen:phase(p,.9,2.45),leafLeft,leafRight,
+    leafAngleLeft:-154-10*(1-leafLeft),leafAngleRight:-26+10*(1-leafRight),
     hypocotyl:`M380 350 C${380-hook} ${350-45*lift} ${cot.x-2*hook} ${cot.y-60*Math.sin(Math.PI*lift)} ${cot.x} ${cot.y}`,
     epicotyl:`M${cot.x} ${cot.y} Q${cot.x+4*shoot} ${cot.y-36*shoot} ${leafNode.x} ${leafNode.y}`,
     coats:[-1,1].map(sign=>({x:cot.x+sign*(3*split+55*coatFall),y:cot.y+(318-cot.y)*coatFall,

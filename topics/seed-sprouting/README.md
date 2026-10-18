@@ -85,3 +85,5 @@ Primary morphology reference: [University of Minnesota · Introduction to seed g
 This is an epigeal common-bean illustration, not a physiological simulation. Hypocotyl arching, coat shedding, cotyledon opening and leaf unfolding use authored relative timing. Soil forces, turgor, organ sizes, biomass and elapsed days are not calculated. Two coat pieces simplify a real tear. Seedling-to-flowering maturity is still omitted explicitly, and the bean never turns into a cherry.
 
 All three cases expose one authored `.study-transport` to the Reader. Dispersal’s existing `travel`/`progress` controls and live result join that surface without changing its wind/fur model or clock; case-specific conditions remain in settings.
+
+The first true-leaf pair now opens with a small change in attachment angle as well as separate length/width unfolding; the final mature seedling retains the same geometry. Cherry motion uses `../flower-fruit/beeMotion.ts`, with no independent ambient clock.

@@ -1,12 +1,18 @@
 const clamp = (x: number) => Math.min(1, Math.max(0, x));
 const smooth = (x: number) => { const v = clamp(x); return v * v * (3 - 2 * v); };
+export const BEE_VISIT={contact:.42,departure:.72,exit:1.42} as const;
 /** One grain retains its identity through transport and contact. Later phases compress plant development. */
 export function pollinationFrame(progress: number, compatible=true) {
   const p = Number.isFinite(progress) ? Math.max(0, Math.min(3, progress)) : 0;
-  const approach = smooth(p / .42), departure = smooth((p - .65) / .7);
-  const beeX = 132 + 102 * approach - 150 * departure;
-  const beeY = 252 - 80 * departure;
-  const deposited = p >= .42;
+  const approach = smooth(p / BEE_VISIT.contact);
+  const departure = smooth((p-BEE_VISIT.departure)/(BEE_VISIT.exit-BEE_VISIT.departure));
+  // A curved approach settles onto the stigma, followed by a forward/upward
+  // departure. The reference point carrying pollen stays identical at contact.
+  const hover=1-smooth((p-.27)/.15);
+  const beeX = 132 + 102 * approach + 205 * departure;
+  const beeY = 252-18*Math.sin(Math.PI*approach)-135*departure-22*Math.sin(Math.PI*departure)
+    +2.8*hover*Math.sin(p*8*Math.PI*2*.78);
+  const deposited = p >= BEE_VISIT.contact;
   return { beeX, beeY, deposited,
     pollenX: deposited ? 275 : beeX + 41,
     pollenY: deposited ? 250 : beeY - 2,
@@ -33,7 +39,9 @@ export function fruitGeometry(progress:number,compatible=true){
     petals:Array.from({length:5},(_,i)=>{
       const fall=smooth((development-.18-i*.075)/(1.03+i*.06)),angle=i*72+11;
       const a=angle*Math.PI/180;
-      return {x:Math.sin(a)*fall*(58+i*7),y:fall*fall*(174+i*11),angle:angle+(i%2?1:-1)*fall*47,
+      const flutter=Math.sin(Math.PI*fall);
+      return {x:Math.sin(a)*fall*(58+i*7)+Math.sin(fall*5+i)*fall*flutter*9,
+        y:fall*fall*(174+i*11),angle:angle+(i%2?1:-1)*fall*47+Math.sin(fall*9+i)*flutter*7,
         curl:smooth((development-i*.035)/.85),
         width:1-.24*smooth(development/.85),length:1-.2*smooth(development/.85),
         opacity:1-smooth((fall-.78)/.22)};

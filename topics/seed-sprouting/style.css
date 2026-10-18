@@ -81,7 +81,7 @@ html[data-topic-ui] body main .case-rail button[aria-current=step]{background:#2
 .chapter-copy .eyebrow{margin:0;color:#697174;letter-spacing:.04em;font-size:10px}
 .chapter-copy h2{margin:3px 0;font-size:15px;line-height:1.35}
 .chapter-copy #before{margin:4px 0 0;font-size:11px;line-height:1.45}
-.chapter-copy #child-cue{margin:4px 0 0;font-size:11px;line-height:1.45;color:#4d5556}
+.chapter-copy #child-cue{margin:4px 0 0;font-size:11px;line-height:1.45;color:var(--secondary)}
 .chapter-copy #case-status{display:none}
 html[data-reading-mode=kids] .chapter-copy #before{display:none}
 html[data-reading-mode=academic] .chapter-copy #child-cue{display:none}

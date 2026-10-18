@@ -9,6 +9,7 @@ import {parseFragment} from 'parse5';
 import * as beanGeometry from '../growthGeometry.ts';
 import * as lifecycle from '../lifecycleModel.ts';
 import * as cherryModel from '../../flower-fruit/model.ts';
+import {beeMotion} from '../../flower-fruit/beeMotion.ts';
 
 function study(kind='bean',initial={progress:0}){
  let now=0,frameId=0;const frames=new Map(),updates=[];
@@ -38,7 +39,7 @@ function study(kind='bean',initial={progress:0}){
   vm.runInNewContext(output,{...host,...deps,exports},{filename:relative});return exports;
  }
  const playback=load('../growthPlayback.ts');
- const renderer=kind==='bean'?load('../growthScene.ts',beanGeometry):load('../../flower-fruit/growthScene.ts',cherryModel);
+ const renderer=kind==='bean'?load('../growthScene.ts',beanGeometry):load('../../flower-fruit/growthScene.ts',{...cherryModel,beeMotion});
  const controller=load(kind==='bean'?'../study.ts':'../../flower-fruit/study.ts',{...lifecycle,...playback,...renderer});
  const mounted=controller.mountStudy(root,initial,state=>updates.push({...state})),get=id=>root.querySelector('#'+id);
  return {root,media,frames,updates,mounted,get,
@@ -68,4 +69,18 @@ test('actual cherry renderer preserves organ nodes and independent incompatible 
 });
 test('reduced-motion controllers keep explicit stages without autoplay or hidden seek completion',()=>{
  for(const kind of ['bean','cherry']){const h=study(kind);h.media.matches=true;h.click(kind==='bean'?'growth-play':'journey-play');assert.equal(h.mounted.read().progress,1);assert.equal(h.frames.size,0);h.click('next');assert.equal(h.mounted.read().progress,2);assert.equal(h.frames.size,0);}
+});
+
+test('articulated bee wings share the process clock, freeze on pause and replay the same pose',()=>{
+ const h=study('cherry'),svg=h.get('scene'),part=name=>svg.querySelectorAll('[data-part]').find(n=>n.dataset.part===name);
+ const wing=part('bee-wing-near'),far=part('bee-wing-far');
+ assert.equal(h.frames.size,0);const initial=wing.getAttribute('transform');
+ h.click('journey-play');h.tick();h.tick(50);assert.notEqual(wing.getAttribute('transform'),initial);assert.notEqual(far.getAttribute('transform'),wing.getAttribute('transform'));assert.equal(h.frames.size,1);
+ h.mounted.pause();const paused=wing.getAttribute('transform');h.tick(10000);assert.equal(wing.getAttribute('transform'),paused);assert.equal(h.frames.size,0);
+ const pose=()=>['bee','bee-wing-near','bee-wing-far','bee-antenna-near','bee-leg-near-0','pollen'].map(name=>({...part(name).attributes}));
+ h.input('journey',200);const before=pose();h.input('journey',1100);h.input('journey',200);assert.deepEqual(pose(),before);assert.equal(svg.htmlWrites,1);
+ h.input('journey',500);assert.equal(part('bee-wing-envelope').getAttribute('opacity'),'0');
+ h.input('journey',900);assert.ok(Number(part('bee-wing-envelope').getAttribute('opacity'))>0);
+ h.media.matches=true;h.input('journey',200);assert.equal(part('bee-wing-envelope').getAttribute('opacity'),'0');assert.equal(h.frames.size,0);
+ h.mounted.dispose();assert.equal(h.frames.size,0);
 });

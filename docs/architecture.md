@@ -50,3 +50,11 @@ Reader 首页提供缩略图和列表总览，分类与关键词可以组合筛�
 常规控件由 Reader 统一为最小 44px 高、14px 字号、8px 间距和圆角；多行文字和图片选项允许自然增高。画面、短图注、播放栏和阅读区共用桌面最多 20px、手机 16px 的留白基准。自有绘图容器可标记 `data-reader-stage` 去除重复的外框与圆角，播放栏和短图注分别用 `data-reader-transport`、`data-reader-caption` 声明；科学图形的边界和 `data-scene-hit-target` 点击几何保持专题所有。Reader 的界面色使用自身前缀变量，避免与专题的同名深色场景变量冲突。
 
 模型限定按当前画面安排：直接影响读图的一句话仍在图旁；当前章节的详细限制放入解说中的默认折叠区，并保留资料入口；跨章节通用边界放入完整正文。黑洞的 `#limits` 仍由原控制器更新，只调整位置，不复制或改写科学条件。手机双菜单工具栏在同一区域内换行，避免用难辨认的省略文字代替菜单名称。
+
+## 2D 动画制作工具的候选方向 · 2026-10-19
+
+用户希望成熟动画库与 AI 制作工具降低重复手写的成本。当前植物案例使用原生 SVG 的分层形态与有限进度时钟；这轮蜜蜂精修尚未接入第三方动画库。后续共用引擎的优先候选为 GSAP + SVG：时间线、路径、缓动和形变可由可选的 Reader 适配层提供，按需加载；专题继续拥有科学状态、作者绘制的轨迹、器官连接和暂停/回放语义。共用库不会自动承担授粉、组织分化等科学规则。
+
+可视化角色资产制作可评估 Rive，纹理、精灵和大量对象的 2D 渲染可评估 PixiJS，成片解说动画可评估 Remotion。它们分别解决不同制作责任，不要求每个条目统一重写。具体库接入仍需真实案例验证，不能将候选选型描述为已经实现的引擎。
+
+依据：[GSAP 时间线](https://gsap.com/docs/v3/GSAP/Timeline/)、[MotionPath](https://gsap.com/docs/v3/Plugins/MotionPathPlugin/)、[GSAP 官方 AI Skills](https://github.com/greensock/gsap-skills)、[Rive 状态机](https://rive.app/docs/editor/state-machine/state-machine)、[PixiJS 网格](https://pixijs.com/8.x/guides/components/scene-objects/mesh)、[Remotion AI 工具链](https://www.remotion.dev/docs/ai)。

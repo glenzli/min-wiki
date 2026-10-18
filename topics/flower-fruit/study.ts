@@ -18,7 +18,7 @@ el('zoom').addEventListener('click',()=>{
  cancelCamera=animateValue({from:0,to:1,duration:650,onUpdate:p=>{camera=from.map((v,i)=>v+(to[i]!-v)*p);scene.setAttribute('viewBox',camera.join(' '));}});
 });
 function draw(playing=false){
- const cue=drawing.update(shown,compatible);
+ const cue=drawing.update(shown,compatible,reduced.matches);
  const note=!compatible&&shown>=.49?t('花粉已经到达柱头，但不相容的花粉管在花柱中受阻，未完成受精；本案例不会形成种子和果实。花粉相容仍不是实际结果的唯一条件。'):cue;
  if(result.textContent!==note)result.textContent=note;
  range.value=String(Math.round(shown*1000));range.setAttribute('aria-valuetext',cue);

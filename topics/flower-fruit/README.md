@@ -32,3 +32,13 @@ The same five petals curl and drop at staggered intervals; the whole flower is n
 Primary morphology reference: [University of Minnesota · Fruit morphology](https://open.lib.umn.edu/horticulture/chapter/8-1-fruit-morphology/): the ovule normally becomes the seed, the ovary wall becomes pericarp, and a drupe such as cherry has a hard endocarp surrounding its seed. Compatibility remains the separate, already sourced Cornell model contract.
 
 The blocked case retains an unfertilized ovary and ovule without fruit enlargement, seed development or endocarp hardening. A single illustrative ovule omits the possible abortion of additional cherry ovules and the complexity of tissue differentiation. Petal fall, hardening and color changes use compressed authored timing; the illustration calculates neither wind forces, tissue mechanics, hormones, actual days nor cultivar-specific color. It does not retain a conspicuous green calyx on the ripe cherry.
+
+## Bee flight and articulation · 2026-10-19
+
+`beeMotion.ts` projects the current progress onto a curved approach, deceleration, a brief perch and a forward/upward departure. `model.ts` remains the canonical route and pollen-contact owner. Both pairs of fore/hind wings, abdomen, six jointed legs, pollen basket and antennae are retained SVG parts. Paired wings articulate together with a restrained translucent exposure envelope. On perching the wings fold and feet reach the flower; takeoff reopens the wings before forward flight. Body pitch preserves the tracked pollen site, which stays at the stigma after deposition.
+
+The same finite progress clock drives articulation, small leaf flex and falling-petal flutter. Pause, scrub and chapter changes therefore freeze the whole observation; there are no separate ambient loops. Reduced motion suppresses exposure blur, antenna/abdomen oscillation and decorative leaf flex. The flight path, contact pose, inferred shading, vein detail and motion rhythm are authored illustration, not force calculations or measured kinematics.
+
+蜜蜂的膜翅、绒毛、分节足与接触动作采用固定视角科学插画；翅脉是可辨认的简化纹理，不按翅室数量测绘。振翅以示意节奏配合透明残影表现，不把屏幕上的摆动频率称为真实频率，也不模拟升力、气流或翅钩接合的力学。停靠与离开的时长是教学编排；到达柱头仍只是授粉，相容花粉管随后才能帮助完成受精。
+
+Motion reference: [Altshuler et al., PNAS (2005), honeybee wing strokes](https://pmc.ncbi.nlm.nih.gov/articles/PMC1312389/) describes rapid, short-amplitude honeybee wingbeats. This scene illustrates their visual impression; it does not replay the measured frequency or claim that its projected wing angles reconstruct the paper's kinematics.
