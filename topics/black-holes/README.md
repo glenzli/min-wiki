@@ -86,6 +86,10 @@ Desktop reading mode fits the observation workspace to the remaining viewport he
 scroll inside their own panel. The scale comparison and continuous zoom are alternative windows, not
 stacked canvases. A compact chapter selector remains available in immersive mode.
 
+The authored chapter group targets `black-hole-workspace` through `data-reader-toolbar`.
+Reader places chapter and reading-mode selectors in one toolbar, retaining the original links,
+mode buttons and chapter state. Narrow summaries keep their full accessible names.
+
 Explanation and settings buttons work in both layouts. Entering immersive mode collapses these panels;
 readers can reopen either without leaving the demonstration. Escape restores the reading layout, panel
 choices and scroll position. Small screens retain reachable controls through natural scrolling instead

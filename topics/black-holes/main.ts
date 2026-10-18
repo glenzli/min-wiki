@@ -39,11 +39,7 @@ const observation = mountObservationMode(workspace, { enter: t('沉浸演示'), 
   { label: t('设置'), elements: [el('experiment-settings')], open: false },
 ] });
 const title = el('chapter-title'); title.classList.add('observation-title'); observation.toolbar.prepend(title);
-const chapterJump = document.createElement('select'); chapterJump.className = 'chapter-jump'; chapterJump.dataset.readerMenu='chapters'; chapterJump.setAttribute('aria-label', t('切换章节'));
-for (const id of CHAPTERS) { const option = document.createElement('option'); option.value = id; option.textContent = document.querySelector('[data-chapter="' + id + '"] strong')!.textContent; chapterJump.append(option); }
-chapterJump.addEventListener('change', () => { void selectChapter(chapterJump.value as ChapterId, true); });
-observation.toolbar.insertBefore(chapterJump, observation.toolbar.children[1] ?? null);
-observation.toolbar.insertBefore(el('scale-views'), chapterJump);
+observation.toolbar.insertBefore(el('scale-views'), observation.toolbar.children[1] ?? null);
 document.querySelectorAll<HTMLButtonElement>('button[data-scale-view]').forEach(button => button.addEventListener('click', () => {
   workspace.dataset.scaleView = button.dataset.scaleView;
   document.querySelectorAll('button[data-scale-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
@@ -113,7 +109,7 @@ async function selectChapter(id: ChapterId, push = false) {
   chapterAbort.abort(); chapterAbort = new AbortController();
   chapterId = id;
   document.body.dataset.chapter = id;
-  chapterJump.value = id; el('scale-views').hidden = id !== 'scale';
+  el('scale-views').hidden = id !== 'scale';
   if (push) history.pushState(null, '', href(id));
   (el('view') as HTMLSelectElement).value = views[id];
   el('orbit-option').hidden = id !== 'companion'; el('sound-option').hidden = id !== 'star';
