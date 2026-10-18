@@ -25,4 +25,5 @@ const observer=new ResizeObserver(anchors);observer.observe(svg);anchors();
 window.addEventListener('pagehide',()=>{cancelCamera();cancelBackground();observer.disconnect();});
 mountReadingMode('details:not(.references)');
 
-mountPresentationFrame({"root": ".lab", "visual": ".scene"});
+const presentation=mountPresentationFrame({root:'.lab',visual:'.scene',transport:'#forest-button,#plain-button,#reveal,#reset'});
+if(presentation){const contrast=el('contrast').closest('label');if(contrast)presentation.stage.querySelector('.presentation-transport')?.append(contrast);const status=document.querySelector<HTMLElement>('.readout')!;status.dataset.readerCaption='';presentation.stage.append(status);const mode=document.querySelector('.reading-mode-disclosure');if(mode){const controls=mode.querySelector<HTMLElement>('.reading-mode');if(controls){controls.dataset.readerMenu='options';presentation.mode.toolbar.prepend(controls);}mode.remove();}}

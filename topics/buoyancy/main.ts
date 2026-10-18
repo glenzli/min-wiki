@@ -58,4 +58,4 @@ for(const button of document.querySelectorAll<HTMLButtonElement>('[data-mode]'))
 
 
 
-mountPresentationFrame({"root": ".lab", "visual": ".scene-column", "choices": ".study-content>.experiments"});
+mountPresentationFrame({"root": ".lab", "visual": ".scene-column", "choices": ".study-content>.experiments", "transport": "#objects-controls"});

@@ -119,7 +119,9 @@ export class LeafScene {
     const destination = this.destination(), originalCamera = scaleCamera(this.position, destination), life = leafLifeAt(this.age);
     const tracked = leafPoint(originalCamera.x, originalCamera.y, this.age), follow = smooth(0, 1, this.position);
     const camera = { ...originalCamera, x: originalCamera.x * (1 - follow) + tracked.x * follow, y: originalCamera.y * (1 - follow) + tracked.y * follow, angle: originalCamera.angle + life.rotation * follow, magnification: originalCamera.magnification / (1 - follow + life.size * follow) };
-    const sceneScale = this.scale * camera.magnification * (1 + .38 * smooth(.75, 2, this.position));
+    // Narrow canvases need breathing room around the complete sampled cell.
+    const detailBoost = .18 + .2 * smooth(420,760,this.width);
+    const sceneScale = this.scale * camera.magnification * (1 + detailBoost * smooth(.75, 2, this.position));
     const frameY = this.height * (.46 + .08 * smooth(.2, 1, this.position));
     const entries: ScaleEntry[] = [...SCALE_ENTRIES, destination];
     const section = leafSectionAt(this.position), patch = entries[0];
@@ -201,9 +203,15 @@ export class LeafScene {
     if (this.waterVisible && this.position < .2) this.waterOnLeaf(life.transport);
     c.restore();
     // Labels belong to the currently visited scale and are not trapped inside a
-    // tiny parent clipping mask. Anatomy remains fixed beneath these overlays.
+    // tiny parent clipping mask. Use screen units so zoom cannot enlarge the
+    // typography or push a caption beyond the canvas. Anatomy stays fixed.
+    const dpr = this.canvas.width / this.width;
     for (const label of this.labels) {
-      c.save(); c.setTransform(label.matrix); this.drawLabel(label.text, label.x, label.y, label.anchor, label.width); c.restore();
+      const point = label.matrix.transformPoint(new DOMPoint(label.x,label.y));
+      const anchor = label.anchor && label.matrix.transformPoint(new DOMPoint(...label.anchor));
+      c.save();c.setTransform(dpr,0,0,dpr,0,0);
+      this.drawLabel(label.text,point.x/dpr,point.y/dpr,anchor && [anchor.x/dpr,anchor.y/dpr],Math.min(label.width,this.width-32));
+      c.restore();
     }
     const onSurface=Math.abs(this.position-.5)<.08;
     const depth = onSurface ? 0 : Math.min(2, Math.round(this.position));
@@ -247,13 +255,15 @@ export class LeafScene {
   }
   private drawLabel(text: string, x: number, y: number, anchor?: Point, width = 170) {
     const c = this.ctx;
-    if (anchor) { c.beginPath(); c.moveTo(...anchor); c.lineTo(x, y - 5); c.strokeStyle = '#71876b'; c.lineWidth = 1; c.stroke(); this.ellipse(...anchor, 2, 2, '#698365'); }
-    const fontSize = Math.max(12, 11 / this.scale), lineHeight = Math.ceil(fontSize * 1.25);
+    const fontSize = this.width < 600 ? 13 : 14, lineHeight = Math.ceil(fontSize * 1.35);
     c.font = `${fontSize}px -apple-system, BlinkMacSystemFont, sans-serif`; c.textAlign = 'center'; c.textBaseline = 'middle';
     const words = text.includes(' ') ? text.split(' ') : [...text]; let line = ''; const lines: string[] = [];
     for (const word of words) { const next = line + (line && text.includes(' ') ? ' ' : '') + word; if (c.measureText(next).width > width && line) { lines.push(line); line = word; } else line = next; }
     if (line) lines.push(line);
     const box = Math.min(width, Math.max(...lines.map(l => c.measureText(l).width))) + 14;
+    x=Math.max(12+box/2,Math.min(this.width-12-box/2,x));
+    y=Math.max(68,Math.min(this.height-52-lines.length*lineHeight,y));
+    if (anchor) { c.beginPath(); c.moveTo(...anchor); c.lineTo(x, y - 5); c.strokeStyle = '#71876b'; c.lineWidth = 1; c.stroke(); this.ellipse(...anchor, 2, 2, '#698365'); }
     c.fillStyle = '#f8faedeb'; c.fillRect(x - box / 2, y - fontSize * .75, box, lines.length * lineHeight + 3);
     c.fillStyle = '#39543b'; lines.forEach((l, i) => c.fillText(l, x, y + i * lineHeight));
   }
@@ -326,9 +336,10 @@ export class LeafScene {
     }
     c.lineCap='round';
     // Fine veins only: repeated bright/dark ridges made the blade look quilted.
-    for (const vein of veins) {
-      c.strokeStyle=rgb(mix(color,[237,229,147],.48),.56); c.lineWidth=.85; c.stroke(vein);
-    }
+    veins.forEach((vein, index) => {
+      c.strokeStyle=rgb(mix(color,[237,229,147],.48),.5);
+      c.lineWidth=.42+.5*(1-(index%10)/10); c.stroke(vein);
+    });
     c.strokeStyle=rgb(mix(color,[225,229,157],.5),.2); c.lineWidth=.4; c.stroke(mesh);
     c.strokeStyle='#f1f2c421'; c.lineWidth=.6; c.stroke(grain);
     const shine=c.createRadialGradient(-55,-110,5,-20,-50,195);
@@ -466,9 +477,12 @@ export class LeafScene {
     }
     for (let i = 0; i < 8; i++) {
       const x = -207 + i * 53, cy = -49 + Math.sin(i * 2.1) * 3, rx = 21.5 + Math.sin(i * 1.7), ry = 54 + Math.cos(i * 2.7) * 4;
-      const cellFill=c.createLinearGradient(x,-108,x+48,9);cellFill.addColorStop(0,'#dce8c3');cellFill.addColorStop(1,'#e9efd6'); c.fillStyle = cellFill; c.strokeStyle = '#90aa78';
+      const cellFill=c.createLinearGradient(x,-108,x+48,9);cellFill.addColorStop(0,'#dce8c3');cellFill.addColorStop(1,'#e9efd6'); c.fillStyle = cellFill; c.strokeStyle = '#90aa78';c.lineWidth=1.1;
       this.cellOutline(x + 24, cy, rx, ry, i * 2.3, .72); c.fill(); c.stroke();
+      this.cellOutline(x + 24, cy, rx-1.4, ry-1.4, i * 2.3, .72);c.strokeStyle='#fafce8';c.lineWidth=.65;c.stroke();
       this.cellOutline(x + 24, cy, rx * .52, ry * .64, i * 2.3, .72); c.fillStyle = rgb(mix([241,247,231],[224,150,177],p.anthocyanins)); c.fill();
+      c.strokeStyle=rgb(mix([157,184,136],[177,123,148],p.anthocyanins),.48);c.lineWidth=.45;c.stroke();
+      this.ellipse(x+24+rx*.56,cy+ry*.57,2.8,3.8,'#d0c3db','#a69bb8');
       // Organelles follow the cell's contour within the cytoplasm, outside the liquid compartment.
       this.peripheralPlastids(x + 24, cy, rx, ry, i * 2.3, 6, 5.2, p, .72);
     }
@@ -478,6 +492,7 @@ export class LeafScene {
       const rx = 25 + Math.sin(i * 2 + row) * 3, ry = 17 + Math.cos(i + row) * 2, seed = i * 2.2 + row * 4;
       this.cellOutline(x, y, rx, ry, seed); c.fillStyle = '#e5ecd0'; c.strokeStyle = '#90aa78'; c.fill(); c.stroke();
       this.cellOutline(x, y, rx * .5, ry * .48, seed); c.fillStyle = rgb(mix([241,247,231],[224,150,177],p.anthocyanins)); c.fill();
+      this.ellipse(x-rx*.48,y+ry*.36,2.2,2.5,'#d0c3db','#a69bb8');
       this.peripheralPlastids(x, y, rx, ry, seed, 4, 3.8, p);
     }
     // Air-space tracers remain outside the cells; motion is deliberately magnified.
@@ -498,11 +513,12 @@ export class LeafScene {
     c.save();
     if(this.kind==='yellow')c.globalAlpha*=1-smooth(2.15,2.8,this.position);
     this.cellOutline(0,-2,171,134,1.4,.85);
-    const cytoplasm=c.createLinearGradient(-60,-130,70,130);
-    cytoplasm.addColorStop(0,'#e5eed2');cytoplasm.addColorStop(1,'#dce8ca');
-    c.fillStyle=cytoplasm;c.fill();c.lineWidth=5;c.strokeStyle='#c4d3ad';c.stroke();
+    const cytoplasm=c.createRadialGradient(-65,-64,4,18,16,205);
+    cytoplasm.addColorStop(0,'#f0f4de');cytoplasm.addColorStop(.58,'#e3edce');cytoplasm.addColorStop(1,'#b8cda5');
+    c.fillStyle=cytoplasm;c.fill();c.lineWidth=6.5;c.strokeStyle='#c4d3ad';c.stroke();
     c.lineWidth=1.1;c.strokeStyle='#809c70';c.stroke();
-    this.cellOutline(0,-2,166,129,1.4,.85);c.strokeStyle='#f7f9ed';c.lineWidth=1.3;c.stroke();
+    this.cellOutline(0,-2,167,130,1.4,.85);c.strokeStyle='#f7f9ed';c.lineWidth=1.5;c.stroke();
+    this.cellOutline(0,-2,163,126,1.4,.85);c.strokeStyle='#8fa778';c.lineWidth=.8;c.stroke();
     this.vacuole(p);
     for (let i=0;i<16;i++) {
       if(i===6||i===14)continue;
@@ -516,7 +532,10 @@ export class LeafScene {
       const [x,y]=this.cellEdge(a,171,134,1.4,.85);
       if(Math.hypot(x*r+113,y*r-74)>26) this.ellipse(x*r,y*r-2,.65+i%2*.25,.65,'#6c95602b');
     }
-    this.cellOutline(-113,72,22,19,.7);c.fillStyle='#e2dcea';c.fill();c.strokeStyle='#a396b3';c.lineWidth=1;c.stroke();
+    this.cellOutline(-113,72,22,19,.7);
+    const nucleoplasm=c.createRadialGradient(-120,65,2,-111,74,25);
+    nucleoplasm.addColorStop(0,'#f1eaf2');nucleoplasm.addColorStop(.6,'#dbd0e4');nucleoplasm.addColorStop(1,'#b2a2c3');
+    c.fillStyle=nucleoplasm;c.fill();c.strokeStyle='#a396b3';c.lineWidth=1;c.stroke();
     c.save();c.clip();
     c.strokeStyle='#a99ab970';c.lineWidth=.65;
     for(let i=0;i<3;i++) {
@@ -543,9 +562,10 @@ export class LeafScene {
   }
   private vacuole(p: Pigments) {
     const c = this.ctx;
-    const fill=c.createLinearGradient(-50,-85,70,95);
-    fill.addColorStop(0,rgb(mix([247,251,239],[242,183,202],p.anthocyanins)));
-    fill.addColorStop(1,rgb(mix([236,246,232],[219,139,171],p.anthocyanins)));
+    const fill=c.createRadialGradient(-38,-43,3,15,17,150);
+    fill.addColorStop(0,rgb(mix([250,253,245],[248,205,218],p.anthocyanins)));
+    fill.addColorStop(.65,rgb(mix([238,247,232],[230,158,187],p.anthocyanins)));
+    fill.addColorStop(1,rgb(mix([209,229,207],[200,119,155],p.anthocyanins)));
     c.save();c.clip(this.vacuolePath);c.fillStyle=fill;c.fill(this.vacuolePath);
     // Stable, distributed solute symbols. Concentration changes throughout the
     // liquid; neither the pigment field nor a reveal mask expands from a centre.
@@ -557,12 +577,15 @@ export class LeafScene {
     }
     c.restore();c.strokeStyle=rgb(mix([139,169,125],[169,104,138],p.anthocyanins),.75);
     c.lineWidth=1.1;c.stroke(this.vacuolePath);
+    c.save();c.clip(this.vacuolePath);c.translate(-.6,-.8);
+    c.strokeStyle='#ffffff80';c.lineWidth=.8;c.stroke(this.vacuolePath);c.restore();
   }
   private chloroplast(p: Pigments, miniature = false) {
     const c = this.ctx;
     const base = leafRGB({ ...p, anthocyanins: 0 });
     const fill = c.createLinearGradient(0, -100, 0, 100); fill.addColorStop(0, rgb(mix(base, [239, 248, 212], .67))); fill.addColorStop(1, rgb(mix(base, [218, 235, 184], .59)));
     this.ellipse(0, 0, 210, 210*.52, fill, '#789359');
+    c.strokeStyle='#f5f9da';c.lineWidth=1.5;c.beginPath();c.ellipse(-1,-1,206,105,0,0,Math.PI*2);c.stroke();
     if(!miniature)for(let i=0;i<72;i++){const a=i*2.399,r=Math.sqrt((i+.5)/72);this.ellipse(Math.cos(a)*r*195,Math.sin(a)*r*97,.8+i%3*.3,.8,'#678c422d');}
     this.ellipse(120,58,26,12,'#f7f3dfcc','#bac58988');
     c.strokeStyle='#719d5f88';c.lineWidth=1;c.beginPath();for(let i=0;i<=50;i++){const a=i/50*Math.PI*2,x=-117+Math.cos(a)*(17+Math.sin(a*3)*5),y=65+Math.sin(a)*10;i?c.lineTo(x,y):c.moveTo(x,y);}c.stroke();

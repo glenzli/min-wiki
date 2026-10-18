@@ -119,7 +119,7 @@ export class AtmosphereScene {
  private line(points:{x:number;y:number}[],color:string|CanvasGradient,width=1){const c=this.c;c.beginPath();points.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.strokeStyle=color;c.lineWidth=width;c.stroke();}
  private dot(x:number,y:number,r:number,color:string){const c=this.c;c.beginPath();c.arc(x,y,r,0,Math.PI*2);c.fillStyle=color;c.fill();}
  private label(text:string,x:number,y:number,color='#dcebf1',align:CanvasTextAlign='left'){
-  const c=this.c;c.font='12px system-ui';c.textAlign=align;c.fillStyle='#102339dd';const width=c.measureText(text).width;c.fillRect(align==='right'?x-width-5:x-5,y-15,width+10,21);c.fillStyle=color;c.fillText(text,x,y);
+  const c=this.c;c.font='13px system-ui';c.textAlign=align;c.fillStyle='#102339dd';const width=c.measureText(text).width;c.fillRect(align==='right'?x-width-5:x-5,y-17,width+10,25);c.fillStyle=color;c.fillText(text,x,y);
  }
  draw(state:Settings,labels=true,mechanism:MechanismFrame|null=null){
   if(this.disposed||state.view!=='layers')return;this.state={...state};this.labels=labels;this.mechanism=mechanism;
@@ -155,6 +155,17 @@ export class AtmosphereScene {
   c.beginPath();c.arc(0,0,R,0,Math.PI*2);c.clip();
   const sea=c.createLinearGradient(-R,-R,R,R);sea.addColorStop(0,'#438fa5');sea.addColorStop(.5,'#205976');sea.addColorStop(1,'#091e35');c.fillStyle=sea;c.fillRect(-R,-R,R*2,R*2);
   c.fillStyle='#658b65';c.fill(this.coast);c.fillStyle='#587e61';c.fill(this.south);
+  // Authored local texture stays in globe coordinates as the camera passes from
+  // the cached relief into the close coast. It is not surveyed topography.
+  if(scale>.35){
+   c.save();c.globalAlpha=Math.min(.6,(scale-.35)/1.2);c.clip(this.coast);
+   for(let i=0;i<110;i++){
+    const x=2+noise(i+980)*95,y=-R-6+noise(i+1200)*70;
+    c.fillStyle=i%3===0?'#c4c5933b':'#244d3c20';
+    c.beginPath();c.ellipse(x,y,.6+noise(i+1500)*4,.3+noise(i+1700)*1.6,-.4,0,Math.PI*2);c.fill();
+   }
+   c.restore();
+  }
   // Coast geometry is unchanged under zoom; deliberately illustrative, not a geographic map.
   c.strokeStyle='#bfd1a688';c.lineWidth=5;c.stroke(this.coast);c.stroke(this.south);
   // The licensed far-view map dissolves into a locally authored coast while

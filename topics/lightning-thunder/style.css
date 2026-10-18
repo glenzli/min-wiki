@@ -22,3 +22,8 @@
   .presentation-frame .presentation-notes .science-panel p{font-size:12px;line-height:1.65}
   .presentation-frame .presentation-notes .science-panel .science-formula{font-size:17px;line-height:1.5;overflow-wrap:anywhere}
 }
+
+/* Local refinement: readable evidence, restrained framing. */
+.scene-note,.scene-caption{font-size:13px;line-height:1.65}.stage-caption{font-size:14px;line-height:1.65}.observation-toolbar{gap:8px;align-items:center}.transport label,.transport output{font-size:13px;line-height:1.5}
+
+:root[data-wiki-document] .observation-toolbar>button[aria-controls]{font-size:13px;line-height:1.5;white-space:normal;overflow-wrap:normal;min-width:0;padding:8px 10px;min-height:44px}

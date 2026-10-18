@@ -109,3 +109,8 @@
 .black-hole-workspace #story-panel>.model-notes{padding:0;margin-top:12px;border-top:1px solid var(--border)}
 .black-hole-workspace #story-panel>.model-notes>a{display:inline-block;font-size:13px;margin-bottom:12px}
 .chapter-footer #next-chapter{margin-inline-start:auto}
+
+/* Local refinement: readable evidence, restrained framing. */
+#black-hole-workspace .scene-label,#black-hole-workspace .object-label{font-size:13px;line-height:1.5;padding:4px 7px;border-radius:4px}
+#black-hole-workspace .comparison-boundary{font-size:13px;line-height:1.65}
+@media(max-width:699px){#black-hole-workspace .scene-label,#black-hole-workspace .object-label{font-size:12px}}

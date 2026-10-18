@@ -14,6 +14,16 @@ const select = el('object') as HTMLSelectElement;
 const settings: Settings = { kind: 'iron', near: 0, flipped: false };
 let academic = false;
 let study='motion';
+const questionMenu=document.querySelector<HTMLElement>('.magnet-questions')!;
+questionMenu.append(document.querySelector('.learning-modes')!);
+function syncPresentation(){
+ const id=study==='motion'?'motion-study':'compass-study';
+ const frame=el(id),toolbar=frame.querySelector<HTMLElement>(':scope > .observation-toolbar');
+ if(!toolbar)return;
+ questionMenu.dataset.readerToolbar=id;
+ const menu=questionMenu.closest<HTMLElement>('.reader-menu-holder')??questionMenu.closest<HTMLElement>('.observation-choices')??questionMenu;
+ toolbar.prepend(menu);
+}
 let motion = initialMotion();
 let lastTime = 0;
 let demoStart: number | null = null;
@@ -150,9 +160,14 @@ document.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(button=>but
  el('motion-study').hidden=study!=='motion';el('compass-study').hidden=study!=='compass';
  el('child-prompt').hidden=academic||study!=='motion';
  document.querySelectorAll<HTMLButtonElement>('[data-study]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.study===study)));
- if(study==='motion')schedule();
+ if(study==='motion')schedule();syncPresentation();
 }));
 
 
-mountPresentationFrame({ root: '#motion-study', visual: '.scene-wrap' });
-mountPresentationFrame({ root: '#compass-study', visual: 'svg' });
+const motionFrame=mountPresentationFrame({ root: '#motion-study', visual: '.scene-wrap', transport:'#approach,#flip,#reset' });
+if(motionFrame){
+ const scrub=near.closest('label');if(scrub)motionFrame.stage.querySelector('.presentation-transport')?.append(scrub);
+ el('readout').dataset.readerCaption='';motionFrame.stage.append(el('readout'));
+}
+mountPresentationFrame({ root: '#compass-study', visual: 'svg', transport:'.controls>label,.controls>[data-flip]' });
+syncPresentation();

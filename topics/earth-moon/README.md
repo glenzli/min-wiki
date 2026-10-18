@@ -50,3 +50,8 @@ The space view and Earth view share the same lunar mesh geometry, texture and ma
 默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。月相进度、地球视角小窗与真实比例对照继续使用同一绘图实例。
 
 The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.
+## Scale-view transition · 2026-10-19
+
+轨道教学视图与独立真实比例排列之间的移动仍使用原来的天体与相机插值。插值期间收起标尺、方向箭头和相应图注，到达后再显示，避免把放大倍率正在改变的过渡帧读成真实比例；快速切换继续以最新选择为准，保留月相进度。
+
+Rulers, direction arrows and their caption are withheld while interpolating between the enlarged orbit and the separate scale lineup, then restored at the selected endpoint. The same bodies, textures and lunar progress remain retained; presentation motion is not an orbital trajectory or a calibrated intermediate scale.

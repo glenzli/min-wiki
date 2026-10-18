@@ -9,3 +9,10 @@
 :root[data-wiki-document] #observation .scene-top h2{font-size:16px;margin:0}
 :root[data-wiki-document] #observation .scene-top p,:root[data-wiki-document] #observation .diagram-key{font-size:11px;margin:4px}
 @media(max-width:999px){:root[data-wiki-document] #observation .presentation-visual svg{height:60dvh;min-height:360px;flex:none}}
+
+/* Local refinement: readable evidence, restrained framing. */
+:root[data-wiki-document] #observation .scene-column.presentation-visual{padding:12px;gap:8px}:root[data-wiki-document] #observation .scene-top,:root[data-wiki-document] #observation .diagram-key{font-size:13px;line-height:1.6}
+:root[data-wiki-document] #observation .diagram-note{font-size:13px;line-height:1.65}
+@media(min-width:1000px){:root[data-wiki-document] #observation .presentation-visual svg{width:100%;height:100%;max-height:none;flex:1;min-height:0}}
+
+:root[data-wiki-document] #observation .presentation-transport>#reset{width:auto;margin:0}

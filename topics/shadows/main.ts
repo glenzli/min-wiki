@@ -62,5 +62,13 @@ document.addEventListener('visibilitychange', () => { if (document.hidden) { sto
 window.addEventListener('pagehide', () => { stop(); cancelView(); });
 update(); mountReadingMode('main > details');
 
-const presentation = mountPresentationFrame({"root": ".lab", "visual": ".scene-wrap"});
+const presentation = mountPresentationFrame({"root": ".lab", "visual": ".scene-wrap", "transport": "#play,#reset", "choices": ".view-tabs"});
 if (presentation) presentation.notes.append(...document.querySelectorAll<HTMLDetailsElement>('[data-wiki-document] .study-content > details'));
+
+if(presentation){
+ const mode=document.querySelector<HTMLElement>('.reading-mode-disclosure');
+ if(mode){const controls=mode.querySelector<HTMLElement>('.reading-mode');if(controls)document.querySelector('.view-tabs')?.append(controls);mode.remove();}
+ const scrub=el('position').closest('label');
+ if(scrub)presentation.stage.querySelector('.presentation-transport')?.append(scrub);
+ el('readout').dataset.readerCaption='';presentation.stage.append(el('readout'));
+}

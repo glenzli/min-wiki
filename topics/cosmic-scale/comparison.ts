@@ -145,7 +145,7 @@ export class ComparisonJourney {
   }
   if(solar)this.drawSolarSystem(index+1,width,height,!surfaceOnly);
   else if(comparing){
-   for(const [i,b] of comparisonFrame(this.pair,width,height).entries()){if(b.opacity===0)continue;c.globalAlpha=b.opacity;const y=height*.6-b.radius*.2;this.disk(b.x,y,b.radius,i);if(b.opacity>.1&&b.x+b.radius>0&&b.x-b.radius<width){c.font='12px system-ui';c.textAlign='center';c.fillStyle='#e5eef5';c.fillText(w.names[i]!,Math.max(32,Math.min(width-40,b.x)),Math.min(height-16,y+b.radius+20));}c.globalAlpha=1;}
+   for(const [i,b] of comparisonFrame(this.pair,width,height).entries()){if(b.opacity===0)continue;c.globalAlpha=b.opacity;const y=height*.6-b.radius*.2;this.disk(b.x,y,b.radius,i);if(b.opacity>.1&&b.x+b.radius>0&&b.x-b.radius<width){c.font='13px system-ui';c.textAlign='center';c.fillStyle='#e5eef5';c.fillText(w.names[i]!,Math.max(32,Math.min(width-40,b.x)),Math.min(height-16,y+b.radius+20));}c.globalAlpha=1;}
    if(!surfaceOnly){const entries=[index,index+1].map(i=>{const card=make('div');card.append(make('strong',w.names[i]!),make('span',w.kinds[i]!),make('span',i>=6?w.roughSunDiameters.replace('{{count}}',String(Math.round(bodies[i]!.radius/bodies[2]!.radius))):`${w.diameter} ${(bodies[i]!.radius*2).toLocaleString(undefined,{maximumSignificantDigits:3})} km`));return card;});this.cards.replaceChildren(...entries);}
   }else this.membership.draw(c,width,height,this.home,w);
  }
@@ -163,11 +163,11 @@ export class ComparisonJourney {
    if(i===2){c.fillStyle='#83ab62';c.fillRect(x-2,y-1,3,3);}
    if(i===4){c.strokeStyle='#936545';c.lineWidth=1.3;for(const dy of [-3,2]){c.beginPath();c.moveTo(x-5,y+dy);c.lineTo(x+5,y+dy);c.stroke();}}
    if(i===5){c.strokeStyle='#ddc096';c.lineWidth=2;c.beginPath();c.ellipse(x,y,12,4,-.3,0,Math.PI*2);c.stroke();}
-   if(i>=4){c.font='12px system-ui';c.textAlign='center';c.fillStyle='#f4eadb';c.fillText(w.planetNames[i]!,x,y+(i===4?-15:24));}
+   if(i>=4){c.font='13px system-ui';c.textAlign='center';c.fillStyle='#f4eadb';c.fillText(w.planetNames[i]!,x,y+(i===4?-15:24));}
   }
   c.strokeStyle='#ffffff';c.lineWidth=1;c.beginPath();c.moveTo(cx-4,cy);c.lineTo(cx+4,cy);c.moveTo(cx,cy-4);c.lineTo(cx,cy+4);c.stroke();
-  c.fillStyle='#f7d7ac';c.font='12px system-ui';c.textAlign='left';c.fillText(`${w.names[index]} · ${w.estimated}`,12,20,width-24);
-  c.textAlign='center';c.fillStyle='#aec6d5';c.font='11px system-ui';c.fillText(w.sunPlace,cx,height-7,width-20);
+  c.fillStyle='#f7d7ac';c.font='13px system-ui';c.textAlign='left';c.fillText(`${w.names[index]} · ${w.estimated}`,12,20,width-24);
+  c.textAlign='center';c.fillStyle='#aec6d5';c.font='12px system-ui';c.fillText(w.sunPlace,cx,height-7,width-20);
   if(!updateCards)return;
   const planetCards=geometry.orbits.map((orbit,i)=>{
    const card=make('div'),name=make('strong'),icon=make('canvas');icon.width=icon.height=46;icon.setAttribute('aria-hidden','true');const p=icon.getContext('2d')!;p.scale(2,2);

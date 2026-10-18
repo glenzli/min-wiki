@@ -16,6 +16,9 @@ import { studyHost } from './studyHost.ts';
 translateDocument(t);
 const text=(v:{zh:string;en:string})=>language==='en'?v.en:v.zh;
 const el=(id:string)=>document.getElementById(id)!;
+const caseMenu=document.querySelector<HTMLDetailsElement>('.plant-case-menu')!;
+caseMenu.removeAttribute('data-reader-prose');
+const chapterCopy=document.querySelector<HTMLElement>('.chapter-copy')!;
 const route=readPlantRoute(location.search);
 let chapter:Chapter=route.chapter,disposed=false,lastEvidence='';
 const states:Record<Chapter,StudyState>={germination:route.bean,reproduction:route.flower,dispersal:route.travel};
@@ -64,10 +67,14 @@ function select(next:Chapter,write=false){
   const value=studies.get(chapter)??create(chapter);
   // Detached fragments retain controls and finite state, without duplicate SVG/label ids in the document.
   el('study-host').replaceChildren(value.root);
-  mountPresentationFrame({ root: value.root.querySelector<HTMLElement>('.lab')!, visual: '.scene', transport: '#next,#reset,#play,#restart' });
+  const presentation=mountPresentationFrame({ root: value.root.querySelector<HTMLElement>('.lab')!, visual: '.scene', transport: '#next,#reset,#play,#restart' });
+  const toolbar=value.root.querySelector<HTMLElement>('.observation-toolbar')!;
+  toolbar.prepend(caseMenu);
+  const stage=presentation?.stage??value.root.querySelector<HTMLElement>('.presentation-stage')!;
+  stage.prepend(chapterCopy);
   for(const button of map.querySelectorAll<HTMLButtonElement>('button'))button.setAttribute('aria-current',String(button.dataset.chapter===chapter));
   for(const ch of CHAPTERS)railButtons[ch].setAttribute('aria-current',ch===chapter?'step':'false');
-  (document.querySelector('.plant-case-menu') as HTMLDetailsElement).open=false;el('case-menu-title').textContent=t('切换案例与讲解')+' · '+text(copy.railNames[chapter]);
+  caseMenu.open=false;el('case-menu-title').textContent=text(copy.railNames[chapter]);el('case-menu-title').setAttribute('aria-label',t('切换案例与讲解')+' · '+text(copy.railNames[chapter]));
   const current=copy[chapter];el('case-label').textContent=text(current.species);el('question').textContent=text(current.question);el('before').textContent=text(current.before);el('after').textContent=text(current.after);el('next-chapter').textContent=text(current.next);
   childCue.textContent=text(copy.childCue[chapter]);
   if(write){const url=new URL(location.href);url.searchParams.set('chapter',chapter);history.pushState(null,'',url);document.querySelector('.chapter-context')?.scrollIntoView({block:'start',behavior:'auto'});}
@@ -84,7 +91,7 @@ for(const a of document.querySelectorAll<HTMLAnchorElement>('a[href^="/"]'))a.hr
 select(chapter);mountReadingMode('details:not(.references):not(.plant-case-menu)');
 
 foldPresentationContext('.cycle-panel');
-const caseMenu=document.querySelector<HTMLDetailsElement>('.plant-case-menu')!;const readingControl=document.querySelector('.reading-mode')!;const oldMenu=readingControl.closest('.reading-mode-disclosure');caseMenu.querySelector('.plant-case-options')!.append(readingControl);oldMenu?.remove();
+const readingControl=document.querySelector('.reading-mode')!;const oldMenu=readingControl.closest('.reading-mode-disclosure');caseMenu.querySelector('.plant-case-options')!.append(readingControl);oldMenu?.remove();
 caseMenu.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();caseMenu.open=false;el('case-menu-title').focus();}});
 const mapDisclosure=document.querySelector<HTMLElement>('.cycle-panel')!.parentElement!;
 document.querySelector('.cycle-bridge')!.after(mapDisclosure);

@@ -58,3 +58,10 @@ html[data-reading-mode="kids"] .controls-grid :is(.status,.academic-only){displa
 
 @media(max-width:600px){:root[data-wiki-document] .pair.presentation-visual{grid-template-columns:1fr}:root[data-wiki-document] .pair.presentation-visual .scene-toolbar{min-height:44px}}
 @media(min-width:1000px){:root[data-wiki-document] .pair.presentation-visual .canvas-wrap{width:min(100%,calc(100dvh - 420px));flex:none;margin:auto}:root[data-wiki-document] .pair.presentation-visual .scene-caption{min-height:0;flex-shrink:0;padding:6px 10px}}
+
+/* Local refinement: readable evidence, restrained framing. */
+:root[data-wiki-document] .pair.presentation-visual{gap:12px}
+:root[data-wiki-document] .pair.presentation-visual .scene-toolbar{padding:10px 12px;min-height:54px}.scene-toolbar strong{font-size:14px;line-height:1.5}
+:root[data-wiki-document] .pair.presentation-visual .scene-caption{font-size:13px;line-height:1.65;margin:0;padding:10px 14px}
+:root[data-wiki-document] .pair.presentation-visual .film-labels{font-size:12px}.film-labels span:nth-child(2){font-size:12px}
+@media(max-width:699px){:root[data-wiki-document] .pair.presentation-visual{grid-template-columns:1fr;gap:12px}:root[data-wiki-document] .pair.presentation-visual .canvas-wrap{width:100%;height:auto;aspect-ratio:1}:root[data-wiki-document] .pair.presentation-visual .film-labels{font-size:13px}}

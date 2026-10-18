@@ -11,14 +11,18 @@ const routes=[
 const defs=(prefix:string)=>`<defs><linearGradient id="${prefix}-paper" x2=".8" y2="1"><stop stop-color="#fcf8ee"/><stop offset="1" stop-color="#e8e4d6"/></linearGradient><linearGradient id="${prefix}-tissue" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2d3b9"/><stop offset=".45" stop-color="#dfa58e"/><stop offset="1" stop-color="#ad6b5c"/></linearGradient><linearGradient id="${prefix}-liver" x2="1" y2="1"><stop stop-color="#bc8e78"/><stop offset=".6" stop-color="#996553"/><stop offset="1" stop-color="#7f5549"/></linearGradient><linearGradient id="${prefix}-wall" x2="0" y2="1"><stop stop-color="#f5d2b8"/><stop offset=".4" stop-color="#ce967e"/><stop offset="1" stop-color="#b67664"/></linearGradient><linearGradient id="${prefix}-cell" x2="1"><stop stop-color="#cd9983"/><stop offset=".45" stop-color="#f6d9bf"/><stop offset="1" stop-color="#c38b76"/></linearGradient><linearGradient id="${prefix}-lumen" x2="0" y2="1"><stop stop-color="#f7ecd4"/><stop offset="1" stop-color="#e5d4a9"/></linearGradient><radialGradient id="${prefix}-food" cx=".3" cy=".25"><stop stop-color="#e9c17b"/><stop offset="1" stop-color="#a67545"/></radialGradient><filter id="${prefix}-shadow" x="-20%" y="-20%" width="150%" height="150%"><feDropShadow dy="4" stdDeviation="5" flood-color="#6f5746" flood-opacity=".18"/></filter><pattern id="${prefix}-grain" width="21" height="17" patternUnits="userSpaceOnUse"><circle cx="3" cy="7" r=".6" fill="#a07857" opacity=".12"/><circle cx="12" cy="13" r=".7" fill="#fff" opacity=".45"/></pattern></defs>`;
 export function createDigestionScene(){
  const intestine=routes[3];
- const colonBeads=Array.from({length:12},(_,i)=>`<path d="M${242+i*15} 345q-6 12 0 23" stroke="#bd8972" stroke-width="1.8" fill="none" opacity=".55"/>`).join('');
+ const colonBeads=[
+  ...Array.from({length:12},(_,i)=>`<path d="M${242+i*15} 345q-6 12 0 23"/>`),
+  ...Array.from({length:6},(_,i)=>`<path d="M209 ${386+i*19}q12 7 26-1M433 ${390+i*18}q13 6 26-1"/>`),
+ ].join('');
  document.getElementById('body-art')!.innerHTML=defs('body')+`<rect width="700" height="640" fill="url(#body-paper)"/><rect width="700" height="640" fill="url(#body-grain)"/>
  <path d="M297 37C256 48 254 89 278 121L281 165Q232 179 192 214L153 603H526L493 211Q463 183 399 165L397 117Q423 57 376 38Q338 13 297 37Z" fill="#eadac4" fill-opacity=".4" stroke="#cdbba1" stroke-width="2"/>
+ <path d="M286 177Q263 178 221 209M393 177Q427 181 470 210M173 581Q201 559 220 582M451 582Q474 558 506 581" fill="none" stroke="#c8b89d" stroke-width="1.4" opacity=".55"/>
  <path d="M302 80Q325 78 336 96L326 117Q301 109 291 95Z" fill="#c3917b"/><path d="M294 90Q316 88 333 108" fill="none" stroke="#edc7aa" stroke-width="14"/>
  <path d="M333 108L333 227Q333 243 345 251" fill="none" stroke="#b88570" stroke-width="25" stroke-linecap="round"/><path d="M333 108L333 227Q333 243 345 251" fill="none" stroke="url(#body-tissue)" stroke-width="18" stroke-linecap="round"/>
  <g id="stomach"><path d="M345 244C365 258 374 256 379 243C413 226 436 260 437 294C440 334 413 353 375 354Q328 341 286 346L270 327Q314 314 336 302Q351 281 332 259Z" fill="url(#body-tissue)" stroke="#ac7965" stroke-width="2" filter="url(#body-shadow)"/><path d="M356 263Q380 287 365 316M381 266Q406 285 391 327M407 276Q425 309 407 332" fill="none" stroke="#b97d6a" stroke-width="2.2" opacity=".7"/><path d="M371 251Q400 246 415 266" fill="none" stroke="#f7d6bb" stroke-width="3" stroke-linecap="round" opacity=".7"/></g>
  <path d="${intestine}" fill="none" stroke="#b47d67" stroke-width="28" stroke-linejoin="round" stroke-linecap="round" filter="url(#body-shadow)"/><path d="${intestine}" fill="none" stroke="url(#body-tissue)" stroke-width="23" stroke-linejoin="round" stroke-linecap="round"/><path d="${intestine}" fill="none" stroke="#f4cbb0" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" opacity=".75"/>
- <path d="${routes[4]}" fill="none" stroke="#a77b68" stroke-width="38" stroke-linejoin="round" stroke-linecap="round"/><path d="${routes[4]}" fill="none" stroke="url(#body-tissue)" stroke-width="31" stroke-linejoin="round" stroke-linecap="round"/>${colonBeads}
+ <path d="${routes[4]}" fill="none" stroke="#a77b68" stroke-width="38" stroke-linejoin="round" stroke-linecap="round"/><path d="${routes[4]}" fill="none" stroke="url(#body-tissue)" stroke-width="31" stroke-linejoin="round" stroke-linecap="round"/><path d="${routes[4]}" fill="none" stroke="#f6d7bf" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round" opacity=".45"/><g stroke="#a56d5d" stroke-width="1.3" fill="none" opacity=".56">${colonBeads}</g>
  <path d="M221 494q-22 28-8 43" fill="none" stroke="#ba8774" stroke-width="8" stroke-linecap="round"/>
  <g id="helper-organs"><path d="M222 236Q261 213 329 237L326 271Q281 311 213 289Q189 267 222 236Z" fill="url(#body-liver)" stroke="#92654f" stroke-width="2" filter="url(#body-shadow)"/><path d="M227 241Q268 223 315 243" fill="none" stroke="#d5ab8b" stroke-width="2.5" opacity=".7"/><path d="M272 274Q297 273 290 292Q284 308 274 295Z" fill="#929c66" stroke="#6f8255" stroke-width="1.5"/>
  <path d="M282 312Q305 298 331 314Q370 311 395 326Q370 342 335 331Q306 337 282 324Z" fill="#d6bb83" stroke="#b69a65" stroke-width="2"/><path d="M302 317l9 10m10-12 10 11m12-9 8 12m8-8 9 8m8-5 8 4" fill="none" stroke="#ecdbaf" stroke-width="3"/>
@@ -34,7 +38,7 @@ export function createDigestionScene(){
  const villusCells=Array.from({length:28},(_,i)=>{
  const side=i<14?-1:1,step=i<14?i:i-14,y=925-step*23,u=(925-y)/309;
  const x=300+side*(61-61*Math.pow(u,5)),angle=side*Math.atan(305/309*Math.pow(u,4))*180/Math.PI;
- return `<g transform="translate(${x} ${y}) rotate(${angle})"><path d="M-13-12Q0-17 13-11L12 11Q0 16-12 11Z" fill="url(#gut-cell)" stroke="#be8871" stroke-width="1"/><ellipse cx="0" cy="2" rx="3.5" ry="5.5" fill="#ae7e7a" opacity=".6"/><path d="M${side*14} -10v20" stroke="#e0b397" stroke-width="3"/></g>`;
+    return `<g transform="translate(${x} ${y}) rotate(${angle})"><path d="M-13-12Q0-17 13-11L12 11Q0 16-12 11Z" fill="url(#gut-cell)" stroke="#be8871" stroke-width=".9"/><path d="M-10-10Q0-13 9-10M-9 10Q0 13 9 10" fill="none" stroke="#fff0dc" stroke-width=".9" opacity=".8"/><ellipse cx="0" cy="2" rx="3.5" ry="5.5" fill="#ae7e7a" opacity=".65"/><ellipse cx="-1" cy=".3" rx="1.5" ry="2.3" fill="#d8aaa3"/><path d="M${side*14} -10v20" stroke="#e0b397" stroke-width="3"/></g>`;
  }).join('');
  const cap='M264 927L264 746Q263 685 293 643Q309 635 322 663Q343 703 336 749L337 927';
  document.getElementById('detail-art')!.innerHTML=defs('gut')+`<defs><clipPath id="gut-reveal"><rect id="villus-reveal" x="0" y="520" width="0" height="470"/></clipPath></defs><rect width="600" height="1000" fill="url(#gut-paper)"/><rect width="600" height="1000" fill="url(#gut-grain)"/>
@@ -66,7 +70,10 @@ function stageSketch(phase:number,local:number,chewing:number,mixing:number,wate
  }).join('');
  if(phase===0){
   const jaw=9+8*Math.sin(chewing*Math.PI*6),r=7-3*chewing;
-  const teeth=Array.from({length:8},(_,i)=>`<path d="M${136+i*42} ${153+jaw}l-10 24q9 14 20 0l-10-24M${136+i*42} ${321-jaw}l-10-24q9-14 20 0l-10 24" fill="#f4ead9" stroke="#b5937b" stroke-width="2"/>`).join('');
+  const teeth=Array.from({length:8},(_,i)=>{
+   const x=136+i*42,top=153+jaw,bottom=321-jaw;
+   return `<g fill="#faf3e4" stroke="#b9a08a" stroke-width="1.6"><path d="M${x-13} ${top}Q${x-15} ${top+17} ${x-9} ${top+28}Q${x-5} ${top+32} ${x} ${top+28}Q${x+6} ${top+32} ${x+11} ${top+25}L${x+13} ${top}Z"/><path d="M${x-13} ${bottom}Q${x-15} ${bottom-17} ${x-9} ${bottom-28}Q${x-5} ${bottom-32} ${x} ${bottom-28}Q${x+6} ${bottom-32} ${x+11} ${bottom-25}L${x+13} ${bottom}Z"/></g><path d="M${x-8} ${top+5}l1 17M${x-8} ${bottom-5}l1-17" fill="none" stroke="#fffdf5" stroke-width="2" stroke-linecap="round"/>`;
+  }).join('');
   return backdrop+`<path d="M92 120Q300 89 508 120L496 ${153+jaw}H104Z" fill="url(#gut-wall)" stroke="#ba8872" stroke-width="3"/><path d="M104 ${321-jaw}H496L508 354Q300 385 92 354Z" fill="url(#gut-wall)" stroke="#ba8872" stroke-width="3"/>${teeth}<g>${particles(300,236,r)}</g><g fill="#83a8b8">${Array.from({length:9},(_,i)=>`<circle cx="${160+i*34}" cy="${184+(i%3)*27}" r="${3+i%3}" opacity=".72"/>`).join('')}</g>${label(116,420,t('牙齿咀嚼'))}${label(408,420,t('唾液混合'))}`;
  }
  if(phase===1){

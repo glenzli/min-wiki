@@ -24,7 +24,9 @@ export function createScene(){
  <rect x="402" width="22" height="550" fill="#b8b5a7"/><path d="M407 0V550" stroke="#f3efdf" stroke-width="5"/>
  <g id="external-pipes" fill="none" stroke="url(#copper)" stroke-width="7" stroke-linejoin="round"><path d="M190 283V355H479M715 188V130H350V90H190V132"/></g>
  <g id="casings" filter="url(#shadow)"><rect x="64" y="132" width="221" height="151" rx="24" fill="url(#metal)" stroke="#959f96"/><path d="M69 213H280V254Q178 277 69 254Z" fill="#bcc6bd"/><path d="M83 245Q177 257 267 245" fill="none" stroke="#5e716a" stroke-width="8"/>
- <circle cx="259" cy="168" r="3" fill="#68a591"/>
+ <path d="M80 153Q171 142 270 153M81 218Q175 223 271 218" fill="none" stroke="#ffffff" stroke-opacity=".65" stroke-width="1.5"/>
+ ${Array.from({length:5},(_,i)=>`<path d="M88 ${228+i*3}Q176 ${236+i*3} 261 ${228+i*3}" fill="none" stroke="#53665d" stroke-width="1.3" opacity=".5"/>`).join('')}
+ <circle cx="259" cy="168" r="3" fill="#68a591"/><circle cx="259" cy="167" r="1" fill="#d7f1dc"/>
  <rect x="479" y="188" width="255" height="276" rx="17" fill="url(#metal)" stroke="#98a498"/><path d="M490 201H722M490 452H722" stroke="#f4f1df" stroke-width="3"/>
  <rect x="494" y="460" width="24" height="12" fill="#87958b"/><rect x="690" y="460" width="25" height="12" fill="#87958b"/>
  </g>
@@ -40,7 +42,7 @@ export function createScene(){
  <g id="parcels">${Array.from({length:13},(_,i)=>`<circle id="parcel-${i}" r="${i===0?8:3.5}" fill="${i===0?'#fff3bc':'#f6e5b4'}" stroke="#826239" stroke-width="${i===0?2:.5}"/>`).join('')}</g>
  </g>
  <rect id="stage-focus" fill="none" stroke="#5797a6" stroke-width="4" stroke-dasharray="9 5" rx="13" opacity="0"/>
- <g id="front-fan"><circle cx="607" cy="280" r="69" fill="#627971" stroke="#b8c4b4" stroke-width="5"/><g id="fan" fill="#aebdb0">${[0,120,240].map(a=>`<path d="M607 280C624 258 602 221 579 228C559 238 588 266 607 280Z" transform="rotate(${a} 607 280)"/>`).join('')}</g><circle cx="607" cy="280" r="11" fill="#d1d5c4"/><g stroke="#d5ded033" fill="none">${[28,45,61].map(r=>`<circle cx="607" cy="280" r="${r}"/>`).join('')}</g></g>
+ <g id="front-fan"><circle cx="607" cy="280" r="69" fill="#627971" stroke="#b8c4b4" stroke-width="5"/><g id="fan" fill="#aebdb0">${[0,120,240].map(a=>`<path d="M607 280C624 258 602 221 579 228C559 238 588 266 607 280Z" transform="rotate(${a} 607 280)"/>`).join('')}</g><circle cx="607" cy="280" r="11" fill="#d1d5c4"/><g stroke="#d5ded033" fill="none">${[16,28,40,52,64].map(r=>`<circle cx="607" cy="280" r="${r}"/>`).join('')}</g><g stroke="#a4b4a8" stroke-width="1.4" opacity=".75">${[0,45,90,135].map(a=>`<path d="M607 212V348" transform="rotate(${a} 607 280)"/>`).join('')}</g><circle cx="607" cy="280" r="5" fill="#edf0e5"/><path d="M496 369H717M496 374H717M496 379H717" stroke="#9eaba0" stroke-width="1.2" opacity=".6"/></g>
  <g id="air"><path d="M87 270Q63 335 90 367L264 367Q243 321 262 270Z" fill="url(#cold)"/><g id="indoor-air" fill="none" stroke="#639aab" stroke-width="3" opacity=".55"><path d="M125 278Q106 320 126 346M176 282Q157 330 178 356M225 278Q206 320 227 343"/></g>
  <path d="M735 250Q768 263 791 240V348Q768 317 735 322Z" fill="url(#warm)" id="outdoor-air"/>
  </g>

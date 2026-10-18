@@ -45,6 +45,11 @@ Parent integration owns final full `npm run check`, built-production browser evi
 
 ## Reader layout · 2026-10-18
 
-默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。下一条指令和运行结果留在状态栏；完整指令卡、输入与分支证据可按需展开。
+默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。完整指令卡与小车同屏，执行按钮紧随小车；运行结果留在状态栏。输入与分支证据继续按原情境显示，次要说明按需展开。
 
 The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.
+## Material refinement · 2026-10-19
+
+小车保留可追踪的教学玩具外形，橡胶轮、金属外壳、固定件和传感器玻璃使用克制的材质区分。所有细节位于原有 `robot-body` 中，仍由同一指令状态驱动；不增加拟人表情、传感能力、运动规则或物理精度。
+
+Rubber, casing, fasteners and sensor-glass details share the original cart transform. These are illustration details, not additional simulated hardware or improved sensor capability. Grid coordinates, parcel identity, branch input and instruction execution are unchanged.

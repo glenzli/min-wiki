@@ -9,3 +9,10 @@
 :root[data-wiki-document] .flight-visual .support-note{margin:4px 10px;font-size:12px}
 :root[data-wiki-document] .presentation-transport>.legend{flex:1 1 100%;padding:2px 10px;font-size:11px}
 @media(max-width:999px){:root[data-wiki-document] .flight-visual svg{height:50dvh;min-height:260px;flex:none}}
+
+/* Local refinement: readable evidence, restrained framing. */
+:root[data-wiki-document] .flight-visual .scene-caption,:root[data-wiki-document] .flight-visual .support-note{font-size:13px;line-height:1.65;padding:10px 14px;margin:0}
+:root[data-wiki-document] .presentation-transport>.legend{font-size:13px;line-height:1.6;gap:8px 16px;padding:0}
+.presentation-frame .observation-toolbar{gap:8px;align-items:center}.presentation-frame .presentation-transport label,.presentation-frame .presentation-transport output{font-size:13px;line-height:1.5}
+
+@media(max-width:999px){:root[data-wiki-document] .flight-visual svg{height:auto;min-height:0;aspect-ratio:600/390;flex:none}:root[data-wiki-document] .flight-visual #runway-scene{aspect-ratio:660/390}}

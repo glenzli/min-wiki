@@ -108,3 +108,21 @@ html[data-reading-mode=academic] .chapter-copy #child-cue{display:none}
 .plant-case-menu>summary::after{content:'⌄'}.plant-case-options{position:absolute;top:100%;left:0;width:min(700px,calc(100vw - 40px));max-height:60dvh;overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:14px;box-shadow:0 10px 30px #0003}
 .plant-case-options .case-rail-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.plant-case-options .reading-mode{margin-top:12px}
 @media(max-width:600px){.plant-case-options .case-rail-items{grid-template-columns:1fr}.plant-case-options .case-rail button{min-height:52px}.plant-case-menu>summary{font-size:11px;min-height:44px}}
+
+/* One live case selector travels with the active retained study. */
+.plant-study .observation-toolbar{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.plant-study .observation-toolbar>.plant-case-menu{flex:0 1 auto;max-width:100%}
+.plant-study .observation-toolbar>.plant-case-menu>summary{width:auto;font-size:14px;min-height:44px;padding:8px 12px;border-radius:8px;line-height:1.5}
+.plant-study .observation-toolbar>button[aria-controls]{margin-left:auto}
+.plant-study .presentation-stage>.chapter-copy{flex:none;padding:10px 16px;border-bottom:1px solid var(--border)}
+.plant-study .presentation-stage>.chapter-copy h2{font-size:14px;line-height:1.5;font-weight:650}
+.plant-study .presentation-stage>.chapter-copy #child-cue{font-size:13px;line-height:1.6}
+@media(max-width:600px){
+ .plant-study .scene:not(.detail-view) svg .diagram-labels{display:none}
+ .plant-study .presentation-stage>.chapter-copy{padding:10px 12px}
+ .plant-study .scene .soil-inset .inset-caption{font-size:13px;line-height:1.5}
+}
+.plant-study .observation-toolbar{justify-content:flex-start}
+.plant-study .observation-toolbar>.plant-case-menu{flex:1 1 140px;min-width:0;padding:0}
+.plant-study .observation-toolbar>.plant-case-menu>summary{width:100%;font-size:13px;white-space:normal;word-break:normal;overflow-wrap:normal}
+@media(min-width:700px){.plant-study .observation-toolbar>.plant-case-menu{flex:0 1 auto}}

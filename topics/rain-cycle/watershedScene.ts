@@ -6,7 +6,7 @@ const river=path(Array.from({length:90},(_,i)=>basinRiver(i/89)));
 const tree=(x:number,y:number,s:number)=>`<g transform="translate(${x} ${y}) scale(${s})"><ellipse cy="17" rx="13" ry="4" fill="#274f5520"/><path d="M0-12V17" stroke="#867760" stroke-width="3"/><path d="M0-39L-18-8H-10L-23 5H23L10-8H18Z" fill="url(#canopy)"/><path d="M0-35L-12-11H0Z" fill="#bfceb288"/></g>`;
 const staticTrees=Array.from({length:49},(_,i)=>tree(316+noise(i+80)*314,227+noise(i+190)*76,.38+noise(i+600)*.43)).join('');
 const texture=Array.from({length:155},(_,i)=>{const x=106+noise(i+500)*590,y=425+noise(i+41)*122;return `<ellipse cx="${x}" cy="${y}" rx="${2+noise(i)*7}" ry="${1+noise(i+10)*3}" fill="${i%3===0?'#c4b695':'#8c806a'}" opacity=".4"/>`;}).join('');
-export function drawWatershed(p:number,settings:Settings,iceProgress:number,tracer:number,labels:boolean){
+export function drawWatershed(p:number,settings:Settings,iceProgress:number,tracer:number,labels:boolean,labelScale=1){
  const {parcels,pools}=watershedState(p,settings,iceProgress),selected=parcels[tracer]!;
  const track=Array.from({length:Math.ceil(p*150)+1},(_,i)=>waterParcel(Math.min(p,i/150),tracer,settings,iceProgress)).map(d=>[d.x,d.y]);
  const particles=parcels.map(d=>{const r=d.pool==='vapor'?2:d.pool==='ice'?2.6:2.5;return `<g data-water="${d.id}" data-pool="${d.pool}"><circle cx="${d.x}" cy="${d.y}" r="${r}" fill="${d.pool==='vapor'?'#bb9a60':d.pool==='ice'?'#f5ffff':'#2798bd'}" stroke="#f9fff3" stroke-width=".65" opacity="${d.pool==='vapor'?.52:.8}"/></g>`;}).join('');
@@ -15,7 +15,7 @@ export function drawWatershed(p:number,settings:Settings,iceProgress:number,trac
  const poreDepth=settings.surface==='paved'?40:145;
  const pores=Array.from({length:poreLanes},(_,lane)=>{const x=340+lane*17;return `<path d="${path(Array.from({length:31},(_,i)=>{const depth=i*poreDepth/30;return [x+poreOffset(depth,lane)+depth*.12,357+depth];}))}" fill="none" stroke="#5799a8" stroke-width="${settings.surface==='paved'?2:4}" stroke-dasharray="3 13" stroke-linecap="round" opacity="${settings.surface==='paved'?.25:.68}"/>`;}).join('');
  const grains=Array.from({length:16},(_,id)=>{const g=basinGrain(Math.max(0,(p-.65)/.35),id);return `<circle data-grain="${id}" cx="${g.x}" cy="${g.y}" r="${1.6+id%3*.2}" fill="#dac082" stroke="#8f7948" stroke-width=".3"/>`;}).join('');
- const glyphs=labels?[[375,99,'1'],[369,335,'2'],[499,366,'3'],[681,343,'4'],[227,218,'5']].map(([x,y,n])=>`<g transform="translate(${x} ${y})"><circle r="11" fill="#fff8e7" stroke="#658990"/><text y="4" text-anchor="middle" fill="#335c62" font-size="12">${n}</text></g>`).join(''):'';
+ const glyphs=labels?[[375,99,'1'],[369,335,'2'],[499,366,'3'],[681,343,'4'],[227,218,'5']].map(([x,y,n])=>`<g transform="translate(${x} ${y})"><circle r="${11*labelScale}" fill="#fff8e7" stroke="#658990"/><text y="${4*labelScale}" text-anchor="middle" fill="#335c62" style="font-size:${12*labelScale}px">${n}</text></g>`).join(''):'';
  const snow=7+Math.max(0,p-.44)/.56*3;
  return {pools,selected,scene:`<defs>
  <linearGradient id="ws-sky" x2=".2" y2="1"><stop stop-color="#b7d3df"/><stop offset=".6" stop-color="#e6ede4"/><stop offset="1" stop-color="#f1e5c9"/></linearGradient>

@@ -95,7 +95,7 @@ html[data-topic-ui] body>main>header.atmo-hero h1{font-size:26px;margin:0;line-h
 #atmo-observation #layer-mechanism a:focus-visible,
 #atmo-observation #layer-mechanism summary:focus-visible{outline:2px solid #ffda9f;outline-offset:2px}
 
-@media(min-width:1000px){#atmo-observation{height:max(850px,calc(100dvh - var(--observation-top,160px)))}}
+@media(min-width:1000px){#atmo-observation{height:max(640px,calc(100dvh - var(--observation-top,160px)))}}
 @media(max-width:999px){
   #atmo-observation .journey-window{display:contents}
   #atmo-observation #height-rail{grid-column:1;grid-row:1}
@@ -138,3 +138,19 @@ html[data-topic-ui] body>main>header.atmo-hero h1{font-size:26px;margin:0;line-h
   #atmo-observation .world-words strong{font-size:11px}
   #atmo-observation .world-words span{display:none}
 }
+
+/* Local refinement: readable evidence, restrained framing. */
+#atmo-observation .atmo-caption,#atmo-observation #journey-position{font-size:13px;line-height:1.6}
+#atmo-observation .mechanism-eyebrow,#atmo-observation .mechanism-boundary{font-size:12px;line-height:1.6}
+#atmo-observation .mechanism-lead,#atmo-observation .mechanism-story p{font-size:13px;line-height:1.65}
+#atmo-observation .mechanism-steps button{font-size:12px;line-height:1.45;min-height:44px;gap:6px;padding:8px}
+#atmo-observation [data-mechanism-play]{font-size:12px;min-height:44px;max-width:none;padding:8px 12px}
+/* The full current title is already above these three steps. Keep long Chinese
+   and English titles accessible without turning the controls into text columns. */
+#atmo-observation .mechanism-steps button{align-items:center;justify-content:center}
+#atmo-observation #layer-mechanism .mechanism-steps button b,#atmo-observation #layer-mechanism .mechanism-steps button[aria-pressed="true"] b{width:auto;height:auto;border:0;color:inherit;font-size:14px;font-variant-numeric:tabular-nums}
+#atmo-observation .mechanism-steps button span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#atmo-observation .mechanism-steps button i{background:currentColor}
+#atmo-observation .height-band{font-size:12px;line-height:1.4;word-break:normal;overflow-wrap:normal}
+#atmo-observation #height-rail strong{font-size:12px}#atmo-observation #height-rail small{font-size:11px;line-height:1.5}
+@media(max-width:699px){#atmo-observation #journey-visual{grid-template-columns:106px minmax(0,1fr)}#atmo-observation #height-rail{padding:10px 6px}#atmo-observation .height-band{padding:4px 2px;font-size:11px}#atmo-observation .mechanism-steps{gap:6px}}

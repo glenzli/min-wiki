@@ -66,3 +66,19 @@ Focused model tests cover presence/absence, plant process choices, unsupported b
 ## Presentation layout
 
 The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+
+## Strict visual pass · 2026-10-18
+
+细胞器补充内外膜层次，细胞核增加细小核孔，内质网和高尔基体改为有层次的膜囊。细胞仍由同一个SVG样本提供整体、局部和能量视图。共享SVG定义挂入专题作用域，使所选结构高亮可以正确生效；结构页隐藏只属于能量过程的物质符号，返回能量页保留原进度。
+
+These original drawing details follow the compartment relationships described in [OpenStax Biology 2e, Eukaryotic Cells](https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells). Pore/ribosome counts, spacing, membrane thickness and organelle positions are illustrative, not measured anatomy. No process sequence or biological model was added. The topic stays in drafts: structure, energy and the six specialization samples require separate acceptance; a more finished structure drawing does not certify all eight process/work views.
+
+## 细胞专题精修 · 2026-10-19
+
+本轮保持 **draft**，仅作本地迭代。三类结构标本改为较细的膜层、膜蛋白示意、核孔和染色质纹理，补充叶绿体类囊体、线粒体内膜、高尔基体及囊泡层次；不改变结构是否存在、点击区域、观察中心或代谢路径。核内曲线、核孔、核糖体与膜蛋白的画法、数量和位置都为辨识服务，不表示染色体数、分子数、真实膜厚或显微图像。膜蛋白只是静态结构提示，没有新增运输或门控模型。
+
+章节、样本和过程选择共用原有控件，移动到当前演示的同一工具栏；讲解方式在旁边，解说与次要设置默认收起。能量视图保留紧邻画面的物质图例、阶段说明和可拖动进度；分工视图把样本名与当前阶段留在画面旁，显示标注的设置收进解说区。整个标本与局部视图仍引用同一套已挂载几何。现在除物理视口外，三处相机还按实际 `viewBox` 裁切世界坐标，修复宽画幅留白里漏出旁边标本的问题。桌面局部图的标题与对应画面靠在一起。
+
+The three specimens remain teaching cutaways, not micrographs or molecular reconstructions. Added membrane proteins, nuclear pores, chromatin and organelle texture are illustrative details, not measured populations or a transport model. The original structure-presence rules, hit regions, material trajectories and independent specimen/process progress remain unchanged. Each viewport clips to its live world-coordinate camera as well as its physical bounds, including camera transitions.
+
+六种分工图继续由 [body-cells](../body-cells/README.md) 与 [blood-cells](../blood-cells/README.md) 原专题持有。表皮、肌纤维、神经元、红细胞、中性粒细胞与血小板均细化；不是让同一细胞依次变形，也没有新增生理预测能力。具体改动、验证与仍待改进处见 [本轮记录](../../docs/cells-refinement-20261019.md)。基础细胞结构复核采用上列 OpenStax Biology 2e；组织与血细胞补充来源见各所有者 README。

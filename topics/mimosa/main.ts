@@ -107,10 +107,13 @@ inspector.prepend(workspace.querySelector('.story')!);
 inspector.append(el('science-panel'));
 movement=mountMovementStudy(el('movement-study'),el('movement-reading'));
 const observation=mountObservationMode(workspace,{enter:t('沉浸演示'),exit:t('退出沉浸 · Esc')},{fit:true,panels:[{label:t('解说与设置'),elements:[inspector,movement.notes]}]});
+const mimosaViews=workspace.querySelector<HTMLElement>('.view-tabs')!;
+observation.toolbar.prepend(mimosaViews);
+inspector.append(el('steps'));
 const observationTitle=document.createElement('h2');observationTitle.className='observation-title';observationTitle.textContent=t('没有肌肉，怎样动？');observation.toolbar.prepend(observationTitle);
 function choosePlant(value:PlantCase,push=false){
   stop();cancelView();viewDepth=view==='plant'?0:view==='cell'?2:1;
-  selectedPlant=value;workspace.dataset.plant=value;
+  selectedPlant=value;workspace.dataset.plant=value;mimosaViews.hidden=value!=='mimosa';
   comparison.select(value);
   el('mimosa-study').hidden=value!=='mimosa';el('mimosa-details').hidden=value!=='mimosa';
   el('movement-study').hidden=value==='mimosa';el('movement-reading').hidden=value==='mimosa';

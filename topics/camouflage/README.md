@@ -20,3 +20,14 @@ Selected source explanations were rechecked; the linked institutional material a
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.
 
 Reader 中的透明图内点击区显式标记 `data-scene-hit-target`，保留透明背景与可见键盘焦点，避免通用按钮明暗配色盖住动物。按钮位置和尺寸仍从当前 SVG 投影计算，发现标记与背景对照保持不变。
+
+## Local refinement · 2026-10-19
+
+原创矢量插画增加叶脉、体节、翅脉、细腿与柔和的明暗。昆虫仍是泛化的教学插画，不用于物种识别。换背景只改变原有 `forest` 组的透明度；三只昆虫的节点、位置与绘图保持不变。背景对比、查找和复位留在主画面旁，视角选择与说明按需展开。
+
+The original vector drawings add veins, segments, slender legs and restrained material shading. They remain generalized teaching illustrations, not species-identification plates. Changing the background changes only the original forest group's opacity; the three insects retain identical nodes, positions and artwork. Comparison and finding actions stay beside the scene.
+### 枝叶材质续修 · 2026-10-19
+
+背景叶片采用四种较自然的确定轮廓，加入局部弯曲叶脉、明暗与沿原枝条走向的树皮线条。细节只属于原来的 `forest` 组，三只昆虫的节点、位置、绘图、点击中心和相机目标不变；素色对照仍只改变背景。
+
+Four authored foliage profiles and restrained surface shading reduce repeated-template shapes. They are original generic botanical illustrations, not species identification. Background transitions retain the same insects and world-coordinate observation anchors.

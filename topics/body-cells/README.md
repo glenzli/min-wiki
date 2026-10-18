@@ -34,3 +34,11 @@ Focused verification uses model equilibrium and force direction invariants, pars
 - [Edman, Elzinga & Noble, 1982 · Active fibers lengthened by an external apparatus](https://pubmed.ncbi.nlm.nih.gov/6983564/) — evidence that active muscle can be lengthened and has behavior beyond this static analogy.
 - [NIH / NIGMS · What Are Stem Cells?](https://www.nigms.nih.gov/biobeat/2024/11/what-are-stem-cells)
 - [OpenStax · Nervous Tissue](https://openstax.org/books/anatomy-and-physiology-2e/pages/12-2-nervous-tissue)
+
+## 插画精修 · 2026-10-19
+
+用于 Cells 草稿中的三个场景已重绘：表皮按表浅扁平角化、较深多边形及基底较高细胞区分，连续组织底层避免将接缝画成孔洞；肌纤维增加纵向纹理、周边细胞核与肌腱纤维；神经元用弯曲分叉的树突、分节髓鞘、胞体及突触末端代替放射状折线。图示层数、染色、轮廓、细胞核数量均非测量。表皮更新仍由说明解释，未新增细胞分裂与迁移过程。标注关闭时，相关文字引线一并隐藏。
+
+The refined illustrations distinguish flattened cornified surface cells from deeper epidermal cells, retain peripheral nuclei and stable striations in muscle, and show curved dendritic branches, segmented myelin and synaptic terminals. These are selected, coloured teaching profiles rather than histological sections at a common scale. No division/migration model or new electrical physiology was added. Muscle attachment, filament length, repeat identities, force balance, timing and retained experiment state are unchanged.
+
+形态复核补充：[OpenStax · Epithelial Tissue](https://openstax.org/books/anatomy-and-physiology-2e/pages/4-2-epithelial-tissue) 与上列 Nervous Tissue。来源支持形态与结构关系，不为插画的具体数量和位置赋予生理精度。此轮仍为 Cells 草稿，不部署。

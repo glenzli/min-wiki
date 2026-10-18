@@ -107,6 +107,10 @@ export class TopicScene {
       this.toCamera.copy(this.camera.position); this.toTarget.copy(this.controls.target); this.viewBlend = animate ? 0 : 1;
     }
     this.view = view;
+    // Interpolating between the enlarged orbit and the separate scale lineup
+    // is presentation motion. Never label its intermediate geometry to scale.
+    const changingScale = this.viewBlend < 1;
+    this.canvas.parentElement!.dataset.viewTransition = changingScale ? 'changing-scale' : 'settled';
     const real = view === 'scale', earthView = view === 'earth';
     this.canvas.parentElement!.classList.toggle('observer-focus', earthView);
     this.controls.enabled = !earthView;
@@ -119,12 +123,13 @@ export class TopicScene {
     this.moon.scale.setScalar(real ? MOON_EARTH_RADIUS_RATIO : .95);
     this.moon.position.set(...(real ? [DISTANCE_EARTH_RADII / 2, 0, 0] as [number, number, number] : moonPosition(progress)));
     this.moon.lookAt(this.earth.position); this.marker.visible = settings.guides;
-    this.orbit.visible = !real && settings.guides; this.orbit.scale.setScalar(11); this.sizes.visible = real && settings.guides;
-    this.world.getObjectByName('sunlight')!.visible = !real;
+    this.orbit.visible = !real && settings.guides && !changingScale; this.orbit.scale.setScalar(11); this.sizes.visible = real && settings.guides && !changingScale;
+    this.world.getObjectByName('sunlight')!.visible = !real && !changingScale;
     this.caption.textContent = real ? t('平均中心距离约为 30 个地球直径') : t('金色箭头：阳光 · 蓝色箭头：观察方向 · 金色小点：月面朝地球的一侧');
+    this.caption.hidden = changingScale;
     const sight = new THREE.Vector3(...moonPosition(progress, 1));
     this.sightline.position.copy(sight).multiplyScalar(2.25); this.sightline.setDirection(sight);
-    this.sightline.visible = !real && settings.guides;
+    this.sightline.visible = !real && settings.guides && !changingScale;
     this.phaseCanvas.parentElement!.hidden = real; this.drawPhase(progress);
     if (this.viewBlend < 1) {
       [this.earth, this.moon].forEach((body, i) => { const from = this.fromBodies[i]; body.position.lerpVectors(from.position, body.position.clone(), this.viewBlend); body.scale.lerpVectors(from.scale, body.scale.clone(), this.viewBlend); body.quaternion.slerpQuaternions(from.rotation, body.quaternion.clone(), this.viewBlend); });

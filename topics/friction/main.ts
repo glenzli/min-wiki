@@ -50,6 +50,21 @@ const slider=mountSlidingStudy(s=>{slide=s;if(chapter==='slide')reference();});
 const contact=mountContactStudy(mode=>{contactMode=mode;if(chapter==='contact')reference();});
 const carStudy=mountCarStudy(s=>{car=s;if(chapter==='braking')reference();});
 const chapters:MotionChapter[]=['slide','contact','braking','restraints'];
+const chapterNavigation=document.querySelector<HTMLElement>('.motion-chapters')!;
+function syncPresentation(){
+ const selectors:Record<MotionChapter,string>={slide:'#slide-panel .lab',contact:'#contact-panel',braking:'#car-braking',restraints:'#restraints-panel .restraint-mechanism'};
+ const frame=document.querySelector<HTMLElement>(selectors[chapter]);
+ const toolbar=frame?.querySelector<HTMLElement>(':scope > .observation-toolbar');
+ if(!frame||!toolbar)return;
+ if(!frame.id)frame.id='friction-'+chapter+'-stage';
+ delete chapterNavigation.dataset.readerToolbar;
+ const menu=chapterNavigation.closest<HTMLElement>('.reader-menu-holder')??chapterNavigation.closest<HTMLElement>('.observation-choices')??chapterNavigation;
+ toolbar.prepend(menu);
+ const mode=document.querySelector<HTMLElement>('.reading-mode-disclosure');
+ if(mode){const controls=mode.querySelector<HTMLElement>('.reading-mode');if(controls)chapterNavigation.append(controls);mode.remove();}
+ const context=document.querySelector('.motion-ref')?.parentElement;
+ if(context?.matches('.presentation-context'))frame.querySelector('.presentation-notes')?.append(context);
+}
 function select(next:MotionChapter,push=false){
  chapter=next;slider.setActive(next==='slide');contact.setActive(next==='contact');
  // Braking and restraint controls share one finite car study, but changing either chapter pauses it.
@@ -58,7 +73,7 @@ function select(next:MotionChapter,push=false){
  el('car-notes').hidden=next!=='braking'&&next!=='restraints';
  document.querySelectorAll<HTMLButtonElement>('[data-motion-chapter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.motionChapter===next)));
  el<HTMLButtonElement>('motion-back').disabled=next==='slide';el<HTMLButtonElement>('motion-next').disabled=next==='restraints';
- if(push)history.pushState(null,'',languageHref(motionHref(next,location.search,location.hash)));reference();
+ if(push)history.pushState(null,'',languageHref(motionHref(next,location.search,location.hash)));reference(); syncPresentation();
 }
 document.querySelectorAll<HTMLButtonElement>('[data-motion-chapter]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.motionChapter as MotionChapter,true)));
 el('motion-back').addEventListener('click',()=>select(chapters[Math.max(0,chapters.indexOf(chapter)-1)]!,true));
@@ -73,7 +88,8 @@ window.addEventListener('popstate',()=>{select(readMotionChapter(location.search
 select(chapter);mountReadingMode('details:not(.references)');restoreAnchor();
 
 foldPresentationContext('.motion-ref');
-mountPresentationFrame({ root: '#slide-panel .lab', visual: '.scene-wrap' });
+const slidingFrame=mountPresentationFrame({ root: '#slide-panel .lab', visual: '.scene-wrap', transport: '#finish,#reset' });
+if(slidingFrame){const scrub=el('time').closest('label');if(scrub)slidingFrame.stage.querySelector('.presentation-transport')?.append(scrub);el('readout').dataset.readerCaption='';slidingFrame.stage.append(el('readout'));}
 mountPresentationFrame({ root: '#contact-panel', visual: '.contact-motion>svg', transport: '#contact-play,#contact-reset' });
 const brakingFrame=mountPresentationFrame({ root: '#car-braking', visual: '.road-scene', transport: '.playback' });
 if(brakingFrame){
@@ -82,3 +98,5 @@ if(brakingFrame){
 }
 mountPresentationFrame({ root: '#restraints-panel .restraint-mechanism', visual: '.restraint-scene', transport: '.restraint-controls' });
 mountPresentationFrame({ root: '#restraints-panel .protection-grid', visual: '.belt-art' });
+
+syncPresentation();

@@ -62,6 +62,21 @@ function renderBudget(){
 const airStudy=mountAirStudy(b=>{air=b;if(chapter==='air')renderBudget();});
 const fridgeStudy=mountRefrigeratorStudy(s=>{fridge=s;if(chapter==='fridge')renderBudget();});
 const chapters:Chapter[]=['air','fridge','room'];
+const chapterNavigation=document.querySelector<HTMLElement>('.journey')!;
+function syncPresentation(){
+ const selectors:Record<Chapter,string>={air:'#air-panel .lab',fridge:'#fridge-panel .lab',room:'#room-panel'};
+ const frame=document.querySelector<HTMLElement>(selectors[chapter]);
+ const toolbar=frame?.querySelector<HTMLElement>(':scope > .observation-toolbar');
+ if(!frame||!toolbar)return;
+ if(!frame.id)frame.id='air-conditioner-'+chapter+'-stage';
+ delete chapterNavigation.dataset.readerToolbar;
+ const menu=chapterNavigation.closest<HTMLElement>('.reader-menu-holder')??chapterNavigation.closest<HTMLElement>('.observation-choices')??chapterNavigation;
+ toolbar.prepend(menu);
+ const mode=document.querySelector<HTMLElement>('.reading-mode-disclosure');
+ if(mode){const controls=mode.querySelector<HTMLElement>('.reading-mode');if(controls)chapterNavigation.append(controls);mode.remove();}
+ const context=document.querySelector('.heat-map')?.parentElement;
+ if(context?.matches('.presentation-context'))frame.querySelector('.presentation-notes')?.append(context);
+}
 function select(next:Chapter,push=false){
  if(chapter==='room'&&next!=='room'){cancelHotMove();hotVisualX=placement==='outside'?555:290;drawHotPlacement();}
  chapter=next;
@@ -70,7 +85,7 @@ function select(next:Chapter,push=false){
  document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.chapter===next)));
  el<HTMLButtonElement>('journey-back').disabled=next==='air';el<HTMLButtonElement>('journey-next').disabled=next==='room';
  if(push)history.pushState(null,'',languageHref(coolingHref(next,location.search,location.hash)));
- renderBudget();
+ renderBudget(); syncPresentation();
 }
 document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.chapter as Chapter,true)));
 el('journey-next').addEventListener('click',()=>select(chapters[Math.min(2,chapters.indexOf(chapter)+1)]!,true));
@@ -94,3 +109,5 @@ mountPresentationFrame({ root: '#air-panel .lab', visual: '#scene', transport: '
 mountPresentationFrame({ root: '#fridge-panel .lab', visual: '#fr-fridge-scene' });
 const roomFrame=mountPresentationFrame({ root: '#room-panel', visual: '.boundary-scene' });
 if(roomFrame){roomFrame.stage.querySelector('.presentation-visual')!.append(makeMobileBoundary());roomFrame.stage.append(el('room-net'));drawHotPlacement();}
+
+syncPresentation();

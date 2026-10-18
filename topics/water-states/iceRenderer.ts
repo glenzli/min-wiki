@@ -25,7 +25,7 @@ export function createIceRenderer(root: SVGGElement, water: SVGPathElement) {
   const clipShape = node(clip, 'path');
   gradient(defs, 'ice-volume', [[0, '#f4ffff', .86], [.22, '#c7e8e6', .40], [.53, '#9bbfc5', .36], [.82, '#d5eded', .57], [1, '#ecffff', .85]]);
   gradient(defs, 'ice-edge-light', [[0, '#ffffff', .75], [.055, '#ccf0f0', .04], [.92, '#d5e9e7', .01], [1, '#ffffff', .64]], { x2: '1', y2: '0' });
-  gradient(defs, 'ice-window-light', [[0, '#ffffff', 0], [.39, '#ffffff', .04], [.5, '#ffffff', .30], [.63, '#ffffff', .04], [1, '#ffffff', 0]], { x2: '1', y2: '.12' });
+  gradient(defs, 'ice-window-light', [[0, '#ffffff', 0], [.39, '#ffffff', .04], [.5, '#ffffff', .13], [.63, '#ffffff', .04], [1, '#ffffff', 0]], { x2: '1', y2: '.12' });
   const material = node(root, 'g', { 'clip-path': 'url(#ice-growth-clip)' });
   node(material, 'rect', { width: 300, height: ICE_HEIGHT, fill: 'url(#ice-volume)' });
   const grains = node(material, 'g', { id: 'ice-grains' });
@@ -34,7 +34,7 @@ export function createIceRenderer(root: SVGGElement, water: SVGPathElement) {
     const grainClip = node(defs, 'clipPath', { id: `ice-grain-${grain.id}`, clipPathUnits: 'userSpaceOnUse' });
     node(grainClip, 'path', { d: outline });
     const lighter = grain.id % 3 !== 1;
-    gradient(defs, `ice-facet-${grain.id}`, [[0, lighter ? '#f4ffff' : '#6c9caa', .01], [.47, lighter ? '#f9ffff' : '#527e8e', lighter ? .24 : .13], [1, '#d1ebec', .03]],
+    gradient(defs, `ice-facet-${grain.id}`, [[0, lighter ? '#f4ffff' : '#6c9caa', .01], [.47, lighter ? '#f9ffff' : '#527e8e', lighter ? .17 : .10], [1, '#d1ebec', .03]],
       { x1: grain.id % 2 ? '1' : '0', x2: grain.id % 2 ? '0' : '1', y2: '.65' });
     const region = node(grains, 'g', { 'data-grain': grain.id, 'clip-path': `url(#ice-grain-${grain.id})` });
     node(region, 'path', { d: outline, fill: `url(#ice-facet-${grain.id})` });
@@ -43,7 +43,7 @@ export function createIceRenderer(root: SVGGElement, water: SVGPathElement) {
     const shift = (grain.id % 3 - 1) * 4;
     node(region, 'path', { d: `M${grain.seed - 24 + shift} -8Q${grain.seed + 25} 80 ${grain.seed + 6} 190L${grain.seed + 24} 190Q${grain.seed + 43} 80 ${grain.seed - 10 + shift} -8Z`, fill: 'url(#ice-window-light)' });
     // Sparse elongated internal growth markings, never a hexagonal snowflake.
-    for (let j = 0; j < 4; j++) {
+    for (let j = 0; j < 3; j++) {
       const z = 12 + ((grain.id * 19 + j * 37) % 100);
       const x = grainAxis(grain, z) + (j - 1.5) * 5.2;
       const end = Math.min(ICE_HEIGHT, z + 31 + j * 11);

@@ -43,3 +43,15 @@ html[data-reading-mode="kids"] .cloud-academic,html[data-reading-mode="academic"
   html.presentation-page[data-topic-ui] .lab .presentation-notes .scene-column{display:block!important}
   html.presentation-page[data-topic-ui] .lab .presentation-notes .slow-jumps{margin:0 0 18px}
 }
+
+.study-content>header.reader-compact-header{display:none}
+.observation-toolbar{align-items:center;gap:8px;flex-wrap:wrap}
+.observation-toolbar>.reading-mode-disclosure{margin:0}
+.presentation-stage>.batch-readout{flex:none;padding:10px 16px;background:var(--surface);border-top:1px solid var(--border);color:var(--ink)}
+.presentation-stage>.batch-readout>strong{font-size:13px;line-height:1.5}
+.presentation-stage>.batch-readout p{margin:4px 0 0;font-size:13px;line-height:1.6;color:var(--secondary)}
+
+.presentation-frame .batch-readout{border:0;border-radius:0;box-shadow:none;border-top:1px solid var(--border);margin:0;padding:10px 16px;font-size:13px;line-height:1.65;background:var(--surface)}
+.presentation-frame .observation-toolbar>.reading-mode-disclosure{margin:0}
+
+:root[data-wiki-document] .observation-toolbar>button[aria-controls]{font-size:13px;line-height:1.5;white-space:normal;overflow-wrap:normal;min-width:0;padding:8px 10px;min-height:44px}

@@ -50,6 +50,9 @@ function network(p: Point, text: string) {
   node('path',{d:'M -40 -12 V 13 L -18 31 L -18 6 M -18 31 L 42 17 V -7',fill:'#a9c7b8',stroke:'#64897b','stroke-width':2,'stroke-linejoin':'round'},g);
   node('path',{d:'M -12 -5 L 7 -9 M 0 -15 L 7 -9 L 3 -3',fill:'none',stroke:'#658376','stroke-width':3},g);
   for(let i=0;i<4;i++)node('rect',{x:-32+i*6,y:8+i*1.4,width:3,height:5,fill:'#477d6b'},g);
+  node('path',{d:'M -38 -10 L -18 7 L 40 -5',fill:'none',stroke:'#ffffff','stroke-width':1.2,opacity:.7},g);
+  node('path',{d:'M -13 17 L 35 6 M -13 21 L 35 10',fill:'none',stroke:'#719889','stroke-width':1.2,opacity:.6},g);
+  for(let i=0;i<3;i++)node('rect',{x:-8+i*12,y:15-i*2.6,width:8,height:5,rx:1,fill:'#3e6354',stroke:'#bfd2c2','stroke-width':.6,transform:'skewY(-12)'},g);
   label(text,0,64,g);
 }
 function service(p: Point) {
@@ -58,6 +61,8 @@ function service(p: Point) {
   node('path',{d:'M -46 -32 L 28 -44 L 49 -23 L -25 -10 Z',fill:'#ebefe7',stroke:'#849787','stroke-width':2},g);
   node('path',{d:'M -46 -32 V 25 L -25 44 V -10 M -25 44 L 49 31 V -23',fill:'#b8c8bb',stroke:'#849787','stroke-width':2,'stroke-linejoin':'round'},g);
   for(let col=0;col<3;col++)for(let row=0;row<3;row++)node('rect',{x:-18+col*19,y:-3+row*11,width:14,height:7,rx:1,fill:row===1?'#73948b':'#52736a'},g);
+  node('path',{d:'M -43 -31 L -25 -13 L 46 -25 M -23 42 L 46 29',fill:'none',stroke:'#f5f8ef','stroke-width':1.3,opacity:.8},g);
+  for(let row=0;row<3;row++){node('path',{d:`M -19 ${-5+row*11} L 37 ${-14+row*11}`,stroke:'#d4dfd3','stroke-width':.8,opacity:.65},g);node('circle',{cx:40,cy:-6+row*11,r:1.5,fill:'#dfd0a0'},g);}
   label(t('网络与服务'),0,77,g);
 }
 function coordinates(): {sender:Point,a:Point,b:Point,source:Point,service:Point,destination:Point,receiverStation:Point,receiver:Point} {
@@ -162,4 +167,11 @@ window.addEventListener('pagehide',pause);
 window.addEventListener('pageshow',()=>render());
 mobile.addEventListener('change',render);
 render();mountReadingMode('main > details.advanced');
-mountPresentationFrame({root:'.lab',visual:'.scene-wrap',transport:'.transport'});
+const presentation=mountPresentationFrame({root:'.lab',visual:'.scene-wrap',transport:'.transport'});
+const readingMode=document.querySelector<HTMLElement>('.reading-mode-disclosure');
+if(presentation&&readingMode){const controls=readingMode.querySelector<HTMLElement>('.reading-mode');if(controls){controls.dataset.readerMenu='options';presentation.mode.toolbar.prepend(controls);}readingMode.remove();}
+
+if(presentation){
+ const caption=el('status');caption.dataset.readerCaption='';
+ presentation.stage.insertBefore(caption,presentation.stage.querySelector('.presentation-transport'));
+}

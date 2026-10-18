@@ -58,7 +58,7 @@ export class LayerMechanism {
     this.root.innerHTML = `<div class="mechanism-head"><div><p class="mechanism-eyebrow">${esc(this.copy.eyebrow)} · ${esc(this.layers[layer]!.name)} · ${layerStops[layer]} km</p><h3>${esc(item.question)}</h3></div></div>
       <p class="mechanism-lead">${esc(item.lead)}</p>
       <div class="mechanism-story"><strong data-mechanism-title></strong><p data-mechanism-body aria-live="polite"></p></div>
-      <div class="mechanism-controls"><div class="mechanism-steps">${item.steps.map((step, i) => `<button type="button" data-mechanism-step="${i}" aria-pressed="false"><b>${i + 1}</b><span>${esc(step.title)}</span><i aria-hidden="true"></i></button>`).join('')}</div><button type="button" data-mechanism-play></button></div>
+      <div class="mechanism-controls"><div class="mechanism-steps">${item.steps.map((step, i) => `<button type="button" data-mechanism-step="${i}" aria-pressed="false" title="${esc(step.title)}"><b>${i + 1}</b><span>${esc(step.title)}</span><i aria-hidden="true"></i></button>`).join('')}</div><button type="button" data-mechanism-play></button></div>
       <details class="mechanism-boundary" data-reader-prose><summary>${esc(this.copy.boundaryLabel)}</summary><p>${esc(this.copy.scale)} ${esc(item.boundary)}</p><a href="${esc(item.sourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(this.copy.source)}</a></details>`;
     this.project(); this.onFrame();
     if (autoplay && !this.reduced.matches) this.play();

@@ -23,3 +23,11 @@ Regression parses the production SVG and independently clips its polygon against
 - [NCBI · Blood and the cells it contains](https://www.ncbi.nlm.nih.gov/books/NBK2263/)
 - [OpenStax · Leukocytes and Platelets](https://openstax.org/books/anatomy-and-physiology-2e/pages/18-4-leukocytes-and-platelets)
 - [OpenStax · Hemostasis](https://openstax.org/books/anatomy-and-physiology-2e/pages/18-5-hemostasis)
+
+## 插画精修 · 2026-10-19
+
+红细胞用较浅中央区、较厚边缘和柔和轮廓提示双凹形态；血管壁与周围组织弱化重复切块感；中性粒细胞细化分叶核与颗粒，并以原有 `immuneContour` 裁切内部细节，防止变形时越出细胞边界。血小板按原激活程度从较圆轮廓伸出较柔和的突起，纤维蛋白仍按原时序出现。没有增加细胞核到红细胞或血小板上，没有增加新阶段。全画面噪声滤镜被移除，纹理由局部线条表达。
+
+The paler centre and thicker rim suggest a biconcave red cell without reconstructing three-dimensional optics. Neutrophil granules and the lobed nucleus are clipped to the existing model-owned contour. Platelet processes follow the original activation value, and fibrin retains its existing timing. No oxygen trajectory, wall-opening constraint, migration sequence, target identity or engulfment timing was changed. Colours, proportions and counts remain schematic; the three processes remain independent. Cells and its blood-cell child route remain draft and are not deployed.
+
+形态复核补充：[OpenStax · Erythrocytes](https://openstax.org/books/anatomy-and-physiology-2e/pages/18-3-erythrocytes)，以及上列 Leukocytes and Platelets。插画未模拟染色机制、流体力学、细胞骨架受力或完整凝血级联。

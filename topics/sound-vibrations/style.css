@@ -16,3 +16,16 @@ html.presentation-page[data-topic-ui] { .presentation-notes .control-layout { di
 }
 
 @media(min-width:1000px){html.presentation-page[data-topic-ui] #ear-panel .presentation-frame{padding:0}html.presentation-page[data-topic-ui] #ear-panel .presentation-pair{gap:8px;padding:8px}html.presentation-page[data-topic-ui] #ear-panel .scene-toolbar{padding:4px 8px;font-size:12px;min-height:0}html.presentation-page[data-topic-ui] #ear-panel .scene-toolbar button{padding:6px;min-height:44px}html.presentation-page[data-topic-ui] #compare-panel .compare-grid article{display:flex;flex-direction:column;min-height:0;padding:12px}html.presentation-page[data-topic-ui] #compare-panel figure{display:flex;flex:1;flex-direction:column;min-height:0;margin:0}html.presentation-page[data-topic-ui] #compare-panel figure svg{flex:1;height:0;min-height:0;width:100%}html.presentation-page[data-topic-ui] #compare-panel h3{font-size:16px;margin:0 0 6px}html.presentation-page[data-topic-ui] #compare-panel figcaption{font-size:12px;line-height:1.4}html.presentation-page[data-topic-ui] #label-toggle{margin:0;font-size:13px}}
+
+/* Keep the original controls in the active observation row. */
+.study-content>header.reader-compact-header{display:none}
+.presentation-frame .observation-toolbar{gap:8px;align-items:center;flex-wrap:wrap}
+.presentation-frame .observation-toolbar>.reading-mode-disclosure{margin:0}
+.presentation-frame .observation-toolbar>.reader-menu-holder{margin:0;padding:0}
+.presentation-frame .observation-toolbar>button[aria-controls]{margin-left:auto}
+.presentation-frame .presentation-transport>label{flex:1 1 240px;min-width:0;font-size:13px;line-height:1.5}
+.presentation-frame .presentation-transport>label input[type=range]{display:block;width:100%;min-height:28px;margin:4px 0 0}
+
+:root[data-wiki-document] .observation-toolbar>button[aria-controls]{font-size:13px;line-height:1.5;white-space:normal;overflow-wrap:normal;min-width:0;padding:8px 10px;min-height:44px}
+
+@media(max-width:699px){#source-panel #string-tension-caption{font-size:27px}}

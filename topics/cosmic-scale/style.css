@@ -119,3 +119,13 @@
 #cosmic-observation .comparison-transport>button:last-child{font-size:11px}
 @media(min-width:1000px){#cosmic-observation{height:max(520px,calc(100dvh - var(--observation-top,150px)))}#cosmic-observation #comparison-panel{grid-template-columns:minmax(0,1fr)}#cosmic-observation #comparison-panel:has(.comparison-copy:not(.observation-panel-hidden)){grid-template-columns:minmax(0,1fr) 300px}#cosmic-observation .comparison-canvas{min-height:0}#cosmic-observation .cosmic-view{min-height:0}}
 @media(max-width:999px){#cosmic-observation .comparison-canvas{height:clamp(300px,57dvh,600px)}#cosmic-observation .cosmic-view{height:clamp(300px,57dvh,600px)}#cosmic-observation .comparison-transport{flex-wrap:wrap}#cosmic-observation .comparison-transport>label{order:-1;flex:1 0 100%}#cosmic-observation .comparison-transport>button{flex:1}#cosmic-observation .comparison-readings span{font-size:11px}#cosmic-observation .comparison-heading h2{font-size:15px}}
+
+/* Local refinement: readable evidence, restrained framing. */
+#cosmic-observation .comparison-readings strong{font-size:15px;line-height:1.5}
+#cosmic-observation .comparison-readings span,#cosmic-observation .comparison-boundary{font-size:13px;line-height:1.6}
+#cosmic-observation .comparison-home-cues strong,#cosmic-observation .comparison-home-cues span{font-size:13px;line-height:1.6}
+#cosmic-observation .comparison-transport,#cosmic-observation .zoom-control,#cosmic-observation .scale-readout{font-size:13px}
+#cosmic-observation .observation-toolbar{gap:8px;align-items:center}
+#cosmic-observation .observation-choices button{font-size:14px;line-height:1.5;min-height:44px;word-break:normal}
+
+@media(max-width:699px){#cosmic-observation .comparison-canvas{height:320px;min-height:280px}}

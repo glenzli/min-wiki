@@ -51,3 +51,6 @@
   .scene-bottom[data-closeup="true"]{background:none;padding:0}
   .scene-bottom[data-closeup="true"]>span{display:none}
 }
+
+/* The scene sample keeps its own circular marker and a full touch target. */
+.hotspot{width:44px;height:44px}

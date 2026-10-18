@@ -60,3 +60,8 @@ The two views share a viewport-fitted observation workspace with a collapsible e
 16:9 桌面优先显示完整观察区；可收起解说或进入沉浸演示，Esc 返回。布局切换不重置世界、旅程或模型；详情与定量边界仍在解说中。
 
 儿童版在当前全景、地球层或对照世界旁只给短解释。`study.ts` 为各站提供对应的学术版机制、关系式（适用时）、证据入口和模型边界，阅读卡排在观察区下方；全题 `learning.json` 留作可选的综合笔记。切换阅读版不改变旅程、比较世界或图中机制阶段。
+## Local terrain finish · 2026-10-19
+
+近岸陆地增加固定在球面绘图坐标中的克制纹理，从已有地球贴图过渡到近岸插画时逐渐出现。纹理裁切在原有陆地轮廓内，不改变海陆朝向、观察标记或相机路径；这些明暗块不是实测地形、土地覆盖或新增高度数据。
+
+Deterministic near-coast texture fades in within the original land contour and globe coordinates. It stays attached during approach and ascent, without changing the camera, surface anchor or atmospheric feature coordinates. The local terrain remains authored illustration rather than surveyed detail.

@@ -10,7 +10,10 @@ import { createProgram, stepProgram, playProgram, pauseProgram, tickProgram, res
 translateDocument(t);
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 const lab = document.querySelector<HTMLElement>('.program-lab')!;
-mountPresentationFrame({root:lab,visual:'.scene-shell',transport:'.transport,#status,#input-panel,#debug-panel',choices:'.chapters'});
+const presentation=mountPresentationFrame({root:lab,visual:'.workspace',paired:true,transport:'#status,#input-panel,#debug-panel',choices:'.chapters'});
+if(presentation){
+ for(const node of lab.querySelectorAll('.scene-caption,#branch-preview,#child-note,.instruction-column>p.small'))presentation.notes.append(node);
+}
 const reading = mountSceneReading(lab, { id: 'program-study', childTarget: el('child-note') });
 const states: Record<Scenario, ProgramState> = { sequence: createProgram('sequence'), condition: createProgram('condition'), debug: createProgram('debug') };
 const raw = new URLSearchParams(location.search).get('experiment');

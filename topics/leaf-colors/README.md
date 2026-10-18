@@ -95,3 +95,9 @@ The topic selects its existing scene and controls for the shared viewport-fitted
 宽屏有限高度的主图扩大同一叶片，让叶脉、取样点与叶柄容易辨认；向显微尺度推进时，镜头中心连续移回组织与细胞。手机主图仍由宽度限制，叶片与枝条同屏；显微剖面之后隐藏底部重复提示，避免盖住组织或细胞标注，解说继续在画面后的控制区。取景与提示变化不改叶龄、色素模型、取样位置或生物尺度。枝条延伸到画框外，厚度与放大倍率均为教学示意。
 
 The wider desktop framing makes veins, the sampling point and petiole readable while the camera follows the same tissue into the close-up. Mobile keeps the blade and branch together; from the tissue cutaway onward, a repeated bottom caption is omitted so it cannot cover anatomy labels. These framing changes do not alter leaf age, pigment state, sample identity or biological scale. Branch length, thickness and magnification remain illustrative.
+
+## Strict visual pass · 2026-10-18
+
+叶脉采用粗细层级；组织与所选叶肉细胞增加壁/膜边缘、周边细胞核、细胞质和液泡的细微明暗。液泡填色、膜轮廓与色素裁切仍共用同一条稳定路径，没有新增中心扩散的红色揭幕。标注按屏幕使用13/14px字号，自动留出边缘与提示区；窄屏近景给完整细胞留出外缘；取样标记保留圆形外观和44px触摸范围。
+
+Vein weights, tissue boundaries and compartment shading are presentation details. Nuclei, organelles and pigment marks remain illustrative in shape, count and placement; the pigment model, leaf age, selected specimen, water model and nested coordinates are unchanged. The topic remains a draft: this pass improves selected structures, not every lifecycle, water and microscopy branch. The current acceptance gaps are recorded in `wiki.json.review`.

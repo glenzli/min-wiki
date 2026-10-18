@@ -174,7 +174,7 @@ export class BuoyancyScene {
   <path d="M97 ${g.water+15}V417Q97 432 111 433" stroke="#f4fffa" stroke-width="7" opacity=".4" fill="none"/>
   ${ripple>0?`<ellipse cx="365" cy="${g.water}" rx="${g.width*.55+35*(1-ripple)}" ry="${5+ripple*8}" fill="none" stroke="#e8ffec" stroke-width="2" opacity="${ripple*.65}"/>`:''}
   </g>${air}${cargo}${arrows}${supportForce}${cordForce}${rim}
-  ${text(compact?135:200,239,datumLabel,17,'#637e80')}
+  <g class="water-datum">${text(compact?205:200,239,datumLabel,17,'#637e80')}</g>
   <path d="M79 89V428Q79 450 102 450H588Q614 450 614 428V89" fill="none" stroke="#87a9a9" stroke-width="6"/>
   <path d="M86 94V426Q86 442 104 442H584" fill="none" stroke="#f8fff6" stroke-width="3" opacity=".8"/>
   <path d="M608 102V427Q608 440 591 442" fill="none" stroke="#568a98" stroke-width="2" opacity=".4"/>

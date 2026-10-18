@@ -51,6 +51,8 @@ function harness(controllerSource,{project=false,search=''}={}) {
  register(parse(html));
  const document=new Target(); document.hidden=false;
  document.getElementById=id=>ids.get(id)??null;
+ // This model/lifetime adapter intentionally has no Reader presentation surfaces.
+ document.querySelector=()=>null;
  document.querySelectorAll=selector=>{
   const match=/^\[([\w-]+)\]$/.exec(selector);
   assert.ok(match,`Unexpected selector: ${selector}`);

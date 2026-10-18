@@ -28,22 +28,23 @@ const defs = `<defs>
   <linearGradient id="root" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8efcf"/><stop offset=".5" stop-color="#d8c498"/><stop offset="1" stop-color="#b49a72"/></linearGradient>
   <radialGradient id="bean-coat" cx=".34" cy=".26" r=".83"><stop stop-color="#ead7a9"/><stop offset=".55" stop-color="#be9762"/><stop offset="1" stop-color="#806044"/></radialGradient>
   <radialGradient id="cotyledon" cx=".32" cy=".2"><stop stop-color="#d6d994"/><stop offset=".55" stop-color="#a4b264"/><stop offset="1" stop-color="#718844"/></radialGradient>
-  <linearGradient id="bean-leaf" x1="0" y1="1" x2=".7" y2="0"><stop stop-color="#426d35"/><stop offset=".48" stop-color="#73a04c"/><stop offset="1" stop-color="#bfd281"/></linearGradient>
+  <linearGradient id="bean-leaf" x1="0" y1="1" x2=".7" y2="0"><stop stop-color="#365e32"/><stop offset=".35" stop-color="#679344"/><stop offset=".7" stop-color="#8aaf5b"/><stop offset="1" stop-color="#bdcf86"/></linearGradient>
+  <linearGradient id="leaf-fold" x1="0" y1="0" x2=".45" y2="1"><stop stop-color="#f0efba" stop-opacity=".24"/><stop offset=".48" stop-color="#9fb574" stop-opacity="0"/><stop offset="1" stop-color="#294b30" stop-opacity=".13"/></linearGradient>
   <linearGradient id="water-tint" x2="0" y2="1"><stop stop-color="#90cdd0" stop-opacity=".43"/><stop offset="1" stop-color="#426f7d" stop-opacity=".3"/></linearGradient>
   <filter id="soft-background"><feGaussianBlur stdDeviation="15"/></filter>
   <filter id="root-shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="1.5" dy="2" stdDeviation="2" flood-color="#171711" flood-opacity=".42"/></filter>
   <filter id="leaf-shadow" x="-30%" y="-30%" width="160%" height="170%"><feDropShadow dx="1" dy="4" stdDeviation="3" flood-color="#32492a" flood-opacity=".15"/></filter>
   <clipPath id="earth-mask"><path d="M0 318 Q155 309 295 317 T560 316 T760 315 V530 H0Z"/></clipPath>
-  <path id="leaf-shape" d="M0 0 C18 -34 16 -71 61 -87 C105 -104 144 -86 172 -105 C154 -62 136 -28 95 -15 C58 -3 22 -14 0 0Z"/>
+  <path id="leaf-shape" d="M0 0 C17 -30 16 -69 57 -85 C83 -97 113 -92 136 -95 Q158 -97 172 -105 C156 -66 140 -31 100 -16 C65 -5 34 -16 0 0Z"/>
   <clipPath id="leaf-mask"><use href="#leaf-shape"/></clipPath>
 </defs>`;
 function leaf(x: number, y: number, scale: number, angle: number) {
   const absScale=Math.abs(scale);
   const veins = Array.from({ length: 7 }, (_, i) => {
     const px = 24 + i * 17, py = -px * .56;
-    return `<path d="M${px} ${py} Q${px - 6} ${py - 18} ${px - 2} ${py - 45} M${px} ${py} Q${px + 20} ${py + 1} ${px + 39} ${py - 2}"/>`;
+    return `<path d="M${px} ${py} Q${px - 6} ${py - 18} ${px - 2} ${py - 45} M${px} ${py} Q${px + 20} ${py + 1} ${px + 39} ${py - 2}"/><path d="M${px-3} ${py-16}q-9-1-15-8M${px+17} ${py-1}q4 6 13 8" stroke-width=".55" opacity=".5"/>`;
   }).join('');
-  return `<g transform="translate(${x} ${y}) scale(${scale} ${absScale}) rotate(${angle})" filter="url(#leaf-shadow)"><use href="#leaf-shape" fill="url(#bean-leaf)" stroke="#7d9f58" stroke-width="1"/><g clip-path="url(#leaf-mask)" fill="none" stroke="#d3df9b" stroke-opacity=".57" stroke-width="1.1">${veins}<path d="M2 -2 Q70 -40 168 -103" stroke-width="2.4"/></g><path d="M8 -2 Q49 -9 92 -18" fill="none" stroke="#e7e9b1" stroke-opacity=".42" stroke-width="1"/></g>`;
+  return `<g transform="translate(${x} ${y}) scale(${scale} ${absScale}) rotate(${angle})" filter="url(#leaf-shadow)"><use href="#leaf-shape" fill="url(#bean-leaf)" stroke="#638747" stroke-width="1"/><use href="#leaf-shape" fill="url(#leaf-fold)"/><g clip-path="url(#leaf-mask)" fill="none" stroke="#cbdba0" stroke-opacity=".53" stroke-width="1.1">${veins}<path d="M2 -2 Q70 -40 168 -103" stroke="#365e32" stroke-width="4" opacity=".22"/><path d="M2 -2 Q70 -40 168 -103" stroke-width="1.9"/></g><path d="M8 -2 Q49 -9 92 -18" fill="none" stroke="#e7e9b1" stroke-opacity=".38" stroke-width="1"/></g>`;
 }
 function seedCoat(x: number, y: number, scale: number) {
   const freckles = Array.from({ length: 17 }, (_, i) => `<ellipse cx="${-31 + (i * 17) % 70}" cy="${-19 + (i * 11) % 43}" rx="${1.8 + i % 3}" ry="1.6" fill="#856743" opacity=".32" transform="rotate(${i * 31})"/>`).join('');
@@ -131,8 +132,8 @@ function draw() {
   const pores = air === 'yes' && water !== 'flood' ? `<g fill="#161c18" stroke="#9e8c6a" stroke-width="1" opacity=".7"><ellipse cx="239" cy="363" rx="11" ry="6"/><ellipse cx="538" cy="390" rx="8" ry="5"/><ellipse cx="279" cy="447" rx="7" ry="4"/><ellipse cx="480" cy="477" rx="10" ry="5"/></g>` : '';
   const wet = water === 'flood' ? `<path d="M0 307 Q125 298 254 306 T503 304 T760 305 V530 H0Z" fill="url(#water-tint)"/><path d="M0 307 Q125 298 254 306 T503 304 T760 305" stroke="#c8e7e6" stroke-width="3" fill="none"/><path d="M59 321 h53 m459 -9 h58 m-212 12 h37" stroke="#d7edeb" stroke-width="2" opacity=".65"/>` : '';
   scene.innerHTML = defs + backdrop + terrain + pores + `<g class="specimen">${specimen}</g>` + wet +
-    `<rect x="231" y="49" width="298" height="39" rx="19" fill="#fffef0" fill-opacity=".8" stroke="#d7dec6"/>` + label(380,75,[t('小豆子'),t('根先出来'),t('芽向上伸'),t('第一片真叶展开')][s]!, 'stage-caption') +
-    `<rect x="30" y="476" width="228" height="31" rx="15" fill="#f4eedc" fill-opacity=".9"/>` + label(144,497,water === 'flood' || air === 'no' ? t('氧气不足') : t('土里面也有空气'),'soil-caption');
+    `<g class="diagram-labels"><rect x="231" y="49" width="298" height="39" rx="19" fill="#fffef0" fill-opacity=".8" stroke="#d7dec6"/>` + label(380,75,[t('小豆子'),t('根先出来'),t('芽向上伸'),t('真叶展开')][s]!, 'stage-caption') +
+    `<rect x="30" y="476" width="228" height="31" rx="15" fill="#f4eedc" fill-opacity=".9"/>` + label(144,497,water === 'flood' || air === 'no' ? t('氧气不足') : t('土里面也有空气'),'soil-caption')+'</g>';
   drawSoilInset(water,air,temp,s);
 if(!okay){
   if(s>0)result.textContent=water==='dry'?t('土太干，已经长出的幼苗会受到缺水影响；它不会变回种子。这里暂停后续生长，试试恢复湿润。'):water==='flood'||air==='no'?t('根和其他活细胞仍需要氧气。积水或缺少空气会妨碍后续生长；已经长出的结构不会倒回种子。'):t('低温让这株幼苗的后续生长变慢。画面保留已长出的结构，用暂停表示影响。');

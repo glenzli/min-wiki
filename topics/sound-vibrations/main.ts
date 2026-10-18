@@ -54,13 +54,28 @@ function renderComparison(){
  document.querySelectorAll<HTMLButtonElement>('[data-condition]').forEach(b=>{const target=b.dataset.condition==='pitch'?[4,28]:b.dataset.condition==='amplitude'?[1,50]:[1,28];b.setAttribute('aria-pressed',String(condition.tension===target[0]&&condition.amplitude===target[1]));});
 }
 const chapters:SoundChapter[]=['source','ear','compare'];
+const chapterNavigation=document.querySelector<HTMLElement>('.journey-nav')!;
+function syncPresentation(){
+ const selectors:Record<SoundChapter,string>={source:'#source-panel .lab',ear:'#ear-panel .lab',compare:'#compare-panel'};
+ const frame=document.querySelector<HTMLElement>(selectors[chapter]);
+ const toolbar=frame?.querySelector<HTMLElement>(':scope > .observation-toolbar');
+ if(!frame||!toolbar)return;
+ if(!frame.id)frame.id='sound-vibrations-'+chapter+'-stage';
+ delete chapterNavigation.dataset.readerToolbar;
+ const menu=chapterNavigation.closest<HTMLElement>('.reader-menu-holder')??chapterNavigation.closest<HTMLElement>('.observation-choices')??chapterNavigation;
+ toolbar.prepend(menu);
+ const mode=document.querySelector<HTMLElement>('.reading-mode-disclosure');
+ if(mode){const controls=mode.querySelector<HTMLElement>('.reading-mode');if(controls)chapterNavigation.append(controls);mode.remove();}
+ const context=document.querySelector('.causal-bridge')?.parentElement;
+ if(context?.matches('.presentation-context'))frame.querySelector('.presentation-notes')?.append(context);
+}
 function select(next:SoundChapter,push=false){
  chapter=next;source.setActive(next==='source');ear.setActive(next==='ear');
  for(const item of chapters)el(item==='source'?'source-panel':item==='ear'?'ear-panel':'compare-panel').hidden=item!==next;
  document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.chapter===next)));
  el<HTMLButtonElement>('previous').disabled=next==='source';el<HTMLButtonElement>('next').disabled=next==='compare';
  if(push)history.pushState(null,'',languageHref(soundHref(next,location.search,location.hash)));
- if(next==='ear')renderHandoff();
+ if(next==='ear')renderHandoff(); syncPresentation();
 }
 document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(b=>b.addEventListener('click',()=>select(b.dataset.chapter as SoundChapter,true)));
 document.querySelectorAll<HTMLButtonElement>('[data-condition]').forEach(b=>b.addEventListener('click',()=>setConditions(b.dataset.condition==='pitch'?4:1,b.dataset.condition==='amplitude'?50:28,'preset')));
@@ -78,11 +93,10 @@ sourceFrame?.stage.querySelector('.presentation-transport')?.append(arrivalButto
 const hearingFrame = mountPresentationFrame({ root: '#ear-panel .lab', visual: '.specimen-pair', paired: true, transport: '.play-controls' });
 if (hearingFrame) {
  for (const caption of hearingFrame.stage.querySelectorAll('figcaption')) hearingFrame.notes.append(caption);
- document.querySelector('[data-wiki-document] .study-content>header')?.append(el('label-toggle'));
+ chapterNavigation.append(el('label-toggle'));
  const figures=[...hearingFrame.stage.querySelectorAll<HTMLElement>('.specimen')];
  const lens=document.createElement('button');lens.type='button';lens.className='ear-lens';
- const earToolbar=hearingFrame.root.querySelector('.observation-toolbar');
- earToolbar?.prepend(lens, el('h-ear-zoom'), hearingFrame.stage.querySelector('.play-controls')!);
+ hearingFrame.notes.prepend(lens,el('h-ear-zoom'));
  let closeup=false;
  function setEarLens(){
   const academic=document.documentElement.dataset.readingMode==='academic';
@@ -96,3 +110,5 @@ if (hearingFrame) {
 }
 const comparisonFrame = mountPresentationFrame({ root: '#compare-panel', visual: '.compare-grid', paired: true });
 if (comparisonFrame) comparisonFrame.notes.prepend(el('medium').closest('label')!);
+
+syncPresentation();

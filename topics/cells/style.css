@@ -180,3 +180,73 @@ html[data-reading-mode="kids"] .detail-context>p:last-child { display:none; }
   #structure-panel.presentation-frame .specimen .detail-window { border-left:0; border-right:0; }
   #structure-panel.presentation-frame #detail-scene { max-height:220px; }
 }
+
+/* A single, quiet observation desk; the living structures carry the colour. */
+.lab{padding:0;border:0;border-radius:0;box-shadow:none;background:transparent}
+.hero.reader-compact-header{display:none}
+.presentation-frame .observation-toolbar{gap:8px;align-items:center;flex-wrap:wrap}
+.presentation-frame .observation-toolbar>.reading-mode-disclosure{margin:0}
+.presentation-frame .observation-toolbar>.reader-menu-holder{margin:0;padding:0}
+.presentation-frame .observation-toolbar>button[aria-controls]{margin-left:auto}
+#chapter-question{max-width:none;margin:0 0 14px;padding:0;font-size:14px;line-height:1.7;color:var(--secondary)}
+.specimen,.detail-window,.behavior-window,.work-illustration{background:radial-gradient(ellipse at 35% 18%,#fcfcf7,#ebeee7);border-color:#d8ddd3;border-radius:0;box-shadow:none}
+.specimen-top{padding:12px 16px;font-size:14px;align-items:baseline;gap:16px;color:#394c43}
+#specimen-name{font-size:14px!important;font-weight:650}
+#specimen-tag{font-size:12px!important;line-height:1.5;color:#68786b}
+.detail-window>p,.behavior-window>p{font-size:13px;font-weight:600;line-height:1.6;color:#43564c}
+.observation{min-height:0;padding:10px 16px;font-size:13px;line-height:1.65;color:#526257;border-top:1px solid #dce1d7}
+#cell-board .selected{filter:drop-shadow(0 1px 2px #63596b38)}
+.focus-frame{stroke:#6a8a80;stroke-width:1.2;stroke-dasharray:5 5;vector-effect:non-scaling-stroke}
+.work-view{padding:10px 14px;gap:8px;border-top:1px solid #dce1d7;background:#f7f8f3}
+.work-view button{font-size:13px}
+.work-playback{margin:0;gap:8px}
+.work-playback :is(label,output){font-size:13px;line-height:1.5;font-variant-numeric:tabular-nums}
+.work-playback input{margin:0}
+.presentation-notes :is(.presence,.small-note,.muscle-scale,.muscle-legend){font-size:13px;line-height:1.7}
+.presentation-notes .part-number{width:22px;height:22px;flex-basis:22px}
+@media(min-width:1000px){
+ #structure-panel.presentation-frame .specimen-top{padding:10px 14px}
+ #structure-panel.presentation-frame .detail-window>p{padding:10px 12px 4px;font-size:13px}
+ #structure-panel.presentation-frame .observation{padding:9px 14px}
+ .presentation-frame .presentation-notes{padding:16px}
+}
+@media(max-width:999px){
+ .presentation-frame .observation-toolbar{padding:10px 12px}
+ .specimen-top{padding:11px 14px}
+ .specimen-top>span{min-width:0}
+ #specimen-tag{max-width:55%}
+ .observation{padding:10px 14px}
+ .work-view{padding:10px 12px}
+}
+
+/* A short live caption stays with the picture; the longer explanations stay in Notes. */
+#energy-panel .process-controls{margin:0;gap:8px}
+#energy-panel .process-scrub{flex:1 1 240px;min-width:0;display:flex;flex-direction:column;gap:4px;padding:0;margin:0}
+#energy-panel .process-scrub .progress-label{font-size:12px;line-height:1.5;margin:0;gap:12px}
+#energy-panel #process-progress{margin:0;min-height:28px;accent-color:var(--ink)}
+#energy-specimen{padding:10px 14px;font-size:14px;line-height:1.5}
+#energy-panel #process-status{flex:none;padding:10px 14px;margin:0;font-size:13px;line-height:1.65;font-weight:400;border-top:1px solid #dce1d7;color:#526257;min-height:3.3em}
+#specialization-panel .work-illustration>.lab-top{flex:none;flex-direction:row;align-items:baseline;gap:12px;padding:10px 14px;margin:0;color:#394c43}
+#specialization-panel .work-illustration>.lab-top .step{display:none}
+#specialization-panel #work-subject{font-size:14px;line-height:1.5;font-weight:650;margin:0}
+#specialization-panel .work-illustration .tiny-note{color:#68786b;font-size:12px;line-height:1.5}
+#specialization-panel .work-current{flex:none;padding:10px 14px;border-top:1px solid #dce1d7;color:#526257;background:#f7f8f3}
+#specialization-panel .work-current h3{font-size:13px;font-weight:650;line-height:1.6;color:#394c43;margin:0 0 3px}
+#specialization-panel .work-current p{font-size:13px;line-height:1.65;margin:0;max-width:90ch}
+@media(max-width:540px){
+ #energy-panel .process-scrub{flex-basis:100%}
+ #specialization-panel .work-illustration>.lab-top{flex-wrap:wrap;gap:3px}
+ #specialization-panel .work-illustration .tiny-note{white-space:normal}
+ #specialization-panel .work-current{padding:10px 12px}
+}
+#work-scene[data-labels=false] [data-scene-labels]{display:none}
+#energy-panel .material-key{flex:none;justify-content:flex-start;padding:8px 14px;gap:7px 18px;font-size:12px;line-height:1.5;color:#526257;border-top:1px solid #dce1d7}
+@media(min-width:1000px){
+ #structure-panel.presentation-frame .specimen .detail-window{justify-content:center}
+ #structure-panel.presentation-frame #detail-scene{flex:0 1 auto;height:auto;aspect-ratio:720/490}
+}
+#specialization-panel .work-current #work-story{color:#526257}
+@media(max-width:540px){
+ .presentation-frame .observation-toolbar>button[aria-controls]{font-size:12px;padding-inline:9px}
+ .presentation-frame .reading-mode-disclosure>summary{font-size:12px;padding-inline:9px}
+}

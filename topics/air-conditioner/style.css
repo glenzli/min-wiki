@@ -7,3 +7,14 @@
 @media(min-width:1000px){
 html.presentation-page[data-topic-ui] { .presentation-notes .workspace,.presentation-notes .experiment,.presentation-notes .control-layout { display:block; } .presentation-notes .controls { display:block!important; } .presentation-notes .controls label { display:block; } .presentation-frame .room-outline { height:100%; } .journey { padding:0; margin:8px 0; }}
 }
+
+/* Keep the original controls in the active observation row. */
+.study-content>header.reader-compact-header{display:none}
+.presentation-frame .observation-toolbar{gap:8px;align-items:center;flex-wrap:wrap}
+.presentation-frame .observation-toolbar>.reading-mode-disclosure{margin:0}
+.presentation-frame .observation-toolbar>.reader-menu-holder{margin:0;padding:0}
+.presentation-frame .observation-toolbar>button[aria-controls]{margin-left:auto}
+.presentation-frame .presentation-transport>label{flex:1 1 240px;min-width:0;font-size:13px;line-height:1.5}
+.presentation-frame .presentation-transport>label input[type=range]{display:block;width:100%;min-height:28px;margin:4px 0 0}
+
+:root[data-wiki-document] .observation-toolbar>button[aria-controls]{font-size:13px;line-height:1.5;white-space:normal;overflow-wrap:normal;min-width:0;padding:8px 10px;min-height:44px}

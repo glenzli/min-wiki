@@ -107,11 +107,13 @@ function renderProgress(){
   el('energy-readout').dataset.phase=phase;
  }
 
- drawProcess(cell,process,p);
+ // Anatomy and energy share the specimen, but only the energy view shows its process symbols.
+ drawProcess(cell,el('energy-panel').hidden?null:process,p);
 }
 function render(){
  const present=hasPart(cell,part),process=currentProcess(),p=currentProgress();
  text('specimen-name',cells[cell].name);text('specimen-tag',cells[cell].tag);text('observation',cells[cell].note);
+ text('energy-specimen',`${cells[cell].name} · ${process==='photosynthesis'?t('用光制造糖'):process?t('利用营养物质'):cells[cell].tag}`);
  text('part-title',partNames[part]);
  text('part-description-kids',present?childPartNotes[part]:cell==='animal'&&part==='vacuole'?t('这枚动物细胞没有这样的大液泡；还可能有小囊泡。'):absentChildPartNotes[part]!);
  text('part-description',explanations[cell][part]);text('part-question',questions[part]);
@@ -172,18 +174,33 @@ createScene();setCameras(whole,detail);render();mountReadingMode('details:not(.r
 // Chapter and specimen choices share one disclosure; their original controls stay live.
 const cellNavigation=document.createElement('div');cellNavigation.dataset.readerMenu='chapters';
 const chapterPath=document.querySelector<HTMLElement>('.chapter-path')!;chapterPath.before(cellNavigation);
-cellNavigation.append(chapterPath,el('cell-options'));
+const processChoices=document.querySelector<HTMLElement>('.process-tabs')!;
+cellNavigation.append(chapterPath,el('cell-options'),processChoices,el('work-options'));
 
 const initialRoute = readCellRoute(location.search);
 let chapter: Chapter = initialRoute.chapter;
 const specialization = mountSpecialization(initialRoute.example, example => {
  const url = new URL(location.href); url.searchParams.set('case', example); history.replaceState(null, '', url);
 });
+function syncChapterPresentation(){
+ const id=chapter==='structure'?'structure-panel':chapter==='energy'?'energy-panel':'specialization-panel';
+ const frame=el(id),toolbar=frame.querySelector<HTMLElement>(':scope > .observation-toolbar'),notes=frame.querySelector<HTMLElement>('.presentation-notes');
+ if(!toolbar||!notes)return;
+ notes.prepend(el('chapter-question'));
+ // Move the existing menu and mode controls with the active experiment. Their
+ // original handlers and disclosure state survive; no experiment is remounted.
+ cellNavigation.dataset.readerToolbar=id;
+ const picker=cellNavigation.closest<HTMLElement>('.reader-menu-holder')??cellNavigation.closest<HTMLElement>('.observation-choices')??cellNavigation;
+ toolbar.prepend(picker);
+ const mode=document.querySelector<HTMLElement>('.reading-mode-disclosure');
+ if(mode)toolbar.insertBefore(mode,toolbar.querySelector(':scope > button[aria-controls]'));
+}
 function showChapter(next: Chapter, writeRoute = true) {
  stop(); cancelCamera(); cancelSurface(); specialization.pause();
  whole = wholeBox(cell); detail = focusBox(cell,part); outer = outerTarget; setCameras(whole,detail);
  chapter = next;
  for (const id of ['structure-heading', 'cell-options']) el(id).hidden = chapter === 'work';
+ processChoices.hidden=chapter!=='energy';el('work-options').hidden=chapter!=='work';
  for (const id of ['structure-panel', 'structure-detail']) el(id).hidden = chapter !== 'structure';
  el('energy-panel').hidden = chapter !== 'energy'; el('specialization-panel').hidden = chapter !== 'work';
  document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.chapter === chapter)));
@@ -191,7 +208,7 @@ function showChapter(next: Chapter, writeRoute = true) {
  text('next-question', chapter === 'structure' ? t('找到结构之后，看看它们怎样参与生命活动。') : chapter === 'energy' ? t('获得可用能量之后，不同形状的细胞能做什么？') : t('带着这些特殊样本，回头比较典型细胞有哪些共同点与例外。'));
  text('chapter-next', chapter === 'structure' ? t('继续：看物质与能量') : chapter === 'energy' ? t('继续：比较细胞分工') : t('返回：结构与例外'));
  if (writeRoute) { const url = new URL(location.href); url.searchParams.set('chapter', chapter); history.pushState(null, '', url); }
- render();
+ render();syncChapterPresentation();
 }
 document.querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(button => button.addEventListener('click', () => showChapter(button.dataset.chapter as Chapter)));
 el('chapter-next').addEventListener('click', () => showChapter(CHAPTERS[(CHAPTERS.indexOf(chapter) + 1) % CHAPTERS.length]!));
@@ -210,5 +227,22 @@ if (structureFrame) {
  for (const symbolKey of detailWindow.querySelectorAll('.scene-symbols')) structureFrame.notes.append(symbolKey);
 }
 const energyFrame = mountPresentationFrame({ root: '#energy-panel', visual: '.behavior-window', transport: '.process-controls' });
-if (energyFrame) for (const node of energyFrame.stage.querySelectorAll('.material-key,#assembly-key,#energy-readout')) energyFrame.notes.append(node);
-mountPresentationFrame({ root: '#specialization-panel', visual: '.work-illustration', transport: '.work-playback' });
+if (energyFrame) {
+ for (const node of energyFrame.stage.querySelectorAll('#assembly-key,#energy-readout')) energyFrame.notes.append(node);
+ const scrub=document.createElement('div');scrub.className='process-scrub';
+ scrub.append(document.querySelector('label[for="process-progress"]')!,el('process-progress'));
+ el('play').parentElement!.append(scrub);
+ el('process-status').dataset.readerCaption='';
+ energyFrame.stage.querySelector('.behavior-window')!.append(el('process-status'));
+}
+const workFrame=mountPresentationFrame({ root: '#specialization-panel', visual: '.work-illustration', transport: '.work-playback' });
+if(workFrame){
+ const illustration=workFrame.stage.querySelector('.work-illustration')!;
+ illustration.prepend(el('work-subject').closest('.lab-top')!);
+ const current=document.createElement('div');current.className='work-current';current.dataset.readerCaption='';
+ current.setAttribute('aria-live','polite');current.setAttribute('aria-atomic','true');
+ current.append(el('work-phase'),el('work-story'));
+ illustration.insertBefore(current,illustration.querySelector('.work-view'));
+ workFrame.notes.prepend(el('work-labels'));
+}
+syncChapterPresentation();

@@ -36,3 +36,10 @@ body[data-mode="academic"] .child-cue,body[data-mode="academic"] .hint{display:n
 .viewport:not(.observer-focus) .phase-inset{height:auto;min-height:224px}
 .phase-inset button{flex-shrink:0}
 @media(max-width:760px){.viewport:not(.observer-focus) .phase-inset{min-height:174px}}
+
+/* Local refinement: readable evidence, restrained framing. */
+.object-label{font-size:12px;line-height:1.5;padding:3px 6px}.scene-note{font-size:12px;line-height:1.6;padding:8px 10px}.scene-heading>span,.scene-caption{font-size:12px;line-height:1.5}
+.viewport:not(.observer-focus) .phase-inset{width:184px;min-height:240px;padding:12px;gap:6px}.phase-inset canvas{width:132px;height:132px}.phase-inset p{font-size:12px;line-height:1.5}.phase-inset strong{font-size:14px}.phase-inset button{min-height:44px;font-size:12px;padding:8px 10px}
+@media(max-width:760px){.viewport:not(.observer-focus) .phase-inset{width:136px;min-height:210px;padding:8px;bottom:82px}.phase-inset canvas{width:96px;height:96px}.phase-inset p{font-size:11px}.phase-inset strong{font-size:12px}.scene-note{font-size:11px}.scene-caption{font-size:11px;max-width:calc(100% - 164px);bottom:90px}.object-label{font-size:12px}}
+
+.viewport .scene-note{background:#102132ed;color:#d1dce4}

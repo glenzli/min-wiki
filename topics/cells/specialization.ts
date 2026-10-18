@@ -49,6 +49,7 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
   let kind = initial, playing = false, cancel = () => {}, cancelZoom = () => {}, explained = '';
   const examples = [...body, ...blood];
   const current = () => examples.find(item => item.id === kind)!;
+  const setText=(target:HTMLElement,value:string)=>{if(target.textContent!==value)target.textContent=value;};
   function draw() {
     const state = states[kind], info = current(), phase = workPhase(kind, state.progress);
     const muscleCopy=kind==='muscle'?muscleExplanation(state.progress,muscleOptions):undefined;
@@ -73,13 +74,12 @@ export function mountSpecialization(initial: Specialism, onSelect: (kind: Specia
     scene.setAttribute('aria-label', info.subject);
     scene.dataset.case = kind; scene.dataset.progress = state.progress.toFixed(4);
     scene.dataset.muscleView=kind==='muscle'?muscleView:'whole';
-    el('work-subject').textContent = info.subject; el('work-observe').textContent = info.observe;
-    if(!muscleCopy) { el('work-phase').textContent = info.stages[phase]!.title; el('work-story').textContent = info.stages[phase]!.body; }
+    setText(el('work-subject'),info.subject);setText(el('work-observe'),info.observe);
+    if(!muscleCopy) { setText(el('work-phase'),info.stages[phase]!.title);setText(el('work-story'),info.stages[phase]!.body); }
     musclePanel.hidden=kind!=='muscle';
     forceView.hidden=kind!=='muscle';
     if(kind==='muscle') {
       const copy=muscleCopy!;
-      const setText=(target:HTMLElement,value:string)=>{if(target.textContent!==value)target.textContent=value;};
       setText(el('work-phase'),copy.title);setText(el('work-story'),copy.child);
       setText(muscleQuestion,copy.question);setText(numbers,copy.readout);setText(theory,copy.academic);
       setText(formula,copy.formula);setText(terms,copy.terms);setText(boundary,copy.boundary);

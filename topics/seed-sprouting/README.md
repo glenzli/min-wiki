@@ -66,3 +66,8 @@ The topic opts its existing scene and controls into shared viewport fitting and 
 ## 默认画面优先 · 2026-10-18
 
 三个物种案例与讲解深度改在默认收起的切换菜单中选择，当前案例和观察问题继续可见。完整六阶段条件图移到实验下方保留展开入口，直接操作与原有各案例历史不变。
+## Illustration refinement · 2026-10-19
+
+菜豆真叶细化轮廓、中央折光、分级叶脉和柔和投影；同一组叶形、原有茎根连接与成长进度继续被保留。局部叶脉纹理不代表测量到的组织数量或新增运输机制。
+
+Refined leaf contours, subdued fold shading and secondary vein details retain the original specimen geometry and growth state. They do not add a physiological model or turn the illustrated developmental stages into measured ages.

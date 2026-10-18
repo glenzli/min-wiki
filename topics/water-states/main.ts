@@ -146,4 +146,7 @@ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>butt
   showMolecules=button.dataset.mode==='academic';setMolecularView();update();
 }));
 
-mountPresentationFrame({"root": ".lab", "visual": ".observation-grid", "paired": true, "choices": ".scene-paths", "transport": "#play,#restart"});
+document.querySelector('.scene-wrap')?.setAttribute('data-reader-stage','');
+const presentation=mountPresentationFrame({"root": ".lab", "visual": ".observation-grid", "paired": true, "choices": ".scene-paths", "transport": "#play,#restart"});
+
+if(presentation){const mode=document.querySelector('.reading-mode-disclosure');if(mode){const controls=mode.querySelector<HTMLElement>('.reading-mode');if(controls)document.querySelector('.scene-paths')?.append(controls);mode.remove();}const scrub=range.closest('label');if(scrub)presentation.stage.querySelector('.presentation-transport')?.append(scrub);}

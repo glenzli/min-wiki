@@ -21,6 +21,8 @@ export class ProgramScene {
       <linearGradient id="table" x2="0" y2="1"><stop stop-color="#faf5eb"/><stop offset="1" stop-color="#eee4d4"/></linearGradient>
       <linearGradient id="metal" x2="0" y2="1"><stop stop-color="#eef1ee"/><stop offset=".45" stop-color="#c4d0ce"/><stop offset="1" stop-color="#a5b9b7"/></linearGradient>
       <linearGradient id="cardboard" x2="1" y2="1"><stop stop-color="#e5be83"/><stop offset="1" stop-color="#bb8850"/></linearGradient>
+      <linearGradient id="rubber" x2="0" y2="1"><stop stop-color="#53615b"/><stop offset=".38" stop-color="#283b35"/><stop offset="1" stop-color="#192d28"/></linearGradient>
+      <linearGradient id="sensor-glass" x2=".7" y2="1"><stop stop-color="#c1d9d3"/><stop offset=".3" stop-color="#52756d"/><stop offset=".55" stop-color="#203f39"/><stop offset="1" stop-color="#73968c"/></linearGradient>
       <filter id="cart-shadow" x="-40%" y="-40%" width="180%" height="180%"><feDropShadow dx="0" dy="5" stdDeviation="4" flood-color="#53605a" flood-opacity=".2"/></filter>
       <g id="parcel"><rect x="-20" y="-17" width="40" height="34" rx="3" fill="url(#cardboard)" stroke="#946739" stroke-width="2"/><path d="M-3-17H5V17H-3Z" fill="#f5d7a7"/><path d="M-16-10H-8M-16-5H-8" stroke="#956c45" stroke-width="2"/><rect x="9" y="2" width="7" height="9" rx="1" fill="#fff4dc"/></g>
     </defs><title>${t('送货小车按指令卡行动')}</title><desc id="scene-desc"></desc>
@@ -41,11 +43,15 @@ export class ProgramScene {
     <g id="road-obstacle" transform="translate(415 245)"><ellipse cy="24" rx="32" ry="8" fill="#857765" opacity=".19"/><path d="M-28-16L0-28L28-16V18L0 31L-28 18Z" fill="#d28d57" stroke="#9c623c" stroke-width="2"/><path d="M-28-16L0-3L28-16M0-3V31" stroke="#f4c399" stroke-width="2"/><path d="M-10-23L0-18L10-23M0-18V-3" stroke="#e9b98e" stroke-width="6"/><text x="0" y="63" text-anchor="middle" font-family="inherit" font-size="17" fill="#804e30">${t('路上的箱子')}</text></g>
     <g id="robot"><g id="robot-body" filter="url(#cart-shadow)">
       <g id="sensor-rays"><path d="M37-14L73-30M38 0H81M37 14L73 30" stroke="#be803e" stroke-width="3" stroke-dasharray="5 5" fill="none"/></g>
-      <rect x="-27" y="-38" width="22" height="16" rx="6" fill="#354842"/><rect x="-27" y="22" width="22" height="16" rx="6" fill="#354842"/>
-      <rect x="7" y="-38" width="20" height="16" rx="6" fill="#354842"/><rect x="7" y="22" width="20" height="16" rx="6" fill="#354842"/>
+      <g fill="url(#rubber)"><rect x="-27" y="-38" width="22" height="16" rx="6"/><rect x="-27" y="22" width="22" height="16" rx="6"/>
+      <rect x="7" y="-38" width="20" height="16" rx="6"/><rect x="7" y="22" width="20" height="16" rx="6"/></g>
+      <g stroke="#8a9a8c" stroke-width="1" opacity=".35">${[-23,-17,-11,11,17,23].map(px=>`<path d="M${px}-36v11M${px}25v11"/>`).join('')}</g>
       <rect x="-40" y="-28" width="80" height="56" rx="15" fill="url(#metal)" stroke="#6c8580" stroke-width="2"/>
+      <path d="M-34-14Q-34-23-24-23H26Q33-23 35-17" fill="none" stroke="#fcfff9" stroke-width="2" opacity=".8"/>
+      <path d="M-33 19Q-30 24-23 24H27" fill="none" stroke="#6c847b" stroke-width="1.3" opacity=".6"/>
       <path d="M-33-19H-7V19H-33Z" fill="#e1e9e4" stroke="#8fa39b" stroke-width="2"/><path d="M-29-14V14M-23-14V14M-17-14V14" stroke="#afc0b8" stroke-width="2"/>
-      <rect x="6" y="-19" width="24" height="38" rx="7" fill="#406d65"/><circle cx="37" cy="-9" r="5" fill="#335850" stroke="#8caba1" stroke-width="2"/><circle cx="37" cy="9" r="5" fill="#335850" stroke="#8caba1" stroke-width="2"/>
+      <rect x="6" y="-19" width="24" height="38" rx="7" fill="#406d65"/><circle cx="37" cy="-9" r="5" fill="url(#sensor-glass)" stroke="#8caba1" stroke-width="2"/><circle cx="37" cy="9" r="5" fill="url(#sensor-glass)" stroke="#8caba1" stroke-width="2"/>
+      <g fill="#e7eee3" stroke="#84998e" stroke-width=".7">${[[-34,-17],[-34,17],[30,-21],[30,21]].map(([sx,sy])=>`<circle cx="${sx}" cy="${sy}" r="1.7"/><path d="M${sx-1} ${sy}h2"/>`).join('')}</g>
       <circle cx="18" cy="-10" r="3" fill="#a9d7b6"/><path d="M15 7L23 7M19 3V11" stroke="#bed6c9" stroke-width="2"/>
       <g id="onboard-parcel" transform="translate(-18 0) scale(.72)"><use href="#parcel"/></g>
     </g></g>
