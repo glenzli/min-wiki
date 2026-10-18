@@ -1,10 +1,14 @@
 import { smooth } from './model.ts';
 export const LIFE_STOPS = [0, .34, .7, 1] as const;
+/** The colour comparison ends before detachment; its axis is not calendar time. */
+export const COLOUR_AGES = [.46, .86] as const;
 export type LeafView = 'life' | 'inside' | 'water';
 const bounded = (x: number) => Number.isFinite(x) ? Math.max(0, Math.min(1, x)) : 0;
+export const colourProgressAt = (age: number) => bounded((age - COLOUR_AGES[0]) / (COLOUR_AGES[1] - COLOUR_AGES[0]));
+export const ageAtColourProgress = (progress: number) => COLOUR_AGES[0] + bounded(progress) * (COLOUR_AGES[1] - COLOUR_AGES[0]);
 /** Representative deciduous broadleaf. These are teaching stages, not days or rates. */
 export function leafLifeAt(value: number) {
-  const age = bounded(value), growth = smooth(0, .28, age), senescence = smooth(.46, .86, age);
+  const age = bounded(value), growth = smooth(0, .28, age), senescence = smooth(COLOUR_AGES[0], COLOUR_AGES[1], age);
   const separation = smooth(.77, .87, age), fall = smooth(.87, 1, age);
   const transport = growth * (1 - separation);
   return {

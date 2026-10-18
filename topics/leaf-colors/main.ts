@@ -7,7 +7,7 @@ import { scaleContent, seasonStory, kidsStories, observations, epidermisContent 
 import { journeyScale, JOURNEY_DURATION, pigmentsAt, routeLevel, SCALE_STOPS, epidermisVisible, LEAF_METRIC, SECTION_TURN_END } from './model.ts';
 import type { LeafKind } from './model.ts';
 import { LeafScene } from './scene.ts';
-import { LIFE_STOPS, leafLifeAt, readLeafRoute, type LeafView } from './lifecycle.ts';
+import { LIFE_STOPS, COLOUR_AGES, colourProgressAt, ageAtColourProgress, leafLifeAt, readLeafRoute, type LeafView } from './lifecycle.ts';
 import { lifeContent, waterStory } from './lifeContent.ts';
 import { mountWaterScene } from '../plant-water/scene.ts';
 import { WATER_STOPS } from '../plant-water/model.ts';
@@ -17,7 +17,7 @@ translateDocument(t);
 
 const el = (id: string) => document.getElementById(id)!;
 let position = 0, zoom = 0, season = 0, kind: LeafKind = 'yellow', academic = false, playing = false;
-let touring = false, journey = 0;
+let touring = false, journey = 0, colourPlaying = false;
 let cancelSeek: () => void = () => {};
 let cancelWaterZoom: () => void = () => {}, waterZoom = 0;
 let frame = 0, last = 0, scene: LeafScene | undefined;
@@ -71,6 +71,15 @@ function update() {
   el('season-story').textContent = life.stage === 'bud' || life.stage === 'fallen' ? story.observe : seasonStory(season, kind === 'red', academic);
   el('play').textContent = playing ? t('暂停') : age >= 1 ? t('再看一次') : t('播放叶子的一生');
   el('play').setAttribute('aria-pressed', String(playing));
+  const colourProgress = colourProgressAt(age);
+  const colourName = !inspectable ? story.title : season < .12 ? t('绿叶') : season < .4 ? t('绿色渐退') : kind === 'red' ? t('红色渐显') : t('黄色显露');
+  (el('colour-progress') as HTMLInputElement).value = String(Math.round(colourProgress * 1000));
+  (el('colour-progress') as HTMLInputElement).disabled = !inspectable;
+  el('colour-progress').setAttribute('aria-valuetext', colourName);
+  el('colour-readout').textContent = colourName;
+  el('colour-play').textContent = colourPlaying ? t('暂停变色') : !inspectable ? t('回看变色') : colourProgress >= 1 ? t('重播变色') : t('播放变色');
+  el('colour-play').setAttribute('aria-pressed', String(colourPlaying));
+  el('colour-end').textContent = kind === 'red' ? t('红叶') : t('黄叶');
   el('life-title').textContent = story.title; el('life-cause').textContent = story.cause;
   if (view !== 'inside') {
     el('scale-title').textContent = el('detail-title').textContent = story.title;
@@ -80,6 +89,7 @@ function update() {
   }
   (document.querySelector('.toolbar') as HTMLElement).hidden = view !== 'inside';
   (document.querySelector('.journey-controls') as HTMLElement).hidden = view !== 'inside';
+  (document.querySelector('.scale-control') as HTMLElement).hidden = view !== 'inside';
   el('zoom-back').hidden = view !== 'inside';
   document.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(button => { button.setAttribute('aria-pressed', String(button.dataset.view === view)); button.disabled = button.dataset.view === 'inside' && !inspectable; });
   el('inside-availability').hidden = inspectable;
@@ -159,12 +169,35 @@ el('labels').addEventListener('click', () => {
 });
 el('zoom-back').addEventListener('click', () => { seekScale([...SCALE_STOPS].reverse().find(stop=>stop<position-.01) ?? 0); });
 el('season').addEventListener('input', () => { stop(); age = Number((el('season') as HTMLInputElement).value) / 1000; update(); });
-function stop() { cancelSeek(); playing = false; if (!touring && !waterPlaying) { cancelAnimationFrame(frame); frame = 0; } }
+el('colour-progress').addEventListener('input', () => {
+  playing = false; colourPlaying = false;
+  age = ageAtColourProgress(Number((el('colour-progress') as HTMLInputElement).value) / 1000);
+  update();
+});
+el('colour-play').addEventListener('click', () => {
+  playing = false;
+  if (motionPreference.matches) {
+    colourPlaying = false;
+    const next = !leafLifeAt(age).microscopyAvailable ? 0 : [.25, .5, .75, 1].find(stop => stop > colourProgressAt(age) + .01) ?? 0;
+    age = ageAtColourProgress(next); update(); return;
+  }
+  colourPlaying = !colourPlaying;
+  if (colourPlaying) {
+    if (age < COLOUR_AGES[0] || age >= COLOUR_AGES[1]) age = COLOUR_AGES[0];
+    last = performance.now(); if (!frame) frame = requestAnimationFrame(tick);
+  }
+  update();
+});
+function stop() { cancelSeek(); playing = false; colourPlaying = false; if (!touring && !waterPlaying) { cancelAnimationFrame(frame); frame = 0; } }
 function tick(now: number) {
   frame = 0;
-  if ((!playing && !touring && !waterPlaying) || document.hidden) return;
+  if ((!playing && !colourPlaying && !touring && !waterPlaying) || document.hidden) return;
   const dt = Math.min((now - last) / 1000, .1); last = now;
   if (playing) age = Math.min(1, age + dt / 36);
+  if (colourPlaying) {
+    age = Math.min(COLOUR_AGES[1], age + dt * (COLOUR_AGES[1] - COLOUR_AGES[0]) / 18);
+    if (age >= COLOUR_AGES[1]) colourPlaying = false;
+  }
   if (waterPlaying) { waterProgress = Math.min(1, waterProgress + dt / 22); if (waterProgress >= 1) waterPlaying = false; }
   if (touring) {
     const before=position;
@@ -175,18 +208,18 @@ function tick(now: number) {
   }
   if (age >= 1) playing = false;
   update();
-  if (playing || touring || waterPlaying) frame = requestAnimationFrame(tick);
+  if (playing || colourPlaying || touring || waterPlaying) frame = requestAnimationFrame(tick);
 }
 el('play').addEventListener('click', () => {
   cancelSeek();
   if (motionPreference.matches) { stop(); age = LIFE_STOPS.find(stop => stop > age + .01) ?? 0; update(); return; }
   if (playing) stop();
-  else { if (age >= 1) age = 0; playing = true; last = performance.now(); if (!frame) frame = requestAnimationFrame(tick); }
+  else { colourPlaying = false; if (age >= 1) age = 0; playing = true; last = performance.now(); if (!frame) frame = requestAnimationFrame(tick); }
   update();
 });
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) { cancelSeek(); cancelWaterZoom(); cancelAnimationFrame(frame); frame = 0; }
-  else if ((playing || touring || waterPlaying) && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); }
+  else if ((playing || colourPlaying || touring || waterPlaying) && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); }
 });
 const reduceMotion = () => {
   if (!motionPreference.matches) return;
@@ -194,7 +227,7 @@ const reduceMotion = () => {
 };
 motionPreference.addEventListener('change', reduceMotion);
 window.addEventListener('pagehide', event => { cancelAnimationFrame(frame); frame = 0; cancelSeek(); cancelWaterZoom(); if (!event.persisted) { touring = false; waterPlaying = false; stop(); scene?.dispose(); waterScene.dispose(); motionPreference.removeEventListener('change', reduceMotion); } });
-window.addEventListener('pageshow', () => { if ((playing || touring || waterPlaying) && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });
+window.addEventListener('pageshow', () => { if ((playing || colourPlaying || touring || waterPlaying) && !frame) { last = performance.now(); frame = requestAnimationFrame(tick); } });
 function changeView(next: LeafView, write = true) {
   cancelSeek(); cancelWaterZoom(); touring = false; waterPlaying = false;
   waterZoom = waterClose ? 1 : 0; waterScene.zoom(waterZoom);
@@ -222,4 +255,4 @@ window.addEventListener('popstate', () => { const route = readLeafRoute(location
 if (view === 'inside') position = 2;
 update();
 
-mountPresentationFrame({"root": ".explorer", "visual": ".stage", "transport": ".scale-control", "choices": ".leaf-lenses"});
+mountPresentationFrame({"root": ".explorer", "visual": ".stage", "transport": ".observation-controls", "choices": ".leaf-lenses"});

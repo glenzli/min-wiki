@@ -681,6 +681,17 @@ export class LeafScene {
     cover.addColorStop(.46,rgb(mix(base,[117,153,77],.2),.985*(1-opening)));
     cover.addColorStop(1,rgb(mix(base,[85,121,62],.28),.99*(1-opening)));
     c.fillStyle=cover;c.fillRect(-211,-110,422,220);
+    // Fixed soft mottling gives the closed profile texture without exposing
+    // membrane stacks before the explanatory cutaway opens.
+    c.save();c.globalAlpha*=1-opening;
+    for(let i=0;i<37;i++) {
+      const a=i*2.399963,r=Math.sqrt((i+.5)/37)*.92,x=Math.cos(a)*r*197,y=Math.sin(a)*r*93;
+      const radius=8+i%5*2,patch=c.createRadialGradient(x,y,0,x,y,radius);
+      patch.addColorStop(0,i%3?rgb(mix(base,[32,78,37],.3),.16):'#dce8b020');
+      patch.addColorStop(1,'#ffffff00');
+      this.ellipse(x,y,radius,radius*.72,patch);
+    }
+    c.restore();
     c.restore();
     // Envelope detail belongs to the explanation layer; the ordinary profiles
     // do not pretend to resolve two membranes in a light-microscope section.

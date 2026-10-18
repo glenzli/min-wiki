@@ -1,5 +1,15 @@
 # 一片叶子的一生 / The life of a leaf
 
+## Direct scale and colour controls · 2026-10-19
+
+The specimen now retains a compact pair of controls when explanation/settings are closed: observation scale, and leaf-colour progression with yellow/red pathways and its own play/pause action. Desktop places the axes side by side; narrow layouts stack them without a second rounded container. Both axes have native sliders, current-state labels and full touch targets. Scale presets remain shortcuts to the same camera positions; the guided journey, complete leaf lifecycle and model details stay in the secondary panel.
+
+Colour progression is a bounded view of the existing leaf-age state, mapping to ages .46–.86. It uses the same senescence and pigment curves rather than a second colour state. Its 18-second illustrative playback stops before detachment, so microscopic observation does not unexpectedly return to the whole-leaf view. Scrubbing pauses colour playback; changing scale does not reset leaf age or the selected colour pathway. The complete lifecycle remains available separately. Yellow and red compare different leaf capabilities, not two compulsory consecutive stages of every leaf.
+
+Closed chloroplast profiles gain fixed soft mottling that follows their existing seasonal palette. Their internal membrane stacks still become visible progressively in the explanatory close-up. No additional organelles, specimen measurements or microscope-resolution claims were introduced. The current cell supplies the compartments needed for the leaf-colour explanation; it is not a complete plant-cell atlas. The article remains a draft. Local preview and local commit only; no push or deployment.
+
+解说收起时，也能直接调观察尺度和叶色，切换黄叶／红叶并播放变色。颜色仍来自同一叶龄模型；变色播放停在脱落前，手动调节会暂停，放大不会重置叶龄。叶绿体的柔和纹理随原有配色变化，更细的膜结构随靠近逐步显露。当前细节服务于叶色机制，未扩写为完整的植物细胞图谱；仍保留草稿，仅本地预览和提交。
+
 ## Softer tissue boundaries · 2026-10-19
 
 The first microscopy-informed version still overemphasised angular, unusual profiles. `mesophyllGeometry.ts` now samples each ordinary spongy boundary by arc length and smooths the complete contour at a fixed spatial scale, including inward pore joins. This blunts narrow tips and small zigzags while retaining larger shape/size differences and unequal air cavities. Weighted positions stay within the cell's convex ownership region; middle portions of long shared straight walls remain coincident. The retained cell and its immediate contact knots stay exact, preserving its 97-point identity through zoom.

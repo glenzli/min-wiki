@@ -1,9 +1,35 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { leafLifeAt, leafPoint, legacyWaterURL, readLeafRoute } from '../lifecycle.ts';
+import { ageAtColourProgress, colourProgressAt, leafLifeAt, leafPoint, legacyWaterURL, readLeafRoute } from '../lifecycle.ts';
 import { pigmentsAt } from '../model.ts';
 import { waterAt } from '../../plant-water/model.ts';
 import { LeafScene } from '../scene.ts';
+
+test('colour comparison uses the existing age state and stays inside the intact microscopy range',()=>{
+  let previousGreen=1,previousRed=0;
+  for(let i=0;i<=1000;i++){
+    const progress=i/1000,age=ageAtColourProgress(progress),life=leafLifeAt(age);
+    assert.equal(life.microscopyAvailable,true);assert.equal(life.fall,0);assert.equal(life.size,1);
+    assert.ok(Math.abs(colourProgressAt(age)-progress)<1e-12);
+    const yellow=pigmentsAt(life.senescence,'yellow'),red=pigmentsAt(life.senescence,'red');
+    assert.ok(yellow.chlorophyll<=previousGreen);assert.ok(red.anthocyanins>=previousRed);
+    assert.equal(yellow.anthocyanins,0);assert.equal(red.chlorophyll,yellow.chlorophyll);
+    previousGreen=yellow.chlorophyll;previousRed=red.anthocyanins;
+  }
+  assert.equal(leafLifeAt(ageAtColourProgress(0)).senescence,0);
+  assert.equal(leafLifeAt(ageAtColourProgress(1)).senescence,1);
+});
+
+test('colour scrubbing retraces one leaf and clamps without extending into growth or fall',()=>{
+  const original=leafPoint(35,-12,ageAtColourProgress(.37));
+  for(const value of [1,.2,.8,0,.37]){
+    const age=ageAtColourProgress(value);
+    assert.deepEqual(leafPoint(35,-12,age),original);
+  }
+  for(const value of [-1,NaN,Infinity])assert.equal(ageAtColourProgress(value),ageAtColourProgress(0));
+  assert.equal(ageAtColourProgress(2),ageAtColourProgress(1));
+  assert.equal(colourProgressAt(.1),0);assert.equal(colourProgressAt(1),1);
+});
 
 test('metric microscopy is available only after full expansion and before detachment',()=>{
   for(const age of [0,.22,.26,.279,1])assert.equal(leafLifeAt(age).microscopyAvailable,false);

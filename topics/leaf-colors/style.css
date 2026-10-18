@@ -61,3 +61,34 @@
 /* The scene sample keeps its own circular marker and a full touch target. */
 .hotspot{width:44px;height:44px}
 .metric-caption{grid-column:1/-1;margin:0;font-size:12px;line-height:1.6;color:var(--secondary);font-weight:400}
+
+/* These two axes remain with the specimen when the explanation is closed. */
+.presentation-frame .observation-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;width:100%;color:var(--ink)}
+.presentation-frame .observation-controls:has(.scale-control[hidden]){grid-template-columns:1fr}
+.presentation-frame .observation-controls :is(.scale-control,.colour-control){display:flex;flex-direction:column;gap:6px;min-width:0;padding:0}
+.presentation-frame .observation-controls .control-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;min-width:0}
+.presentation-frame .observation-controls label{font-size:14px;font-weight:650;white-space:nowrap}
+.presentation-frame .observation-controls output{font-size:12px;font-weight:400;color:var(--secondary);text-align:right;overflow-wrap:anywhere}
+.presentation-frame .observation-controls input[type=range]{width:100%;min-height:28px;margin:0;accent-color:var(--accent)}
+.presentation-frame .observation-controls .colour-control{border-left:1px solid var(--border);padding-left:20px}
+.presentation-frame .observation-controls:has(.scale-control[hidden]) .colour-control{border:0;padding:0}
+.presentation-frame .observation-controls .scale-ends{display:flex;gap:4px;justify-content:space-between}
+.presentation-frame .observation-controls .scale-ends button{flex:1;min-width:0;min-height:44px;padding:7px 10px;font-size:13px;color:var(--secondary);border-color:transparent;background:transparent}
+.presentation-frame .observation-controls .scale-ends button[aria-pressed=true]{color:var(--ink);background:var(--tint);font-weight:600}
+.presentation-frame .observation-controls .colour-ends{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--secondary)}
+.presentation-frame .observation-controls .scale-axis-note{margin:0;font-size:11px;line-height:1.75;color:var(--secondary)}
+.presentation-frame .observation-controls .colour-options{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.presentation-frame .observation-controls .leaf-types{display:flex;gap:4px;flex-wrap:nowrap;margin:0}
+.presentation-frame .observation-controls .leaf-types button{display:flex;align-items:center;min-height:44px;padding:7px 10px;font-size:13px;white-space:nowrap}
+.presentation-frame .observation-controls .leaf-types i{width:7px;height:7px;margin-right:7px;flex-shrink:0}
+.presentation-frame .observation-controls #colour-play{min-height:44px;font-size:13px;padding:7px 10px}
+.presentation-frame .journey-controls .metric-caption{flex-basis:100%}
+.presentation-frame .presentation-notes .life-controls{padding:10px 0 16px}
+.presentation-frame .presentation-notes .season-heading{flex-direction:column;align-items:flex-start;gap:10px}
+.presentation-frame .presentation-notes .leaf-view-toggles{justify-content:flex-start;padding:8px 0}
+.presentation-frame .presentation-notes .journey-controls{padding:12px 0;background:transparent}
+@media(max-width:740px){
+  .presentation-frame .observation-controls{grid-template-columns:1fr;gap:12px}
+  .presentation-frame .observation-controls .colour-control{border-left:0;border-top:1px solid var(--border);padding:12px 0 0}
+  .presentation-frame .observation-controls .scale-control output{display:block}
+}
