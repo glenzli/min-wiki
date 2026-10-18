@@ -22,7 +22,7 @@ Not every leaf ends red: yellow need not turn red and chlorophyll does not becom
 
 ## Model limits
 
-The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated. The mature spatial model is 60 mm long and 200 µm thick. Blade, epidermis and tissue share one length unit and the camera zooms uniformly. These are teaching assumptions with schematic anatomy, not measurements of a particular species.
+The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated. The mature spatial model is 60 mm long and 200 µm thick. Blade, epidermis and tissue share one length unit and the camera zooms uniformly. These are teaching assumptions with schematic anatomy, not measurements of a particular species. The transverse view removes only the concealing foreground; surrounding tissue remains continuous. Colour and shading distinguish structures, not measured compartment colours or pigment concentrations.
 
 ## Sources
 

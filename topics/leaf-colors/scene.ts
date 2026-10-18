@@ -1,4 +1,4 @@
-import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, leafSectionAt, LEAF_SECTION, cellEdge, VACUOLE, vacuolePoint, epidermisBoundary, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SECTION_TURN_END, metricScaleBar } from './model.ts';
+import { leafRGB, mix, pigmentsAt, rgb, smooth, scaleCamera, SCALE_ENTRIES, leafSectionAt, LEAF_SECTION, SECTION_SPAN, sectionContextTiles, cellEdge, VACUOLE, vacuolePoint, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SECTION_TURN_END, metricScaleBar } from './model.ts';
 import type { LeafKind, Pigments, ScaleEntry } from './model.ts';
 import { t } from './i18n.ts';
 import { leafLifeAt, leafPoint } from './lifecycle.ts';
@@ -12,7 +12,8 @@ export class LeafScene {
   private academic = false;
   private showLabels = true;
   private surface = new EpidermisSurface();
-  private upperCellEdges: number[] = [];
+  private rearSurface = document.createElement('canvas');
+  private upperCellEdges = new Map<string,readonly number[]>();
   private plastidPlate = document.createElement('canvas');
   private plastidKey = '';
   private bladeArt = new BladeArtwork();
@@ -31,7 +32,6 @@ export class LeafScene {
   private organellePoint: Point = [Math.cos(-Math.PI/4)*146, Math.sin(-Math.PI/4)*110];
   private organelleAngle = Math.PI/4;
   private vacuolePath = new Path2D();
-  private surfacePath = new Path2D();
   private season = 0;
   private age = .34;
   private lifeDirty = true;
@@ -55,16 +55,6 @@ export class LeafScene {
       if(i) this.vacuolePath.lineTo(...point); else this.vacuolePath.moveTo(...point);
     }
     this.vacuolePath.closePath();
-    epidermisBoundary.forEach(([x,y],i)=>i?this.surfacePath.lineTo(x,y):this.surfacePath.moveTo(x,y));
-    this.surfacePath.closePath();
-    const patch = SCALE_ENTRIES[0];
-    const bladePointAt = (x: number, y = 0): Point => {
-      const wx = patch.x + x * patch.size, wy = patch.y + y * patch.size;
-      return [wx * Math.cos(-BLADE_ANGLE) - wy * Math.sin(-BLADE_ANGLE), wx * Math.sin(-BLADE_ANGLE) + wy * Math.cos(-BLADE_ANGLE)];
-    };
-    this.upperCellEdges = this.surface.seam(
-      bladePointAt(LEAF_SECTION.left), bladePointAt(LEAF_SECTION.right))
-      .map(u => LEAF_SECTION.left + (LEAF_SECTION.right - LEAF_SECTION.left) * u);
     this.observer = new ResizeObserver(() => this.resize());
     this.observer.observe(canvas);
     this.resize();
@@ -157,27 +147,28 @@ export class LeafScene {
       c.save();
       if (depth === 0) {
         c.globalAlpha *= section.bladeOpacity;
-        // First approach a continuous epidermal sheet across the whole blade.
-        // Isolate its sample only during the turn, keeping every cell registered.
         c.transform(...section.surfaceTransform);
-        if (section.contextOpacity < 1) {
-          const sample = new Path2D(); sample.addPath(this.surfacePath,new DOMMatrix([patch.size,0,0,patch.size,patch.x,patch.y]));
-          const outside = new Path2D(); outside.rect(-1000,-1000,2000,2000); outside.addPath(sample);
-          if (section.contextOpacity > 0) {
-            c.save();c.clip(outside,'evenodd');c.globalAlpha*=section.contextOpacity;
-            this.leaf(pigmentsAt(this.season,this.kind));c.restore();
-          }
-          c.clip(sample);
-        }
       }
       const p=pigmentsAt(this.season,this.kind);
-      if (depth===0 && section.bladeOpacity>0) {
-        this.leaf(p);
-        const cut = smooth(.48,.66,this.position) * (1-smooth(.94,1.1,this.position));
-        if (cut > 0) {
-          c.save(); c.translate(patch.x,patch.y); c.scale(patch.size,patch.size);
-          c.globalAlpha *= cut; c.strokeStyle = '#345d486b'; c.lineWidth = .8;
-          c.setLineDash([4,4]); c.stroke(this.surfacePath); c.restore();
+      if (depth===0 && section.bladeOpacity>0 && section.surfaceScale>1e-6) {
+        // The rear half-plane stays attached to its full-width cut edge.
+        // Remove only the foreground that would conceal the tissue; never
+        // isolate a rectangular sample or fade all surrounding leaf material.
+        if(section.angle>0)this.rearLeaf(p,patch.y);
+        else {
+          c.save(); c.beginPath(); c.rect(-1000,-1000,2000,1000+patch.y); c.clip();
+          this.leaf(p); c.restore();
+        }
+        if (section.foregroundOpacity>0) {
+          c.save(); c.beginPath(); c.rect(-1000,patch.y,2000,1000); c.clip();
+          c.globalAlpha*=section.foregroundOpacity; this.leaf(p); c.restore();
+        }
+        if (section.guideOpacity>0) {
+          c.save(); c.rotate(BLADE_ANGLE);
+          c.clip(this.bladeArt.outline(this.leafMotion.sample(life.growth,life.fall))); c.rotate(-BLADE_ANGLE);
+          const unit=sceneScale*life.size;
+          c.globalAlpha*=section.guideOpacity; c.strokeStyle='#f3e9b6'; c.lineWidth=1.3/unit;
+          c.setLineDash([5/unit,4/unit]); c.beginPath();c.moveTo(-400,patch.y);c.lineTo(400,patch.y);c.stroke();c.restore();
         }
       } else if(depth===1) this.tissue(p);
       c.restore();
@@ -194,8 +185,6 @@ export class LeafScene {
         // This face is perpendicular to the leaf surface, not pasted on it.
         // Both meet at y=LEAF_SECTION.top for every camera angle.
         c.save(); c.transform(...section.sectionTransform);
-        c.beginPath(); c.rect(LEAF_SECTION.left,LEAF_SECTION.top,
-          LEAF_SECTION.right-LEAF_SECTION.left,LEAF_SECTION.bottom-LEAF_SECTION.top); c.clip();
         drawNested(1);
         c.restore();
         c.restore(); return;
@@ -243,7 +232,9 @@ export class LeafScene {
     this.canvas.dataset.sectionAngle = section.angle.toFixed(6);
     this.canvas.dataset.surfaceField = 'whole-blade';
     this.canvas.dataset.surfaceDetail = section.textureOpacity.toFixed(4);
-    this.canvas.dataset.surfaceContext = section.contextOpacity.toFixed(4);
+    this.canvas.dataset.surfaceContext = section.bladeOpacity.toFixed(4);
+    this.canvas.dataset.foregroundOpacity = section.foregroundOpacity.toFixed(4);
+    this.canvas.dataset.sectionContext = 'continuous-leaf';
     this.canvas.dataset.anatomyRenderer = 'continuous-canvas';
     this.canvas.dataset.leafPose = this.bladeKey;
   }
@@ -270,6 +261,24 @@ export class LeafScene {
     const node = c.createRadialGradient(17, 244, 1, 19, 249, 15);
     node.addColorStop(0, '#c2b38b9c'); node.addColorStop(.45, '#6c705c48'); node.addColorStop(1, '#56604700');
     c.fillStyle = node; c.fillRect(3, 234, 34, 30); c.restore();
+  }
+  private rearLeaf(p:Pigments,cutY:number) {
+    // A soft viewing window removes distant surface detail before the entire
+    // macroscopic blade becomes edge-on. Geometry and magnification are intact;
+    // this is an illustrative focus cue, not a calibrated optical depth of field.
+    const target=this.ctx, plate=this.rearSurface;
+    if(plate.width!==this.canvas.width||plate.height!==this.canvas.height) {
+      plate.width=this.canvas.width;plate.height=this.canvas.height;
+    }
+    const layer=plate.getContext('2d')!;
+    layer.setTransform(1,0,0,1,0,0);layer.globalCompositeOperation='source-over';layer.clearRect(0,0,plate.width,plate.height);
+    layer.setTransform(target.getTransform());layer.save();layer.beginPath();layer.rect(-1000,-1000,2000,1000+cutY);layer.clip();
+    try {this.ctx=layer;this.leaf(p);} finally {this.ctx=target;layer.restore();}
+    const weight=smooth(.60,.72,this.position);
+    const fade=layer.createLinearGradient(0,cutY-600*UNITS_PER_UM,0,cutY-150*UNITS_PER_UM);
+    fade.addColorStop(0,`rgba(0,0,0,${1-weight})`);fade.addColorStop(1,'#000');
+    layer.globalCompositeOperation='destination-in';layer.fillStyle=fade;layer.fillRect(-1000,-1000,2000,2000);
+    target.save();target.setTransform(1,0,0,1,0,0);target.drawImage(plate,0,0);target.restore();
   }
   private waterOnLeaf(active: number) {
     const c = this.ctx, p = this.waterProgress;
@@ -303,6 +312,11 @@ export class LeafScene {
     const box = Math.min(width, Math.max(...lines.map(l => c.measureText(l).width))) + 14;
     x=Math.max(12+box/2,Math.min(this.width-12-box/2,x));
     y=Math.max(68,Math.min(this.height-52-lines.length*lineHeight,y));
+    // Anatomy labels share screen coordinates with the model scale bar. Keep
+    // right-hand labels below its reserved box, including long mobile English.
+    const barTop=this.width<600?76:59,barBottom=this.width<600?124:107;
+    if(x+box/2>this.width-(this.width<600?114:142) && y-fontSize*.75<barBottom && y+lines.length*lineHeight+3>barTop)
+      y=barBottom+fontSize*.75+12;
     if (anchor) { c.beginPath(); c.moveTo(...anchor); c.lineTo(x, y - 5); c.strokeStyle = '#71876b'; c.lineWidth = 1; c.stroke(); this.ellipse(...anchor, 2, 2, '#698365'); }
     c.fillStyle = '#f8faedeb'; c.fillRect(x - box / 2, y - fontSize * .75, box, lines.length * lineHeight + 3);
     c.fillStyle = '#39543b'; lines.forEach((l, i) => c.fillText(l, x, y + i * lineHeight));
@@ -376,62 +390,105 @@ export class LeafScene {
     }
   }
 
+  private sectionEdges(first:number,last:number) {
+    const key=`${first}:${last}`;
+    let edges=this.upperCellEdges.get(key);
+    if (!edges) {
+      const patch=SCALE_ENTRIES[0];
+      const left=LEAF_SECTION.left+first*SECTION_SPAN,right=LEAF_SECTION.right+last*SECTION_SPAN;
+      const bladePointAt=(x:number):Point=>{
+        const wx=patch.x+x*patch.size,wy=patch.y;
+        return [wx*Math.cos(-BLADE_ANGLE)-wy*Math.sin(-BLADE_ANGLE),wx*Math.sin(-BLADE_ANGLE)+wy*Math.cos(-BLADE_ANGLE)];
+      };
+      edges=this.surface.seam(bladePointAt(left),bladePointAt(right)).map(u=>left+(right-left)*u);
+      if(this.upperCellEdges.size>=16)this.upperCellEdges.delete(this.upperCellEdges.keys().next().value!);
+      this.upperCellEdges.set(key,edges);
+    }
+    return edges;
+  }
+  private tissuePalette(p:Pigments) {
+    // Translucent botanical illustration under soft transmitted light. Only
+    // chloroplasts carry green/yellow pigment marks; anthocyanin tints vacuoles.
+    const plastid=leafRGB({...p,anthocyanins:0});
+    return {
+      light:rgb(mix(plastid,[222,231,181],.84)),
+      body:rgb(mix(plastid,[183,207,143],.78)),
+      edge:rgb(mix(plastid,[126,164,106],.8)),
+      liquid:rgb(mix([208,224,177],[230,158,187],p.anthocyanins)),
+    };
+  }
   private epidermalRow(edges: readonly number[], color: string) {
     const c = this.ctx;
     // Same surface-wall intersections, continued down the metric cut edge.
     for (let i = 1; i < edges.length; i++) {
       const left = edges[i - 1], right = edges[i];
-      const bottom = -113 + 1.5 * Math.sin(i * 2.1), bend = Math.min(2.2, (right - left) * .12);
+      const seed=Math.round((left+right)*500000)/1000000;
+      const bottom = -113 + 1.5 * Math.sin(seed*.127), bend = Math.min(2.2, (right - left) * .12);
       c.beginPath(); c.moveTo(left, -148); c.lineTo(right, -148);
       c.bezierCurveTo(right - bend, -139, right + bend, -119, right, bottom);
       c.quadraticCurveTo((left + right) * .5, bottom + 2, left, bottom);
       c.bezierCurveTo(left + bend, -119, left - bend, -139, left, -148); c.closePath();
-      c.fillStyle = color; c.fill(); c.strokeStyle = '#9aaf87'; c.lineWidth = .8; c.stroke();
+      c.fillStyle = color; c.fill(); c.strokeStyle = '#728b59'; c.lineWidth = .8; c.stroke();
     }
   }
   private tissue(p: Pigments) {
-    const c = this.ctx;
+    const c=this.ctx, palette=this.tissuePalette(p), inverse=c.getTransform().inverse();
+    const xs=[[0,0],[this.canvas.width,0],[0,this.canvas.height],[this.canvas.width,this.canvas.height]]
+      .map(([x,y])=>inverse.transformPoint(new DOMPoint(x,y)).x);
+    const left=Math.min(...xs)-2,right=Math.max(...xs)+2;
+    c.save(); c.beginPath();c.rect(left,LEAF_SECTION.top,right-left,LEAF_SECTION.bottom-LEAF_SECTION.top);c.clip();
     c.save();c.globalAlpha*=1-smooth(1.18,1.92,this.position);
-    const body=c.createLinearGradient(0,-145,0,134);body.addColorStop(0,'#e2ead0');body.addColorStop(1,'#f3f3e4');
-    c.fillStyle=body;c.fillRect(-217,-145,434,280);
-    c.fillStyle = '#c6d8a3'; c.fillRect(-217, -153, 434, 5);
-    c.fillStyle = '#f6f7e4'; c.fillRect(-217, -148, 434, 3);
-    c.fillStyle = '#c2d0a8'; c.fillRect(-217, 133, 434, 2);
-    for (let i = 0; i < 10; i++) {
-      c.fillStyle = '#f0f2de'; c.strokeStyle = '#91ab82'; c.lineWidth = 1.1;
-      this.cellOutline(-195 + i * 43, 123 + Math.cos(i * 1.5), 19.5, 10.5, i * 2.1 + 4, .7); c.fill(); c.stroke();
+    // Recessed gaps are a depth cue, not white material or pigment-bearing cells.
+    const body=c.createLinearGradient(0,-145,0,134);body.addColorStop(0,'#71895d');body.addColorStop(.55,'#82976a');body.addColorStop(1,'#91a276');
+    c.fillStyle=body;c.fillRect(left,-145,right-left,280);
+    c.fillStyle='#8eab69';c.fillRect(left,-153,right-left,5);
+    c.fillStyle='#c1d29e';c.fillRect(left,-148,right-left,3);
+    c.fillStyle='#77945f';c.fillRect(left,133,right-left,2);
+    const tiles=sectionContextTiles(left,right);
+    // One seam across the complete visible cut: band boundaries cannot invent
+    // extra epidermal walls or restart the shape of an already visible cell.
+    this.epidermalRow(this.sectionEdges(tiles[0],tiles[tiles.length-1]), '#b8cc94');
+    for(const tile of tiles) {
+      c.save();c.translate(tile*SECTION_SPAN,0);
+      for (let i = 0; i < 10; i++) {
+        const id=i+tile*10;
+        c.fillStyle = '#c1d09d'; c.strokeStyle = '#758c5e'; c.lineWidth = 1.1;
+        this.cellOutline(-195 + i * 43, 123 + Math.cos(id * 1.5), 19.5, 10.5, id * 2.1 + 4, .7); c.fill(); c.stroke();
+      }
+      for (let i = 0; i < 8; i++) {
+        const id=i+tile*8,seed=id*2.3;
+        const x = -207 + i * 53, cy = -49 + Math.sin(id * 2.1) * 3, rx = 23.5 + Math.sin(id * 1.7), ry = 54 + Math.cos(id * 2.7) * 4;
+        const cellFill=c.createLinearGradient(x,-108,x+48,9);cellFill.addColorStop(0,palette.body);cellFill.addColorStop(1,palette.light); c.fillStyle = cellFill; c.strokeStyle = '#66824f';c.lineWidth=1.1;
+        this.cellOutline(x + 24, cy, rx, ry, seed, .72); c.fill(); c.stroke();
+        this.cellOutline(x + 24, cy, rx-1.4, ry-1.4, seed, .72);c.strokeStyle='#dce9ba';c.lineWidth=.65;c.stroke();
+        this.cellOutline(x + 24, cy, rx * .52, ry * .64, seed, .72); c.fillStyle = palette.liquid; c.fill();
+        c.strokeStyle=rgb(mix([157,184,136],[177,123,148],p.anthocyanins),.48);c.lineWidth=.45;c.stroke();
+        this.ellipse(x+24+rx*.56,cy+ry*.57,2.8,3.8,'#d0c3db','#a69bb8');
+        // Organelles follow the cell's contour within the cytoplasm, outside the liquid compartment.
+        this.peripheralPlastids(x + 24, cy, rx, ry, seed, 6, 5.2, p, .72);
+      }
+      // Loosely arranged spongy mesophyll leaves connected recessed air spaces. The
+      // retained cell at SCALE_ENTRIES[1] is deliberately absent from this list.
+      const spongy = [
+        [-190,37,24,17,-.18],[-123,47,29,19,.16],[-51,31,25,16,-.24],
+        [107,36,28,18,.2],[179,50,27,20,-.18],
+        [-191,85,23,18,.26],[-153,94,25,16,-.28],[-83,89,28,18,.18],
+        [-15,89,24,19,-.2],[57,91,29,18,.13],[133,91,25,17,-.16],[190,94,23,16,.23],
+      ];
+      if(tile!==0)spongy.push([SCALE_ENTRIES[1].x,SCALE_ENTRIES[1].y,20,16,.1]);
+      spongy.forEach(([x,y,rx,ry,angle], i) => {
+        const seed=i*2.2+3+tile*3.71;
+        c.save();c.translate(x,y);c.rotate(angle);
+        const fill=c.createLinearGradient(-rx,-ry,rx,ry);fill.addColorStop(0,palette.light);fill.addColorStop(1,palette.body);
+        this.cellOutline(0,0,rx,ry,seed,.91); c.fillStyle=fill; c.strokeStyle='#64804e';c.lineWidth=1.1;c.fill();c.stroke();
+        this.cellOutline(0,0,rx-1.3,ry-1.3,seed,.91);c.strokeStyle='#dce8b8';c.lineWidth=.65;c.stroke();
+        this.cellOutline(0,0,rx*.52,ry*.51,seed,.91);c.fillStyle=palette.liquid;c.fill();
+        c.strokeStyle=rgb(mix([157,184,136],[177,123,148],p.anthocyanins),.4);c.lineWidth=.5;c.stroke();
+        this.ellipse(-rx*.49,ry*.33,2.2,2.5,'#d0c3db','#a69bb8');
+        this.peripheralPlastids(0,0,rx,ry,seed,4+i%2,3.8,p,.91);c.restore();
+      });
+      c.restore();
     }
-    this.epidermalRow(this.upperCellEdges, '#e9eed7');
-    for (let i = 0; i < 8; i++) {
-      const x = -207 + i * 53, cy = -49 + Math.sin(i * 2.1) * 3, rx = 23.5 + Math.sin(i * 1.7), ry = 54 + Math.cos(i * 2.7) * 4;
-      const cellFill=c.createLinearGradient(x,-108,x+48,9);cellFill.addColorStop(0,'#dce8c3');cellFill.addColorStop(1,'#e9efd6'); c.fillStyle = cellFill; c.strokeStyle = '#90aa78';c.lineWidth=1.1;
-      this.cellOutline(x + 24, cy, rx, ry, i * 2.3, .72); c.fill(); c.stroke();
-      this.cellOutline(x + 24, cy, rx-1.4, ry-1.4, i * 2.3, .72);c.strokeStyle='#fafce8';c.lineWidth=.65;c.stroke();
-      this.cellOutline(x + 24, cy, rx * .52, ry * .64, i * 2.3, .72); c.fillStyle = rgb(mix([241,247,231],[224,150,177],p.anthocyanins)); c.fill();
-      c.strokeStyle=rgb(mix([157,184,136],[177,123,148],p.anthocyanins),.48);c.lineWidth=.45;c.stroke();
-      this.ellipse(x+24+rx*.56,cy+ry*.57,2.8,3.8,'#d0c3db','#a69bb8');
-      // Organelles follow the cell's contour within the cytoplasm, outside the liquid compartment.
-      this.peripheralPlastids(x + 24, cy, rx, ry, i * 2.3, 6, 5.2, p, .72);
-    }
-    // Loosely arranged spongy mesophyll leaves connected pale air spaces. The
-    // retained cell at SCALE_ENTRIES[1] is deliberately absent from this list.
-    const spongy = [
-      [-190,37,24,17,-.18],[-123,47,29,19,.16],[-51,31,25,16,-.24],
-      [107,36,28,18,.2],[179,50,27,20,-.18],
-      [-206,85,23,18,.26],[-153,94,25,16,-.28],[-83,89,28,18,.18],
-      [-15,89,24,19,-.2],[57,91,29,18,.13],[133,91,25,17,-.16],[204,94,23,16,.23],
-    ];
-    spongy.forEach(([x,y,rx,ry,angle], i) => {
-      const seed=i*2.2+3;
-      c.save();c.translate(x,y);c.rotate(angle);
-      const fill=c.createLinearGradient(-rx,-ry,rx,ry);fill.addColorStop(0,'#eaf0d8');fill.addColorStop(1,'#d6e3be');
-      this.cellOutline(0,0,rx,ry,seed,.91); c.fillStyle=fill; c.strokeStyle='#8ea879';c.lineWidth=1.1;c.fill();c.stroke();
-      this.cellOutline(0,0,rx-1.3,ry-1.3,seed,.91);c.strokeStyle='#fbfce9';c.lineWidth=.65;c.stroke();
-      this.cellOutline(0,0,rx*.52,ry*.51,seed,.91);c.fillStyle=rgb(mix([243,248,233],[224,150,177],p.anthocyanins));c.fill();
-      c.strokeStyle=rgb(mix([157,184,136],[177,123,148],p.anthocyanins),.4);c.lineWidth=.5;c.stroke();
-      this.ellipse(-rx*.49,ry*.33,2.2,2.5,'#d0c3db','#a69bb8');
-      this.peripheralPlastids(0,0,rx,ry,seed,4+i%2,3.8,p,.91);c.restore();
-    });
     this.label(t('上表皮'), -125, -180, [-125, -132], 100);
     this.label(t('叶肉细胞'), 133, -181, [133, -62], 120);
     this.label(t('细胞间隙'), 80, 161, [68, 64], 125);
@@ -442,6 +499,7 @@ export class LeafScene {
     this.labelsVisible=Math.abs(this.position-2)<.14;
     this.cell(p);
     c.restore();this.labelsVisible=saved;
+    c.restore();
   }
   private cell(p: Pigments) {
     const c = this.ctx;
@@ -449,8 +507,9 @@ export class LeafScene {
     if(this.kind==='yellow')c.globalAlpha*=1-smooth(2.15,2.8,this.position);
     this.cellOutline(0,-2,171,134,1.4,.85);
     const cytoplasm=c.createRadialGradient(-65,-64,4,18,16,205);
-    cytoplasm.addColorStop(0,'#f0f4de');cytoplasm.addColorStop(.58,'#e3edce');cytoplasm.addColorStop(1,'#b8cda5');
-    c.fillStyle=cytoplasm;c.fill();c.lineWidth=6.5;c.strokeStyle='#c4d3ad';c.stroke();
+    const palette=this.tissuePalette(p);
+    cytoplasm.addColorStop(0,palette.light);cytoplasm.addColorStop(.58,palette.body);cytoplasm.addColorStop(1,palette.edge);
+    c.fillStyle=cytoplasm;c.fill();c.lineWidth=6.5;c.strokeStyle='#aac38a';c.stroke();
     c.lineWidth=1.1;c.strokeStyle='#809c70';c.stroke();
     this.cellOutline(0,-2,167,130,1.4,.85);c.strokeStyle='#f7f9ed';c.lineWidth=1.5;c.stroke();
     this.cellOutline(0,-2,163,126,1.4,.85);c.strokeStyle='#8fa778';c.lineWidth=.8;c.stroke();
@@ -498,9 +557,9 @@ export class LeafScene {
   private vacuole(p: Pigments) {
     const c = this.ctx;
     const fill=c.createRadialGradient(-38,-43,3,15,17,150);
-    fill.addColorStop(0,rgb(mix([250,253,245],[248,205,218],p.anthocyanins)));
-    fill.addColorStop(.65,rgb(mix([238,247,232],[230,158,187],p.anthocyanins)));
-    fill.addColorStop(1,rgb(mix([209,229,207],[200,119,155],p.anthocyanins)));
+    fill.addColorStop(0,rgb(mix([225,234,196],[248,205,218],p.anthocyanins)));
+    fill.addColorStop(.65,rgb(mix([208,224,177],[230,158,187],p.anthocyanins)));
+    fill.addColorStop(1,rgb(mix([171,198,143],[200,119,155],p.anthocyanins)));
     c.save();c.clip(this.vacuolePath);c.fillStyle=fill;c.fill(this.vacuolePath);
     // Stable, distributed solute symbols. Concentration changes throughout the
     // liquid; neither the pigment field nor a reveal mask expands from a centre.
@@ -518,14 +577,14 @@ export class LeafScene {
   private chloroplast(p: Pigments, miniature = false) {
     const c = this.ctx;
     const base = leafRGB({ ...p, anthocyanins: 0 });
-    const fill = c.createLinearGradient(0, -100, 0, 100); fill.addColorStop(0, rgb(mix(base, [239, 248, 212], .67))); fill.addColorStop(1, rgb(mix(base, [218, 235, 184], .59)));
+    const fill = c.createLinearGradient(0, -100, 0, 100); fill.addColorStop(0, rgb(mix(base, [224, 239, 193], .45))); fill.addColorStop(1, rgb(mix(base, [192, 216, 152], .35)));
     this.ellipse(0, 0, 210, 210*.52, fill, '#789359');
     c.strokeStyle='#f5f9da';c.lineWidth=1.5;c.beginPath();c.ellipse(-1,-1,206,105,0,0,Math.PI*2);c.stroke();
     if(!miniature)for(let i=0;i<72;i++){const a=i*2.399,r=Math.sqrt((i+.5)/72);this.ellipse(Math.cos(a)*r*195,Math.sin(a)*r*97,.8+i%3*.3,.8,'#678c422d');}
     this.ellipse(120,58,26,12,'#f7f3dfcc','#bac58988');
     c.strokeStyle='#719d5f88';c.lineWidth=1;c.beginPath();for(let i=0;i<=50;i++){const a=i/50*Math.PI*2,x=-117+Math.cos(a)*(17+Math.sin(a*3)*5),y=65+Math.sin(a)*10;i?c.lineTo(x,y):c.moveTo(x,y);}c.stroke();
     c.lineWidth = 1; c.strokeStyle = '#8dac6366'; c.beginPath(); c.ellipse(0, 0, 200, 102, 0, 0, Math.PI * 2); c.stroke();
-    const membrane = rgb(mix([88, 138, 78], [194, 168, 79], this.season));
+    const membrane = rgb(mix([63, 111, 54], [176, 145, 58], this.season));
     for (let i = 0; i < 5; i++) {
       const x = -144 + i * 70, y = Math.sin(i * 1.7) * 13;
       if (i < 4) { c.strokeStyle = membrane; c.lineWidth = 3; c.beginPath(); c.moveTo(x, y + 13); c.bezierCurveTo(x + 30, y + 22, x + 48, y - 18, x + 70, Math.sin((i + 1) * 1.7) * 13); c.stroke(); }
@@ -560,5 +619,5 @@ export class LeafScene {
     this.ellipse(5, 150, 4, 4, '#dca526'); this.label(t('类胡萝卜素'), 88, 150, undefined, 155);
     if (this.kind === 'red' && this.season > .4) this.label(t('红色花青素在液泡，不在这里'), 0, 180, undefined, 360);
   }
-  dispose() { this.disposed = true; cancelAnimationFrame(this.frame); this.leafMotion.dispose(); this.surface.dispose(); this.observer.disconnect(); this.intersection.disconnect(); document.removeEventListener('visibilitychange', this.wake); this.motionPreference.removeEventListener('change', this.preferenceChanged); }
+  dispose() { this.disposed = true; cancelAnimationFrame(this.frame); this.leafMotion.dispose(); this.surface.dispose(); this.rearSurface.width=this.rearSurface.height=0; this.upperCellEdges.clear(); this.observer.disconnect(); this.intersection.disconnect(); document.removeEventListener('visibilitychange', this.wake); this.motionPreference.removeEventListener('change', this.preferenceChanged); }
 }

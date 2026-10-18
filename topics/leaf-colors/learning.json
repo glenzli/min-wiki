@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "红叶不是所有叶子的终点；黄色不一定变红，叶绿素也不是变成另一种色素。植物不只在夜里呼吸，常绿也不表示一片叶永远不落。",
-    "boundary": "同一叶片身份贯穿展开、衰老与脱落，回退只重访教学状态。各图有不同放大比例；形变、色素趋势、运输标记和时序均为定性示意，不能当作特定物种预测。显微图覆盖展开后至脱落前的代表组织，不展示幼芽内部发育或死亡后崩解。首版未模拟落叶分解与生态循环。 本例成熟叶的空间模型长 60 mm、厚 200 µm，叶片、表皮和组织使用同一长度单位，镜头等比例放大；这些是教学设定，组织形态为概括示意，不是特定树种的实测。",
+    "boundary": "同一叶片身份贯穿展开、衰老与脱落，回退只重访教学状态。各图有不同放大比例；形变、色素趋势、运输标记和时序均为定性示意，不能当作特定物种预测。显微图覆盖展开后至脱落前的代表组织，不展示幼芽内部发育或死亡后崩解。首版未模拟落叶分解与生态循环。 本例成熟叶的空间模型长 60 mm、厚 200 µm，叶片、表皮和组织使用同一长度单位，镜头等比例放大；这些是教学设定，组织形态为概括示意，不是特定树种的实测。 横切视图只移去遮挡的前方叶面；周围组织连续，颜色与暗部用于区分结构，不是各区室的实测颜色或色素浓度。",
     "narration": [
       {
         "label": "从芽中开始",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "Not every leaf ends red: yellow need not turn red and chlorophyll does not become another pigment. Plants do not respire only at night, and evergreen does not mean an individual leaf lasts forever.",
-    "boundary": "The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated. The mature spatial model is 60 mm long and 200 µm thick. Blade, epidermis and tissue share one length unit and the camera zooms uniformly. These are teaching assumptions with schematic anatomy, not measurements of a particular species.",
+    "boundary": "The same leaf persists through expansion, senescence and detachment; backward scrubbing revisits teaching states. Views have different magnifications. Shape changes, pigment trends, water markers and timing are qualitative, not species predictions. Microscopy represents expanded tissue before detachment, not bud development or postmortem collapse. Litter decomposition and ecosystem cycling are not simulated. The mature spatial model is 60 mm long and 200 µm thick. Blade, epidermis and tissue share one length unit and the camera zooms uniformly. These are teaching assumptions with schematic anatomy, not measurements of a particular species. The transverse view removes only the concealing foreground; surrounding tissue remains continuous. Colour and shading distinguish structures, not measured compartment colours or pigment concentrations.",
     "narration": [
       {
         "label": "Starting in a bud",

@@ -51,6 +51,8 @@ function update() {
   el('scale-readout').textContent = scaleTitle;
   el('journey-status').textContent = touring ? t('正在连续探索 · 可随时暂停') : kind === 'red' ? t('叶片 → 上表皮 → 组织 → 细胞 → 液泡') : t('叶片 → 上表皮 → 组织 → 细胞 → 叶绿体');
   el('scene-hint').textContent = position < 2.9 && !touring ? t('拖动尺度滑条，可以随时停下或退回。') : data.hint;
+  if(position>=.44 && position<=.6)el('scene-hint').textContent=t('标线指出横切位置，点击 ＋ 从同一处继续观察。');
+  if(position>.6 && position<1)el('scene-hint').textContent=t('移去遮挡的前方叶面，后方叶面仍与切缘相连。');
   el('scene-hint').parentElement!.dataset.closeup = String(view === 'inside' && position > .85);
   el('scale-story').textContent = academic ? data.academic : atSurface ? data.kids : kidsStories[kind === 'red' && zoom === 2 ? 4 : zoom];
   el('observation').textContent = atSurface ? epidermisContent.observation : observations[kind === 'red' && zoom === 2 ? 4 : zoom];
@@ -115,7 +117,7 @@ function update() {
 }
 function seekScale(target: number) {
   touring = false; cancelSeek();
-  const duration = position < .5 && target <= .5 ? 2400 : position < 1 && target <= 1 ? 1900 : 1050;
+  const duration = position < .5 && target <= .5 ? 2400 : position < 1 && target <= 1 ? 2600 : 1050;
   cancelSeek = animateValue({ from: position, to: target, duration, onUpdate: value => {
     position = value; journey = position / 3 * JOURNEY_DURATION; update();
   }});

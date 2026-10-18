@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SCALE_ENTRIES, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SURFACE_CELL_SCALE, SECTION_TURN_END, SURFACE_FRAMING, scaleCamera, metricScaleBar } from '../model.ts';
+import { colorRoute, compartmentPigments, pigmentDestination, pigmentsAt, leafRGB, journeyAt, JOURNEY_DURATION, routeLevel, leafSectionAt, LEAF_SECTION, SECTION_SPAN, sectionContextTiles, SCALE_ENTRIES, BLADE_ANGLE, LEAF_METRIC, UNITS_PER_UM, SURFACE_CELL_SCALE, SECTION_TURN_END, SURFACE_FRAMING, scaleCamera, metricScaleBar } from '../model.ts';
 
 test('macro blade, microscopic thickness and surface cell pitch share one length unit',()=>{
   const sample=SCALE_ENTRIES[0];
@@ -39,7 +39,7 @@ test('epidermis has a motionless inspection interval before the tissue turn', as
   for(const position of [.44,.5,.56,.6]) {
     assert.equal(leafSectionAt(position).angle,0);
     assert.equal(leafSectionAt(position).textureOpacity,1);
-    assert.equal(leafSectionAt(position).contextOpacity,1,'the surrounding surface remains until the section turn');
+    assert.equal(leafSectionAt(position).foregroundOpacity,1,'the whole surface remains until the section turn');
     assert.deepEqual(scaleCamera(position,destination),scaleCamera(.5,destination));
     assert.ok(epidermisVisible(position));
   }
@@ -47,19 +47,34 @@ test('epidermis has a motionless inspection interval before the tissue turn', as
   assert.ok(leafSectionAt(.7).angle>0);
 });
 
-test('cell detail fills the visible blade before its marked sample is isolated', () => {
+test('a marked cut removes only the concealing foreground after surface inspection', () => {
   let last = 0;
   for (let position = 0; position <= .6; position += .01) {
     const state = leafSectionAt(position);
-    assert.equal(state.contextOpacity,1,'no detached texture tile during approach');
+    assert.equal(state.foregroundOpacity,1,'no tissue is removed during approach');
     assert.equal(state.sectionScale,0,'the surface does not already imply exposed mesophyll');
     assert.ok(state.textureOpacity >= last && state.textureOpacity <= 1);
     last = state.textureOpacity;
   }
   assert.equal(leafSectionAt(0).textureOpacity,0);
   assert.equal(leafSectionAt(.5).textureOpacity,1);
-  assert.ok(leafSectionAt(.8).contextOpacity>0 && leafSectionAt(.8).contextOpacity<1);
-  assert.equal(leafSectionAt(1).contextOpacity,0);
+  assert.ok(leafSectionAt(.5).guideOpacity>0,'mark the cut while the surface is still whole');
+  assert.ok(leafSectionAt(.65).foregroundOpacity>0 && leafSectionAt(.65).foregroundOpacity<1);
+  assert.equal(leafSectionAt(.70).foregroundOpacity,0);
+  assert.equal(leafSectionAt(SECTION_TURN_END).guideOpacity,0);
+});
+
+test('continuous tissue context covers the viewport without isolated side edges or duplicated selected cells',()=>{
+  for(const [left,right] of [[-1700,1500],[-130,70],[290,1400],[-1400,-300]]) {
+    const tiles=sectionContextTiles(left,right);
+    assert.ok(tiles[0]*SECTION_SPAN+LEAF_SECTION.left<=left);
+    assert.ok(tiles.at(-1)*SECTION_SPAN+LEAF_SECTION.right>=right);
+    for(let i=0;i<100;i++) {
+      const x=left+(right-left)*(i+.5)/100;
+      assert.equal(tiles.filter(tile=>x>=tile*SECTION_SPAN+LEAF_SECTION.left&&x<tile*SECTION_SPAN+LEAF_SECTION.right).length,1);
+    }
+    assert.equal(tiles.filter(tile=>tile===0).length,left<LEAF_SECTION.right&&right>LEAF_SECTION.left?1:0);
+  }
 });
 
 test('the full epidermal sheet has no gaps or duplicate coverage and supplies the cut seam', async () => {
@@ -98,6 +113,11 @@ test('the full epidermal sheet has no gaps or duplicate coverage and supplies th
   const rawFrom=from.map(v=>v/SURFACE_CELL_SCALE),rawTo=to.map(v=>v/SURFACE_CELL_SCALE);
   assert.deepEqual(epidermisSeam(sheet,rawFrom.map((v,i)=>v+[378,420][i]),rawTo.map((v,i)=>v+[378,420][i])).map(t=>+t.toFixed(7)),
     seam.map(t=>+t.toFixed(7)),'the texture tile and physical cut share periodic walls without a sampling seam');
+  const wideLeft=LEAF_SECTION.left-SECTION_SPAN,wideRight=LEAF_SECTION.right+SECTION_SPAN;
+  const wide=surface.seam(point(wideLeft),point(wideRight)).map(u=>wideLeft+(wideRight-wideLeft)*u)
+    .filter(x=>x>LEAF_SECTION.left+1e-7&&x<LEAF_SECTION.right-1e-7);
+  assert.deepEqual(wide.map(x=>+x.toFixed(6)),seam.slice(1,-1).map(u=>+(LEAF_SECTION.left+SECTION_SPAN*u).toFixed(6)),
+    'extending the visible section retains the same internal walls instead of inserting sample-box edges');
 });
 
 test('all vacuolar pigment positions use the same bounded membrane contour', async () => {
@@ -131,7 +151,7 @@ test('surface and section turn together at a fixed upper edge and reverse exactl
     if (position < 1) assert.equal(state.bladeOpacity,1);
     assert.ok(Math.abs(state.sectionScale**2+state.surfaceScale**2-1)<1e-12);
     const [a,b,c,d,e,f]=state.surfaceTransform, [aa,bb,cc,dd]=state.sectionTransform;
-    for (const x of [LEAF_SECTION.left,0,LEAF_SECTION.right]) {
+    for (const x of [-3*SECTION_SPAN,LEAF_SECTION.left,0,LEAF_SECTION.right,3*SECTION_SPAN]) {
       const surfaceX=a*(entry.x+x*entry.size)+c*entry.y+e;
       const surfaceY=b*(entry.x+x*entry.size)+d*entry.y+f;
       const sectionX=entry.x+(aa*x+cc*LEAF_SECTION.top)*entry.size;

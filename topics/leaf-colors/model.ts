@@ -35,6 +35,7 @@ export const BLADE_ANGLE = -.15;
 export const LEAF_METRIC = { bladeLengthUm: 60000, thicknessUm: 200, cellPitchUm: 30, bladeLength: 368 } as const;
 export const UNITS_PER_UM = LEAF_METRIC.bladeLength / LEAF_METRIC.bladeLengthUm;
 export const LEAF_SECTION = { left: -217, right: 217, top: -153, bottom: 135 } as const;
+export const SECTION_SPAN = LEAF_SECTION.right - LEAF_SECTION.left;
 const SAMPLE_SIZE = LEAF_METRIC.thicknessUm * UNITS_PER_UM / (LEAF_SECTION.bottom - LEAF_SECTION.top);
 export const SURFACE_CELL_SCALE = LEAF_METRIC.cellPitchUm * UNITS_PER_UM / 7;
 export const SECTION_TURN_END = .84;
@@ -55,9 +56,10 @@ export function leafSectionAt(position: number) {
   return {
     angle, surfaceScale, sectionScale,
     surfaceTransform, sectionTransform,
-    // The whole visible blade reveals the same epidermal sheet. Isolate its
-    // marked sample only while turning to the explanatory section, not earlier.
-    contextOpacity: 1 - smooth(.62,SECTION_TURN_END,position),
+    // Retain the rear half of the same leaf. Only the foreground that conceals
+    // the section is removed; this is an explanatory cut, not detached tissue.
+    foregroundOpacity: 1 - smooth(.60,.70,position),
+    guideOpacity: smooth(.44,.54,position) * (1-smooth(.70,SECTION_TURN_END,position)),
     bladeOpacity: 1 - smooth(1,1.3,position),
     textureOpacity: smooth(.1,.42,position),
   };
@@ -76,10 +78,13 @@ export function vacuolePoint(angle: number, radius = 1): [number, number] {
   const [x,y]=cellEdge(angle,VACUOLE.rx,VACUOLE.ry,VACUOLE.seed);
   return [VACUOLE.x+x*clamp(radius),VACUOLE.y+y*clamp(radius)];
 }
-export const epidermisBoundary: readonly (readonly [number, number])[] = [
-  [-217,0],[217,0],[217,-174],[193,-191],[198,-222],[137,-246],
-  [61,-238],[-24,-254],[-110,-243],[-148,-220],[-193,-226],[-217,-185],
-];
+/** Bounded visible bands of one continuous section, never independent samples.
+ * Tile zero owns the retained cell; neighbours only extend its tissue context. */
+export function sectionContextTiles(left: number, right: number) {
+  const first = Math.floor((left-LEAF_SECTION.left)/SECTION_SPAN);
+  const last = Math.ceil((right-LEAF_SECTION.left)/SECTION_SPAN)-1;
+  return Array.from({length:Math.max(0,last-first+1)},(_,index)=>first+index);
+}
 
 /** Guided playback traverses the same continuous slider; this helper names the current scale. */
 export const JOURNEY_DURATION = 26;

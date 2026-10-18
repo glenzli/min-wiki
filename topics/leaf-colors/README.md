@@ -1,5 +1,17 @@
 # 一片叶子的一生 / The life of a leaf
 
+## A connected cut edge, rather than a detached block · 2026-10-19
+
+The active turn retains the rear surface of the same blade and removes only the foreground that conceals its transverse section. An open guide marks the cut while the surface is still whole. The tissue continues beyond both sides of the microscopic viewport, without a closed sample outline or lateral box edges. This is a local mesophyll example, not a complete leaf-width anatomy map. The 60 mm mature blade, 200 µm thickness, 30 µm epidermal pitch and orthographic projection remain the same teaching assumptions; no independent axis stretch or mid-turn zoom was introduced.
+
+The rear plane stays clear at the cut edge. Its distant detail softens over a 150–600 µm viewing window, expressed in the same model units, before the macroscopic blade becomes edge-on. This is an illustrative attention cue, not a calibrated microscope depth-of-field calculation. Only opacity changes. The finite surface-to-section seek now takes 2.6 seconds; the camera still holds its magnification throughout .60–.84 and zooms uniformly afterwards. Manual movement retraces the same geometry.
+
+The renderer culls bounded horizontal tissue bands with fixed, varied cell contours. Only band zero owns the retained mesophyll cell and its nested compartments. One upper-epidermis seam spans the complete visible cut, so internal band boundaries cannot add false cell walls; expanding the view preserves existing intersections and cell contours. At most 16 seam ranges and one viewport-sized rear-surface layer are retained, and disposal releases both.
+
+表面先显示横切标线，随后只移去挡住视线的前方叶面，后方叶面仍与同一条切缘相连。组织向画面两侧延续，不再像单独取出的方块。转向末段仅柔化远离切缘的细节，不改变长度单位、厚度或倍率。叶肉采用更克制的植物色阶，空隙用暗部区分；表皮、细胞液与间隙的画面颜色不代表它们都含有绿色色素。叶绿体继续承载绿／黄色素，花青素仍仅在对应液泡中表现。配色是帮助辨认结构的科学插画，不是组织染色图、实拍颜色或色素浓度测量。
+
+The anatomy and compartment distinction remain grounded in [OpenStax — Leaves](https://openstax.org/books/biology-2e/pages/30-4-leaves); the palette, attention window and procedural cell variation are illustration choices. The earlier active observation prompt that still called thickness exaggerated has been corrected in Chinese and English. The topic remains a draft. This section supersedes the isolated-sample presentation described in the historical records below. Local preview and local commit only; no push or deployment.
+
 ## One spatial scale from blade to tissue · 2026-10-19
 
 The earlier turn joined a separately exaggerated section to the blade. Calling it exaggerated did not make that transition scientifically coherent. The active model now maps a 60 mm mature blade, 200 µm lamina thickness and 30 µm mean epidermal grid pitch through one `UNITS_PER_UM` conversion. These are rounded teaching assumptions, not measurements of a named tree or species. The nested mesophyll cell and its compartments inherit the same conversion; no independent thickness multiplier remains.
