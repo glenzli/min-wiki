@@ -5,6 +5,9 @@ import { StormArtwork } from './stormArtwork.ts';
 import { t } from './i18n.ts';
 const noise=(i:number)=>{const v=Math.sin(i*127.1+311.7)*43758.5453;return v-Math.floor(v);};
 const smooth=(a:number,b:number,x:number)=>{const u=clamp((x-a)/(b-a));return u*u*(3-2*u);};
+const litColor=(base:string,lit:string,amount:number)=>`rgb(${[0,2,4].map(i=>{
+ const a=parseInt(base.slice(i+1,i+3),16),b=parseInt(lit.slice(i+1,i+3),16);return Math.round(a+(b-a)*amount);
+}).join(',')})`;
 // The same nonmetric screen mapping joins the sound front and indoor observer.
 // Magnifying the first .5 km keeps that observer separate from the mast.
 const projectDistance=(km:number)=>35*km+30*(1-Math.exp(-km/.25));
@@ -24,8 +27,12 @@ export class TopicScene{
  }
  draw(progress:number,settings:Settings){
   this.progress=progress;this.settings=settings;
-  const s=this.surface,c=s.begin('#53677d','#9ca9aa'),state=lightningState(progress,settings),path=this.channel,observerX=15+projectDistance(settings.distanceKm);
-  const flash=state.connected?smooth(0,.22,state.returnStroke)*(1-smooth(.675,.75,progress)):0;
+  const state=lightningState(progress,settings),path=this.channel,observerX=15+projectDistance(settings.distanceKm);
+  // A single reversible pulse: quick smooth onset, then a longer soft tail.
+  // It samples the topic's progress and cannot flash before attachment.
+  const flash=state.connected?smooth(.59,.665,progress)*Math.exp(-((Math.max(0,progress-.665)/.055)**1.4))*(1-smooth(.78,.84,progress)):0;
+  const s=this.surface,c=s.begin(litColor('#53677d','#687e98',flash),litColor('#9ca9aa','#aab9bd',flash));
+  const chargeFade=1-smooth(.46,.61,progress);
   // Diagram annotations stay above environmental exposure, with one visual
   // vocabulary. Capture each call's teaching-state opacity before deferring it.
   const annotations:Array<()=>void>=[];
@@ -65,7 +72,7 @@ export class TopicScene{
    const u=(noise(i+131)+progress*1.6)%1,x=-250+noise(i+641)*145-u*19,y=-80+u*228;
    s.path([[x,y],[x-1.5,y+5+noise(i+73)*5]],undefined,i%4?'#c3d1d92b':'#d3e0e13c',.55);
   }c.restore();
-  this.artwork.paintCloud(c,flash*smooth(.32,.9,state.returnStroke));
+  this.artwork.paintCloud(c,flash,chargeFade*.9);
   if(progress<.32){
    c.save();c.globalAlpha=.8;
    for(let i=0;i<18;i++){
@@ -76,13 +83,7 @@ export class TopicScene{
   }
   if(progress<.70){
    c.save();
-   const chargeFade=1-smooth(.46,.61,progress),markSize=Math.max(4.2,3.5/s.scale);
-   const pane=(x:number,y:number,width:number,height:number)=>{
-    const fill=c.createLinearGradient(x,y,x,y+height);
-    fill.addColorStop(0,'#152c3a94');fill.addColorStop(1,'#102331a3');
-    c.beginPath();c.roundRect(x,y,width,height,6);c.fillStyle=fill;c.fill();
-    c.strokeStyle='#c8d9e461';c.lineWidth=.8/s.scale;c.stroke();
-   };
+   const markSize=Math.max(4.2,3.5/s.scale);
    const charge=(positive:boolean,x:number,y:number,r=markSize)=>{
     c.beginPath();c.moveTo(x-r,y);c.lineTo(x+r,y);
     if(positive){c.moveTo(x,y-r);c.lineTo(x,y+r);}
@@ -94,11 +95,6 @@ export class TopicScene{
     const g=c.createRadialGradient(0,0,0,0,0,1);g.addColorStop(0,color);g.addColorStop(1,'#ffffff00');
     c.fillStyle=g;c.fillRect(-1,-1,2,2);c.restore();
    };
-   // One explicit diagram window softens the texture behind the entire field;
-   // its outline is an annotation boundary, not a physical cloud/cut surface.
-   c.globalAlpha=chargeFade;pane(-250,-262,320,188);
-   c.globalAlpha=state.separation*chargeFade;
-   region(-105,-226,142,38,'#ffda9638');region(-105,-128,154,31,'#81c3ee4f');
    // Retained, mildly irregular sign fields separate from the same mixed band.
    // Signs label regions, not visible particles or electron trajectories.
    c.globalAlpha=chargeFade;
@@ -114,10 +110,9 @@ export class TopicScene{
    label(t('中下部：负电荷'),168,-128,185,{color:'#d1efff',anchor:[33,-128]});
    // The small lower positive pocket belongs to the existing teaching model.
    c.globalAlpha=smooth(.6,1,state.separation)*chargeFade;
-   region(-165,-90,34,15,'#ffdc8c38');
    for(let i=0;i<3;i++)charge(true,-180+i*15,-92+(i%2)*5,markSize*.75);
    c.globalAlpha=smooth(0,.45,state.field)*chargeFade;
-   pane(-148,139,164,44);
+   region(-65,159,112,33,'#112735b0');
    region(-65,151,121,17,'#f5c97755');
    for(let i=0;i<12;i++)charge(true,-132+i%6*24+(noise(i+848)-.5)*6,151+Math.floor(i/6)*16+(noise(i+947)-.5)*5,markSize*.9);
    label(t('地面：感应正电荷'),-65,s.width<650?224:211,320,{color:'#ffe1ad'});
@@ -138,40 +133,32 @@ export class TopicScene{
   // dark edge separation and lit galvanized faces make its truss readable.
   c.save();
   s.ellipse(groundPoint[0]+2,groundPoint[1]+4,23,5,'#172d2ca6');
-  s.path([[-3,139],[27,139],[33,143],[3,143]],'#bec5b9','#dce2d6',.7);
-  s.path([[3,143],[33,143],[33,147],[3,147]],'#677871','#3e514e',.8);
+  s.path([[-3,139],[27,139],[33,143],[3,143]],litColor('#bec5b9','#e7ecdf',flash),litColor('#dce2d6','#eef4ed',flash),.7);
+  s.path([[3,143],[33,143],[33,147],[3,147]],litColor('#677871','#81968f',flash*.5),'#3e514e',.8);
   s.path([[31,139],[19,102]],undefined,'#243941',4);
-  s.path([[31,139],[19,102]],undefined,'#98aaa8',1.6);
+  s.path([[31,139],[19,102]],undefined,litColor('#98aaa8','#d4e4ed',flash*.4),1.6);
   const half=(y:number)=>1.6+(y-102)/39*10.4;
   for(const [top,bottom] of [[103,115],[115,128],[128,141]]){
    const lt:Point=[15-half(top),top],rt:Point=[15+half(top),top];
    const lb:Point=[15-half(bottom),bottom],rb:Point=[15+half(bottom),bottom];
    s.path([lt,rb],undefined,'#263b42',2.9);s.path([rt,lb],undefined,'#263b42',2.9);
-   s.path([lt,rb],undefined,'#d0d8c8',1);s.path([rt,lb],undefined,'#9cafa8',1);
-   s.path([lb,rb],undefined,'#bac8bd',1.25);
+   s.path([lt,rb],undefined,litColor('#d0d8c8','#f1f5ed',flash),1);s.path([rt,lb],undefined,litColor('#9cafa8','#c9dce7',flash*.4),1);
+   s.path([lb,rb],undefined,litColor('#bac8bd','#e3eee8',flash*.7),1.25);
   }
   for(const foot of [3,27]){
    const top=foot<15?13.4:16.6;
    s.path([[foot,141],[top,102]],undefined,'#22343d',4.1);
-   s.path([[foot-.45,141],[top-.45,102]],undefined,'#e3e4cc',1.7);
+   s.path([[foot-.45,141],[top-.45,102]],undefined,litColor('#e3e4cc','#f4f7ef',flash),1.7);
    s.ellipse(foot,141,2.1,1,'#c5caba','#3e514e');
   }
   s.path([[mastTip[0],103],mastTip],undefined,'#253b43',4.6);
-  s.path([[mastTip[0]-.35,103],[mastTip[0]-.35,mastTip[1]]],undefined,'#f6f1d6',2);
+  s.path([[mastTip[0]-.35,103],[mastTip[0]-.35,mastTip[1]]],undefined,litColor('#f6f1d6','#f7fbff',flash),2);
   s.ellipse(mastTip[0],mastTip[1],1,1,'#fff5d5');
   if(progress<.32){
    label(t('接地塔'),-88,91,155,{anchor:[5,120]});
   }
   c.restore();
-  this.artwork.paintHouse(c,observerX,flash*.8);
-  if(flash>0){
-   // One connected return lights the entire visible environment. Local masks
-   // above remain stronger near the channel; neither pass introduces a clock.
-   c.save();c.globalCompositeOperation='screen';c.globalAlpha=flash*.36;
-   c.fillStyle='#dfeaff';
-   c.fillRect(-s.width/(2*s.scale)-2,-s.height*.54/s.scale-2,s.width/s.scale+4,s.height/s.scale+4);
-   c.restore();
-  }
+  this.artwork.paintHouse(c,observerX,flash);
   if(state.field>.45&&state.leader<.92){
    const glow=c.createRadialGradient(15,91,0,15,91,9+state.field*7);glow.addColorStop(0,'#c4cbec70');glow.addColorStop(1,'#c5b8ff00');s.ellipse(15,91,10+state.field*7,10+state.field*7,glow);
   }
@@ -186,7 +173,7 @@ export class TopicScene{
    if(state.connector>0){s.path(pathThrough(connectorPath(),state.connector),undefined,'#bdc9eb5c',4);s.path(pathThrough(connectorPath(),state.connector),undefined,'#71679fcf',1.1);}
    c.restore();
    if(state.returnStroke>0){
-    const stroke=[...connectorPath(),...pathThrough([...path].reverse(),state.returnStroke).slice(1)],fade=1-smooth(.70,.80,progress);
+    const stroke=[...connectorPath(),...pathThrough([...path].reverse(),state.returnStroke).slice(1)],fade=flash;
     c.save();c.globalAlpha=fade;c.globalCompositeOperation='screen';
     const core=(points:Point[],color:string,width:number)=>{
      c.beginPath();points.forEach(([x,y],i)=>i?c.lineTo(x,y):c.moveTo(x,y));
