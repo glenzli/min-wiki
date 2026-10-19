@@ -29,6 +29,16 @@ in water; the reserve is a theoretical mass margin to the rim, not a real safe l
 Reshaping into a ball explicitly removes cargo as before; switching views or focus mode does not.
 The animated clay outline is a continuity cue, not a mechanics solver or a timed account of molding. The rim marker uses the same illustrative cross-section as the waterline, while academic readings come from the settled-state displacement model.
 
+## 材质与空间 / Material study
+
+水箱、量杯和物品使用同一固定视角、光照和桌面：玻璃有厚底、杯口与接缝，木块区分顺纹和端面，橡皮泥保留细颗粒、圆润船沿与真实空腔。细小货物标注各自的 100 g；质量、排水量和受力继续由原静水模型计算。量杯水面使用线性示意刻度，水箱水位升幅仍有意放大。网格外形、器皿尺寸和材质纹理不能用于反算实际体积或密度。
+
+`tankScene.ts` 只拥有 Three.js 场景、材质、投影及资源释放；`scene.ts` 保持有限过渡、停稳状态、受力标注和 SVG 回退。程序纹理生成一次；船壳顶点原位更新，水面改形时释放上一份几何。最多显示 12 块货物，不设独立循环。无 WebGL 或上下文丢失时回退到可读的 SVG，离开条目时释放观察器、纹理、几何和渲染器。
+
+The tank, measuring vessel and samples share a fixed camera, lighting and tabletop. Glass thickness, end grain, a rounded clay rim and a hollow interior clarify material and spatial continuity. Each cargo block represents 100 g. All readings still come from the unchanged equilibrium model, not mesh volume. The comparison vessel uses a linear illustrative scale; the tank's water rise is deliberately enlarged. Mesh dimensions and textures are not calibrated physical measurements.
+
+The GPU view has no separate animation clock. It receives the finite transition frame from `scene.ts`, then stops rendering at rest except on resize. Generated textures are bounded and reused; replaced water geometry is disposed. A readable SVG view remains available when WebGL is unavailable or its context is lost. The scene does not solve fluid motion, refraction, material deformation or capsizing.
+
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

@@ -7,7 +7,7 @@
 @media(max-width:750px){#scene text{font-size:30px}#scene text[data-caption]{font-size:25px}}
 
 /* The tactile scene remains light even when surrounding reading chrome is dark. */
-.scene-column{background:#f3f2e6}.scene-top{padding-bottom:6px;color:#6b7d6f}.scene-top strong{background:#e1eee1;border:1px solid #ceddcb;border-radius:999px;padding:5px 11px;line-height:1.4}.scene-top>span{align-self:center}.motion-state{margin:0;padding:7px 18px 13px;text-align:center;font-size:12px;line-height:1.5;color:#667a68;min-height:38px;background:#f0ecd9}.readouts{padding:17px 20px 22px;background:#f0ecd9;gap:clamp(28px,6vw,70px);border-top:1px solid #dcdac3}.readouts strong{color:#315f56}.readouts span{color:#6c7762}.object-grid button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:92px;padding:12px 6px;font-weight:650}.object-grid button::before{content:'';display:block;width:31px;height:30px;flex:none;box-shadow:inset 1px 2px 3px #ffffff80,1px 3px 4px #2c443a20}.object-grid button[data-object=wood]::before{border-radius:5px;background:repeating-linear-gradient(5deg,#d6a66b 0 3px,#e4be82 4px 7px,#b6874f 8px 9px)}.object-grid button[data-object=stone]::before{border-radius:45% 40% 32% 27%;background:linear-gradient(140deg,#d4dac8,#7c927f);transform:rotate(-9deg)}.object-grid button[data-object=steel]::before{border-radius:4px;background:linear-gradient(110deg,#809ca8,#d6e4e8 34%,#8ea9b5 57%,#eaf4f3 66%,#7b98a4)}.object-grid button[data-object=clay]::before{border-radius:50%;background:radial-gradient(circle at 28% 24%,#edc8aa,#c9886b 65%,#955338)}.object-grid button[aria-pressed=true]{background:#e1eee6;color:#215b4f;border:2px solid #6b9c84;box-shadow:0 3px 10px #31574a0c}.object-grid button:hover{background:color-mix(in srgb,var(--surface),#769d7b 8%)}aside{background:color-mix(in srgb,var(--surface),#e9edde 16%)}.stack button[aria-pressed=true]{box-shadow:inset 0 1px 0 #ffffff20,0 3px 8px #24584916}input[type=range]{cursor:ew-resize}.lab{box-shadow:0 15px 50px #3554490c;border-color:color-mix(in srgb,var(--border),#a6bca9 20%)}
+.scene-column{background:#f4f6f5}.scene-top{padding-bottom:6px;color:#6b7d6f}.scene-top strong{background:#e1eee1;border:1px solid #ceddcb;border-radius:999px;padding:5px 11px;line-height:1.4}.scene-top>span{align-self:center}.motion-state{margin:0;padding:7px 18px 13px;text-align:center;font-size:12px;line-height:1.5;color:#667a68;min-height:38px;background:#e9eeed}.readouts{padding:17px 20px 22px;background:#e9eeed;gap:clamp(28px,6vw,70px);border-top:1px solid #dcdac3}.readouts strong{color:#315f56}.readouts span{color:#6c7762}.object-grid button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:92px;padding:12px 6px;font-weight:650}.object-grid button::before{content:'';display:block;width:31px;height:30px;flex:none;box-shadow:inset 1px 2px 3px #ffffff80,1px 3px 4px #2c443a20}.object-grid button[data-object=wood]::before{border-radius:5px;background:repeating-linear-gradient(5deg,#d6a66b 0 3px,#e4be82 4px 7px,#b6874f 8px 9px)}.object-grid button[data-object=stone]::before{border-radius:45% 40% 32% 27%;background:linear-gradient(140deg,#d4dac8,#7c927f);transform:rotate(-9deg)}.object-grid button[data-object=steel]::before{border-radius:4px;background:linear-gradient(110deg,#809ca8,#d6e4e8 34%,#8ea9b5 57%,#eaf4f3 66%,#7b98a4)}.object-grid button[data-object=clay]::before{border-radius:50%;background:radial-gradient(circle at 28% 24%,#edc8aa,#c9886b 65%,#955338)}.object-grid button[aria-pressed=true]{background:#e1eee6;color:#215b4f;border:2px solid #6b9c84;box-shadow:0 3px 10px #31574a0c}.object-grid button:hover{background:color-mix(in srgb,var(--surface),#769d7b 8%)}aside{background:color-mix(in srgb,var(--surface),#e9edde 16%)}.stack button[aria-pressed=true]{box-shadow:inset 0 1px 0 #ffffff20,0 3px 8px #24584916}input[type=range]{cursor:ew-resize}.lab{box-shadow:0 15px 50px #3554490c;border-color:color-mix(in srgb,var(--border),#a6bca9 20%)}
 @media(max-width:750px){.scene-top{padding:17px 17px 4px;font-size:11px}.scene-top strong{max-width:100%;padding:4px 9px}.object-grid button{min-height:85px;font-size:13px}.motion-state{font-size:11px;min-height:36px;padding:7px 14px 11px}.readouts{padding:14px 18px 20px}.readouts strong{font-size:26px}aside{padding-top:20px}#scene text{font-size:28px}#scene text[data-caption]{font-size:24px}}
 
 .learning-modes{display:flex;justify-content:flex-end;gap:8px;margin-top:18px}.learning-modes button{min-height:44px;font-size:14px}.mode-science{margin:28px 0;padding:24px;border:1px solid var(--border);border-radius:20px;background:var(--surface)}.mode-science h2{font-size:23px;margin:0 0 12px}.mode-science p{line-height:1.85;max-width:850px}.child-prompt{font-size:18px;line-height:1.8;color:var(--ink)}
@@ -20,14 +20,14 @@ button:hover{border-color:#767a80}
 button[aria-pressed=true]{background:#383b40;border-color:#383b40}
 input[type=range],.check input{accent-color:#45474b}
 .scene-top{color:#65645e}
-.scene-top strong{background:#e8e7e0;border-color:#d5d3ca;color:#414349}
+.scene-top strong{background:#e5ebed;border-color:#cfd9dd;color:#35434b}
 .object-grid button[aria-pressed=true]{background:#e8e7e2;color:#303237;border-color:#71747a;box-shadow:0 3px 10px #3434340c}
 .object-grid button:hover{background:color-mix(in srgb,var(--surface),#7b7b7b 8%)}
 aside{background:color-mix(in srgb,var(--surface),#e8e7e3 16%)}
 .lab{box-shadow:0 15px 50px #3737370c;border-color:var(--border)}
-.capacity-readout{background:#ecebe5;color:#37393d;margin:0}
-.same-load{margin:0;padding:9px 20px;background:#e1e0d8;color:#313338;font-size:13px;line-height:1.55;border-top:1px solid #d4d1c7}
-.motion-state{color:#62625e}
+.capacity-readout{background:#edf1f1;color:#373f45;margin:0}
+.same-load{margin:0;padding:9px 20px;background:#e5ebec;color:#313b42;font-size:13px;line-height:1.55;border-top:1px solid #d5dddf}
+.motion-state{color:#5d6970}
 .readouts strong{color:#34373a}
 aside .readouts{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;padding:14px 0;background:transparent;border-top:1px solid var(--border)}
 aside .readouts>div{min-width:0}
@@ -42,3 +42,11 @@ aside .readouts small{font-size:11px}
 @media(max-width:699px){.presentation-transport .object-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
 @media(max-width:699px){.presentation-frame #scene .water-datum text{font-size:24px}}
+
+.buoyancy-stage{position:relative;width:100%;aspect-ratio:850/540;isolation:isolate;background:#edf1f1}
+.buoyancy-stage>canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.buoyancy-stage>#scene{position:relative;width:100%;height:100%;pointer-events:none;background:transparent}
+.presentation-transport .object-grid button[data-object=wood]::before{border-radius:3px;background:repeating-linear-gradient(2deg,#a17e53 0 2px,#ad895d 3px 5px,#94734d 6px 7px);box-shadow:inset 1px 2px 3px #f4e4ce80,1px 2px 3px #35414626}
+.presentation-transport .object-grid button[data-object=stone]::before{background:radial-gradient(ellipse at 30% 22%,#aeb5a9,#7e897e 60%,#657166)}
+.discovery{border:0;border-radius:0;background:transparent;box-shadow:none;margin:0;padding:20px 16px}
+@media(max-width:699px){.presentation-transport .object-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.presentation-transport .object-grid button{min-height:68px;padding:8px 4px;font-size:12px;gap:6px}.presentation-transport .object-grid button::before{width:26px;height:26px}}

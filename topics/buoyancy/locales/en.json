@@ -39,7 +39,7 @@
   "这不是“轻的浮、重的沉”": "There is more to it than being light or heavy",
   "大船很重，但船壳围出很大的空间，可以在进水前排开很多水。小石头虽轻，却可能在完全浸入水后仍得不到足够的浮力。": "A large ship is heavy, but its hull encloses a large space and can displace a lot of water before it floods. A small stone can be lighter yet receive too little buoyancy even when fully immersed.",
   "画面与真实世界": "Picture and reality",
-  "这是静止状态的教学剖面，大小和水位变化适当夸张；不计算波浪、倾覆和表面张力。海水密度取 1.025 克/毫升。橡皮泥不吸水，小船保持直立，进水后空气能逸出。": "This teaching cross-section shows settled states, with some sizes and water-level changes exaggerated. Waves, capsizing and surface tension are omitted. Seawater density is 1.025 g/mL. Clay does not absorb water; the boat stays upright and trapped air can escape after flooding.",
+  "这是静止状态的教学场景，尺寸比例和水位变化适当夸张，体积以读数为准；不计算波浪、倾覆和表面张力。海水密度取 1.025 克/毫升。橡皮泥不吸水，小船保持直立，进水后空气能逸出。": "This teaching scene shows settled states. Sizes and water-level changes are exaggerated; use the readings for volume. Waves, capsizing and surface tension are omitted. Seawater density is 1.025 g/mL. Clay does not absorb water; the boat stays upright and trapped air can escape after flooding.",
   "压水实验里的方块由外部装置托住；箭头只显示浮力和重力。落到底部的物品，还会得到水箱底部向上的支持力。": "In the immersion experiment an external holder supports the block; arrows show only buoyancy and gravity. An object resting on the bottom also receives an upward support force from the tank floor.",
   "资料依据": "Sources",
   "阿基米德原理 · OpenStax": "Archimedes’ principle · OpenStax",
