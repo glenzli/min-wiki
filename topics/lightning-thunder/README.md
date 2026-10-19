@@ -22,9 +22,9 @@ The first three stages now report slow-motion progress rather than invented elap
 
 ## Storm artwork refinement · 2026-10-19
 
-砧状上部、堆积云塔、暗云底、远近树林和湿草地采用三张独立生成插画；房屋细化屋瓦、窗框、墙面、排水管与室内灯光，通过接触阴影落在同一地景上。它们是非定量素材，不是气象照片或实测地形；原始 PNG、交付 WebP 和完整提示词见 [素材来源](assets/PROVENANCE.md)。电荷符号从混合区连续移向分离区，通道出现后逐渐退居次要位置；这是对原有分离进度的绘图，不是实测粒子轨迹。分叉沿原通道固定位置逐步显露，回拖时不重抽形状。只有接通后的回击前沿能触发云底、地面和房屋的局部照亮；回击后的光逐渐消退，不增加全屏闪光或独立时钟。
+砧状上部、堆积云塔、暗云底、远近树林和湿草地采用三张独立生成插画；房屋细化屋瓦、窗框、墙面、排水管与室内灯光，通过接触阴影落在同一地景上。它们是非定量素材，不是气象照片或实测地形；原始 PNG、交付 WebP 和完整提示词见 [素材来源](assets/PROVENANCE.md)。电荷符号从混合区连续移向分离区，通道出现后逐渐退居次要位置；这是对原有分离进度的绘图，不是实测粒子轨迹。分叉沿原通道固定位置逐步显露，回拖时不重抽形状。只有接通后的回击前沿能触发环境整体提亮，云底、地面和房屋还保留通道附近更强的局部照明；回击后的光沿原进度逐渐消退，不增加独立时钟或反复频闪。
 
-Three separately generated illustration layers describe the anvil, billowing cloud tower, darker base, wooded hills, wet meadow and detailed indoor house. Tiles, recessed windows, wall materials, gutters and contact shadows replace the coarse building silhouette. These are nonmetric assets, not weather photographs or measured terrain; original PNGs, delivery WebPs and full prompts are recorded in [asset provenance](assets/PROVENANCE.md). Persistent charge symbols separate continuously and yield visual emphasis to the channel. Branches grow from fixed points on that same channel. Only the connected return stroke drives local cloud, ground and alpha-masked house lighting; its afterglow fades with the existing progress, rather than adding another clock or full-screen flash.
+Three separately generated illustration layers describe the anvil, billowing cloud tower, darker base, wooded hills, wet meadow and detailed indoor house. Tiles, recessed windows, wall materials, gutters and contact shadows replace the coarse building silhouette. These are nonmetric assets, not weather photographs or measured terrain; original PNGs, delivery WebPs and full prompts are recorded in [asset provenance](assets/PROVENANCE.md). Persistent charge symbols separate continuously and yield visual emphasis to the channel. Branches grow from fixed points on that same channel. Only the connected return stroke brightens the whole environment, with stronger local lighting on the cloud, ground and alpha-masked house near the channel. The afterglow fades with the existing progress, without another clock or repeated strobing.
 
 声波保留一个清楚的领先边界、淡薄尾弧和地面到达指示，沿用同一距离投影与声速判定；图中明确标为“声波传播示意”。圆弧与尾带不表示真实可见光圈、实测波长或响度，地面圆心仍是简化参照，雷声的物理来源是整条放电通道周围的空气。近处观察点仍经过非线性放大，房屋与桅杆保持分离。
 
@@ -51,6 +51,16 @@ The grounded tower has wider footings, a concrete base, crossed braces, side dep
 地景只作空间参照：原山坡与树林素材保留，地形缓存一次性降低饱和度和局部反差，轻微柔化并叠加保留透明轮廓的雾色。主云体、塔、房屋、电荷与通道没有套用背景处理，地点与投影锚点不变。没有新增图片、缓存或动画时钟，也不据此宣称实测帧率改善。
 
 Terrain stays a spatial reference. The same terrain cache receives one background-only desaturation, contrast reduction, mild softening and alpha-preserving haze treatment. Cloud, tower, house, signs and channels retain their own crisp drawing; site and projection anchors remain unchanged. Original assets, cache count/dimensions and animation clocks are unchanged. No measured frame-rate improvement is claimed.
+
+### Diagram windows and environmental illumination · 2026-10-19
+
+云内电荷群和地面感应电荷各使用一片半透明示意窗，减弱符号背后的纹理干扰；小而密的暖冷符号、引线和深色半透明标注共用一套视觉样式。窗的边缘只界定说明区域，不代表真实云体切面、电荷边界或实测浓度。标注采用屏幕字号（桌面 13 px、窄屏 12 px），保留原分离与淡出进度；最后绘制文字和引线，避免环境亮光冲淡说明。
+
+The cloud charge field and induced ground charge each use a translucent diagram window to quiet the texture behind the signs. Small, dense warm/cool signs, leader lines and dark translucent labels share one visual vocabulary. Window edges delimit an explanatory overlay, not a physical cloud section, charge boundary or measured concentration. Labels use screen-sized type (13 px desktop, 12 px narrow screens) and retain the existing separation/fade progress. Text and leaders are drawn last so environmental exposure does not wash them out.
+
+接通后的同一个回击包络同时照亮可见天空、云体、远近地面、塔与房屋，并与局部光晕一起消退；先导阶段不触发整体提亮。环境层先绘制，明亮通道与标注随后绘制。这只是对闪光照亮环境的示意，没有引入照度标定、光传播求解、额外闪击或自动播放。
+
+The same connected-return envelope brightens the visible sky, cloud, near and distant ground, tower and house, then fades with the local glow. The leader stage does not trigger that exposure. Environmental layers are drawn before the bright channel and annotations. This illustrates environmental illumination without a calibrated illuminance model, light-transport solver, extra flash or autoplay.
 
 ## Attachment geometry · 2026-10-01
 

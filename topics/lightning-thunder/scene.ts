@@ -26,9 +26,35 @@ export class TopicScene{
   this.progress=progress;this.settings=settings;
   const s=this.surface,c=s.begin('#53677d','#9ca9aa'),state=lightningState(progress,settings),path=this.channel,observerX=15+projectDistance(settings.distanceKm);
   const flash=state.connected?smooth(0,.22,state.returnStroke)*(1-smooth(.675,.75,progress)):0;
-  const label=(text:string,x:number,y:number,width=240)=>{
-   const half=s.width/(2*s.scale)-14/s.scale,w=Math.min(width,half*2-12),safeX=Math.max(-half+w/2,Math.min(half-w/2,x));
-   s.label(text,safeX,y,{width:w,color:'#f0f3f0',background:'#1d2b32dc'});
+  // Diagram annotations stay above environmental exposure, with one visual
+  // vocabulary. Capture each call's teaching-state opacity before deferring it.
+  const annotations:Array<()=>void>=[];
+  const label=(text:string,x:number,y:number,width=240,options:{color?:string;anchor?:Point}={})=>{
+   const opacity=c.globalAlpha;
+   annotations.push(()=>{
+    c.save();c.globalAlpha=opacity;
+    const font=(s.width<650?12:13)/s.scale,lineHeight=font*1.35,pad=6/s.scale;
+    const half=s.width/(2*s.scale)-12/s.scale,maxText=Math.min(width,2*half-2*pad);
+    c.font=`500 ${font}px -apple-system,BlinkMacSystemFont,sans-serif`;
+    c.textAlign='center';c.textBaseline='middle';
+    const wordMode=/[A-Za-z]/.test(text)||text.includes(' '),words=wordMode?text.split(' '):[...text],lines:string[]=[];
+    let line='';
+    for(const word of words){
+     const next=line+(line&&wordMode?' ':'')+word;
+     if(line&&c.measureText(next).width>maxText){lines.push(line);line=word;}else line=next;
+    }
+    if(line)lines.push(line);
+    const w=Math.max(...lines.map(value=>c.measureText(value).width))+pad*2;
+    const safeX=Math.max(-half+w/2,Math.min(half-w/2,x)),top=y-lineHeight/2-4/s.scale;
+    if(options.anchor){
+     s.path([options.anchor,[safeX,y]],undefined,'#d1dee8aa',.8/s.scale);
+     s.ellipse(...options.anchor,1.4/s.scale,1.4/s.scale,'#d9e4eb');
+    }
+    c.beginPath();c.roundRect(safeX-w/2,top,w,lineHeight*lines.length+8/s.scale,4/s.scale);
+    c.fillStyle='#142734cf';c.fill();c.strokeStyle='#c6d7df3b';c.lineWidth=.65/s.scale;c.stroke();
+    c.fillStyle=options.color??'#f0f5f7';
+    lines.forEach((value,i)=>c.fillText(value,safeX,y+i*lineHeight));c.restore();
+   });
   };
   this.artwork.paintLandscape(c,flash,s.width/(2*s.scale)+2,s.height*.46/s.scale+2);
   // Local rain is behind the channel and belongs to this cloud's rain shaft.
@@ -51,17 +77,26 @@ export class TopicScene{
   if(progress<.70){
    c.save();
    const chargeFade=1-smooth(.46,.61,progress),markSize=Math.max(4.2,3.5/s.scale);
+   const pane=(x:number,y:number,width:number,height:number)=>{
+    const fill=c.createLinearGradient(x,y,x,y+height);
+    fill.addColorStop(0,'#152c3a94');fill.addColorStop(1,'#102331a3');
+    c.beginPath();c.roundRect(x,y,width,height,6);c.fillStyle=fill;c.fill();
+    c.strokeStyle='#c8d9e461';c.lineWidth=.8/s.scale;c.stroke();
+   };
    const charge=(positive:boolean,x:number,y:number,r=markSize)=>{
     c.beginPath();c.moveTo(x-r,y);c.lineTo(x+r,y);
     if(positive){c.moveTo(x,y-r);c.lineTo(x,y+r);}
-    c.lineCap='round';c.strokeStyle='#192b40e8';c.lineWidth=3.15/s.scale;c.stroke();
-    c.strokeStyle=positive?'#ffe2a4':'#e1f4ff';c.lineWidth=1.2/s.scale;c.stroke();
+    c.lineCap='round';c.strokeStyle='#07162566';c.lineWidth=2.7/s.scale;c.stroke();
+    c.strokeStyle=positive?'#ffdf9f':'#e1f4ff';c.lineWidth=1.5/s.scale;c.stroke();
    };
    const region=(x:number,y:number,rx:number,ry:number,color:string)=>{
     c.save();c.translate(x,y);c.scale(rx,ry);
     const g=c.createRadialGradient(0,0,0,0,0,1);g.addColorStop(0,color);g.addColorStop(1,'#ffffff00');
     c.fillStyle=g;c.fillRect(-1,-1,2,2);c.restore();
    };
+   // One explicit diagram window softens the texture behind the entire field;
+   // its outline is an annotation boundary, not a physical cloud/cut surface.
+   c.globalAlpha=chargeFade;pane(-250,-262,320,188);
    c.globalAlpha=state.separation*chargeFade;
    region(-105,-226,142,38,'#ffda9638');region(-105,-128,154,31,'#81c3ee4f');
    // Retained, mildly irregular sign fields separate from the same mixed band.
@@ -75,19 +110,20 @@ export class TopicScene{
     charge(false,x+8*(1-u),start+(lower-start)*u);
    }
    c.globalAlpha=smooth(.35,.8,state.separation)*chargeFade;
-   s.label(t('上部：正电荷'),130,-226,{width:170,color:'#ffe1ad',background:'#26313be8',anchor:[31,-226]});
-   s.label(t('中下部：负电荷'),137,-128,{width:185,color:'#d1efff',background:'#243340e8',anchor:[33,-128]});
+   label(t('上部：正电荷'),156,-226,170,{color:'#ffe1ad',anchor:[31,-226]});
+   label(t('中下部：负电荷'),168,-128,185,{color:'#d1efff',anchor:[33,-128]});
    // The small lower positive pocket belongs to the existing teaching model.
    c.globalAlpha=smooth(.6,1,state.separation)*chargeFade;
    region(-165,-90,34,15,'#ffdc8c38');
    for(let i=0;i<3;i++)charge(true,-180+i*15,-92+(i%2)*5,markSize*.75);
    c.globalAlpha=smooth(0,.45,state.field)*chargeFade;
+   pane(-148,139,164,44);
    region(-65,151,121,17,'#f5c97755');
    for(let i=0;i<12;i++)charge(true,-132+i%6*24+(noise(i+848)-.5)*6,151+Math.floor(i/6)*16+(noise(i+947)-.5)*5,markSize*.9);
-   s.label(t('地面：感应正电荷'),-65,202,{width:320,color:'#ffe1ad',background:'#28312be8'});
+   label(t('地面：感应正电荷'),-65,s.width<650?224:211,320,{color:'#ffe1ad'});
    if(progress<.32){
     c.globalAlpha=1;
-    label(t('电荷区域示意 · 符号不是粒子'),-105,-32,365);
+    label(t('电荷区域示意 · 符号不是粒子'),-105,s.width<650?-32:-56,365);
    }
    c.restore();
   }
@@ -124,9 +160,18 @@ export class TopicScene{
   s.path([[mastTip[0]-.35,103],[mastTip[0]-.35,mastTip[1]]],undefined,'#f6f1d6',2);
   s.ellipse(mastTip[0],mastTip[1],1,1,'#fff5d5');
   if(progress<.32){
-   s.label(t('接地塔'),-88,91,{width:155,color:'#f1f4ed',background:'#243139e8',anchor:[5,120]});
+   label(t('接地塔'),-88,91,155,{anchor:[5,120]});
   }
   c.restore();
+  this.artwork.paintHouse(c,observerX,flash*.8);
+  if(flash>0){
+   // One connected return lights the entire visible environment. Local masks
+   // above remain stronger near the channel; neither pass introduces a clock.
+   c.save();c.globalCompositeOperation='screen';c.globalAlpha=flash*.36;
+   c.fillStyle='#dfeaff';
+   c.fillRect(-s.width/(2*s.scale)-2,-s.height*.54/s.scale-2,s.width/s.scale+4,s.height/s.scale+4);
+   c.restore();
+  }
   if(state.field>.45&&state.leader<.92){
    const glow=c.createRadialGradient(15,91,0,15,91,9+state.field*7);glow.addColorStop(0,'#c4cbec70');glow.addColorStop(1,'#c5b8ff00');s.ellipse(15,91,10+state.field*7,10+state.field*7,glow);
   }
@@ -167,7 +212,6 @@ export class TopicScene{
    }
    if(s.width>650&&state.returnStroke>0&&progress<.70)label(t('明亮回击向上发展'),117,-15,250);
   }
-  this.artwork.paintHouse(c,observerX,flash*.8);
   if(progress>=.70){
    const radius=projectDistance(state.soundRadiusKm),frontX=Math.min(observerX,15+radius);
    // The one leading boundary and the ground track share one distance map.
@@ -186,6 +230,7 @@ export class TopicScene{
   }
   label(t('室内'),observerX+22,78,110);
   if(this.artwork.status!=='ready')label(this.artwork.status==='loading'?t('正在载入场景插画'):t('插画加载失败，可刷新重试；通道示意仍可操作'),0,210,510);
+  for(const paint of annotations)paint();
   s.end();
  }
  dispose(){this.artwork.dispose();this.surface.dispose();}
