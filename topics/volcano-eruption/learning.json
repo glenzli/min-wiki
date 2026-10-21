@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "volcano-eruption",
   "zh": {
-    "question": "为什么有的火山变成绿山，有的仍光秃秃，还有的山顶塌成了湖盆？",
-    "observe": "先选大室山式火山锥，进入“植物怎样回来”，观察冷却、岩缝积土和种子到达。在相同进度切换湿润、干旱、寒冷与厚灰覆盖，看看小苗在哪里长起来。再选火山湖，依次看岩浆撤出、支撑减弱、岩体下沉，最后才让水进入。陆地案例还可以进入“为什么会喷发”，改变岩层阻碍，比较岩浆能否到达地表。",
+    "question": "火山怎样喷发、造山，又怎样与植物和水相遇？",
+    "observe": "从问题进入，不必先选一座具体火山。四个单元依次讨论七个问题：岩浆怎样到达地面、喷发为何不同；物质怎样积成山、海底怎样成山；裸岩怎样长草、凹地怎样留住湖水；地下热怎样加热水。暂停在一个时刻，换镜头追踪同一岩脉、沉积层、地表位点或水路。比较陆地与海底、盾状与成层及渣锥形态时，改变的是当前问题的条件。各问题的进度是各自的教学时钟；一次喷发、长期积山、生态建立和地下水循环不能按同一进度换算真实年数。",
     "academic": [
       {
-        "title": "从地下活动到喷发：贯通、气体与流变",
-        "body": "岩浆来自深部岩石的部分熔融。储存系统可包含不同深度的熔体、晶体和相连岩床；补给可改变过压，但浮力、围岩应力、构造张裂、脱气和冷却也影响岩脉传播。这里只演示一次补给驱动的情境：贯通后排出降低过压，未贯通则保留地下侵入体。条形指标没有真实单位，不能由此推算喷发时间或概率。 岩浆上升时围压下降，溶解的挥发组分可以出溶形成气泡，气泡也会膨胀。流变和气体逸出影响熔岩溢流、喷泉或碎裂；温度、成分、晶体、供浆与外来水同样重要，低黏度并不保证没有爆炸。VEI 主要依据爆炸性喷出物体积，并结合喷发柱等证据，不等于全部能量或危险程度，也不是熔岩流量的刻度。本页补给与岩层阻碍共同决定示意岩脉是否贯通地表；只有贯通后才开始喷出物的独立演化。"
+        "title": "贯通与喷发差异：气体、流变和通道",
+        "body": "岩浆来自深部岩石的部分熔融；浅部储存区不是所有岩浆的起点，也不是空洞。补给可改变过压，但浮力、围岩应力、构造张裂、脱气和冷却也影响岩脉传播。喷发机制问题选择一次补给驱动的情境：岩脉贯通后才产生本次地表喷出物；停在地下时保留侵入体。比较喷发差异时，岩浆上升引起的降压可让挥发组分出溶、气泡膨胀；流变和气体能否逸出影响溢流、喷泉与碎裂。成分、温度、晶体、供浆及外来水也重要，低黏度不保证没有爆炸，山形也不能唯一决定一次喷发的样式。VEI 主要依据爆炸性喷出物体积并结合喷发柱等证据，不是全部能量、熔岩流量或危险程度的刻度。条形指标和液态纹理均为定性示意，不能推算真实压力、流速或喷发概率。"
       },
       {
-        "title": "不同地貌，来自不同的物质与历史",
-        "body": "较易流动的熔岩可多次铺展，形成宽缓的盾状火山；熔岩与碎屑共同累积，可构成成层火山。火山渣锥由喷口周围堆积的火山渣等碎屑建立，大室山还伴随山麓熔岩流。山形在喷发时已形成，并不是熄灭后才变出的形态；后续侵蚀、风化和植被覆盖继续修改它。大室山的草坡景观还与传统山烧管理有关。海底火山同样靠累积物质生长，但压力、冷却与岩浆和水相互作用会影响喷发产物。只有累积足够的部分海底火山会长成岛。 裸岩变绿还需要生态恢复：风化产物、外来尘土及有机物积累，种子或孢子到达，并有适宜水分、温度和基质。干旱、寒冷、土层薄、排水快，以及新的熔岩或厚灰覆盖等，都可延缓或中断恢复。植物并无统一到场顺序，也不必经过相同年数或最终成为森林。"
+        "title": "造山与地表变化：保留下来的物质和不同尺度",
+        "body": "熔岩与碎屑在喷发期间累积，山体并非等到熄灭才形成。较易流动的熔岩反复铺展可形成宽缓盾状火山；熔岩与碎屑累积可形成成层火山；喷口附近的火山渣等碎屑可堆起渣锥。大室山是渣锥实例，也曾有山麓熔岩流。陆地和海底是喷发环境，盾状、成层和渣锥是形态分类，草坡和湖泊则涉及地表条件与后续过程，不能当作同一层级的类型。水压、冷却及岩浆与水的相互作用影响水下产物；只有部分海底火山累积足够物质才会出露成岛。生态观察从已经成形的同一山体开始：冷却后，风化颗粒、外来尘土和有机物可逐渐形成基质，种子或孢子还需到达，并有适宜水分与温度。干旱、寒冷、排水快、薄土、新熔岩或厚灰都可延缓或中断建立。没有统一的物种顺序、年数或森林终点；大室山现有草坡还受到传统山烧维护。"
       },
       {
-        "title": "湖泊、安静与活动潜力是不同的问题",
-        "body": "塌陷案例中，岩浆沿通道撤出会改变储存区压力和对上覆岩体的支撑；上方岩体自重仍在，失稳后可沿断裂下沉。裂隙和沉降发生在后来积水之前，地下不必先出现永久空洞，也并非每次喷发都会触发塌陷。 火山口和塌陷破火山口可以提供蓄水凹地；是否形成湖泊取决于水量平衡和渗透性等条件。火山湖装的是后来补给的水，熔岩湖装的是熔融岩石。有湖不代表火山已永久熄灭，Crater Lake 所在火山中心仍有未来喷发潜力。休眠常指喷发之间的间歇；被认为熄灭则需要结合地质年代、构造和供浆背景，判断也可能修订。草坡、湖水、没有烟或某个固定年数都不能代替这些证据，旧喷口不再活动也不排除火山区别处产生新喷口。"
+        "title": "湖水与地下热水：凹地、水量平衡和热源",
+        "body": "在所选塌陷案例中，岩浆撤出可改变储存区压力及对上覆岩体的支撑；自重仍在的岩体失稳后沿断裂下沉，先形成凹地，再可能积水。这不要求地下留下永久空洞，也不是每次喷发都塌陷。湖泊是否形成还取决于降水、径流、蒸发和渗漏等水量平衡。火山湖装的是水，熔岩湖装的是熔融岩石。湖泊并非一律在火山永久停止后才出现，湖水可与后续喷发或热液活动共存；黄石湖底就有热液出流。地下热水问题追踪另一条水路：降水补给的地下水沿连通孔隙与裂隙循环，经热岩石加热后可能上升出露。火山区的热源可包括岩浆或仍热的侵入岩，但并非所有温泉都源于火山，深循环水也能由随深度升温的岩石加热。喷气、温泉、植被和湖水都不能单独判定下一次喷发或永久熄灭；休眠与熄灭判断还需地质年代、构造、供浆史和监测证据。"
       }
     ],
-    "misconception": "这些案例没有共同的“喷发、死亡、成湖”倒计时。长草和积水不能证明火山已熄灭，海底火山也不一定最终成岛。",
-    "boundary": "这些是选择了特定条件的概念案例，不是实测重建或危险预测。地貌故事和一次喷发各有进度；示意堆积、侵蚀、植被和水量平衡没有统一真实时标。",
+    "misconception": "没有所有火山共同的“喷发—熄灭—长草—成湖—温泉”顺序。陆海环境、山体形态、植被、湖泊和热液活动回答不同问题；它们可以在不同条件下组合。",
+    "boundary": "七个问题是互相衔接的概念观察，不是同一火山连续实测的一生。各问题有独立的压缩教学进度；一次喷发、长期堆积、生态建立、水量平衡与地下水循环没有共同真实时标。剖面、层厚、储存深度、碎屑、土层和根系的尺度，以及熔岩纹理、气泡和水路运动都为辨认而示意；液态细节可单独暂停，不据此读取实测深度、速度、温度或喷发时刻。这些情境也不用于危险预测。",
     "narration": [
       {
-        "label": "选择一座火山",
-        "text": "火山有很多模样。宽宽的山、圆圆的小山、藏在海里的大山，甚至山上的湖，都可能留下火山活动的故事。先选一座，把剖面打开。我们要跟着岩浆，看看它能不能到地面，再看留下了什么。",
-        "cue": "逐一展示五张案例卡，进入大室山式火山渣锥并打开剖面。"
+        "label": "单元一：岩浆怎样到达地面",
+        "text": "先问一个问题：岩浆为什么会来到地面？跟着地下同一条裂缝，看岩浆向上走。有时路通了，地面才出现熔岩和碎屑；有时岩浆停在地下。再问：为什么喷出来的样子不同？有的熔岩流开，有的像喷泉，有的带出许多火山灰。气泡、岩浆的稠稀和通道都会影响结果，遇到水也可能改变过程。先跟路径，再比较条件。",
+        "cue": "进入“为什么会喷发”，暂停追踪同一岩脉尖端；比较贯通与停滞。转到“喷发为什么不同”，分别观察熔岩流、喷泉与富灰喷发。两个问题各用自己的进度，不把不同结果拼成一场实测喷发。"
       },
       {
-        "label": "喷出的东西留下来了",
-        "text": "先往地下看：新的岩浆补进来，周围岩石受到挤压。岩浆沿裂缝往上走，里面的气泡也会变大。走到地面，才会喷出熔岩和碎屑；有时候，它会停在地下。试着增大岩层阻碍，再看一次。喷出来的东西落下、冷却，一点一点留下山。盾状火山铺得宽，成层火山留下熔岩和碎屑，大室山式的小山则堆起许多火山渣。",
-        "cue": "从堆积初期推进到冷却；比较三种山形，再进入一次喷发并暂停。"
+        "label": "单元二：留下的物质怎样造山",
+        "text": "喷出来的东西去了哪里？熔岩铺在地面，碎屑落回坡上，冷却后留下来。新的物质再盖上去，山才一点点积高、积宽。宽缓的盾状火山、成层火山和渣锥，记录了不同的堆积。大室山是渣锥的一个例子。海底也会积山，不过海水改变了压力和冷却。有些山能长出海面，有些一直留在水下。山形和陆海环境，是两种不同的比较。",
+        "cue": "在“山怎样堆起来”中追踪喷口、飞行碎屑、落地转暗和保留的沉积；在问题内比较盾状、成层和渣锥。进入“海底怎样成山”，比较水下积山与有条件出露，不把成岛设成必然终点。"
       },
       {
-        "label": "海水和湖水加入故事",
-        "text": "再看看山里的湖。先不要放水！跟着橙色岩浆走：它去了别处，上面沉甸甸的岩石还在。支撑减弱，裂缝扩大，岩体沿着断裂往下沉，才留下低洼的盆地。雨水、融雪后来汇进来，才可能变成湖。水如果都漏走了，有个大坑也留不住湖。海里的火山则还有另一条故事：岩石在水下一次次堆起来，有些才长成岛。",
-        "cue": "火山湖依次停在13%、23%、36%、72%，追踪岩浆、裂隙、相同岩层和后来的水。"
+        "label": "单元三：裸岩、草坡与湖水",
+        "text": "山留下了，地表还会改变。先看裸岩怎样长草：岩石冷却，细土和水被留住，种子来到合适的地方，才能扎根。换成干旱、寒冷或厚灰覆盖，再看同一处。大室山今天的草坡，还有人们长期山烧维护。再问湖水从哪里来：有凹地，还要有水进入、留得住，才可能成湖。草坡不必接着变成湖，湖泊也不证明火山已经永久熄灭。",
+        "cue": "生态问题从已成形的同一山体开始，追踪固定地表位点，保持进度比较四种环境；再进入独立的湖泊问题，依次观察成盆与水量平衡。说明湖泊可与热液活动共存，两问不是同一座山的必经下一步。"
       },
       {
-        "label": "安静之后还有故事",
-        "text": "喷发停了，山没有消失。岩石慢慢凉下来，缝里留住细土和水，风和动物把种子带来。有种子就一定会绿吗？换成很干或很冷的环境，再看看小苗。新的厚灰还可能把它们盖住。大室山今天像一顶草帽，还受到人们长期山烧管理。长草、没有草，都不能单独告诉我们火山以后会不会喷。",
-        "cue": "进入“植物怎样回来”，观看冷却、岩缝积土、种子到达，再在末阶段比较四种环境；厚灰情境回看65%到80%的植被减少。"
+        "label": "单元四：地下热怎样遇到水",
+        "text": "地面没有熔岩流出来，地下也可能还很热。雨水渗进岩石缝隙，遇到热岩石，被加热后又沿连通的路往上走，可能形成温泉。水走的路和岩浆走的路，要分开追踪。湖底也可能有热水流出。并不是每一处温泉都来自火山，有些水在地下走得很深，被那里较热的岩石加热。看到热水，我们还要问：水从哪里来，热从哪里来？",
+        "cue": "进入“地下热与水”，先辨认降水补给、渗流路径、热岩区和出流口，再跟踪同一水路。液态运动为示意并可独立暂停；不标注未经校准的深度、速度或循环年数，也不把热液放在所有火山的最后一阶段。"
       }
     ]
   },
   "en": {
-    "question": "Why do some volcanoes turn green, some stay bare, and some summits collapse into lake basins?",
-    "observe": "Choose the Omuroyama-style cone and open How plants return. Follow cooling, soil collecting in cracks and arriving seeds. At the same progress, compare wet, dry, cold and thick-ash conditions to see where seedlings establish. Then choose the volcanic lake: follow magma withdrawal, reduced support and sinking rock before water arrives. On land, also open Why does it erupt and change rock barriers to compare whether magma reaches the surface.",
+    "question": "How do volcanoes erupt, build land, and interact with plants and water?",
+    "observe": "Start with a question; you do not need to choose a named volcano first. Four units connect seven questions: how magma reaches the surface and why eruptions differ; how deposits build mountains on land and under the sea; how bare rock supports plants and how depressions retain lakes; and how underground heat warms water. Pause at a moment and follow the same dike, deposit, surface site or water pathway through different views. Land versus sea and shield, composite and scoria-cone forms are conditions compared within a question. Each question has its own teaching clock: one eruption, long-term accumulation, ecological establishment and groundwater circulation cannot share a conversion from progress to years.",
     "academic": [
       {
-        "title": "From unrest to eruption: connection, gas and flow",
-        "body": "Magma originates through partial melting at depth. Storage may contain melt, crystals and connected sills at several levels. Recharge can change overpressure, while buoyancy, host-rock stress, tectonic extension, degassing and cooling also affect dike propagation. This is one recharge-driven episode: discharge reduces overpressure after connection, while a stalled intrusion remains underground. The bars have no physical units and cannot predict eruption timing or probability. As magma rises, falling pressure allows dissolved volatiles to exsolve and gas bubbles to expand. Flow properties and gas escape influence effusion, fountains and fragmentation. Temperature, composition, crystals, magma supply and external water also matter; low viscosity does not rule out explosions. VEI primarily uses explosive ejecta volume together with plume evidence. It is not a score for total energy or hazard, nor a measure of lava discharge. Supply and rock barriers jointly determine whether the illustrative dike reaches the surface. Only then does the separate evolution of surface products begin."
+        "title": "Connection and eruption differences: gas, flow and pathways",
+        "body": "Magma originates through partial melting at depth; shallow storage is neither the origin of all magma nor an empty cavern. Recharge can change overpressure, while buoyancy, host-rock stress, tectonic extension, degassing and cooling also influence dike propagation. The mechanism question selects one recharge-driven episode: this episode produces surface ejecta only after the dike connects to the surface; a stalled intrusion remains underground. In the eruption comparison, falling pressure during ascent can let volatiles exsolve and bubbles expand. Flow properties and gas escape affect effusion, fountains and fragmentation. Composition, temperature, crystals, supply and external water also matter. Low viscosity does not rule out explosions, and mountain shape does not uniquely determine an eruption style. VEI primarily uses explosive ejecta volume together with plume evidence; it is not a scale for all energy, lava discharge or hazard. Bars and moving liquid textures are qualitative illustrations, not measurements of pressure, flow speed or eruption probability."
       },
       {
-        "title": "Different landscapes record different materials and histories",
-        "body": "Repeated fluid lava flows can build a broad shield; lava and fragment deposits can form a composite volcano. Scoria cones grow from fragments deposited around a vent. Omuroyama also produced lava from its foot. Its cone formed during eruption, not as a consequence of extinction. Later weathering, erosion and vegetation modify the surface; traditional burning also maintains Omuroyama’s grassland. Submarine volcanoes likewise accumulate material, while pressure, cooling and magma–water interaction influence products. Only some accumulate enough material to become islands. Ecological recovery additionally needs suitable substrate, water and temperatures, along with arriving seeds or spores. Weathered grains, windblown dust and organic material accumulate. Drought, cold, thin soils, rapid drainage, new lava or thick ash can delay or interrupt recovery. There is no universal sequence of organisms, fixed timescale or inevitable forest endpoint."
+        "title": "Building land and changing surfaces: retained material at different scales",
+        "body": "Lava and fragments accumulate during eruptions; extinction does not create the mountain. Repeated fluid lava flows can build a broad shield, lava and fragment deposits can build a composite volcano, and scoria deposited around a vent can build a scoria cone. Omuroyama is a scoria-cone example that also produced lava from its foot. Land and sea are eruption environments; shield, composite and scoria cone describe forms; grassland and lakes concern surface conditions and subsequent processes. These are different comparisons, not peer categories. Water pressure, cooling and magma–water interaction influence submarine products. Only some submarine volcanoes accumulate enough material to emerge as islands. The ecology question starts on the same already formed mountain: after cooling, weathered grains, windblown dust and organic material may build substrate. Seeds or spores must also arrive, with suitable moisture and temperature. Drought, cold, rapid drainage, thin soil, new lava or thick ash may delay or interrupt establishment. There is no universal species sequence, fixed number of years or inevitable forest endpoint. Traditional burning also maintains Omuroyama’s present grassland."
       },
       {
-        "title": "Lakes, quiet intervals and future activity are different questions",
-        "body": "In the collapse example, magma withdrawal changes reservoir pressure and support for overlying rock. Its weight remains, and unstable rock can subside along faults. Fracturing and subsidence precede later lake filling; a permanent empty cavern is unnecessary, and not every eruption causes collapse. Craters and collapse calderas can provide water-retaining depressions. Lake formation depends on the water balance, permeability and other conditions. A volcanic lake contains water supplied later; a lava lake contains molten rock. A lake does not establish extinction: the volcanic center at Crater Lake retains future eruption potential. Dormancy commonly describes an interval between eruptions. An extinction assessment needs geological ages, tectonic setting and magma-supply history, and may be revised. Grass, water, absent emissions or a fixed number of quiet years cannot replace that evidence. An inactive old vent does not exclude new vents elsewhere in its field."
+        "title": "Lake water and hot groundwater: basins, water balance and heat sources",
+        "body": "In the selected collapse example, magma withdrawal changes storage pressure and support for overlying rock. Its weight remains, and unstable rock may subside along faults, creating a depression before water can collect. This requires no permanent underground cavern, and not every eruption causes collapse. Lake formation also depends on precipitation, runoff, evaporation and leakage. Volcanic lakes contain water; lava lakes contain molten rock. Lakes do not all wait for permanent extinction: lake water may coexist with later eruptions or hydrothermal activity, and Yellowstone Lake has hydrothermal discharge on its floor. The underground-heat question follows another pathway. Groundwater supplied by precipitation circulates through connected pores and fractures, gains heat from hot rock and may rise to discharge at the surface. In volcanic areas the heat source can include magma or still-hot intrusions. However, not every hot spring has a volcanic heat source: deep circulation can heat water in rocks that become warmer with depth. Gas emissions, hot springs, vegetation and lakes cannot individually establish the next eruption or permanent extinction. Dormancy and extinction assessments also need geological ages, tectonic setting, magma-supply history and monitoring evidence."
       }
     ],
-    "misconception": "There is no shared eruption–extinction–lake countdown. Grass and water do not establish extinction, and submarine volcanoes do not inevitably become islands.",
-    "boundary": "These cases select particular conditions; they are neither surveyed reconstructions nor hazard forecasts. Landscape history and one eruption have independent timelines. Deposition, erosion, vegetation and water balance do not share a calibrated real timescale.",
+    "misconception": "There is no universal eruption–extinction–grassland–lake–hot-spring sequence. Land or sea, mountain form, vegetation, lakes and hydrothermal activity answer different questions and can occur in different combinations.",
+    "boundary": "The seven connected questions are conceptual observations, not a measured continuous life history of one volcano. Each has an independent compressed teaching progress. One eruption, long-term deposition, ecological establishment, water balance and groundwater circulation have no common calibrated timescale. Cutaways, bed thicknesses, storage depths, clasts, soil and roots are scaled for recognition; lava textures, bubbles and moving water paths are illustrative too. Liquid details can be paused separately. They do not provide measured depth, speed, temperature or eruption timing, and these scenarios are not hazard forecasts.",
     "narration": [
       {
-        "label": "Choose a volcano",
-        "text": "Volcanoes have many shapes. A broad mountain, a round cone, a mountain under the sea and even a lake can tell a volcanic story. Choose one and open its cutaway. Follow magma to see whether it reaches the surface, then what remains.",
-        "cue": "Show the five case cards, enter the Omuroyama-style cone and open the cutaway."
+        "label": "Unit one: how magma reaches the surface",
+        "text": "Start with a question: why does magma reach the surface? Follow the same underground crack as magma moves upward. Sometimes the path connects and lava and fragments appear above ground. Sometimes magma stops below. Then ask why eruptions look different. Some lava spreads out, some rises in fountains, and some eruptions carry abundant ash. Bubbles, how readily magma flows, and its pathway all affect the result. Encountering water can change the process too. Follow the path, then compare the conditions.",
+        "cue": "Open Why does it erupt and pause to follow the same dike tip. Compare connection with a stalled intrusion. Move to Why do eruptions differ and observe a lava flow, fountains and an ash-rich eruption. The two questions have separate progress; their outcomes are not one measured eruption."
       },
       {
-        "label": "Erupted material stays",
-        "text": "Look underground first. New magma enters and pushes on the surrounding rock. It moves upward along cracks, and its gas bubbles can grow. Lava and fragments appear only after it reaches the surface; sometimes magma stops below. Increase the rock barriers and try again. Erupted material lands and cools, gradually leaving a mountain. Shields spread broadly, composite volcanoes collect lava and fragments, and an Omuroyama-style cone piles up scoria.",
-        "cue": "Advance deposition through cooling, compare the three shapes, then pause within the eruption detail."
+        "label": "Unit two: how retained material builds land",
+        "text": "Where does erupted material go? Lava spreads across the ground, fragments land on slopes, and cooled material stays. New deposits accumulate above it, gradually raising and widening the mountain. Broad shields, composite volcanoes and scoria cones record different deposits. Omuroyama is one scoria-cone example. Mountains also grow under the sea, where water changes pressure and cooling. Some emerge above the sea; others remain submerged. Mountain shape and land or sea are two different comparisons.",
+        "cue": "In How do mountains build up, follow the vent, flying fragments, darkening landings and retained deposits. Compare shield, composite and scoria-cone forms inside that question. Open How do mountains grow underwater to compare submerged growth and conditional emergence; an island is not an inevitable endpoint."
       },
       {
-        "label": "Sea and lake water join the story",
-        "text": "Now look at a lake in a mountain. Do not add water yet! Follow the orange magma as it moves away. The heavy rock above remains. As support weakens, fractures grow and rock sinks along faults, leaving a basin. Rain and melting snow can collect later. If water leaks away, even a large basin may stay dry. Underwater volcanoes have another story: repeated deposits build up, and only some become islands.",
-        "cue": "Pause the lake case at 13%, 23%, 36% and 72%, tracing magma, fractures, the same rock layer and later water."
+        "label": "Unit three: bare rock, grassland and lakes",
+        "text": "The mountain remains, but its surface can change. First follow how bare rock supports grass. Rock cools, fine material and water collect, and arriving seeds need a suitable place to root. Try dry, cold or thick-ash conditions at the same site. People’s traditional burning also maintains Omuroyama’s grassland today. Next ask where lake water comes from. A depression needs incoming water and a way to retain it. Grassland need not become a lake, and a lake does not prove that a volcano is permanently extinct.",
+        "cue": "Begin ecology on the same already formed mountain. Follow fixed surface sites and retain progress while comparing four environments. Then open the separate lake question, observing basin formation before water balance. Explain that lakes can coexist with hydrothermal activity; neither question is a mandatory next step for one mountain."
       },
       {
-        "label": "When the mountain is quiet",
-        "text": "The eruption stops, but the mountain remains. Rock cools, cracks collect fine material and water, and wind or animals bring seeds. Are seeds enough to turn it green? Try a dry or cold environment and watch the seedlings. Fresh thick ash may bury them too. Omuroyama looks like a grassy hat today partly because people maintain its grassland through traditional burning. Grass, or its absence, cannot by itself tell us whether a volcano will erupt again.",
-        "cue": "Open How plants return, observe cooling, soil in cracks and seed arrival, then compare four environments at the endpoint. Replay 65–80% under thick ash to see vegetation decline."
+        "label": "Unit four: how underground heat meets water",
+        "text": "Even without lava flowing above ground, rock below can remain hot. Rainwater enters cracks, gains heat from hot rock, and may rise through connected pathways to form a hot spring. Follow the water path separately from the magma path. Hot water can also flow from a lake bed. Not every hot spring comes from a volcano. Some water circulates deep enough to be warmed by hotter rock below. Whenever we see hot water, we can ask two questions: where did the water come from, and where did the heat come from?",
+        "cue": "Open Underground heat and water. Identify precipitation recharge, permeable pathways, the hot-rock zone and discharge, then follow the same water route. Liquid movement is illustrative and can be paused independently. Give no uncalibrated depths, speeds or circulation ages, and do not place hydrothermal activity at the end of every volcanic history."
       }
     ]
   },
@@ -217,6 +217,26 @@
     {
       "title": "USGS: Magma withdrawal and summit collapse",
       "url": "https://www.usgs.gov/volcanoes/kilauea/science/2018-lower-east-rift-zone-eruption-and-summit-collapse-kilauea"
+    },
+    {
+      "title": "NPS · Volcanic Eruptions",
+      "url": "https://www.nps.gov/subjects/volcanoes/volcanic-eruptions.htm"
+    },
+    {
+      "title": "NPS · Hot Springs/Geothermal Features",
+      "url": "https://www.nps.gov/subjects/geology/hot-springs.htm"
+    },
+    {
+      "title": "NPS · Hot Springs Geology: a non-volcanic hot-water system",
+      "url": "https://www.nps.gov/hosp/learn/nature/hotsprings.htm"
+    },
+    {
+      "title": "USGS · Yellowstone’s Active Hydrothermal System",
+      "url": "https://www.usgs.gov/volcanoes/yellowstone/science/yellowstones-active-hydrothermal-system"
+    },
+    {
+      "title": "USGS · The Hydrothermal System in Yellowstone Lake",
+      "url": "https://www.usgs.gov/observatories/yvo/news/hydrothermal-system-yellowstone-lake"
     }
   ]
 }

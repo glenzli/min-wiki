@@ -4,18 +4,27 @@ import type { Landform } from './projectModel.ts';
 import type { EcologyState } from './ecologyModel.ts';
 import { seed } from './magmaGeometry.ts';
 import { smooth } from './model.ts';
+import { seedDispersal, seedHiddenByTerrain } from './ecologyDispersal.ts';
+import { surfaceHeight, WORLD_SCALE } from './eruptionGeometry.ts';
 const n = (v: number) => v.toFixed(2);
 export function ecologyMarkup(kind: Landform, state: EcologyState) {
   const { radius, point } = landformProjection(kind, 1, 0);
+  const surface = (x: number, z: number) => surfaceHeight(x, z, kind);
+  const obliquity = kind === 'shield' ? .30 : kind === 'composite' ? .4 : .53;
   const plants = Array.from({ length: 100 }, (_, i) => {
     // Fixed front-facing sites never teleport when the environment changes.
     const r = radius * (.30 + seed(i + 781) * .62), a = .15 + seed(i + 998) * 2.8;
     const [x, y] = point(r, a), fertility = seed(i + 113);
     const cover = smooth(fertility * .63, fertility * .63 + .19, state.vegetation);
     const soil = state.soil * (.4 + seed(i + 63) * .6), size = 3 + seed(i + 44) * 6;
-    const travelling = smooth(.28 + seed(i + 21) * .15, .56 + seed(i + 21) * .15, state.p);
-    const seedX = x - (1 - travelling) * 300, seedY = y - Math.sin((1 - travelling) * Math.PI / 2) * 190;
-    return `<g data-site="${i}"><ellipse cx="${n(x)}" cy="${n(y)}" rx="${n(size * 1.8)}" ry="${n(size * .45)}" fill="#6e533d" opacity="${n(soil * .75)}"/>${travelling > 0 && travelling < 1 && i % 4 === 0 ? `<path d="M${n(seedX)} ${n(seedY)}q6 -8 11 -3m-8 0l2 5" stroke="#ead6a8" stroke-width="1.3" fill="none"/>` : ''}<g transform="translate(${n(x)} ${n(y)}) scale(${n(cover)})"><ellipse rx="${n(size * 1.8)}" ry="${n(size * .5)}" fill="#657f40"/><path d="M0 0q-7 -5 -6 -12M0 0q4 -10 2 -16M0 0q5 -6 9 -7" fill="none" stroke="#b5c97a" stroke-width="1.7" stroke-linecap="round"/><path d="M0 0q-1 -7 -3 -10M0 0q6 -4 6 -10" fill="none" stroke="#426443" stroke-width="2"/></g>${i % 5 === 0 ? `<path d="M${n(x-7)} ${n(y)}l4 -3 4 2 5 -3" fill="none" stroke="#f3ad66" stroke-width="2" opacity="${n(1-state.cooling)}"/>` : ''}</g>`;
+    const wx = r * Math.cos(a) * WORLD_SCALE, wz = r * Math.sin(a) * WORLD_SCALE;
+    const target: [number, number, number] = [wx, surface(wx, wz), wz];
+    const sample = seedDispersal(i, state.p, target, surface);
+    const seedX = x + (sample.position[0] - wx) / WORLD_SCALE;
+    const seedY = y - (sample.position[1] - target[1]) / (WORLD_SCALE * .75) + (sample.position[2] - wz) * obliquity / WORLD_SCALE;
+    const seedVisible = sample.visible && cover < .1 && !seedHiddenByTerrain(sample.position, surface, [0, obliquity * .75, 1]);
+    const seedMark = seedVisible ? `<ellipse data-seed="${i}" cx="${n(seedX)}" cy="${n(seedY)}" rx="${n(sample.size / WORLD_SCALE)}" ry="${n(sample.size * .24 / WORLD_SCALE)}" fill="#aa946d" opacity="${n(sample.opacity * .7)}"/>` : '';
+    return `<g data-site="${i}"><ellipse cx="${n(x)}" cy="${n(y)}" rx="${n(size * 1.8)}" ry="${n(size * .45)}" fill="#6e533d" opacity="${n(soil * .75)}"/>${seedMark}<g transform="translate(${n(x)} ${n(y)}) scale(${n(cover)})"><ellipse rx="${n(size * 1.8)}" ry="${n(size * .5)}" fill="#657f40"/><path d="M0 0q-7 -5 -6 -12M0 0q4 -10 2 -16M0 0q5 -6 9 -7" fill="none" stroke="#b5c97a" stroke-width="1.7" stroke-linecap="round"/><path d="M0 0q-1 -7 -3 -10M0 0q6 -4 6 -10" fill="none" stroke="#426443" stroke-width="2"/></g>${i % 5 === 0 ? `<path d="M${n(x-7)} ${n(y)}l4 -3 4 2 5 -3" fill="none" stroke="#f3ad66" stroke-width="2" opacity="${n(1-state.cooling)}"/>` : ''}</g>`;
   }).join('');
   const heat = Array.from({ length: 8 }, (_, i) => `<path d="M${365 + i * 36} 375q-8 -15 0 -30t0 -30" fill="none" stroke="#edab7244" stroke-width="3"/>`).join('');
   const weather = state.habitat === 'cold' ? Array.from({length:14}, (_, i) => `<path d="M${230+i*41} ${125+seed(i)*78}v12m-5-9 10 6m-10 0 10-6" stroke="#f1f4e7" opacity="${n(state.cooling*.8)}" stroke-width="1.5"/>`).join('')

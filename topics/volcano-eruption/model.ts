@@ -1,4 +1,4 @@
-export interface Settings { vents: number; gas: number; viscosity: number; supply?:number; resistance?:number; landform?: 'shield' | 'composite' | 'scoria' }
+export interface Settings { vents: number; gas: number; viscosity: number; supply?:number; resistance?:number; strength?:number; landform?: 'shield' | 'composite' | 'scoria' }
 export type EruptionStyle='flow'|'fountain'|'ash';
 export const PRESETS:Record<EruptionStyle,Settings>={
   flow:{vents:1,gas:.12,viscosity:.16,supply:.65},
@@ -11,13 +11,22 @@ export const terrain = (x: number) => 115 - 158 * Math.exp(-((x / 168) ** 2)) + 
 export const ventPositions = (count: number) => count === 3 ? [-126, 0, 126] : [0];
 export const supplyPerVent = (count: number) => 1 / ventPositions(count).length;
 export const explosivity = (settings: Settings) => settings.gas * (.25 + .75 * settings.viscosity);
-/** Qualitative appearance weights, never a classifier or a mass/VEI estimate. */
+/** Qualitative appearance weights, never a mass, discharge-rate or VEI estimate.
+ * Strength varies surface-product extent within the same gas/viscosity form;
+ * it does not change the connection gate, mountain, camera or episode clock.
+ * All strength weights equal one for legacy callers that omit the setting. */
 export function eruptionAppearance(settings:Settings){
  const gas=unit(settings.gas),viscosity=unit(settings.viscosity),supply=unit(settings.supply??.7);
+ const strength=unit(settings.strength??1),jetScale=Math.pow(strength,.62);
+ const lavaSpread=Math.pow(strength,.35);
  const ash=smooth(.22,.74,gas*(.25+.75*viscosity));
  return {ash,fountain:smooth(.12,.7,gas)*(1-ash*.92),lava:1-ash*.84,supply,
-   reach:(.4+.6*supply)*(1-.64*viscosity),
-   style:ash>.62?'ash':gas>.42?'fountain':'flow'} as const;
+   reach:(.4+.6*supply)*(1-.64*viscosity)*lavaSpread,
+   style:ash>.62?'ash':gas>.42?'fountain':'flow',
+   strength,jetScale,
+   clastActivity:strength,clastRise:jetScale,clastSpread:Math.pow(strength,.35),
+   ashHeight:Math.pow(strength,.55),ashRadius:Math.cbrt(strength),ashDensity:Math.pow(strength,.65),
+   lavaFlux:strength,lavaWidth:Math.sqrt(strength),lavaSpread} as const;
 }
 export type VolcanoStatus='erupting'|'dormant'|'extinct';
 /** Activity status concerns evidence over time, independently of this eruption's style. */
@@ -73,7 +82,7 @@ export function emissionSlot(index: number, count: number) {
   return { birth: .305 + index / (CLAST_BUDGET - 1) * .515, x: vents[index % vents.length] };
 }
 
-export type ObservationView = 'overview' | 'vent' | 'flow' | 'plume' | 'storage';
+export type ObservationView = 'overview' | 'exterior' | 'vent' | 'flow' | 'plume' | 'storage';
 export interface ObservationCamera { x:number; y:number; zoom:number }
 /** Framing only: changing view does not change time, supply, or particle identity. */
 export function observationCamera(view:ObservationView,vents:number):ObservationCamera {

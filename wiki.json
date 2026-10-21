@@ -817,16 +817,16 @@
         "en": "Volcanoes: from magma to mountains, islands and lakes"
       },
       "summary": {
-        "zh": "选择盾状火山、成层火山、大室山式火山渣锥、海底火山或火山湖，追踪喷发、堆积与后来的地貌变化。",
-        "en": "Choose a shield volcano, a composite volcano, an Omuroyama-inspired scoria cone, an underwater volcano or a volcanic lake. Follow eruptions, deposits and later landscapes."
+        "zh": "从七个问题认识火山：为什么喷发、喷发为何不同、陆海怎样造山、山坡怎样长草、湖水如何留下，以及地下热怎样形成温泉。",
+        "en": "Explore seven questions: why eruptions happen and differ, how volcanoes grow on land and underwater, how plants establish, how lakes retain water, and how underground heat feeds hot springs."
       },
       "pages": {
         "zh": "topics/volcano-eruption/entry.zh.md",
         "en": "topics/volcano-eruption/entry.en.md"
       },
       "search": {
-        "zh": "火山：从岩浆到山、岛与湖 选择盾状火山、成层火山、大室山式火山渣锥、海底火山或火山湖，追踪喷发、堆积与后来的地貌变化。 火山 岩浆 火山灰 休眠火山 喷发方式 海底火山 火山湖 大室山 火山渣锥 海底火山怎样长成岛？ 潜到海面下，比较枕状熔岩、浅水喷发与反复堆积，看看一座岛水下的大山。 海底火山 火山岛 枕状熔岩 海洋 地质 火山湖是怎样形成的 火山喷发之后，为什么可能留下一座湖？比较火山口和破火山口，试着让雨水积起来，或从地下漏走。 火山湖 破火山口 水循环",
-        "en": "Volcanoes: from magma to mountains, islands and lakes Choose a shield volcano, a composite volcano, an Omuroyama-inspired scoria cone, an underwater volcano or a volcanic lake. Follow eruptions, deposits and later landscapes. Volcanoes Magma Volcanic ash Dormant volcanoes Eruption styles Submarine volcanoes Volcanic lakes Omuroyama Scoria cones How can an underwater volcano build an island? Explore pillow lava, shallow eruptions and repeated accumulation to discover the underwater mountain beneath a volcanic island. Submarine volcanoes Volcanic islands Pillow lava Ocean Geology How volcanic lakes form Why can a lake form after volcanism? Compare a crater and a caldera, then let water accumulate or drain through the ground. Volcanic lakes Calderas Water cycle"
+        "zh": "火山：从岩浆到山、岛与湖 从七个问题认识火山：为什么喷发、喷发为何不同、陆海怎样造山、山坡怎样长草、湖水如何留下，以及地下热怎样形成温泉。 火山 岩浆 火山灰 休眠火山 喷发方式 海底火山 火山湖 大室山 火山渣锥 海底火山怎样长成岛？ 潜到海面下，比较枕状熔岩、浅水喷发与反复堆积，看看一座岛水下的大山。 海底火山 火山岛 枕状熔岩 海洋 地质 火山湖是怎样形成的 火山喷发之后，为什么可能留下一座湖？比较火山口和破火山口，试着让雨水积起来，或从地下漏走。 火山湖 破火山口 水循环 温泉 地热 地下水 热液",
+        "en": "Volcanoes: from magma to mountains, islands and lakes Explore seven questions: why eruptions happen and differ, how volcanoes grow on land and underwater, how plants establish, how lakes retain water, and how underground heat feeds hot springs. Volcanoes Magma Volcanic ash Dormant volcanoes Eruption styles Submarine volcanoes Volcanic lakes Omuroyama Scoria cones How can an underwater volcano build an island? Explore pillow lava, shallow eruptions and repeated accumulation to discover the underwater mountain beneath a volcanic island. Submarine volcanoes Volcanic islands Pillow lava Ocean Geology How volcanic lakes form Why can a lake form after volcanism? Compare a crater and a caldera, then let water accumulate or drain through the ground. Volcanic lakes Calderas Water cycle Hot springs Geothermal heat Groundwater Hydrothermal systems"
       },
       "document": {
         "template": "topics/volcano-eruption/reader.html",
@@ -849,9 +849,11 @@
         "海底火山",
         "火山湖",
         "大室山",
-        "火山渣锥"
+        "火山渣锥",
+        "温泉",
+        "地热"
       ],
-      "duration": "互动探索 / 五种案例",
+      "duration": "互动探索 / 四单元七个问题",
       "modes": [
         "儿童版",
         "学术版"
@@ -859,7 +861,7 @@
       "theme": "dark",
       "sceneTheme": "dark",
       "status": "published",
-      "updated": "2026-10-01",
+      "updated": "2026-10-21",
       "learning": "topics/volcano-eruption/learning.json",
       "review": {
         "status": "draft",

@@ -46,3 +46,17 @@ test('fixed sites persist through different environments and the close-up remain
     assert.equal(svg,ecologyMarkup(kind,state));
   }
 });
+test('the SVG fallback keeps arriving seeds tiny and sparse rather than broadcasting a large shower', () => {
+  let maxVisible = 0, visibleFrames = 0;
+  for (let step = 50; step <= 75; step++) {
+    const svg = ecologyMarkup('scoria', ecologyState(step / 100, 'dry'));
+    const seeds = [...svg.matchAll(/<ellipse data-seed="(\d+)"[^>]*rx="([\d.]+)"[^>]*ry="([\d.]+)"/g)];
+    maxVisible = Math.max(maxVisible, seeds.length);
+    if (seeds.length) visibleFrames++;
+    for (const [, identity, rx, ry] of seeds) {
+      assert.equal(Number(identity) % 4, 0);
+      assert.ok(Number(rx) <= .28 && Number(ry) <= .07);
+    }
+  }
+  assert.ok(visibleFrames > 3); assert.ok(maxVisible <= 8);
+});

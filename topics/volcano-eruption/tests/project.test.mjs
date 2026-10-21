@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { landState, landSurface, caseFromSearch, legacyDestination, landCamera } from '../projectModel.ts';
+import { CASES, landState, landSurface, caseFromSearch, legacyDestination, landCamera, chapterFromSearch, chapterForCase, rendererForCase, initialProgress } from '../projectModel.ts';
 import { landscapeMarkup } from '../landscapeScene.ts';
 
 test('accumulated deposits persist through cooling and both later landscapes', () => {
@@ -31,6 +31,32 @@ test('case URL validation and legacy routes retain language under a hosting pref
   assert.equal(caseFromSearch('?case=../../escape'), 'scoria');
   assert.equal(legacyDestination('?lang=en&case=shield', 'lake', '/encyclopedia/'), '/encyclopedia/topics/volcano-eruption/?lang=en&case=lake');
   assert.equal(legacyDestination('', 'submarine'), '/topics/volcano-eruption/?case=submarine');
+});
+test('Omuro has one journey and old chapter links enter meaningful points on that journey', () => {
+  assert.equal(chapterFromSearch('?case=scoria', 'scoria'), 'landscape');
+  assert.equal(initialProgress('scoria', 'landscape'), 1);
+  assert.equal(chapterForCase('scoria', 'eruption'), 'landscape');
+  assert.equal(chapterFromSearch('?case=scoria&chapter=eruption', 'scoria'), 'landscape');
+  assert.equal(chapterFromSearch('?case=scoria&chapter=life', 'scoria'), 'landscape');
+  assert.equal(initialProgress('scoria', 'landscape', '?case=scoria&chapter=eruption'), .08);
+  assert.equal(initialProgress('scoria', 'landscape', '?case=scoria&chapter=life'), .66);
+  assert.equal(initialProgress('scoria', 'landscape'), 1);
+  assert.equal(initialProgress('shield', 'landscape'), 1);
+  assert.equal(initialProgress('composite', 'landscape'), 1);
+  assert.equal(initialProgress('shield', 'life'), .08);
+  assert.equal(chapterFromSearch('?case=composite', 'composite'), 'eruption');
+  assert.equal(chapterFromSearch('?case=submarine', 'submarine'), 'landscape');
+});
+test('every case and retained chapter selects a 3D owner, including shield history deep links', () => {
+  for (const volcano of CASES) for (const chapter of ['landscape', 'eruption', 'life']) {
+    const owner = rendererForCase(volcano, chapter);
+    assert.ok(['history', 'omuro', 'eruption', 'lake', 'submarine'].includes(owner));
+    if (volcano === 'shield' || volcano === 'composite') assert.equal(owner, chapter === 'eruption' ? 'eruption' : 'history');
+    if (volcano === 'scoria') assert.equal(owner, 'omuro');
+  }
+  const chapter = chapterFromSearch('?case=shield&chapter=landscape', 'shield');
+  assert.equal(chapter, 'landscape'); assert.equal(rendererForCase('shield', chapter), 'history');
+  assert.equal(rendererForCase('shield', chapterForCase('shield', 'landscape')), 'history');
 });
 test('scene output is deterministic and views do not mutate process state', () => {
   for (const kind of ['shield', 'composite', 'scoria']) {

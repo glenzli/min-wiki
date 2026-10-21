@@ -131,5 +131,9 @@
   "先留下湖盆，后来才可能积水。增加进水或减少渗漏，看看水能不能留下来。": "The basin remains first; water may collect later. Increase the input or reduce leakage and see whether water can stay.",
   "先追踪地下的岩浆：一部分流向别处，上面的岩石还没有下沉。": "Follow the magma underground: some moves elsewhere while the rock above has not yet sunk.",
   "地下支撑减弱，裂隙开始发展。先看两侧的裂隙，这时地面还没有下沉。": "Support below weakens and fractures begin to develop. Look at the fractures on either side; the ground has not yet sunk.",
-  "同样的岩层沿断裂向下移动，留下宽大的凹地。这时还没有湖水。": "The same rock layers move down along faults, leaving a broad depression. There is no lake water yet."
+  "同样的岩层沿断裂向下移动，留下宽大的凹地。这时还没有湖水。": "The same rock layers move down along faults, leaving a broad depression. There is no lake water yet.",
+  "同样的岩层沿断裂向下移动，留在盆底下，腾出上方的凹地。这时还没有湖水。": "The same rock layers move down along faults and remain beneath the basin floor, leaving a depression above. There is no lake water yet.",
+  "虚线保留塌陷前的位置。跟着两侧断层之间的同一块层状岩体：它的顶面和底界一起下移，挤占岩浆撤出后的储存区上部，成为盆底下的岩石。下方仍有晶体与残余熔体，边壁碎屑另外落到盆内；山体没有凭空消失。": "Dashed lines retain the pre-collapse position. Follow the same layered block between the faults: its top and base move down together, occupying the upper part of the reservoir as magma withdraws. It remains beneath the basin floor. Crystals and residual melt remain below; wall debris falls separately into the basin. The mountain has not vanished.",
+  "沿断裂分块下沉": "Blocks subside along faults",
+  "虚线保留塌陷前的位置。原来的层状岩体沿不规则断裂分成断块，先后向下错动并略有倾斜；同一层理仍能追踪到盆底下。陡壁局部崩落，碎块沿坡滑到崖脚，留下缺口和堆积。下方仍保留晶体与残余熔体。本例压缩过程以便观察，真实塌壁也可能在主塌陷很久以后发生；断块、位移和碎石量均为教学示意。": "Dashed lines retain pre-collapse positions. The original layered rock breaks along irregular faults; blocks subside at different stages with slight tilts, retaining traceable layers beneath the basin floor. Local wall failures leave scars as fragments slide downslope and accumulate at the wall foot. Crystals and residual melt remain below. Time is compressed for inspection; real wall failures can occur long after the main collapse. Blocks, displacement and debris amounts are illustrative."
 }

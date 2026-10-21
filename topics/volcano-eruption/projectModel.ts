@@ -2,13 +2,40 @@ export const CASES = ['shield', 'composite', 'scoria', 'submarine', 'lake'] as c
 export type VolcanoCase = typeof CASES[number];
 export type Landform = 'shield' | 'composite' | 'scoria';
 export type Chapter = 'landscape' | 'eruption' | 'life';
-export type View = 'landscape' | 'section' | 'vent' | 'plume' | 'storage' | 'ocean';
+export type View = 'landscape' | 'exterior' | 'section' | 'vent' | 'plume' | 'storage' | 'ocean';
 export type Aftermath = 'green' | 'eroded';
 export const bounded = (n: number) => Number.isFinite(n) ? Math.max(0, Math.min(1, n)) : 0;
 const ramp = (p: number, a: number, b: number) => { const u = bounded((p - a) / (b - a)); return u * u * (3 - 2 * u); };
 export function caseFromSearch(search: string): VolcanoCase {
   const value = new URLSearchParams(search).get('case');
   return CASES.includes(value as VolcanoCase) ? value as VolcanoCase : 'scoria';
+}
+/** Omuro has one continuous formation-to-grassland journey. Old chapter URLs
+ * remain valid entries into that journey rather than creating parallel studies. */
+export function chapterFromSearch(search: string, volcano: VolcanoCase): Chapter {
+  if (volcano === 'scoria' || volcano === 'lake' || volcano === 'submarine') return 'landscape';
+  const requested = new URLSearchParams(search).get('chapter');
+  if (requested === 'eruption' || requested === 'life' || requested === 'landscape') return requested;
+  return 'eruption';
+}
+export function initialProgress(volcano: VolcanoCase, chapter: Chapter, search = ''): number {
+  if (volcano === 'scoria') {
+    const requested = new URLSearchParams(search).get('chapter');
+    if (requested === 'eruption') return .08;
+    if (requested === 'life') return .66;
+  }
+  // Show the mature mountain first; the standard replay control starts its history.
+  return chapter === 'landscape' && volcano !== 'lake' && volcano !== 'submarine' ? 1 : .08;
+}
+export function chapterForCase(volcano: VolcanoCase, current: Chapter): Chapter {
+  return volcano === 'scoria' || volcano === 'lake' || volcano === 'submarine' ? 'landscape' : current;
+}
+/** Every reachable case/chapter has a 3D owner; the SVG is failure fallback. */
+export function rendererForCase(volcano: VolcanoCase, chapter: Chapter) {
+  if (volcano === 'lake' || volcano === 'submarine') return volcano;
+  if (volcano === 'scoria') return 'omuro';
+  if (chapter === 'eruption') return 'eruption';
+  return 'history';
 }
 export function legacyDestination(search: string, volcano: 'submarine' | 'lake', base = '/') {
   const params = new URLSearchParams(search);
