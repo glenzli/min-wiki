@@ -280,7 +280,7 @@ export class BuoyancyScene {
    const buoy=project(365-g.width/2-42,Math.min(g.bottom+8,427),.8),weight=project(365+g.width/2+45,g.bottom-g.height-14,.35);
    if(r.force>0)forces+=arrow('buoyancy-force',buoy,r.force,true,'#178b70','buoy-up')+label([buoy[0],buoy[1]+25],t('浮力'),15,'#147b64');
    forces+=arrow('weight-force',weight,r.weight,false,'#aa773e','buoy-down')+label([weight[0]+38,weight[1]-15],t('重力'),15,'#8d6237');
-   if(r.floorSupport>0){const p=project(365,475,.5);forces+=arrow('floor-force',p,r.floorSupport,true,'#71807a','buoy-floor')+label([p[0]+100,p[1]+4],t('箱底也在托住'),13,'#586c62');}
+   if(r.floorSupport>0){const p=project(365,475,.5);forces+=arrow('floor-force',p,r.floorSupport,true,'#71807a','buoy-floor')+label([p[0]+20,p[1]+28],t('箱底也在托住'),13,'#586c62');}
    if(r.held){const p=project(365,g.bottom-g.height-5,0);forces+=arrow('cord-force',p,r.tension,true,'#647782','buoy-cord')+label([p[0]+83,p[1]-r.tension*8+4],t('绳的张力'),14,'#526975');}
   }
   let rim='';

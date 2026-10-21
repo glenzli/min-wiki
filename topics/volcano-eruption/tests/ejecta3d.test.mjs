@@ -156,3 +156,20 @@ test('jet skin shares caller-controlled heat and phase without allocating a text
   for (const value of Object.values(first.material)) assert.ok(!value?.isTexture);
   first.material.dispose(); second.material.dispose();
 });
+
+
+test('all fountain vertex and skin phase samples close over the bounded two-pi display period', () => {
+  const style = fountainMaterial(), shader = { uniforms: {}, vertexShader: THREE.ShaderLib.standard.vertexShader, fragmentShader: THREE.ShaderLib.standard.fragmentShader };
+  style.material.onBeforeCompile(shader, {});
+  const neck = shader.vertexShader.match(/float ejNeck=(.*);/)[1];
+  const angle = shader.fragmentShader.match(/float ejAngle=(.*);/)[1];
+  const domain = shader.fragmentShader.match(/vec3 ejUV=(.*);/)[1];
+  const evaluate = (expression, uv, phase, ejAngle = 0) => new Function('uv', 'vFountainUV', 'uFountainPhase', 'ejAngle', 'sin', 'cos', 'pow', 'clamp', 'vec3', `return ${expression}`)(uv, uv, phase, ejAngle, Math.sin, Math.cos, Math.pow, (v,a,b)=>Math.min(b,Math.max(a,v)), (...v)=>v);
+  for (const x of [.03, .25, .5, .9]) for (const y of [.1, .4, .8]) for (const phase of [0, .7, 2.8, 5.9]) {
+    const uv = { x, y }, period = Math.PI * 2;
+    const a = evaluate(neck, uv, phase), b = evaluate(neck, uv, phase + period); assert.ok(Math.abs(a - b) < 1e-12);
+    const first = evaluate(domain, uv, phase, evaluate(angle, uv, phase)), later = evaluate(domain, uv, phase + period, evaluate(angle, uv, phase + period));
+    first.forEach((value, i) => assert.ok(Math.abs(value - later[i]) < 1e-12));
+  }
+  style.material.dispose();
+});

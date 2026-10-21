@@ -203,12 +203,24 @@ export const PILLOW_SITES: XYZ[] = [
   [.22, .015, .82], [-.57, .02, .92], [1.19, .01, .95], [-1.02, 0, 1.36],
   [.51, .01, 1.21], [-1.48, 0, 1.58], [1.47, 0, 1.38], [-.12, .02, .17], [.57, .025, .29],
 ];
+// Derive each emplacement endpoint from the canonical lobe model once.
+// This fixed fourteen-number cache never stores frames or accretion histories.
+const PILLOW_SUPPORT_END = PILLOW_SITES.map((_, index) => {
+  let a = 0, b = 1;
+  for (let step = 0; step < 40; step++) { const mid = (a + b) / 2; if (pillowState(mid, index).growth === 1) b = mid; else a = mid; }
+  return b;
+});
 export function pillowPose(frame: OceanGeometryFrame, index: number) {
   const state = pillowState(frame.p, index), site = PILLOW_SITES[index];
   const radius = .30 + seed(index, 2) * .12;
-  const center: XYZ = [site[0], surfaceHeight(frame, site[0], site[2]) + radius * .12 + site[1], site[2]];
+  const supportP = Math.min(frame.p, PILLOW_SUPPORT_END[index]);
+  // Deep support needs only the small canonical mound state, not a fresh
+  // oceanGeometryFrame or a 24-deposit history for each lobe.
+  const support = frame.environment === 'deep' && supportP < frame.p
+    ? { ...frame, p: supportP, state: submarineState(supportP, frame.environment, frame.supply) } : frame;
+  const center: XYZ = [site[0], surfaceHeight(support, site[0], site[2]) + radius * .12 + site[1], site[2]];
   const heading = -Math.atan2(site[2], site[0]) + (seed(index, 18) - .5) * .7;
-  return { ...state, radius, center, heading, pitch: pillowPitch(frame, site[0], site[2], heading), skinHeat: state.coreHeat * (1 - state.crust) };
+  return { ...state, radius, center, heading, pitch: pillowPitch(support, site[0], site[2], heading), skinHeat: state.coreHeat * (1 - state.crust) };
 }
 
 export function settledFragment(frame: OceanGeometryFrame, index: number) {
@@ -225,7 +237,7 @@ export function plumeOrigin(frame: OceanGeometryFrame): XYZ {
   if (frame.environment !== 'deep') return [-.04, surfaceHeight(frame, 0, 0) + .02, .04];
   let weight = 0, x = 0, y = 0, z = 0;
   for (let i = 0; i < PILLOW_SITES.length; i++) {
-    const pose = pillowPose(frame, i), w = pose.growth * (.15 + pose.coreHeat) * (1 - pose.crust * .35);
+    const pose = pillowPose(frame, i), w = pose.growth * pose.coreHeat * (1 - pose.crust * .35);
     const top = pose.center[1] + pose.radius * Math.cbrt(pose.growth) * .80;
     weight += w; x += pose.center[0] * w; y += top * w; z += pose.center[2] * w;
   }

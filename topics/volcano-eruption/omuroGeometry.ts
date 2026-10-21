@@ -136,6 +136,63 @@ export function omuroField(patches: OmuroPatch[], size = OMURO_FIELD_SIZE, targe
   return target;
 }
 
+type FieldTerms = { key: string; indices: Uint32Array; lengths: Float64Array; lobes: Float64Array };
+/** Scene-owned sparse spatial terms. Only scalar ecological weights vary on
+ * subsequent frames. The old field function remains the numerical reference;
+ * no texture, geological state or cross-scene cache is owned here. */
+export class OmuroFieldProjection {
+  private terms = new Map<number, FieldTerms>();
+  private lastKey = '';
+  private lastTarget?: Uint8Array;
+  private disposed = false;
+  preparations = 0;
+  updates = 0;
+  constructor(readonly size = OMURO_FIELD_SIZE) {
+    if (!Number.isInteger(size) || size < 2 || size > OMURO_FIELD_SIZE) throw new RangeError('Omuro field size exceeds its scene budget');
+  }
+  get byteLength() { let bytes = 0; for (const term of this.terms.values()) bytes += term.indices.byteLength + term.lengths.byteLength + term.lobes.byteLength; return bytes; }
+  update(patches: OmuroPatch[], target: Uint8Array) {
+    if (this.disposed) return false;
+    if (target.length !== this.size * this.size * 4 || patches.length > OMURO_SITES.length) throw new RangeError('Omuro field population/buffer exceeds its scene budget');
+    const keys = patches.map(patch => `${patch.site.index}:${patch.point[0]}:${patch.point[2]}:${patch.site.angle}:${patch.site.patchRadius}`);
+    const key = patches.map((patch, i) => `${keys[i]}:${patch.cover}:${patch.soil}:${patch.patchRadius}`).join('|');
+    if (key === this.lastKey && target === this.lastTarget) return false;
+    target.fill(0);
+    for (let i = 0; i < patches.length; i++) {
+      const patch = patches[i]; if (patch.cover === 0 && patch.soil === 0) continue;
+      let term = this.terms.get(patch.site.index);
+      if (!term || term.key !== keys[i]) {
+        const span = OMURO_GROUND_RADIUS * 2, step = span / (this.size - 1), radius = patch.site.patchRadius * 1.65;
+        const minX = Math.max(0, Math.floor((patch.point[0] - radius + span / 2) / step)), maxX = Math.min(this.size - 1, Math.ceil((patch.point[0] + radius + span / 2) / step));
+        const minZ = Math.max(0, Math.floor((patch.point[2] - radius + span / 2) / step)), maxZ = Math.min(this.size - 1, Math.ceil((patch.point[2] + radius + span / 2) / step));
+        // The authored maximum support is <64 texels across at 192px. Keep a
+        // hard allocation bound even if future authored coordinates drift.
+        if ((maxX - minX + 1) * (maxZ - minZ + 1) > 4096 || !Number.isInteger(patch.site.index) || patch.site.index < 0 || patch.site.index >= OMURO_SITES.length) throw new RangeError('Omuro patch exceeds its sparse field budget');
+        const indices: number[] = [], lengths: number[] = [], lobes: number[] = [];
+        for (let iz = minZ; iz <= maxZ; iz++) for (let ix = minX; ix <= maxX; ix++) {
+          const dx = ix * step - span / 2 - patch.point[0], dz = iz * step - span / 2 - patch.point[2], a = patch.site.angle;
+          const across = dx * Math.cos(a) + dz * Math.sin(a), along = -dx * Math.sin(a) + dz * Math.cos(a), angle = Math.atan2(along, across);
+          const lobe = 1 + .14 * Math.sin(angle * 3 + patch.site.index * 1.8) + .075 * Math.sin(angle * 7 - patch.site.index);
+          const length = Math.hypot(across * 1.12, along * .88);
+          if (length >= patch.site.patchRadius * 1.12 * lobe) continue;
+          indices.push((iz * this.size + ix) * 4); lengths.push(length); lobes.push(lobe);
+        }
+        term = { key: keys[i], indices: new Uint32Array(indices), lengths: new Float64Array(lengths), lobes: new Float64Array(lobes) };
+        this.terms.set(patch.site.index, term); this.preparations++;
+      }
+      for (let j = 0; j < term.indices.length; j++) {
+        const at = term.indices[j], length = term.lengths[j], lobe = term.lobes[j];
+        const cover = patch.cover * (1 - smooth(.47, 1, length / Math.max(.001, patch.patchRadius * lobe)));
+        const soil = patch.soil * (1 - smooth(.47, 1, length / Math.max(.001, patch.site.patchRadius * 1.12 * lobe)));
+        target[at] = Math.round(255 - (255 - target[at]) * (1 - cover));
+        target[at + 1] = Math.round(255 - (255 - target[at + 1]) * (1 - soil));
+      }
+    }
+    this.lastKey = key; this.lastTarget = target; this.updates++; return true;
+  }
+  dispose() { this.terms.clear(); this.lastTarget = undefined; this.lastKey = ''; this.disposed = true; }
+}
+
 export const OMURO_BLADES_PER_SITE = 96;
 /** Blade bases have immutable world sites; growth changes their height and
  * local establishment, never their positions. Each base samples the mountain. */

@@ -236,7 +236,7 @@ test('wall clasts remain at their source before release and settle on the same t
   for (let i = 0; i < WALL_CLASTS; i++) {
     const source = clastSource(i, prior), before = boulderPose(i, prior), pose = boulderPose(i, final);
     assert.equal(before.travel, 0); close(before.position[0], source.position[0]); close(before.position[2], source.position[2]);
-    assert.ok(before.position[1] < source.position[1]); assert.equal(pose.source, source.siteId); assert.equal(pose.travel, 1);
+    close(before.position[1] + before.size * .7, surfaceHeight(before.position[0], before.position[2], prior)); assert.equal(pose.source, source.siteId); assert.equal(pose.travel, 1);
     close(pose.position[1], surfaceHeight(pose.position[0], pose.position[2], final) + pose.size * .45);
     assert.deepEqual(pose, boulderPose(i, lakeFrame(.72, { ...settings, supply: 0, leak: 'high' })));
     assert.ok(Math.hypot(pose.position[0], pose.position[2]) < source.radius);
@@ -375,4 +375,28 @@ test('source-linked moving clasts remain finite and deterministically settle aft
     for (const p of [.30, .33, .36, .40, .44]) { const pose = boulderPose(id, lakeFrame(p, settings)); assert.ok(pose.position.every(Number.isFinite)); assert.ok(pose.travel >= 0 && pose.travel <= 1); }
     const replay = boulderPose(id, lakeFrame(.36, settings)); boulderPose(id, lakeFrame(.48, settings)); assert.deepEqual(boulderPose(id, lakeFrame(.36, settings)), replay);
   }
+});
+
+test('delayed wall fragments remain attached until their own continuous release and rewind', () => {
+  const base = lakeFrame(0, settings);
+  for (const id of [6, 33, 68, 99, 130, 148, 191]) {
+    const source = clastSource(id, base), site = WALL_SITES[source.siteId];
+    assert.ok(source.start >= site.start && source.start <= site.start + .045);
+    const at = (subsidence: number) => ({ ...base, subsidence });
+    for (const sub of [0, site.start, (site.start + source.start) * .5, source.start - 1e-7, source.start]) {
+      const frame = at(Math.max(0, sub)), pose = boulderPose(id, frame);
+      assert.equal(pose.travel, 0); close(pose.position[0], source.position[0]); close(pose.position[2], source.position[2]);
+      close(pose.position[1] + pose.size * .7, surfaceHeight(pose.position[0], pose.position[2], frame));
+    }
+    close(source.position[1], surfaceHeight(source.position[0], source.position[2], at(source.start)));
+    const before = boulderPose(id, at(source.start - 1e-7)), release = boulderPose(id, at(source.start)), after = boulderPose(id, at(source.start + 1e-7));
+    assert.ok(Math.hypot(...before.position.map((value, i) => value - release.position[i])) < 1e-4);
+    assert.ok(Math.hypot(...after.position.map((value, i) => value - release.position[i])) < 1e-4);
+    const end = boulderPose(id, lakeFrame(.48, settings)); assert.equal(end.travel, 1); assert.equal(end.source, source.siteId); assert.equal(end.size, source.size);
+    close(end.position[1], surfaceHeight(end.position[0], end.position[2], lakeFrame(.48, settings)) + source.size * .45);
+    const replay = boulderPose(id, at(source.start - .003));
+    boulderPose(id, at(1)); boulderPose(id, at(0)); assert.deepEqual(boulderPose(id, at(source.start - .003)), replay);
+  }
+  const observed = lakeFrame(.39772222222222225, settings), pose = boulderPose(148, observed);
+  assert.equal(pose.travel, 0); close(pose.position[1] + pose.size * .7, surfaceHeight(pose.position[0], pose.position[2], observed));
 });

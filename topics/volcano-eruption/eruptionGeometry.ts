@@ -143,7 +143,7 @@ export function lavaRibbon(clock: number, settings: Settings, branch: ReturnType
 export function ashParcels(clock: number, settings: Settings) {
   const appearance = eruptionAppearance(settings), kind = settings.landform ?? 'scoria';
   const summit = surfaceHeight(0, 0, kind);
-  return Array.from({ length: 12 }, (_, i) => {
+  const parcels = Array.from({ length: 12 }, (_, i) => {
     const birth = .275 + i / 11 * .57, age = (clock - birth) * 2.1;
     const alive = age > 0 && age < 1.35;
     const u = Math.max(0, age);
@@ -153,9 +153,34 @@ export function ashParcels(clock: number, settings: Settings) {
       summit + .12 + 6.4 * Math.pow(u, .78) * appearance.ashHeight,
       (seed(i + 53) - .5) * spread * 1.6] as XYZ,
       radius: alive ? radius * appearance.ashRadius : 0,
+      axes: [1, 1 / (1.05 + .13 * Math.sin(i * 2.7)), 1] as XYZ, source: false,
       density: alive ? appearance.ash * activity(birth) * smooth(0, .045, u) * (1 - smooth(.94, 1.35, u)) * appearance.ashDensity : 0,
     };
   });
+  // The not-yet-emitted final slot depicts the continuous near-vent portion.
+  // This only redistributes existing normalized optical weight; it is not a
+  // new packet, conserved physical volume, or a source after emission ends.
+  const source = smooth(.275, .305, clock) * (1 - smooth(.82, .845, clock)) * activity(clock);
+  const available = parcels.reduce((sum, parcel) => sum + parcel.density, 0);
+  const weight = available * source * .25;
+  if (weight > 1e-8) {
+    for (const parcel of parcels) parcel.density *= 1 - source * .25;
+    // Anchor the core inside a young, already emitted billow. An envelope
+    // barely touching its lower edge can be completely removed by erosion.
+    // The short rise is sampled from this same finite emission schedule.
+    let guideWeight = 1e-5, guideY = (summit + .5 * appearance.ashHeight) * guideWeight;
+    for (let i = 0; i < 11; i++) {
+      const age = (clock - (.275 + i / 11 * .57)) * 2.1, parcel = parcels[i];
+      const guide = parcel.density * Math.exp(-(((age - .24) / .10) ** 2));
+      guideY += (parcel.position[1] + parcel.radius * parcel.axes[1] * .65) * guide;
+      guideWeight += guide;
+    }
+    const head = guideY / guideWeight;
+    const foot = summit - .02, halfHeight = Math.max(.03, (head - foot) / 2), radius = .22 * appearance.ashRadius;
+    parcels[11] = { position: [0, foot + halfHeight, 0], radius,
+      axes: [1, halfHeight / Math.max(.001, radius), 1], source: true, density: weight };
+  }
+  return parcels;
 }
 
 export function eruptionFrame(progress: number, settings: Settings) {

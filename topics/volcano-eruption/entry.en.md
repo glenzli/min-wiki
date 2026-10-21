@@ -36,7 +36,7 @@ A depression needs incoming water and a way to retain it. In the collapse exampl
 
 Follow the heat source separately from the water source. Precipitation enters connected pores and fractures, gains heat from hot rock, and may return to the surface or a lake bed. Such systems occur in volcanic areas, but deep groundwater circulation can also produce non-volcanic hot springs. A hot spring alone does not establish magma beneath it. [Observe underground heat and water](entry.en.md#study-heat-en) ([NPS geothermal explanation](https://www.nps.gov/subjects/geology/hot-springs.htm); [USGS Yellowstone Lake hydrothermal study](https://www.usgs.gov/observatories/yvo/news/hydrothermal-system-yellowstone-lake))
 
-Each question has its own teaching progress. Moving to the next question does not add an equal duration to the same eruption. Clasts, thin soil and roots are magnified for recognition; moving liquid details are illustrative and can be paused separately.
+Each question has its own teaching progress. Moving to the next question does not add an equal duration to the same eruption. Clasts, thin soil and roots are magnified for recognition. Where hot melt or active water pathways are present, detail motion can continue automatically; process pause stops only this question’s progress. Hiding the scene or choosing reduced motion limits detail movement, and cooling or a lack of water can leave no moving material.
 
 <!-- wiki-learning:start -->
 
@@ -62,7 +62,7 @@ There is no universal eruption–extinction–grassland–lake–hot-spring sequ
 
 ## Model limits
 
-The seven connected questions are conceptual observations, not a measured continuous life history of one volcano. Each has an independent compressed teaching progress. One eruption, long-term deposition, ecological establishment, water balance and groundwater circulation have no common calibrated timescale. Cutaways, bed thicknesses, storage depths, clasts, soil and roots are scaled for recognition; lava textures, bubbles and moving water paths are illustrative too. Liquid details can be paused separately. They do not provide measured depth, speed, temperature or eruption timing, and these scenarios are not hazard forecasts.
+The seven connected questions are conceptual observations, not a measured continuous life history of one volcano. Each has an independent compressed teaching progress. One eruption, long-term deposition, ecological establishment, water balance and groundwater circulation have no common calibrated timescale. Cutaways, bed thicknesses, storage depths, clasts, soil and roots are scaled for recognition; lava textures, bubbles and moving water paths are illustrative too. Where hot melt or active water pathways are present, fine motion can continue automatically; pausing the process stops only the current question’s progress. Visibility and reduced-motion preferences limit detail motion, and cooling or a lack of water can leave no moving material. They do not provide measured depth, speed, temperature or eruption timing, and these scenarios are not hazard forecasts.
 
 ## Sources
 
@@ -131,6 +131,6 @@ The mountain remains, but its surface can change. First follow how bare rock sup
 
 Even without lava flowing above ground, rock below can remain hot. Rainwater enters cracks, gains heat from hot rock, and may rise through connected pathways to form a hot spring. Follow the water path separately from the magma path. Hot water can also flow from a lake bed. Not every hot spring comes from a volcano. Some water circulates deep enough to be warmed by hotter rock below. Whenever we see hot water, we can ask two questions: where did the water come from, and where did the heat come from?
 
-*Scene cue: Open Underground heat and water. Identify precipitation recharge, permeable pathways, the hot-rock zone and discharge, then follow the same water route. Liquid movement is illustrative and can be paused independently. Give no uncalibrated depths, speeds or circulation ages, and do not place hydrothermal activity at the end of every volcanic history.*
+*Scene cue: Open Underground heat and water. Identify precipitation recharge, permeable pathways, the hot-rock zone and discharge, then follow the same water route. Details within the existing water route are illustrative and can continue automatically. Pausing the process stops only this question’s progress; hiding the scene or choosing reduced motion limits the detail movement. Give no uncalibrated depths, speeds or circulation ages, and do not place hydrothermal activity at the end of every volcanic history.*
 
 <!-- wiki-learning:end -->

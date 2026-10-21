@@ -20,6 +20,6 @@ The mountain remains, but its surface can change. First follow how bare rock sup
 ---
 
 04 · Unit four: how underground heat meets water
-[Open Underground heat and water. Identify precipitation recharge, permeable pathways, the hot-rock zone and discharge, then follow the same water route. Liquid movement is illustrative and can be paused independently. Give no uncalibrated depths, speeds or circulation ages, and do not place hydrothermal activity at the end of every volcanic history.]
+[Open Underground heat and water. Identify precipitation recharge, permeable pathways, the hot-rock zone and discharge, then follow the same water route. Details within the existing water route are illustrative and can continue automatically. Pausing the process stops only this question’s progress; hiding the scene or choosing reduced motion limits the detail movement. Give no uncalibrated depths, speeds or circulation ages, and do not place hydrothermal activity at the end of every volcanic history.]
 
 Even without lava flowing above ground, rock below can remain hot. Rainwater enters cracks, gains heat from hot rock, and may rise through connected pathways to form a hot spring. Follow the water path separately from the magma path. Hot water can also flow from a lake bed. Not every hot spring comes from a volcano. Some water circulates deep enough to be warmed by hotter rock below. Whenever we see hot water, we can ask two questions: where did the water come from, and where did the heat come from?

@@ -42,15 +42,37 @@ export function legacyDestination(search: string, volcano: 'submarine' | 'lake',
   params.set('case', volcano);
   return `${base.replace(/\/$/, '')}/topics/volcano-eruption/?${params}`;
 }
+/** One authored deposit interval, shared by accumulation and representative
+ * material paths. These are normalized teaching intervals, not measured time. */
+export function landDepositWindow(index: number) {
+  return { birth: .06 + index * .028, end: .11 + index * .028 };
+}
 export function landState(progress: number, aftermath: Aftermath = 'green') {
   const p = bounded(progress);
-  const deposits = Array.from({ length: 18 }, (_, i) => ({ index: i, growth: ramp(p, .06 + i * .028, .11 + i * .028) }));
+  const deposits = Array.from({ length: 18 }, (_, i) => {
+    const window = landDepositWindow(i);
+    return { index: i, growth: ramp(p, window.birth, window.end) };
+  });
   return { p, deposits, growth: deposits.reduce((sum, d) => sum + d.growth, 0) / 18,
     activity: ramp(p, .03, .12) * (1 - ramp(p, .54, .68)), cooling: ramp(p, .59, .74),
     vegetation: aftermath === 'green' ? ramp(p, .76, 1) : 0,
     erosion: aftermath === 'eroded' ? ramp(p, .76, 1) : 0,
     stage: p < .20 ? 0 : p < .61 ? 1 : p < .78 ? 2 : 3 };
 }
+/** One illustrative recharge/intrusion prelude, not a universal eruption
+ * precursor, tectonic compression model, pressure inversion or measured time.
+ * Uplift is exaggerated display distance; deposits retain their own clock.
+ * USGS: deformation-monitoring-tracks-moving-magma-and-faults;
+ * USGS: volcano-deformation-what-and-why. */
+export function constructionState(progress: number) {
+  const p = bounded(progress), intrusionFront = ramp(p, .004, .06);
+  const supply = ramp(p, 0, .035) * (1 - ramp(p, .54, .68));
+  const fracture = ramp(p, .012, .058), inflation = ramp(p, .008, .055) * (1 - ramp(p, .10, .16));
+  const heat = ramp(p, 0, .03) * (1 - ramp(p, .57, .74));
+  const phase = p === 0 ? 'quiet' : p < .06 ? 'intruding' : p < .61 ? 'building' : p < .74 ? 'cooling' : 'settled';
+  return { intrusionFront, supply, fracture, inflation, uplift: .18 * inflation, heat, mobility: heat * supply, phase };
+}
+export type ConstructionState = ReturnType<typeof constructionState>;
 export function landSurface(x: number, kind: Landform, growth: number, erosion = 0) {
   const g = bounded(growth), dx = Math.abs(x - 500);
   const width = (kind === 'shield' ? 420 : kind === 'composite' ? 280 : 260) * (.22 + .78 * Math.sqrt(g));

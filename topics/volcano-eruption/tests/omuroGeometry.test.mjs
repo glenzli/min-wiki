@@ -1,9 +1,54 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import * as THREE from 'three';
 import { surfaceHeight } from '../eruptionGeometry.ts';
 import { OMURO_SITES, omuroFrame } from '../omuroJourney.ts';
-import { OMURO_BLADES_PER_SITE, OMURO_GROUND_RADIUS, omuroBlade, omuroCoverAt, omuroField, omuroNormal, omuroPatches, omuroSection, omuroSeed, omuroSitePoint, omuroSurface, omuroSurroundings, omuroTerrain } from '../omuroGeometry.ts';
+import { OMURO_BLADES_PER_SITE, OMURO_GROUND_RADIUS, OmuroFieldProjection, omuroBlade, omuroCoverAt, omuroField, omuroNormal, omuroPatches, omuroSection, omuroSeed, omuroSitePoint, omuroSurface, omuroSurroundings, omuroTerrain } from '../omuroGeometry.ts';
 import { omuroTextures } from '../omuroMaterials.ts';
+import { Omuro3D } from '../omuroScene.ts';
+
+test('scene-owned sparse field is byte-identical to the original formula through habitat changes and rewind', () => {
+  const projection = new OmuroFieldProjection(), target = new Uint8Array(192 * 192 * 4);
+  for (const [p, habitat, mode] of [[.23, 'wet', 'journey'], [.72, 'wet', 'journey'], [1, 'wet', 'journey'], [1, 'dry', 'journey'], [.66, 'cold', 'life'], [1, 'buried', 'life'], [.72, 'wet', 'journey']]) {
+    const patches = omuroPatches(omuroFrame(p, habitat, mode));
+    assert.equal(projection.update(patches, target), true);
+    assert.deepEqual(target, omuroField(patches));
+    const updates = projection.updates, preparations = projection.preparations;
+    assert.equal(projection.update(patches, target), false); assert.equal(projection.updates, updates); assert.equal(projection.preparations, preparations);
+  }
+  assert.ok(projection.byteLength > 0 && projection.byteLength <= 100 * 4096 * 20);
+  assert.ok(projection.preparations <= 100, 'fixed sites prepare each sparse spatial footprint at most once');
+  const second = new OmuroFieldProjection(); assert.equal(second.byteLength, 0);
+  projection.dispose(); assert.equal(projection.byteLength, 0); assert.equal(projection.update(omuroPatches(omuroFrame(1)), target), false);
+  assert.equal(second.update(omuroPatches(omuroFrame(1)), target), true); second.dispose();
+});
+
+test('actual Omuro draw skips hidden formation blades and stable frames but restores the same visible grass', () => {
+  // Exercise the production draw with real instance buffers and field math,
+  // while omitting WebGL, cameras and separately tested terrain generation.
+  const scene = Object.create(Omuro3D.prototype), shape = new THREE.BoxGeometry(), material = new THREE.MeshStandardMaterial();
+  const instances = count => new THREE.InstancedMesh(shape, material, count), slots = () => ({ cooling: { value: 0 }, footprint: { value: 0 }, burial: { value: 0 } });
+  Object.assign(scene, { disposed: false, frame: omuroFrame(.23), view: 'section', lastFrameKey: '', lastGrowth: omuroFrame(.23).landGrowth,
+    sectionGrowth: omuroFrame(.23).landGrowth, framingScale: 1, fieldProjection: new OmuroFieldProjection(),
+    textures: { field: new THREE.DataTexture(new Uint8Array(192 * 192 * 4), 192, 192) }, surfaceStyle: slots(), surroundingsStyle: slots(), sectionStyle: slots(),
+    grass: instances(9600), rocks: instances(360), seeds: instances(25), deposits: instances(72), roots: instances(128),
+    depositHeat: new THREE.InstancedBufferAttribute(new Float32Array(72), 1), dummy: new THREE.Object3D(), color: new THREE.Color(),
+    vent: new THREE.Mesh(shape, material), ventRim: new THREE.Mesh(shape, material), warmLight: new THREE.PointLight(),
+    controls: { target: new THREE.Vector3() }, camera: { position: new THREE.Vector3() }, renderer: { shadowMap: {} }, canvas: { dataset: {} },
+    sectionDetail() {}, moveCamera() {}, stopMotion() {} });
+  let renders = 0; scene.render = () => renders++;
+  const draw = p => { scene.lastGrowth = scene.sectionGrowth = omuroFrame(p).landGrowth; scene.draw(p, 'wet', 'journey'); };
+  draw(.23); assert.equal(scene.grass.count, 0); assert.equal(scene.fieldProjection.preparations, 0);
+  const version = scene.grass.instanceMatrix.version, updates = scene.fieldProjection.updates; draw(.23);
+  assert.equal(renders, 1); assert.equal(scene.grass.instanceMatrix.version, version); assert.equal(scene.fieldProjection.updates, updates);
+  draw(.9); const green = [...scene.grass.instanceMatrix.array]; assert.equal(scene.grass.count, 9600); assert.ok(green.some(value => value !== 0));
+  draw(.23); assert.equal(scene.grass.count, 0); draw(.9); assert.deepEqual([...scene.grass.instanceMatrix.array], green);
+  scene.view = 'landscape'; draw(.9); assert.equal(scene.grass.count, 0);
+  scene.view = 'section'; draw(.9); assert.deepEqual([...scene.grass.instanceMatrix.array], green);
+  scene.fieldProjection.dispose(); scene.textures.field.dispose();
+  for (const mesh of [scene.grass, scene.rocks, scene.seeds, scene.deposits, scene.roots]) mesh.dispose();
+  shape.dispose(); material.dispose();
+});
 
 test('the mature cone uses the eruption surface and retains a bowl below its rim', () => {
   for (let x = -5; x <= 5; x += .31) for (let z = -5; z <= 5; z += .37) {

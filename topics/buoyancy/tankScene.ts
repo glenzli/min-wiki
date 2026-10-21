@@ -9,27 +9,59 @@ type Frame={state:Settings;geometry:TankGeometry;form:number;flooded:boolean;dis
 const noise=(x:number,y:number)=>{const v=Math.sin(x*127.1+y*311.7)*43758.5453;return v-Math.floor(v);};
 const unit=.01,floor=.08;
 
+// Coordinates follow BoxGeometry's six face UV directions. One wood field
+// continues across the side grain, top and end grain instead of six decals.
+function timberPoint(face:number,u:number,v:number):[number,number,number]{
+ switch(face){
+  case 0:return [.5,.5-v,.5-u];
+  case 1:return [-.5,.5-v,u-.5];
+  case 2:return [u-.5,.5,v-.5];
+  case 3:return [u-.5,-.5,.5-v];
+  case 4:return [u-.5,.5-v,.5];
+  default:return [.5-u,.5-v,-.5];
+ }
+}
+function timberField(x:number,y:number,z:number){
+ const bend=.018*Math.sin(x*5+z*2)+.006*Math.sin(x*17+z*9);
+ const knot=.068*Math.exp(-(((x-.18)/.23)**2)-(((y+.15)/.22)**2));
+ const radius=Math.hypot(y*.94+1.35+bend+knot,z*.72+.25+.012*Math.sin(x*6));
+ const growth=radius*67+.55*Math.sin(radius*17+x*1.8)+.2*Math.sin(radius*43-x*3);
+ const late=Math.pow(.5+.5*Math.sin(growth),10+4*Math.sin(radius*13)+2*Math.cos(x*2)),fiber=Math.sin(radius*1040+Math.sin(x*8)*.7)*1.4;
+ const poreBand=Math.floor(radius*310),pore=noise(poreBand,Math.floor(x*29+noise(poreBand,1)*4))>.955?9:0;
+ const shade=Math.sin(radius*11+x*.8)*7-late*21+fiber-pore;
+ return {shade,height:.57-late*.20-pore*.006,rough:.74+late*.09};
+}
+function timberMaps(face:number){
+ const colorCanvas=document.createElement('canvas'),dataCanvas=document.createElement('canvas');colorCanvas.width=colorCanvas.height=512;dataCanvas.width=dataCanvas.height=256;
+ const colorContext=colorCanvas.getContext('2d')!,colorPixels=colorContext.createImageData(512,512),dataContext=dataCanvas.getContext('2d')!,dataPixels=dataContext.createImageData(256,256);
+ for(let y=0;y<512;y++)for(let x=0;x<512;x++){
+  const p=timberPoint(face,x/511,y/511),f=timberField(...p),i=(y*512+x)*4;
+  const fleck=(noise(x,y)-.5)*2;
+  colorPixels.data[i]=175+f.shade+fleck;colorPixels.data[i+1]=127+f.shade*.87+fleck;colorPixels.data[i+2]=76+f.shade*.64+fleck;colorPixels.data[i+3]=255;
+ }
+ for(let y=0;y<256;y++)for(let x=0;x<256;x++){
+  const f=timberField(...timberPoint(face,x/255,y/255)),i=(y*256+x)*4;
+  // R is bump height; G is roughness. Both are data, never sRGB color.
+  dataPixels.data[i]=f.height*255;dataPixels.data[i+1]=f.rough*255;dataPixels.data[i+2]=0;dataPixels.data[i+3]=255;
+ }
+ colorContext.putImageData(colorPixels,0,0);dataContext.putImageData(dataPixels,0,0);
+ const color=new THREE.CanvasTexture(colorCanvas),surface=new THREE.CanvasTexture(dataCanvas);
+ color.colorSpace=THREE.SRGBColorSpace;color.anisotropy=surface.anisotropy=4;
+ return {color,surface};
+}
+
 /** Nonmetric material maps, generated once. No downloaded photographs or clock. */
-function materialTexture(kind:'wood'|'end'|'clay'|'stone'){
- const size=kind==='wood'||kind==='end'?512:256;
+function materialTexture(kind:'clay'|'stone'){
+ const size=512;
  const canvas=document.createElement('canvas');canvas.width=canvas.height=size;
  const c=canvas.getContext('2d')!,pixels=c.createImageData(size,size),d=pixels.data;
  for(let y=0;y<size;y++)for(let x=0;x<size;x++){
   const u=x/size,v=y/size,n=noise(x,y),i=(y*size+x)*4;
   let shade:number,base:number[];
-  if(kind==='wood'){
-   const bend=.012*Math.sin(u*5)+.008*Math.sin(u*13)+.018*Math.exp(-(((u-.67)/.22)**2))*Math.sin(v*9);
-   const grain=Math.sin((v+bend)*197+1.4*Math.sin(u*3));
-   shade=grain*4+Math.sin((v+bend)*613)*1.6+(n-.5)*5+Math.sin(v*13+u*3)*5;
-   if(n>.986)shade-=9;
-   base=[126,94,61];
-  }else if(kind==='end'){
-   const r=Math.hypot((u+.4)*.75,v-.5)+.012*Math.sin(v*19)+.009*Math.sin(u*17);
-   shade=Math.sin(r*155)*6+(n-.5)*9;base=[110,83,53];
-  }else{
-   shade=(n-.5)*(kind==='clay'?8:28)+Math.sin(u*19+v*11)*1.5;
-   base=kind==='clay'?[190,139,111]:[143,150,141];
-  }
+  const knead=Math.sin(u*11+Math.sin(v*7)*.65)*Math.sin(v*9+u*3);
+  const fine=Math.sin(u*177+Math.sin(v*93))*Math.sin(v*219+u*41);
+  shade=(n-.5)*(kind==='clay'?5:28)+(kind==='clay'?knead*3+fine*.8:Math.sin(u*19+v*11)*2);
+  base=kind==='clay'?[181,112,78]:[143,150,141];
   for(let k=0;k<3;k++)d[i+k]=base[k]+shade;
   d[i+3]=255;
  }
@@ -56,7 +88,6 @@ export class TankScene {
  private readonly steel:THREE.Mesh;
  private readonly clay:THREE.Mesh;
  private readonly hull:THREE.Mesh<THREE.BufferGeometry>;
- private readonly hullRim:THREE.Mesh;
  private readonly contact:THREE.LineLoop;
  private readonly ripple:THREE.LineLoop;
  private readonly waterSides:THREE.Mesh;
@@ -69,6 +100,7 @@ export class TankScene {
  private readonly cord:THREE.Mesh;
  private readonly eye:THREE.Mesh;
  private readonly profile=new THREE.CatmullRomCurve3([],false,'centripetal');
+ private readonly waterLevel={value:0};
  private holeKey='';
  private disposed=false;
  private lost=false;
@@ -82,37 +114,53 @@ export class TankScene {
  private mesh(geometry:THREE.BufferGeometry,material:THREE.Material|THREE.Material[],parent:THREE.Object3D=this.world){
   const mesh=new THREE.Mesh(geometry,material);parent.add(mesh);return mesh;
  }
+ private wetMaterial<T extends THREE.MeshStandardMaterial>(material:T,darkening:number,roughness:number):T{
+  material.onBeforeCompile=shader=>{
+   shader.uniforms.sampleWaterLevel=this.waterLevel;shader.uniforms.wetDarkening={value:darkening};shader.uniforms.wetRoughness={value:roughness};
+   shader.vertexShader='varying float sampleHeight;\n'+shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nsampleHeight=(modelMatrix*vec4(transformed,1.0)).y;');
+   shader.fragmentShader='varying float sampleHeight;\nuniform float sampleWaterLevel;\nuniform float wetDarkening;\nuniform float wetRoughness;\n'+shader.fragmentShader
+    .replace('#include <color_fragment>','#include <color_fragment>\nfloat wetBand=1.0-smoothstep(sampleWaterLevel-0.012,sampleWaterLevel+0.008,sampleHeight);\ndiffuseColor.rgb*=mix(1.0,wetDarkening,wetBand);')
+    .replace('#include <roughnessmap_fragment>','#include <roughnessmap_fragment>\nroughnessFactor=mix(roughnessFactor,wetRoughness,wetBand);');
+  };
+  material.customProgramCacheKey=()=> 'buoyancy-wet-surface-v1';return material;
+ }
+ private clearGlass(material:THREE.MeshPhysicalMaterial){
+  // A clear center and grazing-angle reflection avoid a uniform frosted wash.
+  material.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <opaque_fragment>','float glassEdge=pow(1.0-clamp(dot(normal,geometryViewDir),0.0,1.0),3.0);\ndiffuseColor.a=0.012+0.32*glassEdge;\n#include <opaque_fragment>');};
+  material.customProgramCacheKey=()=> 'buoyancy-clear-glass-v1';return material;
+ }
  private constructor(private readonly renderer:THREE.WebGLRenderer,svg:SVGSVGElement,onUnavailable:()=>void){
   this.canvas=renderer.domElement;this.canvas.setAttribute('aria-hidden','true');
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.7));renderer.outputColorSpace=THREE.SRGBColorSpace;
-  renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1;
+  renderer.toneMapping=THREE.NeutralToneMapping;renderer.toneMappingExposure=1;
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFShadowMap;
-  this.world.background=new THREE.Color('#edf1f1');this.world.fog=new THREE.Fog('#edf1f1',17,35);
+  this.world.background=new THREE.Color('#f5f8fa');
   this.camera.position.set(4.2,10.8,11);this.camera.lookAt(.25,1.85,0);this.camera.updateMatrixWorld();
   const environmentScene=new RoomEnvironment(),pmrem=new THREE.PMREMGenerator(renderer);
-  this.environment=pmrem.fromScene(environmentScene,.03);this.world.environment=this.environment.texture;this.world.environmentIntensity=.35;
+  this.environment=pmrem.fromScene(environmentScene,.03);this.world.environment=this.environment.texture;this.world.environmentIntensity=.42;
   environmentScene.dispose();pmrem.dispose();
-  this.world.add(new THREE.HemisphereLight('#f4f9ff','#a9a99d',.7));
-  const key=new THREE.DirectionalLight('#fff9ef',2);key.position.set(-3.5,8,5);key.castShadow=true;
+  this.world.add(new THREE.HemisphereLight('#f7faff','#a0a8ad',.35));
+  const key=new THREE.DirectionalLight('#fff8ec',3.1);key.position.set(-3.5,8,5);key.castShadow=true;
   key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-6;key.shadow.camera.right=6;
   key.shadow.camera.top=5;key.shadow.camera.bottom=-4;key.shadow.normalBias=.025;key.shadow.bias=-.0002;
-  key.shadow.radius=4;key.shadow.intensity=.36;this.world.add(key);
+  key.shadow.radius=4;key.shadow.intensity=.62;this.world.add(key);
   const fill=new THREE.DirectionalLight('#d5e9ff',.4);fill.position.set(5,4,-3);this.world.add(fill);
   const standard=(options:THREE.MeshStandardMaterialParameters)=>this.material(new THREE.MeshStandardMaterial(options));
   const physical=(options:THREE.MeshPhysicalMaterialParameters)=>this.material(new THREE.MeshPhysicalMaterial(options));
   const box=this.geometry(new THREE.BoxGeometry(1,1,1));
   const rounded=this.geometry(new RoundedBoxGeometry(1,1,1,3,.025));
-  const table=this.mesh(this.geometry(new THREE.PlaneGeometry(120,120)),standard({color:'#ecf0ef',roughness:.9}));
+  const table=this.mesh(this.geometry(new THREE.PlaneGeometry(120,120)),this.material(new THREE.ShadowMaterial({color:'#506679',opacity:.18})));
   table.rotation.x=-Math.PI/2;table.position.y=-.025;table.receiveShadow=true;
-  const glass=physical({color:'#a8c4d1',metalness:0,roughness:.1,transparent:true,opacity:.045,depthWrite:false,side:THREE.FrontSide,envMapIntensity:.45,specularIntensity:.5});
-  const glassBase=physical({color:'#b9cdd4',roughness:.12,transparent:true,opacity:.35,depthWrite:false,envMapIntensity:.8});
-  const edge=this.material(new THREE.MeshBasicMaterial({color:'#7794a3',transparent:true,opacity:.46}));
+  const glass=this.clearGlass(physical({color:'#e8f5fb',metalness:0,roughness:.055,transparent:true,depthWrite:false,side:THREE.FrontSide,envMapIntensity:1.1,specularIntensity:1}));
+  const glassBase=physical({color:'#bbd8e3',roughness:.06,transparent:true,opacity:.13,depthWrite:false,envMapIntensity:1});
+  const edge=this.material(new THREE.MeshBasicMaterial({color:'#53788c',transparent:true,opacity:.48}));
+  const frontEdge=this.material(new THREE.MeshBasicMaterial({color:'#86a6b5',transparent:true,opacity:.24,depthWrite:false}));
   const panel=(x:number,y:number,z:number,w:number,h:number,d:number,mat:THREE.Material=glass)=>{const m=this.mesh(box,mat);m.position.set(x,y,z);m.scale.set(w,h,d);m.renderOrder=5;return m;};
   panel(-.19,.04,0,5.4,.08,2.12,glassBase);
   panel(-2.87,1.84,0,.045,3.6,2.1);panel(2.49,1.84,0,.045,3.6,2.1);
   panel(-.19,1.84,-1.04,5.4,3.6,.04);panel(-.19,1.84,1.04,5.4,3.6,.04);
-  for(const x of [-2.87,2.49])for(const z of [-1.04,1.04])panel(x,1.84,z,.019,3.62,.019,edge);
-  for(const z of [-1.04,1.04]){panel(-.19,3.65,z,5.4,.022,.028,edge);panel(-.19,.09,z,5.4,.018,.022,edge);}
+  for(const x of [-2.87,2.49])for(const z of [-1.04,1.04])panel(x,1.84,z,z>0?.016:.013,3.62,z>0?.016:.013,z>0?frontEdge:edge);
+  for(const z of [-1.04,1.04]){panel(-.19,3.65,z,5.4,.022,.028,z>0?frontEdge:edge);panel(-.19,.09,z,5.4,.018,.022,edge);}
   for(const x of [-2.87,2.49])panel(x,3.65,0,.025,.023,2.1,edge);
   const glint=this.material(new THREE.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.5,depthWrite:false}));
   const seal=standard({color:'#8e9da0',roughness:.6,transparent:true,opacity:.22,depthWrite:false});
@@ -128,21 +176,24 @@ export class TankScene {
   const datum=this.geometry(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-2.83,2.03,-1.012),new THREE.Vector3(2.45,2.03,-1.012)]));
   const datumLine=new THREE.Line(datum,this.material(new THREE.LineDashedMaterial({color:'#6b8d9d',dashSize:.055,gapSize:.055,transparent:true,opacity:.6})));
   datumLine.computeLineDistances();this.world.add(datumLine);
-  const waterSide=standard({color:'#3184a0',roughness:.35,transparent:true,opacity:.15,depthWrite:false,envMapIntensity:.15,side:THREE.FrontSide});
+  const waterSide=physical({color:'#309dc3',roughness:.18,transparent:true,opacity:.24,depthWrite:false,envMapIntensity:.45,side:THREE.FrontSide});
+  waterSide.onBeforeCompile=shader=>{
+   shader.vertexShader='varying float waterFraction;\n'+shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nwaterFraction=position.y+0.5;');
+   shader.fragmentShader='varying float waterFraction;\n'+shader.fragmentShader.replace('#include <opaque_fragment>','diffuseColor.a*=mix(1.0,0.38,clamp(waterFraction,0.0,1.0));\n#include <opaque_fragment>');
+  };waterSide.customProgramCacheKey=()=> 'buoyancy-water-depth-v1';
   const noSurface=this.material(new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false}));
   this.waterSides=this.mesh(box,[waterSide,waterSide,noSurface,waterSide,waterSide,waterSide]);this.waterSides.position.x=-.19;this.waterSides.renderOrder=3;
-  const waterTop=physical({color:'#6aa9ba',roughness:.3,metalness:.03,transparent:true,opacity:.12,depthWrite:false,side:THREE.DoubleSide,envMapIntensity:.3,specularIntensity:.45});
+  const waterTop=physical({color:'#93d3e7',roughness:.095,metalness:0,transparent:true,opacity:.13,depthWrite:false,side:THREE.DoubleSide,envMapIntensity:.8,specularIntensity:1});
   this.waterTop=new THREE.Mesh(new THREE.ShapeGeometry(),waterTop);this.waterTop.rotation.x=-Math.PI/2;this.waterTop.renderOrder=4;this.world.add(this.waterTop);
   const contactGeometry=this.geometry(new THREE.BufferGeometry());contactGeometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(128*3),3));
-  this.contact=new THREE.LineLoop(contactGeometry,this.material(new THREE.LineBasicMaterial({color:'#527d88',transparent:true,opacity:.54,depthWrite:false})));this.contact.renderOrder=8;this.world.add(this.contact);
+  this.contact=new THREE.LineLoop(contactGeometry,this.material(new THREE.LineBasicMaterial({color:'#357d9a',transparent:true,opacity:.67,depthWrite:false})));this.contact.renderOrder=8;this.world.add(this.contact);
   this.ripple=new THREE.LineLoop(this.geometry(contactGeometry.clone()),this.material(new THREE.LineBasicMaterial({color:'#86b5c2',transparent:true,opacity:0,depthWrite:false})));this.ripple.renderOrder=8;this.world.add(this.ripple);
   const waterEdge=new THREE.LineLoop(this.geometry(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-2.83,0,-1.01),new THREE.Vector3(2.45,0,-1.01),new THREE.Vector3(2.45,0,1.01),new THREE.Vector3(-2.83,0,1.01)])),this.material(new THREE.LineBasicMaterial({color:'#759da8',transparent:true,opacity:.5,depthWrite:false})));
   this.waterTop.add(waterEdge);waterEdge.rotation.x=Math.PI/2;
-  const woodMap=materialTexture('wood'),endMap=materialTexture('end'),clayMap=materialTexture('clay'),stoneMap=materialTexture('stone');
-  for(const texture of [woodMap,endMap,clayMap,stoneMap])this.textures.add(texture);
-  const woodMaterial=standard({map:woodMap,bumpMap:woodMap,bumpScale:.0035,roughness:.62,envMapIntensity:.4});
-  const endMaterial=standard({map:endMap,bumpMap:endMap,bumpScale:.003,roughness:.72,envMapIntensity:.35});
-  this.wood=this.mesh(rounded,[endMaterial,endMaterial,woodMaterial,woodMaterial,woodMaterial,woodMaterial]);
+  const clayMap=materialTexture('clay'),stoneMap=materialTexture('stone');
+  for(const texture of [clayMap,stoneMap])this.textures.add(texture);
+  const woodMaterials=Array.from({length:6},(_,face)=>{const maps=timberMaps(face);this.textures.add(maps.color);this.textures.add(maps.surface);return this.wetMaterial(standard({map:maps.color,bumpMap:maps.surface,bumpScale:.004,roughnessMap:maps.surface,roughness:1,envMapIntensity:.55}),.77,.43);});
+  this.wood=this.mesh(rounded,woodMaterials);
   const rockSource=new THREE.IcosahedronGeometry(.5,3);rockSource.deleteAttribute('normal');
   const rock=this.geometry(mergeVertices(rockSource));rockSource.dispose();const rp=rock.getAttribute('position');
   for(let i=0;i<rp.count;i++){const v=new THREE.Vector3().fromBufferAttribute(rp,i);v.multiplyScalar(.94+.08*noise(v.x*31+v.z*17,v.y*27));rp.setXYZ(i,v.x,v.y,v.z);}rock.computeVertexNormals();rock.computeBoundingBox();
@@ -151,13 +202,13 @@ export class TankScene {
   this.stone=this.mesh(rock,stoneMaterial);this.immersion=this.mesh(rounded,stoneMaterial);
   const metal=standard({color:'#aabcc6',metalness:.88,roughness:.24,envMapIntensity:1.1});
   this.steel=this.mesh(rounded,metal);
-  const clayMaterial=standard({map:clayMap,bumpMap:clayMap,bumpScale:.0015,roughness:.5,envMapIntensity:.45});
+  const clayMaterial=this.wetMaterial(standard({map:clayMap,bumpMap:clayMap,bumpScale:.0025,roughness:.72,envMapIntensity:.5}),.93,.52);
   this.clay=this.mesh(this.geometry(new THREE.SphereGeometry(.5,48,32)),clayMaterial);
-  const hullGeometry=this.geometry(new THREE.BufferGeometry()),rows=64,columns=72,positions=new Float32Array((rows+1)*(columns+1)*3),uv=new Float32Array((rows+1)*(columns+1)*2),indices:number[]=[];
+  const hullGeometry=this.geometry(new THREE.BufferGeometry()),rows=96,columns=96,positions=new Float32Array((rows+1)*(columns+1)*3),colors=new Float32Array(positions.length),uv=new Float32Array((rows+1)*(columns+1)*2),indices:number[]=[];
   for(let j=0;j<=rows;j++)for(let i=0;i<=columns;i++){const n=j*(columns+1)+i;uv[n*2]=i/columns*3;uv[n*2+1]=j/rows*2;if(j<rows&&i<columns){const a=n,b=n+columns+1;indices.push(a,a+1,b,b,a+1,b+1);}}
-  hullGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));hullGeometry.setAttribute('uv',new THREE.BufferAttribute(uv,2));hullGeometry.setIndex(indices);
-  this.hull=new THREE.Mesh(hullGeometry,clayMaterial);this.world.add(this.hull);
-  this.hullRim=this.mesh(this.geometry(new THREE.TorusGeometry(1,.016,10,96)),clayMaterial);this.hullRim.rotation.x=Math.PI/2;this.hullRim.castShadow=true;
+  hullGeometry.setAttribute('position',new THREE.BufferAttribute(positions,3));hullGeometry.setAttribute('color',new THREE.BufferAttribute(colors,3));hullGeometry.setAttribute('uv',new THREE.BufferAttribute(uv,2));hullGeometry.setIndex(indices);
+  const hullMaterial=this.material(clayMaterial.clone());hullMaterial.vertexColors=true;this.wetMaterial(hullMaterial,.93,.52);
+  this.hull=new THREE.Mesh(hullGeometry,hullMaterial);this.world.add(this.hull);
   for(const object of [this.wood,this.stone,this.immersion,this.steel,this.clay,this.hull]){object.visible=false;object.castShadow=true;object.receiveShadow=true;}
   const cargoMaterial=standard({color:'#9d9b8e',roughness:.46,metalness:.26});
   const stampCanvas=document.createElement('canvas');stampCanvas.width=256;stampCanvas.height=128;
@@ -169,14 +220,14 @@ export class TankScene {
    const marking=this.mesh(stampGeometry,stampMaterial,cargo);marking.rotation.x=-Math.PI/2;marking.position.y=.502;
   }
   const cupProfile=[[0,0],[.5,0],[.57,.04],[.57,2.45],[.53,2.45],[.53,.12],[0,.12]].map(([x,y])=>new THREE.Vector2(x,y));
-  const cup=this.mesh(this.geometry(new THREE.LatheGeometry(cupProfile,96)),physical({color:'#b9d0db',roughness:.08,transparent:true,opacity:.14,depthWrite:false,side:THREE.FrontSide,envMapIntensity:.6,specularIntensity:.5}));
+  const cup=this.mesh(this.geometry(new THREE.LatheGeometry(cupProfile,96)),glass);
   cup.position.set(3.6,.025,0);cup.renderOrder=6;
   const rimGeometry=this.geometry(new THREE.TorusGeometry(.55,.012,8,96));
   for(const y of [.08,2.475]){const rim=this.mesh(rimGeometry,this.material(new THREE.MeshBasicMaterial({color:'#8da8b5',transparent:true,opacity:.55})));rim.rotation.x=Math.PI/2;rim.position.set(3.6,y,0);rim.renderOrder=7;}
   const cupBottom=this.mesh(this.geometry(new THREE.CylinderGeometry(.53,.53,.065,96)),glassBase);cupBottom.position.set(3.6,.075,0);cupBottom.renderOrder=6;
   const cupHighlight=this.mesh(this.geometry(new THREE.CylinderGeometry(.575,.575,2.33,16,1,true,-.57,.024)),glint);cupHighlight.position.set(3.6,1.31,0);cupHighlight.renderOrder=7;
   const cupHighlightFine=this.mesh(this.geometry(new THREE.CylinderGeometry(.575,.575,2.17,12,1,true,1.25,.012)),glint);cupHighlightFine.position.set(3.6,1.29,0);cupHighlightFine.renderOrder=7;
-  this.cupWater=this.mesh(this.geometry(new THREE.CylinderGeometry(.515,.515,1,72,1,true)),physical({color:'#76adbd',roughness:.2,transparent:true,opacity:.31,depthWrite:false,envMapIntensity:.6}));this.cupWater.renderOrder=3;
+  this.cupWater=this.mesh(this.geometry(new THREE.CylinderGeometry(.515,.515,1,72,1,true)),waterSide);this.cupWater.renderOrder=3;
   this.cupSurface=this.mesh(this.geometry(new THREE.CircleGeometry(.515,72)),waterTop);this.cupSurface.rotation.x=-Math.PI/2;this.cupSurface.renderOrder=4;
   this.cupMeniscus=this.mesh(this.geometry(new THREE.TorusGeometry(.512,.005,6,72)),this.material(new THREE.MeshBasicMaterial({color:'#6c99a8',transparent:true,opacity:.6,depthWrite:false})));this.cupMeniscus.rotation.x=Math.PI/2;this.cupMeniscus.renderOrder=7;
   // The collection scale uses one linear diagram mapping (900 mL / world unit).
@@ -218,24 +269,33 @@ export class TankScene {
   const {state:s,geometry:g,form,flooded,displaced}=frame,w=g.width*unit,h=g.height*unit,bottom=floor+(440-g.bottom)*unit,water=floor+(440-g.water)*unit;
   const boat=s.experiment==='boat',held=s.experiment==='depth',kind=held?'stone':s.object;
   this.wood.visible=!boat&&!held&&kind==='wood';this.stone.visible=!boat&&!held&&kind==='stone';this.immersion.visible=held;this.steel.visible=!boat&&!held&&kind==='steel';this.clay.visible=!boat&&kind==='clay';this.hull.visible=boat;
-  for(const object of [this.wood,this.stone,this.immersion,this.steel,this.clay]){object.position.set(0,bottom+h/2,0);object.scale.set(w,h,kind==='wood'?.72:held?.95:w*.8);}
+  this.waterLevel.value=water;
+  for(const object of [this.wood,this.stone,this.immersion,this.steel,this.clay]){object.position.set(0,bottom+h/2,0);object.scale.set(w,h,kind==='wood'?.72:held?.95:kind==='clay'?w:w*.8);}
   const depth=(1-form)*w+form*.95,thickness=(20*260/g.width)*unit;
   let intersectionRadius=0;
   if(boat){
    const inside=Math.max(.25,.784-1.4*thickness/w);
-   this.profile.points=[[0,thickness],[inside*.7,thickness],[inside,thickness],[Math.max(.5,1-1.5*thickness/w),h-.025],[1,h-.018],[.99,h-.06],[.784,.12],[.616,0],[.1,0],[0,0]].map(([r,y])=>new THREE.Vector3(r,y,0));
-   const p=this.hull.geometry.getAttribute('position') as THREE.BufferAttribute;
+   const rimInside=Math.max(.78,1-1.2*thickness/w);
+   this.profile.points=[[0,thickness],[inside*.65,thickness],[inside,thickness+.012],[rimInside*.96,h*.69],[rimInside,h-.038],[(rimInside+1)/2,h-.007],[1,h-.025],[.994,h-.075],[.97,h*.67],[.9,h*.32],[.8,h*.13],[.65,h*.035],[.4,0],[0,0]].map(([r,y])=>new THREE.Vector3(r,y,0));
+   const p=this.hull.geometry.getAttribute('position') as THREE.BufferAttribute,colors=this.hull.geometry.getAttribute('color') as THREE.BufferAttribute;
    let previousRadius=0,previousHeight=0;
-   for(let j=0;j<=64;j++){
-    const u=j/64,v=this.profile.getPoint(u),radius=(1-form)*Math.sin(Math.PI*u)+form*Math.max(0,Math.min(1,v.x)),height=(1-form)*h*(1+Math.cos(Math.PI*u))/2+form*Math.max(0,Math.min(h,v.y));
+   for(let j=0;j<=96;j++){
+    const u=j/96,v=this.profile.getPoint(u),radius=(1-form)*Math.sin(Math.PI*u)+form*Math.max(0,Math.min(1,v.x)),height=(1-form)*h*(1+Math.cos(Math.PI*u))/2+form*Math.max(0,Math.min(h,v.y));
     if(j>0&&Math.min(previousHeight,height)<=water-bottom&&Math.max(previousHeight,height)>=water-bottom&&Math.abs(height-previousHeight)>.00001){const t=(water-bottom-previousHeight)/(height-previousHeight);intersectionRadius=Math.max(intersectionRadius,previousRadius+(radius-previousRadius)*t);}
     previousRadius=radius;previousHeight=height;
-    for(let i=0;i<=72;i++){const angle=i/72*Math.PI*2;p.setXYZ(j*73+i,radius*w/2*Math.cos(angle),bottom+height,radius*depth/2*Math.sin(angle));}
+    const interior=1-form*(u<.42?.18*(1-u/.42):0);
+    for(let i=0;i<=96;i++){
+     const angle=i/96*Math.PI*2,hand=1+form*(.003*Math.sin(angle*3+.7)+.0015*Math.sin(angle*7+1.9))*Math.sin(Math.PI*u)**2;
+     const lip=.003*form*radius**3*Math.sin(angle*3+.7)*Math.min(1,height/.1);
+     p.setXYZ(j*97+i,radius*hand*w/2*Math.cos(angle),bottom+height+lip,radius*hand*depth/2*Math.sin(angle));
+     colors.setXYZ(j*97+i,interior,interior,interior);
+    }
    }
-   p.needsUpdate=true;this.hull.geometry.computeVertexNormals();this.hull.geometry.computeBoundingSphere();
+   p.needsUpdate=colors.needsUpdate=true;this.hull.geometry.computeVertexNormals();
+   const normals=this.hull.geometry.getAttribute('normal') as THREE.BufferAttribute,average=new THREE.Vector3();
+   for(let j=0;j<=96;j++){const a=j*97,b=a+96;average.set(normals.getX(a)+normals.getX(b),normals.getY(a)+normals.getY(b),normals.getZ(a)+normals.getZ(b)).normalize();normals.setXYZ(a,average.x,average.y,average.z);normals.setXYZ(b,average.x,average.y,average.z);}
+   normals.needsUpdate=true;this.hull.geometry.computeBoundingSphere();
   }
-  this.hullRim.visible=boat&&form>.97;
-  this.hullRim.position.set(0,bottom+h-.018,0);this.hullRim.scale.set(w/2,depth/2,1);
   this.cargo.forEach((object,i)=>{object.visible=boat&&form>.999&&i<s.cargo;if(object.visible){const layer=Math.floor(i/2)%3,row=Math.floor(i/6);object.position.set((i%2-.5)*.29,bottom+thickness+.135+layer*.275,(row-.5)*.20);}});
   this.waterSides.scale.set(5.28,water-floor,2.02);this.waterSides.position.y=(water+floor)/2;
   this.waterTop.position.y=water;
@@ -246,7 +306,7 @@ export class TankScene {
   if(this.contact.visible){
    const ellipsoid=boat||kind==='clay'||kind==='stone'&&!held,level=(water-bottom)/h;
    const radius=boat?intersectionRadius:ellipsoid?Math.sqrt(Math.max(0,1-(2*level-1)**2)):1;
-   const rx=w/2*radius,rz=(boat?depth:kind==='wood'?.72:held?.95:w*.8)/2*radius;
+   const rx=w/2*radius,rz=(boat?depth:kind==='wood'?.72:held?.95:kind==='clay'?w:w*.8)/2*radius;
    const contactPoints=this.contact.geometry.getAttribute('position') as THREE.BufferAttribute,ripplePoints=this.ripple.geometry.getAttribute('position') as THREE.BufferAttribute;
    for(let i=0;i<128;i++){
     const angle=i/128*Math.PI*2,c=Math.cos(angle),sine=Math.sin(angle),x=ellipsoid?c:Math.sign(c)*Math.abs(c)**.15,z=ellipsoid?sine:Math.sign(sine)*Math.abs(sine)**.15;

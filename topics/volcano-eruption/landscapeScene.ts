@@ -1,27 +1,36 @@
 import { landformMesh } from './landformMesh.ts';
 import { STORAGE, FEEDERS, lens, dike, ribbon, type Point } from './magmaGeometry.ts';
 import { landState, landSurface, type Aftermath, type Landform } from './projectModel.ts';
+import { historyClasts, historyDeformedY, historyFlow, historyFrame, historyIntrusion, historyStorage, historyStorageContour, historyStorageDeform, historySurface } from './landscapeGeometry.ts';
+import { sectionPoint, WORLD_SCALE, type XYZ } from './eruptionGeometry.ts';
 
 const n = (x: number) => x.toFixed(2);
 const seed = (i: number) => (Math.sin(i * 127.1 + 311.7) * 43758.5453 % 1 + 1) % 1;
-const profile = (kind: Landform, growth: number, erosion = 0) => Array.from({ length: 181 }, (_, i) => {
-  const x = 50 + i * 5; return `${n(x)},${n(landSurface(x, kind, growth, erosion))}`;
+const profile = (kind: Landform, growth: number, erosion = 0, warp: (x: number) => number = () => 0) => Array.from({ length: 181 }, (_, i) => {
+  const x = 50 + i * 5; return `${n(x)},${n(landSurface(x, kind, growth, erosion) - warp(x))}`;
 }).join(' ');
 
 /** Fixed deposits keep their identity as the landform grows, cools and weathers. */
 export function landscapeMarkup(kind: Landform, progress: number, aftermath: Aftermath, section: number, vegetation?: number) {
-  const state = landState(progress, aftermath), surface = (x: number) => landSurface(x, kind, state.growth, state.erosion);
+  const state = landState(progress, aftermath), frame = historyFrame(progress, 'landscape', aftermath);
+  const construction = kind === 'scoria' ? undefined : frame.construction;
+  const warp = (x: number) => construction ? historyDeformedY((x - 500) * WORLD_SCALE, 0, 0, frame) / (.75 * WORLD_SCALE) : 0;
+  const surface = (x: number) => landSurface(x, kind, state.growth, state.erosion) - warp(x);
   if (vegetation !== undefined) state.vegetation = vegetation;
-  const crest = surface(500), outline = profile(kind, state.growth, state.erosion);
+  const crest = surface(500), outline = profile(kind, state.growth, state.erosion, warp);
   const footprint = `${outline} 950,526 50,526`;
   const layers = state.deposits.filter(d => d.growth > 0).map(d => {
     const g = (d.index + d.growth) / 18;
     const color = kind === 'scoria' ? ['#79544a', '#9b6c53', '#604743'][d.index % 3]
       : kind === 'shield' ? ['#4a5554', '#626968', '#7b7770'][d.index % 3]
       : ['#827368', '#5f6260', '#b89772'][d.index % 3];
-    return `<polygon data-deposit="${d.index}" points="${profile(kind, g, state.erosion)} 950,500 50,500" fill="${color}" stroke="#e5ceb233" stroke-width="1.2"/>`;
+    return `<polygon data-deposit="${d.index}" points="${profile(kind, g, state.erosion, warp)} 950,500 50,500" fill="${color}" stroke="#e5ceb233" stroke-width="1.2"/>`;
   }).reverse().join('');
-  const particles = Array.from({ length: 84 }, (_, i) => {
+  const particles = kind !== 'scoria' ? historyClasts(kind, frame).filter(clast => clast.visible && !(section > .5 && clast.landed && clast.position[2] > .02)).map(clast => {
+    const [x, y, z] = clast.position;
+    if (clast.landed && y < historySurface(x, z, kind, frame) - clast.radius) return '';
+    return `<circle data-history-clast="${clast.index}" cx="${n(500 + x / WORLD_SCALE)}" cy="${n(426 - y / (.75 * WORLD_SCALE))}" r="${n(clast.radius / WORLD_SCALE)}" fill="${clast.heat > .4 ? '#bf683b' : '#4c4035'}"/>`;
+  }).join('') : Array.from({ length: 84 }, (_, i) => {
     const birth = .06 + i / 84 * .48, age = (state.p - birth) / .072;
     if (age < 0) return '';
     const u = Math.min(1, age), side = i % 2 ? -1 : 1;
@@ -40,17 +49,46 @@ export function landscapeMarkup(kind: Landform, progress: number, aftermath: Aft
     return `<path d="M${x} ${n(y)}q-11 17 2 33t-9 29" stroke="#303d34" fill="none" stroke-width="${2 + i % 3}" opacity="${n(state.erosion * .5)}"/>`;
   }).join('');
   const lava = kind === 'scoria' ? '' : Array.from({ length: 6 }, (_, i) => {
-    const extent = Math.max(0, Math.min(1, (state.p - .08 - i * .065) / .10));
-    if (!extent) return '';
+    const flow = historyFlow(i, kind, frame);
+    if (!flow.visible) return '';
     const side = i % 2 ? -1 : 1;
-    const points = Array.from({ length: 35 }, (_, j) => { const x = 500 + side * extent * j / 34 * (kind === 'shield' ? 305 : 215); return `${n(x)},${n(surface(x) - 2 - i % 3)}`; }).join(' ');
-    return `<polyline points="${points}" stroke="${state.cooling > .5 ? '#394b45' : i < 4 ? '#a8492e' : '#f3a149'}" stroke-width="${5 + i % 3}" fill="none"/>`;
+    let path = '', pen = false;
+    for (let row = 0; row <= 64; row++) {
+      const at = (row * 11 + 5) * 3, x = flow.positions[at], y = flow.positions[at + 1], z = flow.positions[at + 2];
+      const exposed = y >= historySurface(x, z, kind, frame) - .005;
+      if (!exposed) { pen = false; continue; }
+      path += `${pen ? 'L' : 'M'}${n(500 + side * Math.hypot(x, z) / WORLD_SCALE)} ${n(426 - y / (.75 * WORLD_SCALE))}`;
+      pen = true;
+    }
+    if (!path) return '';
+    const hot = flow.mobility > .001 && flow.heat > .08;
+    return `<path data-history-flow="${i}" data-mobile="${hot}" d="${path}" stroke="${hot ? '#c56635' : '#453c35'}" stroke-width="${5 + i % 3}" fill="none" stroke-linecap="round"/>`;
   }).join('');
-  const coordinates = (points: Point[]) => points.map(([x, y]) => `${n(500 + x * .85)},${n(crest + (y - 20) / 220 * (540 - crest))}`).join(' ');
-  const underground = STORAGE.map(zone => `<polygon points="${coordinates(lens(zone.x, zone.y, zone.w, zone.h, zone.phase))}" fill="#695042" stroke="#9c7653"/><polygon points="${coordinates(lens(zone.x, zone.y, zone.w * .78, zone.h * .55, zone.phase))}" fill="#e9a159" opacity="${n(state.activity * .8)}"/>`).join('') + [...FEEDERS, dike(0, 20)].map(points => `<polygon points="${coordinates(ribbon(points, 2.8))}" fill="${state.activity > .1 ? '#d49652' : '#59453e'}"/>`).join('');
+  // The labeled section compresses depth but consumes the same evolving body,
+  // connected pockets and feeder material coordinates as the 3D projection.
+  const worldCoordinates = (points: XYZ[]) => points.map(([x, y]) => `${n(500 + x / WORLD_SCALE * .85)},${n(426 - y / WORLD_SCALE * (y > 0 ? 4 / 3 : .65))}`).join(' ');
+  const coordinates = (points: Point[]) => construction
+    ? worldCoordinates(points.map(point => historyStorageDeform(sectionPoint(point, .06), frame)))
+    : points.map(([x, y]) => `${n(500 + x * .85)},${n(crest + (y - 20) / 220 * (540 - crest))}`).join(' ');
+  const underground = STORAGE.map((zone, index) => {
+    const storage = construction ? historyStorage(index, frame) : undefined;
+    const outer = storage ? worldCoordinates(historyStorageContour(index, frame)) : coordinates(lens(zone.x, zone.y, zone.w, zone.h, zone.phase));
+    const inner = storage ? worldCoordinates(historyStorageContour(index, frame, true)) : coordinates(lens(zone.x, zone.y, zone.w * .78, zone.h * .55, zone.phase));
+    return `<polygon data-storage-framework="${index}" points="${outer}" fill="#695042" stroke="#9c7653"/><polygon data-storage-fill="${n(storage?.fill ?? 1)}" points="${inner}" fill="${storage ? '#eea75b' : '#e9a159'}" opacity="${n((storage?.heat ?? state.activity) * .8)}"/>`;
+  }).join('') + FEEDERS.map(points => `<polygon points="${coordinates(ribbon(points, 2.8))}" fill="${(construction?.heat ?? state.activity) > .1 ? '#d49652' : '#59453e'}"/>`).join('');
+  let intrusion = '';
+  if (construction) {
+    const sheet = historyIntrusion(kind, frame);
+    if (sheet.visible) {
+      const point = (row: number, side: number): XYZ => sheet.positions.slice((row * 8 + side) * 3, (row * 8 + side) * 3 + 3) as XYZ;
+      const rows = (sheet.positions.length / 3 - 2) / 8;
+      const face = [...Array.from({ length: rows }, (_, i) => point(i, 0)), ...Array.from({ length: rows }, (_, i) => point(rows - i - 1, 3))];
+      intrusion = `<polygon data-history-intrusion="${n(sheet.front)}" points="${worldCoordinates(face)}" fill="${construction.heat > .1 ? '#d49652' : '#59453e'}"/>`;
+    }
+  } else intrusion = `<polygon points="${coordinates(ribbon(dike(0, 20), 2.8))}" fill="${state.activity > .1 ? '#d49652' : '#59453e'}"/>`;
   const mesh = `<g opacity="${n(1 - section)}">${landformMesh(kind, state.growth, state.vegetation, state.erosion, state.p, state.cooling)}</g>`;
   const prior = state.erosion ? `<polyline points="${profile(kind, state.growth)}" fill="none" stroke="#f1ddbb" stroke-dasharray="6 7" opacity=".65"/>` : '';
-  return `<defs>
+  return `<g data-construction-front="${n(construction?.intrusionFront ?? 1)}" data-construction-uplift="${n(construction?.uplift ?? 0)}"><defs>
     <linearGradient id="land-sky" x2="0" y2="1"><stop stop-color="#9ebfc5"/><stop offset="1" stop-color="#f0d7af"/></linearGradient>
     <linearGradient id="land-slope" x1="0" y1="0" x2="1" y2=".7"><stop stop-color="#c6a784"/><stop offset=".42" stop-color="#877568"/><stop offset="1" stop-color="#3c514e"/></linearGradient>
     <linearGradient id="land-grass" x1="0" y1="0" x2="1" y2=".8"><stop stop-color="#bac67f"/><stop offset=".38" stop-color="#7e9657"/><stop offset="1" stop-color="#324f42"/></linearGradient>
@@ -68,11 +106,11 @@ export function landscapeMarkup(kind: Landform, progress: number, aftermath: Aft
     <polygon points="${outline} 950,465 50,465" fill="url(#land-grass)" opacity="${n(state.vegetation * (1 - section))}"/>
     ${texture}${gullies}
     <g opacity="${n(section)}">${layers}
-      ${underground}
+      ${underground}${intrusion}
     </g>
   </g>
   ${mesh}
-  <g opacity="${n(section)}">${lava}</g>${kind !== 'shield' ? particles : ''}${prior}
+  <g opacity="${n(section)}">${lava}</g>${particles}${prior}
   <path d="M50 526H950" stroke="#596350" stroke-width="2" opacity="${n(section)}"/>
-`;
+</g>`;
 }

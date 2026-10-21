@@ -134,12 +134,13 @@ export function fountainMaterial() {
       uniform float uFountainHeat;uniform float uFountainPhase;varying vec2 vFountainUV;`)
       .replace('#include <begin_vertex>', `#include <begin_vertex>
         vFountainUV=uv;
-        float ejNeck=sin(uv.x*21.-uFountainPhase*.7+sin(uv.y*6.283))*pow(sin(clamp(uv.x,0.,1.)*3.14159),2.);
+        float ejNeck=sin(uv.x*21.-uFountainPhase+sin(uv.y*6.283))*pow(sin(clamp(uv.x,0.,1.)*3.14159),2.);
         transformed+=objectNormal*ejNeck*.0025*clamp(uFountainHeat,0.,1.);`);
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
       uniform float uFountainHeat;uniform float uFountainPhase;varying vec2 vFountainUV;${NOISE}`)
       .replace('#include <color_fragment>', `#include <color_fragment>
-        vec3 ejUV=vec3(vFountainUV.x*12.-uFountainPhase*.13,vFountainUV.y*4.,.8);
+        float ejAngle=vFountainUV.x*18.84955592153876-uFountainPhase;
+        vec3 ejUV=vec3(cos(ejAngle)*1.7,sin(ejAngle)*1.7,vFountainUV.y*4.);
         float ejFilm=ejFbm(ejUV),ejSpot=smoothstep(.41,.69,ejFilm);
         float ejHot=clamp(uFountainHeat,0.,1.)*(.12+.88*ejSpot);
         diffuseColor.rgb=mix(vec3(.055,.026,.019),vec3(.57,.085,.014),ejHot*.65);
@@ -147,7 +148,7 @@ export function fountainMaterial() {
       .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
         totalEmissiveRadiance=vec3(1.,.20,.027)*ejHot*1.8;`);
   };
-  material.customProgramCacheKey = () => 'ejecta-fountain-skin-v1';
+  material.customProgramCacheKey = () => 'ejecta-fountain-skin-v2';
   return { material, heat, phase };
 }
 

@@ -1,6 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { ashParcels, craterBasin, eruptionFrame, fragmentAt, fragmentSchedule, lavaBranches, lavaRibbon, surfaceHeight, terrainBuffers } from '../eruptionGeometry.ts';
+import * as THREE from 'three';
+import { Eruption3DScene } from '../eruption3d.ts';
+import { scenarioSettings } from '../eruptionScenarios.ts';
 import { PRESETS } from '../model.ts';
 import { ashMaterial } from '../eruptionMaterials.ts';
 
@@ -97,4 +100,78 @@ test('ash scenes share bounded immutable density data and own separate disposabl
   first.noise.dispose();first.material.dispose();
   assert.equal(disposed,1);assert.equal(second.noise.version,version);assert.equal(second.noise.image.data,data);
   second.noise.dispose();second.material.dispose();
+});
+
+
+test('finite ash has a connected narrow source at the active review state without adding a thirteenth slot', () => {
+  for (const strength of [.32, 1]) {
+    const settings = scenarioSettings('strong-ash', { strength, landform: 'scoria' });
+    const frame = eruptionFrame(.8252, settings), summit = surfaceHeight(0, 0, 'scoria');
+    assert.equal(frame.intensity, 1); assert.equal(frame.ash.length, 12);
+    const source = frame.ash.filter(parcel => parcel.source);
+    assert.equal(source.length, 1); const stem = source[0];
+    const coarse = (y) => frame.ash.reduce((sum, parcel) => {
+      if (parcel.radius <= 0) return sum;
+      const q = [0, summit + y, 0].map((value, axis) => (value - parcel.position[axis]) / (parcel.radius * parcel.axes[axis]));
+      return sum + Math.max(0, 1 - q.reduce((n, v) => n + v * v, 0)) * parcel.density;
+    }, 0);
+    // The shader returns max(eroded, sourceField * (1.25 + .25 * detail)).
+    // These lower bounds therefore survive the second envelope/erosion, not
+    // merely an overlap between proxy boxes. Scale the young head with strength.
+    const headHeight = strength ** .55 * 2.4;
+    for (let dy = .03; dy <= headHeight; dy += .025) {
+      assert.ok(coarse(dy) > .035, `passes the first field rejection at ${strength}:${dy}`);
+      const q = (summit + dy - stem.position[1]) / (stem.radius * stem.axes[1]);
+      const protectedDensity = Math.max(0, 1 - q * q) * stem.density * 1.25;
+      assert.ok(protectedDensity > .008, `survives final density erosion at ${strength}:${dy}`);
+    }
+    assert.ok(stem.radius < .24 && stem.axes[1] > 2);
+    assert.ok(stem.position[1] - stem.radius * stem.axes[1] < summit + .02);
+    assert.ok(frame.ash.slice(0, 11).some(parcel => parcel.position[1] - parcel.radius * parcel.axes[1] < stem.position[1] + stem.radius * stem.axes[1]));
+    const before = JSON.stringify(frame.ash); eruptionFrame(.95, settings); assert.equal(JSON.stringify(eruptionFrame(.8252, settings).ash), before);
+  }
+});
+
+test('ash source ends with its finite emission window while old emitted packets continue rising', () => {
+  const settings = scenarioSettings('strong-ash', { landform: 'scoria' });
+  for (const clock of [0, .2, .275, .845, .9, 1]) {
+    const parcels = ashParcels(clock, settings); assert.equal(parcels.length, 12);
+    assert.ok(parcels.every(parcel => !parcel.source));
+  }
+  const stopped = ashParcels(.92, settings), earlier = ashParcels(.83, settings);
+  assert.ok(stopped[5].density > 0 && stopped[5].position[1] > earlier[5].position[1]);
+  assert.ok(ashParcels(.6, { ...settings, strength: 0 }).every(parcel => parcel.density === 0 && !parcel.source));
+  assert.ok(ashParcels(.6, PRESETS.flow).every(parcel => parcel.density === 0 && !parcel.source));
+  const style = ashMaterial();
+  assert.equal(style.uniforms.uAxes.value.length, 12); assert.equal(style.uniforms.uSourceActive.value, 0);
+  assert.match(style.material.fragmentShader, /max\(eroded,sourceField\(p\)\*\(1\.25\+\.25\*detail\)\)/, 'fine eroding noise cannot sever an admitted source core');
+  for (let clock = .39; clock < .81; clock += .001) {
+    const a = ashParcels(clock, settings)[11], b = ashParcels(clock + 1e-5, settings)[11];
+    assert.ok(a.source && b.source); assert.ok(Math.abs(a.position[1] - b.position[1]) < .002, 'young guide changes continuously between finite packets');
+  }
+  style.material.dispose(); style.noise.dispose();
+});
+
+test('rebuilding the actual rock group disposes instance buffers separately from its geometry', () => {
+  const scene = Object.create(Eruption3DScene.prototype), group = new THREE.Group();
+  const geometry = new THREE.IcosahedronGeometry(1, 0), material = new THREE.MeshBasicMaterial();
+  const rock = new THREE.InstancedMesh(geometry, material, 480); group.add(rock); scene.geometries = new Set([geometry]);
+  let instances = 0, solids = 0; rock.addEventListener('dispose', () => instances++); geometry.addEventListener('dispose', () => solids++);
+  scene.clear(group); scene.clear(group);
+  assert.equal(instances, 1); assert.equal(solids, 1); assert.equal(group.children.length, 0); assert.equal(scene.geometries.size, 0);
+  material.dispose();
+});
+
+test('the actual final scene cleanup releases the boulder instance and geometry exactly once', () => {
+  const scene = Object.create(Eruption3DScene.prototype), group = new THREE.Group();
+  const geometry = new THREE.IcosahedronGeometry(1, 0), material = new THREE.MeshBasicMaterial(), rock = new THREE.InstancedMesh(geometry, material, 480);
+  group.add(rock); scene.rocks = group; scene.scene = new THREE.Scene(); scene.scene.add(group);
+  scene.geometries = new Set([geometry]); scene.materials = new Set([material]); scene.disposed = false;
+  scene.stopMotion = () => {}; scene.detailMotion = { dispose() {} }; scene.resizeObserver = { disconnect() {} };
+  scene.controls = { dispose() {} }; scene.canvas = { removeEventListener() {} }; scene.ejecta = { dispose() {} };
+  scene.texture = new THREE.Texture(); scene.ash = { noise: new THREE.Texture() };
+  scene.sceneTarget = { dispose() {} }; scene.ashTarget = { dispose() {} };
+  scene.ashScene = new THREE.Scene(); scene.compositeScene = new THREE.Scene(); scene.renderer = { dispose() {}, forceContextLoss() {} };
+  let instances = 0, solids = 0; rock.addEventListener('dispose', () => instances++); geometry.addEventListener('dispose', () => solids++);
+  scene.dispose(); scene.dispose(); assert.equal(instances, 1); assert.equal(solids, 1);
 });

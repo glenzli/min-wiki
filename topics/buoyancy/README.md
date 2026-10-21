@@ -39,6 +39,14 @@ The tank, measuring vessel and samples share a fixed camera, lighting and tablet
 
 The GPU view has no separate animation clock. It receives the finite transition frame from `scene.ts`, then stops rendering at rest except on resize. Generated textures are bounded and reused; replaced water geometry is disposed. A readable SVG view remains available when WebGL is unavailable or its context is lost. The scene does not solve fluid motion, refraction, material deformation or capsizing.
 
+### 清晰度与材料细化 · 2026-10-20
+
+局部实验不使用距离雾；浅色背景与接触阴影分开处理，避免整幅画面被灰底和叠加透明度压平。玻璃中心接近透明，掠射方向保留反光；水体用克制的蓝色深浅和接触线说明水面。它们是读图线索，不是测得的吸收率或折射求解。
+
+木块六个面采样同一木料纹理场，端面年轮、顺纹、细孔和粗糙度有连续方向；颜色贴图与表面高度/粗糙度数据分开处理。水线附近的色泽变化只提示表面受水位置，不改变木块质量或引入吸水模型。船身与船沿共用连续网格，使用细微的不对称曲率和表面颗粒，保留同一团泥的有限改形过渡。
+
+The local lab has no distance fog. A light background, contact shadows, nearly clear glass centers and stronger grazing reflections preserve separation. Water uses restrained depth tint and contact lines as illustrative optical cues; absorption and refraction are not solved. All six timber faces sample one continuous grain field, with separate color and surface-data maps. Wet surface appearance does not change mass or model water absorption. A single continuous clay mesh joins the hull and rounded rim, with small shape variations and fine grain. The original equilibrium readings, controls and finite transition clock are unchanged.
+
 ## Presentation layout
 
 The topic selects its existing scene and controls for the shared viewport-fitted presentation frame. At desktop widths the scene and primary playback stay together, with independently scrollable explanation/settings; immersion can hide and reopen that panel without remounting the experiment. Narrow screens retain normal document flow. Scientific state and geometry remain topic-owned.

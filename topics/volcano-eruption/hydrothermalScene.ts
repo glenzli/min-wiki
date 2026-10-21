@@ -373,12 +373,16 @@ export class HydrothermalScene {
     });
   }
   private syncMotion() {
-    if (this.detailEnabled && !this.reduced.matches && this.visible() && !this.disposed) { if (!this.raf) this.raf = requestAnimationFrame(this.tick); } else this.cancelFrame();
+    if (this.admitDetail()) { if (!this.raf) this.raf = requestAnimationFrame(this.tick); } else this.cancelFrame();
     this.publishState();
+  }
+  private admitDetail() {
+    return this.detailEnabled && !this.reduced.matches && !this.disposed
+      && this.frame.settings.supply > 0 && this.frame.wetFront > 0 && this.visible();
   }
   private cancelFrame() { if (this.raf) cancelAnimationFrame(this.raf); this.raf = 0; this.previousTime = 0; }
   private tick = (now: number) => {
-    this.raf = 0; if (this.disposed || !this.detailEnabled || this.reduced.matches || !this.visible()) { this.previousTime = 0; this.publishState(); return; }
+    this.raf = 0; if (!this.admitDetail()) { this.previousTime = 0; this.publishState(); return; }
     const dt = this.previousTime ? Math.min(.05, (now - this.previousTime) / 1000) : 0; this.previousTime = now; this.phase = (this.phase + dt * .045) % 1;
     if (this.renderer) { this.updateSamples(); this.render(); } else this.drawCanvas(); this.raf = requestAnimationFrame(this.tick); this.publishState();
   };

@@ -3,7 +3,7 @@ import { mountReadingMode } from '../../src/platform/readingMode.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
-import { bounded, landCamera, type VolcanoCase, type Landform, type View } from './projectModel.ts';
+import { bounded, constructionState, landCamera, type VolcanoCase, type Landform, type View } from './projectModel.ts';
 import { UNITS, chapterForStudy, defaultCase, initialStudyProgress, landformFrom, nextStudy, sceneProgress, studyMilestones, studyRenderer, studyRoute, type Study } from './studyModel.ts';
 import { STUDY_CONTENT, UNIT_CONTENT, BUILDING_STEPS, STYLES_STEPS, HEAT_STEPS } from './studyContent.ts';
 import { CASE_CONTENT, KIDS_STORIES, OCEAN_STEPS, LAKE_STEPS } from './projectContent.ts';
@@ -34,8 +34,8 @@ const select = (id: string) => el<HTMLSelectElement>(id).value;
 const number = (id: string) => Number(el<HTMLInputElement>(id).value);
 const entry = studyRoute(location.search, location.hash);
 let study = entry.study, volcano = entry.volcano, chapter = entry.chapter, progress = entry.progress;
-let view: View = entry.view === 'exterior' || study === 'styles' ? 'exterior' : study === 'lake' || study === 'heat' ? 'section' : 'landscape';
-let playing = false, frame = 0, last = 0, detailMotion = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+let view: View = entry.view === 'exterior' || study === 'styles' ? 'exterior' : study === 'lake' || study === 'heat' || study === 'building' && volcano !== 'scoria' ? 'section' : 'landscape';
+let playing = false, frame = 0, last = 0;
 let eruption: EruptionScene | undefined, lake: LakeScene | undefined, ocean: SubmarineScene | undefined;
 let omuro: OmuroScene | undefined, landHistory: LandHistoryScene | undefined, heat: HydrothermalScene | undefined;
 let cancelSeek = () => {}, cancelCamera = () => {};
@@ -95,26 +95,23 @@ function syncRenderer() {
   const scene = activeScene();
   if (!scene) return;
   const gpu = scene.is3D, previousView = view;
-  if (!gpu && (study === 'heat' || study === 'lake')) view = 'section';
+  if (!gpu && (study === 'heat' || study === 'lake' || study === 'building' && isHistory())) view = 'section';
   if (!gpu && isEpisode() && view === 'exterior') view = 'landscape';
   if (view !== previousView) {
     if (study === 'heat') heat?.setView('section');
     else if (study === 'lake') lake?.setView('section');
+    else if (isHistory()) landHistory?.setView('section');
     else eruption?.setView(eruptionView(), settings().vents);
     buildViews();
   }
   el('eruption-hud').hidden = !gpu; el('render-qualifier').hidden = !gpu; el('retry-3d').hidden = gpu || !activeScene();
   for (const id of ['eruption','land-history','omuro','ocean','lake','heat']) el(`${id}-scene`).tabIndex = !el(`${id}-scene`).hidden && gpu ? 0 : -1;
   el('eruption-gesture').textContent = gpu ? t('拖动旋转 · 滚轮或双指缩放；键盘方向键旋转，＋／－缩放。') : t('当前显示二维示意；仍可播放和比较条件。可重试三维画面。');
-  el('detail-motion').hidden = !(gpu && (isEpisode() || study === 'heat'));
-  el('detail-motion').textContent = detailMotion ? t('暂停流动') : t('观察流动');
-  el('detail-motion').setAttribute('aria-pressed', String(detailMotion));
-  el<HTMLButtonElement>('detail-motion').disabled = matchMedia('(prefers-reduced-motion: reduce)').matches;
   el('eruption-render-limit').textContent = isEpisode()
-    ? t('岩层、岩脉和储存区是教学重建。移动的流头与褶皱用于辨认液态，不是实测环流或流速；过程进度与流动可分别暂停。')
+    ? t('岩层、岩脉和储存区是教学重建。细微流动与明暗变化自动持续，用于辨认熔体；过程按钮只控制本题的地质进度，不表示实测环流或流速。')
     : study === 'heat' ? t('热源、裂隙、水路和水池均为教学示意，不是实测地下管道或温度场。水来自降水，不由岩浆变成；并非所有温泉都依靠火山热源。')
       : study === 'ecology' ? t('山体已经形成，土层、种子与植被按独立的长期过程观察。土根为辨认而放大；大室山今天的草坡也受长期山烧维护。')
-        : study === 'building' ? t('这里只看喷出物逐层留下；堆积层数、形状与时间为教学示意，不是一次喷发或实测地质。')
+        : study === 'building' ? volcano === 'scoria' ? t('这里只看喷出物逐层留下；堆积层数、形状与时间为教学示意，不是一次喷发或实测地质。') : t('板块与热点影响岩浆的来源和通道；局部补给与输送会改变储存区轮廓和熔体分布。形变、层数、时间与放大的代表碎屑为教学示意，不是实测地下形态。')
           : study === 'lake' ? t('剖面移去前方围岩；下沉断块与残余晶粥仍在地下。塌陷和后来积水分段观察，不表示所有火山都会成湖。')
             : t('剖面移去前侧海水和岩石；地形、层厚、海深和亮色均为教学示意。深水采用局部探照灯照明。');
 }
@@ -135,6 +132,13 @@ function draw() {
     t('先看右侧通道：部分岩浆正离开储存区，上面的岩体还在原位。'), t('岩体还在原位；支撑减弱，两侧环状断层开始破裂。'),
     t('虚线保留原位置；断块先后下沉，崩落碎石向崖脚堆积。'), t('下沉断块与崩落碎石留在盆地里；成湖还需要后来的水补给。'),
   ][stage];
+  if (study === 'building' && isHistory()) {
+    const construction = constructionState(time());
+    cue.textContent = construction.intrusionFront < .999 ? t('先看剖面：岩浆沿裂隙向上侵入，地面尚未堆出火山锥。')
+      : construction.uplift > .001 ? t('地下侵入使局部地面鼓起；新喷出物开始留在上面。鼓胀幅度已夸大，便于观察。')
+        : progress < .98 ? t('碎屑从喷口落回山坡，熔岩流出后留下岩石；暗色旧流已冷却，并可能被新层盖住。')
+          : t('新喷出物不再添加，已有堆积留下山体；冷却后的表面熔岩保持原位。');
+  }
   if (isEpisode()) { eruption?.setView(eruptionView(), settings().vents); eruption?.draw(time(), settings()); }
   else if (study === 'submarine') ocean?.draw({ progress, weights: weights(), supplyMix: select('ocean-supply') === 'limited' ? 1 : 0, camera, section: .1 + .9 * section });
   else if (study === 'lake') lake?.draw(progress, lakeSettings());
@@ -150,11 +154,13 @@ function storyText(stage: number, academic: boolean) {
     : academic ? STYLE_NOTES[eruptionAppearance(settings()).style].body : select('style') === 'flow' ? t('熔岩沿着山坡流开，外层变暗，内部仍可能很热。')
       : select('style') === 'ash' ? t('岩浆碎裂成许多细小颗粒，灰柱向上发展，灰也会落回地面。') : t('热物质从喷口抛起；落下的碎屑与熔岩留在山坡上。');
   if (study === 'building') {
-    if (stage === 0) return t('先看第一批留下的物质。这里没有一座凭空变大的整山，后来的堆积要落在先前的岩石上。');
+    if (stage === 0) return volcano === 'scoria' ? t('先看第一批留下的物质。这里没有一座凭空变大的整山，后来的堆积要落在先前的岩石上。')
+      : academic ? t('板块运动与热点影响岩浆来源及其上升环境。本例从局部岩浆补给开始：裂隙扩展、岩浆侵入，原有地层和地表可暂时鼓起。这个位移与喷出物增加的厚度分开表示；鼓胀不保证随后一定喷发。')
+        : t('先看地下：岩浆把裂隙撑开，沿着裂隙向上走，附近地面可能轻轻鼓起。随后来到地表的熔岩和碎屑，才开始一层层留下。');
     if (stage === 3) return t('山形已经留下。停止添加新岩石，先前的堆积层仍然存在；接下来可以另看山坡、植物或湖盆的问题。');
-    return volcano === 'shield' ? t('容易流动的熔岩铺得较远，一层层留下宽缓的山体。盾状是山形描述，不保证每次喷发都一样。')
+    return volcano === 'shield' ? t('容易流动的熔岩铺得较远，一层层留下宽缓的山体。较热的新流向前铺展，旧流冷却后留在原处，可能被新层盖住。盾状是山形描述，不保证每次喷发都一样。')
       : volcano === 'scoria' ? t('从中央喷口追一块碎屑：它抛起、落回并转暗，后来的碎屑继续垫高山坡；火山口保留在中间。')
-        : t('熔岩与碎屑先后留下，新的沉积叠在旧层上，山体逐渐长高、变宽。这里展示一种建山历史，不要求每次喷发都严格交替。');
+        : t('熔岩与碎屑先后留下，新的堆积叠在旧层上，山体逐渐长高、变宽。较热的新流向前铺展，冷却后留在原处，还可能被覆盖；喷发不要求每次都严格交替。');
   }
   if (study === 'lake') return select('basin') === 'caldera' ? academic ? COLLAPSE[stage].body : COLLAPSE[stage].kid : CASE_CONTENT.lake.stories[stage];
   if (study === 'heat') {
@@ -192,7 +198,7 @@ function update() {
   draw(); syncRenderer();
 }
 function stop() { playing = false; cancelAnimationFrame(frame); frame = 0; cancelSeek(); }
-function seek(to: number) { stop(); eruption?.resetDetailPhase(); const from = progress; cancelSeek = animateValue({ from, to: bounded(to), duration: 650, onUpdate: p => { progress = p; settleCamera(); update(); } }); }
+function seek(to: number) { stop(); const from = progress; cancelSeek = animateValue({ from, to: bounded(to), duration: 650, onUpdate: p => { progress = p; settleCamera(); update(); } }); }
 function positions() { return studyMilestones(study,select('basin')==='caldera'); }
 function buildViews() {
   const items: [View,string][] = study === 'heat' ? [['section',t('追踪地下水')],...(heat?.is3D ? [['landscape',t('看温泉出露')]] as [View,string][] : [])]
@@ -201,7 +207,7 @@ function buildViews() {
         : study === 'mechanism' ? [['landscape',eruption?.is3D?t('三维剖面'):t('完整剖面')],['storage',t('地下活动')],['vent',t('靠近喷口')]]
           : study === 'styles' ? [...(eruption?.is3D ? [['exterior',t('完整火山')]] as [View,string][] : []),['vent',t('靠近喷口')],['section',t('追踪熔岩')],['plume',t('灰柱与落灰')],['landscape',eruption?.is3D?t('三维剖面'):t('完整剖面')]]
             : study === 'ecology' ? [['landscape',t('看山与草坡')],['vent',t('靠近山坡')],['section',t('看草坡剖面')]]
-              : [['landscape',t('看整个山体')],['section',t('打开剖面')],['vent',t('近看沉积')]];
+              : isHistory() && !landHistory?.is3D ? [['section',t('示意剖面')]] : [['landscape',t('看整个山体')],['section',t('打开剖面')],['vent',t('近看沉积')]];
   el('views').replaceChildren(...items.map(([id,label]) => {
     const b = document.createElement('button'); b.textContent = label; b.dataset.view = id; b.dataset.sceneHitTarget = ''; b.setAttribute('aria-pressed',String(id === view));
     b.addEventListener('click',() => { view = id; buildViews(); if (isEpisode()) eruption?.setView(eruptionView(),settings().vents);
@@ -234,19 +240,19 @@ function mountStudy() {
   el('steps').classList.toggle('mechanism-steps',study==='mechanism'); el('eruption-help').hidden = false; el('scene-error').hidden = true;
   el<HTMLSelectElement>('landform').value = volcano === 'shield' || volcano === 'scoria' ? volcano : 'composite';
   try {
-    if (isEpisode()) { eruption = new EruptionScene(el<HTMLCanvasElement>('eruption-scene')); eruption.setDetailMotion(detailMotion); eruption.setView(eruptionView(),settings().vents); }
+    if (isEpisode()) { eruption = new EruptionScene(el<HTMLCanvasElement>('eruption-scene')); eruption.setDetailMotion(true); eruption.setView(eruptionView(),settings().vents); }
     else if (study === 'lake') { lake = new LakeScene(el<HTMLCanvasElement>('lake-scene')); lake.setView(view==='section'?'section':'landscape'); }
     else if (study === 'submarine') { ocean = new SubmarineScene(el<HTMLCanvasElement>('ocean-scene'),t('海底火山、海水与逐层堆积的示意')); ocean.setView(view as OceanView); }
-    else if (study === 'heat') { heat = new HydrothermalScene(el<HTMLCanvasElement>('heat-scene'),() => { if (heat) syncRenderer(); }); heat.setDetailMotion(detailMotion); heat.setView(view==='section'?'section':'landscape'); }
+    else if (study === 'heat') { heat = new HydrothermalScene(el<HTMLCanvasElement>('heat-scene'),() => { if (heat) syncRenderer(); }); heat.setDetailMotion(true); heat.setView(view==='section'?'section':'landscape'); }
     else if (isOmuro()) { omuro = new OmuroScene(el<HTMLCanvasElement>('omuro-scene')); omuro.setView(view==='section'||view==='vent'?view:'landscape'); }
-    else { landHistory = new LandHistoryScene(el<HTMLCanvasElement>('land-history-scene'),volcano as Landform); landHistory.setView(view==='section'||view==='vent'?view:'landscape'); }
+    else { landHistory = new LandHistoryScene(el<HTMLCanvasElement>('land-history-scene'),volcano as Landform); landHistory.setDetailMotion(true); landHistory.setView(view==='section'||view==='vent'?view:'landscape'); }
   } catch (error) { el('scene-error').hidden = false; console.error(error); }
   const {steps} = stageAndSteps(); el('steps').replaceChildren(...steps.map((label,i) => { const b = document.createElement('button'); b.textContent = `${i+1} · ${label}`; b.addEventListener('click',() => seek(positions()[i])); return b; }));
   el('view-note').textContent = t('换镜头保留本题进度；每个问题使用自己的时间尺度，并记住观察位置。');
   const legend = study === 'heat' ? [[t('蓝色：来自降水的地下水'),'#4d9da9'],[t('暖色：受热后的水'),'#d4a66e'],[t('深色：地下热岩石'),'#6a5750']]
     : study === 'lake' ? [[t('蓝色：后来补给的水'),'#54a8c6'],[t('棕色：盆地与岩层'),'#9b8162']]
       : study === 'ecology' ? [[t('棕色：裂缝里积起的土'),'#725640'],[t('绿色：长成斑块的植物'),'#81975b']]
-        : [[t('岩层：留下的喷出物'),'#957860'],[t('亮色：高温物质'),'#ed9b48']];
+        : [[t('岩层：围岩与火山堆积'),'#957860'],[t('亮色：高温物质'),'#ed9b48']];
   el('legend').replaceChildren(...legend.map(([label,color]) => { const span = document.createElement('span'); span.textContent = label; span.style.setProperty('--swatch',color); return span; }));
   const next = nextStudy(study); el('bridge-copy').textContent = content.bridge; el('bridge').hidden = !next; el('bridge').textContent = next ? t('下一问：{{question}} →',{question:STUDY_CONTENT[next].short}) : '';
   const url = new URL(location.href); url.searchParams.set('study',study); url.searchParams.set('case',volcano); url.searchParams.set('chapter',chapter); if (/^#study-/.test(url.hash)) url.hash = ''; history.replaceState(null,'',url);
@@ -255,7 +261,7 @@ function mountStudy() {
 function chooseStudy(next: Study, sameMountain?: VolcanoCase) {
   if (next === study) return;
   remember(); study = next; const saved = memories.get(next);
-  volcano = sameMountain ?? saved?.volcano ?? defaultCase(next); chapter = chapterForStudy(next); progress = saved?.progress ?? initialStudyProgress(next); view = saved?.view ?? (next === 'styles' ? 'exterior' : next === 'lake' || next === 'heat' ? 'section' : 'landscape');
+  volcano = sameMountain ?? saved?.volcano ?? defaultCase(next); chapter = chapterForStudy(next); progress = saved?.progress ?? initialStudyProgress(next); view = saved?.view ?? (next === 'styles' ? 'exterior' : next === 'lake' || next === 'heat' || next === 'building' && volcano !== 'scoria' ? 'section' : 'landscape');
   for (const [id,value] of Object.entries(saved?.values ?? defaults)) el<HTMLSelectElement>(id).value = value;
   mountStudy();
 }
@@ -266,7 +272,6 @@ el('questions').replaceChildren(...UNITS.map(unit => {
 }));
 el('reset-orbit').addEventListener('click',() => activeScene()?.resetCamera());
 el('retry-3d').addEventListener('click',() => { activeScene()?.retry3D(); syncRenderer(); buildViews(); update(); });
-el('detail-motion').addEventListener('click',() => { detailMotion = !detailMotion; eruption?.setDetailMotion(detailMotion); heat?.setDetailMotion(detailMotion); syncRenderer(); });
 document.querySelector('.scene-wrap')!.addEventListener('volcano-renderer',() => { syncRenderer(); buildViews(); });
 function tick(now: number) {
   if (!playing || document.hidden) return;
@@ -276,10 +281,10 @@ function tick(now: number) {
 el('play').addEventListener('click',() => {
   if (playing) { stop(); update(); return; } cancelSeek();
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { progress=1; settleCamera(); update(); return; }
-  if (progress>=1) { progress=0; eruption?.resetDetailPhase(); }
+  if (progress>=1) { progress=0; }
   playing=true; last=performance.now(); update(); frame=requestAnimationFrame(tick);
 });
-el('progress').addEventListener('input',() => { stop(); progress=number('progress')/1000; eruption?.resetDetailPhase(); settleCamera(); update(); });
+el('progress').addEventListener('input',() => { stop(); progress=number('progress')/1000; settleCamera(); update(); });
 for (const id of controls.filter(id => id !== 'eruption-scenario' && id !== 'eruption-strength')) el(id).addEventListener(['supply','gas','viscosity','water','resistance','heat-water'].includes(id)?'input':'change',() => {
   stop();
   if (id==='style') { const preset=PRESETS[select('style') as EruptionStyle]; for(const field of ['gas','viscosity','supply'] as const) el<HTMLInputElement>(field).value=String((preset[field]??.7)*100); }
@@ -292,7 +297,7 @@ el<HTMLSelectElement>('kid-path').addEventListener('change',() => {
   stop(); const path=select('kid-path');
   if(path==='stalled') { el<HTMLInputElement>('supply').value='20'; el<HTMLInputElement>('resistance').value='90'; }
   else if(path!=='custom') { const preset=PRESETS[path as EruptionStyle]; el<HTMLSelectElement>('style').value=path; for(const field of ['gas','viscosity','supply'] as const) el<HTMLInputElement>(field).value=String((preset[field]??.7)*100); el<HTMLInputElement>('resistance').value='35'; }
-  progress=0; eruption?.resetDetailPhase(); settleCamera(); update();
+  progress=0; settleCamera(); update();
 });
 el('eruption-scenario').addEventListener('change',chooseEruptionScenario);
 document.querySelectorAll<HTMLButtonElement>('[data-strength]').forEach(b=>b.addEventListener('click',()=>{

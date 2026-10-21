@@ -166,6 +166,21 @@ test('scene suspension resumes the enabled choice and publishes a separate displ
   scene.dispose(); assert.equal(canvas.dataset.detailMotion, 'disposed'); assert.equal(pending(), 0);
 }));
 
+test('dry or unreached water paths stop detail work and resume without a phase reset', () => withScene(({ scene, canvas, pending, advance }) => {
+  scene.draw(.88, input); scene.setDetailMotion(true); advance(1000); advance(1050);
+  const phase = scene.phase; assert.ok(phase > 0);
+  scene.draw(1, { supply: 0, connected: true });
+  assert.equal(pending(), 0); assert.equal(canvas.dataset.detailMotion, 'idle');
+  advance(5000); assert.equal(scene.phase, phase);
+  scene.draw(0, input); assert.equal(pending(), 0);
+  // A blocked return still has supplied infiltration; it is not a dry route.
+  scene.draw(.5, { supply: .75, connected: false }); assert.equal(pending(), 1);
+  advance(6000); assert.equal(scene.phase, phase, 'no catch-up after the dry interval');
+  advance(6050); assert.ok(scene.phase > phase);
+  scene.draw(1, { supply: 0, connected: false }); assert.equal(pending(), 0);
+  scene.draw(1, input); assert.equal(pending(), 1);
+}));
+
 test('keyboard zoom is bounded and progress updates retain the reader camera', () => withScene(({ scene }) => {
   scene.renderer = { render() {}, dispose() {}, forceContextLoss() {} }; scene.scene = new THREE.Scene();
   scene.camera = new THREE.PerspectiveCamera(37, 1.6, .1, 170); scene.camera.position.set(0, 2, 12);

@@ -1,3 +1,16 @@
+# Clear optical layers and connected materials — 2026-10-20
+
+Local refinement after `06875bd`; no commit, push or deployment. Changes are limited to the GPU materials/shape, the floor-support label's placement and the topic's documentation. Numerical physics, input ranges and editorial status remain unchanged.
+
+- Removed distance fog and the grey lit ground fill. Neutral tone mapping, a separate light background/contact shadow, grazing-angle glass reflection and a restrained water-depth tint now separate air, glass and water. These are illustrative optical cues, not an absorption/refraction solver.
+- Six timber faces sample one continuous grain field, with separate color and bump/roughness data maps. Surface wetness reads the same displayed water plane and never changes model mass. The clay hull and rounded rim are one 97 × 97 vertex mesh; small curve variations, smoothed seam normals and fine surface grain replace the separate rim ring.
+- `node --import tsx --test topics/buoyancy/tests/model.test.mjs`: 6 passed. `WIKI_READER_ROOT=/Users/g4i/lab/wiki-reader npm run build`: passed strict TypeScript, 6,920 source messages/72 namespaces, image delivery, authored-entry and editorial checks, plus the packaged Reader build. Final package: 71 entries, `0e0579d9c3e4`. `git diff --check` passed.
+- Actual Reader inspection at port 64494 covered Chinese desktop, Chinese/English 390px, a dark reading shell, wood, hollow clay, flooding/widening, saltwater and suspended immersion. No horizontal document overflow at 390px. The long English floor-support label now sits below its arrow. A fresh audit page and its interactions produced no related warning, shader error or runtime error.
+- Browser force attributes confirmed the original results: four blocks in a 900 mL freshwater hull give 5.4936 N buoyancy plus 4.3164 N floor support against 9.81 N weight; an 1800 mL hull floats with both forces 9.81 N. At 1000 mL the same cargo floods in fresh water and floats in seawater. Full and extra immersion in seawater both give 10.05525 N buoyancy plus 1.71675 N tension; zero immersion has no buoyancy arrow and 11.772 N tension.
+- Evidence: `/private/tmp/wiki-buoyancy-materials-20261020/` contains final Chinese desktop wood/boat captures, English mobile wood/flooding/immersion, Chinese mobile dark wood and `forces.json`. Original model tests and final browser checks were separate from visual judgment. No GPU-loss injection or performance benchmark was run.
+- Resource bounds remain finite: textures are created once and disposed, hull positions/colors/normals update in place, replaced water geometry is released, and no material adds an animation clock. Local preview startup used the Reader checkout matching this collection's 2D helper exports; the cached plugin build's missing `animation2d` helper was not changed in this task.
+- Final runtime SHA-256: `tankScene.ts` = `ea9ac713fecccba31ab19a901144db030cfffdc20822f3c63883b11b2d589bec`; `scene.ts` = `f709eaf20283f12ecba95f1df685afbe84bd0f7ffcb8fe8772f3a2b383f89a6f`.
+
 # Material and spatial study — 2026-10-19
 
 Scope: the buoyancy presentation, its bilingual qualification and source ownership. The settled-state model, inputs and editorial status are unchanged. Starting revision: `c7f96eb572fda40c5029dc2a73d32503d68cf8f6`.

@@ -133,9 +133,12 @@ export function waterMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms) 
         float footprint=max(length(dFdx(p)),length(dFdy(p)));
         float swell=1.-smoothstep(.8,2.6,footprint),medium=1.-smoothstep(.12,.45,footprint),fine=1.-smoothstep(.035,.13,footprint);
         float warp=fbm(vec3(p*.71,t*.14))*3.5;
+        // Local, separately seeded phase variation breaks long locked bands.
+        // Filtering follows the existing footprint; mean surface stays fixed.
+        vec2 localWarp=(vec2(filteredGrain(vec3(p*7.1,t*.19)),filteredGrain(vec3(p.yx*8.3+11.,t*.17+7.)))-.5)*2.4*medium;
         float a=dot(p,vec2(.71,.38))+warp+t*.43,b=dot(p,vec2(-1.53,.82))-warp*.6-t*.71;
-        float c=dot(p,vec2(3.27,2.11))+warp*1.4+t*1.12,d=dot(p,vec2(-7.6,5.31))+warp+t*1.71;
-        float e=dot(p,vec2(16.1,-11.7))+warp*2.1-t*2.21;
+        float c=dot(p,vec2(3.27,2.11))+warp*1.4+localWarp.x+t*1.12,d=dot(p,vec2(-7.6,5.31))+warp+localWarp.y+t*1.71;
+        float e=dot(p,vec2(16.1,-11.7))+warp*2.1+localWarp.x*.7-localWarp.y*.5-t*2.21;
         vec2 slope=swell*(vec2(.71,.38)*.014*cos(a)+vec2(-.88,.47)*.013*cos(b))
           +medium*(vec2(.84,.54)*.012*cos(c)+vec2(-.82,.57)*.008*cos(d))
           +fine*vec2(.81,-.59)*.006*cos(e);

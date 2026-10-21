@@ -5,7 +5,7 @@ import type { Habitat } from './ecologyModel.ts';
 import { seed } from './magmaGeometry.ts';
 import { smooth } from './model.ts';
 import { omuroFrame, OMURO_SITES, type OmuroFrame, type OmuroMode } from './omuroJourney.ts';
-import { OMURO_BLADES_PER_SITE, OMURO_CLAST_COUNT, OMURO_FIELD_SIZE, OMURO_GROUND_RADIUS, omuroBlade, omuroClast, omuroCoverAt, omuroField, omuroFootprint, omuroNormal, omuroPatches, omuroSection, omuroSeed, omuroSurface, omuroSurroundings, omuroTerrain } from './omuroGeometry.ts';
+import { OMURO_BLADES_PER_SITE, OMURO_CLAST_COUNT, OMURO_FIELD_SIZE, OMURO_GROUND_RADIUS, OmuroFieldProjection, omuroBlade, omuroClast, omuroCoverAt, omuroFootprint, omuroNormal, omuroPatches, omuroSection, omuroSeed, omuroSurface, omuroSurroundings, omuroTerrain } from './omuroGeometry.ts';
 import { omuroClastMaterial, omuroGrassMaterial, omuroGroundMaterial, omuroSkyMaterial, omuroTextures } from './omuroMaterials.ts';
 
 export type OmuroView = 'landscape' | 'vent' | 'section';
@@ -61,7 +61,7 @@ function cameraPose(view: OmuroView, scale = 1, growth = 1) {
 
 /** Projection, gestures and resource lifetime only. Scientific time belongs to
  * the supplied journey/ecology state; the renderer never starts its own clock. */
-class Omuro3D {
+export class Omuro3D {
   private renderer: THREE.WebGLRenderer;
   private scene = new THREE.Scene();
   private camera = new THREE.PerspectiveCamera(36, 1.5, .08, 180);
@@ -90,6 +90,8 @@ class Omuro3D {
   private dummy = new THREE.Object3D();
   private color = new THREE.Color();
   private frame = omuroFrame(1);
+  private fieldProjection = new OmuroFieldProjection();
+  private lastFrameKey = '';
   private view: OmuroView = 'landscape';
   private disposed = false;
   private lastGrowth = -1;
@@ -195,6 +197,8 @@ class Omuro3D {
   draw(progress: number, habitat: Habitat, mode: OmuroMode) {
     if (this.disposed) return;
     const frame = omuroFrame(progress, habitat, mode);
+    const frameKey = `${frame.p}:${habitat}:${mode}:${this.view}`;
+    if (frameKey === this.lastFrameKey) return;
     const enteringFormation = mode === 'journey' && frame.stage === 0 && this.frame.stage !== 0;
     this.frame = frame;
     const patches = omuroPatches(frame), footprint = omuroFootprint(frame.landGrowth);
@@ -204,7 +208,7 @@ class Omuro3D {
       this.lastGrowth = frame.landGrowth;
     }
     const field = this.textures.field.image.data as Uint8Array;
-    omuroField(patches, OMURO_FIELD_SIZE, field); this.textures.field.needsUpdate = true;
+    if (this.fieldProjection.update(patches, field)) this.textures.field.needsUpdate = true;
     this.surfaceStyle.cooling.value = this.sectionStyle.cooling.value = 1 - frame.heat;
     this.surfaceStyle.footprint.value = this.surroundingsStyle.footprint.value = footprint;
     this.surfaceStyle.burial.value = frame.ecology.burial;
@@ -212,12 +216,15 @@ class Omuro3D {
     const section = this.view === 'section';
     // Ground cover is the site-owned turf field. Individual leaves belong only
     // to the accepted local cut lens; no enlarged tufts stand over the cone.
-    if (section) for (const site of OMURO_SITES) for (let i = 0; i < OMURO_BLADES_PER_SITE; i++) {
-      const blade = omuroBlade(site, i, frame);
-      const visible = !section || blade.position[2] <= 0;
-      this.instance(this.grass, blade.id, blade.position, visible ? [blade.width, blade.height, blade.width] : [0, 0, 0], blade.angle);
+    this.grass.count = section && frame.ecology.vegetation > 0 ? OMURO_SITES.length * OMURO_BLADES_PER_SITE : 0;
+    if (this.grass.count) {
+      (this.grass.instanceMatrix.array as Float32Array).fill(0);
+      for (const patch of patches) if (patch.cover > 0) for (let i = 0; i < OMURO_BLADES_PER_SITE; i++) {
+        const blade = omuroBlade(patch.site, i, frame), visible = blade.position[2] <= 0;
+        this.instance(this.grass, blade.id, blade.position, visible ? [blade.width, blade.height, blade.width] : [0, 0, 0], blade.angle);
+      }
+      this.grass.instanceMatrix.needsUpdate = true;
     }
-    this.grass.instanceMatrix.needsUpdate = true;
     for (let i = 0; i < this.rocks.count; i++) {
       const a = seed(i + 149) * Math.PI * 2, radius = .25 + Math.sqrt(seed(i + 918)) * 5;
       const x = radius * Math.cos(a), z = radius * Math.sin(a), cover = omuroCoverAt(x, z, patches).cover;
@@ -245,7 +252,7 @@ class Omuro3D {
     this.deposits.instanceMatrix.needsUpdate = true;
     if (this.deposits.instanceColor) this.deposits.instanceColor.needsUpdate = true;
     this.depositHeat.needsUpdate = true;
-    this.sectionDetail(frame, patches);
+    if (section) this.sectionDetail(frame, patches);
     const ventOpacity = mode === 'journey' ? 1 - smooth(.32, .46, frame.p) : 0;
     this.vent.position.set(0, omuroSurface(0, 0, frame.landGrowth) + .016, 0);
     this.ventRim.position.copy(this.vent.position); this.ventRim.position.y += .015;
@@ -271,7 +278,7 @@ class Omuro3D {
     // Replay/legacy entry receives its formation pose after the new frame is
     // known. Progress changes inside the phase preserve the reader's orbit.
     if (enteringFormation && this.view === 'landscape') this.moveCamera(false);
-    this.renderer.shadowMap.needsUpdate = true; this.render();
+    this.lastFrameKey = frameKey; this.renderer.shadowMap.needsUpdate = true; this.render();
   }
   setView(view: OmuroView, animate = true) {
     if (this.disposed) return;
@@ -347,6 +354,7 @@ class Omuro3D {
     for (const buffer of this.geometries) buffer.dispose();
     for (const material of this.materials) material.dispose();
     this.textures.field.dispose(); this.textures.grain.dispose();
+    this.fieldProjection.dispose();
     this.scene.clear(); this.renderer.dispose(); this.renderer.forceContextLoss();
     this.geometries.clear(); this.materials.clear();
   }

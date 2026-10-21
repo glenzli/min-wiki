@@ -364,6 +364,7 @@ export function ashMaterial() {
   const parcels = Array.from({ length: 12 }, () => new THREE.Vector4());
   const densities = new Float32Array(12);
   const uniforms = { uParcels: { value: parcels }, uDensities: { value: densities },
+    uAxes: { value: Array.from({ length: 12 }, () => new THREE.Vector3(1, 1, 1)) }, uSourceActive: { value: 0 },
     uMin: { value: new THREE.Vector3() }, uMax: { value: new THREE.Vector3() }, uClock: { value: 0 },
     uResolution: { value: new THREE.Vector2(1,1) }, uSceneDepth: { value: null as THREE.DepthTexture | null },
     uInverseViewProjection: { value: new THREE.Matrix4() }, uSteps: { value: 48 },uNoise:{value:noise} };
@@ -372,6 +373,7 @@ export function ashMaterial() {
     vertexShader: /* glsl */`varying vec3 vWorld; void main(){vec4 p=modelMatrix*vec4(position,1.);vWorld=p.xyz;gl_Position=projectionMatrix*viewMatrix*p;}`,
     fragmentShader: /* glsl */`
       varying vec3 vWorld; uniform vec4 uParcels[12]; uniform float uDensities[12];
+      uniform vec3 uAxes[12]; uniform float uSourceActive;
       uniform vec3 uMin; uniform vec3 uMax; uniform float uClock;
       uniform vec2 uResolution;uniform sampler2D uSceneDepth;uniform mat4 uInverseViewProjection;uniform int uSteps;
       uniform highp sampler3D uNoise;
@@ -380,11 +382,15 @@ export function ashMaterial() {
       float envelope(vec3 p) {
         float total=0.;
         for(int i=0;i<12;i++) {
-          vec3 q=(p-uParcels[i].xyz)/max(.001,uParcels[i].w);
-          q.y*=1.05+.13*sin(float(i)*2.7);
+          vec3 q=(p-uParcels[i].xyz)/(max(.001,uParcels[i].w)*uAxes[i]);
           total+=max(0.,1.-dot(q,q))*uDensities[i];
         }
         return total;
+      }
+      float sourceField(vec3 p){
+        if(uSourceActive<.5)return 0.;
+        vec3 q=(p-uParcels[11].xyz)/(max(.001,uParcels[11].w)*uAxes[11]);
+        return max(0.,1.-dot(q,q))*uDensities[11];
       }
       float field(vec3 p) {
         float coarse=envelope(p); if(coarse<.035)return 0.;
@@ -396,7 +402,10 @@ export function ashMaterial() {
         // Density erodes the envelope on several scales; it does not shade a
         // smooth sphere or change the identity/trajectory of an emitted parcel.
         float billows=clamp((rolling-.25)*2.,0.,1.);
-        return max(0.,min(coarse,1.65)-(.22+(1.-billows)*1.35+detail*.20))*4.;
+        float eroded=max(0.,min(coarse,1.65)-(.22+(1.-billows)*1.35+detail*.20))*4.;
+        // Keep the narrow active source connected while the upper field tears.
+        // Both terms use the same finite slot and its original source gate.
+        return max(eroded,sourceField(p)*(1.25+.25*detail));
       }
       void main(){
         vec3 direction=normalize(vWorld-cameraPosition);

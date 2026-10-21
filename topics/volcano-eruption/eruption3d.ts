@@ -207,6 +207,7 @@ export class Eruption3DScene {
   }
   private clear(group: THREE.Group) {
     group.traverse(object => {
+      if (object instanceof THREE.InstancedMesh) object.dispose();
       if (object instanceof THREE.Mesh) { object.geometry.dispose(); this.geometries.delete(object.geometry); }
     });
     group.clear();
@@ -482,13 +483,16 @@ export class Eruption3DScene {
     const min = this.ash.uniforms.uMin.value.set(Infinity, Infinity, Infinity), max = this.ash.uniforms.uMax.value.set(-Infinity, -Infinity, -Infinity);
     let visible = false;
     this.ash.uniforms.uClock.value = state.clock;
+    this.ash.uniforms.uSourceActive.value = state.ash[11]?.source ? 1 : 0;
     for (let i = 0; i < 12; i++) {
       const parcel = state.ash[i];
       this.ash.uniforms.uDensities.value[i] = parcel?.density ?? 0;
+      this.ash.uniforms.uAxes.value[i].set(...(parcel?.axes ?? [1, 1, 1] as XYZ));
       this.ash.uniforms.uParcels.value[i].set(...(parcel?.position ?? [0, 0, 0] as XYZ), parcel?.radius ?? 0);
       if (parcel && parcel.density > .02) {
         visible = true;
-        min.min(vector(parcel.position).addScalar(-parcel.radius)); max.max(vector(parcel.position).addScalar(parcel.radius));
+        const extent = new THREE.Vector3(...parcel.axes).multiplyScalar(parcel.radius);
+        min.min(vector(parcel.position).sub(extent)); max.max(vector(parcel.position).add(extent));
       }
     }
     this.cloud.visible = visible;
@@ -510,7 +514,7 @@ export class Eruption3DScene {
     if (this.disposed) return;
     this.stopMotion(); this.detailMotion.dispose(); this.disposed = true; this.resizeObserver.disconnect();
     this.canvas.removeEventListener('keydown', this.keydown); this.controls.dispose();
-    this.ejecta.dispose();
+    this.ejecta.dispose(); this.clear(this.rocks);
     for (const geometry of this.geometries) geometry.dispose();
     for (const material of this.materials) material.dispose();
     this.texture.dispose(); this.ash.noise.dispose(); this.sceneTarget.dispose(); this.ashTarget.dispose();

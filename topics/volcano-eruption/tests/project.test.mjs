@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { CASES, landState, landSurface, caseFromSearch, legacyDestination, landCamera, chapterFromSearch, chapterForCase, rendererForCase, initialProgress } from '../projectModel.ts';
+import { CASES, constructionState, landDepositWindow, landState, landSurface, caseFromSearch, legacyDestination, landCamera, chapterFromSearch, chapterForCase, rendererForCase, initialProgress } from '../projectModel.ts';
 import { landscapeMarkup } from '../landscapeScene.ts';
 
 test('accumulated deposits persist through cooling and both later landscapes', () => {
@@ -16,6 +16,32 @@ test('accumulated deposits persist through cooling and both later landscapes', (
   }
   assert.equal(landState(1, 'green').erosion, 0);
   assert.equal(landState(1, 'eroded').vegetation, 0);
+});
+
+test('construction prelude is bounded and reversible without replacing the deposit clock', () => {
+  const initial = constructionState(0); assert.equal(initial.intrusionFront, 0); assert.equal(initial.uplift, 0); assert.equal(initial.phase, 'quiet');
+  const rising = constructionState(.04); assert.ok(rising.intrusionFront > .5 && rising.intrusionFront < 1); assert.ok(rising.uplift > 0);
+  assert.equal(landState(.04).growth, 0); assert.equal(landState(.06).growth, 0); assert.ok(landState(.08).growth > 0);
+  assert.equal(constructionState(.06).intrusionFront, 1); assert.ok(constructionState(.13).uplift < constructionState(.10).uplift);
+  for (const p of [.16, .3, .45, .74, 1]) assert.equal(constructionState(p).uplift, 0);
+  for (const p of [NaN, -1, 0, .02, .04, .1, .13, .5, 1, Infinity]) {
+    const state = constructionState(p);
+    for (const name of ['intrusionFront', 'supply', 'fracture', 'inflation', 'heat', 'mobility']) assert.ok(state[name] >= 0 && state[name] <= 1);
+    assert.ok(state.uplift >= 0 && state.uplift <= .18);
+  }
+  const target = constructionState(.04), land = landState(.3); constructionState(1); constructionState(0);
+  assert.deepEqual(constructionState(.04), target); assert.deepEqual(landState(.3), land);
+  assert.equal(constructionState(1).heat, 0); assert.equal(constructionState(1).mobility, 0);
+});
+test('representative material uses the unchanged authored deposit intervals', () => {
+  for (let i = 0; i < 18; i++) {
+    const window = landDepositWindow(i);
+    assert.deepEqual(window, { birth: .06 + i * .028, end: .11 + i * .028 });
+    for (const p of [0, window.birth, window.birth + .01, window.end, .3, .45, 1]) {
+      const u = Math.max(0, Math.min(1, (p - (.06 + i * .028)) / ((.11 + i * .028) - (.06 + i * .028))));
+      assert.equal(landState(p).deposits[i].growth, u * u * (3 - 2 * u));
+    }
+  }
 });
 test('landforms differ geometrically and erosion removes rather than adds relief', () => {
   assert.ok(landSurface(650, 'shield', 1) < landSurface(650, 'scoria', 1));

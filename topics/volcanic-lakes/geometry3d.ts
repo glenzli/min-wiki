@@ -794,11 +794,12 @@ export function clastSource(i: number, frame: LakeFrame) {
   const siteId = Math.floor(i / 32), rank = i % 32, site = WALL_SITES[siteId];
   const angle = site.angle + (seed(i + 742) - .5) * site.width * 1.3, u = .915 + seed(i + 29) * .045;
   const r = frame.radius * planform(angle) * u, x = Math.cos(angle) * r, z = Math.sin(angle) * r;
-  const sourceFrame = { ...frame, subsidence: site.start };
-  const roof = 1 - smooth(PISTON_EDGE, .985, u);
-  const y = baseSurfaceHeight(x, z, 0, 'caldera') + roofOffset(x, z, sourceFrame) * roof;
   const size = rank < 4 ? .14 + seed(i + 19) * .12 : rank < 12 ? .055 + seed(i + 19) * .07 : .022 + seed(i + 19) * .04;
-  const source = { siteId, rank, angle, radius: r, position: [x, y, z] as XYZ, size, start: site.start + seed(i + 41) * .045 };
+  const start = site.start + seed(i + 41) * .045;
+  // Each fragment releases later than its site's initial failure. Sample its
+  // own release contact, including the same wall motion and existing debris.
+  const sourceFrame = { ...frame, subsidence: start }, y = surfaceHeight(x, z, sourceFrame);
+  const source = { siteId, rank, angle, radius: r, position: [x, y, z] as XYZ, size, start };
   if (frame.kind === 'caldera') retainedWallSources[i] = source;
   return source;
 }
@@ -811,7 +812,7 @@ export function boulderPose(i: number, frame: LakeFrame) {
     const x = Math.cos(angle) * r, z = Math.sin(angle) * r, bed = surfaceHeight(x, z, frame), startY = source.position[1] - source.size * .7;
     const support = bed + source.size * (.45 - 1.15 * (1 - smooth(0, .16, travel)));
     const roll = .06 * (.4 + seed(i + 173)) * Math.sin(Math.PI * travel) ** 2;
-    const y = travel === 0 ? startY : Math.max(support, startY + (bed + source.size * .45 - startY) * smooth(0, .78, travel)) + roll;
+    const y = travel === 0 ? bed - source.size * .7 : Math.max(support, startY + (bed + source.size * .45 - startY) * smooth(0, .78, travel)) + roll;
     return { position: [x, y, z] as XYZ, size: source.size, angle: source.angle + travel * (seed(i + 90) - .5) * 5.5, source: source.siteId, travel };
   }
   const talus = i < 160, angle = seed(i + 742) * Math.PI * 2;

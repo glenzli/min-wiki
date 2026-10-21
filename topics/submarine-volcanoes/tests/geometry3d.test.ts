@@ -221,7 +221,7 @@ test('portrait/narrow vent framing and the finite plume endpoint are preserved',
   const frame = oceanGeometryFrame(.35, 'deep', 'sustained');
   for (const aspect of [1.36, .7]) {
     const camera = deepVentFraming(frame, aspect), scale = Math.max(1, .98 / aspect);
-    assert.ok(Math.abs(camera.target[1] - 3.427359151625021) < 1e-12);
+    assert.ok(Math.abs(camera.target[1] - 3.344918510652084) < 1e-12);
     assert.deepEqual(camera.offset, [1.8 * 1.1 * scale, 1.45 * 1.1 * scale, 4.5 * 1.1 * scale]);
   }
   for (const progress of [.75, 1]) {
@@ -230,4 +230,40 @@ test('portrait/narrow vent framing and the finite plume endpoint are preserved',
     assert.deepEqual(camera.target, [0, worldY(ended.state.summit) + .12, .35]);
     assert.deepEqual(camera.offset, [1.8, 1.45, 4.5]);
   }
+});
+
+
+test('emplaced deep pillows retain their actual support and orientation while later deposits bury them', () => {
+  for (let index = 0; index < 14; index++) {
+    const at = .15 + index * .043 + 1e-6, initial = pillowPose(oceanGeometryFrame(at, 'deep', 'sustained'), index);
+    assert.equal(initial.growth, 1);
+    for (const p of [Math.min(1, at + .1), 1]) {
+      const later = pillowPose(oceanGeometryFrame(p, 'deep', 'sustained'), index);
+      assert.deepEqual(later.center, initial.center); assert.equal(later.heading, initial.heading); assert.equal(later.pitch, initial.pitch);
+    }
+    pillowPose(oceanGeometryFrame(.02, 'deep', 'sustained'), index);
+    assert.deepEqual(pillowPose(oceanGeometryFrame(at, 'deep', 'sustained'), index), initial);
+  }
+  const final = oceanGeometryFrame(1, 'deep', 'sustained'), first = pillowPose(final, 0);
+  assert.ok(first.center[1] < surfaceHeight(final, first.center[0], first.center[2]) - .1);
+  for (const p of [.2, .35, .6, .65]) {
+    const frame = oceanGeometryFrame(p, 'deep', 'sustained'), source = plumeOrigin(frame);
+    assert.ok(source[1] > surfaceHeight(frame, source[0], source[2]), 'optical source follows the still-hot pile instead of buried cold lobes');
+  }
+});
+
+
+test('the deep source fallback occurs only after every finite water parcel has dispersed', () => {
+  const maxDensity = (p: number) => Math.max(...oceanParcels(oceanGeometryFrame(p, 'deep', 'sustained')).map(parcel => parcel.density));
+  assert.ok(maxDensity(.7449) > 0);
+  assert.ok(maxDensity(.745) < 1e-12, 'round-off at the authored final boundary is below visible density');
+  for (const p of [.745001, .80, .90, .98, .98999, .99, 1]) assert.equal(maxDensity(p), 0);
+  for (const p of [.07, .35, .65, .7449, .98]) {
+    const frame = oceanGeometryFrame(p, 'deep', 'sustained');
+    const weight = Array.from({ length: 14 }, (_, i) => pillowPose(frame, i)).reduce((total, pose) => total + pose.growth * pose.coreHeat * (1 - pose.crust * .35), 0);
+    assert.ok(weight > 1e-8, `weighted source remains admitted during and beyond the finite tail at ${p}`);
+  }
+  const end = oceanGeometryFrame(.99, 'deep', 'sustained');
+  assert.deepEqual(plumeOrigin(end), [0, surfaceHeight(end, 0, 0) + .02, .04]);
+  assert.deepEqual(oceanParcels(oceanGeometryFrame(.65, 'deep', 'sustained')), oceanParcels(oceanGeometryFrame(.65, 'deep', 'sustained')));
 });
