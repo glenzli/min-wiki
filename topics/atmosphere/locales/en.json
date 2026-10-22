@@ -96,5 +96,20 @@
   "沉浸演示": "Immersive view",
   "退出沉浸 · Esc": "Exit immersive · Esc",
   "解说": "Explanation",
-  "本层动态解说": "Animated explanation of this layer"
+  "本层动态解说": "Animated explanation of this layer",
+  "观察方式": "Observation view",
+  "展开大气结构": "Expanded 3D structure",
+  "连续接近地面": "Continuous approach",
+  "行星对比按各自结构展开，不逐层对应。屏幕上的厚度不比较实际大气量。": "Worlds are expanded according to their own structures, without layer matching. Screen thickness does not compare actual atmospheric mass.",
+  "地球低层读数采用标准大气参考，高层不外推。远景地球使用参考贴图，走近地面后海岸细节转为示意，并非真实地点的测绘图；云雨、流星、极光等代表不同条件下的现象，不表示同地同时发生。行星对比按各自结构展开，不逐层对应。屏幕上的厚度不比较实际大气量。": "Lower Earth readings use a standard-atmosphere reference and are not extrapolated upward. The distant Earth uses reference imagery; close terrain is illustrative, not a survey. Clouds, meteors and aurora represent different conditions, not one simultaneous local event. Worlds are expanded according to their own structures, without layer matching. Screen thickness does not compare actual atmospheric mass.",
+  "观察范围": "Observation range",
+  "地表参照": "Surface reference",
+  "教学重建": "Teaching reconstruction",
+  "地球大气": "Earth",
+  "其他天空": "Other worlds",
+  "展开结构": "Expanded view",
+  "连续接近": "Continuous approach",
+  "与地球比较的世界": "World to compare with Earth",
+  "月球": "Moon",
+  "水星": "Mercury"
 }

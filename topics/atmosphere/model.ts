@@ -51,8 +51,9 @@ export function radialPoint(tangentKm:number,heightKm:number) {
   const angle=tangentKm/EARTH_RADIUS,r=EARTH_RADIUS+heightKm;
   return {x:r*Math.sin(angle),y:-r*Math.cos(angle)};
 }
-export interface Settings { view:View; world:ComparisonWorld; journey:number }
-export const defaults:Settings={view:'layers',world:'venus',journey:0};
+export type AtmosphereDisplay = 'structure' | 'journey';
+export interface Settings { view:View; world:ComparisonWorld; journey:number; display:AtmosphereDisplay }
+export const defaults:Settings={view:'layers',world:'venus',journey:0,display:'structure'};
 export function parseRoute(search:string):Settings {
   const p=new URLSearchParams(search);
   const finite=(key:string,fallback:number,min:number,max:number)=>p.has(key)?clamp(Number(p.get(key)),min,max):fallback;
@@ -63,10 +64,11 @@ export function parseRoute(search:string):Settings {
   const journey=p.has('journey')?finite('journey',0,0,1)
     : p.has('height')||p.get('view')==='motion'?journeyAtHeight(legacyHeight):0;
   const world=comparisonWorlds.includes(p.get('world') as ComparisonWorld)?p.get('world') as ComparisonWorld:'venus';
-  return {view:p.get('view')==='worlds'?'worlds':'layers',world,journey};
+  const display=p.get('display')==='journey'||(!p.has('display')&&(p.has('height')||p.get('view')==='motion'))?'journey':'structure';
+  return {view:p.get('view')==='worlds'?'worlds':'layers',world,journey,display};
 }
 export function routeQuery(s:Settings) {
-  return new URLSearchParams({view:s.view,world:s.world,journey:s.journey.toFixed(6)});
+  return new URLSearchParams({view:s.view,world:s.world,journey:s.journey.toFixed(6),display:s.display});
 }
 
 /** Representative rounded surface values, not global constants or weather forecasts.

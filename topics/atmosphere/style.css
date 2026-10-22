@@ -170,3 +170,199 @@ html[data-topic-ui] body>main>header.atmo-hero h1{font-size:26px;margin:0;line-h
 #atmo-observation .height-marker::after{content:"";position:absolute;inset:2px;border-radius:50%;background:currentColor}
 html[lang^=en] #atmo-observation .height-band{letter-spacing:-.01em}
 @media(max-width:699px){#atmo-observation #journey-visual{grid-template-columns:106px minmax(0,1fr)}#atmo-observation #height-rail{padding:10px 6px}#atmo-observation .height-band{padding:4px 12px 4px 0;font-size:11px}#atmo-observation .mechanism-steps{gap:6px}}
+
+/* Independent volumetric windows: feature counts, positions and selection belong
+   to each world. Shared framing is a viewing aid, never a layer correspondence. */
+#atmo-observation #world-controls,#atmo-observation #layer-display{padding:8px 14px;background:var(--reader-paper);color:var(--reader-text)}
+#atmo-observation #layer-display label,#atmo-observation #world-controls label{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13px}
+#atmo-observation #layer-display select,#atmo-observation #world-controls select{background:var(--reader-paper);color:var(--reader-text);font-size:13px;flex:1;min-width:150px}
+#atmo-observation .atmo-structure{display:flex;flex-direction:column;min-height:470px;flex:1;background:#08131d;color:#edf1f2}
+#atmo-observation .atmo-structure[hidden],#atmo-observation #layer-display[hidden]{display:none}
+#atmo-observation .structure-tools{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:9px 14px;color:#aebfca;font-size:11px;background:#0d1b27}
+#atmo-observation .structure-tools>div{display:flex;gap:6px;flex-wrap:wrap}
+#atmo-observation .structure-tools button{background:#1a2c39;border-color:#42535d;color:#e6edf0;font-size:12px;min-height:36px;padding:6px 10px}
+#atmo-observation .structure-scenes{position:relative;isolation:isolate;flex:1;min-height:390px}
+#atmo-observation .structure-scenes>canvas{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none;z-index:0}
+#atmo-observation .structure-panels{position:relative;z-index:1;display:grid;grid-template-columns:minmax(0,1fr);height:100%;min-height:390px}
+#atmo-observation .structure-panels.is-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+#atmo-observation .structure-world{display:flex;flex-direction:column;min-width:0}
+#atmo-observation .structure-world+.structure-world{border-left:1px solid #6f858b44}
+#atmo-observation .structure-world>header{padding:12px 16px 4px;pointer-events:none}
+#atmo-observation .structure-world h2{font-size:18px;line-height:1.3;margin:0;color:#f2f4f2}
+#atmo-observation .structure-world>header p{font-size:12px;line-height:1.5;margin:5px 0;color:#b3c5cd}
+#atmo-observation .world-volume-window{position:relative;min-height:285px;flex:1;touch-action:none;cursor:grab;outline-offset:-3px}
+#atmo-observation .world-volume-window:active{cursor:grabbing}
+#atmo-observation .volume-window-note,#atmo-observation .volume-window-top{position:absolute;left:14px;right:14px;font-size:10px;line-height:1.5;color:#94aab6;pointer-events:none}
+#atmo-observation .volume-window-note{bottom:5px}
+#atmo-observation .volume-window-top{top:5px;color:#91a7b7}
+#atmo-observation .structure-features{display:flex;gap:6px;flex-wrap:wrap;align-content:start;padding:8px 12px;background:#0c1b27}
+#atmo-observation .structure-feature-choice{display:none}
+#atmo-observation .structure-features button{display:flex;gap:6px;align-items:center;min-height:36px;border:1px solid #52697866;border-radius:5px;padding:6px 8px;font-size:11px;line-height:1.5;background:#102532;color:#cbd9df;text-align:left}
+#atmo-observation .structure-features button[aria-pressed=true]{border-color:#d3dee0;background:#30454f;color:#fff}
+#atmo-observation .structure-features button>span{display:grid;place-items:center;width:17px;height:17px;border:1px solid currentColor;border-radius:50%;font-size:10px;flex:none;opacity:.8}
+#atmo-observation .structure-world footer{display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;padding:8px 14px 10px;font-size:11px;line-height:1.5;color:#c2ced0;background:#0c1b27}
+#atmo-observation .structure-scale{font-size:11px;line-height:1.65;color:#aebfc7;background:#10212c;padding:9px 14px;margin:0}
+#atmo-observation .structure-focus{padding:12px 0;border-top:1px solid var(--reader-line)}
+#atmo-observation .structure-focus>p:first-child{font-size:11px;color:var(--reader-muted);margin:0 0 6px}
+#atmo-observation .structure-focus h3{font-size:15px;line-height:1.5;margin:0 0 8px}
+#atmo-observation .structure-focus p{font-size:13px;line-height:1.7;margin:0}
+#atmo-observation .structure-labels-off .volume-window-top{visibility:hidden}
+#atmo-observation .structure-failure{padding:12px 16px;background:#20313a;color:#f2f4f2;font-size:13px}
+#atmo-observation .atmo-structure>#layer-mechanism{position:relative;inset:auto;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:5px 18px;width:auto;max-height:none;padding:12px 16px;background:#132430}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-head,#atmo-observation .atmo-structure>#layer-mechanism .mechanism-lead{grid-column:1}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-story{grid-column:2;grid-row:1/3;min-height:0;margin:0}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-controls{grid-column:1/3;display:flex;align-items:center;margin:0}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-boundary{grid-column:1/3}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-head h3{font-size:14px}
+#atmo-observation[data-display=structure] #journey-clue{display:none}
+@media(min-width:1000px){
+ #atmo-observation[data-view=worlds] .atmo-stage,#atmo-observation[data-display=structure] .atmo-stage{overflow:auto}
+ #atmo-observation .atmo-structure{min-height:0}
+ #atmo-observation .structure-scenes{min-height:330px}
+ #atmo-observation .structure-panels{min-height:330px}
+ #atmo-observation .structure-world{height:100%}
+ #atmo-observation .world-volume-window{min-height:235px}
+}
+@media(max-width:699px){
+ #atmo-observation .structure-panels.is-pair{grid-template-columns:minmax(0,1fr)}
+ #atmo-observation .structure-world+.structure-world{border-left:0;border-top:1px solid #6f858b66}
+ #atmo-observation .world-volume-window{min-height:300px}
+ #atmo-observation .structure-features button{min-height:44px;font-size:12px}
+ #atmo-observation .structure-tools{font-size:11px}
+ #atmo-observation .structure-tools button{min-height:44px;font-size:12px}
+ #atmo-observation .atmo-structure>#layer-mechanism{display:grid;grid-template-columns:1fr;padding:12px}
+ #atmo-observation .atmo-structure>#layer-mechanism .mechanism-story,#atmo-observation .atmo-structure>#layer-mechanism .mechanism-controls,#atmo-observation .atmo-structure>#layer-mechanism .mechanism-boundary{grid-column:1;grid-row:auto}
+ #atmo-observation .atmo-structure>#layer-mechanism .mechanism-controls{display:grid}
+}
+#atmo-observation .structure-world>header{display:flex;align-items:center;justify-content:space-between;gap:8px;pointer-events:auto}
+#atmo-observation .structure-world>header button{font-size:11px;min-height:36px;padding:6px 8px}
+#atmo-observation .structure-world>header button[aria-pressed=true]{box-shadow:inset 0 0 0 2px currentColor}
+#atmo-observation #atmo-structure .structure-features button[data-scene-hit-target]{background:#102532;color:#cbd9df;border:1px solid #52697866;padding:6px 8px;border-radius:5px;min-height:36px}
+#atmo-observation #atmo-structure .structure-features button[data-scene-hit-target][aria-pressed=true]{border-color:#d3dee0;background:#30454f;color:#fff}
+@media(max-width:699px){#atmo-observation #atmo-structure .structure-features button[data-scene-hit-target]{min-height:44px}}
+#atmo-observation .structure-selected{font-size:12px;line-height:1.65;color:#c5d5dc;padding:8px 14px;margin:0;background:#0c1b27;min-height:52px}
+#atmo-observation .structure-labels-off .structure-selected .clue-copy{display:none}
+#atmo-observation .structure-tools,#atmo-observation .structure-scale,#atmo-observation .structure-world>header,#atmo-observation .structure-features,#atmo-observation .structure-selected,#atmo-observation .structure-world>footer{flex-shrink:0}
+#atmo-observation .world-volume-window[data-focus=true] .volume-window-top{display:block}
+/* In the expanded view the chosen phenomenon already names the question. Keep
+   its current causal step beside compact controls, below the scene. */
+#atmo-observation .atmo-structure>#layer-mechanism{flex-shrink:0;grid-template-columns:minmax(0,1.5fr) minmax(230px,1fr);align-items:start}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-head,#atmo-observation .atmo-structure>#layer-mechanism .mechanism-lead{display:none}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-story{grid-column:1;grid-row:1}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-controls{grid-column:2;grid-row:1;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-steps button{min-height:36px;padding:4px}
+#atmo-observation .atmo-structure>#layer-mechanism [data-mechanism-play]{min-height:36px;font-size:11px;max-width:110px}
+#atmo-observation .atmo-structure>#layer-mechanism .mechanism-boundary{grid-column:1/3;grid-row:2}
+@media(max-width:699px){
+ #atmo-observation .atmo-structure>#layer-mechanism{grid-template-columns:1fr}
+ #atmo-observation .atmo-structure>#layer-mechanism .mechanism-story,#atmo-observation .atmo-structure>#layer-mechanism .mechanism-controls,#atmo-observation .atmo-structure>#layer-mechanism .mechanism-boundary{grid-column:1;grid-row:auto}
+}
+#atmo-observation[data-display=structure] .journey-bookends{display:none}
+
+/* A selected layer is a close observation of the same retained scene. Keep
+   its evidence and controls outside the natural phenomenon. */
+#atmo-observation #atmo-structure{--reader-paper:#17212a;--reader-soft:#28343d;--reader-text:#edf0f1;--reader-muted:#b7c3c9;--reader-line:#58656f}
+#atmo-observation .structure-clues{display:flex;align-items:center;gap:7px;font-size:12px;min-height:36px;color:#d7e0e3;cursor:pointer}
+#atmo-observation .structure-clues input,#atmo-observation .aurora-input input{width:18px;height:18px;accent-color:#b8cad0;flex:none}
+#atmo-observation .structure-panels{height:auto}
+#atmo-observation .structure-world{height:auto}
+#atmo-observation .structure-world>header{padding-top:10px}
+#atmo-observation .structure-features{padding-block:5px 9px}
+#atmo-observation .world-volume-window{min-height:345px;flex:none}
+#atmo-observation .structure-world[data-close=true] .world-volume-window{min-height:380px}
+#atmo-observation .structure-panels:not(.is-pair) .structure-world[data-close=true] .world-volume-window{min-height:410px}
+#atmo-observation .volume-window-top{background:linear-gradient(90deg,#08131dcc,transparent);width:max-content;max-width:calc(100% - 28px);padding:3px 6px;border-radius:3px}
+#atmo-observation .volume-window-note{font-size:10px;color:#b9c7cc;text-shadow:0 1px 3px #000;background:#08131d70;padding:3px 6px;width:max-content;max-width:calc(100% - 28px)}
+#atmo-observation .structure-conditions{flex-shrink:0;background:#18252e;padding:7px 14px;border-block:1px solid #b8c9cc20}
+#atmo-observation .structure-conditions>label{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:7px 14px;font-size:12px;line-height:1.5;color:#d3dee1}
+#atmo-observation .structure-conditions select{font-size:12px;min-width:0;max-width:100%;min-height:36px;background:#28343d;color:#edf0f1;border-color:#58656f;padding:6px 9px}
+#atmo-observation .structure-conditions .aurora-input{justify-content:flex-start}
+#atmo-observation .structure-selected{min-height:0;padding-block:10px}
+#atmo-observation .structure-selected p{margin:0;line-height:1.65;font-size:12px}
+#atmo-observation .structure-selected p+p{margin-top:5px;color:#adbfc8}
+#atmo-observation .structure-selected strong{font-weight:650;font-size:11px;display:inline-block;margin-right:9px;color:#e0e8ea}
+#atmo-observation .structure-world>footer{opacity:.8;font-size:10px}
+#atmo-observation .structure-tools>span{font-size:10px}
+#atmo-observation[data-display=structure] .atmo-caption,#atmo-observation[data-view=worlds] .atmo-caption{display:none}
+#atmo-observation .structure-world>footer{display:none}
+#atmo-observation .structure-focus p+p{margin-top:9px}
+#atmo-observation .structure-explanation-guide{font-size:12px;line-height:1.7;color:var(--reader-muted)}
+#atmo-observation .atmo-inspector>#layer-mechanism{position:static;inset:auto;width:auto;max-height:none;padding:12px;margin:12px 0;background:var(--reader-soft);border-radius:6px}
+#atmo-observation .structure-selected{padding-block:7px}
+#atmo-observation .atmo-tabs #layer-display,#atmo-observation .atmo-tabs #world-controls{padding:8px 0;background:transparent;border:0}
+#atmo-observation .atmo-tabs #layer-display label,#atmo-observation .atmo-tabs #world-controls label{display:grid;gap:6px;font-size:12px}
+#atmo-observation .atmo-tabs #layer-display select,#atmo-observation .atmo-tabs #world-controls select{width:100%;min-width:0;background:var(--reader-paper);color:var(--reader-text)}
+#atmo-observation .atmo-tabs>label{display:flex;align-items:center;gap:7px;min-height:44px;font-size:12px}
+#atmo-observation .atmo-tabs>label input{width:18px;height:18px}
+#atmo-observation .structure-world>header>div:first-child p{display:none}
+#atmo-observation .structure-world>header{min-height:54px;padding-block:5px;gap:8px;flex-wrap:wrap}
+#atmo-observation .structure-world>header .structure-conditions{margin-left:auto;padding:0;border:0;background:transparent;max-width:min(65%,340px)}
+#atmo-observation .structure-world>header .structure-conditions>label>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#atmo-observation .structure-world>header .structure-conditions select{width:100%;font-size:11px;min-height:36px}
+#atmo-observation .structure-scale{padding-block:5px;font-size:10px;line-height:1.5}
+@media(min-width:1000px){
+ #atmo-observation .structure-scenes{min-height:0}
+ #atmo-observation .structure-panels{height:100%;min-height:0}
+ #atmo-observation .structure-world{min-height:0}
+ #atmo-observation .world-volume-window{flex:1;min-height:370px}
+ #atmo-observation .structure-world[data-close=true] .world-volume-window,#atmo-observation .structure-panels:not(.is-pair) .structure-world[data-close=true] .world-volume-window{flex:1;min-height:410px}
+}
+/* Expanded views use document flow when a short desktop cannot fit a useful
+   scene. The canvas parent and its scissored windows always share the same
+   full height; a taller child must never be clipped by a shorter canvas. */
+@media(min-width:1000px){
+ #atmo-observation[data-display=structure],#atmo-observation[data-view=worlds]{height:auto;min-height:0}
+ #atmo-observation[data-display=structure] .atmo-workspace,#atmo-observation[data-view=worlds] .atmo-workspace{flex:none;overflow:visible}
+ #atmo-observation[data-display=structure] .atmo-stage,#atmo-observation[data-view=worlds] .atmo-stage{overflow:visible}
+ #atmo-observation .structure-scenes{flex:none;height:auto}
+ #atmo-observation .structure-panels{height:auto}
+ #atmo-observation .world-volume-window,#atmo-observation .structure-world[data-close=true] .world-volume-window,#atmo-observation .structure-panels:not(.is-pair) .structure-world[data-close=true] .world-volume-window{flex:none;height:clamp(430px,56dvh,700px);min-height:0}
+}
+@media(max-width:699px){
+ #atmo-observation .structure-tools{padding:8px 12px;gap:5px}
+ #atmo-observation .structure-tools>div{gap:6px;align-items:center}
+ #atmo-observation .structure-clues{flex-basis:100%;min-height:38px}
+ #atmo-observation .structure-conditions select{min-height:44px;width:100%}
+ #atmo-observation .world-volume-window,#atmo-observation .structure-world[data-close=true] .world-volume-window,#atmo-observation .structure-panels:not(.is-pair) .structure-world[data-close=true] .world-volume-window{min-height:365px}
+ #atmo-observation .structure-world>header button{min-height:44px;flex:none}
+ #atmo-observation .structure-features{display:none}
+ #atmo-observation .structure-feature-choice{display:block;padding:5px 12px 9px;background:#17212a}
+ #atmo-observation .structure-feature-choice select{width:100%;min-height:44px;font-size:12px;background:#28343d;color:#edf0f1;border-color:#58656f}
+ #atmo-observation .structure-selected p{font-size:12px}
+}
+
+#atmo-observation .structure-composition-key{display:flex;align-items:center;flex-wrap:wrap;gap:5px 14px;margin:0;padding:6px 14px;background:#14222c;color:#c0cbd1;font-size:11px;line-height:1.5;flex-shrink:0}
+#atmo-observation .structure-composition-key[hidden]{display:none}
+#atmo-observation .composition-water::before,#atmo-observation .composition-ozone::before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px;background:#61d4da}
+#atmo-observation .composition-ozone::before{background:#d68fed}
+@media(max-width:699px){
+ #atmo-observation .structure-tools .structure-clues{flex-basis:auto}
+}
+
+#atmo-observation .volume-composition-key{position:absolute;top:34px;left:14px;right:14px;display:flex;flex-wrap:wrap;gap:5px 12px;width:max-content;max-width:calc(100% - 28px);padding:4px 7px;background:#101c2bd9;border-radius:4px;color:#e0e5eb;font-size:10px;line-height:1.4;pointer-events:none}
+#atmo-observation .volume-composition-key[hidden],#atmo-observation .volume-composition-key [hidden]{display:none}
+
+/* Common observation choices stay visible. The same authored controls are
+   mounted once; changing the layout never recreates the experiment. */
+#atmo-observation .observation-toolbar{align-items:center;gap:8px}
+#atmo-observation .observation-toolbar .atmo-tabs{display:flex;flex:1;flex-wrap:nowrap;gap:6px;padding:0;margin:0;min-width:0}
+#atmo-observation .observation-toolbar .atmo-tabs button{flex:0 1 auto;min-width:0;min-height:44px;padding:7px 12px;text-align:center;font-size:13px;white-space:nowrap}
+#atmo-observation .atmo-options{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;padding:8px 16px;border-bottom:1px solid var(--reader-line);background:var(--reader-paper);color:var(--reader-text)}
+#atmo-observation .atmo-options #layer-display,#atmo-observation .atmo-options #world-controls{display:flex;gap:6px;padding:0;margin:0;border:0;background:transparent;min-width:0}
+#atmo-observation .atmo-options button{min-width:0;min-height:44px;padding:7px 10px;font-size:12px;line-height:1.3}
+#atmo-observation .atmo-options button[aria-pressed=true],#atmo-observation .atmo-tabs button[aria-pressed=true]{background:var(--reader-text);color:var(--reader-paper);border-color:var(--reader-text)}
+#atmo-observation .atmo-preferences{display:flex;align-items:center;gap:14px;margin-left:auto;min-width:0}
+#atmo-observation .atmo-preferences .modes{display:flex;gap:4px;margin:0;padding:0}
+#atmo-observation .atmo-preferences label{display:flex;align-items:center;gap:6px;min-height:44px;font-size:12px;white-space:nowrap}
+#atmo-observation .atmo-preferences input{width:18px;height:18px;accent-color:var(--reader-text)}
+@media(max-width:699px){
+ #atmo-observation .observation-toolbar .atmo-tabs button{padding-inline:9px;font-size:12px}
+ #atmo-observation .atmo-options{padding:8px 12px;gap:6px 12px}
+ #atmo-observation .atmo-options #world-controls{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;width:100%}
+ /* Keep Reader's 14px type and 44px targets; five short world names need
+    narrower inline padding than its general-purpose control default. */
+ #atmo-observation .atmo-options #world-controls>button{padding-inline:3px!important;white-space:nowrap!important}
+ #atmo-observation .atmo-options #layer-display{width:100%}
+ #atmo-observation .atmo-view-choice button{flex:1}
+ #atmo-observation .atmo-preferences{justify-content:space-between;width:100%;margin-left:0}
+}

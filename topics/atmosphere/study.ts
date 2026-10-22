@@ -5,6 +5,17 @@ const standard = { title: 'NOAA / NASA · U.S. Standard Atmosphere 1976', url: '
 const layers = { title: 'NASA · Earth’s atmospheric layers', url: 'https://science.nasa.gov/earth/earth-atmosphere/earths-atmosphere-a-multi-layered-cake/' };
 const ozone = { title: 'NASA Earth Observatory · Ozone', url: 'https://science.nasa.gov/earth/earth-observatory/ozone/' };
 
+export const structureStudy: SceneStudy = {
+  child: w('看云、臭氧吸收、流星和极光分别在哪里。选一个现象再近看；这些是不同条件下的例子，不必在同一地点同时发生。', 'Locate clouds, ozone absorption, meteors and aurora. Choose one and look closer; these are examples under different conditions, not necessarily simultaneous at one site.'),
+  title: w('展开高度，分辨连续空气中的不同区域', 'Expand height to distinguish regions within continuous air'),
+  theory: w('地球的五个主要大气层按温度随高度的变化来划分，界面会随环境改变。云、吸收和发光现象帮助定位，但不构成五层实体壳。对其他世界先看气体、云、霾及地表条件，不强行套用地球层名。', 'Earth’s five major layers follow changes in temperature with height, with variable boundaries. Clouds, absorption and emission help locate regions without forming solid shells. Other worlds are described by their own gas, clouds, haze and surface conditions rather than imposed Earth layer names.'),
+  formula: 'y = D ln(1 + h/h₀) / ln(1 + H/h₀)',
+  terms: w('h 是参考高度，H 是当前世界观察窗口的上缘，h₀ = 1 km，D 是展示高度。这只是几何展开公式，不计算大气密度或温度。各世界的 H 不相同。', 'h is reference height, H the current world’s observation-window top, h₀ = 1 km, and D the display height. This is a geometric expansion, not a density or temperature calculation. H differs between worlds.'),
+  evidence: w('温度分层和代表现象以 NASA 资料为依据；行星探测得到的气体、云霾与地表证据则分别用于各世界。旋转看到的是教学重建的体积，不是探测器拍到的立体切片。', 'NASA references support Earth’s thermal layers and examples; spacecraft evidence separately informs gas, clouds, haze and surfaces on other worlds. Rotation reveals reconstructed teaching volumes, not photographed atmospheric slices.'),
+  limits: w('高度按对数展开，横向、地貌、颗粒与现象各自放大，屏幕厚度不比较大气量。展开视图使用示意地表，不冒充连续旅程中的实测海岸。1000 km 等上缘只限定窗口。', 'Height is logarithmically expanded; width, terrain, particles and phenomena are separately enlarged, so screen thickness does not compare atmospheric mass. This view uses illustrative terrain, not the journey’s mapped coast. Tops such as 1000 km only bound the window.'),
+  sources: [layers, { title: 'NASA · Planetary atmospheres', url: 'https://science.nasa.gov/solar-system/10-things-planetary-atmospheres/' }],
+};
+
 export const overviewStudy: SceneStudy = {
   child: w('地球外面包着一层越来越稀薄的空气。我们沿同一处地面向外看，不会撞到一堵“空气墙”。', 'Earth is wrapped in air that becomes thinner outward. We look up from one place; there is no solid wall where air ends.'),
   title: w('为什么大气越高越稀薄？', 'Why does air thin with height?'),
@@ -77,7 +88,7 @@ export const worldStudies: Record<string, SceneStudy> = {
     formula: '(1 − A)S/4 = σTₑff⁴',
     terms: w('A 为反照率，S 为入射太阳通量；式子是全球平均的无大气辐射平衡基线，Tₑff 不是金星地表温度。', 'A is albedo and S incoming solar flux. This is a global-mean airless radiative baseline; Tₑff is not Venus’s surface temperature.'),
     evidence: w('金星探测器与雷达观测测得厚云、气压和地表状态。NASA 的金星资料可进一步追踪云层高度与温室效应。', 'Spacecraft and radar measurements constrain Venus’s cloud deck, pressure and surface. NASA’s Venus facts lead into cloud altitudes and greenhouse warming.'),
-    limits: w('两列的高度行仅比较代表现象；图中的颜色、云形与尺寸不是等比例或实时观测。', 'The two columns compare representative phenomena, not matched altitudes. Colors, cloud shapes and sizes are not to scale or live observations.'),
+    limits: w('两个世界按各自结构展开，现象独立选择；颜色、云形与尺寸是重建示意，不是等比例或实时观测。', 'The worlds are expanded according to their own structures with independent feature selection. Colors, cloud shapes and sizes are reconstructions, not to scale or live observations.'),
     sources: [{ title: 'NASA · Venus facts', url: 'https://science.nasa.gov/venus/venus-facts/' }, { title: 'NASA · Planetary atmospheres', url: 'https://science.nasa.gov/solar-system/10-things-planetary-atmospheres/' }],
   },
   mars: {
@@ -85,7 +96,7 @@ export const worldStudies: Record<string, SceneStudy> = {
     title: w('火星：低气压改变水的处境', 'Mars: low pressure changes what water can do'),
     theory: w('物质相态取决于温度与压力。火星地表压力很低，液态水的稳定范围受到强烈限制；寒冷、季节性二氧化碳霜、稀薄水冰云和尘埃过程共同塑造所见环境。单个平均温度不能代表一天或整个星球。', 'Phase stability depends on temperature and pressure. Low Martian surface pressure strongly restricts stable liquid water. Cold conditions, seasonal CO₂ frost, thin water-ice clouds and dust processes also shape the environment. One mean temperature cannot represent a day or a planet.'),
     evidence: w('着陆器直接测量气压、温度和地表；轨道器追踪水冰云、尘暴及季节变化。', 'Landers measure pressure, temperature and the surface directly; orbiters track water-ice clouds, dust storms and seasonal change.'),
-    limits: w('数值为代表地表值，不是所选地点当前天气；并排的层段不共用同一高度尺。', 'Values are representative surface figures, not current weather at a selected site; paired rows do not share one altitude ruler.'),
+    limits: w('数值为代表地表值，不是所选地点当前天气；两幅三维窗口各自展开，不逐层对应，云层示例也不必同时出现。', 'Values are representative surface figures, not current weather. The independent 3D windows do not match layers; the cloud examples need not occur together.'),
     sources: [{ title: 'NASA · Mars facts', url: 'https://science.nasa.gov/mars/facts/' }, { title: 'NASA · Planetary atmospheres', url: 'https://science.nasa.gov/solar-system/10-things-planetary-atmospheres/' }],
   },
   titan: {
