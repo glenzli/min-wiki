@@ -8,15 +8,16 @@ const settings: Settings = { basin: 'caldera', supply: .75, leak: 'low' };
 /** Use the actual draw dependency gate; GPU/geometry correctness is covered
  * separately. No constructor, browser, process timer or WebGL is created. */
 function owner() {
-  const calls = { geology: 0, fracture: 0, water: 0, withdrawal: 0, render: 0, fit: 0 };
+  const calls = { geology: 0, fracture: 0, support: 0, water: 0, withdrawal: 0, render: 0, fit: 0 };
   const canvas = { dataset: {} as Record<string, string> };
   const scene = Object.assign(Object.create(Lake3DScene.prototype), {
     canvas, frame: lakeFrame(0, settings), disposed: false, prepared: false,
     hasSize: true, manualCamera: false, movingCamera: false, view: 'section',
-    geologyUpdates: 0, waterUpdates: 0, lastGeologyMs: 0,
+    geologyUpdates: 0, supportUpdates: 0, waterUpdates: 0, lastGeologyMs: 0,
     renderer: { shadowMap: { needsUpdate: false } },
     updateGeology(_frame: LakeFrame) { calls.geology++; },
     updateFracture(_frame: LakeFrame) { calls.fracture++; },
+    updateSupport(_frame: LakeFrame) { calls.support++; },
     updateWithdrawal(_frame: LakeFrame) { calls.withdrawal++; },
     updateWater(_frame: LakeFrame) { calls.water++; },
     render() { calls.render++; }, fitCamera() { calls.fit++; },
@@ -26,9 +27,9 @@ function owner() {
 
 test('filling and repeated stable frames never rebuild the settled rock', () => {
   const { scene, calls, canvas } = owner(); scene.draw(.48, settings);
-  const rocks = calls.geology, cracks = calls.fracture; scene.renderer.shadowMap.needsUpdate = false;
+  const rocks = calls.geology, cracks = calls.fracture, support = calls.support; scene.renderer.shadowMap.needsUpdate = false;
   for (const p of [.51, .65, .85, 1]) scene.draw(p, settings);
-  assert.equal(calls.geology, rocks); assert.equal(calls.fracture, cracks);
+  assert.equal(calls.geology, rocks); assert.equal(calls.fracture, cracks); assert.equal(calls.support, support);
   assert.equal(scene.renderer.shadowMap.needsUpdate, false);
   const stable = { ...calls };
   for (let i = 0; i < 100; i++) scene.draw(1, { ...settings });
@@ -42,6 +43,7 @@ test('withdrawal and fracture updates do not deform the roof before subsidence',
   const { scene, calls } = owner(); scene.draw(.13, settings); const rocks = calls.geology;
   scene.draw(.23, settings); scene.draw(.26, settings);
   assert.equal(calls.geology, rocks); assert.ok(calls.fracture > 1); assert.ok(calls.withdrawal > 1);
+  assert.ok(calls.support > 1, 'withdrawal opens only the local support-contact geometry');
   assert.equal(scene.frame.subsidence, 0); assert.equal(calls.fit, 0);
   scene.draw(.33, settings); assert.equal(calls.geology, rocks + 1); assert.equal(calls.fit, 0);
 });
@@ -50,7 +52,7 @@ test('water-condition changes keep rock and camera identity, including mutated i
   const { scene, calls } = owner(), input = { ...settings }; scene.draw(.85, input); const before = { ...calls };
   input.supply = 0; scene.draw(.85, input); assert.equal(scene.frame.fraction, 0);
   input.supply = .75; input.leak = 'high'; scene.draw(.85, input); assert.equal(scene.frame.fraction, 0);
-  assert.equal(calls.geology, before.geology); assert.equal(calls.fracture, before.fracture); assert.equal(calls.fit, before.fit);
+  assert.equal(calls.geology, before.geology); assert.equal(calls.fracture, before.fracture); assert.equal(calls.support, before.support); assert.equal(calls.fit, before.fit);
   assert.equal(calls.water, before.water + 2);
 });
 

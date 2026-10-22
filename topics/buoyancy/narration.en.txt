@@ -1,7 +1,7 @@
-A wooden block floats, while a stone may sink. Does water help only the floating object? No: water also pushes upward on the sinking stone, but may not support its whole weight. Today we will inspect arrows and water level, instead of guessing from light and heavy alone.
+The wooden block floats. A stone sinks, but water still pushes it upward. Switch to the section and inspect the blue arrows: water presses inward from every direction. Opposite sides at the same depth press equally. Greater pressure below than above leaves an upward push. The green arrow shows that combined force.
 
-Turn the clay ball into a hollow boat, rather like a little bowl. The clay has not secretly become lighter. While water stays outside, the boat occupies more space and pushes more water aside. More displaced water gives a larger upward push. Pause and compare the displacement reading beside the tank.
+Now inspect the same 600 grams of clay: first a solid ball, then a hollow boat. The clay has not become lighter. While water stays outside, the space enclosed by the hull can push more water aside. The displacement view compares that volume in a measure; it does not take water from the tank.
 
 Add cargo slowly. Does the rim move closer to the water? The boat must displace more water to support the added weight. If the rim gets too low, water enters and the hollow space no longer keeps that water outside. Try this in the model; real water play needs an adult nearby.
 
-Finally, lower the block slowly on a cord. As more of it enters the water, buoyancy increases and the cord needs to pull up less. Once the entire block is underwater, lowering it further does not displace more water: buoyancy and tension stay nearly the same. Together, the water and the cord support the same weight.
+Finally lower the block slowly on a cord. As more enters the water, buoyancy increases and the cord pulls up less. Once the whole block is underwater, moving it deeper raises pressure above and below without displacing more water, so buoyancy and tension stay nearly unchanged. At the same immersed volume, seawater gives slightly more buoyancy.

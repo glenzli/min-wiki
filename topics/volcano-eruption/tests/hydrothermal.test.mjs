@@ -120,6 +120,67 @@ test('detail flow changes tracer positions without changing water or heat result
   assert.deepEqual(a, m.hydrothermalSample(3, frame, 1));
 });
 
+test('spring warmth and conditional mist require heated water to reach an actual pool', () => {
+  const complete = m.hydrothermalFrame(1, input);
+  assert.ok(complete.poolWarmth > .9); assert.ok(complete.poolActivity > .7); assert.ok(complete.condensation > .7);
+  for (const frame of [m.hydrothermalFrame(.23, input), m.hydrothermalFrame(.5, input), m.hydrothermalFrame(.7, input),
+    m.hydrothermalFrame(1, { supply: 0, connected: true }), m.hydrothermalFrame(1, { supply: .12, connected: true }),
+    m.hydrothermalFrame(1, { supply: 1, connected: false })]) {
+    assert.equal(frame.pool, 0); assert.equal(frame.poolWarmth, 0); assert.equal(frame.poolActivity, 0); assert.equal(frame.condensation, 0);
+    for (let id = 0; id < m.HYDROTHERMAL_MIST_SAMPLES; id++) {
+      const mist = m.hydrothermalMist(id, frame, .31); assert.equal(mist.visible, false); assert.equal(mist.opacity, 0);
+    }
+  }
+  assert.equal(m.hydrothermalRouteHeat(.3), 0); assert.ok(m.hydrothermalRouteHeat(.55) > .4);
+  assert.ok(m.hydrothermalRouteHeat(.7) > .95); assert.ok(m.hydrothermalRouteHeat(1) > .8);
+});
+
+test('gentle pool circulation stays within the retained bed and horizontal water level', () => {
+  for (const supply of [.15, .3, .75, 1]) for (const progress of [.88, .94, 1]) {
+    const frame = m.hydrothermalFrame(progress, { supply, connected: true }), snapshot = structuredClone(frame);
+    for (let id = 0; id < m.HYDROTHERMAL_POOL_SAMPLES; id++) for (let step = 0; step < 40; step++) {
+      const sample = m.hydrothermalPoolSample(id, frame, step / 40); if (!sample.visible) continue;
+      const [x, y, z] = sample.position, bed = m.hydrothermalTerrain(x, z);
+      assert.ok(y > bed && y < frame.waterLevel, `circulation left water at ${sample.position}`);
+      assert.ok(sample.width * (2.7 + sample.activity) < Math.min(y - bed, frame.waterLevel - y));
+      assert.ok(sample.direction.every(Number.isFinite)); assert.ok(sample.heat > 0 && sample.heat <= 1);
+    }
+    assert.deepEqual(frame, snapshot);
+  }
+});
+
+test('condensation starts over supplied pool water and disperses above it without altering the balance', () => {
+  const frame = m.hydrothermalFrame(1, input), snapshot = structuredClone(frame);
+  const layers = new Set(); let upperWisp = false;
+  for (let id = 0; id < m.HYDROTHERMAL_MIST_SAMPLES; id++) for (let step = 0; step < 40; step++) {
+    const phase = step / 40, mist = m.hydrothermalMist(id, frame, phase), [x, y, z] = mist.origin;
+    assert.ok(mist.visible); assert.ok(m.hydrothermalTerrain(x, z) < frame.waterLevel);
+    assert.ok(x < m.POOL.x, 'condensation leaves the opposite pool half clear');
+    assert.ok(y > frame.waterLevel && mist.position[1] >= y && mist.position[1] < frame.waterLevel + 1.1);
+    assert.ok(mist.opacity >= 0 && mist.opacity <= frame.condensation); assert.ok(mist.size > 0 && mist.size < .7);
+    layers.add(mist.layer); if (mist.layer === 'surface') {
+      assert.ok(mist.position[1] < frame.waterLevel + .16); assert.ok(mist.width > mist.height);
+    } else { assert.ok(mist.height > mist.width); if (mist.position[1] > frame.waterLevel + .55 && mist.opacity > .1) upperWisp = true; }
+    const wrapped = m.hydrothermalMist(id, frame, phase + 1);
+    mist.position.forEach((value, axis) => near(value, wrapped.position[axis], 1e-12));
+    for (const key of ['life', 'opacity', 'size']) near(mist[key], wrapped[key], 1e-12);
+  }
+  assert.deepEqual(layers, new Set(['rising', 'surface'])); assert.ok(upperWisp); assert.deepEqual(frame, snapshot);
+});
+
+test('bank fragments are stable embedded outcrops with unequal clusters and open shore gaps', () => {
+  const rocks = Array.from({ length: m.HYDROTHERMAL_BANK_ROCKS }, (_, id) => m.hydrothermalBankRock(id));
+  const angles = rocks.map(rock => (rock.angle + Math.PI * 2) % (Math.PI * 2)).sort((a, b) => a - b);
+  const gaps = angles.map((angle, i) => (angles[(i + 1) % angles.length] - angle + Math.PI * 2) % (Math.PI * 2));
+  assert.ok(gaps.filter(gap => gap > .6).length >= 2, 'broad unlined shore remains between outcrops');
+  assert.ok(Math.max(...rocks.map(rock => rock.scale[0])) > Math.min(...rocks.map(rock => rock.scale[0])) * 4);
+  for (const rock of rocks) {
+    const [x, y, z] = rock.position, bed = m.hydrothermalTerrain(x, z);
+    assert.ok(m.poolCoordinate(x, z) > 1); assert.ok(y - rock.scale[1] < bed && y + rock.scale[1] > bed);
+    assert.deepEqual(rock, m.hydrothermalBankRock(rock.id));
+  }
+});
+
 test('rewind and replay reconstruct identical states and samples without history', () => {
   const settings = Object.freeze({ ...input }), frame = m.hydrothermalFrame(.84, settings);
   const samples = Array.from({ length: m.HYDROTHERMAL_SAMPLES }, (_, id) => m.hydrothermalSample(id, frame, .31));
@@ -145,7 +206,7 @@ test('the horizontal pool meets its own concave rock bed at every water level', 
 test('normalized inputs remain bounded and do not turn absent water into a spring', () => {
   for (const p of [NaN, -10, 0, .4, 1, Infinity]) for (const supply of [NaN, -1, 0, .3, 1, 8]) {
     const frame = m.hydrothermalFrame(p, { supply, connected: true });
-    for (const key of ['p', 'front', 'recharge', 'heating', 'ascent', 'discharge', 'pool', 'relativeHeat']) assert.ok(frame[key] >= 0 && frame[key] <= 1);
+    for (const key of ['p', 'front', 'recharge', 'heating', 'ascent', 'discharge', 'pool', 'relativeHeat', 'poolWarmth', 'poolActivity', 'condensation']) assert.ok(frame[key] >= 0 && frame[key] <= 1);
     if (!(supply > 0)) assert.equal(frame.pool, 0);
   }
 });
@@ -179,6 +240,26 @@ test('dry or unreached water paths stop detail work and resume without a phase r
   advance(6050); assert.ok(scene.phase > phase);
   scene.draw(1, { supply: 0, connected: false }); assert.equal(pending(), 0);
   scene.draw(1, input); assert.equal(pending(), 1);
+}));
+
+test('surface detail reuses finite scene resources and releases them on leaving', () => withScene(({ scene }) => {
+  scene.scene = new THREE.Scene();
+  scene.createSurfaceDetail(scene.ownGeometry(new THREE.IcosahedronGeometry(1, 1)));
+  const samples = scene.poolSamples, mist = scene.mist, geometryCount = scene.geometries.size, materialCount = scene.materials.size;
+  assert.equal(samples.count, m.HYDROTHERMAL_POOL_SAMPLES); assert.equal(mist.count, m.HYDROTHERMAL_MIST_SAMPLES);
+  scene.frame = m.hydrothermalFrame(1, input); const frame = structuredClone(scene.frame);
+  for (let i = 0; i < 120; i++) { scene.phase = i / 120; scene.updateSurfaceDetail(); }
+  assert.equal(scene.poolSamples, samples); assert.equal(scene.mist, mist);
+  assert.equal(scene.geometries.size, geometryCount); assert.equal(scene.materials.size, materialCount); assert.deepEqual(scene.frame, frame);
+  assert.ok([...mist.instanceColor.array].some(value => value > 0));
+  scene.frame = m.hydrothermalFrame(1, { supply: 1, connected: false }); scene.updateSurfaceDetail();
+  assert.equal(samples.visible, false); assert.equal(mist.visible, false); assert.ok([...mist.instanceColor.array].every(value => value === 0));
+  let geometriesReleased = 0, materialsReleased = 0, instancesReleased = 0;
+  for (const g of scene.geometries) g.addEventListener('dispose', () => geometriesReleased++);
+  for (const material of scene.materials) material.addEventListener('dispose', () => materialsReleased++);
+  for (const instance of [samples, mist]) instance.addEventListener('dispose', () => instancesReleased++);
+  scene.dispose(); assert.equal(geometriesReleased, geometryCount); assert.equal(materialsReleased, materialCount); assert.equal(instancesReleased, 2);
+  assert.equal(scene.poolSamples, undefined); assert.equal(scene.mist, undefined);
 }));
 
 test('keyboard zoom is bounded and progress updates retain the reader camera', () => withScene(({ scene }) => {

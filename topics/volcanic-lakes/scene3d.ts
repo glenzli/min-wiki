@@ -3,8 +3,8 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Reflector } from 'three/addons/objects/Reflector.js';
 import { animateValue } from '../../src/visuals/transition.ts';
 import type { Settings } from './model.ts';
-import { ANGLES, BOTTOM, EXTENT, LAYERS, SECTION_EXPOSED_START, PISTON_UNITS, COLLAPSE_BLOCKS, blockBuffers, updateBlocks, roofOffset, depositBuffers, updateDeposit, basementBuffers, pistonBuffers, pistonDrop, pistonBase, pistonTrace, pistonTracks, boulderPose, cameraPose, faultBuffers, intrusionBuffers, lakeFrame, landscapeBuffers, planform, sectionBuffers, seed, shoreline, skirtBuffers, storageBuffers, surfaceBuffers, surfaceHeight, updateFault, updateSection, updateStorage, updateSurface, updateWater, updateWaterSection, waterBuffers, waterSectionBuffers, withdrawalPath, type Buffers, type LakeFrame, type LakeView, type XYZ } from './geometry3d.ts';
-import { lakeReflectorShader, lakeUniforms, reservoirMaterial, rockMaterial, skyMaterial, stoneNoise, waterSectionMaterial } from './materials3d.ts';
+import { ANGLES, BOTTOM, EXTENT, LAYERS, SECTION_EXPOSED_START, PISTON_UNITS, COLLAPSE_BLOCKS, blockBuffers, updateBlocks, roofOffset, depositBuffers, updateDeposit, basementBuffers, pistonBase, pistonTrace, pistonTracks, boulderPose, cameraPose, faultBuffers, intrusionBuffers, lakeFrame, landscapeBuffers, planform, sectionBuffers, seed, shoreline, skirtBuffers, storageLayerBuffers, surfaceBuffers, surfaceHeight, updateFault, updateFaultCut, updateSection, updateStorage, updateSurface, updateWater, updateWaterSection, waterBuffers, waterSectionBuffers, withdrawalPath, type Buffers, type LakeFrame, type LakeView, type XYZ } from './geometry3d.ts';
+import { LAYER_FACIES, lakeReflectorShader, lakeUniforms, reservoirMaterial, rockMaterial, supportMaterial, skyMaterial, stoneNoise, waterSectionMaterial } from './materials3d.ts';
 
 function geometry(data: Buffers) {
   const g = new THREE.BufferGeometry();
@@ -18,6 +18,7 @@ function geometry(data: Buffers) {
   return g;
 }
 const vec = (p: XYZ) => new THREE.Vector3(...p);
+const RAIN_SEGMENTS = 480;
 
 /** One finite camera and one GPU owner. All geology, rain and water sample the
  * caller's progress; there is no independent process or perpetual render loop. */
@@ -41,7 +42,7 @@ export class Lake3DScene {
   private section = new THREE.Group();
   private piston = new THREE.Group();
   private basement!: THREE.Mesh;
-  private mush!: { mesh: THREE.Mesh; data: Buffers };
+  private supportBodies: { mesh: THREE.Mesh; data: Buffers; unit: number }[] = [];
   private blockBodies: { mesh: THREE.Mesh; full: Buffers; cut: Buffers; fullG: THREE.BufferGeometry; cutG: THREE.BufferGeometry }[] = [];
   private deposit!: { mesh: THREE.Mesh; full: Buffers; cut: Buffers; fullG: THREE.BufferGeometry; cutG: THREE.BufferGeometry };
   private reference = new THREE.Group();
@@ -78,6 +79,7 @@ export class Lake3DScene {
   private prepared = false;
   private updatingFrame = false;
   private geologyUpdates = 0;
+  private supportUpdates = 0;
   private waterUpdates = 0;
   private lastGeologyMs = 0;
   private dummy = new THREE.Object3D();
@@ -110,6 +112,9 @@ export class Lake3DScene {
       sun.shadow.normalBias = .024; sun.shadow.bias = -.0001; sun.shadow.radius = 3;
       this.scene.add(sun);
       const fill = new THREE.DirectionalLight('#99bacb', .6); fill.position.set(8, 9, -14); this.scene.add(fill);
+      // A subdued inspection light reveals the exposed roof underside and
+      // broken sidewalls. It is presentation light, not underground sunlight.
+      const cutFill = new THREE.DirectionalLight('#d7e0db', .63); cutFill.position.set(-6, -.8, 12); this.section.add(cutFill);
       this.scene.add(this.mesh(new THREE.SphereGeometry(100, 24, 16), skyMaterial()));
       this.surface = this.mesh(geometry(surfaceBuffers(this.frame)), this.rock); this.surface.castShadow = this.surface.receiveShadow = true;
       this.skirt = this.mesh(geometry(skirtBuffers(this.frame)), this.rock); this.skirt.castShadow = this.skirt.receiveShadow = true;
@@ -118,7 +123,7 @@ export class Lake3DScene {
       this.scene.add(this.surface, this.skirt, this.bottom, this.exterior, this.section, this.underground, this.faults, this.reference);
       this.scene.add(this.piston);
       for (let unit = 0; unit < LAYERS; unit++) {
-        const data = sectionBuffers(unit, this.frame), layer = this.mesh(geometry(data), this.layerMaterials[[0, 1, 0, 2, 1, 3, 0, 1, 2, 3, 1][unit]]);
+        const data = sectionBuffers(unit, this.frame), layer = this.mesh(geometry(data), this.layerMaterials[LAYER_FACIES[unit]]);
         layer.geometry.setDrawRange(data.exposedStart ?? SECTION_EXPOSED_START, data.indices.length - (data.exposedStart ?? SECTION_EXPOSED_START));
         layer.castShadow = layer.receiveShadow = true; this.layers.push({ mesh: layer, data, unit }); this.section.add(layer);
       }
@@ -143,7 +148,7 @@ export class Lake3DScene {
   private createPiston() {
     for (let id = 0; id < COLLAPSE_BLOCKS.length; id++) for (let unit = 0; unit < PISTON_UNITS; unit++) {
       const full = blockBuffers(unit, id, false), cut = blockBuffers(unit, id), fullG = geometry(full), cutG = geometry(cut);
-      this.geometries.add(fullG); const mesh = this.mesh(cutG, this.layerMaterials[[0, 1, 0, 2][unit]]);
+      this.geometries.add(fullG); const mesh = this.mesh(cutG, this.layerMaterials[LAYER_FACIES[unit]]);
       mesh.visible = cut.positions.length > 0; mesh.castShadow = mesh.receiveShadow = true; this.piston.add(mesh);
       this.blockBodies.push({ mesh, full, cut, fullG, cutG });
     }
@@ -165,9 +170,13 @@ export class Lake3DScene {
     this.tracks.renderOrder = 8; this.reference.add(this.tracks);
   }
   private createUnderground() {
-    const data = storageBuffers(), reservoir = this.mesh(geometry(data), reservoirMaterial(this.texture!, this.uniforms));
-    reservoir.castShadow = reservoir.receiveShadow = true;
-    this.mush = { mesh: reservoir, data }; this.underground.add(reservoir);
+    const supportMaterials = Array.from({ length: 4 }, (_, facies) => supportMaterial(this.texture!, this.uniforms, facies));
+    supportMaterials.forEach(material => this.materials.add(material));
+    for (let unit = 0; unit < LAYERS; unit++) {
+      const data = storageLayerBuffers(unit, this.frame); if (!data.indices.length) continue;
+      const mesh = this.mesh(geometry(data), supportMaterials[LAYER_FACIES[unit]]);
+      mesh.castShadow = mesh.receiveShadow = true; this.supportBodies.push({ mesh, data, unit }); this.underground.add(mesh);
+    }
     this.pathMaterial = reservoirMaterial(this.texture!, this.uniforms, true);
     const melt = this.mesh(geometry(intrusionBuffers(this.frame)), this.pathMaterial); melt.castShadow = melt.receiveShadow = true;
     this.underground.add(melt);
@@ -187,7 +196,7 @@ export class Lake3DScene {
     this.scene.add(this.ringFault);
     this.cutTrace = this.trackLine(new THREE.Line(new THREE.BufferGeometry().setFromPoints(Array.from({ length: 193 }, () => new THREE.Vector3())), new THREE.LineDashedMaterial({ color: '#dbbb85', dashSize: .14, gapSize: .11, transparent: true, opacity: .63 })));
     this.scene.add(this.cutTrace);
-    this.rain = this.trackLine(new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(120 * 6), 3)), new THREE.LineBasicMaterial({ color: '#7aa8b6', transparent: true, opacity: .55 })));
+    this.rain = this.trackLine(new THREE.LineSegments(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(new Float32Array(RAIN_SEGMENTS * 6), 3)), new THREE.LineBasicMaterial({ color: '#628b9c', transparent: true, opacity: .72, depthWrite: false })));
     this.scene.add(this.rain);
   }
   private createWater() {
@@ -256,9 +265,6 @@ export class Lake3DScene {
       }
     });
     if (frame.kind === 'caldera') {
-      updateStorage(this.mush.data, frame);
-      for (const name of ['position', 'normal', 'uv']) this.mush.mesh.geometry.getAttribute(name).needsUpdate = true;
-      this.mush.mesh.geometry.computeBoundingSphere();
       for (const [data, meshGeometry] of [[this.deposit.full, this.deposit.fullG], [this.deposit.cut, this.deposit.cutG]] as const) {
         updateDeposit(data, frame); for (const name of ['position', 'normal', 'depth']) meshGeometry.getAttribute(name).needsUpdate = true; meshGeometry.computeBoundingSphere();
       }
@@ -275,7 +281,24 @@ export class Lake3DScene {
     this.underground.visible = frame.kind === 'caldera' && this.view === 'section';
     this.faults.visible = frame.kind === 'caldera' && this.view === 'section';
   }
-  private updateFracture(frame: LakeFrame) {
+  private updateSupport(frame: LakeFrame) {
+    for (const { mesh, data } of this.supportBodies) {
+      updateStorage(data, frame);
+      for (const name of ['position', 'normal']) mesh.geometry.getAttribute(name).needsUpdate = true;
+      mesh.geometry.computeBoundingSphere();
+    }
+  }
+  private updateFracture(frame: LakeFrame, shapeUpdated = false) {
+    if (!shapeUpdated && frame.kind === 'caldera') {
+      for (const { mesh, data } of this.layers) {
+        updateFaultCut(data, frame); mesh.geometry.getAttribute('position').needsUpdate = mesh.geometry.getAttribute('normal').needsUpdate = true;
+        mesh.geometry.computeBoundingSphere();
+      }
+      for (const body of this.blockBodies) {
+        updateFaultCut(body.cut, frame); body.cutG.getAttribute('position').needsUpdate = body.cutG.getAttribute('normal').needsUpdate = true;
+        body.cutG.computeBoundingSphere();
+      }
+    }
     this.faultBodies.forEach(({ mesh, data, side }) => {
       updateFault(data, side, frame); mesh.visible = frame.fracture > 0;
       for (const name of ['position', 'normal', 'uv']) mesh.geometry.getAttribute(name).needsUpdate = true;
@@ -321,14 +344,15 @@ export class Lake3DScene {
     this.rain.visible = raining;
     if (raining) {
       const positions = this.rain.geometry.getAttribute('position') as THREE.BufferAttribute;
-      for (let i = 0; i < 120; i++) {
+      for (let i = 0; i < RAIN_SEGMENTS; i++) {
         const a = seed(i + 811) * Math.PI * 2, r = Math.sqrt(seed(i + 45)) * frame.radius * 1.16;
         const x = Math.cos(a) * r, z = Math.sin(a) * r;
         const bed = surfaceHeight(x, z, frame), bottom = Math.max(bed, wet ? frame.waterLevel : bed) + .1;
         const y = bottom + (1 - (seed(i + 76) + frame.p * 4.2) % 1) * (7.2 - bottom);
-        positions.setXYZ(i * 2, x, y, z); positions.setXYZ(i * 2 + 1, x + .025, y - Math.min(.16, y - bottom), z);
+        const length = .19 + seed(i + 1097) * .08;
+        positions.setXYZ(i * 2, x, y, z); positions.setXYZ(i * 2 + 1, x + .025, y - Math.min(length, y - bottom), z);
       }
-      positions.needsUpdate = true; this.rain.geometry.setDrawRange(0, Math.round(120 * frame.settings.supply) * 2);
+      positions.needsUpdate = true; this.rain.geometry.setDrawRange(0, Math.round(RAIN_SEGMENTS * frame.settings.supply) * 2);
       this.rain.geometry.computeBoundingSphere();
     }
     this.seepage.forEach((arrow, i) => {
@@ -358,6 +382,7 @@ export class Lake3DScene {
     const started = performance.now(), previous = this.frame, next = lakeFrame(progress, settings), branchChanged = next.kind !== previous.kind;
     const geologyChanged = !this.prepared || branchChanged || next.formation !== previous.formation || next.subsidence !== previous.subsidence;
     const fractureChanged = geologyChanged || next.fracture !== previous.fracture;
+    const supportChanged = next.kind === 'caldera' && (!this.prepared || branchChanged || next.withdrawal !== previous.withdrawal || next.subsidence !== previous.subsidence);
     const stateChanged = !this.prepared || next.p !== previous.p || branchChanged || next.settings.supply !== previous.settings.supply || next.settings.leak !== previous.settings.leak;
     this.frame = next;
     if (!stateChanged) { this.publishWork(0); return; }
@@ -366,8 +391,9 @@ export class Lake3DScene {
       if (geologyChanged) {
         const start = performance.now(); this.updateGeology(next); this.lastGeologyMs = performance.now() - start; this.geologyUpdates++;
       }
-      if (fractureChanged) this.updateFracture(next);
-      if (geologyChanged || fractureChanged) this.renderer.shadowMap.needsUpdate = true;
+      if (fractureChanged) this.updateFracture(next, geologyChanged);
+      if (supportChanged) { this.updateSupport(next); this.supportUpdates++; }
+      if (geologyChanged || fractureChanged || supportChanged) this.renderer.shadowMap.needsUpdate = true;
       if (geologyChanged && this.hasSize && !this.manualCamera && !this.movingCamera && (branchChanged || this.view === 'landscape')) this.fitCamera();
       this.updateWithdrawal(next); this.updateWater(next); this.waterUpdates++; this.prepared = true;
     } finally { this.updatingFrame = false; }
@@ -376,7 +402,7 @@ export class Lake3DScene {
   /** Inspection mirrors never feed progress, geometry or playback. */
   private publishWork(lastDrawMs: number) {
     if (!this.canvas) return;
-    Object.assign(this.canvas.dataset, { progress: this.frame.p.toFixed(5), geologyUpdates: String(this.geologyUpdates), waterUpdates: String(this.waterUpdates), lastGeologyMs: this.lastGeologyMs.toFixed(3), lastDrawMs: lastDrawMs.toFixed(3) });
+    Object.assign(this.canvas.dataset, { progress: this.frame.p.toFixed(5), geologyUpdates: String(this.geologyUpdates), supportUpdates: String(this.supportUpdates), waterUpdates: String(this.waterUpdates), lastGeologyMs: this.lastGeologyMs.toFixed(3), lastDrawMs: lastDrawMs.toFixed(3) });
   }
   private setClipping() {
     const planes = this.view === 'section' ? [this.cut] : [];

@@ -75,7 +75,7 @@
       "lake": "湖泊",
       "river": "河道",
       "ice": "冰雪",
-      "surface": "地表暂留"
+      "surface": "地表径流／暂留"
     },
     "unit": "份",
     "trace": "追踪水份",
@@ -181,7 +181,7 @@
       "lake": "Lake",
       "river": "River",
       "ice": "Snow and ice",
-      "surface": "Surface storage"
+      "surface": "Surface / runoff"
     },
     "unit": "portions",
     "trace": "Tracked portion",

@@ -8,7 +8,7 @@ Basin shape and water level are simplified and do not model a particular volcano
 
 ## Ownership
 
-`model.ts` owns the scientific teaching state and numeric contracts. `geometry3d.ts` projects that state into the retained terrain, strata, faults, shore and water section. `materials3d.ts` owns procedural rock, mixed reservoir and depth/reflection shaders. `scene3d.ts` owns the GPU, bounded reflection target, gestures and finite camera transitions. `scene.ts` retains the experiment frame through 3D failure/retry, using the preserved `canvasScene.ts` cutaway as fallback. `content.ts` and `locales/en.json` own bilingual explanations. The unified volcano controller owns controls and playback; this topic's `main.ts` preserves its legacy redirect. Full-page navigation releases rendering resources. Nothing plays automatically.
+`model.ts` owns the scientific teaching state and numeric contracts. `geometry3d.ts` projects that state into the retained terrain, source-contact support strata, faults, shore and water section. `supportGeometry3d.ts` owns bounded local separation, fault-cut relief and section-edge sampling; it consumes the existing withdrawal and block phases without another clock. `materials3d.ts` owns the shared host/support facies, localized interstitial melt and depth/reflection shaders. `scene3d.ts` owns the GPU, bounded reflection target, gestures and finite camera transitions. `scene.ts` retains the experiment frame through 3D failure/retry, using the preserved `canvasScene.ts` cutaway as fallback. `content.ts` and `locales/en.json` own bilingual explanations. The unified volcano controller owns controls and playback; this topic's `main.ts` preserves its legacy redirect. Full-page navigation releases rendering resources. Nothing plays automatically.
 
 ## Sources
 
@@ -42,7 +42,11 @@ The horizontal water surface meets the same terrain used by the shore, wet walls
 
 Shapes, layer thicknesses, faults, reservoir and rain are stable procedural teaching geometry, not a reconstruction of Crater Lake, Kīlauea or another site. Rock mechanics, cooling durations, hydrodynamics, groundwater fields and measured optical properties are not solved. Reflections and depth tint help identify water. Real eruption and collapse can overlap; the model separates them to explain the causal relation. Withdrawal need not empty all magma, and cooling magma does not create rainwater.
 
-Each active scene owns one WebGL renderer, one 256² procedural texture, one 512² reflection target, one 2048² shadow map, fixed terrain/water/rock buffers, 400 instanced rocks, 120 rain segments and at most 16 arrows. Seven retained roof units each contain four closed layers, with separate full/cutaway buffers; six traces retain the original positions. The crystal-bearing region shares its upper contact with each displaced unit, replacing the former single-block side collar. There is no retained voxel field. Only finite camera transitions schedule frames; process playback remains outside this renderer. Disposal cancels camera work, disconnects resize and gesture listeners, releases GPU resources and loses the old context. Failure switches to the retained 2D section; retry creates a fresh canvas and restores the frame and requested view.
+Each active scene owns one WebGL renderer, one 256² procedural texture, one 512² reflection target, one 2048² shadow map, fixed terrain/water/rock buffers, 400 instanced rocks, 480 rain segments and at most 16 arrows. Seven retained roof units each contain four closed layers, with separate full/cutaway buffers; six traces retain the original positions. The crystal-bearing region retains contact outside three local separations, and the contacts close when their own blocks settle. There is no retained voxel field. Only finite camera transitions schedule frames; process playback remains outside this renderer. Disposal cancels camera work, disconnects resize and gesture listeners, releases GPU resources and loses the old context. Failure switches to the retained 2D section; retry creates a fresh canvas and restores the frame and requested view.
+
+积水阶段的雨线数量增加到原来的四倍，并略加长、提高对比度；雨线仍按现有供水条件显示，在同一进度下保留稳定位置，落到当前地表或湖面为止。2D 回退同步加密。这是辨认降水的显示细节，不代表实测雨强，也不改变湖水补给、渗漏或积水时间。
+
+Filling uses four times as many rain segments, slightly longer strokes and stronger contrast. Existing supply still controls their visible count; positions remain deterministic for the same progress and stop at the current terrain or water surface. The 2D fallback is denser too. These are precipitation cues, not measured rainfall intensity; water input, leakage and filling time are unchanged.
 
 Primary accounts checked for this projection: [USGS Kīlauea 2018 withdrawal and collapse, with later water lake](https://www.usgs.gov/volcanoes/kilauea/science/2018-lower-east-rift-zone-eruption-and-summit-collapse-kilauea) and [USGS Crater Lake post-caldera volcanism and filling](https://www.usgs.gov/volcanoes/crater-lake/science/post-caldera-volcanism-and-crater-lake). No third-party image is downloaded or bundled.
 
@@ -54,9 +58,9 @@ Source: [USGS Kīlauea 2018 withdrawal and collapse](https://www.usgs.gov/volcan
 
 Eleven closed rock units retain finite depth: nested constructional units above basement contacts. Adjacent units share the same rough contact. The exposed cut has physical relief and lithic grain rather than painted, uniformly spaced stripes. Deformation recomputes valid normals, including pinched and newly exposed layers, so a shading error cannot imply an underground cavity.
 
-破火山口中央保留有限底界与四层接触，沿不等大的弯折断裂分成七个稳定身份的断块。各块按已有下沉进度先后错动并略有倾斜；顶面、层位、底界和材质坐标一起保留，不把深层压到底界而消失。原位虚线与下移的层位作对照，剖面镜头在下沉时保持固定。外围岩层为环带体积，中央没有另画一整块实心围岩挡在储存区后方。晶粥上界逐块接触断块底界，下方仍有残余晶体与熔体；不以地下空洞解释支撑减弱。
+破火山口中央保留有限底界与四层接触，沿不等大的弯折断裂分成七个稳定身份的断块。各块按已有下沉进度先后错动并略有倾斜；顶面、层位、底界和材质坐标一起保留，不把深层压到底界而消失。原位虚线与下移的层位作对照，剖面镜头在下沉时保持固定。外围岩层为环带体积，中央没有另画一整块实心围岩挡在储存区后方。晶粥上界在三个放大的局部间隙之外仍接触断块底界；间隙的底部、后方与两侧仍有晶体与熔体，各块落定时闭合，不把整个储存区掏空。
 
-The finite four-layer roof is divided along unequal, bent boundaries into seven retained units. The existing subsidence state drives staggered offsets and slight affine inclinations; each unit retains its top, contacts, base and material coordinates instead of pinching away at the lower display boundary. Dashed references keep the original positions, and the section camera remains fixed during sinking. Outer host layers form annular volumes without an intact central host behind the reservoir. The crystal-bearing region meets each displaced base and retains residual crystals and melt below, rather than leaving an underground void.
+The finite four-layer roof is divided along unequal, bent boundaries into seven retained units. The existing subsidence state drives staggered offsets and slight affine inclinations; each unit retains its top, contacts, base and material coordinates instead of pinching away at the lower display boundary. Dashed references keep the original positions, and the section camera remains fixed during sinking. Outer host layers form annular volumes without an intact central host behind the reservoir. The crystal-bearing region meets each displaced base outside three enlarged local separations. Crystals and melt remain below, behind and beside them; the openings close as their own blocks settle rather than emptying the entire reservoir.
 
 六个固定壁面源区随同一过程形成凹缺口，来自这些位置的碎块沿坡滑落、转动并留在崖脚；粗细混合的坡积还改变同一盆地地形，不用空中随机碎石代替物质去向。水平湖面继续与这同一地形求交，原有相对供水与渗漏规则决定能否积水。较小火山口保留自己的局部成因，不调用破火山口的储存区、环断裂或分块下沉。真实塌壁也可能在主塌陷之后很久发生，本例把它们接在一起观察。
 
@@ -74,13 +78,41 @@ The causal basis was checked against [USGS HVO's ring-fault/piston explanation](
 
 Blocks move in bounded slips separated by short rests within the existing subsidence stage. Modest inclination accompanies descent, and the same solids reach their former final positions beneath the basin. Source-linked wall clasts slide with limited rolling and remain on the shared terrain. Three slips, seven units and rolling paths are selected for legibility, not seismic records, universal partitions or collision solutions. There is no second process clock or dust hiding the destination. USGS observations support incremental movement after withdrawal and depressurization; NPS observations support wall scars and talus. This reconstruction compresses and combines those phenomena without reproducing their dates.
 
-渲染按真实依赖更新：下沉或盆地类型改变才重算围岩，裂隙可独立更新；积水阶段只更新水面、雨滴及相应标记。同一进度和条件重复绘制不再重建几何或重复渲染。固定空间项、接触面和源区身份复用，粗糙剖面仍在变形时重算法线；仅纯仿射的岩块使用变换后的原始法线。两个镜头、回拖和切换条件继续消费同一状态。只读画布属性 `progress`、`geologyUpdates`、`waterUpdates`、`lastGeologyMs` 与 `lastDrawMs` 便于核对；这些值不驱动实验。
+渲染按真实依赖更新：下沉或盆地类型改变才重算围岩，裂隙可独立更新；储存区接触面的退让只随撤出和断块相位更新。积水阶段只更新水面、雨滴及相应标记。同一进度和条件重复绘制不再重建几何或重复渲染。固定空间项、接触面和源区身份复用，粗糙剖面仍在变形时重算法线；仅纯仿射的岩块使用变换后的原始法线。两个镜头、回拖和切换条件继续消费同一状态。只读画布属性 `progress`、`geologyUpdates`、`supportUpdates`、`waterUpdates`、`lastGeologyMs` 与 `lastDrawMs` 便于核对；这些值不驱动实验。
 
-Rendering follows dependencies: subsidence or basin changes update rock, while fractures update independently. Filling updates water, rain and associated markers. Repeating an unchanged frame rebuilds no geometry and requests no duplicate render. Fixed spatial terms, contacts and source identities are reused; rough cuts retain numerical normal updates, and purely affine pieces transform their source normals. Both views, seeking and condition changes consume one state. Read-only canvas attributes expose progress, work counts and CPU durations without steering the experiment.
+Rendering follows dependencies: subsidence or basin changes update rock, while fractures update independently. Retreat at the support contact updates only with withdrawal and block phase. Filling updates water, rain and associated markers. Repeating an unchanged frame rebuilds no geometry and requests no duplicate render. Fixed spatial terms, contacts and source identities are reused; rough cuts retain numerical normal updates, and purely affine pieces transform their source normals. Both views, seeking and condition changes consume one state. Read-only canvas attributes expose progress, work counts and CPU durations without steering the experiment.
 
 本机 Node CPU 复现调用真实 `Lake3DScene.draw` 和保留的 Three 几何，省略 GPU：崩塌逐帧均值约 418→12.3 ms，积水约 454→6.64 ms，重复静止帧约 28.3→0.003 ms，交替 seek 约 410→14.6 ms。V8 分配采样的十二个积水帧约 2.21 GB→19.6 MB；这是含已回收对象的估计分配量，不是常驻内存或泄漏量。测量范围、分位数、缓存边界及原始 JSON 路径见 [VALIDATION.md](VALIDATION.md)。这些 CPU 数值不代表浏览器帧率、首次着色器编译或人眼验收；当前画面与连续播放仍由集成页面单独验证。
 
 The local Node CPU reproduction invokes the actual draw method with retained Three geometry and omits GPU work. Mean collapse frames changed from about 418 to 12.3 ms, filling from 454 to 6.64 ms, repeated stable frames from 28.3 to 0.003 ms, and alternating seeks from 410 to 14.6 ms. Twelve filling frames sampled by V8 changed from about 2.21 GB to 19.6 MB of estimated allocations, including collected objects; this is neither resident memory nor a leak estimate. [VALIDATION.md](VALIDATION.md) records scope, quantiles, cache bounds and raw JSON paths. These CPU measurements do not establish browser frame rate, first shader compilation or visual acceptance.
+
+这些性能数值属于 2026-10-21 的源码快照，不能当作 2026-10-22 局部间隙与断口几何的实测结果。后者保留固定缓冲和积水阶段的依赖门；本轮 focused checks 与浏览器待验项另见 [VALIDATION.md](VALIDATION.md)。
+
+These performance values belong to the 2026-10-21 source snapshot, not measurements of the 2026-10-22 opening/fault geometry. The later change retains fixed buffers and the settled-filling dependency gate; its focused checks and separate browser acceptance are recorded in [VALIDATION.md](VALIDATION.md).
+
+## 局部间隙与断口体积 · 2026-10-22 / Local separation and broken faces
+
+撤出后，剖面中出现三个不连通的局部退让区，用有限底面、后坡和两侧接触显示岩体失去部分支撑；它们跟随原有撤出量与各断块下沉相位，落定后闭合。间隙之间保留接触，深部与后方仍有晶粥。原位轮廓、四层岩体身份、有限底界和碎块源区保持，较小火山口没有这些深部结构。
+
+Three separate local recesses appear after withdrawal. Their finite floors, rear slopes and side contacts show partial loss of support. They consume the existing withdrawal and per-block subsidence phases and close at settling. Contacts remain between mouths, and mush remains below and behind them. Original references, four-layer block identities, finite bases and clast sources are retained; the smaller crater has no such deep structure.
+
+两侧断口沿实际环断裂接触形成有凹深的观察切口，止于当前断块底界，不再画成贯穿基底的黑管。切面加密和稳定凹凸呈现边壁与下缘；剖面专用的弱补光帮助辨认体积，不表示地下有日照。全景的真实岩体足迹、体积和最终湖底地形不因该观察切口改变。
+
+The two broken faces follow the actual ring-fault contact and end at the current roof base instead of continuing as black pipes through basement. Refined cut edges and stable physical relief expose sidewalls and undersides. A subdued section-only inspection light helps read volume; it does not imply underground daylight. These observation cuts leave the whole-lake solids' footprints, volumes and final lake bed unchanged.
+
+局部间隙、断口宽深与凹凸均为辨认过程而放大，不是实测孔隙、空气成分或气体压力，也不表示减压必须先造成一个大空腔。剖面额外去掉少量前景材料以露出断壁；它不是地下向空气敞开的洞口。没有新增岩体力学、流体力学、碰撞或全火山质量守恒求解。现有 2D 回退保留原先较简化的机制图和加密雨线，不声称有相同的三维体积效果。
+
+Local separations, fault width/depth and relief are enlarged for inspection, not measured porosity, air composition or gas pressure. Depressurization need not first create a large empty cavity. The section removes a little extra foreground material to expose broken faces, not an underground opening to air. No rock-mechanics, fluid, collision or whole-volcano mass-conservation solver is added. The existing 2D fallback retains its simpler mechanism drawing and denser rain; it does not claim the same volumetric effect.
+
+## 开场地层连续性 · 2026-10-22 / Initial rock continuity
+
+中央支撑区不再绘成一根棕色半柱。它按外围同一组原始接触面裁成十一层，夹在有限岩块底界与晶粥底界之间；上方岩块与下方支撑区可以分割同一层，初始时仍拼成外围对应的完整层位。三个区域共用同一观察切面、层相、源材质坐标与细部纹理。源切面的深度不随层厚改变，断口的额外凹深才随破裂状态出现。局部不规则熔体区覆盖原始岩石材质，不把整个支撑区涂成一个矩形储存室；这些源层位帮助追踪未熔岩石框架，不声称熔融岩浆中保存了完整沉积层理。
+
+The central support is no longer rendered as one brown half-column. Eleven units clip the same source contacts used by the outer host between the finite roof base and mush floor. Roof and support may split one source stratum, but initially meet to complete its original interval. All three regions share one observation surface, facies, material coordinates and grain. Source-cut depth is independent of layer thickness; extra fault recesses appear with fracture. Only irregular local melt-bearing lobes modify the rock material. The retained contacts track unmelted framework, without claiming intact sedimentary bedding inside molten magma.
+
+这些层使用固定缓冲，共 44,260 个顶点和约 1.77 MB 接触缓存，取代原来 4,570 顶点的单一可见支撑体。GPU 对象比前一版增加十个几何与三个材质，不增加纹理、反射或阴影目标。撤出和下沉更新同一组保留顶点；积水、静止与仅修改供水条件不更新这些层。实际地下组合的单次释放与往返 seek 的对象数量已由 focused tests 核对；浏览器图像和帧率仍须在集成页面单独验收。
+
+The fixed strata contain 44,260 vertices and about 1.77 MB of contact caches, replacing the previous visible support body's 4,570 vertices. This adds ten geometry objects and three materials, with no texture, reflection or shadow target. Withdrawal and subsidence update retained vertices; filling, stable frames and water-condition changes do not update them. Focused tests check resource identity through seek and exactly one disposal per underground resource. Browser appearance and frame rate require separate integrated acceptance.
 
 ## Child reading milestones · 2026-10-01
 

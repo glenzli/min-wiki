@@ -2,7 +2,7 @@
 
 Can seawater return to the sea after becoming a cloud? Does every portion take the same route?
 
-First follow the same 100 portions and compare dry air, surface partition and movement within ice. Then use the longer-term entries to explore groundwater beneath the same hillside or snow and glacier budgets in the same valley. Compare recharge with withdrawal, and accumulation with loss: when does storage grow or shrink? Experiments have independent clocks and retain state across observation views.
+Track 100 portions in the same 3D watershed and compare humid or dry air, permeable soil, compact clay and paving. Cloud magnification and the hillside pore section retain batch identities and progress; camera changes preserve history. Then use the longer-term entries in the explanation panel to compare groundwater recharge with pumping, or snow accumulation with glacier loss. Those studies have independent budgets and clocks and are not added to the 100 portions.
 
 ## Energy and changes of state
 
@@ -10,7 +10,7 @@ Solar radiation supplies much of the energy for evaporation, which also occurs b
 
 ## Gravity connects water stores
 
-Some precipitation infiltrates and passes through unsaturated soil before recharging an aquifer; infiltration is not already groundwater recharge. Groundwater mainly travels slowly through connected pores and fractures, not a universal underground cavern river. Water levels and hydraulic-head differences affect exchange with a river: groundwater may feed it, or receive water from it. The longer-term experiment balances recharge, exchange, withdrawal and storage in simplified boxes. Sustained withdrawal exceeding replenishment lowers storage and the water table. It does not calculate site-specific 3D flow or water purification.
+The same rain can partition differently between infiltration, surface runoff and temporary storage on different surfaces. This page compares fixed teaching fractions; real outcomes also depend on rainfall intensity, slope, previous moisture, structure and cracks. Water follows the visible hillside rill into the same valley, lake and outlet; bed, water and tracer routes share one geometry. Infiltrated water may later pass through unsaturated soil to recharge an aquifer, so infiltration is not already recharge. Groundwater travels through connected pores and fractures rather than a universal cavern river. Hydraulic-head differences can make it feed a river or receive river water. The separate long-term experiment balances recharge, exchange, pumping and storage in simplified boxes; it does not calculate real 3D flow or water purification.
 
 ## Glaciers store water on slower timescales
 
@@ -22,7 +22,7 @@ A cloud is not a bag of invisible vapor: its visible parts are tiny droplets or 
 
 ## Model limits
 
-The 100 portions are not global water proportions or measured rainfall. Ice melting to rain below a cloud is distinct from high-mountain snowfall. Longer-term groundwater and glacier studies are separate simplified budgets: their amounts, clocks and parameters cannot be added to the batch or used for local water-level, glacier or climate forecasts. Geography and enlarged pores are teaching illustrations. Full 3D aquifer flow, glacier stress and deformation, contaminant purification and plant transpiration are not simulated.
+The 100 portions are not global water proportions, measured rainfall or a complete catchment water balance. The main scene counts current teaching locations; terrain, clouds, tracers, pores and time use different illustrative scales, and batch counts do not drive river or lake levels. Ice melting into rain in a warm layer below a cloud is distinct from high-mountain snowfall. The existing glacier’s slow batch clock and the longer-term groundwater and glacier studies have separate budgets and time scales. They cannot be combined or used for local water-level, glacier or climate forecasts. Full 3D aquifer flow, glacier stress and deformation, contaminant purification and plant transpiration are not simulated.
 
 ## Sources
 
@@ -33,6 +33,7 @@ The 100 portions are not global water proportions or measured rainfall. Ice melt
 - [USGS · Groundwater Flow and the Water Cycle](https://www.usgs.gov/water-science-school/science/groundwater-flow-and-water-cycle)
 - [USGS · Glaciers on Mount Rainier — glacier flow](https://wa.water.usgs.gov/pubs/fs/fs_rainier.html)
 - [NASA · Cloud droplets and ice](https://gpm.nasa.gov/resources/faq/what-are-clouds-made-are-they-more-likely-form-polluted-air-or-pristine-air)
+- [USGS · Runoff and surface conditions](https://www.usgs.gov/water-science-school/science/runoff-surface-and-overland-water-runoff)
 
 ## Narration {#narration}
 

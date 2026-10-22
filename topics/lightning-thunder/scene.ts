@@ -27,16 +27,20 @@ export class TopicScene{
  }
  draw(progress:number,settings:Settings){
   this.progress=progress;this.settings=settings;
+  // A hidden exterior still receives artwork/ResizeObserver callbacks. Never
+  // enter transformed drawing with CanvasSurface's zero-size negative scale.
+  if(this.surface.canvas.hidden||this.surface.canvas.clientWidth<24||this.surface.canvas.clientHeight<92||this.surface.scale<=0)return;
   const state=lightningState(progress,settings),path=this.channel,observerX=15+projectDistance(settings.distanceKm);
   // A single reversible pulse: quick smooth onset, then a longer soft tail.
   // It samples the topic's progress and cannot flash before attachment.
   const flash=state.connected?smooth(.59,.665,progress)*Math.exp(-((Math.max(0,progress-.665)/.055)**1.4))*(1-smooth(.78,.84,progress)):0;
   const s=this.surface,c=s.begin(litColor('#53677d','#687e98',flash),litColor('#9ca9aa','#aab9bd',flash));
-  const chargeFade=1-smooth(.46,.61,progress);
+  const chargeFade=state.flashEnabled?1-smooth(.46,.61,progress):1;
   // Diagram annotations stay above environmental exposure, with one visual
   // vocabulary. Capture each call's teaching-state opacity before deferring it.
   const annotations:Array<()=>void>=[];
   const label=(text:string,x:number,y:number,width=240,options:{color?:string;anchor?:Point}={})=>{
+   if(settings.labels===false)return;
    const opacity=c.globalAlpha;
    annotations.push(()=>{
     c.save();c.globalAlpha=opacity;
@@ -57,7 +61,7 @@ export class TopicScene{
      s.path([options.anchor,[safeX,y]],undefined,'#d1dee8aa',.8/s.scale);
      s.ellipse(...options.anchor,1.4/s.scale,1.4/s.scale,'#d9e4eb');
     }
-    c.beginPath();c.roundRect(safeX-w/2,top,w,lineHeight*lines.length+8/s.scale,4/s.scale);
+    c.beginPath();c.roundRect(safeX-w/2,top,w,lineHeight*lines.length+8/s.scale,Math.max(0,4/s.scale));
     c.fillStyle='#142734cf';c.fill();c.strokeStyle='#c6d7df3b';c.lineWidth=.65/s.scale;c.stroke();
     c.fillStyle=options.color??'#f0f5f7';
     lines.forEach((value,i)=>c.fillText(value,safeX,y+i*lineHeight));c.restore();
@@ -81,7 +85,7 @@ export class TopicScene{
    }
    s.arrow(-205,-126,-190,-188,'#e8c28b',1.5);s.arrow(-49,-184,-37,-127,'#a6c9df',1.5);c.restore();
   }
-  if(progress<.70){
+  if(progress<.70||!state.flashEnabled){
    c.save();
    const markSize=Math.max(4.2,3.5/s.scale);
    const charge=(positive:boolean,x:number,y:number,r=markSize)=>{
@@ -199,7 +203,7 @@ export class TopicScene{
    }
    if(s.width>650&&state.returnStroke>0&&progress<.70)label(t('明亮回击向上发展'),117,-15,250);
   }
-  if(progress>=.70){
+  if(progress>=.70&&state.flashEnabled){
    const radius=projectDistance(state.soundRadiusKm),frontX=Math.min(observerX,15+radius);
    // The one leading boundary and the ground track share one distance map.
    // Thin trailing arcs are schematic, not wavelength or loudness readings.

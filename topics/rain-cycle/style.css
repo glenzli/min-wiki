@@ -1,57 +1,126 @@
 @import '../../src/platform/shell.css';
-:root{--topic-accent:#187c75}*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font-family:ui-rounded,'Avenir Next','PingFang SC',system-ui,sans-serif}main{max-width:1240px;margin:auto;padding:38px 32px 70px}.hero{text-align:center;margin-bottom:30px}.eyebrow{font-size:12px;font-weight:750;letter-spacing:.15em;text-transform:uppercase;color:var(--secondary)}h1{font-size:clamp(30px,4.7vw,56px);letter-spacing:-.045em;line-height:1.15;margin:15px 0}h2{font-size:20px;line-height:1.5}.intro{font-size:20px;color:var(--secondary)}button,select,input{font:inherit}button,select{min-height:46px;border:1px solid var(--border);border-radius:14px;padding:10px 16px;color:var(--ink);background:var(--surface);cursor:pointer}button:hover{border-color:#19847c}button[aria-pressed=true]{background:#176e67;border-color:#176e67;color:#fff}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #e4a339;outline-offset:4px}.experiments{display:flex;justify-content:center;gap:10px;margin:0 0 26px;flex-wrap:wrap}.lab{display:grid;grid-template-columns:minmax(0,1fr) 265px;border:1px solid var(--border);border-radius:26px;overflow:hidden;background:var(--surface);box-shadow:0 20px 70px #133e3710}.scene-column{background:#eaf5f0;color:#143e3b;min-width:0}.scene-top{padding:24px 28px 0;display:flex;gap:10px;justify-content:space-between;flex-wrap:wrap;font-size:13px}.scene-top strong{color:#146d63}#scene{width:100%;height:auto;display:block}#scene text{font-family:inherit}.readouts{display:flex;justify-content:center;gap:70px;padding:0 20px 23px}.readouts>div{display:grid;gap:6px}.readouts span{font-size:12px;color:#466b66}.readouts strong{font-size:30px;font-variant-numeric:tabular-nums}.readouts small{font-size:13px;font-weight:400}aside{padding:24px;border-left:1px solid var(--border)}aside h2{font-size:16px;margin:0 0 16px}.object-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.stack{display:grid;gap:9px}label:not(.check){display:block;font-size:13px;font-weight:650;margin:25px 0 10px}input[type=range]{width:100%;accent-color:#187c75;min-height:36px}.check{display:flex;align-items:center;gap:9px;margin:22px 0;font-size:13px}.check input{width:19px;height:19px;accent-color:#187c75}select{width:100%}.small{font-size:13px;line-height:1.7;color:var(--secondary)}aside output{font-size:13px}.quiet{font-size:12px;background:transparent}.discovery{display:flex;align-items:flex-start;gap:22px;padding:30px 36px;margin:25px 0;background:var(--surface);border:1px solid var(--border);border-radius:22px}.spark{font-size:38px;color:#d58a29}.discovery h2{margin:7px 0 10px;font-size:24px}.discovery p:not(.eyebrow){max-width:780px;line-height:1.9;margin:7px 0}.grownups{border-top:1px solid var(--border);margin-top:36px;padding-top:24px;color:var(--secondary);font-size:14px;line-height:1.9}.grownups summary{cursor:pointer;color:var(--ink);font-size:17px;font-weight:700}.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:42px}.formula{font-size:28px;color:var(--ink)}a{color:var(--accent)}[hidden]{display:none!important}@media(max-width:750px){main{padding:24px 16px 45px}.lab{grid-template-columns:1fr}aside{border-left:0;border-top:1px solid var(--border);padding:22px}.object-grid{grid-template-columns:repeat(4,1fr)}button{padding:10px 12px;font-size:14px}.scene-top{padding:20px 20px 0}.readouts{gap:40px}.discovery{padding:22px;gap:12px}.discovery h2{font-size:21px}.detail-grid{grid-template-columns:1fr;gap:10px}.hero{margin-bottom:24px}.intro{font-size:16px}.experiments{gap:6px}.experiments button{flex:1;min-width:95px}.readouts strong{font-size:25px}}
-@media(prefers-reduced-motion:no-preference){button{transition:background .2s,border-color .2s}}
-
-.slow-jumps{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:0 0 24px}.slow-jumps>span{font-size:13px;color:var(--secondary);margin-right:8px}.slow-jumps button{font-size:14px}.long-study{scroll-margin-top:24px;margin-top:28px;min-width:0}.study-bridge{border-left:3px solid #6b9c98;padding:14px 18px;background:var(--surface);line-height:1.85;color:var(--secondary);font-size:14px}.study-status{min-height:120px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:18px}.return-to-batch{margin-top:18px;font-size:14px}@media(max-width:600px){.slow-jumps>span{width:100%}.slow-jumps button{flex:1 1 140px;line-height:1.5}.study-bridge{padding:12px 14px}}
-
-.lab{grid-template-columns:minmax(0,1fr) 255px}.scene-column{background:#eaf2e8}.scene-top{min-height:46px}.step-buttons{display:grid;gap:10px}.step-buttons button{text-align:left}.step-buttons button::before{content:attr(data-number);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:#78948726;margin-right:8px;font-size:12px}.scene-footer{padding:8px 22px 23px;display:flex;justify-content:center;gap:22px;flex-wrap:wrap;font-size:13px}.scene-footer span{display:flex;gap:7px;align-items:center}.scene-footer i{display:block;width:10px;height:10px;border-radius:50%;background:#168c9d}.scene-footer span:nth-child(2) i{background:#d58a29}.scene-footer span:nth-child(3) i{background:#78996c}.stage-controls{display:flex;align-items:center;padding:4px 22px 20px;gap:18px}.stage-controls input{flex:1;width:0}.next{width:100%;margin-top:20px;background:#176e67;color:#fff}.intro{max-width:800px;margin:20px auto}.grownups>p{max-width:950px}#story{min-height:3.7em}#scene{aspect-ratio:850/540}.metrics{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;padding:0 18px 24px}.metrics span{background:#ffffff85;border-radius:12px;padding:8px 12px;color:#254f48;font-size:13px}@media(max-width:750px){.lab{grid-template-columns:1fr}.step-buttons{grid-template-columns:1fr 1fr}.step-buttons button{font-size:12px;padding:8px;line-height:1.5}.step-buttons button::before{margin-right:5px}.scene-footer{font-size:11px;gap:12px}}
-
-.encyclopedia-nav .theme-control{margin:0;display:flex}.encyclopedia-nav select{width:auto;min-height:32px;padding:5px 9px}.encyclopedia-nav{min-height:66px}main{padding-top:24px}.hero{margin-bottom:22px}.hero h1{font-size:clamp(29px,4vw,46px);margin:10px 0}.hero .intro{margin:12px auto}.hero .eyebrow{margin:5px 0}.experiments{margin-bottom:20px}@media(max-width:750px){.encyclopedia-nav select{max-width:130px}.hero h1{font-size:30px}.scene-top{font-size:11px}}
-
-@media(max-width:750px){#scene text{font-size:30px}#scene text[data-caption]{font-size:25px}}
-
-.stage-controls button{flex-shrink:0;font-size:13px}.stage-controls #play{background:#176e67;color:#fff;min-width:130px}.stage-controls input{min-width:70px}@media(max-width:750px){.stage-controls{display:grid;grid-template-columns:1fr auto;padding:4px 18px 18px;gap:8px 14px}.stage-controls input{width:100%;grid-column:1/-1;grid-row:2}.stage-controls #play{min-width:0;justify-self:start}}
-
-#scene{aspect-ratio:1000/620;overflow:hidden}#scene text{font-size:12px}.scene-top{align-items:center}.scene-top .check{margin:0;font-size:11px}.map-key,.time-note{padding:0 22px;font-size:12px;line-height:1.7;color:#456771}.time-note{padding-bottom:12px}.pool-section{padding:18px 0}.pool-section h2{font-size:16px}.pool-grid{display:grid;grid-template-columns:repeat(9,minmax(0,1fr));gap:8px}.pool-card{display:grid;gap:8px;padding:12px 8px;background:var(--surface);border:1px solid var(--border);border-radius:12px;color:var(--secondary);font-size:12px}.pool-card strong{font-size:22px;color:var(--ink)}.pool-card.occupied{border-color:#70a5ae}.cloud-study{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:22px;padding:24px;background:var(--surface);border:1px solid var(--border);border-radius:22px}.cloud-study p,.ice-study p{line-height:1.85;color:var(--secondary)}#cloud-canvas{display:block;width:100%;height:420px;border-radius:18px;min-width:0}.ice-study{background:var(--surface);border:1px solid var(--border);padding:24px;border-radius:22px}.ice-study input{display:block;width:100%;margin-top:20px}.related{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:35px 0}.related h2{width:100%}.related a{padding:12px 15px;border:1px solid var(--border);border-radius:12px;text-decoration:none}.discovery{margin-top:8px}.discovery p{font-size:15px}.discovery #description{color:var(--secondary)}@media(max-width:750px){.pool-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.pool-card{grid-template-columns:1fr auto;align-items:center}.pool-card strong{font-size:19px}.cloud-study{grid-template-columns:1fr;padding:18px}.cloud-study canvas{height:390px}aside{display:grid;grid-template-columns:1fr;gap:0}.experiments button{font-size:12px;min-width:120px}.map-key{font-size:10px}.scene-top strong{max-width:100%;line-height:1.6}.stage-controls button{max-width:100%;white-space:normal}.related a{font-size:14px}}
-
-/* Desktop presentation: retain topic geometry inside the selected scene. */
+:root{--topic-accent:#267c79}
+.water-explorer{min-width:0;color:var(--ink);font-family:ui-rounded,'Avenir Next','PingFang SC',system-ui,sans-serif}
+.water-explorer *{box-sizing:border-box}
+.water-explorer .rain-hero{display:none}
+.water-explorer [hidden]{display:none!important}
+.water-explorer button,.water-explorer select,.water-explorer input{font:inherit}
+.water-explorer button,.water-explorer select{min-height:44px;max-width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:9px;background:var(--surface);color:var(--ink);line-height:1.4;cursor:pointer}
+.water-explorer button[aria-pressed=true]{background:#236e69;color:#fff;border-color:#236e69}
+.water-explorer button:disabled{opacity:.48;cursor:default}
+.water-explorer :is(button,input,select,summary):focus-visible{outline:3px solid #b38d36;outline-offset:3px}
+.water-explorer select{width:100%}
+.water-explorer input[type=range]{display:block;width:100%;min-height:34px;accent-color:#287f7b}
+.water-explorer .eyebrow{font-size:12px;letter-spacing:.08em;color:var(--secondary)}
+.water-explorer .experiments{display:flex;gap:8px;flex-wrap:wrap;margin:0}
+.water-explorer .experiments button{flex:1 1 130px;text-align:left}
+.water-explorer .lab{border:1px solid var(--border);background:var(--surface);min-width:0}
+.water-explorer .basin-stage{position:relative;width:100%;min-width:0;min-height:0;overflow:hidden;background:#dbe7e3;isolation:isolate}
+.water-explorer #basin-canvas,.water-explorer #scene{display:block;position:absolute;inset:0;width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;aspect-ratio:auto!important;touch-action:pan-y}
+.water-explorer #basin-canvas{cursor:grab}
+.water-explorer #basin-canvas:active{cursor:grabbing}
+.water-explorer .basin-labels{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.water-explorer .basin-marker{position:absolute;display:grid;place-items:center;transform:translate(-50%,-140%);width:23px;height:23px;border:1px solid #59716a;border-radius:50%;background:#fffae9e8;color:#244e49;font-size:12px;font-weight:700;box-shadow:0 1px 7px #203c3920}
+.water-explorer .basin-camera{position:absolute;right:14px;bottom:14px;display:flex;gap:6px}
+.water-explorer .basin-camera button{width:44px;padding:6px;background:#f4f5eee3;color:#244c47;border-color:#819a9170;font-size:21px}
+.water-explorer .basin-render-error{position:absolute;left:16px;right:16px;bottom:72px;padding:10px 14px;border-radius:10px;background:#f9f5e7ed;color:#3e4d46;font-size:13px;line-height:1.5}
+.water-explorer .basin-render-error p{margin:0 0 8px}
+.water-explorer .stage-controls{display:grid;grid-template-columns:auto minmax(90px,1fr) auto auto;gap:10px;align-items:center;width:100%;margin:0}
+:root#document-host .water-explorer .lab .presentation-transport{display:block}
+:root#document-host .water-explorer .lab :is(.stage-controls,.presentation-transport:has(>#play)){display:grid;grid-template-columns:auto minmax(90px,1fr) auto auto;gap:10px;align-items:center;width:100%}
+.water-explorer .stage-controls #play{background:#276f6b;color:white;min-width:128px}
+.water-explorer .batch-progress{display:flex;align-items:center;gap:8px;min-width:0;font-size:12px;color:var(--secondary)}
+.water-explorer .batch-progress span{display:none}
+.water-explorer .batch-progress input{min-width:50px;width:100%;margin:0}
+.water-explorer #progress-value{font-size:12px;font-variant-numeric:tabular-nums;color:var(--secondary)}
+.water-explorer .batch-readout{flex:none!important;border-top:1px solid var(--border);background:var(--surface);padding:8px 16px}
+.water-explorer .batch-readout strong{display:none}
+.water-explorer .batch-readout p{margin:0;font-size:13px;line-height:1.55;color:var(--ink);font-variant-numeric:tabular-nums}
+.water-explorer .batch-readout #basin-scale{font-size:11px;color:var(--secondary);margin-top:2px}
+.water-explorer .presentation-notes .water-settings{display:block;padding:0}
+.water-explorer .water-story h2{font-size:20px;line-height:1.45;margin:6px 0 10px}
+.water-explorer .water-story h3{font-size:14px;margin:16px 0 4px;color:var(--secondary)}
+.water-explorer .water-story p{font-size:14px;line-height:1.8}
+.water-explorer .water-story #watch{color:#34766f;font-weight:600}
+.water-explorer .water-story button{margin:6px 6px 6px 0}
+.water-explorer .water-settings label:not(.check){display:block;font-size:13px;font-weight:600;margin:16px 0 5px}
+.water-explorer .water-settings h2{font-size:17px;margin:20px 0 8px}
+.water-explorer .check{display:flex;gap:8px;align-items:center;font-size:13px;margin-top:14px}
+.water-explorer .check input{width:18px;height:18px;accent-color:#267c79}
+.water-explorer .small{font-size:12px;line-height:1.7;color:var(--secondary)}
+.water-explorer .pool-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.water-explorer .pool-card{display:grid;gap:4px;min-width:0;border:1px solid var(--border);border-radius:8px;padding:8px;font-size:11px;color:var(--secondary)}
+.water-explorer .pool-card strong{font-size:20px;font-variant-numeric:tabular-nums;color:var(--ink)}
+.water-explorer .pool-card.occupied{border-color:#76a59d}
+.water-explorer .slow-jumps{display:grid;gap:8px;margin-top:18px}
+.water-explorer .slow-jumps p{font-size:13px;margin:0;color:var(--secondary)}
+.water-explorer .slow-jumps button{text-align:left}
+.water-explorer .water-detail{border-top:1px solid var(--border);padding-top:14px;margin-top:16px}
+.water-explorer .water-detail summary{font-size:14px;font-weight:600;cursor:pointer}
+.water-explorer .water-detail p{font-size:13px;line-height:1.8;color:var(--secondary)}
+html[data-reading-mode=kids] .water-explorer .water-academic,html[data-reading-mode=kids] .water-explorer .cloud-academic,html[data-reading-mode=academic] .water-explorer .cloud-kids{display:none}
+.water-explorer .cloud-study,.water-explorer .pore-study{margin:22px 0;min-width:0;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.water-explorer .cloud-study:not(.presentation-frame),.water-explorer .pore-study{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:22px;padding:22px}
+.water-explorer .cloud-study h2,.water-explorer .pore-study h2{font-size:21px;line-height:1.45;margin:6px 0 10px}
+.water-explorer .cloud-study p,.water-explorer .pore-study p{font-size:14px;line-height:1.8;color:var(--secondary)}
+.water-explorer #cloud-canvas{display:block;width:100%;height:480px;max-width:640px;min-width:0;align-self:center;background:#e1ebe5}
+.water-explorer .cloud-explanation h3{font-size:16px;margin-top:22px}
+.water-explorer .cloud-formula{font:21px/1.5 Georgia,'Times New Roman',serif!important;color:var(--ink)!important}
+.water-explorer .cloud-terms{font-size:11px!important}
+.water-explorer #pore-section{display:block;width:100%;height:auto;max-width:540px;justify-self:center}
+.water-explorer .pore-counts{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;font-size:13px;line-height:1.6}
+.water-explorer .pore-counts dd{font-size:18px;font-variant-numeric:tabular-nums;margin:0;color:#34766f}
+.water-explorer .ice-study{border:1px solid var(--border);border-radius:12px;padding:20px;margin:22px 0;background:var(--surface)}
+.water-explorer .ice-study h2{font-size:21px;line-height:1.4}
+.water-explorer .ice-study p{font-size:14px;line-height:1.8;color:var(--secondary)}
+.water-explorer .ice-study label{display:block;font-size:13px;line-height:1.7;margin-top:16px}
+.water-explorer .study-bridge{border-left:3px solid #8aada4;font-size:14px;line-height:1.85;margin:24px 0;padding:12px 18px;color:var(--secondary);background:var(--surface)}
+.water-explorer .long-study{min-width:0;scroll-margin-top:24px}
+.water-explorer .study-status{padding:24px;font-size:14px;border:1px solid var(--border);border-radius:12px}
+.water-explorer .return-to-batch{margin-top:16px}
+.water-explorer .grownups{border-top:1px solid var(--border);padding-top:20px;margin-top:32px;font-size:14px;line-height:1.85;color:var(--secondary)}
+.water-explorer .grownups summary{font-size:16px;font-weight:650;color:var(--ink);cursor:pointer}
+.water-explorer .related{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:28px 0}
+.water-explorer .related h2{width:100%;font-size:19px}
+.water-explorer .related a{padding:10px 14px;border:1px solid var(--border);border-radius:9px;color:var(--accent);text-decoration:none;font-size:14px}
+.water-explorer .observation-toolbar{align-items:center;gap:8px;flex-wrap:wrap}
+.water-explorer .observation-title{font-size:14px;font-weight:650;margin-right:auto}
+.water-explorer .reading-mode-disclosure,.water-explorer .reading-mode-hint{display:none}
 @media(min-width:1000px){
-html.presentation-page[data-topic-ui] { .presentation-notes .controls { display:block!important; } .presentation-choices #views { gap:4px; } .presentation-choices #views button { padding:7px 9px; }}
+ :root[data-wiki-document] .water-explorer .lab.presentation-frame{height:max(500px,calc(100dvh - var(--observation-top,120px)));min-height:0}
+ :root[data-wiki-document] .water-explorer .lab .presentation-visual{height:0;min-height:0;flex:1;align-self:stretch;aspect-ratio:auto}
+ :root[data-wiki-document] .water-explorer .lab .presentation-stage{min-height:0;overflow:hidden}
+ :root[data-wiki-document] .water-explorer .lab .presentation-transport{padding:8px 16px}
+ :root[data-wiki-document] .water-explorer .cloud-study.presentation-frame{height:min(600px,80dvh);min-height:460px}
+ .water-explorer .cloud-study .presentation-visual{justify-content:center;background:#e1ebe5}
+ .water-explorer .long-study .presentation-frame .glacier-workspace{display:block}
+ .water-explorer .long-study .presentation-frame .gw-controls{display:block}
+ .water-explorer .long-study .presentation-frame .gw-control{margin-bottom:12px}
+ .water-explorer .long-study .presentation-frame .gw-scene svg{width:100%;height:100%;min-height:0}
 }
-
-.batch-readout{padding:12px 14px;margin:0 0 20px;border-radius:14px;background:color-mix(in srgb,var(--surface) 85%,#afc6c5);border:1px solid var(--border)}
-.batch-readout strong{font-size:13px;line-height:1.5}
-.batch-readout p{margin:7px 0 0;font-size:15px;line-height:1.6;font-variant-numeric:tabular-nums}
-.cloud-jump{width:100%;margin:0 0 18px;text-align:left;background:var(--tint)}
-.cloud-explanation{margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
-.cloud-explanation h3{font-size:16px;line-height:1.45;margin:0 0 8px}
-.cloud-explanation p{margin:8px 0;font-size:13px;line-height:1.7}
-.cloud-explanation .cloud-formula{font:20px/1.5 Georgia,'Times New Roman',serif;color:var(--ink)}
-.cloud-explanation .cloud-terms{font-size:11px;color:var(--secondary)}
-html[data-reading-mode="kids"] .cloud-academic,html[data-reading-mode="academic"] .cloud-kids{display:none}
-
-@media(min-width:1000px){html.presentation-page[data-topic-ui] .presentation-frame .glacier-workspace{display:block}html.presentation-page[data-topic-ui] .presentation-frame .gw-controls{display:block}html.presentation-page[data-topic-ui] .presentation-frame .gw-control{margin-bottom:12px}html.presentation-page[data-topic-ui] .presentation-frame .glacier-key{font-size:12px;margin:6px}html.presentation-page[data-topic-ui] .presentation-frame .gw-scene svg{width:100%;height:100%;min-height:0}}
-
-@media(min-width:1000px){
-  html.presentation-page[data-topic-ui] .lab.presentation-frame{height:max(650px,calc(100dvh - var(--observation-top,180px)))}
-  html.presentation-page[data-topic-ui] .cloud-study.presentation-frame{align-items:stretch;height:min(560px,78dvh);min-height:420px}
-  html.presentation-page[data-topic-ui] .cloud-study .presentation-visual{align-items:center;background:linear-gradient(#a7c8d8,#e6e8d3)}
-  html.presentation-page[data-topic-ui] .cloud-study #cloud-canvas{max-width:540px;align-self:center}
-  html.presentation-page[data-topic-ui] .lab .presentation-choices .scene-top{min-height:0;align-items:center;gap:18px}
-  html.presentation-page[data-topic-ui] .lab .presentation-choices .scene-top .check{white-space:nowrap}
-  html.presentation-page[data-topic-ui] .lab .presentation-visual>svg{aspect-ratio:auto;height:100%!important}
-  html.presentation-page[data-topic-ui] .lab .presentation-notes .scene-column{display:block!important}
-  html.presentation-page[data-topic-ui] .lab .presentation-notes .slow-jumps{margin:0 0 18px}
+@media(max-width:999px){
+ .water-explorer .lab .basin-stage{height:min(62dvh,550px);min-height:360px;max-height:none;flex:none}
+ .water-explorer .lab .presentation-stage{overflow:hidden}
+ .water-explorer .stage-controls{grid-template-columns:minmax(0,1fr) auto;gap:6px 10px}
+ :root#document-host .water-explorer .lab :is(.stage-controls,.presentation-transport:has(>#play)){grid-template-columns:minmax(0,1fr) auto;gap:6px 10px}
+ .water-explorer .lab .presentation-transport #play{grid-row:1;grid-column:1;justify-self:start;min-width:0}
+ .water-explorer .stage-controls #play{min-width:0;justify-self:start}
+ .water-explorer .batch-progress{grid-row:2;grid-column:1}
+ .water-explorer #progress-value{grid-row:2;grid-column:2}
+ .water-explorer #reset{grid-row:1;grid-column:2;font-size:12px}
+ .water-explorer .batch-readout{padding:8px 16px}
+ .water-explorer .batch-readout p{font-size:12px}
+ .water-explorer .batch-readout #basin-scale{font-size:10px}
+ .water-explorer .basin-camera{right:10px;bottom:10px;gap:5px}
+ .water-explorer .cloud-study:not(.presentation-frame),.water-explorer .pore-study{grid-template-columns:1fr;padding:16px;gap:12px}
+ .water-explorer .pore-study #pore-section{grid-row:1}
+ .water-explorer #cloud-canvas{height:420px}
+ .water-explorer .observation-title{display:none}
+ .water-explorer .ice-study{padding:16px}
+ .water-explorer .study-bridge{padding:12px 14px}
+ .water-explorer .presentation-frame.observation-expanded .basin-stage{flex:1;height:0;min-height:220px}
+ .water-explorer .presentation-frame.observation-expanded #basin-canvas{max-height:none!important}
 }
-
-.study-content>header.reader-compact-header{display:none}
-.observation-toolbar{align-items:center;gap:8px;flex-wrap:wrap}
-.observation-toolbar>.reading-mode-disclosure{margin:0}
-.presentation-stage>.batch-readout{flex:none;padding:10px 16px;background:var(--surface);border-top:1px solid var(--border);color:var(--ink)}
-.presentation-stage>.batch-readout>strong{font-size:13px;line-height:1.5}
-.presentation-stage>.batch-readout p{margin:4px 0 0;font-size:13px;line-height:1.6;color:var(--secondary)}
-
-.presentation-frame .batch-readout{border:0;border-radius:0;box-shadow:none;border-top:1px solid var(--border);margin:0;padding:10px 16px;font-size:13px;line-height:1.65;background:var(--surface)}
-.presentation-frame .observation-toolbar>.reading-mode-disclosure{margin:0}
-
-:root[data-wiki-document] .observation-toolbar>button[aria-controls]{font-size:13px;line-height:1.5;white-space:normal;overflow-wrap:normal;min-width:0;padding:8px 10px;min-height:44px}
+@media(max-width:600px){
+ :root[data-wiki-document] .water-explorer .lab:not(.observation-expanded) .basin-stage{height:clamp(300px,96vw,440px);min-height:0}
+}

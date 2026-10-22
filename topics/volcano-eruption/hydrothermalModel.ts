@@ -9,6 +9,9 @@ export type HydrothermalView = 'section' | 'landscape';
 export type HydrothermalPoint = [number, number, number];
 export const DEFAULT_HYDROTHERMAL_SETTINGS: HydrothermalSettings = { supply: .75, connected: true };
 export const HYDROTHERMAL_SAMPLES = 72;
+export const HYDROTHERMAL_POOL_SAMPLES = 20;
+export const HYDROTHERMAL_MIST_SAMPLES = 24;
+export const HYDROTHERMAL_BANK_ROCKS = 44;
 export const HOT_ROCK = { x: -.4, y: -2.9, z: -.9, rx: 2.2, ry: .95, rz: 1.8 } as const;
 export const POOL = { x: 2.82, z: .12, rx: 1.22, rz: .86, bottom: .10, rim: .72, maxDepth: .47 } as const;
 export const unit = (n: number) => Number.isFinite(n) ? Math.min(1, Math.max(0, n)) : 0;
@@ -29,9 +32,16 @@ export function hydrothermalFrame(progress: number, input: HydrothermalSettings 
   const pool = unit((discharge - .12) / .70) * ramp(.78, 1, p);
   const stage: 0 | 1 | 2 | 3 = wetFront < .42 ? 0 : wetFront < .66 ? 1 : wetFront < .94 ? 2 : 3;
   const reason = settings.supply <= .12 ? 'low-supply' : !settings.connected ? 'disconnected' : 'none';
+  const relativeHeat = ramp(.42, .66, wetFront);
+  // Qualitative display terms share the supplied spring state. The selected
+  // cool-air illustration permits visible condensation without a boiling,
+  // temperature, humidity, evaporation or water-volume calculation.
+  const poolWarmth = pool > 0 ? relativeHeat * ramp(.94, 1, wetFront) : 0;
+  const poolActivity = poolWarmth * Math.sqrt(discharge);
+  const condensation = poolWarmth * ramp(.01, .42, pool) * (.5 + .5 * settings.supply);
   return { p, settings, front, wetFront, recharge, heating, ascent, discharge, pool, stage,
     limited: reason !== 'none', reason, waterLevel: POOL.bottom + POOL.maxDepth * pool,
-    relativeHeat: ramp(.42, .66, wetFront), hotRock: 1 };
+    relativeHeat, poolWarmth, poolActivity, condensation, hotRock: 1 };
 }
 export type HydrothermalFrame = ReturnType<typeof hydrothermalFrame>;
 export function hydrothermalReadout(progress: number, settings: HydrothermalSettings) {
@@ -70,6 +80,61 @@ export function poolShore(angle: number, frame: HydrothermalFrame): Hydrothermal
   const radius = frame.pool > 0 ? ((frame.waterLevel - POOL.bottom) / (POOL.rim - POOL.bottom)) ** .25 * poolOutline(angle) : 0;
   return [POOL.x + Math.cos(angle) * POOL.rx * radius, frame.waterLevel, POOL.z + Math.sin(angle) * POOL.rz * radius];
 }
+/** Stable bank fragments form a few unequal outcrops, leaving open mineral
+ * shore between them. Their positions describe appearance, not deposition. */
+export function hydrothermalBankRock(id: number) {
+  const cluster = id % 4, centers = [.10, 2.25, 3.98, 5.52], spreads = [.31, .40, .26, .20];
+  const angle = centers[cluster] + (hydroSeed(id + 1913) - .5) * spreads[cluster] * 2;
+  const radial = poolOutline(angle) * (1.02 + hydroSeed(id + 1949) ** 1.6 * .44);
+  const x = POOL.x + Math.cos(angle) * POOL.rx * radial, z = POOL.z + Math.sin(angle) * POOL.rz * radial;
+  const size = id % 11 === 0 ? .15 + hydroSeed(id + 1987) * .07 : .025 + hydroSeed(id + 1999) ** 1.7 * .10;
+  const scale: HydrothermalPoint = [size * (.85 + hydroSeed(id + 2011) * 1.5), size * (.35 + hydroSeed(id + 2039) * .36), size * (.65 + hydroSeed(id + 2063) * .8)];
+  return { id, cluster, angle, position: [x, hydrothermalTerrain(x, z) + scale[1] * .16, z] as HydrothermalPoint, scale,
+    rotation: [(hydroSeed(id + 2081) - .5) * .44, hydroSeed(id + 2089) * Math.PI, (hydroSeed(id + 2099) - .5) * .35] as HydrothermalPoint };
+}
+/** Relative heat along the explanatory water route, shared by its film and
+ * tracers. Warm color is a code, not visible hot water or a thermometer. */
+export function hydrothermalRouteHeat(t: number) {
+  return ramp(.42, .66, t) * (1 - .16 * ramp(.82, 1, t));
+}
+const detailUnit = (value: number) => ((value % 1) + 1) % 1;
+/** Retained circulation marks stay inside the supplied pool's actual bed and
+ * water level. Their closed loops only identify gentle convection; they are
+ * not solved flow paths or additional water entering the balance. */
+export function hydrothermalPoolSample(id: number, frame: HydrothermalFrame, detailPhase = 0) {
+  const phase = Number.isFinite(detailPhase) ? detailPhase : 0;
+  const angle = hydroSeed(id + 1331) * Math.PI * 2;
+  const positionAt = (offset: number): HydrothermalPoint => {
+    const turn = detailUnit(hydroSeed(id + 1409) + offset) * Math.PI * 2;
+    const edge = poolShore(angle, frame), radial = .37 * (1 - Math.cos(turn));
+    const x = POOL.x + (edge[0] - POOL.x) * radial, z = POOL.z + (edge[2] - POOL.z) * radial;
+    const bed = hydrothermalTerrain(x, z), y = bed + Math.max(0, frame.waterLevel - bed) * (.5 + .42 * Math.sin(turn));
+    return [x, y, z];
+  };
+  const position = positionAt(phase), before = positionAt(phase - .002), after = positionAt(phase + .002);
+  const clearance = Math.max(0, Math.min(position[1] - hydrothermalTerrain(position[0], position[2]), frame.waterLevel - position[1]));
+  return { id, position, direction: after.map((value, axis) => value - before[axis]) as HydrothermalPoint,
+    width: Math.min(.009 + hydroSeed(id + 1511) * .007, clearance * .20), visible: frame.poolActivity > 0,
+    heat: frame.poolWarmth, activity: frame.poolActivity };
+}
+/** Finite condensation wisps start over wet pool points, then rise and disperse
+ * in the selected cool air. No particles are emitted by dry hot rock. */
+export function hydrothermalMist(id: number, frame: HydrothermalFrame, detailPhase = 0) {
+  const phase = Number.isFinite(detailPhase) ? detailPhase : 0;
+  const rising = id % 3 === 0, life = detailUnit(hydroSeed(id + 1621) + phase * (rising ? 2 : 3));
+  // The supplied route emerges from the left side. Restrict origins to that
+  // part of the wet pool so condensation never forms a uniform surface lid.
+  const angle = Math.PI + (hydroSeed(id + 1697) - .5) * 1.5, edge = poolShore(angle, frame);
+  const radius = .12 + Math.sqrt(hydroSeed(id + 1787)) * .50;
+  const origin: HydrothermalPoint = [POOL.x + (edge[0] - POOL.x) * radius, frame.waterLevel + .025, POOL.z + (edge[2] - POOL.z) * radius];
+  const rise = rising ? (.78 + hydroSeed(id + 1831) * .28) * life : .025 + life * .10;
+  const position: HydrothermalPoint = [origin[0] + life * (.04 + .05 * Math.sin(id * 2.1 + life * Math.PI * 2)), origin[1] + rise, origin[2] + life * .045];
+  const width = rising ? (.10 + hydroSeed(id + 1867) * .10) * (1 + life * .65) : (.18 + hydroSeed(id + 1867) * .12) * (1 + life * .35);
+  const height = rising ? .21 + life * .18 + hydroSeed(id + 1871) * .08 : .055 + life * .055;
+  return { id, origin, position, size: Math.max(width, height), width, height, layer: rising ? 'rising' as const : 'surface' as const, life,
+    opacity: frame.condensation * Math.sin(life * Math.PI) ** .85 * (rising ? .94 : .38),
+    visible: frame.condensation > 0 };
+}
 /** Fixed tracer identities illustrate a supplied route. A phase wrap replaces
  * a presentation tracer at the input; it is not recirculation of the same
  * molecule, an extra water source, or a second scientific timeline. */
@@ -78,7 +143,7 @@ export function hydrothermalSample(id: number, frame: HydrothermalFrame, detailP
   const position = hydrothermalRoute(t), before = hydrothermalRoute(t - .002), after = hydrothermalRoute(t + .002);
   const width = .015 + hydroSeed(id + 511) * .022;
   position[2] += (hydroSeed(id + 171) - .5) * .045;
-  const heat = ramp(.42, .66, t) * (1 - .16 * ramp(.82, 1, t));
+  const heat = hydrothermalRouteHeat(t);
   return { id, source: 'precipitation' as const, phase: 'liquid' as const, t, position,
     direction: after.map((value, axis) => value - before[axis]) as HydrothermalPoint,
     visible: hydroSeed(id + 971) < frame.settings.supply && t <= frame.wetFront,

@@ -2,6 +2,9 @@ import type { Settings } from './model.ts';
 import { buoyancy } from './model.ts';
 import { t } from './i18n.ts';
 import { TankScene, type TankGeometry } from './tankScene.ts';
+import { drawPressureSection } from './pressureView.ts';
+
+export type Observation = 'tank' | 'pressure' | 'displacement';
 
 type Result = ReturnType<typeof buoyancy>;
 type Geometry = TankGeometry;
@@ -35,16 +38,16 @@ const definitions = (g:Geometry) => `<defs>
  <marker id="buoy-floor" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="2.3" markerHeight="2.3" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#71807a"/></marker>
  </defs>`;
 
-function geometry(state: Settings, result: Result): Geometry {
+export function experimentGeometry(state: Settings, result: Result): Geometry {
  const boat = state.experiment === 'boat' && state.boat, held = state.experiment === 'depth';
  const size = 150 * Math.cbrt(result.solidVolume / 600);
  const wood = state.experiment === 'objects' && state.object === 'wood';
  const width = boat ? 260 * result.capacity / 1400 : held ? 120 : wood ? 150 : size;
- const height = boat ? 100 : held ? 120 : wood ? 94 : size;
+ const height = boat ? 94 : held ? 120 : wood ? 94 : size;
  // A shared empty-tank datum makes different displacements comparable; the rise is enlarged for teaching.
  const water = 245 - result.displaced / 20;
  // Keep the existing trapezoidal hull's draft-volume relation.
- const draft = boat ? -160 + Math.sqrt(25600 + 42000 * result.fraction) : height * result.fraction;
+ const draft = boat ? (-160 + Math.sqrt(25600 + 42000 * result.fraction))*height/100 : height * result.fraction;
  return { water, width, height, bottom: held ? water + height * state.depth / 100 : result.floating ? water + draft : 440, cup: 438 - result.displaced / 9 };
 }
 
@@ -179,24 +182,41 @@ export class BuoyancyScene {
  private forces=true;
  private identity='';
  private form=0;
+ private observation:Observation='tank';
+ private academic=false;
+ private settled=true;
  private disposed=false;
  private readonly reduced=matchMedia('(prefers-reduced-motion: reduce)');
  constructor(private readonly svg:SVGSVGElement,private readonly status:HTMLElement) {
-  try{this.tank=TankScene.create(svg,()=>{this.svg.dataset.renderer='section';if(this.current)this.draw(this.current,0,true);});this.svg.dataset.renderer='webgl';}
+  const holder=document.createElement('div');holder.className='buoyancy-stage';holder.dataset.view='tank';svg.before(holder);holder.append(svg);
+  try{this.tank=TankScene.create(svg,()=>{this.svg.dataset.renderer='section';this.redraw();},()=>this.redraw());this.svg.dataset.renderer='webgl';}
   catch{this.svg.dataset.renderer='section';}
   document.addEventListener('visibilitychange',this.onVisibility);
   window.addEventListener('pagehide',this.onPageHide);
   this.reduced.addEventListener('change',this.onMotionPreference);
  }
+ observe(observation:Observation,academic:boolean){
+  const changed=this.observation!==observation;
+  this.observation=observation;this.academic=academic;this.svg.parentElement!.dataset.view=observation;
+  if(changed)this.tank?.setView(observation==='displacement'?'displacement':'tank',observation!=='pressure');
+  this.redraw();
+ }
+ private redraw(){if(this.current)this.draw(this.current,0,this.settled,this.settled?undefined:this.form);}
  set(state:Settings,result:Result,forces:boolean,instant=false) {
   const previous=this.state;
+  // A lens, explanation, or vector toggle is not a new physical transition.
+  if(previous&&Object.keys(state).every(key=>state[key as keyof Settings]===previous[key as keyof Settings])){
+   this.forces=forces;this.redraw();return;
+  }
   const fromForm=this.form;
-  const next=geometry(state,result), identity=state.experiment==='boat'?(state.boat?'boat':'clay'):state.experiment==='depth'?'held':state.object;
+  const next=experimentGeometry(state,result), identity=state.experiment==='boat'?(state.boat?'boat':'clay'):state.experiment==='depth'?'held':state.object;
   const changed=this.identity!==identity;
   const from=this.current?{...this.current}:next;
   const reshaping=previous?.experiment==='boat'&&state.experiment==='boat'&&(previous.boat!==state.boat||Math.abs(this.form-(state.boat?1:0))>.000001);
+  if(!reshaping)this.form=state.experiment==='boat'&&state.boat?1:0;
   if(changed&&this.current&&identity!=='held'&&!reshaping)Object.assign(from,{...next,bottom:next.water-8,water:245,cup:438});
   this.state={...state};this.result=result;this.target=next;this.forces=forces;this.identity=identity;
+  this.svg.dataset.sample=identity;this.svg.dataset.cargo=String(state.cargo);this.svg.dataset.depth=String(state.depth);this.svg.dataset.water=state.salt?'salt':'fresh';
   cancelAnimationFrame(this.frame);this.frame=0;
   const moved=reshaping||!this.current||Object.keys(next).some(key=>Math.abs(next[key as keyof Geometry]-this.current![key as keyof Geometry])>.001);
   if(!this.current||!moved||instant||this.reduced.matches||document.hidden){this.settle();return;}
@@ -220,11 +240,14 @@ export class BuoyancyScene {
   };
   this.frame=requestAnimationFrame(tick);
  }
- private settle(){cancelAnimationFrame(this.frame);this.frame=0;if(this.target){this.current={...this.target};this.form=this.state?.experiment==='boat'&&this.state.boat?1:0;this.draw(this.current,0,true);}this.svg.setAttribute('aria-busy','false');this.status.textContent=this.state?.experiment==='depth'?t('悬线保持绷紧；每个位置都比较停稳后的受力。'):t('换个物品，或慢慢加一点货物。');}
+ private settle(){cancelAnimationFrame(this.frame);this.frame=0;if(this.target){this.current={...this.target};this.form=this.state?.experiment==='boat'&&this.state.boat?1:0;this.draw(this.current,0,true);}this.svg.setAttribute('aria-busy','false');this.status.textContent='';}
  private draw(g:Geometry,ripple:number,settled:boolean,reshaping?:number){
   if(!this.state||!this.result)return;
+  this.settled=settled;
   const s=this.state,r=this.result;
-  if(this.tank?.available){this.tank.draw({state:s,geometry:g,form:s.experiment==='boat'?(reshaping??(s.boat?1:0)):0,flooded:r.flooded,displaced:r.displaced,ripple});this.drawSpatial(g,settled);return;}
+  if(this.observation==='pressure'){drawPressureSection(this.svg,s,g,r,settled,reshaping);return;}
+  if(this.tank?.available){this.tank.draw({state:s,geometry:g,form:s.experiment==='boat'?(reshaping??this.form):0,flooded:r.flooded,displaced:r.displaced,ripple});this.drawSpatial(g,settled);return;}
+  this.svg.setAttribute('viewBox',this.observation==='displacement'?'0 0 850 540':'50 35 600 485');this.svg.setAttribute('preserveAspectRatio','xMidYMid meet');
   const {body,air,cargo,floodedInterior}=objectMarkup(s,g,r.flooded,reshaping);
   const x=365-g.width/2,y=g.bottom-g.height,amplitude=ripple*5;
   const surface=`M82 ${g.water}Q170 ${g.water-amplitude} 260 ${g.water}T440 ${g.water}T610 ${g.water}`;
@@ -269,10 +292,11 @@ export class BuoyancyScene {
   <path d="M81 89H612" stroke="#f9fcfd" stroke-width="1.4" fill="none"/>
   <path d="M101 99V${Math.max(114,g.water-24)}" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".55"/>
   <path d="M110 110V${Math.max(123,g.water-45)}" stroke="#fff" stroke-width="1" stroke-linecap="round" opacity=".65"/>
-  ${measuringCup(g,r.displaced)}${text(345,511,s.experiment==='boat'?t('同一团泥 · 600 g，水位变化已放大'):t('水位变化已放大'),14,'#5d5e58',true)}`;
+  ${this.observation==='displacement'?measuringCup(g,r.displaced):''}${text(345,501,s.experiment==='boat'?t('同一团泥 · 600 g，水位变化已放大'):t('水位变化已放大'),14,'#5d5e58',true)}`;
  }
  private drawSpatial(g:Geometry,settled:boolean){
   const s=this.state!,r=this.result!,tank=this.tank!,compact=matchMedia('(max-width:750px)').matches;
+  const {width,height}=tank.size;this.svg.setAttribute('viewBox',`0 0 ${width} ${height}`);this.svg.setAttribute('preserveAspectRatio','none');
   const project=(x:number,y:number,z=0)=>tank.project(x,y,z),label=(p:[number,number],value:string,size=15,color='#435963')=>text(p[0],p[1],value,size,color);
   const arrow=(id:string,point:[number,number],newtons:number,up:boolean,color:string,marker:string)=>`<path id="${id}" data-newtons="${newtons}" d="M${point[0]} ${point[1]}v${(up?-1:1)*newtons*8}" stroke="${color}" stroke-width="4.5" stroke-linecap="round" marker-end="url(#${marker})"/>`;
   let forces='';
@@ -280,7 +304,7 @@ export class BuoyancyScene {
    const buoy=project(365-g.width/2-42,Math.min(g.bottom+8,427),.8),weight=project(365+g.width/2+45,g.bottom-g.height-14,.35);
    if(r.force>0)forces+=arrow('buoyancy-force',buoy,r.force,true,'#178b70','buoy-up')+label([buoy[0],buoy[1]+25],t('浮力'),15,'#147b64');
    forces+=arrow('weight-force',weight,r.weight,false,'#aa773e','buoy-down')+label([weight[0]+38,weight[1]-15],t('重力'),15,'#8d6237');
-   if(r.floorSupport>0){const p=project(365,475,.5);forces+=arrow('floor-force',p,r.floorSupport,true,'#71807a','buoy-floor')+label([p[0]+20,p[1]+28],t('箱底也在托住'),13,'#586c62');}
+   if(r.floorSupport>0){const p=project(365,456,.5);forces+=arrow('floor-force',p,r.floorSupport,true,'#71807a','buoy-floor')+label([p[0]+25,p[1]+24],t('箱底也在托住'),13,'#586c62');}
    if(r.held){const p=project(365,g.bottom-g.height-5,0);forces+=arrow('cord-force',p,r.tension,true,'#647782','buoy-cord')+label([p[0]+83,p[1]-r.tension*8+4],t('绳的张力'),14,'#526975');}
   }
   let rim='';
@@ -288,8 +312,10 @@ export class BuoyancyScene {
    const x=365-g.width/2-16,a=project(x,g.bottom-g.height,0),b=project(x,g.water,0),color=r.flooded?'#a54b3f':'#936d44';
    rim=`<path d="M${a[0]} ${a[1]}h8m-4 0V${b[1]}m-4 0h8" stroke="${color}" stroke-width="1.7" fill="none"/>`+label([a[0]-20,Math.min(a[1],b[1])-15],r.flooded?(compact?t('进水'):t('水越过船沿')):(compact?t('船沿'):t('船沿到水面')),14,color);
   }
-  const cup=tank.project(725,180),amount=tank.project(725,465),datum=tank.project(155,250,-1.01);
-  this.svg.innerHTML=`${definitions(g)}${forces}${rim}${label([cup[0],cup[1]-18],t('排开的水'))}${label([amount[0],amount[1]+28],`${r.displaced.toFixed(0)} mL`,17)}<g class="water-datum">${label([datum[0],datum[1]+18],compact?t('基准水位'):t('空箱水位'),13,'#637b86')}</g>${text(385,518,s.experiment==='boat'?t('同一团泥 · 600 g，水位变化已放大'):t('水位变化已放大'),13,'#66716e',true)}`;
+  const cup=tank.project(725,180),amount=tank.project(725,465);
+  const comparison=this.observation==='displacement'?`${label([cup[0],cup[1]-10],t('排开的水'))}${label([amount[0],amount[1]+20],`${r.displaced.toFixed(0)} mL`,17)}`:'';
+  const caption=this.academic?(s.experiment==='boat'?t('同一团泥 · 600 g，水位变化已放大'):t('水位变化已放大')):'';
+  this.svg.innerHTML=`${definitions(g)}${forces}${rim}${comparison}${caption?text(width/2,height-12,caption,12,'#66716e',true):''}`;
  }
  private onVisibility=()=>{if(document.hidden)this.settle();};
  private onPageHide=(event:PageTransitionEvent)=>{if(event.persisted)this.settle();else this.dispose();};

@@ -1,18 +1,108 @@
 @import '@glenzli/wiki-reader/study-base.css';
-*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}main{max-width:1240px;margin:auto;padding:36px 30px 64px}button,input{font:inherit}button{min-height:44px;border:1px solid var(--border);border-radius:10px;padding:9px 15px;background:var(--surface);color:var(--ink);cursor:pointer}button:hover{border-color:var(--accent)}button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#fff)}a{color:var(--accent)}:focus-visible{outline:3px solid var(--accent);outline-offset:3px}h1,h2,h3,p{margin-top:0}h1{line-height:1.18;font-size:clamp(2.2rem,4.5vw,3.6rem);font-weight:600;letter-spacing:-.035em}h2{font-size:clamp(1.5rem,2.4vw,2rem);line-height:1.3}h3{font-size:1.05rem;line-height:1.5;margin-bottom:10px}.eyebrow{color:var(--secondary);font-size:.8rem;letter-spacing:.09em;margin-bottom:15px}.hero{display:grid;grid-template-columns:1.05fr 1fr;gap:46px;align-items:center;margin:20px 0 62px}.hero-art{display:block;width:100%;height:auto;border-radius:18px}.intro{max-width:36em;color:var(--secondary);font-size:1.08rem}.jump{display:inline-block;padding:10px 0;font-weight:600}.lab{padding:26px;border:1px solid var(--border);border-radius:18px;background:var(--surface)}.lab-head p:last-child{max-width:58em;color:var(--secondary)}.presets,.chapter-switch{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}.chapter-switch{padding-top:12px;border-top:1px solid var(--border)}.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:24px;align-items:start}.observation{min-width:0}.observation svg{display:block;width:100%;height:auto;border-radius:16px}.scene-caption,.fineprint,.control-note{color:var(--secondary);font-size:.82rem;line-height:1.6;margin:10px 0}.legend{display:flex;flex-wrap:wrap;gap:7px 18px;font-size:.78rem;margin:14px 0}.legend span{display:flex;align-items:center;gap:7px}.legend i{width:17px;height:3px;border-radius:2px;background:#5396a5}.legend .lift{background:#478565}.legend .weight{background:#86687d}.legend .drag{background:#ad6a4c}.legend .thrust{background:#bd9243}.legend .support{background:#627887}.transport{border-top:1px solid var(--border);padding-top:16px;display:flex;gap:8px;flex-wrap:wrap}.seek{width:100%;font-size:.87rem;margin-top:6px}.seek output{float:right;color:var(--secondary)}input[type=range]{display:block;width:100%;height:44px;accent-color:var(--accent);margin:2px 0 0;cursor:pointer}.experiment{padding:20px;border:1px solid var(--border);border-radius:14px;background:var(--page)}.slider{display:block;margin:18px 0;font-size:.88rem}.slider span{display:block}.slider output{display:block;color:var(--accent);font-size:1.08rem;font-variant-numeric:tabular-nums;margin-top:3px}.current{border-top:1px solid var(--border);margin-top:18px;padding-top:18px}.current p{margin-bottom:0;font-size:.92rem}.support-note{font-size:.85rem;color:var(--secondary);min-height:1.4em}.story{margin:54px 0 34px}.story-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;margin:24px 0}.story-grid article{padding:22px;background:var(--surface);border:1px solid var(--border);border-radius:14px}.story-grid p{font-size:.95rem;margin-bottom:0}.story-number{font-size:.85rem;color:var(--accent);display:block;margin-bottom:10px}details{border-top:1px solid var(--border);padding:14px 0}summary{cursor:pointer;min-height:44px;padding:8px 0;font-weight:600}details p{max-width:80em;color:var(--secondary);font-size:.92rem}details p:first-of-type{margin-top:12px}.next-reading{padding:24px;border:1px solid var(--border);border-radius:14px;margin:34px 0}.next-reading a{display:inline-block;margin:4px 24px 4px 0}.references{margin-bottom:16px}html[data-reading-mode=kids] #model-readout{font-size:.9rem}[hidden]{display:none!important}@media(max-width:900px){.lab-grid{grid-template-columns:1fr}.experiment{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}.experiment h3,.experiment .control-note,.experiment .current,.experiment .fineprint,.experiment details{grid-column:1/-1}.hero{gap:26px}.story-grid{gap:14px}}@media(max-width:600px){main{padding:24px 18px 42px}.hero{grid-template-columns:1fr;gap:22px;margin-top:12px;margin-bottom:34px}.hero-art{max-height:220px;object-fit:cover}.hero h1{font-size:2.35rem}.lab{padding:17px}.lab-head h2{font-size:1.45rem}.presets button,.chapter-switch button{flex:1 1 130px;font-size:.84rem;line-height:1.4}.lab-grid{gap:16px}.experiment{padding:16px;grid-template-columns:1fr}.slider{margin:12px 0}.transport button{padding:8px 11px;font-size:.82rem}.seek output{float:none;display:block}.story-grid{grid-template-columns:1fr;gap:12px}.story-grid article{padding:18px}.story{margin-top:34px}.legend{gap:7px 12px}.scene-caption{font-size:.78rem}.next-reading{padding:18px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
 
-/* The same wing/runway state fills the Reader stage; controls retain their nodes. */
-:root[data-wiki-document] .flight-visual{min-width:0;min-height:0}
-:root[data-wiki-document] .flight-visual>div:not([hidden]){display:flex;flex:1;flex-direction:column;min-height:0}
-:root[data-wiki-document] .flight-visual svg{flex:1;width:100%;height:0;min-height:240px;max-height:none}
-:root[data-wiki-document] .flight-visual .scene-caption{margin:6px 10px;font-size:11px;line-height:1.5}
-:root[data-wiki-document] .flight-visual .support-note{margin:4px 10px;font-size:12px}
-:root[data-wiki-document] .presentation-transport>.legend{flex:1 1 100%;padding:2px 10px;font-size:11px}
-@media(max-width:999px){:root[data-wiki-document] .flight-visual svg{height:50dvh;min-height:260px;flex:none}}
-
-/* Local refinement: readable evidence, restrained framing. */
-:root[data-wiki-document] .flight-visual .scene-caption,:root[data-wiki-document] .flight-visual .support-note{font-size:13px;line-height:1.65;padding:10px 14px;margin:0}
-:root[data-wiki-document] .presentation-transport>.legend{font-size:13px;line-height:1.6;gap:8px 16px;padding:0}
-.presentation-frame .observation-toolbar{gap:8px;align-items:center}.presentation-frame .presentation-transport label,.presentation-frame .presentation-transport output{font-size:13px;line-height:1.5}
-
-@media(max-width:999px){:root[data-wiki-document] .flight-visual svg{height:auto;min-height:0;aspect-ratio:600/390;flex:none}:root[data-wiki-document] .flight-visual #runway-scene{aspect-ratio:660/390}}
+.flight-study{line-height:1.7;color:var(--ink)}
+.flight-study *{box-sizing:border-box}
+.flight-study h1,.flight-study h2,.flight-study h3,.flight-study p{margin-top:0}
+.flight-study button,.flight-study input,.flight-study select{font:inherit}
+.flight-study button,.flight-study select{min-height:44px;border:1px solid var(--border);border-radius:8px;padding:8px 12px;background:var(--surface);color:var(--ink);cursor:pointer}
+.flight-study button:hover{border-color:var(--accent)}
+.flight-study button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#fff)}
+.flight-study :focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.flight-study [hidden]{display:none!important}
+.flight-heading h1{font-size:26px;line-height:1.3;margin:0 0 14px}
+:root[data-wiki-document] .flight-heading{display:none}
+.flight-questions,.flight-lenses,.flight-comparisons{display:flex;flex-wrap:wrap;gap:8px}
+.flight-questions button{text-align:left;flex:1 1 200px}
+.flight-display{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.flight-display label{display:flex;align-items:center;gap:8px;font-size:13px}
+.flight-display select{margin-left:5px}
+.flight-lab{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--surface)}
+.flight-visual{display:flex;flex-direction:column;min-width:0;min-height:0;background:#e5eef0}
+.scene-stage{position:relative;display:flex;flex:1;min-height:0;min-width:0;overflow:hidden}
+.flight-panel{display:flex;flex:1;position:relative;min-width:0;min-height:0}
+.flight-panel>svg,.flight-panel>canvas,#runway-fallback,#runway-fallback>svg{display:block;width:100%;height:100%;min-height:0}
+#runway-canvas{position:absolute;inset:0;touch-action:none}
+#runway-fallback{position:absolute;inset:0}
+.flight-visual .scene-caption{flex:none;background:var(--surface);color:var(--secondary);font-size:12px;line-height:1.6;margin:0;padding:8px 16px}
+.scene-action{position:absolute;z-index:2;left:14px;top:14px;max-width:calc(100% - 28px);font-size:13px!important;background:#fbfcf7ed!important;color:#244956!important;border-color:#a7bfc6!important;box-shadow:0 2px 10px #1b394b0d}
+.camera-hint{position:absolute;bottom:12px;left:16px;pointer-events:none;color:#204653;background:#f4f8f0d9;border:1px solid #a5bdc340;border-radius:5px;padding:4px 8px;font-size:11px}
+.render-error{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--surface);padding:10px 16px;font-size:12px;color:var(--secondary);border-top:1px solid var(--border)}
+.render-error button{font-size:12px}
+.flight-status{display:flex;gap:7px 18px;flex-wrap:wrap;align-items:center;font-size:12px;color:var(--secondary)}
+.flight-status strong{color:var(--ink);font-weight:600}
+.flight-status span{font-variant-numeric:tabular-nums}
+.transport{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.transport button,.flight-playback-row button{font-size:13px;line-height:1.3}
+#play-flight{font-weight:600}
+.flight-meters-row{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:5px 18px}
+.flight-playback-row{display:flex;align-items:center;flex-wrap:wrap;gap:8px}
+.seek{display:grid;grid-template-columns:1fr auto;align-items:center;flex:1 1 100%;font-size:12px;color:var(--secondary);gap:0 10px}
+.seek output{font-variant-numeric:tabular-nums;white-space:nowrap}
+.flight-study input[type=range]{width:100%;display:block;min-width:0;height:34px;accent-color:var(--accent);cursor:pointer;margin:2px 0 0}
+.seek input{grid-column:1/-1}
+.legend{display:flex;flex-wrap:wrap;gap:5px 16px;color:var(--secondary);font-size:11px;line-height:1.5}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:14px;height:3px;border-radius:2px;background:#5396a5}
+.legend .lift{background:#478565}.legend .weight{background:#86687d}.legend .drag{background:#ad6a4c}.legend .thrust{background:#bd9243}.legend .support{background:#627887}
+.flight-inspector{min-width:0}
+.flight-inspector .eyebrow{font-size:11px;letter-spacing:.02em;color:var(--secondary)}
+.flight-inspector h2{font-size:18px;line-height:1.45}
+.flight-inspector p{font-size:14px;line-height:1.75}
+.flight-inspector .watch{border-left:2px solid #809ea6;padding-left:12px;color:var(--secondary)}
+.flight-inspector #current-copy{border-top:1px solid var(--border);padding-top:12px}
+.flight-conditions{border-top:1px solid var(--border);padding-top:14px}
+.flight-conditions h3,.flight-inspector #stall-plot h3{font-size:14px}
+.slider{display:grid;grid-template-columns:1fr auto;gap:4px 10px;align-items:center;margin:14px 0;font-size:12px}
+.slider output{font-variant-numeric:tabular-nums;color:var(--ink)}
+.slider input{grid-column:1/-1}
+.flight-inspector .control-note{font-size:12px;color:var(--secondary);line-height:1.7}
+.flight-study details{border-top:1px solid var(--border);padding:10px 0}
+.flight-study summary{min-height:44px;padding:8px 0;cursor:pointer;font-size:14px;font-weight:600}
+.flight-study details p{font-size:14px;line-height:1.8;color:var(--secondary)}
+#coefficient-scene{display:block;width:100%;height:auto;overflow:visible;margin:8px 0;background:#eef2ef;border-radius:8px}
+.question-bridge{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin:18px 0 26px}
+.question-bridge p{font-size:14px;line-height:1.7;margin:0;flex:1 1 220px}
+.question-bridge button{font-size:13px}
+.story{margin:32px 0}.story h2,.next-reading h2{font-size:22px;line-height:1.4}.eyebrow{font-size:12px;letter-spacing:.05em;color:var(--secondary)}
+.story-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin:22px 0}
+.story-grid h3{font-size:16px;line-height:1.5;margin-bottom:8px}.story-grid p,.next-reading p{font-size:14px;line-height:1.85;color:var(--secondary)}
+.story-number{font-size:12px;color:var(--secondary);display:block;margin-bottom:7px}
+.next-reading{margin:28px 0}.next-reading a{display:inline-block;margin:4px 22px 4px 0;color:var(--accent);font-size:14px}
+.references li{font-size:14px;line-height:1.8;margin:7px 0}.references a{color:var(--accent)}
+/* The stage consumes the actual fitted Reader height. No nested width-derived ratio on desktop. */
+@media(min-width:1000px){
+ :root[data-wiki-document] .flight-visual{flex:1;min-height:0;height:0}
+ :root[data-wiki-document] .flight-visual .scene-stage{flex:1;min-height:0;height:0}
+ :root[data-wiki-document] .flight-visual .flight-panel{flex:1;min-height:0;height:100%}
+ :root[data-wiki-document] .flight-visual .flight-panel>svg{height:100%;min-height:0}
+ :root[data-wiki-document] .flight-lab .presentation-transport{gap:6px;padding-block:9px}
+ :root[data-wiki-document] .flight-lab .flight-meters-row>.flight-status{flex:1 1 auto}
+ :root[data-wiki-document] .flight-lab .flight-meters-row>.legend{flex:0 1 auto}
+ :root[data-wiki-document] .flight-lab .presentation-transport>.flight-playback-row{display:grid;grid-template-columns:auto auto auto minmax(180px,1fr);gap:10px}
+ :root[data-wiki-document] .flight-lab .flight-playback-row .seek{margin-left:10px}
+}
+@media(max-width:999px){
+ .flight-visual .scene-stage{flex:none;aspect-ratio:1.48;height:auto;width:100%}
+ .flight-visual .flight-panel{position:absolute;inset:0;height:100%}
+ .flight-inspector{padding:0}
+ .flight-conditions{max-width:560px}
+ .story-grid{gap:16px}
+}
+@media(max-width:600px){
+ .flight-visual .scene-stage{aspect-ratio:1.22}
+ .flight-visual .scene-caption{padding:9px 14px;font-size:11px;line-height:1.6}
+ .scene-action{left:10px;top:10px;font-size:12px!important;min-height:40px!important;padding:6px 10px!important}
+ .camera-hint{left:11px;bottom:10px;font-size:10px;padding:3px 7px}
+ .flight-lab .presentation-transport{padding:10px 14px;gap:8px}
+ .transport button,.flight-playback-row button{font-size:12px;min-height:42px;padding:7px 9px}
+ .flight-status{font-size:11px;gap:4px 12px}
+ .legend{font-size:10px;gap:5px 12px}
+ .story-grid{grid-template-columns:1fr;gap:16px}
+ .story h2,.next-reading h2{font-size:20px}
+ .question-bridge{margin:16px 0 24px;gap:9px}
+ .question-bridge button{font-size:12px}
+ .question-bridge p{font-size:13px}
+ .flight-questions button{flex-basis:100%}
+ .flight-display{align-items:stretch;flex-direction:column;gap:10px}
+}
+@media(prefers-reduced-motion:reduce){.flight-study *{scroll-behavior:auto!important}}

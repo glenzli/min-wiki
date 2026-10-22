@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PerspectiveCamera, Vector3 } from 'three';
+import { supportRelief } from '../supportGeometry3d.ts';
 import { basinDimensions, formationProgress, waterFraction, type Settings } from '../model.ts';
-import { ANGLES, BOTTOM, EXTENT, LAYERS, SCALE, SECTION_EXPOSED_START, SOLID_ACROSS, SOLID_DEPTH, PISTON_EDGE, PISTON_UNITS, MUSH_FLOOR, PISTON_TRAVEL, mushFloor, COLLAPSE_BLOCKS, blockBuffers, blockPolygon, blockAt, blockMotion, blockOffset, roofOffset, updateBlocks, storageCellBuffers, WALL_SITES, WALL_CLASTS, wallScar, wallFailure, clastSource, depositBuffers, updateDeposit, basementBuffers, pistonBase, pistonContact, pistonDrop, pistonBuffers, pistonRadius, pistonTrace, pistonTracks, updateStorage, boulderPose, cameraPose, cutRelief, faultBuffers, intrusionBuffers, horizon, lakeFrame, landscapeBuffers, planform, sectionBuffers, shoreRadius, shoreline, storageBuffers, storageDistance, surfaceBuffers, surfaceHeight, updateFault, updateSection, updateSurface, updateWater, waterBuffers, waterSectionBuffers, worldY, type Buffers } from '../geometry3d.ts';
+import { ANGLES, BOTTOM, EXTENT, LAYERS, SCALE, SECTION_EXPOSED_START, SOLID_ACROSS, SOLID_DEPTH, PISTON_EDGE, PISTON_UNITS, MUSH_FLOOR, PISTON_TRAVEL, mushFloor, COLLAPSE_BLOCKS, blockBuffers, blockPolygon, blockAt, blockMotion, blockOffset, roofOffset, updateBlocks, storageCellBuffers, WALL_SITES, WALL_CLASTS, wallScar, wallFailure, clastSource, depositBuffers, updateDeposit, basementBuffers, pistonBase, pistonContact, pistonDrop, pistonBuffers, pistonRadius, pistonTrace, pistonTracks, updateStorage, boulderPose, cameraPose, cutRelief, faultBuffers, faultCutDepth, faultPath, intrusionBuffers, horizon, lakeFrame, landscapeBuffers, planform, sectionBuffers, shoreRadius, shoreline, storageBuffers, storageDistance, surfaceBuffers, surfaceHeight, updateFault, updateFaultCut, updateSection, updateSurface, updateWater, waterBuffers, waterSectionBuffers, worldY, type Buffers } from '../geometry3d.ts';
 
 const settings: Settings = { basin: 'caldera', supply: .75, leak: 'low' };
 const close = (a: number, b: number, epsilon = 1e-5) => assert.ok(Math.abs(a - b) < epsilon, `${a} differs from ${b}`);
@@ -268,22 +269,30 @@ test('finite irregular source blocks retain their layers while differentially de
     for (const p of [.13, .23, .36, .48, .85, .23, .48]) {
       const frame = lakeFrame(p, settings); updateBlocks(data, frame);
       for (let i = 0; i < data.positions.length; i += 3) {
-        close(data.positions[i], source[i]); close(data.positions[i + 2], source[i + 2]);
+        close(data.positions[i], source[i]);
+        const recessed = half && data.samples![i / 3 * 4 + 3] ? faultCutDepth(data.samples![i / 3 * 4], data.positions[i + 1], frame) : 0;
+        close(data.positions[i + 2], source[i + 2] - recessed);
         close(data.positions[i + 1] - source[i + 1], blockOffset(id, data.samples![i / 3 * 4], data.samples![i / 3 * 4 + 1], frame));
       }
-      if (volume > .01) assert.ok(Math.abs(signedVolume(data) - volume) / volume < .01);
+      if (volume > .01) {
+        if (!half) assert.ok(Math.abs(signedVolume(data) - volume) / volume < .01);
+        else assert.ok(signedVolume(data) > 0 && signedVolume(data) <= volume * 1.01, 'the teaching cut can expose a recessed edge, while the whole-lake solid retains volume');
+      }
     }
     const snapshot = data.positions.slice(); updateBlocks(data, lakeFrame(.23, settings)); updateBlocks(data, lakeFrame(.48, settings)); assert.deepEqual(data.positions, snapshot);
   }
 });
 
-test('each filled mush region shares its moving block base and retains a solid remainder', () => {
+test('support remains below the moving roof with only bounded local separation', () => {
   for (const p of [.13, .23, .36, .48, .85]) for (let id = 0; id < COLLAPSE_BLOCKS.length; id++) {
     const frame = lakeFrame(p, settings), mush = storageCellBuffers(id, frame);
     for (let i = 0; i < mush.samples!.length; i += 4) {
-      const [x, z, t] = mush.samples!.slice(i, i + 3), y = mush.positions[i / 4 * 3 + 1], upper = pistonBase(x, z) + blockOffset(id, x, z, frame);
-      assert.ok(y >= mushFloor(x, z) - 1e-5); assert.ok(y <= upper + 1e-5); assert.ok(upper > mushFloor(x, z) + .10);
-      if (t === 0) close(y, pistonContact(PISTON_UNITS, x, z) + blockOffset(id, x, z, frame));
+      const [x, z, t] = mush.samples!.slice(i, i + 3), y = mush.positions[i / 4 * 3 + 1], roof = pistonBase(x, z) + blockOffset(id, x, z, frame);
+      assert.ok(y >= mushFloor(x, z) - 1e-5); assert.ok(y <= roof + 1e-5);
+      if (t === 0) {
+        assert.ok(roof - y <= 1.041); assert.ok(y > mushFloor(x, z) + .10);
+        if (supportRelief(x, z) === 0 || p >= .48) close(y, roof);
+      }
     }
   }
 });
@@ -303,6 +312,26 @@ test('fault damage is clipped to the current terrain rather than projecting abov
     const frame = lakeFrame(p, settings), data = faultBuffers(side, frame);
     for (let i = 0; i < data.positions.length - 6; i += 3) assert.ok(data.positions[i + 1] <= surfaceHeight(data.positions[i], data.positions[i + 2], frame) + 1e-5);
     for (let i = 0; i < data.normals!.length; i += 3) close(Math.hypot(...data.normals!.slice(i, i + 3)), 1);
+  }
+});
+
+test('fault cut has finite relief and terminates at the tracked roof base', () => {
+  for (const p of [.23, .30, .36, .44, .48]) for (const side of [-1, 1] as const) {
+    const frame = lakeFrame(p, settings), edge = side * pistonRadius(side < 0 ? Math.PI : 0), path = faultPath(side, frame);
+    assert.ok(path.at(-1)![1] > mushFloor(edge), 'fault marker must not run through the entire basement');
+    close(path.at(-1)![1], pistonBase(edge) + roofOffset(edge, 0, frame) - .10);
+    assert.equal(faultCutDepth(edge, mushFloor(edge) - .2, frame), 0);
+    assert.equal(faultCutDepth(edge + side * .3, 2.8, frame), 0);
+  }
+  const frame = lakeFrame(.23, settings), cut = blockBuffers(2, 1), snapshot = cut.positions.slice();
+  updateFaultCut(cut, frame); assert.ok(cut.positions.some((v, i) => i % 3 === 2 && v < snapshot[i] - .05));
+  updateFaultCut(cut, lakeFrame(0, settings)); assert.deepEqual(cut.positions, snapshot);
+  const full = blockBuffers(2, 1, false), original = full.positions.slice(); updateFaultCut(full, frame); assert.deepEqual(full.positions, original);
+  for (const unit of [0, 2, 8]) {
+    const host = sectionBuffers(unit, lakeFrame(0, settings)), direct = sectionBuffers(unit, frame);
+    updateFaultCut(host, frame); assert.deepEqual(host.positions, direct.positions);
+    updateSection(host, unit, lakeFrame(.36, settings)); updateSection(host, unit, frame);
+    assert.deepEqual(host.positions, direct.positions);
   }
 });
 

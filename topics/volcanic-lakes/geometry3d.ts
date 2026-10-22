@@ -1,8 +1,9 @@
 import { basinDimensions, calderaState, formationProgress, smooth, terrain, waterFraction, type Settings } from './model.ts';
+import { fractureRecess, refineSectionPerimeter, supportRelief, supportSeparation } from './supportGeometry3d.ts';
 
 export type XYZ = [number, number, number];
 export type LakeView = 'section' | 'landscape';
-export type Buffers = { positions: Float32Array; indices: number[]; uvs: Float32Array; depths?: Float32Array; normals?: Float32Array; samples?: Float32Array; exposedStart?: number; domain?: 'host' | 'mush'; source?: Float32Array; sourceNormals?: Float32Array; affineNormals?: boolean; contacts?: Float64Array; blockIds?: Int16Array };
+export type Buffers = { positions: Float32Array; indices: number[]; uvs: Float32Array; depths?: Float32Array; normals?: Float32Array; samples?: Float32Array; exposedStart?: number; domain?: 'host' | 'mush'; source?: Float32Array; sourceNormals?: Float32Array; affineNormals?: boolean; contacts?: Float64Array; blockIds?: Int16Array; cutaway?: boolean; supportLayer?: number };
 export const SCALE = .025;
 export const EXTENT = 378 * SCALE;
 export const worldY = (y: number) => (118 - y) * SCALE;
@@ -316,10 +317,12 @@ export function horizon(unit: number, x: number, frame: LakeFrame, z = 0): numbe
   return Math.max(BOTTOM, Math.min(top, sourceHorizon(unit, x, z, frame.kind)));
 }
 
-export function cutRelief(x: number, y: number) {
+export function cutRelief(x: number, _y: number) {
   const edge = Math.max(0, Math.sin((x / EXTENT + 1) * Math.PI / 2));
-  return (.045 + .032 * Math.sin(x * 5.3 + y * 7.1) * Math.sin(y * 13.7 - x * 3.1)
-    + .018 * Math.sin(x * 19.3 + y * 21.7)) * edge;
+  // One common observation surface crosses roof, support and outer host. Its
+  // source depth is independent of layer thickness, so separately capped
+  // strata cannot create an initial vertical join. Failure adds its own cut.
+  return (.036 + .012 * Math.sin(x * 2.1 + .4) + .006 * Math.sin(x * 6.3)) * edge;
 }
 /** Valid normals are recomputed after every deformation, including newly
  * exposed units. Zero-area pinches use +Z rather than propagating zero normals. */
@@ -460,11 +463,23 @@ export function updateWaterSection(positions: Float32Array, depths: Float32Array
 export function faultPath(side: -1 | 1, frame: LakeFrame): XYZ[] {
   const radius = frame.radius * planform(side > 0 ? 0 : Math.PI), x = side * radius * .82;
   const top = baseSurfaceHeight(x, 0, 0, 'caldera') + .025;
+  const base = pistonBase(x) + roofOffset(x, 0, frame) - .10;
   return Array.from({ length: 7 }, (_, i) => {
-    const u = i / 6, xx = x * (1 - .08 * u) + side * Math.sin(i * 2.1) * .025 * frame.fracture;
-    const y = top + (MUSH_FLOOR - top) * u;
-    return [xx, y, cutRelief(xx, y) + .035];
+    const u = i / 6, xx = x + side * Math.sin(i * 2.1) * .018 * frame.fracture;
+    const y = top + (base - top) * u;
+    return [xx, y, cutRelief(xx, y) + .035 - faultCutDepth(xx, y, frame)];
   });
+}
+
+/** The cut removes a little extra foreground material along the actual
+ * ring-fault contact so the viewer can see a lip, sidewall and recessed floor.
+ * It changes this observation surface, never the whole-lake rock footprint. */
+export function faultCutDepth(x: number, y: number, frame: LakeFrame) {
+  if (frame.kind !== 'caldera' || frame.fracture === 0) return 0;
+  const side = x < 0 ? -1 : 1, edge = side * pistonRadius(side < 0 ? Math.PI : 0);
+  if (Math.abs(x - edge) > .24) return 0;
+  const upper = baseSurfaceHeight(edge, 0, 0, 'caldera'), lower = pistonBase(edge) + roofOffset(edge, 0, frame);
+  return fractureRecess(x - edge, y, upper, lower, frame.fracture);
 }
 export function withdrawalPath(frame: LakeFrame): XYZ[] {
   return [[2.8, -2.68, 0], [3.75, -2.62, 0], [5.15, -2.15, 0], [6.5, -1.74, 0], [8.7, -1.55, 0]];
@@ -498,7 +513,8 @@ export function intrusionBuffers(frame: LakeFrame): Buffers {
   const data = { positions: new Float32Array(p), uvs: new Float32Array(uv), indices }; outward(data); return data;
 }
 
-/** A rock-filled damage band along the fault, not an open crack or cave. */
+/** A finite broken-rock floor behind the recessed fault lips. It does not
+ * continue through the basement or replace the reservoir with an empty cave. */
 export function faultBuffers(side: -1 | 1, frame: LakeFrame): Buffers {
   const segments = 48, sides = 6, positions = new Float32Array(((segments + 1) * sides + 2) * 3), uvs = new Float32Array(positions.length / 3 * 2), indices: number[] = [];
   for (let i = 0; i < segments; i++) for (let j = 0; j < sides; j++) {
@@ -517,7 +533,7 @@ export function updateFault(data: Buffers, side: -1 | 1, frame: LakeFrame) {
     const width = (.024 + frame.fracture * .026 + frame.subsidence * .085) * (.74 + seed(i + 381) * .5);
     for (let j = 0; j < sides; j++) {
       const x = point[0] + section[j][0] * width, sourceY = point[1] + Math.sin(i * 2.3 + j) * width * .14;
-      const front = cutRelief(x, sourceY) + .032, z = front - (1 - section[j][1]) * .82;
+      const front = cutRelief(x, sourceY) + .032 - faultCutDepth(x, sourceY, frame), z = front - (1 - section[j][1]) * .82;
       const y = Math.min(sourceY, surfaceHeight(x, z, frame) - .025);
       data.positions.set([x, y, z], (i * sides + j) * 3); data.uvs.set([x * 3, y * 3], (i * sides + j) * 2);
     }
@@ -581,13 +597,13 @@ function updateBody(data: Buffers, upper: (x: number, z: number) => number,
   }
   updateNormals(data);
 }
-const coreRelief = (x: number, y: number) => cutRelief(x, y) * (1 - smooth(.90, 1, Math.abs(x) / pistonRadius(x < 0 ? Math.PI : 0)));
+const coreRelief = cutRelief;
 function hostBuffers(unit: number, frame: LakeFrame) {
   const contact = (k: number, x: number, z: number) => Math.max(BOTTOM, Math.min(surfaceHeight(x, z, frame), sourceHorizon(k, x, z, 'caldera')));
   const data = bodyBuffers(pistonRadius, () => EXTENT,
     (x, z) => contact(unit, x, z), (x, z) => contact(unit + 1, x, z),
-    (x, y) => cutRelief(x, y) * smooth(0, .22, Math.abs(x) - pistonRadius(x < 0 ? Math.PI : 0)));
-  data.domain = 'host'; return data;
+    cutRelief);
+  data.domain = 'host'; updateHost(data, unit, frame); return data;
 }
 function updateHost(data: Buffers, unit: number, frame: LakeFrame) {
   const samples = data.samples!, heights = hostSurface(samples, frame);
@@ -602,7 +618,8 @@ function updateHost(data: Buffers, unit: number, frame: LakeFrame) {
     const at = i / 4, x = samples[i], z = samples[i + 1], top = Math.max(BOTTOM, Math.min(heights[at], data.contacts[at * 2]));
     const bottom = Math.max(BOTTOM, Math.min(heights[at], data.contacts[at * 2 + 1])), y = top + (bottom - top) * samples[i + 2];
     data.positions[at * 3] = x; data.positions[at * 3 + 1] = y;
-    data.positions[at * 3 + 2] = z + (samples[i + 3] ? cutRelief(x, y) * smooth(0, .22, Math.abs(x) - pistonRadius(x < 0 ? Math.PI : 0)) : 0);
+    const observedY = data.positions[at * 3 + 1];
+    data.positions[at * 3 + 2] = z + (samples[i + 3] ? cutRelief(x, observedY) - faultCutDepth(x, observedY, frame) : 0);
     data.uvs[at * 2] = x * 1.7; data.uvs[at * 2 + 1] = y * 1.7;
   }
   updateNormals(data);
@@ -628,6 +645,7 @@ function prunePinchedTriangles(data: Buffers) {
  * Each block owns stable source vertices; no grid of rectangular slices. */
 function polygonBody(poly: XZ[], upper: (x: number, z: number) => number, lower: (x: number, z: number) => number, id: number): Buffers {
   if (poly.length < 3) return { positions: new Float32Array(), uvs: new Float32Array(), indices: [], samples: new Float32Array(), source: new Float32Array(), blockIds: new Int16Array() };
+  poly = refineSectionPerimeter(poly);
   const samples: number[] = [], indices: number[] = [], rings = 5, rows = 6, n = poly.length;
   const center = poly.reduce((sum, point) => [sum[0] + point[0] / n, sum[1] + point[1] / n] as XZ, [0, 0] as XZ);
   const put = (x: number, z: number, t: number) => { samples.push(x, Math.abs(z) < 1e-7 ? 0 : z, t, Math.abs(z) < 1e-7 ? 1 : 0); return samples.length / 4 - 1; };
@@ -658,7 +676,8 @@ function combineBodies(parts: Buffers[]): Buffers {
   data.source = data.positions.slice(); data.sourceNormals = data.normals!.slice(); return data;
 }
 export function blockBuffers(unit: number, id: number, half = true): Buffers {
-  return polygonBody(blockPolygon(id, half), (x, z) => pistonContact(unit, x, z), (x, z) => pistonContact(unit + 1, x, z), id);
+  const data = polygonBody(blockPolygon(id, half), (x, z) => pistonContact(unit, x, z), (x, z) => pistonContact(unit + 1, x, z), id);
+  data.cutaway = half; return data;
 }
 export function pistonBuffers(unit: number): Buffers {
   return combineBodies(COLLAPSE_BLOCKS.map((_, id) => blockBuffers(unit, id)));
@@ -673,7 +692,8 @@ export function updateBlocks(data: Buffers, frame: LakeFrame) {
   for (let i = 0; i < source.length; i += 3) {
     const id = data.blockIds![i / 3], block = COLLAPSE_BLOCKS[id], at = id * 4, x = data.samples![i / 3 * 4], z = data.samples![i / 3 * 4 + 1];
     const tx = motionCoefficients[at + 2], tz = motionCoefficients[at + 3];
-    data.positions[i] = source[i]; data.positions[i + 1] = source[i + 1] - motionCoefficients[at + 1] + tx * (x - block.x) + tz * (z - block.z); data.positions[i + 2] = source[i + 2];
+    data.positions[i] = source[i]; data.positions[i + 1] = source[i + 1] - motionCoefficients[at + 1] + tx * (x - block.x) + tz * (z - block.z);
+    data.positions[i + 2] = source[i + 2] - (data.cutaway && data.samples![i / 3 * 4 + 3] ? faultCutDepth(x, data.positions[i + 1], frame) : 0);
     if (data.affineNormals) {
       const nx = sourceNormals[i] - tx * sourceNormals[i + 1], ny = sourceNormals[i + 1], nz = sourceNormals[i + 2] - tz * sourceNormals[i + 1], length = Math.sqrt(nx * nx + ny * ny + nz * nz) || 1;
       normals[i] = nx / length; normals[i + 1] = ny / length; normals[i + 2] = nz / length;
@@ -681,34 +701,87 @@ export function updateBlocks(data: Buffers, frame: LakeFrame) {
   }
   // The rough cut uses material-space z rather than displaced face relief;
   // retain its numerical normals instead of treating that face as affine.
-  if (!data.affineNormals) updateNormals(data);
+  if (!data.affineNormals || data.cutaway) updateNormals(data);
+}
+/** Fracture-only frames change the observation cut without translating the
+ * rock or recomputing terrain/contact fields. Repeated input stays gated by
+ * the renderer, and a later geology update rewrites this same bounded buffer. */
+export function updateFaultCut(data: Buffers, frame: LakeFrame) {
+  const samples = data.samples;
+  if (!samples || !(data.cutaway || data.domain === 'host')) return;
+  for (let i = 0; i < samples.length; i += 4) {
+    if (!samples[i + 3]) continue;
+    const x = samples[i], at = i / 4 * 3, y = data.positions[at + 1];
+    const original = data.source ? data.source[at + 2] : cutRelief(x, y);
+    data.positions[at + 2] = original - faultCutDepth(x, y, frame);
+  }
+  updateNormals(data);
 }
 export function storageDistance(x: number, y: number, z: number, frame?: LakeFrame) {
-  const upper = pistonBase(x, z) + (frame ? roofOffset(x, z, frame) : 0), lower = mushFloor(x, z);
+  const upper = supportContact(x, z, frame), lower = mushFloor(x, z);
   return Math.max(Math.hypot(x, z) - pistonRadius(Math.atan2(z, x)), y - upper, lower - y);
 }
-/** Adjacent filled regions follow the same block-specific upper contacts.
- * Shared internal boundaries are not drawn as air gaps or a chamber void. */
+/** Local openings retain finite depth and end against support material. The
+ * support remainder follows the same block contacts everywhere else. */
+export function supportContact(x: number, z: number, frame?: LakeFrame) {
+  if (!frame || frame.kind !== 'caldera') return pistonBase(x, z);
+  const id = blockAt(x, z), motion = blockMotion(id, frame);
+  return pistonBase(x, z) + blockOffset(id, x, z, frame) - supportSeparation(supportRelief(x, z), frame.withdrawal, motion.phase);
+}
+/** Adjacent support regions retain crystalline framework and residual melt.
+ * Three enlarged local separations close as their own roof blocks settle. */
 export function storageCellBuffers(id: number, frame: LakeFrame): Buffers {
   const data = polygonBody(blockPolygon(id, true), pistonBase, mushFloor, id); updateStorage(data, frame); return data;
 }
 export function storageBuffers(frame = lakeFrame(0, { basin: 'caldera', supply: .75, leak: 'low' })): Buffers {
   const data = combineBodies(COLLAPSE_BLOCKS.map((_, id) => storageCellBuffers(id, frame))); data.domain = 'mush'; return data;
 }
+/** The support below the finite roof retains the very same source contacts as
+ * the outer host. Clipping splits a source stratum at the roof base without
+ * replacing it with a separately colored rectangular reservoir wall. */
+export function supportLayerContact(unit: number, x: number, z = 0) {
+  return Math.max(mushFloor(x, z), Math.min(pistonBase(x, z), sourceHorizon(unit, x, z, 'caldera')));
+}
+function compactBody(data: Buffers) {
+  const used = [...new Set(data.indices)].sort((a, b) => a - b), remap = new Int32Array(data.positions.length / 3).fill(-1);
+  used.forEach((old, index) => { remap[old] = index; });
+  const pick = (source: Float32Array | undefined, stride: number) => {
+    if (!source) return undefined;
+    const target = new Float32Array(used.length * stride);
+    used.forEach((old, index) => { for (let j = 0; j < stride; j++) target[index * stride + j] = source[old * stride + j]; });
+    return target;
+  };
+  data.positions = pick(data.positions, 3)!; data.uvs = pick(data.uvs, 2)!; data.normals = pick(data.normals, 3);
+  data.samples = pick(data.samples, 4); data.source = pick(data.source, 3); data.sourceNormals = pick(data.sourceNormals, 3);
+  data.blockIds = new Int16Array(used.map(old => data.blockIds![old]));
+  data.indices = data.indices.map(old => remap[old]); return data;
+}
+export function storageLayerBuffers(unit: number, frame: LakeFrame): Buffers {
+  const parts = COLLAPSE_BLOCKS.map((_, id) => polygonBody(blockPolygon(id, true),
+    (x, z) => supportLayerContact(unit, x, z), (x, z) => supportLayerContact(unit + 1, x, z), id));
+  const data = compactBody(combineBodies(parts)); data.domain = 'mush'; data.supportLayer = unit;
+  updateStorage(data, frame); return data;
+}
 export function updateStorage(data: Buffers, frame: LakeFrame) {
   const samples = data.samples!;
   if (!data.contacts) {
-    data.contacts = new Float64Array(samples.length / 4 * 3);
+    data.contacts = new Float64Array(samples.length / 4 * 5);
     for (let i = 0; i < samples.length; i += 4) {
-      const x = samples[i], z = samples[i + 1], upper = pistonBase(x, z), lower = mushFloor(x, z), at = i / 4 * 3;
+      const x = samples[i], z = samples[i + 1], upper = pistonBase(x, z), lower = mushFloor(x, z), at = i / 4 * 5;
+      const weight = data.supportLayer === undefined ? 1 - samples[i + 2] : Math.max(0, Math.min(1, (data.source![i / 4 * 3 + 1] - lower) / (upper - lower)));
       data.contacts[at] = upper; data.contacts[at + 1] = lower;
-      data.contacts[at + 2] = samples[i + 3] ? coreRelief(x, upper + (lower - upper) * samples[i + 2]) : 0;
+      data.contacts[at + 2] = samples[i + 3] ? coreRelief(x, lower + (upper - lower) * weight) : 0;
+      data.contacts[at + 3] = supportRelief(x, z);
+      data.contacts[at + 4] = weight;
     }
   }
+  prepareMotion(frame);
   for (let i = 0; i < samples.length; i += 4) {
-    const x = samples[i], z = samples[i + 1], t = samples[i + 2], offset = blockOffset(data.blockIds![i / 4], x, z, frame);
-    const index = i / 4, at = index * 3, upper = data.contacts[at] + offset, lower = data.contacts[at + 1], y = upper + (lower - upper) * t;
-    data.positions[at] = x; data.positions[at + 1] = y; data.positions[at + 2] = z + data.contacts[at + 2]; data.uvs[index * 2] = x * 1.7; data.uvs[index * 2 + 1] = y * 1.7;
+    const x = samples[i], z = samples[i + 1], t = samples[i + 2], id = data.blockIds![i / 4], offset = blockOffset(id, x, z, frame);
+    const contact = i / 4 * 5, gap = supportSeparation(data.contacts[contact + 3], frame.kind === 'caldera' ? frame.withdrawal : 0, motionCoefficients[id * 4]);
+    const index = i / 4, at = index * 3, upper = data.contacts[contact] + offset - gap, lower = data.contacts[contact + 1], y = lower + (upper - lower) * data.contacts[contact + 4];
+    data.positions[at] = x; data.positions[at + 1] = y; data.positions[at + 2] = z + data.contacts[contact + 2];
+    if (data.supportLayer === undefined) { data.uvs[index * 2] = x * 1.7; data.uvs[index * 2 + 1] = y * 1.7; }
   }
   updateNormals(data);
 }

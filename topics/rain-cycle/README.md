@@ -1,5 +1,26 @@
 # 水循环：水的许多旅程 / The water cycle: many journeys
 
+## Retained 3D watershed and question path · 2026-10-22
+
+主景改为保留同一实例的 Three.js 流域：雪岭、冰川、实验坡面、弯曲河谷、湖盆、出水河道与海岸来自同一套教学地理。河床、水面和水份路线共享高程；地表小沟向下接入河流，融水进入同一河谷。五个近看窗口只改变镜头，不换地点、不新建100份水，也不重置进度或历史。背景河湖和云已经存在，主批次不控制它们的水位或完整形成。
+
+The main scene is now a retained Three.js watershed. One topic-owned geography supplies snow ridges, glacier, test hillside, valley, lake and coastal outlet. The full water ribbons sit above their carved beds. A downhill rill carries surface runoff to the actual river, and glacier melt follows that river. Camera changes preserve the same 100 instance identities, progress and selected portion. Spatial counters reflect current teaching locations: overland flow remains surface water, and final lake-to-sea transfer is counted in the lake/outlet until the coast is crossed. These are closed-batch illustrative counts, not a complete catchment balance.
+
+The question path compares humid/dry air and permeable soil/compact clay/paving at the same progress. A new pore section retains the parent batch’s IDs and fixed grain gaps; the original detailed cloud microscope remains available. The existing groundwater and glacier studies continue to own separate budgets and clocks. Main controls and one Reader toolbar surround a fitted stage; explanations and conditions are secondary, and transport stays visible. The renderer owns no clock and samples the controller’s supplied state, with bounded geometry/pixel ratio, explicit failure/retry, hidden-state handling and disposal. Reduced motion removes the camera tween; essential progress remains under the user’s controls.
+
+Current owner map:
+
+- `watershedGeography.ts`: canonical 3D terrain/contact, water courses, anchors, camera frames, spatial batch projection and location counts.
+- `watershed3d.ts`: retained terrain/water/vegetation/cloud GPU resources, one 100-slot water instance mesh, camera interaction/projection, bounded resize, failure/retry and disposal.
+- `poreSection.ts`: the same parent batch shown among stable enlarged soil grains; it does not read or add the independent aquifer budget.
+- `watershedModel.ts`: existing deterministic destination decisions, humidity comparison, legacy route contract and SVG projection.
+- `watershedScene.ts`: deterministic fallback map of the same batch.
+- `main.ts`: one supplied finite batch clock, camera transitions, URL/history, controls, and child lifecycle composition.
+- `explorerContent.json`, `watershedContent.json`, `learning.json`: matched question paths, conditions, explanations and qualifications.
+- `tests/geography3d.test.ts`: geometry/contact/counting/camera/pore and bilingual contracts. See [VALIDATION.md](VALIDATION.md) for focused evidence and the parent-owned browser acceptance still required.
+
+The sections below record earlier passes and their historical validation; their SVG presentation descriptions are superseded by this pass.
+
 ## Main-scene pass · 2026-09-28
 
 The fitted desktop frame now gives the same watershed SVG a direct visual stage instead of shrinking it inside a column with its key and time note. The location question stays beside the camera choices; settings and a live summary of the largest stores sit alongside the map. The 100-portion denominator is explicit, and the full nine-store ledger remains below. Longer-term study shortcuts move into the explanation panel, allowing the main watershed to appear sooner on a narrow screen. A few broken blue pore-route marks replace nine continuous white strands that resembled roots; paved ground shows far fewer. These marks are explanatory paths, not measured pores or water trajectories. No parcel route, cohort accounting or independent slow clock was changed. Browser checks covered desktop Chinese before and after changing the surface, camera switching without resetting progress, and 390 px Chinese/English child and English academic layouts. This pass does not validate every microscopic or long-term scene's visual detail.

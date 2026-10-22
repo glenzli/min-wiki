@@ -1,3 +1,60 @@
+# Actual particle-contact correction · 2026-10-22
+
+A cross-review found that the initial contact tests checked abstract center distances and supports, while the real crystal had no branch along the encounter normal. This record supersedes that earlier contact-proof claim; the preceding upgrade and its other evidence remain in the dated record below.
+
+## Reproduction and correction
+
+- Extracted the unchanged production particle buffers and supplied pose into `cloudParticleGeometry.ts` before changing the shapes. At pair 0, progress `0.08947406799448072`, both signs had changed, but the model contact anchor lay `0.0509012282` local drawing units from the actual ice triangles and `0.00592665464` from the actual graupel/rime triangles. Existing rime reached radius `0.274835407`, outside its declared `0.24` support. All three new geometry tests failed on this extracted implementation.
+- Aligned one real ice shaft with +x. Its cap center reaches `ICE_CONTACT_RADIUS`; the same shaft/twig endpoints now drive the SVG fallback. A real rimed graupel pole reaches −`GRAUPEL_CONTACT_RADIUS`, with every grain bounded inside that support. Both bodies keep their orientation through all encounters, and only then begin continuous tumbling. The model trajectory, transfer progress, two qualitative charging cases and exterior path are unchanged.
+- `cloudParticleGeometry.ts` is consumed directly by `cloudScene.ts` and by the tests. The tests use its actual indexed triangle buffers and the same rendered pose. Contact is checked at the model anchor against triangles from both bodies; disjoint x-support intervals prove the sampled real bodies do not overlap before or after contact. This is visual teaching geometry, without a calibrated particle-collision or microphysical solver.
+
+## Current checks and identity
+
+- `node --import tsx --test topics/lightning-thunder/tests/*.mjs`: **14/14 passed**. The three new production-geometry tests cover all 12 pairs in both charging cases, the actual contact site, 85 trajectory/encounter samples per pair/case with rendered poses, bounded rime and no pre-contact spin. The eleven existing model/path/sound tests also pass.
+- `npm run typecheck`: **passed**. `npm run check:i18n`: **passed**, 7,109 messages / 72 namespaces at this checkpoint. `git diff --check -- topics/lightning-thunder`: **passed**. Authored learning and narration were unchanged by this correction, so their prior two selected checks and exact projections remain applicable.
+- Current runtime/content/test SHA-256: `289aee785c469b5eb3671e462eb272710123ea9490d81ee4a4b3e4dd22f9f84a` over 24 sorted topic source/content/test files using the path + NUL + bytes + NUL algorithm described below. Documentation is excluded.
+- New coordination run `four-topic-20261022-lightning-contact`, owner `codex-four-lightning`, scope `lightning-contact-20261022`; exact inherited baseline `7f0c2bf303244a5506fb8c993c2e8df2f06c987296df3eea7d35d9903899f0f3` was reviewed and accepted before edits.
+
+Root owns final UI and integration checks after this corrected geometry: inspect the +x branch/rimed pole at approach/contact/separation, both charging cases, Chinese/English desktop/mobile and fallback/retry. No browser or shared files were edited by this correction. No commit, push or deployment was performed.
+
+---
+
+# Lightning/thunder continuous study validation · 2026-10-22
+
+This record describes the current topic-owned upgrade. Older dated records below document the retained exterior artwork and must not be read as validation of the new interior or current layout.
+
+## Implemented
+
+- Five causal observation steps now share one supplied clock, persistent cloud particle identities, selected charging case, preserved negative ground-flash path and sound state. Native pause/seek/previous/next and fixed/following lenses do not reset the experiment.
+- Added a bounded true-3D open cloud region: branching ice, rimed graupel, droplets, contact-before-transfer and separated net-charge regions. Removed an initial glass-like enclosing shell after actual browser review; no vessel, shell or floor remains. Stable particle geometry is merged and shared once.
+- Weaker differential transport retains the same chosen contacts/signs but produces no modeled ground leader, connection, return stroke, sound front or arrival result. Its captions and bilingual study explicitly reject universal polarity/field thresholds and real-storm safety inferences.
+- Preserved `stormArtwork.ts`, its image assets, channel anchors, fixed branches and one smooth flash envelope. Added a hidden/tiny-size Canvas guard and nonnegative label radius after the hidden exterior’s resize callback exposed negative-scale errors in the first browser pass.
+- One Reader toolbar, full-width default observation area, compact exterior caption, accessible external transport, current explanation and detailed shared reading notes. Expanded `learning.json` within the unchanged three-academic-note/four-narration schema; exact topic-only projections update both manuscripts and spoken/storyboard exports.
+
+## Source identity and focused checks
+
+Base revision: `e1d91046ef9f9c6d1eb3ddba6c424521649462db`. The topic began clean; inherited dirty atmosphere/volcano and shared files were not edited. Runtime/content/test identity: SHA-256 `05211e991bc758f62053f2704c1016b73fc3b523d2192cd92e7d7fb3ebc7ef45` over sorted topic `.ts`, `.css`, `.html`, `.json`, `.mjs`, `entry.*` and `narration.*` paths, each encoded as path + NUL + file bytes + NUL (22 files, excludes assets/docs/covers). Retained exterior `stormArtwork.ts`: SHA-256 `1561cbfddf010d73eef27e0ebd03bca3a0a4d07a9c8268ed90cbd627cbd61727`.
+
+- `node --import tsx --test topics/lightning-thunder/tests/*.mjs`: **11/11 passed**. Five new meaningful contracts cover each pair’s positive pre-contact gap and contact-before-transfer, persistent identities and reversible samples, weaker-case absence of discharge/sound, shared interior/exterior separation, and bounded route restoration. Six retained attachment/return/sound contracts pass with the changed model.
+- `node --import tsx --test --test-name-pattern='lightning-thunder|voice export' tests/learning.test.mjs`: **2/2 selected tests passed**. Verified the unchanged bilingual schema and spoken-text/storyboard separation.
+- `npm run typecheck`: **passed** after final renderer/layout work. `npm run check:i18n`: **passed**, 7,102 checked source messages / 72 namespaces at that checkpoint, including new HTML controls, status/failure messages and paired scientific studies.
+- The repository entry preparer has no topic flag. A task-private exact copy filtered its loop to `lightning-thunder` and omitted the shared resource-map write; normal generation plus `--check` passed for the topic. No shared projection or sibling manuscript was rewritten by this task. Root owns the canonical all-topic check.
+- `git diff --check -- topics/lightning-thunder`: **passed** before this documentation entry; the final documentation/source diff is checked again at handoff.
+
+## Actual browser checkpoint and remaining integration
+
+The root task owns the only shared browser session and reported actual 1280 × 720 checks on the managed Reader preview at `http://127.0.0.1:59740/encyclopedia/`. The first pass found a too-small 252 px stage and hidden exterior negative-scale errors. After the fixes, root reported a 419 px stage, a substantially larger particle group and a clean exterior without new errors; earlier console entries were historical. That checkpoint preceded removal of the enclosing shell and final shared-geometry merge.
+
+**Final browser acceptance is pending root integration:** inspect final cloud contact/separation and preserved return/sound frames, Chinese/English desktop and 390 px, meaningful weak/sustained comparison at one progress, orbit/reset, reverse seeking, reading/lens switching, hidden/resume, reduced motion, forced WebGL loss and same-state fallback/retry. Full `npm run check`, packaged Reader build/route checks and the final browser/console/source identity belong to root’s integration record. This subtask does not claim those final checks passed.
+
+## Scientific and delivery scope
+
+Checked the NWS electrification, negative-flash and thunder pages on 2026-10-22; the linked Saunders laboratory paper supports temperature/water-content/growth-history qualifications rather than a fixed collision polarity rule. New diagrams remain qualitative teaching reconstruction. They do not validate microphysics, electric fields, exact velocities, charge density, sound pressure, flash probabilities or hazard radii. Resource bounds are source-reviewed, without physical-device frame-rate or memory measurement.
+
+No shared metadata/dependency changes, editorial promotion, commit, push or deployment were performed. No new image assets were generated. Existing dated artwork evidence follows.
+
+---
+
 # Lightning/thunder artwork validation · 2026-10-19
 
 ## Follow-up: textured material light and cloud-shaped diagram tint

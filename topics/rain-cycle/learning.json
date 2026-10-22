@@ -3,7 +3,7 @@
   "topicId": "rain-cycle",
   "zh": {
     "question": "海里的水变成云以后，还能回到海里吗？每一份水都走同一条路吗？",
-    "observe": "先追踪同一批100份水，比较干湿空气、地表分流和冰中运动。再用顶部的长期观察入口进入同一山坡下的地下水收支，或同一山谷的多年积雪与冰川实验。比较补给与取水、积累与消融：储量何时增加，何时减少？各实验有独立时钟，换观察方式不清空已有状态。",
+    "observe": "先在同一三维流域追踪100份水，比较干湿空气、透水土壤、紧实黏土与铺装面。云内放大与山坡孔隙剖面保留这批水的编号和进度；切换视角不会清空历史。再从解说中的长期观察入口进入地下水收支，或多年积雪与冰川实验，比较补给与取水、积累与消融。长期实验有独立预算与时钟，不与主场景的100份水相加。",
     "academic": [
       {
         "title": "能量推动相变",
@@ -11,7 +11,7 @@
       },
       {
         "title": "重力连接不同水库",
-        "body": "降水到达地面后，一部分入渗，再经过非饱和土层补给含水层；入渗并不等于已成为地下水。地下水主要在连通孔隙和裂隙中缓慢流动，不是一条普遍存在的地下空洞河流。水位和水头差影响它与河流的交换：既可能补给河流，也可能从河流获得水。长期实验用简化储水箱核对补给、交换、取水与储量变化；持续取水超过补充会降低储量和水位。它不计算实际地点的三维流场或水质净化。"
+        "body": "相同降水落在不同地表，进入孔隙、沿表面流动和暂留的份额可能不同。本页用固定教学比例进行对比；真实结果还取决于降雨强度、地面坡度、前期含水量、结构和裂隙。水沿可见坡面小沟进入同一河谷，经湖泊和湖口到海；河床、水面和追踪路线共享地形。入渗水再经过非饱和土层才可能补给含水层，入渗并不等于已成为地下水。地下水主要在连通孔隙和裂隙中流动，并非普遍存在的地下空洞河流；水头差决定它可能补给河流，也可能从河流获得水。长期实验另用简化储水箱核对补给、交换、取水与储量变化，不计算真实三维流场或水质净化。"
       },
       {
         "title": "冰川是慢储存，不是冻住的河水",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "云不是一袋看不见的水汽；我们看见的是许多微小水滴或冰晶。",
-    "boundary": "100份批次不是全球水量比例或实测降水。云中暖层融化成雨与高山降雪是两条支路。长期地下水和冰川实验是另外的简化收支模型，数量、时间和参数不能与上方批次混加，也不能用于当地水位、冰川或气候预测。图形与孔隙放大是教学示意；不模拟完整三维含水层、冰川应力变形、污染净化或植物蒸腾。",
+    "boundary": "100份批次不是全球水量比例、实测降水或完整流域水量平衡。主景按水份当前的教学位置计数；地形、云体、颗粒、孔隙与时间不按同一真实比例，河湖水面不由批次计数驱动。云下暖层融化成雨与高山降雪是两条支路。主景的既有冰体慢时间，以及长期地下水和冰川实验各有独立预算与时间尺，不能混加，也不能用于当地水位、冰川或气候预测。不模拟完整三维含水层、冰川应力变形、污染净化或植物蒸腾。",
     "narration": [
       {
         "label": "从一片海开始",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Can seawater return to the sea after becoming a cloud? Does every portion take the same route?",
-    "observe": "First follow the same 100 portions and compare dry air, surface partition and movement within ice. Then use the longer-term entries to explore groundwater beneath the same hillside or snow and glacier budgets in the same valley. Compare recharge with withdrawal, and accumulation with loss: when does storage grow or shrink? Experiments have independent clocks and retain state across observation views.",
+    "observe": "Track 100 portions in the same 3D watershed and compare humid or dry air, permeable soil, compact clay and paving. Cloud magnification and the hillside pore section retain batch identities and progress; camera changes preserve history. Then use the longer-term entries in the explanation panel to compare groundwater recharge with pumping, or snow accumulation with glacier loss. Those studies have independent budgets and clocks and are not added to the 100 portions.",
     "academic": [
       {
         "title": "Energy and changes of state",
@@ -53,7 +53,7 @@
       },
       {
         "title": "Gravity connects water stores",
-        "body": "Some precipitation infiltrates and passes through unsaturated soil before recharging an aquifer; infiltration is not already groundwater recharge. Groundwater mainly travels slowly through connected pores and fractures, not a universal underground cavern river. Water levels and hydraulic-head differences affect exchange with a river: groundwater may feed it, or receive water from it. The longer-term experiment balances recharge, exchange, withdrawal and storage in simplified boxes. Sustained withdrawal exceeding replenishment lowers storage and the water table. It does not calculate site-specific 3D flow or water purification."
+        "body": "The same rain can partition differently between infiltration, surface runoff and temporary storage on different surfaces. This page compares fixed teaching fractions; real outcomes also depend on rainfall intensity, slope, previous moisture, structure and cracks. Water follows the visible hillside rill into the same valley, lake and outlet; bed, water and tracer routes share one geometry. Infiltrated water may later pass through unsaturated soil to recharge an aquifer, so infiltration is not already recharge. Groundwater travels through connected pores and fractures rather than a universal cavern river. Hydraulic-head differences can make it feed a river or receive river water. The separate long-term experiment balances recharge, exchange, pumping and storage in simplified boxes; it does not calculate real 3D flow or water purification."
       },
       {
         "title": "Glaciers store water on slower timescales",
@@ -61,7 +61,7 @@
       }
     ],
     "misconception": "A cloud is not a bag of invisible vapor: its visible parts are tiny droplets or ice crystals.",
-    "boundary": "The 100 portions are not global water proportions or measured rainfall. Ice melting to rain below a cloud is distinct from high-mountain snowfall. Longer-term groundwater and glacier studies are separate simplified budgets: their amounts, clocks and parameters cannot be added to the batch or used for local water-level, glacier or climate forecasts. Geography and enlarged pores are teaching illustrations. Full 3D aquifer flow, glacier stress and deformation, contaminant purification and plant transpiration are not simulated.",
+    "boundary": "The 100 portions are not global water proportions, measured rainfall or a complete catchment water balance. The main scene counts current teaching locations; terrain, clouds, tracers, pores and time use different illustrative scales, and batch counts do not drive river or lake levels. Ice melting into rain in a warm layer below a cloud is distinct from high-mountain snowfall. The existing glacier’s slow batch clock and the longer-term groundwater and glacier studies have separate budgets and time scales. They cannot be combined or used for local water-level, glacier or climate forecasts. Full 3D aquifer flow, glacier stress and deformation, contaminant purification and plant transpiration are not simulated.",
     "narration": [
       {
         "label": "Start at the sea",
@@ -113,6 +113,10 @@
     {
       "title": "NASA · Cloud droplets and ice",
       "url": "https://gpm.nasa.gov/resources/faq/what-are-clouds-made-are-they-more-likely-form-polluted-air-or-pristine-air"
+    },
+    {
+      "title": "USGS · Runoff and surface conditions",
+      "url": "https://www.usgs.gov/water-science-school/science/runoff-surface-and-overland-water-runoff"
     }
   ]
 }

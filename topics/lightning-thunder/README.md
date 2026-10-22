@@ -4,6 +4,25 @@
 
 How does a cloud separate charge? Why does lightning branch, and why does thunder arrive later? Slow down one discharge and follow the journeys of light and sound.
 
+## Continuous cloud-to-thunder study · 2026-10-22
+
+本轮把原有外景之前的机制补成同一条观察路径：云内相遇 → 接触交换与电荷分离 → 微弱分步先导及向上连接 → 沿已接通原通道发展的回击 → 光声到达。云内是可有限转动的真实三维局部，冰晶枝形、结凇的霰与过冷水滴保留同一身份；没有围住空气的容器、云壳或地板。阶段、镜头、讲解深度和定性起电情境共用进度，不因切换重置。默认随过程先看云内，再回到原来的精细云、塔、地景和室内房屋；也可固定一个视角前后对照。
+
+The original exterior now follows a continuous causal journey: cloud encounters → contact charging and separation → faint stepped leader and upward connection → a return stroke along the attached path → light and sound arrival. The bounded 3D interior preserves the same branching ice, rimed graupel and supercooled-droplet identities in open air, without a vessel, shell or floor. Stages, lenses, reading depth and the qualitative charging case share one progress. The default view follows the cloud interior into the retained detailed cloud, tower, terrain and indoor house; a fixed lens supports comparison without a reset.
+
+- **Core question / 核心问题:** What does each prerequisite add, and why does sound arrive after the same flash? 每一步增加什么必要环节，为什么同一次放电的声音到得更晚？
+- **Change and observe / 改变与观察:** At the same progress, compare sustained and weaker differential transport after the same contacts; the selected weaker case produces no modeled ground flash, return stroke or associated sound. Keep temperature fixed to compare distance, then keep distance fixed to compare temperature. 相同接触后比较持续分离与较弱分离；较弱案例不产生本次地闪、回击或声音。再分别控制距离和传播空气温度比较光声延迟。
+- **Misconceptions / 容易误解:** Contact alone is not a flash. Selected particle polarities are not a universal temperature/water-content rule. The upward bright front is not the motion of every charge. No flash in one teaching case does not establish real-storm safety. 接触不等于闪电，选定极性不适用于所有温度与含水量，回击前沿方向不等于全部电荷的运动方向，未演示地闪更不是安全结论。
+- **Evidence and limits / 依据与边界:** NWS supports the causal sequence; the linked laboratory study supports the polarity qualifications. Positions, symbols, motion and region washes are qualitative, without microphysical, electric-field, breakdown or hazard prediction. Only sound delay is calculated from distance and the dry-air temperature approximation. 依据 NWS 因果说明与所列碰撞起电实验；只计算近似光声延迟，不把云内几何或符号当测量。
+
+`cloudModel.ts` owns stable particles, encounter/contact samples, the contact-support constants, the shared crystal segment specification and qualitative separation. `cloudParticleGeometry.ts` owns the actual merged particle buffers and rendered orientation. Its real shaft cap and rimed pole meet at the model anchor; before transfer, surface bounds stay disjoint and both bodies hold their orientation. Production-triangle tests verify all pairs in both charging cases, rather than inferring contact from center distances. `model.ts` gates the chosen flash and owns attachment/stage/sound/route contracts. `cloudScene.ts` owns one renderer, shared fixed geometry, bounded orbit and GPU cleanup; `cloudView.ts` owns its lazy import, generation guard, same-state SVG fallback and fresh-canvas retry. `scene.ts` still projects the original channel and retained `stormArtwork.ts` exterior; it now rejects hidden/zero-size draws. `study.ts`, `content.ts` and `learning.json` own equivalent Chinese/English explanations and qualifications. `main.ts` composes one Reader toolbar, current explanation, pause/seek, previous/next stages and the supplied clock.
+
+The cloud renderer is created at most once until retry; retry disposes its predecessor and replaces a lost canvas. Fixed ice and rime geometry is merged once and shared, with 71 mesh objects and at most 24 visible charge sprites, two 64 × 64 sign textures, and a pixel ratio capped at 1.6. There is no independent render loop or per-frame geometry construction. The SVG fallback consumes the same particle frame and contact extents. Existing storm image/buffer bounds below are retained. These are source bounds, not measured frame-rate or device-memory claims.
+
+User-started playback only; changing reduced-motion preference pauses playback, reduced motion keeps the cloud camera fixed, and hidden documents suspend the supplied clock without catch-up. Final exit rejects late imports and releases the 3D, exterior, pointer, resize and texture resources. The explanation and native stage controls remain available on render failure. Sound never autoplays, and the exterior keeps one smooth attachment-gated flash.
+
+Deep links support `p=0..1`, `lens=follow|cloud|storm`, `charging=sustained|limited`, `distance=0.5..8` and `temperature=0..35`, alongside Reader language/reading parameters. Invalid values are bounded or replaced by defaults. Reading/lens/condition changes preserve the current progress; previous/next and native progress controls support reverse comparison. These parameters restore a teaching state, not a real weather observation.
+
 ## Teaching boundaries
 
 通道、云体、电荷符号和声波圆弧均为教学示意，尺度不一。这里只展示一次负地闪，没有覆盖云内闪电、正地闪等类型。不会自动播放声音，也不制造全屏频闪。
@@ -18,7 +37,7 @@ The first three stages now report slow-motion progress rather than invented elap
 
 ## Ownership and interaction
 
-`model.ts` owns numeric and stage contracts, `scene.ts` owns deterministic Canvas state projection, `stormArtwork.ts` owns retained storm-cloud and terrain illustration assets, `content.ts` owns bilingual stage explanations, and `main.ts` owns playback and accessible controls. No autoplay. Visibility and page lifecycle pause animation, restore bfcache state and release the canvas observer and illustration buffers on final exit. Kids and academic modes share an interactive scene with distinct stage-linked explanations.
+Current ownership is described above. The dated sections below retain the original exterior-artwork rationale and historical checks; they are not a substitute for this upgrade’s current validation record.
 
 ## Storm artwork refinement · 2026-10-19
 

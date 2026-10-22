@@ -40,7 +40,7 @@ let eruption: EruptionScene | undefined, lake: LakeScene | undefined, ocean: Sub
 let omuro: OmuroScene | undefined, landHistory: LandHistoryScene | undefined, heat: HydrothermalScene | undefined;
 let cancelSeek = () => {}, cancelCamera = () => {};
 let camera: [number, number, number, number] = [0, 0, 1000, 666.667], section = 0;
-const controls = ['landform','habitat','style','vents','supply','gas','viscosity','resistance','eruption-scenario','eruption-strength','environment','ocean-supply','basin','water','leak','heat-water','heat-connected'];
+const controls = ['landform','habitat','style','vents','supply','gas','viscosity','resistance','eruption-scenario','eruption-strength','environment','ocean-supply','ocean-life','basin','water','leak','heat-water','heat-connected'];
 const values = () => Object.fromEntries(controls.map(id => [id, select(id)]));
 const defaults = values();
 type Memory = { progress: number; view: View; volcano: VolcanoCase; values: Record<string,string> };
@@ -109,11 +109,11 @@ function syncRenderer() {
   el('eruption-gesture').textContent = gpu ? t('拖动旋转 · 滚轮或双指缩放；键盘方向键旋转，＋／－缩放。') : t('当前显示二维示意；仍可播放和比较条件。可重试三维画面。');
   el('eruption-render-limit').textContent = isEpisode()
     ? t('岩层、岩脉和储存区是教学重建。细微流动与明暗变化自动持续，用于辨认熔体；过程按钮只控制本题的地质进度，不表示实测环流或流速。')
-    : study === 'heat' ? t('热源、裂隙、水路和水池均为教学示意，不是实测地下管道或温度场。水来自降水，不由岩浆变成；并非所有温泉都依靠火山热源。')
+    : study === 'heat' ? t('水路从蓝到暖色表示受热，不是水的真实颜色或温度刻度。池面薄雾是较凉空气中的冷凝水滴，多少还受空气条件影响；本例没有计算沸腾。水来自降水，并非所有温泉都依靠火山热源。')
       : study === 'ecology' ? t('山体已经形成，土层、种子与植被按独立的长期过程观察。土根为辨认而放大；大室山今天的草坡也受长期山烧维护。')
         : study === 'building' ? volcano === 'scoria' ? t('这里只看喷出物逐层留下；堆积层数、形状与时间为教学示意，不是一次喷发或实测地质。') : t('板块与热点影响岩浆的来源和通道；局部补给与输送会改变储存区轮廓和熔体分布。形变、层数、时间与放大的代表碎屑为教学示意，不是实测地下形态。')
           : study === 'lake' ? t('剖面移去前方围岩；下沉断块与残余晶粥仍在地下。塌陷和后来积水分段观察，不表示所有火山都会成湖。')
-            : t('剖面移去前侧海水和岩石；地形、层厚、海深和亮色均为教学示意。深水采用局部探照灯照明。');
+            : t('剖面移去前侧海水和岩石；地形、层厚、海深和亮色均为教学示意。深水采用局部探照灯照明。后续生态另选适合定居的条件，压缩长期变化，不代表实际年数或必然结果。');
 }
 function stageAndSteps() {
   if (study === 'mechanism') return { stage: magmaState(time(), settings()).stage, steps: MECHANISM_STEPS };
@@ -128,9 +128,23 @@ function stageAndSteps() {
 function draw() {
   const cue = el('process-note'), stage = stageAndSteps().stage;
   cue.hidden = !(activeScene()?.is3D ?? false); cue.textContent = STUDY_CONTENT[study].cue;
+  if (study === 'heat') {
+    const spring = hydrothermalFrame(progress, heatSettings());
+    cue.textContent = view === 'section'
+      ? t('蓝色水路经过热岩石后转为暖色，再沿裂隙回到地面；颜色只表示受热。')
+      : spring.poolWarmth > .001 ? t('热水从池边出露，低幅涟漪向外展开；上方薄雾是遇冷凝成的小水滴。')
+        : t('先追踪地下水：有水补给、受热并连通地表，才会在这里形成热水池。');
+    if (spring.settings.supply === 0) cue.textContent = t('热岩石还在，但没有水补给，不能凭空流出温泉。把水的补给增加，再追踪同一条水路。');
+    else if (!spring.settings.connected && progress > .6) cue.textContent = t('地下有水，也有热岩石，但返回地表的裂隙不连通。这些条件不一定会在这里形成温泉。');
+  }
+  if (study === 'submarine' && select('environment') !== 'shallow' && select('ocean-life') === 'suitable') cue.textContent = progress < .84
+    ? t('先观察熔岩和冷却；生物定居在后面的长期变化中另看。')
+    : select('environment') === 'deep' ? t('另选一小片弥散热液岩面：冷却后的薄膜与少量小动物；不是每座海底火山都有相同生态。')
+      : select('ocean-supply') === 'limited' ? t('供给提前停止，山体仍在水下，没有陆地让幼苗定居。换成持续供给，再比较冷却后的新岛。')
+        : t('岛上先保留大片裸岩；冷却、岩缝留土留水并有种子到达，才可能出现零散小苗。');
   if (study === 'lake' && select('basin') === 'caldera' && view === 'section') cue.textContent = [
-    t('先看右侧通道：部分岩浆正离开储存区，上面的岩体还在原位。'), t('岩体还在原位；支撑减弱，两侧环状断层开始破裂。'),
-    t('虚线保留原位置；断块先后下沉，崩落碎石向崖脚堆积。'), t('下沉断块与崩落碎石留在盆地里；成湖还需要后来的水补给。'),
+    t('先看右侧通道：部分岩浆正离开储存区，上面的岩体还在原位。'), t('支撑减弱，局部间隙张开，环状断层开始破裂；下方仍有晶体与熔体。'),
+    t('虚线保留原位置；断块先后落进局部失撑区，间隙逐渐闭合，碎石在崖脚堆积。间隙已放大，便于观察。'), t('下沉断块与崩落碎石留在盆地里；成湖还需要后来的水补给。'),
   ][stage];
   if (study === 'building' && isHistory()) {
     const construction = constructionState(time());
@@ -140,7 +154,7 @@ function draw() {
           : t('新喷出物不再添加，已有堆积留下山体；冷却后的表面熔岩保持原位。');
   }
   if (isEpisode()) { eruption?.setView(eruptionView(), settings().vents); eruption?.draw(time(), settings()); }
-  else if (study === 'submarine') ocean?.draw({ progress, weights: weights(), supplyMix: select('ocean-supply') === 'limited' ? 1 : 0, camera, section: .1 + .9 * section });
+  else if (study === 'submarine') ocean?.draw({ progress, weights: weights(), supplyMix: select('ocean-supply') === 'limited' ? 1 : 0, camera, section: .1 + .9 * section, ecology: select('ocean-life') === 'suitable' ? 'suitable' : 'bare' });
   else if (study === 'lake') lake?.draw(progress, lakeSettings());
   else if (study === 'heat') heat?.draw(progress, heatSettings());
   else if (isOmuro()) omuro?.draw(time(), select('habitat') as Habitat, study === 'ecology' ? 'life' : 'journey');
@@ -168,6 +182,10 @@ function storyText(stage: number, academic: boolean) {
     if (select('heat-connected') === 'blocked' && progress > .6) return t('地下有水，也有热岩石，但返回地表的裂隙不连通。这些条件不一定会在这里形成温泉。');
     return [t('先跟着蓝色水迹：降水来到地面，部分水沿能够渗透的裂隙进入地下。'),t('地下水经过热岩石，把热量带走。水仍然是水，不能把红色岩浆直接变成蓝色温泉水。'),t('受热的水沿连通裂隙向上移动。改变通道条件，比较这条返回地表的路能不能走通。'),t('热水在地表出露并进入水池，继续流出。热源、水补给与连通水路共同影响结果；温泉不代表火山已经熄灭。')][stage];
   }
+  if (ocean?.is3D && select('ocean-life') === 'suitable' && progress > .84 && select('environment') !== 'shallow') return select('environment') === 'deep'
+    ? t('这片岩面选择了弥散热液条件。微生物薄膜可以先出现，少量小螺等随后可能来到。热的新熔岩旁仍留空，后半段不是实际年数。')
+    : select('ocean-supply') === 'limited' ? t('供给提前停止，山体仍在水下，没有陆地让幼苗定居。换成持续供给，再比较冷却后的新岛。')
+      : t('成岛以后还会受风浪侵蚀。少量细土在岩缝里留下，能留水并有种子到达的地方，才可能长起小苗；大片岩石仍然裸露。');
   if (select('environment') !== 'island' && stage === 2) return select('environment') === 'deep' ? t('枕状熔岩一个接一个长出来，外壳已经变暗，内部却可能仍热。深水不是绝对不会爆炸的保证。') : t('这个浅水例子选择了能发生强烈岩浆与水相互作用的条件，碎屑落回水里并逐渐沉积。');
   return academic ? CASE_CONTENT.submarine.stories[stage] : KIDS_STORIES.submarine[stage];
 }
@@ -191,6 +209,8 @@ function update() {
   syncScenarioControls();
   el('style-note').textContent = select('style') === 'custom' ? t('自定义条件只用于比较气体、黏度与供给的示意影响，不对应真实火山的参数测量。') : STYLE_NOTES[eruptionAppearance(settings()).style].body;
   el('ocean-supply-label').hidden = select('environment') !== 'island';
+  el('ocean-life-label').hidden = select('environment') === 'shallow' || !ocean?.is3D;
+  el('ocean-life-entry').hidden = select('environment') === 'shallow' || !ocean?.is3D;
   if (study === 'submarine') el('ocean-result').textContent = select('environment') === 'island'
     ? submarineState(progress, 'island',select('ocean-supply') as Supply).emerged ? t('山顶已经露出海面；大部分山体仍在水下。') : t('这个时刻，山顶仍在水下。成岛需要足够的累积供给。')
       : t('水深之外，成分、含气量、流出速率与混合方式也影响结果。');
@@ -203,7 +223,7 @@ function positions() { return studyMilestones(study,select('basin')==='caldera')
 function buildViews() {
   const items: [View,string][] = study === 'heat' ? [['section',t('追踪地下水')],...(heat?.is3D ? [['landscape',t('看温泉出露')]] as [View,string][] : [])]
     : study === 'lake' ? [['section',t('湖盆剖面')],...(lake?.is3D ? [['landscape',t('看整座湖')]] as [View,string][] : [])]
-      : study === 'submarine' ? [['landscape',t('跟着山体生长')],['ocean',t('看海洋全景')],['section',t('打开剖面')],['vent',t('靠近喷口')]]
+      : study === 'submarine' ? [['landscape',t('跟着山体生长')],['ocean',t('看海洋全景')],['section',t('打开剖面')],['vent',select('ocean-life') === 'suitable' ? t('近看岩面与生命') : t('靠近喷口')]]
         : study === 'mechanism' ? [['landscape',eruption?.is3D?t('三维剖面'):t('完整剖面')],['storage',t('地下活动')],['vent',t('靠近喷口')]]
           : study === 'styles' ? [...(eruption?.is3D ? [['exterior',t('完整火山')]] as [View,string][] : []),['vent',t('靠近喷口')],['section',t('追踪熔岩')],['plume',t('灰柱与落灰')],['landscape',eruption?.is3D?t('三维剖面'):t('完整剖面')]]
             : study === 'ecology' ? [['landscape',t('看山与草坡')],['vent',t('靠近山坡')],['section',t('看草坡剖面')]]
@@ -291,6 +311,7 @@ for (const id of controls.filter(id => id !== 'eruption-scenario' && id !== 'eru
   if (id==='gas'||id==='viscosity') el<HTMLSelectElement>('style').value='custom';
   if (id==='landform') { volcano=landformFrom(select('landform')); mountStudy(); return; }
   if (id==='environment'||id==='basin') { mountStudy(); return; }
+  if (id==='ocean-life') { buildViews(); ocean?.setView(view as OceanView); }
   settleCamera(); update();
 });
 el<HTMLSelectElement>('kid-path').addEventListener('change',() => {
@@ -306,6 +327,10 @@ document.querySelectorAll<HTMLButtonElement>('[data-strength]').forEach(b=>b.add
 }));
 document.querySelectorAll<HTMLButtonElement>('[data-collapse]').forEach(b=>b.addEventListener('click',()=>seek(Number(b.dataset.collapse))));
 el('life-entry').addEventListener('click',()=>chooseStudy('ecology',volcano));
+el('ocean-life-entry').addEventListener('click',()=>{
+  stop(); el<HTMLSelectElement>('ocean-life').value = 'suitable'; view = 'vent';
+  buildViews(); ocean?.setView('vent'); seek(1);
+});
 el('bridge').addEventListener('click',()=>{ const next=nextStudy(study); if(next)chooseStudy(next); });
 function showStatus(status: VolcanoStatus) { const note=STATUS_NOTES[status]; for(const [id,text] of [['status-title',note.title],['status-body',note.body],['status-evidence',note.evidence],['status-limit',note.limit]])el(id).textContent=text; document.querySelectorAll<HTMLButtonElement>('[data-status]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.status===status))); }
 document.querySelectorAll<HTMLButtonElement>('[data-status]').forEach(b=>b.addEventListener('click',()=>showStatus(b.dataset.status as VolcanoStatus)));

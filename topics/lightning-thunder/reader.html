@@ -1,7 +1,44 @@
-<section class="study-content"><header class="hero"><div><p class="eyebrow">天气观察室 / 云中的电与声音</p><h1>闪电和雷声是怎样形成的</h1><p class="intro">云里怎样积累电荷？闪电为什么会分叉，为什么总是先看见闪电再听见雷声？把一次放电放慢，看清光与声音各自的旅程。</p></div><div class="modes" data-reader-menu="options"><button data-mode="kids" aria-pressed="true">儿童版</button><button data-mode="academic" aria-pressed="false">学术版</button></div></header>
-<section class="explorer"><div class="workspace"><div class="theater"><div class="viewport"><canvas id="scene" role="img" aria-label="科学互动演示，讲解与操作在画面旁边"></canvas><div class="scene-heading"><div><h2 id="scene-title"></h2></div><span>教学示意</span></div><div class="scene-note" id="scene-note"></div><p class="error" id="scene-error" hidden="">画面暂时无法显示，仍可操作控件阅读讲解。</p></div><div class="controls"><button id="play">开始观察</button><button id="reset">回到开始</button><select id="rate" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected="">1×</option><option value="2">2×</option></select><div class="scrub"><input type="range" id="progress" min="0" max="1000" value="0" aria-label="演示进度"><output id="elapsed"></output></div></div><div class="steps" id="steps"></div></div>
-<aside class="inspector"><p class="eyebrow">你可以改变什么？</p><div class="settings"><label class="setting"><span><span id="distance-label">与通道的示意距离</span><output id="distance-value"></output></span><input id="distance" aria-labelledby="distance-label" type="range" min="0.5" max="8" value="3" step="0.5"></label><label class="setting"><span><span id="temperature-label">空气温度</span><output id="temperature-value"></output></span><input id="temperature" aria-labelledby="temperature-label" type="range" min="0" max="35" value="20" step="5"></label></div><div class="readout"><div class="metric" id="metric"></div><p class="metric-label" id="metric-label"></p></div><p class="hint" id="prompt"></p></aside></div><article class="story" data-reader-prose><div><p class="eyebrow">先猜一猜，再动手</p><h2 id="story-title"></h2></div><div class="story-copy"><p id="story"></p><p class="observe"><strong>一起观察</strong><span id="observe"></span></p></div></article><section class="science-panel" id="science-panel" hidden="" aria-label="这一幕的科学关系">
-  <div class="science-relation"><p class="eyebrow">这一幕的科学关系</p><p class="science-formula" id="science-formula"></p><h3>符号与条件</h3><p id="science-terms"></p></div>
-  <div class="science-context"><h3>当前条件与读数</h3><p class="science-live" id="science-live"></p><h3>容易混淆的地方</h3><p id="science-caution"></p></div>
-</section></section>
-<section class="details" data-reader-prose><article><h2>为什么会这样？</h2><p id="explanation"></p></article><article><h2>画面与真实世界</h2><details data-reader-prose><summary>模型与资料</summary><p id="limits"></p><div class="sources" data-reader-prose><a href="https://www.weather.gov/safety/lightning-science-electrification">NWS · Thunderstorm electrification ↗</a><a href="https://www.weather.gov/safety/lightning-science-negative-charged-flash">NWS · Negative cloud-to-ground flash ↗</a><a href="https://www.weather.gov/safety/lightning-science-thunder">NWS · Thunder ↗</a><a href="https://www.weather.gov/safety/lightning">NWS · Lightning safety ↗</a></div></details></article></section><nav class="related" aria-label="继续探索" data-reader-prose><a href="/topics/rain-formation/">云里的水怎样变成雨？ →</a><a href="/topics/typhoon/">台风里的云怎样旋转？ →</a></nav></section>
+<section class="lightning-project study-content">
+<section id="lightning-observation" aria-label="云中的电与雷声观察" data-reader-choices=".lightning-choices">
+  <nav class="lightning-choices" aria-label="观察条件">
+    <label>观察画面<select id="lens"><option value="follow">跟随过程</option><option value="cloud">云内局部 · 三维</option><option value="storm">云与地面 · 外景</option></select></label>
+    <label>起电情境<select id="charging"><option value="sustained">持续分离 · 演示负地闪</option><option value="limited">较弱分离 · 未演示地闪</option></select></label>
+    <label class="setting"><span><span id="distance-label">与通道的示意距离</span><output id="distance-value"></output></span><input id="distance" aria-labelledby="distance-label" type="range" min="0.5" max="8" value="3" step="0.5"></label>
+    <label class="setting"><span><span id="temperature-label">传播空气的温度</span><output id="temperature-value"></output></span><input id="temperature" aria-labelledby="temperature-label" type="range" min="0" max="35" value="20" step="5"></label>
+    <label class="label-choice"><input id="labels" type="checkbox" checked>显示外景标注</label>
+  </nav>
+  <div class="lightning-workspace">
+    <div class="theater" data-reader-stage>
+      <div class="stage-heading"><h2 id="scene-title"></h2><span id="scene-context"></span></div>
+      <div class="viewport">
+        <canvas id="scene" role="img" aria-label="同一朵雷暴云、接地塔和室内观察者的放电与声波示意"></canvas>
+        <div id="cloud-view" hidden>
+          <canvas id="cloud-scene" hidden tabindex="0" role="img" aria-label="可转动的云内局部：小冰晶、霰与过冷水滴在同一进度下接触并分离" aria-describedby="scene-note cloud-status"></canvas>
+          <svg id="cloud-fallback" viewBox="0 0 900 560" role="img" aria-label="与三维同一粒子状态的云内局部平面示意" preserveAspectRatio="xMidYMid meet">
+            <defs><radialGradient id="graupel-light" cx="30%" cy="25%"><stop stop-color="#f2f5e9"></stop><stop offset=".55" stop-color="#d2dfdb"></stop><stop offset="1" stop-color="#829d9e"></stop></radialGradient></defs>
+            <ellipse id="cloud-positive" cx="447" cy="139" rx="205" ry="54" fill="#f0c67e" opacity="0"></ellipse><ellipse id="cloud-negative" cx="450" cy="386" rx="186" ry="65" fill="#83bbd7" opacity="0"></ellipse>
+            <path d="M238 467Q201 327 249 206T338 85" fill="none" stroke="#e2c291" stroke-width="2" opacity=".6"></path><path d="M324 92L339 83L336 100M235 304L240 285L248 301" fill="none" stroke="#e2c291" stroke-width="2"></path>
+            <g id="cloud-particles"></g>
+          </svg>
+        </div>
+        <p id="scene-error" class="scene-error" hidden>外景暂不可用，仍可用过程节点阅读解释。</p>
+        <div id="cloud-help" class="cloud-help" hidden><span id="cloud-status"></span><button id="reset-orbit" hidden>重置视角</button><button id="retry-cloud" hidden>重试云内三维</button></div>
+      </div>
+      <div class="scene-caption" data-reader-caption><p id="scene-note"></p><p id="arrival" aria-live="off"></p></div>
+      <div id="legend" class="legend" aria-label="画面图例"></div>
+      <div class="controls" data-reader-transport>
+        <div class="playback-buttons"><button id="previous" aria-label="上一个过程节点">上一步</button><button id="play">开始观察</button><button id="next" aria-label="下一个过程节点">下一步</button><button id="reset">回到开始</button></div>
+        <label class="scrub"><span id="progress-label">同一次事件的进度</span><input type="range" id="progress" min="0" max="1000" value="0" aria-labelledby="progress-label"><output id="elapsed"></output></label>
+        <label class="rate">速度<select id="rate" aria-label="播放速度"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option></select></label>
+      </div>
+      <div class="steps" id="steps" role="group" aria-label="从云内到雷声的过程节点"></div>
+    </div>
+    <aside class="inspector" id="lightning-explanation">
+      <article class="story"><p class="eyebrow">正在观察</p><h3 id="story-title"></h3><p id="story"></p><p class="watch" id="observe"></p></article>
+      <div class="readout"><strong id="metric"></strong><p id="metric-label"></p><p id="speed-reading"></p></div>
+      <details class="model-detail"><summary>模型边界与资料</summary><p>云内局部和外景消费同一进度与起电情境。起电情境是定性对照，粒子和电荷符号不代表测量值；没有计算击穿阈值或放电概率。空气温度只改变声速近似。</p><p>云、塔、房屋、通道与声波并非等比例。前四段慢放过程，最后一段从闪光时刻计入声音传播秒数，但播放仍压缩等待。只展示一次负地闪，不重复频闪，也不自动播放声音。</p><p>听见雷声就应进入合适的坚固建筑或封闭硬顶车辆。画面中的观察者位于室内，距离不能证明户外安全。</p><ul><li><a href="https://www.weather.gov/safety/lightning-science-electrification">NWS · Thunderstorm electrification</a></li><li><a href="https://www.weather.gov/safety/lightning-science-negative-charged-flash">NWS · Negative cloud-to-ground flash</a></li><li><a href="https://www.weather.gov/safety/lightning-science-thunder">NWS · Thunder</a></li><li><a href="https://www.weather.gov/safety/lightning">NWS · Lightning safety</a></li></ul></details>
+    </aside>
+  </div>
+</section>
+<nav class="related" aria-label="继续探索" data-reader-prose><a href="/topics/rain-formation/">云里的水怎样变成雨？ →</a><a href="/topics/wind/">空气怎样形成风与风暴？ →</a></nav>
+</section>

@@ -2,100 +2,108 @@
   "version": 1,
   "topicId": "lightning-thunder",
   "zh": {
-    "question": "闪电和雷声来自同一次事件，为什么我们常常先看见闪电？",
-    "observe": "固定温度，分别选择近处和远处闪电；推进到放电后，比较声音传播到观察者所需时间。再只改变温度，比较理论声速。",
+    "question": "云里怎样分开电荷，通道怎样接通，为什么同一次闪电的雷声更晚到达？",
+    "observe": "先跟随一对冰晶和霰靠近、接触再分离，保持进度比较持续分离与较弱分离。切回同一朵云下面，前后拖动接通节点，检查先导和回击是不是同一通道。最后固定气温比较 1 km 与 6 km，再固定距离改变气温，读出光声延迟。",
     "academic": [
       {
-        "title": "电荷分离创造放电条件",
-        "body": "雷暴云中的冰晶、霰等粒子在碰撞和气流作用下发生电荷交换与分离，使不同区域产生强电场。当空气的绝缘状态被击穿，可形成导电通道并发生放电。这里呈现常见的简化电荷分布；真实雷暴电荷结构复杂，闪电可以发生在云内、云间或云地之间，不都是从云直线落地。"
+        "title": "接触起电与空间分离是两个环节",
+        "body": "雷暴主要起电区常有过冷水滴、小冰晶与霰共存。霰在收集并冻结水滴时形成结凇表面；冰晶与霰接触可以转移电荷，不同粒子的运动随后把电荷送往不同区域。本例选择上正、中下负的一种常见结构，外景还保留小型底部正区与地面感应电荷。实验研究表明，转移电荷的极性还受温度、液态水含量及粒子生长经历等条件影响，不能把每次碰撞都当成固定的正负分配。较弱分离对照保持相同接触和粒子身份，只减少差异输送；没有从它推算击穿阈值、放电概率或真实风暴安全性。"
       },
       {
-        "title": "雷声是空气快速膨胀的结果",
-        "body": "放电通道附近的空气在极短时间内被加热，快速膨胀并产生压力扰动，传播到耳朵时成为雷声。闪电通道有长度和弯曲形状，不同部分的声音会在不同时刻到达，再加上反射等影响，便可能听到持续的隆隆声。雷不是两朵云像石头那样碰撞发出的声音。"
+        "title": "接通之后，回击才沿原通道发展",
+        "body": "本页选一次负地闪：微弱的分步先导从云中向下发展并分叉，接近地面时可与向上的连接通道接通。两端在塔上方同一个点连接之前保留间隙，不提前出现明亮回击；接通之后，发光前沿沿已建立的同一通道向云发展。前沿方向不等于所有电荷或空气的运动方向。通道周围空气在强烈加热下快速膨胀，产生雷声；声音在这次放电中产生，并非等到观察者听见时才开始。真实闪电还包括云内闪电、正地闪和重复回击，本页不把它们硬接成同一条必然过程。"
       },
       {
-        "title": "延迟能估距，不能证明安全",
-        "body": "光在空气中传播远快于声音，所以常先看到闪光。温度适宜时，声音每秒约走三百多米，距离可粗估为声速乘以延迟；风、温度分层和通道位置都会影响结果。这个估计只解释时间差，不是安全判据。听见雷声就应进入合适的坚固建筑或封闭硬顶车辆，并遵循当地雷电警示。"
+        "title": "传播时间差可以计算，危险范围不能据此预测",
+        "body": "本页以干空气近似 cₛ ≈ 331.3 + 0.606T 估计声速，T 为摄氏气温、cₛ 用米每秒；延迟 Δt = d/cₛ − d/c，距离 d 用米，c 为光速。距离加倍会使本模型延迟加倍，气温升高会缩短等待；温度控件仅改变声音传播，不改变云内起电案例。最后一段从闪光时刻计入声音传播秒数，页面播放仍压缩等待。圆弧采用单一传播距离，而真实长通道各段、风、温度分层和地形会影响到达与隆隆声。听见雷声就应进入合适的坚固建筑或封闭硬顶车辆，并遵循当地警示，不能在户外用延迟验证安全。"
       }
     ],
-    "misconception": "闪电不是先发生、雷声过一会儿才产生；主要是声音到达得更晚。",
-    "boundary": "圆形波前、温度声速公式和单一距离都是教学近似；没有真实声压或危险范围预测。不要在户外等待闪电来验证。",
+    "misconception": "碰撞并不保证立即出现闪电；先导、接通和回击也不是同一根同时亮起的线。雷声与闪电来自同次放电，主要是声音到达得较晚。",
+    "boundary": "云内三维是同一朵云的局部教学重建，不是实测体积。这里是开放的空气区域，没有容器或云壳。粒子、通道、地景与声波分别放大；位置没有米或秒的标定，粒子数与正负号不表示浓度、库仑或电子轨迹。两个起电情境不求解微物理、电场或击穿阈值。没有声压、闪电概率或危险范围预测；未演示地闪不代表真实云安全。",
     "narration": [
       {
-        "label": "先亮，后响",
-        "text": "在安全的屋子里看雷雨时，你可能先看见窗外一亮，过了一会儿才听见轰隆隆。难道雷声刚才忘记出发了吗？不是的。今天我们用屏幕上的闪电做比较，就不用到外面等待。先看好云和观察者的位置，猜一猜什么会先到达。",
-        "cue": "显示云和观察者，保持无闪烁静态。"
+        "label": "先相遇，再分开",
+        "text": "我们先进入雷暴云的一小块地方。这里有带枝的小冰晶、表面结着冰粒的霰，还有很小的过冷水滴。跟住一对冰晶和霰，看它们先靠近，再接触。接触可以交换电荷，接着不同的运动把它们带开。在这个选定的例子里，冰晶带着正电到更高处，霰带着负电留在较低处。这些正负号帮助我们追踪，真实电荷看不见，也不是每次碰撞都会产生闪电。",
+        "cue": "云内局部从未接触推进到接触、分离；回拖一次保持同一粒子身份，展示较弱分离对照。"
       },
       {
-        "label": "云里的小电火花",
-        "text": "雷暴云里面，小冰粒受到气流带动，碰来碰去，会让不同地方积起不同的电荷。条件合适时，一道很强的电流穿过空气，这就是闪电。闪电把周围空气很快加热，空气猛地膨胀，发出了向外传播的声音，也就是我们听到的雷。",
-        "cue": "推进电荷分离与放电，使用现有单次示意。"
+        "label": "接通才有明亮回击",
+        "text": "现在看回同一朵云下面。较暗的先导分成支路，向地面一步步发展；地面附近也可能伸出向上的连接通道。看好两端之间的空隙。只有接通以后，明亮前沿才沿着刚才建立的通道向云发展。这就是这里慢放的回击。空气很快受热、膨胀，发出了雷声。真实闪电过程非常快，我们特意放慢，才看得清先后。",
+        "cue": "外景停在先导、连接前间隙、接通及回击四个取样点，不额外重复闪击。"
       },
       {
         "label": "声音还在路上",
-        "text": "光跑得非常快，声音却慢得多。看到亮光时，声音可能还在路上。我们把距离调远一些，再看声音的圆圈走过来。现在停一下，比较近处和远处的等待时间。是不是更远的时候，声音通常要多走一会儿，才来到观察者这里？",
-        "cue": "比较近远两次传播，留三秒观察。"
+        "text": "闪光和雷声来自同一次放电。光传播得非常快，声音慢得多，所以我们看见闪电时，声音可能还没有到达室内。固定气温比较近处和远处：更远的声音通常需要更多时间。在屏幕模型里把距离加倍，等待时间也会加倍；保持距离，较暖空气中的声音又会快一点。圆弧只是帮助观察，真实雷声来自整条通道周围的空气，不是地面发出的发光圆圈。",
+        "cue": "固定温度比较 1 km 与 6 km，固定距离改变温度；末段只显示模型传播秒数，不自动播放声音。"
       },
       {
-        "label": "好奇心带回室内",
-        "text": "这就解释了先看到闪电、后听到雷声的原因。可是声音有多远，不能告诉我们外面一定安全。真实生活中，只要听到雷声，就赶快告诉大人，一起进入合适的安全地方。我们把好奇心带回室内，用模型研究时间差，不在树下等下一次闪电。",
-        "cue": "停在室内观察说明，不重复闪光。"
+        "label": "把好奇心带回室内",
+        "text": "较弱分离的例子里，这一次没有接出地闪，也没有它带来的雷声。这个结果只属于屏幕中的情境，不能说明真实云安全。真实闪电还有很多路径，雷声也会因为通道不同部分的声音先后到达而隆隆持续。生活中只要听见雷声，就告诉大人，一起进入合适的坚固建筑或封闭硬顶车辆。我们在室内继续探索，不到外面等待下一次闪电。",
+        "cue": "切换到较弱分离并保持相同进度，确认没有回击或声波；最后保留室内观察者和安全说明。"
       }
     ]
   },
   "en": {
-    "question": "If lightning and thunder come from one event, why do we usually see the flash first?",
-    "observe": "Keep temperature fixed and compare near and distant lightning. After discharge, watch how long sound takes to arrive. Then change only temperature and compare the theoretical sound speed.",
+    "question": "How does charge separate in a cloud, how does a channel connect, and why does thunder from the same flash arrive later?",
+    "observe": "Follow one ice–graupel pair approaching, contacting and separating. Keep progress fixed and compare sustained and weaker separation. Return below the same cloud and seek around attachment to check that the leader and return stroke share one path. Finally hold temperature fixed and compare 1 km with 6 km, then hold distance fixed and change temperature.",
     "academic": [
       {
-        "title": "Charge separation enables discharge",
-        "body": "Collisions among ice particles and their transport by storm airflows separate electrical charge. Strong electric fields can break down air insulation and establish conducting channels. Real storm charge structures are complex; lightning can occur within clouds, between clouds or between cloud and ground."
+        "title": "Contact charging and spatial separation are distinct steps",
+        "body": "The main storm charging region commonly contains supercooled droplets, small ice crystals and graupel. Graupel develops a rimed surface as it collects and freezes droplets. Ice–graupel contact can transfer charge; different particle motion then transports it into different regions. This case selects a common upper-positive and mid/lower-negative structure, with a small lower positive pocket and induced ground charge retained in the exterior. Laboratory studies show that polarity also depends on temperature, liquid water content and particle growth history, so contact does not impose one universal sign rule. The weaker case retains the same contacts and identities but reduces differential transport, without calculating breakdown thresholds, flash probabilities or real-storm safety."
       },
       {
-        "title": "Thunder comes from rapid expansion",
-        "body": "Lightning heats nearby air extremely rapidly. The expanding air produces pressure disturbances heard as thunder. A long, branching channel sends sound from different distances, and reflections can further spread out arrival times, creating a rumble. Thunder is not the sound of two clouds colliding."
+        "title": "Attachment comes before a return stroke along the same path",
+        "body": "This view follows one negative ground flash. A faint, branching stepped leader develops downward and may attach to an upward connecting channel near the ground. A gap remains until both tips meet at one point above the tower; the bright return stroke cannot appear early. After attachment, the luminosity front develops upward along the established path. Its direction does not describe all charge or air motion. Rapid heating expands air around the channel and produces thunder during the discharge, rather than when the observer finally hears it. Intracloud flashes, positive ground flashes and repeated return strokes are other processes, not compulsory later steps in this one sequence."
       },
       {
-        "title": "Delay estimates distance, not safety",
-        "body": "Light travels much faster than sound. Sound moves a little over three hundred meters each second in typical air, so distance can be roughly estimated from delay. Wind, temperature profiles and channel geometry limit the estimate. Hearing thunder calls for suitable shelter, not further outdoor measurement."
+        "title": "Travel-time delay is calculable; a hazard radius is not",
+        "body": "The dry-air approximation cₛ ≈ 331.3 + 0.606T uses Celsius temperature T and sound speed cₛ in meters per second. Delay is Δt = d/cₛ − d/c, with distance d in meters and light speed c. Doubling distance doubles this model’s delay; warmer air shortens it. Temperature changes sound propagation only, without changing the charging case. The last section counts travel seconds from the flash while playback still compresses the wait. Its arc uses one propagation distance; real channel segments, winds, temperature layering and terrain alter arrival and rumbling. Hearing thunder calls for a suitable substantial building or enclosed hard-topped vehicle and local guidance, never an outdoor experiment to establish safety."
       }
     ],
-    "misconception": "Thunder is not created only after a long wait; most of the delay comes from sound traveling to you.",
-    "boundary": "Circular fronts, the temperature formula and a single source distance are approximations, not sound-pressure or hazard predictions. Do not wait outdoors to test them.",
+    "misconception": "Contact does not guarantee an immediate flash, and leader, attachment and return stroke are not one simultaneously bright line. Thunder comes from the same discharge; most of the delay is sound travel.",
+    "boundary": "The cloud interior is a local teaching reconstruction of the same cloud, not an observed volume. This is open air without a vessel or shell. Particles, channel, landscape and sound fronts are separately enlarged, without calibrated positions or process time; particle counts and signs are not concentrations, coulombs or electron paths. Cases do not solve microphysics, electric fields or breakdown. There is no sound-pressure, flash-probability or hazard-radius prediction; no ground flash shown does not mean a real cloud is safe.",
     "narration": [
       {
-        "label": "Flash, then rumble",
-        "text": "From a safe building, you may see a flash outside and hear a rumble later. Did the thunder forget to start? No. We can investigate with lightning on screen instead of waiting outdoors. Find the cloud and the observer, and predict what will reach the observer first.",
-        "cue": "Show cloud and observer in a steady, non-flashing view."
+        "label": "Meet before separating",
+        "text": "First enter a small part of the storm cloud. It contains branching ice crystals, rimed graupel particles and very small supercooled droplets. Follow one ice–graupel pair as they approach and touch. Contact can transfer charge, and different motion then carries them apart. In this selected example, ice carries positive charge higher while graupel carries negative charge lower. The signs help us follow invisible charge. Not every contact produces a flash.",
+        "cue": "Advance the same cloud particles through approach, contact and separation. Seek back once and compare weaker separation without replacing particle identities."
       },
       {
-        "label": "A powerful electrical spark",
-        "text": "Inside a storm cloud, moving ice particles collide and help separate electrical charge. When conditions allow, a powerful current passes through the air: lightning. It heats the nearby air very quickly. The air expands rapidly and sends sound outward. That sound is the thunder we hear.",
-        "cue": "Advance charge separation and the existing single discharge illustration."
+        "label": "Connect before the bright return stroke",
+        "text": "Now look below the same cloud. A faint leader branches and develops downward in steps. A connecting channel may grow upward near the ground. Watch the gap between their tips. Only after attachment can a bright front develop upward along the path already established. This is the slowed return stroke. Rapid heating expands the air and produces thunder. Real lightning happens extremely quickly; slowing it lets us distinguish the order.",
+        "cue": "Sample the faint leader, remaining gap, attachment and advancing return stroke. Do not add repeated flashes."
       },
       {
         "label": "Sound is still traveling",
-        "text": "Light travels extremely fast, while sound is much slower. When the flash reaches us, sound may still be on its way. Increase the distance and watch the sound front travel. Pause to compare near and far. Does the farther journey usually take sound longer to reach the observer?",
-        "cue": "Compare two distances and leave three seconds to observe."
+        "text": "The flash and thunder come from one discharge. Light travels extremely fast, while sound is much slower, so sound may still be traveling when the flash reaches indoors. Hold temperature fixed and compare near with far: a longer journey usually takes more time. Doubling distance doubles the waiting time in this model. At one distance, warmer air carries sound a little faster. The arc is only a guide; real thunder comes from air around the whole channel, not a glowing circle emitted by the ground.",
+        "cue": "At one temperature compare 1 km and 6 km, then change temperature at one distance. Show model travel seconds without automatic audio."
       },
       {
         "label": "Bring curiosity indoors",
-        "text": "That explains why the flash often arrives before the rumble. Distance estimates cannot promise that outside is safe. In real life, tell an adult when you hear thunder and move together to suitable shelter. Bring your curiosity indoors and use the model to study delays, rather than waiting under a tree for another flash.",
-        "cue": "Hold the shelter reminder without replaying the flash."
+        "text": "In the weaker-separation example, this case makes no ground flash or associated thunder. That result belongs to the screen scenario and cannot establish that a real cloud is safe. Real lightning has many paths, and sound from different channel segments can arrive at different times and rumble. If you hear thunder, tell an adult and move together into a suitable substantial building or enclosed hard-topped vehicle. Keep exploring indoors instead of waiting outside for another flash.",
+        "cue": "Switch to weaker separation at the same progress and verify no return stroke or sound front. Hold the indoor observer and shelter reminder."
       }
     ]
   },
   "references": [
     {
-      "title": "NWS · Understanding Lightning Science",
-      "url": "https://www.weather.gov/safety/lightning-science-overview"
+      "title": "NWS · Thunderstorm electrification",
+      "url": "https://www.weather.gov/safety/lightning-science-electrification"
+    },
+    {
+      "title": "Saunders et al. · Cloud conditions and graupel/ice charge transfer",
+      "url": "https://doi.org/10.1256/QJ.05.218"
+    },
+    {
+      "title": "NWS · Negative cloud-to-ground flash",
+      "url": "https://www.weather.gov/safety/lightning-science-negative-charged-flash"
     },
     {
       "title": "NWS · Thunder",
       "url": "https://www.weather.gov/safety/lightning-science-thunder"
     },
     {
-      "title": "NWS · Lightning Safety",
+      "title": "NWS · Lightning safety",
       "url": "https://www.weather.gov/safety/lightning"
     }
   ]

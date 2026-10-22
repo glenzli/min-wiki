@@ -1,6 +1,6 @@
 import { cameraBox, clamp, fragmentState, islandAccretion, islandSurfaceY, pillowState, SEA_FLOOR, SEA_LEVEL, submarineState, type AccretionPhase, type Environment, type Supply, type Viewpoint } from './model.ts';
 
-export type SceneFrame = { progress: number; weights: [number, number, number]; supplyMix: number; camera: [number, number, number, number]; section: number };
+export type SceneFrame = { progress: number; weights: [number, number, number]; supplyMix: number; camera: [number, number, number, number]; section: number; ecology?: 'bare' | 'suitable' };
 const environments: Environment[] = ['deep', 'shallow', 'island'];
 const n = (v: number) => v.toFixed(3);
 const seeded = (index: number, salt: number): number => {

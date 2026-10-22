@@ -1,13 +1,33 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { animateValue } from '../../src/visuals/transition.ts';
-import { type Environment, type Supply } from './model.ts';
+import { pillowState, ramp, type Environment, type Supply } from './model.ts';
+import { MagmaDetailMotion, type DetailMotionState } from '../volcano-eruption/magmaMotion.ts';
 import { createScene, type SceneFrame } from './scene.ts';
-import { deepVentFraming, depositBuffers, oceanGeometryFrame, oceanParcels, pillowPitch, pillowPose, pillowShape, RADIUS, SCALE, sectionBuffers, seed, settledFragment, surfaceHeight, updateDeposit, WATER_Y, worldY, type OceanGeometryFrame, type SolidBuffers } from './geometry3d.ts';
+import { deepVentFraming, depositBuffers, oceanGeometryFrame, islandVentOrigin, pillowPitch, pillowShape, plumeOrigin, RADIUS, sectionBuffers, seed, surfaceHeight, updateDeposit, WATER_Y, worldY, type OceanGeometryFrame, type SolidBuffers } from './geometry3d.ts';
 import { compositeMaterial, oceanBackground, oceanUniforms, plumeMaterial, stoneMaterial, stoneNoise, waterMaterial } from './materials3d.ts';
+import { OceanVent3D } from './vent3d.ts';
+import { OceanCoastalFlow3D } from './coastalFlow3d.ts';
+import { OceanCoastline3D } from './coastline3d.ts';
+import { ISLAND_CLASTS, islandClast } from './surfaceClasts.ts';
+import { extrusionState } from './ventMechanics.ts';
+import { pillowFlowCorridor } from './pillowFlow.ts';
+import { OceanEcology3D } from './oceanEcology3d.ts';
+import type { OceanEcologyCase } from './oceanEcology.ts';
+import { oceanEcologyClearance } from './oceanEcology.ts';
 
 export type OceanView = 'landscape' | 'ocean' | 'section' | 'vent';
 type Deposit = { mesh: THREE.Mesh; face: THREE.Mesh; unit: number; key: string };
+
+/** Display admission follows existing molten exposure, never advances deposits.
+ * A cutaway retains residual interstitial melt after the exterior has cooled. */
+export function oceanMeltVisible(frame: OceanGeometryFrame, view: OceanView) {
+  if (view === 'section') return true;
+  if (frame.environment === 'deep') return Array.from({ length: 14 }, (_, i) => pillowState(frame.p, i))
+    .some(p => p.growth > .0001 && extrusionState(p.growth, p.crust, p.coreHeat).hot > .004);
+  if (frame.environment === 'shallow') return frame.state.activity > .004;
+  return frame.p < .80 && frame.history.units.some(u => u.growth > 0 && u.growth < 1 && Math.sin(u.growth * Math.PI) > .004);
+}
 
 function fromBuffers(data: SolidBuffers) {
   const geometry = new THREE.BufferGeometry();
@@ -16,8 +36,8 @@ function fromBuffers(data: SolidBuffers) {
   geometry.setIndex(data.indices); geometry.computeVertexNormals(); return geometry;
 }
 
-/** No process timer: all geometry, heat, plumes and water detail consume one frame.
- * Only finite camera transitions request frames independently of playback. */
+/** One supplied process frame owns geology, heat and finite particle packets.
+ * A bounded material phase animates only exposed melt, independently of geology. */
 class Ocean3D {
   readonly renderer: THREE.WebGLRenderer;
   private scene = new THREE.Scene();
@@ -33,18 +53,23 @@ class Ocean3D {
   private tuff = this.stone('tuff');
   private contact = Array.from({ length: 6 }, (_, i) => this.stone('section', .23 + i * .1));
   private magma = this.stone('magma');
-  private flowRock = this.stone('pillow', .71);
+  private branchMagma = this.stone('magma', .79);
+  private feederRock = this.stone('feeder');
   private oldPillowRock = this.stone('pillow', .27);
-  private pillowRocks = Array.from({ length: 14 }, (_, i) => this.stone('pillow', seed(i, 321)));
   private deposits: Deposit[] = [];
   private oldPillows: THREE.InstancedMesh[] = [];
   private rubble: THREE.InstancedMesh;
-  private lobes: THREE.Mesh[] = [];
-  private fragments: THREE.InstancedMesh;
+  private deepPillowClearance: boolean[] = [];
+  private deepRubbleClearance: boolean[] = [];
+  private deepEcologyClearance: boolean[] = [];
+  private vent: OceanVent3D;
   private sectionGroup = new THREE.Group();
   private host = new THREE.Group();
   private feeder: THREE.Mesh;
-  private flow: THREE.Mesh;
+  private coastal: OceanCoastalFlow3D;
+  private shoreline: OceanCoastline3D;
+  private ecology: OceanEcology3D;
+  private ecologyCase: OceanEcologyCase = 'bare';
   private water: THREE.Mesh;
   private ambient = new THREE.HemisphereLight('#b3d9df', '#192324', 1);
   private sun = new THREE.DirectionalLight('#f5e5cd', 2.7);
@@ -63,6 +88,11 @@ class Ocean3D {
   private disposed = false;
   private hasSize = false;
   private hasPlume = false;
+  private detailMotion?: MagmaDetailMotion;
+  private lightLevel = 0;
+  private geologyUpdates = 0;
+  private litCamera = new THREE.Vector3(Infinity, Infinity, Infinity);
+  private litTarget = new THREE.Vector3(Infinity, Infinity, Infinity);
   private cancelCamera = () => {};
   private moving = false;
   private dummy = new THREE.Object3D();
@@ -91,8 +121,12 @@ class Ocean3D {
       this.sceneTarget.depthTexture = new THREE.DepthTexture(1, 1, THREE.UnsignedIntType);
       this.plumeTarget.texture.colorSpace = THREE.LinearSRGBColorSpace;
       this.plume.uniforms.uDepth.value = this.sceneTarget.depthTexture;
-      this.plumeScene.add(this.mesh(new THREE.PlaneGeometry(2, 2), this.plume.material));
-      this.composite.add(this.mesh(new THREE.PlaneGeometry(2, 2), compositeMaterial(this.sceneTarget.texture, this.plumeTarget.texture)));
+      // These quads write clip-space pixels. Their world-space origin must not
+      // be culled when a close camera looks at a growing, elevated summit.
+      const plumeQuad = this.mesh(new THREE.PlaneGeometry(2, 2), this.plume.material);
+      const compositeQuad = this.mesh(new THREE.PlaneGeometry(2, 2), compositeMaterial(this.sceneTarget.texture, this.plumeTarget.texture));
+      plumeQuad.frustumCulled = compositeQuad.frustumCulled = false;
+      this.plumeScene.add(plumeQuad); this.composite.add(compositeQuad);
       const background = this.mesh(new THREE.SphereGeometry(100, 32, 20), oceanBackground(this.uniforms));
       background.castShadow = background.receiveShadow = false; this.scene.add(background);
       this.scene.add(this.ambient, this.sun, this.rov, this.rov.target, this.fill, this.hotLight, this.host, this.sectionGroup);
@@ -112,6 +146,8 @@ class Ocean3D {
       this.water = this.mesh(new THREE.PlaneGeometry(2000, 2000), waterMaterial(this.noise, this.uniforms));
       this.water.castShadow = this.water.receiveShadow = false;
       this.water.rotation.x = -Math.PI / 2; this.water.position.y = WATER_Y; this.water.renderOrder = 5; this.scene.add(this.water);
+      this.shoreline = new OceanCoastline3D(this.noise, this.uniforms); this.host.add(this.shoreline.group);
+      this.ecology = new OceanEcology3D(this.noise, this.uniforms); this.host.add(this.ecology.group);
 
       // Four fixed, asymmetric extrusions replace a repeated flattened sphere.
       // Shared active/old shapes keep this geometry allocation independent of time.
@@ -124,10 +160,7 @@ class Ocean3D {
       this.host.add(...this.oldPillows);
       const angular = new THREE.IcosahedronGeometry(1, 1); this.geometries.add(angular);
       this.rubble = this.instances(angular, this.rock.material, 420); this.host.add(this.rubble);
-      for (const [i, material] of this.pillowRocks.entries()) {
-        const lobe = this.mesh(pillows[i % pillows.length], material.material); this.host.add(lobe); this.lobes.push(lobe);
-      }
-      this.fragments = this.instances(angular, this.tuff.material, 49); this.host.add(this.fragments);
+      this.vent = new OceanVent3D(this.noise, this.uniforms); this.host.add(this.vent.group);
 
       const storage = new THREE.IcosahedronGeometry(1, 4), v = storage.getAttribute('position');
       for (let i = 0; i < v.count; i++) {
@@ -136,18 +169,19 @@ class Ocean3D {
         v.setXYZ(i, x * w, y * w, z * w);
       }
       storage.computeVertexNormals();
-      const body = this.mesh(storage, this.magma.material); body.scale.set(1.9, .53, .95); body.position.set(-.22, -1.22, -.06); this.sectionGroup.add(body);
-      const branch = this.mesh(storage, this.magma.material); branch.scale.set(.93, .29, .59); branch.position.set(1.30, -.70, -.08); this.sectionGroup.add(branch);
+      const body = this.mesh(storage, this.magma.material); body.scale.set(1.82, .72, 1.02); body.position.set(-.22, -1.0, -.06); body.rotation.z = -.06; this.sectionGroup.add(body);
+      const branch = this.mesh(storage, this.branchMagma.material); branch.scale.set(.93, .38, .62); branch.position.set(1.26, -.63, -.08); branch.rotation.z = .12; this.sectionGroup.add(branch);
       const feederData = new THREE.CylinderGeometry(1, 1, 1, 12, 32, false);
-      this.feeder = this.mesh(feederData, this.magma.material); this.sectionGroup.add(this.feeder);
-      this.flow = this.mesh(new THREE.CylinderGeometry(1, 1, 1, 8, 48, false), this.flowRock.material); this.host.add(this.flow);
+      this.feeder = this.mesh(feederData, this.feederRock.material); this.sectionGroup.add(this.feeder);
+      this.coastal = new OceanCoastalFlow3D(this.noise, this.uniforms, this.rock.material); this.host.add(this.coastal.group);
+      this.detailMotion = new MagmaDetailMotion(phase => this.updateLiquidPhase(phase), state => this.publishDetailState(state));
       this.observer = new ResizeObserver(this.resize); this.observer.observe(canvas);
       this.resize();
     } catch (error) { this.dispose(); throw error; }
   }
 
-  private stone(kind: Parameters<typeof stoneMaterial>[2], variation?: number) {
-    const rock = stoneMaterial(this.noise, this.uniforms, kind, variation); this.materials.add(rock.material); return rock;
+  private stone(kind: Parameters<typeof stoneMaterial>[2], variation?: number, pillowVariant?: number) {
+    const rock = stoneMaterial(this.noise, this.uniforms, kind, variation, pillowVariant); this.materials.add(rock.material); return rock;
   }
   private mesh(geometry: THREE.BufferGeometry, material: THREE.Material) {
     this.geometries.add(geometry); this.materials.add(material);
@@ -207,6 +241,21 @@ class Ocean3D {
       const size = .035 + seed(i, 4) ** 3 * .17;
       this.dummy.position.set(x, h + size * .31, z); this.dummy.rotation.set(seed(i, 7) * 5, seed(i, 8) * 6, seed(i, 9) * 3, 'XYZ');
       this.dummy.scale.set(size * 1.3, size * .7, size); this.dummy.updateMatrix(); this.rubble.setMatrixAt(i, this.dummy.matrix);
+      if (frame.environment === 'deep') {
+        this.deepRubbleClearance[i] ??= pillowFlowCorridor(x, z, .29);
+        this.deepEcologyClearance[i] ??= oceanEcologyClearance(x, z, size * 1.4, 'deep');
+        if (this.deepRubbleClearance[i] || this.deepEcologyClearance[i]) {
+          const scale = this.deepEcologyClearance[i] ? 0 : .28;
+          this.dummy.position.y = h + size * scale * .31;
+          this.dummy.scale.multiplyScalar(scale); this.dummy.updateMatrix(); this.rubble.setMatrixAt(i, this.dummy.matrix);
+        }
+      }
+      if (frame.environment === 'island' && i < ISLAND_CLASTS) {
+        const clast = islandClast(frame, i);
+        this.dummy.position.set(...clast.position); this.dummy.rotation.set(...clast.rotation, 'XYZ');
+        this.dummy.scale.set(...clast.dimensions).multiplyScalar(clast.visible ? 1 : 0); this.dummy.updateMatrix();
+        this.rubble.setMatrixAt(i, this.dummy.matrix);
+      }
       this.rubble.setColorAt(i, this.color.setScalar(.55 + seed(i, 10) * .6));
       if (i < oldCount) {
         const chain = Math.floor(i / 20), along = i % 20;
@@ -219,11 +268,17 @@ class Ocean3D {
         this.dummy.position.set(px, surfaceHeight(frame, px, pz, through) - extent * .08, pz);
         this.dummy.rotation.set((seed(i, 13) - .5) * .20, heading, pillowPitch(frame, px, pz, heading, through), 'YXZ');
         this.dummy.scale.set(extent * (1.1 + seed(i, 15) * .65), extent, extent * (.85 + seed(i, 43) * .25)); this.dummy.updateMatrix();
+        if (frame.environment === 'deep') {
+          this.deepPillowClearance[i] ??= pillowFlowCorridor(px, pz, .24 + extent * 1.3)
+            || oceanEcologyClearance(px, pz, extent * 1.8, 'deep');
+          if (this.deepPillowClearance[i]) { this.dummy.scale.setScalar(0); this.dummy.updateMatrix(); }
+        }
         const group = this.oldPillows[i % this.oldPillows.length], index = Math.floor(i / this.oldPillows.length);
         group.setMatrixAt(index, this.dummy.matrix);
         group.setColorAt(index, this.color.setRGB(.66 + seed(i, 16) * .28, .68 + seed(i, 16) * .27, .65 + seed(i, 16) * .28));
       }
     }
+    this.rubble.count = frame.environment === 'island' ? ISLAND_CLASTS : 420;
     this.rubble.instanceMatrix.needsUpdate = true; if (this.rubble.instanceColor) this.rubble.instanceColor.needsUpdate = true;
     this.oldPillows.forEach((mesh, i) => {
       mesh.count = Math.max(0, Math.ceil((oldCount - i) / this.oldPillows.length)); mesh.instanceMatrix.needsUpdate = true;
@@ -232,55 +287,46 @@ class Ocean3D {
     this.renderer.shadowMap.needsUpdate = true;
   }
   private products(frame: OceanGeometryFrame) {
-    this.lobes.forEach((mesh, index) => {
-      const pose = pillowPose(frame, index);
-      mesh.visible = frame.environment === 'deep' && pose.growth > .0001;
-      mesh.position.set(...pose.center); mesh.rotation.set(0, pose.heading, pose.pitch, 'YXZ');
-      const r = pose.radius * Math.cbrt(pose.growth);
-      mesh.scale.set(r * 1.35, r * .82, r * .9); this.pillowRocks[index].heat.value = pose.skinHeat * 1.9;
-    });
-    this.fragments.visible = frame.environment === 'shallow';
-    if (this.fragments.visible) {
-      for (let i = 0; i < 49; i++) {
-        const packet = settledFragment(frame, i);
-        this.dummy.position.set(...packet.position); this.dummy.rotation.set(i, i * .7, i * .4, 'XYZ');
-        this.dummy.scale.setScalar(packet.visible ? .025 + seed(i, 30) * .037 : 0); this.dummy.updateMatrix();
-        this.fragments.setMatrixAt(i, this.dummy.matrix);
-      }
-      this.fragments.instanceMatrix.needsUpdate = true;
-    }
-    const top = surfaceHeight(frame, 0, 0), pos = this.feeder.geometry.getAttribute('position') as THREE.BufferAttribute;
+    this.vent.draw(frame);
+    this.canvas.dataset.ventMechanism = this.vent.state.mechanism;
+    this.canvas.dataset.ventOpening = this.vent.state.opening.toFixed(6);
+    this.canvas.dataset.ventDetached = String(this.vent.state.detached);
+    this.canvas.dataset.ventSettled = String(this.vent.state.settled);
+    this.canvas.dataset.ventRemodelling = this.vent.state.remodelling.toFixed(6);
+    this.canvas.dataset.pillowAdvancing = String(this.vent.state.pillowAdvancing);
+    this.canvas.dataset.pillowRetained = String(this.vent.state.pillowRetained);
+    this.canvas.dataset.pillowFront = this.vent.state.pillowFront.map(n => n.toFixed(5)).join(',');
+    this.canvas.dataset.pillowDistance = this.vent.state.pillowDistance.toFixed(5);
+    const outlet = frame.environment === 'island' ? islandVentOrigin(frame) : plumeOrigin(frame);
+    const top = outlet[1], pos = this.feeder.geometry.getAttribute('position') as THREE.BufferAttribute;
     for (let i = 0; i < pos.count; i++) {
       // Cylinder's stable UV owns the advancing feeder's vertical coordinate.
       const source = this.feeder.geometry.getAttribute('oceanSource'), q = source.getY(i) + .5;
-      pos.setXYZ(i, -.13 + .10 * Math.sin(q * 8) + source.getX(i) * .055, -1.28 + (top + 1.28) * q, source.getZ(i) * .43 - .04);
+      const width = .065 + .045 * Math.sin(q * Math.PI) ** 2;
+      pos.setXYZ(i, (-.13 + .10 * Math.sin(q * 8)) * (1 - q) + outlet[0] * q + source.getX(i) * width, -1.28 + (top + 1.28) * q, source.getZ(i) * .43 - .04 * (1 - q) + outlet[2] * q);
     }
     pos.needsUpdate = true; this.feeder.geometry.computeVertexNormals(); this.feeder.geometry.computeBoundingSphere();
     this.magma.heat.value = .32 + frame.state.activity * .30;
-    this.flow.visible = false;
-    if (frame.environment === 'island') {
-      const unit = [...frame.history.units].reverse().find(u => u.growth > 0 && u.growth < 1);
-      if (unit && unit.phase !== 'shallow-fragments' && frame.p < .80) {
-        const vertices = this.flow.geometry.getAttribute('position') as THREE.BufferAttribute, source = this.flow.geometry.getAttribute('oceanSource');
-        const side = unit.index % 2 ? 1 : -1;
-        for (let i = 0; i < vertices.count; i++) {
-          const q = source.getY(i) + .5;
-          const x = (unit.center - 500) * SCALE + side * unit.width * SCALE * (.12 + unit.growth * .65) * q;
-          const z = .15 + q * (.55 + unit.growth * 1.2) + Math.sin(q * 5 + unit.index) * .08;
-          const radius = .055 * Math.pow(Math.max(.01, Math.sin(q * Math.PI)), .3);
-          const across = source.getX(i) * radius;
-          vertices.setXYZ(i, x + across, surfaceHeight(frame, x + across, z) + .012 + (1 + source.getZ(i)) * radius * .35, z);
-        }
-        vertices.needsUpdate = true; this.flow.geometry.computeVertexNormals(); this.flow.geometry.computeBoundingSphere();
-        this.flow.visible = true; this.flowRock.heat.value = Math.sin(unit.growth * Math.PI) * 1.7;
-      }
-    }
-    this.hotLight.position.set(0, top + .2, .1); this.hotLight.intensity = frame.state.activity * 5;
+    this.branchMagma.heat.value = this.magma.heat.value * .94;
+    this.feederRock.heat.value = this.magma.heat.value;
+    this.shoreline.draw(frame); this.uniforms.emergence.value = this.shoreline.state.exposure;
+    this.canvas.dataset.shorelineExposure = this.shoreline.state.exposure.toFixed(6);
+    this.coastal.draw(frame);
+    this.canvas.dataset.coastalContacts = String(this.coastal.state.contacts);
+    this.canvas.dataset.coastalContact = this.coastal.state.contact.map(n => n.toFixed(5)).join(',');
+    this.canvas.dataset.coastalFlows = String(this.coastal.state.retained);
+    this.canvas.dataset.coastalFragments = String(this.coastal.state.fragments);
+    this.canvas.dataset.ventOrigin = outlet.map(n => n.toFixed(5)).join(',');
+    this.hotLight.position.set(...(frame.environment === 'deep' && this.vent.state.pillowFocusWeight > .01
+      ? this.vent.state.pillowFocus as [number, number, number] : plumeOrigin(frame))); this.hotLight.position.y += .12;
+    const exposedHeat = Math.max(this.vent.state.exposedHeat, this.coastal.state.exposedHeat);
+    this.lightLevel = Math.min(1, exposedHeat) * 6;
+    this.hotLight.intensity = this.lightLevel;
   }
   private packets(frame: OceanGeometryFrame) {
     const uniforms = this.plume.uniforms, density = uniforms.uDensity.value;
     density.fill(0); const min = uniforms.uMin.value.set(Infinity, Infinity, Infinity), max = uniforms.uMax.value.set(-Infinity, -Infinity, -Infinity);
-    oceanParcels(frame).forEach((p, i) => {
+    this.coastal.state.parcels.forEach((p, i) => {
       const [x, y, z] = p.center, radius = Math.max(.01, p.radius);
       uniforms.uParcels.value[i].set(x, y, z, radius); uniforms.uAxes.value[i].set(...p.axes); density[i] = p.density;
       if (p.density < .001) return;
@@ -289,6 +335,7 @@ class Ocean3D {
       min.min(new THREE.Vector3(x - ex, y - ey, z - ez)); max.max(new THREE.Vector3(x + ex, y + ey, z + ez));
     });
     this.hasPlume = density.some(value => value > .001);
+    this.canvas.dataset.plumeParcels = String(density.filter(value => value > .001).length);
     if (!this.hasPlume) { min.set(0, 0, 0); max.set(0, 0, 0); }
   }
 
@@ -296,29 +343,54 @@ class Ocean3D {
     if (this.view === view && this.hasSize) return;
     this.view = view;
     const section = view === 'section'; this.sectionGroup.visible = section; this.uniforms.cutaway.value = section ? 1 : 0;
-    for (const material of [this.rock.material, this.tuff.material, this.oldPillowRock.material, ...this.pillowRocks.map(r => r.material), this.flowRock.material]) {
+    for (const material of [this.rock.material, this.tuff.material, this.oldPillowRock.material]) {
       material.clippingPlanes = section ? [this.cut] : []; material.clipShadows = section;
       material.needsUpdate = true;
     }
+    this.vent.setCutaway(section ? this.cut : undefined); this.coastal.setCutaway(section ? this.cut : undefined);
+    this.shoreline.setCutaway(section ? this.cut : undefined);
+    this.ecology.setCutaway(section ? this.cut : undefined);
     this.controls.minAzimuthAngle = section ? -.6 : -Infinity;
     this.controls.maxAzimuthAngle = section ? .6 : Infinity;
     this.renderer.shadowMap.needsUpdate = true;
+    this.detailMotion?.setHot(oceanMeltVisible(this.current, this.view));
     this.moveCamera(true);
   }
   private cameraFrame() {
     const top = worldY(this.current.state.summit), deep = this.current.environment === 'deep';
     const scale = Math.max(1, .98 / this.camera.aspect);
     if (this.view === 'vent') {
+      if (this.ecology.state.visible && this.current.p > .84) {
+        return { target: new THREE.Vector3(...this.ecology.state.focus).add(new THREE.Vector3(0, .08, 0)),
+          offset: new THREE.Vector3(deep ? .8 : 1.1, deep ? 1.1 : 2.3, deep ? 2.6 : 2.8).multiplyScalar(scale) };
+      }
       if (deep) {
         const framing = deepVentFraming(this.current, this.camera.aspect);
-        return { target: new THREE.Vector3(...framing.target), offset: new THREE.Vector3(...framing.offset) };
+        const target = new THREE.Vector3(...framing.target), offset = new THREE.Vector3(...framing.offset);
+        // Follow the source-to-front body rather than lifting the observation
+        // toward the plume head. Overlapping finite feeds blend continuously.
+        const focus = ramp(this.vent.state.pillowFocusWeight, .002, .18);
+        if (focus > 0) {
+          const [dx, dz] = this.vent.state.pillowDirection;
+          target.lerp(new THREE.Vector3(...this.vent.state.pillowFocus).add(new THREE.Vector3(0, .08, 0)), focus);
+          offset.lerp(new THREE.Vector3(dx * .9 + dz * 2.2, 1.55, dz * .9 - dx * 2.2).multiplyScalar(scale), focus);
+        }
+        return { target, offset };
       }
-      return { target: new THREE.Vector3(0, top + .12, .35), offset: new THREE.Vector3(1.8, 1.45, 4.5).multiplyScalar(scale) };
+      const source = this.current.environment === 'island' ? islandVentOrigin(this.current) : plumeOrigin(this.current);
+      const entryFraming = this.current.environment === 'island' ? Math.min(1.8, Math.max(0, source[1] - WATER_Y) * .58) : 0;
+      return { target: new THREE.Vector3(...source).add(new THREE.Vector3(0, .12 - entryFraming, .20 + entryFraming * .2)), offset: new THREE.Vector3(1.8, 1.65, 4.5 + entryFraming).multiplyScalar(scale) };
     }
     if (this.view === 'section') return { target: new THREE.Vector3(0, Math.max(.3, top * .43), 0), offset: new THREE.Vector3(2, 3.3, 20).multiplyScalar(scale) };
     if (this.view === 'ocean') return { target: new THREE.Vector3(0, 3.2, 0), offset: new THREE.Vector3(13, 7.8, 22).multiplyScalar(scale) };
     const extent = this.current.environment === 'island' ? Math.max(3.5, this.current.state.building * 8.7) : deep ? 6.9 : 9.5;
-    return { target: new THREE.Vector3(0, top * .48 + .15, 0), offset: new THREE.Vector3(extent * .55, extent * .55 + .5, extent * 1.9).multiplyScalar(scale) };
+    const target = new THREE.Vector3(0, top * .48 + .15, 0), offset = new THREE.Vector3(extent * .55, extent * .55 + .5, extent * 1.9);
+    if (this.current.environment === 'island') {
+      const source = islandVentOrigin(this.current), emerged = ramp(source[1], WATER_Y + .02, WATER_Y + .80);
+      target.lerp(new THREE.Vector3(source[0] * .3, WATER_Y + (source[1] - WATER_Y) * .36, source[2] * .5), emerged);
+      offset.lerp(new THREE.Vector3(3.2, 2.7, 6.8 + Math.max(0, source[1] - WATER_Y) * .7), emerged);
+    }
+    return { target, offset: offset.multiplyScalar(scale) };
   }
   private moveCamera(animate: boolean) {
     this.stopMotion(); const target = this.cameraFrame(), from = this.controls.target.clone(), eye = this.camera.position.clone();
@@ -356,31 +428,59 @@ class Ocean3D {
     if (this.disposed || !this.hasSize || document.hidden) return;
     const closeDeep = this.current.environment === 'deep' && this.view === 'vent';
     this.rov.position.copy(this.camera.position).add(new THREE.Vector3(-1.8, closeDeep ? 1.1 : 1.7, -.6)); this.rov.target.position.copy(this.controls.target);
-    if (closeDeep) this.rov.target.position.set(0, worldY(this.current.state.summit) + .12, .35);
-    this.rov.intensity = this.current.environment === 'deep' ? closeDeep ? 56 : 48 : 20;
+    this.rov.intensity = this.current.environment === 'deep' ? closeDeep ? 84 : 64 : 20;
+    this.ambient.intensity = this.current.environment === 'deep' ? this.view === 'section' ? .36 : .20 : .95;
     this.plume.uniforms.uLamp.value.copy(this.rov.position); this.plume.uniforms.uLampTarget.value.copy(this.rov.target.position);
-    if (this.current.environment === 'deep') this.renderer.shadowMap.needsUpdate = true;
-    this.fill.position.copy(this.camera.position).add(new THREE.Vector3(3, .5, 1));
+    // Ambient melt changes neither the ROV pose nor opaque rock contacts.
+    // Reuse their shadow until geometry or the observation camera changes.
+    if (this.current.environment === 'deep' && (!this.litCamera.equals(this.camera.position) || !this.litTarget.equals(this.rov.target.position))) {
+      this.renderer.shadowMap.needsUpdate = true;
+      this.litCamera.copy(this.camera.position); this.litTarget.copy(this.rov.target.position);
+    }
+    this.fill.position.copy(this.camera.position);
+    if (this.view === 'section') this.fill.position.lerp(this.controls.target, .55);
+    this.fill.position.add(new THREE.Vector3(3, .5, 1));
+    this.fill.intensity = this.view === 'section' ? 32 : this.current.environment === 'deep' ? closeDeep ? 12 : 8 : 10;
     if (!this.hasPlume) { this.renderer.setRenderTarget(null); this.renderer.render(this.scene, this.camera); return; }
     this.renderer.setRenderTarget(this.sceneTarget); this.renderer.render(this.scene, this.camera);
     this.plume.uniforms.uInverse.value.multiplyMatrices(this.camera.matrixWorld, this.camera.projectionMatrixInverse);
     this.renderer.setRenderTarget(this.plumeTarget); this.renderer.setClearColor(0, 0); this.renderer.clear(); this.renderer.render(this.plumeScene, this.camera);
     this.renderer.setRenderTarget(null); this.renderer.setClearColor(0, 1); this.renderer.render(this.composite, this.screenCamera);
   };
-  draw(progress: number, environment: Environment, supply: Supply) {
+  private updateLiquidPhase(phase: number) {
+    if (this.disposed) return;
+    this.uniforms.detailPhase.value = phase;
+    this.vent?.updateDetail(phase);
+    this.hotLight.intensity = this.lightLevel * (.94 + .04 * Math.sin(phase * 2) + .02 * Math.sin(phase * 3 + .7));
+    this.render();
+  }
+  private publishDetailState(state: DetailMotionState) {
+    this.canvas.dataset.detailMotion = state.disposed ? 'disposed' : state.hidden ? 'hidden'
+      : state.reducedMotion ? 'reduced' : state.running ? 'running' : 'idle';
+    this.canvas.dataset.detailPhase = state.phase.toFixed(6);
+  }
+  draw(progress: number, environment: Environment, supply: Supply, ecology: OceanEcologyCase = 'bare') {
     if (this.disposed) return;
     const changed = `${progress}|${environment}|${supply}` !== `${this.current.p}|${this.current.environment}|${this.current.supply}`;
     const oldTarget = this.cameraFrame(); this.current = oceanGeometryFrame(progress, environment, supply);
+    this.ecologyCase = ecology;
     const key = `${environment}|${supply}`;
     if (key !== this.environmentKey) { this.environmentKey = key; this.rebuild(); }
     this.uniforms.deep.value = environment === 'deep' ? 1 : 0; this.uniforms.clock.value = progress;
     this.sun.intensity = environment === 'deep' ? 0 : 2.7; this.sun.castShadow = environment !== 'deep';
-    this.ambient.intensity = environment === 'deep' ? .08 : .95;
-    this.rov.intensity = environment === 'deep' ? 48 : 20; this.rov.castShadow = environment === 'deep';
-    this.fill.intensity = environment === 'deep' ? 3.8 : 10;
+    this.rov.castShadow = environment === 'deep';
     this.water.visible = this.view === 'ocean' || this.view === 'section' || environment !== 'deep';
     this.sectionGroup.visible = this.view === 'section';
-    if (changed || this.deposits.some(d => !d.key)) { this.geometry(this.current); this.products(this.current); this.packets(this.current); }
+    if (changed || this.deposits.some(d => !d.key)) {
+      this.geometry(this.current); this.products(this.current); this.packets(this.current);
+      this.canvas.dataset.geologyUpdates = String(++this.geologyUpdates);
+    }
+    this.canvas.dataset.progress = this.current.p.toFixed(6);
+    this.canvas.dataset.environment = environment;
+    this.ecology.draw(this.current, this.ecologyCase);
+    this.canvas.dataset.ecology = this.ecologyCase;
+    this.canvas.dataset.ecologyVisible = String(this.ecology.state.visible);
+    this.detailMotion?.setHot(oceanMeltVisible(this.current, this.view));
     if (this.hasSize && !this.moving && this.view !== 'ocean') {
       const next = this.cameraFrame(), delta = next.target.clone().sub(oldTarget.target), ratio = next.offset.length() / oldTarget.offset.length();
       this.camera.position.sub(this.controls.target).multiplyScalar(ratio).add(this.controls.target).add(delta); this.controls.target.add(delta); this.controls.update();
@@ -388,11 +488,12 @@ class Ocean3D {
     this.render();
   }
   dispose() {
-    if (this.disposed) return; this.disposed = true; this.stopMotion(); this.observer?.disconnect();
+    if (this.disposed) return; this.disposed = true; this.detailMotion?.dispose(); this.stopMotion(); this.observer?.disconnect();
     this.controls?.removeEventListener('change', this.render); this.controls?.removeEventListener('start', this.stopMotion); this.controls?.dispose();
     this.canvas.removeEventListener('keydown', this.keydown);
     for (const geometry of this.geometries) geometry.dispose(); for (const material of this.materials) material.dispose();
-    for (const mesh of [...this.oldPillows, this.rubble, this.fragments]) mesh?.dispose();
+    for (const mesh of [...this.oldPillows, this.rubble]) mesh?.dispose();
+    this.vent?.dispose(); this.coastal?.dispose(); this.shoreline?.dispose(); this.ecology?.dispose();
     this.sun.shadow.map?.dispose(); this.rov.shadow.map?.dispose(); this.noise.dispose();
     this.sceneTarget.depthTexture?.dispose(); this.sceneTarget.dispose(); this.plumeTarget.dispose();
     this.renderer?.dispose(); this.renderer?.forceContextLoss(); this.scene.clear();
@@ -435,7 +536,7 @@ export class SubmarineScene {
   draw(frame: SceneFrame) {
     this.frame = frame;
     const environment: Environment = frame.weights[0] ? 'deep' : frame.weights[1] ? 'shallow' : 'island';
-    this.gpu?.draw(frame.progress, environment, frame.supplyMix ? 'limited' : 'sustained'); this.fallback?.(frame);
+    this.gpu?.draw(frame.progress, environment, frame.supplyMix ? 'limited' : 'sustained', frame.ecology ?? 'bare'); this.fallback?.(frame);
   }
   setView(view: OceanView) { this.view = view; this.gpu?.setView(view); }
   resetCamera() { this.gpu?.resetCamera(); }

@@ -1,4 +1,5 @@
 import { clamp, fragmentState, islandAccretion, islandSurfaceY, pillowState, SEA_FLOOR, SEA_LEVEL, submarineState, type Environment, type Supply } from './model.ts';
+import { islandDepositWeight, islandVentSite } from './islandGrowth.ts';
 import { plumeParcel } from './scene.ts';
 
 export type XYZ = [number, number, number];
@@ -87,12 +88,7 @@ export function oceanGeometryFrame(progress: number, environment: Environment, s
       for (let side = 0; side < 2; side++) contact[ring][side] = Math.min(contact[ring][side], Math.max(0, top[ring][side] - table.erosion[ring] * history.erosion));
     }
   }
-  const firstContact = (phase: 'shallow-fragments' | 'lava-cap') => {
-    const index = history.units.findIndex(unit => unit.phase === phase);
-    return index < 0 ? history.units.length : index;
-  };
-  return { p, environment, supply, state, history, contacts,
-    summitFacies: { fragmentsStart: firstContact('shallow-fragments'), capStart: firstContact('lava-cap') } };
+  return { p, environment, supply, state, history, contacts };
 }
 
 function profileAt(frame: OceanGeometryFrame, radius: number, cosine: number, contact: number) {
@@ -103,24 +99,105 @@ function profileAt(frame: OceanGeometryFrame, radius: number, cosine: number, co
   return l * (1 - side) + r * side;
 }
 
+const LATTICE_SIZE = 1 + RINGS * SECTORS;
+const SECTION_BLEND = .25;
+const throatFloor = (x: number, z: number) => Math.exp(-((x / .68) ** 8) - (((z - .70) / .45) ** 8));
+type IslandTemplates = { thickness: Float64Array[]; erosion: Float64Array; radius: Float64Array; cosine: Float64Array; offAxis: Float64Array; relief: Float64Array };
+let islandTemplates: IslandTemplates | undefined;
+/** Static per-unit spatial weights are sampled once, on the existing mesh grid.
+ * At most 24 x 2,561 thicknesses and five scalar fields are retained (~581 KiB).
+ * No expensive morphology field is evaluated in the per-frame vertex loop. */
+function preparedIslandTemplates(): IslandTemplates {
+  if (islandTemplates) return islandTemplates;
+  const table = preparedProfiles(), erosion = new Float64Array(LATTICE_SIZE);
+  const radii = new Float64Array(LATTICE_SIZE), cosines = new Float64Array(LATTICE_SIZE);
+  const offAxis = new Float64Array(LATTICE_SIZE), relief = new Float64Array(LATTICE_SIZE);
+  const units = islandAccretion(.8).units;
+  const thickness = units.map(() => new Float64Array(LATTICE_SIZE));
+  const floorRadius = .7 / RADIUS * RINGS, floorRing = Math.floor(floorRadius), floorT = floorRadius - floorRing;
+  const floors = units.map(unit => {
+    const l = table.left[unit.index], r = table.right[unit.index];
+    const raw = ((l[floorRing] + r[floorRing]) * (1 - floorT) + (l[floorRing + 1] + r[floorRing + 1]) * floorT) * .5;
+    return raw * islandDepositWeight(unit, 0, .7);
+  });
+  for (let vertex = 0; vertex < LATTICE_SIZE; vertex++) {
+    const ring = vertex === 0 ? 0 : 1 + Math.floor((vertex - 1) / SECTORS);
+    const angle = vertex === 0 ? 0 : (vertex - 1) % SECTORS / SECTORS * Math.PI * 2;
+    const radius = meshRadius(ring), cosine = Math.cos(angle), x = radius * cosine, z = radius * Math.sin(angle);
+    const meshX = Math.fround(x), meshZ = Math.fround(z);
+    radii[vertex] = Math.hypot(meshX, meshZ); cosines[vertex] = radii[vertex] ? meshX / radii[vertex] : 1;
+    offAxis[vertex] = 1 - Math.exp(-((meshZ / SECTION_BLEND) ** 2)); relief[vertex] = rockRelief(meshX, meshZ) * (1 - throatFloor(meshX, meshZ));
+    const q = radius / RADIUS * RINGS, a = Math.floor(q), b = Math.min(RINGS, a + 1), t = q - a, side = (cosine + 1) / 2;
+    erosion[vertex] = table.erosion[a] * (1 - t) + table.erosion[b] * t;
+    // Each package already contains the same broad, shallow throat floor.
+    // The finite episode sites migrate within it, without a moving excavation
+    // deforming older deposits. A positive blend preserves layer ordering.
+    const floor = throatFloor(x, z);
+    for (const unit of units) {
+      const l = table.left[unit.index][a] * (1 - t) + table.left[unit.index][b] * t;
+      const r = table.right[unit.index][a] * (1 - t) + table.right[unit.index][b] * t;
+      const shaped = (l * (1 - side) + r * side) * islandDepositWeight(unit, x, z);
+      thickness[unit.index][vertex] = shaped * (1 - floor) + floors[unit.index] * floor;
+    }
+  }
+  return islandTemplates = { thickness, erosion, radius: radii, cosine: cosines, offAxis, relief };
+}
+
+/** A live frame owns one lazy contact lattice, at most 25 x 2,561 doubles
+ * and matching float mesh heights (~751 KiB). Weak keys retain no previous
+ * frames or historical progress values.
+ * All 25 solids and arbitrary terrain consumers share this preparation. */
+type IslandLattice = { contacts: Float64Array; mesh: Float32Array };
+const islandLattices = new WeakMap<OceanGeometryFrame, IslandLattice>();
+function preparedIslandLattice(frame: OceanGeometryFrame): IslandLattice {
+  const cached = islandLattices.get(frame);
+  if (cached) return cached;
+  const template = preparedIslandTemplates(), count = frame.history.units.length;
+  const contacts = new Float64Array((count + 1) * LATTICE_SIZE);
+  for (const unit of frame.history.units) {
+    const prior = unit.index * LATTICE_SIZE, next = prior + LATTICE_SIZE, thickness = template.thickness[unit.index];
+    for (let vertex = 0; vertex < LATTICE_SIZE; vertex++) contacts[next + vertex] = contacts[prior + vertex] + thickness[vertex] * unit.growth;
+  }
+  if (frame.history.erosion > 0) {
+    const top = count * LATTICE_SIZE;
+    for (let contact = 0; contact <= count; contact++) for (let vertex = 0; vertex < LATTICE_SIZE; vertex++) {
+      const ceiling = Math.max(0, contacts[top + vertex] - template.erosion[vertex] * frame.history.erosion);
+      const index = contact * LATTICE_SIZE + vertex;
+      contacts[index] = Math.min(contacts[index], ceiling);
+    }
+  }
+  const mesh = new Float32Array(contacts.length);
+  for (let contact = 0; contact <= count; contact++) for (let vertex = 0; vertex < LATTICE_SIZE; vertex++) {
+    if (template.radius[vertex] >= RADIUS) continue;
+    const index = contact * LATTICE_SIZE + vertex;
+    const authored = profileAt(frame, template.radius[vertex], template.cosine[vertex], contact), blend = template.offAxis[vertex];
+    const height = authored * (1 - blend) + contacts[index] * blend;
+    mesh[index] = Math.max(0, height + template.relief[vertex] * Math.min(1, height));
+  }
+  const lattice = { contacts, mesh };
+  islandLattices.set(frame, lattice);
+  return lattice;
+}
+
+function islandContactAt(frame: OceanGeometryFrame, radius: number, angle: number, contact: number) {
+  const { contacts } = preparedIslandLattice(frame), offset = Math.max(0, Math.min(frame.contacts.length - 1, contact)) * LATTICE_SIZE;
+  const q = Math.pow(radius / RADIUS, 1 / 1.45) * RINGS, inner = Math.floor(q), outer = Math.min(RINGS, inner + 1), radial = q - inner;
+  const sector = (angle / (Math.PI * 2) + 1) % 1 * SECTORS, a = Math.floor(sector), b = (a + 1) % SECTORS, angular = sector - a;
+  const at = (ring: number) => ring === 0 ? contacts[offset]
+    : contacts[offset + 1 + (ring - 1) * SECTORS + a] * (1 - angular) + contacts[offset + 1 + (ring - 1) * SECTORS + b] * angular;
+  return at(inner) * (1 - radial) + at(outer) * radial;
+}
+
 export function surfaceHeight(frame: OceanGeometryFrame, x: number, z: number, through = frame.contacts.length - 1) {
   const radius = Math.hypot(x, z), angle = Math.atan2(z, x);
   if (radius >= RADIUS) return 0;
   if (frame.environment === 'island') {
-    const height = profileAt(frame, radius, Math.cos(angle), through);
-    // The preserved x section constrains the deposit history. A small off-axis
-    // notch/flow exit breaks the cap without imposing a universal summit crater.
-    const offAxis = 1 - Math.exp(-((z / .21) ** 2));
-    const outlet = Math.exp(-(((x - .18) / .54) ** 4) - (((z - .38) / .57) ** 4));
-    const flowExit = Math.exp(-(((x + .12 - z * .30) / .28) ** 2) - (((z - .90) / 1.05) ** 4));
-    const fragmentBase = profileAt(frame, radius, Math.cos(angle), frame.summitFacies.fragmentsStart);
-    const capBase = profileAt(frame, radius, Math.cos(angle), frame.summitFacies.capStart);
-    const fragmentHeight = Math.max(0, Math.min(height, capBase) - fragmentBase), capHeight = Math.max(0, height - capBase);
-    // Composition comes from the shared contacts, including erosion clipping.
-    // Later units cannot reshape an already buried early contact or pillow site.
-    const cut = offAxis * (outlet * Math.min(.30, height * .026 + fragmentHeight * .018)
-      + flowExit * Math.min(.18, height * .010 + capHeight * .020));
-    return Math.max(0, height - cut + rockRelief(x, z) * Math.min(1, height));
+    const authored = profileAt(frame, radius, Math.cos(angle), through);
+    // Convexly blend two ordered contact fields: the authored face is exact,
+    // while every off-axis deposit retains its own unequal summit morphology.
+    const offAxis = 1 - Math.exp(-((z / SECTION_BLEND) ** 2));
+    const height = offAxis === 0 ? authored : authored * (1 - offAxis) + islandContactAt(frame, radius, angle, through) * offAxis;
+    return Math.max(0, height + rockRelief(x, z) * (1 - throatFloor(x, z)) * Math.min(1, height));
   }
   const summit = worldY(frame.state.summit);
   if (frame.environment === 'deep') {
@@ -176,6 +253,14 @@ export function depositBuffers(): SolidBuffers {
 
 export function updateDeposit(positions: Float32Array, frame: OceanGeometryFrame, unit: number) {
   const count = positions.length / 6;
+  if (frame.environment === 'island' && unit >= 0) {
+    const { mesh } = preparedIslandLattice(frame);
+    for (let side = 0; side < 2; side++) {
+      const contact = Math.max(0, Math.min(frame.contacts.length - 1, unit + (side ? 0 : 1))) * LATTICE_SIZE;
+      for (let i = 0; i < count; i++) positions[(i + side * count) * 3 + 1] = mesh[contact + i];
+    }
+    return;
+  }
   for (let side = 0; side < 2; side++) for (let i = 0; i < count; i++) {
     const index = (i + side * count) * 3, x = positions[index], z = positions[index + 2];
     positions[index + 1] = unit < 0 ? side ? -2.2 : frame.environment === 'island' ? 0 : surfaceHeight(frame, x, z)
@@ -231,9 +316,15 @@ export function settledFragment(frame: OceanGeometryFrame, index: number) {
 }
 
 export type PlumeVolume = { center: XYZ; radius: number; axes: XYZ; density: number; medium: 'water' | 'air' };
+/** Shared illustrative outlet for the feeder, extrusion, fragments and plume. */
+export function islandVentOrigin(frame: OceanGeometryFrame): XYZ {
+  const [x, z] = frame.environment === 'island' ? islandVentSite(frame.history) : [0, 0];
+  return [x, surfaceHeight(frame, x, z) + .025, z];
+}
 /** The observation support emerges from the same current pile, rather than from
  * a hidden point under it. This smooth geometric anchor is not a measured vent. */
 export function plumeOrigin(frame: OceanGeometryFrame): XYZ {
+  if (frame.environment === 'island') return islandVentOrigin(frame);
   if (frame.environment !== 'deep') return [-.04, surfaceHeight(frame, 0, 0) + .02, .04];
   let weight = 0, x = 0, y = 0, z = 0;
   for (let i = 0; i < PILLOW_SITES.length; i++) {
@@ -267,11 +358,11 @@ export function oceanParcels(frame: OceanGeometryFrame): PlumeVolume[] {
       axes: [1.05 + seed(i, 404) * .30, 1.25 + seed(i, 405) * .35, .85 + seed(i, 406) * .20], density: alpha * 1.25, medium: 'air' };
   }
   if (frame.environment === 'island' && frame.history.adding) {
-    const unit = frame.history.units[frame.history.currentIndex];
+    const unit = frame.history.units[frame.history.currentIndex], source = islandVentOrigin(frame);
     if (unit?.phase === 'shallow-fragments') for (let i = 0; i < 8; i++) {
       const q = clamp(unit.growth * 1.6 - i * .07), alpha = q <= 0 || q >= 1 ? 0 : Math.sin(q * Math.PI);
-      const y = Math.min(WATER_Y - .03, worldY(frame.state.summit) + q * .7);
-      parcels[i] = { center: [q * .5, y, -.15], radius: .14 + q * .36, axes: [1.15, 1.55, .9], density: alpha * 1.5, medium: 'water' };
+      const y = Math.min(WATER_Y - .03, source[1] + q * .7);
+      parcels[i] = { center: [source[0] + q * .5, y, source[2]], radius: .14 + q * .36, axes: [1.15, 1.55, .9], density: alpha * 1.5, medium: 'water' };
     }
   }
   return parcels;

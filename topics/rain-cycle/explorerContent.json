@@ -1,0 +1,142 @@
+{
+  "zh": {
+    "chapters": "水的旅程与观察窗口",
+    "options": "实验条件与追踪",
+    "conditions": "保持这批水，换个条件",
+    "scenarios": {
+      "permeable": "湿润空气 · 透水土壤",
+      "dry": "干空气 · 雨能落下来吗",
+      "paved": "湿润空气 · 铺装坡面",
+      "clay": "湿润空气 · 紧实黏土"
+    },
+    "custom": "当前自定义条件",
+    "comparison": "改变条件保留同一批编号与当前进度，重新计算这些条件下的去向；这不是在一场真实暴雨中突然改造地面。",
+    "camera": "拖动旋转 · 方向键观察 · ＋／−缩放",
+    "resetCamera": "恢复观察位置",
+    "zoomIn": "放大画面",
+    "zoomOut": "缩小画面",
+    "scale": "教学流域 · 地形、云体、水滴与时间不按同一真实比例",
+    "renderFailure": "三维画面暂时不可用。下方保留同一批水的平面图、说明与控制。",
+    "retry": "重试三维画面",
+    "gasKey": "蓝点：水的追踪符号；金色虚线：所选水份的路径。气态水本身不可见。",
+    "surfaceKey": "山坡的浅色地块就是可改变的实验坡面；进入地下的水在三维地表后方遮挡，仍计入土壤储存。",
+    "sceneLabel": "同一流域的三维地形：积雪山岭、实验坡面、河流、湖泊与海岸，水份编号跨视角保留",
+    "currentView": "正在观察",
+    "next": "下一问",
+    "detail": "放大当前机制",
+    "cloudDetail": "进入同一片云的放大窗口 ↓",
+    "groundDetail": "看同一批水进入孔隙 ↓",
+    "groundTitle": "② 同一坡面的孔隙剖面",
+    "groundNote": "保留上方那批水的编号、地表条件和进度，只把观察方式切成放大剖面。颗粒、孔隙与水滴均非真实比例；下方长期地下水实验另有预算与时钟。",
+    "groundAir": "土粒之间也有空气；蓝色标记进入连通孔隙后仍在土壤中，不表示已经到达深层含水层。",
+    "groundPaved": "铺装层让本模型中的入渗减少，更多水沿表面离开；没有把透水能力画成更多土粒或更多根。",
+    "groundClay": "紧实黏土在本教学分配中较少入渗、较多暂留；真实入渗还与结构、裂隙、前期含水量和降雨强度有关。",
+    "soilCount": "进入土壤的同批水份",
+    "surfaceCount": "地表水（径流或暂留）",
+    "runoffCount": "已在河流、湖泊或海洋",
+    "pathTitle": "从一个问题，走到下一个问题",
+    "readMore": "原理与模型边界",
+    "questions": {
+      "basin": {
+        "watch": "先猜一猜：这100份水，最后会全部回到海里吗？",
+        "cause": "太阳能支持蒸发，空气运送水汽，重力让降水和地表水向下移动。储存也是水循环的一部分：旅程可以在土壤、湖泊或冰雪中停很久。",
+        "try": "拖到分流阶段，再跟踪不同去向；切换镜头，看看编号和进度是否保留。",
+        "limit": "100份是封闭教学批次的计数，不代表全球比例、实际流量或一个完整流域的水量平衡。可见云从场景开头已经存在，是环境背景。"
+      },
+      "cloud": {
+        "watch": "看见云，为什么地面仍可能没有下雨？",
+        "cause": "云由微小液滴、冰晶或两者组成。小颗粒需要生长才可能形成降水；落下的雨滴还可能在较干的空气中蒸发，水返回空气而未到达地面。",
+        "try": "把进度留在降水之后，在湿润与干空气间切换；再放大同一片云，看暖云碰并或冰晶生长的差别。",
+        "limit": "主景中的水点是示踪符号，不是可见水蒸气。蒸发比较固定了教学粒径与停留时间，湿度不能单独预测真实降雨；融化成雨的冰晶路径另假定云下存在足够暖层。"
+      },
+      "ground": {
+        "watch": "同样的雨，落在土上和铺装路上会有什么不同？",
+        "cause": "一部分水进入连通孔隙，另一部分沿地表流动或暂时积存。表面更难透水时，水在本模型里更少进入土壤；入渗与向深部含水层补给是不同环节。",
+        "try": "在同一进度比较透水土、紧实黏土与铺装坡面，观察蓝色水份、剖面和数量。随后进入独立慢实验，比较停雨后补给与抽水。",
+        "limit": "三维坡面与孔隙剖面共享同批数量，但没有求解真实三维土壤流动。分配比例是教学设定，地下水实验的储量不能加进这100份水。"
+      },
+      "river": {
+        "watch": "水到了河里，为什么还能留在湖里？",
+        "cause": "河道顺地势连接山谷、湖盆和海岸，湖泊可以储存水，湖口继续向海排出。弯道中的泥沙搬运与水份去向是不同对象：实心赭色点代表泥沙，金色圈跟踪水。",
+        "try": "跟踪“停在湖里”和“继续去海洋”的两份水，回退后再前进，核对它们经过同一河口和湖口。",
+        "limit": "河床、水面和追踪路线由同一几何生成；高程、宽度、搬沙与压缩时间都是示意，没有求解流速、洪水或泥沙通量。湖中水面不随这批水的计数变化。"
+      },
+      "ice": {
+        "watch": "冰川末端后退时，里面的冰还会向下走吗？",
+        "cause": "主景跟踪已有山谷冰川中的水，慢时间先让它随冰向下移动，再在消融区成为融水。另一个多年实验比较积累与消融：末端后退并不等于冰向山上流。",
+        "try": "先把降水送到储存阶段，再推进冰中慢时间。进入独立多年实验，比较积累足够、积雪留不住与后来变暖三种结果。",
+        "limit": "冰中慢时间、降水批次进度和多年冰川预算是三把不同的尺；不相加。冰川形状没有求解应力或动态响应，也不把一次高山降雪当作新冰川形成。"
+      }
+    }
+  },
+  "en": {
+    "chapters": "Water journeys and observation windows",
+    "options": "Conditions and tracking",
+    "conditions": "Keep the batch, change one condition",
+    "scenarios": {
+      "permeable": "Humid air · permeable soil",
+      "dry": "Dry air · will rain reach the ground?",
+      "paved": "Humid air · paved hillside",
+      "clay": "Humid air · compact clay"
+    },
+    "custom": "Current custom conditions",
+    "comparison": "Changing conditions retains identities and progress, then reconstructs their destinations under those conditions. It does not represent rebuilding a hillside during a real storm.",
+    "camera": "Drag to rotate · arrow keys to look · + / − to zoom",
+    "resetCamera": "Restore observation camera",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "scale": "Teaching watershed · terrain, clouds, markers and time use different illustrative scales",
+    "renderFailure": "The 3D view is temporarily unavailable. A map of the same batch, explanations and controls remain available below.",
+    "retry": "Retry the 3D view",
+    "gasKey": "Blue dots: water tracers. Gold dashed line: the selected portion’s route. Gaseous water is invisible.",
+    "surfaceKey": "The pale patch is the hillside whose surface you can change. Water beneath the 3D surface is occluded but remains counted in soil storage.",
+    "sceneLabel": "One 3D watershed with snowy ridges, a test hillside, river, lake and coast; water identities persist across views",
+    "currentView": "Observing",
+    "next": "Next question",
+    "detail": "Enlarge the current mechanism",
+    "cloudDetail": "Enlarge this same cloud ↓",
+    "groundDetail": "Follow the same batch into pores ↓",
+    "groundTitle": "② A pore section of the same hillside",
+    "groundNote": "This enlarged section retains the batch identities, surface condition and progress above. Grains, pores and water tracers are not to a common real scale. The groundwater study below has a separate budget and clock.",
+    "groundAir": "Air also occupies spaces between grains. A blue tracer inside connected pores is still in soil; it has not necessarily recharged a deeper aquifer.",
+    "groundPaved": "Paving reduces infiltration in this model and sends more water along the surface. Permeability is not represented by adding soil grains or roots.",
+    "groundClay": "Compact clay gives less infiltration and more temporary storage in this teaching partition. Real infiltration also depends on structure, cracks, previous moisture and rainfall intensity.",
+    "soilCount": "Batch portions in soil",
+    "surfaceCount": "Surface water (runoff or storage)",
+    "runoffCount": "Now in river, lake or ocean",
+    "pathTitle": "Carry each question into the next view",
+    "readMore": "Mechanisms and model limits",
+    "questions": {
+      "basin": {
+        "watch": "Make a prediction: will all 100 portions end up back in the sea?",
+        "cause": "Solar energy supports evaporation, air carries vapor, and gravity moves precipitation and surface water downward. Storage is part of the cycle: water can remain in soil, lakes or ice for a long time.",
+        "try": "Scrub to the branching stage and follow different destinations. Change the camera and check that identities and progress persist.",
+        "limit": "The 100 portions form a closed teaching batch, not global proportions, real discharge or a complete watershed water balance. A background cloud already exists when this scene opens."
+      },
+      "cloud": {
+        "watch": "Why might a visible cloud still produce no rain at the ground?",
+        "cause": "Clouds contain droplets, ice crystals or both. Small particles must grow to become precipitation; falling drops may then evaporate in drier air and return water to the atmosphere before reaching the ground.",
+        "try": "Keep progress after rainfall and compare humid with dry air. Enlarge the same cloud to compare warm-cloud coalescence and ice growth.",
+        "limit": "Markers are tracers, not visible vapor. The evaporation comparison fixes an illustrative drop radius and residence time: humidity alone cannot predict real rainfall. The ice-to-rain route separately assumes a sufficiently deep warm layer below the cloud."
+      },
+      "ground": {
+        "watch": "How does the same rain behave on soil and on paving?",
+        "cause": "Some water enters connected pores; some runs over the surface or is temporarily stored there. A less permeable surface admits less water in this model. Infiltration and recharge to a deeper aquifer are different steps.",
+        "try": "At the same progress, compare permeable soil, compact clay and paving. Watch the blue tracers, section and counts. Then use the independent slow study to compare recharge after rain stops with pumping.",
+        "limit": "The 3D hillside and pore section share batch counts but do not solve real 3D soil flow. Fractions are illustrative; the independent groundwater storage cannot be added to these 100 portions."
+      },
+      "river": {
+        "watch": "After reaching a river, why might water still remain in a lake?",
+        "cause": "A downhill channel connects the valley, lake basin and coast. The lake stores water while its outlet can send water onward. Sediment transport and water destinations are separate: solid ochre dots mark sediment, while the gold ring follows water.",
+        "try": "Compare a portion that stays in the lake with one that continues to the ocean. Scrub backward and forward to check that both use the same river mouth and lake outlet.",
+        "limit": "The bed, water surface and tracer routes use one geometry. Elevations, widths, sediment transfer and compressed time are illustrative; no discharge, flood or sediment-flux solver is used. Batch counts do not change the lake level."
+      },
+      "ice": {
+        "watch": "Can ice still move downhill while a glacier’s terminus retreats?",
+        "cause": "The main scene follows water within an existing valley glacier. Its slow clock first carries the water with ice, then releases meltwater in the ablation area. A separate multiyear study compares accumulation and loss: terminus retreat does not mean ice flows uphill.",
+        "try": "First deliver snowfall to storage, then advance the ice clock. In the independent multiyear study, compare sustained accumulation, snow that does not survive, and later warming.",
+        "limit": "The batch progress, ice clock and multiyear glacier budget are three distinct time scales and cannot be added. Glacier shape does not solve stress or dynamic response; one high-mountain snowfall does not create a new glacier."
+      }
+    }
+  }
+}

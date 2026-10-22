@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { islandSurfaceY, SEA_FLOOR, submarineState } from '../model.ts';
-import { deepVentFraming, depositBuffers, oceanGeometryFrame, oceanParcels, pillowPose, pillowShape, plumeOrigin, RADIUS, RINGS, SCALE, SECTORS, sectionBuffers, settledFragment, surfaceHeight, updateDeposit, WATER_Y, worldY, type XYZ } from '../geometry3d.ts';
+import { deepVentFraming, depositBuffers, islandVentOrigin, oceanGeometryFrame, oceanParcels, pillowPose, pillowShape, plumeOrigin, RADIUS, RINGS, SCALE, SECTORS, sectionBuffers, settledFragment, surfaceHeight, updateDeposit, WATER_Y, worldY, type XYZ } from '../geometry3d.ts';
+import { islandVentSite } from '../islandGrowth.ts';
 
 test('3D deposit contacts retain the authored section and the supply comparison', () => {
   for (const supply of ['sustained', 'limited'] as const) for (const p of [0, .08, .35, .64, .78, .9, 1]) {
@@ -108,6 +109,56 @@ test('later fragment and lava-cap deposits bury the early pillow base without li
       assert.equal(surfaceHeight(later, x, z, 7), surfaceHeight(early, x, z, 7));
       assert.ok(surfaceHeight(later, x, z) >= surfaceHeight(later, x, z, 7));
     }
+  }
+});
+
+test('island packages build a broken summit rim, then fill it with distinct cap material', () => {
+  const frame = oceanGeometryFrame(.8, 'island', 'sustained');
+  const packageAt = (x: number, z: number, from: number, to: number) => surfaceHeight(frame, x, z, to) - surfaceHeight(frame, x, z, from);
+  const floorFragments = packageAt(0, .7, 14, 19), rimFragments = packageAt(-.8, .8, 14, 19);
+  const floorCap = packageAt(0, .7, 19, 24), rimCap = packageAt(-.8, .8, 19, 24);
+  assert.ok(rimFragments > floorFragments * 1.8, 'fragment deposits preferentially build the unequal rim');
+  assert.ok(floorCap > rimCap + .6, 'later material fills the earlier depression rather than raising a fixed surface');
+  const growing = oceanGeometryFrame(.62, 'island', 'sustained'), [x, y, z] = islandVentOrigin(growing);
+  const rim = Array.from({ length: 48 }, (_, i) => surfaceHeight(growing, x + .8 * Math.cos(i / 48 * Math.PI * 2), z + .8 * Math.sin(i / 48 * Math.PI * 2)));
+  assert.ok(Math.max(...rim) > y + .2 && Math.max(...rim) - Math.min(...rim) > .7);
+});
+
+test('completed island contacts and their off-axis features stay fixed until erosion', () => {
+  const later = oceanGeometryFrame(.8, 'island', 'sustained');
+  for (const [through, progress] of [[7, .35], [14, .49], [19, .62]]) {
+    const earlier = oceanGeometryFrame(progress, 'island', 'sustained');
+    for (let x = -1.2; x <= 1.2; x += .3) for (let z = .2; z <= 1.8; z += .2) {
+      assert.equal(surfaceHeight(later, x, z, through), surfaceHeight(earlier, x, z, through));
+    }
+  }
+});
+
+test('island mesh vertices and arbitrary terrain queries use the same cached contact field', () => {
+  for (const progress of [.58, .74, .9]) {
+    const frame = oceanGeometryFrame(progress, 'island', 'sustained');
+    for (const unit of [0, 14, 23]) {
+      const { positions } = depositBuffers(); updateDeposit(positions, frame, unit);
+      const count = positions.length / 6;
+      for (let i = 3; i < count; i += 79) for (let side = 0; side < 2; side++) {
+        const index = (i + side * count) * 3;
+        assert.ok(Math.abs(positions[index + 1] - surfaceHeight(frame, positions[index], positions[index + 2], unit + (side ? 0 : 1))) < 2e-6);
+      }
+    }
+  }
+});
+
+test('island vent, fragment plume and attached throat share one continuously supported source', () => {
+  for (const progress of [.464, .493, .522, .551, .58]) {
+    const frame = oceanGeometryFrame(progress, 'island', 'sustained'), origin = islandVentOrigin(frame);
+    assert.deepEqual([origin[0], origin[2]], islandVentSite(frame.history));
+    assert.equal(origin[1], surfaceHeight(frame, origin[0], origin[2]) + .025);
+    assert.deepEqual(plumeOrigin(frame), origin);
+    for (let i = 0; i < 32; i++) {
+      const angle = i / 32 * Math.PI * 2;
+      assert.ok(surfaceHeight(frame, origin[0] + Math.cos(angle) * .2, origin[2] + Math.sin(angle) * .2) < origin[1] + .025);
+    }
+    for (const parcel of oceanParcels(frame).filter(parcel => parcel.density > 0)) assert.equal(parcel.center[2], origin[2]);
   }
 });
 

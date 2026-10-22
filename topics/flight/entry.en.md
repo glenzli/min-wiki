@@ -2,7 +2,7 @@
 
 How do forward engine thrust, wings, air and weight work together to let a heavy airplane leave the runway?
 
-Choose no relative airflow: raising the wing nose still produces no lift. Choose the moderate angle, carry the same settings to the runway, then step and seek backward through the short window. At the same initial speed, increase the angle to 26° and compare separated flow, a lower lift coefficient and greater drag. Hold angle fixed when comparing speed. Windows and reading modes preserve conditions and progress; changing conditions returns to the start.
+Start with the whole airplane: identify fuselage, main wings, tail and wheels, then use the blue wing-root mark to inspect the same wing. Compare no relative flow with 38m/s; observe relative airflow, the qualitative pressure relationship and downward-turning flow. Return the same settings to the runway, then advance and reverse the 1.2-second window to compare support and lift-off. At the same initial speed, compare 12° with 26° for separation, lift coefficient and drag. Questions, views and reading depth preserve the experiment; changing speed or angle returns to the start.
 
 ## Surface pressure and whole-flow momentum describe the same process
 
@@ -14,7 +14,7 @@ In L=½ρV²SCₗ, V is speed relative to air, not simply ground speed. With den
 
 ## Runway contact, net vertical force and a short response
 
-During ground contact, support and vertical aerodynamic force together balance weight. Some lift can therefore exist without lift-off. An upward net vertical force is needed to begin upward acceleration. Once airborne, support is zero, lift remains perpendicular to relative motion and drag opposes it. Lift is not always vertically upward, and steady level flight does not require it always to exceed weight. This page chooses mass 1000kg, area 14m², density 1.225kg/m³ and gravity 9.81m/s². With horizontal speed and wing orientation held fixed, it integrates vertical response over 1.2 seconds using steps no larger than 1/240 second. Horizontal thrust automatically balances the horizontal lift and drag components; engine power is unlimited here. The invented drag coefficient is 0.035+0.045Cₗ²+0.025max(0,α−15), not an aircraft performance curve. Contact support only supplies a remaining upward force against a downward net load; airborne relative flow updates with vertical velocity. Body and tail forces, pitch moments, trim, flaps, crosswind, ground effect, wingtip vortices and the full takeoff roll are omitted. The body has an identifying illustrative attitude; wing orientation follows the experiment. Actual flight requires control of power and attitude. This is neither operating practice nor a takeoff speed or distance prediction.
+During ground contact, support and vertical aerodynamic force together balance weight. Some lift can therefore exist without lift-off. An upward net vertical force is needed to begin upward acceleration. Once airborne, support is zero, lift remains perpendicular to relative motion and drag opposes it. Lift is not always vertically upward, and steady level flight does not require it always to exceed weight. This page chooses mass 1000kg, area 14m², density 1.225kg/m³ and gravity 9.81m/s². With horizontal speed and wing orientation held fixed, it integrates vertical response over 1.2 seconds using steps no larger than 1/240 second. Horizontal thrust automatically balances the horizontal lift and drag components; engine power is unlimited here. The invented drag coefficient is 0.035+0.045Cₗ²+0.025max(0,α−15), not an aircraft performance curve. Contact support only supplies a remaining upward force against a downward net load; airborne relative flow updates with vertical velocity. Body and tail forces, pitch moments, trim, flaps, crosswind, ground effect, wingtip vortices and the full takeoff roll are omitted. The whole airframe and fixed wing share the same externally imposed angle. Model height is the clearance of the lowest tyre surface. The nose wheel can rise while main wheels remain in contact, but rotation and pitch dynamics are not solved. Thrust remains an external horizontal force rather than tilting with the depicted nose. Actual flight requires control of power and attitude. This is neither operating practice nor a takeoff speed or distance prediction.
 
 ## A common misconception
 
@@ -22,7 +22,7 @@ The airplane does not become lighter; engines usually mainly help it move forwar
 
 ## Model limits
 
-A short illustrative single-wing model, not any actual airplane. Airflow routes and separated eddies are geometric illustrations without a pressure or turbulence solution. The 15° threshold, coefficients, mass and area are chosen values. Horizontal speed and wing orientation are externally held. Model positions drive visual height and travel, but aircraft geometry is not to scale. Force arrows use one fixed scale with offset origins. Engine limits, body and tail forces, trim, wind, flaps, ground effect and three-dimensional tip vortices are omitted. Do not use this to estimate takeoff performance or operate an aircraft.
+A short illustrative single-wing model, not any actual airplane. The whole aircraft and wing close-up share one cambered profile. Flow routes, separated eddies and pale pressure relationships are qualitative illustrations without velocity, pressure or turbulence solutions. The 15° threshold, coefficients, mass and area are chosen values. Horizontal speed, horizontal thrust and whole-airframe attitude are externally held. Lowest tyre clearance follows model height; airframe proportions are not performance data, and the diagram maps body size and displacement separately. Force arrows share a fixed scale within each view with offset origins. Engine limits, body and tail forces, trim, pitch dynamics, wind, flaps, ground effect and three-dimensional tip vortices are omitted. Do not use this to estimate takeoff performance or operate an aircraft.
 
 ## Sources
 
@@ -40,7 +40,7 @@ A short illustrative single-wing model, not any actual airplane. Airflow routes 
 
 A heavy airplane can leave the ground, but its weight has not disappeared. The engine helps it move forward so air passes the wings. Look at a slice through one wing to find out what air and wing do together.
 
-*Scene cue: Begin with airplane and runway, then show the wing section under unchanged settings; retain the explanation of weight.*
+*Scene cue: Identify fuselage, main wings, tail and wheels on the whole airplane, then select the blue wing root to inspect the same section; retain settings and progress.*
 
 ### What if no air passes?
 
@@ -48,16 +48,16 @@ Start without motion between wing and air. Even raising the wing nose cannot pro
 
 *Scene cue: Compare zero relative speed with a moderate wing angle. Point to both surfaces; do not pair particles for equal transit.*
 
-### More angle is not always better
-
-Keep the same initial speed and raise the wing nose farther. Flow separates noticeably above the surface. Exceeding a critical angle of attack causes a stall: lift coefficient falls and drag grows. The engine need not stop and lift need not become zero. Raising the wing nose ever higher does not make flight ever easier.
-
-*Scene cue: Compare 12° and 26° at 38m/s. Identify brown dashed routes and drag; 15° is only this page's teaching threshold.*
-
 ### Take the conditions to the runway
 
 Take the same conditions to the runway. If the upward aerodynamic force is too small, the ground continues to support the wheels. Only an upward net force begins upward acceleration. Ascent changes relative airflow direction and angle of attack too. Real takeoff has many other conditions; this small window helps explain relationships, not how to fly an airplane.
 
 *Scene cue: Advance, pause, seek backward and advance again. Compare lift-off and ground contact, explaining held horizontal speed and the short window.*
+
+### More angle is not always better
+
+Keep the same initial speed and raise the wing nose farther. Flow separates noticeably above the surface. Exceeding a critical angle of attack causes a stall: lift coefficient falls and drag grows. The engine need not stop and lift need not become zero. Raising the wing nose ever higher does not make flight ever easier.
+
+*Scene cue: Compare 12° and 26° at 38m/s. Identify brown dashed routes and drag; 15° is only this page's teaching threshold.*
 
 <!-- wiki-learning:end -->

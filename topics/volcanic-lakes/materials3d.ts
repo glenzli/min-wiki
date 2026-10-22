@@ -20,6 +20,7 @@ export function lakeUniforms() {
   return { uWaterLevel: { value: -10 }, uWaterValid: { value: 0 }, uBasinRadius: { value: 4.5 }, uWithdrawal: { value: 0 }, uSubsidence: { value: 0 }, uCaldera: { value: 1 } };
 }
 export type LakeUniforms = ReturnType<typeof lakeUniforms>;
+export const LAYER_FACIES = [0, 1, 0, 2, 1, 3, 0, 1, 2, 3, 1] as const;
 const noiseGLSL = `
 float lakeHash(vec3 p){p=fract(p*.3183099+vec3(.17,.29,.41));p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
 float lakeNoise(vec3 p){vec3 b=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(mix(lakeHash(b),lakeHash(b+vec3(1,0,0)),f.x),mix(lakeHash(b+vec3(0,1,0)),lakeHash(b+vec3(1,1,0)),f.x),f.y),mix(mix(lakeHash(b+vec3(0,0,1)),lakeHash(b+vec3(1,0,1)),f.x),mix(lakeHash(b+vec3(0,1,1)),lakeHash(b+vec3(1,1,1)),f.x),f.y),f.z);}
@@ -30,6 +31,15 @@ const cellsGLSL = `
 vec2 lakeCellHash(vec2 p){vec3 q=fract(vec3(p.xyx)*vec3(.1031,.1030,.0973));q+=dot(q,q.yzx+33.33);return fract((q.xx+q.yz)*q.zy);}
 vec2 lakeCells(vec2 p){vec2 b=floor(p),f=fract(p);float a=10.,c=10.;
 for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){vec2 d=vec2(float(x),float(y));float r=length(d+.14+.72*lakeCellHash(b+d)-f);if(r<a){c=a;a=r;}else if(r<c)c=r;}return vec2(a,c);}
+`;
+const crystalGapGLSL = `
+float lakeCrystalGap(vec3 p){vec3 b=floor(p),f=fract(p);float a=10.,c=10.;
+  for(int z=-1;z<=1;z++)for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){
+    vec3 d=vec3(float(x),float(y),float(z)),cell=b+d;
+    vec3 q=.15+.7*vec3(lakeHash(cell),lakeHash(cell+17.3),lakeHash(cell+41.7));float r=length(d+q-f);
+    if(r<a){c=a;a=r;}else if(r<c)c=r;
+  }return c-a;
+}
 `;
 const freshWallGLSL = `
 float lakeFreshWall(vec3 p){
@@ -58,10 +68,10 @@ export function rockMaterial(texture: THREE.Texture, uniforms: LakeUniforms, fac
         vec2 cells=lakeCells(vLakeStone.xy*${damage ? '4.3' : '2.35'}+vec2(lakeFbm(vLakeStone*4.1),lakeFbm(vLakeStone*3.7+8.))*1.3);
         float fracture=(1.-smoothstep(.008,.035,cells.y-cells.x))*smoothstep(.2,.62,macro);
         float clasts=smoothstep(.49,.7,lakeNoise(vLakeStone*21.));
-        vec3 stone=mix(vec3(.059,.062,.057),vec3(.145,.12,.087),uFacies);
-        stone=mix(stone,vec3(.041,.042,.039),clasts*${damage ? '.46' : '.25'});
-        stone*=.66+.47*macro+.27*grain;stone*=1.-fracture*${damage ? '.47' : '.34'};
-        float rockRelief=.0013*lakeNoise(vLakeStone*95.)+.005*lakeFbm(vLakeStone*17.)-.004*fracture;
+        vec3 stone=mix(vec3(.095,.102,.096),vec3(.17,.146,.117),uFacies);
+        stone=mix(stone,vec3(.048,.052,.047),clasts*${damage ? '.46' : '.25'});
+        stone*=.64+.51*macro+.25*grain;stone*=1.-fracture*${damage ? '.47' : '.34'};
+        float rockRelief=.0017*lakeNoise(vLakeStone*95.)+.008*lakeFbm(vLakeStone*17.)-.005*fracture;
         diffuseColor.rgb=stone;
       ` : `
         float fragments=lakeNoise(floor(rockPoint*17.));
@@ -83,7 +93,45 @@ export function rockMaterial(texture: THREE.Texture, uniforms: LakeUniforms, fac
       if(dot(bent,bent)>1.e-15)normal=normalize(bent);
     `);
   };
-  material.customProgramCacheKey = () => `lake-solid-rock-${facies}-${deposit}-v5-fresh-wall`;
+  material.customProgramCacheKey = () => `lake-solid-rock-${facies}-${deposit}-v6-cut-relief`;
+  return material;
+}
+
+/** Unmelted support is the same source stratum/material as the adjacent host.
+ * Only irregular local melt-bearing lobes alter it. The geometry owner cuts
+ * real layer contacts; this shader never paints a rectangular reservoir wall. */
+export function supportMaterial(texture: THREE.Texture, uniforms: LakeUniforms, facies: number) {
+  const material = rockMaterial(texture, uniforms, facies), compileRock = material.onBeforeCompile;
+  material.emissive.set('#ffffff'); material.emissiveIntensity = 1;
+  material.onBeforeCompile = function(shader, renderer) {
+    compileRock.call(this, shader, renderer);
+    shader.uniforms.uWithdrawal = uniforms.uWithdrawal;
+    shader.fragmentShader = shader.fragmentShader.replace(cellsGLSL, `${crystalGapGLSL}\n${cellsGLSL}`)
+      .replace('uniform float uWaterLevel,uWaterValid,uBasinRadius,uFacies,uSubsidence,uCaldera;', 'uniform float uWaterLevel,uWaterValid,uBasinRadius,uFacies,uSubsidence,uCaldera,uWithdrawal;')
+      .replace('diffuseColor.rgb*=1.-shore*.30;', `diffuseColor.rgb*=1.-shore*.30;
+        vec3 supportPoint=vLakeStone*vec3(6.8,8.6,6.8);
+        float lobeA=length((vLakeStone-vec3(-.95,-.55,-.5))*vec3(.53,.40,.47));
+        float lobeB=length((vLakeStone-vec3(1.05,-1.1,-.75))*vec3(.62,.47,.53));
+        float lobeC=length((vLakeStone-vec3(2.25,-2.35,-.25))*vec3(1.05,1.15,.86));
+        float edge=min(min(lobeA,lobeB),lobeC)+.38*(lakeFbm(supportPoint*.13)-.5)+.12*(lakeFbm(supportPoint*.32)-.5);
+        float supportRegion=1.-smoothstep(.63,1.12,edge),supportMelt=0.;
+        if(supportRegion>.001){
+          vec3 warp=vec3(lakeFbm(supportPoint*.4),lakeFbm(supportPoint*.4+7.1),lakeFbm(supportPoint*.4+19.7));
+          float rich=lakeFbm(supportPoint*.75+warp),gap=lakeCrystalGap(supportPoint+warp*1.6);
+          float melt=(1.-smoothstep(.009,.115,gap))*smoothstep(.30+uWithdrawal*.055,.63+uWithdrawal*.04,rich);
+          melt=max(melt,smoothstep(.53,.73,rich)*.64)*(1.-uWithdrawal*.28)+.045;
+          supportMelt=melt*supportRegion;
+          diffuseColor.rgb=mix(diffuseColor.rgb,vec3(.21,.029,.004),supportMelt*.62);
+          rockRelief+=.002*supportMelt;
+        }
+      `)
+      .replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor=mix(roughnessFactor,.43,supportMelt);')
+      .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
+        vec3 hot=mix(vec3(.33,.007,.0004),vec3(2.4,.23,.005),smoothstep(.32,.96,supportMelt));
+        totalEmissiveRadiance=hot*pow(supportMelt,1.2)*(.78-uWithdrawal*.48);
+      `);
+  };
+  material.customProgramCacheKey = () => `lake-layered-support-${facies}-v1`;
   return material;
 }
 
@@ -94,14 +142,7 @@ export function reservoirMaterial(texture: THREE.Texture, uniforms: LakeUniforms
   material.onBeforeCompile = shader => {
     Object.assign(shader.uniforms, uniforms);
     shader.vertexShader = `attribute vec3 materialPosition;varying vec3 vLakeStone;varying vec3 vLakeWorld;\n${shader.vertexShader}`.replace('#include <worldpos_vertex>', '#include <worldpos_vertex>\nvLakeWorld=(modelMatrix*vec4(transformed,1.)).xyz;vLakeStone=materialPosition;');
-    shader.fragmentShader = `varying vec3 vLakeStone;varying vec3 vLakeWorld;uniform float uWithdrawal;\n${noiseGLSL}
-      float lakeCrystalGap(vec3 p){vec3 b=floor(p),f=fract(p);float a=10.,c=10.;
-        for(int z=-1;z<=1;z++)for(int y=-1;y<=1;y++)for(int x=-1;x<=1;x++){
-          vec3 d=vec3(float(x),float(y),float(z)),cell=b+d;
-          vec3 q=.15+.7*vec3(lakeHash(cell),lakeHash(cell+17.3),lakeHash(cell+41.7));float r=length(d+q-f);
-          if(r<a){c=a;a=r;}else if(r<c)c=r;
-        }return c-a;
-      }
+    shader.fragmentShader = `varying vec3 vLakeStone;varying vec3 vLakeWorld;uniform float uWithdrawal;\n${noiseGLSL}\n${crystalGapGLSL}
       ${shader.fragmentShader}`.replace('#include <color_fragment>', `#include <color_fragment>
       vec3 stonePoint=vLakeStone*vec3(6.8,8.6,6.8);
       vec3 warp=vec3(lakeFbm(stonePoint*.4),lakeFbm(stonePoint*.4+7.1),lakeFbm(stonePoint*.4+19.7));

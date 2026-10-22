@@ -1,16 +1,18 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import {
-  DEFAULT_HYDROTHERMAL_SETTINGS, HOT_ROCK, HYDROTHERMAL_SAMPLES, POOL,
-  hydroSeed, hydrothermalFrame, hydrothermalRoute, hydrothermalSample,
+  DEFAULT_HYDROTHERMAL_SETTINGS, HOT_ROCK, HYDROTHERMAL_SAMPLES, HYDROTHERMAL_POOL_SAMPLES, HYDROTHERMAL_MIST_SAMPLES, HYDROTHERMAL_BANK_ROCKS, POOL,
+  hydrothermalFrame, hydrothermalRoute, hydrothermalRouteHeat, hydrothermalSample, hydrothermalPoolSample, hydrothermalMist, hydrothermalBankRock,
   hydrothermalTerrain, poolOutline, poolShore,
   type HydrothermalFrame, type HydrothermalPoint, type HydrothermalSettings, type HydrothermalView,
 } from './hydrothermalModel.ts';
 
 type RendererMode = 'webgl' | 'canvas';
 type RendererCallback = (mode: RendererMode, canvas?: HTMLCanvasElement) => void;
-const WIDTH = 7.2, DEPTH = 6.4, FLOOR = -4.15;
+const WIDTH = 7.2, DEPTH = 6.4, FLOOR = -4.15, DETAIL_INTERVAL = 1000 / 24;
 const point = (p: HydrothermalPoint) => new THREE.Vector3(...p);
+const coldWater = new THREE.Color('#65bbd1'), warmWater = new THREE.Color('#f1b765');
+const thermalColor = (heat: number, target = new THREE.Color()) => target.copy(coldWater).lerp(warmWater, heat);
 const grainGLSL = `
 float hh(vec3 p){p=fract(p*.3183099+vec3(.11,.27,.43));p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}
 float hn(vec3 p){vec3 b=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(mix(hh(b),hh(b+vec3(1,0,0)),f.x),mix(hh(b+vec3(0,1,0)),hh(b+vec3(1,1,0)),f.x),f.y),mix(mix(hh(b+vec3(0,0,1)),hh(b+vec3(1,0,1)),f.x),mix(hh(b+vec3(0,1,1)),hh(b+vec3(1,1,1)),f.x),f.y),f.z);}
@@ -18,43 +20,80 @@ float hf(vec3 p){return .57*hn(p)+.28*hn(p*2.07)+.15*hn(p*4.13);}
 `;
 function rockMaterial(facies: number) {
   const material = new THREE.MeshStandardMaterial({ roughness: .96, color: '#777268', side: THREE.DoubleSide });
+  const poolUniforms = { uWaterLevel: { value: POOL.bottom as number }, uPoolWet: { value: 0 } };
+  material.userData.poolUniforms = poolUniforms;
   material.onBeforeCompile = shader => {
+    Object.assign(shader.uniforms, poolUniforms);
     shader.vertexShader = `varying vec3 vRock;\n${shader.vertexShader}`.replace('#include <worldpos_vertex>', '#include <worldpos_vertex>\nvRock=(modelMatrix*vec4(transformed,1.)).xyz;');
-    shader.fragmentShader = `varying vec3 vRock;\n${grainGLSL}\n${shader.fragmentShader}`.replace('#include <color_fragment>', `#include <color_fragment>
+    shader.fragmentShader = `uniform float uWaterLevel;uniform float uPoolWet;varying vec3 vRock;\n${grainGLSL}\n${shader.fragmentShader}`.replace('#include <color_fragment>', `#include <color_fragment>
       float macro=hf(vRock*1.5),fine=hn(vRock*71.);
       vec3 stone=mix(vec3(.095,.10,.092),vec3(.20,.165,.12),${(.24 + facies * .08).toFixed(3)});
       stone*=.68+.45*macro+.25*fine;
+      float basin=length((vRock.xz-vec2(${POOL.x},${POOL.z}))/vec2(${POOL.rx},${POOL.rz}));
+      float edgeBreak=.045*sin(vRock.x*7.3+vRock.z*4.1)+.055*(hf(vRock*5.)-.5);
+      float bank=(1.-smoothstep(.045,.24,abs(basin-1.+edgeBreak)))*smoothstep(.42,.68,vRock.y)*smoothstep(.23,.62,hf(vRock*3.4));
+      stone=mix(stone,vec3(.39,.35,.25)*(.78+.28*macro),bank*.78);
+      float wet=uPoolWet*(1.-smoothstep(uWaterLevel-.015,uWaterLevel+.035,vRock.y))*(1.-smoothstep(.90,1.25,basin))*smoothstep(.02,.12,vRock.y);
+      stone=mix(stone,stone*vec3(.50,.66,.62),wet*.68);
       float thermal=1.-smoothstep(.78,1.10,length((vRock-vec3(${HOT_ROCK.x},${HOT_ROCK.y},${HOT_ROCK.z}))/vec3(${HOT_ROCK.rx},${HOT_ROCK.ry},${HOT_ROCK.rz})));
       float crystal=hf(vRock*9.6);vec3 hotStone=mix(vec3(.13,.087,.055),vec3(.28,.125,.045),crystal);
       diffuseColor.rgb=mix(stone,hotStone,thermal*.88);
       float relief=.006*hf(vRock*17.)+.002*hn(vRock*80.);
-    `).replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+    `).replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor=mix(roughnessFactor,.32,wet*.78);').replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
       vec3 dx=dFdx(-vViewPosition),dy=dFdy(-vViewPosition),r1=cross(dy,normal),r2=cross(normal,dx);float det=dot(dx,r1);
       vec3 bent=abs(det)*normal-sign(det)*(dFdx(relief)*r1+dFdy(relief)*r2);if(dot(bent,bent)>1.e-15)normal=normalize(bent);
     `).replace('#include <emissivemap_fragment>', '#include <emissivemap_fragment>\ntotalEmissiveRadiance+=vec3(.12,.025,.003)*thermal*(.25+.75*crystal);');
   };
-  material.customProgramCacheKey = () => `hydrothermal-rock-${facies}-2`;
+  material.customProgramCacheKey = () => `hydrothermal-rock-${facies}-3`;
   return material;
 }
-function waterMaterial() {
+function waterMaterial(surface = true) {
   return new THREE.ShaderMaterial({ transparent: true, depthWrite: false, side: THREE.DoubleSide, clipping: true,
-    uniforms: { uPhase: { value: 0 } },
-    vertexShader: `attribute float depth;varying float vDepth;varying vec3 vWorld;
+    uniforms: { uPhase: { value: 0 }, uWarmth: { value: 0 }, uActivity: { value: 0 }, uSurface: { value: surface ? 1 : 0 } },
+    vertexShader: `uniform float uPhase;uniform float uActivity;uniform float uSurface;attribute float depth;varying float vDepth;varying vec3 vWorld;
       #include <common>
       #include <clipping_planes_pars_vertex>
-      void main(){vDepth=depth;vWorld=(modelMatrix*vec4(position,1.)).xyz;vec4 mvPosition=modelViewMatrix*vec4(position,1.);gl_Position=projectionMatrix*mvPosition;
+      void main(){vDepth=depth;vec3 at=position;
+      float radius=length((at.xz-vec2(${POOL.x},${POOL.z}))/vec2(.82,.66));
+      float wave=sin(radius*30.-uPhase*56.55)*exp(-radius*1.8)+sin(at.x*12.+at.z*9.+uPhase*25.13)*.22;
+      at.y+=uSurface*uActivity*min(depth,.055)*.075*wave;
+      vWorld=(modelMatrix*vec4(at,1.)).xyz;vec4 mvPosition=modelViewMatrix*vec4(at,1.);gl_Position=projectionMatrix*mvPosition;
       #include <clipping_planes_vertex>
       }`,
-    fragmentShader: `uniform float uPhase;varying float vDepth;varying vec3 vWorld;
+    fragmentShader: `uniform float uPhase;uniform float uWarmth;uniform float uActivity;varying float vDepth;varying vec3 vWorld;
       #include <common>
       #include <clipping_planes_pars_fragment>
       void main(){
       #include <clipping_planes_fragment>
-      float depth=1.-exp(-vDepth*5.);vec3 tint=mix(vec3(.12,.36,.32),vec3(.012,.105,.13),depth);
-      float wave=sin(vWorld.x*17.+vWorld.z*11.+uPhase*13.)*.5+sin(vWorld.z*27.-vWorld.x*8.+uPhase*9.)*.3;
-      vec3 eye=normalize(cameraPosition-vWorld);float fresnel=pow(1.-abs(eye.y),3.);
-      tint=mix(tint,vec3(.46,.62,.66),.09+fresnel*.30);tint+=vec3(.15,.17,.16)*pow(max(0.,wave),14.)*.25;
-      gl_FragColor=vec4(tint,mix(.25,.94,smoothstep(.008,.3,vDepth)));
+      float depth=1.-exp(-vDepth*5.);vec3 tint=mix(vec3(.16,.42,.33),vec3(.015,.19,.18),depth);
+      float radius=length((vWorld.xz-vec2(${POOL.x},${POOL.z}))/vec2(.82,.66));
+      float ripple=sin(radius*30.-uPhase*56.55)*exp(-radius*1.8)*uActivity;
+      float wave=sin(vWorld.x*17.+vWorld.z*11.+uPhase*25.13)*.5+sin(vWorld.z*27.-vWorld.x*8.+uPhase*18.85)*.3+ripple;
+      vec3 eye=normalize(cameraPosition-vWorld),normal=normalize(vec3(wave*.055,1.,ripple*.05));float fresnel=pow(1.-abs(dot(eye,normal)),3.);
+      tint+=vec3(.06,.025,.0)*uWarmth*exp(-radius*1.6);
+      tint=mix(tint,vec3(.57,.70,.67),.055+fresnel*.27);tint+=vec3(.25,.27,.21)*pow(clamp(wave*.65,0.,1.),12.)*.27;
+      gl_FragColor=vec4(tint,mix(.28,.90,smoothstep(.008,.3,vDepth)));
+      #include <tonemapping_fragment>
+      #include <colorspace_fragment>
+      }`,
+  });
+}
+/** Twenty-four retained soft billboards describe condensation above the pool.
+ * They are bounded optical wisps, not smoke, boiling bubbles or a fluid solver. */
+function mistMaterial() {
+  return new THREE.ShaderMaterial({ transparent: true, depthWrite: false,
+    uniforms: { uPhase: { value: 0 } },
+    vertexShader: `varying vec2 vUv;varying float vOpacity;
+      void main(){vUv=uv;vOpacity=instanceColor.r;
+      vec4 at=modelViewMatrix*instanceMatrix*vec4(0.,0.,0.,1.);
+      at.xy+=position.xy*vec2(length(instanceMatrix[0].xyz),length(instanceMatrix[1].xyz));
+      gl_Position=projectionMatrix*at;}`,
+    fragmentShader: `uniform float uPhase;varying vec2 vUv;varying float vOpacity;${grainGLSL}
+      void main(){vec2 q=(vUv-.5)*2.;float r=length(q);
+      float structure=hf(vec3(q*2.8,uPhase*12.57));
+      float edge=(1.-smoothstep(.36,1.,r))*exp(-r*r*1.4);
+      float alpha=vOpacity*edge*(.40+.60*structure)*.36;
+      gl_FragColor=vec4(mix(vec3(.78,.79,.72),vec3(.99,.98,.93),structure),alpha);
       #include <tonemapping_fragment>
       #include <colorspace_fragment>
       }`,
@@ -120,17 +159,22 @@ export function hydrothermalLandscapeGeometry() {
 }
 /** Solid fracture/wet-film ribbons expose rock contacts, not a hollow tunnel.
  * Thickness and route are explanatory, not mapped apertures or cave geometry. */
-function ribbonGeometry(from: number, to: number, width: number, front: number, back: number) {
-  const steps = 160, p: number[] = [], indices: number[] = [];
+function ribbonGeometry(from: number, to: number, width: number, front: number, back: number, heatCode = false) {
+  const steps = 160, p: number[] = [], colors: number[] = [], indices: number[] = [];
   for (let i = 0; i <= steps; i++) {
     const t = from + (to - from) * i / steps, at = hydrothermalRoute(t), a = hydrothermalRoute(t - .001), b = hydrothermalRoute(t + .001);
     const length = Math.hypot(b[0] - a[0], b[1] - a[1]) || 1, nx = -(b[1] - a[1]) / length, ny = (b[0] - a[0]) / length;
     const rough = width * (.8 + .20 * Math.sin(i * 2.1) * Math.sin(i * .83));
-    for (const [side, z] of [[-1, front], [1, front], [1, back], [-1, back]]) p.push(at[0] + nx * side * rough, at[1] + ny * side * rough, z);
+    const color = heatCode ? thermalColor(hydrothermalRouteHeat(t)) : undefined;
+    for (const [side, z] of [[-1, front], [1, front], [1, back], [-1, back]]) {
+      p.push(at[0] + nx * side * rough, at[1] + ny * side * rough, z); if (color) colors.push(color.r, color.g, color.b);
+    }
     if (i < steps) for (let side = 0; side < 4; side++) { const a = i * 4 + side, b = i * 4 + (side + 1) % 4; indices.push(a, b, a + 4, b, b + 4, a + 4); }
   }
   indices.push(0, 2, 1, 0, 3, 2); const end = steps * 4; indices.push(end, end + 1, end + 2, end, end + 2, end + 3);
-  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(p, 3)); g.setIndex(indices); g.computeVertexNormals(); return g;
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(p, 3));
+  if (heatCode) g.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+  g.setIndex(indices); g.computeVertexNormals(); return g;
 }
 
 /** Owns one scientific frame and a separately pausable, bounded tracer clock.
@@ -157,6 +201,8 @@ export class HydrothermalScene {
   private plug?: THREE.Mesh;
   private samples?: THREE.InstancedMesh;
   private halos?: THREE.InstancedMesh;
+  private poolSamples?: THREE.InstancedMesh;
+  private mist?: THREE.InstancedMesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
   private heatArrows: THREE.ArrowHelper[] = [];
   private frame = hydrothermalFrame(0);
   private view: HydrothermalView = 'section';
@@ -231,10 +277,10 @@ export class HydrothermalScene {
     this.outside = this.mesh(hydrothermalLandscapeGeometry(), rockMaterial(0)); this.outside.castShadow = this.outside.receiveShadow = true; this.scene.add(this.outside);
     for (let k = 0; k < 5; k++) { const layer = this.mesh(layerGeometry(k), rockMaterial(k + 1)); layer.receiveShadow = true; this.section.add(layer); }
     const fault = this.mesh(ribbonGeometry(.105, 1, .105, .026, -.25), new THREE.MeshStandardMaterial({ color: '#5e625a', roughness: 1, side: THREE.DoubleSide })); this.underground.add(fault);
-    this.wetFilm = this.mesh(ribbonGeometry(.105, 1, .034, .043, .025), new THREE.MeshPhysicalMaterial({ color: '#358b9f', roughness: .21, metalness: .05, transparent: true, opacity: .8, side: THREE.DoubleSide })); this.underground.add(this.wetFilm);
+    this.wetFilm = this.mesh(ribbonGeometry(.105, 1, .043, .047, .025, true), new THREE.MeshBasicMaterial({ vertexColors: true, transparent: true, opacity: .87, side: THREE.DoubleSide })); this.underground.add(this.wetFilm);
     const barrier = hydrothermalRoute(.675); this.plug = this.mesh(new THREE.IcosahedronGeometry(.22, 1), rockMaterial(3)); this.plug.position.copy(point(barrier)); this.plug.scale.set(1.25, .8, .7); this.underground.add(this.plug);
     const sampleGeometry = this.ownGeometry(new THREE.IcosahedronGeometry(1, 1));
-    this.samples = new THREE.InstancedMesh(sampleGeometry, this.ownMaterial(new THREE.MeshPhysicalMaterial({ color: '#5bbed4', roughness: .18, metalness: .03, clearcoat: 1 })), HYDROTHERMAL_SAMPLES);
+    this.samples = new THREE.InstancedMesh(sampleGeometry, this.ownMaterial(new THREE.MeshPhysicalMaterial({ color: '#ffffff', roughness: .18, metalness: .03, clearcoat: 1 })), HYDROTHERMAL_SAMPLES);
     this.halos = new THREE.InstancedMesh(sampleGeometry, this.ownMaterial(new THREE.MeshBasicMaterial({ color: '#d9ac60', transparent: true, opacity: .24, depthWrite: false })), HYDROTHERMAL_SAMPLES);
     this.samples.frustumCulled = this.halos.frustumCulled = false; this.samples.instanceMatrix.setUsage(THREE.DynamicDrawUsage); this.halos.instanceMatrix.setUsage(THREE.DynamicDrawUsage); this.scene.add(this.samples, this.halos);
     for (let i = 0; i < 4; i++) {
@@ -243,7 +289,7 @@ export class HydrothermalScene {
       for (const child of [arrow.line, arrow.cone]) for (const m of Array.isArray(child.material) ? child.material : [child.material]) this.materials.add(m);
       this.heatArrows.push(arrow); this.underground.add(arrow);
     }
-    this.createPool(); this.createRim(); this.applyView(); this.renderer.shadowMap.needsUpdate = true;
+    this.createPool(); this.createRim(); this.createSurfaceDetail(sampleGeometry); this.applyView(); this.renderer.shadowMap.needsUpdate = true;
   }
   private createPool() {
     const rings = 20, angles = 96, p = new Float32Array((rings + 1) * (angles + 1) * 3), depth = new Float32Array(p.length / 3), indices: number[] = [];
@@ -253,19 +299,32 @@ export class HydrothermalScene {
     const cp = new Float32Array(97 * 6), cd = new Float32Array(97 * 2), ci: number[] = [];
     for (let i = 0; i < 96; i++) { const a = i * 2; ci.push(a, a + 1, a + 2, a + 1, a + 3, a + 2); }
     const cap = new THREE.BufferGeometry(); cap.setAttribute('position', new THREE.BufferAttribute(cp, 3)); cap.setAttribute('depth', new THREE.BufferAttribute(cd, 1)); cap.setIndex(ci);
-    this.poolCut = this.mesh(cap, waterMaterial()) as THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial>; this.section!.add(this.poolCut);
+    this.poolCut = this.mesh(cap, waterMaterial(false)) as THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial>; this.section!.add(this.poolCut);
   }
   private createRim() {
-    const rim = this.rim = new THREE.InstancedMesh(this.ownGeometry(new THREE.IcosahedronGeometry(1, 1)), this.ownMaterial(rockMaterial(1)), 72);
-    for (let i = 0; i < 72; i++) {
-      const a = i / 72 * Math.PI * 2, r = 1.02 + hydroSeed(i + 32) * .15, x = POOL.x + Math.cos(a) * POOL.rx * r, z = POOL.z + Math.sin(a) * POOL.rz * r;
-      const size = .045 + hydroSeed(i + 81) * .08; this.dummy.position.set(x, hydrothermalTerrain(x, z) + size * .2, z); this.dummy.scale.set(size * 1.5, size * .6, size); this.dummy.rotation.set(i, i * .9, 0); this.dummy.updateMatrix(); rim.setMatrixAt(i, this.dummy.matrix);
+    const rim = this.rim = new THREE.InstancedMesh(this.ownGeometry(new THREE.IcosahedronGeometry(1, 1)), this.ownMaterial(rockMaterial(1)), HYDROTHERMAL_BANK_ROCKS);
+    for (let i = 0; i < HYDROTHERMAL_BANK_ROCKS; i++) {
+      const rock = hydrothermalBankRock(i); this.dummy.position.set(...rock.position); this.dummy.scale.set(...rock.scale); this.dummy.rotation.set(...rock.rotation); this.dummy.updateMatrix(); rim.setMatrixAt(i, this.dummy.matrix);
     }
     rim.castShadow = rim.receiveShadow = true; this.scene!.add(rim);
+  }
+  private createSurfaceDetail(sampleGeometry: THREE.BufferGeometry) {
+    this.poolSamples = new THREE.InstancedMesh(sampleGeometry, this.ownMaterial(new THREE.MeshPhysicalMaterial({ color: '#e0e9bf', roughness: .21, transparent: true, opacity: .46, depthWrite: false, clearcoat: .7 })), HYDROTHERMAL_POOL_SAMPLES);
+    this.poolSamples.frustumCulled = false; this.poolSamples.instanceMatrix.setUsage(THREE.DynamicDrawUsage); this.scene!.add(this.poolSamples);
+    this.mist = new THREE.InstancedMesh(this.ownGeometry(new THREE.PlaneGeometry(1, 1)) as THREE.PlaneGeometry, this.ownMaterial(mistMaterial()), HYDROTHERMAL_MIST_SAMPLES);
+    this.mist.frustumCulled = false; this.mist.instanceMatrix.setUsage(THREE.DynamicDrawUsage); this.mist.renderOrder = 3;
+    // Instancing color carries each retained wisp's opacity in the shader.
+    for (let id = 0; id < HYDROTHERMAL_MIST_SAMPLES; id++) this.mist.setColorAt(id, new THREE.Color(0, 0, 0));
+    this.scene!.add(this.mist);
   }
   private updatePool() {
     if (!this.pool || !this.poolCut) return;
     const f = this.frame, wet = f.pool > 0; this.pool.visible = this.poolCut.visible = wet;
+    for (const material of this.materials) {
+      const uniforms = material.userData.poolUniforms;
+      if (uniforms) { uniforms.uWaterLevel.value = f.waterLevel; uniforms.uPoolWet.value = wet ? 1 : 0; }
+    }
+    for (const pool of [this.pool, this.poolCut]) { pool.material.uniforms.uWarmth.value = f.poolWarmth; pool.material.uniforms.uActivity.value = f.poolActivity; }
     if (!wet) return;
     const p = this.pool.geometry.getAttribute('position') as THREE.BufferAttribute, d = this.pool.geometry.getAttribute('depth') as THREE.BufferAttribute;
     for (let ring = 0; ring <= 20; ring++) for (let j = 0; j <= 96; j++) {
@@ -286,10 +345,32 @@ export class HydrothermalScene {
       const s = hydrothermalSample(id, this.frame, this.phase), visible = s.visible && (this.view === 'section' || s.t < .105 || s.t > .94);
       this.dummy.position.copy(point(s.position)); this.dummy.rotation.set(0, 0, s.t < .1 ? 0 : Math.atan2(s.direction[1], s.direction[0]) - Math.PI / 2);
       this.dummy.scale.set(visible ? s.width : 0, visible ? s.width * (s.t < .1 ? 3 : 1.65) : 0, visible ? s.width : 0); this.dummy.updateMatrix(); this.samples.setMatrixAt(id, this.dummy.matrix);
+      this.samples.setColorAt(id, thermalColor(s.heat));
       this.dummy.scale.multiplyScalar(1.9 * s.heat); this.dummy.updateMatrix(); this.halos.setMatrixAt(id, this.dummy.matrix);
     }
     this.samples.instanceMatrix.needsUpdate = this.halos.instanceMatrix.needsUpdate = true;
+    if (this.samples.instanceColor) this.samples.instanceColor.needsUpdate = true;
     this.pool!.material.uniforms.uPhase.value = this.phase; this.poolCut!.material.uniforms.uPhase.value = this.phase;
+    this.updateSurfaceDetail();
+  }
+  private updateSurfaceDetail() {
+    if (!this.poolSamples || !this.mist) return;
+    const up = new THREE.Vector3(0, 1, 0);
+    this.poolSamples.visible = this.frame.poolActivity > 0; this.mist.visible = this.frame.condensation > 0;
+    for (let id = 0; id < HYDROTHERMAL_POOL_SAMPLES; id++) {
+      const s = hydrothermalPoolSample(id, this.frame, this.phase), direction = point(s.direction);
+      this.dummy.position.copy(point(s.position)); this.dummy.quaternion.setFromUnitVectors(up, direction.lengthSq() > 0 ? direction.normalize() : up);
+      const size = s.visible ? s.width : 0; this.dummy.scale.set(size, size * (2.7 + s.activity), size); this.dummy.updateMatrix(); this.poolSamples.setMatrixAt(id, this.dummy.matrix);
+    }
+    this.dummy.rotation.set(0, 0, 0);
+    const opacity = new THREE.Color();
+    for (let id = 0; id < HYDROTHERMAL_MIST_SAMPLES; id++) {
+      const s = hydrothermalMist(id, this.frame, this.phase);
+      this.dummy.position.copy(point(s.position)); this.dummy.scale.set(s.width, s.height, 1); this.dummy.updateMatrix(); this.mist.setMatrixAt(id, this.dummy.matrix);
+      this.mist.setColorAt(id, opacity.setRGB(s.opacity, s.opacity, s.opacity));
+    }
+    this.poolSamples.instanceMatrix.needsUpdate = this.mist.instanceMatrix.needsUpdate = true;
+    this.mist.instanceColor!.needsUpdate = true; this.mist.material.uniforms.uPhase.value = this.phase;
   }
   draw(progress: number, settings: HydrothermalSettings = DEFAULT_HYDROTHERMAL_SETTINGS) {
     if (this.disposed) return; this.frame = hydrothermalFrame(progress, settings);
@@ -306,6 +387,7 @@ export class HydrothermalScene {
     this.ground!.material instanceof THREE.Material && (this.ground!.material.clippingPlanes = planes);
     const rimMaterial = this.rim!.material as THREE.Material; rimMaterial.clippingPlanes = planes; rimMaterial.needsUpdate = true;
     this.pool!.material.clippingPlanes = planes; this.pool!.material.needsUpdate = true;
+    if (this.poolSamples) { const material = this.poolSamples.material as THREE.Material; material.clippingPlanes = planes; material.needsUpdate = true; }
     this.ground!.material instanceof THREE.Material && (this.ground!.material.needsUpdate = true);
     this.section!.visible = this.underground!.visible = this.ground!.visible = this.view === 'section'; this.outside!.visible = this.view === 'landscape';
     this.controls!.minDistance = this.view === 'section' ? 5 : 2.5;
@@ -319,13 +401,13 @@ export class HydrothermalScene {
   resetCamera() { if (this.disposed) return; this.manualCamera = false; this.fitCamera(); this.render(); }
   private fitCamera() {
     if (!this.camera || this.manualCamera) return;
-    const aspect = this.camera.aspect, section = this.view === 'section', target = new THREE.Vector3(section ? 0 : POOL.x, section ? -.1 : .42, section ? -1 : POOL.z);
-    const direction = new THREE.Vector3(section ? .07 : .42, section ? .21 : 1.18, 1).normalize(), right = new THREE.Vector3(direction.z, 0, -direction.x).normalize(), up = new THREE.Vector3().crossVectors(direction, right);
+    const aspect = this.camera.aspect, section = this.view === 'section', target = new THREE.Vector3(section ? 0 : POOL.x, section ? -.1 : .63, section ? -1 : POOL.z);
+    const direction = new THREE.Vector3(section ? .07 : .35, section ? .21 : .66, 1).normalize(), right = new THREE.Vector3(direction.z, 0, -direction.x).normalize(), up = new THREE.Vector3().crossVectors(direction, right);
     const points: THREE.Vector3[] = section ? [new THREE.Vector3(-WIDTH, FLOOR, 0), new THREE.Vector3(WIDTH, FLOOR, 0), new THREE.Vector3(-WIDTH, 2, -DEPTH), new THREE.Vector3(WIDTH, 2, -DEPTH), new THREE.Vector3(-4.7, 3.8, .1)] : Array.from({ length: 32 }, (_, i) => {
       const angle = i / 32 * Math.PI * 2, radius = 1.32 * poolOutline(angle), x = POOL.x + Math.cos(angle) * POOL.rx * radius, z = POOL.z + Math.sin(angle) * POOL.rz * radius;
       return new THREE.Vector3(x, hydrothermalTerrain(x, z), z);
     });
-    if (!section) points.push(new THREE.Vector3(POOL.x, POOL.bottom, POOL.z));
+    if (!section) points.push(new THREE.Vector3(POOL.x, POOL.bottom, POOL.z), new THREE.Vector3(POOL.x, POOL.bottom + POOL.maxDepth + 1.25, POOL.z));
     let distance = section ? 6 : 3.5; const tan = Math.tan(37 * Math.PI / 360);
     for (const p of points) { const q = p.sub(target), z = q.dot(direction); distance = Math.max(distance, z + Math.abs(q.dot(right)) / (tan * aspect * .86), z + Math.abs(q.dot(up)) / (tan * .86)); }
     this.camera.position.copy(target).addScaledVector(direction, distance); this.controls!.target.copy(target); this.controls!.update();
@@ -367,6 +449,7 @@ export class HydrothermalScene {
       progress: this.frame.p.toFixed(4), projection: this.view, journeyStage: String(this.frame.stage),
       supply: this.frame.settings.supply.toFixed(4), connected: String(this.frame.settings.connected),
       poolFill: this.frame.pool.toFixed(6), waterLevel: this.frame.waterLevel.toFixed(6),
+      poolWarmth: this.frame.poolWarmth.toFixed(6), poolActivity: this.frame.poolActivity.toFixed(6), condensation: this.frame.condensation.toFixed(6),
       detailEnabled: String(this.detailEnabled), detailPhase: this.phase.toFixed(6),
       detailMotion: this.disposed ? 'disposed' : !this.detailEnabled ? 'paused' : !this.visible() ? 'hidden'
         : this.reduced.matches ? 'reduced' : this.raf ? 'running' : 'idle',
@@ -383,6 +466,7 @@ export class HydrothermalScene {
   private cancelFrame() { if (this.raf) cancelAnimationFrame(this.raf); this.raf = 0; this.previousTime = 0; }
   private tick = (now: number) => {
     this.raf = 0; if (!this.admitDetail()) { this.previousTime = 0; this.publishState(); return; }
+    if (this.previousTime && now - this.previousTime < DETAIL_INTERVAL) { this.raf = requestAnimationFrame(this.tick); return; }
     const dt = this.previousTime ? Math.min(.05, (now - this.previousTime) / 1000) : 0; this.previousTime = now; this.phase = (this.phase + dt * .045) % 1;
     if (this.renderer) { this.updateSamples(); this.render(); } else this.drawCanvas(); this.raf = requestAnimationFrame(this.tick); this.publishState();
   };
@@ -400,6 +484,8 @@ export class HydrothermalScene {
     this.scene?.traverse(object => { if (object instanceof THREE.InstancedMesh) object.dispose(); });
     for (const g of this.geometries) g.dispose(); for (const m of this.materials) m.dispose(); this.geometries.clear(); this.materials.clear();
     this.renderer?.dispose(); this.renderer?.forceContextLoss(); this.renderer = undefined; this.scene = undefined; this.camera = undefined; this.heatArrows = [];
+    this.ground = this.outside = this.wetFilm = this.plug = undefined; this.section = this.underground = undefined;
+    this.pool = this.poolCut = undefined; this.rim = this.samples = this.halos = this.poolSamples = this.mist = undefined;
   }
   /** The Canvas fallback consumes the exact same frame and liquid tracers.
    * Its section is intentionally a two-dimensional explanatory projection. */
@@ -413,21 +499,58 @@ export class HydrothermalScene {
       for (let i = 144; i >= 0; i--) { const x = -WIDTH + i / 144 * WIDTH * 2; ctx.lineTo(...project(x, horizon(k + 1, x, 0))); }
       ctx.closePath(); ctx.fillStyle = ['#766f5d', '#655f51', '#73624e', '#5a5950', '#55564e'][k]; ctx.fill();
     }
+    // Only the bank fragments near this explanatory cut project into its face.
+    for (let id = 0; id < HYDROTHERMAL_BANK_ROCKS; id++) {
+      const rock = hydrothermalBankRock(id); if (Math.abs(rock.position[2]) > .5) continue;
+      const [x, y] = project(rock.position[0], hydrothermalTerrain(rock.position[0], 0) + rock.scale[1] * .16);
+      ctx.fillStyle = rock.scale[0] > .15 ? '#81765c' : '#93866b'; ctx.beginPath(); ctx.ellipse(x, y, rock.scale[0] * scale, rock.scale[1] * scale, rock.rotation[2], 0, Math.PI * 2); ctx.fill();
+    }
     const [hx, hy] = project(HOT_ROCK.x, HOT_ROCK.y), glow = ctx.createRadialGradient(hx, hy, 0, hx, hy, HOT_ROCK.rx * scale);
     glow.addColorStop(0, 'rgba(167,78,26,.7)'); glow.addColorStop(.65, 'rgba(130,66,27,.48)'); glow.addColorStop(1, 'rgba(130,66,27,0)'); ctx.fillStyle = glow; ctx.beginPath(); ctx.ellipse(hx, hy, HOT_ROCK.rx * scale, HOT_ROCK.ry * scale, -.12, 0, Math.PI * 2); ctx.fill();
     const path = (end: number) => { ctx.beginPath(); for (let i = 0; i <= 160; i++) { const t = .105 + (end - .105) * i / 160, p = hydrothermalRoute(t); i ? ctx.lineTo(...project(p[0], p[1])) : ctx.moveTo(...project(p[0], p[1])); } };
     path(1); ctx.strokeStyle = '#424a43'; ctx.lineWidth = scale * .15; ctx.stroke();
-    if (this.frame.recharge > 0) { path(this.frame.wetFront); ctx.strokeStyle = '#438da0'; ctx.lineWidth = scale * .045; ctx.stroke(); }
+    if (this.frame.recharge > 0) {
+      ctx.lineWidth = scale * .075; ctx.lineCap = 'round';
+      for (let i = 0; i < 160; i++) {
+        const a = .105 + .895 * i / 160, b = Math.min(this.frame.wetFront, .105 + .895 * (i + 1) / 160); if (a >= b) continue;
+        const before = hydrothermalRoute(a), after = hydrothermalRoute(b); ctx.beginPath(); ctx.moveTo(...project(before[0], before[1])); ctx.lineTo(...project(after[0], after[1]));
+        ctx.strokeStyle = thermalColor(hydrothermalRouteHeat((a + b) / 2)).getStyle(); ctx.stroke();
+      }
+      ctx.lineCap = 'butt';
+    }
+    if (this.frame.heating > 0) for (let i = 0; i < 4; i++) {
+      const x = -1.35 + i * .6, [ax, ay] = project(x, -1.92), [bx, by] = project(x, -1.48);
+      ctx.strokeStyle = '#c49b5c'; ctx.lineWidth = Math.max(1, scale * .023); ctx.beginPath(); ctx.moveTo(ax, ay); ctx.lineTo(bx, by); ctx.moveTo(bx - scale * .065, by + scale * .09); ctx.lineTo(bx, by); ctx.lineTo(bx + scale * .065, by + scale * .09); ctx.stroke();
+    }
     if (!this.frame.settings.connected) { const p = hydrothermalRoute(.675), [x, y] = project(p[0], p[1]); ctx.fillStyle = '#807866'; ctx.fillRect(x - scale * .12, y - scale * .16, scale * .24, scale * .32); }
     if (this.frame.pool > 0) {
       ctx.beginPath(); for (let i = 0; i <= 96; i++) { const x = POOL.x - POOL.rx * 1.1 + i / 96 * POOL.rx * 2.2, bed = hydrothermalTerrain(x, 0); if (bed < this.frame.waterLevel) ctx.lineTo(...project(x, bed)); }
       for (let i = 96; i >= 0; i--) { const x = POOL.x - POOL.rx * 1.1 + i / 96 * POOL.rx * 2.2; if (hydrothermalTerrain(x, 0) < this.frame.waterLevel) ctx.lineTo(...project(x, this.frame.waterLevel)); }
-      ctx.closePath(); ctx.fillStyle = '#387f88'; ctx.fill();
+      ctx.closePath(); const [_, surfaceY] = project(POOL.x, this.frame.waterLevel), [__, bedY] = project(POOL.x, POOL.bottom), tint = ctx.createLinearGradient(0, surfaceY, 0, bedY);
+      tint.addColorStop(0, '#75afa0'); tint.addColorStop(1, '#287b79'); ctx.fillStyle = tint; ctx.fill();
+      for (let id = 0; id < HYDROTHERMAL_POOL_SAMPLES; id++) {
+        const s = hydrothermalPoolSample(id, this.frame, this.phase); if (!s.visible) continue;
+        const [x, y] = project(s.position[0], s.position[1]), direction = Math.atan2(-s.direction[1], s.direction[0]);
+        ctx.fillStyle = 'rgba(220,231,187,.52)'; ctx.beginPath(); ctx.ellipse(x, y, scale * s.width * 2.6, scale * s.width, direction, 0, Math.PI * 2); ctx.fill();
+      }
+      const edge = poolShore(0, this.frame), radius = (edge[0] - POOL.x) * scale;
+      ctx.strokeStyle = 'rgba(208,229,203,.50)'; ctx.lineWidth = Math.max(1, scale * .015);
+      for (let id = 0; id < 3; id++) {
+        const u = (this.phase * 3 + id / 3) % 1, [cx, cy] = project(POOL.x, this.frame.waterLevel);
+        ctx.globalAlpha = (1 - u) * this.frame.poolActivity; ctx.beginPath(); ctx.ellipse(cx, cy, radius * (.12 + u * .65), scale * .025, 0, 0, Math.PI * 2); ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
     }
     for (let id = 0; id < HYDROTHERMAL_SAMPLES; id++) {
       const s = hydrothermalSample(id, this.frame, this.phase); if (!s.visible) continue;
       const [x, y] = project(s.position[0], s.position[1]); if (s.heat > .1) { ctx.fillStyle = `rgba(223,170,80,${s.heat * .3})`; ctx.beginPath(); ctx.arc(x, y, scale * .065, 0, Math.PI * 2); ctx.fill(); }
-      ctx.fillStyle = '#80c8dc'; ctx.beginPath(); ctx.ellipse(x, y, scale * s.width, scale * s.width * 1.8, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = thermalColor(s.heat).getStyle(); ctx.beginPath(); ctx.ellipse(x, y, scale * s.width, scale * s.width * 1.8, 0, 0, Math.PI * 2); ctx.fill();
+    }
+    for (let id = 0; id < HYDROTHERMAL_MIST_SAMPLES; id++) {
+      const s = hydrothermalMist(id, this.frame, this.phase); if (!s.visible) continue;
+      const [x, y] = project(s.position[0], s.position[1]); ctx.save(); ctx.translate(x, y); ctx.scale(s.width * scale * .5, s.height * scale * .5);
+      const mist = ctx.createRadialGradient(0, 0, 0, 0, 0, 1); mist.addColorStop(0, `rgba(247,246,232,${s.opacity * .30})`); mist.addColorStop(1, 'rgba(247,246,232,0)');
+      ctx.fillStyle = mist; ctx.beginPath(); ctx.arc(0, 0, 1, 0, Math.PI * 2); ctx.fill(); ctx.restore();
     }
   }
   dispose() {

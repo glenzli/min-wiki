@@ -160,10 +160,10 @@ export class CanvasScene {
         cloud.addColorStop(0, '#ffffffcf'); cloud.addColorStop(.6, '#f1f4e9b0'); cloud.addColorStop(1, '#e6efe400');
         s.path(outline(x, y, r * 1.3, r * .7, i + cx), cloud);
       }
-      for (let i = 0; i < Math.round(78 * settings.supply); i++) {
+      for (let i = 0; i < Math.round(312 * settings.supply); i++) {
         const age = (seed(i + 70) + progress * 4) % 1, x = (seed(i + 250) - .5) * 410, y = -145 + age * 260;
         const end = Math.min(terrain(x, progress, settings.basin), fraction > 0 && Math.abs(x) < dimensions.radius * .85 ? waterY - 4 : 200);
-        if (y < end) s.path([[x, y], [x - 2, y + 7]], undefined, '#51889785', 1.1);
+        if (y < end) s.path([[x, y], [x - 2, y + 8.5]], undefined, '#518897a6', 1.1);
       }
       c.restore(); label(t('降水与融雪汇入'), 0, -202, undefined, 235);
     }

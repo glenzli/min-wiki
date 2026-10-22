@@ -1,14 +1,14 @@
-01 · Water pushes upward
-[Compare wood and stone, indicating buoyancy arrows.]
+01 · From floating to pressure
+[Compare wood and stone. Retain the same object while switching to the pressure section; follow inward side arrows, downward top arrows and upward bottom arrows.]
 
-A wooden block floats, while a stone may sink. Does water help only the floating object? No: water also pushes upward on the sinking stone, but may not support its whole weight. Today we will inspect arrows and water level, instead of guessing from light and heavy alone.
+The wooden block floats. A stone sinks, but water still pushes it upward. Switch to the section and inspect the blue arrows: water presses inward from every direction. Opposite sides at the same depth press equally. Greater pressure below than above leaves an upward push. The green arrow shows that combined force.
 
 ---
 
 02 · Same clay, another shape
-[Compare ball and boat, pausing for three seconds at displacement.]
+[Reshape the ball into a hollow hull, then switch to displacement; retain clay identity and inspect the cavity and displaced volume.]
 
-Turn the clay ball into a hollow boat, rather like a little bowl. The clay has not secretly become lighter. While water stays outside, the boat occupies more space and pushes more water aside. More displaced water gives a larger upward push. Pause and compare the displacement reading beside the tank.
+Now inspect the same 600 grams of clay: first a solid ball, then a hollow boat. The clay has not become lighter. While water stays outside, the space enclosed by the hull can push more water aside. The displacement view compares that volume in a measure; it does not take water from the tank.
 
 ---
 
@@ -20,6 +20,6 @@ Add cargo slowly. Does the rim move closer to the water? The boat must displace 
 ---
 
 04 · After complete immersion
-[Compare partial, full and deeper immersion; track buoyancy and tension while weight stays fixed.]
+[Compare partial, full and deeper immersion, tracking top and bottom pressure arrows. Then change to seawater, keeping weight fixed.]
 
-Finally, lower the block slowly on a cord. As more of it enters the water, buoyancy increases and the cord needs to pull up less. Once the entire block is underwater, lowering it further does not displace more water: buoyancy and tension stay nearly the same. Together, the water and the cord support the same weight.
+Finally lower the block slowly on a cord. As more enters the water, buoyancy increases and the cord pulls up less. Once the whole block is underwater, moving it deeper raises pressure above and below without displacing more water, so buoyancy and tension stay nearly unchanged. At the same immersed volume, seawater gives slightly more buoyancy.

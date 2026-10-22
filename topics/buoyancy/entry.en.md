@@ -1,46 +1,34 @@
-Can the same clay and the same four blocks float if you only widen the hull?
+Why can water support a boat?
 
-Choose the boat experiment and hollow hull, then start the four-block challenge. Keep cargo fixed while widening the hull. Compare flooding, displaced-water mass and total mass; switch to seawater to compare the threshold.
+Start with one wooden block. Follow five questions connecting pressure, displacement, hull shape and cargo.
 
-## Pressure differences produce buoyancy
+## From specimens to pressure
 
-Pressure increases with depth in a resting liquid. The resulting upward force equals the weight of displaced liquid: fluid density times gravity times displaced volume. This volume is not the total water in the tank. Sinking objects also experience buoyancy, and the tank floor can provide additional support after contact.
+Compare wood and stone, then inspect a section of the same object. Blue arrows act normally inward on wetted surfaces. Opposite sides at the same depth balance, while the upward contribution below exceeds the downward contribution above. The green arrow shows resulting buoyancy; water does not press only upward.
 
-## Shape changes usable displacement
+## The same clay and cargo
 
-Reshaping clay does not reduce its mass. A watertight hollow hull can displace more water before its rim submerges. At floating equilibrium buoyancy balances total weight. Added cargo increases the required displacement and draft. Flooding lets water occupy previously excluded space, changing the boat’s available buoyancy.
+The 600 g clay sample retains its mass when reshaped from a solid ball into a hollow boat. Its watertight enclosed space can displace more water before the rim submerges. Added cargo makes it sit lower until displacement supports total weight. The four-block challenge keeps cargo fixed while changing rim capacity from 900 to 1800 mL: a narrow hull can flood while a wider hull floats.
 
-## Control density, depth and equilibrium
+## What if it goes deeper?
 
-For a rigid object fully immersed in nearly incompressible uniform water, moving deeper does not change displaced volume or buoyancy much, although pressure increases. Denser liquid increases buoyancy at fixed immersion. A freely floating object instead rises until balance returns. Comparisons must state which quantities are held fixed.
+A cord holds a 1200 g, 1000 mL block at rest. Buoyancy increases and tension decreases from partial to full immersion. Moving the fully immersed block deeper raises pressure at top and bottom together, while net buoyancy stays nearly unchanged. Compare fresh water and seawater at the same immersed volume. A freely floating object instead rises slightly in seawater until balance returns.
 
-## Relations and conditions
+## Relations and observation limits
 
-$F_b=\rho gV_{\mathrm{displaced}}$, where $\rho$ is fluid density, $g$ is gravitational acceleration and $V_{\mathrm{displaced}}$ is displaced volume. Before an upright dry hull reaches its rim, it needs $m_{\mathrm{total}}<\rho V_{\mathrm{rim}}$; its actual displacement at floating equilibrium is $m_{\mathrm{total}}/\rho$.
+$F_b=\rho gV_{\mathrm{displaced}}$; the suspended block satisfies $T+F_b=W$ at rest. An upright dry hull must satisfy $m_{\mathrm{total}}<\rho V_{\mathrm{rim}}$ before its rim submerges.
 
-## A common misconception
-
-Light always floats and heavy always sinks is false. Compare weight, possible displacement and any other supporting forces.
-
-## Model limits
-
-The diagram uses ideal still-water equilibrium. Water-level changes are enlarged, and transitions do not solve fluid flow, flooding rates or capsizing stability.
-
-## Sources
-
-- [OpenStax · Archimedes’ Principle](https://openstax.org/books/college-physics/pages/11-7-archimedes-principle)
-- [OpenStax · Buoyancy](https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy)
-- [OpenStax · Fluids, Density, and Pressure](https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure)
+Tank, pressure-section and displacement views retain the current specimen, cargo, liquid and immersion. Hulls, vessels, textures, enlarged water rise and sections are not calibrated geometry. Readings come from the settled still-water model. The measure displays an equivalent volume without removing water from the tank. Waves, capsizing, material deformation, flooding rates and sealed floor contact are not solved.
 
 <!-- wiki-learning:start -->
 
-Can the same clay and the same four blocks float if you only widen the hull?
+Why can water support an object? What changes when the same clay becomes a cargo boat?
 
-Choose the boat experiment and hollow hull, then start the four-block challenge. Keep cargo fixed while widening the hull. Compare flooding, displaced-water mass and total mass; switch to seawater to compare the threshold.
+Follow five questions: compare wood and stone, then inspect pressure around the same object. Reshape the same 600 g clay into a hollow boat, add cargo and inspect the rim. Finally lower the suspended block through partial, full and deeper immersion, then compare seawater. Tank, section and displacement views retain the current specimen, cargo, liquid and immersion.
 
 ## Pressure differences produce buoyancy
 
-Pressure increases with depth in a resting liquid. The resulting upward force equals the weight of displaced liquid: fluid density times gravity times displaced volume. This volume is not the total water in the tank. Sinking objects also experience buoyancy, and the tank floor can provide additional support after contact.
+In a resting uniform liquid, gauge pressure increases as ρgh, and pressure acts normally inward on a surface. Equal-depth opposite sides of a rectangular section balance; the upward force below exceeds the downward force above. For a general closed wetted surface, the resultant equals displaced-fluid weight: F_b = ρgV_displaced. Blue arrows illustrate local pressure; the green resultant and numerical forces come from the displacement model. The uncalibrated arrows cannot be integrated as data. Sinking objects still experience buoyancy, with additional floor support after contact. This model assumes water can reach the bottom face and does not solve sealed contact.
 
 ## Shape changes usable displacement
 
@@ -48,7 +36,7 @@ Reshaping clay does not reduce its mass. A watertight hollow hull can displace m
 
 ## Control density, depth and equilibrium
 
-For a rigid object fully immersed in nearly incompressible uniform water, moving deeper does not change displaced volume or buoyancy much, although pressure increases. Denser liquid increases buoyancy at fixed immersion. A freely floating object instead rises until balance returns. Comparisons must state which quantities are held fixed. A taut cord holds this block at rest: T + F_b = W. Increasing immersion increases buoyancy and reduces tension; both stay nearly constant after full immersion.
+Moving a rigid fully immersed object deeper in nearly incompressible uniform water raises gauge pressure everywhere, while the top-to-bottom difference, displaced volume and net buoyancy stay nearly unchanged. Denser liquid increases buoyancy at the same immersed volume; a freely floating object rises until balance returns. State which volume, mass and supports are fixed. Here a taut cord holds a 1200 g, 1000 mL block at rest: T + F_b = W. Increasing immersion increases buoyancy and reduces tension; both remain nearly constant after full immersion.
 
 ## A common misconception
 
@@ -56,7 +44,7 @@ Light always floats and heavy always sinks is false. Compare weight, possible di
 
 ## Model limits
 
-The diagram uses ideal still-water equilibrium. Water-level changes are enlarged, and transitions do not solve fluid flow, flooding rates or capsizing stability.
+This is a settled model in uniform still water. The 3D specimens, front sections, hull shapes and enlarged water rise are illustrative, with no geometric length or volume calibration. Finite transitions do not solve fluid flow, material deformation, flooding rates, sealed floor contact, waves or capsizing. Rim reserve is not a real safe-load rating.
 
 ## Sources
 
@@ -68,17 +56,17 @@ The diagram uses ideal still-water equilibrium. Water-level changes are enlarged
 
 [Download spoken text](narration.en.txt?download) · [Download storyboard](narration.en.storyboard.txt?download)
 
-### Water pushes upward
+### From floating to pressure
 
-A wooden block floats, while a stone may sink. Does water help only the floating object? No: water also pushes upward on the sinking stone, but may not support its whole weight. Today we will inspect arrows and water level, instead of guessing from light and heavy alone.
+The wooden block floats. A stone sinks, but water still pushes it upward. Switch to the section and inspect the blue arrows: water presses inward from every direction. Opposite sides at the same depth press equally. Greater pressure below than above leaves an upward push. The green arrow shows that combined force.
 
-*Scene cue: Compare wood and stone, indicating buoyancy arrows.*
+*Scene cue: Compare wood and stone. Retain the same object while switching to the pressure section; follow inward side arrows, downward top arrows and upward bottom arrows.*
 
 ### Same clay, another shape
 
-Turn the clay ball into a hollow boat, rather like a little bowl. The clay has not secretly become lighter. While water stays outside, the boat occupies more space and pushes more water aside. More displaced water gives a larger upward push. Pause and compare the displacement reading beside the tank.
+Now inspect the same 600 grams of clay: first a solid ball, then a hollow boat. The clay has not become lighter. While water stays outside, the space enclosed by the hull can push more water aside. The displacement view compares that volume in a measure; it does not take water from the tank.
 
-*Scene cue: Compare ball and boat, pausing for three seconds at displacement.*
+*Scene cue: Reshape the ball into a hollow hull, then switch to displacement; retain clay identity and inspect the cavity and displaced volume.*
 
 ### Add a little cargo
 
@@ -88,8 +76,8 @@ Add cargo slowly. Does the rim move closer to the water? The boat must displace 
 
 ### After complete immersion
 
-Finally, lower the block slowly on a cord. As more of it enters the water, buoyancy increases and the cord needs to pull up less. Once the entire block is underwater, lowering it further does not displace more water: buoyancy and tension stay nearly the same. Together, the water and the cord support the same weight.
+Finally lower the block slowly on a cord. As more enters the water, buoyancy increases and the cord pulls up less. Once the whole block is underwater, moving it deeper raises pressure above and below without displacing more water, so buoyancy and tension stay nearly unchanged. At the same immersed volume, seawater gives slightly more buoyancy.
 
-*Scene cue: Compare partial, full and deeper immersion; track buoyancy and tension while weight stays fixed.*
+*Scene cue: Compare partial, full and deeper immersion, tracking top and bottom pressure arrows. Then change to seawater, keeping weight fixed.*
 
 <!-- wiki-learning:end -->

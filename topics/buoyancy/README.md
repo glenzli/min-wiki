@@ -10,6 +10,25 @@
 
 请从生产构建预览中检查中文与英文、直接进入、返回目录及窄屏交互。浮力测试覆盖受力平衡、改形、超载、盐水和浸深。
 
+## 2026-10-22：从物品到水压、再到载货小船
+
+本次问题链依次是：谁会浮起来 → 水怎样从各方向挤压 → 同一团泥改形成船 → 加货物后船沿还有多少余量 → 全浸没后再放低、再换海水。水压视图是当前实验的观察方式，不会新建物品或清空载荷。直接换实验时仍保留各实验条件；把船主动捏回实心球会像原来一样明确卸下货物。
+
+- 核心问题：浮力怎样由表面压力差产生，为什么形状、载荷与液体条件会改变浮沉？
+- 可变条件：四种物品；同一 600 g 泥的实心/空心形状；0–12 块 100 g 货物；900–1800 mL 船沿容量；淡水/海水；悬线方块 0–150% 示意浸深。视图、讲解层次和受力标注只改变观察。
+- 可观察结果：物体与水面的接触、局部压力的方向/相对大小、净浮力、张力/箱底支持力、排水量、吃水与进水状态。
+- 因果：在均匀静水中，局部表压随深度增加，压力垂直向内；同深度的左右贡献相抵，上下差留下净浮力。全浸没后继续降低，局部压强一起上升，净浮力基本不变。
+- 防误解：蓝色局部箭头不都向上；绿色浮力不是所有压力图标的可测数值积分；改形不减质量，量杯不取走水，船沿余量不是实际安全载荷。
+- 边界与来源：剖面、器皿与网格不作长度/面积/体积标定。数值仍来自原静水停稳模型；不求解流体、倾覆、进水速率或材料力学。触底模型假定水可进入底面，不求解密封接触。
+
+默认画面让完整水箱与当前物体占据主区域，量杯仅在“排水对照”出现。弧形玻璃缸、接触线、玻璃厚边与桌面阴影帮助辨认空间。木料保留顺纹和端面的方向，石块使用确定性不规则轮廓，金属保留倒角反光，空心泥船保留连续船壳、圆润船沿和可见空腔，货物以两列两排的层次摆放。自动观察船形时，镜头随同一保留改形进度逐渐抬高，露出内船底与货物；主动拖转后保留读者的视角。货物保持接触内船底，不为显露而悬空或移出船壳。材质和镜头变化不改变物理读数。
+
+`framing.ts` 拥有按真实可用视口拟合的正交投影；SVG 标注与 GPU 相机共享同一像素映射，桌面不再沿固定宽高比撑高并裁切。`pressure.ts` 拥有无时钟的剖面轮廓与局部压力采样，显式区分 SI 压强公式和未作计量的图形深度；`pressureView.ts` 只把当前物体/载荷/液体/浸深投成可读的 SVG。`scene.ts` 继续统一有限过渡与停稳状态；更换观察方式不启动第二时钟，也不重启进行中的改形。改形中途切换视图、调整标注、缩放窗口或触发 GPU 回退时，都显式保留当前开口进度，避免先跳到完整船形、下一帧再跳回。隐藏页面、减少动态偏好与快速改参数都以最新状态停稳；GPU 不可用或上下文丢失时，三个观察方式仍有 SVG 表达。
+
+The five questions connect specimen comparison, inward pressure, the same clay reshaped into a hull, cargo and rim capacity, and deeper immersion in fresh water or seawater. Lenses retain the current physical settings and an in-progress clay opening. The camera rises with that same opening to reveal cargo resting on the inner floor; object comparison retains its original angle. Resizing and changing annotations preserve the partial hull rather than briefly snapping to its target form. Blue arrows encode local inward pressure; the green force and readings come from the unchanged equilibrium model. The hull, pressure section and vessel geometry are illustrative, so displayed arrow lengths or mesh areas are not a pressure-force integration. Floor contact assumes water can reach beneath the object and does not model a seal. A fully immersed rigid object in uniform water experiences higher pressure deeper down while its net buoyancy stays nearly unchanged.
+
+依据：[OpenStax 14.1：流体、密度与压强](https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure)、[OpenStax 14.4：阿基米德原理与浮力](https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy)。前者支持密度、压强与表面力定义，后者支持法线方向、上下压力差、排水关系与改形对照。均在本次修改中核对。
+
 ## 同一团橡皮泥的载货挑战
 
 - 核心问题：质量没变，改变船壳围出的空间，能否托住相同货物？
@@ -31,15 +50,29 @@ The animated clay outline is a continuity cue, not a mechanics solver or a timed
 
 ## 材质与空间 / Material study
 
-水箱、量杯和物品使用同一固定视角、光照和桌面：玻璃有厚底、杯口与接缝，木块区分顺纹和端面，橡皮泥保留细颗粒、圆润船沿与真实空腔。细小货物标注各自的 100 g；质量、排水量和受力继续由原静水模型计算。量杯水面使用线性示意刻度，水箱水位升幅仍有意放大。网格外形、器皿尺寸和材质纹理不能用于反算实际体积或密度。
+水箱、量杯和物品使用同一相机、光照和桌面，可拖转或切换斜看、正面、俯看；重置恢复当前实验的自动观察角度。普通滚轮用于页面滚动，双指或带 Ctrl/Meta 的滚轮用于缩放。微不对称、略向外展开的玻璃缸和水体共用同一轮廓函数；木料、鹅卵石、六角钢块与泥团保留不同形体。玻璃有厚底与缸口，木块区分顺纹和端面，橡皮泥保留细颗粒、圆润船沿与空腔。细小货物标注各自的 100 g；质量、排水量和受力继续由原静水模型计算。量杯水面使用线性示意刻度，水箱水位升幅仍有意放大。网格外形、器皿尺寸和材质纹理不能用于反算实际体积或密度。
 
-`tankScene.ts` 只拥有 Three.js 场景、材质、投影及资源释放；`scene.ts` 保持有限过渡、停稳状态、受力标注和 SVG 回退。程序纹理生成一次；船壳顶点原位更新，水面改形时释放上一份几何。最多显示 12 块货物，不设独立循环。无 WebGL 或上下文丢失时回退到可读的 SVG，离开条目时释放观察器、纹理、几何和渲染器。
+`tankScene.ts` 拥有 Three.js 场景、投影及资源释放；`labGeometry.ts` 拥有容器/水边界与样品几何，`specimenMaterials.ts` 拥有材料表面，`waterOptics.ts` 拥有水的实时光学近似，`labNavigation.ts` 拥有观察手势与预设。`scene.ts` 保持有限过渡、停稳状态、受力标注和 SVG 回退。船壳顶点原位更新，水面改形时释放上一份几何。最多显示 12 块货物，不设独立循环。无 WebGL 或上下文丢失时回退到可读的 SVG，离开条目时释放观察器、控制器、纹理、几何和渲染器。
 
-The tank, measuring vessel and samples share a fixed camera, lighting and tabletop. Glass thickness, end grain, a rounded clay rim and a hollow interior clarify material and spatial continuity. Each cargo block represents 100 g. All readings still come from the unchanged equilibrium model, not mesh volume. The comparison vessel uses a linear illustrative scale; the tank's water rise is deliberately enlarged. Mesh dimensions and textures are not calibrated physical measurements.
+The tank, measuring vessel and samples share a camera, lighting and tabletop. Dragging and three presets change observation without resetting the experiment; reset restores its automatic angle. The curved, slightly asymmetric glass and water share one contour function. Timber, a pebble, a hexagonal steel sample and clay retain distinct geometry. Glass thickness, end grain, a rounded clay rim and a hollow interior clarify material and spatial continuity. Each cargo block represents 100 g. All readings still come from the unchanged equilibrium model, not mesh volume. The comparison vessel uses a linear illustrative scale; the tank's water rise is deliberately enlarged. Mesh dimensions and textures are not calibrated physical measurements.
 
-The GPU view has no separate animation clock. It receives the finite transition frame from `scene.ts`, then stops rendering at rest except on resize. Generated textures are bounded and reused; replaced water geometry is disposed. A readable SVG view remains available when WebGL is unavailable or its context is lost. The scene does not solve fluid motion, refraction, material deformation or capsizing.
+The GPU view has no separate animation clock. It receives the finite transition frame from `scene.ts`, then renders only for transitions, observation changes, resize or newly available material images. Textures are bounded and reused; replaced water geometry is disposed. A readable SVG view remains available when WebGL is unavailable or its context is lost. The scene does not solve fluid motion, material deformation or capsizing.
 
-### 清晰度与材料细化 · 2026-10-20
+### 真实实验参考与光学边界 · 2026-10-22
+
+本轮实际查看了 [Arbor Scientific 浮木实拍](https://www.arborsci.com/blogs/cool/6-experiments-fluid-dynamics)、[Evan Wallace 可交互水体](https://www.madebyevan.com/webgl-water/) 和 [Three.js 玻璃透射示例](https://threejs.org/examples/webgl_materials_physical_transmission.html)。画面采用自然光下桌面实验的方向：清澈的玻璃中央、能读出厚度的缸口、随视角改变的环境反射、细木纹及清楚的水线。参考网页中的实验照片和示例画面不作为项目纹理使用。
+
+水使用 Three.js 透射材质和屏幕取样的折射近似，光学折射率取 1.333；有限扰动改变法线，停稳后恢复平静。玻璃外壁随后叠加同一环境的反射，透明厚底直接贴合桌面，不另设不透明底托。缸壁与物体旁的细小弧面用于提示水的接触，水色用于辨认水体；它们不是毛细高度或吸收率的测量。当前没有求解多层玻璃/水的嵌套光线追踪、焦散或流体动力学，光学厚度也不是可测水深；渲染外观不进入浮力计算。
+
+木料使用 [Poly Haven 的 CC0 实拍纹理](https://polyhaven.com/a/wood_table_001)，颜色、凹凸与粗糙度三张本地 WebP 共 217,256 字节。来源、处理与校验值见 [素材记录](assets/PROVENANCE.md)。三张图全部就绪后才切换材料，加载失败保留程序纹理，离开场景后不会继续回写。纹理不提供木种、质量或密度依据，运行时不请求外站。
+
+The art reference is a naturally lit tabletop experiment, based on the actual photographs and interactive examples linked above. Their demonstration images are not reused as project textures. Water uses Three.js transmission and a screen-sampled refraction approximation with optical IOR 1.333. The finite disturbance changes surface normals, which become calm at rest; an outer glass reflection coat uses the same lighting environment. The transparent base rests directly on the table without an opaque plinth. Small curved contact surfaces and the water tint aid recognition; they are not measurements of capillary height or absorption. This is not nested glass/water ray tracing, a caustics solver or fluid dynamics, and optical thickness is not a calibrated water-depth measurement. These appearance choices do not enter the buoyancy calculation.
+
+Timber uses the CC0 photographed Poly Haven asset linked above. Three local WebP colour, height and roughness maps total 217,256 bytes; provenance, preparation and hashes are recorded in `assets/PROVENANCE.md`. The material switches only when all three images are ready, retains procedural timber on loading failure and rejects late callbacks after disposal. Textures do not establish wood species, mass or density, and the runtime makes no external asset requests.
+
+### 早期清晰度与材料细化记录 · 2026-10-20
+
+以下记录描述当时的程序材质版本；当前实现以上述 2026-10-22 更新为准，旧画面不作为新版本的美术验收。
 
 局部实验不使用距离雾；浅色背景与接触阴影分开处理，避免整幅画面被灰底和叠加透明度压平。玻璃中心接近透明，掠射方向保留反光；水体用克制的蓝色深浅和接触线说明水面。它们是读图线索，不是测得的吸收率或折射求解。
 

@@ -2,6 +2,6 @@ A heavy airplane can leave the ground, but its weight has not disappeared. The e
 
 Start without motion between wing and air. Even raising the wing nose cannot produce the lift for this flight. Now let air pass. It goes above and below the wing, and flow direction and pressure change together. In common lifting flow, air turns downward overall and exerts an upward force on the wing. The two routes have no rule requiring an on-time meeting.
 
-Keep the same initial speed and raise the wing nose farther. Flow separates noticeably above the surface. Exceeding a critical angle of attack causes a stall: lift coefficient falls and drag grows. The engine need not stop and lift need not become zero. Raising the wing nose ever higher does not make flight ever easier.
-
 Take the same conditions to the runway. If the upward aerodynamic force is too small, the ground continues to support the wheels. Only an upward net force begins upward acceleration. Ascent changes relative airflow direction and angle of attack too. Real takeoff has many other conditions; this small window helps explain relationships, not how to fly an airplane.
+
+Keep the same initial speed and raise the wing nose farther. Flow separates noticeably above the surface. Exceeding a critical angle of attack causes a stall: lift coefficient falls and drag grows. The engine need not stop and lift need not become zero. Raising the wing nose ever higher does not make flight ever easier.

@@ -2,12 +2,12 @@
   "version": 1,
   "topicId": "buoyancy",
   "zh": {
-    "question": "同一团橡皮泥、同样四块货物，只把船捏宽一点，结果会改变吗？",
-    "observe": "进入“捏一艘小船”，选择空心船，再点四块货物挑战。保持货物不变，把船从窄调到宽，同时比较进水状态、排开水的质量与总质量；换海水，再比较临界状态。",
+    "question": "水为什么能托住物体？同一团泥从实心球变成载货小船，水的作用又怎样改变？",
+    "observe": "按五个问题探索：先比较木块与石块，再切到同一物体的水压剖面；把同一团 600 g 泥捏成空心船，逐块装货，观察船沿。最后用悬线放低方块，比较半浸、全浸与更深处，再换海水。切换实验台、剖面和排水对照不会清空当前物体的货物、液体或浸深。",
     "academic": [
       {
         "title": "浮力来自压力差",
-        "body": "静止液体的压强随深度增加，物体表面各处压力的合力通常向上。阿基米德原理表述为浮力等于排开液体的重量，即液体密度、重力加速度与排水体积之积。排水体积只计算被物体或不进水空间占据的部分，不是容器里总水量；沉下去的物体也受到浮力，触底后还可能受到箱底支持力。"
+        "body": "在均匀、静止的液体中，压强相对水面的增加为 ρgh；水对表面的压力沿法线向内。矩形剖面的左右同深处压力相抵，底面向上的压力大于顶面向下的压力，留下向上的合力。一般封闭浸水表面的合力等于排开液体的重量：F浮 = ρgV排水。剖面里的蓝色箭头是局部压强的示意，绿色合力和数值来自排水量模型，不能把未标定的箭头当作积分数据。沉下去的物体也有浮力，触底后箱底再提供支持；本模型假定底面仍能接触水，不求解密封接触。"
       },
       {
         "title": "形状改变可用的排水空间",
@@ -15,21 +15,21 @@
       },
       {
         "title": "密度、深度与实验控制",
-        "body": "在均匀且近似不可压缩的水中，刚性物体完全浸没后继续下移，其排水体积不变，浮力基本不变，尽管各处压强都增大。换更密的液体，在相同浸没体积下浮力会增大；自由漂浮物则会升高一点直到再次平衡。比较时需说清固定的是体积、质量还是平衡状态，不能混用这些条件。 本例方块由绷紧的悬线保持静止，T + F浮 = W；浸入增多时浮力增大、张力减小，完全浸没后两者基本不变。"
+        "body": "在均匀且近似不可压缩的水中，刚性物体完全浸没后继续下移，各处表压都增加，但上下压强差不变，排水体积与净浮力也基本不变。换更密的液体，在相同浸没体积下浮力增大；自由漂浮物则会升高一点直到再次平衡。比较时需固定并说清体积、质量与支持条件。本例 1200 g、1000 mL 的方块由绷紧的悬线保持静止，T + F浮 = W；浸入增多时浮力增大、张力减小，全浸没后两者基本不变。"
       }
     ],
     "misconception": "轻的必浮、重的必沉不成立；浮沉要比较重量、可排开的液体和所受其他支持。",
-    "boundary": "画面显示理想静水和平衡结果；水位变化放大，过渡不是流体求解，不包含波浪、渗水速率与翻船稳定性。",
+    "boundary": "这是均匀静水中的停稳模型。三维物体、正面剖面、船壳形状与水位升幅都是教学示意，几何没有体积或长度标定。有限过渡不求解流体、材料变形、进水速度、密封触底、波浪或翻船；船沿余量不是实际安全载荷。",
     "narration": [
       {
-        "label": "水也会向上托",
-        "text": "把小木块放到水里，它浮起来了；换一块石头，它可能沉下去。是不是只有浮着的东西，才受到水的帮助呢？其实沉下去的石头，水也在向上托它，只是还托不住全部重量。今天我们看箭头、看水位，不只用轻和重来猜。",
-        "cue": "比较木块与石块，突出浮力箭头。"
+        "label": "从浮沉看到水压",
+        "text": "把木块放进水里，它浮起来了。换一块石头，它沉下去，水却仍然在向上托它。再换成剖面，看蓝色小箭头：水从各个方向向里挤。左右同样深的地方，挤得一样用力；下面比上面更用力，合起来就有向上的托力。绿色箭头表示这个合起来的力。",
+        "cue": "比较木块与石块；保持同一物品切到水压剖面，追踪侧面向内、顶部向下和底部向上的局部箭头。"
       },
       {
         "label": "同一块泥，换个形状",
-        "text": "现在看这块橡皮泥。先把它捏成球，再捏成像小碗一样的空心船。泥没有偷偷变轻，船却能在不进水的时候，占住更大的一片空间，让更多水让开位置。被排开的水越多，水向上托的力就越大。先停一下，比较旁边排水量的变化。",
-        "cue": "对比球和船，停三秒看排水量。"
+        "text": "再来看同一团 600 克橡皮泥。先是实心球，再捏成有空腔的小船。泥没有偷偷变轻。只要水留在船外，船壳围住的空间就能让更多水让开位置。切到排水对照，量杯只是在展示同样的排水量，并没有从水箱取走水。",
+        "cue": "从实心球连续改形成空心船，再切排水对照；追踪同一团泥、可见空腔与排水量。"
       },
       {
         "label": "加一点货物",
@@ -38,18 +38,18 @@
       },
       {
         "label": "全部进入水里以后",
-        "text": "最后，用悬线把方块缓缓放低。开始时，进入水里的部分越多，水托得越多，绳子需要拉的力越小。等整个方块都在水里，再往下移，排开的水没有继续变多，浮力和绳的拉力都基本不变。看，水的托力加上绳的拉力，一起托住同样的重量。",
-        "cue": "比较半浸、全浸与更深位置；追踪浮力和张力箭头，保持重力不变。"
+        "text": "最后，用悬线把方块缓缓放低。进入水里的部分越多，水托得越多，绳子需要拉的力越小。整个方块都在水里以后，再放深一些，上下两边的水压都增大，排开的水却没有变多，所以浮力和绳的拉力都基本不变。换成海水，同样浸入的体积会得到稍大的浮力。",
+        "cue": "比较半浸、全浸和更深处，在水压剖面追踪上下箭头，再换海水；重力保持不变。"
       }
     ]
   },
   "en": {
-    "question": "Can the same clay and the same four blocks float if you only widen the hull?",
-    "observe": "Choose the boat experiment and hollow hull, then start the four-block challenge. Keep cargo fixed while widening the hull. Compare flooding, displaced-water mass and total mass; switch to seawater to compare the threshold.",
+    "question": "Why can water support an object? What changes when the same clay becomes a cargo boat?",
+    "observe": "Follow five questions: compare wood and stone, then inspect pressure around the same object. Reshape the same 600 g clay into a hollow boat, add cargo and inspect the rim. Finally lower the suspended block through partial, full and deeper immersion, then compare seawater. Tank, section and displacement views retain the current specimen, cargo, liquid and immersion.",
     "academic": [
       {
         "title": "Pressure differences produce buoyancy",
-        "body": "Pressure increases with depth in a resting liquid. The resulting upward force equals the weight of displaced liquid: fluid density times gravity times displaced volume. This volume is not the total water in the tank. Sinking objects also experience buoyancy, and the tank floor can provide additional support after contact."
+        "body": "In a resting uniform liquid, gauge pressure increases as ρgh, and pressure acts normally inward on a surface. Equal-depth opposite sides of a rectangular section balance; the upward force below exceeds the downward force above. For a general closed wetted surface, the resultant equals displaced-fluid weight: F_b = ρgV_displaced. Blue arrows illustrate local pressure; the green resultant and numerical forces come from the displacement model. The uncalibrated arrows cannot be integrated as data. Sinking objects still experience buoyancy, with additional floor support after contact. This model assumes water can reach the bottom face and does not solve sealed contact."
       },
       {
         "title": "Shape changes usable displacement",
@@ -57,21 +57,21 @@
       },
       {
         "title": "Control density, depth and equilibrium",
-        "body": "For a rigid object fully immersed in nearly incompressible uniform water, moving deeper does not change displaced volume or buoyancy much, although pressure increases. Denser liquid increases buoyancy at fixed immersion. A freely floating object instead rises until balance returns. Comparisons must state which quantities are held fixed. A taut cord holds this block at rest: T + F_b = W. Increasing immersion increases buoyancy and reduces tension; both stay nearly constant after full immersion."
+        "body": "Moving a rigid fully immersed object deeper in nearly incompressible uniform water raises gauge pressure everywhere, while the top-to-bottom difference, displaced volume and net buoyancy stay nearly unchanged. Denser liquid increases buoyancy at the same immersed volume; a freely floating object rises until balance returns. State which volume, mass and supports are fixed. Here a taut cord holds a 1200 g, 1000 mL block at rest: T + F_b = W. Increasing immersion increases buoyancy and reduces tension; both remain nearly constant after full immersion."
       }
     ],
     "misconception": "Light always floats and heavy always sinks is false. Compare weight, possible displacement and any other supporting forces.",
-    "boundary": "The diagram uses ideal still-water equilibrium. Water-level changes are enlarged, and transitions do not solve fluid flow, flooding rates or capsizing stability.",
+    "boundary": "This is a settled model in uniform still water. The 3D specimens, front sections, hull shapes and enlarged water rise are illustrative, with no geometric length or volume calibration. Finite transitions do not solve fluid flow, material deformation, flooding rates, sealed floor contact, waves or capsizing. Rim reserve is not a real safe-load rating.",
     "narration": [
       {
-        "label": "Water pushes upward",
-        "text": "A wooden block floats, while a stone may sink. Does water help only the floating object? No: water also pushes upward on the sinking stone, but may not support its whole weight. Today we will inspect arrows and water level, instead of guessing from light and heavy alone.",
-        "cue": "Compare wood and stone, indicating buoyancy arrows."
+        "label": "From floating to pressure",
+        "text": "The wooden block floats. A stone sinks, but water still pushes it upward. Switch to the section and inspect the blue arrows: water presses inward from every direction. Opposite sides at the same depth press equally. Greater pressure below than above leaves an upward push. The green arrow shows that combined force.",
+        "cue": "Compare wood and stone. Retain the same object while switching to the pressure section; follow inward side arrows, downward top arrows and upward bottom arrows."
       },
       {
         "label": "Same clay, another shape",
-        "text": "Turn the clay ball into a hollow boat, rather like a little bowl. The clay has not secretly become lighter. While water stays outside, the boat occupies more space and pushes more water aside. More displaced water gives a larger upward push. Pause and compare the displacement reading beside the tank.",
-        "cue": "Compare ball and boat, pausing for three seconds at displacement."
+        "text": "Now inspect the same 600 grams of clay: first a solid ball, then a hollow boat. The clay has not become lighter. While water stays outside, the space enclosed by the hull can push more water aside. The displacement view compares that volume in a measure; it does not take water from the tank.",
+        "cue": "Reshape the ball into a hollow hull, then switch to displacement; retain clay identity and inspect the cavity and displaced volume."
       },
       {
         "label": "Add a little cargo",
@@ -80,8 +80,8 @@
       },
       {
         "label": "After complete immersion",
-        "text": "Finally, lower the block slowly on a cord. As more of it enters the water, buoyancy increases and the cord needs to pull up less. Once the entire block is underwater, lowering it further does not displace more water: buoyancy and tension stay nearly the same. Together, the water and the cord support the same weight.",
-        "cue": "Compare partial, full and deeper immersion; track buoyancy and tension while weight stays fixed."
+        "text": "Finally lower the block slowly on a cord. As more enters the water, buoyancy increases and the cord pulls up less. Once the whole block is underwater, moving it deeper raises pressure above and below without displacing more water, so buoyancy and tension stay nearly unchanged. At the same immersed volume, seawater gives slightly more buoyancy.",
+        "cue": "Compare partial, full and deeper immersion, tracking top and bottom pressure arrows. Then change to seawater, keeping weight fixed."
       }
     ]
   },
