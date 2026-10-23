@@ -1,0 +1,941 @@
+{
+  "families": {
+    "worlds": {
+      "zh": "太阳系的成员",
+      "en": "Solar System members"
+    },
+    "stars": {
+      "zh": "恒星与遗迹",
+      "en": "Stars and remnants"
+    },
+    "clouds": {
+      "zh": "气体与尘埃",
+      "en": "Gas and dust"
+    },
+    "systems": {
+      "zh": "星团到宇宙",
+      "en": "Clusters to the cosmos"
+    },
+    "events": {
+      "zh": "发生的事件",
+      "en": "Events in space"
+    }
+  },
+  "kinds": {
+    "body": {
+      "zh": "天体 · 一个对象",
+      "en": "BODY · an object"
+    },
+    "material": {
+      "zh": "物质 · 分布与结构",
+      "en": "MATERIAL · a distribution"
+    },
+    "system": {
+      "zh": "系统 · 许多成员",
+      "en": "SYSTEM · many members"
+    },
+    "event": {
+      "zh": "事件 · 正在发生什么",
+      "en": "EVENT · something happening"
+    },
+    "region": {
+      "zh": "范围 · 从哪里观察",
+      "en": "REGION · an observer’s view"
+    }
+  },
+  "residents": [
+    {
+      "id": "sun",
+      "family": "stars",
+      "kind": "body",
+      "name": {
+        "zh": "太阳",
+        "en": "Sun"
+      },
+      "label": {
+        "zh": "一颗主序恒星",
+        "en": "A main-sequence star"
+      },
+      "light": {
+        "zh": "核心核聚变提供能量，表面向外辐射。",
+        "en": "Core fusion supplies energy radiated from its surface."
+      },
+      "home": {
+        "zh": "太阳系的恒星，也是银河系中的一员。",
+        "en": "The star of our Solar System, within the Milky Way."
+      },
+      "clue": {
+        "zh": "看起来很亮或很大，也可能只是离我们近；亮度不能独自决定类别。",
+        "en": "Brightness and apparent size depend on distance too. Brightness alone cannot identify a class."
+      },
+      "contrast": {
+        "zh": "太阳是恒星；地球是绕恒星运行的行星。",
+        "en": "The Sun is a star; Earth is a planet orbiting a star."
+      },
+      "partner": "earth",
+      "route": "/topics/stars/?chapter=sun",
+      "source": "https://science.nasa.gov/universe/stars/types/",
+      "icon": "star"
+    },
+    {
+      "id": "earth",
+      "family": "worlds",
+      "kind": "body",
+      "name": {
+        "zh": "岩石行星 · 地球",
+        "en": "Rocky planet · Earth"
+      },
+      "label": {
+        "zh": "有固体表面的行星",
+        "en": "A planet with a solid surface"
+      },
+      "light": {
+        "zh": "可见光主要来自反射太阳光，也向外发出热辐射。",
+        "en": "Visible light mainly reflects sunlight; Earth also emits thermal radiation."
+      },
+      "home": {
+        "zh": "绕太阳运行，月球绕着地球。",
+        "en": "Orbits the Sun and has the Moon as a satellite."
+      },
+      "clue": {
+        "zh": "“岩石”说明成分与结构，“行星”还涉及它的轨道关系。",
+        "en": "“Rocky” describes composition and structure; “planet” also concerns its orbital relationship."
+      },
+      "contrast": {
+        "zh": "恒星与行星的区别，不是一个大、一个小这么简单。",
+        "en": "Star versus planet is not simply a distinction between big and small."
+      },
+      "partner": "sun",
+      "route": "/topics/solar-system/?body=earth&view=globe",
+      "source": "https://science.nasa.gov/solar-system/solar-system-facts/",
+      "icon": "planet"
+    },
+    {
+      "id": "jupiter",
+      "family": "worlds",
+      "kind": "body",
+      "name": {
+        "zh": "气态巨行星 · 木星",
+        "en": "Gas giant · Jupiter"
+      },
+      "label": {
+        "zh": "主要由氢和氦组成",
+        "en": "Mostly hydrogen and helium"
+      },
+      "light": {
+        "zh": "云顶反射阳光，内部热量也会向外释放。",
+        "en": "Cloud tops reflect sunlight, while internal heat also escapes."
+      },
+      "home": {
+        "zh": "太阳系的行星，有许多卫星。",
+        "en": "A Solar System planet with many moons."
+      },
+      "clue": {
+        "zh": "走近云层不等于降落：木星没有像地球那样可站立的固体表面。",
+        "en": "Approaching its clouds is not landing: Jupiter lacks an Earth-like solid surface to stand on."
+      },
+      "contrast": {
+        "zh": "地球有岩石表面；木星的可见边界是高层云与气体。",
+        "en": "Earth has a rocky surface; Jupiter’s visible boundary is upper clouds and gas."
+      },
+      "partner": "earth",
+      "route": "/topics/solar-system/?body=jupiter&view=globe",
+      "source": "https://science.nasa.gov/solar-system/solar-system-facts/",
+      "icon": "giant"
+    },
+    {
+      "id": "neptune",
+      "family": "worlds",
+      "kind": "body",
+      "name": {
+        "zh": "冰巨行星 · 海王星",
+        "en": "Ice giant · Neptune"
+      },
+      "label": {
+        "zh": "“冰巨星”是成分分类",
+        "en": "“Ice giant” describes composition"
+      },
+      "light": {
+        "zh": "大气反射阳光，同时释放热辐射。",
+        "en": "Its atmosphere reflects sunlight and emits thermal radiation."
+      },
+      "home": {
+        "zh": "太阳系外侧的行星，柯伊伯带主要在它之外。",
+        "en": "An outer Solar System planet; the Kuiper Belt lies mainly beyond it."
+      },
+      "clue": {
+        "zh": "名字中的“冰”不表示表面是一大块能走上去的冰。",
+        "en": "“Ice” in this category does not mean a walkable frozen surface."
+      },
+      "contrast": {
+        "zh": "木星与海王星都没有地球式地面，但内部成分并不相同。",
+        "en": "Neither has Earth-like ground, but their internal compositions differ."
+      },
+      "partner": "jupiter",
+      "route": "/topics/solar-system/?body=neptune&view=globe",
+      "source": "https://science.nasa.gov/solar-system/solar-system-facts/",
+      "icon": "ice"
+    },
+    {
+      "id": "moon",
+      "family": "worlds",
+      "kind": "body",
+      "name": {
+        "zh": "天然卫星 · 月球",
+        "en": "Natural satellite · Moon"
+      },
+      "label": {
+        "zh": "围绕行星的天然天体",
+        "en": "A natural body orbiting a planet"
+      },
+      "light": {
+        "zh": "月面反射太阳光；月相取决于照明和观察方向。",
+        "en": "Its surface reflects sunlight; phase depends on illumination and viewing geometry."
+      },
+      "home": {
+        "zh": "月球绕地球，地月一起绕太阳。",
+        "en": "The Moon orbits Earth; both orbit the Sun."
+      },
+      "clue": {
+        "zh": "“卫星”说明轨道关系，不规定必须由某一种材料组成。",
+        "en": "“Satellite” describes an orbital relationship, not a particular material."
+      },
+      "contrast": {
+        "zh": "地球和月球都有岩石，却在系统里扮演不同的轨道角色。",
+        "en": "Earth and the Moon are both rocky but have different orbital roles."
+      },
+      "partner": "earth",
+      "route": "/topics/earth-moon/",
+      "source": "https://science.nasa.gov/solar-system/solar-system-facts/",
+      "icon": "moon"
+    },
+    {
+      "id": "ceres",
+      "family": "worlds",
+      "kind": "body",
+      "name": {
+        "zh": "矮行星 · 谷神星",
+        "en": "Dwarf planet · Ceres"
+      },
+      "label": {
+        "zh": "主小行星带里的近球形世界",
+        "en": "A rounded world in the main belt"
+      },
+      "light": {
+        "zh": "表面反射阳光，也释放热辐射。",
+        "en": "Its surface reflects sunlight and emits thermal radiation."
+      },
+      "home": {
+        "zh": "位于火星与木星之间的主小行星带。",
+        "en": "In the main asteroid belt between Mars and Jupiter."
+      },
+      "clue": {
+        "zh": "矮行星的定义包含近球形、绕太阳、非卫星和未清空轨道邻域；不能只量大小。",
+        "en": "A dwarf planet is rounded, orbits the Sun, is not a moon and has not cleared its orbital neighbourhood. Size alone is insufficient."
+      },
+      "contrast": {
+        "zh": "谷神星属于矮行星；许多较小的小行星仍有不规则轮廓。",
+        "en": "Ceres is a dwarf planet; many smaller asteroids retain irregular outlines."
+      },
+      "partner": "asteroid",
+      "route": "/topics/small-bodies/?view=shapes&sample=ceres",
+      "source": "https://science.nasa.gov/dwarf-planets/",
+      "icon": "dwarf"
+    },
+    {
+      "id": "asteroid",
+      "family": "worlds",
+      "kind": "body",
+      "name": {
+        "zh": "小行星",
+        "en": "Asteroid"
+      },
+      "label": {
+        "zh": "岩石、金属等组成的小天体",
+        "en": "A small rocky or metallic body"
+      },
+      "light": {
+        "zh": "主要反射太阳光。",
+        "en": "Mainly reflects sunlight."
+      },
+      "home": {
+        "zh": "许多在主小行星带，也有别的轨道族群。",
+        "en": "Many occupy the main belt, but other orbital populations exist."
+      },
+      "clue": {
+        "zh": "不规则形状、裂隙与碎石堆结构都可能出现；外观不是精确成分检验。",
+        "en": "Irregular shapes, fractures and rubble-pile structures occur. Appearance is not a precise composition test."
+      },
+      "contrast": {
+        "zh": "彗星常有挥发性冰和活动；小行星与彗星并非完全无重叠的两类。",
+        "en": "Comets often have volatile ice and activity, but the asteroid–comet boundary is not absolute."
+      },
+      "partner": "comet",
+      "route": "/topics/small-bodies/?view=shapes&sample=carbon",
+      "source": "https://science.nasa.gov/asteroids-comets-meteors/facts/",
+      "icon": "rock"
+    },
+    {
+      "id": "comet",
+      "family": "worlds",
+      "kind": "body",
+      "name": {
+        "zh": "彗星",
+        "en": "Comet"
+      },
+      "label": {
+        "zh": "会释放气体与尘埃的冰质小天体",
+        "en": "An icy small body that can release gas and dust"
+      },
+      "light": {
+        "zh": "尘埃散射阳光，气体也可发光；远处可能没有明显尾巴。",
+        "en": "Dust scatters sunlight and gas can glow; a distant comet may have no obvious tail."
+      },
+      "home": {
+        "zh": "绕太阳运行，接近太阳时通常更活跃。",
+        "en": "Orbits the Sun and commonly becomes more active near it."
+      },
+      "clue": {
+        "zh": "把同一彗星带近太阳再带远，观察彗发和尾巴怎样响应日照。",
+        "en": "Move the same comet closer to and farther from the Sun and compare its coma and tails."
+      },
+      "contrast": {
+        "zh": "彗星是天体；流星是碎片进入大气时的发光现象。",
+        "en": "A comet is a body; a meteor is a luminous phenomenon during atmospheric entry."
+      },
+      "partner": "meteor",
+      "route": "/topics/small-bodies/?view=comet&orbit=0.5&ice=1&lens=orbit",
+      "source": "https://science.nasa.gov/asteroids-comets-meteors/facts/",
+      "icon": "comet"
+    },
+    {
+      "id": "red-dwarf",
+      "family": "stars",
+      "kind": "body",
+      "name": {
+        "zh": "红矮星",
+        "en": "Red dwarf"
+      },
+      "label": {
+        "zh": "低质量的主序恒星",
+        "en": "A low-mass main-sequence star"
+      },
+      "light": {
+        "zh": "靠核心氢核聚变持续供能，表面温度比太阳低。",
+        "en": "Hydrogen fusion supplies energy; its surface is cooler than the Sun’s."
+      },
+      "home": {
+        "zh": "是银河系中常见的一类恒星。",
+        "en": "A common kind of star in the Milky Way."
+      },
+      "clue": {
+        "zh": "低质量红矮星可能活得极久；完整晚期历程主要来自理论，不是已经看完的一生。",
+        "en": "Low-mass red dwarfs can live extremely long lives; their full late evolution is theoretical, not an observed complete lifetime."
+      },
+      "contrast": {
+        "zh": "红矮星仍在核聚变；白矮星主要靠残余热量慢慢冷却。",
+        "en": "A red dwarf still fuses fuel; an isolated white dwarf mainly cools using stored heat."
+      },
+      "partner": "white-dwarf",
+      "route": "/topics/stars/?chapter=types&type=0",
+      "source": "https://science.nasa.gov/universe/stars/types/",
+      "icon": "star"
+    },
+    {
+      "id": "white-dwarf",
+      "family": "stars",
+      "kind": "body",
+      "name": {
+        "zh": "白矮星",
+        "en": "White dwarf"
+      },
+      "label": {
+        "zh": "恒星留下的致密核心",
+        "en": "A dense stellar remnant"
+      },
+      "light": {
+        "zh": "普通孤立白矮星主要释放储存的热量，并非靠持续核心核聚变。",
+        "en": "An ordinary isolated white dwarf mainly radiates stored heat, not sustained core fusion."
+      },
+      "home": {
+        "zh": "可在老恒星系统中，也可能有伴星。",
+        "en": "Found in old stellar systems, sometimes with a companion."
+      },
+      "clue": {
+        "zh": "它虽然仍亮，却与正在核聚变的主序恒星不同。",
+        "en": "It can still shine despite being different from a fusion-powered main-sequence star."
+      },
+      "contrast": {
+        "zh": "红矮星是长寿恒星；白矮星是演化后的遗迹，名称相似不等于同类阶段。",
+        "en": "A red dwarf is a long-lived star; a white dwarf is an evolved remnant."
+      },
+      "partner": "red-dwarf",
+      "route": "/topics/stars/?chapter=evolution&track=solar&evolution=1",
+      "source": "https://science.nasa.gov/universe/stars/types/",
+      "icon": "white"
+    },
+    {
+      "id": "neutron-star",
+      "family": "stars",
+      "kind": "body",
+      "name": {
+        "zh": "中子星",
+        "en": "Neutron star"
+      },
+      "label": {
+        "zh": "一些核心坍缩留下的致密遗迹",
+        "en": "A dense remnant of some core collapses"
+      },
+      "light": {
+        "zh": "可以有热辐射和磁场相关辐射；不是每颗都能被看成脉冲星。",
+        "en": "Can emit thermal and magnetically powered radiation; not every one is seen as a pulsar."
+      },
+      "home": {
+        "zh": "有些位于超新星遗迹内，也有伴星系统。",
+        "en": "Some lie within supernova remnants or binary systems."
+      },
+      "clue": {
+        "zh": "是否形成中子星或黑洞，不只取决于一个简单的初始质量开关。",
+        "en": "The neutron-star versus black-hole outcome is not determined by one simple initial-mass switch."
+      },
+      "contrast": {
+        "zh": "中子星仍是物质天体；黑洞有事件视界，光也无法从其中逃出。",
+        "en": "A neutron star is a material body; a black hole has an event horizon from which light cannot escape."
+      },
+      "partner": "black-hole",
+      "route": "/topics/stars/?chapter=evolution&track=massive&evolution=1",
+      "source": "https://science.nasa.gov/universe/stars/types/",
+      "icon": "neutron"
+    },
+    {
+      "id": "black-hole",
+      "family": "stars",
+      "kind": "body",
+      "name": {
+        "zh": "黑洞",
+        "en": "Black hole"
+      },
+      "label": {
+        "zh": "有事件视界的致密天体",
+        "en": "A compact object with an event horizon"
+      },
+      "light": {
+        "zh": "我们研究周围物质与光的变化、引力效应；不是看见视界内发光。",
+        "en": "We study surrounding matter, light and gravitational effects, not light emitted from inside the horizon."
+      },
+      "home": {
+        "zh": "有恒星级黑洞，也有星系中心的超大质量黑洞。",
+        "en": "Includes stellar-mass black holes and supermassive ones in galactic centres."
+      },
+      "clue": {
+        "zh": "周围不一定总有发亮的吸积盘；它也不会把所有远处天体吸进去。",
+        "en": "A bright accretion disk is not always present, and distant objects are not inevitably swallowed."
+      },
+      "contrast": {
+        "zh": "黑洞不是“更暗的中子星”；事件视界带来不同的物理边界。",
+        "en": "A black hole is not merely a darker neutron star; its event horizon is a different physical boundary."
+      },
+      "partner": "neutron-star",
+      "route": "/topics/black-holes/",
+      "source": "https://science.nasa.gov/universe/black-holes/",
+      "icon": "black-hole"
+    },
+    {
+      "id": "nebula",
+      "family": "clouds",
+      "kind": "material",
+      "name": {
+        "zh": "星际云与星云",
+        "en": "Interstellar clouds and nebulae"
+      },
+      "label": {
+        "zh": "气体与尘埃的分布",
+        "en": "Distributions of gas and dust"
+      },
+      "light": {
+        "zh": "可以受激发光、散射星光，或遮住后方光线。",
+        "en": "Can emit excited-gas light, scatter starlight or obscure background light."
+      },
+      "home": {
+        "zh": "通常是星系内部的物质结构，其中一些区域孕育恒星。",
+        "en": "Usually structures within galaxies; some regions form stars."
+      },
+      "clue": {
+        "zh": "亮、暗与观察波段有关；“看不见”并不意味着那里没有物质。",
+        "en": "Brightness depends on the observing band; darkness does not imply an absence of matter."
+      },
+      "contrast": {
+        "zh": "星云是气体和尘埃；星系是包括恒星、气体等成分的大系统。",
+        "en": "A nebula is gas and dust; a galaxy is a larger system containing stars, gas and other components."
+      },
+      "partner": "galaxy",
+      "route": "/topics/stars/?chapter=nebulae&nebula=nursery",
+      "source": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-nebulae/",
+      "icon": "cloud"
+    },
+    {
+      "id": "planetary-nebula",
+      "family": "clouds",
+      "kind": "material",
+      "name": {
+        "zh": "行星状星云",
+        "en": "Planetary nebula"
+      },
+      "label": {
+        "zh": "某些晚期恒星抛出的外层",
+        "en": "Ejected layers of some evolved stars"
+      },
+      "light": {
+        "zh": "中央热核心发出的辐射使气体发光。",
+        "en": "Radiation from the hot central core makes the gas glow."
+      },
+      "home": {
+        "zh": "围绕正在显露的白矮星核心，属于短暂的演化阶段。",
+        "en": "Around an emerging white-dwarf core during a relatively brief evolutionary stage."
+      },
+      "clue": {
+        "zh": "名字是历史留下的：它并不是由行星爆炸形成。",
+        "en": "The historical name is misleading: it is not made by exploding planets."
+      },
+      "contrast": {
+        "zh": "行星状星云与超新星遗迹都能呈壳状，却来自不同的过程。",
+        "en": "Planetary nebulae and supernova remnants can both form shells, but arise from different processes."
+      },
+      "partner": "remnant",
+      "route": "/topics/stars/?chapter=nebulae&nebula=planetary",
+      "source": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-nebulae/",
+      "icon": "remnant"
+    },
+    {
+      "id": "remnant",
+      "family": "clouds",
+      "kind": "material",
+      "name": {
+        "zh": "超新星遗迹",
+        "en": "Supernova remnant"
+      },
+      "label": {
+        "zh": "爆发后膨胀的抛出物和受激扰介质",
+        "en": "Expanding ejecta and disturbed surroundings"
+      },
+      "light": {
+        "zh": "激波加热及其他过程可在不同波段产生辐射。",
+        "en": "Shock heating and other processes produce radiation in different bands."
+      },
+      "home": {
+        "zh": "位于发生过超新星爆发的区域。",
+        "en": "Occupies a region where a supernova occurred."
+      },
+      "clue": {
+        "zh": "爆发事件、扩张遗迹和中心致密天体是相互关联的不同对象。",
+        "en": "The explosion, expanding remnant and any central compact object are related but distinct."
+      },
+      "contrast": {
+        "zh": "超新星是爆发事件；遗迹是在此后继续变化的物质。",
+        "en": "A supernova is an explosion; its remnant is material that evolves afterward."
+      },
+      "partner": "supernova",
+      "route": "/topics/stars/?chapter=nebulae&nebula=supernova",
+      "source": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-nebulae/",
+      "icon": "remnant"
+    },
+    {
+      "id": "dust",
+      "family": "clouds",
+      "kind": "material",
+      "name": {
+        "zh": "尘埃与碎屑带",
+        "en": "Dust and debris belts"
+      },
+      "label": {
+        "zh": "许多小颗粒的分布",
+        "en": "A distribution of small particles"
+      },
+      "light": {
+        "zh": "颗粒散射星光，也可吸收能量后发出红外辐射。",
+        "en": "Grains scatter starlight and radiate absorbed energy in the infrared."
+      },
+      "home": {
+        "zh": "可以分布在恒星周围；行星际尘埃并不是一堵石墙。",
+        "en": "Can surround stars; interplanetary dust is not a wall of rocks."
+      },
+      "clue": {
+        "zh": "碰撞与彗星活动会补充尘埃。原行星盘和较晚的碎屑盘不能混作同一阶段。",
+        "en": "Collisions and comet activity replenish dust. Protoplanetary and later debris disks are distinct stages."
+      },
+      "contrast": {
+        "zh": "带描述许多天体或颗粒的分布；彗星是其中可能贡献尘埃的一个天体。",
+        "en": "A belt describes a distribution; a comet is one possible contributor of dust."
+      },
+      "partner": "comet",
+      "route": "/topics/small-bodies/?view=belts&region=dust",
+      "source": "https://science.nasa.gov/asteroids-comets-meteors/facts/",
+      "icon": "dust"
+    },
+    {
+      "id": "solar-system",
+      "family": "systems",
+      "kind": "system",
+      "name": {
+        "zh": "太阳系",
+        "en": "Solar System"
+      },
+      "label": {
+        "zh": "太阳及其引力系统",
+        "en": "The Sun and its gravitational system"
+      },
+      "light": {
+        "zh": "太阳自己发光，其他成员的光源和温度各不相同。",
+        "en": "The Sun emits light; other members have different illumination and temperatures."
+      },
+      "home": {
+        "zh": "位于银河系内，不能与银河系互换名称。",
+        "en": "Within the Milky Way; the two names are not interchangeable."
+      },
+      "clue": {
+        "zh": "先看太阳与成员的轨道关系，再进入某个世界观察；不要用放大的图标估算距离。",
+        "en": "Explore orbital relationships, then a particular world. Enlarged icons do not measure distances."
+      },
+      "contrast": {
+        "zh": "太阳系围绕一颗恒星展开；银河系包含大量恒星系统。",
+        "en": "The Solar System centres on one star; the Milky Way contains many stellar systems."
+      },
+      "partner": "galaxy",
+      "route": "/topics/solar-system/",
+      "source": "https://science.nasa.gov/solar-system/solar-system-facts/",
+      "icon": "system"
+    },
+    {
+      "id": "cluster",
+      "family": "systems",
+      "kind": "system",
+      "name": {
+        "zh": "星团",
+        "en": "Star cluster"
+      },
+      "label": {
+        "zh": "同一群恒星的集合",
+        "en": "A group of stars"
+      },
+      "light": {
+        "zh": "看见的是许多成员恒星的光。",
+        "en": "We see light from its member stars."
+      },
+      "home": {
+        "zh": "疏散星团与球状星团可属于星系。",
+        "en": "Open and globular clusters can belong to galaxies."
+      },
+      "clue": {
+        "zh": "球状星团的外形可能像小椭球，却不能仅凭照片轮廓判断它是星系。",
+        "en": "A globular cluster may look ellipsoidal; outline alone cannot identify a galaxy."
+      },
+      "contrast": {
+        "zh": "星团以恒星群为主；星系是更复杂的整体系统，两者边界研究也有特殊案例。",
+        "en": "A star cluster is primarily a stellar group; a galaxy is a more complex system, with exceptional boundary cases under study."
+      },
+      "partner": "galaxy",
+      "route": "/topics/cosmic-scale/?mode=galaxies&galaxy=star-cluster",
+      "source": "https://science.nasa.gov/universe/galaxies/types/",
+      "icon": "cluster"
+    },
+    {
+      "id": "galaxy",
+      "family": "systems",
+      "kind": "system",
+      "name": {
+        "zh": "星系 · 银河系",
+        "en": "Galaxy · Milky Way"
+      },
+      "label": {
+        "zh": "恒星、气体等组成的引力系统",
+        "en": "A gravitational system of stars, gas and more"
+      },
+      "light": {
+        "zh": "恒星与气体发出或散射光；暗物质主要由引力作用推断。",
+        "en": "Stars and gas emit or scatter light; dark matter is inferred mainly through gravity."
+      },
+      "home": {
+        "zh": "太阳系位于银河盘内，银河系属于本星系群。",
+        "en": "Our Solar System lies in its disk; the Milky Way belongs to the Local Group."
+      },
+      "clue": {
+        "zh": "转到侧面，旋涡臂可能不再明显；观看角度改变，不等于星系刚刚变了一类。",
+        "en": "Spiral arms can be hard to see edge-on. A change in viewing angle does not change the galaxy’s class."
+      },
+      "contrast": {
+        "zh": "星云是星系内的一种物质结构；整座星系还包含许多别的成员。",
+        "en": "A nebula is a material structure within a galaxy; the galaxy contains many other members."
+      },
+      "partner": "nebula",
+      "route": "/topics/cosmic-scale/?mode=galaxies&galaxy=milky-way",
+      "source": "https://science.nasa.gov/universe/galaxies/types/",
+      "icon": "galaxy"
+    },
+    {
+      "id": "group",
+      "family": "systems",
+      "kind": "system",
+      "name": {
+        "zh": "星系群与星系团",
+        "en": "Galaxy groups and clusters"
+      },
+      "label": {
+        "zh": "许多星系组成的结构",
+        "en": "Structures containing many galaxies"
+      },
+      "light": {
+        "zh": "各成员星系、热气体等在不同波段呈现不同信号。",
+        "en": "Member galaxies and hot gas reveal different signals across observing bands."
+      },
+      "home": {
+        "zh": "本星系群是我们的近邻集合；室女座星系团是另一处结构。",
+        "en": "The Local Group is our neighbourhood; the Virgo Cluster is a separate structure."
+      },
+      "clue": {
+        "zh": "星团里主要数恒星，星系团里数的是星系。两个名称只差一个字，层次不同。",
+        "en": "A star cluster groups stars; a galaxy cluster groups galaxies. Similar names describe different levels."
+      },
+      "contrast": {
+        "zh": "星团不是星系团的简称。",
+        "en": "A star cluster is not an abbreviation for a galaxy cluster."
+      },
+      "partner": "cluster",
+      "route": "/topics/cosmic-scale/?mode=homes&home=2",
+      "source": "https://science.nasa.gov/universe/galaxies/types/",
+      "icon": "group"
+    },
+    {
+      "id": "observable",
+      "family": "systems",
+      "kind": "region",
+      "name": {
+        "zh": "可观测宇宙",
+        "en": "Observable universe"
+      },
+      "label": {
+        "zh": "光与宇宙历史限定的可观测范围",
+        "en": "An observable region limited by light and cosmic history"
+      },
+      "light": {
+        "zh": "远方信号经过漫长传播来到我们这里。",
+        "en": "Distant signals reach us after travelling for a long time."
+      },
+      "home": {
+        "zh": "范围以观察者为参照，不表示我们处在整个宇宙的物理中心。",
+        "en": "Centred on an observer, not evidence that we occupy a physical centre of the entire universe."
+      },
+      "clue": {
+        "zh": "边界不是墙；今天的空间距离也不能直接当作光行时间。",
+        "en": "Its boundary is not a wall. Present-day distance is not simply light-travel time."
+      },
+      "contrast": {
+        "zh": "星系是一个物理系统；可观测宇宙是从这里能接收信号的范围。",
+        "en": "A galaxy is a physical system; the observable universe is the region from which signals can reach us."
+      },
+      "partner": "galaxy",
+      "route": "/topics/cosmic-scale/?mode=zoom&scale=1&scaleVersion=2",
+      "source": "https://science.nasa.gov/universe/overview/",
+      "icon": "universe"
+    },
+    {
+      "id": "supernova",
+      "family": "events",
+      "kind": "event",
+      "name": {
+        "zh": "超新星爆发",
+        "en": "Supernova"
+      },
+      "label": {
+        "zh": "一次恒星爆发事件",
+        "en": "A stellar explosion event"
+      },
+      "light": {
+        "zh": "爆发把能量释放出来，亮度与波段随时间变化。",
+        "en": "The explosion releases energy; its brightness and spectrum change over time."
+      },
+      "home": {
+        "zh": "涉及某些恒星或白矮星系统，不是所有恒星的结局。",
+        "en": "Occurs in some stellar or white-dwarf systems, not as every star’s ending."
+      },
+      "clue": {
+        "zh": "核心坍缩和白矮星热核爆发是不同机制；这里先探索前者的代表分支。",
+        "en": "Core collapse and thermonuclear white-dwarf explosions differ; the linked study explores a representative core-collapse branch."
+      },
+      "contrast": {
+        "zh": "超新星是事件名称；超新星遗迹是爆发后的物质结构。",
+        "en": "Supernova names the event; a supernova remnant is the later material structure."
+      },
+      "partner": "remnant",
+      "route": "/topics/stars/?chapter=evolution&track=massive&evolution=0.84",
+      "source": "https://science.nasa.gov/universe/stars/",
+      "icon": "event"
+    },
+    {
+      "id": "meteor",
+      "family": "events",
+      "kind": "event",
+      "name": {
+        "zh": "流星",
+        "en": "Meteor"
+      },
+      "label": {
+        "zh": "大气中的短暂发光现象",
+        "en": "A transient luminous atmospheric phenomenon"
+      },
+      "light": {
+        "zh": "高速碎片与空气相互作用，气体及脱落物质参与发光。",
+        "en": "Fast debris interacts with air; gas and removed material contribute light."
+      },
+      "home": {
+        "zh": "发生在地球或其他有大气天体的大气中。",
+        "en": "Occurs in the atmosphere of Earth or another body with an atmosphere."
+      },
+      "clue": {
+        "zh": "流星体是太空中的碎片，流星是亮迹，陨石是幸存并到达地面的固体。",
+        "en": "A meteoroid is space debris, a meteor is its luminous phenomenon, and a meteorite is solid material reaching the ground."
+      },
+      "contrast": {
+        "zh": "彗星并不是天空中的大流星；彗星碎屑却可能成为流星的来源。",
+        "en": "A comet is not a large meteor, although comet debris can produce meteors."
+      },
+      "partner": "comet",
+      "route": "/topics/meteors/",
+      "source": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/",
+      "icon": "meteor"
+    }
+  ],
+  "paths": [
+    {
+      "title": {
+        "zh": "太阳系里的世界",
+        "en": "Worlds in the Solar System"
+      },
+      "question": {
+        "zh": "同在太阳附近，为什么有的有地面，有的有尾巴？",
+        "en": "Why do some neighbours have solid ground while others grow tails?"
+      },
+      "steps": [
+        {
+          "label": {
+            "zh": "太阳、行星与卫星",
+            "en": "Sun, planets and moons"
+          },
+          "route": "/topics/solar-system/"
+        },
+        {
+          "label": {
+            "zh": "小行星、彗星与尘埃",
+            "en": "Asteroids, comets and dust"
+          },
+          "route": "/topics/small-bodies/"
+        },
+        {
+          "label": {
+            "zh": "从碎片到流星与陨石",
+            "en": "Debris, meteors and meteorites"
+          },
+          "route": "/topics/meteors/"
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "恒星怎样走过一生",
+        "en": "The lives of stars"
+      },
+      "question": {
+        "zh": "从一团云出发，不同的恒星会到达同一个结局吗？",
+        "en": "Do different stars formed in clouds share the same ending?"
+      },
+      "steps": [
+        {
+          "label": {
+            "zh": "云与光：认识星云",
+            "en": "Clouds and light: nebulae"
+          },
+          "route": "/topics/stars/?chapter=nebulae"
+        },
+        {
+          "label": {
+            "zh": "质量不同，历程不同",
+            "en": "Different masses, different histories"
+          },
+          "route": "/topics/stars/?chapter=evolution"
+        },
+        {
+          "label": {
+            "zh": "读懂恒星与遗迹的类别",
+            "en": "Stars and stellar remnants"
+          },
+          "route": "/topics/stars/?chapter=types"
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "引力与极端天体",
+        "en": "Gravity and compact objects"
+      },
+      "question": {
+        "zh": "相同的引力规则，怎样产生很不相同的运动和遭遇？",
+        "en": "How can gravity produce very different motions and encounters?"
+      },
+      "steps": [
+        {
+          "label": {
+            "zh": "双星与多星系统",
+            "en": "Binary and multiple-star systems"
+          },
+          "route": "/topics/stars/?chapter=orbits"
+        },
+        {
+          "label": {
+            "zh": "三体：改变一点会怎样",
+            "en": "Three bodies: a small change"
+          },
+          "route": "/topics/stars/?chapter=three-body"
+        },
+        {
+          "label": {
+            "zh": "黑洞、伴星与物质去向",
+            "en": "Black holes, companions and matter"
+          },
+          "route": "/topics/black-holes/"
+        }
+      ]
+    },
+    {
+      "title": {
+        "zh": "星系到可观测宇宙",
+        "en": "Galaxies to the observable universe"
+      },
+      "question": {
+        "zh": "熟悉的太阳放在更大地图里，会在哪里？",
+        "en": "Where does our familiar Sun belong on a larger map?"
+      },
+      "steps": [
+        {
+          "label": {
+            "zh": "同一标尺比较大小",
+            "en": "Compare sizes on one scale"
+          },
+          "route": "/topics/cosmic-scale/?mode=compare"
+        },
+        {
+          "label": {
+            "zh": "转动星系，认识星团",
+            "en": "Rotate galaxies and compare clusters"
+          },
+          "route": "/topics/cosmic-scale/?mode=galaxies"
+        },
+        {
+          "label": {
+            "zh": "沿同一锚点连续拉远",
+            "en": "Zoom out from a familiar anchor"
+          },
+          "route": "/topics/cosmic-scale/?mode=zoom"
+        }
+      ]
+    }
+  ]
+}

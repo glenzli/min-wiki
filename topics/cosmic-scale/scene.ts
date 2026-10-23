@@ -8,8 +8,7 @@ import cloudMap from '../solar-system/assets/2k_earth_clouds.webp';
 import moonMap from '../solar-system/assets/2k_moon.webp';
 
 type Layers={disk:boolean;bulge:boolean;halo:boolean;dark:boolean};
-import { ORBIT_RADII_AU as ORBITS } from './model.ts';
-const RADII=[2439.7,6051.8,6371,3389.5,69911,58232,25362,24622];
+import { ORBIT_RADII_AU as ORBITS, PLANET_RADII_KM as RADII } from './model.ts';
 const COLORS=['#a99e8b','#e4c6a2','#68b8e8','#c58160','#d3b38b','#dec391','#a0d9e1','#7295ed'];
 const GALAXIES=[[-SUN_CENTER_DISTANCE_KM,0,50000*LY],[2.3e6*LY,Math.sqrt(2.5**2-2.3**2)*1e6*LY,100000*LY],[1.45e6*LY,-Math.sqrt(2.7**2-1.45**2)*1e6*LY,30000*LY]];
 // Sample markers reveal that the group has many smaller members. Their placement is illustrative.
@@ -36,7 +35,7 @@ export class CosmicScene {
   private planets:THREE.Mesh[]=[];
   private orbits:THREE.LineLoop[]=[];
   private moonOrbit:THREE.LineLoop;
-  private galaxies=[new GalaxyVolume(1),new GalaxyVolume(5),new GalaxyVolume(11)];
+  private galaxies:GalaxyVolume[]=[];
   private macro=new MacroScene();
   private dark:THREE.Mesh;
   private neighborhood:THREE.Points;
@@ -68,7 +67,6 @@ export class CosmicScene {
       fragmentShader:'varying vec3 p;varying vec3 n;void main(){vec3 q=floor(p*220.);float g=fract(sin(dot(q,vec3(12.9898,78.233,37.719)))*43758.5453);float limb=.65+.35*abs(normalize(n).z);gl_FragColor=vec4(vec3(1.,.65,.25)*(.85+.15*g)*limb,1.);}'}));this.world.add(this.sun);
     ORBITS.forEach((_,i)=>{const planet=new THREE.Mesh(this.sphere,new THREE.MeshStandardMaterial({color:COLORS[i],roughness:1}));this.planets.push(planet);this.world.add(planet);this.orbits.push(this.makeOrbit('#668caa'));});
     this.moonOrbit=this.makeOrbit('#91b9bf');
-    this.galaxies.forEach(g=>this.world.add(g.root));
     this.dark=new THREE.Mesh(new THREE.SphereGeometry(1,32,20),new THREE.MeshBasicMaterial({color:'#80b6cf',wireframe:true,transparent:true,opacity:.045,depthWrite:false}));this.world.add(this.dark);
     // Two bounded sampling levels keep the local field populated without showing
     // a Sun-centered sphere as the camera backs into the wider galactic disk.
@@ -103,7 +101,7 @@ export class CosmicScene {
     const line=new THREE.LineLoop(geometry,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.55,depthWrite:false}));this.world.add(line);return line;
   }
   draw(progress:number,tilt:number,layers:Layers,origin:Origin="earth"){
-    this.last=[progress,tilt,{...layers},origin];if(this.disposed||this.lost)return;
+    this.last=[progress,tilt,{...layers},origin];if(this.disposed||this.lost||document.hidden)return;
     const width=this.wrapper.clientWidth;if(!width)return;
     const height=this.wrapper.clientHeight||300,dpr=Math.min(2,devicePixelRatio||1);
     if(this.canvas.width!==Math.floor(width*dpr)||this.canvas.height!==Math.floor(height*dpr)){
@@ -127,6 +125,8 @@ export class CosmicScene {
     orbit(this.moonOrbit,0,384400);
     ORBITS.forEach((a,i)=>{orbit(this.orbits[i]!,-AU_KM,a*AU_KM);body(this.planets[i]!,-AU_KM+Math.cos(i*.9)*a*AU_KM,Math.sin(i*.9)*a*AU_KM,RADII[i]!);if(i===2)this.planets[i]!.visible=false;});
     const fade=smooth((Math.log10(half/LY)-2.3)/1.4);
+    // Galaxy buffers are not needed for the initial planet-scale view.
+    if(fade>0&&!this.galaxies.length){this.galaxies=[new GalaxyVolume(1),new GalaxyVolume(5),new GalaxyVolume(11)];this.galaxies.forEach(g=>this.world.add(g.root));}
     const logHalfLy=Math.log10(half/LY);
     const localFade=smooth((logHalfLy-1.1)/.8)*(1-smooth((logHalfLy-2.78)/.5));
     const wideFade=smooth((logHalfLy-2.7)/.6)*(1-smooth((logHalfLy-3.7)/.5));
@@ -142,7 +142,7 @@ export class CosmicScene {
       g.root.rotation.set(i===0?angle:(.47+i*.12)*Math.PI/2,0,i===0?0:i*.7);
       if(g.root.visible)g.update(r*width/2,dpr,fade,i===0?layers:{disk:true,bulge:true,halo:false});
     });
-    this.dark.visible=layers.dark&&scaleState(progress).galaxy;this.dark.position.copy(this.galaxies[0]!.root.position);this.dark.scale.setScalar(200000*LY/half);
+    this.dark.visible=layers.dark&&scaleState(progress).galaxy;this.dark.position.set(...point(-SUN_CENTER_DISTANCE_KM));this.dark.scale.setScalar(200000*LY/half);
     this.renderer.render(this.world,this.camera);
     // Constant-screen-size locators are intentionally separate from physical bodies.
     const labels:{value:string;x:number;y:number}[]=[];
@@ -174,6 +174,12 @@ export class CosmicScene {
     if(half>LY*.5&&half<300*LY)for(const [x,y,key]of [[3.8,Math.sqrt(4.25**2-3.8**2),'proxima'],[-7,-Math.sqrt(8.6**2-7**2),'sirius']] as const){const p=screen(x*LY,y*LY);marker(...p);label(this.text(data.ui[key]),p[0],p[1]+22);}
     if(half>30000*LY&&half<12e6*LY){const p=screen(-SUN_CENTER_DISTANCE_KM);label(this.text(data.ui.milky),p[0],p[1]-Math.min(height*.3,50000*LY/half*width/2)-18);}
     if(half>200000*LY&&half<12e6*LY)for(const i of [1,2]){const [x,y,r]=GALAXIES[i]!,p=screen(x!,y!);label(this.text(i===1?data.ui.andromeda:data.ui.triangulum),p[0],p[1]+Math.max(24,r!/half*width/2));}
+    // A physical disk outline stays distinct from a constant-screen locator when distant.
+    if(half>120000*LY&&half<12e6*LY)for(const g of this.galaxies){
+      if(!g.root.visible)continue;const radius=g.root.scale.x*width/2;if(radius<1.5||radius>40)continue;
+      c.save();c.strokeStyle='#b7cee798';c.lineWidth=1;c.setLineDash([3,3]);c.beginPath();
+      for(let i=0;i<=72;i++){const p=new THREE.Vector3(Math.cos(i*Math.PI/36),Math.sin(i*Math.PI/36),0).applyMatrix4(g.root.matrixWorld).project(this.camera),x=(p.x+1)*width/2,y=(1-p.y)*height/2;if(!i)c.moveTo(x,y);else c.lineTo(x,y);}c.stroke();c.restore();
+    }
     if(half>1.1e6*LY&&half<12e6*LY){
       c.save();c.globalAlpha=smooth((half/LY-1.1e6)/.9e6);
       for(const [x,y] of DWARF_SAMPLES){const [px,py]=screen(x*1e6*LY,y*1e6*LY);if(px<8||px>width-8||py<10||py>height-65)continue;
@@ -201,6 +207,6 @@ export class CosmicScene {
     const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();
     this.world.traverse(object=>{const mesh=object as THREE.Mesh;if(mesh.geometry)geometries.add(mesh.geometry);if(mesh.material)for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material])materials.add(m);});
     geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());this.textures.forEach(t=>t.dispose());
-    this.renderer.dispose();this.renderer.forceContextLoss();this.last=undefined;this.overlay.remove();
+    this.renderer.dispose();this.renderer.forceContextLoss();this.last=undefined;this.overlay.remove();this.wrapper.replaceWith(this.canvas);
   }
 }

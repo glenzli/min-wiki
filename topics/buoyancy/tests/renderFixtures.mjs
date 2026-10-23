@@ -11,7 +11,7 @@ export function tankFixture(width=1238,height=476){
  const tank=Object.create(TankScene.prototype);
  const mesh=()=>new THREE.Mesh(new THREE.BoxGeometry(1,1,1),new THREE.MeshBasicMaterial());
  const line=()=>new THREE.LineLoop(new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(new Float32Array(128*3),3)),new THREE.LineBasicMaterial());
- Object.assign(tank,{disposed:false,lost:false,visible:true,held:false,opening:0,viewport:{width,height},camera:new THREE.OrthographicCamera(-4.7,4.7,3,-3,.1,70),profile:new THREE.CatmullRomCurve3([],false,'centripetal'),waterLevel:{value:0},waterMotion:{value:0},navigation:{manual:false,sync(){}},renderer:{render(){}},world:new THREE.Scene(),view:'tank',holeKey:'',support:new THREE.Group()});
+ Object.assign(tank,{disposed:false,lost:false,visible:true,held:false,opening:0,viewport:{width,height},camera:new THREE.OrthographicCamera(-4.7,4.7,3,-3,.1,70),profile:new THREE.CatmullRomCurve3([],false,'centripetal'),waterLevel:{value:0},waterMotion:{value:0},navigation:{manual:false,sync(){}},renderer:{render(){}},world:new THREE.Scene(),view:'tank',holeKey:'',support:new THREE.Group(),contactSamplers:new Map()});
  for(const name of ['wood','stone','immersion','steel','clay','waterSides','cupWater','cupSurface','cupMeniscus','cord','eye'])tank[name]=mesh();
  tank.waterSides.geometry=createBasinWater();tank.waterEdge=new THREE.LineLoop(new THREE.BufferGeometry().setAttribute('position',new THREE.BufferAttribute(new Float32Array(129*3),3)),new THREE.LineBasicMaterial());
  tank.waterTop=new THREE.Mesh(new THREE.ShapeGeometry(),new THREE.MeshBasicMaterial());tank.contact=line();tank.ripple=line();

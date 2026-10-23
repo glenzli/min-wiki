@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "topicId": "small-bodies",
+  "zh": {
+    "question": "小行星、彗星和尘埃有什么联系？为什么有些小天体拖着尾巴，有些没有？",
+    "observe": "先改变同一块小天体的光照，分清亮暗与成分。再让一颗假想彗星靠近太阳，比较有无暴露冰的两种条件，注意尾部与太阳的方向。最后转动不同碎屑储库，并让地球穿过与这颗彗星同轨道的示意碎屑流。",
+    "academic": [
+      {
+        "title": "形状和反射光，需要不同的证据来解释",
+        "body": "小行星的形状受自引力、材料强度、自转和碰撞历史影响，有些是松散碎块的集合。C、S、M 是常见的宽泛光谱分类，不能仅凭肉眼颜色，把它们断定为三种纯物质；尤其不能认定每颗 M 型都由完整铁块组成。光源方向会改变亮暗，却没有改变同一物体的成分。谷神星位于主小行星带，直径约 950 千米，是被自身重力塑得近圆的矮行星；分类还涉及绕太阳运行、不是卫星、未主导轨道邻域等条件，而非一条任意大小分界线。这里的四个代表形状分别适配画面，不共用直径比例，坑洼和颜色不对应某次观测地图。"
+      },
+      {
+        "title": "彗星靠近太阳时，先释放物质，再形成尾部",
+        "body": "彗核含有冰、岩石和尘埃。受热后，暴露的冰可直接从固体升华成气体，气体携带尘埃形成彗发。电离气体与太阳风及磁场相互作用，形成大致背离太阳的离子尾；尘埃受日光辐射压影响，也保留轨道运动，常形成较宽的弯尾。尾部不是彗星迎风燃烧，也不总指向飞行方向的后方。本页假想二体轨道的半长轴为 3.2 AU，偏心率为 0.72，近日点约 0.9 AU、远日点约 5.5 AU；轨道时间通过开普勒方程取样，日照按距离平方反比计算。活动响应与尾曲线是定性映射，真实活动还依赖冰种类、表面覆盖和热历史，没有通用的开启距离。关闭暴露冰只改变这一条件，不改轨道。"
+      },
+      {
+        "title": "从稀疏储库到碎屑交会，分清观测与推断",
+        "body": "主小行星带在火星与木星轨道之间，柯伊伯带主要区域约在 30—50 AU；这些区域并非挤满石块的墙。彗星活动和天体碰撞等会补充行星际尘埃，尘埃散射日光并发出红外辐射，不能把它等同于单一锐利环带。地球穿过碎屑流时，部分颗粒进入大气，才可能带来流星或流星雨，不能保证每一粒都落地成为陨石。本页亮细带沿用同一假想彗星的平面轨道，宽度被放大，交会不对应真实流星雨的日期或数量。奥尔特云是根据长周期彗星等间接线索提出的遥远储库；尚未被直接成像，球状点云是结构示意，范围大约在数千至十万 AU 的量级，并非测定的硬边界。"
+      }
+    ],
+    "misconception": "彗尾不是太空中的火焰，不保证指在运动方向后面；矮行星也不是按颜色或单一大小门槛分出来的。图上的代表点不是小天体的真实直径或全部数量。流星是在大气中发生的发光现象，不是远方恒星掉下来。",
+    "boundary": "表面地形与分布点云为原创示意；小天体分别适配大小，定位符均放大。彗星采用假想开普勒轨道与平方反比日照，但不求解传热、升华量、质量损失、太阳风或尘埃动力学。尾、喷流、活动阈值、碎屑流宽度和地球大气圈是教学映射，不是测量或预报。回拖取样不代表真实物质逆流。主带、柯伊伯带与内尘埃视图各用线性 AU 距离，但镜头缩放不同；奥尔特云使用独立的无共同长度比例结构图。尘埃视图只截取内太阳系一部分；奥尔特云大小和边界不确定。切换视图、讲解或镜头保留本次实验；网址保存科学选择，刷新不保存手动镜头。",
+    "narration": [
+      {
+        "label": "这还是同一块石头吗？",
+        "text": "把光从一边挪到另一边，小天体的一面亮了，另一面暗了。它还是刚才那一块，没有换成另一种物质。科学家要用反射光的特征、探测器和采样等线索认识成分。谷神星比较圆，还是主带里的一员；要叫它矮行星，还要看自身重力和轨道条件，不能只比谁大。",
+        "cue": "在同一 C 型代表样本上来回移动光源，再转到背面，随后切换谷神星；强调模型分别适配大小。"
+      },
+      {
+        "label": "先有气体和尘埃，才有彗尾",
+        "text": "远处的彗核安静地绕着太阳走。接近太阳，暴露的冰受热，直接变成气体，带出一些尘埃，周围出现模糊的彗发。太阳也影响放出的物质：细离子尾大致朝远离太阳的方向，宽尘埃尾会弯。它们不是一团在太空里燃烧的火。",
+        "cue": "从远日点拖到近日点，观察同一彗核、向日喷流、彗发和两类尾；近日点附近暂停。"
+      },
+      {
+        "label": "再试一个没有暴露冰的条件",
+        "text": "现在保留同一条路，只改变彗核表面的条件。如果没有可升华的暴露冰，这个小实验就不产生刚才的彗发和彗尾。真实彗星的情况更复杂，冰的种类、表面盖着什么、过去怎样受热，都可能影响活动。再让它离开太阳，尾部方向还要跟着太阳的位置来理解。",
+        "cue": "在同一轨道位置关闭再打开暴露冰；拖到离开太阳的一侧，再回到同一中间位置比较可重复状态。"
+      },
+      {
+        "label": "尘埃去了哪里？",
+        "text": "小行星带、柯伊伯带和行星间都有小成员，但它们之间有很多空处。彗星活动和碰撞还会添入尘埃。地球走到一条碎屑流里，有些小碎片进入大气，才可能画出流星亮迹。更远的奥尔特云来自间接线索，是我们对遥远储库的解释，不是一张从外面拍下的照片。",
+        "cue": "转动主带与柯伊伯带看厚度；在尘埃视图对比地球位于碎屑流外和进入流内，再打开单独缩尺的奥尔特云示意。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How are asteroids, comets and dust connected, and why do some small bodies grow tails while others do not?",
+    "observe": "Change the lighting on one small body to separate shading from composition. Bring a hypothetical comet toward the Sun and compare exposed ice on and off, watching the tails relative to the Sun. Then rotate the debris reservoirs and move Earth through a representative stream along this same comet's orbit.",
+    "academic": [
+      {
+        "title": "Shape and reflected light need different evidence",
+        "body": "Self-gravity, material strength, rotation and collision history influence asteroid shapes; some bodies are loosely bound rubble. C, S and M introduce broad spectral classes, rather than three pure substances identifiable by eye. In particular, M-type does not guarantee a solid iron object. Moving the light changes shading without changing composition. Ceres lies in the main belt and is roughly 950 km across. It is a dwarf planet rounded by self-gravity; classification also concerns orbiting the Sun, not being a satellite and not dominating its orbital neighborhood, rather than an arbitrary size cutoff. The four representative shapes are fitted independently to the view, without a shared diameter scale, and their relief and colors are not observation maps."
+      },
+      {
+        "title": "Heating releases material before tails develop",
+        "body": "A cometary nucleus contains ice, rock and dust. Exposed ice can sublime directly from solid to gas when heated; escaping gas carries dust into a coma. Ionized gas interacts with the solar wind and magnetic field, producing an ion tail generally directed away from the Sun. Dust responds to radiation pressure while retaining orbital motion, often making a broader curved tail. Neither is a flame in space, and tails need not point behind the direction of flight. The hypothetical two-body orbit here has semimajor axis 3.2 AU and eccentricity 0.72, giving perihelion about 0.9 AU and aphelion about 5.5 AU. Orbital time is sampled through Kepler's equation and sunlight follows an inverse-square law. Activity and tail curves are qualitative mappings. Ice species, surface cover and thermal history affect real activity; there is no universal switch-on distance. Switching exposed ice off changes this condition without changing the orbit."
+      },
+      {
+        "title": "Sparse reservoirs and orbital crossings: observations versus inference",
+        "body": "The main asteroid belt lies between Mars and Jupiter; the Kuiper Belt's main region extends roughly 30–50 AU. Neither is a crowded wall. Cometary activity, collisions and other sources replenish interplanetary dust, which scatters sunlight and emits infrared radiation rather than forming one sharply bounded belt. When Earth crosses a debris stream, some particles can enter the atmosphere and make meteors or a shower; this does not ensure a meteorite reaches the ground. The bright stream here follows the same hypothetical comet's planar orbit, with enlarged width, and predicts no actual meteor-shower dates or rates. Long-period comet orbits and other indirect evidence motivate the distant Oort reservoir. It has not been directly imaged: the spherical point cloud is a structural illustration. Distances on the order of thousands to a hundred thousand AU describe an uncertain region, not measured hard boundaries."
+      }
+    ],
+    "misconception": "A comet tail is not a flame in space and does not always point behind its motion. Color or one size cutoff cannot define a dwarf planet. Display points are neither real diameters nor a complete count. Meteors are atmospheric luminous phenomena, not distant stars falling down.",
+    "boundary": "Surface relief and point distributions are original illustrations; bodies are fitted independently and position symbols are enlarged. The comet uses a hypothetical Kepler orbit and inverse-square sunlight without heat transfer, sublimation rates, mass loss, solar-wind or dust dynamics. Tails, jets, activity thresholds, stream width and Earth's atmosphere marker are teaching mappings, not measurements or forecasts. Reverse scrubbing resamples a condition rather than reversing real material flow. Main-belt, Kuiper and inner-dust views each use linear AU distances at different camera scales; the Oort view is a separate structural diagram without a shared length scale. Only part of the inner dust cloud is shown; the Oort Cloud's extent and boundaries are uncertain. Switching views, explanation or camera retains this visit's experiment. The URL saves scientific selections, but manual camera poses are not restored after refresh.",
+    "narration": [
+      {
+        "label": "Is this still the same rock?",
+        "text": "Move the light from one side to the other. One side brightens while the other darkens. It is still the same small body, with the same material. Scientists use features in reflected light, spacecraft and samples as evidence about composition. Rounder Ceres also lives in the main belt. Calling it a dwarf planet involves gravity and orbital conditions, not simply deciding which body is bigger.",
+        "cue": "Move the light back and forth over the retained C-type sample, rotate to the back, then select Ceres. Explain that each model is fitted independently."
+      },
+      {
+        "label": "Gas and dust come before the tails",
+        "text": "Far away, the nucleus quietly follows its path around the Sun. Closer in, exposed ice warms straight into gas, carrying some dust out with it. A fuzzy coma surrounds the nucleus. The Sun influences the released material too. The thin ion tail points generally away from the Sun, while the broad dust tail curves. These are not flames burning in space.",
+        "cue": "Scrub from aphelion to perihelion, retaining the nucleus while sunward jets, coma and both tails develop. Pause near perihelion."
+      },
+      {
+        "label": "Try a surface without exposed ice",
+        "text": "Keep the same path and change one surface condition. Without ice available to sublime, this activity produces no coma or tails. Real comets are more complicated: the kinds of ice, what covers the surface and earlier heating can all affect activity. Let the comet move away again and keep relating its tails to the Sun's position.",
+        "cue": "At the same orbital position, switch exposed ice off and on. Scrub to the outgoing side, then back to the same intermediate condition to compare reproducible states."
+      },
+      {
+        "label": "Where does the dust go?",
+        "text": "Small members occupy the asteroid belt, Kuiper Belt and space between planets, with plenty of empty space between them. Comets and collisions add dust. When Earth enters a debris stream, some fragments can enter the atmosphere and make a meteor's light. The more distant Oort Cloud is inferred from indirect clues: an explanation of a remote reservoir, rather than a photograph taken from outside.",
+        "cue": "Rotate the main and Kuiper belts to see thickness. Compare Earth outside and inside the illustrative stream, then open the separately scaled Oort structure."
+      }
+    ]
+  },
+  "references": [
+    { "title": "NASA · Asteroid facts", "url": "https://science.nasa.gov/solar-system/asteroids/facts/" },
+    { "title": "NASA · Ceres facts", "url": "https://science.nasa.gov/dwarf-planets/ceres/facts/" },
+    { "title": "NASA · Dwarf planets", "url": "https://science.nasa.gov/dwarf-planets/" },
+    { "title": "NASA · Asteroid Psyche: composition evidence", "url": "https://science.nasa.gov/solar-system/asteroids/16-psyche/" },
+    { "title": "NASA · Comet facts", "url": "https://science.nasa.gov/solar-system/comets/facts/" },
+    { "title": "ESA · Structure of a comet", "url": "https://www.esa.int/ESA_Multimedia/Images/2023/11/Structure_of_a_comet" },
+    { "title": "NASA · Kuiper Belt facts", "url": "https://science.nasa.gov/solar-system/kuiper-belt/facts/" },
+    { "title": "NASA · Oort Cloud facts", "url": "https://science.nasa.gov/solar-system/oort-cloud/facts/" },
+    { "title": "NASA JPL · Modeling the structure of the Solar System", "url": "https://www.jpl.nasa.gov/edu/resources/lesson-plan/modeling-the-structure-of-the-solar-system/" },
+    { "title": "NASA · 10 things: dust in the wind", "url": "https://science.nasa.gov/solar-system/planets/mars/10-things-dust-in-the-wind-on-mars-and-well-beyond/" },
+    { "title": "NASA · Meteors and meteorites: facts", "url": "https://science.nasa.gov/solar-system/meteors-meteorites/facts/" }
+  ]
+}

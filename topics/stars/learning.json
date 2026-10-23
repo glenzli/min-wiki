@@ -2,39 +2,39 @@
   "version": 1,
   "topicId": "stars",
   "zh": {
-    "question": "恒星从哪里来，为什么发光，最后都会变成黑洞吗？",
-    "observe": "先从分子云拖到原恒星，找出云核、吸积盘、外流和点亮的中心如何连续变化；再选择三条质量路径比较结局。依次观察太阳的聚变、传能和表面活动，最后切换三种带行星的双星或三星结构，并把这些示意轨道与数值三体实验区分开。",
+    "question": "星云为什么可见，出生质量怎样改变恒星的一生与遗骸？",
+    "observe": "先比较成星云的发射、反射和遮挡，再转动行星状星云与超新星遗迹的壳层，找出物质来源和照明机制。沿同一中心拖动云、盘、主序和遗骸；对照 0.2、1、15、30 个太阳质量的代表分支。用独立半径标尺比较大小，用颜色与寿命理解主序差别，再把相伴恒星的示意轨道与数值三体实验分清。",
     "academic": [
       {
-        "title": "寿命与终点由条件分叉",
-        "body": "以气体为主的冷分子云中，局部稠密云核在引力下收缩；旋转的落入物质形成吸积盘，一些年轻恒星沿轴向外流。原恒星早期可由收缩与吸积发光，核心持续氢聚变开启主序；大质量恒星的聚变与吸积可能重叠。云、盘与喷流在画面中连续过渡，却不是流体求解，也不按成熟恒星的半径尺量。约太阳质量的代表路径经红巨星、外层抛散留下白矮星；较大质量路径可能在核心坍缩后留下中子星或黑洞。质量、质量损失、成分、伴星和坍缩条件都会影响结果，页面的 1、15、30 个太阳质量只是案例而非通用门槛。阶段宽度不等于持续时间，半径为教学插值。成熟太阳型恒星轮廓与行星轨道共用尺度，吞没水星和金星后不令它们随恒星收缩重新出现；地球命运不能只由固定轨道圆判定。遗骸时保留原外包层虚线作大小对照；右侧镜头非线性放大。黑洞不必伴有吸积盘，还需要合适的供气条件。"
+        "title": "先辨物质与光，再看恒星如何诞生",
+        "body": "星云是气体和尘埃的云，不是一种固定年龄的天体。成星区的冷分子气体含少量尘埃；致密云核可能在引力下收缩，而气压、湍流与磁场提供支撑。角动量使落入物质形成盘，吸积与收缩可先于稳定氢聚变发光，部分年轻星体产生双极外流；大质量恒星的吸积与核心聚变可重叠。可见发射星云主要靠气体被电离后产生谱线等过程发光；反射星云的尘埃散射附近星光；暗云吸收和散射背景光。三种机制可在一个区域并存，不是三个必然先后阶段。行星状星云则是晚期恒星抛层，被露出的热核心照亮；它不是行星，也不是一次超新星。超新星遗迹的抛射物与被扫过的星际气体受冲击等过程影响，射电、可见光和 X 射线可能呈现不同结构。壳边看起来亮可来自更长视线路径，不能据二维圆环断定真实空间是一只平环。这里的 3D 是可逆教学形态，不是流体或辐射转移求解，也不重建某个实测星云。"
       },
       {
-        "title": "长期供能与短时磁活动",
-        "body": "太阳核心核聚变供给长期光热；辐射区主要通过辐射传能，对流区有热等离子体升降，光球是可见的非固体表面。强磁场影响局部对流，较冷区域看成黑子；活跃区域的磁重联能短时释放耀斑，而太阳风是从日冕持续流出的带电粒子。耀斑不是日常阳光的燃料，也不等于持续太阳风。同一颗太阳的剖面和光球局部放大呈现不同尺度；层厚、颗粒、磁弧和喷流分别是机制示意，未求解真实磁流体或标定活动时间。"
+        "title": "质量、温度、寿命与遗骸是不同的问题",
+        "body": "主序星靠核心氢聚变持续供能；在主序范围内，较大质量通常意味着更高温、更高光度和更短寿命。有效温度关系 L=4πR²σT⁴ 说明巨星即使表面较冷，也可因面积大而非常明亮；观测通量还取决于距离与消光。代表性低质量红矮星可活万亿年，远超过现今宇宙约 138 亿年的年龄；页面 0.2 个太阳质量的后三站是理论远未来，不强行安排太阳式红巨星、明亮行星状星云或超新星。太阳型示例经膨胀和抛层留下靠余热冷却的白矮星，不再靠稳定核心核聚变发光。15 与 30 个太阳质量示例分别选择中子星与黑洞分支，质量损失、组成、双星作用和坍缩条件也会改变结局，这些不是精确门槛。超新星外部遗迹与中心遗骸应分清；Ia 型涉及白矮星热核爆发，通常不留下中子星。部分中子星的发射束扫过地球才表现为脉冲，不能给所有中子星预设可见灯塔。黑洞的吸积盘需外部供气。太阳的表面耀斑来自磁能释放，不是核心聚变或持续太阳风的同义词。"
       },
       {
         "title": "行星可绕双星，也可绕其中一颗",
         "body": "Kepler-47 中有三颗已确认行星绕两颗恒星的共同质心；另一种宽双星结构可让行星绕其中一颗，KOI-5 则有行星绕层级三星中的 A 星。画面保留成员与绕行关系，但轨道距离压缩、恒星大小放大，不重建观测轨道，也不证明长期稳定。另设的数值实验以三个固定的等质量数学案例按牛顿引力逐步积分三个平面点质量，使用固定步长 velocity-Verlet，和前述真实系统不是同一轨道。选 L₀、M₀ 后，T₀=√(L₀³/GM₀)，数值 G=1；播放时持续计算，步长0.001 T₀，历史窗口保留最近20 T₀。八字初值来自 Montgomery 作者页面，等边对照满足 ω²=1/√3；不规则游走的初值是本项目从等边起点稍作改变并筛选出的数值例子，没有随机力。轨迹线交叉可能发生在不同时刻，放大的星盘不能证明真实接触；本积分没有恒星半径、潮汐或碰撞模型，近遇无法解析或能量误差将超过0.1%便停止。微扰的位置差不证明混沌或长期稳定。"
       }
     ],
-    "misconception": "太阳不会变成黑洞；恒星晚年不是统一结局。耀斑不是太阳持续发光的原因，轨迹交叉也不是两颗恒星相撞的证据。",
-    "boundary": "演化案例的年龄和半径为近似教学锚点，阶段插值不等于完整物理演化；行星静态轨道不预测地球命运。材质、剖面厚度、磁弧和颗粒为示意。双星/层级三星是构造，三体数值章才直接积分牛顿引力；该积分不含恒星尺寸、碰撞、潮汐、相对论或演化，近遇与误差阈值只界定算法解析能力。标记大小不表示真实半径，模型时间不直接等于秒或年。避免直视真实太阳。",
+    "misconception": "不是每个星云都在形成恒星，不是每颗恒星都以超新星结束。红矮星和白矮星的“矮”不是同一种供能机制；白矮星靠余热发光，中子星不一定被看成脉冲星。蓝白主序星通常更热，红巨星的大半径不代表质量同比变大；交叉轨迹也不证明相撞。",
+    "boundary": "演化年龄和半径为近似教学锚点，0.2 个太阳质量的远未来从未在当前宇宙被完整观测。3D 云、盘、恒星、壳层和遗骸分别放大，不共用长度尺；颜色增强、形状可转动并不等于实测重建。独立比较镜头的成熟太阳型轮廓与行星轨道共用线性比例，但固定轨道不预测地球命运。体积明暗来自说明性密度的近似视线积分，不是实测亮度；没有求解外抛速度、冲击、真实电离、辐射传输或质量损失。星面颗粒与暗斑增强对比，致密遗骸不套用太阳颗粒。镜头近看恒星、拉远显示云壳，物质坐标与过程进度保持不变。双星/层级三星是构造；独立三体章才直接积分牛顿点质量，不含恒星尺寸、碰撞、潮汐、相对论或演化。避免直视真实太阳。",
     "narration": [
       {
-        "label": "同一片云，不同的命运",
-        "text": "冷云里主要是气体，也有少量尘埃。稠密的地方缩成云核，气体绕着年轻中心落入盘，有些又从两极流出。中心先因收缩和吸积发亮；核心持续把氢聚变成氦后，才进入主序。换一种出生质量，后面的时间和结局也会不同。",
-        "cue": "依次选择三条质量路径，拖动到主序、膨胀外层和遗骸；比较左侧原外包层虚线、右侧大小变化及终点读数。"
+        "label": "为什么看见一片云",
+        "text": "宇宙里的云主要是气体，夹有尘埃。有些气体受到恒星的紫外光照射会发光；有些尘埃把星光散射给我们；还有些云遮住背后的光，看起来反而很暗。较密的云核可能收缩，物质经盘落向年轻的中心。中心先因收缩和吸积发亮，持续的核心氢聚变开启主序。",
+        "cue": "比较成星云的三种照明，再把演化拖到云核、盘和主序，转动观察盘与两极外流。"
       },
       {
-        "label": "一颗星变成红巨星",
-        "text": "太阳型恒星到了晚年，核心变化会使外包层向外膨胀。把水星和金星的轨道留在画面里，看它们何时进入包层。地球的结局还要看太阳失重、轨道变化和潮汐，不能只凭一张圈图下结论。",
-        "cue": "在太阳型路径回拖和推进红巨星阶段，观察半径与水星、金星状态。"
+        "label": "不同的质量，不同的终点",
+        "text": "小红矮星用燃料很慢，可以活到远远超过今天宇宙的年龄。它的最后几站还是理论推算。太阳型恒星会膨胀、抛出外层，留下靠余热发光的白矮星。大质量恒星的一种结局是核心坍缩超新星：外壳向外，致密遗骸留在中心。这里的例子留下中子星，但不是每颗恒星都爆炸，也不是每颗中子星都能看成闪烁灯塔。",
+        "cue": "对照四条质量路径；在太阳型与15太阳质量结尾打开3D壳层，区分白矮星、中子星与外抛气体；查看低质量未来限定。"
       },
       {
-        "label": "为什么会亮，也会爆发",
-        "text": "太阳长久的光和热主要从核心聚变而来，能量经过辐射和对流到达光球。表面磁场形成较暗的黑子，储存的磁能短时释放为耀斑；外层日冕也持续送出太阳风。这些是不同原因和时间尺度。",
-        "cue": "逐一选择核心、传能、光球、黑子、耀斑和风，找出画面中对应的位置。"
+        "label": "颜色、大小和光从哪里来",
+        "text": "蓝白色主序星通常比橙红色主序星更热。可是一颗膨胀的红巨星，也能因为表面积很大而非常明亮。大小、质量和温度是三件不同的事。太阳日常的光热主要来自核心聚变；黑子、耀斑和太阳风则涉及表面与外层的不同过程。漂亮的星云照片还要看望远镜选了哪些波段。",
+        "cue": "在类型比较里对照红矮星、太阳、红巨星和蓝白主序星，再切太阳结构与星云说明，辨认温度、半径、供能和观测波段。"
       },
       {
         "label": "一起绕行",
@@ -44,39 +44,39 @@
     ]
   },
   "en": {
-    "question": "Where do stars come from, why do they shine, and do they all become black holes?",
-    "observe": "Scrub from a molecular cloud to a protostar, tracking one dense core, disk, outflow and brightening center. Then compare three mass paths and the Sun's fusion, transport and surface activity. Finally switch among three binary or triple systems with planets, distinguishing their illustrative orbits from the separate numerical three-body experiment.",
+    "question": "Why are nebulae visible, and how does birth mass change a star’s life and remnant?",
+    "observe": "Compare emission, reflection and obscuration in one cloud geometry, then rotate planetary-nebula and supernova-remnant shells to identify matter and light sources. Scrub a cloud, disk, main-sequence star and remnant around the same center. Compare representative 0.2, 1, 15 and 30 solar-mass branches. Use a separate radius ruler for size, color and lifetime for main-sequence differences, and distinguish illustrative companion paths from the numerical three-body experiment.",
     "academic": [
       {
-        "title": "Mass and conditions branch lifetimes and remnants",
-        "body": "In a cold molecular cloud dominated by gas, a dense core contracts under gravity. Rotating infall makes an accretion disk, and some young stars drive axial outflows. Contraction and accretion can make the protostar shine before sustained core hydrogen fusion begins the main sequence; massive stars can start fusion while still accreting. The cloud, disk and jet transition continuously on screen but are not a fluid solution or drawn on the mature-star radius ruler. A Sun-mass example passes through a red giant to a white dwarf; massive examples may leave neutron stars or black holes. Mass loss, composition, companions and collapse conditions also matter. The 1, 15 and 30 solar-mass paths are examples, not thresholds. Phase spacing is not equal elapsed time and radii are interpolated teaching values. The mature Sun-like stellar outline and planetary orbits share a scale; Mercury and Venus do not reappear after engulfment, while a fixed circle cannot settle Earth's fate. A former-envelope outline and nonlinear detail view compare remnants; compact markers cannot measure diameter. Black holes need not have accretion disks without matter supply."
+        "title": "Identify matter and light before following star formation",
+        "body": "A nebula is a cloud of gas and dust, not one fixed age of object. Cold molecular gas contains a little dust; dense cores may contract under gravity while pressure, turbulence and magnetic fields provide support. Angular momentum produces a disk, contraction and accretion can shine before sustained hydrogen fusion, and some young sources launch bipolar outflows. Massive stars can fuse while still accreting. Emission regions shine through ionization, recombination and related line processes; reflection nebulae scatter nearby starlight; dark clouds remove background light by absorption and scattering. These mechanisms can coexist and are not three inevitable stages. Planetary nebulae instead contain late stellar ejecta illuminated by an exposed hot core; they are neither planets nor supernovae. Supernova remnants contain ejecta and swept-up interstellar material affected by shocks and other processes. Radio, optical and X-ray views may show different structures. A bright shell rim can arise from a longer emitting sightline, not a flat ring. The reversible 3D teaching geometries are neither fluid or radiative-transfer solutions nor reconstructions of observed nebulae."
       },
       {
-        "title": "Long-term fusion and brief magnetic activity",
-        "body": "Solar core fusion supplies long-term light and heat. The radiative zone mainly transports energy by radiation; the convective zone also moves hot plasma. The photosphere is the visible nonsolid surface. Strong magnetic fields locally inhibit convection, making cooler-looking sunspots. Reconnection in active regions briefly releases magnetic energy as flares, while solar wind is a continuing outflow from the corona. Flares are neither the fuel for ordinary sunlight nor identical to steady solar wind. The same Sun's cutaway and local photospheric enlargement use different scales; layer thickness, cells, loops and jets illustrate mechanisms without magnetohydrodynamic integration or a calibrated activity clock."
+        "title": "Mass, temperature, lifetime and remnant answer different questions",
+        "body": "Main-sequence stars are sustained by core hydrogen fusion. Within the main sequence, greater mass generally means higher temperature, luminosity and a shorter lifetime. The effective-temperature relation L=4πR²σT⁴ explains how a cooler giant can still be very luminous through its large area; observed flux also depends on distance and extinction. Representative low-mass red dwarfs can last trillions of years, far beyond the present Universe’s age of about 13.8 billion years. The final three 0.2-solar-mass stops are a theoretical distant future, without an imposed Sun-like red giant, bright planetary nebula or supernova. The Sun-like example expands, sheds its envelope and leaves a white dwarf cooling through stored heat, without sustained core nuclear fusion. The 15- and 30-solar-mass examples select neutron-star and black-hole outcomes; mass loss, composition, binary interaction and collapse details also matter, so these are not fixed thresholds. Extended supernova debris and a compact central remnant are distinct. Type Ia involves thermonuclear disruption of a white dwarf and usually leaves no neutron star. Some neutron stars are detected as pulsars when emission beams sweep Earth; a visible lighthouse is not assigned to every one. A black-hole disk requires a matter supply. Solar flares release magnetic energy, distinct from core fusion and continuing solar wind."
       },
       {
         "title": "Planets can orbit a pair or just one star",
         "body": "Kepler-47 has three confirmed planets orbiting the barycenter of its two stars. A sufficiently wide binary can allow a planet around one component, while KOI-5 has a planet around star A in a hierarchical triple. The scenes retain membership and orbit hierarchy but compress drawn separations and enlarge star markers; they neither fit observed orbits nor prove stability. The separate numerical experiment integrates three fixed equal-mass mathematical cases, not the observed systems, as three planar point masses under Newtonian gravity using fixed-step velocity-Verlet. Choosing L₀ and M₀ sets T₀=√(L₀³/GM₀), so numerical G=1. Playback uses step0.001 T₀ and keeps the latest20 T₀. Figure-eight initial conditions come from Montgomery’s author page; the equilateral comparison has ω²=1/√3. The wandering case is a project-screened departure from the equilateral start, with no random force. Trail crossings can occur at different times, and enlarged markers cannot establish contact. With no stellar radii, tides or collision physics, the integration stops at unresolved approaches or before proposed energy error exceeds0.1%. Finite-time perturbation differences prove neither chaos nor long-term stability."
       }
     ],
-    "misconception": "The Sun will not become a black hole, and late stellar life has no single ending. Flares do not power the Sun’s sustained shine; crossing trails do not prove a stellar collision.",
-    "boundary": "Evolutionary ages and radii are approximate teaching anchors; phase interpolation is not a full physical evolution calculation. Fixed planetary orbits do not predict Earth’s fate. Materials, cutaway thicknesses, field loops and granules are illustrative. Binary and hierarchical-triple modes are constructions; only the numerical chapter integrates Newtonian gravity. It excludes stellar sizes, collisions, tides, relativity and evolution; approach and error guards bound its algorithmic resolution. Marker sizes are not physical radii, and numerical model time is not seconds or years. Never look directly at the Sun.",
+    "misconception": "Not every nebula forms stars, and not every star ends as a supernova. Red dwarfs and white dwarfs have different energy sources: a white dwarf glows through stored heat, and not every neutron star is seen as a pulsar. Blue-white main-sequence stars are generally hotter; a giant’s large radius does not imply proportionally greater mass. Crossing trails do not prove a collision.",
+    "boundary": "Ages and radii are approximate teaching anchors, and the 0.2-solar-mass distant future has never been observed through a complete life in the present Universe. The 3D cloud, disk, star, shell and remnant are separately magnified with no shared length ruler; enhanced color and rotatable shape are not observed reconstructions. The mature Sun-like outline and planetary orbits share a linear scale only in the separate comparison view; fixed orbits do not predict Earth’s fate. Volume shading integrates an illustrative density along sightlines; it is not measured intensity. Ejecta speeds, shocks, physical ionization, radiation transfer and mass loss are not solved. Photospheric granules and dark regions have enhanced contrast; compact remnants are not given solar granulation. Camera close-ups of stars and wider cloud/shell views preserve matter coordinates and process progress. Binary and hierarchical-triple paths are constructions; only the separate three-body chapter integrates Newtonian point masses, excluding stellar sizes, collisions, tides, relativity and evolution. Never look directly at the Sun.",
     "narration": [
       {
-        "label": "One cloud, different futures",
-        "text": "A cold cloud is mostly gas with a little dust. A dense part contracts; gas falls through a disk toward its young center and some flows out at the poles. Contraction and accretion make the center glow first. Once its core sustains hydrogen fusion, it joins the main sequence. Different birth masses can lead to different lifetimes and endings.",
-        "cue": "Choose each mass path and scrub through the main sequence, expanded envelope and remnant; compare the former-envelope outline, right-hand size change and endpoint readouts."
+        "label": "Why a cloud becomes visible",
+        "text": "A space cloud is mostly gas with some dust. Gas can glow when a star’s ultraviolet light ionizes it. Dust can scatter starlight toward us, or block the light behind it and look dark. Dense cloud cores may contract as material falls through a disk toward a young center. Contraction and accretion shine first; sustained core hydrogen fusion begins the main sequence.",
+        "cue": "Compare three cloud illuminations, then scrub the evolution through dense core, disk and main sequence; rotate to distinguish the disk and polar outflows."
       },
       {
-        "label": "One star grows into a giant",
-        "text": "Late in a Sun-like star's life, changes in the core expand its envelope. Keep Mercury’s and Venus’s orbits on screen and watch when they enter that envelope. Earth's outcome also depends on mass loss, orbital changes and tides, so one circle diagram is not enough.",
-        "cue": "Scrub back and forward across the Sun-like red-giant stage; watch the radius and Mercury/Venus states."
+        "label": "Different masses, different endings",
+        "text": "A small red dwarf uses fuel slowly and can live far beyond today’s age of the Universe. Its last stops are theoretical predictions. A Sun-like star expands, sheds its envelope and leaves a white dwarf glowing through stored heat. One massive-star outcome is a core-collapse supernova: a shell moves outward while a compact remnant remains. This example leaves a neutron star, but not every star explodes, and not every neutron star is seen as a flashing lighthouse.",
+        "cue": "Compare all four mass paths. Open the final Sun-like and 15-solar-mass 3D shells to distinguish white dwarf, neutron star and outer gas; read the low-mass distant-future qualification."
       },
       {
-        "label": "Why it shines and sometimes erupts",
-        "text": "Long-lasting solar light and heat come mainly from core fusion. Energy crosses radiative and convective regions to the photosphere. Surface magnetic fields make darker sunspots and briefly release stored energy as flares; the corona also sends out a continuing solar wind. These processes have different causes and timescales.",
-        "cue": "Select core, transport, photosphere, spots, flare and wind in order; locate each in the scene."
+        "label": "Color, size and the source of light",
+        "text": "Blue-white main-sequence stars are generally hotter than orange-red ones. An expanded red giant can still shine brightly because of its huge surface area. Size, mass and temperature answer different questions. The Sun’s ordinary light and heat come mainly from core fusion; spots, flares and solar wind involve different surface and atmospheric processes. A colorful nebula image also depends on which wavelengths a telescope observes.",
+        "cue": "Compare red dwarf, Sun, red giant and blue-white main-sequence star, then inspect solar structure and nebula notes to distinguish temperature, radius, energy and wavelength."
       },
       {
         "label": "Orbiting together",
@@ -145,6 +145,26 @@
     {
       "title": "University of Marburg · Velocity-Verlet algorithm",
       "url": "https://fb15.pages.uni-marburg.de/ag-von-domaros/teaching/molecular-dynamics/core_algorithms.html"
+    },
+    {
+      "title": "NASA Hubble · Nebulae and their illumination",
+      "url": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-nebulae/"
+    },
+    {
+      "title": "NASA Goddard · Shell, pulsar-wind and composite remnants",
+      "url": "https://imagine.gsfc.nasa.gov/science/objects/supernova_remnants.html"
+    },
+    {
+      "title": "NASA Hubble · Stellar explosions and Type Ia",
+      "url": "https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/hubble-stellar-explosions/"
+    },
+    {
+      "title": "NASA Hubble · Pulsars and viewing beams",
+      "url": "https://science.nasa.gov/mission/hubble/science/science-behind-the-discoveries/hubble-pulsars/"
+    },
+    {
+      "title": "Adams & Laughlin (1997) · Theoretical long-term low-mass stellar evolution",
+      "url": "https://arxiv.org/abs/astro-ph/9701131"
     }
   ]
 }

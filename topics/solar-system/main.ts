@@ -532,6 +532,10 @@ const solarFrame = mountPresentationFrame({ root: '.experience', visual: '.solar
 if (solarFrame) {
   const explorerNotes = document.createElement('div'); explorerNotes.className = 'explorer-external-notes';
   for (const node of document.querySelectorAll('.explorer-heading,.explorer-views,.explorer-site,.explorer-notes,.explorer-moons,.explorer-model')) explorerNotes.append(node);
+  // Keep the current lens and its independent activity control beside the actual world.
+  document.querySelector('.explorer-breadcrumb')!.append(
+    explorerNotes.querySelector('.explorer-views')!, explorerNotes.querySelector('#activity-play')!,
+  );
   solarFrame.notes.prepend(explorerNotes);
 }
 

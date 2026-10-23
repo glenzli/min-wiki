@@ -1,5 +1,7 @@
 import type { SceneStudy } from '../../src/platform/sceneReading.ts';
 import type { Origin } from './model.ts';
+import galacticContent from './galacticContent.json';
+import type { GalacticCase } from './galacticModel.ts';
 
 const w = (zh: string, en: string) => ({ zh, en });
 const solar = { title: 'NASA · Solar System facts', url: 'https://science.nasa.gov/solar-system/solar-system-facts/' };
@@ -44,7 +46,7 @@ export function pairStudy(index: number): SceneStudy {
 
 export const homeStudies: readonly SceneStudy[] = [
   {
-    child: w('太阳和绕它运行的行星属于太阳系。画面里的小圆是位置提示，不代表行星有那么大。', 'The Sun and its orbiting planets form the Solar System. Tiny circles help locate planets and do not show their sizes.'),
+    child: w('太阳和绕它运行的行星属于太阳系。太阳最大，木星是最大的行星；这里压缩大小差异，让较小的行星也能被认出，但没有颠倒大小顺序。', 'The Sun and its orbiting planets form the Solar System. The Sun is largest, and Jupiter is the largest planet. Size differences are compressed so smaller planets remain recognizable, while their size order stays correct.'),
     title: w('太阳系：轨道尺度与天体直径', 'Solar System: orbital distance and body diameter'),
     theory: w('天文单位是地球—太阳平均距离的长度单位。行星轨道半长轴与行星直径常差许多数量级，因此一张图若同时让行星可辨，必须分别标出真实尺和放大符号。', 'The astronomical unit is a length based on the Earth–Sun separation. Orbital semimajor axes and planet diameters differ by many orders of magnitude, so a diagram that keeps planets visible must distinguish its ruler from enlarged symbols.'),
     formula: '1 AU = 149 597 870.7 km',
@@ -164,3 +166,4 @@ export function zoomStudy(stage: number, origin: Origin = 'earth'): SceneStudy {
 }
 
 export function homeStudy(index: number): SceneStudy { return homeStudies[Math.max(0,Math.min(6,index))]!; }
+export function galaxyStudy(selected: GalacticCase): SceneStudy { return galacticContent.cases[selected]; }

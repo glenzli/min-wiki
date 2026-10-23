@@ -1,0 +1,199 @@
+{
+  "ui": {
+    "title": {
+      "zh": "都是星云，物质和光从哪里来？",
+      "en": "Nebulae: where do the matter and light come from?"
+    },
+    "context": {
+      "zh": "同名不等于同阶段 · 比较来源、照明与空间形态",
+      "en": "ONE NAME, DIFFERENT MECHANISMS · COMPARE MATTER, LIGHT AND SHAPE"
+    },
+    "scale": {
+      "zh": "三例是独立教学形态，不是同一个星云依次变形，也不是观测重建。配色借鉴滤镜合成照片并增强，不是肉眼所见，也不是成分测量；明暗来自示意气尘密度。云、壳与中心分别放大，无共用长度标尺。转动辨认深度，打开壳层辨认内外。",
+      "en": "These are separate teaching geometries, not one changing nebula or observed 3D reconstructions. Colors are enhanced in the style of filtered composite images, not naked-eye views or composition measurements; brightness comes from illustrative gas/dust density. Cloud, shell and center are separately magnified with no shared length scale. Rotate to inspect depth; open a shell to distinguish inside from outside."
+    },
+    "lightLabel": {
+      "zh": "同一云形 · 改变照明条件",
+      "en": "Same cloud geometry · change illumination"
+    },
+    "material": {
+      "zh": "物质从哪里来",
+      "en": "Where matter comes from"
+    },
+    "power": {
+      "zh": "为什么可见",
+      "en": "Why it is visible"
+    },
+    "center": {
+      "zh": "中心与外层",
+      "en": "Center and surroundings"
+    },
+    "loading": {
+      "zh": "正在准备可转动 3D；下方保留平面示意。",
+      "en": "Preparing rotatable 3D; the flat illustration remains below."
+    },
+    "failed": {
+      "zh": "3D 暂不可用，已保留同一案例的平面示意与说明。",
+      "en": "3D is unavailable; the same case remains as a flat illustration with explanation."
+    },
+    "retry": {
+      "zh": "重试 3D",
+      "en": "Retry 3D"
+    },
+    "ready": {
+      "zh": "拖动转动 · 双指或滚轮缩放 · 方向键转动，+/− 缩放，Home 复位",
+      "en": "Drag to rotate · pinch or wheel to zoom · arrow keys rotate, +/− zoom, Home resets"
+    },
+    "canvas": {
+      "zh": "可转动的恒星与星云三维教学形态。可用方向键转动，加减键缩放，Home 恢复角度。",
+      "en": "Rotatable 3D teaching geometry of stars and nebulae. Arrow keys rotate, plus and minus zoom, and Home resets the camera."
+    },
+    "fallback": {
+      "zh": "平面示意",
+      "en": "Flat illustration"
+    },
+    "shellFormulaTerms": {
+      "zh": "Iν 为给定频率的表面亮度，jν 是每单位路径的发射贡献，s 为视线路径。此式须忽略显著吸收；3D 壳不计算真实辐射强度。",
+      "en": "Iν is intensity at one frequency, jν the emission contribution per unit path, and s the sightline. This form neglects significant absorption; the 3D shell does not calculate real radiative intensity."
+    },
+    "choices": {
+      "zh": "选择星云案例",
+      "en": "Choose a nebula case"
+    }
+  },
+  "cases": {
+    "nursery": {
+      "name": {
+        "zh": "成星云：气体和尘埃",
+        "en": "Star-forming cloud: gas and dust"
+      },
+      "body": {
+        "zh": "恒星的原料主要是冷气体，夹有少量尘埃；致密部分可能收缩成恒星，而不是整片云一次变成一颗星。同样的云形，遇到不同照明条件，可以因气体发光、尘埃散射或遮挡背景而显现。",
+        "en": "Stellar raw material is mostly cold gas with a little dust. Dense parts may collapse into stars; an entire cloud does not become one star at once. Under different illumination, the same cloud geometry can appear through gas emission, dust scattering or blocking background light."
+      },
+      "material": {
+        "zh": "已有星际气体与尘埃",
+        "en": "Existing interstellar gas and dust"
+      },
+      "center": {
+        "zh": "可有多个致密核与年轻恒星",
+        "en": "Can contain multiple dense cores and young stars"
+      },
+      "boundary": {
+        "zh": "三种照明按钮改变示意条件，不是同一真实星云的即时物理变换；发射、反射与暗区可同时存在。只展示一个局部云核，不断言可见云全部正在成星。",
+        "en": "The illumination buttons change teaching conditions, not a real nebula instantaneously. Emission, reflection and dark regions can coexist. One local cloud core is shown; visible cloud is not assumed to be forming stars everywhere."
+      },
+      "source": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-nebulae/",
+      "evidence": {
+        "zh": "光谱的发射线、反射连续谱、背景恒星的消光和红外尘埃辐射，提供相互补充的线索；照片的颜色还取决于滤镜和合成。",
+        "en": "Emission lines, reflected continua, extinction of background stars and infrared dust emission provide complementary evidence. Image colors also depend on filters and processing."
+      }
+    },
+    "planetary": {
+      "name": {
+        "zh": "行星状星云：晚期抛层",
+        "en": "Planetary nebula: shed envelope"
+      },
+      "body": {
+        "zh": "太阳型等恒星晚期失去外层，露出的炽热核心使抛出的气体电离、发光。转动可看出椭圆外观可以来自三维壳层；打开近侧壳层，找出空腔和仍留在中心的致密核心。名字中的“行星”来自早期望远镜外观，物质并不是行星。",
+        "en": "When a star such as a Sun-like star loses its outer envelope late in life, its exposed hot core can ionize the gas and make it glow. Rotate to see how an elliptical outline can come from a 3D shell; open the near side to locate the cavity and compact central core. “Planetary” came from its early telescopic appearance; the material is not planets."
+      },
+      "material": {
+        "zh": "恒星晚期排出的包层",
+        "en": "Envelope expelled late in stellar life"
+      },
+      "power": {
+        "zh": "炽热核心的紫外光电离气体",
+        "en": "Ultraviolet light from the hot core ionizes gas"
+      },
+      "center": {
+        "zh": "正在成为白矮星的热核心",
+        "en": "Hot core evolving toward a white dwarf"
+      },
+      "boundary": {
+        "zh": "这一椭球壳不是所有行星状星云的通用形状：双极、环状和不规则结构都可能出现。太阳未来星云的亮度仍依赖模型；画面不计算紫外辐射传输或可见持续时间。",
+        "en": "This ellipsoidal shell is one geometry; planetary nebulae can be bipolar, ring-like or irregular. The brightness of any future solar nebula is model dependent. Ultraviolet radiative transfer and visible duration are not calculated."
+      },
+      "source": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-nebulae/",
+      "evidence": {
+        "zh": "气体的发射线与多普勒速度，结合中心星光谱，帮助推断壳层组成、运动和照明源；单张椭圆照片不能唯一还原三维形状。",
+        "en": "Gas emission lines and Doppler velocities, combined with the central star’s spectrum, constrain composition, motion and illumination. One elliptical image cannot uniquely recover a 3D shape."
+      }
+    },
+    "supernova": {
+      "name": {
+        "zh": "超新星遗迹：冲击与抛射物",
+        "en": "Supernova remnant: shock and ejecta"
+      },
+      "body": {
+        "zh": "这里选一次留下中子星的核心坍缩案例。向外的冲击波扫过周围气体，抛射物和被加热的星际气体形成外部遗迹；中心遗骸则很小。完整外观有明亮边缘，不表示物质只排成平面圆环：视线在壳边穿过更多发光物质。",
+        "en": "This case chooses a core-collapse explosion leaving a neutron star. An outward shock sweeps surrounding gas; ejecta and heated interstellar material make the extended remnant while the central object is tiny. A bright rim does not mean matter forms a flat ring: a sightline near a shell’s edge passes through more emitting material."
+      },
+      "material": {
+        "zh": "恒星抛射物＋被扫过的周围气体",
+        "en": "Stellar ejecta plus swept-up surrounding gas"
+      },
+      "power": {
+        "zh": "冲击加热等过程；观测波段很重要",
+        "en": "Shock heating and other processes; wavelength matters"
+      },
+      "center": {
+        "zh": "此例留下中子星，并非每例都有",
+        "en": "A neutron star in this case, not in every remnant"
+      },
+      "boundary": {
+        "zh": "这是壳层型核心坍缩示例，未求解激波。蟹状脉冲星风星云和复合遗迹具有不同结构；Ia 型超新星涉及白矮星热核爆发，通常不留下中子星。不能把每个遗迹都解释为这一分支，也不能把所有中子星画成可见脉冲星。",
+        "en": "This shell-like core-collapse example does not solve shock dynamics. Pulsar-wind and composite remnants have different structures; Type Ia explosions involve thermonuclear disruption of a white dwarf and usually leave no neutron star. This branch does not describe every remnant, and not all neutron stars are observed as pulsars."
+      },
+      "source": "https://imagine.gsfc.nasa.gov/science/objects/supernova_remnants.html",
+      "evidence": {
+        "zh": "不同时刻的膨胀影像和射电、可见光、X 射线光谱分别追踪不同温度与能量的物质。壳边增亮可来自更长的发光路径，而非那里有一面发光墙。",
+        "en": "Expansion across epochs and radio, optical and X-ray spectra trace different material and energy ranges. Limb brightening can come from a longer emitting path, rather than a bright wall at the edge."
+      }
+    }
+  },
+  "illumination": {
+    "emission": {
+      "name": {
+        "zh": "气体发射光",
+        "en": "Gas emits light"
+      },
+      "power": {
+        "zh": "热星紫外光电离气体，复合等过程发光",
+        "en": "Hot-star UV ionizes gas; recombination and related processes emit light"
+      },
+      "body": {
+        "zh": "这里提高照明恒星的紫外辐射条件。气体被电离，电子与离子复合等过程产生谱线光。增强的玫红与蓝青色让发光区域和空腔更好辨认；这些颜色没有逐一对应实测成分，也不表示整片冷分子云都变成同样热的粉红雾。",
+        "en": "Here the illuminating source supplies strong ultraviolet radiation. Ionization followed by recombination and related processes produces line emission. Enhanced rose and cyan colors help distinguish glowing regions and cavities; they do not map measured composition or mean that the entire cold molecular cloud has become uniformly hot pink fog."
+      }
+    },
+    "reflection": {
+      "name": {
+        "zh": "尘埃散射星光",
+        "en": "Dust scatters starlight"
+      },
+      "power": {
+        "zh": "附近星光被尘埃散射到视线",
+        "en": "Nearby starlight is scattered into the sightline by dust"
+      },
+      "body": {
+        "zh": "尘埃本身不必产生这些可见光，它把附近恒星的光散射过来。短波可见光常更容易散射，所以许多反射星云偏蓝；同一云中仍可能有暗尘埃和发射气体。",
+        "en": "Dust need not generate this visible light: it scatters light from a nearby star. Shorter visible wavelengths are often scattered more efficiently, so many reflection nebulae look bluish. Dark dust and emitting gas can still coexist in the same cloud."
+      }
+    },
+    "dark": {
+      "name": {
+        "zh": "尘埃遮挡背景",
+        "en": "Dust blocks the background"
+      },
+      "power": {
+        "zh": "前景尘埃吸收和散射背景可见光",
+        "en": "Foreground dust absorbs and scatters background visible light"
+      },
+      "body": {
+        "zh": "把照明条件改为明亮背景。前方较密的尘埃遮住部分可见光，云就显出暗轮廓；暗不等于没有物质。红外波段常能看穿更多尘埃，但也不是任何波长都完全透明。",
+        "en": "Now place a bright background behind the cloud. Dense foreground dust removes some visible light by absorption and scattering, making a dark silhouette; darkness does not mean emptiness. Infrared often probes farther through dust, but no wavelength is assumed perfectly transparent."
+      }
+    }
+  }
+}

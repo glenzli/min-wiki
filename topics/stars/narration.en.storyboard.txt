@@ -1,21 +1,21 @@
-01 · One cloud, different futures
-[Choose each mass path and scrub through the main sequence, expanded envelope and remnant; compare the former-envelope outline, right-hand size change and endpoint readouts.]
+01 · Why a cloud becomes visible
+[Compare three cloud illuminations, then scrub the evolution through dense core, disk and main sequence; rotate to distinguish the disk and polar outflows.]
 
-A cold cloud is mostly gas with a little dust. A dense part contracts; gas falls through a disk toward its young center and some flows out at the poles. Contraction and accretion make the center glow first. Once its core sustains hydrogen fusion, it joins the main sequence. Different birth masses can lead to different lifetimes and endings.
-
----
-
-02 · One star grows into a giant
-[Scrub back and forward across the Sun-like red-giant stage; watch the radius and Mercury/Venus states.]
-
-Late in a Sun-like star's life, changes in the core expand its envelope. Keep Mercury’s and Venus’s orbits on screen and watch when they enter that envelope. Earth's outcome also depends on mass loss, orbital changes and tides, so one circle diagram is not enough.
+A space cloud is mostly gas with some dust. Gas can glow when a star’s ultraviolet light ionizes it. Dust can scatter starlight toward us, or block the light behind it and look dark. Dense cloud cores may contract as material falls through a disk toward a young center. Contraction and accretion shine first; sustained core hydrogen fusion begins the main sequence.
 
 ---
 
-03 · Why it shines and sometimes erupts
-[Select core, transport, photosphere, spots, flare and wind in order; locate each in the scene.]
+02 · Different masses, different endings
+[Compare all four mass paths. Open the final Sun-like and 15-solar-mass 3D shells to distinguish white dwarf, neutron star and outer gas; read the low-mass distant-future qualification.]
 
-Long-lasting solar light and heat come mainly from core fusion. Energy crosses radiative and convective regions to the photosphere. Surface magnetic fields make darker sunspots and briefly release stored energy as flares; the corona also sends out a continuing solar wind. These processes have different causes and timescales.
+A small red dwarf uses fuel slowly and can live far beyond today’s age of the Universe. Its last stops are theoretical predictions. A Sun-like star expands, sheds its envelope and leaves a white dwarf glowing through stored heat. One massive-star outcome is a core-collapse supernova: a shell moves outward while a compact remnant remains. This example leaves a neutron star, but not every star explodes, and not every neutron star is seen as a flashing lighthouse.
+
+---
+
+03 · Color, size and the source of light
+[Compare red dwarf, Sun, red giant and blue-white main-sequence star, then inspect solar structure and nebula notes to distinguish temperature, radius, energy and wavelength.]
+
+Blue-white main-sequence stars are generally hotter than orange-red ones. An expanded red giant can still shine brightly because of its huge surface area. Size, mass and temperature answer different questions. The Sun’s ordinary light and heat come mainly from core fusion; spots, flares and solar wind involve different surface and atmospheric processes. A colorful nebula image also depends on which wavelengths a telescope observes.
 
 ---
 

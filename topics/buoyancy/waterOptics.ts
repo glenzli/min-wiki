@@ -25,7 +25,7 @@ function physicalWater(thickness: number, roughness: number) {
     ior: 1.333, thickness, attenuationColor: new THREE.Color('#c5edf2'),
     // Restrained display tint separates the water from the pale tabletop;
     // this distance is an art parameter, not measured pure-water absorption.
-    attenuationDistance: 1.2, specularIntensity: 1, envMapIntensity: 1,
+    attenuationDistance: .20, specularIntensity: 1, envMapIntensity: 1,
     transparent: false, depthWrite: true, side: THREE.FrontSide,
   });
 }
@@ -35,13 +35,13 @@ function physicalWater(thickness: number, roughness: number) {
  * normalized side geometry has a changing vertical model scale. The caller
  * retains the level, horizontal surface/cavity geometry and finite clock. */
 export function createWaterOptics(_waterLevel: ScalarUniform, ripple: ScalarUniform): WaterOptics {
-  const side = physicalWater(.16, .035);
+  const side = physicalWater(.035, .035);
   side.onBeforeCompile = shader => {
     shader.fragmentShader = shader.fragmentShader.replace('#include <transmission_fragment>', transmissionFragment);
   };
   side.customProgramCacheKey = () => 'buoyancy-water-volume-transmission-v7';
 
-  const surface = physicalWater(.22, .025);
+  const surface = physicalWater(.035, .025);
   surface.onBeforeCompile = shader => {
     shader.uniforms.waterOpticalRipple = ripple;
     shader.vertexShader = `varying vec3 vWaterWorld;\n${shader.vertexShader}`
@@ -60,18 +60,22 @@ export function createWaterOptics(_waterLevel: ScalarUniform, ripple: ScalarUnif
         // At rest the plane is optically flat; no permanent wave pattern is drawn.
         vec2 waterPoint = vWaterWorld.xz;
         float disturbance = clamp(waterOpticalRipple, 0.0, 1.0);
-        float phase = disturbance * 2.1;
-        float waveA = dot(waterPoint, vec2(4.9, 2.7)) + .42 * sin(waterPoint.y * 3.1) + phase;
-        float waveB = dot(waterPoint, vec2(-2.1, 7.3)) + .51 * sin(waterPoint.x * 2.2) + 1.4 - phase * .67;
-        vec2 waterSlope = vec2(4.9, 2.7 + 1.302 * cos(waterPoint.y * 3.1)) * cos(waveA)
-          + vec2(-2.1 + 1.122 * cos(waterPoint.x * 2.2), 7.3) * cos(waveB) * .46;
-        waterSlope *= disturbance * .0045;
+        float radius = length(waterPoint);
+        float waveRadius = .3 + (1.0 - disturbance) * 1.25;
+        float offset = radius - waveRadius;
+        float envelope = exp(-offset * offset / .075);
+        // One small radial disturbance travels out from the specimen during
+        // the supplied entry phase. Its envelope and amplitude vanish with
+        // that same finite phase; no second time source or crossing waves.
+        float slope = (18.0 * cos(offset * 18.0)
+          - 2.0 * offset / .075 * sin(offset * 18.0)) * envelope;
+        vec2 waterSlope = waterPoint / max(radius, .001) * slope * disturbance * .00085;
         vec3 opticalNormal = normalize(vec3(-waterSlope.x, 1.0, -waterSlope.y));
         normal = normalize((viewMatrix * vec4(opticalNormal * faceDirection, 0.0)).xyz);
       `)
       .replace('#include <transmission_fragment>', transmissionFragment);
   };
-  surface.customProgramCacheKey = () => 'buoyancy-water-surface-transmission-v7';
+  surface.customProgramCacheKey = () => 'buoyancy-water-surface-transmission-v8';
 
   // Preserve the scene's existing resource API, while dropping the illustrative
   // floor-light overlay. This transmission pass does not calculate caustics.

@@ -109,6 +109,7 @@ async function selectChapter(id: ChapterId, push = false) {
   chapterAbort.abort(); chapterAbort = new AbortController();
   chapterId = id;
   document.body.dataset.chapter = id;
+  workspace.dataset.activeChapter = id;
   el('scale-views').hidden = id !== 'scale';
   if (push) history.pushState(null, '', href(id));
   (el('view') as HTMLSelectElement).value = views[id];

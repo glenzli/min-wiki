@@ -1,31 +1,25 @@
 <section class="study-content buoyancy-study">
-  <header class="hero"><p class="eyebrow">身边的科学 · 4–6 岁</p><h1>水为什么能托住小船？</h1><p class="intro">从一块木头开始，看水怎样挤压、怎样托住物体。</p><div class="learning-modes" aria-label="讲解层次" data-reader-menu="options"><button data-mode="kids" aria-pressed="true">儿童版</button><button data-mode="academic" aria-pressed="false">学术版</button></div></header>
-  <nav class="experiments" aria-label="沿着问题探索" data-reader-menu="chapters">
-    <button data-chapter="objects" data-experiment="objects" aria-pressed="true">① 谁会浮起来？</button><button data-chapter="pressure" aria-pressed="false">② 水怎样挤压？</button><button data-chapter="clay" data-experiment="boat" aria-pressed="false">③ 同一团泥变小船</button><button data-chapter="cargo" aria-pressed="false">④ 船沿还能装多少？</button><button data-chapter="depth" data-experiment="depth" aria-pressed="false">⑤ 放得更深呢？</button>
-  </nav>
-  <section class="lab buoyancy-lab">
-    <div class="scene-column">
-      <div class="scene-top"><span id="observation-prompt">先猜一猜，再放进水里</span><strong id="state"></strong></div>
-      <div class="view-switch" role="group" aria-label="观察同一物体"><button data-observation="tank" aria-pressed="true">实验台</button><button data-observation="pressure" aria-pressed="false">水压剖面</button><button data-observation="displacement" aria-pressed="false">排水对照</button></div>
-      <svg id="scene" viewBox="0 0 850 540" role="img" aria-label="浮力实验水箱"></svg>
-      <p id="motion-state" class="motion-state" role="status">换个物品，或慢慢加一点货物。</p>
+  <header class="hero"><h1>水为什么能托住小船？</h1><p>从水托住水，看到同一份金属变成船。</p></header>
+  <section class="journey-lab">
+    <div class="journey-visual">
+      <nav class="journey-stations" aria-label="浮力的四段故事"><button data-journey="shore" aria-pressed="true"><span>01</span>看浮沉</button><button data-journey="water" aria-pressed="false"><span>02</span>水托住水</button><button data-journey="pressure" aria-pressed="false"><span>03</span>水怎样推</button><button data-journey="metal" aria-pressed="false"><span>04</span>金属变成船</button></nav>
+      <div class="journey-stage" data-reader-stage><div id="shore-host" aria-hidden="true"></div><svg id="journey-diagram" role="img" aria-label="同一物体在水中的位置和受力"></svg><p id="journey-fallback" class="journey-fallback" hidden>三维画面暂不可用，正在显示同一过程的剖面示意。</p></div>
+      <div class="journey-viewbar" id="journey-viewbar"><div role="group" aria-label="观察视角"><button data-camera="oblique" aria-pressed="true">斜看</button><button data-camera="front" aria-pressed="false">侧看水下</button><button data-camera="top" aria-pressed="false">看船里面</button></div><span>拖动旋转 · 双指缩放</span></div>
     </div>
-    <div id="primary-controls">
-      <div id="objects-controls"><h2>选择一个物品</h2><div class="object-grid"><button data-object="wood" aria-pressed="true">木块</button><button data-object="stone" aria-pressed="false">小石头</button><button data-object="steel" aria-pressed="false">钢块</button><button data-object="clay" aria-pressed="false">橡皮泥</button></div></div>
-      <div id="boat-controls" hidden><div class="shape-buttons"><button id="ball" aria-pressed="true">实心球</button><button id="boat" aria-pressed="false">空心船</button></div><div id="cargo-primary" hidden><button id="cargo-less" aria-label="减少一块货物">−</button><output id="cargo-count"></output><button id="cargo-more" aria-label="增加一块货物">＋</button><button id="challenge">四块货物挑战</button></div></div>
-      <div id="depth-controls" hidden><label for="depth">用悬线缓缓放低</label><input id="depth" type="range" min="0" max="150" value="50"><output id="depth-count"></output></div>
+    <div class="journey-caption" data-reader-caption><div class="journey-caption-heading"><p id="journey-title" aria-live="polite"></p><span id="metal-mass" hidden>金属始终 780 克</span></div><p id="journey-story"></p><p id="journey-hint"></p></div>
+    <div id="journey-transport" data-reader-transport>
+      <div class="journey-conditions"><div id="journey-objects" class="journey-objects" role="group" aria-label="选择观察对象"><button data-specimen="log" aria-pressed="true"><i></i>圆木</button><button data-specimen="stone" aria-pressed="false"><i></i>石头</button><button data-specimen="coin" aria-pressed="false"><i></i>硬币</button><button data-specimen="boat" aria-pressed="false"><i></i>小船</button></div><div id="journey-lenses" role="group" aria-label="观察整体或接触处" hidden><button data-lens="whole" aria-pressed="true">看整体</button><button data-lens="micro" aria-pressed="false">放大接触处</button></div><div id="journey-cargo" class="journey-cargo" hidden><span>试着加货</span><button id="journey-less" aria-label="减少一块货物">−</button><output id="journey-cargo-count">货物 0 块</output><button id="journey-more" aria-label="增加一块货物">＋</button><small>每块 100 克</small></div></div>
+      <div id="journey-balance" class="journey-balance" hidden><div><span id="water-mass-label">同形水</span><strong id="water-mass"></strong><i id="water-mass-bar"></i></div><div><span id="object-mass-label">物体</span><strong id="object-mass"></strong><i id="object-mass-bar"></i></div></div>
+      <div id="journey-playback" class="journey-playback"><button id="journey-play">播放过程</button><button id="journey-restart" aria-label="回到本段开头">↶</button><div class="journey-scrubber"><label class="sr-only" for="journey-progress">过程进度</label><input id="journey-progress" type="range" min="0" max="1000" value="0"><div id="journey-moments" class="journey-moments"></div></div></div>
+      <div class="journey-bottom"><span id="journey-motion-note">过程可暂停、回看</span><button id="journey-next">下一步：水托住水 <span aria-hidden="true">→</span></button></div>
     </div>
-    <aside class="lab-settings">
-      <p id="capacity-readout" class="capacity-readout" role="status" hidden></p><p id="same-load" class="same-load" role="status" hidden></p>
-      <div id="cargo-controls" hidden><label for="hull">把船捏窄或捏宽</label><input id="hull" type="range" min="900" max="1800" step="50" value="1400"><output id="hull-count"></output><p class="small">橡皮泥仍是 600 克；船壳变宽、变薄，围住的空间改变。</p><label for="cargo">装上小货物</label><input id="cargo" type="range" min="0" max="12" value="0" step="1"><p class="small">每块货物 100 克</p></div>
-      <label for="water">换一种水</label><select id="water"><option value="fresh">淡水</option><option value="salt">海水</option></select><label class="check"><input id="forces" type="checkbox" checked>看受力箭头</label>
-      <p id="pressure-explanation" class="small">蓝色箭头表示水对小块表面的挤压，绿色箭头表示合起来的浮力。</p>
-      <p data-academic-only hidden id="numbers" class="small"></p><p id="force-balance" class="small" hidden></p>
-      <div class="readouts" data-academic-only hidden><div><span>排开的水</span><strong><output id="displaced"></output> <small>毫升</small></strong></div><div><span>物品的质量</span><strong><output id="mass"></output> <small>克</small></strong></div></div>
-      <p class="small" data-academic-only hidden>水压剖面显示相对水面的表压 p − p₀ = ρgh。箭长表示局部压强，不是把所有箭头直接相加得到牛顿数。</p><button id="reset" class="quiet">回到木块</button>
+    <aside class="journey-settings">
+      <h2>让水的作用更清楚</h2><label for="journey-water">换一种水</label><select id="journey-water"><option value="fresh">淡水</option><option value="salt">海水</option></select><p>切换液体后，仍观察同一个物体。海水密度稍大，同样的排水体积能提供稍大的托力。</p>
+      <dl class="journey-readouts"><div><dt>物体总质量</dt><dd id="read-mass"></dd></div><div><dt>排开水的体积</dt><dd id="read-displaced"></dd></div><div><dt>水的托力</dt><dd id="read-buoyancy"></dd></div><div><dt>物体的重量</dt><dd id="read-weight"></dd></div></dl>
+      <h2>为什么是同形水的重量？</h2><p>静水中，一份水能留在原位，是因为周围水的压力合力托住了它的重量。把它替换成具有相同接触边界的物体，水位保持不变，周围的压力作用就相同。</p><p class="journey-formula">F浮 = ρ水 g V排水</p><p>真正施力的是接触物体的水。排水没有制造新水，也没有额外的水在远处推物体。</p>
+      <h2>同一份金属</h2><p>金属始终重 780 克，材料本身体积始终是 100 毫升。改变的是船壳挡开水的空间。每块货物重 100 克、占 40 毫升；进水后，已经装水的空腔不再算排水。</p>
+      <details><summary>模型范围与微观示意</summary><p>水体近似均匀、静止。位置、时间与成形为教学示意，不求解流体动力学、金属塑性、翻船或进水速率。各物体分别取景，不代表真实尺寸相同；水底接触假定水仍能进入物体下方。</p><p>水压在各处垂直作用于表面，深处压强较大。完全浸没的刚性物体在均匀水中继续下移时，排水体积和净浮力基本不变。</p><p>液体分子持续运动并相互作用。微观图保持相同水温与近似相同密度；更深处的平均压强更大，不表示分子明显更快或更密。大小、轨迹和时间均为定性示意，不进行分子动力学计算。短动画暂停，不表示真实分子停止运动。</p></details>
+      <p class="journey-sources"><a href="https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy">浮力与同形水 · OpenStax</a><a href="https://www.feynmanlectures.caltech.edu/I_01.html">分子的运动与相互作用 · 费曼物理学讲义</a></p>
     </aside>
-    <p class="observation-boundary">停稳静水模型；形状、剖面和水位变化为示意。量杯只作排水量对照，不从水箱取水；不计算波浪、翻船或进水速度。</p>
   </section>
-  <article class="discovery" data-reader-prose><div><p class="eyebrow">一起发现</p><h2 id="discovery-title"></h2><p id="story" aria-live="polite"></p><p id="try-next" class="child-prompt"></p></div></article>
-  <details class="grownups" data-academic-only hidden data-reader-prose><summary>给大人的解释</summary><div class="detail-grid"><article><h2>浮力从哪里来？</h2><p>水会垂直挤压物体表面。静止液体中，同深度处的压强相同；更深处的压强更大。上表面受到向下的压力，下表面受到更大的向上压力，侧面的水平作用相抵，留下向上的浮力。</p><p class="formula">F浮 = ρgV排水</p><p>浮力 = 排开的水的重量。漂浮稳定时，浮力和重力一样大。</p></article><article><h2>这不是“轻的浮、重的沉”</h2><p>大船很重，但船壳围出很大的空间，可以在进水前排开很多水。小石头虽轻，却可能在完全浸入水后仍得不到足够的浮力。</p><p>浸入水里的体积不变时，换成密度更大的水，浮力会更大。已经漂浮的物品会浮高一点，最后浮力仍等于重力。</p></article></div><h2>船沿为何重要？</h2><p>在船壳保持直立、内部不进水的模型中，漂浮要求总质量小于水密度乘以船沿没入前的最大排水容积：m₍总₎ &lt; ρ₍水₎V₍船沿₎。停稳后实际排水体积为 m₍总₎/ρ₍水₎；到达船沿临界状态时，水进入船内，不能继续按干燥空心船计算。</p><h2>画面与真实世界</h2><p>这是静止状态的教学场景，尺寸比例和水位变化适当夸张，体积以读数为准；不计算波浪、倾覆和表面张力。海水密度取 1.025 克/毫升。橡皮泥不吸水，小船保持直立，进水后空气能逸出。</p><p>浸深实验用悬线保持方块停稳。它比同体积的水重，绳始终绷紧；张力 T 加上浮力 F 等于重量 W。完全浸没后继续放低，两种向上的力都基本不变。落到底部的物品由箱底补足支持力。受力箭头采用同一标尺，位置为方便辨认而错开。</p><p>剖面沿用同一物体、载荷、液体与浸深。蓝色局部箭头按表面法线向内，随相对水面的深度增大；绿色合力来自排水量模型。图形未标定面积与长度，不能拿蓝色箭头做数值积分。对触底物体，模型假定水仍可接触底面，不求解密封接触导致的浮力变化。</p><p>旁边量杯展示与排水量相同体积的水，帮助比较；它不是从这个水箱另接出来的水。</p><p>捏泥过渡与水位变化帮助观察，不是材料力学、手工过程或物理时间模拟；数值只表示停稳后的状态。</p><h2>资料依据</h2><a href="https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure">流体、密度与压强 · OpenStax</a> · <a href="https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy">阿基米德原理 · OpenStax</a></details>
 </section>

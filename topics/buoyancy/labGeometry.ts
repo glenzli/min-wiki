@@ -1,19 +1,17 @@
 import * as THREE from 'three';
-import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
-import { mergeVertices } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 
 export const BASIN_FLOOR=.08;
-const segments=128,top=3.37;
+const segments=128,top=1.80;
 
 /** One gently flared, asymmetric outline shared by glass and water. These
  * dimensions are illustrative; the equilibrium model owns displacement. */
 export function basinPoint(angle:number,height:number,inset=0){
  const t=THREE.MathUtils.clamp((height-BASIN_FLOOR)/(top-BASIN_FLOOR),0,1);
- const bend=.020*Math.sin(angle*3+.4)+.009*Math.cos(angle*5-.8);
- const c=Math.cos(angle),s=Math.sin(angle),a=2.31+.20*t,b=.84+.22*t;
+ const bend=.032*Math.sin(angle*3+.4)+.012*Math.cos(angle*5-.8);
+ const c=Math.cos(angle),s=Math.sin(angle),a=2.26+.25*t,b=.84+.25*t;
  return new THREE.Vector2(
-  (a-inset)*Math.sign(c)*Math.abs(c)**.68*(1+bend),
-  (b-inset)*Math.sign(s)*Math.abs(s)**.70*(1+bend)+.025*Math.sin(angle*2),
+  (a-inset)*Math.sign(c)*Math.abs(c)**.90*(1+bend),
+  (b-inset)*Math.sign(s)*Math.abs(s)**.92*(1+bend)+.025*Math.sin(angle*2),
  );
 }
 
@@ -88,45 +86,5 @@ export function updateMeniscusGeometry(geometry:THREE.BufferGeometry,water:numbe
  positions.needsUpdate=true;geometry.computeVertexNormals();geometry.computeBoundingSphere();
 }
 
-function normalized(geometry:THREE.BufferGeometry){
- geometry.computeBoundingBox();const box=geometry.boundingBox!,center=box.getCenter(new THREE.Vector3()),size=box.getSize(new THREE.Vector3());
- geometry.translate(-center.x,-center.y,-center.z);geometry.scale(1/size.x,1/size.y,1/size.z);geometry.computeVertexNormals();return geometry;
-}
-
-export function createWoodShape(){
- const geometry=new RoundedBoxGeometry(1,1,1,6,.025),p=geometry.getAttribute('position');
- for(let i=0;i<p.count;i++){
-  const x=p.getX(i),y=p.getY(i),z=p.getZ(i);
-  p.setXYZ(i,x+.004*Math.sin(y*4+z*3),y+.006*Math.sin(x*4+.6)*Math.cos(z*2),z*(.985+.02*Math.cos(x*3+.2)));
- }
- return normalized(geometry);
-}
-
-export function createPebbleShape(){
- const source=new THREE.IcosahedronGeometry(.5,4);source.deleteAttribute('normal');
- const geometry=mergeVertices(source);source.dispose();const p=geometry.getAttribute('position');
- for(let i=0;i<p.count;i++){
-  const x=p.getX(i),y=p.getY(i),z=p.getZ(i),r=1+.055*Math.sin(x*7+z*3)+.035*Math.cos(y*8-z*4);
-  p.setXYZ(i,x*r+.06*y,Math.max(-.36,y*(.92+.08*Math.cos(x*6))),z*r+.04*x);
- }
- return normalized(geometry);
-}
-
-export function createMetalShape(){
- const shape=new THREE.Shape();
- for(let i=0;i<=6;i++){
-  const a=i/6*Math.PI*2+Math.PI/6,x=Math.cos(a)*.5,y=Math.sin(a)*.5;
-  if(i===0)shape.moveTo(x,y);else shape.lineTo(x,y);
- }
- const geometry=new THREE.ExtrudeGeometry(shape,{depth:.82,steps:1,bevelEnabled:true,bevelThickness:.045,bevelSize:.045,bevelSegments:4});
- geometry.rotateX(-Math.PI/2);return normalized(geometry);
-}
-
-export function createClayShape(){
- const geometry=new THREE.SphereGeometry(.5,64,40),p=geometry.getAttribute('position');
- for(let i=0;i<p.count;i++){
-  const x=p.getX(i),y=p.getY(i),z=p.getZ(i),r=1+.035*Math.sin(x*9+y*4)+.026*Math.cos(z*8-x*4);
-  p.setXYZ(i,x*r,y*r+.018*Math.sin(x*5+z*4),z*r);
- }
- return normalized(geometry);
-}
+// Kept as re-exports for existing geometry consumers.
+export { createWoodShape, createPebbleShape, createMetalShape, createClayShape } from "./specimenGeometry.ts";

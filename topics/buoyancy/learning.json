@@ -2,101 +2,101 @@
   "version": 1,
   "topicId": "buoyancy",
   "zh": {
-    "question": "水为什么能托住物体？同一团泥从实心球变成载货小船，水的作用又怎样改变？",
-    "observe": "按五个问题探索：先比较木块与石块，再切到同一物体的水压剖面；把同一团 600 g 泥捏成空心船，逐块装货，观察船沿。最后用悬线放低方块，比较半浸、全浸与更深处，再换海水。切换实验台、剖面和排水对照不会清空当前物体的货物、液体或浸深。",
+    "question": "水怎样托住物体？为什么同一份金属做成船以后，能从下沉变成漂浮？",
+    "observe": "从同一处岸边开始，分别观察圆木、石头、硬币和小船的浮沉。第二段先圈出原位的一份水，再保持水位与接触边界，用物体替换它，最后放开物体比较浮沉。第三段沿同一物体看整体水压和 A、B 接触处的微观示意；播放分子观察不会推进物体浮沉。第四段把同一份 780 克、100 毫升的实心金属取出、压薄、抬起边缘，再放回水中。小船成形后逐块加货，观察吃水与船沿；换成海水时仍比较同一物体。",
     "academic": [
       {
-        "title": "浮力来自压力差",
-        "body": "在均匀、静止的液体中，压强相对水面的增加为 ρgh；水对表面的压力沿法线向内。矩形剖面的左右同深处压力相抵，底面向上的压力大于顶面向下的压力，留下向上的合力。一般封闭浸水表面的合力等于排开液体的重量：F浮 = ρgV排水。剖面里的蓝色箭头是局部压强的示意，绿色合力和数值来自排水量模型，不能把未标定的箭头当作积分数据。沉下去的物体也有浮力，触底后箱底再提供支持；本模型假定底面仍能接触水，不求解密封接触。"
+        "title": "先看水怎样托住水，再作同形替换",
+        "body": "在均匀静水里想象圈出一份水，不加薄膜或容器。这份水保持静止，周围水沿边界的压力合力便必须托住它的重量。在同一位置用物体替换这份水，先保持水位、接触边界和姿态不变，周围的压力作用也不变；改变的是边界内的重量。于是浮力等于被排开水的重量：F浮 = ρ水 g V排水，其中 ρ水 是液体密度，g 是重力加速度，V排水 是物体挡开的水下体积。想象水团没有在远处推物体，真正施力的是接触边界的水。完成替换后才放开：物体较重便下沉，较轻便上浮；自由漂浮的停稳状态满足浮力等于总重力。下沉时仍有浮力，实际触底后才增加底面的支持力。上浮、下沉和取放的时间轨迹为教学插值，不能用画面速度反推真实加速度。"
       },
       {
-        "title": "形状改变可用的排水空间",
-        "body": "同一块泥的质量不因捏成船而减小，但船壳围出的不进水空间，使它在船边没入水面前能够排开更多水。稳定漂浮时浮力等于总重力；增加货物后需排开更多水，船便下沉一些。水越过船边进入内部后，原来被排除的水能占据该空间，浮力条件改变，不能再沿用未进水船体的排水能力。"
+        "title": "同一份钢，改变能挡住水的空间",
+        "body": "金属材料质量始终为 780 g，实体体积为 100 mL；实心状态完全浸入淡水只能排开约 100 g 的水，浮力不足以托住它。取出后，同一闭合网格保持连接关系与材料体积，依次展开成薄片、抬起边缘形成船壳。这是连续的成形示意，不是金属塑性或受力加工计算。水没有越过船沿时，船壳挡住水，水面以下保持干燥的空腔也计入排水；金属本身并未变轻。船沿处的最大干燥排水体积在本模型中为 1400 mL，是模型容量而非真实安全载重。每块货物质量 100 g、实体体积 40 mL，最多可选 8 块；它们只在船壳成形后加入。增加货物使漂浮所需排水量增大、吃水加深。水越过船沿后，已装水的空腔不再计入排水，只计浸入水中的金属与货物实体；本模型用进水条件切换状态，不求解进水速率。"
       },
       {
-        "title": "密度、深度与实验控制",
-        "body": "在均匀且近似不可压缩的水中，刚性物体完全浸没后继续下移，各处表压都增加，但上下压强差不变，排水体积与净浮力也基本不变。换更密的液体，在相同浸没体积下浮力增大；自由漂浮物则会升高一点直到再次平衡。比较时需固定并说清体积、质量与支持条件。本例 1200 g、1000 mL 的方块由绷紧的悬线保持静止，T + F浮 = W；浸入增多时浮力增大、张力减小，全浸没后两者基本不变。"
+        "title": "把宏观水压与微观作用接起来",
+        "body": "静止液体的压力沿表面法线向内。均匀密度近似下，相对水面的表压为 p − p₀ = ρ水 g h，h 是水面以下的深度；水的重量与压力梯度平衡，使深处压强更大。各处压力作用的合力向上，等于排水重量。整体图的局部箭头与同一物体 A、B 接触处的等面积放大图只显示相对作用，省略共同的大气压；未标定的剖面箭头不能当作数值积分数据。液态水分子彼此接近，持续运动并与近邻相互作用，大量微观作用的平均表现为压力，不能只用稀疏气体自由飞行、碰壁的小球解释。本例保持相同水温与近似均匀密度，不把深处画成分子明显更快或更密。分子播放只推进这段观察，不改变物体位置。淡水与海水在本模型中分别采用 1.000、1.025 g/mL 的代表密度：同样排水体积下，海水提供的浮力稍大，自由漂浮物会改变吃水以恢复平衡。刚性物体完全浸没后继续下移，排水体积和净浮力基本不变。"
       }
     ],
-    "misconception": "轻的必浮、重的必沉不成立；浮沉要比较重量、可排开的液体和所受其他支持。",
-    "boundary": "这是均匀静水中的停稳模型。三维物体、正面剖面、船壳形状与水位升幅都是教学示意，几何没有体积或长度标定。有限过渡不求解流体、材料变形、进水速度、密封触底、波浪或翻船；船沿余量不是实际安全载荷。",
+    "misconception": "下沉不等于没有浮力；只比较物体轻重，也不能判断浮沉。要比较物体重量和它挡开的水的重量。想象替换没有让物体真的变成水，也没有多出一份水在远处施力。同一份金属做成船后，材料没有减少；改变的是船壳能挡开的水下空间。进水后，已经装水的空腔不能继续当作排水体积。",
+    "boundary": "这是均匀、近似不可压缩静水中的浮力关系与停稳判断。取出、压薄、抬边和放回由外部操作完成，所示位置与时间是可回看的教学安排，不是由完整受力方程求出的运动。圆木、石头和硬币外观及取景未按真实体积统一标定，硬币特意放大；同一金属网格则采用内部一致的体积映射保持材料量，并让船壳轮廓与排水计算对应。模型不求解波浪、黏性流动、金属应力、翻船或进水速率；1400 mL 的船沿容量不是适航或安全载荷结论。触底时假定水仍可进入底面，不研究密封接触。A、B 放大图沿用同一姿态和接触位置；分子大小、间距、近邻线、轨迹与时间均为定性示意，没有进行分子动力学计算。暂停或结束分子观察不意味着真实分子停止运动。",
     "narration": [
       {
-        "label": "从浮沉看到水压",
-        "text": "把木块放进水里，它浮起来了。换一块石头，它沉下去，水却仍然在向上托它。再换成剖面，看蓝色小箭头：水从各个方向向里挤。左右同样深的地方，挤得一样用力；下面比上面更用力，合起来就有向上的托力。绿色箭头表示这个合起来的力。",
-        "cue": "比较木块与石块；保持同一物品切到水压剖面，追踪侧面向内、顶部向下和底部向上的局部箭头。"
+        "label": "岸边，看谁浮、谁沉",
+        "text": "来到水边，先看看这段圆木，再看看石头、硬币和小船。把它们轻轻放进水里，谁会留在水面，谁会往下走呢？圆木浮着，石头沉下去，水却都在向上托它们。沉到底以后，底面也来帮忙托住石头。下沉不是没有浮力，只是水还托不住它的全部重量。接下来，我们就用这里原来的一份水，看看水的托力有多大。",
+        "cue": "第 1 段“看浮沉”：演示时间 18 秒，为教学时间而非实测下落时间。选择圆木、石头、硬币或小船后，从本段开头观察入水到停稳；分别取景，不作实际尺寸比较。保留同一岸边、水面与对象身份。"
       },
       {
-        "label": "同一块泥，换个形状",
-        "text": "再来看同一团 600 克橡皮泥。先是实心球，再捏成有空腔的小船。泥没有偷偷变轻。只要水留在船外，船壳围住的空间就能让更多水让开位置。切到排水对照，量杯只是在展示同样的排水量，并没有从水箱取走水。",
-        "cue": "从实心球连续改形成空心船，再切排水对照；追踪同一团泥、可见空腔与排水量。"
+        "label": "水先托住水，再换成物体",
+        "text": "先别放物体，我们只在水里想象画一个轮廓。里面原来就是水，没有薄膜，也没有小盒子。这份水能留在原位，因为周围的水正好托住了它的重量。现在，在同一个位置换成物体，先保持轮廓和水面不变。周围的水仍然这样托，里面东西的重量却换了。最后再放开：比这份水重，就往下走；比这份水轻，就往上走。原来，挡开的水有多重，就告诉我们浮力有多大。",
+        "cue": "第 2 段“水托住水”：演示时间 24 秒。进度 0–22% 只标出原位想象水团，上下力等大；22–43% 在固定水位、姿态和边界下替换为物体，只改变重量说明；43–84% 才放开并移动到停稳位置，随后保留结果。保持箭头锚点，不让想象水团独立漂走。超载进水船不作干燥空腔替换，改示浸水金属与货物。"
       },
       {
-        "label": "加一点货物",
-        "text": "给小船慢慢加货物，看看船边是不是更接近水面了。它要多排开一些水，才能托住新增的重量。可是船边太低，水就会跑进来，原来的空心空间不能继续把水挡在外面。我们只在模型里试，真正玩水时要有大人陪着。",
-        "cue": "逐块加货，观察吃水和进水条件。"
+        "label": "水看起来安静，为什么仍在推",
+        "text": "顺着同一个物体看，水会从四周推它，每一处都朝着表面里面推。水自己也有重量，深处的平均挤压更强，把这些作用合起来，就留下向上的浮力。再到 A、B 两个接触处看看。水里的分子彼此靠近，不停运动，也不断与邻居和物体相互作用。许许多多的小小作用，合起来表现为水压。深处更强的是平均水压，并不是分子跑得更快、挤得更密。暂停这段观察，真实的分子也不会停下来。",
+        "cue": "第 3 段“水怎样推”：先完成替换，保留同一物体的水下姿态。整体与微观切换不重置对象、载荷和液体；由同一轮廓的 A/B 锚点连接两个等面积窗口。微观观察有独立的 24 秒演示进度，只改变分子示意；暂停、隐藏页面或切换观察时停止播放，不推进物体浮沉。保持两处相同的典型密度与运动规则，只让平均表压随深度变化。"
       },
       {
-        "label": "全部进入水里以后",
-        "text": "最后，用悬线把方块缓缓放低。进入水里的部分越多，水托得越多，绳子需要拉的力越小。整个方块都在水里以后，再放深一些，上下两边的水压都增大，排开的水却没有变多，所以浮力和绳的拉力都基本不变。换成海水，同样浸入的体积会得到稍大的浮力。",
-        "cue": "比较半浸、全浸和更深处，在水压剖面追踪上下箭头，再换海水；重力保持不变。"
+        "label": "同一份金属，围成能挡水的船",
+        "text": "最后跟着这份金属走一遍。它有七百八十克，实心部分只有一百毫升，全部入水也托不住。先把它取出来，压薄、展开，再慢慢抬起边缘，围成小船。金属还是那么多，没有偷偷变轻。重新放入水里，只要水留在船外，水面下干燥的空腔也能把水挡开。小船排开足够重的水，这次就浮住了。再加一点货，它会沉低一些；如果水越过船沿，原来干燥的空腔进了水，就不能再替它挡开那么多水。",
+        "cue": "第 4 段“金属变成船”：演示时间 38 秒。进度 0–12% 看实心金属下沉并停底，12–27% 取出，27–43% 展开压薄，43–63% 抬高船沿，63–84% 重新放入，84–100% 保留结果并逐块加货。全程跟踪同一金属网格和固定 780 g 材料；货物只出现在成形船壳内，每块 100 g。比较干舱、船沿与进水后的排水变化，不把成形示意说成加工力学。"
       }
     ]
   },
   "en": {
-    "question": "Why can water support an object? What changes when the same clay becomes a cargo boat?",
-    "observe": "Follow five questions: compare wood and stone, then inspect pressure around the same object. Reshape the same 600 g clay into a hollow boat, add cargo and inspect the rim. Finally lower the suspended block through partial, full and deeper immersion, then compare seawater. Tank, section and displacement views retain the current specimen, cargo, liquid and immersion.",
+    "question": "How does water support an object? Why can the same steel sink when solid and float when made into a boat?",
+    "observe": "Start at the same shore and observe a log, stone, coin and boat. In the second chapter, first mark the water already in a space, then replace it with the object while holding the water level and contact boundary fixed. Only then release the object. In the third chapter, follow the same object from overall pressure to close-ups at contact points A and B; molecular playback does not advance the object’s floating or sinking. In the fourth, lift out the same 780 g, 100 mL solid steel, spread it thinner, raise its edges and return it to the water. Once the hull is complete, add cargo and inspect draft and the rim. Changing to seawater keeps the same object for comparison.",
     "academic": [
       {
-        "title": "Pressure differences produce buoyancy",
-        "body": "In a resting uniform liquid, gauge pressure increases as ρgh, and pressure acts normally inward on a surface. Equal-depth opposite sides of a rectangular section balance; the upward force below exceeds the downward force above. For a general closed wetted surface, the resultant equals displaced-fluid weight: F_b = ρgV_displaced. Blue arrows illustrate local pressure; the green resultant and numerical forces come from the displacement model. The uncalibrated arrows cannot be integrated as data. Sinking objects still experience buoyancy, with additional floor support after contact. This model assumes water can reach the bottom face and does not solve sealed contact."
+        "title": "Let water explain its support before replacing it",
+        "body": "Imagine a parcel marked inside uniform still water, without a membrane or container. The parcel remains at rest, so the resultant of surrounding pressure must support its weight. Replace it with an object at the same location, initially retaining the water level, contact boundary and pose. The surrounding pressure forces remain unchanged; the weight inside the boundary changes. Buoyancy therefore equals the displaced water’s weight: F_b = ρ_water g V_displaced, where ρ_water is liquid density, g is gravitational acceleration and V_displaced is the underwater volume from which water is excluded. The imagined parcel does not act from afar: water touching the boundary exerts the force. Release only after replacement. A heavier object sinks and a lighter one rises; at freely floating equilibrium, buoyancy equals total weight. Sinking objects still experience buoyancy, with additional bed support only after actual contact. The displayed motion and handling times are teaching interpolations, so their speeds cannot determine real acceleration."
       },
       {
-        "title": "Shape changes usable displacement",
-        "body": "Reshaping clay does not reduce its mass. A watertight hollow hull can displace more water before its rim submerges. At floating equilibrium buoyancy balances total weight. Added cargo increases the required displacement and draft. Flooding lets water occupy previously excluded space, changing the boat’s available buoyancy."
+        "title": "The same steel can exclude a different volume of water",
+        "body": "Steel mass stays at 780 g and solid volume at 100 mL. Fully submerged solid steel displaces only about 100 g of fresh water, which cannot support its weight. After removal, the same closed mesh keeps its connectivity and material volume as it spreads into a thin plate and raises its edges into a hull. This is continuous illustrative forming, without calculating plastic deformation or manufacturing forces. Before water crosses the rim, the dry cavity below the waterline also excludes water and counts toward displacement; the steel has not become lighter. This model’s maximum dry displacement at the rim is 1400 mL, a model capacity rather than a real safe load. Up to eight cargo blocks may be selected, each with a mass of 100 g and solid volume of 40 mL; they are added only after the hull is formed. Cargo increases the displacement needed to float and deepens draft. Once the rim is overtopped, the flooded cavity no longer counts as displacement: only submerged steel and cargo solids remain. A flooding condition switches the model’s state; flooding rates are not solved."
       },
       {
-        "title": "Control density, depth and equilibrium",
-        "body": "Moving a rigid fully immersed object deeper in nearly incompressible uniform water raises gauge pressure everywhere, while the top-to-bottom difference, displaced volume and net buoyancy stay nearly unchanged. Denser liquid increases buoyancy at the same immersed volume; a freely floating object rises until balance returns. State which volume, mass and supports are fixed. Here a taut cord holds a 1200 g, 1000 mL block at rest: T + F_b = W. Increasing immersion increases buoyancy and reduces tension; both remain nearly constant after full immersion."
+        "title": "Connect whole-object pressure to molecular interactions",
+        "body": "Still-water pressure acts normally inward on each surface patch. For approximately uniform density, gauge pressure is p − p₀ = ρ_water g h, where h is depth below the surface. The pressure gradient balances water’s weight, so pressure increases downward. The resultant surface force is upward and equals displaced-water weight. Local arrows and equal-area windows anchored at A and B on the same object show relative effects, omitting common atmospheric pressure; the uncalibrated drawing cannot supply numerical integration data. Liquid molecules remain close together, moving and interacting with neighbours. Their averaged effects produce pressure; a dilute gas picture of freely flying particles hitting walls is insufficient. This illustration keeps the same water temperature and approximately uniform density, without showing deeper molecules as visibly faster or more crowded. Molecular playback advances only the observation. The model uses representative fresh-water and seawater densities of 1.000 and 1.025 g/mL. At equal displaced volume, seawater provides slightly greater buoyancy; a freely floating object changes draft to regain balance. Moving a rigid, fully immersed object deeper leaves displacement and net buoyancy nearly unchanged."
       }
     ],
-    "misconception": "Light always floats and heavy always sinks is false. Compare weight, possible displacement and any other supporting forces.",
-    "boundary": "This is a settled model in uniform still water. The 3D specimens, front sections, hull shapes and enlarged water rise are illustrative, with no geometric length or volume calibration. Finite transitions do not solve fluid flow, material deformation, flooding rates, sealed floor contact, waves or capsizing. Rim reserve is not a real safe-load rating.",
+    "misconception": "Sinking does not mean there is no buoyancy, and weight alone does not decide whether an object floats. Compare its weight with the weight of the water it excludes. Imagined replacement does not turn an object into water or create a separate parcel pushing from a distance. Making a boat removes no steel: it changes the underwater space the hull can keep free of water. Once flooded, the water-filled cavity cannot still count as displacement.",
+    "boundary": "The model applies buoyancy relations and equilibrium tests in uniform, nearly incompressible still water. External handling lifts, spreads, bends and replaces the steel. Displayed positions and times are reversible teaching arrangements, rather than motion obtained from complete force equations. The log, stone and coin are not framed to a shared physical volume scale; the coin is enlarged. The retained steel mesh uses an internally consistent volume mapping to preserve material and link its hull profile to displacement. Waves, viscous flow, metal stress, capsizing and flooding rates are not solved. The 1400 mL rim capacity does not establish seaworthiness or a safe load. Bed contact assumes water still reaches beneath the body and does not model a seal. A/B close-ups retain the same pose and contact locations. Molecular sizes, spacing, neighbour links, paths and time are qualitative illustrations, without molecular-dynamics calculations. Pausing or ending that observation does not mean real molecules stop.",
     "narration": [
       {
-        "label": "From floating to pressure",
-        "text": "The wooden block floats. A stone sinks, but water still pushes it upward. Switch to the section and inspect the blue arrows: water presses inward from every direction. Opposite sides at the same depth press equally. Greater pressure below than above leaves an upward push. The green arrow shows that combined force.",
-        "cue": "Compare wood and stone. Retain the same object while switching to the pressure section; follow inward side arrows, downward top arrows and upward bottom arrows."
+        "label": "At the shore: what floats and what sinks?",
+        "text": "Come to the water and look at this log, then the stone, coin and little boat. Lower them gently. Which will stay at the surface, and which will move down? The log floats and the stone sinks, but water pushes upward on both. Once the stone reaches the bottom, the bed helps support it too. Sinking does not mean there is no buoyancy. It means water cannot support all the weight. Next, we will use the water already in this space to find out how much support water provides.",
+        "cue": "Chapter 1, “Watch floating and sinking”: 18 seconds of teaching time, not a measured fall duration. After selecting the log, stone, coin or boat, return to the chapter’s start and follow entry through to rest. Frame each separately without implying equal real sizes. Retain the shore, water level and object identity."
       },
       {
-        "label": "Same clay, another shape",
-        "text": "Now inspect the same 600 grams of clay: first a solid ball, then a hollow boat. The clay has not become lighter. While water stays outside, the space enclosed by the hull can push more water aside. The displacement view compares that volume in a measure; it does not take water from the tank.",
-        "cue": "Reshape the ball into a hollow hull, then switch to displacement; retain clay identity and inspect the cavity and displaced volume."
+        "label": "Water supports water, then the object takes its place",
+        "text": "Before adding an object, imagine drawing an outline in the water. Water is already inside. There is no membrane or little box. This parcel can stay here because the surrounding water supports exactly its weight. Now replace it with the object in the same place, keeping the outline and water level unchanged at first. The surrounding water still supports in the same way, but the weight inside has changed. Only now let go. Heavier than that water, it moves down; lighter, it moves up. The weight of the water excluded from this space tells us how large buoyancy is.",
+        "cue": "Chapter 2, “Water supports water”: 24 seconds. Progress 0–22% marks only the original imagined parcel with equal up/down forces. At 22–43%, replace it at fixed level, pose and boundary, changing only the weight explanation. Release only at 43–84%, then retain the final result. Keep the arrow anchors and do not let the parcel drift independently. For an overloaded flooded boat, compare immersed steel and cargo rather than a dry cavity."
       },
       {
-        "label": "Add a little cargo",
-        "text": "Add cargo slowly. Does the rim move closer to the water? The boat must displace more water to support the added weight. If the rim gets too low, water enters and the hollow space no longer keeps that water outside. Try this in the model; real water play needs an adult nearby.",
-        "cue": "Add cargo one piece at a time and inspect draft and flooding."
+        "label": "Why does still water keep pushing?",
+        "text": "Follow the same object. Water pushes from all around, inward at every surface patch. Water itself has weight, so average pressure grows with depth. Together, these pushes leave an upward buoyant force. Now look closely at contact points A and B. Water molecules stay close together, keep moving and interact with their neighbours and the object. Many tiny effects together appear as pressure. Deeper down, it is average pressure that grows, rather than molecules moving faster or crowding closer together. Even when we pause this observation, real molecules keep moving.",
+        "cue": "Chapter 3, “How water pushes”: complete replacement first and retain the same underwater pose. Switching whole-object and molecular views retains the object, cargo and liquid. A/B anchors on the same section connect to equal-area windows. A separate 24-second observation progress changes only the molecular illustration. Pausing, hiding the page or switching the observation stops playback without advancing the object’s floating or sinking. Both depths use the same typical density and motion law; only mean gauge pressure changes with depth."
       },
       {
-        "label": "After complete immersion",
-        "text": "Finally lower the block slowly on a cord. As more enters the water, buoyancy increases and the cord pulls up less. Once the whole block is underwater, moving it deeper raises pressure above and below without displacing more water, so buoyancy and tension stay nearly unchanged. At the same immersed volume, seawater gives slightly more buoyancy.",
-        "cue": "Compare partial, full and deeper immersion, tracking top and bottom pressure arrows. Then change to seawater, keeping weight fixed."
+        "label": "The same steel becomes a hull that keeps water out",
+        "text": "Finally, follow this same steel. Its mass is seven hundred and eighty grams, but its solid volume is only one hundred millilitres. Water cannot support it even when fully submerged. Lift it out, spread it thinner, then slowly raise its edges into a boat. There is still the same amount of steel. It has not secretly become lighter. Return it to the water. While water stays outside, the dry cavity below the surface also keeps water out. The boat now displaces water heavy enough to support it, so it floats. Add a little cargo and it sits deeper. If water crosses the rim and floods the dry cavity, that space can no longer exclude as much water.",
+        "cue": "Chapter 4, “Steel becomes a boat”: 38 seconds. Progress 0–12% shows the solid sinking and resting at the bed; 12–27% lifts it out; 27–43% spreads it thinner; 43–63% raises the rim; 63–84% returns it to the water; 84–100% retains the result for adding cargo. Track the same metal mesh and fixed 780 g of steel throughout. Cargo appears only inside the completed hull, at 100 g per block. Compare the dry interior, rim and flooded displacement without presenting the forming illustration as manufacturing mechanics."
       }
     ]
   },
   "references": [
     {
-      "title": "OpenStax · Archimedes’ Principle",
-      "url": "https://openstax.org/books/college-physics/pages/11-7-archimedes-principle"
-    },
-    {
-      "title": "OpenStax · Buoyancy",
+      "title": "OpenStax · Archimedes’ Principle and Buoyancy",
       "url": "https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy"
     },
     {
       "title": "OpenStax · Fluids, Density, and Pressure",
       "url": "https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure"
+    },
+    {
+      "title": "The Feynman Lectures · Atoms in Motion",
+      "url": "https://www.feynmanlectures.caltech.edu/I_01.html"
     }
   ]
 }

@@ -3,8 +3,9 @@ import { buoyancy } from './model.ts';
 import { t } from './i18n.ts';
 import { TankScene, type TankGeometry } from './tankScene.ts';
 import { drawPressureSection } from './pressureView.ts';
+import { drawMolecularPressure } from './molecularView.ts';
 
-export type Observation = 'tank' | 'pressure' | 'displacement';
+export type Observation = 'tank' | 'pressure' | 'replacement' | 'displacement';
 
 type Result = ReturnType<typeof buoyancy>;
 type Geometry = TankGeometry;
@@ -183,11 +184,14 @@ export class BuoyancyScene {
  private identity='';
  private form=0;
  private observation:Observation='tank';
+ private microscopic=false;
+ private molecularProgress=0;
+ private molecularRunning=false;
  private academic=false;
  private settled=true;
  private disposed=false;
  private readonly reduced=matchMedia('(prefers-reduced-motion: reduce)');
- constructor(private readonly svg:SVGSVGElement,private readonly status:HTMLElement) {
+ constructor(private readonly svg:SVGSVGElement,private readonly status:HTMLElement,private readonly onMolecularMotion?:(running:boolean)=>void) {
   const holder=document.createElement('div');holder.className='buoyancy-stage';holder.dataset.view='tank';svg.before(holder);holder.append(svg);
   try{this.tank=TankScene.create(svg,()=>{this.svg.dataset.renderer='section';this.redraw();},()=>this.redraw());this.svg.dataset.renderer='webgl';}
   catch{this.svg.dataset.renderer='section';}
@@ -195,11 +199,33 @@ export class BuoyancyScene {
   window.addEventListener('pagehide',this.onPageHide);
   this.reduced.addEventListener('change',this.onMotionPreference);
  }
- observe(observation:Observation,academic:boolean){
+ observe(observation:Observation,academic:boolean,microscopic=false){
   const changed=this.observation!==observation;
+  if(changed||this.microscopic!==microscopic)this.stopMolecularMotion();
+  this.microscopic=microscopic;
   this.observation=observation;this.academic=academic;this.svg.parentElement!.dataset.view=observation;
-  if(changed)this.tank?.setView(observation==='displacement'?'displacement':'tank',observation!=='pressure');
+  this.svg.parentElement!.dataset.pressureScale=microscopic?'molecules':'whole';
+  if(changed)this.tank?.setView(observation==='displacement'?'displacement':'tank',observation!=='pressure'&&observation!=='replacement');
   this.redraw();
+ }
+ /** A short observation, sharing the scene's single animation frame owner. */
+ toggleMolecularMotion(){
+  if(this.observation!=='pressure'||!this.microscopic||this.disposed)return;
+  if(this.molecularRunning){this.stopMolecularMotion();return;}
+  if(!this.settled)this.settle();
+  if(this.reduced.matches){this.molecularProgress=.35;this.redraw();return;}
+  this.molecularProgress=0;this.molecularRunning=true;this.onMolecularMotion?.(true);
+  const start=performance.now();
+  const tick=(now:number)=>{
+   if(this.disposed||document.hidden||this.reduced.matches){this.stopMolecularMotion();return;}
+   this.molecularProgress=Math.min(1,(now-start)/4000);this.redraw();
+   if(this.molecularProgress<1)this.frame=requestAnimationFrame(tick);else this.stopMolecularMotion();
+  };
+  this.frame=requestAnimationFrame(tick);
+ }
+ private stopMolecularMotion(){
+  if(!this.molecularRunning)return;
+  cancelAnimationFrame(this.frame);this.frame=0;this.molecularRunning=false;this.onMolecularMotion?.(false);
  }
  private redraw(){if(this.current)this.draw(this.current,0,this.settled,this.settled?undefined:this.form);}
  set(state:Settings,result:Result,forces:boolean,instant=false) {
@@ -208,6 +234,7 @@ export class BuoyancyScene {
   if(previous&&Object.keys(state).every(key=>state[key as keyof Settings]===previous[key as keyof Settings])){
    this.forces=forces;this.redraw();return;
   }
+  this.stopMolecularMotion();this.molecularProgress=0;
   const fromForm=this.form;
   const next=experimentGeometry(state,result), identity=state.experiment==='boat'?(state.boat?'boat':'clay'):state.experiment==='depth'?'held':state.object;
   const changed=this.identity!==identity;
@@ -240,12 +267,13 @@ export class BuoyancyScene {
   };
   this.frame=requestAnimationFrame(tick);
  }
- private settle(){cancelAnimationFrame(this.frame);this.frame=0;if(this.target){this.current={...this.target};this.form=this.state?.experiment==='boat'&&this.state.boat?1:0;this.draw(this.current,0,true);}this.svg.setAttribute('aria-busy','false');this.status.textContent='';}
+ private settle(){this.stopMolecularMotion();cancelAnimationFrame(this.frame);this.frame=0;if(this.target){this.current={...this.target};this.form=this.state?.experiment==='boat'&&this.state.boat?1:0;this.draw(this.current,0,true);}this.svg.setAttribute('aria-busy','false');this.status.textContent='';}
  private draw(g:Geometry,ripple:number,settled:boolean,reshaping?:number){
   if(!this.state||!this.result)return;
   this.settled=settled;
   const s=this.state,r=this.result;
-  if(this.observation==='pressure'){drawPressureSection(this.svg,s,g,r,settled,reshaping);return;}
+  if(this.observation==='pressure'&&this.microscopic&&settled){drawMolecularPressure(this.svg,s,g,r,this.molecularProgress);return;}
+  if(this.observation==='pressure'||this.observation==='replacement'){drawPressureSection(this.svg,s,g,r,settled,reshaping,this.observation==='replacement');return;}
   if(this.tank?.available){this.tank.draw({state:s,geometry:g,form:s.experiment==='boat'?(reshaping??this.form):0,flooded:r.flooded,displaced:r.displaced,ripple});this.drawSpatial(g,settled);return;}
   this.svg.setAttribute('viewBox',this.observation==='displacement'?'0 0 850 540':'50 35 600 485');this.svg.setAttribute('preserveAspectRatio','xMidYMid meet');
   const {body,air,cargo,floodedInterior}=objectMarkup(s,g,r.flooded,reshaping);
@@ -313,12 +341,12 @@ export class BuoyancyScene {
    rim=`<path d="M${a[0]} ${a[1]}h8m-4 0V${b[1]}m-4 0h8" stroke="${color}" stroke-width="1.7" fill="none"/>`+label([a[0]-20,Math.min(a[1],b[1])-15],r.flooded?(compact?t('进水'):t('水越过船沿')):(compact?t('船沿'):t('船沿到水面')),14,color);
   }
   const cup=tank.project(725,180),amount=tank.project(725,465);
-  const comparison=this.observation==='displacement'?`${label([cup[0],cup[1]-10],t('排开的水'))}${label([amount[0],amount[1]+20],`${r.displaced.toFixed(0)} mL`,17)}`:'';
+  const comparison=this.observation==='displacement'?`${label([cup[0],cup[1]-10],t('等量水的对照'))}${label([amount[0],amount[1]+20],`${r.displaced.toFixed(0)} mL`,17)}`:'';
   const caption=this.academic?(s.experiment==='boat'?t('同一团泥 · 600 g，水位变化已放大'):t('水位变化已放大')):'';
   this.svg.innerHTML=`${definitions(g)}${forces}${rim}${comparison}${caption?text(width/2,height-12,caption,12,'#66716e',true):''}`;
  }
  private onVisibility=()=>{if(document.hidden)this.settle();};
  private onPageHide=(event:PageTransitionEvent)=>{if(event.persisted)this.settle();else this.dispose();};
- private onMotionPreference=()=>{if(this.reduced.matches)this.settle();};
- dispose(){this.disposed=true;cancelAnimationFrame(this.frame);this.tank?.dispose();document.removeEventListener('visibilitychange',this.onVisibility);window.removeEventListener('pagehide',this.onPageHide);this.reduced.removeEventListener('change',this.onMotionPreference);}
+ private onMotionPreference=()=>{if(this.reduced.matches)this.settle();this.onMolecularMotion?.(false);};
+ dispose(){this.disposed=true;this.stopMolecularMotion();cancelAnimationFrame(this.frame);this.tank?.dispose();document.removeEventListener('visibilitychange',this.onVisibility);window.removeEventListener('pagehide',this.onPageHide);this.reduced.removeEventListener('change',this.onMotionPreference);}
 }

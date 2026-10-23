@@ -1,5 +1,7 @@
 import type { SceneStudy } from '../../src/platform/sceneReading.ts';
 import type { Track } from './evolutionModel.ts';
+import evolutionWords from './evolutionContent.json';
+export {nebulaStudy} from './nebulaStudy.ts';
 
 const w = (zh: string, en: string) => ({ zh, en });
 const life = { title: 'NASA · Stars and their life cycles', url: 'https://science.nasa.gov/universe/stars/' };
@@ -69,22 +71,22 @@ const evolution: readonly SceneStudy[] = [
   },
 ];
 
-const remnants: Record<Track, SceneStudy> = {
+const remnants: Record<Exclude<Track,'low-mass'>, SceneStudy> = {
   solar: {
     child: w('太阳型示例最后留下很小、很密的白矮星。它不再靠核心氢聚变发光，会慢慢冷却。', 'The Sun-like example leaves a small, dense white dwarf. It no longer shines by core hydrogen fusion and slowly cools.'),
     title: w('白矮星：小核心怎样留下来', 'White dwarf: the core that remains'),
     theory: w('外层抛出后，遗留核心由电子简并压支撑；其热辐射来自过去储存的能量，之后逐渐冷却。白矮星半径可接近地球量级，但它并不是“缩小的太阳表面”。', 'After the envelope is lost, electron degeneracy pressure supports the remnant core. Its thermal light comes from stored energy and fades as it cools. A white dwarf can be Earth-sized, but it is not a miniature version of the Sun’s old photosphere.'),
     evidence: w('白矮星光谱、视差与双星测量用于检验其温度、质量和半径。', 'White-dwarf spectra, parallaxes and binary measurements test temperatures, masses and radii.'),
-    limits: w('右侧识别视角放大了遗骸；左侧保留原恒星外层尺度作对照，不能用屏幕圆盘直接量比值。', 'The recognition view enlarges the remnant; the previous envelope is retained as context. Screen disks do not provide a direct size ratio.'),
-    sources: [life, webb],
+    limits: w('遗骸识别镜头与左侧半径尺采用不同观察放大率。后段保持白矮星大小，减弱余辉并转为暖白；播放秒数、增强颜色和亮度没有标定为真实冷却年龄或温度，结尾仍是发光的白矮星。', 'The recognition view and the left radius ruler use different magnifications. The late segment keeps white-dwarf size while weakening its glow toward warm white. Screen seconds, enhanced color and brightness are not calibrated cooling ages or temperatures; the endpoint remains a luminous white dwarf.'),
+    sources: [life, webb, {title:'NASA · Types of stars',url:'https://science.nasa.gov/universe/stars/types/'}],
   },
   massive: {
     child: w('大质量示例坍缩后留下中子星：把许多物质压进一座城市般的尺度。它的命运还取决于坍缩和抛射时发生的事。', 'The massive-star example leaves a neutron star, packing a great deal of matter into a city-sized region. The outcome depends on collapse and ejection details.'),
     title: w('中子星：致密遗骸如何与原星比较', 'Neutron star: a compact remnant beside its former star'),
     theory: w('核心坍缩可把物质压到核物质密度量级；中子简并与强相互作用对支撑都重要。遗骸质量、半径及超新星机制仍是活跃研究问题，不由初始质量一个数唯一决定。', 'Core collapse can compress matter toward nuclear densities. Neutron degeneracy and the strong interaction both matter for support. Remnant mass, radius and supernova mechanism remain active research questions and are not fixed by initial mass alone.'),
     evidence: w('脉冲星计时、双星轨道和引力波事件提供互补约束。', 'Pulsar timing, binary orbits and gravitational-wave events provide complementary constraints.'),
-    limits: w('图中的中子星直径是数量级示意；原星与遗骸共屏时采用不同观察放大率，画面会标示对照关系。', 'The neutron-star diameter is schematic; the former star and remnant use different recognition magnifications and are labeled accordingly.'),
-    sources: [life, { title: 'NASA · Types of stars', url: 'https://science.nasa.gov/universe/stars/types/' }],
+    limits: w('图中的中子星直径是数量级示意；原星与遗骸采用不同观察放大率。后段的可见光颜色与余辉变化没有标定温度或冷却年龄；真实热辐射常由 X 射线观测约束。', 'The neutron-star diameter and recognition magnifications are schematic. Late visible color and glow changes are not calibrated temperatures or cooling ages; real thermal emission is often constrained by X-ray observations.'),
+    sources: [life, { title: 'NASA · Types of stars', url: 'https://science.nasa.gov/universe/stars/types/' }, {title:'NASA Chandra · Neutron-star cooling',url:'https://www.nasa.gov/image-article/nasas-chandra-peers-into-densest-and-weirdest-stars/'}],
   },
   'very-massive': {
     child: w('极大质量示例可能留下黑洞。黑洞刚形成时不一定有亮盘；要有附近物质持续落入，才可能形成吸积盘。', 'A very massive example may leave a black hole. A new black hole need not have a bright disk; a disk needs nearby matter to feed it.'),
@@ -99,6 +101,10 @@ const remnants: Record<Track, SceneStudy> = {
 };
 
 export function evolutionStudy(track: Track, phase: number): SceneStudy {
+  if(track==='low-mass'){
+    const p=Math.min(6,Math.max(0,Math.floor(phase))),entry=evolutionWords.tracks['low-mass'].stages[p]!;
+    return {child:entry.body,title:entry.name,theory:entry.body,evidence:p<3?w('低质量恒星的光谱、双星质量与星团比较可检验目前主序阶段；其未来演化须由结构模型推算。','Spectra, binary masses and cluster comparisons test today’s low-mass main-sequence stars; their future evolution must be calculated with structure models.'):w('没有孤立 0.2 M☉ 恒星在当前宇宙年龄内自然耗尽氢。远未来分支基于低质量恒星的理论演化计算；精确时长随质量与成分改变。','No isolated 0.2 M☉ star has naturally exhausted its hydrogen within the current Universe’s age. This distant future follows theoretical low-mass evolution calculations; its duration depends on mass and composition.'),limits:evolutionWords.tracks['low-mass'].summary,sources:[{title:'NASA · Red dwarfs and lifetimes',url:'https://science.nasa.gov/universe/stars/types/'},{title:'Adams & Laughlin (1997) · Long-term low-mass stellar evolution',url:evolutionWords.sources.lowMass}]};
+  }
   const entry = phase === 6 ? remnants[track] : evolution[Math.min(5, Math.max(0, phase))]!;
   if (phase !== 4) return entry;
   if (track === 'solar') return entry;

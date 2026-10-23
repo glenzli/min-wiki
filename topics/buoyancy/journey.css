@@ -1,0 +1,116 @@
+@import '../../src/platform/shell.css';
+.buoyancy-study{--water-ink:#1a7079;--weight-ink:#99613f;font-family:Avenir,"PingFang SC","Microsoft Yahei",sans-serif}
+.buoyancy-study .hero{display:none}
+.buoyancy-study [hidden]{display:none!important}
+.buoyancy-study button{font:inherit;min-height:44px;cursor:pointer;touch-action:manipulation}
+.buoyancy-study button:focus-visible,.buoyancy-study input:focus-visible{outline:3px solid #6ab4bf;outline-offset:3px}
+.buoyancy-study button:disabled{opacity:.4;cursor:default}
+.journey-lab.presentation-frame,.journey-visual.presentation-visual{height:auto;min-height:0}
+.journey-lab .presentation-stage{min-width:0}
+.journey-lab .presentation-transport{display:flex;flex-direction:column;gap:0;padding:0}
+.journey-stations{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;background:#f8faf6;border-bottom:1px solid #dce5df;padding:0 18px}
+.journey-stations button{position:relative;border:0;border-radius:0;background:transparent;color:#697871;font-size:13px;padding:14px 4px;white-space:normal;line-height:1.5}
+.journey-stations button span{font-variant-numeric:tabular-nums;margin-right:8px;color:#a2aea7;font-size:10px}
+.journey-stations button[aria-pressed=true]{color:#1c575d;font-weight:700}
+.journey-stations button[aria-pressed=true]:after{content:"";position:absolute;bottom:0;left:16%;right:16%;height:3px;background:#2c8287;border-radius:2px 2px 0 0}
+.journey-stage{position:relative;isolation:isolate;width:100%;height:clamp(340px,52vh,480px);background:#d5e4da;overflow:hidden}
+#shore-host,#journey-diagram{position:absolute;inset:0;width:100%;height:100%}
+#shore-host canvas{display:block;width:100%;height:100%;touch-action:none}
+#journey-diagram{pointer-events:none;overflow:hidden}
+.journey-fallback{position:absolute;bottom:4px;left:16px;right:16px;font-size:11px;color:#526d6b;background:#ffffffd9;padding:5px 8px;border-radius:6px}
+.journey-viewbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 20px;background:#f2f6f2;border-bottom:1px solid #e1e9e2;color:#819088}
+.journey-viewbar>div{display:flex;gap:4px}
+.journey-viewbar button{font-size:11px;color:#64786f;background:transparent;border:0;padding:0 12px}
+.journey-viewbar button[aria-pressed=true]{color:#21676d;font-weight:700;background:#e5eeea;border-radius:5px}
+.journey-viewbar>span{font-size:10px}
+.journey-caption{padding:18px 24px 8px}
+.journey-caption-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#journey-title{margin:0!important;font-size:20px;font-weight:650;letter-spacing:.02em;line-height:1.5;color:var(--ink,#233f3d)}
+#journey-story{font-size:14px;line-height:1.8;margin:8px 0 0;color:var(--ink,#334b46)}
+#journey-hint{font-size:11px;line-height:1.7;color:var(--muted,#74817c);margin:6px 0 0}
+#metal-mass{flex-shrink:0;font-size:11px;color:#705d45;background:#eee8dc;padding:5px 9px;border-radius:5px}
+#journey-transport{padding:8px 24px 16px;min-width:0}
+.journey-conditions{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
+.journey-objects{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:100%;max-width:560px}
+.journey-objects button,#journey-lenses button{border:1px solid #dce4de;background:var(--surface,#fff);color:var(--ink,#52645b);border-radius:7px;padding:6px 12px;font-size:12px}
+.journey-objects button[aria-pressed=true],#journey-lenses button[aria-pressed=true]{border-color:#4d8e8b;background:#edf5f1;color:#275f60;box-shadow:inset 0 0 0 1px #4d8e8b33}
+.journey-objects i{display:inline-block;vertical-align:middle;margin-right:8px;width:23px;height:14px;border-radius:50%;background:#8c7554;box-shadow:inset 0 -3px 5px #0002}
+[data-specimen=log] i{border-radius:40% 16%;background:repeating-linear-gradient(10deg,#846344 0 2px,#a1855f 3px 5px);transform:rotate(-14deg)}
+[data-specimen=stone] i{height:19px;border-radius:43% 58% 37% 25%;background:radial-gradient(ellipse at 20% 20%,#c7c4b2,#707569)}
+[data-specimen=coin] i{width:20px;height:20px;background:radial-gradient(circle,#b58d3b 45%,#e0be71 50%,#a97e2f 63%,#d1aa57 70%)}
+[data-specimen=boat] i{height:12px;border-radius:12% 12% 70% 70%;background:linear-gradient(#d6dddd,#7b9092);border-top:3px solid #768e90}
+#journey-lenses{display:flex;gap:6px}
+.journey-cargo{display:flex;gap:9px;align-items:center;color:var(--ink,#55665e);font-size:12px}
+.journey-cargo button{width:44px;border:1px solid #dce4de;border-radius:7px;background:var(--surface,#fff);color:var(--ink,#345a59);font-size:20px}
+.journey-cargo small{color:var(--muted,#809089);font-size:10px}
+.journey-balance{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:2px 0 14px;max-width:560px}
+.journey-balance>div{position:relative;display:flex;justify-content:space-between;padding:4px 0 9px;font-size:11px;color:var(--water-ink);border-bottom:3px solid #e9efea}
+.journey-balance>div+div{color:var(--weight-ink)}
+.journey-balance i{position:absolute;height:3px;bottom:-3px;left:0;background:currentColor;border-radius:2px;transition:width .12s linear}
+.journey-balance strong{font-weight:600;font-variant-numeric:tabular-nums}
+.journey-playback{display:grid;grid-template-columns:110px 44px minmax(0,1fr);gap:8px;align-items:start}
+#journey-play{background:#275e5c;color:white;border:0;border-radius:7px;padding:8px 14px;font-size:12px;font-weight:600}
+#journey-restart{border:1px solid #dce4de;background:var(--surface,#fff);color:#637b70;border-radius:7px;font-size:24px;line-height:1}
+.journey-scrubber{min-width:0;padding-left:10px}
+#journey-progress{display:block;width:100%;height:44px;margin:0;accent-color:#347e7e;cursor:ew-resize}
+.journey-moments{display:flex;justify-content:space-between;gap:5px;margin-top:-4px}
+.journey-moments button{font-size:10px;border:0;background:transparent;padding:0 4px;color:var(--muted,#8d9891);line-height:1.4}
+.journey-moments button.passed{color:#3b807c}
+.journey-bottom{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid #e5ebe6;margin-top:5px;padding-top:5px}
+.journey-bottom>span{font-size:10px;color:var(--muted,#8b9790)}
+#journey-next{border:0;background:transparent;color:#347776;font-size:12px;font-weight:600;padding:0 2px}
+.journey-settings{font-size:13px;line-height:1.9;padding:8px 4px}
+.journey-settings h2{font-size:16px;margin:24px 0 8px}
+.journey-settings h2:first-child{margin-top:4px}
+.journey-settings select{margin-left:12px;padding:8px 16px;border:1px solid #d6e0d8;border-radius:5px;background:var(--surface,#fff);color:var(--ink,#344e44);min-height:44px}
+.journey-readouts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:20px 0}
+.journey-readouts>div{padding:10px;border:1px solid #e0e7e1;border-radius:6px}
+.journey-readouts dt{font-size:11px;color:var(--muted,#829087)}
+.journey-readouts dd{font-size:17px;margin:3px 0 0;font-variant-numeric:tabular-nums}
+.journey-formula{font-size:18px;color:#347b78;letter-spacing:.05em}
+.journey-settings summary{cursor:pointer;min-height:44px;padding-top:10px}
+.journey-sources{display:flex;flex-direction:column;gap:7px;font-size:11px}
+.buoyancy-study .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:600px){
+ .journey-stations{padding:0 7px}.journey-stations button{font-size:11px;padding:11px 3px}.journey-stations button span{display:block;font-size:9px;margin:0}
+ .journey-stage{height:360px}.journey-viewbar{padding:2px 10px}.journey-viewbar>span{display:none}.journey-viewbar button{font-size:10px;padding:0 13px}
+ .journey-caption{padding:14px 15px 7px}#journey-title{font-size:17px}#journey-story{font-size:12px;line-height:1.9}#journey-hint{font-size:10px}
+ .journey-caption-heading{align-items:flex-start;gap:6px}#metal-mass{font-size:9px;padding:4px 6px}
+ #journey-transport{padding:6px 15px 12px}.journey-objects{gap:5px}.journey-objects button{font-size:10px;padding:5px}.journey-objects i{margin-right:4px;transform:scale(.8)}
+ .journey-playback{grid-template-columns:1fr 44px;gap:5px}.journey-scrubber{grid-column:1/-1;padding:0}.journey-moments{margin-top:-7px}.journey-moments button{font-size:9px}
+ .journey-cargo{gap:7px;font-size:11px}.journey-cargo small{font-size:9px}.journey-bottom>span{font-size:9px}#journey-next{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){.journey-balance i{transition:none}}
+
+/* Reader supplies neutral controls and a viewport-fitting default. This story
+ * retains its vertical caption/transport and a useful object-sized canvas. */
+:scope#document-host.document-study .buoyancy-study .journey-lab{height:auto;overflow:visible}
+:scope#document-host.document-study .buoyancy-study .journey-visual{display:block;flex:none;height:auto}
+:scope#document-host.document-study .buoyancy-study .presentation-stage{overflow:visible}
+:scope#document-host.document-study .buoyancy-study .presentation-transport{display:block;padding:0}
+:scope#document-host.document-study .buoyancy-study .journey-caption{width:100%;padding:18px 24px 8px}
+:scope#document-host.document-study .buoyancy-study #journey-transport{display:block;width:100%;padding:8px 24px 16px}
+:scope#document-host.document-study .buoyancy-study .journey-stations button{border:0!important;border-radius:0!important;background:transparent!important;font-size:13px!important;padding:12px 4px!important;color:#697871!important}
+:scope#document-host.document-study .buoyancy-study .journey-stations button[aria-pressed=true]{color:#1c575d!important;font-weight:700}
+:scope#document-host.document-study .buoyancy-study .journey-viewbar button{border:0!important;background:transparent!important;font-size:11px!important;color:#64786f!important;padding:8px 12px!important}
+:scope#document-host.document-study .buoyancy-study .journey-viewbar button[aria-pressed=true]{background:#e5eeea!important;color:#21676d!important}
+:scope#document-host.document-study .buoyancy-study .journey-viewbar>div{flex-shrink:0}
+:scope#document-host.document-study .buoyancy-study .journey-viewbar [data-camera]{white-space:nowrap!important;overflow-wrap:normal!important;padding-inline:10px!important}
+:scope#document-host.document-study .buoyancy-study .journey-moments button{border:0!important;background:transparent!important;font-size:10px!important;padding:0 5px!important;color:#7a8981!important}
+:scope#document-host.document-study .buoyancy-study .journey-moments button.passed{color:#3b807c!important}
+:scope#document-host.document-study .buoyancy-study #journey-next{border:0!important;background:transparent!important;font-size:12px!important;padding:0 2px!important;color:#347776!important}
+:scope#document-host.document-study .buoyancy-study .journey-objects button[aria-pressed=true],:scope#document-host.document-study .buoyancy-study #journey-lenses button[aria-pressed=true]{background:#edf5f1!important;color:#275f60!important;border-color:#6f9c98!important}
+:scope#document-host.document-study .buoyancy-study #journey-play{background:#275e5c!important;color:white!important;border-color:#275e5c!important}
+@media(min-width:1000px){
+ :scope#document-host.document-study .buoyancy-study .presentation-transport{display:grid;grid-template-columns:minmax(300px,.85fr) minmax(480px,1.15fr);align-items:start;padding:7px 0 0}
+ :scope#document-host.document-study .buoyancy-study #journey-transport{padding-top:12px;border-left:1px solid #e5ebe6}
+ .journey-conditions{margin-bottom:6px}.journey-bottom{margin-top:0}
+}
+@media(max-width:600px){
+ :scope#document-host.document-study .buoyancy-study .journey-caption{padding:14px 15px 7px}
+ :scope#document-host.document-study .buoyancy-study #journey-transport{padding:6px 15px 12px}
+ :scope#document-host.document-study .buoyancy-study .journey-stations button{font-size:11px!important;padding:9px 2px!important}
+ :scope#document-host.document-study .buoyancy-study .journey-objects button{font-size:10px!important;padding:5px!important}
+ :scope#document-host.document-study .buoyancy-study .journey-moments button{font-size:9px!important}
+ :scope#document-host.document-study .buoyancy-study #journey-next{font-size:10px!important}
+}

@@ -115,55 +115,56 @@ vec3 specimenBump(vec3 point, vec3 normal, float height, float face) {
 const photographedTimber = /* glsl */`
   if (specimenWoodReady > .5) {
     vec3 p = vSpecimenPoint;
-    // A continuous radial coordinate wraps the four long faces and their
-    // bevels. The photographed fibres run along local X; at either cut end,
-    // the same radial field becomes growth rings instead of lengthwise grain.
-    // This crop stays inside the source tile, avoiding all six decal seams.
-    float bend = .012 * sin(p.x * 3.2 + .4);
-    vec2 section = vec2(p.y + .66 + bend, p.z * .94 + .24);
-    float radius = length(section);
-    vec2 woodUV = vec2(.13 + radius * .45, .50 + p.x * .78);
+    vec3 localNormal = normalize(vSpecimenNormal);
+    float end = smoothstep(.46, .78, abs(localNormal.x));
+    float split = smoothstep(.42, .76, localNormal.y) * (1. - end);
+    // The source photograph contributes to exposed fibres on the split face.
+    // Bark and the broken end grain retain their own anatomical direction;
+    // a finished tabletop is not wrapped over the outside of a log.
+    vec2 woodUV = vec2(.17 + (p.z + .5) * .62, .50 + p.x * .78);
     vec3 photograph = texture2D(specimenWoodColour, woodUV).rgb;
     float photographicHeight = texture2D(specimenWoodHeight, woodUV).r;
     float photographicRoughness = texture2D(specimenWoodRoughness, woodUV).r;
-    specimenColour = photograph;
-    specimenRelief = (photographicHeight - .5) * .0024;
-    // The source is a finished tabletop. Its measured grain is retained,
-    // while a deliberately matte finish represents the illustrative sample.
-    specimenRoughness = .66 + photographicRoughness * .22;
+    specimenColour = mix(specimenColour, photograph * vec3(.88, .84, .77), split * .78);
+    specimenRelief += (photographicHeight - .5) * .0019 * split;
+    specimenRoughness = mix(specimenRoughness, .76 + photographicRoughness * .17, split * .72);
   }
 `;
 
 const finishes: Record<Finish, string> = {
   wood: /* glsl */`
     vec3 p = vSpecimenPoint;
-    float end = pow(abs(normalize(vSpecimenNormal).x), 8.);
-    float curl = specimenCloud(vec3(p.x * 1.6, p.y * 3.4, p.z * 3.4));
-    // A nearby, slowly bending trunk axis makes the same growth layers form
-    // cathedral grain on the broad faces and curved rings on the cut ends.
-    // One small branch distorts those fibres locally rather than painting on
-    // an unrelated knot or repeating equally spaced bands across the block.
-    vec3 branchPoint = (p - vec3(.16, .10, .49)) / vec3(.24, .18, .32);
-    float branch = exp(-dot(branchPoint, branchPoint));
-    float along = p.x + .12;
-    vec2 across = vec2(p.y + .64 + .42 * along * along,
-      p.z * .94 + .24 + .105 * sin(p.x * 2.9 + .2));
-    float radial = length(across) + (curl - .5) * .075 + branch * .145;
-    float growth = radial * 39. + specimenCloud(vec3(radial * 7.1, p.x * 1.1, 4.3)) * 3.8;
-    float late = smoothstep(.76, .985, sin(growth));
+    vec3 localNormal = normalize(vSpecimenNormal);
+    float end = smoothstep(.46, .78, abs(localNormal.x));
+    float split = smoothstep(.42, .76, localNormal.y) * (1. - end);
+    float exposed = max(end, split);
+    float curl = specimenCloud(vec3(p.x * 1.9, p.y * 4.7, p.z * 4.7));
+    vec2 across = vec2((p.y + .19) * .72, p.z + .025 * sin(p.x * 3.3));
+    float radial = length(across) + (curl - .5) * .022;
+    float growth = radial * 76. + specimenCloud(vec3(radial * 8.1, p.x * .8, 4.3)) * 2.1;
+    float late = smoothstep(.66, .97, sin(growth));
     late *= 1. - smoothstep(.4, 1.5, fwidth(growth));
-    vec3 fibres = vec3(p.x, p.y + branch * .10 + .025 * sin(p.x * 4.7), p.z);
-    float fibre = specimenFine(fibres * vec3(5.2, 171., 171.));
-    float streak = specimenNoise(fibres * vec3(1.5, 39., 39.));
-    float pore = smoothstep(.68, .88, specimenFine(fibres * vec3(23., 214., 214.)));
-    vec3 timber = mix(vec3(.40, .205, .078), vec3(.60, .375, .174), .24 + curl * .67);
-    timber *= 1. - late * mix(.21, .26, end);
-    timber *= .92 + streak * .13 + (fibre - .5) * .06;
-    timber *= 1. - branch * .10;
-    timber *= 1. - pore * .11;
-    specimenColour = timber;
-    specimenRelief = (fibre - .5) * .00065 - pore * .00055 - late * .00022;
-    specimenRoughness = .70 + pore * .10 + (1. - fibre) * .065;
+    vec3 fibres = vec3(p.x, p.y + .012 * sin(p.x * 4.7), p.z);
+    float fibre = specimenFine(fibres * vec3(4.5, 165., 165.));
+    float streak = specimenNoise(fibres * vec3(1.3, 41., 41.));
+    float pore = smoothstep(.70, .88, specimenFine(fibres * vec3(21., 218., 218.)));
+    vec3 timber = mix(vec3(.39, .215, .092), vec3(.60, .389, .189), .23 + curl * .65);
+    timber *= (1. - late * mix(.12, .23, end)) * (.94 + streak * .12);
+    timber *= 1. - pore * .10;
+
+    float angle = atan(p.z, (p.y + .19) * .72);
+    float barkBend = specimenCloud(vec3(p.x * 3.1, p.y * 6., p.z * 6.));
+    float barkLayer = sin(angle * 39. + (barkBend - .5) * 3.2 + .35 * sin(p.x * 6.));
+    float fissure = smoothstep(.42, .93, barkLayer);
+    fissure *= 1. - smoothstep(.45, 1.6, fwidth(angle * 39.));
+    float scales = specimenFine(vec3(p.x * 58., p.y * 104., p.z * 104.));
+    vec3 bark = mix(vec3(.135, .104, .071), vec3(.29, .232, .159), barkBend);
+    bark *= .91 + scales * .17;
+    bark *= 1. - fissure * .27;
+    specimenColour = mix(bark, timber, exposed);
+    specimenRelief = mix((barkBend - .5) * .0038 + (scales - .5) * .0011 - fissure * .0027,
+      (fibre - .5) * .00085 - pore * .0007 - late * .0004, exposed);
+    specimenRoughness = mix(.87 + fissure * .075, .80 + pore * .10, exposed);
   `,
   stone: /* glsl */`
     vec3 p = vSpecimenPoint + vec3(1.9, 3.1, 6.7);
@@ -172,28 +173,31 @@ const finishes: Record<Finish, string> = {
     float fine = specimenFine(p * 169.);
     float pale = smoothstep(.60, .80, mineral);
     float dark = 1. - smoothstep(.20, .37, specimenFine(p * 91.));
-    float pit = smoothstep(.70, .87, specimenFine(p * 137.));
-    vec3 rock = mix(vec3(.155, .171, .163), vec3(.335, .348, .317), cloud);
-    rock = mix(rock, vec3(.45, .443, .386), pale * .50);
-    rock = mix(rock, vec3(.067, .078, .075), dark * .43);
-    rock *= .93 + fine * .14;
-    rock *= 1. - pit * .20;
+    float pit = smoothstep(.73, .89, specimenFine(p * 137.));
+    float veinDistance = p.y * .72 + p.x * .24 + p.z * .13 - 3.61
+      + .025 * sin(p.x * 7.) + (cloud - .5) * .095;
+    float vein = 1. - smoothstep(.008, .035 + fwidth(veinDistance), abs(veinDistance));
+    vec3 rock = mix(vec3(.181, .177, .156), vec3(.332, .327, .294), cloud);
+    rock = mix(rock, vec3(.45, .435, .376), pale * .35 + vein * .20);
+    rock = mix(rock, vec3(.071, .078, .072), dark * .32);
+    rock *= .96 + fine * .08;
+    rock *= 1. - pit * .13;
     specimenColour = rock;
-    specimenRelief = (cloud - .5) * .006 + (mineral - .5) * .0026
-      + (fine - .5) * .00065 - pit * .0012;
-    specimenRoughness = clamp(.78 + fine * .14 + pit * .08 - pale * .04, .72, .97);
+    specimenRelief = (cloud - .5) * .0018 + (mineral - .5) * .0011
+      + (fine - .5) * .00045 - pit * .0007;
+    specimenRoughness = clamp(.68 + fine * .12 + pit * .075 - pale * .035, .64, .89);
   `,
   clay: /* glsl */`
     vec3 p = vSpecimenPoint;
     float knead = specimenCloud(p * 5.1 + vec3(4.2, 1.7, 9.3));
     float fine = specimenFine(p * 153.);
     float pore = smoothstep(.71, .88, specimenFine(p * 219.));
-    vec3 earth = mix(vec3(.405, .166, .084), vec3(.485, .228, .123), knead);
+    vec3 earth = mix(vec3(.405, .225, .105), vec3(.483, .293, .151), knead);
     earth *= .97 + fine * .055;
     earth *= 1. - pore * .075;
     specimenColour = earth;
     specimenRelief = (knead - .5) * .00065 + (fine - .5) * .00045 - pore * .0005;
-    specimenRoughness = .80 + pore * .10 + (1. - fine) * .065;
+    specimenRoughness = .85 + pore * .075 + (1. - fine) * .045;
   `,
   hull: /* glsl */`
     // The hull's authored positions already contain its current world height.
@@ -204,20 +208,22 @@ const finishes: Record<Finish, string> = {
     float knead = specimenCloud(p * 5.1 + vec3(4.2, 1.7, 9.3));
     float fine = specimenFine(p * 153.);
     float pore = smoothstep(.71, .88, specimenFine(p * 219.));
-    vec3 earth = mix(vec3(.405, .166, .084), vec3(.485, .228, .123), knead);
+    vec3 earth = mix(vec3(.405, .225, .105), vec3(.483, .293, .151), knead);
     earth *= .97 + fine * .055;
     earth *= 1. - pore * .075;
     specimenColour = earth;
     specimenRelief = (knead - .5) * .00065 + (fine - .5) * .00045 - pore * .0005;
-    specimenRoughness = .80 + pore * .10 + (1. - fine) * .065;
+    specimenRoughness = .85 + pore * .075 + (1. - fine) * .045;
   `,
   metal: /* glsl */`
     vec3 p = vSpecimenPoint;
     float brushing = specimenFine(vec3(p.x * 4., p.y * 244., p.z * 157.));
     float satin = specimenCloud(p * 8.7);
-    specimenColour = vec3(.56, .61, .64) * (.95 + satin * .07 + (brushing - .5) * .035);
-    specimenRelief = (brushing - .5) * .00019;
-    specimenRoughness = .24 + brushing * .075 + satin * .025;
+    float wear = specimenCloud(p * 18.4 + vec3(4.3, 7.1, 1.8));
+    specimenColour = vec3(.45, .465, .47) * (.94 + satin * .10 + (brushing - .5) * .03);
+    specimenColour *= 1. - smoothstep(.62, .82, wear) * .08;
+    specimenRelief = (brushing - .5) * .00016 + (wear - .5) * .00012;
+    specimenRoughness = .28 + brushing * .075 + satin * .035;
   `,
   cargo: /* glsl */`
     vec3 p = vSpecimenPoint;
@@ -276,7 +282,7 @@ function attachFinish<T extends THREE.MeshStandardMaterial>(
         vec3 specimenColour = vec3(1.);
         float specimenRelief = 0.;
         float specimenRoughness = roughness;
-        ${photographs ? `if (specimenWoodReady < .5) { ${finishes[kind]} }` : finishes[kind]}
+        ${finishes[kind]}
         ${photographs ? photographedTimber : ''}
         float specimenWet = 1. - smoothstep(specimenWaterLevel - .014, specimenWaterLevel + .008, vSpecimenHeight);
         diffuseColor.rgb *= specimenColour * mix(1., ${wet.darken.toFixed(3)}, specimenWet);`)
@@ -285,7 +291,7 @@ function attachFinish<T extends THREE.MeshStandardMaterial>(
       .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
         normal = specimenBump(-vViewPosition, normal, specimenRelief, faceDirection);`);
   };
-  material.customProgramCacheKey = () => `buoyancy-specimen-${kind}-${photographs ? 'photo-v1' : 'v2'}`;
+  material.customProgramCacheKey = () => `buoyancy-specimen-${kind}-${photographs ? 'photo-natural-v2' : 'natural-v3'}`;
   return material;
 }
 

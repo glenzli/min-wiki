@@ -1,5 +1,6 @@
 import content from './comparisonContent.json';
 import {drawObservableWeb} from './observableWeb.ts';
+import {drawPlanetGlyph} from './planetGlyph.ts';
 
 type Words = typeof content.zh;
 type Point = readonly [number, number];
@@ -77,7 +78,8 @@ export class MembershipScene {
   const cx=width/2,cy=height*.46,span=Math.min(width*.38,height*.7);c.save();c.font=`${width<460?11:12}px system-ui`;c.textAlign='center';c.lineWidth=1;
   const back=c.createRadialGradient(cx,cy,0,cx,cy,Math.max(width,height)*.55);back.addColorStop(0,'#20364b42');back.addColorStop(1,'#07101c00');c.fillStyle=back;c.fillRect(0,0,width,height);
   if(home===0){
-   for(let i=1;i<=8;i++){const r=span*i/8;c.strokeStyle=i===3?'#89b9d299':'#819cad66';c.beginPath();c.ellipse(cx,cy,r,r*.38,0,0,7);c.stroke();const a=i*1.4;this.dot(c,cx+Math.cos(a)*r,cy+Math.sin(a)*r*.38,i===3?5:3,i===3?'#76cdf7':'#c7b598');}
+   const inner=Math.max(64,span/8);
+   for(let i=0;i<8;i++){const r=inner+(span-inner)*i/7;c.strokeStyle=i===2?'#89b9d299':'#819cad66';c.beginPath();c.ellipse(cx,cy,r,r*.38,0,0,7);c.stroke();const a=(i+1)*1.4;drawPlanetGlyph(c,cx+Math.cos(a)*r,cy+Math.sin(a)*r*.38,i,8.5);}
    const sun=c.createRadialGradient(cx-5,cy-5,0,cx,cy,19);sun.addColorStop(0,'#ffedab');sun.addColorStop(.7,'#ffbb60');sun.addColorStop(1,'#bd6420');c.fillStyle=sun;c.beginPath();c.arc(cx,cy,18,0,7);c.fill();
   }
   if(home===1){

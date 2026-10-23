@@ -32,6 +32,10 @@ box does not share the zoom canvas's camera. It remains available when optional 
 or in-scene annotations are hidden. Stage changes update both the object captions and
 length ratio; no control silently inflates a subpixel physical disk.
 
+Active chapter presentation is mirrored on the local workspace, so Reader's scoped CSS can
+apply the pair/zoom switch without depending on an ancestor outside the document boundary.
+Only one visual window occupies the observation stage; the scale state survives view changes.
+
 References include a stipulated 50 km city width (not a real city's measured extent),
 the 1,391,400 km solar diameter, and the diameter of Neptune's rounded 30.07 AU orbit.
 Ratios are approximately 1.2, 17 and 4.3 respectively. All ratios compare diameters or spans,
@@ -119,6 +123,11 @@ Planet order and the distinction from the wider Solar System follow
 reuse the Solar System topic's rounded NASA/JPL data, while the outer orbits retain this
 comparison's existing 5.203, 9.537, 19.191 and 30.07 AU values. Picture choices are independently sized
 recognition cards.
+
+The orbit-reference icons preserve the known Sun/planet diameter order even though their size
+differences are compressed for recognition. The Sun stays larger than Jupiter, and Uranus stays
+slightly larger than Neptune. The linear orbit radii and highlighted Neptune span are unchanged;
+the separate close-up card still spreads the inner orbits for identification.
 
 Selected celestial references link to their own stellar pair or system-membership view. The
 shared sequence now includes VY Canis Majoris, using the central photospheric-radius estimate

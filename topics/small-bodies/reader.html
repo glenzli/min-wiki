@@ -1,0 +1,35 @@
+<section class="small-bodies-content">
+  <p class="sb-question" data-reader-prose>同样绕着太阳走，为什么有的是石块，有的会长出彗尾，还有的散成尘埃？</p>
+  <section id="small-bodies-lab" class="small-bodies-lab" aria-label="小天体三维观察台">
+    <div id="sb-chapters" class="sb-chapters" role="group" aria-label="选择观察问题" data-reader-menu="chapters">
+      <button type="button" data-view="shapes" aria-pressed="true">1 · 石块为什么不同？</button>
+      <button type="button" data-view="comet" aria-pressed="false">2 · 彗尾从哪里来？</button>
+      <button type="button" data-view="belts" aria-pressed="false">3 · 碎屑住在哪里？</button>
+    </div>
+    <div class="small-bodies-stage" data-reader-stage role="group" aria-label="可旋转的小天体、彗星轨道与碎屑储库教学模型">
+      <div id="sb-fallback" class="sb-fallback" hidden><img src="./fallback.svg" alt="三幅静态示意：不规则小天体、背离太阳的彗尾，以及稀疏的环带与球状储库"><p>三维画面暂时不可用。这是固定示意，下面的条件、读数和解释仍可使用。</p><button type="button" id="sb-retry">重试三维画面</button></div>
+      <div id="sb-orbit-legend" class="sb-stage-legend" hidden><span class="sb-ion-key">蓝色细尾：离子</span><span class="sb-dust-key">浅褐宽尾：尘埃</span></div>
+    </div>
+    <div class="sb-transport" role="group" aria-label="观察控制" data-reader-transport><button type="button" id="sb-play" aria-pressed="false" hidden>播放一圈</button><button type="button" id="sb-reset-camera">重置镜头</button><button type="button" id="sb-top-camera">从上方看</button></div>
+    <div id="sb-condition-control" class="sb-condition-control">
+      <label id="sb-light-control" for="sb-light"><span>移动光源，看看明暗怎样变化</span><input type="range" id="sb-light" min="-150" max="150" step="1" value="35"></label>
+      <label id="sb-orbit-control" for="sb-orbit" hidden><span>同一彗星：远日点 → 近日点 → 远日点</span><input type="range" id="sb-orbit" min="0" max="1000" step="1" value="0"></label>
+      <label id="sb-earth-control" for="sb-earth" hidden><span>让地球沿轨道走一圈</span><input type="range" id="sb-earth" min="0" max="1000" step="1" value="300"></label>
+      <div id="sb-comet-stops" class="sb-stops" hidden><button type="button" data-orbit="0">远处，安静的彗核</button><button type="button" data-orbit="0.45">接近太阳</button><button type="button" data-orbit="0.5">近日点</button><button type="button" data-orbit="0.56">离开太阳</button></div>
+      <div id="sb-dust-stops" class="sb-stops" hidden><button type="button" id="sb-outside-stream">先在碎屑流外</button><button type="button" id="sb-enter-stream">再穿过碎屑流</button></div>
+    </div>
+    <p id="sb-readout" class="sb-readout" role="status" aria-live="polite"></p>
+    <p id="sb-scale-note" class="sb-scale-note" data-reader-caption></p>
+    <p id="sb-gesture-note" class="sb-gesture-note">拖动旋转，双指或滚轮缩放。聚焦画面后，方向键转动，＋／－缩放，Home 重置镜头。</p>
+    <div class="sb-settings" aria-label="实验设置">
+      <div id="sb-shape-options"><label for="sb-specimen">选择有区别的例子</label><select id="sb-specimen"><option value="carbon">C 型：暗一些的代表样本</option><option value="silicate">S 型：硅酸盐代表样本</option><option value="metal">M 型：成分仍需证据的样本</option><option value="ceres">谷神星：主带里的矮行星</option></select><p id="sb-specimen-note"></p></div>
+      <div id="sb-comet-options" hidden><label class="sb-check"><input type="checkbox" id="sb-ice" checked><span>假设彗核表面有可升华的冰</span></label><p>关掉它作对照：轨道不变，彗发和彗尾会怎样？这是条件实验，不是在给一颗真实彗星作诊断。</p><label for="sb-lens">观察镜头</label><select id="sb-lens"><option value="orbit">看完整轨道</option><option value="nucleus">跟随同一彗核近看</option></select></div>
+      <div id="sb-belt-options" hidden><label for="sb-region">选择碎屑储库</label><select id="sb-region"><option value="main">主小行星带</option><option value="kuiper">柯伊伯带</option><option value="dust">行星际尘埃与碎屑流</option><option value="oort">奥尔特云 · 推断的储库</option></select><p>每次换储库都换一个合适的镜头。点是放大的定位符，数量经过抽样；实际空间十分空旷。</p></div>
+      <label class="sb-check"><input type="checkbox" id="sb-labels" checked><span>显示对象名称</span></label>
+    </div>
+    <p id="sb-child-note"></p>
+  </section>
+  <section class="sb-reading" data-reader-prose><h2>从石块到尘埃，是同一条线索</h2><p>小行星不都是一整块坚硬石头；有些是松散碎块组成的集合。彗星也不只是一块干净的冰，通常混着尘埃和岩石。碰撞会产生碎片，彗星活动会释放尘埃。进入地球大气的部分小碎片，才可能带来我们看见的流星。</p><p>但不能把这些名字排成每个天体都会经历的固定顺序。不是每颗小行星都会变成彗星，也不是每粒尘埃都会落到地球。轨道、物质和环境共同决定后续发生什么。</p></section>
+  <details class="sb-boundaries" data-reader-prose><summary>看图时，怎样分清证据和示意？</summary><p>小天体的形状、反射光和轨道有望远镜与探测器观测支持。本页的表面坑洼与代表点分布是原创示意，没有描摹某次观测的地形或位置。颜色帮助区分样本与尾部，不能代替光谱、密度或采样证据。</p><p>彗星轨道是已知参数的假想二体椭圆，太阳光照按距离平方反比计算。升华响应、喷流和尾部曲线是定性教学映射，没有求解传热、太阳风、尘埃粒子动力学、质量耗损或真实流星雨。拖动是取样不同条件，不是让真实升华倒流。奥尔特云采用独立结构示意；它不是拍摄到的外观，和其他画面没有共同的长度比例。</p></details>
+  <nav class="sb-related" data-reader-prose aria-label="继续探索宇宙"><a href="/topics/universe-guide/">宇宙观察指南：把小成员放回系统里 →</a><a href="/topics/meteors/">流星与陨石：碎片进入大气以后 →</a><a href="/topics/solar-system/">太阳系：行星怎样围着太阳运动？ →</a></nav>
+</section>

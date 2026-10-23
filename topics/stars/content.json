@@ -1,25 +1,45 @@
 {
   "chapters": [
     {
+      "id": "nebulae",
+      "name": {
+        "zh": "01 · 星云为何可见",
+        "en": "01 · Why nebulae are visible"
+      }
+    },
+    {
       "id": "evolution",
-      "name": {"zh": "01 · 一生与分支", "en": "01 · Lifetimes & paths"}
+      "name": {
+        "zh": "02 · 一生与分支",
+        "en": "02 · Lifetimes and paths"
+      }
+    },
+    {
+      "id": "types",
+      "name": {
+        "zh": "03 · 颜色与大小",
+        "en": "03 · Color and size"
+      }
     },
     {
       "id": "anatomy",
-      "name": {"zh": "02 · 发光与活动", "en": "02 · Light & activity"}
+      "name": {
+        "zh": "04 · 发光与活动",
+        "en": "04 · Light and activity"
+      }
     },
     {
       "id": "orbits",
       "name": {
-        "zh": "03 · 相伴的恒星",
-        "en": "03 · Stars together"
+        "zh": "05 · 相伴的恒星",
+        "en": "05 · Stars together"
       }
     },
     {
       "id": "three-body",
       "name": {
-        "zh": "04 · 三体数值实验",
-        "en": "04 · Three-body experiment"
+        "zh": "06 · 三体数值实验",
+        "en": "06 · Three-body experiment"
       }
     }
   ],
@@ -128,12 +148,30 @@
       "zh": "共同质心",
       "en": "CENTER OF MASS"
     },
-    "innerPair": {"zh":"内层双星 A+B","en":"Inner pair A+B"},
-    "hostDetail": {"zh":"A 星附近 · 再放大","en":"Near A · enlarged again"},
-    "planet": {"zh":"行星","en":"Planet"},
-    "starsCount": {"zh":"恒星","en":"Stars"},
-    "planetsCount": {"zh":"画出的行星","en":"Planets shown"},
-    "planetPath": {"zh":"行星绕行对象","en":"Planet orbits"},
+    "innerPair": {
+      "zh": "内层双星 A+B",
+      "en": "Inner pair A+B"
+    },
+    "hostDetail": {
+      "zh": "A 星附近 · 再放大",
+      "en": "Near A · enlarged again"
+    },
+    "planet": {
+      "zh": "行星",
+      "en": "Planet"
+    },
+    "starsCount": {
+      "zh": "恒星",
+      "en": "Stars"
+    },
+    "planetsCount": {
+      "zh": "画出的行星",
+      "en": "Planets shown"
+    },
+    "planetPath": {
+      "zh": "行星绕行对象",
+      "en": "Planet orbits"
+    },
     "period": {
       "zh": "外圈 / 内圈周期",
       "en": "Outer / inner period"
@@ -159,8 +197,8 @@
       "en": "Both panels share the initial angular scale; only the right apparent disk shrinks. A crosshair marks subpixel disks, not their diameter. Halos and background points are not measurements."
     },
     "typeScale": {
-      "zh": "两颗主星盘共用线性直径比例；太阳过小时用十字定位，另附明确放大的辨认图。标尺以太阳直径为单位。切换型号时视野会重新取景；800 倍模型另带 50 倍红巨星作中间参照。均为取整教学模型，不是具体恒星的测量值。",
-      "en": "The main disks share a linear diameter scale. A crosshair locates a subpixel Sun; a labeled inset enlarges it separately. Rulers use solar diameters. Selecting a type reframes the view; the 800× model also includes a 50× red giant as an intermediate reference. These are rounded teaching models, not measured individual stars."
+      "zh": "主图中的星盘共用线性直径比例；较大的星不一定质量更大。小于像素的太阳用定位标记并另设放大镜头。颜色经过增强，不是光谱测温；各类型是独立代表，不是一颗星依次变大。",
+      "en": "Main disks share one linear diameter scale. A larger star need not be more massive. A subpixel Sun has a locator and a separately magnified inset. Colors are enhanced, not measured spectra. These are separate examples, not one star growing through each type."
     },
     "sectionScale": {
       "zh": "剖面各层厚度、颜色经过示意化；它不是内部照片，也不能从图上量出真实深度。",
@@ -233,35 +271,97 @@
     "pauseSurface": {
       "zh": "暂停表面 · 示意",
       "en": "Pause surface · illustrated"
+    },
+    "lifespan": {
+      "zh": "主序寿命参照",
+      "en": "Main-sequence lifetime reference"
+    },
+    "luminosity": {
+      "zh": "相对光度（有效温度关系）",
+      "en": "Relative luminosity (effective-temperature relation)"
     }
   },
   "orbitCases": {
     "circumbinary": {
-      "name":{"zh":"近双星 · 行星绕两星","en":"Close binary · planets around both"},
-      "sceneLabel":{"zh":"Kepler-47 · 双星与三颗已确认行星","en":"Kepler-47 · binary and three confirmed planets"},
-      "bottomLabel":{"zh":"A、B 绕共同质心；行星 b、d、c 绕这对双星","en":"A and B orbit their barycenter; b, d and c orbit the pair"},
-      "planetPath":{"zh":"双星整体","en":"Both stars"},
-      "explain":{"zh":"Kepler-47 的两颗质量不同的恒星彼此绕行，三颗已确认行星绕它们的共同质心。这不是两颗太阳被固定在行星两侧；行星绕的是整对双星。画面保留成员数和绕行层级，轨道圆与位置是教学示意。","en":"Kepler-47 has two unequal stars orbiting each other and three confirmed planets orbiting their shared center of mass. The stars are not fixed on either side of a planet; the planets circle the pair. The scene keeps the members and orbital hierarchy, while circular paths and positions are illustrative."},
-      "boundary":{"zh":"Kepler-47 的成员与绕行类型来自观测；这里没有按真实轨道距离、偏心率、半径或公转周期拟合。双星能拥有行星，不代表每对双星都有行星。","en":"The members and orbit type of Kepler-47 are observed. Distances, eccentricities, radii and periods are not fitted here. Some binaries host planets; this does not mean every binary does."},
-      "source":"https://science.nasa.gov/universe/exoplanets/discovery-alert-a-third-planet-in-kepler-47-system/"
+      "name": {
+        "zh": "近双星 · 行星绕两星",
+        "en": "Close binary · planets around both"
+      },
+      "sceneLabel": {
+        "zh": "Kepler-47 · 双星与三颗已确认行星",
+        "en": "Kepler-47 · binary and three confirmed planets"
+      },
+      "bottomLabel": {
+        "zh": "A、B 绕共同质心；行星 b、d、c 绕这对双星",
+        "en": "A and B orbit their barycenter; b, d and c orbit the pair"
+      },
+      "planetPath": {
+        "zh": "双星整体",
+        "en": "Both stars"
+      },
+      "explain": {
+        "zh": "Kepler-47 的两颗质量不同的恒星彼此绕行，三颗已确认行星绕它们的共同质心。这不是两颗太阳被固定在行星两侧；行星绕的是整对双星。画面保留成员数和绕行层级，轨道圆与位置是教学示意。",
+        "en": "Kepler-47 has two unequal stars orbiting each other and three confirmed planets orbiting their shared center of mass. The stars are not fixed on either side of a planet; the planets circle the pair. The scene keeps the members and orbital hierarchy, while circular paths and positions are illustrative."
+      },
+      "boundary": {
+        "zh": "Kepler-47 的成员与绕行类型来自观测；这里没有按真实轨道距离、偏心率、半径或公转周期拟合。双星能拥有行星，不代表每对双星都有行星。",
+        "en": "The members and orbit type of Kepler-47 are observed. Distances, eccentricities, radii and periods are not fitted here. Some binaries host planets; this does not mean every binary does."
+      },
+      "source": "https://science.nasa.gov/universe/exoplanets/discovery-alert-a-third-planet-in-kepler-47-system/"
     },
     "circumprimary": {
-      "name":{"zh":"宽双星 · 行星绕一星","en":"Wide binary · planet around one star"},
-      "sceneLabel":{"zh":"另一种布局 · 行星留在 A 星附近","en":"Another layout · a planet near star A"},
-      "bottomLabel":{"zh":"A、B 缓慢互绕；近处行星更快地绕 A","en":"A and B orbit slowly; the nearby planet circles A faster"},
-      "planetPath":{"zh":"只绕 A 星","en":"Star A only"},
-      "explain":{"zh":"当两颗恒星相距较远时，行星也可能主要受其中一颗恒星束缚，随它一起参与双星的外层运动。这里展示这种绕单星（S 型）布局的代表性构造，不对应某个已测量系统。","en":"In a sufficiently wide binary, a planet can remain bound mainly to one star while the host star also moves in the binary. This is a representative circumstellar (S-type) layout, not a reconstruction of a measured system."},
-      "boundary":{"zh":"行星能否长期留在 A 星附近取决于双星间距、质量、偏心率与行星轨道等条件。画面只选取分离清楚的布局；圆轨道不是稳定性求解，也不表示所有宽双星都有行星。","en":"Long-term survival near A depends on binary separation, masses, eccentricity and the planetary orbit. This scene selects a clearly separated layout. Circular paths are not a stability calculation, nor do all wide binaries have planets."},
-      "source":"https://arxiv.org/abs/astro-ph/9809315"
+      "name": {
+        "zh": "宽双星 · 行星绕一星",
+        "en": "Wide binary · planet around one star"
+      },
+      "sceneLabel": {
+        "zh": "另一种布局 · 行星留在 A 星附近",
+        "en": "Another layout · a planet near star A"
+      },
+      "bottomLabel": {
+        "zh": "A、B 缓慢互绕；近处行星更快地绕 A",
+        "en": "A and B orbit slowly; the nearby planet circles A faster"
+      },
+      "planetPath": {
+        "zh": "只绕 A 星",
+        "en": "Star A only"
+      },
+      "explain": {
+        "zh": "当两颗恒星相距较远时，行星也可能主要受其中一颗恒星束缚，随它一起参与双星的外层运动。这里展示这种绕单星（S 型）布局的代表性构造，不对应某个已测量系统。",
+        "en": "In a sufficiently wide binary, a planet can remain bound mainly to one star while the host star also moves in the binary. This is a representative circumstellar (S-type) layout, not a reconstruction of a measured system."
+      },
+      "boundary": {
+        "zh": "行星能否长期留在 A 星附近取决于双星间距、质量、偏心率与行星轨道等条件。画面只选取分离清楚的布局；圆轨道不是稳定性求解，也不表示所有宽双星都有行星。",
+        "en": "Long-term survival near A depends on binary separation, masses, eccentricity and the planetary orbit. This scene selects a clearly separated layout. Circular paths are not a stability calculation, nor do all wide binaries have planets."
+      },
+      "source": "https://arxiv.org/abs/astro-ph/9809315"
     },
     "hierarchical": {
-      "name":{"zh":"层级三星 · 行星绕 A","en":"Hierarchical triple · planet around A"},
-      "sceneLabel":{"zh":"KOI-5 型层级 · 内层 A+B，外层 C","en":"KOI-5 style hierarchy · inner A+B, outer C"},
-      "bottomLabel":{"zh":"行星靠近 A；右下角把 A 附近单独放大","en":"Planet stays near A; the inset enlarges A's neighborhood"},
-      "planetPath":{"zh":"内双星的 A 星","en":"Star A of the inner pair"},
-      "explain":{"zh":"KOI-5 有一颗行星绕 A 星，A 与 B 构成较近的一对，C 则绕这对双星更远地运动。整个系统有三个不同位置的恒星，并不是三颗星挤成一团。右下角对 A 的行星另取更大的镜头。","en":"In KOI-5, a planet orbits star A. A and B form a closer pair while C moves farther around that pair. The three stars occupy distinct places rather than crowding together. The inset uses another scale to show A's planet."},
-      "boundary":{"zh":"成员关系参考 KOI-5；图中的恒星质量比例、圆轨道、相位与行星位置为示意，不是 KOI-5 的轨道解。两个镜头不能拼成同一把距离尺；行星是否稳定仍需具体动力学研究。","en":"The membership follows KOI-5. Stellar mass ratios, circular paths, phases and planetary positions here are illustrative, not a KOI-5 orbit solution. The two views use different distance scales; planetary stability needs a system-specific dynamics study."},
-      "source":"https://science.nasa.gov/universe/exoplanets/discovery-alert-a-forgotten-planet-found-in-a-triple-star-system/"
+      "name": {
+        "zh": "层级三星 · 行星绕 A",
+        "en": "Hierarchical triple · planet around A"
+      },
+      "sceneLabel": {
+        "zh": "KOI-5 型层级 · 内层 A+B，外层 C",
+        "en": "KOI-5 style hierarchy · inner A+B, outer C"
+      },
+      "bottomLabel": {
+        "zh": "行星靠近 A；右下角把 A 附近单独放大",
+        "en": "Planet stays near A; the inset enlarges A's neighborhood"
+      },
+      "planetPath": {
+        "zh": "内双星的 A 星",
+        "en": "Star A of the inner pair"
+      },
+      "explain": {
+        "zh": "KOI-5 有一颗行星绕 A 星，A 与 B 构成较近的一对，C 则绕这对双星更远地运动。整个系统有三个不同位置的恒星，并不是三颗星挤成一团。右下角对 A 的行星另取更大的镜头。",
+        "en": "In KOI-5, a planet orbits star A. A and B form a closer pair while C moves farther around that pair. The three stars occupy distinct places rather than crowding together. The inset uses another scale to show A's planet."
+      },
+      "boundary": {
+        "zh": "成员关系参考 KOI-5；图中的恒星质量比例、圆轨道、相位与行星位置为示意，不是 KOI-5 的轨道解。两个镜头不能拼成同一把距离尺；行星是否稳定仍需具体动力学研究。",
+        "en": "The membership follows KOI-5. Stellar mass ratios, circular paths, phases and planetary positions here are illustrative, not a KOI-5 orbit solution. The two views use different distance scales; planetary stability needs a system-specific dynamics study."
+      },
+      "source": "https://science.nasa.gov/universe/exoplanets/discovery-alert-a-forgotten-planet-found-in-a-triple-star-system/"
     }
   },
   "types": [
@@ -300,6 +400,10 @@
       "shortName": {
         "zh": "红矮星",
         "en": "Red dwarf"
+      },
+      "lifetime": {
+        "zh": "万亿年量级 · 理论",
+        "en": "Trillions of years · theoretical"
       }
     },
     {
@@ -345,6 +449,10 @@
       "shortName": {
         "zh": "太阳型恒星",
         "en": "Sun-like star"
+      },
+      "lifetime": {
+        "zh": "约百亿年",
+        "en": "About ten billion years"
       }
     },
     {
@@ -390,6 +498,10 @@
       "shortName": {
         "zh": "红巨星",
         "en": "Red giant"
+      },
+      "lifetime": {
+        "zh": "非主序阶段",
+        "en": "Beyond the main sequence"
       }
     },
     {
@@ -427,6 +539,51 @@
       "shortName": {
         "zh": "红超巨星",
         "en": "Red supergiant"
+      },
+      "lifetime": {
+        "zh": "非主序阶段",
+        "en": "Beyond the main sequence"
+      }
+    },
+    {
+      "id": "hot-main",
+      "radius": 6,
+      "mass": 15,
+      "temp": 30000,
+      "color": "#bcd8ff",
+      "name": {
+        "zh": "炽热大质量主序星",
+        "en": "Hot massive main-sequence star"
+      },
+      "shortName": {
+        "zh": "蓝白主序星",
+        "en": "Blue-white main sequence"
+      },
+      "description": {
+        "zh": "这个约 15 个太阳质量、30000 K 的代表主序星比太阳炽亮，但核心氢聚变寿命只有约千万年量级。蓝白表示更高的有效温度，不能把蓝色误读成冰冷，也不能把所有蓝星视为同质量。",
+        "en": "This representative main-sequence star has about 15 solar masses and 30000 K. It is far brighter than the Sun but its core-hydrogen lifetime is only of order ten million years. Blue-white indicates higher effective temperature, not coldness; blue stars do not all share one mass."
+      },
+      "layers": [
+        {
+          "r": 1,
+          "color": "#779bc2",
+          "name": {
+            "zh": "以辐射传能的外层",
+            "en": "Mainly radiative envelope"
+          }
+        },
+        {
+          "r": 0.3,
+          "color": "#eef8ff",
+          "name": {
+            "zh": "对流核 · 厚度示意",
+            "en": "Convective core · schematic thickness"
+          }
+        }
+      ],
+      "lifetime": {
+        "zh": "约千万年量级",
+        "en": "Of order ten million years"
       }
     }
   ]

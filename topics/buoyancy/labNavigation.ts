@@ -5,7 +5,7 @@ import { t } from './i18n.ts';
 type Preset = 'oblique' | 'front' | 'top';
 type NavigationAction = Preset | 'reset';
 
-const target = new THREE.Vector3(0, 1.65, 0);
+const target = new THREE.Vector3(0, .95, 0);
 const positions: Record<Preset, readonly [number, number, number]> = {
   oblique: [4.4, 8.4, 12.8],
   front: [0, 3.8, 16],

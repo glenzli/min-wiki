@@ -163,6 +163,7 @@
     }
   ],
   "ui": {
+    "retryView": {"zh":"重试连续三维画面","en":"Retry the continuous 3D view"},
     "alongWay": {"zh": "沿途观察", "en": "Along the way"},
     "moon": {
       "zh": "月球",

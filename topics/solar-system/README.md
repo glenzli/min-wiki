@@ -1,5 +1,12 @@
 # 太阳系：太阳、行星与卫星 / Solar system explorer
 
+The Reader-era header now takes only the height of its remaining content after control relocation,
+rather than reserving the old 84px header. This returns empty desktop space to the observation stage
+without changing the renderer, planetary materials or independent clocks.
+The active world's lens menu and activity pause remain next to its breadcrumb rather than inside
+the closed explanation. The orbital transport is hidden during world exploration, so a globe does
+not offer an unrelated orbit clock; returning to the overview restores that independent transport.
+
 ## Orbit framing and identification · 2026-09-28
 
 The inclined orbit overview now moves closer when the presentation stage is wide and retreats on narrow screens, while the top-down camera leaves a margin around the outer orbit. The first frame starts at its calculated camera pose, avoiding a brief oversized orbit during camera interpolation. Five representative planet names follow their projected positions in the overview, with a small collision filter; the toolbar still names all eight planets. The true-diameter lineup now fits the Sun and all eight planets in its overview at narrow widths; its planet-only lens fits all eight and hides the Sun rather than leaving a clipped sliver. Labels are staggered on mobile without changing globe diameters. Orbit reference lines have slightly more contrast. Camera placement and labels do not change orbital radii, relative periods, initial phases or the intentionally enlarged planet radii in orbit mode. The full descent and surface branches still require their own visual pass.

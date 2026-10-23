@@ -1,5 +1,27 @@
 /** Recognition drawings. The caller supplies the exact physical span, or labels a separate inset.
  * City buildings and orbital position symbols identify objects; only their marked span is a ruler. */
+const solarSymbols = [
+  { id:'mercury', au:.387, angle:-2.2, color:'#b9b4a9', size:.023 },
+  { id:'venus', au:.723, angle:.65, color:'#e8c47f', size:.029 },
+  { id:'earth', au:1, angle:2.4, color:'#66b9e7', size:.030 },
+  { id:'mars', au:1.524, angle:-.6, color:'#df8968', size:.025 },
+  { id:'jupiter', au:5.203, angle:-1.35, color:'#e0b994', size:.051 },
+  { id:'saturn', au:9.537, angle:2.8, color:'#dec899', size:.042 },
+  { id:'uranus', au:19.191, angle:.9, color:'#91d4dd', size:.036 },
+  { id:'neptune', au:30.07, angle:-.1, color:'#719de3', size:.034 },
+] as const;
+/** Orbital radii retain their ruler; enlarged icons preserve body-size order in both lenses. */
+export function solarReferenceLayout(portrait = false) {
+  const portraitRadii = [.09,.145,.20,.25,.31,.375,.435,.5];
+  return {
+    sunRadius: portrait ? .067 : .009,
+    planets: solarSymbols.map((planet,index) => ({...planet,
+      orbitRadius: portrait ? portraitRadii[index]! : .5 * planet.au / 30.07,
+      bodyRadius: planet.size * (portrait ? 1 : .12),
+    })),
+  };
+}
+
 export function drawReference(c: CanvasRenderingContext2D, id: string, x: number, y: number, span: number, portrait = false) {
   c.save(); c.translate(x, y); c.scale(span, span); c.lineWidth = 1 / span;
   const circle = (x: number, y: number, r: number, color: string) => {
@@ -62,32 +84,21 @@ export function drawReference(c: CanvasRenderingContext2D, id: string, x: number
     // Circular teaching orbits, using rounded semimajor axes in AU. Only the separately
     // labelled recognition portraits spread the inner orbits out; the measured view is linear.
     // Phases are fixed illustrative positions, not an ephemeris. Icons are not physical disks.
-    const planets = [
-      { id:'mercury', au:.387, angle:-2.2, color:'#b9b4a9', size:.023 },
-      { id:'venus', au:.723, angle:.65, color:'#e8c47f', size:.029 },
-      { id:'earth', au:1, angle:2.4, color:'#66b9e7', size:.033 },
-      { id:'mars', au:1.524, angle:-.6, color:'#df8968', size:.025 },
-      { id:'jupiter', au:5.203, angle:-1.35, color:'#e0b994', size:.051 },
-      { id:'saturn', au:9.537, angle:2.8, color:'#dec899', size:.042 },
-      { id:'uranus', au:19.191, angle:.9, color:'#91d4dd', size:.034 },
-      { id:'neptune', au:30.07, angle:-.1, color:'#719de3', size:.036 },
-    ];
-    const portraitRadii = [.09,.145,.20,.25,.31,.375,.435,.5];
+    const {planets,sunRadius} = solarReferenceLayout(portrait);
     for (const [i,planet] of planets.entries()) {
-      const radius = portrait ? portraitRadii[i]! : .5*planet.au/30.07;
+      const radius = planet.orbitRadius;
       c.strokeStyle = i === 7 ? '#a6d4ff' : '#8facdf70';
       c.lineWidth = (i === 7 ? 1.5 : .7) / span;
       c.beginPath(); c.arc(0,0,radius,0,Math.PI*2); c.stroke();
     }
-    const sunRadius = portrait ? .047 : .009;
     const glow=c.createRadialGradient(0,0,0,0,0,sunRadius*2.5);
     glow.addColorStop(0,'#ffdb83aa'); glow.addColorStop(1,'#ffdb8300');
     c.fillStyle=glow; c.fillRect(-sunRadius*2.5,-sunRadius*2.5,sunRadius*5,sunRadius*5);
     circle(0,0,sunRadius,'#ffdc83');
-    for (const [i,planet] of planets.entries()) {
-      const radius = portrait ? portraitRadii[i]! : .5*planet.au/30.07;
+    for (const planet of planets) {
+      const radius = planet.orbitRadius;
       const px=Math.cos(planet.angle)*radius, py=Math.sin(planet.angle)*radius;
-      const r=portrait ? planet.size : i<4 ? .004 : planet.size*.65;
+      const r=planet.bodyRadius;
       if (planet.id === 'earth' || planet.id === 'jupiter') drawReference(c,planet.id,px,py,r*2);
       else {
         const surface=c.createRadialGradient(px-r*.3,py-r*.3,r*.1,px,py,r);

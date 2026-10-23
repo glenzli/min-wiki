@@ -1,0 +1,292 @@
+{
+  "ui": {
+    "zh": {
+      "chapter": "观察星系结构",
+      "heading": "转一转：星光怎样排成不同结构？",
+      "choose": "选择要比较的结构",
+      "face": "正面：找分布",
+      "edge": "侧面：看厚薄",
+      "oblique": "斜视：看空间",
+      "yaw": "绕盘面方向旋转",
+      "pitch": "从正面转到侧面",
+      "disk": "恒星盘与尘埃",
+      "bulge": "中央核球与棒",
+      "halo": "稀疏恒星晕",
+      "guides": "结构轮廓与坐标",
+      "drag": "拖动或用方向键旋转；恒星位置保持不变。",
+      "boundary": "结构重建示意 · 光点不是逐颗恒星，亮度不表示恒星数量；各案例独立取景，不可量取大小差。",
+      "fallback": "已使用可旋转的简化绘图，解释与空间位置仍可用。",
+      "retry": "重试三维画面",
+      "source": "查看科学依据 ↗",
+      "onward": "带着太阳的位置，连续拉远 →",
+      "sun": "太阳在盘内 · 距中心约 2.6 万光年",
+      "center": "中央核球与棒",
+      "diskLabel": "薄的恒星盘",
+      "haloLabel": "恒星晕 · 非硬边界",
+      "clusterContext": "银河中的一个球状星团位置 · 示例",
+      "clusterDetail": "同一类星团的独立放大图",
+      "milky": "银河系",
+      "andromeda": "仙女座星系",
+      "triangulum": "三角座星系",
+      "dwarfs": "矮星系位置样本",
+      "coordinate": "x、y 沿盘面；z 垂直盘面 · 示意坐标",
+      "normalized": "独立取景，非共同尺寸标尺",
+      "projected": "形态随视角改变，类别不会随镜头改变",
+      "status": "当前画面",
+      "gpu": "三维结构",
+      "canvas": "简化空间绘图",
+      "options": "显示选项",
+      "shortBoundary": "三维结构示意 · 案例各自取景，光点不代表实测恒星数。",
+      "sunLabel": "太阳 · 留在盘内",
+      "viewA": "方向 A",
+      "viewB": "方向 B",
+      "turn": "转动观察方向",
+      "elevation": "绕横轴改变观察方向"
+    },
+    "en": {
+      "chapter": "Explore galaxy structure",
+      "heading": "Turn the view: how is starlight arranged?",
+      "choose": "Choose a structure to investigate",
+      "face": "Face-on: find patterns",
+      "edge": "Edge-on: compare thickness",
+      "oblique": "Oblique: see depth",
+      "yaw": "Turn around the disk normal",
+      "pitch": "Move from face-on to edge-on",
+      "disk": "Stellar disk and dust",
+      "bulge": "Central bulge and bar",
+      "halo": "Sparse stellar halo",
+      "guides": "Outlines and coordinates",
+      "drag": "Drag or use arrow keys to rotate; the stars keep their positions.",
+      "boundary": "Illustrative reconstruction · dots are not individual catalogued stars and brightness is not a star count. Cases use independent framing, so their sizes cannot be measured against each other.",
+      "fallback": "A rotatable simplified drawing is active. The explanation and spatial positions remain available.",
+      "retry": "Retry the 3D view",
+      "source": "Read the science source ↗",
+      "onward": "Keep the Sun’s location and zoom outward →",
+      "sun": "Sun in the disk · about 26,000 ly from centre",
+      "center": "Central bulge and bar",
+      "diskLabel": "Thin stellar disk",
+      "haloLabel": "Stellar halo · no hard edge",
+      "clusterContext": "Example globular-cluster location in a galaxy",
+      "clusterDetail": "Independent close-up of this kind of cluster",
+      "milky": "Milky Way",
+      "andromeda": "Andromeda",
+      "triangulum": "Triangulum",
+      "dwarfs": "Sample dwarf-galaxy locations",
+      "coordinate": "x and y lie in the disk; z is perpendicular · illustrative axes",
+      "normalized": "Independent framing, no shared size ruler",
+      "projected": "The view changes its appearance, not its category",
+      "status": "Current view",
+      "gpu": "3D structure",
+      "canvas": "Simplified spatial drawing",
+      "options": "View options",
+      "shortBoundary": "Illustrative 3D structure · cases are framed independently; dots are not measured star counts.",
+      "sunLabel": "Sun · inside the disk",
+      "viewA": "View A",
+      "viewB": "View B",
+      "turn": "Turn the viewing direction",
+      "elevation": "Change the viewing elevation"
+    }
+  },
+  "cases": {
+    "milky-way": {
+      "name": {
+        "zh": "银河：我们在哪里？",
+        "en": "Milky Way: where are we?"
+      },
+      "child": {
+        "zh": "先找金色的太阳定位环。转到侧面，它仍留在薄盘里，中央鼓起的核球和周围稀疏的晕却不会一起变薄。",
+        "en": "Find the gold Sun locator. Turn edge-on: it stays in the thin disk, while the central bulge and sparse halo retain their depth."
+      },
+      "title": {
+        "zh": "同一银河：盘、核球与晕",
+        "en": "One Milky Way: disk, bulge and halo"
+      },
+      "theory": {
+        "zh": "银河是棒旋星系。盘中的恒星、气体与尘埃形成扁平结构；中央核球与棒更集中，恒星晕较稀疏并伸展到盘外。正面有利于看旋臂，侧面有利于看厚度与尘埃带。太阳位于盘内，距银河中心约 2.6 万光年。",
+        "en": "The Milky Way is a barred spiral. Its disk contains stars, gas and dust; its central bulge and bar are concentrated, while the sparse stellar halo extends outside the disk. Face-on views reveal arms; edge-on views reveal thickness and dust lanes. The Sun lies in the disk about 26,000 light-years from the centre."
+      },
+      "evidence": {
+        "zh": "我们身处银河内部，外观需要用恒星距离、运动与不同波段观测重建。外部三维视图不是银河外面拍回来的照片。",
+        "en": "From inside the Milky Way, astronomers reconstruct its appearance using stellar distances, motions and observations at different wavelengths. This external view is not a photograph taken outside our galaxy."
+      },
+      "limits": {
+        "zh": "盘半径取约 5 万光年作结构参照，太阳定位取其 0.52；臂、棒、晕与厚度为教学几何。金环不表示太阳直径。这里显示恒星晕，不显示推断的暗物质晕，也不模拟恒星轨道。",
+        "en": "A rounded 50,000-light-year disk radius makes the solar locator radius 0.52. Arms, bar, halo and thickness are teaching geometry. The gold ring is not the Sun’s diameter. This shows a stellar halo, not an inferred dark-matter halo, and does not simulate stellar orbits."
+      },
+      "sources": [
+        {
+          "title": "ESA Gaia · Guide to our galaxy",
+          "url": "https://www.esa.int/Science_Exploration/Space_Science/Gaia/Guide_to_our_galaxy"
+        }
+      ]
+    },
+    "spiral": {
+      "name": {
+        "zh": "旋涡星系：盘还是球？",
+        "en": "Spiral: disk or ball?"
+      },
+      "child": {
+        "zh": "正面容易看见旋臂，侧面却像一道薄薄的星光带。画面没有换成另一座星系，是你绕到它旁边了。",
+        "en": "Face-on, you can find the spiral arms. Edge-on, the same galaxy looks like a thin band of starlight. You moved around it; it did not become another galaxy."
+      },
+      "title": {
+        "zh": "旋臂与观察角度",
+        "en": "Spiral arms and viewing angle"
+      },
+      "theory": {
+        "zh": "旋涡星系有盘、旋臂和中央成分。臂中的年轻亮星及恒星形成区能突出旋臂，但臂间也有恒星。倾斜角会改变投影形状；看不见旋臂并不能单独证明它没有盘。",
+        "en": "Spiral galaxies contain a disk, arms and a central component. Young bright stars and star-forming regions can emphasize the arms, but stars also occupy the spaces between them. Inclination changes the projected shape; hidden arms alone do not demonstrate the absence of a disk."
+      },
+      "evidence": {
+        "zh": "天文学家用图像、光谱和运动信息比较结构。不同波段对恒星、气体与尘埃敏感的程度不同。",
+        "en": "Astronomers compare structure using images, spectra and motions. Different wavelengths reveal stars, gas and dust with different sensitivities."
+      },
+      "limits": {
+        "zh": "这是代表性棒旋结构，不是某个实测星系。颜色只区分成分；旋臂不是固体辐条，本场景不计算旋臂形成或恒星绕行。",
+        "en": "This is a representative barred spiral, not a measured galaxy. Colours distinguish components. Arms are not solid spokes; this scene computes neither arm formation nor stellar orbits."
+      },
+      "sources": [
+        {
+          "title": "NASA · Types of galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/"
+        }
+      ]
+    },
+    "elliptical": {
+      "name": {
+        "zh": "椭圆星系：不是空心椭圆",
+        "en": "Elliptical: a volume of stars"
+      },
+      "child": {
+        "zh": "转动这个平滑的星光体，找找它有没有像旋涡星系那样的薄盘和旋臂。画面中的星光填在一个有厚度的空间里，不只落在椭圆边线上。",
+        "en": "Rotate this smooth stellar body. Can you find a spiral galaxy’s thin disk and arms? Starlight fills a volume; it does not sit only on an oval outline."
+      },
+      "title": {
+        "zh": "椭圆形是投影，不是空心轮廓",
+        "en": "An elliptical projection, not a hollow outline"
+      },
+      "theory": {
+        "zh": "椭圆星系的光分布通常较平滑，外观从近圆到拉长不等，通常缺少明显旋臂。它们常以较老恒星为主，冷气体和近期恒星形成通常较少；这不是对每个星系都成立的年龄判定。",
+        "en": "Elliptical galaxies usually have smoother light distributions, from nearly round to elongated, without prominent spiral arms. Older stars often dominate, with relatively little cold gas or recent star formation. Shape alone is not an age measurement for every galaxy."
+      },
+      "evidence": {
+        "zh": "形态是观测分类；恒星年龄、气体和运动还需要光谱等信息。",
+        "en": "Morphology is an observational classification. Stellar ages, gas and motions require additional evidence such as spectra."
+      },
+      "limits": {
+        "zh": "本例用中心较密的三轴体表现厚度，不重建任何具体星系。旋涡、椭圆与不规则是并列案例，不是一条所有星系必经的演化顺序。",
+        "en": "A centrally concentrated triaxial volume illustrates depth, without reconstructing a particular galaxy. Spiral, elliptical and irregular are alternative examples, not a compulsory evolutionary sequence."
+      },
+      "sources": [
+        {
+          "title": "NASA · Types of galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/"
+        }
+      ]
+    },
+    "irregular": {
+      "name": {
+        "zh": "不规则星系：不对称也有结构",
+        "en": "Irregular: structure without symmetry"
+      },
+      "child": {
+        "zh": "试着从不同方向找一圈整齐旋臂。这里的亮区分成大小不一的团块，换个角度仍然不会变成规则薄盘。",
+        "en": "Try to find a tidy set of arms from different directions. Unequal bright clumps persist as you turn; changing the view does not turn them into a regular disk."
+      },
+      "title": {
+        "zh": "不规则不等于没有成因",
+        "en": "Irregular does not mean unexplained"
+      },
+      "theory": {
+        "zh": "不规则星系没有清楚的旋涡或椭圆外形，常见不对称的恒星形成区。星系相互作用能够扰乱形状，但不是每个不规则星系都能仅凭外形判定发生过哪次碰撞。",
+        "en": "Irregular galaxies lack a clear spiral or elliptical form and can have asymmetric star-forming regions. Interactions can disturb shapes, but appearance alone does not identify a particular collision history for every irregular galaxy."
+      },
+      "evidence": {
+        "zh": "外形、气体分布、恒星群与运动一起帮助研究不同的形成历史。",
+        "en": "Shape, gas distribution, stellar populations and motions together help investigate different formation histories."
+      },
+      "limits": {
+        "zh": "不等大的三维团块是形态示意，不是碰撞模拟或某个星系的地图。切换案例只是在比较，不表示星系依次变成下一种。",
+        "en": "Unequal 3D clumps illustrate morphology; they are neither a collision simulation nor a map of a particular galaxy. Switching cases compares structures and does not advance an evolutionary clock."
+      },
+      "sources": [
+        {
+          "title": "NASA · Types of galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/"
+        }
+      ]
+    },
+    "star-cluster": {
+      "name": {
+        "zh": "星团：星系里的恒星群",
+        "en": "Star cluster: a group inside a galaxy"
+      },
+      "child": {
+        "zh": "金环先指出星团在星系中的一个示例位置，连线另一端把这一类星团单独放大。两幅图不是同一把大小尺：一团恒星，并不等于一座缩小的星系。",
+        "en": "The gold ring marks an example cluster location in a galaxy; the other end of the connector independently enlarges that kind of cluster. The views use different scales: a collection of stars is not automatically a miniature galaxy."
+      },
+      "title": {
+        "zh": "星团、星系、星系群是不同层次",
+        "en": "Star clusters, galaxies and galaxy groups"
+      },
+      "theory": {
+        "zh": "球状星团是紧密、近球形的恒星集合；银河拥有许多这样的星团，也有更松散的疏散星团。星系是更广大的系统，包含不同恒星群及气体等成分，通常还与暗物质有关。星系群的成员则是多座星系。不能只凭“圆不圆”或画面亮点多少分类。",
+        "en": "Globular clusters are compact, roughly spherical stellar collections; the Milky Way hosts many, as well as looser open clusters. A galaxy is a larger system containing different stellar populations and other components such as gas, usually associated with dark matter. A galaxy group contains multiple galaxies. Roundness and the number of drawn dots do not define these categories."
+      },
+      "evidence": {
+        "zh": "星团和星系的区别需结合尺度、恒星群与引力运动等证据；少数边界对象的历史可能复杂。",
+        "en": "Distinguishing clusters and galaxies uses scale, stellar populations and gravitational motions; some borderline objects can have complex histories."
+      },
+      "limits": {
+        "zh": "星团位置、几何与放大倍数均为示意，不代表某个已命名星团。连线只表归属，不是轨道；不把星团与星系之间的区别归结为统一的恒星数量门槛。",
+        "en": "The cluster location, geometry and magnification are illustrative, not a named cluster. The connector denotes membership, not an orbit. No universal star-count threshold defines the cluster–galaxy distinction."
+      },
+      "sources": [
+        {
+          "title": "NASA · Star clusters: stellar collections",
+          "url": "https://science.nasa.gov/universe/star-clusters-inside-the-universes-stellar-collections/"
+        },
+        {
+          "title": "NASA · Galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/"
+        }
+      ]
+    },
+    "local-group": {
+      "name": {
+        "zh": "本星系群：恒星点还是星系？",
+        "en": "Local Group: stars or galaxies?"
+      },
+      "child": {
+        "zh": "刚才一座星系里的光点代表星光分布；到了这一层，小定位环代表整座小星系。找出银河、仙女座和三角座，再观察它们周围并不均匀的小成员。",
+        "en": "Inside one galaxy, dots illustrated starlight. At this level, small locator rings denote whole dwarf galaxies. Find the Milky Way, Andromeda and Triangulum, then notice the uneven smaller members around them."
+      },
+      "title": {
+        "zh": "星系组成群，而不是挤成一个巨星团",
+        "en": "Galaxies form a group, not a giant star cluster"
+      },
+      "theory": {
+        "zh": "本星系群包含银河、仙女座、三角座等较大成员和许多矮星系。银河与仙女座之间相隔约 250 万光年。群体不均匀，成员各有自己的结构；从这一层观察时，一颗恒星和一座星系的标记不能混读。",
+        "en": "The Local Group includes the Milky Way, Andromeda, Triangulum and many dwarf galaxies. Andromeda is about 2.5 million light-years from the Milky Way. Members are not evenly distributed and retain their own structures; a star symbol and a galaxy locator belong to different levels."
+      },
+      "evidence": {
+        "zh": "成员关系和距离由观测建立；完整成员普查会随新的微弱星系发现而更新。",
+        "en": "Observations establish distances and membership; the census changes as faint galaxies are discovered."
+      },
+      "limits": {
+        "zh": "本图为可旋转归属示意，距离、方向和成员尺寸不共用物理比例；小圈只是位置样本，不是数量普查。若要比较距离量级，请进入连续拉远；室女座星系团仍是另一个邻近结构。",
+        "en": "This rotatable membership illustration has no common physical scale for separations, directions and member sizes. Small rings are sample locators, not a census. Use the continuous zoom for distance scales; the Virgo Cluster remains a separate nearby structure."
+      },
+      "sources": [
+        {
+          "title": "NASA · The Galaxy Next Door",
+          "url": "https://science.nasa.gov/earth/earth-observatory/the-galaxy-next-door/"
+        },
+        {
+          "title": "NASA · Andromeda Galaxy",
+          "url": "https://www.nasa.gov/universe/galaxies/andromeda-galaxy/"
+        }
+      ]
+    }
+  }
+}

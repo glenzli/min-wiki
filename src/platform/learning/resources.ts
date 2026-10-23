@@ -1,11 +1,13 @@
 export const resources={
 zh:{
+  'universe-guide':()=>import('../../../topics/universe-guide/learning.json?pick=version,topicId,references,zh'),
   'atmosphere':()=>import('../../../topics/atmosphere/learning.json?pick=version,topicId,references,zh'),
   'cosmic-scale':()=>import('../../../topics/cosmic-scale/learning.json?pick=version,topicId,references,zh'),
   'stars':()=>import('../../../topics/stars/learning.json?pick=version,topicId,references,zh'),
   'black-holes':()=>import('../../../topics/black-holes/learning.json?pick=version,topicId,references,zh'),
   'black-hole':()=>import('../../../topics/black-hole/learning.json?pick=version,topicId,references,zh'),
   'solar-system':()=>import('../../../topics/solar-system/learning.json?pick=version,topicId,references,zh'),
+  'small-bodies':()=>import('../../../topics/small-bodies/learning.json?pick=version,topicId,references,zh'),
   'earth-seasons':()=>import('../../../topics/earth-seasons/learning.json?pick=version,topicId,references,zh'),
   'rainbow':()=>import('../../../topics/rainbow/learning.json?pick=version,topicId,references,zh'),
   'galactic-center':()=>import('../../../topics/galactic-center/learning.json?pick=version,topicId,references,zh'),
@@ -73,12 +75,14 @@ zh:{
   'mobile-networks':()=>import('../../../topics/mobile-networks/learning.json?pick=version,topicId,references,zh'),
 },
 en:{
+  'universe-guide':()=>import('../../../topics/universe-guide/learning.json?pick=version,topicId,references,en'),
   'atmosphere':()=>import('../../../topics/atmosphere/learning.json?pick=version,topicId,references,en'),
   'cosmic-scale':()=>import('../../../topics/cosmic-scale/learning.json?pick=version,topicId,references,en'),
   'stars':()=>import('../../../topics/stars/learning.json?pick=version,topicId,references,en'),
   'black-holes':()=>import('../../../topics/black-holes/learning.json?pick=version,topicId,references,en'),
   'black-hole':()=>import('../../../topics/black-hole/learning.json?pick=version,topicId,references,en'),
   'solar-system':()=>import('../../../topics/solar-system/learning.json?pick=version,topicId,references,en'),
+  'small-bodies':()=>import('../../../topics/small-bodies/learning.json?pick=version,topicId,references,en'),
   'earth-seasons':()=>import('../../../topics/earth-seasons/learning.json?pick=version,topicId,references,en'),
   'rainbow':()=>import('../../../topics/rainbow/learning.json?pick=version,topicId,references,en'),
   'galactic-center':()=>import('../../../topics/galactic-center/learning.json?pick=version,topicId,references,en'),

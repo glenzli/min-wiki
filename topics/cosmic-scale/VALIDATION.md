@@ -50,3 +50,93 @@ Applied skills: dev-mesh shared-workspace coordination for inherited dirty owner
 - Replaced sparse galaxy glyphs with three bounded, cached 720px structural illustrations: diffuse stellar disk, spiral populations, central light and dust lanes, with different schematic projections. Same Milky Way image is reused in its chapter and Local Group. Solar System marker and bilingual non-metric/reconstruction qualifications retained. No measured galaxy image or physical projection accuracy claim.
 - 14 focused cosmic tests passed. Final build passed TypeScript, localization, image gates and Vite (2.49 s), output /tmp/mini-wiki-cosmic-galaxy-20260921. Existing chunk warning remains.
 - Actual 5173 browser: Chinese desktop Milky Way and Local Group, Antares endpoint and legacy pair 2, language change retaining pair 3, English 390px galaxy and explanatory copy. clientWidth/scrollWidth 390/390, no captured console errors. Viewport restored and Chinese galaxy page left open. Physical zoom renderer unchanged. No commit, push or deployment.
+
+## 2026-10-23 — Manual galactic structure observation
+
+Local contribution over base `2eec13784fef78620e398779d00fb1b998011f01`, limited to `topics/cosmic-scale/**`. No commit, push or deployment. Source/content snapshot SHA-256: `e9ed2ae0a54833ac1f9522eea40708de2a06dfe3cad2116f922e5d713885bb9e` (35 sorted topic text/source files; hash input is each relative path, NUL, bytes, NUL; excludes this validation file and binary cover assets).
+
+### Changed contracts
+
+- Added `mode=galaxies`, with `galaxy=milky-way|spiral|elliptical|irregular|star-cluster|local-group`. Old comparison pair, membership home and continuous-zoom links retain their interpretation. The address chapter now leads into galactic observation, then the physical zoom. A return link opens the new universe guide.
+- One deterministic 3D population supports face-on/edge-on/manual rotations without reshuffling. The Milky Way solar locator remains at 26,000 / 50,000 of the reference disk radius. Other morphology cases use independent framing and do not represent evolutionary stages. Cluster context/detail connector endpoints use the two actual transformed owners, tested at three elevations.
+- Manual sliders/component controls are disclosed, outlines default off, the Sun label is external with an anchor leader, and desktop stage height is at least 380px. Non-disk cases use direction A/B labels and expose no ineffective disk controls. Reference visibility preserves magnification.
+- WebGL and a rotatable simplified Canvas drawing share spatial samples. The scene has no automatic clock, coalesces pointer changes, skips hidden/inactive draws, retains at most two cases, releases evictions, and provides context-failure retry. Continuous-zoom galaxy buffers allocate at first relevant scale; retry removes the previous wrapper. Three academic notes and four narration segments remain in each language.
+
+### Focused evidence
+
+- `node --import tsx --test topics/cosmic-scale/tests/*.test.*`: **33 passed, 0 failed**, including five new tests for route compatibility, finite/nonuniform deterministic populations, camera identity and solar position, bilingual qualifications/primary sources, production-scene cache/disposal and mocked GPU loss/retry. The scene test also verifies reference-toggle magnification and projected cluster connector endpoints at face-on, oblique and edge-on elevations.
+- Focused TypeScript entry: `tsc --noEmit --strict --skipLibCheck --target ES2022 --lib ES2022,DOM,DOM.Iterable --module ESNext --moduleResolution Bundler --allowImportingTsExtensions --resolveJsonModule topics/cosmic-scale/main.ts topics/cosmic-scale/tests/galactic.test.ts src/assets.d.ts src/reader.d.ts`: passed.
+- `node scripts/check-i18n.mjs`: passed with 7,183 checked messages and 73 English namespaces at that checkpoint. Later UI labels live in explicitly paired topic JSON; the parent task performs the final repository-wide gate.
+- Reused the production `prepare-entries.mjs` in read-only mode with its entry list restricted to `cosmic-scale` and shared resource projection excluded: both entry manuscripts and four narration exports match `learning.json`. No whole-repository prepare/write was run.
+- `git diff --check -- topics/cosmic-scale`: passed. The final code cleanup removed an empty eager-galaxy loop; it changes no allocation or output relative to the tested lazy path.
+
+### Measurements and remaining acceptance
+
+An in-process Node sampling run (12 preparations per case, first two discarded, concurrent workspace checks active) measured model-preparation medians of 7.89ms for Milky Way, 3.35ms spiral, 2.42ms elliptical, 2.87ms irregular, 2.56ms cluster context/detail and 2.89ms Local Group. Case sample counts are 18,500 / 18,500 / 14,500 / 13,000 / 15,050 / 15,009. This measures CPU array preparation only, without GPU upload, browser layout, interaction latency or frame timing; it is not a speed comparison or frame-rate claim.
+
+The parent task owns production packaging and real-browser acceptance. Its first 1280×800 source-preview inspection found the original new-stage layout too short and its labels too concentrated; the layout/labels/controls were corrected as described above. The parent then confirmed the latest 5193 Chinese source preview at 1280×800: Milky Way oblique → edge-on kept the solar locator in the disk, the structure/labels were clear, selecting the star-cluster case retained the projected connector, and the revised layout was acceptable. Production-output English 390px checks and other-case smoke checks remain with the parent. This contribution does **not** claim actual GPU-loss recovery, bfcache or repeated real-browser switching has passed. GPU failure/lifecycle evidence here uses a production-scene test with a mocked renderer. No full build or full repository test suite was run by this contribution; the parent performs those gates once for the integration.
+
+Science pages read for the new scope: [NASA galaxy types](https://science.nasa.gov/universe/galaxies/types/), [ESA Gaia guide](https://www.esa.int/Science_Exploration/Space_Science/Gaia/Guide_to_our_galaxy), [NASA star clusters](https://science.nasa.gov/universe/star-clusters-inside-the-universes-stellar-collections/), and [NASA Andromeda](https://www.nasa.gov/universe/galaxies/andromeda-galaxy/). Rendering geometry is an authored teaching reconstruction, not imported imagery or a measured star catalogue.
+
+## Root integration acceptance · 2026-10-23
+
+The root repository gate passed 1,325 tests, build and 73/73 Reader coverage. The final production
+artifact was inspected for the Chinese desktop Milky Way, English 390px Local Group, observable
+region endpoint and a bounded set of legacy routes. The final camera-preset accessibility label
+also follows the selected case instead of describing every case as a disk. Exact artifact identity,
+earlier source-preview observations and limitations are in [the integrated acceptance record](../../docs/strict-visual-review-20261023.md).
+This closes the pending integration gate above; it does not claim hardware GPU-loss, bfcache or
+frame-rate testing. No commit, push or deployment occurred.
+
+## 2026-10-23 — Planet-size order and orientation audit
+
+This local contribution accepts the existing cosmic-scale work as its baseline
+(`c51be878bf883ba62facc1de24239114ab052b2063bf68b844537a6493e2c717`); it does not
+replace or attribute the preceding galactic implementation to this audit. Changes remain confined
+to the topic and are uncommitted.
+
+- Fixed a concrete reversal in the Solar System membership drawing: Earth formerly had a 5px
+  radius and Jupiter 3px. All eight recognition symbols now derive from the existing rounded
+  physical radii through one monotone compression. Their body-size order remains Jupiter >
+  Saturn > Uranus > Neptune > Earth > Venus > Mars > Mercury; the 18px Sun remains larger than
+  every planet. Inner projected positions clear the Sun, and object-specific globe details distinguish
+  Earth, Jupiter and Saturn. This is an illustrative membership view, not a physical ruler.
+- Moved the same radii into `model.ts` for the physical scene, comparison data and recognition
+  symbols, without changing any selected radius or the linear diameter/zoom conversions.
+  `planetGlyph.ts` owns the compressed symbols only. In the quantitative stellar/orbit overlay,
+  crosses now locate unresolved planets while the star outline and orbital radii keep their shared
+  physical scale. A separate legend uses the correctly ordered recognition symbols.
+- Removed fixed left/right wording from the bilingual cluster cue so rotating its two owners
+  cannot make the explanation point to the wrong image. Existing deterministic structure samples,
+  Sun anchor, view state, layer toggles and cache limits were inspected and left intact.
+- `node --import tsx --test topics/cosmic-scale/tests/*.test.*`: **36 passed, 0 failed**.
+  New tests exercise every pairwise planet-size relation at both symbol scales, the production
+  membership drawing at 342px and 1100px, Sun clearance, and the bounded spherical icon outlines.
+- Strict targeted TypeScript check over `main.ts`, `tests/galactic.test.ts`,
+  `tests/planetGlyph.test.ts`, `src/assets.d.ts` and `src/reader.d.ts`: passed.
+  `node scripts/check-i18n.mjs`: passed with 7,377 messages and 74 English namespaces at this
+  checkpoint. `git diff --check -- topics/cosmic-scale`: passed.
+- Checked the rank against [NASA's size comparison](https://science.nasa.gov/solar-system/planet-sizes-and-locations-in-our-solar-system/)
+  and the existing radii against [JPL's parameter definitions](https://ssd.jpl.nasa.gov/planets/phys_par.html).
+  These are rounded representative body radii, not ring extents. Colours, maps and tiny surface
+  landmarks remain recognition illustrations rather than live or measured surface data.
+
+The parent task owns the next actual-browser pass: Solar System membership, a Sun/giant orbit
+overlay, all six galaxy cases, drag → switch chapter → return, and 390px English layout. The
+earlier browser acceptance above does not validate these new symbols. No production build,
+commit, push or deployment was performed by this audit.
+
+### Narrow-screen galaxy controls follow-up
+
+The parent browser pass at 390×844 in English found the three viewing presets squeezed beside
+View options, splitting words such as “compare” and “thickness”. At widths up to 699px the presets
+now occupy their own full-width three-column row, with View options on the following row. Preset
+labels use normal word wrapping and a 13px font; they may occupy multiple whole-word lines.
+The existing desktop rules and the controls' DOM, meaning, selected state and handlers are unchanged.
+
+This follow-up changes only `style.css` and this record. Source review confirms that the new layout
+rules stay inside the narrow-screen media query; `git diff --check` passes. The 36-topic-test and
+targeted-typecheck evidence above is reused because their source inputs did not change. No test
+suite or production build was rerun for this CSS correction. The parent owns actual-browser
+verification of the new 390px English layout and the unchanged desktop arrangement. No commit,
+push or deployment occurred.

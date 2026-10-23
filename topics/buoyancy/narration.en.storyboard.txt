@@ -1,25 +1,25 @@
-01 · From floating to pressure
-[Compare wood and stone. Retain the same object while switching to the pressure section; follow inward side arrows, downward top arrows and upward bottom arrows.]
+01 · At the shore: what floats and what sinks?
+[Chapter 1, “Watch floating and sinking”: 18 seconds of teaching time, not a measured fall duration. After selecting the log, stone, coin or boat, return to the chapter’s start and follow entry through to rest. Frame each separately without implying equal real sizes. Retain the shore, water level and object identity.]
 
-The wooden block floats. A stone sinks, but water still pushes it upward. Switch to the section and inspect the blue arrows: water presses inward from every direction. Opposite sides at the same depth press equally. Greater pressure below than above leaves an upward push. The green arrow shows that combined force.
-
----
-
-02 · Same clay, another shape
-[Reshape the ball into a hollow hull, then switch to displacement; retain clay identity and inspect the cavity and displaced volume.]
-
-Now inspect the same 600 grams of clay: first a solid ball, then a hollow boat. The clay has not become lighter. While water stays outside, the space enclosed by the hull can push more water aside. The displacement view compares that volume in a measure; it does not take water from the tank.
+Come to the water and look at this log, then the stone, coin and little boat. Lower them gently. Which will stay at the surface, and which will move down? The log floats and the stone sinks, but water pushes upward on both. Once the stone reaches the bottom, the bed helps support it too. Sinking does not mean there is no buoyancy. It means water cannot support all the weight. Next, we will use the water already in this space to find out how much support water provides.
 
 ---
 
-03 · Add a little cargo
-[Add cargo one piece at a time and inspect draft and flooding.]
+02 · Water supports water, then the object takes its place
+[Chapter 2, “Water supports water”: 24 seconds. Progress 0–22% marks only the original imagined parcel with equal up/down forces. At 22–43%, replace it at fixed level, pose and boundary, changing only the weight explanation. Release only at 43–84%, then retain the final result. Keep the arrow anchors and do not let the parcel drift independently. For an overloaded flooded boat, compare immersed steel and cargo rather than a dry cavity.]
 
-Add cargo slowly. Does the rim move closer to the water? The boat must displace more water to support the added weight. If the rim gets too low, water enters and the hollow space no longer keeps that water outside. Try this in the model; real water play needs an adult nearby.
+Before adding an object, imagine drawing an outline in the water. Water is already inside. There is no membrane or little box. This parcel can stay here because the surrounding water supports exactly its weight. Now replace it with the object in the same place, keeping the outline and water level unchanged at first. The surrounding water still supports in the same way, but the weight inside has changed. Only now let go. Heavier than that water, it moves down; lighter, it moves up. The weight of the water excluded from this space tells us how large buoyancy is.
 
 ---
 
-04 · After complete immersion
-[Compare partial, full and deeper immersion, tracking top and bottom pressure arrows. Then change to seawater, keeping weight fixed.]
+03 · Why does still water keep pushing?
+[Chapter 3, “How water pushes”: complete replacement first and retain the same underwater pose. Switching whole-object and molecular views retains the object, cargo and liquid. A/B anchors on the same section connect to equal-area windows. A separate 24-second observation progress changes only the molecular illustration. Pausing, hiding the page or switching the observation stops playback without advancing the object’s floating or sinking. Both depths use the same typical density and motion law; only mean gauge pressure changes with depth.]
 
-Finally lower the block slowly on a cord. As more enters the water, buoyancy increases and the cord pulls up less. Once the whole block is underwater, moving it deeper raises pressure above and below without displacing more water, so buoyancy and tension stay nearly unchanged. At the same immersed volume, seawater gives slightly more buoyancy.
+Follow the same object. Water pushes from all around, inward at every surface patch. Water itself has weight, so average pressure grows with depth. Together, these pushes leave an upward buoyant force. Now look closely at contact points A and B. Water molecules stay close together, keep moving and interact with their neighbours and the object. Many tiny effects together appear as pressure. Deeper down, it is average pressure that grows, rather than molecules moving faster or crowding closer together. Even when we pause this observation, real molecules keep moving.
+
+---
+
+04 · The same steel becomes a hull that keeps water out
+[Chapter 4, “Steel becomes a boat”: 38 seconds. Progress 0–12% shows the solid sinking and resting at the bed; 12–27% lifts it out; 27–43% spreads it thinner; 43–63% raises the rim; 63–84% returns it to the water; 84–100% retains the result for adding cargo. Track the same metal mesh and fixed 780 g of steel throughout. Cargo appears only inside the completed hull, at 100 g per block. Compare the dry interior, rim and flooded displacement without presenting the forming illustration as manufacturing mechanics.]
+
+Finally, follow this same steel. Its mass is seven hundred and eighty grams, but its solid volume is only one hundred millilitres. Water cannot support it even when fully submerged. Lift it out, spread it thinner, then slowly raise its edges into a boat. There is still the same amount of steel. It has not secretly become lighter. Return it to the water. While water stays outside, the dry cavity below the surface also keeps water out. The boat now displaces water heavy enough to support it, so it floats. Add a little cargo and it sits deeper. If water crosses the rim and floods the dry cavity, that space can no longer exclude as much water.

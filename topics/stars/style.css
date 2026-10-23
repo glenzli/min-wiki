@@ -53,3 +53,90 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
   #stellar-observation:has(.three-body):not(.observation-expanded) .observatory{overflow:visible;flex:none}
   #stellar-observation:has(.three-body):not(.observation-expanded) .three-canvas{height:clamp(260px,42dvh,420px);min-height:260px;flex:none}
 }
+
+/* Nebula and life morphology share one bounded, on-demand 3D viewport. */
+#stellar-observation .stellar-space-stage{min-width:0;min-height:0;flex:1;position:relative;background:#050a14}
+#stellar-observation .stellar-space-canvas{display:block;width:100%;height:clamp(300px,42dvh,440px);outline-offset:-4px;touch-action:none}
+#stellar-observation .stellar-space-canvas:focus-visible{outline:2px solid #d3b589}
+#stellar-observation .stellar-space-status{margin:0;padding:8px 12px;color:#b6c5d6;font-size:11px;line-height:1.5;background:#09111f}
+#stellar-observation .stellar-space-stage>button{margin:8px 12px;background:#172334;color:#eff5ff;border-color:#758398}
+#stellar-observation .nebula-cases,#stellar-observation .nebula-light{display:flex;flex-wrap:wrap;gap:6px;width:100%;min-width:0}
+#stellar-observation .nebula-cases button{flex:1 1 180px;white-space:normal}
+#stellar-observation .nebula-light button{flex:1 1 130px;white-space:normal}
+#stellar-observation .evolution-controls>select{min-width:0;width:min(100%,380px)}
+#stellar-observation .readouts strong{overflow-wrap:anywhere}
+#stellar-observation:has(.nebula-controls){height:auto;min-height:0}
+#stellar-observation:has(.nebula-controls) .observatory{overflow:visible;flex:none}
+@media(max-width:649px){#stellar-observation .stellar-space-canvas{height:330px}#stellar-observation .nebula-cases button{flex-basis:100%}#stellar-observation .nebula-light button{flex-basis:100%}#stellar-observation .controls button{min-height:44px}#stellar-observation .stellar-space-status{font-size:12px}}
+
+/* Keep the observed object large; secondary choices expand in the same instance. */
+#stellar-observation .stellar-space-stage{flex:none}
+#stellar-observation .stellar-space-canvas{height:clamp(450px,59dvh,570px)}
+#stellar-observation .evolution-controls>label{flex:1 1 310px;min-width:200px}
+#stellar-observation .stellar-options{min-width:0;flex:0 1 auto;max-width:100%;color:var(--ink)}
+#stellar-observation .stellar-options>summary{min-height:44px;padding:10px 12px;line-height:22px;border:1px solid var(--border);border-radius:9px;background:var(--surface);font-size:12px;cursor:pointer;overflow-wrap:anywhere}
+#stellar-observation .stellar-options>summary:focus-visible{outline:2px solid var(--accent,#d3b589);outline-offset:2px}
+#stellar-observation .stellar-options[open]{flex-basis:100%}
+#stellar-observation .stellar-options-body{display:flex;flex-direction:column;gap:8px;padding:10px 2px 2px}
+#stellar-observation .stellar-options-body select{min-width:0;max-width:100%;width:min(100%,380px)}
+#stellar-observation .stellar-options-body .evolution-phases{flex-wrap:wrap;overflow:visible;padding:0}
+#stellar-observation .stellar-options-body .evolution-phases button{flex:1 1 125px;white-space:normal}
+#stellar-observation .nebula-controls .nebula-light{flex:1 1 510px;width:auto;flex-wrap:nowrap}
+#stellar-observation .nebula-controls .nebula-light button{flex:1 1 0;min-width:0;text-wrap:balance}
+@media(max-width:649px){
+  #stellar-observation .stellar-space-canvas{height:330px}
+  #stellar-observation .evolution-controls>label{flex-basis:100%}
+  #stellar-observation .stellar-options{flex:1 1 100%}
+  #stellar-observation .nebula-controls .nebula-light{flex-basis:100%}
+  #stellar-observation .stellar-options-body .evolution-phases button{flex-basis:135px}
+}
+
+/* Compact topic controls; retain the large scene and the Reader's neutral palette. */
+#stellar-observation{--reader-control-height:32px;--reader-control-size:12px;--reader-control-radius:7px;--reader-control-gap:6px}
+#stellar-observation :is(#controls,.observation-toolbar) :is(button,select,summary){min-height:32px!important;padding:5px 9px!important;line-height:20px!important;font-size:var(--reader-control-size)!important}
+#stellar-observation>.observation-toolbar{min-height:0;gap:6px;padding:6px 12px!important;align-items:center}
+#stellar-observation>.observation-toolbar>.observation-title{display:none}
+#stellar-observation>.observation-toolbar>.observation-choices{margin-right:auto;max-width:calc(100% - 230px);min-width:0}
+#stellar-observation .observation-choices>summary{min-height:32px;padding:5px 9px;font-size:12px;line-height:20px;flex-wrap:nowrap;gap:7px}
+#stellar-observation .observation-current{font-size:11px;max-width:210px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#stellar-observation .scene-heading{padding:7px 12px;min-height:48px;align-items:center}
+#stellar-observation .scene-heading h2{margin:2px 0;font-size:15px;line-height:1.35}
+#stellar-observation .scene-heading .eyebrow{font-size:10px;line-height:1.4;letter-spacing:.06em}
+#stellar-observation .evolution-controls{gap:6px 10px;padding:8px 12px;align-items:center}
+#stellar-observation .evolution-playback{display:grid;grid-template-columns:auto minmax(200px,1fr) 132px;align-items:end;gap:12px;width:100%;min-width:0}
+#stellar-observation .evolution-playback #play{min-width:88px;white-space:nowrap;align-self:end}
+#stellar-observation .evolution-playback>label{display:grid;flex:none;min-width:0;gap:2px;font-size:11px;line-height:16px;color:var(--secondary)}
+#stellar-observation .evolution-playback input[type=range]{display:block;min-height:32px;height:32px;width:100%;margin:0;padding:0}
+#stellar-observation #controls .evolution-direction select{width:100%;appearance:none;background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%)!important;background-position:calc(100% - 13px) 50%,calc(100% - 9px) 50%!important;background-size:4px 4px!important;background-repeat:no-repeat!important;padding-right:26px!important}
+#stellar-observation .evolution-view-tools{display:flex;flex:1 1 auto;justify-content:flex-end;align-items:center;flex-wrap:wrap;gap:6px;min-width:0}
+#stellar-observation .evolution-view-tools button{white-space:nowrap}
+#stellar-observation .stellar-options>summary{min-height:32px;padding:5px 9px;font-size:12px;line-height:20px;border-radius:7px}
+#stellar-observation .evolution-timing{flex:1 1 100%;width:100%;margin:2px 0 0;font-size:11px;line-height:1.5}
+#stellar-observation .stellar-stage>#scale-note{margin:2px 12px 8px;font-size:11px;line-height:1.5}
+#stellar-observation :is(button,select,input,summary):focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.stellar-workspace>.next-links{gap:6px;padding-block:8px;margin-top:0}
+.stellar-workspace>.next-links>a{min-height:30px;padding:4px 8px;font-size:12px;line-height:20px}
+@media(max-width:649px){
+  #stellar-observation{--reader-control-height:44px}
+  #stellar-observation :is(#controls,.observation-toolbar) :is(button,select,summary){min-height:44px!important;padding-block:8px!important}
+  #stellar-observation>.observation-toolbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;padding:6px 10px!important}
+  #stellar-observation>.observation-toolbar>.observation-choices{grid-column:1/-1;width:100%;max-width:none;margin:0}
+  #stellar-observation .observation-choices>summary{min-height:44px;flex-wrap:nowrap;gap:7px;padding:8px 9px;font-size:12px}
+  #stellar-observation .observation-current{max-width:none;flex:1;min-width:0;text-align:left;font-size:11px}
+  #stellar-observation>.observation-toolbar>button{width:100%;min-width:0;white-space:nowrap}
+  #stellar-observation .scene-heading{min-height:46px;padding:7px 10px}
+  #stellar-observation .evolution-controls{padding:8px 10px;gap:6px}
+  #stellar-observation .evolution-playback{grid-template-columns:auto minmax(0,1fr);gap:6px 10px}
+  #stellar-observation .evolution-progress{grid-column:1/-1;grid-row:1}
+  #stellar-observation .evolution-playback input[type=range]{min-height:36px;height:36px}
+  #stellar-observation .evolution-playback #play{grid-row:2;min-width:100px}
+  #stellar-observation .evolution-playback>.evolution-direction{grid-column:2;grid-row:2;display:flex;flex-direction:row;align-items:center;justify-self:end;gap:6px;white-space:nowrap}
+  #stellar-observation #controls .evolution-direction select{width:106px;flex:none}
+  #stellar-observation .stellar-options{flex:1 1 100%}
+  #stellar-observation .stellar-options>summary{min-height:44px;padding-block:10px}
+  #stellar-observation .evolution-view-tools{justify-content:flex-start;flex:1 1 100%}
+  #stellar-observation .evolution-view-tools button{flex:1 1 auto;white-space:normal}
+  #stellar-observation .stellar-stage>#scale-note{margin-inline:10px}
+  .stellar-workspace>.next-links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .stellar-workspace>.next-links>a{min-height:44px;font-size:12px;padding:6px 8px}
+}

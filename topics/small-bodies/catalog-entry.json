@@ -1,0 +1,38 @@
+{
+  "id": "small-bodies",
+  "title": { "zh": "小行星、彗星与尘埃", "en": "Asteroids, comets and dust" },
+  "summary": {
+    "zh": "转动小天体，改变彗星受热条件，再沿碎屑流认识主带、柯伊伯带与行星际尘埃。",
+    "en": "Rotate small bodies, change a comet's heating conditions, then follow debris streams through the main belt, Kuiper Belt and interplanetary dust."
+  },
+  "pages": { "zh": "topics/small-bodies/entry.zh.md", "en": "topics/small-bodies/entry.en.md" },
+  "search": {
+    "zh": "小行星 彗星 尘埃 尘埃带 主带 柯伊伯带 奥尔特云 谷神星 矮行星 升华 彗核 彗发 彗尾 离子尾 尘埃尾 流星雨 光谱",
+    "en": "asteroid comet dust dust belt main belt Kuiper Belt Oort Cloud Ceres dwarf planet sublimation nucleus coma ion tail dust tail meteor shower spectrum"
+  },
+  "document": { "template": "topics/small-bodies/reader.html", "entry": "topics/small-bodies/main.ts" },
+  "fallback": {
+    "src": "topics/meteors/cover-960.webp",
+    "alt": {
+      "zh": "复用流星专题的编辑插画；不是小天体观测照片或当前实验状态。",
+      "en": "Reused editorial illustration from Meteors; not an observed small-body image or the current experiment state."
+    }
+  },
+  "category": "universe",
+  "tags": ["小行星", "彗星", "尘埃", "柯伊伯带", "奥尔特云", "矮行星", "谷神星"],
+  "duration": "互动探索 / 三条观察路径",
+  "modes": ["儿童版", "学术版"],
+  "theme": "dark",
+  "sceneTheme": "dark",
+  "status": "published",
+  "updated": "2026-10-23",
+  "learning": "topics/small-bodies/learning.json",
+  "review": {
+    "status": "draft",
+    "reviewedOn": "2026-10-23",
+    "visual": "新增有界三维模型与静态失败示意；正式桌面和 390px 中英浏览器画面仍待主任务验收。",
+    "content": "三条问题路径连接形状与光照、彗星活动及碎屑储库；按 NASA/ESA 一手资料区分观测、推断和定性模型。",
+    "interaction": "实现可逆轨道、暴露冰对照、地球穿流、独立镜头、隐藏停帧与失败重试；模型和双语合同有专题测试。",
+    "next": "主任务完成正式 Reader 注册、全站门禁、双语手机和桌面真实交互验收，并决定复用封面或另行设计封面。"
+  }
+}

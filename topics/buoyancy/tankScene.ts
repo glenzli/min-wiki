@@ -1,11 +1,13 @@
 import * as THREE from 'three';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import type { Settings } from './model.ts';
-import { frameLab, orientLab, projectInViewport } from './framing.ts';
+import { frameLab, orientLab, projectInViewport, labHeight, LAB_VERTICAL_UNIT } from './framing.ts';
 import { createSpecimenMaterials } from './specimenMaterials.ts';
 import { createWaterOptics } from './waterOptics.ts';
 import { basinContour, basinPoint, createBasinBase, createBasinWater, updateBasinWater, createVesselWall, createWoodShape, createPebbleShape, createMetalShape, createClayShape, createMeniscusGeometry, updateMeniscusGeometry } from './labGeometry.ts';
 import { LabNavigation } from './labNavigation.ts';
+import { createLabEnvironment, type LabEnvironment } from './labEnvironment.ts';
+import { createWaterContactSampler, type WaterContactSampler } from './waterContact.ts';
 
 export type TankGeometry={water:number;bottom:number;width:number;height:number;cup:number};
 type Frame={state:Settings;geometry:TankGeometry;form:number;flooded:boolean;displaced:number;ripple:number};
@@ -32,6 +34,8 @@ export class TankScene {
  private readonly observer:ResizeObserver;
  private readonly navigation:LabNavigation;
  private readonly environment:THREE.WebGLRenderTarget;
+ private readonly surroundings:LabEnvironment;
+ private readonly contactSamplers=new Map<THREE.Mesh,WaterContactSampler>();
  private readonly wood:THREE.Mesh;
  private readonly stone:THREE.Mesh;
  private readonly immersion:THREE.Mesh;
@@ -79,7 +83,7 @@ export class TankScene {
   renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.7));renderer.outputColorSpace=THREE.SRGBColorSpace;
   renderer.toneMapping=THREE.NeutralToneMapping;renderer.toneMappingExposure=1;
   renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.VSMShadowMap;
-  this.world.background=new THREE.Color('#eeefed');
+  this.world.background=new THREE.Color('#ede8de');
   orientLab(this.camera);
   // Broad studio windows give glass and metal readable reflections. They are
   // lighting geometry only, not additional objects in the experiment.
@@ -105,13 +109,11 @@ export class TankScene {
   const standard=(options:THREE.MeshStandardMaterialParameters)=>this.material(new THREE.MeshStandardMaterial(options));
   const physical=(options:THREE.MeshPhysicalMaterialParameters)=>this.material(new THREE.MeshPhysicalMaterial(options));
   const rounded=this.geometry(new RoundedBoxGeometry(1,1,1,5,.045));
-  const table=this.mesh(this.geometry(new THREE.PlaneGeometry(120,120)),standard({color:'#e0e2df',roughness:.84,envMapIntensity:.35}));
-  table.rotation.x=-Math.PI/2;table.position.y=-.022;table.receiveShadow=true;
-  const shadowCanvas=document.createElement('canvas');shadowCanvas.width=256;shadowCanvas.height=160;
-  const shadowContext=shadowCanvas.getContext('2d')!;shadowContext.filter='blur(14px)';shadowContext.fillStyle='#203e40';shadowContext.fillRect(22,28,212,104);
-  const shadowMap=new THREE.CanvasTexture(shadowCanvas);this.textures.add(shadowMap);
-  const contactShadow=this.mesh(this.geometry(new THREE.PlaneGeometry(5.8,2.8)),this.material(new THREE.MeshBasicMaterial({map:shadowMap,transparent:true,opacity:.25,depthWrite:false})));
-  contactShadow.rotation.x=-Math.PI/2;contactShadow.position.set(.05,-.018,.05);
+  this.surroundings=createLabEnvironment(()=>this.render());
+  this.world.add(this.surroundings.group);
+  this.surroundings.geometries.forEach(value=>this.geometries.add(value));
+  this.surroundings.materials.forEach(value=>this.materials.add(value));
+  this.surroundings.textures.forEach(value=>this.textures.add(value));
   // A thin, clear coat is composited after the water. Its reflections sample
   // the same studio as the specimens; it does not paint diffuse white over
   // the contents or pretend to solve nested glass/water ray transmission.
@@ -131,7 +133,8 @@ export class TankScene {
   this.mesh(this.geometry(createVesselWall(true)),glass).renderOrder=6;
   this.mesh(this.geometry(createBasinBase(.005,.075,-.005)),glassBase);
   const glint=this.material(new THREE.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.4,depthWrite:false}));
-  const datumPoints=Array.from({length:65},(_,i)=>{const p=basinPoint(Math.PI+i/64*Math.PI,2.03,.071);return new THREE.Vector3(p.x,2.03,p.y);});
+  const datumHeight=labHeight(245);
+  const datumPoints=Array.from({length:65},(_,i)=>{const p=basinPoint(Math.PI+i/64*Math.PI,datumHeight,.071);return new THREE.Vector3(p.x,datumHeight,p.y);});
   const datum=new THREE.Line(this.geometry(new THREE.BufferGeometry().setFromPoints(datumPoints)),this.material(new THREE.LineDashedMaterial({color:'#5a8993',dashSize:.045,gapSize:.045,transparent:true,opacity:.3,depthWrite:false})));
   datum.computeLineDistances();datum.renderOrder=6;this.world.add(datum);
   const optics=createWaterOptics(this.waterLevel,this.waterMotion);
@@ -167,6 +170,7 @@ export class TankScene {
   const metal=specimens.metal;
   this.steel=this.mesh(this.geometry(createMetalShape()),metal);
   this.clay=this.mesh(this.geometry(createClayShape()),specimens.clay);
+  for(const object of [this.wood,this.stone,this.immersion,this.steel,this.clay])this.contactSamplers.set(object,createWaterContactSampler(object.geometry));
   const hullGeometry=this.geometry(createClayHullGeometry());
   this.hull=new THREE.Mesh(hullGeometry,specimens.hull);this.world.add(this.hull);
   for(const object of [this.wood,this.stone,this.immersion,this.steel,this.clay,this.hull]){object.visible=false;object.castShadow=true;object.receiveShadow=true;}
@@ -203,7 +207,7 @@ export class TankScene {
   const cylinder=this.geometry(new THREE.CylinderGeometry(1,1,1,16));
   const rod=(x:number,y:number,z:number,rx:number,ry:number,rz:number)=>{const m=this.mesh(cylinder,metal,this.support);m.position.set(x,y,z);m.scale.set(rx,ry,rz);return m;};
   const standBase=this.mesh(rounded,metal,this.support);standBase.position.set(-3.16,.06,-.85);standBase.scale.set(.52,.1,.62);
-  rod(-3.16,1.99,-.85,.022,3.88,.022);rod(-1.58,3.93,-.85,.023,3.16,.023).rotation.z=Math.PI/2;rod(0,3.93,-.425,.023,.85,.023).rotation.x=Math.PI/2;
+  rod(-3.16,1.65,-.85,.022,3.2,.022);rod(-1.58,3.25,-.85,.023,3.16,.023).rotation.z=Math.PI/2;rod(0,3.25,-.425,.023,.85,.023).rotation.x=Math.PI/2;
   this.cord=this.mesh(cylinder,standard({color:'#72716a',roughness:.95}),this.support);
   this.eye=this.mesh(this.geometry(new THREE.TorusGeometry(.035,.009,8,24)),metal,this.support);
   const holder=svg.parentElement!.classList.contains('buoyancy-stage')?svg.parentElement!:document.createElement('div');holder.className='buoyancy-stage';
@@ -222,6 +226,7 @@ export class TankScene {
   const rect=this.canvas.parentElement!.getBoundingClientRect();
   if(rect.width<1||rect.height<1)return;
   this.viewport={width:rect.width,height:rect.height};
+  this.surroundings.setLayout(rect.width<600,this.view==='displacement');
   frameLab(this.camera,rect.width,rect.height,this.view==='displacement',this.held);
   this.renderer.setSize(rect.width,rect.height,false);
   if(this.visible){this.svg.setAttribute('viewBox',`0 0 ${rect.width} ${rect.height}`);this.svg.setAttribute('preserveAspectRatio','none');}
@@ -232,7 +237,7 @@ export class TankScene {
   this.view=view;this.visible=visible;this.comparison.visible=view==='displacement';this.canvas.hidden=!visible||!this.available;this.navigation.setVisible(visible&&this.available);this.resize();
  }
  project(x:number,y:number,z=0):[number,number]{
-  return projectInViewport(this.camera,new THREE.Vector3((x-365)*unit,floor+(440-y)*unit,z),this.viewport.width,this.viewport.height);
+  return projectInViewport(this.camera,new THREE.Vector3((x-365)*unit,x>650?floor+(440-y)*unit:labHeight(y),z),this.viewport.width,this.viewport.height);
  }
  private setWaterHole(rx:number,rz:number,water:number){
   const key=`${rx.toFixed(3)}:${rz.toFixed(3)}:${water.toFixed(3)}`;if(key===this.holeKey)return;this.holeKey=key;
@@ -244,14 +249,18 @@ export class TankScene {
  }
  draw(frame:Frame){
   if(!this.available)return;
-  const {state:s,geometry:g,form,flooded,displaced}=frame,w=g.width*unit,h=g.height*unit,bottom=floor+(440-g.bottom)*unit,water=floor+(440-g.water)*unit;
+  const {state:s,geometry:g,form,flooded,displaced}=frame,w=g.width*unit,h=g.height*LAB_VERTICAL_UNIT,bottom=labHeight(g.bottom),water=labHeight(g.water);
   const boat=s.experiment==='boat',held=s.experiment==='depth',kind=held?'stone':s.object;
   const opening=boat?form:0;
   if(this.held!==held||this.opening!==opening){this.held=held;this.opening=opening;if(!this.navigation.manual){orientLab(this.camera,opening);this.navigation.sync();}frameLab(this.camera,this.viewport.width,this.viewport.height,this.view==='displacement',held);}
   this.wood.visible=!boat&&!held&&kind==='wood';this.stone.visible=!boat&&!held&&kind==='stone';this.immersion.visible=held;this.steel.visible=!boat&&!held&&kind==='steel';this.clay.visible=!boat&&kind==='clay';this.hull.visible=boat;
   this.waterLevel.value=water;this.waterMotion.value=frame.ripple;
-  for(const object of [this.wood,this.stone,this.immersion,this.steel,this.clay]){object.position.set(0,bottom+h/2,0);object.scale.set(w,h,kind==='wood'?.72:held?.95:kind==='clay'?w:w*.8);}
-  const depth=(1-form)*w+form*1.30,thickness=(20*260/g.width)*unit;
+  for(const object of [this.wood,this.stone,this.immersion,this.steel,this.clay]){
+   object.position.set(0,bottom+h/2,0);object.scale.set(w,h,kind==='wood'?.82:held?.95:kind==='clay'?w:w*.8);
+   const isWood=object===this.wood;
+   object.rotation.set(isWood?.015*frame.ripple:0,isWood?-.16:object===this.stone?.25:object===this.clay?-.2:0,isWood?Math.sin(frame.ripple*9)*frame.ripple*.10:0);
+  }
+  const depth=(1-form)*w+form*1.30,thickness=(20*260/g.width)*LAB_VERTICAL_UNIT;
   let intersectionRadius=0;
   if(boat){
    const inside=Math.max(.25,.784-1.4*thickness/w);
@@ -282,22 +291,31 @@ export class TankScene {
   updateMeniscusGeometry(this.wallMeniscus.geometry,water,(angle,offset)=>basinPoint(angle,water,.075+offset));
   const dryOpening=boat&&form>.999&&!flooded&&bottom<water&&bottom+h>water;
   this.setWaterHole(dryOpening?w/2*intersectionRadius:0,dryOpening?depth/2*intersectionRadius:0,water);
-  this.contact.visible=bottom<water&&bottom+h>water;
+  const activeObject=held?this.immersion:kind==='wood'?this.wood:kind==='stone'?this.stone:kind==='steel'?this.steel:this.clay;
+  const sampledContact=boat?null:this.contactSamplers.get(activeObject)?.sample(activeObject,water);
+  this.contact.visible=boat?bottom<water&&bottom+h>water:!!sampledContact;
   this.contactSurface.visible=this.contact.visible;
   this.ripple.visible=this.contact.visible&&frame.ripple>0;
   if(this.contact.visible){
    const ellipsoid=boat||kind==='clay'||kind==='stone'&&!held,level=(water-bottom)/h;
    const radius=boat?intersectionRadius:ellipsoid?Math.sqrt(Math.max(0,1-(2*level-1)**2)):1;
-   const rx=w/2*radius,rz=(boat?depth:kind==='wood'?.72:held?.95:kind==='clay'?w:w*.8)/2*radius;
-   updateMeniscusGeometry(this.contactSurface.geometry,water,(angle,offset)=>{
+   const rx=w/2*radius,rz=(boat?depth:kind==='wood'?.82:held?.95:kind==='clay'?w:w*.8)/2*radius;
+   const boundary=(angle:number,offset:number)=>{
+    if(sampledContact){
+     const index=angle/(Math.PI*2)*128,low=Math.floor(index)%128,high=(low+1)%128,blend=index-Math.floor(index),p=sampledContact.points;
+     const x=THREE.MathUtils.lerp(p[low*3],p[high*3],blend),z=THREE.MathUtils.lerp(p[low*3+2],p[high*3+2],blend);
+     const dx=x-sampledContact.center.x,dz=z-sampledContact.center.y,length=Math.hypot(dx,dz)||1;
+     return new THREE.Vector2(x+dx/length*offset,z+dz/length*offset);
+    }
     const c=Math.cos(angle),sine=Math.sin(angle),x=ellipsoid?c:Math.sign(c)*Math.abs(c)**.15,z=ellipsoid?sine:Math.sign(sine)*Math.abs(sine)**.15;
     return new THREE.Vector2(x*(rx+.002+offset),z*(rz+.002+offset));
-   });
+   };
+   updateMeniscusGeometry(this.contactSurface.geometry,water,boundary);
    const contactPoints=this.contact.geometry.getAttribute('position') as THREE.BufferAttribute,ripplePoints=this.ripple.geometry.getAttribute('position') as THREE.BufferAttribute;
    for(let i=0;i<128;i++){
-    const angle=i/128*Math.PI*2,c=Math.cos(angle),sine=Math.sin(angle),x=ellipsoid?c:Math.sign(c)*Math.abs(c)**.15,z=ellipsoid?sine:Math.sign(sine)*Math.abs(sine)**.15;
-    contactPoints.setXYZ(i,x*(rx+.006),water+.007,z*(rz+.006));
-    const spread=.025+.16*(1-frame.ripple);ripplePoints.setXYZ(i,x*(rx+spread),water+.004,z*(rz+spread));
+    const angle=i/128*Math.PI*2,point=boundary(angle,.004),spread=.025+.16*(1-frame.ripple),wave=boundary(angle,spread);
+    contactPoints.setXYZ(i,point.x,water+.007,point.y);
+    ripplePoints.setXYZ(i,wave.x,water+.004,wave.y);
    }
    contactPoints.needsUpdate=ripplePoints.needsUpdate=true;this.contact.geometry.computeBoundingSphere();this.ripple.geometry.computeBoundingSphere();
    (this.ripple.material as THREE.LineBasicMaterial).opacity=frame.ripple*.4;
@@ -306,13 +324,13 @@ export class TankScene {
   this.cupWater.scale.set(1,Math.max(.001,cupHeight),1);this.cupWater.position.set(3.6,.12+cupHeight/2,0);this.cupSurface.position.set(3.6,.12+cupHeight,0);
   this.cupMeniscus.visible=displaced>0;this.cupMeniscus.position.set(3.6,.123+cupHeight,0);
   this.support.visible=held;
-  const top=bottom+h,length=Math.max(.015,3.93-top);
+  const top=bottom+h,length=Math.max(.015,3.25-top);
   this.cord.scale.set(.007,length,.007);this.cord.position.set(0,top+length/2,0);this.eye.position.set(0,top+.025,0);
   this.render();
  }
  private render(){if(this.available)this.renderer.render(this.world,this.camera);}
  dispose(){
-  if(this.disposed)return;this.disposed=true;this.observer.disconnect();this.navigation.dispose();
+  if(this.disposed)return;this.disposed=true;this.observer.disconnect();this.navigation.dispose();this.surroundings.stopLoading();this.contactSamplers.clear();
   this.waterTop.geometry.dispose();for(const geometry of this.geometries)geometry.dispose();for(const material of this.materials)material.dispose();
   for(const texture of this.textures){const image=texture.image as HTMLCanvasElement;texture.dispose();if(image instanceof HTMLCanvasElement)image.width=image.height=0;}
   this.environment.dispose();this.world.clear();this.renderer.dispose();this.renderer.forceContextLoss();this.canvas.remove();

@@ -16,6 +16,69 @@
   "defaultLanguage": "zh",
   "entries": [
     {
+      "id": "universe-guide",
+      "title": {
+        "zh": "宇宙探索地图",
+        "en": "A guide to the universe"
+      },
+      "summary": {
+        "zh": "用23个代表对象辨认天体、物质、系统与事件，再沿四条问题路线进入三维探索。",
+        "en": "Distinguish bodies, material, systems and events through 23 examples, then follow four question-led paths into 3D exploration."
+      },
+      "pages": {
+        "zh": "topics/universe-guide/entry.zh.md",
+        "en": "topics/universe-guide/entry.en.md"
+      },
+      "document": {
+        "template": "topics/universe-guide/reader.html",
+        "entry": "topics/universe-guide/main.ts"
+      },
+      "fallback": {
+        "src": "topics/cosmic-scale/cover-960.webp",
+        "alt": {
+          "zh": "宇宙尺度专题的编辑插画，用作导览封面，不是观测照片。",
+          "en": "Cosmic-scale editorial illustration reused for this guide, not an observational photograph."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "宇宙导览",
+        "天体分类",
+        "恒星",
+        "行星",
+        "矮行星",
+        "小行星",
+        "彗星",
+        "尘埃",
+        "星云",
+        "超新星",
+        "星团",
+        "星系"
+      ],
+      "duration": "四条学习路线",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-23",
+      "learning": "topics/universe-guide/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-23",
+        "visual": "概念对照用明确标为非比例的辨认符号；三维科学观察由对应专题承接。",
+        "content": "23个代表对象区分天体、物质、系统、事件和可观测范围；四条路线围绕问题组织。",
+        "interaction": "原生按钮切换同一例子的线索与对照；URL保存对象，保持双语及部署前缀。",
+        "next": "完成新入口与中英文桌面、390px的实际浏览器验收后再评估成熟度。"
+      },
+      "search": {
+        "zh": "宇宙探索地图 用23个代表对象辨认天体、物质、系统与事件，再沿四条问题路线进入三维探索。 宇宙导览 天体分类 恒星 行星 矮行星 小行星 彗星 尘埃 星云 超新星 星团 星系",
+        "en": "A guide to the universe Distinguish bodies, material, systems and events through 23 examples, then follow four question-led paths into 3D exploration. Universe guide Astronomical classification star Planets Dwarf planets Asteroids Comets Dust Nebulae Supernovae Star clusters Galaxies"
+      }
+    },
+    {
       "id": "atmosphere",
       "title": {
         "zh": "大气：包围星球的空气",
@@ -88,8 +151,8 @@
         "en": "topics/cosmic-scale/entry.en.md"
       },
       "search": {
-        "zh": "星系与宇宙尺度 从地球连续拉远，经太阳系、银河系和本星系群，直到可观测宇宙；辨认真实距离与结构示意。 宇宙 星系 银河系 尺度 本星系群",
-        "en": "Galaxies and cosmic scales Zoom continuously from Earth through the Solar System, Milky Way, and Local Group to the observable universe, distinguishing physical distances from structure diagrams. space Galaxies Milky Way Scale Local Group"
+        "zh": "星系与宇宙尺度 从地球连续拉远，经太阳系、银河系和本星系群，直到可观测宇宙；辨认真实距离与结构示意。 宇宙 星系 银河系 尺度 本星系群 旋涡星系 椭圆星系 不规则星系 星团",
+        "en": "Galaxies and cosmic scales Zoom continuously from Earth through the Solar System, Milky Way, and Local Group to the observable universe, distinguishing physical distances from structure diagrams. space Galaxies Milky Way Scale Local Group Spiral galaxies Elliptical galaxies Irregular galaxies Star clusters Observable universe"
       },
       "document": {
         "template": "topics/cosmic-scale/reader.html",
@@ -108,7 +171,12 @@
         "星系",
         "银河系",
         "尺度",
-        "本星系群"
+        "本星系群",
+        "旋涡星系",
+        "椭圆星系",
+        "不规则星系",
+        "星团",
+        "可观测宇宙"
       ],
       "duration": "互动探索",
       "modes": [
@@ -144,8 +212,8 @@
         "en": "topics/stars/entry.en.md"
       },
       "search": {
-        "zh": "恒星与多星系统 比较恒星怎样形成、发光、膨胀并走向不同结局，再探索太阳表面、双星与数值三体。 恒星 太阳 双星 三星 质心 太阳也是一颗星星吗？ 把观察者带远一些：太阳看起来变小了，它本身有变小吗？ 恒星 太阳 远近",
-        "en": "Stars and multiple-star systems Compare how stars form, shine, expand, and reach different endings; then explore the Sun's surface, binaries, and a numerical three-body experiment. star Sun Binary stars Triple stars Center of mass Is the Sun a star too? Move the observer farther away: the Sun looks smaller, but has the Sun itself shrunk? star Sun Near and far"
+        "zh": "恒星与多星系统 比较恒星怎样形成、发光、膨胀并走向不同结局，再探索太阳表面、双星与数值三体。 恒星 太阳 双星 三星 质心 太阳也是一颗星星吗？ 把观察者带远一些：太阳看起来变小了，它本身有变小吗？ 恒星 太阳 远近 星云 超新星 白矮星 中子星 红矮星",
+        "en": "Stars and multiple-star systems Compare how stars form, shine, expand, and reach different endings; then explore the Sun's surface, binaries, and a numerical three-body experiment. star Sun Binary stars Triple stars Center of mass Is the Sun a star too? Move the observer farther away: the Sun looks smaller, but has the Sun itself shrunk? star Sun Near and far Nebulae Supernovae White dwarfs Neutron stars Red dwarfs"
       },
       "document": {
         "template": "topics/stars/reader.html",
@@ -164,7 +232,12 @@
         "太阳",
         "双星",
         "三星",
-        "质心"
+        "质心",
+        "星云",
+        "超新星",
+        "白矮星",
+        "中子星",
+        "红矮星"
       ],
       "duration": "互动探索",
       "modes": [
@@ -356,6 +429,64 @@
         "content": "覆盖公转、大小、地貌、内部和卫星，资料多而首次问题不够集中。",
         "interaction": "次要设置已默认收起，但多个观察任务、下降与活动时钟的语义层级仍需进一步收敛。",
         "next": "菜单收起只是第一步；按天体检查近景、剖面与尺度，再完成选天体—问问题—观察的主线。"
+      }
+    },
+    {
+      "id": "small-bodies",
+      "title": {
+        "zh": "小行星、彗星与尘埃",
+        "en": "Asteroids, comets and dust"
+      },
+      "summary": {
+        "zh": "转动小天体，改变彗星受热条件，再沿碎屑流认识主带、柯伊伯带与行星际尘埃。",
+        "en": "Rotate small bodies, change a comet's heating conditions, then follow debris streams through the main belt, Kuiper Belt and interplanetary dust."
+      },
+      "pages": {
+        "zh": "topics/small-bodies/entry.zh.md",
+        "en": "topics/small-bodies/entry.en.md"
+      },
+      "search": {
+        "zh": "小行星 彗星 尘埃 尘埃带 主带 柯伊伯带 奥尔特云 谷神星 矮行星 升华 彗核 彗发 彗尾 离子尾 尘埃尾 流星雨 光谱",
+        "en": "asteroid comet dust dust belt main belt Kuiper Belt Oort Cloud Ceres dwarf planet sublimation nucleus coma ion tail dust tail meteor shower spectrum"
+      },
+      "document": {
+        "template": "topics/small-bodies/reader.html",
+        "entry": "topics/small-bodies/main.ts"
+      },
+      "fallback": {
+        "src": "topics/meteors/cover-960.webp",
+        "alt": {
+          "zh": "复用流星专题的编辑插画；不是小天体观测照片或当前实验状态。",
+          "en": "Reused editorial illustration from Meteors; not an observed small-body image or the current experiment state."
+        }
+      },
+      "category": "universe",
+      "tags": [
+        "小行星",
+        "彗星",
+        "尘埃",
+        "柯伊伯带",
+        "奥尔特云",
+        "矮行星",
+        "谷神星"
+      ],
+      "duration": "互动探索 / 三条观察路径",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "dark",
+      "sceneTheme": "dark",
+      "status": "published",
+      "updated": "2026-10-23",
+      "learning": "topics/small-bodies/learning.json",
+      "review": {
+        "status": "draft",
+        "reviewedOn": "2026-10-23",
+        "visual": "新增有界三维模型与静态失败示意；正式桌面和 390px 中英浏览器画面仍待主任务验收。",
+        "content": "三条问题路径连接形状与光照、彗星活动及碎屑储库；按 NASA/ESA 一手资料区分观测、推断和定性模型。",
+        "interaction": "实现可逆轨道、暴露冰对照、地球穿流、独立镜头、隐藏停帧与失败重试；模型和双语合同有专题测试。",
+        "next": "主任务完成正式 Reader 注册、全站门禁、双语手机和桌面真实交互验收，并决定复用封面或另行设计封面。"
       }
     },
     {
@@ -3975,7 +4106,7 @@
       },
       "symbol": "✦",
       "theme": "dark",
-      "description": "从恒星的旅程开始，观察引力怎样改变运动。"
+      "description": "从太阳系成员到恒星、星云、星系与可观测宇宙，沿问题逐层探索。"
     },
     {
       "id": "earth",

@@ -1,8 +1,8 @@
 <!-- wiki-learning:start -->
 
-Which is larger: Earth, Jupiter, the Sun or a giant star? Which larger systems do they belong to?
+How do bodies compare on one ruler, and what does turning a galaxy reveal?
 
-Drag through size pairs, retaining the larger body as the next reference. Follow our structural address through the Solar System, Milky Way, Local Group, Laniakea and observable region. A side-by-side Local Group–Virgo comparison and a local cosmic-web illustration have separate entrances; neither is the next zoom stop. Then use one physical ruler to zoom continuously from Earth or the Sun. Watch the location name change with scale, and note which landmarks have distance anchors and which textures are illustrations.
+Compare body diameters on one linear ruler, then follow the structural address from the Solar System through the Milky Way, Local Group, Laniakea and observable region. In the galaxy study, turn the same Milky Way from face-on to edge-on, track the Sun locator in the disk, and inspect the disk, central bulge and bar, and sparse stellar halo. Compare spiral, elliptical and irregular forms, then distinguish star clusters from galaxy groups. Changing cases is not an evolutionary clock. Finally zoom continuously from Earth or the Sun, distinguishing distance anchors, physical outlines and illustrative texture.
 
 ## One length system across many orders of magnitude
 
@@ -10,7 +10,7 @@ Distances remain in kilometers. The slider changes the logarithm of view width; 
 
 ## The structure of the Milky Way
 
-Our galaxy includes a stellar disk, central bulge and bar, stellar halo, gas and other components. The Sun lies in its disk around 26,000 light-years from the center. A dark-matter halo is inferred indirectly from gravitational effects rather than seen in starlight. The central black hole dominates nearby orbits, not the entire galaxy as a single-point-mass Solar System.
+The Milky Way is a barred spiral with a flattened stellar disk, central bulge and bar, sparse stellar halo, gas and other components. The Sun lies in the disk about 26,000 light-years from the centre; a rounded 50,000-light-year disk radius provides a structural reference here. Changing the view changes projection rather than reshuffling stars: face-on reveals arms, while edge-on compares disk and halo depth. Spiral, elliptical and irregular are morphological cases, not a compulsory evolutionary sequence. Star clusters are stellar collections that can belong to a galaxy; galaxy groups contain multiple galaxies. Dot counts and roundness do not define a universal classification. Dark matter is inferred from gravity; the visible halo dots in this chapter represent the stellar halo only. The central black hole governs nearby orbits, not the whole galaxy as a giant Solar System.
 
 ## A reconstruction with defined limits
 
@@ -18,11 +18,11 @@ The external Milky Way view is reconstructed from observations made inside it, n
 
 ## A common misconception
 
-A light-year is a distance, not a duration. The Solar System is not the Milky Way, and the disk edge is not the universe’s boundary. The central black hole is not the galaxy’s only source of gravity.
+A light-year is a distance. Solar systems, star clusters, galaxies and galaxy groups are different levels. An edge-on view does not change a galaxy’s category, and morphology is not a compulsory evolutionary sequence. An observer-centred observable region does not make Earth the physical centre of the universe; its horizon is not a wall.
 
 ## Model limits
 
-Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the small-galaxy marks are a sample, not a Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Structure diagrams have no size or distance scale, and filaments and points in the continuous long-range camera cannot be measured with its ruler. The observable horizon is not the physical edge of the whole universe.
+Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the small-galaxy marks are a sample, not a Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Structure diagrams have no size or distance scale, and filaments and points in the continuous long-range camera cannot be measured with its ruler. The observable horizon is not the physical edge of the whole universe. The galaxy study uses stable teaching populations in 3D, not measured star counts or photometry. Cases and cluster close-ups are framed independently, without a common size ruler. The rotatable Local Group illustration shows membership; its positions, sizes and directions are not measurable. Face-on and edge-on views use the same geometry, without computing galaxy evolution or stellar orbits.
 
 ## Sources
 
@@ -40,6 +40,9 @@ Earth’s surface, individual point distribution and external galaxy appearance 
 - [Fok et al. (2012) · St2-18 luminosity and temperature](https://arxiv.org/html/1209.6427)
 - [Humphreys et al. (2020) · cluster membership uncertainty](https://arxiv.org/html/2008.01108)
 - [NASA · Solar System facts](https://science.nasa.gov/solar-system/solar-system-facts/)
+- [NASA · Types of galaxies](https://science.nasa.gov/universe/galaxies/types/)
+- [NASA · Star clusters: stellar collections](https://science.nasa.gov/universe/star-clusters-inside-the-universes-stellar-collections/)
+- [ESA Gaia · Guide to our galaxy](https://www.esa.int/Science_Exploration/Space_Science/Gaia/Guide_to_our_galaxy)
 
 ## Narration {#narration}
 
@@ -57,16 +60,16 @@ The Sun and its orbiting planets belong to the Solar System. Our Sun is one of m
 
 *Scene cue: Open the membership chapter and follow the five-stop address to the observable region; explore Virgo and a local web close-up separately.*
 
-### Now really look outward
+### Turn the Milky Way around
 
-Remember those sizes, then choose Earth or the Sun and zoom out. Fitting distant orbits into the view makes even the Sun tiny. An open circle helps us find it without secretly making its physical disk larger.
+Find the Sun locator in the Milky Way. Face-on, starlight traces arms; turn edge-on and the same stars reveal a thin disk, a central bulge and a sparse stellar halo. The Sun stays in the disk. Compare a smooth elliptical galaxy and an asymmetric irregular galaxy. These are different examples, not stages of one galaxy changing shape. A star cluster is a collection of stars within a galaxy, not simply a miniature galaxy.
 
-*Scene cue: Open chapter three and travel from your selected body through Solar System and galactic scales to the observable region.*
+*Scene cue: Open galaxy structure, choose face-on and edge-on, then drag to rotate. Toggle the disk, bulge and stellar halo; compare the cluster membership context with its independent close-up.*
 
 ### Beyond our galaxy
 
-The Milky Way is not alone. The Local Group has many small galaxies, while the Virgo Cluster is a separate neighbor. The camera keeps pulling back through a cosmic-web illustration to our observing horizon. That horizon is not a wall around the universe. Distant filaments and points are illustrative, and today's distance is not the light's travel time.
+Keep the Sun’s place in the Milky Way in mind, then zoom continuously from Earth or the Sun. Fitting distant orbits into the view makes even the Sun’s disk invisible; its locator does not secretly enlarge it. The Milky Way shares the Local Group with many small galaxies, while Virgo is a separate neighbour. Farther out, the cosmic web illustrates a distribution. The final dashed horizon marks what can be observed from our location, not a wall around the universe. Today’s distance is not the light’s travel time.
 
-*Scene cue: Follow one slider past the Local Group and the Laniakea distance scale to the observable region.*
+*Scene cue: Open continuous zoom, travel from the selected body through the Milky Way, Local Group and Laniakea distance scales to the observable region, and compare the linear ruler with the location labels.*
 
 <!-- wiki-learning:end -->

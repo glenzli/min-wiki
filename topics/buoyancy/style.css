@@ -32,6 +32,11 @@
 .buoyancy-lab .motion-state{flex:0 0 auto;margin:0;padding:7px 14px 10px;text-align:center;font-size:12px;line-height:1.5;color:#6d7c80;min-height:30px}
 .buoyancy-lab .buoyancy-primary{border-top:1px solid var(--border);background:var(--surface)}
 .buoyancy-lab #primary-controls{width:100%;min-width:0}
+.buoyancy-lab #pressure-controls{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+.buoyancy-lab .pressure-scale{display:flex;gap:5px}
+.buoyancy-lab #pressure-controls button{min-height:44px;font-size:13px;padding:7px 12px}
+.buoyancy-lab #molecules-play{font-size:12px;background:transparent}
+.buoyancy-lab #molecules-play[aria-pressed=true]{background:#e7eceb;color:#30494e}
 .buoyancy-lab #objects-controls h2{display:none}
 .buoyancy-lab .object-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%}
 .buoyancy-lab .object-grid button{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:8px 12px;font-size:13px;font-weight:600}
@@ -72,14 +77,15 @@
 .buoyancy-study .grownups summary{cursor:pointer;font-weight:600;color:var(--ink)}
 .buoyancy-study .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
 .buoyancy-study .formula{font-size:26px;color:var(--ink)}
-:root#document-host .buoyancy-lab .buoyancy-primary{display:block;padding:9px 14px}
-:root#document-host .buoyancy-lab .buoyancy-primary>#primary-controls{display:block}
+#document-host .buoyancy-lab .buoyancy-primary{display:block;padding:9px 14px}
+#document-host .buoyancy-lab .buoyancy-primary>#primary-controls{display:block}
 @media(min-width:1000px){
  :root[data-wiki-document] .buoyancy-lab .presentation-visual{min-height:0!important;display:flex;flex-direction:column}
  .buoyancy-lab .buoyancy-stage{height:0;flex:1 1 0;aspect-ratio:auto}
  .buoyancy-lab .presentation-transport .object-grid button{min-height:44px}
 }
 @media(max-width:999px){
+ :root#document-host.document-study .buoyancy-lab .view-switch button{font-size:11px!important;line-height:1.25!important;padding:4px!important;overflow-wrap:normal;word-break:normal}
  :root[data-wiki-document] .buoyancy-lab:not(.observation-expanded) .presentation-visual{min-height:0;height:auto}
  .buoyancy-lab .buoyancy-stage{flex:none;aspect-ratio:1.18;height:auto}
  .buoyancy-lab .scene-top{font-size:11px;padding:10px 12px 4px;gap:6px}
@@ -98,10 +104,15 @@
  .buoyancy-lab #scene[data-renderer=webgl] text[data-caption]{font-size:10px}
  .buoyancy-study .discovery{padding:16px 12px}
  .buoyancy-study .discovery h2{font-size:20px}
- :root#document-host .buoyancy-lab .buoyancy-primary{padding:8px 10px}
+ #document-host .buoyancy-lab .buoyancy-primary{padding:8px 10px}
 }
 @media(prefers-reduced-motion:no-preference){.buoyancy-study button{transition:background .16s,border-color .16s}}
 /* Scene controls float in the spare margins; the apparatus owns the height. */
+.buoyancy-study .buoyancy-lab.presentation-frame,#document-host .buoyancy-lab.presentation-frame{height:auto;min-height:0}
+.buoyancy-study .buoyancy-lab .scene-column.presentation-visual,#document-host .buoyancy-lab .scene-column.presentation-visual{height:auto;flex:none}
+@media(min-width:1000px){
+ .buoyancy-lab .buoyancy-stage{min-height:clamp(410px,38vw,560px);flex:1 0 auto}
+}
 .buoyancy-lab .scene-column{position:relative;--camera-bar-height:0px}
 .buoyancy-lab .scene-column:has(>.lab-navigation:not([hidden])){--camera-bar-height:57px}
 .buoyancy-lab .scene-top{position:absolute;z-index:3;left:12px;top:11px;padding:0;pointer-events:none}
@@ -112,9 +123,10 @@
 .buoyancy-lab .motion-state:empty{display:none}
 @media(max-width:999px){
  .buoyancy-lab .scene-top{top:auto;bottom:calc(9px + var(--camera-bar-height));left:10px}
+ .buoyancy-lab .scene-column:has(>.buoyancy-stage[data-view=pressure][data-pressure-scale=molecules]) .scene-top{display:none}
  .buoyancy-lab .scene-top strong{font-size:11px;padding:4px 7px;text-align:left}
- .buoyancy-lab .view-switch{position:relative;inset:auto;transform:none;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;align-self:stretch;width:calc(100% - 16px);max-width:calc(100% - 16px);height:44px;flex:0 0 44px;margin:7px 8px 1px;padding:0;white-space:normal}
- .buoyancy-lab .view-switch button,:root#document-host .buoyancy-lab .view-switch button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:100%;min-width:0;max-width:100%;height:44px;min-height:44px;margin:0;padding:4px 6px;font-size:clamp(11px,3vw,12px);line-height:1.2;text-align:center;white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none}
+ .buoyancy-lab .view-switch{position:relative;inset:auto;transform:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;align-self:stretch;width:calc(100% - 16px);max-width:calc(100% - 16px);height:44px;flex:0 0 44px;margin:7px 8px 1px;padding:0;white-space:normal}
+ .buoyancy-lab .view-switch button,#document-host .buoyancy-lab .view-switch button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;width:100%;min-width:0;max-width:100%;height:44px;min-height:44px;margin:0;padding:4px 6px;font-size:clamp(11px,3vw,12px);line-height:1.2;text-align:center;white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none}
  .buoyancy-lab .motion-state{bottom:calc(40px + var(--camera-bar-height));font-size:11px}
 }
 
@@ -124,7 +136,11 @@
 .buoyancy-lab .lab-navigation-button,#document-host .buoyancy-lab .lab-navigation-button{box-sizing:border-box;display:flex;align-items:center;justify-content:center;height:44px;min-height:44px;padding:6px 13px;border:1px solid transparent;background:transparent;color:#425d64;border-radius:8px;font-size:13px;line-height:1.2}
 .buoyancy-lab .lab-navigation-button[aria-pressed=true],#document-host .buoyancy-lab .lab-navigation-button[aria-pressed=true]{background:#fff;border-color:#bfd2d3;color:#244e57;box-shadow:0 1px 3px #31535b12}
 .buoyancy-lab .lab-navigation-hint{font-size:12px;line-height:1.4;white-space:nowrap;color:#688087}
+.buoyancy-lab .why-guide{width:100%;min-width:0;flex:1 0 100%;padding:12px 4px 2px;border-top:1px solid var(--border);margin-top:10px}
+.buoyancy-lab .why-guide p{margin:9px 1px 0;font-size:14px;line-height:1.75;color:var(--ink);max-width:1000px}
+.buoyancy-lab .why-guide .why-evidence{font-size:12px;line-height:1.6;color:var(--secondary);margin-top:5px}
 @media(max-width:600px){
+ .buoyancy-lab .why-guide p{font-size:13px;line-height:1.7}
  .buoyancy-lab .scene-column:has(>.lab-navigation:not([hidden])){--camera-bar-height:55px}
  .buoyancy-lab .lab-navigation{padding:5px 8px;display:block}
  .buoyancy-lab .lab-navigation-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px}

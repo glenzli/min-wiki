@@ -5,6 +5,8 @@ export const ORBIT_RADII_AU=[.387,.723,1,1.524,5.203,9.537,19.191,30.069] as con
 export const LIGHT_YEAR_KM=9460730472580.8;
 export const EARTH_RADIUS_KM=6371;
 export const SUN_RADIUS_KM=695700;
+/** Rounded mean body radii, ordered Mercury through Neptune (NASA/JPL planetary parameters). */
+export const PLANET_RADII_KM=[2439.7,6051.8,EARTH_RADIUS_KM,3389.5,69911,58232,25362,24622] as const;
 export type Origin="earth"|"sun";
 export const readOrigin=(query:string):Origin=>new URLSearchParams(query).get("origin")==="sun"?"sun":"earth";
 export const originStart=(origin:Origin)=>origin==="sun"?progressFor(2200000):0;

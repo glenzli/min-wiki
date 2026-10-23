@@ -1,0 +1,118 @@
+{
+  "version": 1,
+  "topicId": "universe-guide",
+  "zh": {
+    "question": "天空中的亮点、云和亮迹，都可以叫同一种“星星”吗？",
+    "observe": "选择一组成员与观察对象，拖动转动它的空间示意。比较它与对照对象；恒星还可切换能量示意。再带着一个问题，沿对应路线进入详细实验。",
+    "academic": [
+      {
+        "title": "分类要先说明在比较什么",
+        "body": "天体类别并不是一排从小到大的盒子。岩石、气体描述成分；恒星、行星和卫星涉及不同的物理与轨道关系；主序与白矮星又涉及演化状态。本页用学习分组安排入口，同时另列“天体、物质、系统、事件、范围”，避免把不同层次的名称混成一种排他分类。"
+      },
+      {
+        "title": "看见的样子只是一组证据",
+        "body": "发光或反光、波段、距离、遮挡和观察方向会共同影响外观。行星反射太阳的可见光，也会发出热辐射；星云能发射、散射或遮蔽光。星系转到侧面可能看不出旋臂，但这不是类型发生了即时变化。分类通常需要多种观测与模型，不能仅凭一个漂亮轮廓作判断。"
+      },
+      {
+        "title": "关系与历程分开理解",
+        "body": "太阳系属于银河系，银河系属于本星系群，这是成员关系。恒星形成、演化及部分恒星的爆发则是过程；不同质量、成分与相互作用会带来不同结果。超新星是事件，遗迹是留下的物质，中子星或黑洞是可能的致密结局，三者不是同一个对象的三个同义词。"
+      }
+    ],
+    "misconception": "带“星”的名称不一定指一颗恒星。流星是大气现象，星云是物质结构，星系是系统，超新星是爆发事件。",
+    "boundary": "画面用压缩后的大小差异帮助辨认；有明确大小关系的代表天体保持先后顺序，但不提供真实比例。云、系统、事件及未指定质量的黑洞分在独立近看窗口中，不编造统一直径；这些是教学示意，不是照片或观测分类器。恒星能量剖面的颜色与箭头只解释能量来源和向外传递，层厚不代表测量；点状样本不代表实际天体数量。这里选取常见代表，不穷举过渡类别；详细模型、尺度和不确定性由每个专题单独说明。四条路线是学习顺序，不是所有天体必经的演化顺序。恒星辉光经过亮度压缩，米粒纹和星斑是放大的代表纹理；白矮星选取较热的蓝白案例。星云形状、气体、尘带与配色为教学构造，不是某座星云的三维观测重建，也不提供实测密度、温度或光谱。",
+    "narration": [
+      {
+        "label": "先问它是什么",
+        "text": "抬头望天空，我们会看到亮点，有时还会看到一条很快消失的亮线。它们都和宇宙有关，却不是同一种东西。先选一个名字，看看它是在说一个天体、一团物质、一群成员，还是正在发生的事情。",
+        "cue": "选择太阳，再选择流星，对照名称的层次。"
+      },
+      {
+        "label": "光从哪里来",
+        "text": "太阳能从内部获得能量。月球把太阳光反射给我们。星云有时发光，有时却挡住别处的光。看到亮和暗，都可以继续问：光从哪里来？只是这一条线索，还不能认清所有对象。",
+        "cue": "依次比较太阳、月球与星际云。"
+      },
+      {
+        "label": "有些名字说的是一群",
+        "text": "太阳系里有太阳、行星和很多小成员。银河系里又有很多恒星系统。星团是一群恒星，星系群则是一群星系。把名字读仔细，就能知道自己在看哪一层。",
+        "cue": "在星团、星系与星系群间切换。"
+      },
+      {
+        "label": "带着问题出发",
+        "text": "现在选一条路线吧。你可以跟着彗星接近太阳，观察恒星的不同结局，看看引力怎样改变运动，也可以把银河系转过来。每次带一个问题去看，回来再问一个新问题。",
+        "cue": "选择一条学习路线进入对应实验。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Do points, clouds and streaks of light all represent the same kind of star?",
+    "observe": "Choose a family and an object, then drag to rotate its spatial illustration. Compare the paired example; selected stars also offer an energy view. Follow a path into the detailed study with a question in mind.",
+    "academic": [
+      {
+        "title": "State what a classification describes",
+        "body": "Astronomical classes are not simply boxes ordered by size. Rocky and gaseous describe composition; star, planet and moon concern physical and orbital roles; main sequence and white dwarf concern evolution. Learning families organise this guide, while a separate noun-level label distinguishes bodies, material, systems, events and regions."
+      },
+      {
+        "title": "Appearance is one line of evidence",
+        "body": "Emission, reflection, wavelength, distance, obscuration and viewing direction all influence appearance. Planets reflect visible sunlight and emit thermal radiation. Nebulae can emit, scatter or block light. Spiral arms can become hard to see edge-on without the galaxy changing type. Classification usually combines observations and models, rather than relying on a silhouette."
+      },
+      {
+        "title": "Separate membership from history",
+        "body": "The Solar System belongs to the Milky Way, which belongs to the Local Group: these are membership relationships. Star formation, evolution and some stellar explosions are processes with different possible outcomes. A supernova event, its material remnant and a possible compact central object are connected but are not synonymous."
+      }
+    ],
+    "misconception": "Familiar astronomical names refer to different kinds of things: a meteor is atmospheric light, a nebula is material, a galaxy is a system and a supernova is an event.",
+    "boundary": "These recognition illustrations compress size differences while preserving the known size order of representative bodies, without a true physical scale. Clouds, systems, events and black holes of unspecified mass use separate close-up windows rather than invented common diameters. The views are teaching illustrations, not photographs or an observational classifier. Stellar energy-cutaway colours and arrows explain the energy source and outward transfer, not measured layer thicknesses. Point samples are not actual object counts. Common examples are selected rather than every transitional class. Each linked study owns its scientific model, scale and uncertainties. The paths are learning sequences, not universal evolutionary sequences. Stellar glare uses compressed brightness; granules and starspots are enlarged representative textures, and the white dwarf is a hot blue-white example. Nebula shapes, gas, dust lanes and colours are constructed teaching illustrations, not a 3D reconstruction of an observed nebula or a measurement of density, temperature or spectra.",
+    "narration": [
+      {
+        "label": "What kind of thing is it?",
+        "text": "The sky has points of light and sometimes a streak that quickly disappears. These belong to astronomy, but they are not all the same. Choose a name. Is it one body, some material, a group of members or something happening?",
+        "cue": "Compare the Sun with a meteor."
+      },
+      {
+        "label": "Where does the light come from?",
+        "text": "The Sun obtains energy from within. The Moon reflects sunlight. Some clouds glow, while others block light from behind them. Both bright and dark appearances invite a question: where does the light come from? One clue alone cannot identify everything.",
+        "cue": "Compare the Sun, Moon and an interstellar cloud."
+      },
+      {
+        "label": "Some names describe a group",
+        "text": "The Solar System has the Sun, planets and many smaller members. The Milky Way has many stellar systems. A star cluster groups stars, while a galaxy group brings galaxies together. Read the name carefully to discover which level you are exploring.",
+        "cue": "Switch between a star cluster, galaxy and galaxy group."
+      },
+      {
+        "label": "Take a question with you",
+        "text": "Choose a path. Follow a comet toward the Sun, compare the endings of stars, explore the effects of gravity or rotate a galaxy. Take one question into each study, and return with a new question to explore.",
+        "cue": "Follow a learning path into an experiment."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA · Stars",
+      "url": "https://science.nasa.gov/universe/stars/"
+    },
+    {
+      "title": "NASA · Hubble’s Nebulae",
+      "url": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-nebulae/"
+    },
+    {
+      "title": "NASA · Asteroids, Comets & Meteors",
+      "url": "https://science.nasa.gov/asteroids-comets-meteors/facts/"
+    },
+    {
+      "title": "NASA · Types of Galaxies",
+      "url": "https://science.nasa.gov/universe/galaxies/types/"
+    },
+    {
+      "title": "NASA · The Photosphere",
+      "url": "https://solarscience.msfc.nasa.gov/surface.shtml"
+    },
+    {
+      "title": "NASA · Proxima Centauri Starspots",
+      "url": "https://science.nasa.gov/universe/exoplanets/proxima-centauri-might-be-more-sunlike-than-we-thought/"
+    },
+    {
+      "title": "NASA / ESA · Hubble Revisits the Veil Nebula",
+      "url": "https://science.nasa.gov/missions/hubble/hubble-revisits-the-veil-nebula/"
+    }
+  ]
+}

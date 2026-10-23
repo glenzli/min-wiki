@@ -1,5 +1,6 @@
 {
   "zh": {
+    "goGalaxies": "再转动星系，看看它们的空间结构 →",
     "chapters": [
       "01 · 比一比谁更大",
       "02 · 看看住在哪里",
@@ -89,7 +90,7 @@
       "这幅画面用圆圈表示从我们这里可观测的范围，圆内的丝线、结点和相对稀疏的空洞与连续拉远终点共用一套示意网，并不是把上一幅拉尼亚凯亚图裁成圆形。拉尼亚凯亚约 5.2 亿光年的跨度不到约 930 亿光年观测范围直径的 1%；中心记号因此被放大为定位符。光传播时宇宙也在膨胀；虚线是观测视界，不是宇宙外墙。"
     ],
     "homeBoundary": [
-      "包含关系示意 · 轨道、行星位置与大小不按比例；太阳系不是实心球。",
+      "归属示意 · 行星大小差异压缩，但保留大小顺序；轨道和间隔不按比例，太阳系不是实心球。",
       "银河外观为结构重建，并非从银河外拍摄的完整照片；标记、旋臂与盘面不用于测量。",
       "成员示意 · 三个大星系与少量矮星系标记不是完整普查；形状、方向、大小和间隔均不按比例。",
       "并排对照示意 · 两侧不是同一比例；星系点数不是成员总数，位置不可测量；淡蓝色热气体是 X 射线结构示意。",
@@ -98,7 +99,7 @@
       "可观测范围示意 · 圆圈表示约略的今天距离量级，内部细网的线条、结点与疏密仅为统计分布示意，并非全天实测地图或实际数量；中心定位符不是拉尼亚凯亚的直径，虚线不是宇宙的物理边缘。"
     ],
     "homeAnchor": [
-      "黄色：太阳；蓝色：地球",
+      "黄色中心：太阳；蓝绿色：地球",
       "黄色：太阳系所在区域",
       "黄色外框：刚才的银河",
       "黄色标记：本星系群",
@@ -141,7 +142,7 @@
     "solarView": "放进太阳系比一比",
     "pairView": "回到并排比较",
     "estimated": "估计大小",
-    "orbitBoundary": "假想放在太阳的位置 · 轮廓和轨道同一比例，行星图标放大 · 画到土星",
+    "orbitBoundary": "假想放在太阳的位置 · 轮廓与轨道同一比例；彩色十字只标行星位置，辨认图例不共用标尺 · 画到土星",
     "orbitIntro": "用熟悉的行星轨道当尺子，看看这颗恒星能伸到哪里。轨道叠加只是帮助比较大小，不是在演示吞噬过程。",
     "planetNames": [
       "水星",
@@ -159,7 +160,7 @@
       "St2-18 使用 Fok 等（2012）的光度 log(L/L☉)=5.64 与温度 3200 K 推算，取约 2150 个太阳半径。其距离及星团归属不确定，后续研究也提出疑问；这是有条件的尺寸估计，并非精确测量或已确定的最大纪录。"
     ],
     "orbitDetails": "轨道采用平均距离对应的圆，行星位置为示意；并未模拟更换太阳后的轨道、温度或行星命运。水星到火星挤在中心附近，是实际距离比例的结果。颜色和纹理不是这些恒星的照片。 表面活动可单独暂停，变化速度未按真实恒星标定。",
-    "planetScale": "行星图标只帮助认出对象，不代表大小",
+    "planetScale": "图例压缩行星大小差异，但保留大小顺序；不与轨道共用标尺",
     "roughSunDiameters": "约 {{count}} 个太阳直径",
     "surfaceEstimate": "半径估计 · 非最大排名",
     "chooseStar": "换一颗恒星",
@@ -167,6 +168,7 @@
     "pauseSurface": "暂停表面 · 示意"
   },
   "en": {
+    "goGalaxies": "Rotate galaxies to inspect their spatial structure →",
     "chapters": [
       "01 · Compare sizes",
       "02 · Where do they belong?",
@@ -256,7 +258,7 @@
       "This circle marks the region observable from here. Its filaments, knots and comparatively sparse voids use the same illustrative web as the end of the continuous zoom, rather than cropping the previous Laniakea drawing. Laniakea's roughly 520-million-light-year span is under 1% of the roughly 93-billion-light-year observable diameter, so its center marker is enlarged to stay visible. Space expanded as light traveled; the dashed horizon is an observing limit, not an outer wall."
     ],
     "homeBoundary": [
-      "Membership illustration · Orbits, planet locations and body sizes are not to scale; the Solar System is not a solid ball.",
+      "Membership illustration · Planet size differences are compressed but their order is retained. Orbits and spacing are not to scale; the Solar System is not a solid ball.",
       "The external Milky Way view reconstructs structure; it is not a complete photograph taken from outside. Markers, arms and disk are not measurements.",
       "Membership illustration · Three large galaxies and a few dwarf markers are not a complete census. Shapes, directions, sizes and spacing are not to scale.",
       "Side-by-side illustration · The panels do not share a scale. Point counts are not censuses and positions cannot be measured. Pale blue hot gas illustrates X-ray structure, not visible color.",
@@ -265,7 +267,7 @@
       "Observable-region diagram · The circle suggests an approximate present-day distance scale. Its fine web, knots and density are statistical illustration, not an all-sky survey or real counts. The central marker is not Laniakea's diameter, and the dashed horizon is no physical edge."
     ],
     "homeAnchor": [
-      "Yellow: Sun; blue: Earth",
+      "Yellow centre: Sun; blue-green: Earth",
       "Yellow: our Solar System’s region",
       "Yellow outline: the same Milky Way",
       "Yellow marker: the Local Group",
@@ -308,7 +310,7 @@
     "solarView": "Compare with planetary orbits",
     "pairView": "Back to side-by-side",
     "estimated": "Estimated size",
-    "orbitBoundary": "Imagined at the Sun’s position · outline and orbits share one scale; planet icons enlarged · shown out to Saturn",
+    "orbitBoundary": "Imagined at the Sun’s position · outline and orbits share one scale; coloured crosses locate planets. Legend icons use a separate scale · out to Saturn",
     "orbitIntro": "Use familiar planetary orbits as a ruler. How far would the star reach? The orbit overlay compares sizes; it does not simulate planets being swallowed.",
     "planetNames": [
       "Mercury",
@@ -326,7 +328,7 @@
       "St2-18 uses about 2150 solar radii derived from log(L/L☉)=5.64 and 3200 K in Fok et al. (2012). Its distance and cluster membership are uncertain and later work questions the association. This is a conditional size estimate, not a precise measurement or a confirmed record."
     ],
     "orbitDetails": "Circular orbits use mean distances; planet positions are illustrative. No resulting orbit changes, temperatures or planetary fates are simulated. Mercury through Mars cluster near the centre because of their real relative distances. Colours and textures are not photographs of these stars. Surface activity can be paused independently; its speed is not calibrated to a real star.",
-    "planetScale": "Planet icons identify objects; they do not show body sizes",
+    "planetScale": "Legend icons compress size differences but retain their order; they do not share the orbit ruler",
     "roughSunDiameters": "About {{count}} Sun diameters",
     "surfaceEstimate": "Radius estimate · not a ranking",
     "chooseStar": "Choose a star",

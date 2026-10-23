@@ -1,0 +1,40 @@
+import type { SceneStudy } from '../../src/platform/sceneReading.ts';
+import type { View } from './model.ts';
+const w = (zh: string, en: string) => ({ zh, en });
+const asteroids = { title: 'NASA · Asteroid facts', url: 'https://science.nasa.gov/solar-system/asteroids/facts/' };
+const ceres = { title: 'NASA · Ceres facts', url: 'https://science.nasa.gov/dwarf-planets/ceres/facts/' };
+const dwarf = { title: 'NASA · Dwarf planets', url: 'https://science.nasa.gov/dwarf-planets/' };
+const psyche = { title: 'NASA · Psyche: composition evidence', url: 'https://science.nasa.gov/solar-system/asteroids/16-psyche/' };
+const comet = { title: 'NASA · Comet facts', url: 'https://science.nasa.gov/solar-system/comets/facts/' };
+const tails = { title: 'ESA · Structure of a comet', url: 'https://www.esa.int/ESA_Multimedia/Images/2023/11/Structure_of_a_comet' };
+const kuiper = { title: 'NASA · Kuiper Belt facts', url: 'https://science.nasa.gov/solar-system/kuiper-belt/facts/' };
+const oort = { title: 'NASA JPL · Modeling the structure of the Solar System', url: 'https://www.jpl.nasa.gov/edu/resources/lesson-plan/modeling-the-structure-of-the-solar-system/' };
+const dust = { title: 'NASA · 10 things: dust in the wind', url: 'https://science.nasa.gov/solar-system/planets/mars/10-things-dust-in-the-wind-on-mars-and-well-beyond/' };
+export const studies: Record<View, SceneStudy> = {
+  shapes: {
+    child: w('把光源挪到另一边，还是同一块小天体。亮面和暗面变了，不表示物质变了。再比较谷神星：它比较圆，但“矮行星”不能只按圆不圆、大小或颜色来判断。', 'Move the light to the other side: it is still the same small body. A different bright side does not mean a different material. Compare Ceres next. It is rounder, but shape, size or color alone cannot define a dwarf planet.'),
+    title: w('外形、反射光与天体分类回答不同问题', 'Shape, reflected light and classification answer different questions'),
+    theory: w('天体外形取决于自引力、材料强度、自转和碰撞历史等条件。小天体可以不规则，也可以是松散碎块集合。C、S、M 是简化介绍中的光谱类别，反射率与吸收特征提供成分线索；不能把它们当作肉眼可见的三种纯物质。谷神星是位于主带的矮行星：它绕太阳运行，自身重力使其接近圆形，不是卫星，也没有主导轨道邻域。光源控制只改变照明，不改变分类或表面几何。', 'Shape depends on self-gravity, material strength, rotation and collision history, among other conditions. Small bodies can be irregular or collections of loosely bound rubble. C, S and M introduce broad spectral classes: reflectance and absorption features offer compositional clues, rather than three visually obvious pure substances. Ceres is a main-belt dwarf planet: it orbits the Sun, is rounded by its own gravity, is not a satellite and does not dominate its orbital neighborhood. The light control changes illumination, not classification or surface geometry.'),
+    evidence: w('望远镜测量反射光和轨道，雷达与探测器补充形状、密度和表面证据。这里选择的是代表样本，表面坑洼没有对应命名地形。谷神星约 950 千米的直径，由 NASA 约 476 千米的半径换算取整；画面分别适配大小。', 'Telescopes measure reflected light and orbits; radar and spacecraft add evidence about shape, density and surfaces. These are representative samples with no named terrain. Ceres’s roughly 950 km diameter is rounded from NASA’s approximately 476 km radius; each displayed body is fitted independently.'),
+    limits: w('没有模拟形成、自转应力、碎块接触或内部结构。光谱类别不是按屏幕颜色判断；M 型也不保证是完整铁块。四个模型不共用直径标尺，不能从屏幕大小推算质量。', 'Formation, spin stress, rubble contacts and interiors are not simulated. Spectral class is not inferred from screen color, and M-type does not guarantee a solid iron body. The four models do not share a diameter scale, and screen size cannot determine mass.'),
+    sources: [asteroids, ceres, dwarf, psyche],
+  },
+  comet: {
+    child: w('让这颗彗星接近太阳。暴露的冰受热变成气体，还会带出尘埃。细尾大致背离太阳，宽尘埃尾会弯；转弯后，尾巴也不只是落在飞行方向后面。关掉“暴露冰”再比较。', 'Bring this comet toward the Sun. Exposed ice warms into gas and carries dust out with it. The thin tail points roughly away from the Sun, while the broad dust tail curves. A tail is not simply left behind the direction of flight. Compare again with exposed ice switched off.'),
+    title: w('受热释放物质，太阳影响两种尾部', 'Heating releases material; the Sun influences two tails'),
+    theory: w('彗核含冰、岩石和尘埃。升华是固体直接成为气体；释放的气体携带尘埃，形成围绕彗核的彗发。被电离的气体与太阳风和磁场相互作用，离子尾总体背离太阳；尘埃受到日光辐射压影响，又保留原有轨道运动，所以常形成较宽、弯曲的尾。图中同一彗核沿假想的开普勒椭圆运动；相同轨道时间步长在近日点附近对应更快的移动。', 'A cometary nucleus contains ice, rock and dust. Sublimation turns solid ice directly into gas; escaping gas carries dust into a coma around the nucleus. Ionized gas interacts with the solar wind and magnetic field, making an ion tail generally directed away from the Sun. Dust responds to radiation pressure while retaining orbital motion, often producing a broader, curved tail. The same nucleus follows a hypothetical Kepler ellipse; equal time steps give faster motion near perihelion.'),
+    formula: 'F / F₁AU = 1 / r²;   M = E − e sin E;   r = a(1 − e cos E)',
+    terms: w('r 以 AU 计；F₁AU 为 1 AU 处日照，a=3.2 AU、e=0.72 是假定轨道参数；M、E 分别为平均与偏近点角。光照比是计算量，活动强度仅作定性映射。', 'r is in AU; F₁AU is sunlight at 1 AU. a=3.2 AU and e=0.72 are assumed orbital parameters; M and E are mean and eccentric anomalies. The flux ratio is calculated, while activity is only a qualitative mapping.'),
+    evidence: w('探测器近看彗核，望远镜记录彗发与不同尾部。ESA 的结构图明确区分尘埃尾和等离子体尾。真实活动还与冰种类、表面覆盖、热惯性和先前历史有关，没有统一的“醒来距离”。', 'Spacecraft resolve nuclei and telescopes record comae and distinct tails. ESA’s structure diagram distinguishes dust and plasma tails. Real activity also depends on ice species, surface cover, thermal inertia and past history; there is no universal switch-on distance.'),
+    limits: w('太阳、彗核、彗发和尾分别放大；蓝色与浅褐色帮助辨别，不是校准观测。喷流、尾长、弯曲与活动均为确定性示意，没有求解气体、太阳风或粒子动力学，也不消耗彗核质量。回拖是重新取样，不是逆转真实物质流。近看镜头保持同一对象，不是探测器轨迹。', 'The Sun, nucleus, coma and tails are enlarged separately. Blue and tan distinguish components rather than calibrated observations. Jets, tail length, curvature and activity are deterministic illustrations without gas, solar-wind or particle dynamics, and do not consume nucleus mass. Reverse scrubbing resamples a condition rather than reversing real material flow. The close camera tracks the same object; it is not a spacecraft trajectory.'),
+    sources: [comet, tails],
+  },
+  belts: {
+    child: w('这些点之间有很大空隙。主带在火星与木星之间，柯伊伯带在海王星外；尘埃还散布在行星之间。让地球穿过一条碎屑流，进入大气的小碎片才可能带来流星。', 'There is lots of space between these points. The main belt lies between Mars and Jupiter, the Kuiper Belt beyond Neptune, and dust also spreads between planets. Move Earth through a debris stream: small fragments entering the atmosphere can make meteors.'),
+    title: w('不同储库与轨道交会，不是密集的石墙', 'Different reservoirs and orbital crossings, rather than a solid wall'),
+    theory: w('主带是许多小行星所在的区域；柯伊伯带主要区域约为 30—50 AU，含冰小天体的轨道并不全在同一个平面。行星际尘埃由彗星活动、碰撞等不断补充，可以散射太阳光，也会发出红外辐射。地球穿过碎屑流，是某些流星雨的前提；流星是进入大气时的发光现象，不是太空中尘粒自带的火焰。奥尔特云的球状储库解释则来自长周期彗星轨道等间接证据。', 'The main belt contains many asteroids; the Kuiper Belt’s main region lies around 30–50 AU, and icy bodies do not all orbit in one plane. Cometary activity and collisions replenish interplanetary dust, which scatters sunlight and emits infrared radiation. Crossing a debris stream is a condition for some meteor showers. A meteor is an atmospheric luminous phenomenon, not a flame attached to a space grain. The spherical Oort reservoir is inferred from indirect evidence such as long-period comet orbits.'),
+    evidence: w('主带与柯伊伯带已有大量成员被观测；尘埃可由散射光、红外观测与探测器检测。奥尔特云本身未直接成像；点云只是帮助想象的分布。不同证据不能统一叫作照片。', 'Many members of the main and Kuiper belts have been observed. Scattered light, infrared observations and spacecraft detect dust. The Oort Cloud itself has not been directly imaged; the point cloud only helps visualize a proposed distribution. These different forms of evidence are not all photographs.'),
+    limits: w('点数量与大小都经过调整，没有表示真实密度或位置目录。前三个镜头各自使用线性 AU 距离，但缩放不同；奥尔特云另用无共同长度比例的结构图。尘埃云只截取内太阳系一部分。亮细带沿用同一假想彗星的平面轨道，并人为加宽；地球亮圈只是进入示意流的提示，不预测日期、辐射点或流星数量。', 'Point counts and sizes are adjusted, not real densities or a position catalogue. The first three views use linear AU distances at different camera scales; the Oort view uses a separate structural diagram without a shared length scale. Only part of the inner dust cloud is shown. The bright stream reuses the same hypothetical comet’s planar orbit with exaggerated width. Earth’s halo marks entry into that illustrative stream, not a predicted date, radiant or meteor rate.'),
+    sources: [asteroids, kuiper, dust, oort],
+  },
+};

@@ -2,8 +2,8 @@
   "version": 1,
   "topicId": "cosmic-scale",
   "zh": {
-    "question": "地球、木星、太阳和更大的恒星，谁更大？它们又属于哪些更大的系统？",
-    "observe": "先拖动大小对比，把上一组的大天体留作下一组的参照；再沿太阳系、银河系、本星系群、拉尼亚凯亚和可观测范围这条结构路径寻找我们的位置。室女座星系团与本星系群的并排对照、宇宙网局部示意另有入口，不当作逐级放大的下一站。最后沿同一物理标尺从地球或太阳连续拉远，看定位名称怎样逐级变大，留意哪些是有距离依据的地标，哪些只是示意纹理。",
+    "question": "同一把尺下天体差多少？同一座星系转个方向又会看到什么？",
+    "observe": "先在共同线性标尺上比较天体直径，再沿太阳系、银河系、本星系群、拉尼亚凯亚和可观测范围找结构归属。进入星系结构观察，把同一银河从正面转到侧面，追踪盘内的太阳定位环，分别检查盘、中央核球与棒、稀疏恒星晕；再比较旋涡、椭圆、不规则星系，以及星团与星系群的不同层次。案例切换不是演化进度。最后沿同一物理标尺从地球或太阳连续拉远，区分距离锚点、物理轮廓和示意纹理。",
     "academic": [
       {
         "title": "同一长度单位跨越多个量级",
@@ -11,15 +11,15 @@
       },
       {
         "title": "银河系的空间结构",
-        "body": "银河系包含恒星盘、中央核球和棒、恒星晕以及气体等成分。太阳位于盘内，距中心约二万六千光年。暗物质晕来自引力效应的间接推断，不是可见星光。中心黑洞主导邻近区域，不能把全银河当成受单一中心点质量控制的巨大太阳系。"
+        "body": "银河系是棒旋星系，包括扁平恒星盘、中央核球与棒、较稀疏恒星晕和气体等成分。太阳位于盘内，距中心约二万六千光年；本场景取盘半径约五万光年作结构参照。改变视角只改变投影，不重新分布恒星：正面便于找旋臂，侧面便于比较盘与晕的厚度。旋涡、椭圆和不规则是形态案例，不是所有星系必经的演化序列。星团是恒星集合，能作为星系的组成部分；星系群的成员则是多座星系。不能靠亮点数量或圆不圆作统一分类。暗物质晕由引力效应间接推断；本章的可见星点晕只代表恒星晕。中心黑洞主导邻近区域，并不把整个银河变成巨大的太阳系。"
       },
       {
         "title": "地图是有边界的重建",
         "body": "银河系的外观模型根据内部观测重建，而不是从外面拍摄的完整照片。本星系群不仅有银河、仙女座和三角座星系，还包含大、小麦哲伦云等约 50 个矮星系。室女座星系团是另一个邻近结构，不包含本星系群；按拉尼亚凯亚的流向重建，两者都处于这一广大区域，但边界取决于观测和模型，超星系团整体通常不受自身引力束缚。宇宙网是大尺度分布形态，不是容纳拉尼亚凯亚的独立外壳。结构路径图不按比例；可观测范围画面与连续镜头终点共用一套统计示意网，中心定位符并非超星系团直径。远处丝线、结点与小光点不是个别星系的实测位置或大小，不能凭画面测量。最远端的长度表示今天的空间距离量级，不等于光走过的年数；本图不模拟宇宙膨胀或光行回溯时间。"
       }
     ],
-    "misconception": "光年不是一年那么久，而是距离；太阳系不是银河系；银河的盘边缘不是宇宙边界；中央黑洞也不是支配整个银河的唯一引力来源。",
-    "boundary": "地球表面、星点分布与星系外观为结构插画。所有十字和空心小圈都表示位置，不是被放大的真实尺寸。星系方向为示意，银河晕范围非精确边界，本星系群的小星系点只是抽样，不是成员普查。天体对比只比较直径，不表示质量或实际间隔；大角星采用约 25.4 个太阳半径的估计。结构图不按尺寸和距离比例；连续镜头的大尺度丝线和光点也不能用标尺测量。可观测视界不是整个宇宙的物理边缘。",
+    "misconception": "光年是距离；太阳系、星团、星系和星系群是不同层次。星系转到侧面不会变成另一种星系；形态类别也不是必然的演化顺序。可观测范围以观察者为参照，不说明地球是宇宙物理中心，视界不是宇宙边墙。",
+    "boundary": "地球表面、星点分布与星系外观为结构插画。所有十字和空心小圈都表示位置，不是被放大的真实尺寸。星系方向为示意，银河晕范围非精确边界，本星系群的小星系点只是抽样，不是成员普查。天体对比只比较直径，不表示质量或实际间隔；大角星采用约 25.4 个太阳半径的估计。结构图不按尺寸和距离比例；连续镜头的大尺度丝线和光点也不能用标尺测量。可观测视界不是整个宇宙的物理边缘。 新增星系观察使用稳定的教学点群与三维空间，点数和亮度不是实测恒星数；各案例和星团放大图独立取景，没有共同尺寸标尺。本星系群可旋转图只说明成员归属，位置、尺寸和方向不可量取。正面与侧面使用同一组几何，不计算星系演化或恒星轨道。",
     "narration": [
       {
         "label": "把两位放在一起比",
@@ -32,20 +32,20 @@
         "cue": "打开“看看住在哪里”，沿五站结构路径走到可观测范围；另点开室女座星系团对照与宇宙网局部图。"
       },
       {
-        "label": "这次真的向外看",
-        "text": "带着刚才的大小印象，选择从地球或太阳出发，真正拉远。为了把遥远的轨道放进画面，就连很大的太阳也会变成小点。空心圈帮我们找到它，并不是把它偷偷放大。",
-        "cue": "进入第三段，从所选起点经太阳系和银河连续拉远到可观测范围。"
+        "label": "转个方向看银河",
+        "text": "先找出银河里的太阳定位环。正面看，星光连成旋臂；转到侧面，同一片星光变成薄盘，中央鼓起，周围还有稀疏的恒星晕。太阳始终留在盘内。再看看平滑的椭圆星系和不对称的不规则星系，这些是不同案例，不是一座星系按顺序变形。星团则是星系里的一群恒星，不能把它当成缩小的星系。",
+        "cue": "进入星系结构章，选择正面、侧面并拖动旋转；关闭与重新打开盘、核球和恒星晕，最后比较星团的归属图与独立放大图。"
       },
       {
         "label": "银河之外",
-        "text": "银河并不孤单。本星系群有许多小星系；室女座星系团是另一个邻居。镜头继续向外，星系沿宇宙网分布，最后看到我们所在位置的观测范围。那不是宇宙的一堵墙；越远的丝线与光点越是结构示意，今天的距离也不是光旅行的时间。",
-        "cue": "沿同一滑杆经过本星系群和拉尼亚凯亚所在的距离量级，抵达可观测范围。"
+        "text": "带着太阳在银河里的位置，选择从地球或太阳连续拉远。为了容纳遥远轨道，就连太阳的圆盘也会小得看不见；定位符没有把它偷偷放大。银河并不孤单，本星系群还有许多小星系，室女座星系团是另一个邻居。更远处的宇宙网是分布示意，最后的虚线是我们所在位置的观测范围，不是宇宙的一堵墙。今天的距离也不是光旅行的时间。",
+        "cue": "进入连续拉远章，从所选天体经过银河、本星系群与拉尼亚凯亚量级，抵达可观测范围；对照画面的线性标尺与位置标签。"
       }
     ]
   },
   "en": {
-    "question": "Which is larger: Earth, Jupiter, the Sun or a giant star? Which larger systems do they belong to?",
-    "observe": "Drag through size pairs, retaining the larger body as the next reference. Follow our structural address through the Solar System, Milky Way, Local Group, Laniakea and observable region. A side-by-side Local Group–Virgo comparison and a local cosmic-web illustration have separate entrances; neither is the next zoom stop. Then use one physical ruler to zoom continuously from Earth or the Sun. Watch the location name change with scale, and note which landmarks have distance anchors and which textures are illustrations.",
+    "question": "How do bodies compare on one ruler, and what does turning a galaxy reveal?",
+    "observe": "Compare body diameters on one linear ruler, then follow the structural address from the Solar System through the Milky Way, Local Group, Laniakea and observable region. In the galaxy study, turn the same Milky Way from face-on to edge-on, track the Sun locator in the disk, and inspect the disk, central bulge and bar, and sparse stellar halo. Compare spiral, elliptical and irregular forms, then distinguish star clusters from galaxy groups. Changing cases is not an evolutionary clock. Finally zoom continuously from Earth or the Sun, distinguishing distance anchors, physical outlines and illustrative texture.",
     "academic": [
       {
         "title": "One length system across many orders of magnitude",
@@ -53,15 +53,15 @@
       },
       {
         "title": "The structure of the Milky Way",
-        "body": "Our galaxy includes a stellar disk, central bulge and bar, stellar halo, gas and other components. The Sun lies in its disk around 26,000 light-years from the center. A dark-matter halo is inferred indirectly from gravitational effects rather than seen in starlight. The central black hole dominates nearby orbits, not the entire galaxy as a single-point-mass Solar System."
+        "body": "The Milky Way is a barred spiral with a flattened stellar disk, central bulge and bar, sparse stellar halo, gas and other components. The Sun lies in the disk about 26,000 light-years from the centre; a rounded 50,000-light-year disk radius provides a structural reference here. Changing the view changes projection rather than reshuffling stars: face-on reveals arms, while edge-on compares disk and halo depth. Spiral, elliptical and irregular are morphological cases, not a compulsory evolutionary sequence. Star clusters are stellar collections that can belong to a galaxy; galaxy groups contain multiple galaxies. Dot counts and roundness do not define a universal classification. Dark matter is inferred from gravity; the visible halo dots in this chapter represent the stellar halo only. The central black hole governs nearby orbits, not the whole galaxy as a giant Solar System."
       },
       {
         "title": "A reconstruction with defined limits",
         "body": "The external Milky Way view is reconstructed from observations made inside it, not photographed from outside. Beyond the Milky Way, the Local Group includes Andromeda, Triangulum and around 50 dwarf galaxies such as the Magellanic Clouds. The Virgo Cluster is a separate nearby structure, not a container for the Local Group. In a Laniakea flow reconstruction both occupy the wider region, but its boundary depends on observations and the model, and the supercluster is generally not bound as a whole. The cosmic web is a pattern of large-scale distribution, not a separate shell around Laniakea. Address diagrams are not to scale; the observable-region view and the continuous camera's endpoint share one statistical illustration, and the central locator is not the supercluster's diameter. Distant filaments, knots and points are not measured positions or sizes of individual galaxies and cannot be measured from the picture. The far-end length is an approximate present-day spatial distance, not light-travel time; expansion and lookback time are not simulated."
       }
     ],
-    "misconception": "A light-year is a distance, not a duration. The Solar System is not the Milky Way, and the disk edge is not the universe’s boundary. The central black hole is not the galaxy’s only source of gravity.",
-    "boundary": "Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the small-galaxy marks are a sample, not a Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Structure diagrams have no size or distance scale, and filaments and points in the continuous long-range camera cannot be measured with its ruler. The observable horizon is not the physical edge of the whole universe.",
+    "misconception": "A light-year is a distance. Solar systems, star clusters, galaxies and galaxy groups are different levels. An edge-on view does not change a galaxy’s category, and morphology is not a compulsory evolutionary sequence. An observer-centred observable region does not make Earth the physical centre of the universe; its horizon is not a wall.",
+    "boundary": "Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the small-galaxy marks are a sample, not a Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Structure diagrams have no size or distance scale, and filaments and points in the continuous long-range camera cannot be measured with its ruler. The observable horizon is not the physical edge of the whole universe. The galaxy study uses stable teaching populations in 3D, not measured star counts or photometry. Cases and cluster close-ups are framed independently, without a common size ruler. The rotatable Local Group illustration shows membership; its positions, sizes and directions are not measurable. Face-on and edge-on views use the same geometry, without computing galaxy evolution or stellar orbits.",
     "narration": [
       {
         "label": "Put two bodies side by side",
@@ -74,14 +74,14 @@
         "cue": "Open the membership chapter and follow the five-stop address to the observable region; explore Virgo and a local web close-up separately."
       },
       {
-        "label": "Now really look outward",
-        "text": "Remember those sizes, then choose Earth or the Sun and zoom out. Fitting distant orbits into the view makes even the Sun tiny. An open circle helps us find it without secretly making its physical disk larger.",
-        "cue": "Open chapter three and travel from your selected body through Solar System and galactic scales to the observable region."
+        "label": "Turn the Milky Way around",
+        "text": "Find the Sun locator in the Milky Way. Face-on, starlight traces arms; turn edge-on and the same stars reveal a thin disk, a central bulge and a sparse stellar halo. The Sun stays in the disk. Compare a smooth elliptical galaxy and an asymmetric irregular galaxy. These are different examples, not stages of one galaxy changing shape. A star cluster is a collection of stars within a galaxy, not simply a miniature galaxy.",
+        "cue": "Open galaxy structure, choose face-on and edge-on, then drag to rotate. Toggle the disk, bulge and stellar halo; compare the cluster membership context with its independent close-up."
       },
       {
         "label": "Beyond our galaxy",
-        "text": "The Milky Way is not alone. The Local Group has many small galaxies, while the Virgo Cluster is a separate neighbor. The camera keeps pulling back through a cosmic-web illustration to our observing horizon. That horizon is not a wall around the universe. Distant filaments and points are illustrative, and today's distance is not the light's travel time.",
-        "cue": "Follow one slider past the Local Group and the Laniakea distance scale to the observable region."
+        "text": "Keep the Sun’s place in the Milky Way in mind, then zoom continuously from Earth or the Sun. Fitting distant orbits into the view makes even the Sun’s disk invisible; its locator does not secretly enlarge it. The Milky Way shares the Local Group with many small galaxies, while Virgo is a separate neighbour. Farther out, the cosmic web illustrates a distribution. The final dashed horizon marks what can be observed from our location, not a wall around the universe. Today’s distance is not the light’s travel time.",
+        "cue": "Open continuous zoom, travel from the selected body through the Milky Way, Local Group and Laniakea distance scales to the observable region, and compare the linear ruler with the location labels."
       }
     ]
   },
@@ -141,6 +141,18 @@
     {
       "title": "NASA · Solar System facts",
       "url": "https://science.nasa.gov/solar-system/solar-system-facts/"
+    },
+    {
+      "title": "NASA · Types of galaxies",
+      "url": "https://science.nasa.gov/universe/galaxies/types/"
+    },
+    {
+      "title": "NASA · Star clusters: stellar collections",
+      "url": "https://science.nasa.gov/universe/star-clusters-inside-the-universes-stellar-collections/"
+    },
+    {
+      "title": "ESA Gaia · Guide to our galaxy",
+      "url": "https://www.esa.int/Science_Exploration/Space_Science/Gaia/Guide_to_our_galaxy"
     }
   ]
 }

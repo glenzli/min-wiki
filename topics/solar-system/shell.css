@@ -1,4 +1,10 @@
 /* 太阳系专题遵循全站共享阅读外观规范。3D太空场景始终保持深色深空。 */
+/* Reader relocates the old header controls; do not retain its former 84px empty height. */
+.page-header{height:auto;min-height:0}
+.app-shell:has(#explorer:not([hidden])) .transport{display:none!important}
+.explorer-breadcrumb>.explorer-views{padding:0;margin-left:auto}
+.explorer-breadcrumb #activity-play{margin-left:auto;min-height:44px;padding:8px 12px;border:1px solid var(--border,#8885);border-radius:8px}
+.solar-choices .mode-switch button{white-space:nowrap;min-width:max-content}
 :root { color:var(--ink); background:var(--page); color-scheme:inherit; }
 :root[data-theme="light"] { --muted:#5f7167; --line:#d7ded6; --mint:#356349; --gold:#885b25; }
 :root[data-theme="light"] .app-shell { color:var(--ink); }
