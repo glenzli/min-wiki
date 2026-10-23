@@ -10,6 +10,7 @@ export const ECOLOGY_PATCH_SECTORS = 16;
 export const ECOLOGY_PATCH_RINGS = 3;
 export const ECOLOGY_PATCH_VERTICES = 1 + ECOLOGY_PATCH_SECTORS * ECOLOGY_PATCH_RINGS;
 export const ECOLOGY_SURFACE_LIFT = .006;
+export const ECOLOGY_ANIMAL_LIFT = .0008;
 
 /** Geographic sites, not a population or a calibrated succession clock. The
  * selected marine case adds diffuse-vent conditions; it does not infer vents
@@ -48,6 +49,8 @@ export type OceanEcologyState = {
   soil: number;
   seedling: number;
   sites: OceanEcologySite[];
+  /** Stable geographic site selected for the observation camera, -1 if empty. */
+  focusSite: number;
   focus: XYZ;
   focusWeight: number;
 };
@@ -60,10 +63,14 @@ function patchAt(index: number, x: number, z: number, radius: number, surface: (
   film?: { angle: number; width: number }) {
   const points: XYZ[] = [[x, surface(x, z) + ECOLOGY_SURFACE_LIFT, z]];
   const angle = film?.angle ?? seed(index, 1188) * Math.PI * 2;
+  const phase = seed(index, 1102) * Math.PI * 2;
   for (const r of PATCH_RADII) for (let sector = 0; sector < ECOLOGY_PATCH_SECTORS; sector++) {
     const a = sector / ECOLOGY_PATCH_SECTORS * Math.PI * 2;
     const irregular = seed(index * ECOLOGY_PATCH_SECTORS + sector, 1107);
-    const edge = film ? .36 + irregular * .64 : .79 + irregular * .21;
+    // Broad correlated bends give a broken strip an uneven natural margin;
+    // independent full-amplitude sector noise would create a radial star.
+    const edge = film ? .68 + .13 * Math.sin(a * 2 + phase) + .10 * Math.sin(a * 3 - phase) + irregular * .09
+      : .79 + irregular * .21;
     const dx = Math.cos(a) * radius * r * edge;
     const dz = Math.sin(a) * radius * r * edge * (film?.width ?? .76)
       + (film ? Math.sin(a * 3 + index) * radius * r * .055 : 0);
@@ -102,14 +109,16 @@ function prepareDeepSites() {
     const across = (seed(index, 1421) - .5) * row.width * .95;
     const x = row.center[0] + row.across[0] * across, z = row.center[2] + row.across[1] * across;
     const radius = .065 + Math.pow(seed(index, 1129), 1.55) * .145;
-    const patch = patchAt(index, x, z, radius, surface, { angle, width: .17 + seed(index, 1431) * .15 });
+    const patch = patchAt(index, x, z, radius, surface, { angle, width: .18 + seed(index, 1431) * .12 });
     // The grazer is a separate attached animal near a film margin, not a round
     // central ornament. Its own contact point also participates in heat gating.
     const side = index % 3 ? 1 : -1, along = (seed(index, 1441) - .5) * radius * .65;
     const lateral = side * radius * (.42 + seed(index, 1447) * .27);
     const ax = x + Math.cos(angle) * along - Math.sin(angle) * lateral;
     const az = z + Math.sin(angle) * along + Math.cos(angle) * lateral;
-    const animalPosition: XYZ = [ax, surface(ax, az) + ECOLOGY_SURFACE_LIFT, az];
+    // Film needs a larger depth-fighting offset than a volumetric animal.
+    // Reusing that offset would visibly suspend a tiny foot above the rock.
+    const animalPosition: XYZ = [ax, surface(ax, az) + ECOLOGY_ANIMAL_LIFT, az];
     return { index, habitat: 'marine', position: [...patch[0]] as XYZ, normal: surfaceNormal(surface, x, z),
       animalPosition, animalNormal: surfaceNormal(surface, ax, az), animalSize: .026 + seed(index, 1453) * .018,
       radius, angle: seed(index, 1151) * Math.PI * 2, patch,
@@ -216,7 +225,7 @@ function landSites(frame: OceanGeometryFrame): OceanEcologySite[] {
 
 export function oceanEcology(frame: OceanGeometryFrame, conditions: OceanEcologyCase = 'bare'): OceanEcologyState {
   const state: OceanEcologyState = { p: frame.p, conditions, visible: false, film: 0, animal: 0, soil: 0, seedling: 0,
-    sites: [], focus: [0, 0, 0], focusWeight: 0 };
+    sites: [], focusSite: -1, focus: [0, 0, 0], focusWeight: 0 };
   if (conditions !== 'suitable' || frame.p < .82 || frame.environment === 'shallow') return state;
   if (frame.environment === 'deep') {
     state.sites = prepareDeepSites().map(site => {
@@ -241,6 +250,7 @@ export function oceanEcology(frame: OceanGeometryFrame, conditions: OceanEcology
     // It remains a geographic site, never a separate ecosystem or timer.
     const target = state.sites.find(s => s.index === (frame.environment === 'deep' ? 4 : 5)
       && s.film + s.soil > .01) ?? state.sites.find(s => s.film + s.soil > .01)!;
+    state.focusSite = target.index;
     state.focus = [...target.position];
     state.focusWeight = clamp(target.film + target.soil);
   }

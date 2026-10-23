@@ -63,7 +63,8 @@ export function studyRoute(search: string, hash = '') {
     if (study === 'ecology') progress = oldCase === 'scoria' ? oldChapter === 'life' ? .5 : 1 : .08;
   }
   return { study, volcano, chapter: chapterForStudy(study), progress,
-    view: params.get('view') === 'exterior' && study === 'styles' ? 'exterior' as const : 'landscape' as const };
+    view: study === 'heat' && params.get('view') === 'section' ? 'section' as const
+      : params.get('view') === 'exterior' && study === 'styles' ? 'exterior' as const : 'landscape' as const };
 }
 
 export function landformFrom(value: string): Landform {

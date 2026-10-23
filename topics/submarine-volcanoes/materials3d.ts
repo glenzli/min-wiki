@@ -66,19 +66,23 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
   const flowLength = { value: 1 };
   const flowFront = { value: 1 };
   const flowFeed = { value: 0 };
+  const outletCover = { value: 0 };
+  const outletDirection = { value: new THREE.Vector2(1, 0) };
   const molten = ['pillow', 'magma', 'feeder', 'flow', 'pillow-flow', 'extruded', 'ejecta'].includes(kind);
   const lip = .29 + seed(pillowVariant, 306) * .28;
   const lipPhase = seed(pillowVariant, 302) * Math.PI * 2;
   const material = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: .92, metalness: 0, side: THREE.DoubleSide });
   material.onBeforeCompile = shader => {
     Object.assign(shader.uniforms, { uStone: { value: noise }, uDeep: ocean.deep, uClock: ocean.clock, uDetailPhase: ocean.detailPhase, uHeat: heat, uCutaway: ocean.cutaway, uIslandEmergence: ocean.emergence,
-      uRockVariation: { value: variation }, uPillowLip: { value: new THREE.Vector2(lip, lipPhase) }, uFlowLength: flowLength, uFlowFront: flowFront, uFlowFeed: flowFeed });
-    shader.vertexShader = shader.vertexShader.replace('#include <common>', `#include <common>\nvarying vec3 vOceanWorld;varying vec3 vStoneLocal;varying vec2 vMeltUV;uniform float uDetailPhase;uniform float uHeat;uniform vec2 uPillowLip;uniform float uFlowLength;${kind === 'flow' ? 'attribute float oceanQuench;varying float vQuench;' : ''}${kind === 'pillow-flow' ? 'attribute float oceanQuench;attribute float oceanDistance;varying float vQuench;varying float vDistance;uniform float uFlowFront;uniform float uFlowFeed;' : ''}${kind === 'ejecta' ? 'attribute float oceanHeat;attribute float oceanQuench;attribute float oceanFreshFace;varying float vShardHeat;varying float vFreshFace;' : ''}`)
+      uRockVariation: { value: variation }, uPillowLip: { value: new THREE.Vector2(lip, lipPhase) }, uFlowLength: flowLength, uFlowFront: flowFront, uFlowFeed: flowFeed,
+      uOutletCover: outletCover, uOutletDirection: outletDirection });
+    shader.vertexShader = shader.vertexShader.replace('#include <common>', `#include <common>\nvarying vec3 vOceanWorld;varying vec3 vStoneLocal;varying vec2 vMeltUV;uniform float uDetailPhase;uniform float uHeat;uniform vec2 uPillowLip;uniform float uFlowLength;${kind === 'flow' ? 'attribute float oceanQuench;attribute float oceanDistance;attribute float oceanFlowStage;varying float vQuench;varying float vDistance;varying float vFlowStage;' : ''}${kind === 'pillow-flow' ? 'attribute float oceanQuench;attribute float oceanDistance;varying float vQuench;varying float vDistance;uniform float uFlowFront;uniform float uFlowFeed;' : ''}${kind === 'ejecta' ? 'attribute float oceanHeat;attribute float oceanQuench;attribute float oceanFreshFace;varying float vShardHeat;varying float vFreshFace;' : ''}${kind === 'extruded' ? 'attribute float oceanPoolSkin;varying float vPoolSkin;' : ''}`)
       .replace('#include <begin_vertex>', `#include <begin_vertex>
         vStoneLocal=position;vMeltUV=uv;
         ${kind === 'pillow-flow' ? 'vQuench=oceanQuench;vDistance=oceanDistance;' : ''}
-        ${kind === 'flow' ? 'vQuench=oceanQuench;' : ''}
+        ${kind === 'flow' ? 'vQuench=oceanQuench;vDistance=oceanDistance;vFlowStage=oceanFlowStage;' : ''}
         ${kind === 'ejecta' ? 'vShardHeat=oceanHeat;vFreshFace=mix(1.,oceanFreshFace,oceanQuench);' : ''}
+        ${kind === 'extruded' ? 'vPoolSkin=oceanPoolSkin;' : ''}
         ${kind === 'pillow' ? `
           if(uHeat>.001){
           float lipX=uPillowLip.x+.09*sin(atan(position.z,position.y)*3.+uPillowLip.y);
@@ -97,18 +101,14 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
           }
         ` : kind === 'flow' ? `
           if(uHeat>.001){
-          float distance=uv.y*uFlowLength;
+          float distance=oceanDistance;
           float endMask=smoothstep(0.,.10,distance)*(1.-smoothstep(uFlowLength-.10,uFlowLength,distance));
-          float side=abs(sin(uv.x*6.2831853)),top=smoothstep(-.1,.35,cos(uv.x*6.2831853));
+          float side=abs(sin(uv.x*6.2831853)),top=smoothstep(.25,.60,cos(uv.x*6.2831853));
           float mobility=(1.-smoothstep(.38,.91,side))*top;
           float fold=sin(distance*15.-uDetailPhase*2.+.55*sin(distance*5.-uDetailPhase))+.38*sin(distance*27.-uDetailPhase*3.+side*2.);
-          transformed.y+=.022*clamp(uHeat,0.,1.)*(1.-oceanQuench)*endMask*mobility*fold;
-          }
-        ` : kind === 'extruded' ? `
-          if(uHeat>.001){
-          float fresh=smoothstep(.15,1.1,position.x)*clamp(uHeat,0.,1.);
-          float fold=sin(position.x*13.-uDetailPhase*2.+position.z*4.)+.34*sin(position.x*23.-uDetailPhase*3.);
-          transformed+=normal*.012*fresh*fold;
+          // Underwater relief stays below .017 scene units; the entire
+          // terrain-facing half and the seated banks remain fixed.
+          transformed.y+=mix(.012,.022,oceanFlowStage)*clamp(uHeat,0.,1.)*(1.-oceanQuench)*endMask*mobility*fold;
           }
         ` : ''}`)
       .replace('#include <worldpos_vertex>', `#include <worldpos_vertex>
@@ -119,9 +119,10 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
         vOceanWorld=(modelMatrix*oceanPosition).xyz;`);
     shader.fragmentShader = shader.fragmentShader.replace('#include <common>', `#include <common>
       varying vec3 vOceanWorld;varying vec3 vStoneLocal;varying vec2 vMeltUV;uniform float uDeep;uniform float uClock;uniform float uDetailPhase;uniform float uHeat;uniform float uCutaway;uniform float uRockVariation;uniform vec2 uPillowLip;uniform float uIslandEmergence;uniform float uFlowLength;
-      ${kind === 'flow' ? 'varying float vQuench;' : ''}
+      ${kind === 'flow' ? 'varying float vQuench;varying float vDistance;varying float vFlowStage;uniform float uFlowFeed;' : ''}
       ${kind === 'pillow-flow' ? 'varying float vQuench;varying float vDistance;uniform float uFlowFeed;' : ''}
       ${kind === 'ejecta' ? 'varying float vShardHeat;varying float vFreshFace;' : ''}
+      ${kind === 'extruded' ? 'varying float vPoolSkin;uniform float uOutletCover;uniform vec2 uOutletDirection;' : ''}
       ${NOISE}${WATER}`)
       .replace('#include <color_fragment>', `#include <color_fragment>
         vec3 samplePoint=${molten ? 'vStoneLocal' : 'vOceanWorld'};
@@ -149,7 +150,7 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
         basalt*=1.-wetBand*.48;
         // The solid framework and exposed melt domain stay material-attached.
         // Only detail inside those openings consumes the bounded 2pi phase.
-        float meltMask=0.,liquidDetail=1.,liquidRelief=0.,exposureHeat=uHeat${kind === 'ejecta' ? '*vShardHeat' : kind === 'flow' ? '*(1.-vQuench*.78)' : ''};
+        float meltMask=0.,liquidDetail=1.,liquidRelief=0.,crustRelief=0.,exposureHeat=uHeat${kind === 'ejecta' ? '*vShardHeat' : kind === 'flow' ? '*(1.-vQuench*.78)' : ''};
         if(exposureHeat>.001){
         ${kind === 'pillow' ? `
           float lipX=uPillowLip.x+.09*sin(atan(samplePoint.z,samplePoint.y)*3.+uPillowLip.y);
@@ -180,7 +181,8 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
         ` : kind === 'feeder' ? 'meltMask=.32+.58*smoothstep(.38,.61,fbm(vec3(samplePoint.x*60.,vMeltUV.y*140.,samplePoint.z*20.)));'
           : kind === 'flow' ? `
             float flowSide=abs(sin(vMeltUV.x*6.2831853));
-            float distance=vMeltUV.y*uFlowLength;
+            float top=smoothstep(.02,.42,cos(vMeltUV.x*6.2831853));
+            float distance=vDistance;
             float drift=distance*13.-uDetailPhase*2.+.65*sin(distance*5.-uDetailPhase+flowSide);
             // Closed phase coordinates transport unequal cold rafts downstream.
             // Outer banks remain quenched; bright exposure is in torn seams.
@@ -193,20 +195,75 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
             // A dark quenched skin can still enclose hot lava. Only narrow
             // tears expose that interior; wet rock does not glow as a sheet.
             meltMask=mix(meltMask,(fracture*.30+seam*.16)*(1.-banks*.96),smoothstep(.65,1.,vQuench));
+            // A lobate underwater body develops a dark rind from the older
+            // root toward the newly arrived head. Supply can split a narrow
+            // upper seam without repainting every old lobe as fresh lava.
+            float liveCore=uFlowFeed*(1.-smoothstep(.12,.72,flowSide));
+            float skinAge=vQuench*(1.-liveCore*.44);
+            float stillRafts=fbm(vec3(sin(distance*13.)*5.1,cos(distance*13.)*5.1,sin(vMeltUV.x*6.2831853)*6.5)+uRockVariation*17.);
+            float skinRafts=mix(stillRafts,rafts,max(1.-vQuench,liveCore*.7));
+            float darkRind=smoothstep(.40-skinAge*.12,.56-skinAge*.12,skinRafts);
+            float tornSkin=1.-smoothstep(.008,.032,abs(skinRafts-.49));
+            float newSkin=(1.-darkRind)*(1.-smoothstep(.36,.96,skinAge));
+            float feedSplit=1.-smoothstep(.016,.048,abs((skinRafts-.5)*.65+sin(vMeltUV.x*6.2831853)*.28));
+            float splitWindows=smoothstep(.54,.88,.5+.5*sin(distance*10.+uRockVariation*21.+.8*sin(distance*2.7)));
+            feedSplit*=splitWindows;
+            float wetMelt=(newSkin*.88+tornSkin*(.035+liveCore*.24)+liveCore*((1.-darkRind)*.22+feedSplit*.40))*(1.-banks);
+            meltMask=mix(wetMelt,meltMask,vFlowStage)*top;
+            exposureHeat=uHeat*mix(max(1.-vQuench*.78,uFlowFeed*.68),1.-vQuench*.78,vFlowStage);
             basalt*=mix(1.,mix(.58,1.,smoothstep(.35,.60,rafts)),(1.-banks)*clamp(exposureHeat,0.,1.));
           `
-          : kind === 'extruded' ? 'float freshFront=smoothstep(.50,.95,samplePoint.x);meltMask=max(.06+.80*smoothstep(.41,.64,meso+.12*(grit-.5)),freshFront*(.30+.50*smoothstep(.40,.62,meso)));'
-          : kind === 'ejecta' ? 'meltMask=vFreshFace*(.20+.50*meso)+fracture*.045;' : ''}
+          : kind === 'extruded' ? `
+            // The perimeter and underside stay quenched and seated in the rim.
+            // Only inner skin is advected; geometry owns its bounded relief.
+            float poolRadius=clamp(vMeltUV.x,0.,1.);
+            // Cartesian attachment avoids interpolating the 0/1 angular seam.
+            vec2 poolPoint=samplePoint.xz*3.6;
+            float bank=smoothstep(.58,.98,poolRadius);
+            vec3 drift=vec3(poolPoint*5.4+vec2(cos(uDetailPhase),sin(uDetailPhase))*.52,
+              .7*sin(uDetailPhase*2.+poolPoint.x*1.7));
+            float rafts=fbm(drift+vec3(uRockVariation*17.));
+            float cover=smoothstep(.38,.59,rafts+.07*sin(poolPoint.y*7.+poolPoint.x*4.));
+            float tears=1.-smoothstep(.012,.044,abs(rafts-.50));
+            meltMask=vPoolSkin*(1.-bank)*((1.-cover)*.82+tears*.28);
+            // Initial underwater effusion is mostly hidden by a bulging rind.
+            // Its asymmetric opening faces the connected downslope outflow.
+            float outletAlong=dot(samplePoint.xz,uOutletDirection);
+            float outletAcross=dot(samplePoint.xz,vec2(-uOutletDirection.y,uOutletDirection.x));
+            float tongue=1.-smoothstep(.055,.125,abs(outletAcross+(rafts-.5)*.07));
+            float mouth=smoothstep(-.09,.035,outletAlong)*(1.-smoothstep(.16,.27,outletAlong));
+            float wetOpening=tongue*mouth*(.55+.38*(1.-cover));
+            float wetMask=vPoolSkin*(1.-bank)*(wetOpening+tears*.06);
+            meltMask=mix(meltMask,wetMask,uOutletCover);
+            basalt*=mix(1.,.63,cover*(1.-bank)*vPoolSkin);
+          `
+          : kind === 'ejecta' ? `
+            // Exposed fracture faces retain unequal hot pockets, not a uniform
+            // orange outline around every detached piece of cold rind.
+            float freshPockets=smoothstep(.30,.67,meso+.25*(coarse-.5));
+            meltMask=vFreshFace*freshPockets*(.18+.58*meso);
+          ` : ''}
         vec2 cycle=vec2(cos(uDetailPhase),sin(uDetailPhase));
-        float along=${kind === 'feeder' ? 'vMeltUV.y*28.' : kind === 'pillow-flow' ? 'vDistance*14.' : kind === 'flow' ? 'vMeltUV.y*uFlowLength*13.' : 'samplePoint.x*9.+samplePoint.z*4.'};
+        float along=${kind === 'feeder' ? 'vMeltUV.y*28.' : kind === 'pillow-flow' ? 'vDistance*14.' : kind === 'flow' ? 'vDistance*13.' : 'samplePoint.x*9.+samplePoint.z*4.'};
         float shear=.5+.5*sin(along-uDetailPhase*2.+(meso-.5)*5.);
         float turnover=fbm(mineralPoint*16.+vec3(cycle*3.2,sin(uDetailPhase*2.)*2.));
         liquidDetail=.52+.30*shear+.18*turnover;
         liquidRelief=(shear-.5)*.018+(turnover-.5)*.014;
         }
+        ${kind === 'flow' ? `
+          // Extrusion wrinkles stay on the retained rind when supply stops.
+          // Material normal detail adds no displacement to the terrain contact.
+          float solidTop=smoothstep(.02,.55,cos(vMeltUV.x*6.2831853))*(1.-vFlowStage);
+          float wrinklePhase=vDistance*42.+sin(vMeltUV.x*6.2831853)*4.+(meso-.5)*7.;
+          float resolved=1.-smoothstep(.6,2.5,fwidth(wrinklePhase));
+          float wrinkle=.5+.5*sin(wrinklePhase);
+          float scored=smoothstep(.78,.97,wrinkle)*smoothstep(.32,.60,meso)*resolved;
+          basalt*=1.-solidTop*scored*.28;
+          crustRelief=solidTop*((wrinkle-.5)*.007*resolved-scored*.005)*(1.-meltMask);
+        ` : ''}
         diffuseColor.rgb*=basalt;
         float hot=meltMask*exposureHeat*liquidDetail*${kind === 'magma' || kind === 'feeder' ? '2.2' : '1.15'};
-        float rockRelief=.0027*(grit-.5)+.011*(meso-.5)-.0055*fracture-.0028*pits+liquidRelief*meltMask*clamp(exposureHeat,0.,1.);
+        float rockRelief=.0027*(grit-.5)+.011*(meso-.5)-.0055*fracture-.0028*pits+crustRelief+liquidRelief*meltMask*clamp(exposureHeat,0.,1.);
         float glassPatch=smoothstep(.60,.75,grain(mineralPoint*8.))*smoothstep(.40,.60,coarse);
         float shallowLight=(1.-uDeep)*exp(-max(0.,${WATER_Y.toFixed(4)}-vOceanWorld.y)*.8);
         float caustic=pow(max(0.,sin(vOceanWorld.x*5.+sin(vOceanWorld.z*4.)+uClock*6.)*sin(vOceanWorld.z*5.7+vOceanWorld.x*1.8)),10.);
@@ -217,7 +274,7 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
         float det=dot(dx,r1);
         normal=normalize(abs(det)*normal-sign(det)*(dFdx(rockRelief)*r1+dFdy(rockRelief)*r2));`)
       .replace('#include <roughnessmap_fragment>', `#include <roughnessmap_fragment>
-        roughnessFactor=${kind === 'pillow' ? '.86+.10*grit-glassPatch*.38' : kind === 'pillow-flow' ? '.54+.21*meso+.08*grit-glassPatch*.20' : kind === 'tuff' ? '.83+.14*grit' : '.75+.15*meso+.08*grit'}-wetBand*.30;
+        roughnessFactor=${kind === 'pillow' ? '.86+.10*grit-glassPatch*.38' : kind === 'pillow-flow' ? '.54+.21*meso+.08*grit-glassPatch*.20' : kind === 'flow' ? 'mix(.60+.23*meso+.08*grit-glassPatch*.18,.75+.15*meso+.08*grit,vFlowStage)' : kind === 'tuff' ? '.83+.14*grit' : '.75+.15*meso+.08*grit'}-wetBand*.30;
         ${molten ? 'roughnessFactor=mix(roughnessFactor,.30,meltMask*clamp(exposureHeat,0.,1.));' : ''}`)
       .replace('#include <emissivemap_fragment>', `#include <emissivemap_fragment>
         vec3 moltenColor=mix(vec3(.9,.012,.0001),vec3(3.2,.42,.006),smoothstep(.16,.82,hot));
@@ -226,8 +283,8 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
   };
   // Variation is per-material uniform data. Cold and active instances can share
   // the compiled program while keeping their own heat, grain and broken lip.
-  material.customProgramCacheKey = () => `ocean-rock-${kind}-molten-v10`;
-  return { material, heat, flowLength, flowFront, flowFeed };
+  material.customProgramCacheKey = () => `ocean-rock-${kind}-molten-v12`;
+  return { material, heat, flowLength, flowFront, flowFeed, outletCover, outletDirection };
 }
 
 export function waterMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms) {

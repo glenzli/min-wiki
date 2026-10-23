@@ -66,3 +66,12 @@ test('heat question milestone buttons sample the four actual groundwater stages'
   const {hydrothermalFrame}=await import('../hydrothermalModel.ts');
   assert.deepEqual(studyMilestones('heat').map(p=>hydrothermalFrame(p).stage),[0,1,2,3]);
 });
+
+test('hot springs open at the surface while an explicit groundwater cutaway remains reachable', () => {
+  for (const query of ['?study=heat', '?study=heat&view=exterior', '?study=heat&view=landscape']) {
+    const entry=studyRoute(query);
+    assert.equal(entry.view,'landscape'); assert.equal(entry.progress,1);
+  }
+  assert.equal(studyRoute('?study=heat&view=section').view,'section');
+  assert.equal(studyRoute('?study=styles&view=exterior').view,'exterior');
+});

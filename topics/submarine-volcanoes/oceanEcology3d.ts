@@ -30,8 +30,8 @@ vec3 lifeAttenuate(vec3 color,vec3 p){
 function lifeMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, kind: 'film' | 'soil' | 'shell' | 'seedling') {
   const patch = kind === 'film' || kind === 'soil';
   const material = new THREE.MeshStandardMaterial({ color: '#ffffff', vertexColors: true,
-    roughness: kind === 'shell' ? .84 : .96, metalness: 0, side: THREE.DoubleSide,
-    transparent: patch, opacity: kind === 'film' ? .32 : 1, depthWrite: !patch,
+    roughness: kind === 'shell' ? .9 : .96, metalness: 0, side: THREE.DoubleSide,
+    transparent: patch, opacity: kind === 'film' ? .62 : 1, depthWrite: !patch,
     polygonOffset: patch, polygonOffsetFactor: -1, polygonOffsetUnits: -1 });
   material.onBeforeCompile = shader => {
     Object.assign(shader.uniforms, { uLifeStone: { value: noise }, uLifeDeep: ocean.deep, uLifeCutaway: ocean.cutaway });
@@ -57,21 +57,22 @@ function lifeMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, kind: 'f
         diffuseColor.rgb*=.78+.22*lifeGrain+.16*lifeFine;
         ${patch ? `
           float lifeEdge=1.-smoothstep(max(.0,vLifeCoverage*.94-.14),max(.001,vLifeCoverage*.94),vLifeRadius);
-          float lifeBroken=${kind === 'film' ? 'smoothstep(.39,.66,lifeGrain+.12*lifeFine+.10*sin(vLifePatch.x*17.+lifeGrain*5.))' : 'smoothstep(.25,.53,lifeGrain+.16*lifeFine)'};
+          float lifeBroken=${kind === 'film' ? 'smoothstep(.43,.64,lifeGrain+.12*(lifeFine-.5)+.06*sin(vLifePatch.x*17.+lifeGrain*5.))' : 'smoothstep(.25,.53,lifeGrain+.16*lifeFine)'};
           diffuseColor.a*=lifeEdge*lifeBroken*min(1.,vLifeCoverage*4.);
           ${kind === 'soil' ? `
             float lifeCrack=1.-smoothstep(.009,.035,abs(lifeFine-.50));
             diffuseColor.rgb*=1.-lifeCrack*.48;
           ` : `
-            float lifeThread=1.-smoothstep(.17,.57,abs(vLifePatch.y+.22*sin(vLifePatch.x*6.7+lifeGrain*4.)));
-            diffuseColor.a*=.23+.57*lifeThread;
-            diffuseColor.rgb=mix(diffuseColor.rgb*.58,diffuseColor.rgb,smoothstep(.29,.70,lifeFine));
+            float lifeThread=1.-smoothstep(.09,.45,abs(vLifePatch.y+.22*sin(vLifePatch.x*6.7+lifeGrain*4.)));
+            float lifeTear=1.-smoothstep(.015,.085,abs(lifeGrain+.16*lifeFine-.54));
+            diffuseColor.a*=(.28+.72*lifeThread)*(1.-lifeTear*.88);
+            diffuseColor.rgb=mix(diffuseColor.rgb*.42,diffuseColor.rgb,smoothstep(.29,.70,lifeFine));
           `}
           if(diffuseColor.a<.015)discard;
         ` : ''}`)
       .replace('#include <tonemapping_fragment>', 'gl_FragColor.rgb=lifeAttenuate(gl_FragColor.rgb,vLifeWorld);\n#include <tonemapping_fragment>');
   };
-  material.customProgramCacheKey = () => `ocean-life-${kind}-v2`;
+  material.customProgramCacheKey = () => `ocean-life-${kind}-v4`;
   return material;
 }
 
@@ -107,15 +108,17 @@ function patchGeometry(count: number) {
  * floating tube or dependency on a particular species' measured proportions. */
 function limpetGeometry() {
   const positions: number[] = [], colors: number[] = [], indices: number[] = [];
-  const sectors = 28, rings = 7;
-  const foot = new THREE.Color('#55574d'), shell = new THREE.Color('#8e8877'), dark = new THREE.Color('#635f50');
+  const sectors = 40, rings = 10;
+  const foot = new THREE.Color('#444b3e'), shell = new THREE.Color('#8d846e'), dark = new THREE.Color('#5c5544');
   for (let ring = 0; ring <= rings; ring++) for (let sector = 0; sector < sectors; sector++) {
     const a = sector / sectors * Math.PI * 2, t = ring / rings, r = 1 - t;
-    const rib = 1 + Math.sin(a * 13 + .20 * Math.sin(a * 3)) * .014 * Math.sin(t * Math.PI);
+    const ridge = Math.sin(a * 13 + .20 * Math.sin(a * 3));
+    const rib = 1 + ridge * .023 * Math.sin(t * Math.PI);
     positions.push(Math.cos(a) * r * .63 * rib - t * .12,
-      .035 + .34 * Math.pow(t, .81) + Math.sin(a * 13) * .006 * Math.sin(t * Math.PI),
+      .035 + .53 * Math.pow(t, .90) + ridge * .021 * Math.sin(t * Math.PI),
       Math.sin(a) * r * .96 * rib - t * .19);
-    const band = .5 + .5 * Math.sin(t * 44 + a * .31), c = shell.clone().lerp(dark, band * .13 + (sector % 7 === 0 ? .08 : 0));
+    const band = .5 + .5 * Math.sin(t * 44 + a * .31);
+    const c = shell.clone().lerp(dark, band * .32 + (ridge < -.45 ? .17 : 0) + (ring === 0 ? .18 : 0));
     colors.push(c.r, c.g, c.b);
     if (ring < rings) {
       const i = ring * sectors + sector, next = ring * sectors + (sector + 1) % sectors;
@@ -126,7 +129,8 @@ function limpetGeometry() {
   positions.push(0, .006, 0); colors.push(foot.r, foot.g, foot.b);
   for (let sector = 0; sector < sectors; sector++) {
     const a = sector / sectors * Math.PI * 2, i = base + 1 + sector, next = base + 1 + (sector + 1) % sectors;
-    positions.push(Math.cos(a) * .675, .018 + .009 * Math.sin(a * 3), Math.sin(a) * 1.015);
+    positions.push(Math.cos(a) * (.675 + .012 * Math.sin(a * 3)), .018 + .006 * Math.sin(a * 3),
+      Math.sin(a) * (1.015 + .012 * Math.cos(a * 4)));
     colors.push(foot.r, foot.g, foot.b); indices.push(base, next, i);
   }
   const geometry = new THREE.BufferGeometry();
@@ -200,7 +204,7 @@ export class OceanEcology3D {
   private up = new THREE.Vector3(0, 1, 0);
   private normal = new THREE.Vector3();
   private color = new THREE.Color();
-  private filmShade = new THREE.Color('#5e6256');
+  private filmShade = new THREE.Color('#756b51');
   private cutaway?: THREE.Plane;
   private lastKey = '';
   private disposed = false;
@@ -225,7 +229,7 @@ export class OceanEcology3D {
     const coverage = geometry.getAttribute('lifeCoverage');
     (coverage.array as Float32Array).fill(0);
     for (const site of sites) {
-      this.color.set(kind === 'film' ? '#828375' : '#71573c');
+      this.color.set(kind === 'film' ? '#9c957b' : '#71573c');
       if (kind === 'film') this.color.lerp(this.filmShade, seed(site.index, 1341) * .75);
       else this.color.multiplyScalar(.83 + seed(site.index, 1352) * .3);
       for (let i = 0; i < ECOLOGY_PATCH_VERTICES; i++) {
@@ -271,6 +275,6 @@ export class OceanEcology3D {
     if (this.disposed) return; this.disposed = true; this.group.visible = false;
     for (const mesh of [this.film, this.soil, this.animals, this.seedlings]) { mesh.geometry.dispose(); mesh.material.dispose(); }
     this.animals.dispose(); this.seedlings.dispose(); this.group.clear();
-    this.sample = { ...this.sample, visible: false, film: 0, animal: 0, soil: 0, seedling: 0, sites: [], focus: [0, 0, 0], focusWeight: 0 };
+    this.sample = { ...this.sample, visible: false, film: 0, animal: 0, soil: 0, seedling: 0, sites: [], focusSite: -1, focus: [0, 0, 0], focusWeight: 0 };
   }
 }

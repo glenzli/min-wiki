@@ -34,6 +34,8 @@ test('molten surfaces share one independent phase without changing the water or 
     assert.equal(shader.uniforms.uFlowLength, styles[i].flowLength);
     assert.equal(shader.uniforms.uFlowFront, styles[i].flowFront);
     assert.equal(shader.uniforms.uFlowFeed, styles[i].flowFeed);
+    assert.equal(shader.uniforms.uOutletCover, styles[i].outletCover);
+    assert.equal(shader.uniforms.uOutletDirection, styles[i].outletDirection);
     assert.equal(shader.uniforms.uStone.value, noise);
     assert.equal(shader.uniforms.uIslandEmergence, ocean.emergence);
     assert.equal(styles[i].material.transparent, false);
@@ -50,6 +52,8 @@ test('molten surfaces share one independent phase without changing the water or 
   assert.match(shaders[2].fragmentShader, /meltMask=mix\(meltMask,\(fracture\*\.30\+seam\*\.16\)/);
   assert.match(shaders[2].fragmentShader, /raftPoint=vec3\(sin\(drift\)/);
   assert.match(shaders[2].fragmentShader, /meltMask=.*1\.-banks\*\.96/);
+  assert.match(shaders[2].vertexShader, /vDistance=oceanDistance;vFlowStage=oceanFlowStage/);
+  assert.match(shaders[2].fragmentShader, /meltMask=mix\(wetMelt,meltMask,vFlowStage\)\*top/);
   assert.match(shaders[7].vertexShader, /attribute float oceanDistance/);
   assert.match(shaders[7].vertexShader, /transformed\.y\+=\.032\*mobility\*fold/);
   assert.match(shaders[7].fragmentShader, /float distance=vDistance/);
@@ -67,5 +71,11 @@ test('molten surfaces share one independent phase without changing the water or 
   assert.notEqual(sa.uniforms.uPillowLip.value.y, sb.uniforms.uPillowLip.value.y);
   assert.equal(sa.uniforms.uRockVariation.value, .5); assert.equal(sb.uniforms.uRockVariation.value, .7);
   assert.notEqual(sa.uniforms.uHeat, sb.uniforms.uHeat);
+  styles[5].outletCover.value = 1;
+  styles[5].outletDirection.value.set(0, 1);
+  assert.equal(shaders[5].uniforms.uOutletCover.value, 1);
+  assert.deepEqual(shaders[5].uniforms.uOutletDirection.value.toArray(), [0, 1]);
+  assert.equal(styles[2].outletCover.value, 0);
+  assert.equal(ocean.clock.value, .08);
   [...styles, a, b].forEach(s => s.material.dispose()); water.dispose(); noise.dispose();
 });

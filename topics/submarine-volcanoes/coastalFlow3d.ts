@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { APRON_COLUMNS, APRON_ROWS, coastalApronPoint, COASTAL_PIECES, coastalParcels, coastalPiece, FLOW_SEGMENTS, islandFlows, retainedSurfaceHeight, type IslandFlow } from './coastalFlow.ts';
+import { APRON_COLUMNS, APRON_ROWS, coastalApronPoint, COASTAL_PIECES, coastalParcels, coastalPiece, islandFlowBuffers, islandFlows, updateIslandFlow } from './coastalFlow.ts';
 import { type OceanGeometryFrame, type PlumeVolume } from './geometry3d.ts';
 import { stoneMaterial, type OceanUniforms } from './materials3d.ts';
 
@@ -7,7 +7,7 @@ import { stoneMaterial, type OceanUniforms } from './materials3d.ts';
  * accretion frame. No local animation clock, allocating trail or extra geology. */
 export class OceanCoastalFlow3D {
   readonly group = new THREE.Group();
-  private channels: { mesh: THREE.Mesh; heat: THREE.IUniform<number>; length: THREE.IUniform<number>; key: string }[] = [];
+  private channels: { mesh: THREE.Mesh; data: ReturnType<typeof islandFlowBuffers>; heat: THREE.IUniform<number>; length: THREE.IUniform<number>; feed: THREE.IUniform<number>; key: string }[] = [];
   private aprons: { mesh: THREE.Mesh; unit: number; key: string }[] = [];
   private pieces: THREE.InstancedMesh;
   private cooled: THREE.Material;
@@ -19,12 +19,16 @@ export class OceanCoastalFlow3D {
     this.cooled = stoneMaterial(noise, ocean, 'pillow', .93).material;
     for (let index = 0; index < 24; index++) {
       if (index >= 14 && index < 19) continue;
-      const geometry = new THREE.CylinderGeometry(1, 1, 1, 12, FLOW_SEGMENTS, false), source = geometry.getAttribute('position');
-      geometry.setAttribute('oceanSource', new THREE.BufferAttribute(new Float32Array(source.array), 3));
-      geometry.setAttribute('oceanQuench', new THREE.BufferAttribute(new Float32Array(source.count), 1));
+      const data = islandFlowBuffers(), geometry = new THREE.BufferGeometry();
+      geometry.setAttribute('position', new THREE.BufferAttribute(data.positions, 3));
+      geometry.setAttribute('uv', new THREE.BufferAttribute(data.uvs, 2)); geometry.setIndex(data.indices);
+      geometry.setAttribute('oceanSource', new THREE.BufferAttribute(data.source, 3));
+      geometry.setAttribute('oceanQuench', new THREE.BufferAttribute(data.quench, 1));
+      geometry.setAttribute('oceanDistance', new THREE.BufferAttribute(data.distance, 1));
+      geometry.setAttribute('oceanFlowStage', new THREE.BufferAttribute(data.stage, 1));
       const style = stoneMaterial(noise, ocean, 'flow', .23 + index * .027), mesh = new THREE.Mesh(geometry, style.material);
       mesh.castShadow = false; mesh.receiveShadow = true; mesh.userData.unit = index;
-      this.group.add(mesh); this.channels.push({ mesh, heat: style.heat, length: style.flowLength, key: '' });
+      this.group.add(mesh); this.channels.push({ mesh, data, heat: style.heat, length: style.flowLength, feed: style.flowFeed, key: '' });
     }
     for (let unit = 19; unit < 24; unit++) {
       const geometry = new THREE.BufferGeometry(), count = (APRON_ROWS + 1) * (APRON_COLUMNS + 1), indices: number[] = [];
@@ -59,13 +63,16 @@ export class OceanCoastalFlow3D {
     for (const channel of this.channels) {
       const flow = flows.find(f => f.unit.index === channel.mesh.userData.unit);
       channel.mesh.visible = !!flow; channel.heat.value = flow?.heat ?? 0;
+      channel.feed.value = flow?.feed ?? 0;
       if (!flow) continue;
       channel.length.value = flow.front;
       this.state.exposedHeat = Math.max(this.state.exposedHeat, flow.heat);
       if (flow.entry) { this.state.contacts++; this.state.contact.push(...flow.entry.point); }
-      const key = `${frame.supply}|${flow.unit.growth}|${flow.unit.growth < 1 ? frame.p : frame.history.erosion}`;
+      const key = `${frame.supply}|${flow.unit.growth}|${flow.unit.growth < 1 ? frame.p : frame.history.erosion}|${flow.quench.at(-1)}`;
       if (key === channel.key) continue;
-      channel.key = key; this.updateChannel(channel.mesh.geometry, flow, frame);
+      channel.key = key; updateIslandFlow(channel.data, flow, frame);
+      for (const attribute of ['position', 'oceanQuench', 'oceanDistance', 'oceanFlowStage']) channel.mesh.geometry.getAttribute(attribute).needsUpdate = true;
+      channel.mesh.geometry.computeVertexNormals(); channel.mesh.geometry.computeBoundingSphere();
     }
     for (const apron of this.aprons) {
       const flow = flows.find(f => f.unit.index === apron.unit);
@@ -88,25 +95,6 @@ export class OceanCoastalFlow3D {
     }
     this.pieces.instanceMatrix.needsUpdate = true;
     this.state.parcels = coastalParcels(frame, flows);
-  }
-
-  private updateChannel(geometry: THREE.BufferGeometry, flow: IslandFlow, frame: OceanGeometryFrame) {
-    const source = geometry.getAttribute('oceanSource'), position = geometry.getAttribute('position') as THREE.BufferAttribute;
-    const quench = geometry.getAttribute('oceanQuench') as THREE.BufferAttribute;
-    // This is a display skin over the deposit's already counted rock volume.
-    // A cold surface keeps a low rough relief instead of an elevated round pipe.
-    const warm = Math.min(1, flow.heat), clearance = .006 + warm * .012;
-    for (let i = 0; i < source.count; i++) {
-      const q = source.getY(i) + .5, index = Math.round(q * FLOW_SEGMENTS), p = flow.points[index], radius = flow.widths[index];
-      const before = flow.points[Math.max(0, index - 1)], after = flow.points[Math.min(FLOW_SEGMENTS, index + 1)];
-      const dx = after[0] - before[0], dz = after[2] - before[2], length = Math.hypot(dx, dz) || 1, across = source.getX(i) * radius;
-      const x = p[0] - dz / length * across, z = p[2] + dx / length * across;
-      const height = retainedSurfaceHeight(frame, x, z, p[1] + flow.slopes[index] * across - .012 * (1 - warm),
-        (1 + source.getZ(i)) * radius * (.07 + warm * .31), clearance);
-      position.setXYZ(i, x, height, z);
-      quench.setX(i, flow.quench[index]);
-    }
-    position.needsUpdate = quench.needsUpdate = true; geometry.computeVertexNormals(); geometry.computeBoundingSphere();
   }
 
   setCutaway(plane?: THREE.Plane) {

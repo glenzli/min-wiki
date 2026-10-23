@@ -10,6 +10,7 @@ import { feederCenterline, intrusionSolid, SECTION_UNITS, storageComplex, stratu
 import { MagmaDetailMotion, type DetailMotionState } from './magmaMotion.ts';
 import { MeltTransport } from './meltTransport.ts';
 import { Ejecta3D, fountainMaterial } from './ejecta3d.ts';
+import { EruptionEnvironment3D } from './eruptionEnvironment3d.ts';
 
 interface MeltLayer { mesh: THREE.Mesh; transport: MeltTransport; mobility: number; domain: 'surface' | 'intrusion' }
 
@@ -94,6 +95,7 @@ export class Eruption3DScene {
   private jets = new THREE.Group();
   private surfaceProducts = new THREE.Group();
   private rocks = new THREE.Group();
+  private environment?: EruptionEnvironment3D;
   private ground: THREE.Mesh;
   private light = new THREE.PointLight('#ff7022', 0, 7, 2);
   private ash = ashMaterial();
@@ -214,6 +216,12 @@ export class Eruption3DScene {
   }
   private rebuild() {
     const kind = this.settings.landform ?? 'scoria';
+    // Product conditions rebuild their own geometry; older surrounding land
+    // retains its sites and GPU resources until the actual landform changes.
+    if (!this.environment || this.environment.kind !== kind) {
+      this.environment?.dispose(); this.environment = new EruptionEnvironment3D(kind, this.texture, this.cut);
+      this.scene.add(this.environment.group);
+    }
     for (const group of [this.terrain, this.section, this.jets, this.surfaceProducts, this.rocks]) this.clear(group);
     this.dikes = []; this.flows = []; this.moltenLayers = []; this.flowLayers = [];
     const top = this.mesh(buffers(terrainBuffers(kind)), this.surfaceRock); top.castShadow = top.receiveShadow = true; this.terrain.add(top);
@@ -294,6 +302,7 @@ export class Eruption3DScene {
       material.clippingPlanes = this.cutaway ? [this.cut] : []; material.clipShadows = true; material.needsUpdate = true;
     }
     this.ground.position.y = this.cutaway ? ROCK_BOTTOM - .025 : -.09;
+    this.environment?.setSection(this.cutaway);
     this.controls.minAzimuthAngle = this.cutaway ? -.95 : -Infinity;
     this.controls.maxAzimuthAngle = this.cutaway ? .95 : Infinity;
     this.renderer.shadowMap.needsUpdate = true;
@@ -514,6 +523,7 @@ export class Eruption3DScene {
     if (this.disposed) return;
     this.stopMotion(); this.detailMotion.dispose(); this.disposed = true; this.resizeObserver.disconnect();
     this.canvas.removeEventListener('keydown', this.keydown); this.controls.dispose();
+    this.environment?.dispose(); this.environment = undefined;
     this.ejecta.dispose(); this.clear(this.rocks);
     for (const geometry of this.geometries) geometry.dispose();
     for (const material of this.materials) material.dispose();

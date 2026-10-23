@@ -12,7 +12,7 @@ const compiledScene = ts.transpileModule(sceneSource, { compilerOptions: { modul
   .replace("'three'", JSON.stringify(import.meta.resolve('three')))
   .replace("'three/addons/controls/OrbitControls.js'", JSON.stringify(import.meta.resolve('three/addons/controls/OrbitControls.js')))
   .replace("'./hydrothermalModel.ts'", JSON.stringify(`data:text/javascript;base64,${Buffer.from(outputText).toString('base64')}`));
-const { HydrothermalScene, hydrothermalLandscapeGeometry } = await import(`data:text/javascript;base64,${Buffer.from(compiledScene).toString('base64')}`);
+const { HydrothermalScene, hydrothermalLandscapeGeometry, hydrothermalFractureGeometry } = await import(`data:text/javascript;base64,${Buffer.from(compiledScene).toString('base64')}`);
 const input = { supply: .75, connected: true };
 const near = (a, b, eps = 1e-7) => assert.ok(Math.abs(a - b) <= eps, `${a} differs from ${b}`);
 
@@ -53,7 +53,7 @@ function withScene(run, { lifecycle = false, initialDataset = {} } = {}) {
       this.renderer = renderer; renderers.push(renderer); this.scene = new THREE.Scene();
       this.camera = new THREE.PerspectiveCamera(37, 1.6, .1, 170);
       this.controls = { target: new THREE.Vector3(), minDistance: 5, maxDistance: 60, update() {}, removeEventListener() {}, dispose() {} };
-      this.wetFilm = { geometry: { setDrawRange() {} } }; this.plug = {};
+      this.plug = {};
     };
     for (const name of ['drawCanvas', 'updatePool', 'updateSamples', 'applyView']) HydrothermalScene.prototype[name] = function () {};
   } else HydrothermalScene.prototype.initialize = function () {};
@@ -105,9 +105,55 @@ test('water samples keep rain origin and liquid identity outside the hot rock bo
     assert.ok(m.hotRockDistance(...a.position) > 0); assert.ok(m.hotRockDistance(...b.position) > 0);
     assert.ok(a.heat >= 0 && a.heat <= 1); assert.ok(a.position.every(Number.isFinite));
   }
-  for (let i = 0; i <= 1000; i++) {
-    const t = i / 1000, p = m.hydrothermalRoute(t); assert.ok(m.hotRockDistance(...p) > 0);
+  for (let path = 0; path < m.HYDROTHERMAL_PATHS; path++) for (let i = 0; i <= 1000; i++) {
+    const t = i / 1000, p = m.hydrothermalRoute(t, path); assert.ok(m.hotRockDistance(...p) > 0);
     if (t >= .11 && t <= .94) assert.ok(p[1] < m.hydrothermalTerrain(p[0], p[2]), 'underground liquid escaped above its host');
+  }
+});
+
+test('separate recharge fractures warm before their shared blocked return and bank seep', () => {
+  const frame = m.hydrothermalFrame(.45, input), starts = new Set(), fronts = [];
+  const source = m.hydrothermalSpringSource(); near(source[1], m.hydrothermalTerrain(source[0], source[2]));
+  for (let path = 0; path < m.HYDROTHERMAL_PATHS; path++) {
+    starts.add(m.hydrothermalRoute(.19, path).join(',')); fronts.push(m.hydrothermalPathFront(frame, path));
+    assert.deepEqual(m.hydrothermalRoute(.675, path), m.hydrothermalRoute(.675, 0));
+    assert.deepEqual(m.hydrothermalRoute(1, path), source);
+    assert.ok(m.hydrothermalRoute(.54, path)[1] < m.hydrothermalRoute(.78, path)[1]);
+  }
+  assert.equal(starts.size, m.HYDROTHERMAL_PATHS); assert.ok(fronts.every((front, i) => i === 0 || front < fronts[i - 1]));
+  for (const settings of [{ supply: 0, connected: true }, { supply: 1, connected: false }]) {
+    const dry = m.hydrothermalFrame(1, settings);
+    for (let path = 0; path < m.HYDROTHERMAL_PATHS; path++) assert.ok(m.hydrothermalPathFront(dry, path) < .675 || settings.supply === 0);
+    for (let id = 0; id < m.HYDROTHERMAL_SAMPLES; id++) for (let step = 0; step < 60; step++) {
+      const s = m.hydrothermalSample(id, dry, step / 60);
+      if (s.visible) assert.ok(s.t < .675, 'a subsidiary fracture bypassed the blocked return');
+    }
+  }
+});
+
+test('thin fracture faces stay embedded in the exposed host instead of enclosing a conduit', () => {
+  for (let path = 0; path < m.HYDROTHERMAL_PATHS; path++) for (const wet of [false, true]) {
+    const geometry = hydrothermalFractureGeometry(path, wet), positions = geometry.getAttribute('position');
+    assert.ok(positions.count < 1000); const depths = [];
+    for (let i = 0; i < positions.count; i++) {
+      const x = positions.getX(i), y = positions.getY(i), z = positions.getZ(i); depths.push(z);
+      assert.ok(y <= m.hydrothermalTerrain(x, z) + 1e-6, 'fracture face rose out of the rock');
+      assert.ok(z > .017 && z < .05, 'fracture was detached from the cut face');
+    }
+    assert.ok(Math.max(...depths) - Math.min(...depths) < .002, 'a water-filled volume replaced the thin wet edge');
+    geometry.dispose();
+  }
+});
+
+test('the bank seep stays on the real sloping bed before it spreads over horizontal pool water', () => {
+  for (const supply of [.15, .3, .75, 1]) for (const progress of [.88, .94, 1]) {
+    const frame = m.hydrothermalFrame(progress, { supply, connected: true }), snapshot = structuredClone(frame);
+    let previous = Infinity;
+    for (let i = 0; i <= 100; i++) {
+      const [x, y, z] = m.hydrothermalSeep(i / 100, frame), bed = m.hydrothermalTerrain(x, z);
+      near(y, Math.max(bed, frame.waterLevel) + .004); assert.ok(y <= previous + 1e-6, 'the seep climbed away from its rock bed'); previous = y;
+    }
+    assert.deepEqual(frame, snapshot);
   }
 });
 
@@ -262,11 +308,34 @@ test('surface detail reuses finite scene resources and releases them on leaving'
   assert.equal(scene.poolSamples, undefined); assert.equal(scene.mist, undefined);
 }));
 
+test('fracture wetting and the source film share supply gates and reuse their scene resources', () => withScene(({ scene }) => {
+  scene.scene = new THREE.Scene(); scene.underground = new THREE.Group(); scene.section = new THREE.Group(); scene.scene.add(scene.underground, scene.section);
+  scene.createFractures(); scene.createPool(); const films = [...scene.wetFilms], seep = scene.seep;
+  const geometryCount = scene.geometries.size, materialCount = scene.materials.size;
+  for (let i = 0; i < 40; i++) {
+    scene.frame = m.hydrothermalFrame(.83 + i / 40 * .17, input); scene.updateFractures(); scene.updatePool();
+  }
+  assert.deepEqual(scene.wetFilms, films); assert.equal(scene.seep, seep);
+  assert.equal(scene.geometries.size, geometryCount); assert.equal(scene.materials.size, materialCount);
+  assert.ok(seep.visible); assert.ok(films.every(film => film.visible));
+  const p = seep.geometry.getAttribute('position');
+  for (let i = 0; i < p.count; i++) near(p.getY(i), Math.max(scene.frame.waterLevel, m.hydrothermalTerrain(p.getX(i), p.getZ(i))) + .004, 2e-7);
+  scene.frame = m.hydrothermalFrame(1, { supply: 1, connected: false }); scene.updateFractures(); scene.updatePool();
+  assert.equal(seep.visible, false); assert.ok(films.every(film => film.material.uniforms.uWetFront.value < .675));
+  scene.frame = m.hydrothermalFrame(1, { supply: 0, connected: true }); scene.updateFractures(); scene.updatePool();
+  assert.equal(seep.visible, false); assert.ok(films.every(film => !film.visible && film.material.uniforms.uSupply.value === 0));
+  let releasedGeometry = 0, releasedMaterial = 0;
+  for (const g of scene.geometries) g.addEventListener('dispose', () => releasedGeometry++);
+  for (const material of scene.materials) material.addEventListener('dispose', () => releasedMaterial++);
+  scene.dispose(); assert.equal(releasedGeometry, geometryCount); assert.equal(releasedMaterial, materialCount);
+  assert.equal(scene.wetFilms.length, 0); assert.equal(scene.seep, undefined);
+}));
+
 test('keyboard zoom is bounded and progress updates retain the reader camera', () => withScene(({ scene }) => {
   scene.renderer = { render() {}, dispose() {}, forceContextLoss() {} }; scene.scene = new THREE.Scene();
   scene.camera = new THREE.PerspectiveCamera(37, 1.6, .1, 170); scene.camera.position.set(0, 2, 12);
   scene.controls = { target: new THREE.Vector3(), minDistance: 5, maxDistance: 60, update() {}, removeEventListener() {}, dispose() {} };
-  scene.wetFilm = { geometry: { setDrawRange() {} } }; scene.plug = {};
+  scene.plug = {};
   scene.updatePool = scene.updateSamples = () => {};
   const press = key => scene.keydown({ key, preventDefault() {} });
   const before = scene.camera.position.length(); press('+'); assert.ok(scene.camera.position.length() < before);
