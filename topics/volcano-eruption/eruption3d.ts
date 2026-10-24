@@ -5,12 +5,13 @@ import { animateValue } from '../../src/visuals/transition.ts';
 import { dike, seed, STORAGE } from './magmaGeometry.ts';
 import { eruptionAppearance, lavaThermalState, supplyPerVent, ventPositions, type ObservationView, type Settings } from './model.ts';
 import { ashComposite, ashMaterial, lavaMaterial, rockMaterial, rockTexture, skyMaterial, storageMaterial, transportMaterial } from './eruptionMaterials.ts';
-import { craterBasin, craterLevel, eruptionFrame, fragmentSchedule, lavaBranches, lavaRibbon, ROCK_BOTTOM, sectionPoint, surfaceHeight, terrainBuffers, WORLD_SCALE, type XYZ, type Fragment } from './eruptionGeometry.ts';
+import { craterBasin, craterLevel, eruptionFrame, fragmentSchedule, lavaBranches, lavaRibbon, RetainedLavaRibbon, ROCK_BOTTOM, sectionPoint, surfaceHeight, terrainBuffers, WORLD_SCALE, type XYZ, type Fragment } from './eruptionGeometry.ts';
 import { feederCenterline, intrusionSolid, SECTION_UNITS, storageComplex, stratumSolid } from './sectionGeometry.ts';
 import { MagmaDetailMotion, type DetailMotionState } from './magmaMotion.ts';
 import { MeltTransport } from './meltTransport.ts';
 import { Ejecta3D, fountainMaterial } from './ejecta3d.ts';
 import { EruptionEnvironment3D } from './eruptionEnvironment3d.ts';
+import {FrameRender} from '../../src/visuals/frameRender.ts';
 
 interface MeltLayer { mesh: THREE.Mesh; transport: MeltTransport; mobility: number; domain: 'surface' | 'intrusion' }
 
@@ -121,6 +122,7 @@ export class Eruption3DScene {
   private ejecta = new Ejecta3D();
   private pond?: THREE.Mesh;
   private flows: THREE.Mesh[] = [];
+  private flowSources:{retained:RetainedLavaRibbon;installed:ReturnType<RetainedLavaRibbon['sample']>['geometry']}[]=[];
   private dikes: { mesh: THREE.Mesh; points: XYZ[]; lastFront: number; layers: MeltLayer[] }[] = [];
   private moltenLayers: MeltLayer[] = [];
   private flowLayers: MeltLayer[] = [];
@@ -138,6 +140,7 @@ export class Eruption3DScene {
   private undergroundMobile = false;
   private surfaceMobile = false;
   private dummy = new THREE.Object3D();
+  private presentation=new FrameRender(()=>this.renderNow());
 
   constructor(readonly canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
@@ -223,7 +226,7 @@ export class Eruption3DScene {
       this.scene.add(this.environment.group);
     }
     for (const group of [this.terrain, this.section, this.jets, this.surfaceProducts, this.rocks]) this.clear(group);
-    this.dikes = []; this.flows = []; this.moltenLayers = []; this.flowLayers = [];
+    this.dikes = []; this.flows = []; this.flowSources=[]; this.moltenLayers = []; this.flowLayers = [];
     const top = this.mesh(buffers(terrainBuffers(kind)), this.surfaceRock); top.castShadow = top.receiveShadow = true; this.terrain.add(top);
     for (let unit = 0; unit < SECTION_UNITS; unit++) {
       const facies = [0, 1, 0, 1, 2, 0, 1, 0, 2, 1, 0][unit];
@@ -285,7 +288,8 @@ export class Eruption3DScene {
     this.pond = this.mesh(new THREE.CircleGeometry(craterBasin(kind).radius * .98, 96), this.pool.material);
     this.pond.rotation.x = -Math.PI / 2; this.surfaceProducts.add(this.pond);
     this.flows = lavaBranches(this.settings).map(branch => {
-      const source = lavaRibbon(0, this.settings, branch), flow = this.mesh(buffers(source), this.lava.material);
+      const retained=new RetainedLavaRibbon(this.settings,branch),source=retained.sample(0).geometry,flow=this.mesh(buffers(source),this.lava.material);
+      this.flowSources.push({retained,installed:source});
       this.surfaceProducts.add(flow);
       this.flowLayers.push(this.addMeltLayer(flow, MeltTransport.surface(source), 'surface'));
       return flow;
@@ -410,7 +414,8 @@ export class Eruption3DScene {
     }
     this.render();
   };
-  private render = () => {
+  private render=()=>this.presentation.request();
+  private renderNow = () => {
     if (this.disposed || document.hidden) return;
     if (!this.cloud?.visible) { this.renderer.setRenderTarget(null); this.renderer.render(this.scene,this.camera); return; }
     this.renderer.setRenderTarget(this.sceneTarget); this.renderer.render(this.scene,this.camera);
@@ -466,17 +471,17 @@ export class Eruption3DScene {
     this.intrusiveTransport.heat.value = this.magmaPath.heat.value;
     this.fountain.heat.value = state.intensity * (1 - state.mechanism.cooling);
     if (this.pond) { this.pond.visible = state.mechanism.connected && appearance.strength > 0; this.pond.position.y = craterLevel(state.clock, settings); this.pond.scale.setScalar(.35 + .65 * appearance.lava); }
-    const branches = lavaBranches(settings);
     this.flows.forEach((mesh, i) => {
-      const data = lavaRibbon(state.clock, settings, branches[i]);
-      mesh.visible = state.lavaVisible && data.visible;
-      this.flowLayers[i].mobility = Math.min(1, Math.sqrt(data.flux) * 2) * (1 - state.mechanism.cooling);
-      if (mesh.visible) {
+      const source=this.flowSources[i],sample=source.retained.sample(state.clock),data=sample.geometry;
+      mesh.visible = state.lavaVisible && sample.visible;
+      this.flowLayers[i].mobility = Math.min(1, Math.sqrt(sample.flux) * 2) * (1 - state.mechanism.cooling);
+      if (mesh.visible&&source.installed!==data) {
         const positions = mesh.geometry.getAttribute('position') as THREE.BufferAttribute;
         (positions.array as Float32Array).set(data.positions); positions.needsUpdate = true;
         const uv=mesh.geometry.getAttribute('uv') as THREE.BufferAttribute; (uv.array as Float32Array).set(data.uvs); uv.needsUpdate=true;
         mesh.geometry.computeVertexNormals(); mesh.geometry.computeBoundingSphere();
         this.flowLayers[i].transport.setSource(data);
+        source.installed=data;
       }
     });
     this.jets.visible = state.intensity * appearance.fountain > .012;
@@ -521,7 +526,7 @@ export class Eruption3DScene {
   }
   dispose() {
     if (this.disposed) return;
-    this.stopMotion(); this.detailMotion.dispose(); this.disposed = true; this.resizeObserver.disconnect();
+    this.stopMotion(); this.detailMotion.dispose(); this.disposed = true; this.presentation.dispose(); this.resizeObserver.disconnect();
     this.canvas.removeEventListener('keydown', this.keydown); this.controls.dispose();
     this.environment?.dispose(); this.environment = undefined;
     this.ejecta.dispose(); this.clear(this.rocks);

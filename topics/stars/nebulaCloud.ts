@@ -74,9 +74,10 @@ function darkCloudMatter(reference:NebulaReference,u:number,v:number,w:number,br
   return {distance,diffuse:.12*frontLight,frontLight,dust:(.38+.42*folds+.18*knots)*depthVariation,colour:reference==='pillars'?.94:.72+.20*broad};
 }
 export function sampleNebulaCloud(reference:NebulaReference,x:number,y:number,z:number):NebulaCloudSample{
+  const box=1-smooth(.83,.98,Math.max(Math.abs(x),Math.abs(y),Math.abs(z)));
+  if(box===0)return [0,0,0,0];
   const [u,v,w]=nebulaCloudCoordinates(x,y,z);
   const broad=billow(u,v,w),warp=(broad-.5)*.28;
-  const box=1-smooth(.83,.98,Math.max(Math.abs(x),Math.abs(y),Math.abs(z)));
   const envelope=box*(reference==='orion'?1:(1-smooth(.72,.93,Math.abs(u)+warp*.5))*(1-smooth(.67,.84,-v+warp*.3)));
   if(envelope===0)return [0,0,0,0];
   let gas:number,emission:number,dust:number,colour:number;
@@ -116,12 +117,16 @@ export function writeNebulaCloud(reference:NebulaReference,data:Uint8Array,resol
     const px=x/(resolution-1)*2-1,py=y/(resolution-1)*2-1,pz=z/(resolution-1)*2-1,index=((z*resolution+y)*resolution+x)*4;
     let sample:NebulaCloudSample;
     if(front&&reference!=='orion'){
+      const box=1-smooth(.83,.98,Math.max(Math.abs(px),Math.abs(py),Math.abs(pz)));
+      if(box===0){data.fill(0,index,index+4);front.distance[index/4]=255;continue;}
       const [u,v,w]=nebulaCloudCoordinates(px,py,pz),broad=billow(u,v,w),warp=(broad-.5)*.28;
-      const envelope=(1-smooth(.83,.98,Math.max(Math.abs(px),Math.abs(py),Math.abs(pz))))*(1-smooth(.72,.93,Math.abs(u)+warp*.5))*(1-smooth(.67,.84,-v+warp*.3));
+      const envelope=box*(1-smooth(.72,.93,Math.abs(u)+warp*.5))*(1-smooth(.67,.84,-v+warp*.3));
+      // Empty support has no optical matter. Avoid shape/lighting probes there,
+      // while fully overwriting a reused buffer with the exact empty encoding.
+      if(envelope===0){data.fill(0,index,index+4);front.distance[index/4]=255;continue;}
       const matter=darkCloudMatter(reference,u,v,w,broad);
       sample=[matter.diffuse*envelope,matter.frontLight*envelope,matter.dust*envelope,matter.colour];
-      front.distance[index/4]=Math.round(clamp(.5+(envelope>0?matter.distance:front.range)/(front.range*2))*255);
-      if(envelope===0)sample=[0,0,0,0];
+      front.distance[index/4]=Math.round(clamp(.5+matter.distance/(front.range*2))*255);
     }else sample=sampleNebulaCloud(reference,px,py,pz);
     for(let channel=0;channel<4;channel++)data[index+channel]=Math.round(sample[channel]!*255);
   }

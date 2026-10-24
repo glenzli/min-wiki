@@ -100,13 +100,17 @@ export function lavaBranches(settings: Settings) {
     phase: seed(i + 35) * 5,
   }));
 }
-export function lavaRibbon(clock: number, settings: Settings, branch: ReturnType<typeof lavaBranches>[number], segments = 100, across = 10) {
+function lavaRibbonState(clock:number,settings:Settings,branch:ReturnType<typeof lavaBranches>[number]){
   const appearance = eruptionAppearance(settings), kind = settings.landform ?? 'scoria';
   const growth = smooth(.42, .82, clock);
   const length = growth * (3.6 + (1 - settings.viscosity) * 3.5) * Math.sqrt(branch.share)
     * (.24 + .76 * appearance.lava) * (.5 + .65 * appearance.supply) * appearance.lavaSpread;
   const breadth = (.30 + settings.viscosity * .28) * Math.sqrt(branch.share) * (.6 + .4 * appearance.supply) * appearance.lavaWidth;
-  const pond = craterLevel(clock, settings), pondRadius = craterBasin(kind).radius;
+  const pond=craterLevel(clock,settings),flux=appearance.lavaFlux*appearance.lava*appearance.supply*branch.share*activity(clock);
+  return {kind,length,breadth,pond,flux,visible:appearance.strength>0&&growth>.0005};
+}
+export function lavaRibbon(clock: number, settings: Settings, branch: ReturnType<typeof lavaBranches>[number], segments = 100, across = 10) {
+  const {kind,length,breadth,pond,flux,visible}=lavaRibbonState(clock,settings,branch),pondRadius=craterBasin(kind).radius;
   const positions: number[] = [], uvs: number[] = [], indices: number[] = [];
   for (let i = 0; i <= segments; i++) {
     const u = i / segments, distance = u * length;
@@ -134,8 +138,27 @@ export function lavaRibbon(clock: number, settings: Settings, branch: ReturnType
   }
   // A normalized source weight accompanies geometry. It is not a measured or
   // conserved volume flux; retained cooled ribbons do not disappear with it.
-  const flux = appearance.lavaFlux * appearance.lava * appearance.supply * branch.share * activity(clock);
-  return { visible: appearance.strength > 0 && growth > .0005, positions, uvs, indices, length, flux };
+  return { visible, positions, uvs, indices, length, flux };
+}
+
+/** One current surface per fixed branch/settings. Flux and visibility remain
+ * live while unchanged pond/front coordinates reuse their exact mesh source.
+ * Rewind replaces the source; no history or quantized progress is cached. */
+export class RetainedLavaRibbon {
+  private geometry?:Pick<ReturnType<typeof lavaRibbon>,'positions'|'uvs'|'indices'|'length'>;
+  private length=NaN;
+  private pond=NaN;
+  private readonly settings:Settings;
+  private readonly branch:ReturnType<typeof lavaBranches>[number];
+  constructor(settings:Settings,branch:ReturnType<typeof lavaBranches>[number]){this.settings={...settings};this.branch={...branch};}
+  sample(clock:number){
+    const state=lavaRibbonState(clock,this.settings,this.branch);
+    if(!this.geometry||state.length!==this.length||state.pond!==this.pond){
+      const {visible:_visible,flux:_flux,...geometry}=lavaRibbon(clock,this.settings,this.branch);
+      this.geometry=geometry;this.length=state.length;this.pond=state.pond;
+    }
+    return {geometry:this.geometry,flux:state.flux,visible:state.visible};
+  }
 }
 
 /** A bounded population of advected ash parcels. This is a visual density

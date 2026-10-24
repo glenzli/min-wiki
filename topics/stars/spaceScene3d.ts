@@ -6,6 +6,7 @@ import {createNebulaPortrait} from '../../src/visuals/nebulaPortrait.ts';
 import {nebulaCloudAppearance} from './nebulaCloud.ts';
 import {NEBULA_SKY_WIDTH,NEBULA_SKY_HEIGHT,writeNebulaEnvironment,nebulaEnvironmentPalette,nebulaEnvironmentStars} from './nebulaEnvironment.ts';
 import {StellarMedium,SPACE_VOLUME_EXTENT} from './spaceVolume.ts';
+import {FrameRender} from '../../src/visuals/frameRender.ts';
 
 const particleVertex = `
 attribute float aAlpha;
@@ -115,6 +116,7 @@ void main(){
   private geometryKey='';
   private input?:SpaceInput;
   private observing=false;
+  private presentation=new FrameRender(()=>this.renderNow());
   private volumeSampling(){return this.input?.chapter==='nebulae'&&this.input.nebula==='nursery'?(this.observing?64:this.input.reference&&this.input.reference!=='orion'?96:80):48;}
 
   constructor(private canvas:HTMLCanvasElement,private onFailure:()=>void){
@@ -208,8 +210,9 @@ void main(){
     this.render();
   }
   resetCamera(){this.camera.position.set(6.3,3.4,9.2);this.controls.target.set(0,0,0);this.controls.update();this.render();}
-  private render(){if(!this.disposed&&!document.hidden&&this.canvas.isConnected&&!this.canvas.parentElement?.hidden)this.renderer.render(this.world,this.camera);}
-  dispose(){if(this.disposed)return;this.disposed=true;this.resize.disconnect();this.canvas.removeEventListener('keydown',this.key);this.canvas.removeEventListener('webglcontextlost',this.lost);this.controls.dispose();this.sphere.dispose();this.blackHoleMaterial.dispose();this.shellMaterial.dispose();this.backdropMaterial.dispose();this.skyField?.dispose();this.skyStars.geometry.dispose();this.skyStars.material.dispose();this.filaments.geometry.dispose();this.filamentMaterial.dispose();this.jets.geometry.dispose();this.jets.material.dispose();this.background.geometry.dispose();this.background.material.dispose();
+  private render(){this.presentation.request();}
+  private renderNow(){if(!this.disposed&&!document.hidden&&this.canvas.isConnected&&!this.canvas.parentElement?.hidden){try{this.renderer.render(this.world,this.camera);}catch{this.onFailure();}}}
+  dispose(){if(this.disposed)return;this.disposed=true;this.presentation.dispose();this.resize.disconnect();this.canvas.removeEventListener('keydown',this.key);this.canvas.removeEventListener('webglcontextlost',this.lost);this.controls.dispose();this.sphere.dispose();this.blackHoleMaterial.dispose();this.shellMaterial.dispose();this.backdropMaterial.dispose();this.skyField?.dispose();this.skyStars.geometry.dispose();this.skyStars.material.dispose();this.filaments.geometry.dispose();this.filamentMaterial.dispose();this.jets.geometry.dispose();this.jets.material.dispose();this.background.geometry.dispose();this.background.material.dispose();
     for(const portrait of [this.photosphere,this.compactSurface,this.volume]){portrait.dispose();portrait.group.traverse(object=>{const mesh=object as THREE.Mesh;mesh.geometry?.dispose();if(Array.isArray(mesh.material))for(const material of mesh.material)material.dispose();else mesh.material?.dispose();});}
     this.world.clear();this.renderer.renderLists.dispose();this.renderer.dispose();this.renderer.forceContextLoss();}
 }

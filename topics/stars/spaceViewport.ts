@@ -29,18 +29,20 @@ export class StellarSpaceViewport {
     if(!input){this.fallbackCanvas.hidden=false;return false;}
     this.current={input,time,cutaway};
     if(this.renderer){this.fallbackCanvas.hidden=true;this.renderer.draw(input,time,cutaway);return true;}
-    this.fallbackCanvas.hidden=false;this.status.textContent=this.failed?this.words.failed:this.words.loading;
-    if(!this.failed)this.ensureRenderer();return false;
+    this.fallbackCanvas.hidden=!this.failed;this.status.textContent=this.failed?this.words.failed:this.words.loading;
+    if(!this.failed)this.ensureRenderer();return !this.failed;
   }
   private async ensureRenderer(){
     if(this.disposed||this.loading||this.renderer)return;
     this.loading=true;this.root.dataset.renderState='loading';this.status.textContent=this.words.loading;this.retryButton.hidden=true;
     const generation=++this.generation;
+    // A cheap canvas preserves the final stage's layout while its module loads.
+    // Prepare the full CPU fallback only after an actual WebGL/import failure.
+    const canvas=document.createElement('canvas');canvas.className='stellar-space-canvas';canvas.setAttribute('aria-label',this.words.canvas);canvas.setAttribute('role','img');canvas.tabIndex=0;
+    this.root.prepend(canvas);this.canvas=canvas;this.fallbackCanvas.hidden=true;
     try{
       const {StellarSpace3D}=await this.load();
       if(this.disposed||generation!==this.generation)return;
-      const canvas=document.createElement('canvas');canvas.className='stellar-space-canvas';canvas.setAttribute('aria-label',this.words.canvas);canvas.setAttribute('role','img');canvas.tabIndex=0;
-      this.root.prepend(canvas);this.canvas=canvas;
       this.renderer=new StellarSpace3D(canvas,()=>this.fail());
       this.root.dataset.renderState='ready';this.status.textContent=this.words.ready;this.failed=false;
       if(this.active&&this.current){this.fallbackCanvas.hidden=true;this.renderer.draw(this.current.input,this.current.time,this.current.cutaway);}

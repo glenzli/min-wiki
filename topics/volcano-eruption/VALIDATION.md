@@ -479,3 +479,19 @@ Source digest: `c644cefd5e3757eb1616d7bebbb810d6854c857609aaed7c5fd8b92b888365a1
 - `document-volcano-eruption-VQOTVH3T.css`: `a7292b73f6396b3395c39ed42a5f8c2471a8d13c9e5c2519eacbc8a67d69a429`.
 
 Evidence is in `/private/tmp/mini-wiki-volcano-quality-20261021/` (the review started before local midnight): both complete-gate logs, final source/input hashes, owner receipts and bounded CPU/density probes, browser matrix, final-package smoke/dry-state readback, bilingual portrait captures, before/candidate/final images and final tab inventory. `quality-final.png` and `ash-final.png` are from the final package; the unchanged visual-owner captures retain their earlier package provenance. The four inherited buoyancy files stay byte-identical. The same managed Reader 0.6.0 serves port 54650; no new debug host, dependency update, commit, push or deployment is created by this review.
+# Rendering/source retention performance — 2026-10-24
+
+The retained eruption scene now presents at most once per pending browser frame. Its exact lava
+front length/pond level own source invalidation, while visibility, supply, cooling and material
+motion remain live. Rewinds replace the source; no progress-history cache is kept. Surface transport
+omits the sheet-only trigonometry replaced by its crust field. Detail quality and scientific clocks
+are unchanged.
+
+Combined affected validation:48/48 focused checks plus TypeScript/i18n/diff passed. Same-size
+browser16-update bursts:flow2048→512 and ash2496→624 GL draws, idle0→0. These counts measure a
+controlled camera/snapshot burst, not production FPS. Exact source/transport bytes and direct
+geometry across landforms, multiple vents, cooling and replay were checked. Actual packaged UI
+checks covered playback, cold endpoint, rewind/replay, camera and Chinese/English390px layouts.
+
+[Measurement method, limitations and final package identity](../../docs/visual-performance-20261024.md).
+No push/deployment or real-mobile-device performance certification is claimed.

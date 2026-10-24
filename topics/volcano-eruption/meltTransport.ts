@@ -87,9 +87,7 @@ export class MeltTransport {
       const distance = this.guides[row * 4], endFade = clamp(distance / .15) * clamp((total - distance) / .16);
       for (let j = 0; j <= this.across; j++) {
         const across = j / this.across, envelope = Math.sin(Math.PI * across) ** 2;
-        const carrier = meltCarrier(distance, across, phase);
-        let crest = Math.pow(.5 + .5 * Math.cos(carrier), 4), lip = Math.pow(.5 + .5 * Math.cos(carrier + .65), 9);
-        let shear = Math.sin(carrier * .5 + phase * 1.5) * Math.sin(carrier) * .025 * envelope * endFade * moving;
+        let crest=0,lip=0,shear=0;
         const skinS = distance - (moving > 0 ? phase * CRUST_PERIOD / TAU : 0);
         let thickness = 0, slip = 0;
         if (this.kind === 'surface') {
@@ -100,6 +98,12 @@ export class MeltTransport {
           slip = (shape - .5) * .045 * envelope * endFade * moving;
           const downstream = total > 0 ? distance / total : 0, margin = Math.abs(across - .5) * 2;
           thickness = clamp(.16 + downstream * .47 + margin ** 1.4 * .30 + (1 - moving) * .23);
+        }else{
+          // The surface branch replaces these sheet-only waves with its crust
+          // field. Do not evaluate and immediately discard the trigonometry.
+          const carrier=meltCarrier(distance,across,phase);
+          crest=Math.pow(.5+.5*Math.cos(carrier),4);lip=Math.pow(.5+.5*Math.cos(carrier+.65),9);
+          shear=Math.sin(carrier*.5+phase*1.5)*Math.sin(carrier)*.025*envelope*endFade*moving;
         }
         const v = this.kind === 'surface'
           ? meltChannelCenter(distance) + (across - .5) * MELT_HALF_WIDTH * 2 + shear

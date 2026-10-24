@@ -134,3 +134,9 @@ Hot springs open at the surface pool; “Follow groundwater” or `study=heat&vi
 海底问题把海洋情境与“看海底生命／看成岛后的生命”放在画面下方，另选适合定居的后续条件并靠近冷岩；“回到刚才的喷发”恢复进入前的进度、镜头与裸岩/定居条件。保留默认裸岩对照，不把生物出现当作每次喷发的终点；其独立责任与科学限定见 [海底专题说明](../submarine-volcanoes/README.md)。火山湖剖面中的局部失撑间隙、断口凹深和残余晶粥由 [湖盆专题](../volcanic-lakes/README.md)拥有；间隙放大用于辨认，随后由同一岩体下沉闭合，不表示一个充满空气的巨大地下洞穴。
 
 The submarine question exposes its ocean setting and “Explore seafloor life / Explore life on the new island” directly below the scene. The entry selects suitable later conditions and a cooled-rock close view; “Return to the eruption” restores the prior progress, lens and bare/suitable setting. The default bare-rock contrast remains, without making colonisation the endpoint of every eruption; ownership and qualifications are in the [submarine topic](../submarine-volcanoes/README.md). The [lake topic](../volcanic-lakes/README.md) owns local loss-of-support gaps, recessed fracture faces and residual mush. Enlarged gaps close as the same rock descends; they do not depict a giant air-filled underground cavern.
+
+## Retained drawing work · 2026-10-24
+
+`eruption3d.ts` combines camera, process and liquid-detail invalidations into one pending browser presentation through `src/visuals/frameRender.ts`; disposal cancels that request before freeing GPU resources. The existing clocks, thermal states, shadow policy, mesh density, pixel ratio and ash sampling remain unchanged. `eruptionGeometry.ts` retains only the current lava source for each fixed branch/settings, keyed by its exact front length and pond level. Identical snapshots and completed fronts reuse that source and its normals; visibility, supply and cooling continue to update. Rewinding replaces the current source rather than retaining a history. Surface transport also omits sheet-wave calculations that its crust field replaces.
+
+[Measured scope, byte comparisons and browser evidence](../../docs/visual-performance-20261024.md).

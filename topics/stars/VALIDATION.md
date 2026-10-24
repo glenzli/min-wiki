@@ -472,3 +472,17 @@ No new controls, clock, renderer, worker, photo asset or per-case cache was adde
 [Reference images, resource bounds, remaining limits and screenshots](../../docs/nebula-environment-20261024.md).
 Build proof: `/private/tmp/mini-wiki-nebula-environment-build-proof-20261024.json`.
 Local only, without commit/push/deployment or physical-device performance claims.
+
+# Rendering/preparation performance — 2026-10-24
+
+Visual baseline committed as `a5ea10f5`. One pending presentation now combines camera/model bursts;
+the full Canvas projection is admitted only after a real loading/WebGL failure. Empty cloud support
+skips shape/light probes while retaining identical RGBA/distance bytes. Field sizes, sampling,
+sky resolution, source geometry, clocks and pixel ratio stay unchanged.
+
+Combined stars/land-volcano validation:48/48 focused checks, TypeScript/i18n/diff passed. Actual
+same-size Pillars burst:192→48 GL calls across16 updates, idle draws0→0. Node repeated field
+preparation:936.055→738.067ms, with identical complete output bytes; these are scoped workloads,
+not production FPS claims. Final package checked at Chinese/English390px, including illumination,
+keyboard rotation/reset and language state. Full details and artifact identity are in
+[the dated performance record](../../docs/visual-performance-20261024.md).

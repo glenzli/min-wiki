@@ -29,8 +29,8 @@
       "en": "Center and surroundings"
     },
     "loading": {
-      "zh": "正在准备可转动 3D；下方保留平面示意。",
-      "en": "Preparing rotatable 3D; the flat illustration remains below."
+      "zh": "正在准备可转动 3D。",
+      "en": "Preparing rotatable 3D."
     },
     "failed": {
       "zh": "3D 暂不可用，已保留同一案例的平面示意与说明。",

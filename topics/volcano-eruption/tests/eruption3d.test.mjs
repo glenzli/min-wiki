@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { ashParcels, craterBasin, eruptionFrame, fragmentAt, fragmentSchedule, lavaBranches, lavaRibbon, surfaceHeight, terrainBuffers } from '../eruptionGeometry.ts';
+import { ashParcels, craterBasin, eruptionFrame, fragmentAt, fragmentSchedule, lavaBranches, lavaRibbon, RetainedLavaRibbon, surfaceHeight, terrainBuffers } from '../eruptionGeometry.ts';
+import {FrameRender} from '../../../src/visuals/frameRender.ts';
 import * as THREE from 'three';
 import { Eruption3DScene } from '../eruption3d.ts';
 import { scenarioSettings } from '../eruptionScenarios.ts';
@@ -167,11 +168,28 @@ test('the actual final scene cleanup releases the boulder instance and geometry 
   const geometry = new THREE.IcosahedronGeometry(1, 0), material = new THREE.MeshBasicMaterial(), rock = new THREE.InstancedMesh(geometry, material, 480);
   group.add(rock); scene.rocks = group; scene.scene = new THREE.Scene(); scene.scene.add(group);
   scene.geometries = new Set([geometry]); scene.materials = new Set([material]); scene.disposed = false;
-  scene.stopMotion = () => {}; scene.detailMotion = { dispose() {} }; scene.resizeObserver = { disconnect() {} };
+  scene.stopMotion = () => {}; scene.detailMotion = { dispose() {} }; scene.resizeObserver = { disconnect() {} };scene.presentation=new FrameRender(()=>{});
   scene.controls = { dispose() {} }; scene.canvas = { removeEventListener() {} }; scene.ejecta = { dispose() {} };
   scene.texture = new THREE.Texture(); scene.ash = { noise: new THREE.Texture() };
   scene.sceneTarget = { dispose() {} }; scene.ashTarget = { dispose() {} };
   scene.ashScene = new THREE.Scene(); scene.compositeScene = new THREE.Scene(); scene.renderer = { dispose() {}, forceContextLoss() {} };
   let instances = 0, solids = 0; rock.addEventListener('dispose', () => instances++); geometry.addEventListener('dispose', () => solids++);
   scene.dispose(); scene.dispose(); assert.equal(instances, 1); assert.equal(solids, 1);
+});
+
+test('retained lava matches every direct geometry through growth, cooling, rewind and replay',()=>{
+  for(const landform of ['scoria','shield','composite'])for(const vents of [1,3]){
+    const settings={...PRESETS.flow,landform,vents};
+    for(const branch of lavaBranches(settings)){
+      const retained=new RetainedLavaRibbon(settings,branch);let mature;
+      for(const clock of [0,.25,.35,.42,.56,.72,.82,.86,.95,1,.35,.82]){
+        const current=retained.sample(clock),direct=lavaRibbon(clock,settings,branch),{visible,flux,...geometry}=direct;
+        assert.deepEqual(current.geometry,geometry);assert.equal(current.visible,visible);assert.equal(current.flux,flux);
+        if(clock===.82&&!mature)mature=current.geometry;
+        if(clock>.82)assert.equal(current.geometry,mature,'cooling cannot rebuild an unchanged source');
+      }
+      const same=retained.sample(.82).geometry;assert.equal(retained.sample(.82).geometry,same);
+      assert.notEqual(retained.sample(.6).geometry,same,'rewind still changes the front');
+    }
+  }
 });
