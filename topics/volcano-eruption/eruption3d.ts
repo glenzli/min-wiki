@@ -299,7 +299,6 @@ export class Eruption3DScene {
   }
 
   private applySection() {
-    this.cutaway = this.view === 'overview' || this.view === 'storage';
     this.canvas.dataset.projection = this.cutaway ? 'section' : 'exterior';
     this.section.visible = this.cutaway;
     for (const material of [this.surfaceRock, this.lava.material, this.pool.material, this.surfaceTransport.material]) {
@@ -311,9 +310,10 @@ export class Eruption3DScene {
     this.controls.maxAzimuthAngle = this.cutaway ? .95 : Infinity;
     this.renderer.shadowMap.needsUpdate = true;
   }
-  setView(view: ObservationView) {
-    if (view === this.view) return;
-    this.view = view; this.applySection(); this.syncDetailHeat(); this.moveCamera(true);
+  setView(view: ObservationView, cutaway = view === 'overview' || view === 'storage') {
+    if (view === this.view && cutaway === this.cutaway) return;
+    this.view = view; this.cutaway = cutaway;
+    this.applySection(); this.syncDetailHeat(); this.moveCamera(true);
   }
   /** This switch affects liquid detail only, never geological playback. */
   setDetailMotion(enabled: boolean) { this.detailMotion.setEnabled(enabled); }

@@ -1,4 +1,4 @@
-import { bounded, type Chapter, type Landform, type VolcanoCase } from './projectModel.ts';
+import { bounded, type Chapter, type Landform, type VolcanoCase, type View } from './projectModel.ts';
 
 /** Learning questions select existing process owners. Their clocks remain
  * separate; normalized progress is not a common geological time axis. */
@@ -62,9 +62,17 @@ export function studyRoute(search: string, hash = '') {
     if (study === 'building') progress = oldCase === 'scoria' ? .08 / .32 : 1;
     if (study === 'ecology') progress = oldCase === 'scoria' ? oldChapter === 'life' ? .5 : 1 : .08;
   }
-  return { study, volcano, chapter: chapterForStudy(study), progress,
-    view: study === 'heat' && params.get('view') === 'section' ? 'section' as const
-      : params.get('view') === 'exterior' && study === 'styles' ? 'exterior' as const : 'landscape' as const };
+  const requestedProgress = params.get('progress');
+  if (requestedProgress?.trim() && Number.isFinite(Number(requestedProgress))) progress = bounded(Number(requestedProgress));
+  const supported: View[] = study === 'mechanism' ? ['landscape','exterior','storage','vent']
+    : study === 'styles' ? ['landscape','exterior','vent','section','plume','storage']
+      : study === 'submarine' ? ['landscape','ocean','section','vent']
+        : study === 'heat' || study === 'lake' ? ['landscape','section'] : ['landscape','section','vent'];
+  const rawView = params.get('view') as View;
+  const fallback: View = study === 'styles' ? 'exterior' : study === 'lake' || study === 'building' && volcano !== 'scoria' ? 'section' : 'landscape';
+  const view: View = supported.includes(rawView) ? rawView : fallback;
+  const cutaway = view === 'storage' || (params.has('cutaway') ? params.get('cutaway') === '1' : study === 'mechanism');
+  return { study, volcano, chapter: chapterForStudy(study), progress, view, cutaway };
 }
 
 export function landformFrom(value: string): Landform {

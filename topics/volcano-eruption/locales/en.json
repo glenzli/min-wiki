@@ -721,5 +721,19 @@
   "回到刚才的喷发": "Return to the eruption",
   "浅色斑块是微生物薄膜，贴岩的小壳是帽贝；这里选择了适合定居的弥散热液岩面。": "Pale patches are microbial films; the small attached shells are limpets. This patch has suitable diffuse hydrothermal conditions.",
   "这片岩面选择了弥散热液条件。微生物薄膜可以先出现，帽贝等小动物随后可能来到。热的新熔岩旁仍留空，后半段不是实际年数，也不是每座海底火山都有相同生态。": "This rock patch has diffuse hydrothermal conditions. Microbial films may appear first, and small animals such as limpets may arrive later. Hot new lava stays uncolonised. The later progress is not measured in years, and submarine volcanoes do not all support the same community.",
-  "热岩石还在 · 没有水补给": "Hot rock remains · no water supply"
+  "热岩石还在 · 没有水补给": "Hot rock remains · no water supply",
+  "看全山": "Overview",
+  "近看地下": "Underground close-up",
+  "讲解": "Explanation",
+  "复位镜头": "Reset camera",
+  "显示过程提示": "Show process cues",
+  "剖面": "Cutaway",
+  "改变条件": "Conditions",
+  "收起条件": "Close conditions",
+  "阶段与速度": "Stages & speed",
+  "从头观察": "Return to start",
+  "镜头：{{view}}": "Camera: {{view}}",
+  "当前二维示意只提供剖面；可重试三维画面。": "The current 2D illustration provides a cutaway only. You can retry the 3D scene.",
+  "镜头": "Camera",
+  "播放": "Play"
 }

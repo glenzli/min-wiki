@@ -75,3 +75,15 @@ test('hot springs open at the surface while an explicit groundwater cutaway rema
   assert.equal(studyRoute('?study=heat&view=section').view,'section');
   assert.equal(studyRoute('?study=styles&view=exterior').view,'exterior');
 });
+
+test('observation URLs restore independent camera/cutaway and bounded progress without changing the question', () => {
+  const whole = studyRoute('?lang=en&study=mechanism&view=landscape&cutaway=0&progress=.413');
+  assert.equal(whole.study, 'mechanism'); assert.equal(whole.view, 'landscape');
+  assert.equal(whole.cutaway, false); assert.equal(whole.progress, .413);
+  const vent = studyRoute('?study=mechanism&view=vent&cutaway=1&progress=.413');
+  assert.equal(vent.view, 'vent'); assert.equal(vent.cutaway, true); assert.equal(vent.progress, whole.progress);
+  assert.equal(studyRoute('?study=lake&view=vent&progress=NaN').view, 'section');
+  assert.equal(studyRoute('?study=heat&progress=999').progress, 1);
+  assert.equal(studyRoute('?study=styles&progress=-2').progress, 0);
+  assert.equal(studyRoute('?study=mechanism&progress=').progress, .08);
+});

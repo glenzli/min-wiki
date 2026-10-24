@@ -193,3 +193,29 @@ test('retained lava matches every direct geometry through growth, cooling, rewin
     }
   }
 });
+
+test('cutaway can close on the whole-mountain camera without changing the process or resources', () => {
+  const scene = Object.create(Eruption3DScene.prototype), cameras = [];
+  const surfaceRock = {}, lava = { material: {} }, pool = { material: {} }, surfaceTransport = { material: {} };
+  const settings = { ...PRESETS.flow, landform: 'composite' };
+  Object.assign(scene, {
+    view: 'overview', cutaway: true, p: .413, settings, canvas: { dataset: {} },
+    section: { visible: true }, surfaceRock, lava, pool, surfaceTransport,
+    cut: new THREE.Plane(new THREE.Vector3(0, 0, -1), .16),
+    ground: { position: { y: 0 } }, controls: {}, renderer: { shadowMap: {} },
+    environment: { setSection(enabled) { this.cutaway = enabled; } },
+    syncDetailHeat() {}, moveCamera(animate) { cameras.push({ view: this.view, cutaway: this.cutaway, animate }); },
+  });
+  const before = eruptionFrame(scene.p, settings);
+  scene.setView('overview', false);
+  assert.equal(scene.view, 'overview'); assert.equal(scene.canvas.dataset.projection, 'exterior');
+  assert.equal(scene.section.visible, false); assert.deepEqual(surfaceRock.clippingPlanes, []);
+  assert.equal(scene.controls.minAzimuthAngle, -Infinity); assert.equal(scene.environment.cutaway, false);
+  scene.setView('vent', false); scene.setView('vent', true);
+  assert.equal(scene.view, 'vent'); assert.equal(scene.canvas.dataset.projection, 'section');
+  assert.equal(scene.section.visible, true); assert.deepEqual(surfaceRock.clippingPlanes, [scene.cut]);
+  assert.equal(scene.settings, settings); assert.equal(scene.lava, lava); assert.equal(scene.p, .413);
+  assert.deepEqual(eruptionFrame(scene.p, scene.settings), before);
+  assert.equal(cameras.length, 3);
+  scene.setView('vent', true); assert.equal(cameras.length, 3, 'an identical selection does not restart the camera');
+});

@@ -1,5 +1,6 @@
 import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { mountReadingMode } from '../../src/platform/readingMode.ts';
+import { mountVolcanoControls } from './observationControls.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
@@ -35,7 +36,10 @@ const select = (id: string) => el<HTMLSelectElement>(id).value;
 const number = (id: string) => Number(el<HTMLInputElement>(id).value);
 const entry = studyRoute(location.search, location.hash);
 let study = entry.study, volcano = entry.volcano, chapter = entry.chapter, progress = entry.progress;
-let view: View = study === 'heat' ? entry.view : entry.view === 'exterior' || study === 'styles' ? 'exterior' : study === 'lake' || study === 'building' && volcano !== 'scoria' ? 'section' : 'landscape';
+let view: View = entry.view;
+let episodeSection = entry.cutaway;
+let observation: ReturnType<typeof mountVolcanoControls> | undefined;
+const exteriorViews = new Map<Study, View>();
 let playing = false, frame = 0, last = 0;
 let eruption: EruptionScene | undefined, lake: LakeScene | undefined, ocean: SubmarineScene | undefined;
 let omuro: OmuroScene | undefined, landHistory: LandHistoryScene | undefined, heat: HydrothermalScene | undefined;
@@ -44,11 +48,21 @@ let camera: [number, number, number, number] = [0, 0, 1000, 666.667], section = 
 const controls = ['landform','habitat','style','vents','supply','gas','viscosity','resistance','eruption-scenario','eruption-strength','environment','ocean-supply','ocean-life','basin','water','leak','heat-water','heat-connected'];
 const values = () => Object.fromEntries(controls.map(id => [id, select(id)]));
 const defaults = values();
-type Memory = { progress: number; view: View; volcano: VolcanoCase; values: Record<string,string> };
+const routeConditions = new URLSearchParams(location.search);
+for (const id of [...controls.filter(id => id !== 'landform'), 'rate']) {
+  const requested = routeConditions.get(`condition-${id}`), input = el<HTMLInputElement | HTMLSelectElement>(id);
+  if (requested === null) continue;
+  if (input instanceof HTMLSelectElement) {
+    if ([...input.options].some(option => option.value === requested)) input.value = requested;
+  } else if (requested.trim() && Number.isFinite(Number(requested))) {
+    input.value = input.type === 'hidden' ? String(Math.max(0, Math.min(1, Number(requested)))) : requested;
+  }
+}
+type Memory = { progress: number; view: View; cutaway: boolean; volcano: VolcanoCase; values: Record<string,string> };
 const memories = new Map<Study, Memory>();
 const oceanReturns = new Map<Environment, { progress: number; view: View; ecology: string }>();
 const oceanLifeVisible = () => study === 'submarine' && ocean?.is3D && select('ocean-life') === 'suitable' && progress > .84 && select('environment') !== 'shallow';
-const remember = () => memories.set(study, { progress, view, volcano, values: values() });
+const remember = () => memories.set(study, { progress, view, cutaway: episodeSection, volcano, values: values() });
 const renderer = () => studyRenderer(study, volcano);
 const isOmuro = () => renderer() === 'omuro';
 const isHistory = () => renderer() === 'history';
@@ -78,7 +92,7 @@ function chooseEruptionScenario() {
   for (const field of ['gas','viscosity','supply','resistance'] as const) el<HTMLInputElement>(field).value = String((condition[field] ?? .7) * 100);
   el<HTMLSelectElement>('vents').value = String(condition.vents);
   el<HTMLInputElement>('eruption-strength').value = String(condition.strength);
-  view = scenario.view === 'flow' ? 'section' : scenario.view;
+  view = scenario.view === 'flow' ? 'section' : scenario.view; episodeSection = false;
   buildViews(); settleCamera(); update();
 }
 function cameraTarget(): [number,number,number,number] {
@@ -92,7 +106,7 @@ function cameraTarget(): [number,number,number,number] {
   return landCamera(view, volcano as Landform, study === 'ecology' ? 1 : time());
 }
 function settleCamera() { cancelCamera(); camera = cameraTarget(); section = view === 'section' ? 1 : 0; }
-function eruptionView() { return view === 'exterior' ? 'exterior' : view === 'storage' ? 'storage' : view === 'section' ? 'flow' : view === 'vent' ? 'vent' : view === 'plume' ? 'plume' : 'overview'; }
+function eruptionView() { return view === 'exterior' || view === 'landscape' && !episodeSection ? 'exterior' : view === 'storage' ? 'storage' : view === 'section' ? 'flow' : view === 'vent' ? 'vent' : view === 'plume' ? 'plume' : 'overview'; }
 function activeScene() { return isEpisode() ? eruption : isOmuro() ? omuro : isHistory() ? landHistory : study === 'lake' ? lake : study === 'submarine' ? ocean : heat; }
 function syncRenderer() {
   const scene = activeScene();
@@ -104,7 +118,7 @@ function syncRenderer() {
     if (study === 'heat') heat?.setView('section');
     else if (study === 'lake') lake?.setView('section');
     else if (isHistory()) landHistory?.setView('section');
-    else eruption?.setView(eruptionView(), settings().vents);
+    else eruption?.setView(eruptionView(), settings().vents, episodeSection);
     buildViews();
   }
   el('eruption-hud').hidden = !gpu; el('render-qualifier').hidden = !gpu; el('retry-3d').hidden = gpu || !activeScene();
@@ -156,7 +170,7 @@ function draw() {
         : progress < .98 ? t('碎屑从喷口落回山坡，熔岩流出后留下岩石；暗色旧流已冷却，并可能被新层盖住。')
           : t('新喷出物不再添加，已有堆积留下山体；冷却后的表面熔岩保持原位。');
   }
-  if (isEpisode()) { eruption?.setView(eruptionView(), settings().vents); eruption?.draw(time(), settings()); }
+  if (isEpisode()) { eruption?.setView(eruptionView(), settings().vents, episodeSection); eruption?.draw(time(), settings()); }
   else if (study === 'submarine') ocean?.draw({ progress, weights: weights(), supplyMix: select('ocean-supply') === 'limited' ? 1 : 0, camera, section: .1 + .9 * section, ecology: select('ocean-life') === 'suitable' ? 'suitable' : 'bare' });
   else if (study === 'lake') lake?.draw(progress, lakeSettings());
   else if (study === 'heat') heat?.draw(progress, heatSettings());
@@ -207,7 +221,7 @@ function update() {
     el<HTMLSelectElement>('kid-path').value = !magmaState(1, settings()).connected ? 'stalled' : select('style') === 'custom' ? 'custom' : select('style');
     for (const [id,value] of [['recharge',state.recharge],['pressure',state.pressure],['front',state.front],['gas',state.gasExpansion]] as const) el<HTMLMeterElement>(`${id}-meter`).value = value;
   }
-  el('play').textContent = playing ? t('暂停过程') : progress >= 1 ? t('重新播放过程') : t('播放过程');
+  syncPlaybackButton();
   el<HTMLInputElement>('progress').value = String(Math.round(progress * 1000)); el('progress').setAttribute('aria-valuetext',label); el('elapsed').textContent = `${Math.round(progress * 100)}%`;
   el('steps').querySelectorAll('button').forEach((button,i) => button.setAttribute('aria-pressed',String(stage === i)));
   document.querySelectorAll<HTMLButtonElement>('[data-collapse]').forEach((button,i) => button.setAttribute('aria-pressed',String(calderaStage(progress) === i)));
@@ -226,26 +240,66 @@ function update() {
   el('lake-result').textContent = t('示意蓄水程度：{{amount}}%。这里比较补给与失水，不是实际水深。',{amount:Math.round(waterFraction(progress,lakeSettings())*100)});
   draw(); syncRenderer();
 }
+function syncPlaybackButton() {
+  el('play').textContent = playing ? t('暂停') : progress >= 1 ? t('重新播放') : t('播放');
+  el('play').setAttribute('aria-label',playing ? t('暂停过程') : progress >= 1 ? t('重新播放过程') : t('播放过程'));
+}
 function stop() { playing = false; cancelAnimationFrame(frame); frame = 0; cancelSeek(); }
-function seek(to: number) { stop(); const from = progress; cancelSeek = animateValue({ from, to: bounded(to), duration: 650, onUpdate: p => { progress = p; settleCamera(); update(); } }); }
+function seek(to: number) { stop(); const from = progress; cancelSeek = animateValue({ from, to: bounded(to), duration: 650, onUpdate: p => { progress = p; settleCamera(); update(); if (Math.abs(p - bounded(to)) < 1e-7) saveObservation(); } }); }
 function positions() { return studyMilestones(study,select('basin')==='caldera'); }
+function applyView() {
+  if (isEpisode()) eruption?.setView(eruptionView(),settings().vents,episodeSection);
+  else if (study === 'heat') heat?.setView(view === 'section' ? 'section' : 'landscape');
+  else if (study === 'lake') lake?.setView(view === 'section' ? 'section' : 'landscape');
+  else if (study === 'submarine') ocean?.setView(view as OceanView);
+  else if (isOmuro()) omuro?.setView(view === 'section' || view === 'vent' ? view : 'landscape');
+  else landHistory?.setView(view === 'section' || view === 'vent' ? view : 'landscape');
+  buildViews(); settleCamera(); draw(); saveObservation();
+}
+function setSection(enabled: boolean) {
+  if (!activeScene()?.is3D) return;
+  if (isEpisode()) {
+    episodeSection = enabled;
+    // A buried target cannot be observed through opaque rock. Closing the
+    // section returns to the same mountain, never to another process frame.
+    if (!enabled && view === 'storage') view = 'landscape';
+  } else if (enabled) {
+    if (view !== 'section') exteriorViews.set(study, view);
+    view = 'section';
+  } else view = exteriorViews.get(study) ?? 'landscape';
+  applyView();
+}
 function buildViews() {
-  const items: [View,string][] = study === 'heat' ? [...(heat?.is3D ? [['landscape',t('看温泉出露')]] as [View,string][] : []),['section',t('追踪地下水')]]
-    : study === 'lake' ? [['section',t('湖盆剖面')],...(lake?.is3D ? [['landscape',t('看整座湖')]] as [View,string][] : [])]
-      : study === 'submarine' ? [['landscape',t('跟着山体生长')],['ocean',t('看海洋全景')],['section',t('打开剖面')],['vent',select('ocean-life') === 'suitable' && select('environment') !== 'shallow' ? t('近看岩面与生命') : t('靠近喷口')]]
-        : study === 'mechanism' ? [['landscape',eruption?.is3D?t('三维剖面'):t('完整剖面')],['storage',t('地下活动')],['vent',t('靠近喷口')]]
-          : study === 'styles' ? [...(eruption?.is3D ? [['exterior',t('完整火山')]] as [View,string][] : []),['vent',t('靠近喷口')],['section',t('追踪熔岩')],['plume',t('灰柱与落灰')],['landscape',eruption?.is3D?t('三维剖面'):t('完整剖面')]]
-            : study === 'ecology' ? [['landscape',t('看山与草坡')],['vent',t('靠近山坡')],['section',t('看草坡剖面')]]
-              : isHistory() && !landHistory?.is3D ? [['section',t('示意剖面')]] : [['landscape',t('看整个山体')],['section',t('打开剖面')],['vent',t('近看沉积')]];
+  const items: [View,string][] = study === 'heat' || study === 'lake' ? []
+      : study === 'submarine' ? [['landscape',t('跟着山体生长')],['ocean',t('看海洋全景')],['vent',select('ocean-life') === 'suitable' && select('environment') !== 'shallow' ? t('近看岩面与生命') : t('靠近喷口')]]
+        : study === 'mechanism' ? [['landscape',t('看全山')],['storage',t('近看地下')],['vent',t('靠近喷口')]]
+          : study === 'styles' ? [['landscape',t('看全山')],['vent',t('靠近喷口')],['section',t('追踪熔岩')],['plume',t('灰柱与落灰')]]
+            : study === 'ecology' ? [['landscape',t('看山与草坡')],['vent',t('靠近山坡')]]
+              : [['landscape',t('看整个山体')],['vent',t('近看沉积')]];
+  const selected = view === 'exterior' || !isEpisode() && view === 'section' ? 'landscape' : view;
   el('views').replaceChildren(...items.map(([id,label]) => {
-    const b = document.createElement('button'); b.textContent = label; b.dataset.view = id; b.dataset.sceneHitTarget = ''; b.setAttribute('aria-pressed',String(id === view));
-    b.addEventListener('click',() => { view = id; buildViews(); if (isEpisode()) eruption?.setView(eruptionView(),settings().vents);
-      else if (study === 'heat') heat?.setView(view === 'section' ? 'section' : 'landscape');
-      else if (study === 'lake') lake?.setView(view === 'section' ? 'section' : 'landscape');
-      else if (study === 'submarine') ocean?.setView(view as OceanView);
-      else if (isOmuro()) omuro?.setView(view === 'section' || view === 'vent' ? view : 'landscape');
-      else landHistory?.setView(view === 'section' || view === 'vent' ? view : 'landscape'); settleCamera(); draw(); }); return b;
+    const b = document.createElement('button'); b.type = 'button'; b.textContent = label; b.dataset.view = id; b.setAttribute('aria-pressed',String(id === selected));
+    const unavailable = !activeScene()?.is3D && id === 'landscape' && (study === 'heat' || study === 'lake' || isHistory());
+    b.disabled = unavailable;
+    b.addEventListener('click',() => {
+      if (isEpisode()) { view = id; if (id === 'storage') episodeSection = true; }
+      else if (id !== 'landscape' || view !== 'section') view = id;
+      applyView();
+    }); return b;
   }));
+  observation?.sync({label:items.find(([id]) => id === selected)?.[1] ?? t('镜头'),
+    section:isEpisode() ? !activeScene()?.is3D || episodeSection : view === 'section',
+    canSection:!!activeScene()?.is3D,canOrbit:!!activeScene()?.is3D,view});
+}
+function saveObservation() {
+  const url = new URL(location.href);
+  url.searchParams.set('view',view); url.searchParams.set('progress',progress.toFixed(5));
+  if (isEpisode()) url.searchParams.set('cutaway',episodeSection ? '1' : '0'); else url.searchParams.delete('cutaway');
+  for (const id of [...controls.filter(id => id !== 'landform'), 'rate']) {
+    const value = select(id), fallback = id === 'rate' ? '1' : defaults[id];
+    if (value !== fallback) url.searchParams.set(`condition-${id}`,value); else url.searchParams.delete(`condition-${id}`);
+  }
+  history.replaceState(null,'',url);
 }
 function disposeScenes() {
   eruption?.dispose(); lake?.dispose(); ocean?.dispose(); omuro?.dispose(); landHistory?.dispose(); heat?.dispose();
@@ -269,7 +323,7 @@ function mountStudy() {
   el('steps').classList.toggle('mechanism-steps',study==='mechanism'); el('eruption-help').hidden = false; el('scene-error').hidden = true;
   el<HTMLSelectElement>('landform').value = volcano === 'shield' || volcano === 'scoria' ? volcano : 'composite';
   try {
-    if (isEpisode()) { eruption = new EruptionScene(el<HTMLCanvasElement>('eruption-scene')); eruption.setDetailMotion(true); eruption.setView(eruptionView(),settings().vents); }
+    if (isEpisode()) { eruption = new EruptionScene(el<HTMLCanvasElement>('eruption-scene')); eruption.setDetailMotion(true); eruption.setView(eruptionView(),settings().vents,episodeSection); }
     else if (study === 'lake') { lake = new LakeScene(el<HTMLCanvasElement>('lake-scene')); lake.setView(view==='section'?'section':'landscape'); }
     else if (study === 'submarine') { ocean = new SubmarineScene(el<HTMLCanvasElement>('ocean-scene'),t('海底火山、海水与逐层堆积的示意')); ocean.setView(view as OceanView); }
     else if (study === 'heat') { heat = new HydrothermalScene(el<HTMLCanvasElement>('heat-scene'),() => { if (heat) syncRenderer(); }); heat.setDetailMotion(true); heat.setView(view==='section'?'section':'landscape'); }
@@ -290,7 +344,7 @@ function mountStudy() {
 function chooseStudy(next: Study, sameMountain?: VolcanoCase) {
   if (next === study) return;
   remember(); study = next; const saved = memories.get(next);
-  volcano = sameMountain ?? saved?.volcano ?? defaultCase(next); chapter = chapterForStudy(next); progress = saved?.progress ?? initialStudyProgress(next); view = saved?.view ?? (next === 'styles' ? 'exterior' : next === 'lake' || next === 'building' && volcano !== 'scoria' ? 'section' : 'landscape');
+  volcano = sameMountain ?? saved?.volcano ?? defaultCase(next); chapter = chapterForStudy(next); progress = saved?.progress ?? initialStudyProgress(next); view = saved?.view ?? (next === 'styles' ? 'exterior' : next === 'lake' || next === 'building' && volcano !== 'scoria' ? 'section' : 'landscape'); episodeSection = saved?.cutaway ?? next === 'mechanism';
   for (const [id,value] of Object.entries(saved?.values ?? defaults)) el<HTMLSelectElement>(id).value = value;
   mountStudy();
 }
@@ -357,14 +411,19 @@ el('ocean-life-return').addEventListener('click',()=>{
 el('bridge').addEventListener('click',()=>{ const next=nextStudy(study); if(next)chooseStudy(next); });
 function showStatus(status: VolcanoStatus) { const note=STATUS_NOTES[status]; for(const [id,text] of [['status-title',note.title],['status-body',note.body],['status-evidence',note.evidence],['status-limit',note.limit]])el(id).textContent=text; document.querySelectorAll<HTMLButtonElement>('[data-status]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.status===status))); }
 document.querySelectorAll<HTMLButtonElement>('[data-status]').forEach(b=>b.addEventListener('click',()=>showStatus(b.dataset.status as VolcanoStatus)));
-document.addEventListener('visibilitychange',()=>{ if(document.hidden){stop();cancelCamera();activeScene()?.stopMotion();el('play').textContent=progress>=1?t('重新播放过程'):t('播放过程');} });
+document.addEventListener('visibilitychange',()=>{ if(document.hidden){stop();cancelCamera();activeScene()?.stopMotion();syncPlaybackButton();} });
 window.addEventListener('pagehide',()=>{stop();cancelCamera();disposeScenes();sceneResize.disconnect();});
 window.addEventListener('pageshow',event=>{if(event.persisted){mountStudy();sceneResize.observe(document.querySelector('.scene-wrap')!);}});
 document.addEventListener('keydown',event=>{if(event.code==='Space'&&!event.repeat&&!(event.target as HTMLElement)?.closest('button,input,select,a,textarea,summary,[contenteditable]')){event.preventDefault();el('play').click();}});
 let resizeFrame=0;
 const sceneResize=new ResizeObserver(()=>{cancelAnimationFrame(resizeFrame);resizeFrame=requestAnimationFrame(()=>{settleCamera();update();});});
 sceneResize.observe(document.querySelector('.scene-wrap')!);
-mountPresentationFrame({root:'.explorer',visual:'.scene-wrap',transport:'.eruption-comparison,.ocean-life-guide,.playback',choices:'#questions'});
+const presentation = mountPresentationFrame({root:'.explorer',visual:'.scene-wrap',transport:'.playback',choices:'#questions'})!;
 mountReadingMode('.advanced');
+observation = mountVolcanoControls({root:presentation.root,toolbar:presentation.mode.toolbar,notes:presentation.notes,section:setSection,restart:() => seek(0)});
+presentation.root.addEventListener('input',saveObservation);
+presentation.root.addEventListener('change',saveObservation);
+presentation.root.addEventListener('click',saveObservation);
+el('language')?.addEventListener('change',saveObservation,{capture:true});
 document.querySelectorAll<HTMLButtonElement>('button[data-mode]').forEach(b=>b.addEventListener('click',update));
 mountStudy(); showStatus('dormant');

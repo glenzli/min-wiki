@@ -226,9 +226,9 @@ function rendererHarness() {
     geometries: new Set(), materials: new Set(), texture: new THREE.Texture(), cut: cutPlane(), settings: scenarioSettings('gentle-flow', { landform: 'scoria' }),
     dummy: new THREE.Object3D(), surfaceRock: new THREE.MeshStandardMaterial(), geology: [0, 1, 2].map(() => new THREE.MeshStandardMaterial()), contactRock: new THREE.MeshStandardMaterial(),
     magma: style(), magmaPath: style(), fountain: style(), lava: style(), pool: style(), surfaceTransport: style(), intrusiveTransport: style(),
-    storageLights: STORAGE.map(() => new THREE.PointLight()), ground: new THREE.Mesh(), view: 'overview', canvas: { dataset: {}, removeEventListener() {} },
+    storageLights: STORAGE.map(() => new THREE.PointLight()), ground: new THREE.Mesh(), view: 'overview', cutaway: true, canvas: { dataset: {}, removeEventListener() {} },
     controls: { dispose() {} }, renderer: { shadowMap: {}, dispose() {}, forceContextLoss() {} },
-    stopMotion() {}, presentation: { dispose() {} }, detailMotion: { dispose() {} }, resizeObserver: { disconnect() {} }, ejecta: { dispose() {} },
+    stopMotion() {}, syncDetailHeat() {}, moveCamera() {}, presentation: { dispose() {} }, detailMotion: { dispose() {} }, resizeObserver: { disconnect() {} }, ejecta: { dispose() {} },
     ash: { noise: new THREE.Texture() }, sceneTarget: { dispose() {} }, ashTarget: { dispose() {} }, ashScene: new THREE.Scene(), compositeScene: new THREE.Scene(), disposed: false,
   });
   return scene;
@@ -238,9 +238,8 @@ test('actual renderer retains the environment across product rebuilds and dispos
   const scene = rendererHarness(); scene.rebuild();
   const first = scene.environment, held = resources(first), shapesDisposed = disposalCounter(held.shapes), materialsDisposed = disposalCounter(held.materials), instancesDisposed = disposalCounter(held.instances);
   const matrices = held.instances.map(mesh => mesh.instanceMatrix.array);
-  for (const view of ['overview', 'exterior', 'storage', 'vent', 'flow', 'plume']) {
-    scene.view = view; scene.applySection();
-    const section = view === 'overview' || view === 'storage';
+  for (const view of ['overview', 'exterior', 'storage', 'vent', 'flow', 'plume']) for (const section of [true, false]) {
+    scene.setView(view, section);
     assert.equal(scene.section.visible, section);
     for (const material of held.materials) assert.equal(material.clippingPlanes?.length ?? 0, section ? 1 : 0, `${view} clips the whole context consistently`);
     assert.equal(scene.environment, first, 'a close lens never replaces the older landscape');

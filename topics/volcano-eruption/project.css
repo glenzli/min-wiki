@@ -64,3 +64,71 @@ html:not([data-reading-mode=academic]) #view-note{display:none}
 
 .ocean-life-guide{display:flex;align-items:center;flex-wrap:wrap;gap:8px 12px;width:100%;min-width:0;padding-bottom:6px}.ocean-life-guide label{display:flex;align-items:center;gap:8px;font-size:.78rem;min-width:0}.ocean-life-guide select,.ocean-life-guide button{min-height:42px;font-size:.78rem;padding:7px 11px}.ocean-life-guide button[aria-pressed=true]{border-color:var(--accent);background:var(--accent-soft)}
 @media(max-width:720px){.ocean-life-guide{gap:8px}.ocean-life-guide label{width:100%;justify-content:space-between}.ocean-life-guide select{max-width:72%;min-width:0}.ocean-life-guide button{min-height:44px;flex:1}}
+
+/* Topic-owned controls: questions, camera, section, conditions and reading. */
+.volcano-compact{position:relative}
+html.presentation-page .volcano-compact>.volcano-toolbar{justify-content:flex-start;gap:8px;padding:6px 10px!important}
+.volcano-toolbar>.volcano-questions{margin:0 auto 0 0;max-width:36%;flex:0 1 auto}
+.volcano-questions>summary>span:first-child{display:none}
+.volcano-questions .observation-current{max-width:100%;color:var(--ink);font-size:14px}
+.volcano-toolbar .volcano-menu>summary,.volcano-section{display:flex;align-items:center;gap:6px;min-height:44px;padding:8px 11px;border:1px solid var(--border);border-radius:8px;background:var(--surface);color:var(--ink);font-size:14px;line-height:1.4;white-space:nowrap}
+.volcano-menu{margin:0;border:0;padding:0;min-width:0}
+.volcano-menu>summary{cursor:pointer;list-style:none}
+.volcano-menu>summary::-webkit-details-marker{display:none}
+.volcano-menu>summary::after{content:'⌄';margin-left:5px}
+.volcano-section{cursor:pointer}
+.volcano-section input,.volcano-check input{width:16px;height:16px;margin:0;accent-color:var(--accent)}
+.volcano-section:has(:checked){background:var(--accent-soft);border-color:var(--accent)}
+.volcano-section[data-available=false]{color:var(--secondary)}
+.volcano-menu-panel{position:absolute;z-index:25;top:calc(100% - 1px);right:8px;width:min(340px,calc(100% - 16px));max-height:min(65dvh,560px);overflow:auto;overscroll-behavior:contain;padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 10px 30px #0002}
+.volcano-menu-panel #views{display:grid;gap:7px;margin:0 0 12px}
+.volcano-menu-panel #views button{text-align:left;min-height:44px;font-size:14px}
+.volcano-menu-panel #reset-orbit{width:100%!important;font-size:14px;min-height:44px}
+.volcano-check{display:flex;align-items:center;gap:8px;min-height:44px;font-size:14px}
+.volcano-menu-panel .volcano-check{margin-top:6px}
+.volcano-conditions-panel{position:absolute;z-index:26;top:56px;right:8px;width:min(380px,calc(100% - 16px));max-height:min(70dvh,calc(100% - 64px));overflow:auto;overscroll-behavior:contain;background:var(--surface);border:1px solid var(--border);border-radius:10px;box-shadow:0 10px 30px #0002;padding:14px}
+.volcano-panel-heading{display:flex;align-items:center;gap:10px;justify-content:space-between;margin-bottom:8px;font-size:14px}
+.volcano-panel-heading strong{font-weight:500}
+.volcano-panel-heading button{padding:7px 10px;min-height:44px;font-size:13px}
+.volcano-conditions-panel .conditions{margin:0;padding:0;border:0}
+.volcano-conditions-panel .conditions label{display:block;line-height:1.6;font-size:14px;margin:14px 0}
+.volcano-conditions-panel .conditions select,.volcano-conditions-panel .conditions input[type=range]{display:block;width:100%;max-width:none;margin-top:6px;min-height:44px}
+.volcano-conditions-panel p{font-size:13px;line-height:1.65;margin:8px 0}
+.volcano-conditions-panel .eruption-comparison,.volcano-conditions-panel .ocean-life-guide{display:flex;flex-direction:column;align-items:stretch}
+.volcano-conditions-panel .scenario-choice,.volcano-conditions-panel .ocean-life-guide label{display:block;width:100%;font-size:14px}
+.volcano-conditions-panel .scenario-choice select,.volcano-conditions-panel .ocean-life-guide select{display:block;width:100%;max-width:none;margin-top:6px;font-size:14px;min-height:44px}
+.volcano-conditions-panel .strength-choice{display:flex;flex-wrap:wrap}
+.volcano-compact .scene-lenses{pointer-events:none}
+.volcano-compact[data-process-hints=false] :is(.scene-badge,.process-cue){visibility:hidden}
+.volcano-compact .eruption-hud{pointer-events:none}
+.volcano-compact .playback{border:0;padding:0;flex-wrap:nowrap;position:relative;width:100%}
+.volcano-compact .volcano-playback-menu{flex:none}
+.volcano-playback-menu>summary{font-size:13px;min-height:44px;display:flex;align-items:center;white-space:nowrap;line-height:1.4;padding:6px 10px}
+.volcano-playback-menu>.volcano-menu-panel{top:auto;bottom:calc(100% + 8px);right:0}
+.volcano-playback-menu #steps{display:grid;grid-template-columns:1fr 1fr;margin:0 0 12px;gap:7px}
+.volcano-playback-menu #steps button{font-size:13px;min-height:44px}
+.volcano-playback-menu label{display:flex;justify-content:space-between;align-items:center;margin:10px 0}
+.volcano-playback-menu #restart-process{width:100%!important;font-size:14px}
+.volcano-compact .presentation-notes>.reading-mode{display:flex;gap:8px;margin-bottom:12px}
+.volcano-compact .presentation-notes>.reading-mode button{font-size:14px;flex:1}
+@media(max-width:720px){
+  html.presentation-page .volcano-compact>.volcano-toolbar{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px;padding:6px!important}
+  .volcano-toolbar>.volcano-questions{grid-column:1/3;grid-row:1;max-width:none;width:100%;margin:0}
+  .volcano-toolbar>.volcano-camera{grid-column:1;grid-row:2}
+  .volcano-toolbar>.volcano-section{grid-column:2;grid-row:2}
+  .volcano-toolbar>#conditions-toggle{grid-column:3;grid-row:2}
+  .volcano-toolbar>[data-reader-explanation]{grid-column:3;grid-row:1}
+  .volcano-toolbar>.observation-toggle{display:none}
+  .volcano-questions>summary{min-height:44px;white-space:nowrap}
+  .volcano-questions .observation-current{max-width:none!important;font-size:14px}
+  .volcano-toolbar :is(button,.volcano-section,.volcano-menu>summary){font-size:14px;min-height:44px;padding:8px}
+  .volcano-camera #camera-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .volcano-conditions-panel{position:fixed;top:auto;bottom:0;left:0;right:0;width:auto;max-height:70dvh;border-radius:14px 14px 0 0;padding:14px 16px max(16px,env(safe-area-inset-bottom));z-index:50}
+  .volcano-compact .playback{gap:7px;flex-wrap:wrap}
+  .volcano-compact .playback #play{padding:8px 11px;font-size:13px}
+  .volcano-compact .playback #progress{flex:1;min-width:70px;width:0}
+  .volcano-compact .playback #elapsed{min-width:30px;font-size:12px}
+  .volcano-playback-menu>summary{font-size:13px;padding:6px 2px}
+}
+
+.volcano-menu-panel #views:empty{display:none}

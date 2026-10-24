@@ -10,6 +10,7 @@ export class TopicScene {
   private p = .08;
   private settings: Settings = { vents: 1, gas: .8, viscosity: .2 };
   private view: ObservationView = 'overview';
+  private cutaway = true;
   private detailEnabled = true;
   private disposed = false;
   constructor(canvas: HTMLCanvasElement) {
@@ -27,7 +28,7 @@ export class TopicScene {
       this.scene = gpu; this.canvas.replaceWith(candidate); this.canvas = candidate;
       candidate.addEventListener('webglcontextlost', this.contextLost);
       gpu.setDetailMotion(this.detailEnabled);
-      this.setView(this.view); this.draw(this.p, this.settings);
+      this.setView(this.view, this.settings.vents, this.cutaway); this.draw(this.p, this.settings);
     } catch (error) {
       candidate.removeEventListener('webglcontextlost', this.contextLost); gpu?.dispose();
       console.warn('Volcano 3D unavailable; using the geological Canvas illustration.', error);
@@ -37,7 +38,7 @@ export class TopicScene {
   private mountFallback() {
     const candidate = this.replacement(); candidate.dataset.renderer = 'canvas';
     this.canvas.replaceWith(candidate); this.canvas = candidate;
-    this.scene = new CanvasScene(candidate); this.setView(this.view); this.draw(this.p, this.settings);
+    this.scene = new CanvasScene(candidate); this.setView(this.view, this.settings.vents, this.cutaway); this.draw(this.p, this.settings);
     candidate.dataset.detailMotion = 'unavailable'; candidate.dataset.detailEnabled = String(this.detailEnabled); candidate.dataset.detailPhase = '0.000000';
     this.canvas.dispatchEvent(new CustomEvent('volcano-renderer', { bubbles: true, detail: 'canvas' }));
   }
@@ -51,9 +52,9 @@ export class TopicScene {
     if (this.disposed || this.is3D) return;
     this.scene.dispose(); this.mount3D();
   }
-  setView(view: ObservationView, vents = this.settings.vents) {
-    this.view = view;
-    if (this.scene instanceof Eruption3DScene) this.scene.setView(view);
+  setView(view: ObservationView, vents = this.settings.vents, cutaway = view === 'overview' || view === 'storage') {
+    this.view = view; this.cutaway = cutaway;
+    if (this.scene instanceof Eruption3DScene) this.scene.setView(view, cutaway);
     else this.scene.setView(view === 'exterior' ? 'overview' : view, vents);
   }
   draw(progress: number, settings: Settings) { this.p = progress; this.settings = settings; this.scene.draw(progress, settings); }
