@@ -1,9 +1,13 @@
 /** Mechanism cases, not chronological stages of one object. */
 export const NEBULAE = ['nursery', 'planetary', 'supernova'] as const;
 export type NebulaKind = typeof NEBULAE[number];
+/** Separate observed objects inspire these authored cloud morphologies. */
+export const NEBULA_REFERENCES = ['orion', 'pillars', 'horsehead'] as const;
+export type NebulaReference = typeof NEBULA_REFERENCES[number];
 export const ILLUMINATIONS = ['emission', 'reflection', 'dark'] as const;
 export type Illumination = typeof ILLUMINATIONS[number];
 export const nebulaFrom = (value: string | null): NebulaKind => value === 'planetary' || value === 'supernova' ? value : 'nursery';
+export const nebulaReferenceFrom = (value: string | null): NebulaReference => value === 'pillars' || value === 'horsehead' ? value : 'orion';
 export const illuminationFrom = (value: string | null): Illumination => value === 'reflection' || value === 'dark' ? value : 'emission';
 
 /** Path length through a uniform, optically thin spherical shell. Illustrates

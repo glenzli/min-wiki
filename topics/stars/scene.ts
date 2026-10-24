@@ -8,11 +8,11 @@ import type {OrbitCase} from './orbitSystems.ts';
 import {drawOrbitSystem} from './orbitScene.ts';
 import {StellarSpaceViewport} from './spaceViewport.ts';
 import {drawNebula} from './nebulaScene.ts';
-import type {Illumination,NebulaKind} from './nebulaModel.ts';
+import type {Illumination,NebulaKind,NebulaReference} from './nebulaModel.ts';
 import nebulaWords from './nebulaContent.json';
 import data from './content.json';
 type Words=(v:{zh:string;en:string})=>string;
-export interface ViewState {chapter:string;distance:number;type:number;section:boolean;orbitCase:OrbitCase;time:number;surfaceTime:number;evolutionTrack:Track;evolutionProgress:number;anatomyFocus:number;nebulaKind:NebulaKind;illumination:Illumination;spaceView:boolean;cutaway:boolean}
+export interface ViewState {chapter:string;distance:number;type:number;section:boolean;orbitCase:OrbitCase;time:number;surfaceTime:number;evolutionTrack:Track;evolutionProgress:number;anatomyFocus:number;nebulaKind:NebulaKind;nebulaReference:NebulaReference;illumination:Illumination;spaceView:boolean;cutaway:boolean}
 const rand=(n:number)=>{const v=Math.sin(n*127.13+8.37)*43758.5453;return v-Math.floor(v);};
 export class StellarScene {
   private ctx:CanvasRenderingContext2D;
@@ -35,7 +35,7 @@ export class StellarScene {
     lines.forEach((text,i)=>c.fillText(text,x,y+(i-(lines.length-1)/2)*font*1.18));
   }
   draw(s:ViewState){this.lastState=s;
-    const spaceInput=s.chapter==='nebulae'||s.chapter==='evolution'&&s.spaceView?{chapter:s.chapter as 'nebulae'|'evolution',track:s.evolutionTrack,progress:s.evolutionProgress,nebula:s.nebulaKind,illumination:s.illumination}:undefined;
+    const spaceInput=s.chapter==='nebulae'||s.chapter==='evolution'&&s.spaceView?{chapter:s.chapter as 'nebulae'|'evolution',track:s.evolutionTrack,progress:s.evolutionProgress,nebula:s.nebulaKind,reference:s.nebulaReference,illumination:s.illumination}:undefined;
     if(this.space.draw(spaceInput,s.surfaceTime,s.cutaway))return;
     const width=this.canvas.clientWidth,newChapter=s.chapter==='evolution'||s.chapter==='anatomy',stacked=newChapter&&width<650,mobileOrbit=s.chapter==='orbits'&&width<650;
     this.canvas.style.height=stacked?`${Math.ceil(width*560/520*2)}px`:mobileOrbit?`${Math.ceil(width*(s.orbitCase==='hierarchical'?780:565)/520)}px`:'';const height=this.canvas.clientHeight;if(!width||!height)return;const dpr=Math.min(devicePixelRatio||1,2),c=this.ctx;

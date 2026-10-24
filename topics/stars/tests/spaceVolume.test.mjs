@@ -9,8 +9,9 @@ const positions=new Float32Array(SPACE_PARTICLES*3),alpha=new Float32Array(SPACE
 const update=(medium,input)=>{const frame=stellarSpaceFrame(input);writeSpaceParticles(frame,positions,alpha);medium.update(frame,positions,alpha);return medium.medium.data.slice();};
 
 test('nebular illumination preserves the exact retained density and dust field, including after replay',()=>{
-  const medium=new StellarMedium(),data=medium.medium.data;
+  const medium=new StellarMedium();
   const emission=update(medium,{...base,chapter:'nebulae'});
+  const data=medium.medium.data;
   assert.ok(emission.some((v,i)=>i%4===0&&v>30),'gas has a spatially extended density');
   assert.ok(emission.some((v,i)=>i%4===2&&v>10),'dust has its own absorption field');
   for(const illumination of ['reflection','dark','emission'])assert.deepEqual(update(medium,{...base,chapter:'nebulae',illumination}),emission);
@@ -19,21 +20,15 @@ test('nebular illumination preserves the exact retained density and dust field, 
   assert.deepEqual(update(medium,{...base,chapter:'nebulae'}),emission);
 });
 
-test('enhanced colour occupies connected regions instead of averaging every bright voxel to one hue',()=>{
-  for(const nebula of ['nursery','planetary','supernova']){
+test('shell colour occupies connected regions instead of averaging every bright voxel to one hue',()=>{
+  for(const nebula of ['planetary','supernova']){
     const medium=new StellarMedium(),data=update(medium,{...base,chapter:'nebulae',nebula}),size=medium.medium.resolution;
-    let emitting=0,cool=0,warm=0,nearWeight=0,nearColour=0,farWeight=0,farColour=0;
+    let emitting=0,cool=0,warm=0;
     for(let z=0;z<size;z++)for(let y=0;y<size;y++)for(let x=0;x<size;x++){
       const index=((z*size+y)*size+x)*4,weight=data[index+1],colour=data[index+3]/255;
       emitting+=weight;if(colour<.3)cool+=weight;if(colour>.7)warm+=weight;
-      if(nebula!=='nursery'||weight===0)continue;
-      const px=(x/(size-1)*2-1)*SPACE_VOLUME_EXTENT,py=(y/(size-1)*2-1)*SPACE_VOLUME_EXTENT,pz=(z/(size-1)*2-1)*SPACE_VOLUME_EXTENT;
-      const sourceDistance=Math.hypot(px-1.8,py-.3,pz*.9);
-      if(sourceDistance<1.2){nearWeight+=weight;nearColour+=weight*colour;}
-      if(sourceDistance>2.8){farWeight+=weight;farColour+=weight*colour;}
     }
     assert.ok(cool/emitting>.15&&warm/emitting>.15,`${nebula} retains visible emitting material in both colour regions`);
-    if(nebula==='nursery')assert.ok(farColour/farWeight-nearColour/nearWeight>.6,'the source cavity and outer cloud remain distinct after overlap reconstruction');
   }
 });
 
@@ -46,6 +41,18 @@ test('the volume follows the numbered cloud into the same centered disk with fin
   for(let a=0;a<size;a++)for(let b=0;b<size;b++)for(const [x,y,z]of [[0,a,b],[size-1,a,b],[a,0,b],[a,size-1,b],[a,b,0],[a,b,size-1]]){
     const index=((z*size+y)*size+x)*4;assert.ok(disk.subarray(index,index+4).every(value=>value===0));
   }
+});
+
+test('classic detail uses one larger field and returns to the original evolution resolution without changing parcel geometry',()=>{
+  const medium=new StellarMedium(),owner=medium.medium;
+  const initial=update(medium,base),evolutionData=medium.medium.data;
+  assert.equal(medium.medium.resolution,48);
+  const detailed=update(medium,{...base,chapter:'nebulae',reference:'pillars'}),detailData=medium.medium.data;
+  assert.equal(medium.medium,owner);assert.equal(medium.medium.resolution,64);assert.equal(detailData.byteLength,64**3*4);
+  assert.notEqual(detailData,evolutionData);
+  update(medium,{...base,chapter:'nebulae',reference:'horsehead'});assert.equal(medium.medium.data,detailData,'same-quality reference switches reuse one field');
+  assert.deepEqual(update(medium,base),initial);assert.equal(medium.medium.resolution,48);
+  assert.deepEqual(update(medium,{...base,chapter:'nebulae',reference:'pillars'}),detailed);
 });
 
 test('shell media have hollow centers and rewind to the same field without a phase cache',()=>{
@@ -69,7 +76,7 @@ test('recognition radii retain the order of ordinary stars and their compact end
 });
 
 test('close framing exposes a main-sequence surface while keeping cloud/shell framing and the radius order',()=>{
-  assert.equal(stellarObservationZoom({...base,chapter:'nebulae'},3),1.32);
+  assert.ok(stellarObservationZoom({...base,chapter:'nebulae'},3)<=1,'full classic cloud silhouettes need wider framing than a stellar surface');
   assert.equal(stellarObservationZoom({...base,chapter:'nebulae',nebula:'planetary'},3),1);
   assert.equal(stellarObservationZoom({...base,chapter:'nebulae',nebula:'supernova'},3),1);
   const main={...base,progress:2/6};assert.ok(stellarObservationZoom(main,3)>2.1&&stellarObservationZoom(main,3)<2.3);
@@ -87,21 +94,48 @@ test('close framing exposes a main-sequence surface while keeping cloud/shell fr
   assert.ok(stellarSpaceFrame(cooled).starRadius*stellarObservationZoom(cooled,3)<stellarSpaceFrame(main).starRadius*stellarObservationZoom(main,3),'the compact close-up remains smaller than the main-sequence disk');
 });
 
-test('the nursery keeps its luminous outer cloud inside narrow and desktop observation frames',()=>{
-  const input={...base,chapter:'nebulae'},medium=new StellarMedium();
+test('all classic nurseries keep luminous gas and dense silhouettes inside narrow and desktop frames',()=>{
+ for(const reference of ['orion','pillars','horsehead']){
+  const input={...base,chapter:'nebulae',reference},medium=new StellarMedium();
   update(medium,input);
   const {resolution:size,data}=medium.medium;
+  const front=medium.medium.front;
   for(const aspect of [368/330,600/450,1238/472]){
     const camera=new PerspectiveCamera(36,aspect,.05,70);
     camera.position.set(6.3,3.4,9.2);camera.lookAt(0,0,0);
     camera.zoom=stellarObservationZoom(input,aspect);camera.updateProjectionMatrix();camera.updateMatrixWorld();
     let extentX=0,extentY=0,samples=0;
     for(let z=0;z<size;z++)for(let y=0;y<size;y++)for(let x=0;x<size;x++){
-      if(data[((z*size+y)*size+x)*4+1]<12)continue;
+      const index=((z*size+y)*size+x)*4;
+      if(front){
+        const distance=(front.distance[index/4]/255*2-1)*front.range;
+        // Coefficients are not pre-blurred densities. Bound the reconstructed
+        // support, including the shader's small object-bound erosion envelope.
+        const margin=.035;
+        const dense=data[index+2]>=90&&distance<margin;
+        const emitting=data[index+1]>=12&&Math.abs(distance-front.offset)<front.width+margin;
+        const halo=data[index]>=12&&Math.abs(distance-front.haloOffset)<front.haloWidth+margin;
+        if(!dense&&!emitting&&!halo)continue;
+      }else if(data[index+1]<12&&data[index+2]<90)continue;
       const point=new Vector3(...[x,y,z].map(v=>(v/(size-1)*2-1)*SPACE_VOLUME_EXTENT)).project(camera);
       extentX=Math.max(extentX,Math.abs(point.x));extentY=Math.max(extentY,Math.abs(point.y));samples++;
     }
     assert.ok(samples>1000,'the check includes extended emitting material, not only the central source');
-    assert.ok(extentX<.9&&extentY<.9,`the default ${aspect} frame retains luminous gas with room at its edges`);
+    assert.ok(extentX<.95&&extentY<.95,`${reference} at ${aspect} retains gas and opaque dust with room at its edges (${extentX}, ${extentY})`);
   }
+ }
+});
+
+test('resolved dark fronts reuse one current distance array and release it outside dark-cloud cases',()=>{
+  const medium=new StellarMedium(),pillars={...base,chapter:'nebulae',reference:'pillars'};
+  const original=update(medium,pillars),front=medium.medium.front,distance=front.distance.slice();
+  for(const illumination of ['reflection','dark','emission']){
+    assert.deepEqual(update(medium,{...pillars,illumination}),original);
+    assert.equal(medium.medium.front,front);assert.deepEqual(front.distance,distance);
+  }
+  update(medium,{...pillars,reference:'horsehead'});
+  assert.equal(medium.medium.front,front);assert.notDeepEqual(front.distance,distance);
+  update(medium,{...pillars,reference:'orion'});assert.equal(medium.medium.front,undefined);
+  update(medium,base);assert.equal(medium.medium.front,undefined);
+  assert.deepEqual(update(medium,pillars),original);assert.deepEqual(medium.medium.front.distance,distance);
 });

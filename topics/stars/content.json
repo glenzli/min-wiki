@@ -2,6 +2,10 @@
   "chapters": [
     {
       "id": "nebulae",
+      "shortName": {
+        "zh": "星云",
+        "en": "Nebulae"
+      },
       "name": {
         "zh": "01 · 星云为何可见",
         "en": "01 · Why nebulae are visible"
@@ -9,6 +13,10 @@
     },
     {
       "id": "evolution",
+      "shortName": {
+        "zh": "恒星一生",
+        "en": "Stellar life"
+      },
       "name": {
         "zh": "02 · 一生与分支",
         "en": "02 · Lifetimes and paths"
@@ -16,6 +24,10 @@
     },
     {
       "id": "types",
+      "shortName": {
+        "zh": "颜色与大小",
+        "en": "Color & size"
+      },
       "name": {
         "zh": "03 · 颜色与大小",
         "en": "03 · Color and size"
@@ -23,6 +35,10 @@
     },
     {
       "id": "anatomy",
+      "shortName": {
+        "zh": "太阳活动",
+        "en": "Solar activity"
+      },
       "name": {
         "zh": "04 · 发光与活动",
         "en": "04 · Light and activity"
@@ -30,6 +46,10 @@
     },
     {
       "id": "orbits",
+      "shortName": {
+        "zh": "相伴恒星",
+        "en": "Companions"
+      },
       "name": {
         "zh": "05 · 相伴的恒星",
         "en": "05 · Stars together"
@@ -37,6 +57,10 @@
     },
     {
       "id": "three-body",
+      "shortName": {
+        "zh": "三体实验",
+        "en": "Three bodies"
+      },
       "name": {
         "zh": "06 · 三体数值实验",
         "en": "06 · Three-body experiment"

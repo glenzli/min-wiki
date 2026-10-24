@@ -1,7 +1,9 @@
 import { spaceRandom, type SpaceFrame } from './spaceModel.ts';
 import type { NebulaMedium } from '../../src/visuals/nebulaPortrait.ts';
+import {writeNebulaCloud,nebulaCloudFront} from './nebulaCloud.ts';
 
 export const SPACE_VOLUME_RESOLUTION = 48;
+export const CLOUD_VOLUME_RESOLUTION = 64;
 export const SPACE_VOLUME_EXTENT = 4.3;
 const clamp = (value: number) => Math.max(0, Math.min(1, value));
 const smooth = (start: number, end: number, value: number) => {
@@ -31,15 +33,21 @@ export function stellarMediumDust(shell: boolean, parcel: number): number {
   return shell ? .025 : .09 + .70 * Math.exp(-(((spaceRandom(parcel + 1) - .48) / .13) ** 2) - ((spaceRandom(parcel + 734) - .65) / .19) ** 2);
 }
 
-/** Presentation density only. The topic's numbered parcels remain the geometry
- * owner; this splats those exact positions into one retained gas/dust volume.
- * No lighting choice, camera or surface clock enters the reconstruction. */
+/** Presentation density only. Evolution splats its exact numbered positions;
+ * independent nursery references supply their topic-owned authored fields.
+ * Neither lighting, camera nor surface clock enters these material channels. */
 export class StellarMedium {
   readonly medium: NebulaMedium = { resolution: SPACE_VOLUME_RESOLUTION, data: new Uint8Array(SPACE_VOLUME_RESOLUTION ** 3 * 4) };
   private accumulation = new Float32Array(SPACE_VOLUME_RESOLUTION ** 3 * 4);
   private weights = new Float64Array(15);
 
   update(frame: SpaceFrame, positions: Float32Array, alpha: Float32Array) {
+    const resolution=frame.cloudReference?CLOUD_VOLUME_RESOLUTION:SPACE_VOLUME_RESOLUTION;
+    if(this.medium.resolution!==resolution){this.medium.resolution=resolution;this.medium.data=new Uint8Array(resolution**3*4);}
+    if(frame.cloudReference&&frame.cloudReference!=='orion'){
+      if(!this.medium.front||this.medium.front.distance.length!==resolution**3)this.medium.front=nebulaCloudFront(new Uint8Array(resolution**3));
+    }else this.medium.front=undefined;
+    if(frame.cloudReference){writeNebulaCloud(frame.cloudReference,this.medium.data,resolution,this.medium.front);return;}
     const size = this.medium.resolution, accumulation = this.accumulation, weights = this.weights;
     accumulation.fill(0);
     const shell = frame.shellOpacity > .001, step = 2 * SPACE_VOLUME_EXTENT / (size - 1);

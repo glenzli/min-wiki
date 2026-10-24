@@ -6,7 +6,7 @@ import data from './content.json';
 import evolutionWords from './evolutionContent.json';
 import anatomyWords from './anatomyContent.json';
 import nebulaWords from './nebulaContent.json';
-import {NEBULAE,ILLUMINATIONS} from './nebulaModel.ts';
+import {NEBULA_REFERENCES,ILLUMINATIONS} from './nebulaModel.ts';
 import {evolutionState,evolutionPosition,PHASES,PHASE_PROGRESS,type Track} from './evolutionModel.ts';
 import {advanceEvolution,type EvolutionDirection} from './evolutionPlayback.ts';
 import { readState, distanceAU, solarObservation, chapterFrom } from './model.ts';
@@ -27,7 +27,6 @@ const threeBody=new ThreeBodyExperiment(text);observatory.after(threeBody.root);
 const layerKey=document.createElement('ol');layerKey.className='stellar-layer-key';layerKey.hidden=true;el('stellar-canvas').after(layerKey);
 const surfaceNote=document.createElement('p');surfaceNote.className='scale-note';surfaceNote.textContent=u('surfaceNote');layerKey.after(surfaceNote);
 const observationRoot=document.createElement('section');observationRoot.id='stellar-observation';observationRoot.setAttribute('aria-label',u('workspace'));
-observationRoot.dataset.readerChoices='#chapters';
 observatory.before(observationRoot);observationRoot.append(el('chapters'),observatory,threeBody.root);
 const stage=document.createElement('div');stage.className='stellar-stage';const notes=document.createElement('aside');notes.className='stellar-notes';
 stage.append(observatory.querySelector('.scene-heading')!,el('stellar-canvas'),el('canvas-fallback'),el('scale-note'),el('controls'));
@@ -42,13 +41,13 @@ const surfaceButton=document.createElement('button');surfaceButton.type='button'
 const motion=matchMedia('(prefers-reduced-motion: reduce)');let surfacePlaying=!motion.matches,surfaceFrame=0,surfaceLast=0,surfacePaint=0;
 let playing=false,last=0,frame=0,evolutionReadoutAt=0,disposed=false,scene:StellarScene|undefined;
 let evolutionDirection:EvolutionDirection=1;
-let evolutionOptionsOpen=false,nebulaOptionsOpen=false;
+let evolutionOptionsOpen=false;
 function surfaceLabel(){surfaceButton.textContent=u(surfacePlaying?'pauseSurface':'playSurface');surfaceButton.setAttribute('aria-pressed',String(surfacePlaying));}
 function surfaceTick(now:number){surfaceFrame=0;if(!surfacePlaying||state.chapter==='nebulae'||document.hidden||disposed)return;state.surfaceTime+=Math.min(.1,(now-surfaceLast)/1000);surfaceLast=now;if(now-surfacePaint>=125){surfacePaint=now;if(state.chapter==='three-body')threeBody.setSurfaceTime(state.surfaceTime);else draw();}surfaceFrame=requestAnimationFrame(surfaceTick);}
 function setSurface(active:boolean){surfacePlaying=active;cancelAnimationFrame(surfaceFrame);surfaceFrame=0;surfaceLabel();if(active&&!document.hidden&&!disposed){surfaceLast=performance.now();surfaceFrame=requestAnimationFrame(surfaceTick);}}
 surfaceButton.onclick=()=>setSurface(!surfacePlaying);surfaceLabel();
 try{scene=new StellarScene(el<HTMLCanvasElement>('stellar-canvas'),text);}catch{el('canvas-fallback').hidden=false;el('stellar-canvas').hidden=true;}
-function writeUrl(){const url=new URL(location.href);url.searchParams.set('chapter',state.chapter);url.searchParams.set('distance',state.distance.toFixed(3));url.searchParams.set('type',String(state.type));url.searchParams.set('orbit',state.orbitCase);url.searchParams.delete('system');url.searchParams.set('track',state.evolutionTrack);url.searchParams.set('evolution',state.evolutionProgress.toFixed(5));url.searchParams.set('focus',String(state.anatomyFocus));url.searchParams.set('nebula',state.nebulaKind);url.searchParams.set('light',state.illumination);if(state.spaceView)url.searchParams.delete('view');else url.searchParams.set('view','comparison');if(state.cutaway)url.searchParams.set('cutaway','1');else url.searchParams.delete('cutaway');history.replaceState(null,'',url);}
+function writeUrl(){const url=new URL(location.href);url.searchParams.set('chapter',state.chapter);url.searchParams.set('distance',state.distance.toFixed(3));url.searchParams.set('type',String(state.type));url.searchParams.set('orbit',state.orbitCase);url.searchParams.delete('system');url.searchParams.set('track',state.evolutionTrack);url.searchParams.set('evolution',state.evolutionProgress.toFixed(5));url.searchParams.set('focus',String(state.anatomyFocus));url.searchParams.set('nebula',state.nebulaKind);url.searchParams.set('cloud',state.nebulaReference);url.searchParams.set('light',state.illumination);if(state.spaceView)url.searchParams.delete('view');else url.searchParams.set('view','comparison');if(state.cutaway)url.searchParams.set('cutaway','1');else url.searchParams.delete('cutaway');history.replaceState(null,'',url);}
 function draw(){if(state.chapter!=='three-body')scene?.draw(state);}
 function evolutionPlayLabel(){return evolutionWords.ui[evolutionDirection===-1?(state.evolutionProgress<=0?'reverseRestart':'reversePlay'):state.evolutionProgress>=1?'restart':'play'];}
 function stop(persist=true){playing=false;cancelAnimationFrame(frame);frame=0;playButton.textContent=state.chapter==='evolution'?evolveText(evolutionPlayLabel()):u('play');playButton.setAttribute('aria-pressed','false');if(persist)writeUrl();}
@@ -81,7 +80,10 @@ function updateReadout(){
   el('readouts').replaceChildren(...rows.map(([label,value])=>{const div=document.createElement('div'),span=document.createElement('span'),strong=document.createElement('strong');span.textContent=label;strong.textContent=value;div.append(span,strong);return div;}));
 }
 function update(){
-  const chapter=chapterFrom(state.chapter);el('chapters').replaceChildren(...data.chapters.map(ch=>button(text(ch.name),chapter===ch.id,()=>{stop();state.chapter=chapterFrom(ch.id);writeUrl();update();})));
+  const chapter=chapterFrom(state.chapter);el('chapters').replaceChildren(...data.chapters.map(ch=>{
+    const choice=button(text(ch.shortName),chapter===ch.id,()=>{stop();state.chapter=chapterFrom(ch.id);writeUrl();update();el('chapters').querySelector<HTMLButtonElement>(`[data-chapter="${ch.id}"]`)?.focus({preventScroll:true});});
+    choice.dataset.chapter=ch.id;choice.title=text(ch.name);choice.setAttribute('aria-label',text(ch.name));return choice;
+  }));
   surfaceButton.hidden=chapter==='nebulae';if(chapter==='nebulae'){cancelAnimationFrame(surfaceFrame);surfaceFrame=0;}else if(surfacePlaying&&!surfaceFrame&&!document.hidden&&!disposed){surfaceLast=performance.now();surfaceFrame=requestAnimationFrame(surfaceTick);}
   reading.setChildTarget(chapter==='three-body'?threeIntro:el('explain'));
   threeDetail.hidden=chapter!=='three-body';
@@ -110,16 +112,27 @@ function update(){
     el('scene-title').textContent=evolveText(ui.title);el('context').textContent=evolveText(ui.context);el('scale-note').textContent=evolveText(state.spaceView?ui.spaceScale:state.evolutionTrack==='low-mass'?ui.scaleLow:state.evolutionTrack==='solar'?ui.scale:ui.scaleMassive);updateEvolutionCopy();updateReadout();draw();return;
   }
   if(chapter==='nebulae'){
-    const ui=nebulaWords.ui,words=nebulaWords.cases[state.nebulaKind];controls.classList.add('nebula-controls');
-    const cases=document.createElement('div');cases.className='nebula-cases';cases.setAttribute('role','group');cases.setAttribute('aria-label',text(ui.title));
-    for(const kind of NEBULAE)cases.append(button(text(nebulaWords.cases[kind].name),state.nebulaKind===kind,()=>{state.nebulaKind=kind;writeUrl();update();}));
-    const options=choices(text(words.name),'nebula-options',nebulaOptionsOpen,open=>{nebulaOptionsOpen=open;});options.details.setAttribute('aria-label',text(ui.choices));options.body.append(cases);controls.append(options.details);
-    if(state.nebulaKind==='nursery'){const group=document.createElement('div');group.className='nebula-light';group.setAttribute('role','group');group.setAttribute('aria-label',text(ui.lightLabel));for(const light of ILLUMINATIONS)group.append(button(text(nebulaWords.illumination[light].name),state.illumination===light,()=>{state.illumination=light;writeUrl();update();}));controls.append(group);}
+    const ui=nebulaWords.ui,words=nebulaWords.cases[state.nebulaKind],reference=nebulaWords.references[state.nebulaReference],nursery=state.nebulaKind==='nursery';controls.classList.add('nebula-controls');
+    const cases=document.createElement('div');cases.className='nebula-cases';cases.setAttribute('role','group');cases.setAttribute('aria-label',text(ui.choices));
+    for(const key of [...NEBULA_REFERENCES,'planetary','supernova'] as const){
+      const isCloud=key!=='planetary'&&key!=='supernova',label=isCloud?nebulaWords.references[key]:nebulaWords.cases[key];
+      const choice=button(text(label.shortName),isCloud?nursery&&state.nebulaReference===key:state.nebulaKind===key,()=>{
+        if(key==='planetary'||key==='supernova')state.nebulaKind=key;
+        else {state.nebulaKind='nursery';state.nebulaReference=key;}
+        writeUrl();update();el('controls').querySelector<HTMLButtonElement>(`[data-nebula-choice="${key}"]`)?.focus({preventScroll:true});
+      });
+      choice.dataset.nebulaChoice=key;choice.title=text(label.name);choice.setAttribute('aria-label',text(label.name));cases.append(choice);
+    }
+    controls.append(cases);
+    if(nursery){const group=document.createElement('div');group.className='nebula-light';group.setAttribute('role','group');group.setAttribute('aria-label',text(ui.lightLabel));for(const light of ILLUMINATIONS)group.append(button(text(nebulaWords.illumination[light].name),state.illumination===light,()=>{state.illumination=light;writeUrl();update();}));controls.append(group);}
     else controls.append(button(evolveText(state.cutaway?evolutionWords.ui.exterior:evolutionWords.ui.cutaway),state.cutaway,()=>{state.cutaway=!state.cutaway;writeUrl();update();}));
     controls.append(button(evolveText(evolutionWords.ui.resetCamera),false,()=>scene?.resetSpaceCamera()));
-    el('scene-title').textContent=text(ui.title);el('context').textContent=text(ui.context);el('scale-note').textContent=text(ui.scale);
-    el('explain-title').textContent=text(words.name);el('explain').textContent=text(words.body)+(state.nebulaKind==='nursery'?' '+text(nebulaWords.illumination[state.illumination].body):'');el('boundary').textContent=text(words.boundary);el<HTMLAnchorElement>('source').href=words.source;
-    reading.set(nebulaStudy(state.nebulaKind,state.illumination));updateReadout();draw();return;
+    if(nursery){
+      const prompt=document.createElement('p'),source=document.createElement('a');prompt.className='nebula-reference-prompt';prompt.append(text(reference.observe)+' ');source.textContent=text(ui.referencePhoto);source.href=reference.source;source.target='_blank';source.rel='noopener noreferrer';source.setAttribute('aria-label',text(ui.referencePhoto)+' · '+text(reference.name));prompt.append(source);controls.append(prompt);
+    }
+    el('scene-title').textContent=text(ui.title);el('context').textContent=text(ui.context);el('scale-note').textContent=text(nursery?ui.referenceBoundary:ui.scale);
+    el('explain-title').textContent=text(nursery?reference.name:words.name);el('explain').textContent=text(words.body)+(nursery?' '+text(nebulaWords.illumination[state.illumination].body):'');el('boundary').textContent=text(words.boundary);el<HTMLAnchorElement>('source').href=nursery?reference.source:words.source;
+    reading.set(nebulaStudy(state.nebulaKind,state.illumination,state.nebulaReference));updateReadout();draw();return;
   }
   if(chapter==='anatomy'){
     const ui=anatomyWords.ui;controls.classList.add('anatomy-controls');for(const [i,feature]of anatomyWords.features.entries())controls.append(button(evolveText(feature.name),state.anatomyFocus===i,()=>{state.anatomyFocus=i;writeUrl();update();}));

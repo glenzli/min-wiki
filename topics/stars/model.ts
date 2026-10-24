@@ -1,7 +1,7 @@
 import { SUN_RADIUS_KM, AU_KM, solarObservation } from '../sun-star/model.ts';
 import {clampProgress,type Track} from './evolutionModel.ts';
 import type {OrbitCase} from './orbitSystems.ts';
-import {nebulaFrom,illuminationFrom} from './nebulaModel.ts';
+import {nebulaFrom,nebulaReferenceFrom,illuminationFrom} from './nebulaModel.ts';
 import data from './content.json';
 export { SUN_RADIUS_KM, AU_KM, solarObservation };
 export type Chapter = 'evolution' | 'nebulae' | 'anatomy' | 'sun' | 'types' | 'orbits' | 'three-body';
@@ -22,4 +22,4 @@ export function tripleState(time:number):Point[] {
 }
 export const massCenter=(points:Point[])=>{const m=points.reduce((s,p)=>s+p.mass,0);return {x:points.reduce((s,p)=>s+p.x*p.mass,0)/m,y:points.reduce((s,p)=>s+p.y*p.mass,0)/m};};
 export const diameterRatio=(radius:number,reference:number)=>2*radius/(2*reference);
-export function readState(search:string){const p=new URLSearchParams(search),track=p.get('track'),orbit=p.get('orbit');const orbitCase:OrbitCase=orbit==='circumbinary'||orbit==='circumprimary'||orbit==='hierarchical'?orbit:p.get('system')==='triple'?'hierarchical':'circumbinary';return {chapter:chapterFrom(p.get('chapter')),distance:clamp(Number(p.get('distance')??0)),type:clamp(Number(p.get('type')??1),0,data.types.length-1),orbitCase,evolutionTrack:(track==='low-mass'||track==='massive'||track==='very-massive'?track:'solar') as Track,evolutionProgress:clampProgress(Number(p.get('evolution')??0)),anatomyFocus:Math.round(clamp(Number(p.get('focus')??0),0,5)),nebulaKind:nebulaFrom(p.get('nebula')),illumination:illuminationFrom(p.get('light')),spaceView:p.get('view')!=='comparison',cutaway:p.get('cutaway')==='1'};}
+export function readState(search:string){const p=new URLSearchParams(search),track=p.get('track'),orbit=p.get('orbit');const orbitCase:OrbitCase=orbit==='circumbinary'||orbit==='circumprimary'||orbit==='hierarchical'?orbit:p.get('system')==='triple'?'hierarchical':'circumbinary';return {chapter:chapterFrom(p.get('chapter')),distance:clamp(Number(p.get('distance')??0)),type:clamp(Number(p.get('type')??1),0,data.types.length-1),orbitCase,evolutionTrack:(track==='low-mass'||track==='massive'||track==='very-massive'?track:'solar') as Track,evolutionProgress:clampProgress(Number(p.get('evolution')??0)),anatomyFocus:Math.round(clamp(Number(p.get('focus')??0),0,5)),nebulaKind:nebulaFrom(p.get('nebula')),nebulaReference:nebulaReferenceFrom(p.get('cloud')),illumination:illuminationFrom(p.get('light')),spaceView:p.get('view')!=='comparison',cutaway:p.get('cutaway')==='1'};}

@@ -3,6 +3,8 @@ import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
 import {SPACE_PARTICLES, spaceRandom, stellarSpaceFrame, stellarObservationZoom, writeSpaceParticles, type SpaceInput} from './spaceModel.ts';
 import {createStellarPortrait} from '../../src/visuals/stellarPortrait.ts';
 import {createNebulaPortrait} from '../../src/visuals/nebulaPortrait.ts';
+import {nebulaCloudAppearance} from './nebulaCloud.ts';
+import {NEBULA_SKY_WIDTH,NEBULA_SKY_HEIGHT,writeNebulaEnvironment,nebulaEnvironmentPalette,nebulaEnvironmentStars} from './nebulaEnvironment.ts';
 import {StellarMedium,SPACE_VOLUME_EXTENT} from './spaceVolume.ts';
 
 const particleVertex = `
@@ -84,7 +86,7 @@ export class StellarSpace3D {
   private photosphere=createStellarPortrait('sun',{energySection:false});
   private compactSurface=createStellarPortrait('white-dwarf',{energySection:false});
   private medium=new StellarMedium();
-  private volume=createNebulaPortrait('nebula',{medium:this.medium.medium,steps:48,depthTest:false});
+  private volume=createNebulaPortrait('nebula',{medium:this.medium.medium,steps:96,depthTest:false});
   private shellMaterial=new THREE.ShaderMaterial({vertexShader:shellVertex,fragmentShader:shellFragment,transparent:true,depthWrite:false,side:THREE.DoubleSide,uniforms:{uColor:{value:new THREE.Color('#81b6c2')},uOpacity:{value:0},uCutaway:{value:0}}});
   private shell=new THREE.Mesh(this.sphere,this.shellMaterial);
   private positions=new Float32Array(SPACE_PARTICLES*3);
@@ -93,7 +95,18 @@ export class StellarSpace3D {
   private filaments=new THREE.LineSegments(shellFilaments(),this.filamentMaterial);
   private jets:THREE.Points<THREE.BufferGeometry,THREE.ShaderMaterial>;
   private background:THREE.Points<THREE.BufferGeometry,THREE.PointsMaterial>;
-  private backdropMaterial=new THREE.ShaderMaterial({vertexShader:'varying vec3 vP;void main(){vP=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',fragmentShader:'varying vec3 vP;void main(){float band=.6+.4*exp(-vP.y*vP.y*9.0);gl_FragColor=vec4(vec3(.13,.17,.23)*band,1.0);}',side:THREE.BackSide,depthWrite:false,depthTest:false});
+  private skyField?:THREE.DataTexture;
+  private skyKey='';
+  private skyStars=new THREE.Points(new THREE.BufferGeometry(),new THREE.ShaderMaterial({
+    vertexShader:'attribute float aSize;attribute float aBrightness;attribute float aWarmth;uniform float uPixelRatio;varying float vBrightness;varying float vWarmth;void main(){vBrightness=aBrightness;vWarmth=aWarmth;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);gl_PointSize=aSize*uPixelRatio;}',
+    fragmentShader:`varying float vBrightness;varying float vWarmth;void main(){float r=length(gl_PointCoord-.5)*2.;if(r>1.)discard;float core=exp(-r*r*38.);float halo=exp(-r*r*5.)*.12*(1.-smoothstep(.65,1.,r));vec3 color=mix(vec3(.60,.78,1.),vec3(1.,.84,.62),vWarmth);gl_FragColor=vec4(color,(core+halo)*vBrightness);
+    #include <colorspace_fragment>
+    }`,transparent:true,depthWrite:false,uniforms:{uPixelRatio:{value:1}}}));
+  private backdropMaterial=new THREE.ShaderMaterial({vertexShader:'varying vec3 vP;varying vec2 vUv;void main(){vP=position;vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0);}',fragmentShader:`varying vec3 vP;varying vec2 vUv;uniform vec3 uTop;uniform vec3 uBottom;uniform sampler2D uSkyField;uniform vec3 uWarm;uniform vec3 uCool;uniform float uStrength;
+void main(){
+ vec4 field=texture2D(uSkyField,vUv);float band=smoothstep(-.20,.20,normalize(vP).y);vec3 color=mix(uBottom,uTop,band)*(1.-field.b*.40)+mix(uWarm,uCool,field.a)*field.r*uStrength+uCool*field.g*.025;gl_FragColor=vec4(color,1.);
+ #include <colorspace_fragment>
+}`,uniforms:{uTop:{value:new THREE.Color()},uBottom:{value:new THREE.Color()},uSkyField:{value:null},uWarm:{value:new THREE.Color()},uCool:{value:new THREE.Color()},uStrength:{value:0}},side:THREE.BackSide,depthWrite:false,depthTest:false});
   private backdrop=new THREE.Mesh(this.sphere,this.backdropMaterial);
   private resize:ResizeObserver;
   private key:(event:KeyboardEvent)=>void;
@@ -101,6 +114,8 @@ export class StellarSpace3D {
   private disposed=false;
   private geometryKey='';
   private input?:SpaceInput;
+  private observing=false;
+  private volumeSampling(){return this.input?.chapter==='nebulae'&&this.input.nebula==='nursery'?(this.observing?64:this.input.reference&&this.input.reference!=='orion'?96:80):48;}
 
   constructor(private canvas:HTMLCanvasElement,private onFailure:()=>void){
     this.renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'low-power'});
@@ -111,6 +126,8 @@ export class StellarSpace3D {
     this.controls.enableDamping=false;this.controls.enablePan=false;
     this.controls.minDistance=6;this.controls.maxDistance=19;
     this.controls.addEventListener('change',()=>this.render());
+    this.controls.addEventListener('start',()=>{this.observing=true;this.volume.setAppearance({samplingSteps:this.volumeSampling()});});
+    this.controls.addEventListener('end',()=>{this.observing=false;this.volume.setAppearance({samplingSteps:this.volumeSampling()});this.render();});
     const jetsGeometry=new THREE.BufferGeometry(),jetPositions=new Float32Array(220*3);
     for(let i=0;i<220;i++){const h=spaceRandom(i+241),a=spaceRandom(i+373)*Math.PI*2,r=(.02+h*.19)*spaceRandom(i+91);jetPositions.set([Math.cos(a)*r,(i%2?1:-1)*(.5+h*3),Math.sin(a)*r],i*3);}
     jetsGeometry.setAttribute('position',new THREE.BufferAttribute(jetPositions,3));
@@ -122,10 +139,11 @@ export class StellarSpace3D {
     backgroundGeometry.setAttribute('position',new THREE.BufferAttribute(bgPositions,3));
     this.background=new THREE.Points(backgroundGeometry,new THREE.PointsMaterial({color:'#b9cce3',size:.035,sizeAttenuation:true,transparent:true,opacity:.55,depthWrite:false}));
     this.backdrop.scale.setScalar(27);this.backdrop.renderOrder=-2;this.backdrop.visible=false;
+    this.skyStars.renderOrder=-1;this.skyStars.visible=false;
     this.volume.group.scale.setScalar(SPACE_VOLUME_EXTENT);
     this.volume.group.traverse(object=>{object.renderOrder=2;object.frustumCulled=false;});
     for(const portrait of [this.photosphere,this.compactSurface])portrait.group.traverse(object=>{object.renderOrder=1;});
-    this.world.add(this.backdrop,this.background,this.jets,this.shell,this.filaments,this.blackHole,this.photosphere.group,this.compactSurface.group,this.volume.group);
+    this.world.add(this.backdrop,this.background,this.skyStars,this.jets,this.shell,this.filaments,this.blackHole,this.photosphere.group,this.compactSurface.group,this.volume.group);
     this.blackHole.renderOrder=1;this.shell.renderOrder=3;
     this.key=event=>{if(!this.input||this.disposed)return;const delta=event.key==='ArrowLeft'?-.12:event.key==='ArrowRight'?.12:0,tilt=event.key==='ArrowUp'?-.1:event.key==='ArrowDown'?.1:0;
       if(!delta&&!tilt&&event.key!=='+'&&event.key!=='-'&&event.key!=='Home')return;event.preventDefault();if(event.key==='Home'){this.resetCamera();return;}
@@ -136,12 +154,13 @@ export class StellarSpace3D {
     this.resetCamera();this.resizeCanvas();
   }
   private frameCamera(){this.camera.zoom=this.input?stellarObservationZoom(this.input,this.camera.aspect):1;this.camera.updateProjectionMatrix();}
-  private resizeCanvas(){if(this.disposed)return;const w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(!w||!h)return;this.renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.75,Math.sqrt(2_000_000/(w*h))));this.renderer.setSize(w,h,false);this.camera.aspect=w/h;this.frameCamera();const scale=Math.min(w,h)*1.15;this.jets.material.uniforms.uPointScale!.value=scale;this.render();}
+  private resizeCanvas(){if(this.disposed)return;const w=this.canvas.clientWidth,h=this.canvas.clientHeight;if(!w||!h)return;this.renderer.setPixelRatio(Math.min(devicePixelRatio||1,1.75,Math.sqrt(2_000_000/(w*h))));this.renderer.setSize(w,h,false);this.skyStars.material.uniforms.uPixelRatio!.value=this.renderer.getPixelRatio();this.camera.aspect=w/h;this.frameCamera();const scale=Math.min(w,h)*1.15;this.jets.material.uniforms.uPointScale!.value=scale;this.render();}
   draw(input:SpaceInput,time:number,cutaway:boolean){
     if(this.disposed)return;this.input=input;const frame=stellarSpaceFrame(input);this.frameCamera();
-    const key=[input.chapter,input.track,input.progress,input.nebula].join('|');
+    const key=input.chapter==='nebulae'?['nebulae',input.nebula,input.nebula==='nursery'?(input.reference??'orion'):''].join('|'):[input.chapter,input.track,input.progress].join('|');
     if(this.geometryKey!==key){this.geometryKey=key;writeSpaceParticles(frame,this.positions,this.alphas);this.medium.update(frame,this.positions,this.alphas);this.volume.updateMedium();}
     const sourceStar=input.chapter==='nebulae'&&input.nebula==='nursery';
+    const cloud=sourceStar?nebulaCloudAppearance(input.reference??'orion'):undefined;
     this.blackHole.visible=frame.blackHole&&frame.starOpacity>0;this.blackHole.scale.setScalar(frame.starRadius);this.blackHoleMaterial.uniforms.opacity!.value=frame.starOpacity;
     const dark=input.chapter==='nebulae'&&input.nebula==='nursery'&&input.illumination==='dark',reflection=input.chapter==='nebulae'&&input.nebula==='nursery'&&input.illumination==='reflection';
     for(const [portrait,compact]of [[this.photosphere,false],[this.compactSurface,true]] as const){
@@ -152,18 +171,36 @@ export class StellarSpace3D {
       portrait.setAppearance({color:frame.starColor,opacity:surfaceOpacity,time,profile,emission:frame.emission,
         activeRegions:input.track==='low-mass'?.8:input.track==='solar'?.8:.25,glare:frame.glare});
     }
-    this.backdrop.visible=dark;
-    // The parcel buffers still own the geometry. The retained volume joins them
-    // into gas and dust instead of drawing a collection of luminous dots.
+    this.backdrop.visible=sourceStar;this.background.visible=!sourceStar;this.skyStars.visible=sourceStar;
+    if(sourceStar){
+      const reference=input.reference??'orion';
+      if(!this.skyField){this.skyField=new THREE.DataTexture(new Uint8Array(NEBULA_SKY_WIDTH*NEBULA_SKY_HEIGHT*4),NEBULA_SKY_WIDTH,NEBULA_SKY_HEIGHT);this.skyField.minFilter=THREE.LinearFilter;this.skyField.magFilter=THREE.LinearFilter;this.skyField.wrapS=THREE.RepeatWrapping;this.backdropMaterial.uniforms.uSkyField!.value=this.skyField;}
+      if(this.skyKey!==reference){
+        this.skyKey=reference;writeNebulaEnvironment(reference,this.skyField.image.data as Uint8Array);this.skyField.needsUpdate=true;
+        const stars=nebulaEnvironmentStars(reference),g=this.skyStars.geometry;
+        // One current geometry. Refilling equal-sized attributes does not retain
+        // another case or detach GPU buffers that need separate disposal.
+        const attribute=(name:string,values:number[],size:number)=>{const old=g.getAttribute(name);if(old){(old.array as Float32Array).set(values);old.needsUpdate=true;}else g.setAttribute(name,new THREE.Float32BufferAttribute(values,size));};
+        attribute('position',stars.flatMap(s=>[...s.position]),3);attribute('aSize',stars.map(s=>s.size),1);attribute('aBrightness',stars.map(s=>s.brightness),1);attribute('aWarmth',stars.map(s=>s.warmth),1);g.computeBoundingSphere();
+      }
+      const palette=nebulaEnvironmentPalette(reference,input.illumination),uniforms=this.backdropMaterial.uniforms;
+      for(const [name,color]of [['uTop',palette.top],['uBottom',palette.bottom],['uWarm',palette.warm],['uCool',palette.cool]] as const)uniforms[name]!.value.set(color);
+      uniforms.uStrength!.value=palette.strength;
+    }
+    // Evolution follows its numbered parcels; independent nursery references
+    // use the topic's authored cloud fields. Both share one retained volume.
     const opened=cutaway&&frame.shellOpacity>.01;
     this.volume.group.visible=frame.cloudOpacity>.001||frame.shellOpacity>.001;
     this.volume.setAppearance({illumination:sourceStar?input.illumination:'emission',structure:frame.kind==='planetary'?'planetary':frame.kind==='supernova'?'remnant':'cloud',cutaway:opened,cutZ:.04*frame.shellRadius/SPACE_VOLUME_EXTENT,
-      cool:reflection?'#4baeff':frame.kind==='planetary'?'#21d6d0':frame.kind==='supernova'?'#30bff3':'#32c8ec',
-      accent:reflection?'#8296f1':frame.kind==='planetary'?'#7570ec':frame.kind==='supernova'?'#f14c78':'#bd3bda',
-      warm:frame.kind==='planetary'?'#ff9858':frame.kind==='supernova'?'#ffa24b':'#ff4e7d',
-      gasExtinction:.52-.24*frame.shellBlend,dustExtinction:dark?14:4.8-4*frame.shellBlend,
+      samplingSteps:this.volumeSampling(),
+      densityDisplacement:cloud?.densityDisplacement??.045,emissionVariation:cloud?.emissionVariation??1,dustVariation:cloud?.dustVariation??1,
+      dustLight:cloud?.dustLight??0,dustDetailTransform:cloud?.dustDetailTransform??[1.9,0,0,0,1.9,0,0,0,1.9],
+      cool:reflection?'#87b5dc':cloud?.cool??(frame.kind==='planetary'?'#21d6d0':frame.kind==='supernova'?'#30bff3':'#32c8ec'),
+      accent:reflection?'#a2b0ca':cloud?.accent??(frame.kind==='planetary'?'#7570ec':frame.kind==='supernova'?'#f14c78':'#bd3bda'),
+      warm:cloud?.warm??(frame.kind==='planetary'?'#ff9858':frame.kind==='supernova'?'#ffa24b':'#ff4e7d'),
+      gasExtinction:.52-.24*frame.shellBlend,dustExtinction:cloud?.dustExtinction??(dark?14:4.8-4*frame.shellBlend),
       luminosity:frame.kind==='planetary'?8.5:frame.kind==='supernova'?12:reflection?5.2:6.5,
-      sources:sourceStar&&!dark?[[1.8/SPACE_VOLUME_EXTENT,.3/SPACE_VOLUME_EXTENT,0]]:[],lightPosition:[1.8/SPACE_VOLUME_EXTENT,.3/SPACE_VOLUME_EXTENT,0]});
+      sources:cloud&&!dark?cloud.sources:[],lightPosition:cloud?.lightPosition??[1.8/SPACE_VOLUME_EXTENT,.3/SPACE_VOLUME_EXTENT,0]});
     this.shell.visible=frame.shellOpacity>.001;this.shell.scale.set(frame.shellRadius,frame.shellRadius*frame.shellFlattening,frame.shellRadius);
     this.shellMaterial.uniforms.uColor!.value.set(frame.kind==='planetary'?'#29c9d5':'#f78652');this.shellMaterial.uniforms.uOpacity!.value=frame.shellOpacity*.35;this.shellMaterial.uniforms.uCutaway!.value=Number(opened);
     this.filaments.visible=frame.kind==='supernova'&&frame.shellOpacity>.001;this.filaments.scale.copy(this.shell.scale);this.filamentMaterial.uniforms.uColor!.value.set('#ffb46e');this.filamentMaterial.uniforms.uOpacity!.value=frame.shellOpacity*.12;this.filamentMaterial.uniforms.uCutaway!.value=Number(opened);
@@ -172,7 +209,7 @@ export class StellarSpace3D {
   }
   resetCamera(){this.camera.position.set(6.3,3.4,9.2);this.controls.target.set(0,0,0);this.controls.update();this.render();}
   private render(){if(!this.disposed&&!document.hidden&&this.canvas.isConnected&&!this.canvas.parentElement?.hidden)this.renderer.render(this.world,this.camera);}
-  dispose(){if(this.disposed)return;this.disposed=true;this.resize.disconnect();this.canvas.removeEventListener('keydown',this.key);this.canvas.removeEventListener('webglcontextlost',this.lost);this.controls.dispose();this.sphere.dispose();this.blackHoleMaterial.dispose();this.shellMaterial.dispose();this.backdropMaterial.dispose();this.filaments.geometry.dispose();this.filamentMaterial.dispose();this.jets.geometry.dispose();this.jets.material.dispose();this.background.geometry.dispose();this.background.material.dispose();
+  dispose(){if(this.disposed)return;this.disposed=true;this.resize.disconnect();this.canvas.removeEventListener('keydown',this.key);this.canvas.removeEventListener('webglcontextlost',this.lost);this.controls.dispose();this.sphere.dispose();this.blackHoleMaterial.dispose();this.shellMaterial.dispose();this.backdropMaterial.dispose();this.skyField?.dispose();this.skyStars.geometry.dispose();this.skyStars.material.dispose();this.filaments.geometry.dispose();this.filamentMaterial.dispose();this.jets.geometry.dispose();this.jets.material.dispose();this.background.geometry.dispose();this.background.material.dispose();
     for(const portrait of [this.photosphere,this.compactSurface,this.volume]){portrait.dispose();portrait.group.traverse(object=>{const mesh=object as THREE.Mesh;mesh.geometry?.dispose();if(Array.isArray(mesh.material))for(const material of mesh.material)material.dispose();else mesh.material?.dispose();});}
     this.world.clear();this.renderer.renderLists.dispose();this.renderer.dispose();this.renderer.forceContextLoss();}
 }

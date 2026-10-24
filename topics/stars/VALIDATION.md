@@ -341,3 +341,134 @@ Validation evidence:
 Screenshots and limits are in the appended section of
 [the visual record](../../docs/strict-visual-review-20261023.md). No physical-phone performance,
 calibrated radiation, forced context loss or exhaustive action-combination claim is made.
+
+# Classic nebular morphology and natural volume detail — 2026-10-24
+
+Run `nebula-classics-root-20261024` integrates the released classic-reference UI
+(`nebula-classic-ui-result-20261024`) and a read-only optical/science review. Baseline:
+`db5ee02ef4dd713664054ef97d91fee1d548c308`. Local edits only; no commit, push or deployment.
+
+- Three independent nursery references: Orion's open cavity and foreground dust lane,
+  Eagle/Pillars' unequal connected dense trunks, Horsehead's absorbing head/neck and parent cloud.
+  The topic owns all authored depth/density and source positions. Official images are linked;
+  the Horsehead composite's visible/near-IR inputs and the non-reconstruction boundary are paired
+  in both languages. Selection is serialized as `cloud`, while old URLs remain valid.
+- Common material detail is correlated and isotropic through the full volume, replacing thin
+  repeated bright sheets. The existing 48³ medium, 32³ detail field and 48-step topic integral
+  remain bounded. Classic Canvas fallback projects the same medium; extinction now samples its
+  actual radial backdrop rather than painting a brighter fixed sky. New tests explicitly caught
+  and guard this bug. Uneven parent-cloud edges and wider framing resolved narrow-view clipping.
+- **92/92 focused tests passed** across stars, sun-star, universe-guide and shared visuals.
+  Full-project TypeScript passed after the concurrent topic owner resolved its earlier type
+  blocker; affected-consumer TypeScript also passed. i18n passed **7377 messages / 74 namespaces**;
+  entry projection, editorial status and `git diff --check` passed.
+- Actual source-page inspection covered all three classic references, illumination modes,
+  keyboard rotation, reference/light/language persistence, PN/full-open shells, SNR, stellar
+  formation and the guide consumer. Final packaged Chinese/English 390px pages measured body
+  width 390 with no horizontal overflow. The classic dropdown measured 344px width, `appearance:
+  none`, 30px right padding and arrow positions 17px/13px from the right. These are real browser
+  checks, separate from the deterministic Canvas/context-lifecycle harnesses.
+- One final packaged build: **73 entries / 1560 inputs**, digest
+  `c521d98f69c89aaf112ae614a97c9140d708356da620b8205767cb81198f6c9c`, fixed at
+  `/private/tmp/mini-wiki-nebula-classics-c521d98f69c8`. All inputs matched source immediately after
+  build, including **211 astronomy/shared-display inputs**. HTTP readback from local port 5194
+  returned the same digest. The original user URL was preserved and refreshed to this version.
+
+Tests: `/private/tmp/mini-wiki-nebula-classics-tests-20261024.log`.
+Build proof: `/private/tmp/mini-wiki-nebula-classics-build-proof-20261024.json`.
+Reference/design record: [classic nebulae](../../docs/nebula-classics-20261024.md).
+No complete repository test rerun, calibrated astrophysical appearance, forced browser context
+loss or physical-device frame-rate claim is made.
+
+# Cloud detail and direct choices — 2026-10-24
+
+Run `nebula-detail-flow-root-20261024` integrates the released UI result
+`nebula-detail-flow-ui-result-20261024`. Existing uncommitted astronomy and unrelated topic work
+are preserved. No commit, push or deployment was authorized or performed.
+
+- Classic clouds now use one current 64³ field / 80 integration steps; evolution and shells keep
+  48³ / 48 steps. Shared isotropic detail is 64³. Replacement/disposal and deterministic replay
+  across both quality levels are tested. No per-case cache, new clock or image texture is added.
+- Dark clouds separate variable-density interiors, diffuse fringes and background emission;
+  solid-surface normal highlights are removed. Parent cloud and Horsehead neck remain connected.
+  Authored depth, enhanced colour and the non-reconstruction boundary remain explicit in both languages.
+- Six chapters and five nebula choices are directly visible. Illumination and shell opening are
+  direct controls. Full accessible names remain paired with short labels. Mobile choices are
+  44px high. Selecting a case or leaving/re-entering the chapter preserves unrelated URL state.
+- **78/78 scoped tests passed**, with full-project TypeScript, i18n (7377 messages / 74 namespaces),
+  entry projection, editorial status and `git diff --check`. The scope covers affected stellar,
+  shared material/viewport and guide contracts, rather than repeating the full repository suite.
+- Real-browser source checks covered five cases, all three illumination modes, drag/keyboard
+  rotation/reset, open shells, chapter/language persistence, stellar formation and guide material.
+  Final packaged desktop Chinese and 390px Chinese/English checks passed; page width was 390px,
+  direct choice height 44px, with no captured warning/error. Temporary viewport and tab were cleaned up.
+- One final Reader build: **73 entries / 1560 inputs**, digest
+  `9d3874707fae25f6e61fee5c5c08edf91bbeb31e991fad6f80787e9aebdb1be6`.
+  All inputs, including 211 astronomy/shared-display files, matched source after build. The fixed
+  artifact `/private/tmp/mini-wiki-nebula-detail-9d3874707fae` is served on local port 5194;
+  HTTP digest matched. The user's then-current Pillars URL and other experimental parameters
+  were read and retained before refreshing the original tab.
+
+Tests: `/private/tmp/mini-wiki-nebula-detail-tests-20261024.log`.
+Build proof: `/private/tmp/mini-wiki-nebula-detail-build-proof-20261024.json`.
+[Design, limits and screenshots](../../docs/nebula-detail-flow-20261024.md).
+The volume remains an illustrative model; these checks do not claim photographic fidelity,
+user appearance acceptance, physical-device performance or forced browser context-loss coverage.
+
+# Photo contrast and resolved optical fronts — 2026-10-24
+
+Run `nebula-photo-contrast-root-20261024` follows the user's repeated blur feedback and a direct
+comparison with Hubble's 2015 visible-light Pillars image. An independent Sol 6.1 max read-only
+review identified the bounded bright sky wall, accumulated edge softening, coarse pre-baked
+interfaces and later wood-like internal streaks/continuous bright rims. These were revised without
+changing the direct chapter/case controls or interpreting the photograph as a measured depth field.
+
+- Pillars/Horsehead supply one optional 64³ distance field alongside their 64³ optical coefficients.
+  The shared owner reconstructs narrow interfaces and integrates their compact profiles across
+  ray segments. Dense dust remains non-emitting; a small diffuse-light scattering term exposes folds.
+  The extra 262,144-byte input/texture is reused for the current dark cloud and released elsewhere.
+- No renderer/clock/worker/case cache was added. Classic clouds use 64 segments during existing
+  camera gestures; settled dark clouds 96, Orion 80, evolution/shells 48. Guide default remains 64.
+  Counts and input sizes are resource bounds, not frame-rate claims.
+- **81/81 scoped tests passed**, and full-project TypeScript and diff checks passed. New checks
+  include distance encoding, thin-front/core separation, singular-source safety, current-field
+  reuse, representation changes and texture disposal. No full repository test rerun is claimed.
+- Actual source-page checks covered classic references, illumination, drag/keyboard/reset,
+  chapter state, shells, stellar formation and the guide consumer. The final packaged English
+  desktop and Chinese/English 390px pages were inspected; content width 390 and canvas 368×330,
+  without captured warning/error. Viewport override and temporary tab were cleaned up.
+- One final Reader artifact: 73 entries / 1560 inputs, digest
+  `13f71b387e5b5b6e922c444db2349599828041961430b36921b1c06760e8b30c`.
+  Every input matched source after build, including 211 astronomy/shared-display inputs.
+  Fixed at `/private/tmp/mini-wiki-nebula-photo-13f71b387e5b`, served on 5194 with matching HTTP
+  readback. The user's current 65181 source URL was read and retained before refresh.
+
+[Photo comparison, sources, remaining limits and screenshots](../../docs/nebula-photo-contrast-20261024.md).
+Test log: `/private/tmp/mini-wiki-nebula-photo-tests-20261024.log`.
+Build proof: `/private/tmp/mini-wiki-nebula-photo-build-proof-20261024.json`.
+Still illustrative, without photographic-fidelity or user-acceptance claims. Local only;
+no commit, push or deployment, and unrelated inherited dirty work is preserved.
+
+# Surrounding environment — 2026-10-24
+
+After accepting the previous Pillars subject, the user requested a restrained surrounding environment.
+The accepted foreground medium/material stays intact. `nebulaEnvironment.ts` supplies object-bound
+distant gas/dust weights and illustrative star positions; the existing world owns their one current
+texture/geometry. The flat fallback attenuates the actual current sky, including its stars.
+No new controls, clock, renderer, worker, photo asset or per-case cache was added.
+
+- 22/22 environment/cloud/volume/viewport tests passed. The final palette and removal of obsolete
+  backdrop fields were then covered by 10/10 environment/cloud owner tests; unchanged integration
+  evidence was reused. TypeScript, i18n (7377 messages / 74 English namespaces) and diff checks passed.
+- Source-page visual checks: Pillars/Orion/Horsehead, emission/reflection/dark and keyboard rotation.
+  Packaged checks: English desktop, Chinese/English390px and planetary-case isolation. Actual
+  mobile width/content390, canvas368×330. No captured warning/error on final pages. Temporary
+  tabs/viewport cleaned up; original65181 full URL and English selection restored.
+- Reader artifact:73 entries /1561 inputs, source digest
+  `62652a2963eb12d8493dd323886179d2baf2898db8357074434a845062483365`.
+  All inputs matched source, including212 astronomy/shared-display files; HTTP readback matched.
+  Fixed artifact `/private/tmp/mini-wiki-nebula-environment-62652a2963eb`, local port5194.
+
+[Reference images, resource bounds, remaining limits and screenshots](../../docs/nebula-environment-20261024.md).
+Build proof: `/private/tmp/mini-wiki-nebula-environment-build-proof-20261024.json`.
+Local only, without commit/push/deployment or physical-device performance claims.

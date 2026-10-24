@@ -9,7 +9,7 @@
       "en": "ONE NAME, DIFFERENT MECHANISMS · COMPARE MATTER, LIGHT AND SHAPE"
     },
     "scale": {
-      "zh": "三例是独立教学形态，不是同一个星云依次变形，也不是观测重建。配色借鉴滤镜合成照片并增强，不是肉眼所见，也不是成分测量；明暗来自示意气尘密度。云、壳与中心分别放大，无共用长度标尺。转动辨认深度，打开壳层辨认内外。",
+      "zh": "各例是独立教学形态，不是同一个星云依次变形，也不是观测重建。配色借鉴滤镜合成照片并增强，不是肉眼所见，也不是成分测量；明暗来自示意气尘密度。云、壳与中心分别放大，无共用长度标尺。转动辨认深度，打开壳层辨认内外。",
       "en": "These are separate teaching geometries, not one changing nebula or observed 3D reconstructions. Colors are enhanced in the style of filtered composite images, not naked-eye views or composition measurements; brightness comes from illustrative gas/dust density. Cloud, shell and center are separately magnified with no shared length scale. Rotate to inspect depth; open a shell to distinguish inside from outside."
     },
     "lightLabel": {
@@ -59,6 +59,88 @@
     "choices": {
       "zh": "选择星云案例",
       "en": "Choose a nebula case"
+    },
+    "referencePhoto": {
+      "zh": "Hubble 合成照片与说明 ↗",
+      "en": "Hubble composite image and notes ↗"
+    },
+    "referenceBoundary": {
+      "zh": "形态借鉴所选经典星云的照片，色彩经过增强；不是观测得到的三维重建，不按真实比例。周边云光与星点为环境示意，位置、疏密和深度未经测量。三个参考是不同对象，切换不是演化过程；照明按钮只改变同一所选物质的教学条件。",
+      "en": "Morphology is inspired by images of the selected classic nebula, with enhanced colors; this is not an observed 3D reconstruction or an actual-scale view. Surrounding haze and stars give context; their positions, distribution and depth are illustrative. The three references are separate objects, not evolutionary steps; illumination changes teaching conditions on the same selected material."
+    }
+  },
+  "references": {
+    "orion": {
+      "shortName": {
+        "zh": "猎户座",
+        "en": "Orion"
+      },
+      "name": {
+        "zh": "猎户座星云 · 发光空腔",
+        "en": "Orion Nebula · glowing cavity"
+      },
+      "observe": {
+        "zh": "先找明亮的空腔边缘和横过云面的暗尘带，再改变照明：哪些仍是同一批物质？",
+        "en": "Find the bright cavity edge and dark dust crossing the cloud, then change illumination: which features remain the same material?"
+      },
+      "body": {
+        "zh": "猎户座星云的照片显示亮星附近的空腔、发光气体与较暗的尘埃。年轻大质量恒星的辐射塑造周围气体；此处只借鉴空腔与云壁的关系，没有重建真实恒星位置或云层深度。",
+        "en": "Images of the Orion Nebula show a cavity near bright stars, glowing gas and darker dust. Radiation from young massive stars shapes surrounding gas; this view borrows the cavity-and-cloud-wall relationship without reconstructing real stellar positions or cloud depths."
+      },
+      "evidence": {
+        "zh": "所链接的 ESA/Hubble 合成照片呈现空腔与发光云壁；滤镜和图像合成影响配色，单张照片不能给出唯一的云层深度。",
+        "en": "The linked ESA/Hubble composite shows the cavity and glowing cloud walls. Filters and image processing affect color, and one image cannot uniquely determine cloud depth."
+      },
+      "sourceTitle": "ESA/Hubble · Orion Nebula",
+      "source": "https://esahubble.org/images/heic0601a/"
+    },
+    "pillars": {
+      "shortName": {
+        "zh": "创生之柱",
+        "en": "Pillars"
+      },
+      "name": {
+        "zh": "鹰状星云 · 创生之柱",
+        "en": "Eagle Nebula · Pillars of Creation"
+      },
+      "observe": {
+        "zh": "沿着较密的气尘柱找到明亮边缘，再转动观察：柱间的暗处是空隙，还是遮光的尘埃？",
+        "en": "Follow the dense gas-and-dust pillars to their bright edges, then rotate: are the dark regions between them gaps or obscuring dust?"
+      },
+      "body": {
+        "zh": "鹰状星云的创生之柱是伸入较明亮环境的致密气尘结构。附近大质量恒星的辐射和恒星风侵蚀它们；此处用不规则柱体、分叉和受光边缘帮助辨认这种关系，不模拟侵蚀速度或每一处的成星结局。",
+        "en": "The Eagle Nebula’s Pillars of Creation are dense gas-and-dust structures projecting into brighter surroundings. Radiation and winds from nearby massive stars erode them. Irregular pillars, branches and illuminated edges illustrate this relationship without predicting erosion rates or star formation at every location."
+      },
+      "evidence": {
+        "zh": "所链接的 ESA/Hubble 可见光合成照片显示气体辉光与较暗的气尘柱。其滤镜配色并非肉眼所见，也不能只凭一处亮边推断完整三维结构。",
+        "en": "The linked ESA/Hubble visible-light composite shows glowing gas and darker gas-and-dust pillars. Its filter colors are not a naked-eye view, and a bright edge alone cannot establish the full 3D structure."
+      },
+      "sourceTitle": "ESA/Hubble · Pillars of Creation",
+      "source": "https://esahubble.org/images/heic1501a/"
+    },
+    "horsehead": {
+      "shortName": {
+        "zh": "马头",
+        "en": "Horsehead"
+      },
+      "name": {
+        "zh": "马头星云 · 遮光轮廓",
+        "en": "Horsehead Nebula · dark silhouette"
+      },
+      "observe": {
+        "zh": "找出亮背景前的气尘轮廓，再比较三种照明：变暗表示物质消失了吗？",
+        "en": "Find the gas-and-dust silhouette against the bright background, then compare the illumination modes: does darkness mean material has vanished?"
+      },
+      "body": {
+        "zh": "马头星云是亮星云背景前的冷气体和尘埃云，前景物质阻挡可见光，形成熟悉的暗轮廓。此处借鉴云脊上突起的外形；“马头”取决于观察方向，不是云在空间中的唯一形状。",
+        "en": "The Horsehead is a cold cloud of gas and dust silhouetted against a bright nebula. Foreground material blocks visible light to make its familiar dark outline. This view borrows the protrusion above a cloud ridge; the “horsehead” depends on viewing direction and is not a unique spatial shape."
+      },
+      "evidence": {
+        "zh": "所链接的 ESA/Hubble 图像把可见光与近红外滤镜等资料合成，显示亮背景前的遮光云；它不是未经处理的肉眼景象。",
+        "en": "The linked ESA/Hubble image combines visible and near-infrared filter data with additional observations, showing an obscuring cloud against a bright background. It is not an unprocessed naked-eye view."
+      },
+      "sourceTitle": "ESA/Hubble · Horsehead Nebula",
+      "source": "https://esahubble.org/images/heic0105a/"
     }
   },
   "cases": {
@@ -80,8 +162,8 @@
         "en": "Can contain multiple dense cores and young stars"
       },
       "boundary": {
-        "zh": "三种照明按钮改变示意条件，不是同一真实星云的即时物理变换；发射、反射与暗区可同时存在。只展示一个局部云核，不断言可见云全部正在成星。",
-        "en": "The illumination buttons change teaching conditions, not a real nebula instantaneously. Emission, reflection and dark regions can coexist. One local cloud core is shown; visible cloud is not assumed to be forming stars everywhere."
+        "zh": "三种照明按钮改变示意条件，不是同一真实星云的即时物理变换；发射、反射与暗区可同时存在。只展示代表性的局部云形，不断言可见云全部正在成星。",
+        "en": "The illumination buttons change teaching conditions, not a real nebula instantaneously. Emission, reflection and dark regions can coexist. These are representative local cloud forms; visible cloud is not assumed to be forming stars everywhere."
       },
       "source": "https://science.nasa.gov/mission/hubble/science/universe-uncovered/hubble-nebulae/",
       "evidence": {
@@ -90,6 +172,10 @@
       }
     },
     "planetary": {
+      "shortName": {
+        "zh": "行星状星云",
+        "en": "Planetary nebula"
+      },
       "name": {
         "zh": "行星状星云：晚期抛层",
         "en": "Planetary nebula: shed envelope"
@@ -121,6 +207,10 @@
       }
     },
     "supernova": {
+      "shortName": {
+        "zh": "超新星遗迹",
+        "en": "Supernova remnant"
+      },
       "name": {
         "zh": "超新星遗迹：冲击与抛射物",
         "en": "Supernova remnant: shock and ejecta"

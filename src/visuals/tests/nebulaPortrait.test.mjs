@@ -146,3 +146,43 @@ test('invalid externally supplied volumes fail before creating a renderer or upl
   assert.throws(() => createNebulaPortrait('nebula', { medium: { resolution: 8, data: new Uint8Array(8 ** 3 * 4) } }), /16–64/);
   assert.throws(() => createNebulaPortrait('nebula', { medium: { resolution: 24, data: new Uint8Array(10) } }), /RGBA/);
 });
+
+test('medium quality transitions replace and release one texture, retaining geometry and bounded quadrature',()=>{
+  const medium={resolution:24,data:new Uint8Array(24**3*4)},portrait=createNebulaPortrait('nebula',{medium,steps:80});
+  const mesh=portrait.group.children[0],material=mesh.material,geometry=mesh.geometry;
+  const textures=[material.uniforms.field.value];let disposed=0;
+  textures[0].addEventListener('dispose',()=>disposed++);
+  try{
+    portrait.setAppearance({samplingSteps:48});assert.equal(material.uniforms.sampleCount.value,48);
+    medium.resolution=64;medium.data=new Uint8Array(64**3*4);portrait.updateMedium();
+    const detailed=material.uniforms.field.value;textures.push(detailed);detailed.addEventListener('dispose',()=>disposed++);
+    assert.equal(disposed,1);assert.equal(detailed.image.data,medium.data);assert.equal(detailed.image.width,64);
+    assert.equal(mesh.geometry,geometry);assert.notEqual(detailed,textures[0]);
+    portrait.setAppearance({samplingSteps:500});assert.equal(material.uniforms.sampleCount.value,80);
+    const version=detailed.version;portrait.updateMedium();assert.equal(material.uniforms.field.value,detailed);assert.equal(detailed.version,version+1);
+    medium.resolution=24;medium.data=new Uint8Array(24**3*4);portrait.updateMedium();
+    const ordinary=material.uniforms.field.value;textures.push(ordinary);ordinary.addEventListener('dispose',()=>disposed++);
+    assert.equal(disposed,2);assert.equal(ordinary.image.data,medium.data);
+    portrait.dispose();assert.equal(disposed,3);portrait.updateMedium();assert.equal(disposed,3);
+  }finally{portrait.dispose();geometry.dispose();material.dispose();}
+});
+
+test('resolved optical interfaces keep a separate retained texture through lighting and release it on representation changes',()=>{
+  const profile=()=>({distance:new Uint8Array(24**3),range:.18,width:.008,offset:.009,densityWidth:.0025,haloWidth:.018,haloOffset:.029,diffuseRatio:.62,gasRatio:.12});
+  const medium={resolution:24,data:new Uint8Array(24**3*4),front:profile()},portrait=createNebulaPortrait('nebula',{medium,steps:96});
+  const mesh=portrait.group.children[0],material=mesh.material,density=material.uniforms.field.value,texture=material.uniforms.frontField.value;
+  let disposed=0;texture.addEventListener('dispose',()=>disposed++);
+  try{
+    assert.notEqual(texture,density);assert.equal(texture.image.data,medium.front.distance);assert.equal(material.uniforms.frontEnabled.value,1);
+    const version=texture.version;
+    portrait.setAppearance({illumination:'dark',dustLight:.09,emissionVariation:.15,dustVariation:.25,densityDisplacement:.003,dustDetailTransform:[1,0,0,0,.35,0,0,0,.25]});
+    assert.equal(material.uniforms.frontField.value,texture);assert.equal(texture.version,version);
+    portrait.updateMedium();assert.equal(material.uniforms.frontField.value,texture);assert.equal(texture.version,version+1);
+    const bad=medium.front.width;medium.front.width=-1;
+    assert.throws(()=>portrait.updateMedium(),/optical front/);assert.equal(material.uniforms.frontField.value,texture);medium.front.width=bad;
+    medium.front=undefined;portrait.updateMedium();assert.equal(disposed,1);assert.equal(material.uniforms.frontEnabled.value,0);assert.equal(material.uniforms.frontField.value,density);
+    medium.front=profile();portrait.updateMedium();const next=material.uniforms.frontField.value;next.addEventListener('dispose',()=>disposed++);
+    assert.notEqual(next,texture);portrait.dispose();portrait.dispose();assert.equal(disposed,2);
+    portrait.updateMedium();assert.equal(disposed,2);
+  }finally{portrait.dispose();mesh.geometry.dispose();material.dispose();}
+});

@@ -1,5 +1,5 @@
 import {evolutionState, type Track} from './evolutionModel.ts';
-import type {Illumination, NebulaKind} from './nebulaModel.ts';
+import type {Illumination, NebulaKind, NebulaReference} from './nebulaModel.ts';
 
 export const SPACE_PARTICLES = 2800;
 export type SpaceInput = {
@@ -8,8 +8,10 @@ export type SpaceInput = {
   progress: number;
   nebula: NebulaKind;
   illumination: Illumination;
+  reference?: NebulaReference;
 };
 export interface SpaceFrame {
+  cloudReference?: NebulaReference;
   kind: 'formation' | 'star' | 'planetary' | 'supernova';
   phase: number;
   starRadius: number;
@@ -41,7 +43,7 @@ const mix=(a:number,b:number,t:number)=>a+(b-a)*t;
 export function stellarSpaceFrame(input: SpaceInput): SpaceFrame {
   if (input.chapter === 'nebulae') {
     const nursery = input.nebula === 'nursery', planetary = input.nebula === 'planetary';
-    return {kind:nursery?'formation':planetary?'planetary':'supernova', phase:nursery?0:6,
+    return {cloudReference:nursery?(input.reference??'orion'):undefined,kind:nursery?'formation':planetary?'planetary':'supernova', phase:nursery?0:6,
       starRadius:nursery?.27:planetary?.16:.11, starColor:nursery?'#d8e7ff':'#e4f5ff', starOpacity:input.illumination==='dark'&&nursery?0:1,
       surfaceProfile:nursery?'solar':'compact',emission:1,glare:nursery?1:.8,compactBlend:nursery?0:1,coolingProgress:0,
       cloudOpacity:nursery?1:0, shellOpacity:nursery?0:1,shellBlend:nursery?0:1, shellRadius:planetary?2.35:2.65,
@@ -69,8 +71,7 @@ export function stellarObservationZoom(input: SpaceInput, aspect: number): numbe
   const narrow = Math.min(1, Math.max(.3, viewAspect / 1.2));
   // The uneven nursery spans farther sideways than either round shell. Retain
   // its illuminated outer cloud when the same tall stage becomes phone-width.
-  if (input.chapter === 'nebulae') return input.nebula === 'nursery'
-    ? 1.32 * Math.min(1, Math.max(.3, viewAspect / 1.6)) : narrow;
+  if (input.chapter === 'nebulae') return input.nebula === 'nursery' ? (input.reference&&input.reference!=='orion'?.88:.98)*narrow : narrow;
   const frame = stellarSpaceFrame(input), stellar = Math.max(1.2, Math.min(3, 2.2 * Math.sqrt(.95 / Math.max(.04, frame.starRadius))));
   const formation = mix(1.2, stellar, smooth((frame.phase - 1) / .95));
   // Widen before a clearly visible jet reaches full opacity: the near polar
