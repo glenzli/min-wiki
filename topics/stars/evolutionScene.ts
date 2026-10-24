@@ -2,6 +2,7 @@ import {evolutionAppearance,evolutionState,recognitionRadius,RSUN_AU,TRACKS,type
 import {StellarSurface} from './stellarSurface.ts';
 import {drawFormation,formationVisual} from './formationScene.ts';
 import words from './evolutionContent.json';
+import {stellarSpaceFrame} from './spaceModel.ts';
 
 type Text=(value:{zh:string;en:string})=>string;
 const clamp=(v:number)=>Math.max(0,Math.min(1,v));
@@ -40,13 +41,14 @@ export function drawEvolution(c:CanvasRenderingContext2D,track:Track,progress:nu
  // The cloud, disk, bipolar outflow and growing core retain one center through the transition.
  if(p<2.13)drawFormation(c,center[0],center[1],178,p,surfaceTime);
  // After the envelope is shed, an expanding shell remains around the same center.
- if(p>4&&!low){const release=clamp(p-4),outer=solar?Math.max(45,Math.min(240,leftRadius+release*150)):Math.max(40,Math.min(245,leftRadius+release*210));
-  for(let j=0;j<3;j++){c.strokeStyle=solar?`rgba(128,209,202,${.43*(1-release*.27)*state.shellVisibility/(j+1)})`:`rgba(237,167,112,${.5*(1-release*.24)*state.shellVisibility/(j+1)})`;c.lineWidth=8-j*2;c.beginPath();c.arc(center[0],center[1],(outer+tail*20)*(.7+j*.17),0,Math.PI*2);c.stroke();}}
+ if(p>(solar?4.58:5.02)&&!low){const frame=stellarSpaceFrame({chapter:'evolution',track,progress,nebula:'nursery',illumination:'emission'});
+  const before=solar?maxEnvelope*RSUN_AU*orbitUnit:maxEnvelope/900*184,outer=before+(frame.shellRadius-(solar?2.1:2.35))*46;
+  for(let j=0;j<3;j++){const opacity=frame.shellOpacity*(.12+.88*frame.shellEmission)/(j+1);c.strokeStyle=solar?`rgba(128,209,202,${.43*opacity})`:`rgba(237,167,112,${.5*opacity})`;c.lineWidth=8-j*2;c.beginPath();c.arc(center[0],center[1],outer*(1+j*.10),0,Math.PI*2);c.stroke();}}
  if(p<6&&leftRadius>=1.5&&p>=1.38){c.save();c.globalAlpha=formationVisual(p).surface;paintSurface(c,surface,...center,Math.min(225,leftRadius),track,progress,surfaceTime);c.restore();}
  else if(p>=1.55&&(p<6||state.remnant==='white-dwarf')){c.save();c.globalAlpha=formationVisual(p).surface;c.strokeStyle=state.surfaceColor;c.lineWidth=1.5;c.beginPath();c.moveTo(center[0]-6,center[1]);c.lineTo(center[0]+6,center[1]);c.moveTo(center[0],center[1]-6);c.lineTo(center[0],center[1]+6);c.stroke();c.restore();}
  if(state.remnant==='black-hole'&&p>=5.8){c.save();c.globalAlpha=clamp((p-5.8)/.2);c.fillStyle='#020711';c.strokeStyle='#b4c3cf';c.lineWidth=1;c.beginPath();c.arc(...center,4.5,0,Math.PI*2);c.fill();c.stroke();c.restore();}
  if(p>=6&&state.remnant==='neutron-star'){c.fillStyle='#d7efff';c.beginPath();c.arc(...center,3.5,0,Math.PI*2);c.fill();}
- if(solar&&p>=3.45){label(state.venusEngulfed?`${text(words.ui.mercury)} / ${text(words.ui.venus)} ${text(words.ui.inside)}`:`${text(words.ui.mercury)} ${text(words.ui.inside)}`,280,538,'#e9b796');}
+ if(solar&&state.mercuryEngulfed){label(state.venusEngulfed?`${text(words.ui.mercury)} / ${text(words.ui.venus)} ${text(words.ui.inside)}`:`${text(words.ui.mercury)} ${text(words.ui.inside)}`,280,538,'#e9b796');}
  if(!solar&&!low&&p>=5)label(`${text(words.ui.mainSequence)} ${mainRadius} R☉ → ${text(words.ui.lateEnvelope)} ${maxEnvelope} R☉`,280,538,'#c9d5de');
  label(text(p<2?words.ui.formationDetail:words.ui.magnified),790,48,'#aec4d2');
  // This view enlarges small phases nonlinearly, but every resolved stellar radius
@@ -64,5 +66,5 @@ export function drawEvolution(c:CanvasRenderingContext2D,track:Track,progress:nu
   if(p>=3&&p<6)label(text(low&&state.coreFuel>0?words.ui.mainSequence:words.ui.exhausted),790,440);
   else if(p>=6)label(text(state.remnant==='black-hole'?words.ui.blackHoleNoDisk:state.remnant==='neutron-star'?words.ui.neutronDiameter:words.ui.remnant),790,440);
  }
- if(p>=4.3&&p<6&&!low)label(text(words.ui.dispersal),790,488,'#b9d3db');
+ if(p>=(solar?4.58:5.02)&&p<6&&!low)label(text(words.ui.dispersal),790,488,'#b9d3db');
 }

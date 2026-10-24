@@ -7,10 +7,13 @@ const path = new URL('../hydrothermalModel.ts', import.meta.url);
 const source = await readFile(path, 'utf8');
 const { outputText } = ts.transpileModule(source, { compilerOptions: { module: ts.ModuleKind.ES2022, target: ts.ScriptTarget.ES2022 } });
 const m = await import(`data:text/javascript;base64,${Buffer.from(outputText).toString('base64')}`);
+const frameSource = await readFile(new URL('../../../src/visuals/frameRender.ts', import.meta.url), 'utf8');
+const frameModule = ts.transpileModule(frameSource, { compilerOptions: { module: ts.ModuleKind.ES2022, target: ts.ScriptTarget.ES2022 } }).outputText;
 const sceneSource = await readFile(new URL('../hydrothermalScene.ts', import.meta.url), 'utf8');
 const compiledScene = ts.transpileModule(sceneSource, { compilerOptions: { module: ts.ModuleKind.ES2022, target: ts.ScriptTarget.ES2022 } }).outputText
   .replace("'three'", JSON.stringify(import.meta.resolve('three')))
   .replace("'three/addons/controls/OrbitControls.js'", JSON.stringify(import.meta.resolve('three/addons/controls/OrbitControls.js')))
+  .replace("'../../src/visuals/frameRender.ts'", JSON.stringify(`data:text/javascript;base64,${Buffer.from(frameModule).toString('base64')}`))
   .replace("'./hydrothermalModel.ts'", JSON.stringify(`data:text/javascript;base64,${Buffer.from(outputText).toString('base64')}`));
 const { HydrothermalScene, hydrothermalLandscapeGeometry, hydrothermalFractureGeometry } = await import(`data:text/javascript;base64,${Buffer.from(compiledScene).toString('base64')}`);
 const input = { supply: .75, connected: true };

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { animateValue } from '../../src/visuals/transition.ts';
+import { FrameRender } from '../../src/visuals/frameRender.ts';
 import { seedDispersal } from './ecologyDispersal.ts';
 import { ecologyMarkup } from './ecologyScene.ts';
 import type { Habitat } from './ecologyModel.ts';
@@ -379,8 +380,10 @@ class LandHistory3D {
   private lastTerrain = '';
   private lastSection = '';
   private lastField = '';
+  private lastSnapshot = '';
   private disposed = false;
   private cancelCamera = () => {};
+  private presentation = new FrameRender(() => this.renderNow());
 
   constructor(readonly canvas: HTMLCanvasElement, readonly kind: Landform) {
     this.reference = historyCameraReference(kind, this.frame, this.view, this.camera.aspect);
@@ -443,7 +446,12 @@ class LandHistory3D {
   private mesh(data: THREE.BufferGeometry, material: THREE.Material) { return new THREE.Mesh(this.keep(data), this.keepMaterial(material)); }
   draw(progress: number, settings: DrawSettings) {
     if (this.disposed) return;
-    this.settings = settings; this.frame = historyFrame(progress, settings.chapter, settings.aftermath, settings.habitat);
+    // Camera/detail invalidations retain this exact geological/ecological
+    // snapshot. A lens or authored condition change still prepares its state.
+    const snapshot = `${progress}|${settings.chapter}|${settings.aftermath}|${settings.habitat}|${this.view}`;
+    this.settings = settings;
+    if (snapshot === this.lastSnapshot) { this.render(); return; }
+    this.frame = historyFrame(progress, settings.chapter, settings.aftermath, settings.habitat);
     const frame = this.frame, keys = historyGeometryKeys(frame), key = keys.terrain;
     this.followReference();
     if (key !== this.lastTerrain) { replacePositions(this.surface.geometry, historyTerrain(this.kind, frame).positions); this.lastTerrain = key; }
@@ -495,7 +503,7 @@ class LandHistory3D {
     this.canvas.dataset.progress = frame.p.toFixed(4); this.canvas.dataset.chapter = settings.chapter;
     this.canvas.dataset.deposits = String(frame.land.deposits.filter(d => d.growth > 0).length);
     this.canvas.dataset.growth = frame.land.growth.toFixed(4); this.canvas.dataset.constructionPhase = frame.construction.phase;
-    this.canvas.dataset.activeFlows = String(this.flows.filter(flow => flow.active).length); this.render();
+    this.canvas.dataset.activeFlows = String(this.flows.filter(flow => flow.active).length); this.lastSnapshot = snapshot; this.render();
   }
   setView(view: HistoryView, animate = true) {
     if (this.disposed) return;
@@ -552,10 +560,11 @@ class LandHistory3D {
     } else { this.stopMotion(); this.followReference(); }
     this.controls.maxDistance = 55 * this.reference.scale; this.render();
   };
-  private render = () => {
+  private render = () => this.presentation.request();
+  private renderNow() {
     if (this.disposed || !this.hasSize || document.hidden) return;
     this.seeds.visible = this.view === 'vent'; this.renderer.render(this.scene, this.camera);
-  };
+  }
   private keydown = (event: KeyboardEvent) => {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '=', '-', 'Home'].includes(event.key)) return;
     event.preventDefault(); this.stopMotion(); if (event.key === 'Home') { this.resetCamera(); return; }
@@ -566,7 +575,7 @@ class LandHistory3D {
     this.camera.position.copy(this.controls.target).add(new THREE.Vector3().setFromSpherical(p)); this.controls.update(); this.render();
   };
   dispose() {
-    if (this.disposed) return; this.disposed = true; this.stopMotion(); this.detailMotion.dispose(); this.observer.disconnect(); this.controls.dispose();
+    if (this.disposed) return; this.disposed = true; this.presentation.dispose(); this.stopMotion(); this.detailMotion.dispose(); this.observer.disconnect(); this.controls.dispose();
     this.flows.forEach(flow => flow.dispose()); this.clasts.dispose(); this.storageBody.dispose();
     for (const feeder of this.feeders) feeder.dispose();
     this.canvas.removeEventListener('keydown', this.keydown); this.grass.dispose(); this.seeds.dispose();

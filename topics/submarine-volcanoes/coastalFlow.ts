@@ -36,10 +36,10 @@ function groundHeights(frame: OceanGeometryFrame) {
 /** Interpolate the very same two triangles of a radial deposit cell. A
  * cross-slope tangent plane would leave a wide body's banks suspended over
  * curved rock; an analytic envelope can also disagree with drawn triangles. */
-function triangleGround(heights: Float32Array, x: number, z: number) {
+function groundBasis(x: number, z: number) {
   terrain ??= depositBuffers();
   const radius = Math.hypot(x, z), step = Math.PI * 2 / SECTORS;
-  if (radius >= RADIUS) return 0;
+  if (radius >= RADIUS) return;
   const angle = (Math.atan2(z, x) + Math.PI * 2) % (Math.PI * 2), sector = Math.min(SECTORS - 1, Math.floor(angle / step));
   const radial = radius * Math.cos(angle - (sector + .5) * step) / Math.cos(step / 2);
   const ring = Math.min(RINGS - 1, Math.floor(Math.pow(radial / RADIUS, 1 / 1.45) * RINGS));
@@ -49,12 +49,17 @@ function triangleGround(heights: Float32Array, x: number, z: number) {
     const d = (bz - cz) * (ax - cx) + (cx - bx) * (az - cz);
     const u = ((bz - cz) * (x - cx) + (cx - bx) * (z - cz)) / d;
     const v = ((cz - az) * (x - cx) + (ax - cx) * (z - cz)) / d;
-    return { inside: u >= -1e-6 && v >= -1e-6 && u + v <= 1.000001, height: u * heights[a] + v * heights[b] + (1 - u - v) * heights[c] };
+    return { a, b, c, u, v, inside: u >= -1e-6 && v >= -1e-6 && u + v <= 1.000001 };
   };
   const a = vertex(ring, sector), b = vertex(ring, sector + 1), c = vertex(ring + 1, sector + 1), d = vertex(ring + 1, sector);
-  if (ring === 0) return sample(0, c, d).height;
+  if (ring === 0) return sample(0, c, d);
   const first = sample(a, b, c);
-  return first.inside ? first.height : sample(a, c, d).height;
+  return first.inside ? first : sample(a, c, d);
+}
+
+function triangleGround(heights: Float32Array, x: number, z: number) {
+  const basis = groundBasis(x, z);
+  return basis ? basis.u * heights[basis.a] + basis.v * heights[basis.b] + (1 - basis.u - basis.v) * heights[basis.c] : 0;
 }
 
 const inverseSmooth = (g: number) => .5 - Math.sin(Math.asin(1 - 2 * clamp(g)) / 3);
@@ -241,7 +246,14 @@ export function islandFlowClearance(x: number, z: number, margin: number) {
 /** Closed D sections have a broad ground-contacting underside, a rounded
  * advancing nose and unequal connected lobes. UV's seam is on the underside;
  * cos(2πu)>0 identifies the upper skin for the shared material. */
-export function islandFlowBuffers(): SolidBuffers & { source: Float32Array; quench: Float32Array; distance: Float32Array; stage: Float32Array } {
+type FlowGroundProjection = {
+  route: Route; front: number; source: Float32Array; positions: Float32Array;
+  rows: Float64Array; changedRows: Uint8Array; indices: Uint16Array; weights: Float64Array; ready: Uint8Array;
+  across: Float32Array; stations: Uint8Array;
+};
+type FlowBuffers = SolidBuffers & { source: Float32Array; quench: Float32Array; distance: Float32Array; stage: Float32Array; groundProjection?: FlowGroundProjection };
+
+export function islandFlowBuffers(): FlowBuffers {
   const ringCount = (FLOW_SEGMENTS + 1) * FLOW_SIDES, count = ringCount + 2, indices: number[] = [];
   const source = new Float32Array(count * 3), uvs = new Float32Array(count * 2);
   for (let row = 0; row <= FLOW_SEGMENTS; row++) for (let side = 0; side < FLOW_SIDES; side++) {
@@ -264,22 +276,66 @@ export function islandFlowBuffers(): SolidBuffers & { source: Float32Array; quen
   return { positions: new Float32Array(count * 3), indices, uvs, source, quench: new Float32Array(count), distance: new Float32Array(count), stage: new Float32Array(count) };
 }
 
-export function updateIslandFlow(data: ReturnType<typeof islandFlowBuffers>, flow: IslandFlow, frame: OceanGeometryFrame) {
-  const currentGround = groundHeights(frame);
-  for (let i = 0; i < data.distance.length; i++) {
-    const row = Math.round((data.source[i * 3 + 1] + .5) * FLOW_SEGMENTS), p = flow.points[row];
-    const before = flow.points[Math.max(0, row - 1)], after = flow.points[Math.min(FLOW_SEGMENTS, row + 1)];
+/** Only the current skin's spatial interpolation coefficients are retained.
+ * Every frame still samples current/emplaced heights. Exact row coordinates,
+ * widths, front and route changes invalidate the affected basis; no progress
+ * history, terrain snapshot or quantized position is cached. */
+function flowGroundProjection(data: FlowBuffers, flow: IslandFlow) {
+  let projection = data.groundProjection;
+  if (!projection || projection.source !== data.source || projection.positions !== data.positions) {
+    const count = data.distance.length;
+    projection = data.groundProjection = { route: flow.route, front: flow.front, source: data.source, positions: data.positions,
+      rows: new Float64Array((FLOW_SEGMENTS + 1) * 5).fill(NaN), changedRows: new Uint8Array(FLOW_SEGMENTS + 1), indices: new Uint16Array(count * 3), weights: new Float64Array(count * 2),
+      ready: new Uint8Array(count), across: new Float32Array(count).fill(NaN), stations: new Uint8Array(count).fill(255) };
+  }
+  if (projection.route !== flow.route || projection.front !== flow.front) {
+    projection.ready.fill(0); projection.route = flow.route; projection.front = flow.front;
+  }
+  projection.changedRows.fill(0);
+  for (let row = 0; row <= FLOW_SEGMENTS; row++) {
+    const p = flow.points[row], before = flow.points[Math.max(0, row - 1)], after = flow.points[Math.min(FLOW_SEGMENTS, row + 1)];
     const dx = after[0] - before[0], dz = after[2] - before[2], length = Math.hypot(dx, dz) || 1;
+    const at = row * 5, x = p[0], z = p[2], alongX = dx / length, alongZ = dz / length, width = flow.widths[row], rows = projection.rows;
+    if (rows[at] === x && rows[at + 1] === z && rows[at + 2] === alongX && rows[at + 3] === alongZ && rows[at + 4] === width) continue;
+    rows.set([x, z, alongX, alongZ, width], at);
+    projection.changedRows[row] = 1;
+  }
+  return projection;
+}
+
+function projectedGround(projection: FlowGroundProjection, heights: Float32Array, index: number) {
+  const at = index * 3, a = projection.indices[at];
+  if (a === 65535) return 0;
+  const u = projection.weights[index * 2], v = projection.weights[index * 2 + 1];
+  // Preserve the original sample's operation order and double coefficients.
+  return u * heights[a] + v * heights[projection.indices[at + 1]] + (1 - u - v) * heights[projection.indices[at + 2]];
+}
+
+export function clearIslandFlowProjection(data: FlowBuffers) { data.groundProjection = undefined; }
+
+export function updateIslandFlow(data: ReturnType<typeof islandFlowBuffers>, flow: IslandFlow, frame: OceanGeometryFrame) {
+  const currentGround = groundHeights(frame), projection = flowGroundProjection(data, flow);
+  for (let i = 0; i < data.distance.length; i++) {
+    const row = Math.round((data.source[i * 3 + 1] + .5) * FLOW_SEGMENTS), at = row * 5;
     const across = data.source[i * 3] * flow.widths[row], top = Math.max(0, data.source[i * 3 + 2]);
-    const x = p[0] - dz / length * across, z = p[2] + dx / length * across;
-    const current = triangleGround(currentGround, x, z), emplaced = triangleGround(flow.route.ground, x, z);
+    const x = projection.rows[at] - projection.rows[at + 3] * across, z = projection.rows[at + 1] + projection.rows[at + 2] * across;
+    if (!projection.ready[i] || projection.changedRows[row] || projection.across[i] !== data.source[i * 3] || projection.stations[i] !== row) {
+      const basis = groundBasis(x, z), index = i * 3;
+      projection.indices[index] = basis?.a ?? 65535;
+      if (basis) {
+        projection.indices[index + 1] = basis.b; projection.indices[index + 2] = basis.c;
+        projection.weights[i * 2] = basis.u; projection.weights[i * 2 + 1] = basis.v;
+      }
+      projection.ready[i] = 1; projection.across[i] = data.source[i * 3]; projection.stations[i] = row;
+    }
+    const current = projectedGround(projection, currentGround, i), emplaced = projectedGround(projection, flow.route.ground, i);
     const neck = flow.route.branch ? 1 - ramp(flow.front * row / FLOW_SEGMENTS, .08, .42) : 0;
-    const connected = flow.route.branch ? emplaced * (1 - neck) + Math.min(emplaced, triangleGround(flow.route.branch.ground, x, z)) * neck : emplaced;
+    const connected = flow.route.branch ? emplaced * (1 - neck) + Math.min(emplaced, projectedGround(projection, flow.route.branch.ground, i)) * neck : emplaced;
     const ground = Math.min(connected, current);
     // Bury the complete lower face, including its triangle interiors. Its
     // different triangulation may bridge a small terrain crease between
     // contact vertices; the upper crown retains its .014 display offset.
-    data.positions.set([x, ground - .040 + top * (flow.heights[row] + .026), z], i * 3);
+    data.positions[i * 3] = x; data.positions[i * 3 + 1] = ground - .040 + top * (flow.heights[row] + .026); data.positions[i * 3 + 2] = z;
     data.quench[i] = top > .01 ? clamp(flow.quench[row] + (1 - top) * .18) : 1;
     data.distance[i] = flow.front * row / FLOW_SEGMENTS; data.stage[i] = flow.stage;
   }

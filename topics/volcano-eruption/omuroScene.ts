@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { animateValue } from '../../src/visuals/transition.ts';
+import { FrameRender } from '../../src/visuals/frameRender.ts';
 import type { Habitat } from './ecologyModel.ts';
 import { seed } from './magmaGeometry.ts';
 import { smooth } from './model.ts';
@@ -99,6 +100,7 @@ export class Omuro3D {
   private hasSize = false;
   private framingScale = 1;
   private cancelCamera = () => {};
+  private presentation = new FrameRender(() => this.renderNow());
 
   constructor(readonly canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
@@ -324,14 +326,15 @@ export class Omuro3D {
     }
     this.controls.maxDistance = (this.view === 'section' ? 2.4 : 38) * scale; this.render();
   };
-  private render = () => {
+  private render = () => this.presentation.request();
+  private renderNow() {
     if (this.disposed || !this.hasSize) return;
     // Seed bodies are legible only in a local ecological inspection. The
     // whole-mountain story does not magnify parcels to keep them on screen.
     this.seeds.visible = this.view === 'section' || this.camera.position.distanceTo(this.controls.target) < 4.1;
     this.grass.visible = this.view === 'section';
     this.renderer.render(this.scene, this.camera);
-  };
+  }
   private keydown = (event: KeyboardEvent) => {
     if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', '+', '=', '-', 'Home'].includes(event.key)) return;
     event.preventDefault(); this.stopMotion();
@@ -348,7 +351,7 @@ export class Omuro3D {
   };
   dispose() {
     if (this.disposed) return;
-    this.stopMotion(); this.disposed = true; this.observer.disconnect(); this.controls.dispose();
+    this.stopMotion(); this.disposed = true; this.presentation.dispose(); this.observer.disconnect(); this.controls.dispose();
     this.canvas.removeEventListener('keydown', this.keydown);
     for (const object of [this.grass, this.rocks, this.seeds, this.deposits, this.roots]) object.dispose();
     for (const buffer of this.geometries) buffer.dispose();

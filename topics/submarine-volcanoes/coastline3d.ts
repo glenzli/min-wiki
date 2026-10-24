@@ -26,7 +26,7 @@ export class OceanCoastline3D {
     geometry.setIndex(new THREE.BufferAttribute(new Uint16Array(COASTLINE_SAMPLES * 6), 1).setUsage(THREE.DynamicDrawUsage));
     geometry.boundingSphere = new THREE.Sphere(new THREE.Vector3(0, WATER_Y + COASTLINE_SURF_LIFT, 0), RADIUS + .13);
     const material = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, side: THREE.DoubleSide, clipping: true,
-      uniforms: { uStone: { value: noise }, uClock: ocean.clock, uDetailPhase: ocean.detailPhase },
+      uniforms: { uStone: { value: noise }, uClock: ocean.clock, uSeaPhase: ocean.seaPhase },
       vertexShader: /* glsl */`
         varying vec3 vCoastWorld;varying float vAcross;
         #include <clipping_planes_pars_vertex>
@@ -37,22 +37,25 @@ export class OceanCoastline3D {
           #include <clipping_planes_vertex>
         }`,
       fragmentShader: /* glsl */`
-        uniform highp sampler3D uStone;uniform float uClock;uniform float uDetailPhase;
+        uniform highp sampler3D uStone;uniform float uClock;uniform float uSeaPhase;
         varying vec3 vCoastWorld;varying float vAcross;
         #include <clipping_planes_pars_fragment>
         void main(){
           #include <clipping_planes_fragment>
           vec2 p=vCoastWorld.xz;
-          float phase=uClock*3.+sin(uDetailPhase)*.24;
-          float coarse=texture(uStone,vec3(p*7.1,phase*.7)*.03125).r;
-          float fine=texture(uStone,vec3(p*24.3+9.,phase)*.03125).r;
+          vec2 drift=vec2(sin(uSeaPhase),cos(uSeaPhase));
+          float phase=uClock*3.+uSeaPhase;
+          float coarse=texture(uStone,vec3(p*7.1+drift*.8,uClock*2.)*.03125).r;
+          float fine=texture(uStone,vec3(p*24.3+9.+drift*2.,uClock*3.)*.03125).r;
           float broken=smoothstep(.44,.64,coarse+.15*sin(p.x*6.7-p.y*8.3+phase));
-          float crest=.35+.16*sin(p.x*3.7+p.y*4.9+phase)+.14*(fine-.5);
-          float foam=exp(-pow((vAcross-crest)/(.13+.12*fine),2.));
+          float surge=sin(uSeaPhase+p.x*.48+p.y*.37+coarse*1.4);
+          float packet=smoothstep(.48,.93,surge);
+          float crest=.49-.23*cos(uSeaPhase+p.x*.48+p.y*.37+coarse*1.4)+.12*(fine-.5);
+          float foam=exp(-pow((vAcross-crest)/(.10+.14*fine),2.));
           float edge=smoothstep(0.,.15,vAcross)*(1.-smoothstep(.56,1.,vAcross));
-          float alpha=(.035+.23*foam)*edge*broken;
+          float alpha=(.025+(.12+.45*packet)*foam)*edge*broken;
           if(alpha<.004)discard;
-          gl_FragColor=vec4(mix(vec3(.31,.43,.43),vec3(.49,.60,.57),foam),alpha);
+          gl_FragColor=vec4(mix(vec3(.31,.43,.43),vec3(.63,.72,.69),foam*packet),alpha);
           #include <tonemapping_fragment>
           #include <colorspace_fragment>
         }`,

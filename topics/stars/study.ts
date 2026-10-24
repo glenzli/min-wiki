@@ -1,5 +1,5 @@
 import type { SceneStudy } from '../../src/platform/sceneReading.ts';
-import type { Track } from './evolutionModel.ts';
+import {solarTransition,type Track} from './evolutionModel.ts';
 import evolutionWords from './evolutionContent.json';
 export {nebulaStudy} from './nebulaStudy.ts';
 
@@ -100,12 +100,24 @@ const remnants: Record<Exclude<Track,'low-mass'>, SceneStudy> = {
   },
 };
 
-export function evolutionStudy(track: Track, phase: number): SceneStudy {
+export function evolutionStudy(track: Track, phase: number, progress?:number): SceneStudy {
+  const transition=track==='solar'&&progress!==undefined?solarTransition(progress):undefined;
+  if(transition){
+    const entry=evolutionWords.solarTransitions[transition];
+    return {child:entry.body,title:entry.name,theory:entry.body,
+      evidence:w('星团中的巨星、恒星振动和前行星状星云的光谱，为不同阶段提供证据；太阳的未来来自结构与失重模型，并非拍到它完整的一生。','Giants in clusters, stellar oscillations and preplanetary-nebula spectra constrain different stages. The Sun’s future is inferred from structure and mass-loss models, not a recording of its whole life.'),
+      limits:evolutionWords.tracks.solar.summary,
+      sources:[{title:'Karakas & Lattanzio · Giant phases and helium burning',url:evolutionWords.sources.heliumBurning},{title:'ESA/Hubble · Gas outflow before ionization',url:evolutionWords.sources.preplanetary},{title:'Schröder & Smith · A model of the future Sun',url:evolutionWords.sources.solarFuture}]};
+  }
   if(track==='low-mass'){
     const p=Math.min(6,Math.max(0,Math.floor(phase))),entry=evolutionWords.tracks['low-mass'].stages[p]!;
     return {child:entry.body,title:entry.name,theory:entry.body,evidence:p<3?w('低质量恒星的光谱、双星质量与星团比较可检验目前主序阶段；其未来演化须由结构模型推算。','Spectra, binary masses and cluster comparisons test today’s low-mass main-sequence stars; their future evolution must be calculated with structure models.'):w('没有孤立 0.2 M☉ 恒星在当前宇宙年龄内自然耗尽氢。远未来分支基于低质量恒星的理论演化计算；精确时长随质量与成分改变。','No isolated 0.2 M☉ star has naturally exhausted its hydrogen within the current Universe’s age. This distant future follows theoretical low-mass evolution calculations; its duration depends on mass and composition.'),limits:evolutionWords.tracks['low-mass'].summary,sources:[{title:'NASA · Red dwarfs and lifetimes',url:'https://science.nasa.gov/universe/stars/types/'},{title:'Adams & Laughlin (1997) · Long-term low-mass stellar evolution',url:evolutionWords.sources.lowMass}]};
   }
   const entry = phase === 6 ? remnants[track] : evolution[Math.min(5, Math.max(0, phase))]!;
+  if(track!=='solar'&&(phase===4||phase===5)){
+    const words=evolutionWords.tracks[track].stages[phase]!;
+    return {...entry,child:words.body,title:words.name,theory:words.body,limits:evolutionWords.tracks[track].summary};
+  }
   if (phase !== 4) return entry;
   if (track === 'solar') return entry;
   return {

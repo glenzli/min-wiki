@@ -7,8 +7,9 @@ import evolutionWords from './evolutionContent.json';
 import anatomyWords from './anatomyContent.json';
 import nebulaWords from './nebulaContent.json';
 import {NEBULA_REFERENCES,ILLUMINATIONS} from './nebulaModel.ts';
-import {evolutionState,evolutionPosition,PHASES,PHASE_PROGRESS,type Track} from './evolutionModel.ts';
+import {evolutionState,evolutionPosition,solarTransition,PHASES,PHASE_PROGRESS,type Track} from './evolutionModel.ts';
 import {advanceEvolution,type EvolutionDirection} from './evolutionPlayback.ts';
+import {stellarSpaceFrame} from './spaceModel.ts';
 import { readState, distanceAU, solarObservation, chapterFrom } from './model.ts';
 import {ORBIT_CASES} from './orbitSystems.ts';
 import { StellarScene, type ViewState } from './scene.ts';
@@ -49,11 +50,12 @@ surfaceButton.onclick=()=>setSurface(!surfacePlaying);surfaceLabel();
 try{scene=new StellarScene(el<HTMLCanvasElement>('stellar-canvas'),text);}catch{el('canvas-fallback').hidden=false;el('stellar-canvas').hidden=true;}
 function writeUrl(){const url=new URL(location.href);url.searchParams.set('chapter',state.chapter);url.searchParams.set('distance',state.distance.toFixed(3));url.searchParams.set('type',String(state.type));url.searchParams.set('orbit',state.orbitCase);url.searchParams.delete('system');url.searchParams.set('track',state.evolutionTrack);url.searchParams.set('evolution',state.evolutionProgress.toFixed(5));url.searchParams.set('focus',String(state.anatomyFocus));url.searchParams.set('nebula',state.nebulaKind);url.searchParams.set('cloud',state.nebulaReference);url.searchParams.set('light',state.illumination);if(state.spaceView)url.searchParams.delete('view');else url.searchParams.set('view','comparison');if(state.cutaway)url.searchParams.set('cutaway','1');else url.searchParams.delete('cutaway');history.replaceState(null,'',url);}
 function draw(){if(state.chapter!=='three-body')scene?.draw(state);}
+function evolutionShellVisible(){return stellarSpaceFrame({chapter:'evolution',track:state.evolutionTrack,progress:state.evolutionProgress,nebula:'nursery',illumination:'emission'}).shellOpacity>.01;}
 function evolutionPlayLabel(){return evolutionWords.ui[evolutionDirection===-1?(state.evolutionProgress<=0?'reverseRestart':'reversePlay'):state.evolutionProgress>=1?'restart':'play'];}
 function stop(persist=true){playing=false;cancelAnimationFrame(frame);frame=0;playButton.textContent=state.chapter==='evolution'?evolveText(evolutionPlayLabel()):u('play');playButton.setAttribute('aria-pressed','false');if(persist)writeUrl();}
 function toggle(){if(playing){stop();return;}if(disposed)return;if(state.chapter==='evolution'&&(evolutionDirection===1?state.evolutionProgress>=1:state.evolutionProgress<=0)){state.evolutionProgress=evolutionDirection===1?0:1;updateEvolutionCopy();updateReadout();writeUrl();draw();}playing=true;last=performance.now();playButton.textContent=state.chapter==='evolution'?evolveText(evolutionWords.ui.pause):u('pause');playButton.setAttribute('aria-pressed','true');frame=requestAnimationFrame(tick);}
 function tick(now:number){frame=0;if(!playing||disposed||document.hidden)return;const dt=Math.min(.08,(now-last)/1000);last=now;
-  if(state.chapter==='evolution'){const before=evolutionPosition(state.evolutionProgress).phaseIndex,next=advanceEvolution(state.evolutionProgress,dt,evolutionDirection);state.evolutionProgress=next.progress;const control=el<HTMLInputElement>('evolution-progress');control.value=String(state.evolutionProgress);if(evolutionPosition(state.evolutionProgress).phaseIndex!==before)updateEvolutionCopy();if(now-evolutionReadoutAt>160){updateReadout();writeUrl();evolutionReadoutAt=now;}draw();if(next.ended){stop();updateReadout();return;}}
+  if(state.chapter==='evolution'){const before=evolutionPosition(state.evolutionProgress).phaseIndex,solarBefore=solarTransition(state.evolutionProgress),next=advanceEvolution(state.evolutionProgress,dt,evolutionDirection);state.evolutionProgress=next.progress;const control=el<HTMLInputElement>('evolution-progress');control.value=String(state.evolutionProgress);if(evolutionPosition(state.evolutionProgress).phaseIndex!==before||state.evolutionTrack==='solar'&&solarTransition(state.evolutionProgress)!==solarBefore)updateEvolutionCopy();if(now-evolutionReadoutAt>160){updateReadout();writeUrl();evolutionReadoutAt=now;}draw();if(next.ended){stop();updateReadout();return;}}
   else {state.time+=dt*.25;const control=document.getElementById('phase') as HTMLInputElement|null;if(control)control.value=String(state.time%40);draw();}
   if(playing)frame=requestAnimationFrame(tick);
 }
@@ -67,11 +69,12 @@ function ageLabel(age:number){const locale=language==='en'?'en':'zh',n=(v:number
 }
 function updateReadout(){
   const rows: [string,string][]=state.chapter==='evolution'?(()=>{const e=evolutionState(state.evolutionTrack,state.evolutionProgress),ui=evolutionWords.ui;
-    const neutron=e.phaseIndex===6&&e.remnant==='neutron-star',blackHole=e.phaseIndex===6&&e.remnant==='black-hole';
+    const neutron=e.compactBlend>=.999&&e.remnant==='neutron-star',blackHole=e.compactBlend>=.999&&e.remnant==='black-hole';
     const radius=e.phaseIndex===0?evolveText(ui.cloudExtent):blackHole?evolveText(ui.blackHoleExtent):neutron?evolveText(ui.neutronReadout):`${e.radiusSolar.toLocaleString(language==='en'?'en-US':'zh-CN',{maximumSignificantDigits:3})} R☉`;
-    const control=document.getElementById('evolution-progress');control?.setAttribute('aria-valuetext',`${evolveText(evolutionWords.tracks[state.evolutionTrack].stages[e.phaseIndex]!.name)} · ${Math.round(state.evolutionProgress*100)}%`);
-    const shell=el('controls').querySelector<HTMLElement>('[data-shell-control]');if(shell)shell.hidden=e.phaseCoordinate<4.65;
-    return [[evolveText(e.phaseIndex===6?ui.afterAge:ui.age),ageLabel(e.ageYears)],[evolveText(neutron||blackHole?ui.remnantSize:ui.radius),radius],[evolveText(ui.fuel),e.phaseIndex<2?evolveText(e.phaseIndex===1&&state.evolutionTrack!=='solar'?ui.fusionMayOverlap:ui.notStarted):e.coreFuel<=0?evolveText(ui.exhausted):`${Math.round(e.coreFuel*100)}% ${evolveText(ui.remaining)}`]] as [string,string][];})():
+    const solarStep=state.evolutionTrack==='solar'?solarTransition(state.evolutionProgress):undefined;
+    const control=document.getElementById('evolution-progress');control?.setAttribute('aria-valuetext',`${evolveText(solarStep?evolutionWords.solarTransitions[solarStep].name:evolutionWords.tracks[state.evolutionTrack].stages[e.phaseIndex]!.name)} · ${Math.round(state.evolutionProgress*100)}%`);
+    const shell=el('controls').querySelector<HTMLElement>('[data-shell-control]');if(shell)shell.hidden=!evolutionShellVisible();
+    return [[evolveText(e.ageUncalibrated?ui.afterAge:ui.age),ageLabel(e.ageYears)],[evolveText(neutron||blackHole?ui.remnantSize:ui.radius),radius],[evolveText(ui.fuel),e.phaseIndex<2?evolveText(e.phaseIndex===1&&state.evolutionTrack!=='solar'?ui.fusionMayOverlap:ui.notStarted):e.coreFuel<=0?evolveText(ui.exhausted):`${Math.round(e.coreFuel*100)}% ${evolveText(ui.remaining)}`]] as [string,string][];})():
     state.chapter==='nebulae'?(()=>{const n=nebulaWords.cases[state.nebulaKind];return [[text(nebulaWords.ui.material),text(n.material)],[text(nebulaWords.ui.power),text(state.nebulaKind==='nursery'?nebulaWords.illumination[state.illumination].power:nebulaWords.cases[state.nebulaKind].power)],[text(nebulaWords.ui.center),text(n.center)]] as [string,string][];})():
     state.chapter==='anatomy'?(()=>{const a=anatomyWords.features[state.anatomyFocus]!;return [[evolveText(anatomyWords.ui.location),evolveText(a.location)],[evolveText(anatomyWords.ui.cause),evolveText(a.cause)],[evolveText(anatomyWords.ui.observe),evolveText(a.observe)]] as [string,string][];})():
     state.chapter==='sun'?(()=>{const o=solarObservation(distanceAU(state.distance));return [[u('angle'),o.angularDiameterDegrees.toFixed(4)+'°'],[u('delay'),(o.lightTravelSeconds/60).toFixed(1)+' min'],[u('flux'),(o.relativeIrradiance*100).toPrecision(3)+'%']] as [string,string][];})():
@@ -107,7 +110,7 @@ function update(){
     const playback=document.createElement('div');playback.className='evolution-playback';playback.append(playButton,progress,direction);controls.append(playback,options.details);
     const tools=document.createElement('div');tools.className='evolution-view-tools';
     tools.append(button(evolveText(state.spaceView?ui.comparison:ui.space),false,()=>{state.spaceView=!state.spaceView;writeUrl();update();}));
-    if(state.spaceView){tools.append(button(evolveText(ui.resetCamera),false,()=>scene?.resetSpaceCamera()));if(state.evolutionTrack!=='low-mass'){const shell=button(evolveText(state.cutaway?ui.exterior:ui.cutaway),state.cutaway,()=>{state.cutaway=!state.cutaway;writeUrl();update();});shell.dataset.shellControl='';shell.hidden=evolutionPosition(state.evolutionProgress).phaseCoordinate<4.65;tools.append(shell);}}
+    if(state.spaceView){tools.append(button(evolveText(ui.resetCamera),false,()=>scene?.resetSpaceCamera()));if(state.evolutionTrack!=='low-mass'){const shell=button(evolveText(state.cutaway?ui.exterior:ui.cutaway),state.cutaway,()=>{state.cutaway=!state.cutaway;writeUrl();update();});shell.dataset.shellControl='';shell.hidden=!evolutionShellVisible();tools.append(shell);}}
     const timing=document.createElement('p');timing.className='scale-note evolution-timing';timing.textContent=evolveText(ui.playbackNote);controls.append(tools,timing);
     el('scene-title').textContent=evolveText(ui.title);el('context').textContent=evolveText(ui.context);el('scale-note').textContent=evolveText(state.spaceView?ui.spaceScale:state.evolutionTrack==='low-mass'?ui.scaleLow:state.evolutionTrack==='solar'?ui.scale:ui.scaleMassive);updateEvolutionCopy();updateReadout();draw();return;
   }
@@ -154,13 +157,13 @@ function update(){
   reading.set(chapter==='sun'?sunDistanceStudy:chapter==='types'?typesStudy:orbitStudies[state.orbitCase]);
   updateReadout();draw();
 }
-function updateEvolutionCopy(){const track=evolutionWords.tracks[state.evolutionTrack],position=evolutionPosition(state.evolutionProgress),stage=position.phaseIndex,words=track.stages[stage]!;
+function updateEvolutionCopy(){const track=evolutionWords.tracks[state.evolutionTrack],position=evolutionPosition(state.evolutionProgress),stage=position.phaseIndex,solarStep=state.evolutionTrack==='solar'?solarTransition(state.evolutionProgress):undefined,words=solarStep?evolutionWords.solarTransitions[solarStep]:track.stages[stage]!;
   el('scene-title').textContent=evolveText(words.name);el('context').textContent=evolveText(track.name);
-  const shell=el('controls').querySelector<HTMLElement>('[data-shell-control]');if(shell)shell.hidden=position.phaseCoordinate<4.65;
+  const shell=el('controls').querySelector<HTMLElement>('[data-shell-control]');if(shell)shell.hidden=!evolutionShellVisible();
   el('explain-title').textContent=evolveText(words.name);el('explain').textContent=evolveText(words.body);el('boundary').textContent=evolveText(track.summary);
-  el<HTMLAnchorElement>('source').href=stage<=1?evolutionWords.sources.formation:state.evolutionTrack==='low-mass'&&stage>=3?evolutionWords.sources.lowMass:stage===6?(state.evolutionTrack==='very-massive'?evolutionWords.sources.accretion:state.evolutionTrack==='massive'?evolutionWords.sources.neutronCooling:evolutionWords.sources.whiteDwarfCooling):state.evolutionTrack==='solar'&&stage===4?evolutionWords.sources.planets:stage>=5?evolutionWords.sources.remnants:evolutionWords.sources.life;
+  el<HTMLAnchorElement>('source').href=solarStep?evolutionWords.sources[solarStep==='helium'||solarStep==='agb'?'heliumBurning':'preplanetary']:stage<=1?evolutionWords.sources.formation:state.evolutionTrack==='low-mass'&&stage>=3?evolutionWords.sources.lowMass:stage===6?(state.evolutionTrack==='very-massive'?evolutionWords.sources.accretion:state.evolutionTrack==='massive'?evolutionWords.sources.neutronCooling:evolutionWords.sources.whiteDwarfCooling):state.evolutionTrack==='solar'&&stage===4?evolutionWords.sources.planets:stage>=5?evolutionWords.sources.remnants:evolutionWords.sources.life;
   [...el('controls').querySelectorAll<HTMLButtonElement>('.evolution-phases button')].forEach((b,i)=>b.setAttribute('aria-pressed',String(i===stage)));
-  reading.set(evolutionStudy(state.evolutionTrack,stage));
+  reading.set(evolutionStudy(state.evolutionTrack,stage,state.evolutionProgress));
 }
 playButton.onclick=toggle;
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();setSurface(false);threeBody.suspend();}else if(!disposed&&state.chapter==='three-body')threeBody.setActive(true);});

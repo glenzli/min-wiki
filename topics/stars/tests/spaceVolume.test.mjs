@@ -64,6 +64,24 @@ test('shell media have hollow centers and rewind to the same field without a pha
     update(medium,{...base,progress:.1});assert.deepEqual(update(medium,input),original);
   }
 });
+test('solar outflow has material before its gas emission is switched on by the heating central star',()=>{
+ const medium=new StellarMedium(),wind=update(medium,{...base,progress:4.85/6});
+ assert.ok(wind.some((v,i)=>i%4===0&&v>5),'wind matter is already present');
+ assert.ok(wind.every((v,i)=>i%4!==1||v===0),'early wind has no ionized emission');
+ const glowing=update(medium,{...base,progress:.875});
+ assert.ok(glowing.some((v,i)=>i%4===1&&v>5),'the same outflow later emits');
+ assert.deepEqual(update(medium,{...base,progress:4.85/6}),wind,'rewind restores matter and its pre-ionization state');
+});
+test('evolution keeps polar ejecta and their whole splat inside one current field while preserving world coordinates',()=>{
+ const medium=new StellarMedium(),owner=medium.medium,data=owner.data;
+ for(const track of ['solar','massive','very-massive'])for(const progress of [.83,.875,.9,.925,1]){
+  const input={...base,track,progress},frame=stellarSpaceFrame(input);writeSpaceParticles(frame,positions,alpha);const world=positions.slice();
+  medium.update(frame,positions,alpha);assert.equal(medium.medium,owner);assert.equal(owner.data,data);assert.equal(owner.resolution,48);assert.deepEqual(positions,world);
+  for(const coordinate of positions){const grid=(coordinate/medium.extent+1)*.5*(owner.resolution-1);assert.ok(grid>=3-1e-6&&grid<=owner.resolution-4+1e-6,'an ejecta splat is cropped by the field boundary');}
+  const current=owner.data.slice(),extent=medium.extent;update(medium,{...base,progress:.1});assert.deepEqual(update(medium,input),current);assert.equal(medium.extent,extent);
+ }
+ update(medium,{...base,chapter:'nebulae',reference:'orion'});assert.equal(medium.extent,SPACE_VOLUME_EXTENT,'classic clouds retain their original map');
+});
 
 test('recognition radii retain the order of ordinary stars and their compact endpoints',()=>{
   for(const track of ['low-mass','solar','massive','very-massive']){
@@ -92,6 +110,16 @@ test('close framing exposes a main-sequence surface while keeping cloud/shell fr
   assert.ok(stellarObservationZoom(newborn,3)<1,'the newly exposed remnant keeps its shell context');
   assert.ok(stellarObservationZoom(cooled,3)>stellarObservationZoom(newborn,3),'the fading shell permits a closer remnant view');
   assert.ok(stellarSpaceFrame(cooled).starRadius*stellarObservationZoom(cooled,3)<stellarSpaceFrame(main).starRadius*stellarObservationZoom(main,3),'the compact close-up remains smaller than the main-sequence disk');
+});
+test('the expanding solar envelope and massive ejecta fit the default camera before the cooling close-up',()=>{
+ for(const track of ['solar','massive','very-massive'])for(const progress of [.79,.83,.85,.875,.9,.925]){
+  const input={...base,track,progress},frame=stellarSpaceFrame(input);if(frame.shellOpacity<.01)continue;
+  writeSpaceParticles(frame,positions,alpha);
+  for(const aspect of [1238/450,1.5,.8]){
+   const camera=new PerspectiveCamera(36,aspect,.05,70);camera.position.set(6.3,3.4,9.2);camera.lookAt(0,0,0);camera.zoom=stellarObservationZoom(input,aspect);camera.updateProjectionMatrix();camera.updateMatrixWorld();
+   for(let i=0;i<SPACE_PARTICLES;i+=4){const point=new Vector3(...positions.subarray(i*3,i*3+3)).project(camera);assert.ok(Math.abs(point.x)<.96&&Math.abs(point.y)<.96,`${track} ${progress} at ${aspect} clips its outflow`);}
+  }
+ }
 });
 
 test('all classic nurseries keep luminous gas and dense silhouettes inside narrow and desktop frames',()=>{

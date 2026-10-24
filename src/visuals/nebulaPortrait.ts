@@ -53,6 +53,9 @@ export type NebulaAppearance = {
   emissionVariation?: number;
   dustVariation?: number;
   dustLight?: number;
+  /** Weak incident starlight scattered by neutral gas/dust, independent of
+   * ionized emission. Zero preserves existing portrait appearances. */
+  scatteredLight?: number;
   /** Column-major transform into an object-bound dust-detail frame. */
   dustDetailTransform?: readonly number[];
   sources?: readonly (readonly [number, number, number])[];
@@ -276,6 +279,7 @@ uniform float densityDisplacement;
 uniform float emissionVariation;
 uniform float dustVariation;
 uniform float dustLight;
+uniform float scatteredLight;
 uniform mat3 dustDetailTransform;
 uniform vec3 cool;
 uniform vec3 accent;
@@ -378,7 +382,10 @@ void main() {
     vec3 emission = palette * medium.g;
     // A bounded single-scattering contribution from diffuse incident nebular
     // light reveals folds in neutral dust; this is not dust self-emission.
-    if(illumination<.5)emission+=mix(accent,warm,.12)*ambientDust;
+    if(illumination<.5){
+      emission+=mix(accent,warm,.12)*ambientDust;
+      emission+=mix(cool,accent,.13*broad)*(medium.r*.24+medium.b*.35)*sourceLight*scatteredLight;
+    }
     // A bounded single-scattering illustration, with the same dust and source.
     // It is not a spectral/ionization solve or an inversion of an observation.
     if (illumination > 1.5) emission = vec3(0.);
@@ -435,7 +442,7 @@ export function createNebulaPortrait(id: string, options: { medium?: NebulaMediu
       localEye: { value: new THREE.Vector3(0, 0, 10) }, orthographic: { value: 1 },
       sampleCount: { value: steps },
       densityDisplacement: { value: .045 }, emissionVariation: { value: 1 }, dustVariation: { value: 1 },
-      dustLight:{value:0},dustDetailTransform:{value:new THREE.Matrix3().set(1.9,0,0,0,1.9,0,0,0,1.9)},
+      dustLight:{value:0},scatteredLight:{value:0},dustDetailTransform:{value:new THREE.Matrix3().set(1.9,0,0,0,1.9,0,0,0,1.9)},
       cool: { value: new THREE.Color(kind === 'cloud' ? '#36c6ed' : kind === 'planetary' ? '#27d6d0' : '#35c2f2') },
       accent: { value: new THREE.Color(kind === 'cloud' ? '#bb42da' : kind === 'planetary' ? '#6c68ea' : '#ed527b') },
       warm: { value: new THREE.Color(kind === 'cloud' ? '#ff537e' : kind === 'planetary' ? '#ff9059' : '#ffa24b') },
@@ -485,6 +492,7 @@ export function createNebulaPortrait(id: string, options: { medium?: NebulaMediu
       if (appearance.densityDisplacement !== undefined && Number.isFinite(appearance.densityDisplacement)) uniforms.densityDisplacement!.value = Math.max(0,Math.min(.08,appearance.densityDisplacement));
       for(const key of ['emissionVariation','dustVariation'] as const)if(appearance[key]!==undefined&&Number.isFinite(appearance[key]))uniforms[key]!.value=Math.max(0,Math.min(1,appearance[key]!));
       if(appearance.dustLight!==undefined&&Number.isFinite(appearance.dustLight))uniforms.dustLight!.value=Math.max(0,Math.min(1,appearance.dustLight));
+      if(appearance.scatteredLight!==undefined&&Number.isFinite(appearance.scatteredLight))uniforms.scatteredLight!.value=Math.max(0,Math.min(1,appearance.scatteredLight));
       if(appearance.dustDetailTransform?.length===9&&appearance.dustDetailTransform.every(Number.isFinite))uniforms.dustDetailTransform!.value.fromArray(appearance.dustDetailTransform);
       if (appearance.opacity !== undefined && Number.isFinite(appearance.opacity)) uniforms.opacity!.value = Math.max(0, Math.min(1, appearance.opacity));
       if (appearance.cutaway !== undefined) uniforms.cutaway!.value = Number(appearance.cutaway);

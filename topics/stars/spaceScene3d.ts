@@ -160,17 +160,17 @@ void main(){
   draw(input:SpaceInput,time:number,cutaway:boolean){
     if(this.disposed)return;this.input=input;const frame=stellarSpaceFrame(input);this.frameCamera();
     const key=input.chapter==='nebulae'?['nebulae',input.nebula,input.nebula==='nursery'?(input.reference??'orion'):''].join('|'):[input.chapter,input.track,input.progress].join('|');
-    if(this.geometryKey!==key){this.geometryKey=key;writeSpaceParticles(frame,this.positions,this.alphas);this.medium.update(frame,this.positions,this.alphas);this.volume.updateMedium();}
+    if(this.geometryKey!==key){this.geometryKey=key;writeSpaceParticles(frame,this.positions,this.alphas);this.medium.update(frame,this.positions,this.alphas);this.volume.group.scale.setScalar(this.medium.extent);this.volume.updateMedium();}
     const sourceStar=input.chapter==='nebulae'&&input.nebula==='nursery';
     const cloud=sourceStar?nebulaCloudAppearance(input.reference??'orion'):undefined;
-    this.blackHole.visible=frame.blackHole&&frame.starOpacity>0;this.blackHole.scale.setScalar(frame.starRadius);this.blackHoleMaterial.uniforms.opacity!.value=frame.starOpacity;
+    this.blackHole.visible=frame.blackHole&&frame.starOpacity>0;this.blackHole.scale.setScalar(frame.coreRadius);this.blackHoleMaterial.uniforms.opacity!.value=frame.starOpacity*frame.blackHoleBlend;
     const dark=input.chapter==='nebulae'&&input.nebula==='nursery'&&input.illumination==='dark',reflection=input.chapter==='nebulae'&&input.nebula==='nursery'&&input.illumination==='reflection';
     for(const [portrait,compact]of [[this.photosphere,false],[this.compactSurface,true]] as const){
-      const surfaceOpacity=frame.starOpacity*(compact?frame.compactBlend:1-frame.compactBlend);
-      portrait.group.visible=!sourceStar&&!frame.blackHole&&surfaceOpacity>0;
-      portrait.group.position.set(0,0,0);portrait.group.scale.setScalar(frame.starRadius/.85);
+      const surfaceOpacity=frame.starOpacity*(compact?frame.compactBlend:1-frame.compactBlend)*(1-frame.blackHoleBlend);
+      portrait.group.visible=!sourceStar&&surfaceOpacity>0;
+      portrait.group.position.set(0,0,0);portrait.group.scale.setScalar((compact?frame.coreRadius:frame.starRadius)/.85);
       const profile=compact?'compact':frame.surfaceProfile==='compact'?(input.track==='low-mass'?'red-dwarf':'red-giant'):frame.surfaceProfile;
-      portrait.setAppearance({color:frame.starColor,opacity:surfaceOpacity,time,profile,emission:frame.emission,
+      portrait.setAppearance({color:compact&&frame.coolingProgress===0?'#e4f5ff':frame.starColor,opacity:surfaceOpacity,time,profile,emission:frame.emission,
         activeRegions:input.track==='low-mass'?.8:input.track==='solar'?.8:.25,glare:frame.glare});
     }
     this.backdrop.visible=sourceStar;this.background.visible=!sourceStar;this.skyStars.visible=sourceStar;
@@ -192,19 +192,20 @@ void main(){
     // Evolution follows its numbered parcels; independent nursery references
     // use the topic's authored cloud fields. Both share one retained volume.
     const opened=cutaway&&frame.shellOpacity>.01;
+    const opticalScale=this.medium.extent/SPACE_VOLUME_EXTENT;
     this.volume.group.visible=frame.cloudOpacity>.001||frame.shellOpacity>.001;
-    this.volume.setAppearance({illumination:sourceStar?input.illumination:'emission',structure:frame.kind==='planetary'?'planetary':frame.kind==='supernova'?'remnant':'cloud',cutaway:opened,cutZ:.04*frame.shellRadius/SPACE_VOLUME_EXTENT,
+    this.volume.setAppearance({illumination:sourceStar?input.illumination:'emission',structure:frame.kind==='planetary'?'planetary':frame.kind==='supernova'?'remnant':'cloud',cutaway:opened,cutZ:.04*frame.shellRadius/this.medium.extent,
       samplingSteps:this.volumeSampling(),
       densityDisplacement:cloud?.densityDisplacement??.045,emissionVariation:cloud?.emissionVariation??1,dustVariation:cloud?.dustVariation??1,
-      dustLight:cloud?.dustLight??0,dustDetailTransform:cloud?.dustDetailTransform??[1.9,0,0,0,1.9,0,0,0,1.9],
+      dustLight:cloud?.dustLight??0,scatteredLight:frame.evolving&&frame.kind==='planetary'?(1-frame.shellEmission)*.22:0,dustDetailTransform:cloud?.dustDetailTransform??[1.9,0,0,0,1.9,0,0,0,1.9],
       cool:reflection?'#87b5dc':cloud?.cool??(frame.kind==='planetary'?'#21d6d0':frame.kind==='supernova'?'#30bff3':'#32c8ec'),
       accent:reflection?'#a2b0ca':cloud?.accent??(frame.kind==='planetary'?'#7570ec':frame.kind==='supernova'?'#f14c78':'#bd3bda'),
       warm:cloud?.warm??(frame.kind==='planetary'?'#ff9858':frame.kind==='supernova'?'#ffa24b':'#ff4e7d'),
-      gasExtinction:.52-.24*frame.shellBlend,dustExtinction:cloud?.dustExtinction??(dark?14:4.8-4*frame.shellBlend),
-      luminosity:frame.kind==='planetary'?8.5:frame.kind==='supernova'?12:reflection?5.2:6.5,
-      sources:cloud&&!dark?cloud.sources:[],lightPosition:cloud?.lightPosition??[1.8/SPACE_VOLUME_EXTENT,.3/SPACE_VOLUME_EXTENT,0]});
+      gasExtinction:(.52-.24*frame.shellBlend)*opticalScale,dustExtinction:(cloud?.dustExtinction??(dark?14:4.8-4*frame.shellBlend))*opticalScale,
+      luminosity:(frame.kind==='planetary'?8.5:frame.kind==='supernova'?12:reflection?5.2:6.5)*opticalScale,
+      sources:cloud&&!dark?cloud.sources:[],lightPosition:cloud?.lightPosition??[0,0,0]});
     this.shell.visible=frame.shellOpacity>.001;this.shell.scale.set(frame.shellRadius,frame.shellRadius*frame.shellFlattening,frame.shellRadius);
-    this.shellMaterial.uniforms.uColor!.value.set(frame.kind==='planetary'?'#29c9d5':'#f78652');this.shellMaterial.uniforms.uOpacity!.value=frame.shellOpacity*.35;this.shellMaterial.uniforms.uCutaway!.value=Number(opened);
+    this.shellMaterial.uniforms.uColor!.value.set(frame.kind==='planetary'?'#29c9d5':'#f78652');this.shellMaterial.uniforms.uOpacity!.value=frame.shellOpacity*frame.shellEmission*.35;this.shellMaterial.uniforms.uCutaway!.value=Number(opened);
     this.filaments.visible=frame.kind==='supernova'&&frame.shellOpacity>.001;this.filaments.scale.copy(this.shell.scale);this.filamentMaterial.uniforms.uColor!.value.set('#ffb46e');this.filamentMaterial.uniforms.uOpacity!.value=frame.shellOpacity*.12;this.filamentMaterial.uniforms.uCutaway!.value=Number(opened);
     this.jets.visible=frame.jetOpacity>.001;this.jets.material.uniforms.uOpacity!.value=frame.jetOpacity*.65;
     this.render();

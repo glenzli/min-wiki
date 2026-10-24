@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { Reflector } from 'three/addons/objects/Reflector.js';
 import { animateValue } from '../../src/visuals/transition.ts';
+import { FrameRender } from '../../src/visuals/frameRender.ts';
 import type { Settings } from './model.ts';
 import { ANGLES, BOTTOM, EXTENT, LAYERS, SECTION_EXPOSED_START, PISTON_UNITS, COLLAPSE_BLOCKS, blockBuffers, updateBlocks, roofOffset, depositBuffers, updateDeposit, basementBuffers, pistonBase, pistonTrace, pistonTracks, boulderPose, cameraPose, faultBuffers, intrusionBuffers, lakeFrame, landscapeBuffers, planform, sectionBuffers, seed, shoreline, skirtBuffers, storageLayerBuffers, surfaceBuffers, surfaceHeight, updateFault, updateFaultCut, updateSection, updateStorage, updateSurface, updateWater, updateWaterSection, waterBuffers, waterSectionBuffers, withdrawalPath, type Buffers, type LakeFrame, type LakeView, type XYZ } from './geometry3d.ts';
 import { LAYER_FACIES, lakeReflectorShader, lakeUniforms, reservoirMaterial, rockMaterial, supportMaterial, skyMaterial, stoneNoise, waterSectionMaterial } from './materials3d.ts';
@@ -83,6 +84,7 @@ export class Lake3DScene {
   private waterUpdates = 0;
   private lastGeologyMs = 0;
   private dummy = new THREE.Object3D();
+  private presentation = new FrameRender(() => this.renderNow());
 
   constructor(readonly canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
@@ -465,10 +467,11 @@ export class Lake3DScene {
     spherical.radius = THREE.MathUtils.clamp(spherical.radius, this.controls.minDistance, this.controls.maxDistance);
     this.camera.position.setFromSpherical(spherical).add(this.controls.target); this.controls.update(); this.render();
   };
-  private render = () => { if (!this.disposed && !this.updatingFrame) this.renderer.render(this.scene, this.camera); };
+  private render = () => this.presentation.request();
+  private renderNow() { if (!this.disposed && !this.updatingFrame) this.renderer.render(this.scene, this.camera); }
   dispose() {
     if (this.disposed) return;
-    this.disposed = true; this.stopMotion(); this.observer?.disconnect();
+    this.disposed = true; this.presentation.dispose(); this.stopMotion(); this.observer?.disconnect();
     this.canvas.removeEventListener('keydown', this.keydown);
     this.controls?.removeEventListener('change', this.render); this.controls?.removeEventListener('start', this.orbitStart); this.controls?.dispose();
     if (this.water) { this.materials.delete(this.water.material as THREE.Material); this.water.dispose(); }

@@ -12,6 +12,31 @@ import { ECOLOGY_ANIMAL_LIFT, ECOLOGY_PATCH_VERTICES, ECOLOGY_SURFACE_LIFT, ISLA
 import { OceanEcology3D } from '../oceanEcology3d.ts';
 import { islandEcologyFraming, OceanCameraMotion, oceanEcologyFraming } from '../scene3d.ts';
 
+test('a rapid seek supersedes a same-view camera transition without accumulating the old mountain height', () => {
+  const camera=new THREE.PerspectiveCamera(37,1.5,.08,220),controls=new OrbitControls(camera);
+  const early={target:new THREE.Vector3(0,.15,0),offset:new THREE.Vector3(2,2.5,7)};
+  const ending={target:new THREE.Vector3(0,7.7,.34),offset:new THREE.Vector3(3.2,2.7,8.3)};
+  let pending:Parameters<NonNullable<ConstructorParameters<typeof OceanCameraMotion>[3]>>[0] | undefined,cancelled=0;
+  const motion=new OceanCameraMotion(camera,controls,()=>{},options=>{
+    pending=options;options.onUpdate(0);return ()=>{cancelled++;};
+  });
+  motion.setView(early,false);motion.setView(ending,true);
+  const obsolete=pending!;obsolete.onUpdate(.4);
+  const partial=controls.target.clone();motion.draw(ending,ending);
+  assert.equal(cancelled,0,'a same-frame redraw keeps its intended view transition');
+  assert.ok(controls.target.distanceTo(partial)<1e-9);
+  motion.draw(ending,early);
+  assert.equal(cancelled,1,'an earlier progress anchor invalidates the old transition even without a focus-key change');
+  assert.ok(controls.target.distanceTo(early.target)<1e-9);
+  obsolete.onUpdate(1);obsolete.onComplete?.();
+  assert.ok(controls.target.distanceTo(early.target)<1e-9,'a queued completion cannot restore the old endpoint');
+  motion.draw(early,ending);
+  assert.ok(controls.target.distanceTo(ending.target)<1e-9,'returning to the endpoint adds its mountain height only once');
+  assert.ok(Math.abs(camera.position.distanceTo(controls.target)-ending.offset.length())<1e-9,
+    'following growth retains the current viewing direction and the intended observation distance');
+  motion.stop();
+});
+
 test('the selected conditions admit sparse ecology while bare, hot, shallow and submerged-land controls remain empty', () => {
   for (const environment of ['deep', 'shallow', 'island'] as const) for (const supply of ['limited', 'sustained'] as const) {
     for (const progress of [0, .2, .6, .8199, .9, 1]) {

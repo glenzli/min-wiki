@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { animateValue } from '../../src/visuals/transition.ts';
+import { FrameRender } from '../../src/visuals/frameRender.ts';
 import { pillowState, ramp, type Environment, type Supply } from './model.ts';
 import { MagmaDetailMotion, type DetailMotionState } from '../volcano-eruption/magmaMotion.ts';
 import { createScene, type SceneFrame } from './scene.ts';
@@ -88,7 +89,13 @@ export class OceanCameraMotion {
   draw(previous: CameraFrame, next: CameraFrame) {
     const focusChanged = previous.minDistance !== next.minDistance || previous.focusKey !== next.focusKey;
     if (focusChanged) this.stop();
-    if (this.moving) return;
+    if (this.moving) {
+      if (previous.target.equals(next.target) && previous.offset.equals(next.offset)) return;
+      // A seek or growth update supersedes the destination of an in-flight
+      // view change. Dropping it would leave the camera at the old anchor;
+      // the following draw would then add that missing height a second time.
+      this.setView(next, false); return;
+    }
     this.limits(next);
     if (focusChanged) {
       this.camera.position.copy(next.target).add(next.offset); this.controls.target.copy(next.target);
@@ -250,6 +257,7 @@ class Ocean3D {
   private dummy = new THREE.Object3D();
   private color = new THREE.Color();
   private size = new THREE.Vector2();
+  private presentation = new FrameRender(() => this.renderNow());
 
   constructor(readonly canvas: HTMLCanvasElement) {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
@@ -518,7 +526,7 @@ class Ocean3D {
     this.controls.minAzimuthAngle = section ? -.6 : -Infinity;
     this.controls.maxAzimuthAngle = section ? .6 : Infinity;
     this.renderer.shadowMap.needsUpdate = true;
-    this.detailMotion?.setHot(oceanMeltVisible(this.current, this.view) || this.epilogue.active);
+    this.detailMotion?.setHot(oceanMeltVisible(this.current, this.view) || this.epilogue.active || this.seaActive());
     this.moveCamera(true);
   }
   private cameraFrame(): CameraFrame {
@@ -587,7 +595,8 @@ class Ocean3D {
     if (!this.hasSize || Math.abs(old - this.camera.aspect) > .2) this.moveCamera(false);
     this.hasSize = true; this.render();
   };
-  private render = () => {
+  private render = () => this.presentation.request();
+  private renderNow() {
     if (this.disposed || !this.hasSize || document.hidden) return;
     this.canvas.dataset.cameraPosition = this.camera.position.toArray().map(v => v.toFixed(5)).join(',');
     this.canvas.dataset.cameraTarget = this.controls.target.toArray().map(v => v.toFixed(5)).join(',');
@@ -624,17 +633,28 @@ class Ocean3D {
     this.plume.uniforms.uInverse.value.multiplyMatrices(this.camera.matrixWorld, this.camera.projectionMatrixInverse);
     this.renderer.setRenderTarget(this.plumeTarget); this.renderer.setClearColor(0, 0); this.renderer.clear(); this.renderer.render(this.plumeScene, this.camera);
     this.renderer.setRenderTarget(null); this.renderer.setClearColor(0, 1); this.renderer.render(this.composite, this.screenCamera);
-  };
+  }
   private updateLiquidPhase(phase: number) {
     if (this.disposed) return;
+    this.uniforms.seaPhase.value = phase;
+    this.canvas.dataset.seaPhase = phase.toFixed(6);
     if (oceanMeltVisible(this.current, this.view)) {
       this.uniforms.detailPhase.value = phase;
       this.vent?.updateDetail(phase);
       this.hotLight.intensity = this.lightLevel * (.94 + .04 * Math.sin(phase * 2) + .02 * Math.sin(phase * 3 + .7));
     }
     this.epilogue?.updatePhase(phase);
-    this.canvas.dataset.visitorBird = this.epilogue?.active ? this.epilogue.state!.bird.position.map(v=>v.toFixed(5)).join(',') : '';
+    this.publishVisitors();
     this.render();
+  }
+  private seaActive() {
+    return this.view !== 'section' && this.water.visible && this.current.environment === 'island' && this.current.state.emerged;
+  }
+  private publishVisitors() {
+    const state=this.epilogue?.active ? this.epilogue.state : undefined;
+    this.canvas.dataset.visitors=state ? `${Number(state.bird.visible)} seabird, ${state.fish.filter(f=>f.visible).length} fish` : '';
+    this.canvas.dataset.visitorBird=state?.bird.visible ? state.bird.position.map(v=>v.toFixed(5)).join(',') : '';
+    this.canvas.dataset.visitorFish=state ? state.fish.filter(f=>f.visible).map(f=>f.position.map(v=>v.toFixed(5)).join(',')).join(';') : '';
   }
   private publishDetailState(state: DetailMotionState) {
     if(this.epilogue?.setReducedMotion(state.reducedMotion))this.render();
@@ -645,7 +665,11 @@ class Ocean3D {
   draw(progress: number, environment: Environment, supply: Supply, ecology: OceanEcologyCase = 'bare') {
     if (this.disposed) return;
     const changed = `${progress}|${environment}|${supply}` !== `${this.current.p}|${this.current.environment}|${this.current.supply}`;
-    const oldTarget = this.cameraFrame(); this.current = oceanGeometryFrame(progress, environment, supply);
+    const followCamera = changed || ecology !== this.ecologyCase || !this.environmentKey;
+    const oldTarget = followCamera ? this.cameraFrame() : undefined;
+    // Keep the current frame's terrain/contact caches on camera-only redraws;
+    // an exact new progress or condition replaces it rather than adding history.
+    if (changed) this.current = oceanGeometryFrame(progress, environment, supply);
     this.ecologyCase = ecology;
     const key = `${environment}|${supply}`;
     if (key !== this.environmentKey) { this.environmentKey = key; this.rebuild(); }
@@ -664,16 +688,18 @@ class Ocean3D {
     this.canvas.dataset.ecology = this.ecologyCase;
     this.canvas.dataset.ecologyVisible = String(this.ecology.state.visible);
     this.canvas.dataset.ecologyFocusSite = String(this.ecology.state.focusSite);
-    if (this.hasSize && this.view !== 'ocean') {
+    if (oldTarget && this.hasSize && this.view !== 'ocean') {
       this.cameraMotion?.draw(oldTarget, this.cameraFrame());
     }
-    this.epilogue.draw(this.current,this.camera);
-    this.canvas.dataset.visitors = this.epilogue.active ? '1 seabird, 3 fish' : '';
-    this.detailMotion?.setHot(oceanMeltVisible(this.current, this.view) || this.epilogue.active);
+    // Ambient phases own poses between geological updates, including quiet
+    // gaps before the next visit. A repeated draw must not remesh that pose.
+    if (changed || !this.epilogue.state) this.epilogue.draw(this.current,this.camera);
+    this.publishVisitors();
+    this.detailMotion?.setHot(oceanMeltVisible(this.current, this.view) || this.epilogue.active || this.seaActive());
     this.render();
   }
   dispose() {
-    if (this.disposed) return; this.disposed = true; this.detailMotion?.dispose(); this.stopMotion(); this.observer?.disconnect();
+    if (this.disposed) return; this.disposed = true; this.presentation.dispose(); this.detailMotion?.dispose(); this.stopMotion(); this.observer?.disconnect();
     this.controls?.removeEventListener('change', this.render); this.controls?.removeEventListener('start', this.stopMotion); this.controls?.dispose();
     this.canvas.removeEventListener('keydown', this.keydown);
     for (const geometry of this.geometries) geometry.dispose(); for (const material of this.materials) material.dispose();

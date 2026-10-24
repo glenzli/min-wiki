@@ -83,7 +83,7 @@ test('real underground composition has bounded retained strata and disposes each
   const scene = Object.assign(Object.create(Lake3DScene.prototype), {
     scene: new THREE.Scene(), underground: new THREE.Group(), faults: new THREE.Group(), supportBodies: [], faultBodies: [],
     frame: lakeFrame(0, settings), texture: new THREE.DataTexture(), uniforms: lakeUniforms(), geometries: new Set<THREE.BufferGeometry>(), materials: new Set<THREE.Material>(),
-    disposed: false, canvas: { removeEventListener() {} }, stopMotion() {}, renderer: { dispose() {}, forceContextLoss() {} },
+    disposed: false, canvas: { removeEventListener() {} }, stopMotion() {}, presentation: { dispose() {} }, renderer: { dispose() {}, forceContextLoss() {} },
   });
   scene.scene.add(scene.underground, scene.faults); scene.createUnderground();
   assert.equal(scene.supportBodies.length, 11); assert.equal(scene.geometries.size, 15); assert.equal(scene.materials.size, 8);

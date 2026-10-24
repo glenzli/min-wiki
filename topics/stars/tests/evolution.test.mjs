@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {TRACKS,PHASES,PHASE_PROGRESS,REMNANT_START,RSUN_AU,evolutionPosition,evolutionState,recognitionRadius} from '../evolutionModel.ts';
+import {TRACKS,PHASES,PHASE_PROGRESS,REMNANT_START,RSUN_AU,evolutionPosition,evolutionState,recognitionRadius,solarTransition} from '../evolutionModel.ts';
 import {drawEvolution} from '../evolutionScene.ts';
+import {evolutionStudy} from '../study.ts';
 
 test('the four paths retain one identity and distinct remnants through forward, reverse and repeat',()=>{
  const expected={'low-mass':'white-dwarf',solar:'white-dwarf',massive:'neutron-star','very-massive':'black-hole'};
@@ -11,6 +12,26 @@ test('the four paths retain one identity and distinct remnants through forward, 
   assert.ok(values.every((v,i)=>i===0||v.ageYears>=values[i-1].ageYears));
   assert.equal(evolutionState(track,1).remnant,expected[track]);
   for(const progress of [.12,.49,.83,1])assert.deepEqual(evolutionState(track,progress),evolutionState(track,progress));
+ }
+});
+test('the solar giant contracts during helium burning and expands again before losing its envelope',()=>{
+ const sample=phase=>evolutionState('solar',phase/6);
+ const tip=sample(4),helium=sample(4.22),agb=sample(4.58),wind=sample(4.85);
+ assert.ok(tip.radiusSolar>helium.radiusSolar*5);
+ assert.ok(helium.radiusSolar>sample(2).radiusSolar*5,'helium burning is still a giant, not a white dwarf');
+ assert.ok(agb.radiusSolar>helium.radiusSolar*5&&agb.radiusSolar<=tip.radiusSolar);
+ assert.ok(wind.radiusSolar<agb.radiusSolar);
+ for(const state of [helium,agb,wind]){assert.equal(state.coreFuel,0);assert.equal(state.mercuryEngulfed,true);assert.equal(state.venusEngulfed,true);}
+ assert.equal(solarTransition(4.22/6),'helium');assert.equal(solarTransition(4.5/6),'agb');assert.equal(solarTransition(4.85/6),'wind');
+ const epoch=evolutionState('solar',4.58/6);
+ for(const progress of [5/6,.87,.9,1]){const state=evolutionState('solar',progress);assert.equal(state.ageUncalibrated,true);assert.equal(state.ageYears,epoch.ageYears,'late nebular illustration does not claim a 200 Myr duration');}
+});
+test('each solar subphase supplies the same bilingual child and academic explanation after a reading-mode switch',()=>{
+ const content=JSON.parse(readFileSync(new URL('../evolutionContent.json',import.meta.url)));
+ for(const phase of [4.22,4.5,4.85,5.3,5.8]){
+  const progress=phase<=5?phase/6:PHASE_PROGRESS[5]+(phase-5)*(REMNANT_START-PHASE_PROGRESS[5]),key=solarTransition(progress),study=evolutionStudy('solar',Math.floor(phase),progress);
+  assert.deepEqual(study.child,content.solarTransitions[key].body);assert.deepEqual(study.theory,study.child);assert.deepEqual(study.title,content.solarTransitions[key].name);
+  assert.ok(study.sources.some(source=>source.url===content.sources.preplanetary));
  }
 });
 test('Solar giant envelope crosses Mercury and Venus on one physical radius scale, without reappearing after ejection',()=>{
@@ -24,7 +45,7 @@ test('the separate recognition view preserves giants and the distinct low-mass f
   const size=path.anchors.map(anchor=>recognitionRadius(track,anchor.radiusSolar));
   if(track==='low-mass')assert.ok(path.anchors[4].radiusSolar<1,`the theoretical red-dwarf future must not acquire a giant envelope`);
   else assert.ok(size[4]>size[2]*1.7,`${track} giant expansion should be visible`);
-  assert.ok(size[5]<size[2],`${track} collapse should be visible`);
+  assert.ok(size[6]<size[2],`${track} compact endpoint should be smaller than its mature star`);
   assert.ok(size[4]<=146&&size[0]>=9);
  }
 });

@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { FrameRender } from '../../src/visuals/frameRender.ts';
 import {
   DEFAULT_HYDROTHERMAL_SETTINGS, HOT_ROCK, HYDROTHERMAL_SAMPLES, HYDROTHERMAL_POOL_SAMPLES, HYDROTHERMAL_MIST_SAMPLES, HYDROTHERMAL_BANK_ROCKS, HYDROTHERMAL_PATHS, POOL,
   hydrothermalFrame, hydrothermalRoute, hydrothermalRouteHeat, hydrothermalSample, hydrothermalPoolSample, hydrothermalMist, hydrothermalBankRock,
@@ -255,6 +256,7 @@ export class HydrothermalScene {
   private rendererError = '';
   private dummy = new THREE.Object3D();
   private manualCamera = false;
+  private presentation?: FrameRender;
   constructor(canvas: HTMLCanvasElement, private onRendererChange?: RendererCallback) {
     this.activeCanvas = canvas; this.initialize();
     document.addEventListener('visibilitychange', this.visibility);
@@ -274,7 +276,7 @@ export class HydrothermalScene {
     // question must not reuse that context or a previous Canvas2D context.
     this.replaceCanvas(); this.context = undefined; this.rendererError = '';
     let mode: RendererMode = 'webgl';
-    try { this.create3D(); }
+    try { this.presentation = new FrameRender(() => this.renderNow()); this.create3D(); }
     catch (error) {
       this.rendererError = error instanceof Error ? `${error.name}: ${error.message}` : String(error);
       this.releaseGPU(); this.replaceCanvas(); this.context = this.canvas.getContext('2d'); mode = 'canvas';
@@ -488,7 +490,8 @@ export class HydrothermalScene {
     if (this.view === 'section') spherical.theta = THREE.MathUtils.clamp(spherical.theta, -.8, .8);
     this.camera!.position.copy(this.controls!.target).add(new THREE.Vector3().setFromSpherical(spherical)); this.controls!.update(); this.render();
   };
-  private render = () => { if (!this.disposed && this.renderer && this.scene && this.camera) this.renderer.render(this.scene, this.camera); };
+  private render = () => this.presentation?.request();
+  private renderNow() { if (!this.disposed && this.renderer && this.scene && this.camera) this.renderer.render(this.scene, this.camera); }
   private observe() {
     this.observer?.disconnect(); this.intersection?.disconnect();
     this.observer = new ResizeObserver(this.resize); this.observer.observe(this.canvas);
@@ -541,6 +544,7 @@ export class HydrothermalScene {
     if (this.disposed || this.renderer) return; this.cancelFrame(); this.observer?.disconnect(); this.intersection?.disconnect(); this.initialize(); this.observe(); this.draw(this.frame.p, this.frame.settings);
   }
   private releaseGPU() {
+    this.presentation?.dispose(); this.presentation = undefined;
     this.canvas.removeEventListener('webglcontextlost', this.contextLost); this.controls?.removeEventListener('change', this.render); this.controls?.removeEventListener('start', this.orbitStart); this.controls?.dispose(); this.controls = undefined;
     this.sun?.shadow.dispose(); this.sun = undefined;
     this.scene?.traverse(object => { if (object instanceof THREE.InstancedMesh) object.dispose(); });

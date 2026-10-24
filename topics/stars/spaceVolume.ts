@@ -38,6 +38,9 @@ export function stellarMediumDust(shell: boolean, parcel: number): number {
  * Neither lighting, camera nor surface clock enters these material channels. */
 export class StellarMedium {
   readonly medium: NebulaMedium = { resolution: SPACE_VOLUME_RESOLUTION, data: new Uint8Array(SPACE_VOLUME_RESOLUTION ** 3 * 4) };
+  /** Current world-to-field map. The fixed-resolution box follows the detached
+   * parcels, rather than cutting their polar ends at the nursery's old box. */
+  extent = SPACE_VOLUME_EXTENT;
   private accumulation = new Float32Array(SPACE_VOLUME_RESOLUTION ** 3 * 4);
   private weights = new Float64Array(15);
 
@@ -47,16 +50,23 @@ export class StellarMedium {
     if(frame.cloudReference&&frame.cloudReference!=='orion'){
       if(!this.medium.front||this.medium.front.distance.length!==resolution**3)this.medium.front=nebulaCloudFront(new Uint8Array(resolution**3));
     }else this.medium.front=undefined;
+    this.extent=SPACE_VOLUME_EXTENT;
     if(frame.cloudReference){writeNebulaCloud(frame.cloudReference,this.medium.data,resolution,this.medium.front);return;}
     const size = this.medium.resolution, accumulation = this.accumulation, weights = this.weights;
     accumulation.fill(0);
-    const shell = frame.shellOpacity > .001, step = 2 * SPACE_VOLUME_EXTENT / (size - 1);
+    const shell = frame.shellOpacity > .001;
+    if(frame.evolving&&shell){
+      let bound=0;for(let i=0;i<positions.length;i++)bound=Math.max(bound,Math.abs(positions[i]!));
+      // Leave three voxel intervals at either edge for the whole splat kernel.
+      this.extent=Math.max(SPACE_VOLUME_EXTENT,bound*(size-1)/(size-7));
+    }
+    const step = 2 * this.extent / (size - 1);
     const sigma = shell ? .155 : .235;
     for (let parcel = 0; parcel < alpha.length; parcel++) {
       const density = alpha[parcel]!;
       if (density <= .0001) continue;
       const x = positions[parcel * 3]!, y = positions[parcel * 3 + 1]!, z = positions[parcel * 3 + 2]!;
-      const gx = (x / SPACE_VOLUME_EXTENT + 1) * .5 * (size - 1), gy = (y / SPACE_VOLUME_EXTENT + 1) * .5 * (size - 1), gz = (z / SPACE_VOLUME_EXTENT + 1) * .5 * (size - 1);
+      const gx = (x / this.extent + 1) * .5 * (size - 1), gy = (y / this.extent + 1) * .5 * (size - 1), gz = (z / this.extent + 1) * .5 * (size - 1);
       const ix = Math.round(gx), iy = Math.round(gy), iz = Math.round(gz);
       for (let offset = -2; offset <= 2; offset++) {
         weights[offset + 2] = Math.exp(-(((ix + offset - gx) * step / sigma) ** 2));
@@ -65,7 +75,7 @@ export class StellarMedium {
       }
       const uneven = .52 + .48 * spaceRandom(parcel + 1703);
       const sourceDistance = ((x - 1.8) ** 2 + (y - .3) ** 2 + z * z) / 12;
-      const illuminated = shell ? .8 + .2 * uneven : .34 + .66 * Math.exp(-sourceDistance);
+      const illuminated = shell ? (.8 + .2 * uneven)*frame.shellEmission : .34 + .66 * Math.exp(-sourceDistance);
       // Dust is a separate channel, with dense foreground strands and a faint
       // diffuse component. Its identity follows the same parcel into the disk.
       const dustParcel = stellarMediumDust(shell, parcel);

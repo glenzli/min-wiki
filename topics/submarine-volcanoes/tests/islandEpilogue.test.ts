@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import { advanceOceanPlayback, islandEpilogue, seabirdPose, SEABIRD_ENTRY_SPAN, ISLAND_ENDING_SECONDS, ISLAND_FISH_COUNT } from '../islandEpilogue.ts';
+import { advanceOceanPlayback, advanceVisit, createBirdVisit, createFishVisit, islandEpilogue, seabirdPose, passingFishPose,
+  SEABIRD_ENTRY_SPAN, ISLAND_ENDING_SECONDS, ISLAND_FISH_COUNT, VISITOR_SEQUENCE_LENGTH } from '../islandEpilogue.ts';
 import { IslandEpilogue3D } from '../islandEpilogue3d.ts';
 import { oceanGeometryFrame, surfaceHeight, WATER_Y } from '../geometry3d.ts';
 
@@ -61,11 +62,13 @@ test('the actual retained animal meshes clear rock and stay on their respective 
 });
 
 test('animals face along their paths and retain their small body sizes through movement', () => {
-  const frame=oceanGeometryFrame(1,'island','sustained'),dt=1e-4;
-  for(let phase=0;phase<Math.PI*2;phase+=.13) {
-    const a=islandEpilogue(frame,phase),b=islandEpilogue(frame,phase+dt);
-    for(const [index,pose] of [a.bird,...a.fish].entries()) {
-      const next=[b.bird,...b.fish][index],dx=next.position[0]-pose.position[0],dz=next.position[2]-pose.position[2];
+  const dt=1e-4,bird=createBirdVisit(),fish=createFishVisit();
+  for(let age=.01;age<bird.duration-dt;age+=.13) {
+    const a=[seabirdPose(age,{...bird,age}),passingFishPose(age,{...fish,age},0)];
+    const b=[seabirdPose(age+dt,{...bird,age:age+dt}),passingFishPose(age+dt,{...fish,age:age+dt},0)];
+    for(const [index,pose] of a.entries()) {
+      if(!pose.visible)continue;
+      const next=b[index],dx=next.position[0]-pose.position[0],dz=next.position[2]-pose.position[2];
       assert.ok((dx*Math.cos(pose.heading)-dz*Math.sin(pose.heading))/Math.hypot(dx,dz)>.999);
     }
   }
@@ -90,39 +93,85 @@ test('one retained wildlife owner changes poses without spawning or borrowing GP
   assert.equal(releasedGeometry,count.geometry);assert.equal(releasedMaterial,count.material);
 });
 
-test('the entry curve meets the orbit with continuous position, tangent and forward orientation', () => {
-  const start=2.4,entry:[number,number,number]=[-8,WATER_Y+2.65,2],h=1e-5;
-  const end=seabirdPose(start+SEABIRD_ENTRY_SPAN);
-  const before=seabirdPose(start+SEABIRD_ENTRY_SPAN-h,{entry,phase:start,age:SEABIRD_ENTRY_SPAN-h});
-  const after=seabirdPose(start+SEABIRD_ENTRY_SPAN+h);
-  assert.ok(Math.hypot(...before.position.map((v,i)=>v-end.position[i]))<h*4);
-  const left=before.position.map((v,i)=>(end.position[i]-v)/h),right=after.position.map((v,i)=>(v-end.position[i])/h);
-  assert.ok(Math.hypot(...left.map((v,i)=>v-right[i]))<.001);
-  assert.ok(Math.abs(Math.sin(before.heading-end.heading))<.001);
-  for(let age=0;age<SEABIRD_ENTRY_SPAN;age+=.02) {
-    const p=seabirdPose(start+age,{entry,phase:start,age});
-    const q=seabirdPose(start+age+h,{entry,phase:start,age:age+h});
-    const dx=q.position[0]-p.position[0],dz=q.position[2]-p.position[2];
-    assert.ok((dx*Math.cos(p.heading)-dz*Math.sin(p.heading))/Math.hypot(dx,dz)>.999);
+test('entry and exit meet the circling flight with continuous position and velocity', () => {
+  const visit=createBirdVisit(),h=1e-5;
+  for(const age of [SEABIRD_ENTRY_SPAN,SEABIRD_ENTRY_SPAN+visit.orbitSpan]) {
+    const end=seabirdPose(1,{...visit,age});
+    const before=seabirdPose(1,{...visit,age:age-h}),after=seabirdPose(1,{...visit,age:age+h});
+    assert.ok(Math.hypot(...before.position.map((v,i)=>v-end.position[i]))<h*5);
+    const left=before.position.map((v,i)=>(end.position[i]-v)/h),right=after.position.map((v,i)=>(v-end.position[i])/h);
+    assert.ok(Math.hypot(...left.map((v,i)=>v-right[i]))<.001);
+    assert.ok(Math.abs(Math.sin(before.heading-end.heading))<.001);
   }
 });
 
-test('arrival starts outside the active camera, runs once across phase wrap and respects reduced motion', () => {
+test('birds and fish enter, leave, rest and return after playback ends without restarting on phase wrap', () => {
   const frame=oceanGeometryFrame(1,'island','sustained');
   const camera=new THREE.PerspectiveCamera(37,1099/796,.08,220);
   camera.position.set(2.44411,10.76927,8.77485);camera.lookAt(.00321,7.69437,.34265);camera.updateMatrixWorld();
   const owner=new IslandEpilogue3D();owner.draw(oceanGeometryFrame(.8,'island','sustained'),camera);
   owner.updatePhase(6.1);owner.draw(frame,camera);
   const initial=new THREE.Vector3(...owner.state!.bird.position).project(camera);
-  assert.ok(initial.x < -1.1 && Math.abs(initial.y)<.4,'bird enters from beyond the left edge at the existing altitude');
-  for(let i=1;i<=90;i++)owner.updatePhase((6.1+i*.025)%(Math.PI*2));
-  const phase=(6.1+90*.025)%(Math.PI*2);
-  assert.deepEqual(owner.state!.bird,seabirdPose(phase),'the first entry finishes on the original orbit');
-  owner.updatePhase((phase+.02)%(Math.PI*2));owner.draw(frame,camera);
-  assert.deepEqual(owner.state!.bird,seabirdPose((phase+.02)%(Math.PI*2)),'a draw or wrap cannot restart the entrance');
+  assert.ok(initial.x < -1.2 && Math.abs(initial.y)<.4,'bird starts beyond the camera edge');
+  let previous=owner.state!,birdAbsent=false,birdReturned=false,fishAbsent=false,fishReturned=false;
+  const fishCounts=new Set<number>();
+  for(let i=1;i<=1600;i++) {
+    owner.updatePhase((6.1+i*.025)%(Math.PI*2));
+    const next=owner.state!;fishCounts.add(next.fish.filter(f=>f.visible).length);
+    if(!next.bird.visible)birdAbsent=true;else if(birdAbsent)birdReturned=true;
+    if(next.fish.every(f=>!f.visible))fishAbsent=true;else if(fishAbsent)fishReturned=true;
+    if(next.bird.visible&&previous.bird.visible)
+      assert.ok(Math.hypot(...next.bird.position.map((v,j)=>v-previous.bird.position[j]))<.7,'no visible teleport at a wrapped phase');
+    assert.equal(owner.active,true,'gaps cannot stop the scheduler and strand later visitors');
+    previous=next;
+  }
+  assert.ok(birdAbsent&&birdReturned&&fishAbsent&&fishReturned);
+  assert.ok(fishCounts.size>=3,'the passing shoal varies instead of always showing three synchronized fish');
+  const retained=structuredClone(owner.state);owner.draw(frame,camera);
+  assert.deepEqual(owner.state,retained,'drawing the same final geology cannot restart a visit');
   owner.draw(oceanGeometryFrame(.8,'island','sustained'),camera);owner.draw(frame,camera);
-  assert.ok(new THREE.Vector3(...owner.state!.bird.position).project(camera).x < -1.1,'replaying the ending admits a fresh entry');
+  assert.ok(new THREE.Vector3(...owner.state!.bird.position).project(camera).x < -1.2,'replaying the ending admits a fresh entry');
   owner.setReducedMotion(true);
-  assert.deepEqual(owner.state!.bird,seabirdPose((phase+.02)%(Math.PI*2)),'reduced motion leaves an observable static bird');
+  assert.ok(owner.state!.bird.visible&&owner.state!.fish.every(f=>f.visible),'reduced motion keeps representative animals on their routes');
+  const staticState=structuredClone(owner.state);owner.updatePhase(2.1);assert.deepEqual(owner.state,staticState);
   owner.dispose();
+});
+
+test('visit timing stays bounded and reproducible, and varies routes and quiet gaps', () => {
+  let bird=createBirdVisit(),fish=createFishVisit();
+  const starts=new Set<number>(),counts=new Set<number>();
+  for(let i=0;i<10000;i++) {
+    bird=advanceVisit(bird,.31,createBirdVisit);fish=advanceVisit(fish,.31,createFishVisit);
+    starts.add(bird.start);counts.add(fish.count);
+    assert.ok(bird.age>=0&&bird.age<bird.duration+bird.gap);
+    assert.ok(fish.age>=0&&fish.age<fish.duration+fish.gap);
+    assert.ok(bird.index<VISITOR_SEQUENCE_LENGTH&&fish.index<VISITOR_SEQUENCE_LENGTH);
+  }
+  assert.ok(starts.size>20&&counts.size===3);
+  const a=createBirdVisit(3),b=createBirdVisit(3);
+  assert.deepEqual(a,b);assert.deepEqual(advanceVisit(a,1.7,createBirdVisit),advanceVisit(advanceVisit(b,.5,createBirdVisit),1.2,createBirdVisit));
+});
+
+test('camera-relative visits enter and retire outside the view, including later fish groups', () => {
+  const frame=oceanGeometryFrame(1,'island','sustained');
+  for(const distance of [6,18])for(const angle of [0,1.7,3.4]) {
+    const camera=new THREE.PerspectiveCamera(37,1.5,.08,220);
+    camera.position.set(Math.sin(angle)*distance,11,Math.cos(angle)*distance);camera.lookAt(0,7.7,0);camera.updateMatrixWorld();
+    const owner=new IslandEpilogue3D();owner.draw(frame,camera);
+    assert.ok(new THREE.Vector3(...owner.state!.bird.position).project(camera).x < -1.2);
+    let previous=owner.state!;
+    for(let step=1;step<=1600;step++) {
+      owner.updatePhase((step*.025)%(Math.PI*2));const state=owner.state!;
+      for(const [i,pose] of [state.bird,...state.fish].entries()) {
+        const before=[previous.bird,...previous.fish][i];
+        if(pose.visible!==before.visible) {
+          const edge=new THREE.Vector3(...(pose.visible?pose:before).position).project(camera);
+          assert.ok(Math.abs(edge.x)>1.05||Math.abs(edge.y)>1.05,'visibility can change only beyond the captured view');
+        }
+        if(pose.visible&&i>0)assert.ok(pose.position[1]<WATER_Y-.1&&pose.position[1]>surfaceHeight(frame,pose.position[0],pose.position[2])+.08);
+      }
+      previous=state;
+    }
+    owner.dispose();
+  }
 });

@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { APRON_COLUMNS, APRON_ROWS, coastalApronPoint, COASTAL_PIECES, coastalParcels, coastalPiece, islandFlowBuffers, islandFlows, updateIslandFlow } from './coastalFlow.ts';
+import { APRON_COLUMNS, APRON_ROWS, clearIslandFlowProjection, coastalApronPoint, COASTAL_PIECES, coastalParcels, coastalPiece, islandFlowBuffers, islandFlows, updateIslandFlow } from './coastalFlow.ts';
 import { type OceanGeometryFrame, type PlumeVolume } from './geometry3d.ts';
 import { stoneMaterial, type OceanUniforms } from './materials3d.ts';
 
@@ -106,7 +106,7 @@ export class OceanCoastalFlow3D {
 
   dispose() {
     if (this.disposed) return; this.disposed = true;
-    for (const { mesh } of this.channels) { mesh.geometry.dispose(); (mesh.material as THREE.Material).dispose(); }
+    for (const { mesh, data } of this.channels) { clearIslandFlowProjection(data); mesh.geometry.dispose(); (mesh.material as THREE.Material).dispose(); }
     for (const { mesh } of this.aprons) mesh.geometry.dispose();
     this.cooled.dispose();
     this.pieces.geometry.dispose(); this.pieces.dispose(); this.group.clear();

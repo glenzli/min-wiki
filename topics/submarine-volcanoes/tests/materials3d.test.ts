@@ -6,6 +6,7 @@ import { oceanUniforms, stoneNoise, stoneMaterial, waterMaterial } from '../mate
 test('local water phase variation keeps the same mean plane, optical settings, clock and noise resource', () => {
   const noise = stoneNoise(), ocean = oceanUniforms(), material = waterMaterial(noise, ocean);
   assert.equal(material.uniforms.uStone.value, noise); assert.equal(material.uniforms.uClock, ocean.clock);
+  assert.equal(material.uniforms.uSeaPhase, ocean.seaPhase);
   assert.equal(material.uniforms.uDeep, ocean.deep); assert.equal(material.uniforms.uCutaway, ocean.cutaway);
   assert.equal(material.uniforms.uIslandEmergence, ocean.emergence);
   assert.equal(material.depthWrite, false); assert.equal(material.transparent, true);
@@ -42,6 +43,10 @@ test('molten surfaces share one independent phase without changing the water or 
   }
   ocean.detailPhase.value = Math.PI;
   assert.equal(ocean.clock.value, .08); assert.equal(water.uniforms.uClock.value, .08);
+  ocean.seaPhase.value=1.7;
+  assert.equal(water.uniforms.uSeaPhase.value,1.7);
+  assert.equal(ocean.detailPhase.value,Math.PI,'sea detail cannot unfreeze the cooled lava phase');
+  assert.ok(shaders.every(shader=>!('uSeaPhase' in shader.uniforms)));
   assert.ok(shaders.every(s => s.uniforms.uDetailPhase.value === Math.PI));
   assert.match(shaders[6].vertexShader, /vShardHeat=oceanHeat;vFreshFace=mix\(1\.,oceanFreshFace,oceanQuench\)/);
   assert.match(shaders[6].vertexShader, /attribute float oceanQuench;/);

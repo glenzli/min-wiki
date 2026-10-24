@@ -72,7 +72,7 @@ test('one retained seaward surf ribbon shares clocks and noise and releases its 
   const positions = position.array, indices = index.array;
   assert.equal(position.count, (COASTLINE_SAMPLES + 1) * 2); assert.equal(index.count, COASTLINE_SAMPLES * 6);
   assert.equal(mesh.material.uniforms.uStone.value, noise);
-  assert.equal(mesh.material.uniforms.uClock, ocean.clock); assert.equal(mesh.material.uniforms.uDetailPhase, ocean.detailPhase);
+  assert.equal(mesh.material.uniforms.uClock, ocean.clock); assert.equal(mesh.material.uniforms.uSeaPhase, ocean.seaPhase);
   assert.equal(mesh.material.transparent, true); assert.equal(mesh.material.depthWrite, false); assert.equal(mesh.material.clipping, true);
   let geometryDisposals = 0, materialDisposals = 0, noiseDisposals = 0;
   mesh.geometry.addEventListener('dispose', () => geometryDisposals++);
@@ -85,7 +85,7 @@ test('one retained seaward surf ribbon shares clocks and noise and releases its 
   }
   owner.draw(oceanGeometryFrame(.8, 'island', 'sustained'));
   const expected = positions.slice(), version = (position as THREE.BufferAttribute).version;
-  ocean.detailPhase.value = Math.PI; owner.draw(oceanGeometryFrame(.8, 'island', 'sustained'));
+  ocean.seaPhase.value = Math.PI; owner.draw(oceanGeometryFrame(.8, 'island', 'sustained'));
   assert.equal((position as THREE.BufferAttribute).version, version);
   for (let i = 0; i < position.count; i++) {
     assert.ok(Math.abs(position.getY(i) - WATER_Y - COASTLINE_SURF_LIFT) < .000001);

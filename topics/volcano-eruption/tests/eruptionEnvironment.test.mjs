@@ -228,7 +228,7 @@ function rendererHarness() {
     magma: style(), magmaPath: style(), fountain: style(), lava: style(), pool: style(), surfaceTransport: style(), intrusiveTransport: style(),
     storageLights: STORAGE.map(() => new THREE.PointLight()), ground: new THREE.Mesh(), view: 'overview', canvas: { dataset: {}, removeEventListener() {} },
     controls: { dispose() {} }, renderer: { shadowMap: {}, dispose() {}, forceContextLoss() {} },
-    stopMotion() {}, detailMotion: { dispose() {} }, resizeObserver: { disconnect() {} }, ejecta: { dispose() {} },
+    stopMotion() {}, presentation: { dispose() {} }, detailMotion: { dispose() {} }, resizeObserver: { disconnect() {} }, ejecta: { dispose() {} },
     ash: { noise: new THREE.Texture() }, sceneTarget: { dispose() {} }, ashTarget: { dispose() {} }, ashScene: new THREE.Scene(), compositeScene: new THREE.Scene(), disposed: false,
   });
   return scene;

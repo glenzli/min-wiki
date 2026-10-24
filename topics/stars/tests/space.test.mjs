@@ -48,6 +48,32 @@ test('formation, envelope loss and remnant handoffs are continuous rather than r
   assert.ok(a.position.every((v,i)=>Math.abs(v-b.position[i])<.002),`${track} at ${phase}`);
  }
 });
+test('solar expelled gas continues outward as the separate central photosphere contracts and heats',()=>{
+ for(const track of ['solar','massive','very-massive']){let prior;
+ for(let phase=track==='solar'?4.58:5.02;phase<=6.0001;phase+=.02){
+  const frame=stellarSpaceFrame({...base,track,progress:progressAtPhase(Math.min(6,phase))}),current=particles(frame);
+  if(prior)for(let i=0;i<SPACE_PARTICLES;i++)assert.ok(Math.hypot(...current.position.subarray(i*3,i*3+3))>=Math.hypot(...prior.position.subarray(i*3,i*3+3))-1e-6,`parcel ${i} reverses at ${phase}`);
+  prior=current;
+ }}
+ const wind=stellarSpaceFrame({...base,progress:4.85/6}),lit=stellarSpaceFrame({...base,progress:progressAtPhase(5.65)});
+ assert.ok(wind.shellOpacity>0&&wind.shellBlend>0);assert.equal(wind.shellEmission,0,'gas leaves before strong ionized emission');
+ assert.ok(lit.shellEmission>.9&&lit.starRadius<wind.starRadius);
+ assert.ok(lit.coreRadius<lit.envelopeRadius/5,'hot core and former envelope have independent sizes');
+ assert.equal(lit.compactBlend,0,'do not reveal a second ghost body through a transparent post-AGB photosphere');
+ const exposed=stellarSpaceFrame({...base,progress:progressAtPhase(5.8)});assert.equal(exposed.starRadius,exposed.coreRadius,'surface material changes only once both portraits meet at one radius');
+ for(const phase of [4.04,4.22,4.3,4.58,4.62,4.76,5,5.02,5.05,5.55,5.78,5.8]){
+  const a=stellarSpaceFrame({...base,progress:progressAtPhase(phase-1e-5)}),b=stellarSpaceFrame({...base,progress:progressAtPhase(phase+1e-5)});
+  for(const key of ['starRadius','coreRadius','envelopeRadius','shellRadius','shellOpacity','shellEmission','compactBlend'])assert.ok(Math.abs(a[key]-b[key])<.002,`${key} jumps at ${phase}`);
+ }
+});
+test('massive collapse begins before ejecta depart and the black-hole locator fades in without erasing a luminous core in one frame',()=>{
+ for(const track of ['massive','very-massive']){
+  const collapsed=stellarSpaceFrame({...base,track,progress:progressAtPhase(5.01)}),ejecta=stellarSpaceFrame({...base,track,progress:progressAtPhase(5.4)});
+  assert.ok(collapsed.compactBlend>0);assert.equal(collapsed.shellBlend,0);assert.ok(ejecta.shellBlend>0);
+ }
+ const before=stellarSpaceFrame({...base,track:'very-massive',progress:progressAtPhase(5.35)}),next=stellarSpaceFrame({...base,track:'very-massive',progress:progressAtPhase(5.3501)}),after=stellarSpaceFrame({...base,track:'very-massive',progress:progressAtPhase(5.65)});
+ assert.equal(before.blackHoleBlend,0);assert.ok(next.blackHoleBlend>0&&next.blackHoleBlend<.0001);assert.equal(after.blackHoleBlend,1);
+});
 test('remnant cooling keeps the same body and dispersed parcel identities while radiance and shell visibility fall',()=>{
  for(const track of Object.keys(TRACKS)){
   const start=stellarSpaceFrame({...base,track,progress:REMNANT_START}),middle=stellarSpaceFrame({...base,track,progress:.95}),end=stellarSpaceFrame({...base,track,progress:1});

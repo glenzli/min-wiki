@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { seed, WATER_Y } from './geometry3d.ts';
 
 export type OceanUniforms = ReturnType<typeof oceanUniforms>;
-export const oceanUniforms = () => ({ deep: { value: 0 }, clock: { value: .08 }, detailPhase: { value: 0 }, cutaway: { value: 0 }, emergence: { value: 0 } });
+export const oceanUniforms = () => ({ deep: { value: 0 }, clock: { value: .08 }, detailPhase: { value: 0 }, seaPhase: { value: 0 }, cutaway: { value: 0 }, emergence: { value: 0 } });
 
 /** A small periodic volume, owned and disposed by each scene. No external assets. */
 export function stoneNoise() {
@@ -289,22 +289,25 @@ export function stoneMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms, 
 
 export function waterMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms) {
   return new THREE.ShaderMaterial({ transparent: true, depthWrite: false, side: THREE.DoubleSide,
-    uniforms: { uStone: { value: noise }, uDeep: ocean.deep, uClock: ocean.clock, uCutaway: ocean.cutaway, uIslandEmergence: ocean.emergence },
+    uniforms: { uStone: { value: noise }, uDeep: ocean.deep, uClock: ocean.clock, uSeaPhase: ocean.seaPhase, uCutaway: ocean.cutaway, uIslandEmergence: ocean.emergence },
     vertexShader: 'varying vec3 vWater;void main(){vec4 p=modelMatrix*vec4(position,1.);vWater=p.xyz;gl_Position=projectionMatrix*viewMatrix*p;}',
-    fragmentShader: /* glsl */`varying vec3 vWater;uniform float uDeep;uniform float uClock;uniform float uCutaway;uniform float uIslandEmergence;${NOISE}
+    fragmentShader: /* glsl */`varying vec3 vWater;uniform float uDeep;uniform float uClock;uniform float uSeaPhase;uniform float uCutaway;uniform float uIslandEmergence;${NOISE}
       void main(){
         if(uCutaway>.5 && vWater.z>0.)discard;
         vec3 view=normalize(cameraPosition-vWater);
         float t=uClock*3.;vec2 p=vWater.xz;
         float footprint=max(length(dFdx(p)),length(dFdy(p)));
         float swell=1.-smoothstep(.8,2.6,footprint),medium=1.-smoothstep(.12,.45,footprint),fine=1.-smoothstep(.035,.13,footprint);
-        float warp=fbm(vec3(p*.71,t*.14))*3.5;
+        // A closed phase loop drives only surface detail, including at the
+        // cooled endpoint. It cannot change the sea level or relight lava.
+        vec2 drift=vec2(sin(uSeaPhase),cos(uSeaPhase));
+        float warp=fbm(vec3(p*.71+drift*.42,t*.14))*3.5;
         // Local, separately seeded phase variation breaks long locked bands.
         // Filtering follows the existing footprint; mean surface stays fixed.
         vec2 localWarp=(vec2(filteredGrain(vec3(p*7.1,t*.19)),filteredGrain(vec3(p.yx*8.3+11.,t*.17+7.)))-.5)*2.4*medium;
-        float a=dot(p,vec2(.71,.38))+warp+t*.43,b=dot(p,vec2(-1.53,.82))-warp*.6-t*.71;
-        float c=dot(p,vec2(3.27,2.11))+warp*1.4+localWarp.x+t*1.12,d=dot(p,vec2(-7.6,5.31))+warp+localWarp.y+t*1.71;
-        float e=dot(p,vec2(16.1,-11.7))+warp*2.1+localWarp.x*.7-localWarp.y*.5-t*2.21;
+        float a=dot(p,vec2(.71,.38))+warp+t*.43-uSeaPhase,b=dot(p,vec2(-1.53,.82))-warp*.6-t*.71-uSeaPhase*2.;
+        float c=dot(p,vec2(3.27,2.11))+warp*1.4+localWarp.x+t*1.12-uSeaPhase*3.,d=dot(p,vec2(-7.6,5.31))+warp+localWarp.y+t*1.71-uSeaPhase*4.;
+        float e=dot(p,vec2(16.1,-11.7))+warp*2.1+localWarp.x*.7-localWarp.y*.5-t*2.21-uSeaPhase*6.;
         vec2 slope=swell*(vec2(.71,.38)*.014*cos(a)+vec2(-.88,.47)*.013*cos(b))
           +medium*(vec2(.84,.54)*.012*cos(c)+vec2(-.82,.57)*.008*cos(d))
           +fine*vec2(.81,-.59)*.006*cos(e);
@@ -315,6 +318,14 @@ export function waterMaterial(noise: THREE.Data3DTexture, ocean: OceanUniforms) 
         float sun=pow(max(0.,dot(reflect(-normalize(vec3(-.5,.85,.6)),n),view)),80.+fine*100.)*.45*(1.-uDeep);
         vec3 waterColor=mix(vec3(.006,.041,.053),sky,fresnel)+sun*vec3(.61,.59,.49);
         waterColor=mix(waterColor,vec3(.002,.010,.015)+sky*fresnel*.10,uDeep);
+        // Unequal short breaking crests, separated by calm gaps. Noise breaks
+        // their ends and interiors rather than painting parallel white bars.
+        float foamPatch=grain(vec3(p*5.4,17.));
+        float packet=smoothstep(.86,.995,sin(uSeaPhase+foamPatch*13.+p.x*.11));
+        float crest=pow(max(0.,sin(c+.45*sin(d))),24.);
+        float lace=smoothstep(.46,.66,grain(vec3(p*12.+drift*1.7,23.)));
+        float cap=packet*crest*lace*smoothstep(.59,.71,foamPatch)*medium*(1.-uDeep);
+        waterColor=mix(waterColor,vec3(.48,.58,.57),cap*.45);
         float teachingOpacity=mix(.17,.98,smoothstep(.045,.68,fresnel));
         float seaOpacity=max(teachingOpacity,.93+.07*fresnel);
         gl_FragColor=vec4(waterColor,mix(teachingOpacity,seaOpacity,uIslandEmergence));

@@ -20,17 +20,17 @@ export const TRACKS:Record<Track,{massSolar:number;remnant:'white-dwarf'|'neutro
   {ageYears:0,radiusSolar:0,coreFuel:1},{ageYears:1e6,radiusSolar:3,coreFuel:1},
   {ageYears:5e7,radiusSolar:1,coreFuel:1},{ageYears:1e10,radiusSolar:1.4,coreFuel:0},
   {ageYears:1.15e10,radiusSolar:180,coreFuel:0},{ageYears:1.18e10,radiusSolar:.8,coreFuel:0},
-  {ageYears:1.2e10,radiusSolar:.01,coreFuel:0}]},
+  {ageYears:1.18e10,radiusSolar:.01,coreFuel:0}]},
  massive:{massSolar:15,remnant:'neutron-star',anchors:[
   {ageYears:0,radiusSolar:0,coreFuel:1},{ageYears:1e4,radiusSolar:12,coreFuel:1},
   {ageYears:5e5,radiusSolar:6,coreFuel:1},{ageYears:1e7,radiusSolar:15,coreFuel:0},
-  {ageYears:1.1e7,radiusSolar:700,coreFuel:0},{ageYears:1.11e7,radiusSolar:3,coreFuel:0},
-  {ageYears:1.12e7,radiusSolar:0,coreFuel:0}]},
+  {ageYears:1.1e7,radiusSolar:700,coreFuel:0},{ageYears:1.11e7,radiusSolar:700,coreFuel:0},
+  {ageYears:1.11e7,radiusSolar:12/695700,coreFuel:0}]},
  'very-massive':{massSolar:30,remnant:'black-hole',anchors:[
   {ageYears:0,radiusSolar:0,coreFuel:1},{ageYears:1e4,radiusSolar:15,coreFuel:1},
   {ageYears:3e5,radiusSolar:10,coreFuel:1},{ageYears:5e6,radiusSolar:24,coreFuel:0},
-  {ageYears:5.5e6,radiusSolar:900,coreFuel:0},{ageYears:5.51e6,radiusSolar:3,coreFuel:0},
-  {ageYears:5.52e6,radiusSolar:0,coreFuel:0}]},
+  {ageYears:5.5e6,radiusSolar:900,coreFuel:0},{ageYears:5.51e6,radiusSolar:900,coreFuel:0},
+  {ageYears:5.51e6,radiusSolar:0,coreFuel:0}]},
 };
 export const clampProgress=(v:number)=>{const bounded=Number.isFinite(v)?Math.max(0,Math.min(1,v)):0,stop=[...PHASE_PROGRESS,1].find(value=>Math.abs(bounded-value)<1e-5);
  // URLs keep five decimal places; recover an explicitly selected phase on reload.
@@ -39,6 +39,19 @@ export const clampProgress=(v:number)=>{const bounded=Number.isFinite(v)?Math.ma
 const clamp=(value:number)=>Math.max(0,Math.min(1,value));
 const smooth=(value:number)=>{const t=clamp(value);return t*t*(3-2*t);};
 const mix=(a:number,b:number,t:number)=>a+(b-a)*t;
+/** Extra teaching stops inside the legacy giant→release interval. These are
+ * rounded radii, not a solar-evolution calculation or calibrated phase ages.
+ * Helium ignition is internal: it is not a surface explosion. */
+const SOLAR_LATE_RADII:readonly (readonly [number,number])[]=[[4,180],[4.22,12],[4.58,180],[4.76,145],[5,.8],[5.8,.01],[6,.01]];
+function solarLateRadius(phase:number){
+ const after=SOLAR_LATE_RADII.findIndex(([stop])=>stop>phase),at=after<0?SOLAR_LATE_RADII.length-2:Math.max(0,after-1);
+ const a=SOLAR_LATE_RADII[at]!,b=SOLAR_LATE_RADII[at+1]!;
+ return mix(a[1],b[1],smooth((phase-a[0])/(b[0]-a[0])));
+}
+export function solarTransition(progress:number){
+ const p=evolutionPosition(progress).phaseCoordinate;
+ return p<4.04||p>=6?undefined:p<4.3?'helium':p<4.62?'agb':p<5.02?'wind':p<5.55?'heating':'ionized';
+}
 function colorMix(a:string,b:string,t:number){
  const channel=(hex:string,index:number)=>parseInt(hex.slice(index,index+2),16);
  return '#'+[1,3,5].map(index=>Math.round(mix(channel(a,index),channel(b,index),clamp(t))).toString(16).padStart(2,'0')).join('');
@@ -56,8 +69,12 @@ export function evolutionAppearance(track:Track,progress:number){
  const {phaseCoordinate:p,remnantProgress}=evolutionPosition(progress),whiteDwarf=TRACKS[track].remnant==='white-dwarf',low=track==='low-mass';
  const main=low?'#efaf85':track==='solar'?'#fff0cf':'#c9e2ff',giant='#eda678',hot='#e4f5ff';
  const photosphereProfile=low?'red-dwarf' as const:p>=3?'red-giant' as const:'solar' as const;
- const compactBlend=smooth((p-5.45)/.4),surfaceProfile=compactBlend===1?'compact' as const:photosphereProfile;
- const beforeCompact=low?colorMix(main,hot,smooth((p-3.5)/1.5)):colorMix(colorMix(main,giant,smooth(p-2.5)),hot,smooth(p-4.5));
+ // The post-AGB photosphere first contracts to the core's displayed size.
+ // Only then change its material: early transparency would reveal a ghost
+ // sphere inside another sphere instead of one exposed, heating star.
+ const compactBlend=smooth((p-(track==='solar'?5.8:low?5.45:4.98))/(track==='solar'?.18:low?.4:.14)),surfaceProfile=compactBlend===1?'compact' as const:photosphereProfile;
+ const heliumWarmth=track==='solar'?smooth((p-4.02)/.2)*(1-smooth((p-4.3)/.28))*.3:0;
+ const beforeCompact=low?colorMix(main,hot,smooth((p-3.5)/1.5)):colorMix(colorMix(colorMix(main,giant,smooth(p-2.5)),main,heliumWarmth),hot,smooth((p-(track==='solar'?4.8:5.0))/(track==='solar'?.95:.4)));
  const coolingProgress=whiteDwarf||TRACKS[track].remnant==='neutron-star'?remnantProgress:0,cooling=smooth(coolingProgress);
  return {surfaceProfile,photosphereProfile,compactBlend,coolingProgress,
   surfaceColor:whiteDwarf?colorMix(beforeCompact,'#fff1d8',cooling):beforeCompact,
@@ -73,8 +90,13 @@ export function evolutionState(track:Track,progress:number){
  const position=evolutionPosition(progress),{phaseIndex,blend,phaseCoordinate:p}=position,next=Math.min(6,phaseIndex+1);
  const model=TRACKS[track],a=model.anchors[phaseIndex]!,b=model.anchors[next]!;
  const engulfAt=(orbitAU:number)=>3+(orbitAU/RSUN_AU-model.anchors[3]!.radiusSolar)/(model.anchors[4]!.radiusSolar-model.anchors[3]!.radiusSolar);
- return {track,...position,...evolutionAppearance(track,progress),ageYears:a.ageYears+(b.ageYears-a.ageYears)*blend,
-  radiusSolar:a.radiusSolar+(b.radiusSolar-a.radiusSolar)*blend,coreFuel:a.coreFuel+(b.coreFuel-a.coreFuel)*blend,
+ // The late solar illustrations share one rounded epoch. No post-AGB/nebular
+ // elapsed age is solved; do not stretch a glowing nebula across 200 Myr.
+ const massive=track==='massive'||track==='very-massive';
+ const ageYears=track==='solar'&&p>=4?mix(model.anchors[4]!.ageYears,model.anchors[5]!.ageYears,smooth((p-4)/.58)):massive&&p>=5?model.anchors[5]!.ageYears:a.ageYears+(b.ageYears-a.ageYears)*blend;
+ const radiusSolar=track==='solar'&&p>=4?solarLateRadius(p):massive&&p>=4?mix(model.anchors[4]!.radiusSolar,model.anchors[6]!.radiusSolar,smooth((p-5.02)/.10)):a.radiusSolar+(b.radiusSolar-a.radiusSolar)*blend;
+ return {track,...position,...evolutionAppearance(track,progress),ageYears,ageUncalibrated:phaseIndex===6||track==='solar'&&p>=4.58||massive&&p>=5,
+  radiusSolar,coreFuel:a.coreFuel+(b.coreFuel-a.coreFuel)*blend,
   mercuryEngulfed:track==='solar'&&p>=engulfAt(.387),
   venusEngulfed:track==='solar'&&p>=engulfAt(.723),
   remnant:model.remnant,massSolar:model.massSolar};

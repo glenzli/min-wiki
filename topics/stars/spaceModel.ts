@@ -11,10 +11,13 @@ export type SpaceInput = {
   reference?: NebulaReference;
 };
 export interface SpaceFrame {
+  evolving: boolean;
   cloudReference?: NebulaReference;
   kind: 'formation' | 'star' | 'planetary' | 'supernova';
   phase: number;
   starRadius: number;
+  coreRadius: number;
+  envelopeRadius: number;
   starColor: string;
   starOpacity: number;
   surfaceProfile: 'solar' | 'red-giant' | 'red-dwarf' | 'compact';
@@ -25,6 +28,8 @@ export interface SpaceFrame {
   cloudOpacity: number;
   shellOpacity: number;
   shellBlend: number;
+  shellEmission: number;
+  blackHoleBlend: number;
   shellRadius: number;
   shellFlattening: number;
   diskOpacity: number;
@@ -43,22 +48,28 @@ const mix=(a:number,b:number,t:number)=>a+(b-a)*t;
 export function stellarSpaceFrame(input: SpaceInput): SpaceFrame {
   if (input.chapter === 'nebulae') {
     const nursery = input.nebula === 'nursery', planetary = input.nebula === 'planetary';
-    return {cloudReference:nursery?(input.reference??'orion'):undefined,kind:nursery?'formation':planetary?'planetary':'supernova', phase:nursery?0:6,
-      starRadius:nursery?.27:planetary?.16:.11, starColor:nursery?'#d8e7ff':'#e4f5ff', starOpacity:input.illumination==='dark'&&nursery?0:1,
+    return {evolving:false,cloudReference:nursery?(input.reference??'orion'):undefined,kind:nursery?'formation':planetary?'planetary':'supernova', phase:nursery?0:6,
+      starRadius:nursery?.27:planetary?.16:.11,coreRadius:planetary?.16:.11,envelopeRadius:nursery?.27:planetary?.16:.11, starColor:nursery?'#d8e7ff':'#e4f5ff', starOpacity:input.illumination==='dark'&&nursery?0:1,
       surfaceProfile:nursery?'solar':'compact',emission:1,glare:nursery?1:.8,compactBlend:nursery?0:1,coolingProgress:0,
-      cloudOpacity:nursery?1:0, shellOpacity:nursery?0:1,shellBlend:nursery?0:1, shellRadius:planetary?2.35:2.65,
+      cloudOpacity:nursery?1:0, shellOpacity:nursery?0:1,shellBlend:nursery?0:1,shellEmission:1,blackHoleBlend:0, shellRadius:planetary?2.35:2.65,
       shellFlattening:planetary?1.34:.92, diskOpacity:0, jetOpacity:0,compact:!nursery,blackHole:false,illumination:input.illumination};
   }
   const state=evolutionState(input.track,input.progress),phase=state.phaseCoordinate,low=input.track==='low-mass',solar=input.track==='solar',mainRadius=low?.65:solar?.95:1.22;
-  const formation=smooth(phase/1.65), expansion=smooth(phase-3), release=smooth(phase-4.65);
+  const formation=smooth(phase/1.65), expansion=smooth(phase-3), release=smooth((phase-(solar?4.76:low?4.65:5.02))/(solar?1.04:low?1:.10));
   const giantRadius=low?.9:solar?2.1:2.35, compact=state.compactBlend>=.5,tail=smooth(state.remnantProgress);
-  const starRadius=phase<2?mix(.04,mainRadius,formation):phase<4?mix(mainRadius,giantRadius,expansion):mix(giantRadius,low?.14:state.remnant==='neutron-star'?.11:state.remnant==='black-hole'?.16:.18,release);
-  const blackHole=state.remnant==='black-hole'&&phase>=5.5;
-  const shellBlend=low?0:smooth((phase-4.65)/.9);
-  return {kind:phase<2?'formation':phase>=4.65&&!low?(solar?'planetary':'supernova'):'star',phase,starRadius,starColor:state.surfaceColor,
+  const coreRadius=low?.14:state.remnant==='neutron-star'?.11:state.remnant==='black-hole'?.16:.18;
+  // The solar photosphere can contract during helium burning, expand again on
+  // the AGB, then uncover its hot core. Ejected matter never uses this shrinking
+  // radius: it retains the former envelope and moves outwards independently.
+  const solarRadius=(r:number)=>r<=1?mix(.18,.95,clamp(Math.log(Math.max(.01,r)/.01)/Math.log(100))):mix(.95,2.1,clamp(Math.log(r)/Math.log(180)));
+  const starRadius=phase<2?mix(.04,mainRadius,formation):phase<4?mix(mainRadius,giantRadius,expansion):solar?solarRadius(state.radiusSolar):mix(giantRadius,coreRadius,release);
+  const onset=solar?4.58:5.02,shellBlend=low?0:smooth((phase-onset)/(solar?1:.68));
+  const blackHoleBlend=state.remnant==='black-hole'?smooth((phase-5.35)/.3):0,blackHole=blackHoleBlend>0;
+  return {evolving:true,kind:phase<2?'formation':phase>=onset&&!low?(solar?'planetary':'supernova'):'star',phase,starRadius,coreRadius,envelopeRadius:!low&&phase>=onset?giantRadius:starRadius,starColor:state.surfaceColor,
     surfaceProfile:state.surfaceProfile,emission:state.emission,glare:state.glare,compactBlend:state.compactBlend,coolingProgress:state.coolingProgress,
     starOpacity:smooth(phase/.6),cloudOpacity:1-smooth((phase-1)/.9),shellOpacity:shellBlend*state.shellVisibility,shellBlend,
-    shellRadius:mix(giantRadius,3.3,smooth((phase-4.65)/1.35))+tail*.6,shellFlattening:solar?1.28:.94,
+    shellEmission:solar?smooth((phase-5.02)/.6):1,blackHoleBlend,
+    shellRadius:mix(giantRadius,3.3,smooth((phase-onset)/(6-onset)))+tail*.6,shellFlattening:solar?1.28:1,
     diskOpacity:smooth((phase-.2)/.6)*(1-smooth((phase-1.3)/.7)),jetOpacity:smooth((phase-.55)/.5)*(1-smooth((phase-1.35)/.65)),
     compact,blackHole,illumination:'emission'};
 }
@@ -78,9 +89,14 @@ export function stellarObservationZoom(input: SpaceInput, aspect: number): numbe
   // tip projects larger than the far tip in this oblique perspective view.
   const outflowContext = smooth(frame.jetOpacity / .35);
   const withoutClippedOutflow = Math.min(formation, mix(3, .94, outflowContext));
-  const shellContext = input.track === 'low-mass' ? 0 : smooth((frame.phase - 4.2) / 1.35);
+  const solar=input.track==='solar';
+  const shellContext = input.track === 'low-mass' ? 0 : smooth((frame.phase - (solar?4.45:4.9)) / (solar?.7:.55));
+  // Once matter starts leaving, retain the giant's camera reference. Following
+  // the shrinking central radius here would zoom into the expanding ejecta.
+  const hold=input.track==='low-mass'?0:smooth((frame.phase-(solar?4.45:4.9))/.08);
+  const enclosing=mix(withoutClippedOutflow,Math.min(withoutClippedOutflow,solar?1.48:1.4),hold);
   // Clear the enclosing shell before magnifying the still-small central body.
-  const lateClose=smooth((frame.coolingProgress-.25)/.75),context=mix(withoutClippedOutflow,.82,shellContext);
+  const lateClose=smooth((frame.coolingProgress-.5)/.5),context=mix(enclosing,solar?.60:.72,shellContext);
   return narrow * mix(context,5.2,lateClose);
 }
 
@@ -103,7 +119,10 @@ export function writeSpaceParticles(frame: SpaceFrame, position: Float32Array, a
     const diskX=Math.cos(diskAngle)*diskR,diskZ=Math.sin(diskAngle)*diskR,diskY=vertical*(.045+.11*r);
     const nx=Math.cos(angle)*Math.sqrt(1-vertical*vertical),nz=Math.sin(angle)*Math.sqrt(1-vertical*vertical);
     const irregular=1+.07*Math.sin(angle*9+vertical*13)+.035*Math.sin(angle*23-vertical*9);
-    const envelopeR=frame.starRadius*(.92+.08*r),shellR=frame.shellRadius*(.84+.16*r)*irregular;
+    const envelopeR=frame.envelopeRadius*(.92+.08*r);
+    // A parcel's shell destination is at least its original envelope radius.
+    // This prevents a shrinking photosphere from pulling expelled gas inward.
+    const shellR=frame.evolving?Math.max(envelopeR,frame.shellRadius*(.92+.16*r)*irregular):frame.shellRadius*(.84+.16*r)*irregular;
     const bodyR=mix(envelopeR,shellR,shell);
     const diskToStar=ontoStar;
     let x=mix(mix(cloudX,diskX,collapse),nx*envelopeR,diskToStar);

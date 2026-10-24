@@ -239,16 +239,24 @@ These are qualitative, terrain-constrained route choices. The selected branch si
 
 ## 出水后的短收尾 / A short emerged-island ending, 2026-10-23
 
-持续补给的成岛情境在最后 20% 的播放中平滑增加约 6 秒观察时间，前段、拖动进度和其他供给／水深情境保持原有意义。出水且停止堆积后，1 只海鸟从空中掠过，3 条小鱼在离岸水下经过；它们只作为来访背景，不表示刚冷却的火山立即长出生态群落，也不指定实际物种、数量、体型比例或到达日期。原有微生物／笠贝和土层／幼苗观察仍由独立的适宜条件选项控制。
+持续补给的成岛情境在最后 20% 的播放中平滑增加约 6 秒观察时间，前段、拖动进度和其他供给／水深情境保持原有意义。出水且停止堆积后，最多 1 只海鸟从空中掠过，最多 3 条小鱼在离岸水下经过；它们只作为来访背景，不表示刚冷却的火山立即长出生态群落，也不指定实际物种、数量、体型比例或到达日期。原有微生物／笠贝和土层／幼苗观察仍由独立的适宜条件选项控制。
 
-The sustained island case smoothly adds about six presentation seconds over the last 20% of playback. Earlier playback, direct seeking and the other depth/supply cases retain their existing meaning. After emergence and the end of accumulation, one seabird passes overhead and three fish move offshore below the water. They are visiting background animals, not immediate colonization of fresh lava or a claim about species, abundance, scale or arrival dates. The existing microbial/limpet and soil/seedling observations still require their separate suitable-conditions selection.
+The sustained island case smoothly adds about six presentation seconds over the last 20% of playback. Earlier playback, direct seeking and the other depth/supply cases retain their existing meaning. After emergence and the end of accumulation, up to one seabird passes overhead and up to three fish move offshore below the water. They are visiting background animals, not immediate colonization of fresh lava or a claim about species, abundance, scale or arrival dates. The existing microbial/limpet and soil/seedling observations still require their separate suitable-conditions selection.
 
 这些固定动物在过程终点仍可移动，身体不会随相位缩放或反复生成。它们读取既有有界细节相位，鱼始终在海水中且完整网格避开实际岩体；不改海水透明度，不把鱼画到水面之上。冷却后的熔岩不会因此重新发亮或生长。剖面观察隐藏这段背景，页面隐藏、减少动态或场景释放时沿用既有停止与清理规则；没有增加定时器、灯光、贴图或新的地质时钟。SVG 降级保留原有地形说明，不绘制这段三维背景。
 
 The same retained animals keep moving at the process endpoint without scaling or respawning. They consume the existing bounded detail phase; complete fish meshes remain underwater and clear the actual rock. Water opacity is unchanged and fish are not composited above it. Cooled lava does not relight or grow. Cutaway observation hides this background; hidden pages, reduced motion and scene disposal retain the existing stop/cleanup rules. No timer, light, texture or geological clock is added. The SVG fallback retains its existing terrain explanation without this 3D background.
 
-### 海鸟入场 / Seabird arrival, 2026-10-23
+### 间歇来访与海面碎浪 / Intermittent visitors and wavelets, 2026-10-24
 
-海鸟第一次出现时，从当前镜头左缘以外飞入，在约 3 秒的弯曲进场后接上原有绕岛路线；位置、切向和朝向连续，身体不会在圈内放大或淡入。入场只发生一次，相位绕回不重播；拖回尚无动物的阶段后，再进入末段会重新入场。暂停地质过程与切换镜头不会重启它。减少动态时直接保留轨道上的静止海鸟，避免它永远停在画面外。入场仍读取同一细节相位，没有新增时钟或动物身份。
+海鸟先从当前镜头左缘以外飞入，约 3 秒弯曲进场后绕岛滑翔、间歇振翅，再沿连续弯曲路线飞出。安静一段后才有下一次经过，左右入场、绕行方向、高度和间隔有可重复的不规则变化。进出弯线与绕行的连接保持位置与速度连续；相位绕回、暂停地质过程或重绘不会重新入场。镜头只在每次来访起点决定画面外的端点，不在中途搬动物体。鱼改为离岸经过、游出与间隔后再次经过的小群，方向、条数和间隔变化，个体错开摆尾，尾柄、身体和胸鳍都有小幅运动。身体不缩放，保留同一只鸟、三条鱼的网格和材质；等待阶段不会停止来访调度。拖回较早阶段会重新开始；减少动态保留空中与水下可观察的静止代表。
 
-On first admission the bird enters from beyond the current camera's left edge, then follows a roughly three-second curved approach into its existing island orbit. Position, tangent and forward heading meet continuously, without enlarging or fading a bird into the circle. Entry happens once and does not repeat when the phase wraps; seeking back before the animals' interval allows a new entrance. Pausing geology or changing views does not restart it. Reduced motion instead leaves a static bird on the orbit so it does not remain offscreen. Entry consumes the same detail phase, with no additional clock or animal identity.
+The bird first enters from beyond the camera's left edge, follows a roughly three-second curved approach, glides around the island with intermittent wingbeats, then curves out of view. A quiet interval precedes another visit, with repeatable variation in entry side, circling direction, altitude and gap. Position and velocity remain continuous at both joins; phase wrap, paused geology and redraws cannot restart entry. The camera determines offscreen endpoints only at a visit's beginning, never by moving an animal midway. Small fish groups now pass offshore, leave and return after varied gaps, directions and counts. Tailbeats are staggered, with slight body, tail-stem and pectoral-fin motion. The same one bird and three fish retain their meshes, materials and sizes; quiet gaps cannot stop future visits. Seeking earlier restarts admission. Reduced motion leaves observable static representatives in air and water.
+
+海面与海岸读取同一个既有细节相位的独立投影，过程结束后仍有小幅流动高光、稀疏破碎浪尖和沿实际岸线时强时弱的浪沫。噪声打散白沫边缘与内部，避免整圈白边或整面平行白线。平均海平面、海水透明度与陆海交线不变；没有新增几何体、定时器、灯光或贴图，也不推进地质过程或重新点亮冷却的熔岩。来访索引与局部行程年龄均有上界，页面隐藏不追赶累计时间。这些是定性背景运动，不是物种行为、风浪、潮汐或真实波浪破碎的求解。
+
+Sea and coast consume a separate projection of the same existing detail phase. Small moving highlights, sparse broken whitecaps and uneven pulses of foam along the actual shore continue at the endpoint. Noise breaks up foam edges and interiors rather than drawing a white ring or parallel white bars. Mean sea level, water opacity and the land–water intersection stay fixed. No geometry, timer, light or texture is added for waves; geology does not advance and cooled lava cannot relight. Visit indices and local itinerary ages remain bounded, with no hidden-page catch-up. These are qualitative background motions, not a species-behavior, wind-wave, tidal or breaking-wave solution.
+
+切换观察时若仍在移动镜头，新的成长或拖动进度会撤销旧目的地并采用当前锚点，避免快速切剖面、回退和重播把山体高度重复加到镜头上。相同进度的重绘仍保留原有切换动画。
+
+If a view change is still moving the camera, a newer growth/seek anchor supersedes its old destination. Rapid cutaway, rewind and replay therefore cannot add the mountain height to the camera twice. Same-frame redraws preserve the intended view transition.

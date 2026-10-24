@@ -45,8 +45,8 @@
       "en": "Backward"
     },
     "playbackNote": {
-      "zh": "全程约 84 秒，最后 22 秒观察遗骸。播放时间不代表真实寿命；冷却的亮度、颜色和镜头变化是示意，没有标定年龄或温度。可暂停、拖回或倒放。",
-      "en": "About 84 seconds, including 22 seconds with the remnant. Screen time is not stellar lifetime; cooling brightness, color and camera changes are illustrative, without calibrated ages or temperatures. Pause, scrub or reverse to compare."
+      "zh": "全程约 84 秒，最后 22 秒观察遗骸。阶段时长、晚期年代及冷却颜色均未作物理标定；可暂停、拖回或倒放。",
+      "en": "About 84 seconds, including 22 seconds with the remnant. Phase durations, late epochs and cooling colors are not physically calibrated. Pause, scrub or reverse to compare."
     },
     "age": {
       "zh": "诞生后约",
@@ -185,8 +185,8 @@
       "en": "Mars"
     },
     "inside": {
-      "zh": "已在膨胀包层内",
-      "en": "inside expanded envelope"
+      "zh": "已被膨胀包层吞没",
+      "en": "engulfed by the expanded envelope"
     },
     "notYet": {
       "zh": "轨道仍在外侧",
@@ -252,8 +252,8 @@
         "en": "Sun-like · about 1 solar mass"
       },
       "summary": {
-        "zh": "从原恒星到核心氢聚变，再经红巨星、外层抛散成为白矮星。太阳不会沿这条路径形成黑洞。",
-        "en": "From protostar to core hydrogen fusion, then red giant, outer-layer loss and white dwarf. The Sun will not form a black hole on this path."
+        "zh": "太阳型代表分支：核心氢耗尽、红巨星、核心氦燃烧、再次膨胀、失去包层，最后成为白矮星。真实太阳的失重和星云亮度依模型而异；它不会在这条路径上成为黑洞。",
+        "en": "A representative Sun-like path: core hydrogen depletion, red giant, core helium burning, another giant phase, envelope loss and a white dwarf. Solar mass loss and nebular brightness depend on the model; this path does not make the Sun a black hole."
       },
       "stages": [
         {
@@ -302,8 +302,8 @@
             "en": "Red giant: envelope expands"
           },
           "body": {
-            "zh": "松散包层向外扩张。按这个 180 倍太阳半径的代表性画面，轮廓跨过水星与金星轨道；地球最终是否被吞没还涉及太阳失重、轨道变化与潮汐，不能只看静态圆圈。",
-            "en": "The loose envelope expands. At this illustrative 180-solar-radius anchor, the outline crosses Mercury’s and Venus’s orbits. Earth's eventual engulfment also depends on solar mass loss, orbit changes and tides; a static circle cannot decide it."
+            "zh": "红巨星顶端的代表半径为太阳的 180 倍，跨过水星、金星轨道。继续播放可见核心氦燃烧时包层收拢、后期壳层燃烧时再次膨胀。地球命运还涉及太阳失重、轨道响应和潮汐，不能只看静态圆圈；这些半径与阶段时长是教学近似。",
+            "en": "The illustrative red-giant tip reaches 180 solar radii, crossing Mercury and Venus. Continue to see contraction during core helium burning and a later expansion during shell burning. Earth’s fate also involves mass loss, orbital response and tides; static circles cannot decide it. Radii and phase durations are teaching approximations."
           }
         },
         {
@@ -312,8 +312,8 @@
             "en": "Outer layers disperse"
           },
           "body": {
-            "zh": "晚期恒星风和抛层把外包层送入太空，露出的炽热核心以紫外光使部分气体电离并发光。这种行星状星云既不是行星造的，也不是超新星；形态、可见时长和亮度各异。",
-            "en": "Late winds and envelope loss carry outer material into space. Ultraviolet light from the exposed hot core ionizes some gas and makes it glow. This planetary nebula is neither made by planets nor a supernova; its shape, visible duration and brightness vary."
+            "zh": "恒星风先把外包层送入太空，逐渐显露的中央热星随后以紫外光电离部分气体。这是太阳型代表案例，不保证真实太阳形成同样明亮、规则的行星状星云；也不是超新星。此后阶段共用近似年代，实际经过时长未标定。",
+            "en": "Winds carry the envelope outward; ultraviolet light from the emerging hot central star then ionizes some gas. This Sun-like example does not guarantee that the real Sun will make an equally bright, regular planetary nebula, and it is not a supernova. Later stages share a rounded epoch without calibrated elapsed durations."
           }
         },
         {
@@ -476,8 +476,8 @@
             "en": "Core loses support"
           },
           "body": {
-            "zh": "核心坍缩；外层抛射与回落的细节因恒星而异。画面不预言具体一颗星的爆发亮度或遗骸质量。",
-            "en": "The core collapses. Ejection and fallback differ among stars. The scene predicts neither a particular explosion brightness nor a remnant mass."
+            "zh": "核心坍缩；外层抛射与回落的细节因恒星而异。画面不预言具体一颗星的爆发亮度或遗骸质量。 画面选择能抛出物质的爆发与回落案例；形成黑洞并不保证一定有明亮超新星。",
+            "en": "The core collapses. Ejection and fallback differ among stars. The scene predicts neither a particular explosion brightness nor a remnant mass. The scene selects an explosion/fallback case with ejecta; black-hole formation does not guarantee a bright supernova."
           }
         },
         {
@@ -583,6 +583,61 @@
     "whiteDwarfCooling": "https://science.nasa.gov/universe/stars/types/",
     "neutronCooling": "https://www.nasa.gov/image-article/nasas-chandra-peers-into-densest-and-weirdest-stars/",
     "accretion": "https://science.nasa.gov/universe/black-holes/anatomy/",
-    "lowMass": "https://arxiv.org/abs/astro-ph/9701131"
+    "lowMass": "https://arxiv.org/abs/astro-ph/9701131",
+    "heliumBurning": "https://ned.ipac.caltech.edu/level5/March15/Karakas/Karakas2.html",
+    "preplanetary": "https://esahubble.org/images/potw1123a/",
+    "solarFuture": "https://arxiv.org/abs/0801.4031"
+  },
+  "solarTransitions": {
+    "helium": {
+      "name": {
+        "zh": "核心氦燃烧：巨星暂时收拢",
+        "en": "Core helium burning: giant contracts"
+      },
+      "body": {
+        "zh": "氦核点燃后，恒星重新调整结构，外包层会比红巨星顶端更紧凑，但仍远大于主序太阳。氦闪发生在内部，不是把外层炸开的超新星；这里不展示内部的瞬时过程。",
+        "en": "After helium ignites in the core, the star readjusts and its envelope becomes more compact than at the red-giant tip, while remaining much larger than the main-sequence Sun. The helium flash is internal, not a supernova that blasts off the envelope; its rapid interior physics is not animated."
+      }
+    },
+    "agb": {
+      "name": {
+        "zh": "再次膨胀：氢、氦壳层供能",
+        "en": "Giant again: hydrogen and helium shells"
+      },
+      "body": {
+        "zh": "核心氦耗尽后，碳氧核心外的氢、氦壳层继续供能，外包层再次膨胀，进入渐近巨星支。它不是倒放成原来的红巨星，也不是重新得到核心氢；两次膨胀之间的大小与时长是教学近似。",
+        "en": "After core helium is depleted, hydrogen and helium shells around the carbon–oxygen core supply energy and the envelope expands again onto the asymptotic giant branch. This is a later giant phase, not a rewind or renewed core hydrogen. The intervening sizes and durations are teaching approximations."
+      }
+    },
+    "wind": {
+      "name": {
+        "zh": "恒星风逐渐带走外包层",
+        "en": "Stellar winds carry the envelope away"
+      },
+      "body": {
+        "zh": "松散的气体先向外流失，留下的中央恒星逐渐收缩。观察同一批外层物质持续向外，它不会跟着中心一起缩回去；尚未充分电离的气体也不会立刻变成明亮的彩色壳。",
+        "en": "Loose gas flows outward while the remaining central star contracts. Follow the same outer material moving away: it does not shrink back with the center. Gas that is not yet strongly ionized does not instantly become a bright colored shell."
+      }
+    },
+    "heating": {
+      "name": {
+        "zh": "中央热星显露，周围气体渐亮",
+        "en": "Hot center emerges; surrounding gas brightens"
+      },
+      "body": {
+        "zh": "包层变薄后，中央恒星继续收缩升温，增强的紫外光逐渐电离先前流出的气体。物质外流和气体发光是两个重叠的过程。晚期各段共用近似年代，不把屏幕停留时间或年龄读数当作星云寿命。",
+        "en": "As the envelope thins, the central star contracts and heats. Increasing ultraviolet radiation ionizes gas that has already flowed out. Matter leaving and gas lighting up are overlapping processes. Late phases share a rounded epoch; screen time and the age readout do not measure a nebula lifetime."
+      }
+    },
+    "ionized": {
+      "name": {
+        "zh": "发光的气体包围致密核心",
+        "en": "Glowing gas surrounds the compact core"
+      },
+      "body": {
+        "zh": "这里选择能照亮周围气体的太阳型代表案例：中央小热星与向外扩散的行星状星云是两个部分。真实太阳是否形成明亮的行星状星云仍依赖失重与升温模型，形态也不保证规则；它不是超新星。随后观察同一个白矮星慢慢冷却。",
+        "en": "This Sun-like example lights up its surrounding gas: the small hot central star and the expanding planetary nebula are distinct. Whether the real Sun produces a bright planetary nebula depends on mass-loss and heating models, and its shape need not be regular. It is not a supernova. Next, follow the same white dwarf as it cools."
+      }
+    }
   }
 }
