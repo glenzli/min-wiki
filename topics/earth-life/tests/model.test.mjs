@@ -24,7 +24,7 @@ test('URL parsing rejects unknown states, foreign taxa, malformed/oversized JSON
   assert.equal(s.community, 'cambrian'); assert.equal(s.view, 'community'); assert.equal(s.phase, 0);
   assert.equal(focusedNode(s).id, 'anomalocaris'); assert.equal(s.deposit, 'marine'); assert.equal(s.sample, 'small');
   assert.deepEqual(parseState({ focus:'[' }).focus, parseState({ focus:'x'.repeat(4000) }).focus);
-  const raw = serializeState(s); assert.equal(Object.keys(raw).length, 11);
+  const raw = serializeState(s); assert.equal(Object.keys(raw).length, 12);
   assert.ok(Object.values(raw).every(v => typeof v === 'string' && v.length <= 3072));
   assert.deepEqual(parseState(raw), s);
 });

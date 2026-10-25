@@ -20,6 +20,19 @@ Our forms remain in a White Sea regional window rather than combining Charnia at
 
 ## Burgess Shale, about 508 Ma
 
+### Added complete Waptia reconstruction and fossil comparison
+
+- [Vannier, Aria, Taylor & Caron (2018), Royal Society Open Science 5:172206](https://pmc.ncbi.nlm.nih.gov/articles/PMC6030330/), DOI [10.1098/rsos.172206](https://doi.org/10.1098/rsos.172206). Primary redescription, actual Figures 1 and 20–23 visually inspected. The model retains one antennular, one mandibular and one maxillular pair, four post-maxillular pairs and six lamellate pairs: thirteen appendage pairs, with eyes separate. Six underlying middle somites produce five visible segments because the last two fuse. The abdomen has six limbless somites; each paired caudal ramus has three pseudosegments (Fig. 18). The paper's 21 somites must not be rendered as 21 exposed rings.
+- [ROM: Waptia fieldensis](https://burgess-shale.rom.on.ca/fossils/waptia-fieldensis/). Institutional specimen/locality context. Its older reconstruction and inconsistent family/type metadata do not override the 2018 anatomical redescription. Original colors and shield translucency are not measured. A Walcott context is approximately 508 Ma here; the web page's approximately 505 Ma is an older rounded presentation, not a new exact age measurement.
+
+One world unit is 10 mm; the model uses representative midline body length 50 mm excluding antennules, from the anterior median sclerite to the caudal-ramus tip. Most of 28 complete specimens measured in the study were about 40–60 mm, not a measured living-population distribution. Fossil compaction does not directly fix living thickness. Fine setae/edges are thickened for visibility. Thirteen pair identities and body-region counts survive rendering-detail changes.
+
+Section 7.1 discusses coordinated rowing by the six lamellate pairs as functional interpretation. The ten-second finite activity uses authored stroke amplitudes, timing and antennular movements; it supplies no measured cadence, speed, respiration or hydrodynamic result. It shows no walking, burrowing, prey capture, fish-like tail stroke or definitive diet. Static and paused comparisons retain the same anatomical objects. Highlighting and shield fading are observation treatments, not pigment data or physiological transparency.
+
+The actual **unmodified CC BY 4.0 Figure 1 plate** is bundled with its original 1 cm scale bars. Panel b is USNM 139214; other panels are other individuals, and specimen-specific quarry provenance is not invented. Asset credit, license, URL, dimensions and checksum are in [assets/WAPTIA-PROVENANCE.md](assets/WAPTIA-PROVENANCE.md). The procedural animal does not claim to be a scan of that fossil. No restricted ROM artwork or brood-care figure is copied.
+
+### Other Burgess community forms
+
 - [Royal Ontario Museum: Burgess Shale](https://burgess-shale.rom.on.ca/). Community and exceptional-preservation context. This window is much later than the beginning of the Cambrian diversification.
 - [ROM: Olenoides serratus](https://burgess-shale.rom.on.ca/fossils/olenoides-serratus/). Trilobite axial/lateral lobes, dorsal segments and preserved appendages. The illustration does not imply that all trilobites have this species’ body.
 - [ROM: Anomalocaris canadensis](https://burgess-shale.rom.on.ca/fossils/anomalocaris-canadensis/). Complete specimens constrain frontal appendages, stalked eyes, flaps and tail structure.

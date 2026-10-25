@@ -1,6 +1,7 @@
 import content from './content.json';
+import { parseBurgessJSON, serializeBurgessState, type BurgessState } from './burgess/model.ts';
 
-export const VIEWS = ['community', 'fossils', 'plants'] as const;
+export const VIEWS = ['community', 'fossils', 'plants', 'animal'] as const;
 export const COMMUNITIES = ['microbial', 'ediacaran', 'cambrian', 'coal', 'permian', 'kpg', 'steppe'] as const;
 export const LENSES = ['reconstruction', 'body', 'trace', 'chemistry', 'inference'] as const;
 export const DEPOSITS = ['marine', 'river', 'peat'] as const;
@@ -37,6 +38,7 @@ export interface LifeState {
   deposit: typeof DEPOSITS[number]; burial: typeof BURIALS[number]; sample: typeof SAMPLES[number];
   plant: typeof PLANTS[number]; detail: 'whole' | 'surface';
   fossilProgress: number;
+  animal: BurgessState;
 }
 const pick = <T extends string>(values: readonly T[], value: unknown, fallback: T): T =>
   typeof value === 'string' && values.includes(value as T) ? value as T : fallback;
@@ -62,11 +64,12 @@ export function parseState(raw: Record<string, string> = {}): LifeState {
     sample: pick(SAMPLES, raw.sample, 'small'), plant: pick(PLANTS, raw.plant, 'lycopsid'),
     detail: pick(['whole', 'surface'] as const, raw.detail, 'whole'),
     fossilProgress: parseFossilProgress(raw.fossilProgress),
+    animal: parseBurgessJSON(raw.animal),
   };
 }
 export function serializeState(s: LifeState): Record<string, string> {
   return { view: s.view, community: s.community, lens: s.lens, focus: JSON.stringify(s.focus), phase: String(s.phase),
-    deposit: s.deposit, burial: s.burial, sample: s.sample, plant: s.plant, detail: s.detail, fossilProgress: String(s.fossilProgress) };
+    deposit: s.deposit, burial: s.burial, sample: s.sample, plant: s.plant, detail: s.detail, fossilProgress: String(s.fossilProgress), animal: serializeBurgessState(s.animal) };
 }
 
 /** Progress is a teaching sequence, never elapsed geological time or a decay rate. */

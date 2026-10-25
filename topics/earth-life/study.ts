@@ -46,7 +46,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   const zh = context.language === 'zh';
   const w = (chinese: string, english: string) => zh ? chinese : english;
   const p = (pair: Pair) => pair[context.language];
-  const viewName = (id: typeof VIEWS[number]) => ({ community: w('群落现场', 'Community fieldwork'), fossils: w('化石筛选实验', 'Fossil filters'), plants: w('植物形态工坊', 'Plant morphology') })[id];
+  const viewName = (id: typeof VIEWS[number]) => ({ community: w('群落现场', 'Community fieldwork'), fossils: w('化石筛选实验', 'Fossil filters'), plants: w('植物形态工坊', 'Plant morphology'), animal: w('瓦普塔虫3D', 'Waptia in 3D') })[id];
   const lensName = (id: Lens) => ({ reconstruction: w('现场复原', 'Reconstruction'), body: w('身体化石', 'Body fossils'), trace: w('遗迹', 'Traces'), chemistry: w('地球化学', 'Geochemistry'), inference: w('对比与推断', 'Comparison & inference') })[id];
   const depositName = (id: typeof DEPOSITS[number]) => ({ marine: w('邻岸海底', 'Nearshore seafloor'), river: w('河漫滩', 'River floodplain'), peat: w('积水泥炭地', 'Waterlogged peatland') })[id];
   const burialName = (id: typeof BURIALS[number]) => ({ rapid: w('快速埋藏，特殊细节窗口', 'Rapid burial, exceptional detail window'), exposed: w('久露、腐解与风化', 'Long exposure, decay & weathering'), transported: w('搬运、磨损后埋藏', 'Transport & abrasion before burial') })[id];
@@ -56,6 +56,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   let state = parseState(context.initialState), disposed = false, sceneLoading = false, sceneFailed = false, generation = 0;
   let scene: ReturnType<typeof import('./scene3d.ts')['createPlantScene']> | undefined;
+  let animal: StudyInstance | undefined, animalLoading = false, animalFailed = false, animalGeneration = 0;
   let playback: FinitePlayback | undefined, visualFossilProgress = state.fossilProgress, fossilRecords: FossilRecord[] = [];
   let fossilColumn = (index: number) => 170 + index * 132, lastFossilStats = '', fossilDraws = 0;
   const fossilActors = new Map<string, { group: SVGGElement; damage: SVGGElement; marker: SVGGElement }>();
@@ -86,7 +87,8 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
       <figure class="life-figure"><div class="life-three-wrap"><div class="life-three-host" data-three-host></div><div class="life-three-status" data-three-status role="status"></div></div><figcaption class="life-caption">${escape(w('可拖动旋转，滚轮缩放；键盘方向键与 + / − 也可操作，Home 恢复。原创程序复原，无实物扫描；局部观察会放大细节，模型没有实测长度标尺。', 'Drag to rotate; wheel to zoom. Arrow keys and + / − also work; Home resets. Original procedural reconstruction, without a specimen scan. Detail views enlarge features; no measured length scale is provided.'))}</figcaption></figure><button type="button" data-three-retry hidden>${escape(w('保留当前地址并重新载入3D', 'Reload 3D with the current URL'))}</button>
       <div class="life-plant-evidence"><div><h3>${escape(w('形态依据', 'Morphological evidence'))}</h3><p data-plant-evidence></p></div><div><h3>${escape(w('补全与限制', 'Completion & limits'))}</h3><p data-plant-limits></p></div></div>
       <details class="earth-deeper" data-flat><summary>${escape(w('二维形态对照与来源', '2D morphology & sources'))}</summary><div class="life-flat-plant" data-flat-plant></div><p class="earth-note">${escape(w('二维、三维是同一类形态的解释图。即使3D无法显示，仍可核对叶座、节点和复叶分枝；艺术色彩不是化石鉴定特征。', 'The 2D and 3D images explain the same morphological forms. Leaf cushions, nodes and compound branching remain checkable without 3D. Artistic colors are not fossil identification traits.'))}</p><ul class="life-sources" data-plant-sources></ul></details>
-    </section>`;
+    </section>
+    <section data-panel="animal" hidden><p data-animal-load role="status">${escape(w('正在准备化石与动物复原工作台……', 'Preparing the fossil and animal reconstruction workbench…'))}</p><div data-animal-host></div><div data-animal-recovery hidden><p>${escape(w('工作台暂未加载。完整正文仍有形态、化石依据与来源可读。', 'The workbench did not load. The complete manuscript retains morphology, fossil evidence and sources.'))}</p><button type="button" data-animal-retry>${escape(w('保留当前地址并重新载入', 'Reload with the current URL'))}</button></div></section>`;
   host.append(root);
 
   function svg(body: string, label: string, width = 900, height = 500) {
@@ -239,6 +241,20 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     if (find('[data-fossil-announcement]').textContent !== line) text('[data-fossil-announcement]', line);
   }
   function destroyScene() { ++generation; sceneLoading = false; scene?.dispose(); scene = undefined; find('[data-three-host]').replaceChildren(); }
+  function destroyAnimal() { ++animalGeneration; animalLoading = false; animal?.dispose(); animal = undefined; find('[data-animal-host]').replaceChildren(); }
+  function ensureAnimal() {
+    if (animal || animalLoading || animalFailed) return;
+    const ticket = ++animalGeneration; animalLoading = true; find('[data-animal-load]').hidden = false;
+    void import('./burgess/study.ts').then(module => {
+      if (disposed || ticket !== animalGeneration || state.view !== 'animal') return;
+      animal = module.mountBurgess(find('[data-animal-host]'), { language: context.language, initial: state.animal,
+        onStateChange(next) { if (disposed || ticket !== animalGeneration) return; state.animal = next; context.onStateChange(serializeState(state)); } });
+      find('[data-animal-load]').hidden = true;
+    }).catch(() => {
+      if (disposed || ticket !== animalGeneration) return;
+      animalFailed = true; find('[data-animal-load]').hidden = true; find('[data-animal-recovery]').hidden = false;
+    }).finally(() => { if (ticket === animalGeneration) animalLoading = false; });
+  }
   function ensureScene() {
     if (scene) { scene.update(state.plant, state.detail); scene.resume(); return; }
     if (sceneLoading || sceneFailed) return;
@@ -277,6 +293,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     if (state.view === 'community') drawCommunity();
     if (state.view === 'fossils') drawFossils();
     if (state.view === 'plants') drawPlants(); else if (scene || sceneLoading) destroyScene();
+    if (state.view === 'animal') ensureAnimal(); else if (animal || animalLoading) destroyAnimal();
     if (emit) context.onStateChange(serializeState(state));
   }
   root.addEventListener('click', event => {
@@ -294,6 +311,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     if (target.dataset.phase === '0' || target.dataset.phase === '1') state.phase = target.dataset.phase === '1' ? 1 : 0;
     if (target.hasAttribute('data-reset-camera')) scene?.resetCamera();
     if (target.hasAttribute('data-three-retry')) { location.reload(); return; }
+    if (target.hasAttribute('data-animal-retry')) { location.reload(); return; }
     if (target.hasAttribute('data-compare-burial')) { playback?.pause(); state.burial = state.burial === 'rapid' ? 'exposed' : 'rapid'; }
     if (target.hasAttribute('data-compare-sample')) { playback?.pause(); state.sample = state.sample === 'small' ? 'wide' : 'small'; }
     render();
@@ -322,5 +340,5 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     },
   });
   drawBranch(); render();
-  return { pause() { playback?.pause(); scene?.pause(); }, dispose() { if (disposed) return; disposed = true; playback?.dispose(); abort.abort(); fossilActors.clear(); destroyScene(); root.remove(); } };
+  return { pause() { playback?.pause(); scene?.pause(); animal?.pause(); }, dispose() { if (disposed) return; disposed = true; playback?.dispose(); abort.abort(); fossilActors.clear(); destroyScene(); destroyAnimal(); root.remove(); } };
 }

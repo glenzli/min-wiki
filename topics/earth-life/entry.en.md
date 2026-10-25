@@ -150,6 +150,18 @@ Ancient plant organs often fossilize separately and can receive separate names. 
 
 **Explore together:** Rotate a plant and identify one directly fossil-constrained structure, one whole-plant inference and one display completion. In surface detail, can you explain whether the clue represents an exterior, an internal cast or a leaf impression?
 
+## Fourth workbench: Waptia—from flattened clues to a body in space {#waptia}
+
+About 508 million years ago, Waptia was a mandibulate arthropod in the Burgess ecosystem. Resemblance to a shrimp does not make it a modern shrimp. This workbench presents a complete body and returns to real fossils to check it. Its setting is the Walcott Quarry context; the research plate contains different Burgess specimens and does not assign every photograph to that exact quarry.
+
+Start with the two valves of the anterior shield, then follow the different appendages. There is one pair each of antennules, mandibles and maxillules, four post-maxillular pairs, then six long-lamellate pairs: thirteen in total, with eyes counted separately. Six lamellate pairs correspond to only five visible middle segments because the last two somites fuse. The posterior abdomen has six limbless somites, followed by paired caudal rami, each with three pseudosegments. These details chiefly follow the [2018 redescription](https://pmc.ncbi.nlm.nih.gov/articles/PMC6030330/), rather than counting structures in attractive older artwork.
+
+The representative model has a 50 mm midline body length, measured from the anterior median sclerite to the caudal-ramus tip, excluding antennules. Most of 28 complete specimens measured in the paper were about 40–60 mm; that research sample is not a living-population census. Perspective foreshortens the screen projection, and fine setae are slightly thickened. Flattened fossil widths and wrinkles do not directly determine living thickness.
+
+Select the same model's head, shield, limbs or tail to compare fossil constraints, volumetric completion and remaining unknowns. The real plate retains its original 1 cm scale bars. Panel 1b is USNM 139214; the panels are different individuals. The [original figure and caption](https://pmc.ncbi.nlm.nih.gov/articles/PMC6030330/figure/RSOS172206F1/) remain independently checkable. You can also [download the gallery's unmodified plate](assets/waptia-fossils-fig1.jpg?download=1), with attribution and the CC BY 4.0 license beside the image and in the asset record.
+
+Play a finite ten-second example of one possible coordinated lamellar stroke. Pause, scrub, reset or compare neutral morphology. Short anterior limbs are not treated as walking legs, and no prey capture is staged. Stroke frequency, color, living fullness and lighting include authored completion. No actual swimming speed, respiratory rate or whole-model confidence percentage is provided. Fading the shield helps inspect obscured structures; it does not imply physiological transparency. If 3D fails, part explanations, the real fossil plate and the original research remain available.
+
 ## Deeper: a period's name is not an evidence age {#chronology}
 
 A stratigraphic boundary, a fossil deposit's age and an event's duration are different quantities. This table gives selected period bases relevant to the vocabulary used here, following the [international chart, version 2026/06](https://stratigraphy.org/ICSchart/ChronostratChart2026-06.pdf), including its quoted uncertainties. These are not the individual uncertainties of every specimen or community above.
@@ -176,7 +188,7 @@ These notes and four narration segments match the learning panel. Spoken text ex
 
 From microbial shores to forests and mammoth steppe, how can fossils reconstruct relationships among living things without turning reconstructions into eyewitness scenes?
 
-Choose a place and time at the community workbench. Retain a focal object while switching among body, trace, chemical and comparative-inference evidence; only microbial and mass-extinction comparisons have before-and-after windows. At the fossil workbench, retain the same 12 remains while playing, pausing or stepping through source, arrival, preservation and discovery. Reach the endpoint before comparing depositional setting, burial and search extent separately. Then rotate plant structures to compare lycopsid leaf cushions, calamite nodes and seed-fern fronds, distinguishing fossil constraints from artistic completion.
+Choose a place and time at the community workbench. Retain a focal object while switching among body, trace, chemical and comparative-inference evidence; only microbial and mass-extinction comparisons have before-and-after windows. At the fossil workbench, retain the same 12 remains while playing, pausing or stepping through source, arrival, preservation and discovery. Reach the endpoint before comparing depositional setting, burial and search extent separately. Then rotate plant structures to compare lycopsid leaf cushions, calamite nodes and seed-fern fronds, distinguishing fossil constraints from artistic completion. Then turn the complete Waptia body, about 508 million years old in context, to side, dorsal and ventral views. Keep the same model and motion position while comparing parts with real fossils. Pause, scrub or replay a ten-second inferred stroke and compare neutral morphology to separate structural evidence from motion inference.
 
 ## Ecological webs and evolutionary trees answer different questions
 
@@ -188,7 +200,7 @@ Evidence must reach a depositional area, survive decay or breakage, be preserved
 
 ## Plant architecture, connected organs and long-term carbon
 
-Tree describes a growth form rather than a single lineage. Arborescent lycopsids, calamites and seed ferns differ in structure and reproductive background. Cushions, internodes, fronds and venation provide clues; connecting separate stems, leaves, roots and seeds into a whole plant requires attachment, anatomy and stratigraphic evidence. Some fixed carbon returns through decomposition; some remains under suitable water, accommodation and burial conditions. Carboniferous communities had decomposers, and peat is not already thermally mature coal.
+Tree describes a growth form rather than a single lineage. Arborescent lycopsids, calamites and seed ferns differ in structure and reproductive background. Cushions, internodes, fronds and venation provide clues; connecting separate stems, leaves, roots and seeds into a whole plant requires attachment, anatomy and stratigraphic evidence. Some fixed carbon returns through decomposition; some remains under suitable water, accommodation and burial conditions. Carboniferous communities had decomposers, and peat is not already thermally mature coal. The complete Waptia 3D likewise combines several specimens: thirteen appendage pairs, a fused middle segment and six limbless abdominal somites have anatomical support, while living thickness, color and stroke rhythm include completion. The model uses a representative 50 mm midline length and does not treat one flattened photograph as a living-body scan.
 
 ## A common misconception
 
@@ -196,7 +208,7 @@ Reconstructions are not ancient photographs, and ecological arrows are not ances
 
 ## Model limits
 
-Communities combine representative organisms and functional groups from specified fossil records, regions and times. They are not complete species lists, abundance estimates or guarantees that every organism coexisted at one place. Microbial comparisons span broad intervals; extinction aftermath is not the next day. Evidence views distinguish records, inference and unknowns. Colors, some soft tissues, poses and spacing are original completion. The 12 remains and filtering thresholds are deterministic illustrations without calibrated probabilities, ages or natural preservation rates; nine seconds of playback is not a fossilization time. Plant 3D is procedural, not scanned; size, crowns, leaf counts and opening angles are not measurements or identification tools. Workbenches share no real ecological clock and simulate no actual population evolution.
+Communities combine representative organisms and functional groups from specified fossil records, regions and times. They are not complete species lists, abundance estimates or guarantees that every organism coexisted at one place. Microbial comparisons span broad intervals; extinction aftermath is not the next day. Evidence views distinguish records, inference and unknowns. Colors, some soft tissues, poses and spacing are original completion. The 12 remains and filtering thresholds are deterministic illustrations without calibrated probabilities, ages or natural preservation rates; nine seconds of playback is not a fossilization time. Plant 3D is procedural, not scanned; size, crowns, leaf counts and opening angles are not measurements or identification tools. Workbenches share no real ecological clock and simulate no actual population evolution. Waptia anatomy chiefly follows the 2018 redescription, at 10 mm per world unit. Its representative 50 mm midline body length runs from the anterior median sclerite to the caudal-ramus tip, excluding antennules. Setae are thickened; parts of volume, pose and color are completed. The original CC BY fossil plate retains scale bars beside the model; the two are not claimed as one individual. The ten-second lamellar stroke calibrates neither actual frequency nor speed and depicts no prey capture. Shield fading is an inspection treatment.
 
 ## Sources
 
@@ -229,6 +241,8 @@ Communities combine representative organisms and functional groups from specifie
 - [Allwood et al. (2006), Nature · Strelley Pool stromatolite morphology and environmental evidence](https://www.nature.com/articles/nature04764)
 - [Gibson et al. (2018), Geology · Bangiomorpha age, not a universal origin date for eukaryotes](https://authors.library.caltech.edu/records/7brz9-8mw86)
 - [Hull et al. (2020), Science · On impact and volcanism across the Cretaceous-Paleogene boundary](https://pubmed.ncbi.nlm.nih.gov/31949074/)
+- [Vannier, Aria, Taylor & Caron (2018) · Waptia fieldensis redescription and CC BY 4.0 fossil plate](https://pmc.ncbi.nlm.nih.gov/articles/PMC6030330/)
+- [Royal Ontario Museum · Waptia fieldensis](https://burgess-shale.rom.on.ca/fossils/waptia-fieldensis/)
 
 ## Narration {#narration}
 
@@ -242,9 +256,9 @@ Long ago, a shore without trees or animals could still contain an interdependent
 
 ### Look at bodies and relationships
 
-A body impression, a set of scratches and a chemical signal provide different clues. Ancient seas held bottom dwellers, filter feeders and swimming predators. Environmental crises ended some branches while others continued. Continuing does not mean every original member survived.
+A body impression, a set of scratches and a chemical signal provide different clues. Ancient seas held bottom dwellers, filter feeders and swimming predators. Environmental crises ended some branches while others continued. Continuing does not mean every original member survived. Waptia’s shield, eyestalks and different limbs can also be checked against fossils. Giving it volume and movement still requires a careful distinction between evidence and completion.
 
-*Scene cue: Switch body and trace evidence in Ediacaran and Burgess scenes. Compare the end-Permian and end-Cretaceous aftermath, identifying food-web links rather than ancestry.*
+*Scene cue: Switch body and trace evidence in Ediacaran and Burgess scenes. Compare the end-Permian and end-Cretaceous aftermath, identifying food-web links rather than ancestry. Compare complete Waptia 3D with the original fossil plate. Distinguish thirteen appendage pairs from eyes and show finite lamellar motion, qualifying color, volume and rhythm as completion.*
 
 ### Which filters could hide the evidence?
 

@@ -1,0 +1,119 @@
+{
+  "parts": {
+    "whole": {
+      "name": {
+        "zh": "完整身体",
+        "en": "Whole body"
+      },
+      "record": {
+        "zh": "许多瓦普塔虫化石保存了双瓣甲、分节躯体、附肢和成对尾枝。论文图1的b是USNM 139214侧视标本；各面板来自不同个体。",
+        "en": "Many Waptia fossils preserve the two-valved shield, segmented body, appendages and paired caudal rami. Panel b of Figure 1 is the lateral specimen USNM 139214; the panels show different individuals."
+      },
+      "reconstruction": {
+        "zh": "这具原创模型综合多件标本，取中线体长50毫米；从额中小骨片量到尾枝尖，不含触角。2018研究测量的28件完整标本中，大多约40–60毫米；模型不是某一件化石的扫描。",
+        "en": "This original model combines multiple specimens and uses a representative midline length of 50 mm, from the anterior median sclerite to the caudal-ramus tip, excluding antennules. Most of the 28 complete specimens measured in the 2018 study were about 40–60 mm; this is not a scan of one fossil."
+      },
+      "unknown": {
+        "zh": "压扁化石不能直接给出活体全部厚度。身体饱满度、配色、表面光泽和活动姿态包含补全；画面没有复原内脏，也没有指定猎物。",
+        "en": "Flattened fossils do not directly specify the complete living volume. Body fullness, color, sheen and pose include completion. Internal organs and a particular prey animal are not reconstructed."
+      },
+      "panels": "a–j",
+      "detail": {
+        "zh": "细部重建见原研究图20–23；体长统计来自该文测量样本。",
+        "en": "Detailed reconstruction: research Figs 20–23. The length distribution refers to its measured sample."
+      }
+    },
+    "shield": {
+      "name": {
+        "zh": "双瓣甲",
+        "en": "Two-valved shield"
+      },
+      "record": {
+        "zh": "前部的左右甲瓣沿背面相连，边缘与压扁轮廓在多件标本中可见。它是薄而柔韧的表皮结构，不是现代蛤蜊那样的矿化贝壳。",
+        "en": "The left and right valves connect along the dorsal region; margins and flattened outlines occur in multiple specimens. This was thin, flexible cuticle, rather than a mineralized clam shell."
+      },
+      "reconstruction": {
+        "zh": "模型给甲瓣连续曲率、边缘厚度与细微表面起伏。依据模式中选头部或附肢会淡化甲瓣，让被遮挡结构可见；淡化是观察处理，不是活体会变透明。",
+        "en": "The model supplies continuous valve curvature, thin margins and subtle surface variation. In evidence mode, selecting the head or limbs fades the shield to reveal obscured structures. This is an inspection treatment, not biological transparency."
+      },
+      "unknown": {
+        "zh": "原来的颜色和精确透明度未由这些化石确定。皱褶也可能受压实和保存影响，不能把每条化石折痕都变成活体装饰。",
+        "en": "These fossils do not establish original pigmentation or exact transparency. Wrinkles can reflect compaction and preservation, so each fossil fold is not copied as living ornament."
+      },
+      "panels": "a, b, g, h, i",
+      "detail": {
+        "zh": "细部见原研究图3及20；甲壳透明性仍属推断。",
+        "en": "Detail: research Figs 3 and 20. Shield translucency remains inferred."
+      }
+    },
+    "head": {
+      "name": {
+        "zh": "眼、触角与口器",
+        "en": "Eyes, antennules & mouthparts"
+      },
+      "record": {
+        "zh": "头部有一对有眼柄的眼、一对分节触角、大颚及带刷状末端的小颚。2018年重描述把这些细小结构与多件标本相互核对；普通完整化石并非处处都清楚。",
+        "en": "The head has paired stalked eyes, segmented antennules, mandibles and maxillules with a brush-like distal region. The 2018 redescription checked these fine structures across specimens; they are not all clear in every complete fossil."
+      },
+      "reconstruction": {
+        "zh": "触角用十节安排，大颚有三节触须；小颚、额中骨片与眼柄分别保留。小幅触角活动只是演示感觉附肢的可能作用，不表示复原了神经或视野。",
+        "en": "Antennules use ten articles; each mandible has a three-articled palp. Maxillules, the median sclerite and eyestalks remain distinct. Small antennular movements illustrate a possible sensory role, without reconstructing nerves or a visual field."
+      },
+      "unknown": {
+        "zh": "模型不补出清晰眼内结构、精确感光能力或一套确定的捕食动作。刷毛在手机上适度加粗，数量不作为显微测量。",
+        "en": "The model adds no resolved eye interior, precise visual ability or definite feeding sequence. Fine setae are slightly thickened for phone visibility; their rendered number is not a microscopic measurement."
+      },
+      "panels": "i",
+      "detail": {
+        "zh": "细部见原研究图4–10；眼的受体细胞未保存。",
+        "en": "Detail: research Figs 4–10. Eye receptor cells are not preserved."
+      }
+    },
+    "limbs": {
+      "name": {
+        "zh": "不同的足与薄片",
+        "en": "Different limbs & lamellae"
+      },
+      "record": {
+        "zh": "小颚之后有四对附肢：前三对有带棘内叶和末端分节；第四对兼有短薄片与末端分支。再后面是六对长薄片附肢，着生于五个可见中部体节，末节融合并承载两对。",
+        "en": "Four post-maxillular pairs follow the maxillules. The first three have spinose endites and articulated distal regions; the fourth combines short lamellae with a distal branch. Six long-lamellate pairs follow on five visible middle segments, the last fused and carrying two pairs."
+      },
+      "reconstruction": {
+        "zh": "连同触角、大颚和小颚，模型共保留十三对附肢。薄片沿附肢排布，分组活动帮助观察空间关系；薄片可能参与推进或交换气体，不能把功能推断当直接录像。",
+        "en": "Including antennules, mandibles and maxillules, the model retains thirteen appendage pairs. Lamellae line the appendages; coordinated movement makes their spatial relationships visible. Propulsion or gas exchange are functional interpretations, rather than a recorded motion."
+      },
+      "unknown": {
+        "zh": "划动的顺序、角度与频率由作者安排；十秒是观察时长，不是测得的生理周期。没有计算水动力、真实游速、呼吸量或猎物捕获。",
+        "en": "Stroke order, angles and frequency are authored. Ten seconds is an observation duration, not a measured physiological cycle. Hydrodynamics, swimming speed, respiration and prey capture are not calculated."
+      },
+      "panels": "b, c, i, j",
+      "detail": {
+        "zh": "细部见原研究图11–17、22–23；中部六个体节的最后两个融合为一个可见节。",
+        "en": "Detail: research Figs 11–17 and 22–23. The last two of six middle somites form one visible fused segment."
+      }
+    },
+    "tail": {
+      "name": {
+        "zh": "无足腹部与尾枝",
+        "en": "Limbless abdomen & tail rami"
+      },
+      "record": {
+        "zh": "后体有六个无步足的腹节，末节较短；末端连接一对扁平尾枝，每枝可分三个假节。化石中后体常弯曲，不能按一张压扁照片锁定唯一姿势。",
+        "en": "The posterior body has six limbless abdominal somites, with a shorter last somite, followed by paired flattened caudal rami, each divided into three pseudosegments. Fossil bodies often curve, so one flattened specimen does not lock a unique pose."
+      },
+      "reconstruction": {
+        "zh": "模型保留六节与成对尾枝，接缝连续。尾枝不是现代鱼尾，也不为制造动感擅加一排游泳足。活动展示主要放在附肢，后体只作很小的姿态补全。",
+        "en": "The model retains all six somites and paired rami with continuous joints. These are not a modern fish tail, and no extra swimming legs are added for motion. The example mainly moves the appendages, with only a small inferred posterior adjustment."
+      },
+      "unknown": {
+        "zh": "活体厚度、尾枝张角和每次运动的姿势仍需补全。模型不给尾拍速度、转弯能力或身体柔韧性打分。",
+        "en": "Living thickness, ramus splay and individual movement poses require completion. No tail-stroke speed, turning ability or flexibility score is supplied."
+      },
+      "panels": "a, b, c, h",
+      "detail": {
+        "zh": "细部见原研究图18；此处不把尾枝假节当步足。",
+        "en": "Detail: research Fig. 18. Ramus pseudosegments are not walking legs."
+      }
+    }
+  }
+}

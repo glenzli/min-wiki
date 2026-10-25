@@ -3,7 +3,7 @@
   "topicId": "earth-life",
   "zh": {
     "question": "从微生物海岸到森林与猛犸草原，怎样用化石重建生命之间的关系，而不把复原当作亲眼看见？",
-    "observe": "先在群落台选择一个地点与时期，保持焦点对象，切换身体、遗迹、化学和比较推断四种证据；只有微生物、大灭绝两类对照可切换宽时间窗的前后状态。再到化石台保留12个残体身份，主动播放、暂停或逐站拖动来源—到达—保留—找到的筛选；先到终点，再分别改变沉积环境、埋藏条件与采样范围作对照。最后旋转植物结构，比较石松类叶座、节类节点与种子蕨复叶，分清化石约束和艺术补全。",
+    "observe": "先在群落台选择一个地点与时期，保持焦点对象，切换身体、遗迹、化学和比较推断四种证据；只有微生物、大灭绝两类对照可切换宽时间窗的前后状态。再到化石台保留12个残体身份，主动播放、暂停或逐站拖动来源—到达—保留—找到的筛选；先到终点，再分别改变沉积环境、埋藏条件与采样范围作对照。最后旋转植物结构，比较石松类叶座、节类节点与种子蕨复叶，分清化石约束和艺术补全。 再把约5.08亿年前的瓦普塔虫完整身体转到侧、背、腹面，保留同一个体与动作位置，逐部位对照真实化石。十秒划水可暂停、回拖和重看，静止对照帮助分清形态依据与运动推断。",
     "academic": [
       {
         "title": "生态网与演化树回答不同问题",
@@ -15,11 +15,11 @@
       },
       {
         "title": "植物结构、器官拼合与长期碳",
-        "body": "树是一种生长形式，不是一个单一亲缘类群。树状石松、树状节类和种子蕨有不同的结构与繁殖背景。叶座、节间、复叶和脉序提供形态线索；分离的干、叶、根和种子能否拼成全植物，需要连接、解剖和地层等证据。植物固定的碳部分经分解返回，部分在合适水位、沉积空间与埋藏条件下留存；石炭纪并非没有分解者，泥炭也不是已完成热演化的煤。"
+        "body": "树是一种生长形式，不是一个单一亲缘类群。树状石松、树状节类和种子蕨有不同的结构与繁殖背景。叶座、节间、复叶和脉序提供形态线索；分离的干、叶、根和种子能否拼成全植物，需要连接、解剖和地层等证据。植物固定的碳部分经分解返回，部分在合适水位、沉积空间与埋藏条件下留存；石炭纪并非没有分解者，泥炭也不是已完成热演化的煤。 瓦普塔虫的完整3D同样综合多件标本：十三对附肢、中部融合节和六个无足腹节有形态依据，活体厚度、颜色与动作节律仍含补全。取50毫米代表中线体长，不把单张压扁照片当作活体扫描。"
       }
     ],
     "misconception": "复原图不是古代照片，生态箭头不是亲缘箭头。狄更逊的中文俗名含“水母”，不能据此归入现代水母；三叶虫不是只有三个体节；奇虾也不能默认是咬碎成年三叶虫的机器。鸟属于恐龙内部的分支，哺乳动物早在白垩纪已存在，幸存不等于全员无损。石松不是棕榈，种子蕨不是现代真蕨；缺少化石也不是不存在的证明。",
-    "boundary": "群落由特定化石库、地区和时代的代表对象与功能组组合，不是完整物种清单、丰度统计或所有生物同时同地生活的保证。微生物岸带与大氧化对照跨越宽时间窗；灭绝前后并非下一天。证据视角区分记录、推断和未知；身体色彩、部分软组织、姿态与空间排列是原创补全。化石台12份对象和筛选阈值为确定性示意，未校准概率、年代或自然保存速率；9秒播放时长不是成化石时间。植物3D由程序制作，非实物扫描；尺寸、冠形、叶片数量和展开角不作测量或物种鉴定。各工作台不共享真实生态时钟，也不模拟真实种群演化。",
+    "boundary": "群落由特定化石库、地区和时代的代表对象与功能组组合，不是完整物种清单、丰度统计或所有生物同时同地生活的保证。微生物岸带与大氧化对照跨越宽时间窗；灭绝前后并非下一天。证据视角区分记录、推断和未知；身体色彩、部分软组织、姿态与空间排列是原创补全。化石台12份对象和筛选阈值为确定性示意，未校准概率、年代或自然保存速率；9秒播放时长不是成化石时间。植物3D由程序制作，非实物扫描；尺寸、冠形、叶片数量和展开角不作测量或物种鉴定。各工作台不共享真实生态时钟，也不模拟真实种群演化。 瓦普塔虫以2018重描述为主要形态依据，1单位对应10毫米；50毫米代表体长沿中线从额中骨片至尾枝尖，不含触角。细毛加粗，部分体积、姿态和配色为补全。原始CC BY图版与模型并列且保留标尺；两者不冒充同一个体。十秒片肢划水不校准真实频率或游速，不演捕猎；甲壳淡化是观察处理。",
     "narration": [
       {
         "label": "没有森林，也有相互依赖",
@@ -28,8 +28,8 @@
       },
       {
         "label": "看身体，也看关系",
-        "text": "一块压痕、一串刮痕和一点化学信号，会带来不同线索。远古海洋里，有在底面活动的动物、滤食者和游泳捕食者。环境危机发生后，一些分支终止，另一些分支延续；延续也不表示原来的每个成员都活下来。",
-        "cue": "在埃迪卡拉与伯吉斯群落切换身体和遗迹证据；对比二叠纪末、白垩纪末前后，标明食物网不是家谱。"
+        "text": "一块压痕、一串刮痕和一点化学信号，会带来不同线索。远古海洋里，有在底面活动的动物、滤食者和游泳捕食者。环境危机发生后，一些分支终止，另一些分支延续；延续也不表示原来的每个成员都活下来。 瓦普塔虫的甲壳、眼柄和不同的足，也能逐一回到化石核对。让它重新有体积，甚至能活动，还需要仔细区分证据和补全。",
+        "cue": "在埃迪卡拉与伯吉斯群落切换身体和遗迹证据；对比二叠纪末、白垩纪末前后，标明食物网不是家谱。 增加瓦普塔虫完整3D与原始化石图版对照；分清十三对附肢与眼，演示有限片肢动作，标记颜色/体积/节律补全。"
       },
       {
         "label": "没有找到，可能经过了哪些筛子",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "From microbial shores to forests and mammoth steppe, how can fossils reconstruct relationships among living things without turning reconstructions into eyewitness scenes?",
-    "observe": "Choose a place and time at the community workbench. Retain a focal object while switching among body, trace, chemical and comparative-inference evidence; only microbial and mass-extinction comparisons have before-and-after windows. At the fossil workbench, retain the same 12 remains while playing, pausing or stepping through source, arrival, preservation and discovery. Reach the endpoint before comparing depositional setting, burial and search extent separately. Then rotate plant structures to compare lycopsid leaf cushions, calamite nodes and seed-fern fronds, distinguishing fossil constraints from artistic completion.",
+    "observe": "Choose a place and time at the community workbench. Retain a focal object while switching among body, trace, chemical and comparative-inference evidence; only microbial and mass-extinction comparisons have before-and-after windows. At the fossil workbench, retain the same 12 remains while playing, pausing or stepping through source, arrival, preservation and discovery. Reach the endpoint before comparing depositional setting, burial and search extent separately. Then rotate plant structures to compare lycopsid leaf cushions, calamite nodes and seed-fern fronds, distinguishing fossil constraints from artistic completion. Then turn the complete Waptia body, about 508 million years old in context, to side, dorsal and ventral views. Keep the same model and motion position while comparing parts with real fossils. Pause, scrub or replay a ten-second inferred stroke and compare neutral morphology to separate structural evidence from motion inference.",
     "academic": [
       {
         "title": "Ecological webs and evolutionary trees answer different questions",
@@ -57,11 +57,11 @@
       },
       {
         "title": "Plant architecture, connected organs and long-term carbon",
-        "body": "Tree describes a growth form rather than a single lineage. Arborescent lycopsids, calamites and seed ferns differ in structure and reproductive background. Cushions, internodes, fronds and venation provide clues; connecting separate stems, leaves, roots and seeds into a whole plant requires attachment, anatomy and stratigraphic evidence. Some fixed carbon returns through decomposition; some remains under suitable water, accommodation and burial conditions. Carboniferous communities had decomposers, and peat is not already thermally mature coal."
+        "body": "Tree describes a growth form rather than a single lineage. Arborescent lycopsids, calamites and seed ferns differ in structure and reproductive background. Cushions, internodes, fronds and venation provide clues; connecting separate stems, leaves, roots and seeds into a whole plant requires attachment, anatomy and stratigraphic evidence. Some fixed carbon returns through decomposition; some remains under suitable water, accommodation and burial conditions. Carboniferous communities had decomposers, and peat is not already thermally mature coal. The complete Waptia 3D likewise combines several specimens: thirteen appendage pairs, a fused middle segment and six limbless abdominal somites have anatomical support, while living thickness, color and stroke rhythm include completion. The model uses a representative 50 mm midline length and does not treat one flattened photograph as a living-body scan."
       }
     ],
     "misconception": "Reconstructions are not ancient photographs, and ecological arrows are not ancestry arrows. A common name does not make Dickinsonia a modern jellyfish; trilobites did not have only three segments; Anomalocaris is not automatically a machine for crushing adult trilobites. Birds are a dinosaur branch, mammals already existed in the Cretaceous, and survival does not mean every member escaped loss. Lycopsids are not palms, seed ferns are not modern true ferns, and missing fossils do not prove absence.",
-    "boundary": "Communities combine representative organisms and functional groups from specified fossil records, regions and times. They are not complete species lists, abundance estimates or guarantees that every organism coexisted at one place. Microbial comparisons span broad intervals; extinction aftermath is not the next day. Evidence views distinguish records, inference and unknowns. Colors, some soft tissues, poses and spacing are original completion. The 12 remains and filtering thresholds are deterministic illustrations without calibrated probabilities, ages or natural preservation rates; nine seconds of playback is not a fossilization time. Plant 3D is procedural, not scanned; size, crowns, leaf counts and opening angles are not measurements or identification tools. Workbenches share no real ecological clock and simulate no actual population evolution.",
+    "boundary": "Communities combine representative organisms and functional groups from specified fossil records, regions and times. They are not complete species lists, abundance estimates or guarantees that every organism coexisted at one place. Microbial comparisons span broad intervals; extinction aftermath is not the next day. Evidence views distinguish records, inference and unknowns. Colors, some soft tissues, poses and spacing are original completion. The 12 remains and filtering thresholds are deterministic illustrations without calibrated probabilities, ages or natural preservation rates; nine seconds of playback is not a fossilization time. Plant 3D is procedural, not scanned; size, crowns, leaf counts and opening angles are not measurements or identification tools. Workbenches share no real ecological clock and simulate no actual population evolution. Waptia anatomy chiefly follows the 2018 redescription, at 10 mm per world unit. Its representative 50 mm midline body length runs from the anterior median sclerite to the caudal-ramus tip, excluding antennules. Setae are thickened; parts of volume, pose and color are completed. The original CC BY fossil plate retains scale bars beside the model; the two are not claimed as one individual. The ten-second lamellar stroke calibrates neither actual frequency nor speed and depicts no prey capture. Shield fading is an inspection treatment.",
     "narration": [
       {
         "label": "No forests, but an interdependent world",
@@ -70,8 +70,8 @@
       },
       {
         "label": "Look at bodies and relationships",
-        "text": "A body impression, a set of scratches and a chemical signal provide different clues. Ancient seas held bottom dwellers, filter feeders and swimming predators. Environmental crises ended some branches while others continued. Continuing does not mean every original member survived.",
-        "cue": "Switch body and trace evidence in Ediacaran and Burgess scenes. Compare the end-Permian and end-Cretaceous aftermath, identifying food-web links rather than ancestry."
+        "text": "A body impression, a set of scratches and a chemical signal provide different clues. Ancient seas held bottom dwellers, filter feeders and swimming predators. Environmental crises ended some branches while others continued. Continuing does not mean every original member survived. Waptia’s shield, eyestalks and different limbs can also be checked against fossils. Giving it volume and movement still requires a careful distinction between evidence and completion.",
+        "cue": "Switch body and trace evidence in Ediacaran and Burgess scenes. Compare the end-Permian and end-Cretaceous aftermath, identifying food-web links rather than ancestry. Compare complete Waptia 3D with the original fossil plate. Distinguish thirteen appendage pairs from eyes and show finite lamellar motion, qualifying color, volume and rhythm as completion."
       },
       {
         "label": "Which filters could hide the evidence?",
@@ -201,6 +201,14 @@
     {
       "title": "Hull et al. (2020), Science · On impact and volcanism across the Cretaceous-Paleogene boundary",
       "url": "https://pubmed.ncbi.nlm.nih.gov/31949074/"
+    },
+    {
+      "title": "Vannier, Aria, Taylor & Caron (2018) · Waptia fieldensis redescription and CC BY 4.0 fossil plate",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6030330/"
+    },
+    {
+      "title": "Royal Ontario Museum · Waptia fieldensis",
+      "url": "https://burgess-shale.rom.on.ca/fossils/waptia-fieldensis/"
     }
   ]
 }
