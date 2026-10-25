@@ -25,7 +25,7 @@
     "build:sync": "npm run typecheck && npm run check:i18n && npm run check:images && npm run check:entries && npm run review:check && node scripts/wiki-reader.mjs build --complete-only --out sync-dist --base /encyclopedia/"
   },
   "dependencies": {
-    "@glenzli/wiki-reader": "github:glenzli/wiki-reader#c1fc4c9c89aa8a5c9d4939ba0a26268de8d15210",
+    "@glenzli/wiki-reader": "github:glenzli/wiki-reader#eafbcb1ec14ed4e7a4b783278b953d635da5c209",
     "i18next": "^26.4.2",
     "three": "^0.170.0"
   },
