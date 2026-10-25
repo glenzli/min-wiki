@@ -2,7 +2,7 @@
 
 地球总馆的末章，沿 `water → sky → conditions` 追踪能量、物质与环境条件。每页可直接进入并保存其余观察状态；它不是对真实地球未来的预测器。
 
-The final Earth gallery chapter follows energy, materials and environmental conditions through `water → sky → conditions`. Each observation can open directly while preserving the other observations. It does not predict the future of the real Earth.
+The independent topic now opens only the water comparison and circulation question. New navigation connects sky and habitability questions to other topics. Explicit old `sky` / `conditions` URLs keep their original bounded observations and are labelled as previously saved views; they are not offered as a default ocean sequence. No view predicts the future of the real Earth.
 
 ## Learning contract
 

@@ -10,6 +10,7 @@ import {glacierTracers} from './glacierTracers';
 export function mountStudy(host:HTMLElement,context:StudyContext):StudyInstance {
   const c=context.language==='en'?content.en:content.zh;
   let state=parseClimateState(context.initialState),disposed=false;
+  if(!context.initialState.view)state.view='glacier';
   let scene3d:ReturnType<typeof import('./scene3d.ts').mountGlacier3D>|undefined,threeEpoch=0,threePending=false,threeFailed=false;
   const events=new AbortController();
   const root=document.createElement('section');root.className='earth-module climate-study';host.append(root);
@@ -26,6 +27,9 @@ export function mountStudy(host:HTMLElement,context:StudyContext):StudyInstance 
   const n=(number:number)=>Number.isInteger(number)?String(number):number.toFixed(1);
   const observation=()=>glacierFrame(state.accumulation,state.ablation,state.steps,state.glacierPhase);
   const glacierPanel=query<HTMLElement>('[data-climate-panel="glacier"]');
+  const conditions=root.ownerDocument.createElement('details');conditions.className='climate-condition-panel';
+  const summary=root.ownerDocument.createElement('summary');summary.textContent=c.conditions;conditions.append(summary);
+  const controls=glacierPanel.querySelector<HTMLElement>('.climate-controls')!;controls.before(conditions);conditions.append(controls);
   const glacierHome=document.createComment('independent-glacier-home');glacierPanel.before(glacierHome);
   const wantsGlacier=()=>state.view==='glacier'||state.view==='journey'&&state.scope==='region';
   function drawHistory(){
@@ -98,12 +102,12 @@ export function mountStudy(host:HTMLElement,context:StudyContext):StudyInstance 
   function ensureThree(){
     if(disposed||threeFailed||!wantsGlacier())return;
     const frame=observation();
-    if(scene3d){scene3d.resume();scene3d.update(frame.mass,frame.round);return;}
+    if(scene3d){scene3d.resume();scene3d.update(frame.mass,frame.round,state.accumulation,state.ablation);return;}
     if(threePending)return;threePending=true;const ticket=++threeEpoch;
     void import('./scene3d.ts').then(module=>{
       if(disposed||ticket!==threeEpoch||!wantsGlacier())return;
       threePending=false;scene3d=module.mountGlacier3D(query('[data-three-host]'),c.threeLabel,failedThree);
-      const frame=observation();scene3d.update(frame.mass,frame.round);
+      const frame=observation();scene3d.update(frame.mass,frame.round,state.accumulation,state.ablation);
     }).catch(()=>{if(!disposed&&ticket===threeEpoch)failedThree();});
   }
   function update(){
@@ -126,7 +130,7 @@ export function mountStudy(host:HTMLElement,context:StudyContext):StudyInstance 
     writeProgress:fraction=>{
       if(disposed||!wantsGlacier())return;
       state={...state,...glacierRoundParts(fraction*12)};
-      drawGlacier();const frame=observation();scene3d?.update(frame.mass,frame.round);context.onStateChange(serializeClimateState(state));
+      drawGlacier();const frame=observation();scene3d?.update(frame.mass,frame.round,state.accumulation,state.ablation);context.onStateChange(serializeClimateState(state));
     },
     onPlayingChange:playing=>{
       const button=glacierPanel.querySelector<HTMLButtonElement>('[data-playback-toggle]')!;button.textContent=playing?c.pause:c.play;button.setAttribute('aria-pressed',String(playing));

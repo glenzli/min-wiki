@@ -147,14 +147,15 @@
     "oceanLink": "继续看海水、空气和生命",
     "historyNote": "本馆精选主要事件与背景，不穷尽所有地区、所有冰期名称。气候背景、地层单位、冰川事件、间冰期不是同一级别。",
     "threeLabel": "假想冰川的三维山谷。拖动旋转，双指或滚轮缩放；键盘方向键、加减键与 Home 可观察。",
-    "threeCaption": "3D 是自制假想山谷，不对应真实冰川扫描；纹理、裂隙与冰碛只帮助辨认。冰量消费同一收支模型，地形固定，冰形不按体积标定。",
+    "threeCaption": "同一条山谷冰川：上游积雪、表面裂隙、两侧碎石与冰前融水。T1–T3是跟踪标记；流动细节与收支共用观察进度，不代表实测速度或真实地形。",
     "twoView": "查看二维收支与示意",
     "threeFailure": "三维暂时不可用，二维收支和所有操作仍然可用。",
     "threeRetry": "重试三维",
     "kaUnit": "千年前（ka）",
     "meltwater": "产生的融水",
     "tracerNote": "T1/T2/T3是方向示意：同一回合轴向前时沿下谷移动，前缘仍由冰量单独决定；平衡冰量时标记也会前进。位移与时间未标定，不求真实速度或侵蚀。回拖只复看同一教学快照。",
-    "tracerUnknown": "† 未追算去向；幽影仅保留身份，位置不表示后续真实轨迹或融水"
+    "tracerUnknown": "† 未追算去向；幽影仅保留身份，位置不表示后续真实轨迹或融水",
+    "conditions": "改变降雪与冰量损失"
   },
   "en": {
     "title": "Ice and climate: from ancient glaciations to glaciers today",
@@ -304,14 +305,15 @@
     "oceanLink": "Continue with seawater, air and life",
     "historyNote": "This gallery selects major events and backgrounds; it does not list every regional glaciation. Climate backgrounds, stratigraphic units, glacial events and interglacials are different levels of description.",
     "threeLabel": "A hypothetical glacier in a three-dimensional valley. Drag to orbit, pinch or scroll to zoom; use arrow keys, plus, minus and Home.",
-    "threeCaption": "The 3D valley is original and hypothetical, not a scan of a real glacier. Textures, crevasses and moraines aid recognition. Ice amount consumes the same budget model; terrain is fixed and ice shape is not volume-calibrated.",
+    "threeCaption": "One valley glacier: upper snowfall, surface crevasses, marginal debris and meltwater at the front. T1–T3 are tracking marks. Details and budgets share observation progress, without measured speeds or real-site terrain.",
     "twoView": "Open the two-dimensional budget diagram",
     "threeFailure": "The 3D view is unavailable. The 2D budget and all controls remain available.",
     "threeRetry": "Retry 3D",
     "kaUnit": "thousand years ago (ka)",
     "meltwater": "Meltwater produced",
     "tracerNote": "T1/T2/T3 illustrate direction: increasing the same round moves them down-valley while ice amount independently controls the front. They advance even at balanced mass. Displacement and time are uncalibrated, without solving velocity or erosion. Scrubbing revisits the same teaching snapshots.",
-    "tracerUnknown": "† Fate not followed; ghosts retain identities without representing later real trajectories or meltwater"
+    "tracerUnknown": "† Fate not followed; ghosts retain identities without representing later real trajectories or meltwater",
+    "conditions": "Change snowfall and ice loss"
   },
   "references": [
     {

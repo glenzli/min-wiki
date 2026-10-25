@@ -1,4 +1,4 @@
-# Minerals & Crystals Gallery
+# Minerals and crystals
 
 A grain of mineral connects atomic arrangement, rock formation and our use of Earth.
 

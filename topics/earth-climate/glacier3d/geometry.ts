@@ -62,18 +62,18 @@ const fractures = Array.from({ length: 9 }, (_, i) => ({
   span: .33 + noise2(i + 1, 6) * .4,
 }));
 
-function icePoint(shape: IceShape, u: number, v: number) {
+function icePoint(shape: IceShape, u: number, v: number, round=0) {
   const point = glacierPoint(shape, u, v);
   const wave = Math.sin(v * 3.3 + u * 5.7) * .012 + Math.sin(v * 9.7 - u * 2.2) * .004;
   let incision = 0;
   // Bounded illustrative surface fractures, not a simulated stress or velocity field.
   for (const fracture of fractures) {
-    const dx = (u - fracture.row + wave) / fracture.width;
+    const dx = (u - fracture.row - Math.min(12,Math.max(0,round))*.008 + wave) / fracture.width;
     const reach = 1 - smooth(fracture.span * .7, fracture.span, Math.abs(v - fracture.center));
     incision = Math.max(incision, Math.exp(-dx * dx * 2.0) * reach);
   }
   const edge = Math.pow(Math.max(0, 1 - v * v), .7);
-  const depth = incision * shape.thickness * .065 * edge * smooth(.12, .3, u);
+  const depth = incision * shape.thickness * .22 * edge * smooth(.12, .3, u);
   point.y = Math.max(point.bed + .014, point.y - depth);
   return { ...point, incision };
 }
@@ -91,10 +91,10 @@ export function createIceGeometry(tier: DetailTier) {
   return { geometry, topCount };
 }
 
-export function updateIceTop(geometry: THREE.BufferGeometry, tier: DetailTier, shape: IceShape) {
+export function updateIceTop(geometry: THREE.BufferGeometry, tier: DetailTier, shape: IceShape, round=0) {
   const positions = geometry.getAttribute('position'), colours = geometry.getAttribute('color');
   for (let j = 0; j <= tier.iceZ; j++) for (let i = 0; i <= tier.iceX; i++) {
-    const p = icePoint(shape, j / tier.iceZ, i / tier.iceX * 2 - 1), index = j * (tier.iceX + 1) + i;
+    const p = icePoint(shape, j / tier.iceZ, i / tier.iceX * 2 - 1,round), index = j * (tier.iceX + 1) + i;
     positions.setXYZ(index, p.x, p.y, p.z);
     const shade = 1 - p.incision * .78;
     colours.setXYZ(index, shade, shade + p.incision * .12, shade + p.incision * .19);
@@ -103,21 +103,21 @@ export function updateIceTop(geometry: THREE.BufferGeometry, tier: DetailTier, s
 }
 
 /** Joined side/bottom/snout mesh exposes actual thickness instead of double-sided paper. */
-export function updateIceEnvelope(geometry: THREE.BufferGeometry, tier: DetailTier, shape: IceShape) {
+export function updateIceEnvelope(geometry: THREE.BufferGeometry, tier: DetailTier, shape: IceShape, round=0) {
   const positions: number[] = [], indices: number[] = [];
   const quad = (a: number[], b: number[], c: number[], d: number[]) => {
     const index = positions.length / 3; positions.push(...a, ...b, ...c, ...d); indices.push(index, index + 1, index + 2, index + 2, index + 1, index + 3);
   };
   for (let j = 0; j < tier.iceZ; j++) {
     const u0 = j / tier.iceZ, u1 = (j + 1) / tier.iceZ;
-    const a = icePoint(shape, u0, -1), b = icePoint(shape, u1, -1), c = icePoint(shape, u0, 1), d = icePoint(shape, u1, 1);
+    const a = icePoint(shape, u0, -1,round), b = icePoint(shape, u1, -1,round), c = icePoint(shape, u0, 1,round), d = icePoint(shape, u1, 1,round);
     const bottom0 = terrainHeight(valleyCenter(a.z), a.z) - .12, bottom1 = terrainHeight(valleyCenter(b.z), b.z) - .12;
     quad([a.x, a.y, a.z], [a.x, bottom0, a.z], [b.x, b.y, b.z], [b.x, bottom1, b.z]);
     quad([d.x, d.y, d.z], [d.x, bottom1, d.z], [c.x, c.y, c.z], [c.x, bottom0, c.z]);
     quad([a.x, bottom0, a.z], [c.x, bottom0, c.z], [b.x, bottom1, b.z], [d.x, bottom1, d.z]);
   }
   for (const u of [0, 1]) for (let i = 0; i < tier.iceX; i++) {
-    const a = icePoint(shape, u, i / tier.iceX * 2 - 1), b = icePoint(shape, u, (i + 1) / tier.iceX * 2 - 1);
+    const a = icePoint(shape, u, i / tier.iceX * 2 - 1,round), b = icePoint(shape, u, (i + 1) / tier.iceX * 2 - 1,round);
     const bottomA = terrainHeight(valleyCenter(a.z), a.z) - .12, bottomB = terrainHeight(valleyCenter(b.z), b.z) - .12;
     if (u === 1) quad([a.x, a.y, a.z], [a.x, bottomA, a.z], [b.x, b.y, b.z], [b.x, bottomB, b.z]);
     else quad([b.x, b.y, b.z], [b.x, bottomB, b.z], [a.x, a.y, a.z], [a.x, bottomA, a.z]);

@@ -26,6 +26,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   const words = content[context.language === 'en' ? 'en' : 'zh'];
   let session = parseRockState(context.initialState);
   let disposed = false;
+  let processView:ReturnType<typeof import('./process3d').mountRockProcess>|undefined,processPending=false,processFailed=false,processEpoch=0;
   let viewer: SpecimenViewer | null = null;
   let viewerSpecimen: SpecimenId | null = null;
   let viewerLoading = false;
@@ -45,12 +46,13 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     </div>
     <p class="rocks-question">${escape(words.question)}</p>
     <label class="rocks-select" data-specimen-select hidden><span>${escape(words.specimenSelect)}</span><select data-specimen>${SPECIMEN_IDS.map(id => `<option value="${id}">${escape(words.specimens[id].name)} · ${escape(words.specimens[id].type)}</option>`).join('')}</select></label>
-    <div class="earth-stage rocks-stage">
+    <label class="rocks-select rocks-process-choice" data-process-choice-row><span>${escape(words.choose)}</span><select data-process-choice></select></label><div class="earth-stage rocks-stage">
+      <div class="rocks-webgl-host rocks-process-host" data-process-host hidden></div>
       <div class="rocks-webgl-host" data-webgl-host hidden></div>
       <canvas data-scene role="img" aria-label="${escape(words.stageLabel)}"></canvas>
       <div class="rocks-stage-caption" data-stage-caption></div>
     </div>
-    <p class="earth-note rocks-caption">${escape(words.illustration)}</p>
+    <p class="earth-note" data-process-status role="status" hidden></p><p class="earth-note rocks-caption">${escape(words.illustration)}</p>
     <div data-journey-panel>
       <div class="earth-controls rocks-playback">
         <button type="button" data-playback-toggle aria-pressed="false">${escape(words.play)}</button>
@@ -140,6 +142,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     if (!element) throw new Error(`Missing rocks element: ${selector}`);
     return element;
   };
+  const modelControls=get<HTMLElement>('.rocks-model-controls'),toolbar=document.createElement('div');toolbar.className='rocks-toolbar';const tabs=get<HTMLElement>('.rocks-tabs');tabs.before(toolbar);toolbar.append(tabs,modelControls);
   const mainCanvas = get<HTMLCanvasElement>('[data-scene]');
   const mineralCanvas = get<HTMLCanvasElement>('[data-mineral-scene]');
   const coolingCanvas = get<HTMLCanvasElement>('[data-cooling-scene]');
@@ -158,6 +161,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   function draw() {
     if (disposed) return;
     if (!mainCanvas.hidden) scenes[0].draw(session, words);
+    if(session.view==='journey')processView?.update(session);
     if (get<HTMLDetailsElement>('.rocks-minerals').open) scenes[1].draw(session, words);
     if (get<HTMLDetailsElement>('.rocks-cooling').open) scenes[2].draw(session, words);
   }
@@ -197,28 +201,47 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     } catch { if (!disposed && ticket === viewerTicket) unavailable(); }
   }
 
+  function releaseProcess(){++processEpoch;processPending=false;processView?.dispose();processView=undefined;}
+  async function ensureProcess(){
+    if(disposed||processPending||processFailed||processView)return;
+    processPending=true;const ticket=++processEpoch;
+    const fail=()=>{if(disposed||ticket!==processEpoch||session.view!=='journey')return;processFailed=true;releaseProcess();get<HTMLElement>('[data-process-host]').hidden=true;mainCanvas.hidden=false;get<HTMLElement>('[data-process-status]').hidden=false;text('[data-process-status]',words.processFailure);get<HTMLButtonElement>('[data-model-retry]').hidden=false;draw();};
+    try{const module=await import('./process3d');if(disposed||ticket!==processEpoch||session.view!=='journey')return;processPending=false;processView=module.mountRockProcess(get('[data-process-host]'),words.processLabel,fail);processView.update(session);get<HTMLButtonElement>('[data-model-reset]').disabled=false;}
+    catch{if(!disposed&&ticket===processEpoch)fail();}
+  }
   function render() {
     const rock = currentRock(session);
     mainCanvas.setAttribute('aria-label', sceneDescription(session, words));
     get<HTMLElement>('[data-journey-panel]').hidden = session.view !== 'journey';
     get<HTMLElement>('[data-specimens-panel]').hidden = session.view !== 'specimens';
     get<HTMLElement>('[data-specimen-select]').hidden = session.view !== 'specimens';
+    get<HTMLButtonElement>('[data-renderer="3d"]').textContent=session.view==='journey'?words.process3d:words.model3d;
+    get<HTMLButtonElement>('[data-renderer="2d"]').textContent=session.view==='journey'?words.process2d:words.model2d;
+    get<HTMLElement>('.rocks-identity').textContent=session.view==='journey'&&session.renderer==='3d'?words.localNote:words.identity;
+    const wantsProcess=session.view==='journey'&&session.renderer==='3d'&&!processFailed;
+    get<HTMLElement>('[data-process-host]').hidden=!wantsProcess;
+    if(wantsProcess)void ensureProcess();else releaseProcess();
+    get<HTMLElement>('[data-process-choice-row]').hidden=session.view!=='journey';
+    get<HTMLElement>('[data-process-status]').hidden=session.view!=='journey'||!processFailed;
     const wants3d = session.view === 'specimens' && session.renderer === '3d';
     get<HTMLElement>('[data-webgl-host]').hidden = !wants3d || viewerFailed;
-    mainCanvas.hidden = wants3d && !viewerFailed;
+    mainCanvas.hidden = wantsProcess || wants3d && !viewerFailed;
     get<HTMLElement>('[data-model-help]').hidden = !wants3d || viewerFailed;
     root.querySelectorAll<HTMLButtonElement>('[data-renderer]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.renderer === session.renderer)));
-    get<HTMLButtonElement>('[data-model-reset]').disabled = !wants3d || !viewer || viewerFailed;
+    get<HTMLButtonElement>('[data-model-reset]').disabled = wantsProcess?!processView:!wants3d || !viewer || viewerFailed;
     if (wants3d && !viewerFailed) {
       if (viewer) {
         if (viewerSpecimen !== session.specimen) { viewer.select(session.specimen); viewerSpecimen = session.specimen; }
         viewer.resume();
       } else void ensureViewer();
-    } else viewer?.pause();
+    } else {viewer?.dispose();viewer=null;viewerSpecimen=null;++viewerTicket;viewerLoading=false;}
     root.querySelectorAll<HTMLButtonElement>('[data-view]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.view === session.view)));
     renderProgress();
     const processHost = get<HTMLElement>('[data-processes]');
     const allowed = availableProcesses(rock);
+    const choice=get<HTMLSelectElement>('[data-process-choice]');
+    choice.replaceChildren(...[null,...allowed].map(id=>{const o=document.createElement('option');o.value=id??'';o.textContent=id?words.processes[id].label:words.chooseHint;return o;}));choice.value=session.process??'';
+    get<HTMLElement>('.rocks-processes').hidden=true;
     const existing = [...processHost.querySelectorAll<HTMLButtonElement>('button')];
     if (existing.map(button => button.dataset.process).join(',') !== allowed.join(',')) {
       processHost.innerHTML = allowed.map(id => `<button type="button" data-process="${id}">${escape(words.processes[id].label)}</button>`).join('');
@@ -297,7 +320,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     else if(target.hasAttribute('data-playback-next'))playback.setProgress(Math.min(1,session.progress/100+.1));
     else if (target.dataset.view) update({ ...session, view: target.dataset.view === 'specimens' ? 'specimens' : 'journey' });
     else if (target.dataset.renderer) update({ ...session, renderer: target.dataset.renderer === '2d' ? '2d' : '3d' });
-    else if (target.hasAttribute('data-model-reset')) viewer?.reset();
+    else if (target.hasAttribute('data-model-reset')) {viewer?.reset();processView?.reset();}
     else if (target.hasAttribute('data-model-retry')) {
       update({ ...session, renderer: '3d' });
       location.reload();
@@ -310,14 +333,16 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     else if (target.hasAttribute('data-reset')) update({ ...session, path: [], cursor: 0, process: null, progress: 0 });
   });
   listen(progress, 'input', () => playback.setProgress(Number(progress.value)/100));
+  listen(get('[data-process-choice]'),'change',event=>{const id=(event.target as HTMLSelectElement).value;if(id)update(chooseProcess(session,id as ProcessId));});
   listen(specimenSelect, 'change', () => update({ ...session, specimen: specimenSelect.value as SpecimenId }));
   listen(mineralSelect, 'change', () => update({ ...session, mineral: mineralSelect.value as MineralId }));
   listen(coolingInput, 'input', () => update({ ...session, cooling: Math.max(0, Math.min(100, Number(coolingInput.value))) }));
   listen(processDetail, 'toggle', () => { if (session.deep !== processDetail.open) { session = { ...session, deep: processDetail.open }; emit(); } });
   const resumeVisible = () => {
+    if(!document.hidden&&session.view==='journey')processView?.resume();
     if (!document.hidden && session.view === 'specimens' && session.renderer === '3d' && !viewerFailed) viewer?.resume();
   };
-  listen(document, 'visibilitychange', () => { if (document.hidden) {playback.pause();viewer?.pause();} else resumeVisible(); });
+  listen(document, 'visibilitychange', () => { if (document.hidden) {playback.pause();viewer?.pause();processView?.pause();} else resumeVisible(); });
   // A host pause cancels pending work; a later deliberate gesture can resume this manual viewer.
   for (const event of ['pointerdown', 'keydown', 'wheel']) listen(root, event, resumeVisible);
   extraDetails.forEach((detail, index) => listen(detail, 'toggle', () => {
@@ -329,10 +354,10 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   observer?.observe(root);
   render(); emit();
   return {
-    pause() { playback.pause();viewer?.pause(); },
+    pause() { playback.pause();viewer?.pause();processView?.pause(); },
     dispose() {
       if (disposed) return;
-      playback.dispose();disposed = true; ++viewerTicket; aborter.abort(); observer?.disconnect(); viewer?.dispose(); viewer = null;
+      playback.dispose();releaseProcess();disposed = true; ++viewerTicket; aborter.abort(); observer?.disconnect(); viewer?.dispose(); viewer = null;
       scenes.forEach(scene => scene.dispose()); root.remove();
     },
   };

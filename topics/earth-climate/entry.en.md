@@ -1,4 +1,4 @@
-# Ice and climate: from ancient glaciations to glaciers today
+# Glaciers and ice ages
 
 There was more than one ice age. Compare evidence at different ages, then zoom the time scale. Some intervals contain others; some lie over a billion years apart.
 

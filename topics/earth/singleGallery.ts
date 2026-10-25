@@ -26,7 +26,9 @@ export function mountSingleGallery(chapter:Chapter,topicId:string,english:Record
     const destination=languageHref(`/topics/${museum?'earth':GALLERY_IDS[target]}/`);
     url.pathname=new URL(destination,location.href).pathname;
     url.searchParams.set('lang',language==='en'?'en':'zh');
-    return earthRouteURL(url.href,{chapter:target,states:route.states}).href;
+    const next=earthRouteURL(url.href,{chapter:target,states:route.states});
+    if(museum)next.searchParams.delete('chapter');
+    return next.href;
   }
   function updateLinks(){
     root.querySelectorAll<HTMLAnchorElement>('[data-gallery-chapter]').forEach(link=>{

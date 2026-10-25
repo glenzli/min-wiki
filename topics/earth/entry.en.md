@@ -1,66 +1,29 @@
-A rock, a breath of air and a drop of seawater can each open a way into Earth. This digital museum investigates the same planet throughout: formed about 4.54 billion years ago, it continues to change through internal heat, sunlight, gravity and life. [NIST: Earth's age and natural clocks](https://www.nist.gov/how-do-you-measure-it/how-do-you-know-age-fossils-and-other-old-things)
+# Earth exploration map
 
-Begin with a question, then follow the evidence deeper. Each of the eight halls has its own substantial exploration and bilingual reading. This guide, the hall explanations, limits and narration remain readable without running the interactions.
+Begin with a rock, a crystal or a glacier and choose one question. This guide connects independently owned studies, each with its own science, controls, progress and editorial status.
 
-## Choose a question and enter a hall
-
-| Hall | First family question | One layer deeper |
-| --- | --- | --- |
-| [Interior: look inside Earth](../earth-interior/entry.en.md) | How can we know the inside without digging to the center? | Common-radius and thin-layer scales, crust and lithosphere, P/S evidence, plate boundaries and deep samples |
-| [History: cross 4.54 billion years](../earth-history/entry.en.md) | Was Earth always like the world we know? | Formation, early water and microbes, the Great Oxidation, animals, life on land and extinctions; enlarged time windows and oxygen budgets |
-| [Ancient Life: communities and evidence](../earth-life/entry.en.md) | Does finding no fossil prove that life was absent? | Seven representative communities, branching evolution, ecological links, extinction contrasts, preservation and sampling bias, ancient plant reconstruction |
-| [Rocks: follow the material](../earth-rocks/entry.en.md) | Why can the same material become different rocks? | Staying and branching, weathering and transport, solid-state metamorphism and melting, specimens and minerals |
-| [Minerals: from specimen to lattice](../earth-minerals/entry.en.md) | What is inside a crystal, and what evidence identifies it? | Structure, properties, formation, uses and identification; minerals, rocks, ores and gemstones |
-| [Ores: from formation to materials](../earth-ores/entry.en.md) | How do useful components become concentrated in rock? | Hydrothermal veins, weathering residues, placers, natural occurrence, multiple evidence and material uses |
-| [Climate: ice comes and goes](../earth-climate/entry.en.md) | Why do glaciers advance and retreat, and how do ancient ice ages leave records? | Different glacial time scales, ice budgets, past-climate evidence, feedbacks and modern change |
-| [Systems: a working planet](../earth-systems/entry.en.md) | How do currents, daylight, auroras and living conditions connect? | Temperature, salinity and surface-deep circulation; illumination and particle emission; evidence and unknowns in six habitability cases |
-
-## How do the halls form a connected journey?
-
-**Begin inside to understand why the surface moves.** Crust, mantle and core mainly distinguish composition. Lithosphere includes the crust and relatively rigid uppermost mantle. Most mantle material is solid yet can slowly deform over long periods. Interior brings scale and seismic evidence together to investigate this hidden structure. [USGS: what lies below plates?](https://www.usgs.gov/faqs/are-tectonic-plates-floating-magma)
-
-**Follow time to see environments and life change together.** Oxygen-producing microbes long preceded land forests. Respiration, decomposition and chemical reactions consumed their oxygen; production did not immediately mean atmospheric accumulation. History places this budget on a long time scale and connects it with animals and environments. [Research on the Great Oxidation](https://www.pnas.org/doi/10.1073/pnas.1608824114)
-
-**Pick up a rock, then enter its minerals.** Rock groups describe formation processes; minerals have characteristic composition and structure. Ore concerns extracting useful constituents under particular conditions. There is no required rock-cycle circuit, and color cannot certify specimen identity. The two halls progress from visible grains to formation conditions and microscopic explanations. [USGS: rocks and minerals](https://www.usgs.gov/faqs/what-difference-between-a-rock-and-a-mineral)
-
-**Let water, ice and air reconnect the whole planet.** Glacier change compares accumulation with losses; seawater density requires temperature and salinity together. Climate investigates past evidence and feedbacks. Systems distinguishes causes: night follows rotation out of sunlight, whereas auroras emit light through upper-atmosphere particle interactions. Connected phenomena need separate mechanisms. [NOAA thermohaline circulation](https://oceanservice.noaa.gov/education/tutorial_currents/05conveyor1.html), [NASA auroras](https://spaceplace.nasa.gov/aurora/en/)
-
-**Life branches, and ores have different origins.** Ancient Life places microbes, seafloor communities and terrestrial forests in their environments while preserving uncertainty and fossil-record bias. Ores follows retained material through fractures, weathering and sorting. Direct structural evidence, comparative inference and artistic completion are distinguished in reconstructions.
-
-## Two routes from the whole planet to one material sample
-
-Enter the [continental-breakup route](../earth-interior/entry.en.md?earth.interior.interiorView=rift), select a geological stage and retain Rift A in the regional section. F1 replay changes local strain and displacement; a separate magma branch follows P1 through partial melting, transport and cooling. Earthquakes do not shake the mantle into melt, and a rift need not erupt or become an ocean. Geological progress, the fault event and the camera are separate.
-
-Enter the [global ice-edge, region and sample route](../earth-climate/entry.en.md?earth.climate.view=journey) and retain site A as the ice edge passes it. Compare the coast and reflection while the local accumulation/ablation budget has its own replay. Seawater freezing and snow-derived land ice have separate sources. Examine brine channels, snow pores, sediment, scratches and modern ice-core methods to ask what each clue supports. The idealized land and ice edge are not a map of a particular Cryogenian year.
-
-Both routes support explicit play, pause, scrubbing and reset. Display seconds compress the explanation; shared position and stage do not merge million-year changes with a seconds-scale event into one physical clock.
-
-## Four observation questions across the museum
-
-| Always ask | Practice with an example |
+| Your question | Explore |
 | --- | --- |
-| Is this observed, inferred, calculated or illustrated? | A mantle xenolith is a sample; its source depth is inferred; a colored interior cutaway is a representation |
-| Which ruler is being used? | Whole-Earth radii, shallow enlargements and time windows have their own stated scales; screen spacing is not interchangeable |
-| What changed, and what stayed fixed? | Temperature and salinity can reinforce or counteract each other; seawater comparisons hold reference pressure fixed |
-| What does this still not establish? | Inverse-square distance gives relative sunlight without directly calculating temperature or the possibility of life |
+| What lies below us, and why does the ground move? | [Inside Earth and moving plates](../earth-interior/entry.en.md) |
+| How do we understand deep time? | [Earth through deep time](../earth-history/entry.en.md) |
+| How did ancient animals live, and what do fossils show? | [Ancient life and fossils](../earth-life/entry.en.md) |
+| How can the same rock material change? | [How rocks form and change](../earth-rocks/entry.en.md) |
+| How do properties connect with internal structure? | [Minerals and crystals](../earth-minerals/entry.en.md) |
+| How do useful constituents become concentrated? | [From ores to materials](../earth-ores/entry.en.md) |
+| How does ice accumulate, move and disappear? | [Glaciers and ice ages](../earth-climate/entry.en.md) |
+| Why does seawater form layers and move? | [Oceans and currents](../earth-systems/entry.en.md) |
 
-These processes have different speeds. A day's illumination, glacier budgets, rock transformations and billions of years of history do not share one real physical clock. Orbital distance, the Moon, mass and magnetic fields are not independent habitability switches. Each hall preserves its conditions, sources and uncertainties so the questions can continue.
+Explore [day, night and seasons](../earth-seasons/entry.en.md), [atmosphere and auroras](../atmosphere/entry.en.md), [volcanoes](../volcano-eruption/entry.en.md) or the [water cycle](../rain-cycle/entry.en.md). There is no required completion order or one shared growth timeline.
 
-## Follow a mechanism into another topic
-
-Investigate magma reaching the ground in [Volcanoes](../volcano-eruption/entry.en.md); transport and storage in [The Water Cycle](../rain-cycle/entry.en.md) and [A Grain of Sand](../sand-journey/entry.en.md); height in [Atmosphere](../atmosphere/entry.en.md); and spatial relationships and sunlight in [Earth and Moon](../earth-moon/entry.en.md), [Earth's Seasons](../earth-seasons/entry.en.md) and [The Solar System](../solar-system/entry.en.md). These existing topics retain their own models and time scales.
-
-## Further notes, museum limits and family narration
-
-These are museum-wide notes. Each hall has its own full reading, evidence and narration. Spoken-text exports contain only words to read aloud; storyboards keep scene directions separately.
+The cover is an editorial illustration. Each study distinguishes observations, inferences, models and illustrative geometry with its own scales and limitations.
 
 <!-- wiki-learning:start -->
 
 How can a rock, a breath of air and a drop of seawater connect Earth's interior, its long history and life today?
 
-Follow eight connected halls. In Interior, compare the common-radius globe with a separately enlarged thin-layer view, then examine seismic waves and plate boundaries. In History, begin with the linear 4.54-billion-year overview, enlarge selected intervals and compare oxygen production with consumption. In Rocks, retain the same material markers while trying pauses and branching transformations. In Systems, vary seawater temperature and salinity together, distinguish daylight from auroras, and ask what each habitability 'what if' can actually establish. The Minerals hall connects specimen properties with crystal structure and ore uses; the Climate hall extends the journey through glacier budgets, evidence of past climates and feedbacks. Ancient Life compares communities, branching relationships and preservation bias; Ores follows hydrothermal, weathering-residue and stream-sorting settings before connecting materials to uses. In the rift route retain Rift A, F1 and P1 across global, fault and material views; pause geological progress before replaying the event. In Climate retain region A across the global edge, local budget and five samples, playing their finite processes separately.
+Choose a question and enter its own study. Each retains its objects, conditions, progress and evidence. Return to the map to choose another, without a required sequence.
 
-## From one planet into eight connected halls
+## How independent questions connect
 
 Earth formed about 4.54 billion years ago. Interior connects compositional and mechanical layers with seismic evidence. History follows coevolution on a linear time scale. Rocks and Minerals distinguish formation processes, crystal structure, specimen properties and ore uses. Climate and Systems compare ice, water, air, sunlight and internal activity. These entrances investigate the same planet without sharing one process clock. Ancient Life separates body fossils, traces, chemical evidence and reconstruction; Ores connects formation, occurrence, structure and uses. Galleries select evidence-backed examples, not every species or deposit.
 

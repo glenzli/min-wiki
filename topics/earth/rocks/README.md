@@ -43,3 +43,7 @@ The 24 material-origin markers are never claimed to be conserved mineral crystal
 - Canvas descriptions, native selects/ranges/buttons, 44px target sizes, visible focus, keyboard camera controls, touch rotation/pinch, explicit view reset and reduced-motion styling are provided.
 
 See [VALIDATION.md](VALIDATION.md) for actual tests, browser evidence and the limits of the measurements. No commit, push or deployment is performed by this child gallery task.
+
+## Independent topic refinement
+
+The 2026-10-25 local sample adds `parcelFrame.ts` and `process3d.ts`: fixed origin batches open into fragments, travel within a local observation window, close pores during cementation and join committed model endpoints. `rockMaterial.ts` is shared with the hand-specimen view. Partitions are explanatory batches, not immutable real crystals; the 3D process is a local close-up, not a measured terrain, chemistry or mass solver. The 2D position diagram remains an explicit fallback.

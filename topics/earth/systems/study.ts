@@ -38,6 +38,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   const c = content[context.language];
   const w = (zh: string, en: string) => context.language === 'en' ? en : zh;
   let state = parseState(context.initialState), disposed = false;
+  const legacyObservation=state.observation!=='water';
   let earthView: EarthView | null = null, sceneGeneration = 0;
   const root = host.ownerDocument.createElement('section');
   root.className = 'earth-module systems-study';
@@ -50,8 +51,17 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   const sourceList = (observation: Observation) => `<div class="systems-sources"><p>${escapeText(c.sources)}</p><ul>${refs[observation].map(([label,url]) => `<li><a href="${escapeText(url)}" target="_blank" rel="noopener noreferrer">${escapeText(label)}</a></li>`).join('')}</ul></div>`;
   const svg = (viewBox: string, label: string, body: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" role="img" aria-label="${escapeText(label)}">${body}</svg>`;
 
-  root.innerHTML = `<nav class="systems-observations earth-controls" aria-label="${escapeText(c.title)}"><label>${escapeText(w('当前观察','Current observation'))}<select data-control="observation">${observations.map(key => `<option value="${key}">${escapeText(c.navigation[key])}</option>`).join('')}</select></label></nav><div data-observation-body></div><footer class="systems-footer"><button type="button" data-action="previous">← ${escapeText(c.previous)}</button><button type="button" data-action="next">${escapeText(c.next)} →</button></footer>`;
+  root.innerHTML = `<nav class="systems-observations earth-controls" aria-label="${escapeText(c.title)}"><label>${escapeText(w('当前观察','Current observation'))}<select data-control="observation">${(legacyObservation?observations:['water'] as Observation[]).map(key => `<option value="${key}">${escapeText(c.navigation[key])}</option>`).join('')}</select></label></nav><div data-observation-body></div><footer class="systems-footer"><button type="button" data-action="previous">← ${escapeText(c.previous)}</button><button type="button" data-action="next">${escapeText(c.next)} →</button></footer>`;
   host.replaceChildren(root);
+  if(legacyObservation){const notice=document.createElement('p');notice.className='earth-note';notice.textContent=w('这是此前保存的天空或宜居观察。相应问题也可以在大气、昼夜与四季等独立专题中继续。','This is a previously saved sky or habitability observation. Continue these questions in their independent atmosphere or day/night studies.');root.prepend(notice);}
+  if(!legacyObservation){
+    el<HTMLElement>('.systems-observations').hidden=true;
+    const footer=el<HTMLElement>('.systems-footer');footer.replaceChildren();
+    for(const [id,label] of [['atmosphere',w('继续观察大气与极光','Explore atmosphere and auroras')],['earth-seasons',w('继续观察昼夜与四季','Explore day, night and seasons')],['earth',w('返回地球探索地图','Earth exploration map')]]){
+      const a=document.createElement('a');a.href=location.pathname.replace(/\/topics\/[^/]+\/$/,`/topics/${id}/`)+`?lang=${context.language}`;a.textContent=label+' →';footer.append(a);
+    }
+  }
+
 
   function updateInputs() {
     for (const input of root.querySelectorAll<HTMLInputElement | HTMLSelectElement>('[data-control]')) {
@@ -218,14 +228,15 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     disposeEarth();
     el('[data-observation-body]').innerHTML = state.observation === 'water' ? waterMarkup() : state.observation === 'sky' ? skyMarkup() : conditionsMarkup();
     for (const button of root.querySelectorAll<HTMLButtonElement>('.systems-observations [data-observation]')) button.setAttribute('aria-pressed',String(button.dataset.observation === state.observation));
-    el<HTMLButtonElement>('[data-action="previous"]').hidden = state.observation === 'water';
-    el<HTMLButtonElement>('[data-action="next"]').hidden = state.observation === 'conditions';
+    if(legacyObservation)el<HTMLButtonElement>('[data-action="previous"]').hidden = state.observation === 'water';
+    if(legacyObservation)el<HTMLButtonElement>('[data-action="next"]').hidden = state.observation === 'conditions';
     if (state.observation === 'water') updateWater();
     else if (state.observation === 'sky') { updateSky();prepareEarth(); }
     else renderCondition();
   }
 
   function selectObservation(observation: Observation) {
+    if(!legacyObservation&&observation!=='water'){location.assign(location.pathname.replace(/\/topics\/[^/]+\/$/,`/topics/${observation==='sky'?'atmosphere':'earth'}/`)+`?lang=${context.language}`);return;}
     if (state.observation === observation) return;
     state = { ...state, observation };
     renderObservation(); emit();

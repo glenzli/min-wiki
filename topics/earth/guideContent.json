@@ -1,0 +1,120 @@
+{
+  "zh": {
+    "title": "从一个问题，走近地球",
+    "intro": "每个专题独立展开。选一个你想弄明白的问题，再观察、改变条件、比较结果。",
+    "start": "从脚下的岩石开始，也可以直接走近冰川、古生命或海洋。",
+    "boundary": "这是一张探索导览。各专题分别标记制作进度；示意、推断和真实证据在对应专题内说明。",
+    "open": "进入专题",
+    "topics": {
+      "interior": {
+        "title": "地球内部与板块运动",
+        "question": "脚下是什么，我们怎样用地震和岩石证据认识它？"
+      },
+      "history": {
+        "title": "地球的漫长历史",
+        "question": "把关键变化放回漫长时间，再比较留下的证据。"
+      },
+      "life": {
+        "title": "古生命与化石",
+        "question": "走进固定的古生态案例，对照身体复原、化石保存与证据。"
+      },
+      "rocks": {
+        "title": "岩石怎样形成和改变",
+        "question": "跟着同一份岩石物质，比较碎裂、搬运、胶结、变质与熔融。"
+      },
+      "minerals": {
+        "title": "矿物与晶体",
+        "question": "从手中的性质、晶面与断口，走进内部的连接方式。"
+      },
+      "ores": {
+        "title": "矿石怎样变成材料",
+        "question": "比较热液、风化与流水富集，再看自然赋存和材料用途。"
+      },
+      "climate": {
+        "title": "冰川与冰期",
+        "question": "先观察一条山谷冰川的积累、运动和消融，再走向样本与冰期记录。"
+      },
+      "systems": {
+        "title": "海洋与洋流",
+        "question": "比较温度和盐度，追踪表层与深层海水怎样联系。"
+      }
+    },
+    "related": [
+      [
+        "volcano-eruption",
+        "火山：从岩浆到山、岛与湖"
+      ],
+      [
+        "atmosphere",
+        "大气与极光"
+      ],
+      [
+        "earth-seasons",
+        "昼夜与四季"
+      ],
+      [
+        "solar-system",
+        "从太阳系看地球"
+      ]
+    ]
+  },
+  "en": {
+    "title": "Explore Earth through one question",
+    "intro": "Choose one question. Observe, change a condition and compare the result in its own study.",
+    "start": "Start with a rock at your feet, or go straight to glaciers, ancient life or the ocean.",
+    "boundary": "This is an exploration guide. Studies have individual editorial status and explain their own evidence, inferences and illustrations.",
+    "open": "Open study",
+    "topics": {
+      "interior": {
+        "title": "Inside Earth and moving plates",
+        "question": "What lies below our feet, and how do seismic and rock evidence help us investigate?"
+      },
+      "history": {
+        "title": "Earth through deep time",
+        "question": "Place key changes in deep time and compare the evidence they left."
+      },
+      "life": {
+        "title": "Ancient life and fossils",
+        "question": "Explore specific ancient ecosystems, body reconstructions, fossil preservation and evidence."
+      },
+      "rocks": {
+        "title": "How rocks form and change",
+        "question": "Follow the same rock material through fragmentation, transport, cementation, metamorphism and melting."
+      },
+      "minerals": {
+        "title": "Minerals and crystals",
+        "question": "Connect properties, crystal faces and fractures with internal structures."
+      },
+      "ores": {
+        "title": "From ores to materials",
+        "question": "Compare hydrothermal, weathering and water-sorting pathways, then occurrence and material uses."
+      },
+      "climate": {
+        "title": "Glaciers and ice ages",
+        "question": "Start with accumulation, motion and loss in a valley glacier, then investigate samples and ice-age records."
+      },
+      "systems": {
+        "title": "Oceans and currents",
+        "question": "Compare temperature and salinity, then follow connections between surface and deep waters."
+      }
+    },
+    "related": [
+      [
+        "volcano-eruption",
+        "Volcanoes: mountains, islands and lakes"
+      ],
+      [
+        "atmosphere",
+        "Atmosphere and auroras"
+      ],
+      [
+        "earth-seasons",
+        "Day, night and seasons"
+      ],
+      [
+        "solar-system",
+        "Earth in the Solar System"
+      ]
+    ]
+  }
+}

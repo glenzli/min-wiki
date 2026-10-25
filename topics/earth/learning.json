@@ -3,11 +3,11 @@
   "topicId": "earth",
   "zh": {
     "question": "一块石头、一口空气和一滴海水，怎样把地球内部、漫长历史与今天的生命连在一起？",
-    "observe": "沿八馆追问：在内部章比较全地球等比例半径与薄层放大图，再换地震波和板块边界；在历史章先看45.4亿年线性总轴，再放大事件并比较氧气的产生与消耗；在岩石章保留同一批物质标记，尝试停留和不同转化路径；在系统章同时改变海水温度与盐度，区分昼夜光照和极光，最后检查每个宜居‘如果’能推出什么。 矿物馆把标本性质与晶体结构、矿石用途相连；冰期馆沿冰川收支、古气候证据与反馈继续深入。 古生命馆比较不同时期群落的证据、分支与保存偏差；矿石馆追踪热液、风化残积与流水分选，并把形成条件接回资源用途。 在内部馆的裂谷路线保持Rift A、F1和P1，从全球到断层与材料切换；地震回放先暂停地质阶段。冰期馆保持区域A，在全球冰缘、局部收支和五种样本间观察，分别播放各自的有限过程。",
+    "observe": "选一个问题进入独立专题。每题保留自己的观察对象、条件、进度和证据；返回地图再选另一题，不需要按次序走完全部专题。",
     "academic": [
       {
-        "title": "从一颗行星进入八个展厅",
-        "body": "地球形成于约45.4亿年前。内部馆连接成分分层、力学分层和地震证据；历史馆沿线性时间尺观察地球与生命的共同变化；岩石与矿物两馆把形成过程、晶体结构、标本性质和矿石用途分开；冰期与系统两馆比较冰、水、空气、阳光和内部活动。不同入口研究同一颗地球，却不是共用一只过程时钟。 古生命馆区分身体、遗迹、化学证据与复原，矿石馆把形成、赋存、结构和用途串起来。各馆选取有依据的代表，不穷尽所有物种或矿床。"
+        "title": "独立问题怎样连接",
+        "body": "地球形成于约45.4亿年前。内部专题连接成分分层、力学分层和地震证据；历史专题沿线性时间尺观察地球与生命的共同变化；岩石与矿物两专题把形成过程、晶体结构、标本性质和矿石用途分开；冰期与系统两专题比较冰、水、空气、阳光和内部活动。不同入口研究同一颗地球，却不是共用一只过程时钟。 古生命专题区分身体、遗迹、化学证据与复原，矿石专题把形成、赋存、结构和用途串起来。各专题选取有依据的代表，不穷尽所有物种或矿床。"
       },
       {
         "title": "物质会转移，收支决定留存",
@@ -19,7 +19,7 @@
       }
     ],
     "misconception": "地球不是漂着薄地壳的一锅岩浆；大陆也不是整块花岗岩。三类岩石没有必须按顺序走完的一圈。大氧化不是植物一出现就把空气变成今天约21%的氧气，更不能把一条铁矿带单独当作唯一证明。冷水不总比任何暖水密，盐度也要比较。极光不是阳光照亮夜空；磁场、月球、质量或距日距离都不是单独决定宜居性的开关。",
-    "boundary": "本专题把观测、由多种证据支持的推断与教学示意分开。内部圆圈共用半径尺，薄层放大图另有深度尺；地震波路径只解释基础主波和阴影，不求解真实波速、走时或完整相位。板块和岩石的进度不是实际年数。历史标记是选定证据的近似年代，不是生命或过程的精确生日。氧收支、物质标记、海水分层、环流箭头、磁力线和极光均作机制解释，不是古气候、全球海流或空间天气预测。宜居对照中的定量计算仅限固定太阳光度时的距离平方反比日照，其他条件为证据和未知的比较。各章不共享一只真实物理时钟。 矿物馆的结构与性质模型不替代实物鉴定；冰川及气候对照解释收支和反馈，不预测真实冰期或未来温度。 古群落和古植物的图形是分层注明依据的复原，不是生态快照；保存/采样与成矿分选采用教学规则，不是校准概率、选矿或勘探预测。 全球裂解和冰缘为理想机制示意，不是古地理重建；地震与岩浆是不同观察支线，海冰与陆地积雪成冰有不同来源，跨尺度保留身份不等于共享物理时钟。",
+    "boundary": "各专题把观测、由多种证据支持的推断与教学示意分开。内部圆圈共用半径尺，薄层放大图另有深度尺；地震波路径只解释基础主波和阴影，不求解真实波速、走时或完整相位。板块和岩石的进度不是实际年数。历史标记是选定证据的近似年代，不是生命或过程的精确生日。氧收支、物质标记、海水分层、环流箭头、磁力线和极光均作机制解释，不是古气候、全球海流或空间天气预测。宜居对照中的定量计算仅限固定太阳光度时的距离平方反比日照，其他条件为证据和未知的比较。各章不共享一只真实物理时钟。 矿物专题的结构与性质模型不替代实物鉴定；冰川及气候对照解释收支和反馈，不预测真实冰期或未来温度。 古群落和古植物的图形是分层注明依据的复原，不是生态快照；保存/采样与成矿分选采用教学规则，不是校准概率、选矿或勘探预测。 全球裂解和冰缘为理想机制示意，不是古地理重建；地震与岩浆是不同观察支线，海冰与陆地积雪成冰有不同来源，跨尺度保留身份不等于共享物理时钟。",
     "narration": [
       {
         "label": "脚下很薄，里面很深",
@@ -34,21 +34,21 @@
       {
         "label": "跟着一批物质旅行",
         "text": "一块岩石可以在地表停留，也可以被风和水拆成颗粒，搬到别处，再慢慢成为新岩石。埋到深处，它可能在仍是固体时改变；如果熔化，再冷却，又会走上另一条路。岩石没有规定好的绕圈路线。我们跟着物质旅行，看看条件怎样改变它的模样。 走近矿物，还能追问晶体里面怎样排列，以及我们靠什么识别标本。",
-        "cue": "保持同一批追踪标记，先停留，再选风化—搬运—胶结路径；回退后比较固态变质与熔融后两种冷却路径。 接入矿物馆的结构与性质证据，不凭照片确认未知实物。"
+        "cue": "保持同一批追踪标记，先停留，再选风化—搬运—胶结路径；回退后比较固态变质与熔融后两种冷却路径。 接入矿物专题的结构与性质证据，不凭照片确认未知实物。"
       },
       {
         "label": "今天的地球仍在活动",
         "text": "海水的冷暖和盐分一起影响它有多密；冰川增减，也要看积累和损失的收支。地球自转，让同一处地面轮流面向和背向太阳；极光却是高空粒子碰撞产生的光。许多条件一起塑造我们的家。改变一个条件后，要先找证据，再问还有什么不知道。",
-        "cue": "比较等体积海水A与B；用同一地面站观察昼夜，把磁场和粒子图层作为另一条因果线；最后比较宜居条件中的已知、推断和未知。 到冰期馆比较冰量收支与证据，区别古气候变化和当代快速变暖。"
+        "cue": "比较等体积海水A与B；用同一地面站观察昼夜，把磁场和粒子图层作为另一条因果线；最后比较宜居条件中的已知、推断和未知。 到冰期专题比较冰量收支与证据，区别古气候变化和当代快速变暖。"
       }
     ]
   },
   "en": {
     "question": "How can a rock, a breath of air and a drop of seawater connect Earth's interior, its long history and life today?",
-    "observe": "Follow eight connected halls. In Interior, compare the common-radius globe with a separately enlarged thin-layer view, then examine seismic waves and plate boundaries. In History, begin with the linear 4.54-billion-year overview, enlarge selected intervals and compare oxygen production with consumption. In Rocks, retain the same material markers while trying pauses and branching transformations. In Systems, vary seawater temperature and salinity together, distinguish daylight from auroras, and ask what each habitability 'what if' can actually establish. The Minerals hall connects specimen properties with crystal structure and ore uses; the Climate hall extends the journey through glacier budgets, evidence of past climates and feedbacks. Ancient Life compares communities, branching relationships and preservation bias; Ores follows hydrothermal, weathering-residue and stream-sorting settings before connecting materials to uses. In the rift route retain Rift A, F1 and P1 across global, fault and material views; pause geological progress before replaying the event. In Climate retain region A across the global edge, local budget and five samples, playing their finite processes separately.",
+    "observe": "Choose a question and enter its own study. Each retains its objects, conditions, progress and evidence. Return to the map to choose another, without a required sequence.",
     "academic": [
       {
-        "title": "From one planet into eight connected halls",
+        "title": "How independent questions connect",
         "body": "Earth formed about 4.54 billion years ago. Interior connects compositional and mechanical layers with seismic evidence. History follows coevolution on a linear time scale. Rocks and Minerals distinguish formation processes, crystal structure, specimen properties and ore uses. Climate and Systems compare ice, water, air, sunlight and internal activity. These entrances investigate the same planet without sharing one process clock. Ancient Life separates body fossils, traces, chemical evidence and reconstruction; Ores connects formation, occurrence, structure and uses. Galleries select evidence-backed examples, not every species or deposit."
       },
       {

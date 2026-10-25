@@ -30,3 +30,7 @@ Finite playback, resource counters and browser evidence: [Animation validation](
 The completed multiscale revision and its actual three-scope renders, independent-clock tests and draw-call budgets are recorded in [Multiscale validation](MULTISCALE-VALIDATION.md).
 
 The valley now displays T1/T2/T3 direction markers using the same existing round, independently of its mass-driven front. Balanced mass still permits down-valley marker movement; negative balance can retreat the front while the markers continue down-valley. No new state or clock is added. Labels, ghost handling and the uncalibrated-direction boundary are described in [Tracer validation](TRACER-VALIDATION.md).
+
+## Independent topic refinement
+
+The 2026-10-25 local sample opens fresh URLs on the valley glacier. Explicit old views are unchanged. Surface fractures, marginal debris, snowfall detail and tracking stones share the supplied finite observation round; net mass still comes only from the existing budget. A paused observation has no free-running snow or geometry clock. Background terrain and crack motion are illustrations without calibrated speed, stress or actual-site reconstruction.

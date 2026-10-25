@@ -12,14 +12,14 @@ Winds drive many surface currents. In some places, cooling and increasing salt c
 
 ---
 
-03 · Why night arrives and auroras shine
-[Follow one ground station through daylight, then show field and particle explanations. Hiding a layer does not remove a real physical condition.]
+03 · Combine two changes
+[Compare cold/fresh and warm/salty cases while retaining A and B.]
 
-As Earth turns, the same ground faces toward and away from the Sun. Auroras high above have another cause: charged particles transfer energy to particles in the air, which emit light. A dark sky simply makes the glow easier to see.
+Now make the water both colder and fresher. Their effects can oppose one another. Read temperature and salinity in the same comparison instead of judging by color alone.
 
 ---
 
-04 · One what-if needs several kinds of evidence
-[Compare evidence and unknowns for all six conditions. Label inverse-square readings as relative sunlight, without a habitability score.]
+04 · Connect the ocean to other questions
+[Follow a link to glaciers or atmosphere without combining their progress into one clock.]
 
-Closer to the Sun, Earth receives more sunlight, but that is not yet a surface temperature. Air, oceans, rocks, gravity and other conditions shape the environment together. When one condition changes, explain what is known and what remains uncertain.
+The ocean exchanges energy with air and receives meltwater. Continue into the glacier or atmosphere study, each with its own question and observation process.
