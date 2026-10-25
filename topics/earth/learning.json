@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "topicId": "earth",
+  "zh": {
+    "question": "一块石头、一口空气和一滴海水，怎样把地球内部、漫长历史与今天的生命连在一起？",
+    "observe": "沿八馆追问：在内部章比较全地球等比例半径与薄层放大图，再换地震波和板块边界；在历史章先看45.4亿年线性总轴，再放大事件并比较氧气的产生与消耗；在岩石章保留同一批物质标记，尝试停留和不同转化路径；在系统章同时改变海水温度与盐度，区分昼夜光照和极光，最后检查每个宜居‘如果’能推出什么。 矿物馆把标本性质与晶体结构、矿石用途相连；冰期馆沿冰川收支、古气候证据与反馈继续深入。 古生命馆比较不同时期群落的证据、分支与保存偏差；矿石馆追踪热液、风化残积与流水分选，并把形成条件接回资源用途。 在内部馆的裂谷路线保持Rift A、F1和P1，从全球到断层与材料切换；地震回放先暂停地质阶段。冰期馆保持区域A，在全球冰缘、局部收支和五种样本间观察，分别播放各自的有限过程。",
+    "academic": [
+      {
+        "title": "从一颗行星进入八个展厅",
+        "body": "地球形成于约45.4亿年前。内部馆连接成分分层、力学分层和地震证据；历史馆沿线性时间尺观察地球与生命的共同变化；岩石与矿物两馆把形成过程、晶体结构、标本性质和矿石用途分开；冰期与系统两馆比较冰、水、空气、阳光和内部活动。不同入口研究同一颗地球，却不是共用一只过程时钟。 古生命馆区分身体、遗迹、化学证据与复原，矿石馆把形成、赋存、结构和用途串起来。各馆选取有依据的代表，不穷尽所有物种或矿床。"
+      },
+      {
+        "title": "物质会转移，收支决定留存",
+        "body": "岩石物质可以停留，也可风化、搬运、变质或熔融后结晶，没有必须走完的一圈。产氧生命的出现也不等于大气立刻积氧：呼吸、分解和化学反应会消耗氧，产生超过消耗才可能留下净额。类似地，冰川增减需要比较积累和损失；这些账本解释机制，不等于完整重建地球历史。"
+      },
+      {
+        "title": "从观察进入证据，保留模型的边界",
+        "body": "标本、地震记录、同位素和冰芯等提供不同类型的证据。深部结构与古环境需要结合多种线索推断；图中的剖面、晶格、时间窗和环流箭头则是有标尺和条件的表达。海水密度要同时看温度与盐度，昼夜与极光也有不同原因。距日平方反比只能给出相对日照，不能单独给出温度或宜居评分。"
+      }
+    ],
+    "misconception": "地球不是漂着薄地壳的一锅岩浆；大陆也不是整块花岗岩。三类岩石没有必须按顺序走完的一圈。大氧化不是植物一出现就把空气变成今天约21%的氧气，更不能把一条铁矿带单独当作唯一证明。冷水不总比任何暖水密，盐度也要比较。极光不是阳光照亮夜空；磁场、月球、质量或距日距离都不是单独决定宜居性的开关。",
+    "boundary": "本专题把观测、由多种证据支持的推断与教学示意分开。内部圆圈共用半径尺，薄层放大图另有深度尺；地震波路径只解释基础主波和阴影，不求解真实波速、走时或完整相位。板块和岩石的进度不是实际年数。历史标记是选定证据的近似年代，不是生命或过程的精确生日。氧收支、物质标记、海水分层、环流箭头、磁力线和极光均作机制解释，不是古气候、全球海流或空间天气预测。宜居对照中的定量计算仅限固定太阳光度时的距离平方反比日照，其他条件为证据和未知的比较。各章不共享一只真实物理时钟。 矿物馆的结构与性质模型不替代实物鉴定；冰川及气候对照解释收支和反馈，不预测真实冰期或未来温度。 古群落和古植物的图形是分层注明依据的复原，不是生态快照；保存/采样与成矿分选采用教学规则，不是校准概率、选矿或勘探预测。 全球裂解和冰缘为理想机制示意，不是古地理重建；地震与岩浆是不同观察支线，海冰与陆地积雪成冰有不同来源，跨尺度保留身份不等于共享物理时钟。",
+    "narration": [
+      {
+        "label": "脚下很薄，里面很深",
+        "text": "脚下的石头很硬，可地球一直在改变。最外面的地壳很薄，下面还有厚厚的地幔和金属地核。地幔大部分是固体，经过很久很久，也能慢慢变形。我们没有钻到地心，而是用地震波和许多别的线索，研究看不见的深处。",
+        "cue": "先看共同半径尺下的内部剖面，再看薄层独立放大尺；对照P波与S波，以及样本和推断的区别。"
+      },
+      {
+        "label": "空气也有一段历史",
+        "text": "很早以前，地球的空气没有今天这样多的氧气。有些微生物会借助阳光制造食物并释放氧气，可别的生命活动和化学反应又会消耗它。产生的比消耗的多，才有更多氧气留下来。这个变化经历了漫长时间，也改变了生命能够生活的环境。",
+        "cue": "先读45.4亿年线性总轴，再打开大氧化放大窗口；比较有产氧但没有净留存，与消耗较小时氧气可以留存的两种预算。"
+      },
+      {
+        "label": "跟着一批物质旅行",
+        "text": "一块岩石可以在地表停留，也可以被风和水拆成颗粒，搬到别处，再慢慢成为新岩石。埋到深处，它可能在仍是固体时改变；如果熔化，再冷却，又会走上另一条路。岩石没有规定好的绕圈路线。我们跟着物质旅行，看看条件怎样改变它的模样。 走近矿物，还能追问晶体里面怎样排列，以及我们靠什么识别标本。",
+        "cue": "保持同一批追踪标记，先停留，再选风化—搬运—胶结路径；回退后比较固态变质与熔融后两种冷却路径。 接入矿物馆的结构与性质证据，不凭照片确认未知实物。"
+      },
+      {
+        "label": "今天的地球仍在活动",
+        "text": "海水的冷暖和盐分一起影响它有多密；冰川增减，也要看积累和损失的收支。地球自转，让同一处地面轮流面向和背向太阳；极光却是高空粒子碰撞产生的光。许多条件一起塑造我们的家。改变一个条件后，要先找证据，再问还有什么不知道。",
+        "cue": "比较等体积海水A与B；用同一地面站观察昼夜，把磁场和粒子图层作为另一条因果线；最后比较宜居条件中的已知、推断和未知。 到冰期馆比较冰量收支与证据，区别古气候变化和当代快速变暖。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How can a rock, a breath of air and a drop of seawater connect Earth's interior, its long history and life today?",
+    "observe": "Follow eight connected halls. In Interior, compare the common-radius globe with a separately enlarged thin-layer view, then examine seismic waves and plate boundaries. In History, begin with the linear 4.54-billion-year overview, enlarge selected intervals and compare oxygen production with consumption. In Rocks, retain the same material markers while trying pauses and branching transformations. In Systems, vary seawater temperature and salinity together, distinguish daylight from auroras, and ask what each habitability 'what if' can actually establish. The Minerals hall connects specimen properties with crystal structure and ore uses; the Climate hall extends the journey through glacier budgets, evidence of past climates and feedbacks. Ancient Life compares communities, branching relationships and preservation bias; Ores follows hydrothermal, weathering-residue and stream-sorting settings before connecting materials to uses. In the rift route retain Rift A, F1 and P1 across global, fault and material views; pause geological progress before replaying the event. In Climate retain region A across the global edge, local budget and five samples, playing their finite processes separately.",
+    "academic": [
+      {
+        "title": "From one planet into eight connected halls",
+        "body": "Earth formed about 4.54 billion years ago. Interior connects compositional and mechanical layers with seismic evidence. History follows coevolution on a linear time scale. Rocks and Minerals distinguish formation processes, crystal structure, specimen properties and ore uses. Climate and Systems compare ice, water, air, sunlight and internal activity. These entrances investigate the same planet without sharing one process clock. Ancient Life separates body fossils, traces, chemical evidence and reconstruction; Ores connects formation, occurrence, structure and uses. Galleries select evidence-backed examples, not every species or deposit."
+      },
+      {
+        "title": "Material moves; budgets determine what remains",
+        "body": "Rock material can stay or undergo weathering, transport, metamorphism and melting followed by crystallization; no complete circuit is required. Oxygen-producing life likewise does not immediately create atmospheric accumulation. Respiration, decomposition and chemical reactions consume oxygen, and a production surplus can remain. Glacier change also compares accumulation with losses. Such budgets explain mechanisms without completely reconstructing Earth's history."
+      },
+      {
+        "title": "Follow observations into evidence while keeping model limits",
+        "body": "Specimens, seismic records, isotopes and ice cores provide different evidence. Deep structure and past environments require several lines of inference. Cutaways, lattices, time windows and circulation arrows are representations with stated scales and conditions. Seawater density depends on temperature and salinity together; daylight and auroras have different causes. Inverse-square distance calculates relative sunlight alone, rather than temperature or a habitability score."
+      }
+    ],
+    "misconception": "Earth is not a pot of magma carrying a thin crust, and continents are not solid blocks of granite. Rocks have no compulsory three-stage circuit. The Great Oxidation was not the instant arrival of plants or today's roughly 21% atmospheric oxygen, and an iron-rich band alone is not unique proof of it. Cold water is not denser than every possible warm sample: compare salinity too. Auroras are not sunlight illuminating the night sky. A magnetic field, a moon, mass or orbital distance is not a single habitability switch.",
+    "boundary": "Observations, inferences supported by several kinds of evidence and teaching illustrations are distinguished. Interior circles share a radius scale; the thin-layer enlargement has a separate depth scale. Seismic paths explain basic principal waves and shadows, without solving real velocities, travel times or the full set of phases. Plate and rock progress does not represent actual years. Timeline markers give approximate ages of selected evidence, not precise birthdays of life or processes. Oxygen budgets, material markers, seawater layering, circulation arrows, field lines and auroras explain mechanisms, rather than predicting ancient climate, global currents or space weather. The only quantitative habitability calculation is inverse-square sunlight at fixed solar luminosity; other comparisons describe evidence and unknowns. Chapters do not share one physical clock. Mineral structure and property models do not certify real specimens. Glacier and climate comparisons explain budgets and feedbacks without forecasting ice ages or future temperatures. Ancient communities and plants are reconstructions with stated evidence levels, not ecological snapshots. Preservation, sampling and ore-sorting use teaching rules, not calibrated probabilities, processing or exploration forecasts. Global breakup and ice edges are idealized mechanism illustrations, not paleogeographic reconstructions. Fault slip and magma form separate observation branches; sea ice and snow-derived land ice have different sources. Retaining identity across scales does not give them one physical clock.",
+    "narration": [
+      {
+        "label": "A thin surface above a deep interior",
+        "text": "The rock beneath our feet feels hard, yet Earth keeps changing. Its outer crust is thin. Beneath it lie a thick rocky mantle and a metallic core. Most of the mantle is solid, but over a very long time it can slowly deform. We have never drilled to the center. Seismic waves and many other clues help us investigate those hidden depths.",
+        "cue": "Show the common-radius cutaway, then the independently scaled thin-layer enlargement. Compare P and S waves, and distinguish samples from inferences."
+      },
+      {
+        "label": "The air has a history too",
+        "text": "Long ago, Earth's air contained far less oxygen than it does today. Some microbes used sunlight to make food and release oxygen. Other living processes and chemical reactions consumed it. More oxygen could remain only when production exceeded consumption. This change took a long time and altered the environments in which life could live.",
+        "cue": "Read the linear 4.54-billion-year overview before opening the Great Oxidation window. Compare oxygen production without a retained surplus against lower consumption that allows oxygen to remain."
+      },
+      {
+        "label": "Travel with the material",
+        "text": "A rock can stay at the surface, or wind and water can break it into particles and move them elsewhere. Those particles may slowly become a new rock. Buried material can change while still solid. If it melts and later cools, it takes another route. There is no required lap around a rock cycle. Follow the material and ask how changing conditions change its form. Looking closer at minerals raises more questions: how is a crystal arranged inside, and what evidence identifies a specimen?",
+        "cue": "Keep the same material markers. Try staying, then weathering, transport and cementation. Step back and compare solid-state metamorphism with melting followed by two cooling routes. Connect to structure and property evidence in Minerals without identifying an unknown object from a photograph alone."
+      },
+      {
+        "label": "Earth is still active today",
+        "text": "Temperature and salt together affect seawater density. Glacier change also depends on a budget of accumulation and loss. Earth's rotation turns the same surface site toward and away from the Sun; auroras have another cause, involving particles interacting high in the air. Many conditions shape our home together. When one changes, look for evidence and ask what remains unknown.",
+        "cue": "Compare equal-volume seawater samples A and B. Follow daylight at the same surface station; treat magnetic-field and particle layers as a separate causal explanation. End by comparing evidence, inferences and unknowns in habitability cases. Compare glacier budgets and evidence in Climate, distinguishing past climate changes from current rapid warming."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "USGS · Are tectonic plates floating on magma?",
+      "url": "https://www.usgs.gov/faqs/are-tectonic-plates-floating-magma"
+    },
+    {
+      "title": "IRIS / EarthScope · Seismic Shadow Zone: Basic Introduction",
+      "url": "https://www.iris.edu/hq/inclass/animation/seismic_shadow_zone_basic_introduction"
+    },
+    {
+      "title": "USGS · Geologic Time: Age of the Earth",
+      "url": "https://pubs.usgs.gov/gip/geotime/age.html"
+    },
+    {
+      "title": "Gumsley et al. (2017), PNAS · Timing and tempo of the Great Oxidation Event",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.1608824114"
+    },
+    {
+      "title": "USGS · What is the difference between a rock and a mineral?",
+      "url": "https://www.usgs.gov/faqs/what-difference-between-a-rock-and-a-mineral"
+    },
+    {
+      "title": "NPS · Sedimentary rocks: clastic, biological and chemical routes",
+      "url": "https://www.nps.gov/subjects/geology/sedimentary.htm"
+    },
+    {
+      "title": "USGS · Metamorphic rocks: change without melting",
+      "url": "https://www.usgs.gov/faqs/what-are-metamorphic-rocks"
+    },
+    {
+      "title": "NOAA · Thermohaline circulation: temperature, salinity and density",
+      "url": "https://oceanservice.noaa.gov/education/tutorial_currents/05conveyor1.html"
+    },
+    {
+      "title": "NASA Space Place · What is an aurora?",
+      "url": "https://spaceplace.nasa.gov/aurora/en/"
+    },
+    {
+      "title": "NASA · The habitable zone: possible surface liquid water under suitable conditions",
+      "url": "https://science.nasa.gov/exoplanets/habitable-zone/"
+    },
+    {
+      "title": "NASA Earth Observatory · The carbon cycle",
+      "url": "https://science.nasa.gov/earth/earth-observatory/the-carbon-cycle/"
+    },
+    {
+      "title": "NIST · Radiometric clocks: uranium-lead, carbon-14 and the age of Earth",
+      "url": "https://www.nist.gov/how-do-you-measure-it/how-do-you-know-age-fossils-and-other-old-things"
+    },
+    {
+      "title": "ICS Subcommission on Cryogenian Stratigraphy · Approximately 720-635 million years ago",
+      "url": "https://cryogenian.stratigraphy.org/"
+    },
+    {
+      "title": "NASA · Why orbital cycles cannot explain current rapid warming",
+      "url": "https://science.nasa.gov/science-research/earth-science/why-milankovitch-orbital-cycles-cant-explain-earths-current-warming/"
+    },
+    {
+      "title": "BGS · Bauxite is a rock and an ore, not one mineral",
+      "url": "https://www.bgs.ac.uk/discovering-geology/maps-and-resources/critical-raw-materials-resources/modern-life-doesnt-grow-on-trees/critical-minerals-in-infrastructure/"
+    }
+  ]
+}

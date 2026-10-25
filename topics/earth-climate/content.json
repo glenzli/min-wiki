@@ -1,0 +1,382 @@
+{
+  "zh": {
+    "title": "冰与气候：从远古冰封到今天的冰川",
+    "tabs": {
+      "history": "冰期留下的证据",
+      "reflection": "冰怎样改变日照",
+      "glacier": "冰川的收支与海洋",
+      "journey": "跟着冰缘到样本"
+    },
+    "historyIntro": "不是只有一次冰河时代。先比较不同年代的线索，再把时间尺放大；有些区间互相包含，有些相隔十多亿年。",
+    "rangeLabel": "选择线性时间范围",
+    "ranges": {
+      "deep": "最近 25 亿年",
+      "recent": "最近 300 万年",
+      "last": "最近 15 万年"
+    },
+    "eventLabel": "选择一组历史线索",
+    "past": "较早",
+    "present": "今天",
+    "maUnit": "百万年前（Ma）",
+    "timelineNote": "每条轴在自己的范围内按时间等比例。小于一个像素的短区间用圆点定位，圆点大小不表示持续时间；空白也不证明当时完全无冰。下面的序号与历史线索一一对应。 长条左端的箭头表示这段背景还向更早的时期延续，不能把窗口边缘当成起点。",
+    "evidence": "证据在哪里？",
+    "mechanism": "怎样解释？",
+    "uncertainty": "还不能确定什么？",
+    "eventList": "对照全部年代与范围",
+    "outside": "这组线索超出了当前时间窗，请切换到更长时间范围。",
+    "events": {
+      "huronian": {
+        "name": "休伦冰期群",
+        "time": "约 24.5–22.2 亿年前，多次冰川活动",
+        "story": "在大氧化前后，地球经历过多轮很古老的冰川活动。这不是一次持续两亿年的同样天气。",
+        "evidence": "加拿大休伦超群等古老地层保存冰川搬运、沉积的线索；岩层年龄与不同地区对比，需要多种定年和地层证据。",
+        "mechanism": "氧气增加可能影响甲烷等温室气体，是讨论中的机制之一。大陆位置、火山与碳循环也参与，不能只按氧气一项开关来解释。",
+        "uncertainty": "区域记录如何一一对应、冰覆盖到多低纬度、不同事件的先后和触发条件仍有研究。这里给的是宽时间包络，不是精确的全球开始与结束日。 约22.2亿年是穿切地层的侵入岩给出的较晚围限，不是确定的解冻日期。"
+      },
+      "sturtian": {
+        "name": "斯图尔特冰期",
+        "time": "约 7.17–6.59 亿年前",
+        "story": "成冰纪的一次漫长冰封。地球低纬地区也留下冰川证据，推动了“雪球地球”的研究。",
+        "evidence": "冰川沉积、古地磁推断的古纬度、火山灰定年和冰期后盖帽碳酸盐共同提供线索；没有一张全球冰盖照片。",
+        "mechanism": "冰面反射较多阳光，可能放大冷却；火山长期释放二氧化碳和风化作用的变化参与解释解冻。",
+        "uncertainty": "开放海水的范围、冰厚和生命避难所仍需研究；不能把整个成冰纪都画成同一种全封闭雪球。"
+      },
+      "marinoan": {
+        "name": "马里诺冰期",
+        "time": "约 6.45–6.35 亿年前，开始时间较不确定",
+        "story": "另一次广泛冰川事件，在约 6.35 亿年前结束。它和前一场冰期之间有间隔。",
+        "evidence": "不同大陆的冰川岩层和其上的盖帽碳酸盐可对比，定年约束冰期结束；低纬度重建来自古地磁等间接证据。",
+        "mechanism": "反照率、碳循环、海洋与火山共同参与。这里的反射实验只解释一个反馈环，不重演整场解冻。",
+        "uncertainty": "起始时间与区域同步性仍有误差；图中约 6.45 亿年的边界是研究中的近似值。"
+      },
+      "ordovician": {
+        "name": "奥陶纪末的冰川与灭绝",
+        "time": "约 4.45–4.44 亿年前的关键阶段",
+        "story": "当许多生命还生活在海洋里，大陆冰川扩张、海平面和海洋环境变化参与了一次大灭绝。",
+        "evidence": "古冰川沉积、海平面记录、海洋化石更替和地球化学线索需要放在一起。",
+        "mechanism": "冷却与海平面下降减少某些浅海栖息地；其后的升温和缺氧也参与讨论，灭绝不是一个单独的“冻死”按钮。",
+        "uncertainty": "这只是关键冰川阶段的近似窗口，区域冰川活动的总范围更复杂；各因素对不同生物的影响仍需区分。"
+      },
+      "paleozoic": {
+        "name": "晚古生代冰室",
+        "time": "大致 3.6–2.6 亿年前，多次扩张与退缩",
+        "story": "煤炭森林、盘古大陆形成与南方大陆冰川，处在相互影响的地球系统里。",
+        "evidence": "冈瓦纳各大陆的冰川沉积、海平面周期与化石植物等记录可比较。",
+        "mechanism": "植物与岩石风化影响碳，板块改变大陆纬度和海陆分布；轨道节律可以调制较短的冰量变化。",
+        "uncertainty": "不同地区的冰并非同时出现和消失。森林埋碳是因素之一，不应把所有冰川都归为“植物吸走了氧气或二氧化碳”。"
+      },
+      "antarctic": {
+        "name": "南极大陆冰盖发展",
+        "time": "约 3400 万年前开始显著发展，延续至今",
+        "story": "南极并非一直被同样的冰盖覆盖。最初东、西南极的冰盖扩展不同步。",
+        "evidence": "海底钻芯、微体化石与氧同位素、南极近岸样品和模型共同约束冰盖历史。",
+        "mechanism": "二氧化碳、海洋联系、地形和大陆位置共同影响结冰条件，冰盖也会反过来改变反射和海洋。",
+        "uncertainty": "冰盖边界与体积随时期变化；这个长条表示冰室背景，绝不表示 3400 万年完全不变的冰量。"
+      },
+      "quaternary": {
+        "name": "第四纪冰期—间冰期往返",
+        "time": "约 258 万年前至今",
+        "story": "在长期冰室背景下，大冰盖多次长大、缩小。我们生活在其中较暖的间冰期，而不是地球已经没有冰。",
+        "evidence": "海洋沉积物、冰芯、冰碛和冰川磨痕记录不同时间尺度；冰芯气泡保存过去空气，冰的同位素帮助推断环境。",
+        "mechanism": "轨道变化改变不同季节与纬度的日照分配，冰、二氧化碳和海洋反馈放大响应；不是地球简单地离太阳越来越远。",
+        "uncertainty": "不同周期的主导节律与区域响应会变化。轨道节律不能解释当今由人为温室气体增加驱动的快速全球变暖。"
+      },
+      "maximum": {
+        "name": "最近一次冰盛期",
+        "time": "约 2.6–1.9 万年前，各地最大冰量不同步",
+        "story": "北美和欧亚的大冰盖远大于今天，但整个地球没有成为完全冻结的雪球，热带仍有多种生态系统。",
+        "evidence": "冰碛脊、磨蚀地形、海底沉积与珊瑚等海平面记录帮助重建冰量与海岸。",
+        "mechanism": "大量水储存在陆地冰盖里，使海平面较低；解冻把水重新带回海洋，同时改变气候和栖息地。",
+        "uncertainty": "冰盖最大范围和时间因地区不同。巨兽灭绝涉及环境变化与人类等因素，不能用一个全球单因解释全部物种。"
+      },
+      "holocene": {
+        "name": "全新世：当前间冰期",
+        "time": "约 1.17 万年前至今",
+        "story": "较暖的间冰期中，南极、格陵兰与山地仍然有冰。今天的快速增暖发生在这种背景之上。",
+        "evidence": "冰芯、树轮、沉积物与珊瑚延伸历史；温度计、海洋仪器和卫星提供现代观测。不同证据有不同分辨率。",
+        "mechanism": "现代温室气体增加改变能量收支。自然气候变化曾经存在，不意味着今天的变化由同一原因或同一速度造成。",
+        "uncertainty": "全球变暖趋势明确，局地降雪和每条冰川的响应仍受地形、海洋和时间滞后影响；单个寒冬不能推翻长期证据。"
+      }
+    },
+    "reflectionIntro": "保持照到同一片地表的阳光不变，只改变有多少面积被明亮的冰雪覆盖。看看同样的 100 份阳光，分别去了哪里。",
+    "iceCover": "冰雪覆盖的面积比例",
+    "snowReflect": "冰雪表面的反射比例",
+    "waterReflect": "深色水面在本实验中固定反射 10%。冰雪可设 50–90%；这些是选定的教学表面值，不是全球平均反照率。",
+    "reflected": "反射回去",
+    "absorbed": "被表面吸收",
+    "incoming": "照来的阳光",
+    "energyUnit": "份阳光（教学单位）",
+    "reflectionCaption": "一片固定面积地表的俯视示意；冰盖形状不是古冰盖重建。箭头宽度随光能份数改变，不代表光线在空气中的实际轨迹。",
+    "feedback": [
+      "变暖使冰雪减少",
+      "较暗地表露出",
+      "吸收更多阳光",
+      "进一步放大变暖"
+    ],
+    "feedbackDeep": "这是正反馈：放大原来的变化，“正”不代表好。反向也成立：增冰可能增加反射，放大冷却。气候还会向外辐射热量，并受温室气体、云、海洋热储存与输送影响；所以这个反射预算不能直接输出地表温度、结冰阈值或下次冰期日期。",
+    "glacierIntro": "冰川像一份水的存款：下雪补充，融化和其他消融过程取走。冷的地方也可能因补给少而退冰。先保持一项不变，比较另一项。",
+    "accumulation": "每回合加入的水当量",
+    "ablation": "每回合消融需求",
+    "steps": "比较经过的回合",
+    "play": "播放冰川收支",
+    "pause": "暂停收支播放",
+    "rewind": "回到初始冰量",
+    "advance": "前进一回合",
+    "playbackNote": "播放只在同一收支账的相邻回合间平滑观察，12回合后停止。展示时间已压缩，回合不等于年；插值、冰形与体积均未标定，不计算真实冰流或侵蚀。",
+    "playbackReduced": "已启用减少动态：播放按整回合前进，也可手动分步或拖动观察。",
+    "mass": "现在留下的冰",
+    "net": "每回合的名义收支",
+    "massUnit": "水当量教学单位",
+    "growth": "补给较多",
+    "steady": "补给与消融一样多",
+    "retreat": "消融较多",
+    "glacierCaption": "同一条假想冰川；固定初始 60 份水当量。形状只表示冰量增减，未计算真实冰流、坡度与厚度。回合不等于年，实际消融不超过可用冰量。",
+    "balanceDeep": "积累包括降雪等增加冰川质量的过程，消融包括融化、升华、崩解等损失。这里把它们合成两个可控量。真实冰川向下流动，末端位置对气候有滞后；冰量减少不意味着冰突然停止流动。长时间持续负收支比一次天气事件更能说明变化。",
+    "meltTitle": "同样多的冰，放在陆地还是已经浮在水里？",
+    "iceLocation": "冰最初的位置",
+    "land": "在陆地上",
+    "floating": "已经浮在水里",
+    "melt": "已经融化的比例",
+    "oceanAddition": "直接海平面贡献（水当量教学值）",
+    "remaining": "还没有融化",
+    "meltCaption": "同一水当量、简化为淡水条件。浮冰原先已排开同重的水，融化后直接效应近似为零；陆地冰融水进入海洋增加水量。图中水位放大，不对应真实米数。",
+    "meltDeep": "真实海平面还受海水热膨胀、盐分、海流、重力场和陆地升降影响。浮冰的密度与盐度效应使直接贡献并非严格数学零；浮冰架减少还可削弱对陆地冰流的阻挡，间接增加海平面。这里分开的是两种主要机制，不能读成“海冰消失没有影响”。",
+    "deepTitle": "深入：条件、时间尺度与模型边界",
+    "sources": "资料与证据来源",
+    "historyLink": "把冰期放回整个地球历史",
+    "oceanLink": "继续看海水、空气和生命",
+    "historyNote": "本馆精选主要事件与背景，不穷尽所有地区、所有冰期名称。气候背景、地层单位、冰川事件、间冰期不是同一级别。",
+    "threeLabel": "假想冰川的三维山谷。拖动旋转，双指或滚轮缩放；键盘方向键、加减键与 Home 可观察。",
+    "threeCaption": "3D 是自制假想山谷，不对应真实冰川扫描；纹理、裂隙与冰碛只帮助辨认。冰量消费同一收支模型，地形固定，冰形不按体积标定。",
+    "twoView": "查看二维收支与示意",
+    "threeFailure": "三维暂时不可用，二维收支和所有操作仍然可用。",
+    "threeRetry": "重试三维",
+    "kaUnit": "千年前（ka）",
+    "meltwater": "产生的融水",
+    "tracerNote": "T1/T2/T3是方向示意：同一回合轴向前时沿下谷移动，前缘仍由冰量单独决定；平衡冰量时标记也会前进。位移与时间未标定，不求真实速度或侵蚀。回拖只复看同一教学快照。",
+    "tracerUnknown": "† 未追算去向；幽影仅保留身份，位置不表示后续真实轨迹或融水"
+  },
+  "en": {
+    "title": "Ice and climate: from ancient glaciations to glaciers today",
+    "tabs": {
+      "history": "Evidence of glaciations",
+      "reflection": "Ice changes sunlight",
+      "glacier": "Ice budgets and oceans",
+      "journey": "Follow ice to a sample"
+    },
+    "historyIntro": "There was more than one ice age. Compare evidence at different ages, then zoom the time scale. Some intervals contain others; some lie over a billion years apart.",
+    "rangeLabel": "Choose a linear time window",
+    "ranges": {
+      "deep": "Last 2.5 billion years",
+      "recent": "Last 3 million years",
+      "last": "Last 150,000 years"
+    },
+    "eventLabel": "Choose a historical clue",
+    "past": "Earlier",
+    "present": "Today",
+    "maUnit": "million years ago (Ma)",
+    "timelineNote": "Each axis is linear within its own range. Intervals narrower than one pixel use a location dot whose size is not duration. Blank space does not prove an absence of ice. Numbers match the historical clues below. A left arrow on a bar means that background extends farther into the past; the window edge is not its starting date.",
+    "evidence": "Where is the evidence?",
+    "mechanism": "How is it explained?",
+    "uncertainty": "What remains uncertain?",
+    "eventList": "Compare all ages and intervals",
+    "outside": "This clue lies outside the current window. Choose a longer time range.",
+    "events": {
+      "huronian": {
+        "name": "Huronian glaciations",
+        "time": "About 2.45–2.22 billion years ago; repeated glaciation",
+        "story": "Around early atmospheric oxygenation, Earth experienced several ancient glaciations. This was not two hundred million years of identical weather.",
+        "evidence": "Ancient rocks, including Canada's Huronian Supergroup, preserve traces of glacial transport and deposition. Dating and correlating regions requires several kinds of evidence.",
+        "mechanism": "Increasing oxygen may have affected methane and other greenhouse gases, one proposed mechanism. Continental positions, volcanism and carbon cycling also matter; oxygen is not a single climate switch.",
+        "uncertainty": "Regional correlations, ice extent at low latitudes, event order and triggers remain under study. This broad envelope is not an exact global start and end date. The roughly 2.22-billion-year limit comes from younger intrusions cutting the sequence, not a known deglaciation date."
+      },
+      "sturtian": {
+        "name": "Sturtian glaciation",
+        "time": "About 717–659 million years ago",
+        "story": "A long Cryogenian glaciation. Glacial evidence from low latitudes helped motivate research into Snowball Earth.",
+        "evidence": "Glacial deposits, paleomagnetic estimates of ancient latitude, dated volcanic ash and postglacial cap carbonates provide complementary clues. There is no photograph of the ancient global ice cover.",
+        "mechanism": "Bright ice can amplify cooling. Long-term volcanic carbon dioxide release and changes in weathering help explain eventual deglaciation.",
+        "uncertainty": "Open-water areas, ice thickness and refuges for life remain research questions. The entire Cryogenian should not be shown as one unchanging sealed snowball."
+      },
+      "marinoan": {
+        "name": "Marinoan glaciation",
+        "time": "About 645–635 million years ago; onset less certain",
+        "story": "Another widespread glaciation ended around 635 million years ago, separated from the earlier event by an interval.",
+        "evidence": "Glacial strata and overlying cap carbonates can be correlated between continents. Dating constrains the end; low-latitude reconstructions use indirect paleomagnetic evidence.",
+        "mechanism": "Albedo, carbon cycling, oceans and volcanism interact. Our reflection experiment explains one feedback, not the whole deglaciation.",
+        "uncertainty": "Onset and regional synchrony have uncertainty. The approximately 645-million-year boundary shown here is a research estimate."
+      },
+      "ordovician": {
+        "name": "Late Ordovician ice and extinction",
+        "time": "A key phase about 445–444 million years ago",
+        "story": "When most complex life lived in oceans, growing continental ice, sea-level change and marine environmental changes contributed to a mass extinction.",
+        "evidence": "Glacial deposits, sea-level records, fossil turnover and geochemistry must be considered together.",
+        "mechanism": "Cooling and falling sea level reduced some shallow-water habitats. Later warming and low oxygen also feature in explanations; extinction was not a single freezing switch.",
+        "uncertainty": "This approximate window marks a key glacial phase; regional glaciation was more complex. Impacts of different drivers on different organisms remain distinct questions."
+      },
+      "paleozoic": {
+        "name": "Late Paleozoic icehouse",
+        "time": "Roughly 360–260 million years ago; repeated advances and retreats",
+        "story": "Coal forests, the assembly of Pangaea and southern continental glaciers belonged to an interacting Earth system.",
+        "evidence": "Glacial deposits across Gondwana, sea-level cycles and fossil plants provide records to compare.",
+        "mechanism": "Plants and rock weathering influence carbon; plates change latitude and land–sea geography. Orbital rhythms can modulate shorter ice-volume variations.",
+        "uncertainty": "Ice did not appear or disappear everywhere at once. Forest carbon burial was one factor, not a reason to attribute every glaciation to plants removing oxygen or carbon dioxide."
+      },
+      "antarctic": {
+        "name": "Development of Antarctic ice sheets",
+        "time": "Major development from about 34 million years ago to today",
+        "story": "Antarctica has not always had the same ice cover. Early East and West Antarctic ice did not expand at the same time.",
+        "evidence": "Marine cores, microfossils and oxygen isotopes, nearshore Antarctic samples and models jointly constrain ice history.",
+        "mechanism": "Carbon dioxide, ocean connections, topography and continental positions affect ice formation. Ice changes reflection and oceans in return.",
+        "uncertainty": "Ice extent and volume changed through time. The long bar represents an icehouse background, never an unchanged ice volume lasting 34 million years."
+      },
+      "quaternary": {
+        "name": "Quaternary glacial–interglacial cycles",
+        "time": "About 2.58 million years ago to today",
+        "story": "Large ice sheets repeatedly grew and shrank within a long-term icehouse. We live in a warmer interglacial, not on an Earth without ice.",
+        "evidence": "Marine sediments, ice cores, moraines and glacial scratches record different time scales. Bubbles preserve past air; ice isotopes help infer environments.",
+        "mechanism": "Orbital changes redistribute seasonal and latitudinal sunlight, with ice, carbon dioxide and ocean feedbacks amplifying responses. Earth does not simply move ever farther from the Sun.",
+        "uncertainty": "Dominant rhythms and regional responses vary. Orbital cycles cannot explain today's rapid global warming driven by increasing human-produced greenhouse gases."
+      },
+      "maximum": {
+        "name": "The most recent glacial maximum",
+        "time": "About 26,000–19,000 years ago; regional maxima differed",
+        "story": "North American and Eurasian ice sheets were much larger than today, but Earth was not a completely frozen snowball. Diverse tropical ecosystems remained.",
+        "evidence": "Moraines, eroded landforms, marine sediments and sea-level indicators such as corals help reconstruct ice and coastlines.",
+        "mechanism": "Water stored in land ice lowered sea level. Deglaciation returned water to oceans while changing climates and habitats.",
+        "uncertainty": "Maximum extent and timing differed by region. Megafaunal losses involved environmental change, humans and other factors; one worldwide cause cannot explain all species."
+      },
+      "holocene": {
+        "name": "Holocene: our current interglacial",
+        "time": "About 11,700 years ago to today",
+        "story": "Even in this warmer interglacial, Antarctica, Greenland and mountains retain ice. Today's rapid warming occurs on top of that background.",
+        "evidence": "Ice cores, tree rings, sediments and corals extend history; thermometers, ocean instruments and satellites observe modern change. Each has a different resolution.",
+        "mechanism": "Increasing modern greenhouse gases alter the energy budget. Natural past changes do not imply that today's change has the same cause or speed.",
+        "uncertainty": "The global warming trend is clear; local snowfall and individual glaciers respond to terrain, oceans and lags. One cold winter does not overturn long-term evidence."
+      }
+    },
+    "reflectionIntro": "Keep sunlight on the same surface patch fixed. Change only the fraction covered by bright ice and snow, and follow the same 100 portions of sunlight.",
+    "iceCover": "Area covered by ice and snow",
+    "snowReflect": "Reflection from the icy surface",
+    "waterReflect": "Dark water reflects a fixed 10% here. Ice and snow can reflect 50–90%. These are chosen teaching surface values, not global mean planetary albedo.",
+    "reflected": "Reflected away",
+    "absorbed": "Absorbed at the surface",
+    "incoming": "Incoming sunlight",
+    "energyUnit": "portions of sunlight (teaching units)",
+    "reflectionCaption": "A plan view of one fixed surface area; ice shape is not an ancient reconstruction. Arrow widths encode energy portions, not actual ray paths in air.",
+    "feedback": [
+      "Warming reduces snow and ice",
+      "Darker surface is exposed",
+      "More sunlight is absorbed",
+      "Warming is amplified"
+    ],
+    "feedbackDeep": "Positive feedback amplifies an initial change; positive does not mean beneficial. The reverse can amplify cooling as ice grows and reflection increases. Climate also radiates heat outward and responds to greenhouse gases, clouds, ocean storage and transport. This reflection budget cannot output surface temperature, freezing thresholds or the date of another glaciation.",
+    "glacierIntro": "A glacier stores water: snowfall adds to it; melt and other ablation remove it. Even a cold place can lose ice if supply is small. Hold one condition fixed and change the other.",
+    "accumulation": "Water equivalent added per round",
+    "ablation": "Ablation demand per round",
+    "steps": "Rounds compared",
+    "play": "Play the ice budget",
+    "pause": "Pause budget playback",
+    "rewind": "Return to initial ice",
+    "advance": "Advance one round",
+    "playbackNote": "Playback smoothly observes neighboring outcomes of the same budget and stops after 12 rounds. Display time is compressed; rounds are not years. Interpolation, ice shape and volume are uncalibrated, without solving real ice flow or erosion.",
+    "playbackReduced": "Reduced motion is enabled: playback advances in whole rounds; you can also step or drag manually.",
+    "mass": "Ice remaining now",
+    "net": "Nominal balance per round",
+    "massUnit": "water-equivalent teaching units",
+    "growth": "More accumulation",
+    "steady": "Balanced input and loss",
+    "retreat": "More ablation",
+    "glacierCaption": "The same hypothetical glacier starts with 60 water-equivalent units. Shape only indicates ice amount, without solving flow, slope or thickness. Rounds are not years, and loss cannot exceed available ice.",
+    "balanceDeep": "Accumulation adds glacier mass through snowfall and other processes; ablation removes it through melting, sublimation, calving and more. Here they are reduced to two controlled quantities. Real glaciers flow downhill, and terminus positions lag climate. Losing mass does not mean ice stops moving. Persistent negative balance is more informative than one weather event.",
+    "meltTitle": "Put equal ice mass on land or already afloat: what changes?",
+    "iceLocation": "Initial ice location",
+    "land": "On land",
+    "floating": "Already afloat",
+    "melt": "Fraction melted",
+    "oceanAddition": "Direct sea-level contribution (teaching water equivalent)",
+    "remaining": "Not yet melted",
+    "meltCaption": "Equal water-equivalent masses in a freshwater approximation. Floating ice already displaced its own weight of water, so its direct melt effect is approximately zero. Land ice adds water to the ocean. Water-level changes are exaggerated and are not real meters.",
+    "meltDeep": "Real sea level also responds to thermal expansion, salinity, currents, gravity and land motion. Density and salinity corrections make floating ice's direct effect different from exact mathematical zero. Losing floating ice shelves can also reduce restraint on land-ice flow and raise sea level indirectly. We separate two main mechanisms; sea-ice loss is not harmless.",
+    "deepTitle": "Deeper: conditions, time scales and model limits",
+    "sources": "Sources and evidence",
+    "historyLink": "Put glaciations back in Earth's history",
+    "oceanLink": "Continue with seawater, air and life",
+    "historyNote": "This gallery selects major events and backgrounds; it does not list every regional glaciation. Climate backgrounds, stratigraphic units, glacial events and interglacials are different levels of description.",
+    "threeLabel": "A hypothetical glacier in a three-dimensional valley. Drag to orbit, pinch or scroll to zoom; use arrow keys, plus, minus and Home.",
+    "threeCaption": "The 3D valley is original and hypothetical, not a scan of a real glacier. Textures, crevasses and moraines aid recognition. Ice amount consumes the same budget model; terrain is fixed and ice shape is not volume-calibrated.",
+    "twoView": "Open the two-dimensional budget diagram",
+    "threeFailure": "The 3D view is unavailable. The 2D budget and all controls remain available.",
+    "threeRetry": "Retry 3D",
+    "kaUnit": "thousand years ago (ka)",
+    "meltwater": "Meltwater produced",
+    "tracerNote": "T1/T2/T3 illustrate direction: increasing the same round moves them down-valley while ice amount independently controls the front. They advance even at balanced mass. Displacement and time are uncalibrated, without solving velocity or erosion. Scrubbing revisits the same teaching snapshots.",
+    "tracerUnknown": "† Fate not followed; ghosts retain identities without representing later real trajectories or meltwater"
+  },
+  "references": [
+    {
+      "title": "ICS · Cryogenian Stratigraphy",
+      "url": "https://cryogenian.stratigraphy.org/"
+    },
+    {
+      "title": "Hoffman et al. (2017) · Snowball Earth climate dynamics and Cryogenian geology",
+      "url": "https://doi.org/10.1126/sciadv.1600983"
+    },
+    {
+      "title": "Kopp et al. (2005) · Paleoproterozoic glaciation hypothesis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16061801/"
+    },
+    {
+      "title": "NPS · Mass extinctions through geologic time",
+      "url": "https://www.nps.gov/subjects/fossils/mass-extinctions-through-geologic-time.htm"
+    },
+    {
+      "title": "USGS · Far-field imprint of the late Paleozoic Ice Age",
+      "url": "https://www.usgs.gov/publications/far-field-imprint-late-paleozoic-ice-age-its-demise-and-onset-a-dust-house-climate"
+    },
+    {
+      "title": "British Antarctic Survey · Dawn of the Antarctic ice sheets",
+      "url": "https://www.bas.ac.uk/news/the-dawn-of-the-antarctic-ice-sheets/"
+    },
+    {
+      "title": "ICS · Quaternary major divisions",
+      "url": "https://quaternary.stratigraphy.org/major-divisions"
+    },
+    {
+      "title": "NOAA · Why is the Arctic so sensitive?",
+      "url": "https://www.pmel.noaa.gov/arctic-zone/essay_serreze.html"
+    },
+    {
+      "title": "NPS · Effects of changing climate on Kahiltna Glacier",
+      "url": "https://www.nps.gov/articles/aps-v12-i2-c5.htm"
+    },
+    {
+      "title": "NASA JPL · Land ice versus sea ice",
+      "url": "https://www.jpl.nasa.gov/edu/resources/lesson-plan/whats-causing-sea-level-rise-land-ice-vs-sea-ice/"
+    },
+    {
+      "title": "NASA · Orbital cycles and Earth's climate",
+      "url": "https://science.nasa.gov/science-research/earth-science/milankovitch-orbital-cycles-and-their-role-in-earths-climate/"
+    },
+    {
+      "title": "NASA · Why orbital cycles cannot explain current warming",
+      "url": "https://science.nasa.gov/science-research/earth-science/why-milankovitch-orbital-cycles-cant-explain-earths-current-warming/"
+    },
+    {
+      "title": "Clark et al. (2009) · The Last Glacial Maximum",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19661421/"
+    },
+    {
+      "title": "NSIDC · A core of climate history",
+      "url": "https://nsidc.org/learn/ask-scientist/core-climate-history"
+    },
+    {
+      "title": "Parrenin et al. (2013) · Gas and ice relative chronologies",
+      "url": "https://doi.org/10.1126/science.1226368"
+    },
+    {
+      "title": "NSIDC · Science of ice shelves",
+      "url": "https://nsidc.org/learn/parts-cryosphere/ice-shelves/science-ice-shelves"
+    }
+  ]
+}

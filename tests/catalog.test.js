@@ -48,7 +48,7 @@ test('editorial curation retains five published legacy pages outside discovery',
     assert.ok(existsSync(new URL(`..${topicHref(topic)}entry.zh.md`,import.meta.url)));
     assert.ok(!findTopics(catalog,{query:topic.title}).some(item=>item.id===id));
   }
-  assert.ok(findTopics(catalog).some(topic=>topic.id==='universe-guide'));
+  for(const id of ['universe-guide','earth']) assert.ok(findTopics(catalog).some(topic=>topic.id===id));
   assert.ok(findTopics(catalog).length>PAGE_SIZE);
 });
 test('shared links recover filters and tolerate unknown categories and long input',()=>{

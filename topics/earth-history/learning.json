@@ -1,0 +1,182 @@
+{
+  "version": 1,
+  "topicId": "earth-history",
+  "zh": {
+    "question": "从约45.4亿年前到今天，地球、空气与生命怎样一起改变？",
+    "observe": "先读45.4亿年线性总轴，选择事件与时期，再看独立标尺的放大窗口。把“事件年代”“过程持续”“证据年龄”分开。用氧收支对照有产氧却无净留存，以及产生超过消耗的条件，再连接动物多样化、登陆、灭绝与冰期支线。",
+    "academic": [
+      {
+        "title": "年代来自合适的自然时钟",
+        "body": "地球常用年龄估计约45.4亿年，来自放射性同位素与陨石、月球、地球材料的比较。铀—铅等方法适合非常古老的矿物；碳14主要用于较近过去的含碳材料，不能测地球年龄。最老矿物记录自己的形成和改造，不自动给出整颗行星的生日。 期界表固定采用ICS 2026/06版；纪的开始、化石群的年龄和演化时长必须分开。冥古宙底界4567 Ma不是地球的精确生日，本馆总尺仍取常用估计4540 Ma。"
+      },
+      {
+        "title": "大氧化是源与汇变化的漫长结果",
+        "body": "产氧光合作用早于大气大量积氧。呼吸、分解、还原性铁、岩石和某些火山气体等耗氧过程，会影响净留存。大氧化常用约24—23亿年前概括关键转变，广义过程可延续到约21亿年前，起止与波动有争论；不是一次瞬间达到今天的含氧量。"
+      },
+      {
+        "title": "生命与环境没有一条必然阶梯",
+        "body": "早期微生物、真核细胞、特定多细胞藻类与动物记录不同的问题；真核不等于多细胞，多细胞不等于动物。寒武纪多样化跨越很长时间，约508 Ma的伯吉斯化石不是寒武纪起点。Cairo约386 Ma的原地根系比具体树冠形态有更直接的证据，也不等于后来石炭纪煤沼泽。大灭绝原因各异，幸存支系会重组生态系统，灭绝物种不会复活。生命与环境互相影响，不是一条必然通往人类的阶梯。"
+      }
+    ],
+    "misconception": "最早找到的证据不等于确切起源日期；放大时间窗口不让某段历史变长。大氧化不是首次产氧，也不是陆地植物一出现便使空气达到今天干空气约21%的氧。条带状铁建造不是古大气含氧量的单一读数。",
+    "boundary": "全史采用4540 Ma至今的线性轴，放大窗口独立标尺；日期圆整，事件标记不是精确生日。氧预算使用任意单位，进度不对应地质年数或大气百分比，不重建古气候。插画不是古地球照片。馆内按证据比较多种解释；更深的冰期机制在冰期与气候馆展开。 氧预算不生成动物，也不预测动物起源。生态恢复因地区与功能而异，没有一条适用全球的固定恢复进度。",
+    "narration": [
+      {
+        "label": "把今天放进漫长历史",
+        "text": "地球已经走过约四十五亿四千万年。我们这一物种的历史，在整条尺上只占今天旁边极细的一小段。把它放大，能看见细节，却不会改变实际过去了多久。",
+        "cue": "先显示4540 Ma线性总轴，再比较最近100万年放大窗；不要直接比较不同尺上的画面间距。"
+      },
+      {
+        "label": "岩石里藏着时钟",
+        "text": "有些原子会按一定规律改变。科学家用适合的原子时钟，研究矿物和岩石的年龄，再把不同证据放在一起。我们没有找到一块记下地球全部诞生过程的生日石。",
+        "cue": "对照陨石、地球矿物和月球材料的年代证据；区分古老铀—铅与较近期碳14用途。"
+      },
+      {
+        "label": "制造氧气，还要看它去哪里",
+        "text": "有些古老微生物会借阳光制造食物并释放氧气。可是生命活动和化学反应也消耗氧。产生得更多、消耗得较少，才可能有更多留下来；变化经历了很久，也有起伏。",
+        "cue": "保留产氧时比较两组耗氧条件，强调任意单位和净留存，不画成真实古氧曲线。"
+      },
+      {
+        "label": "不同生命，改变同一个世界",
+        "text": "空气、海洋和陆地不断变化。生命也改变环境，有些方式扩展，有些受到限制。动物、森林和人类都只占这段长历史的一部分，地球不是为某个终点排好的一串台阶。",
+        "cue": "在28个证据路标中比较动物多样化、登陆与五次危机，区别圆整事件年龄、期界与持续时间；连接生命、岩石与气候馆。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How did Earth, its atmosphere and life change together over about 4.54 billion years?",
+    "observe": "Begin with the linear 4.54-billion-year overview, select events and intervals, then examine independently scaled enlarged windows. Separate event ages, process durations and the ages of evidence. Compare oxygen production without a retained surplus against production exceeding consumption, then connect diversification, life on land, extinctions and the Climate branch.",
+    "academic": [
+      {
+        "title": "Dating needs an appropriate natural clock",
+        "body": "The common estimate of Earth's age, about 4.54 billion years, combines radioactive isotopes with meteorite, lunar and terrestrial materials. Uranium-lead and related methods investigate very old minerals; carbon-14 mainly dates recent carbon-bearing material and cannot date Earth. The oldest mineral records its own formation and alteration, rather than automatically providing a planetary birthday. Boundary values use ICS edition 2026/06. A period base, a fossil community’s age and evolutionary duration are distinct. The Hadean base at 4567 Ma is not Earth’s exact birthday; this hall retains the common 4540 Ma whole-Earth estimate."
+      },
+      {
+        "title": "The Great Oxidation involved changing sources and sinks",
+        "body": "Oxygenic photosynthesis preceded substantial atmospheric accumulation. Respiration, decomposition, reduced iron, rocks and some volcanic gases affect the retained surplus. About 2.4-2.3 billion years ago summarizes a key Great Oxidation transition; a broader process can extend to roughly 2.1 billion years ago, with debated boundaries and fluctuations. It did not instantly reach today's oxygen level."
+      },
+      {
+        "title": "Life and environments do not follow a predetermined ladder",
+        "body": "Early microbes, eukaryotic cells, particular multicellular algae and animals address different questions. Eukaryotic does not mean multicellular, and multicellular does not mean animal. Cambrian diversification spanned a long interval; roughly 508 Ma Burgess fossils do not mark its beginning. Cairo’s roughly 386 Ma in-place roots provide more direct evidence than a specific canopy reconstruction and differ from later Carboniferous coal swamps. Extinctions have different causes; surviving lineages reorganize ecosystems without extinct species returning to life. These interactions are not an inevitable ladder toward humans."
+      }
+    ],
+    "misconception": "The earliest known evidence is not an exact origin date, and enlarging a window does not lengthen history. The Great Oxidation was neither the first oxygen production nor land plants instantly creating today's roughly 21% oxygen in dry air. Banded iron formations are not a single direct gauge of ancient atmospheric oxygen.",
+    "boundary": "The overview is linear from 4540 Ma to today; enlarged windows have separate scales. Rounded event markers are not exact birthdays. The oxygen budget uses arbitrary units, without geological years or atmospheric percentages, and reconstructs no ancient climate. Illustrations are not photographs of ancient Earth. Evidence supports qualified comparisons; deeper glacial mechanisms belong to the Climate hall. The oxygen budget neither generates animals nor predicts their origin. Ecological recovery varies across regions and functions; no fixed recovery bar applies globally.",
+    "narration": [
+      {
+        "label": "Place today in a long history",
+        "text": "Earth has a history of about four billion five hundred and forty million years. Our species occupies a tiny sliver beside today on that ruler. Enlarging it reveals details without changing how much time really passed.",
+        "cue": "Show the linear 4540 Ma overview before the last-million-year window. Do not compare spacing between different scales directly."
+      },
+      {
+        "label": "Rocks contain natural clocks",
+        "text": "Some atoms change according to predictable patterns. Scientists choose suitable atomic clocks to investigate minerals and rocks, then combine different evidence. No single birthday stone preserves Earth's entire formation.",
+        "cue": "Compare meteorite, terrestrial-mineral and lunar dating evidence, distinguishing ancient uranium-lead applications from recent carbon-14 dating."
+      },
+      {
+        "label": "Ask where the oxygen goes",
+        "text": "Some ancient microbes used sunlight to make food and release oxygen. Living processes and chemical reactions also consumed it. Greater production or lower consumption can leave more behind. This change took a long time and included fluctuations.",
+        "cue": "Keep production while comparing two consumption conditions. Emphasize arbitrary units and net retention, not a reconstructed ancient oxygen curve."
+      },
+      {
+        "label": "Different life changes the same world",
+        "text": "Air, oceans and land keep changing. Life changes environments too: some ways of living expand while others become restricted. Animals, forests and humans each occupy only part of this long history. Earth's past is not a staircase arranged toward one destination.",
+        "cue": "Compare animal diversification, land transitions and five crises among the 28 evidence landmarks. Distinguish rounded event ages, boundaries and durations, then connect the Life, Rocks and Climate halls."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA NSSDCA · Earth Fact Sheet: mean radius, core radius, rotation and dry-air composition",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+    },
+    {
+      "title": "USGS · Geologic Time: Age of the Earth",
+      "url": "https://pubs.usgs.gov/gip/geotime/age.html"
+    },
+    {
+      "title": "NASA · Moon formation: giant impacts and remaining questions",
+      "url": "https://science.nasa.gov/moon/formation/"
+    },
+    {
+      "title": "Wilde et al. (2001), Nature · 4.4-billion-year-old zircons and evidence for early water",
+      "url": "https://www.nature.com/articles/35051550"
+    },
+    {
+      "title": "Smithsonian NMNH · Early Life on Earth: microbes, oxygen and animals",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/life-science/early-life-earth-animal-origins"
+    },
+    {
+      "title": "Gumsley et al. (2017), PNAS · Timing and tempo of the Great Oxidation Event",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.1608824114"
+    },
+    {
+      "title": "NASA Astrobiology · Banded iron formation: oxidation does not uniquely identify oxygenic photosynthesis",
+      "url": "https://astrobiology.nasa.gov/news/the-biology-behind-banded-iron-formations/"
+    },
+    {
+      "title": "Gibson et al. (2018), Geology · Dating the multicellular alga Bangiomorpha",
+      "url": "https://authors.library.caltech.edu/records/7brz9-8mw86"
+    },
+    {
+      "title": "ICS · International Chronostratigraphic Chart, version 2026/06",
+      "url": "https://stratigraphy.org/ICSchart/ChronostratChart2026-06.pdf"
+    },
+    {
+      "title": "National Museums Scotland · Evidence of plants and arthropods on land",
+      "url": "https://www.nms.ac.uk/discover-catalogue/the-mysterious-15-million-year-gap-in-our-evolution"
+    },
+    {
+      "title": "Smithsonian NMNH · Extinction Over Time",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/paleontology/extinction-over-time"
+    },
+    {
+      "title": "Smithsonian Human Origins · Homo sapiens: approximately 300,000 years",
+      "url": "https://humanorigins.si.edu/evidence/human-fossils/species/homo-sapiens"
+    },
+    {
+      "title": "NASA Earth Observatory · The carbon cycle",
+      "url": "https://science.nasa.gov/earth/earth-observatory/the-carbon-cycle/"
+    },
+    {
+      "title": "NIST · Radiometric clocks: uranium-lead, carbon-14 and the age of Earth",
+      "url": "https://www.nist.gov/how-do-you-measure-it/how-do-you-know-age-fossils-and-other-old-things"
+    },
+    {
+      "title": "ICS Subcommission on Cryogenian Stratigraphy · Approximately 720-635 million years ago",
+      "url": "https://cryogenian.stratigraphy.org/"
+    },
+    {
+      "title": "NASA · Why orbital cycles cannot explain current rapid warming",
+      "url": "https://science.nasa.gov/science-research/earth-science/why-milankovitch-orbital-cycles-cant-explain-earths-current-warming/"
+    },
+    {
+      "title": "Da Silva et al. (2020), Scientific Reports · Timing and phased ocean anoxia in the Kellwasser events",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7395115/"
+    },
+    {
+      "title": "Royal Ontario Museum · Roughly 508 Ma Waptia from the Burgess Shale",
+      "url": "https://www.rom.on.ca/news-releases/burgess-shale-fossil-site-reveals-oldest-evidence-brood-care"
+    },
+    {
+      "title": "Cardiff research team · Cairo forest root networks, approximately 386 Ma",
+      "url": "https://www.cardiff.ac.uk/news/view/1739669-scientists-uncover-worlds-oldest-forest"
+    },
+    {
+      "title": "Nelsen et al. (2016), PNAS · Delayed fungal evolution did not cause the Paleozoic coal peak",
+      "url": "https://repository.si.edu/items/52e46b6c-12ec-44d5-8ce6-160781d13956"
+    },
+    {
+      "title": "Nicholls et al. (2026), npj Biodiversity · End-Permian environments and variable ecological recovery",
+      "url": "https://www.nature.com/articles/s44185-025-00117-2"
+    },
+    {
+      "title": "Capriolo et al. (2020), Nature Communications · Deep CO2 in end-Triassic CAMP magmas",
+      "url": "https://www.nature.com/articles/s41467-020-15325-6"
+    },
+    {
+      "title": "Hull et al. (2020), Science · On impact and volcanism across the K–Pg boundary",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31949074/"
+    }
+  ]
+}

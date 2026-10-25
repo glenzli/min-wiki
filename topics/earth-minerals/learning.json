@@ -1,0 +1,174 @@
+{
+  "topicId": "earth-minerals",
+  "version": 1,
+  "zh": {
+    "question": "同一粒材料，内部连接、形成条件和观察证据，怎样一起讲出矿物的故事？",
+    "observe": "先旋转碳连接结构，推移石墨层，与钻石的四邻三维网络比较；切到宏观石英晶簇时，明确换了对象和尺度。再把成晶进度拖到终点，比较慢冷、急冷成玻璃，以及未过饱和时没有晶体。证据台逐条打开硬度、条痕、解理、光泽和密度，记录候选为何保留或冲突。最后保持同一吨原料，独立改变品位、回收率、价值与成本，解释矿石判断为什么随条件改变。 宏观石英中，把围岩显示从自然位置推到露出展品，追踪根部A始终不变；用剖面比较晶洞、裂隙矿脉、伟晶岩晶囊与嵌生晶粒，再分清天然生长面和后来切出的面。",
+    "academic": [
+      {
+        "title": "组成与结构共同区分矿物；外形和性质是不同层次的证据",
+        "body": "矿物通常按特征化学组成与有序结构区分，漂亮外形不是必需条件。钻石与石墨同为碳：普通钻石每个碳有四个近邻形成三维强连接，石墨层内每碳有三个近邻，层间较弱作用允许相对滑动。3D钻石使用常规立方基点构造有限片段，边缘邻居被截断；石墨使用有限蜂巢层，不在层间添加共价棒。球径、棒粗与图形距离为可读性处理，滑动不是力学求解。宏观石英晶簇为自制代表形态，与碳原子图不是同一对象。莫氏硬度是刮划顺序，不是等间距量尺；硬度与韧性不同，钻石仍可能沿解理裂开。 自然赋存与展出形态也不同：晶簇可从晶洞或裂隙内壁伸向开放空间，一些伟晶岩含晶囊，而紧密接触的晶粒不一定有完整外形。3D保留同一晶簇，围岩滑块仅改变教学显示；其他剖面为不同代表情景。专业清理、去除部分围岩与切磨是不同处理，切磨创造新表面；并非所有馆藏都被切磨或染色。"
+      },
+      {
+        "title": "成核、生长和保留无序之间存在竞争",
+        "body": "成晶需要适合的物质、条件和重排时间。在可比的教学熔体情景中，慢冷允许较少晶核长成较大晶粒；较快冷却对应更多较小晶粒；极快冷却使较多材料来不及有序排列而成为玻璃。真实晶粒也受成分、已有晶核、水与历史影响。水溶液分支保留同一份溶质，只有供给超过当时平衡容量才产生净析晶：热水分支降低容量，蒸发分支减少水量。这里仅代表一种降温降低溶解容量的物质，不声称所有矿物都如此；真实热液还受压力、混合、气体与化学反应影响。份额与进度无实测质量、温度或年代标定，不是相平衡、成核动力学或矿床预测。"
+      },
+      {
+        "title": "多证据缩小范围；矿石还需要经济、技术和环境背景",
+        "body": "六种典型矿物以硬度区间、粉末条痕、解理、选定光泽和密度进行相容筛选。石英2.65与方解石2.71 g/cm³的典型密度相近；演示±0.16 g/cm³比较带重叠时保留候选，不能把候选数量当概率。颜色与照片不足以单独保证鉴定；真实样品可能混有矿物或需要显微镜、化学和衍射。矿物、岩石、矿石与宝石不是互斥类别，铝土矿不是单一矿物种。每吨原料的教学回收量为1000×品位×回收率；代币收入减成本只说明给定假设下的收支，不确立经济储量或开采许可。环境代价还包括土地、水、能量与废物；部分硫化物相关排水可能酸化并迁移金属，需按具体条件评估。"
+      }
+    ],
+    "misconception": "晶体不一定外形规整或肉眼可见；石英尖头不是它的解理。莫氏10不等于莫氏5的两倍，也不等于敲不碎。并非所有降温都长出大晶体，未过饱和的溶液可能不析晶。外观像、只剩一个练习候选、含金属或代币账为正，都不能单独保证真实鉴定或可开采。 露出标本不等于晶体曾孤零零长在展台上；规则天然晶面也不等于经过打磨，嵌生晶粒去掉围岩后不会自动长成完整尖晶。",
+    "boundary": "3D原子连接与宏观形态分开，均非照片、电子云、扫描或真实尺寸测量。石英的晶面、纹理、光学与内含物是代表性创作。成晶预算可逆、确定且无标定时钟，教的是条件与不同去向；几何面积不代表真实晶体体积。性质取典型值，筛选只涵盖六种矿物，±0.16密度带为教学选择。条痕是虚拟资料观测，不建议儿童磨粉、舔尝、敲碎或用酸测试未知标本。资源模型使用虚构代币与理想分离，忽略添加水药剂，不构成现实矿业经济、环境预测或许可判断。 围岩退隐是可逆显示遮罩，不模拟采集、清理、侵蚀或溶解，也不改变晶簇尺寸。四种赋存剖面无共同尺寸尺；仅裂隙A对应3D，切磨对照不处理原晶簇。",
+    "narration": [
+      {
+        "label": "看不见的连接，改变看得见的用途",
+        "text": "钻石和石墨都由碳组成，为什么模样和用途差这么多？看看里面怎样连接。钻石把强连接伸向三个方向；石墨把强连接铺在一层里，层和层之间比较容易滑开，所以能留下细细的痕迹。换到石英晶簇时，我们换了另一种矿物，观察它的外形，不能把它当成碳原子的放大照片。 漂亮晶簇原来可能连着岩石，伸向裂隙或洞里的空隙。露出、清理和切磨是不同的事情，天然长成的平面并不一定经过打磨。",
+        "cue": "旋转钻石与石墨有限网络，推移同一石墨层，再切到明确标为宏观的石英形态。 调整围岩显示并盯住根部A；用不同代表剖面比较赋存，不把它们画成同一标本变身。"
+      },
+      {
+        "label": "长大要材料，也要时间",
+        "text": "晶体像一支慢慢排好的队伍，需要材料，也需要合适条件和时间。熔体慢慢冷却，一些晶粒可以长大；变化太快，许多材料来不及排好，就可能成为玻璃。水里的材料也不是越等越会长晶体。没有超过这时能溶下的量，它们可能仍然留在水里。",
+        "cue": "用同一进度比较慢冷、快冷、极急冷，再降低热水溶液供给，展示终点仍无晶体。"
+      },
+      {
+        "label": "让每条线索都说一小部分",
+        "text": "漂亮的照片能帮助我们观察，却看不出全部秘密。矿物抵抗刮划的本领、粉末颜色、破裂方向、反光方式和相同体积的轻重，都是不同线索。把线索放在一起，可以排除一些候选。这个练习只放了六种矿物，世界上还有许多别的。我们在屏幕里观察，不舔、不磨、不敲未知的石头。",
+        "cue": "先只开光泽，再加密度、条痕与解理，显示冲突证据及有限候选集提醒。"
+      },
+      {
+        "label": "从地球材料到我们的生活",
+        "text": "石膏可以做建筑材料，含铁矿物可以成为炼铁的原料，石墨也会出现在电池材料里。可是含有有用物质，不代表现在就容易取出来。含量、技术和代价都要比较。开采还可能改变土地、用掉水和能量、留下废物。让物品用得更久，再利用和回收，也是在认真对待地球给我们的材料。",
+        "cue": "固定一吨原料，分别改变品位、回收率、价格和成本；保留环境与许可条件并不由代币账决定的说明。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How can internal connections, formation conditions and observations together tell the story of a mineral?",
+    "observe": "Rotate the carbon structures and slide graphite sheets, comparing them with diamond's four-neighbor network. Switching to macroscopic quartz explicitly changes the object and scale. Scrub growth to its endpoint and compare slow cooling, quenching to glass, and no crystals below supersaturation. Reveal hardness, streak, cleavage, luster and density one at a time, recording why candidates survive or conflict. Finally hold one tonne of feed fixed and vary grade, recovery, value and cost independently to explain why an ore judgment depends on conditions. In macroscopic quartz, change surrounding-rock visibility from natural position to exposed display and follow the unchanged root marker A. Compare sections of a geode, fracture vein, pegmatite pocket and interlocking grains, then distinguish natural growth faces from later cut surfaces.",
+    "academic": [
+      {
+        "title": "Composition and structure distinguish minerals; habit and properties provide different evidence",
+        "body": "Minerals are generally distinguished by characteristic composition and ordered structure, not by a requirement for a beautiful outline. Diamond and graphite are both carbon. Ordinary diamond bonds each carbon to four near neighbors in a strong three-dimensional network; graphite bonds each to three neighbors in a sheet, with weaker interlayer interactions allowing sliding. The 3D diamond uses a finite conventional cubic basis with truncated boundary neighbors. Graphite uses open honeycomb sheets without interlayer covalent rods. Spheres, rods and drawn distances aid readability; sliding is not a mechanics calculation. The authored macroscopic quartz habit is a different object from the carbon structures. Mohs hardness ranks scratch resistance with uneven steps; hardness differs from toughness and diamond can still split along cleavage. Natural occurrence also differs from display appearance: clusters can grow from cavity or fracture walls into open space; some pegmatites contain pockets, while interlocking grains may lack complete faces. The 3D slider changes surrounding-rock display while retaining one cluster; the other sections are different representative cases. Professional cleaning, removing some host rock and cutting are distinct treatments. Cutting creates new surfaces; museum specimens are not all cut or dyed."
+      },
+      {
+        "title": "Nucleation, growth and trapping disorder compete",
+        "body": "Crystallization needs suitable material, conditions and time to rearrange. Under comparable conditions in the teaching melt, slow cooling allows fewer nuclei to become larger grains; faster cooling corresponds to more smaller grains; extreme quenching traps more material as glass. Real grains also depend on composition, existing nuclei, water and history. Solution branches retain one solute batch and allow net precipitation only when supply exceeds current equilibrium capacity. Cooling lowers capacity in the hot-solution case; evaporation removes water. This represents a substance whose capacity decreases on cooling, not a universal mineral rule. Real hot fluids also depend on pressure, mixing, gases and reactions. Shares and progress have no calibrated mass, temperature or age; this is no phase-equilibrium, nucleation-kinetics or ore-deposit prediction."
+      },
+      {
+        "title": "Multiple clues narrow a set; ore also needs economic, technical and environmental context",
+        "body": "Six typical minerals are filtered for compatibility with hardness intervals, powder streak, cleavage, selected luster and density. Quartz at 2.65 and calcite at 2.71 g/cm³ have similar typical densities. Overlapping illustrative ±0.16 g/cm³ bands retain candidates, and counts are not probabilities. Color and photographs alone do not guarantee identification. Real specimens may mix minerals or require microscopy, chemistry and diffraction. Mineral, rock, ore and gem are not exclusive categories; bauxite is not a single mineral species. Recovered metal per tonne in the teaching budget is 1000 × grade × recovery. Token revenue minus cost establishes only the balance under chosen assumptions, not economic reserves or permission to mine. Land, water, energy and wastes also matter; some sulfide-related drainage can acidify and mobilize metals, depending on actual conditions."
+      }
+    ],
+    "misconception": "Crystals need not have tidy outlines or be visible unaided. A quartz point is not cleavage. Mohs 10 is neither twice Mohs 5 nor a promise against breakage. Cooling does not always grow large crystals, and an undersaturated solution may not precipitate. A similar appearance, one remaining exercise candidate, metal content or a positive token balance alone guarantees neither real identification nor viable extraction. An exposed specimen did not grow alone on a plinth. Regular natural faces do not prove polishing, and removing host rock does not turn an interlocking grain into a complete pointed crystal.",
+    "boundary": "Atomic connections and macroscopic habits are separate 3D representations, not photographs, electron clouds, scans or measured sizes. Quartz facets, texture, optics and inclusions are representative artwork. Growth is a reversible deterministic budget without a calibrated clock; drawn areas do not represent crystal volumes. Properties are typical and the filter covers six minerals only; its ±0.16 density band is a teaching choice. Streak is a virtual data observation. Children should not powder, taste, smash or acid-test unknown specimens. The resource model uses fictional tokens and ideal separation, excluding added water and reagents. It provides no real mining economics, environmental forecast or permission decision. Surrounding-rock fading is a reversible display mask, not extraction, cleaning, erosion or dissolution; cluster size stays fixed. Four occurrence sections have no common length scale. Only fracture marker A links to 3D; the cutting diagrams do not alter the original cluster.",
+    "narration": [
+      {
+        "label": "Hidden connections change visible uses",
+        "text": "Diamond and graphite are both carbon. Why do they look and work so differently? Look at their connections. Diamond's strong bonds extend through three dimensions. Graphite's strong bonds spread within each sheet, while sheets can slide more easily past one another and leave a fine mark. Switching to a quartz cluster changes the mineral. Its outside shape is not an enlarged photograph of carbon atoms. A beautiful cluster may originally attach to rock and project into a fracture or cavity. Exposing, cleaning and cutting are different things: a naturally grown flat face need not have been polished.",
+        "cue": "Rotate the finite diamond and graphite networks, shift the same graphite sheets, then switch to the explicitly macroscopic quartz habit. Vary surrounding-rock visibility while tracking root marker A; compare separate occurrence sections without transforming one specimen into every case."
+      },
+      {
+        "label": "Growth needs material and time",
+        "text": "A crystal is like a slowly organized team. It needs material, suitable conditions and time. As a melt cools slowly, some grains can grow larger. Very fast change may trap material as glass before it can arrange itself. Material dissolved in water does not automatically become crystals just by waiting. Without exceeding the amount that can remain dissolved under those conditions, it may stay in the water.",
+        "cue": "Compare slow, fast and extreme-quench endpoints, then lower hot-solution supply to show an endpoint without crystals."
+      },
+      {
+        "label": "Each clue tells part of a story",
+        "text": "A beautiful picture helps us look, but it does not show every secret. Scratch resistance, powder color, breaking directions, reflections and the weight of equal volumes are different clues. Together they can rule out some candidates. This exercise contains only six minerals, while the world has many others. We observe on the screen without tasting, grinding or smashing unknown stones.",
+        "cue": "Reveal luster first, then add density, streak and cleavage, showing conflicting clues and the limited-set reminder."
+      },
+      {
+        "label": "From Earth materials to daily life",
+        "text": "Gypsum helps make building materials. Iron-bearing minerals can supply iron, and graphite appears in battery materials. Containing something useful does not mean it is easy to retrieve today. We must compare content, technology and costs. Extraction can also change land, use water and energy, and leave wastes. Using products longer, reusing and recycling are ways to care for the materials Earth provides.",
+        "cue": "Hold one tonne fixed while varying grade, recovery, price and cost separately. Retain the explanation that tokens do not settle environmental or permitting questions."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Australian Museum · What are minerals?",
+      "url": "https://australian.museum/learn/minerals/what-are-minerals/"
+    },
+    {
+      "title": "Miles Mineral Museum · Diamond and graphite",
+      "url": "https://www.enmu.edu/about/general-information/local-events-and-info/arts-and-culture/miles-mineral-museum/diamond-graphite"
+    },
+    {
+      "title": "USGS · Igneous rocks and cooling",
+      "url": "https://www.usgs.gov/faqs/what-are-igneous-rocks"
+    },
+    {
+      "title": "Australian Museum · How minerals form",
+      "url": "https://australian.museum/learn/minerals/what-are-minerals/how-do-minerals-form/"
+    },
+    {
+      "title": "Museum Wales · Hydrothermal minerals",
+      "url": "https://museum.wales/mineralogy-of-wales/hydrothermal-minerals/"
+    },
+    {
+      "title": "Handbook of Mineralogy · Quartz",
+      "url": "https://www.handbookofmineralogy.org/pdfs/quartz.pdf"
+    },
+    {
+      "title": "Handbook of Mineralogy · Calcite",
+      "url": "https://www.handbookofmineralogy.org/pdfs/calcite.pdf"
+    },
+    {
+      "title": "Handbook of Mineralogy · Gypsum",
+      "url": "https://www.handbookofmineralogy.org/pdfs/gypsum.pdf"
+    },
+    {
+      "title": "Handbook of Mineralogy · Halite",
+      "url": "https://www.handbookofmineralogy.org/pdfs/halite.pdf"
+    },
+    {
+      "title": "Handbook of Mineralogy · Pyrite",
+      "url": "https://www.handbookofmineralogy.org/pdfs/pyrite.pdf"
+    },
+    {
+      "title": "Handbook of Mineralogy · Hematite",
+      "url": "https://www.handbookofmineralogy.org/pdfs/hematite.pdf"
+    },
+    {
+      "title": "Broz, Cook & Whitney (2006) · Mohs hardness and toughness",
+      "url": "https://robertfcook.org/wp-content/uploads/2023/06/broz_2006_ammin_mohs_het.pdf"
+    },
+    {
+      "title": "USGS · EarthWord—Ore",
+      "url": "https://www.usgs.gov/communications-and-publishing/news/earthword-ore"
+    },
+    {
+      "title": "BGS · Mineral resource definitions",
+      "url": "https://nora.nerc.ac.uk/id/eprint/530548/1/OR20051.pdf"
+    },
+    {
+      "title": "USGS · Mine drainage",
+      "url": "https://www.usgs.gov/mission-areas/water-resources/science/mine-drainage"
+    },
+    {
+      "title": "USGS · Bauxite is a rock containing several minerals",
+      "url": "https://www.usgs.gov/media/images/usgs-mrp-coloring-page-bauxite"
+    },
+    {
+      "title": "NHM · Quartz growing inward in a rock cavity",
+      "url": "https://www.nhm.ac.uk/discover/news/2022/june/jubilee-agate--a-royal-piece-of-quartz.html"
+    },
+    {
+      "title": "Shigley & Kampf · Gem-bearing pegmatite pockets",
+      "url": "https://www.gia.edu/dam/migrated-assets/docs/doc1/Gem-Bearing-Pegmatites-A-Review.pdf"
+    },
+    {
+      "title": "Australian Museum · Natural crystal faces",
+      "url": "https://australian.museum/learn/minerals/properties/"
+    },
+    {
+      "title": "NHM · Professional mineral conservation",
+      "url": "https://www.nhm.ac.uk/discover/minerals-sparkling-sensitive-and-toxic.html"
+    },
+    {
+      "title": "Gray · Cutting and polishing gemstones",
+      "url": "https://www.gia.edu/gems-gemology/spring-1988-faceting-large-stones-gray"
+    }
+  ]
+}

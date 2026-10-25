@@ -1,0 +1,214 @@
+{
+  "version": 1,
+  "topicId": "earth-life",
+  "zh": {
+    "question": "从微生物海岸到森林与猛犸草原，怎样用化石重建生命之间的关系，而不把复原当作亲眼看见？",
+    "observe": "先在群落台选择一个地点与时期，保持焦点对象，切换身体、遗迹、化学和比较推断四种证据；只有微生物、大灭绝两类对照可切换宽时间窗的前后状态。再到化石台保留12个残体身份，主动播放、暂停或逐站拖动来源—到达—保留—找到的筛选；先到终点，再分别改变沉积环境、埋藏条件与采样范围作对照。最后旋转植物结构，比较石松类叶座、节类节点与种子蕨复叶，分清化石约束和艺术补全。 再把约5.08亿年前的瓦普塔虫完整身体转到侧、背、腹面，保留同一个体与动作位置，逐部位对照真实化石。十秒划水可暂停、回拖和重看，静止对照帮助分清形态依据与运动推断。",
+    "academic": [
+      {
+        "title": "生态网与演化树回答不同问题",
+        "body": "生态网连接能量、栖息地、物质循环和环境压力；演化树讨论共同祖先与分支关系。七组场景来自不同时空，不是一批个体逐步变成另一批。约27亿年前代表岸带以微生物为主，没有陆生植物或动物；产氧起源时间及生产者身份仍需限定。二叠纪末和白垩纪末的前后标签保留的是大类群锚点，不保证同一物种存续，更不表示所有成员都幸存。 真核生物、多细胞生物和动物分别涉及细胞组织、身体组成与亲缘类群，不能互换；最早发现记录也不等于瞬时起源。"
+      },
+      {
+        "title": "化石记录是一连串筛选",
+        "body": "从生命活动到发现标本，要经过进入沉积区、腐解或破碎、埋藏保存、地层保存和采样等筛选。身体、足迹、刮痕、有机分子与同位素能够回答的问题不同；没有发现不能直接等同不存在。实验固定12份残体，用确定性的教学规则比较来源、保存与采样。数目不是自然群落的丰度、真实成化石概率或统计抽样率；扩大查找不能把已经毁损的材料变回来。 主动播放约9秒压缩呈现四道观察站；拖回阶段是回看教学记录，不是倒转自然或复活生物。只有到达相应阶段后才显示其去向。"
+      },
+      {
+        "title": "植物结构、器官拼合与长期碳",
+        "body": "树是一种生长形式，不是一个单一亲缘类群。树状石松、树状节类和种子蕨有不同的结构与繁殖背景。叶座、节间、复叶和脉序提供形态线索；分离的干、叶、根和种子能否拼成全植物，需要连接、解剖和地层等证据。植物固定的碳部分经分解返回，部分在合适水位、沉积空间与埋藏条件下留存；石炭纪并非没有分解者，泥炭也不是已完成热演化的煤。 瓦普塔虫的完整3D同样综合多件标本：十三对附肢、中部融合节和六个无足腹节有形态依据，活体厚度、颜色与动作节律仍含补全。取50毫米代表中线体长，不把单张压扁照片当作活体扫描。"
+      }
+    ],
+    "misconception": "复原图不是古代照片，生态箭头不是亲缘箭头。狄更逊的中文俗名含“水母”，不能据此归入现代水母；三叶虫不是只有三个体节；奇虾也不能默认是咬碎成年三叶虫的机器。鸟属于恐龙内部的分支，哺乳动物早在白垩纪已存在，幸存不等于全员无损。石松不是棕榈，种子蕨不是现代真蕨；缺少化石也不是不存在的证明。",
+    "boundary": "群落由特定化石库、地区和时代的代表对象与功能组组合，不是完整物种清单、丰度统计或所有生物同时同地生活的保证。微生物岸带与大氧化对照跨越宽时间窗；灭绝前后并非下一天。证据视角区分记录、推断和未知；身体色彩、部分软组织、姿态与空间排列是原创补全。化石台12份对象和筛选阈值为确定性示意，未校准概率、年代或自然保存速率；9秒播放时长不是成化石时间。植物3D由程序制作，非实物扫描；尺寸、冠形、叶片数量和展开角不作测量或物种鉴定。各工作台不共享真实生态时钟，也不模拟真实种群演化。 瓦普塔虫以2018重描述为主要形态依据，1单位对应10毫米；50毫米代表体长沿中线从额中骨片至尾枝尖，不含触角。细毛加粗，部分体积、姿态和配色为补全。原始CC BY图版与模型并列且保留标尺；两者不冒充同一个体。十秒片肢划水不校准真实频率或游速，不演捕猎；甲壳淡化是观察处理。",
+    "narration": [
+      {
+        "label": "没有森林，也有相互依赖",
+        "text": "很早以前的海岸，没有树，也没有动物，微生物已经能组成相互依赖的世界。有些制造有机物，另一些利用和分解它。后来氧气逐渐积累，环境改变了，可缺氧的地方仍然能容纳许多微生物。",
+        "cue": "从代表微生物岸带观察功能联系；切换大氧化宽时间窗，说明不是同一岩层的连续录像或厌氧生物全部灭绝。"
+      },
+      {
+        "label": "看身体，也看关系",
+        "text": "一块压痕、一串刮痕和一点化学信号，会带来不同线索。远古海洋里，有在底面活动的动物、滤食者和游泳捕食者。环境危机发生后，一些分支终止，另一些分支延续；延续也不表示原来的每个成员都活下来。 瓦普塔虫的甲壳、眼柄和不同的足，也能逐一回到化石核对。让它重新有体积，甚至能活动，还需要仔细区分证据和补全。",
+        "cue": "在埃迪卡拉与伯吉斯群落切换身体和遗迹证据；对比二叠纪末、白垩纪末前后，标明食物网不是家谱。 增加瓦普塔虫完整3D与原始化石图版对照；分清十三对附肢与眼，演示有限片肢动作，标记颜色/体积/节律补全。"
+      },
+      {
+        "label": "没有找到，可能经过了哪些筛子",
+        "text": "一份残体可能没到这片沉积区，也可能在埋藏前已经腐解或破碎，还可能保存了却没被找到。扩大查找能发现更多留下来的线索，却不能让已经毁损的身体重新出现。",
+        "cue": "主动播放四站后暂停，保留同一12个对象，分别改变来源环境、埋藏和采样；到终点逐一查看未进入、毁损、未采到与已发现。拖回只是回看示意记录。"
+      },
+      {
+        "label": "走近一棵不一样的树",
+        "text": "有些古树的干上留下菱形叶座，有些用一段段节点连接枝叶，还有些叶子像蕨却属于产种子的植物。森林里的分解者也在工作。只有部分有机物在合适环境中长期埋藏，后来才可能成为煤。",
+        "cue": "旋转三种代表植物，寻找叶座、节与复叶；分别指出化石约束、比较推断和艺术补全，不把程序3D称为扫描。"
+      }
+    ]
+  },
+  "en": {
+    "question": "From microbial shores to forests and mammoth steppe, how can fossils reconstruct relationships among living things without turning reconstructions into eyewitness scenes?",
+    "observe": "Choose a place and time at the community workbench. Retain a focal object while switching among body, trace, chemical and comparative-inference evidence; only microbial and mass-extinction comparisons have before-and-after windows. At the fossil workbench, retain the same 12 remains while playing, pausing or stepping through source, arrival, preservation and discovery. Reach the endpoint before comparing depositional setting, burial and search extent separately. Then rotate plant structures to compare lycopsid leaf cushions, calamite nodes and seed-fern fronds, distinguishing fossil constraints from artistic completion. Then turn the complete Waptia body, about 508 million years old in context, to side, dorsal and ventral views. Keep the same model and motion position while comparing parts with real fossils. Pause, scrub or replay a ten-second inferred stroke and compare neutral morphology to separate structural evidence from motion inference.",
+    "academic": [
+      {
+        "title": "Ecological webs and evolutionary trees answer different questions",
+        "body": "Ecological webs connect energy, habitat, material cycling and environmental pressure. Evolutionary trees concern common ancestry and branching. The seven scenes represent different places and times, not individuals turning into the next community. The representative shore around 2.7 billion years ago contains microbes, not land plants or animals; the timing and identity of early oxygen producers remain qualified. Before-and-after extinction labels retain broad-group anchors, without guaranteeing the same species or every member survived. Eukaryote, multicellular organism and animal refer to cellular organization, body construction and a lineage respectively; the earliest recovered record is not an instantaneous origin."
+      },
+      {
+        "title": "The fossil record passes through several filters",
+        "body": "Evidence must reach a depositional area, survive decay or breakage, be preserved through burial and later history, and be sampled. Bodies, tracks, scratches, organic molecules and isotopes answer different questions; absence from a collection is not direct proof of biological absence. The experiment retains 12 remains and uses deterministic teaching rules to compare source, preservation and sampling. Its counts are not natural abundance, fossilization probabilities or calibrated sampling rates. A wider search cannot restore material already destroyed. An explicitly started sequence compresses four observation stations into about nine seconds. Scrubbing revisits a teaching record rather than reversing nature or reviving organisms. Destinations are revealed only when the sequence reaches their stage."
+      },
+      {
+        "title": "Plant architecture, connected organs and long-term carbon",
+        "body": "Tree describes a growth form rather than a single lineage. Arborescent lycopsids, calamites and seed ferns differ in structure and reproductive background. Cushions, internodes, fronds and venation provide clues; connecting separate stems, leaves, roots and seeds into a whole plant requires attachment, anatomy and stratigraphic evidence. Some fixed carbon returns through decomposition; some remains under suitable water, accommodation and burial conditions. Carboniferous communities had decomposers, and peat is not already thermally mature coal. The complete Waptia 3D likewise combines several specimens: thirteen appendage pairs, a fused middle segment and six limbless abdominal somites have anatomical support, while living thickness, color and stroke rhythm include completion. The model uses a representative 50 mm midline length and does not treat one flattened photograph as a living-body scan."
+      }
+    ],
+    "misconception": "Reconstructions are not ancient photographs, and ecological arrows are not ancestry arrows. A common name does not make Dickinsonia a modern jellyfish; trilobites did not have only three segments; Anomalocaris is not automatically a machine for crushing adult trilobites. Birds are a dinosaur branch, mammals already existed in the Cretaceous, and survival does not mean every member escaped loss. Lycopsids are not palms, seed ferns are not modern true ferns, and missing fossils do not prove absence.",
+    "boundary": "Communities combine representative organisms and functional groups from specified fossil records, regions and times. They are not complete species lists, abundance estimates or guarantees that every organism coexisted at one place. Microbial comparisons span broad intervals; extinction aftermath is not the next day. Evidence views distinguish records, inference and unknowns. Colors, some soft tissues, poses and spacing are original completion. The 12 remains and filtering thresholds are deterministic illustrations without calibrated probabilities, ages or natural preservation rates; nine seconds of playback is not a fossilization time. Plant 3D is procedural, not scanned; size, crowns, leaf counts and opening angles are not measurements or identification tools. Workbenches share no real ecological clock and simulate no actual population evolution. Waptia anatomy chiefly follows the 2018 redescription, at 10 mm per world unit. Its representative 50 mm midline body length runs from the anterior median sclerite to the caudal-ramus tip, excluding antennules. Setae are thickened; parts of volume, pose and color are completed. The original CC BY fossil plate retains scale bars beside the model; the two are not claimed as one individual. The ten-second lamellar stroke calibrates neither actual frequency nor speed and depicts no prey capture. Shield fading is an inspection treatment.",
+    "narration": [
+      {
+        "label": "No forests, but an interdependent world",
+        "text": "Long ago, a shore without trees or animals could still contain an interdependent microbial world. Some microbes made organic matter; others used and decomposed it. Oxygen later accumulated and changed environments, yet low-oxygen habitats continued to support many microbes.",
+        "cue": "Inspect functional links on the representative microbial shore, then compare the broad oxygenation interval. This is not one rock's continuous movie or the extinction of all anaerobes."
+      },
+      {
+        "label": "Look at bodies and relationships",
+        "text": "A body impression, a set of scratches and a chemical signal provide different clues. Ancient seas held bottom dwellers, filter feeders and swimming predators. Environmental crises ended some branches while others continued. Continuing does not mean every original member survived. Waptia’s shield, eyestalks and different limbs can also be checked against fossils. Giving it volume and movement still requires a careful distinction between evidence and completion.",
+        "cue": "Switch body and trace evidence in Ediacaran and Burgess scenes. Compare the end-Permian and end-Cretaceous aftermath, identifying food-web links rather than ancestry. Compare complete Waptia 3D with the original fossil plate. Distinguish thirteen appendage pairs from eyes and show finite lamellar motion, qualifying color, volume and rhythm as completion."
+      },
+      {
+        "label": "Which filters could hide the evidence?",
+        "text": "A remain may never reach this deposit. It may decay or break before burial, or be preserved but never found. Searching more widely can reveal additional surviving clues, but cannot bring a destroyed body back.",
+        "cue": "Play the four stations, then pause and retain all 12 identities while varying setting, burial and search extent separately. At the endpoint inspect source gaps, destruction, uncollected remains and finds. Scrubbing only revisits the illustrative record."
+      },
+      {
+        "label": "Approach a different kind of tree",
+        "text": "Some ancient trees left diamond-shaped leaf cushions. Others connected branches at repeated nodes. Some had fern-like leaves but belonged to seed-producing plants. Decomposers worked in these forests too. Only some organic matter remained buried under suitable conditions and could later become coal.",
+        "cue": "Rotate the three plant forms and identify cushions, nodes and fronds. Separate fossil constraints, comparisons and artistic completion without calling the procedural 3D a scan."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "Smithsonian NMNH · History of Life on Earth",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/life-science/early-life-earth-animal-origins"
+    },
+    {
+      "title": "Farquhar, Bao & Thiemens (2000) · Atmospheric influence of Earth’s earliest sulfur cycle",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10926533/"
+    },
+    {
+      "title": "Noffke et al. (2008) · Microbial mats on Earth’s sandy beaches—today and 3 billion years ago",
+      "url": "https://www.geosociety.org/gsatoday/archive/18/10/pdf/i1052-5173-18-10-4.pdf"
+    },
+    {
+      "title": "NHM · Evidence of the world’s oldest meal may have been discovered",
+      "url": "https://www.nhm.ac.uk/discover/news/2022/november/evidence-worlds-oldest-meal-may-have-been-discovered.html"
+    },
+    {
+      "title": "Ivantsov et al. (2019) · Traces of locomotion of Ediacaran macroorganisms",
+      "url": "https://www.mdpi.com/2076-3263/9/9/395"
+    },
+    {
+      "title": "Bobrovskiy et al. (2018) · Ancient steroids establish the Ediacaran fossil Dickinsonia as one of the earliest animals",
+      "url": "https://doi.org/10.1126/science.aat7228"
+    },
+    {
+      "title": "Royal Ontario Museum · The Burgess Shale",
+      "url": "https://burgess-shale.rom.on.ca/"
+    },
+    {
+      "title": "Royal Ontario Museum · Olenoides serratus",
+      "url": "https://burgess-shale.rom.on.ca/fossils/olenoides-serratus/"
+    },
+    {
+      "title": "Bicknell et al. (2023) · Raptorial appendages of Anomalocaris canadensis are built for soft prey and speed",
+      "url": "https://doi.org/10.1098/rspb.2023.0638"
+    },
+    {
+      "title": "Royal Ontario Museum · Anomalocaris canadensis",
+      "url": "https://burgess-shale.rom.on.ca/fossils/anomalocaris-canadensis/"
+    },
+    {
+      "title": "University of Michigan Museum of Paleontology · Backyard fossils: plants",
+      "url": "https://umorf.ummp.lsa.umich.edu/wp/mi-backyard-fossils-plants/"
+    },
+    {
+      "title": "Kentucky Geological Survey · Fossil of the month: Calamites",
+      "url": "https://www.uky.edu/KGS/fossils/fossil-month-12-2021-calamites.php"
+    },
+    {
+      "title": "NPS · Seed fern fossil",
+      "url": "https://www.nps.gov/articles/seed-fern.htm"
+    },
+    {
+      "title": "Nelsen et al. (2016) · Delayed fungal evolution did not cause the Paleozoic peak in coal production",
+      "url": "https://repository.si.edu/handle/10088/28188"
+    },
+    {
+      "title": "NHM · How trees changed the world",
+      "url": "https://www.nhm.ac.uk/discover/how-trees-changed-the-world.html"
+    },
+    {
+      "title": "Kenrick & Strullu-Derrien (2014) · The origin and early evolution of roots",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4213089/"
+    },
+    {
+      "title": "Penn et al. (2018) · Temperature-dependent hypoxia explains biogeography and severity of end-Permian marine mass extinction",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30523082/"
+    },
+    {
+      "title": "Clapham et al. (2007) · Prolonged Permian–Triassic ecological crisis recorded by molluscan dominance",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1941817/"
+    },
+    {
+      "title": "NPS · Mass extinctions through geologic time",
+      "url": "https://www.nps.gov/subjects/fossils/mass-extinctions-through-geologic-time.htm"
+    },
+    {
+      "title": "Smithsonian NMNH · Mass extinction—solving the dinosaur mystery",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/paleontology/mass-extinction-solving-dinosaur-mystery"
+    },
+    {
+      "title": "Field et al. (2018) · Early evolution of modern birds structured by global forest collapse at the end-Cretaceous mass extinction",
+      "url": "https://doi.org/10.1016/j.cub.2018.04.062"
+    },
+    {
+      "title": "NPS · Pleistocene megafauna in Beringia",
+      "url": "https://www.nps.gov/articles/aps-17-1-4.htm"
+    },
+    {
+      "title": "MacDonald et al. (2012) · Pattern of extinction of the woolly mammoth in Beringia",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3621396/"
+    },
+    {
+      "title": "NPS · How fossils form",
+      "url": "https://www.nps.gov/subjects/fossils/how-fossils-form.htm"
+    },
+    {
+      "title": "NPS · Taphonomy—death & decay",
+      "url": "https://www.nps.gov/subjects/fossils/taphonomy.htm"
+    },
+    {
+      "title": "ICS · International Chronostratigraphic Chart, version 2026/06, quoted boundary ages and uncertainties",
+      "url": "https://stratigraphy.org/ICSchart/ChronostratChart2026-06.pdf"
+    },
+    {
+      "title": "Allwood et al. (2006), Nature · Strelley Pool stromatolite morphology and environmental evidence",
+      "url": "https://www.nature.com/articles/nature04764"
+    },
+    {
+      "title": "Gibson et al. (2018), Geology · Bangiomorpha age, not a universal origin date for eukaryotes",
+      "url": "https://authors.library.caltech.edu/records/7brz9-8mw86"
+    },
+    {
+      "title": "Hull et al. (2020), Science · On impact and volcanism across the Cretaceous-Paleogene boundary",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31949074/"
+    },
+    {
+      "title": "Vannier, Aria, Taylor & Caron (2018) · Waptia fieldensis redescription and CC BY 4.0 fossil plate",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6030330/"
+    },
+    {
+      "title": "Royal Ontario Museum · Waptia fieldensis",
+      "url": "https://burgess-shale.rom.on.ca/fossils/waptia-fieldensis/"
+    }
+  ]
+}

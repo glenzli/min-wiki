@@ -1,0 +1,196 @@
+{
+  "zh": {
+    "tab": "跟着冰缘到样本",
+    "title": "从一颗结冰的星球，到A地的一小块样本",
+    "intro": "先拖动覆盖阶段，找到琥珀色A，再走进同一片假想海岸与高地。地点和阶段一直保留；海冰、山谷冰川和取样证据各自回答不同问题。",
+    "scopes": {
+      "global": "1 全球冰缘",
+      "region": "2 同一区域A",
+      "evidence": "3 样本与证据"
+    },
+    "site": "A · 45°N · 参考经线35°",
+    "stage": "全球参考球面冰雪覆盖",
+    "edge": "A参考经线的冰缘纬度",
+    "inside": "A在设定冰缘以内",
+    "outside": "A在设定冰缘以外",
+    "coverage": "覆盖阶段",
+    "direction": "观察方向",
+    "advance": "冰缘扩展",
+    "retreat": "冰缘退缩",
+    "play": "播放冰缘变化",
+    "pause": "暂停冰缘变化",
+    "reset": "回到本方向起点",
+    "globalCaption": "原创理想化地球：海陆、起伏和冰裂纹均为自制；不是现代底图、古大陆或任何一次古冰盖的重建。A是图中固定参考点。冰缘随经度起伏；面积按参考球面定义，图中纹理与厚度未标定。",
+    "timeNote": "18秒只压缩观察次序，不换算百万年或冰缘速度。可暂停、拖回；到终点停止。减少动态用10阶段。不能把整个720–635百万年前都看成连续全冰。",
+    "scaleNote": "切换的是同一A的观察模型与尺度，不是测地相机飞行；全球覆盖、局部冰量、样本显露有独立进度。换尺度会暂停，返回不会自行继续。",
+    "fallback": "3D暂不可用；下面同一球面关系的剖面与读数仍可操作。",
+    "fallbackTitle": "展开冰缘剖面与A定位",
+    "reflect": "同一100份均匀入射光：反射",
+    "absorbed": "吸收",
+    "lightNote": "沿用同一表面反射预算；不是按真实太阳角度、纬度日照、季节或云量计算的行星能量。调反照率不直接预测气温或下一次冰期。 图中地貌颜色不是逐像素反射率测量。",
+    "regionTitle": "A海面与A高地：两条冰的来源",
+    "regionIntro": "海面上的冰来自海水冻结；高地冰川来自降雪积累、压实与重结晶。它们共享这片假想区域，但不是同一份海水冻好后滑进山谷。全球覆盖只联动下面海冰提示，不代替高地冰川的质量收支。",
+    "seaBranch": "海水 → 海冰",
+    "landBranch": "降雪 → 粒雪 → 陆地冰川",
+    "iceSea": "当前A海面在示意覆盖内",
+    "waterSea": "当前A海面在示意覆盖外",
+    "budgetClock": "下面是独立的高地冰川收支观察；全球阶段已暂停。即使A海面无冰，高处仍可能保留冰川。冰量减少不等于冰向上流；当前只平滑显示质量变化，没有求解冰流速度。",
+    "evidenceTitle": "在A取不同样本，各能留下什么线索？",
+    "evidenceIntro": "P1—P5是同一假想区域的不同教学样本，切换时明确换样；它们不是从全球模型测得的钻芯、照片或成冰纪原物。当前A覆盖状态只是观察背景，不会凭滑块生成真实地层证据。",
+    "sampleSelect": "选择观察样本",
+    "sampleProgress": "样本过程／显露观察",
+    "samplePlay": "播放样本观察",
+    "samplePause": "暂停样本观察",
+    "sampleReset": "回到样本起点",
+    "sampleNote": "独立12秒展示，无真实时间与微米标尺；固定细节保持身份。海冰保留部分浓盐水，积雪孔隙减少；其他样本只逐层显露，不重演实际成岩或测年。",
+    "samples": {
+      "seaice": {
+        "name": "P1 海冰：晶粒与盐水通道",
+        "clue": "冰晶形成时，大部分盐不进入纯冰晶格；浓盐水可部分排出，也有部分留在孔隙或通道中。蓝色表示盐水，白色表示冰。",
+        "test": "比较起点与终点，追踪同一组蓝色孔隙与下方迁出标记；不是把全部盐突然清空。",
+        "limit": "晶粒、通道和盐水份额是原创结构示意，不给真实盐度或冻结速率。P1不是海冰年龄或盐度测量。"
+      },
+      "snow": {
+        "name": "P2 高地积雪：空气孔隙与粒雪",
+        "clue": "新雪颗粒间有许多空气间隙；埋藏、压实与重结晶改变结构，孔隙逐渐缩小，后来一些孔隙封闭。它的水源是陆地降雪。",
+        "test": "跟踪同一位置的孔隙变窄，并把“空气何时封闭”与“这层雪何时落下”分开。",
+        "limit": "不把海冰P1变成积雪P2；不同样本不是一只守恒容器。真实孔隙关闭深度与年代差依地点而变。"
+      },
+      "sediment": {
+        "name": "P3 地层剖面：混杂碎屑",
+        "clue": "冰川可搬运并留下多种粒径混杂的沉积物；融水又可能分选、搬走或重新沉积。",
+        "test": "比较细基质、较大砾石、层位与接触关系，再结合擦痕、古地磁和定年。",
+        "limit": "粗细混杂本身并非冰川的唯一指纹。图中假想剖面没有真实产地、年龄或成冰纪地层对应。"
+      },
+      "scratches": {
+        "name": "P4 基岩表面：擦痕",
+        "clue": "随冰移动的岩屑可以磨蚀基岩，留下方向性刻痕与磨光面；冰与碎屑共同参与。",
+        "test": "观察一组刻痕的方向、交切与基岩背景；还要区分断裂、工具痕和其他表面过程。",
+        "limit": "一组平行线不能单独保证冰川成因，也不能仅凭方向确定完整流动历史。"
+      },
+      "core": {
+        "name": "P5 现代冰芯：冰龄与气龄",
+        "clue": "冰层记录降雪与后续变化；气泡在粒雪孔隙封闭时保存空气，同深度空气通常比周围冰年轻。",
+        "test": "把层位、冰与气体的时间线分开，结合年代模型和其他资料再讨论先后。",
+        "limit": "这是现代冰芯方法示意，绝不是保存了成冰纪空气的冰芯；古老雪球证据主要还要读岩石和地层。"
+      }
+    },
+    "deepTitle": "继续追问：这些尺度怎样接上，又哪里不能接？",
+    "deeper": [
+      {
+        "title": "为什么覆盖30%时，A已经在冰缘内？",
+        "text": "面积不能线性当作纬度。对称双极帽的覆盖份额f满足 sin(冰缘纬度)=1−f；本图再加经度均值为0的不规则边缘。在A参考经线上波项为0，25%时边缘约48.59°，30%时约44.43°，所以45°N的A跨进覆盖内。"
+      },
+      {
+        "title": "明亮冰雪怎样影响相同的光？",
+        "text": "本图把100份均匀输入分为反射和吸收；覆盖增加时，在选定反射率下反射更多。这展示反馈方向，没有算大气、海洋热输送、云、碳循环或温度，不能单凭滑块推出雪球何时开始或结束。"
+      },
+      {
+        "title": "全球退冰，为什么山谷冰川不必立刻消失？",
+        "text": "海水冻结与高地积雪是不同来源；高地还受高度、降雪、季节与长期收支影响。全球观察阶段不设年代，高地12轮也不等于年。独立时钟避免把百万年背景与一个局部预算硬绑成同速动画。"
+      },
+      {
+        "title": "一块样本能证明整颗地球都封冻吗？",
+        "text": "不能。局部沉积、擦痕、古纬度推断、定年和地区对比回答不同问题。低纬开放海水的证据也只约束相应地点与时间；开水面积、冰厚、事件同步与生命避难所仍有研究，不能把全部成冰纪画成同样的冰壳。"
+      }
+    ],
+    "retry": "保留阶段并重试3D"
+  },
+  "en": {
+    "tab": "Follow ice to a sample",
+    "title": "From an icy planet to a small sample at A",
+    "intro": "Move the coverage stage, find amber A, then enter the same hypothetical coast and uplands. Site and stage persist; sea ice, a valley glacier and sample evidence answer different questions.",
+    "scopes": {
+      "global": "1 Global ice edge",
+      "region": "2 The same region A",
+      "evidence": "3 Samples and evidence"
+    },
+    "site": "A · 45°N · reference meridian 35°",
+    "stage": "Ice/snow area on the reference sphere",
+    "edge": "Ice edge at A’s reference meridian",
+    "inside": "A lies inside the assigned ice edge",
+    "outside": "A lies outside the assigned ice edge",
+    "coverage": "Coverage stage",
+    "direction": "Observation direction",
+    "advance": "Ice-edge expansion",
+    "retreat": "Ice-edge retreat",
+    "play": "Play the ice edge",
+    "pause": "Pause the ice edge",
+    "reset": "Return to this direction’s start",
+    "globalCaption": "Original idealized Earth: land, relief and ice fractures are authored, without a modern basemap, ancient-continent or specific ice-sheet reconstruction. A is a fixed reference site. The edge varies with longitude; area refers to the reference sphere. Textures and thickness are uncalibrated.",
+    "timeNote": "Eighteen display seconds compress observation order, without conversion to millions of years or ice-edge speed. Pause or scrub backward; the endpoint stops. Reduced motion uses ten stages. The entire 720–635 Ma interval was not one continuous identical frozen state.",
+    "scaleNote": "Switching changes observation models and scales at the same A, rather than making a surveying-camera flight. Global cover, local ice mass and sample reveal have separate progress. Scale changes pause playback; returning does not resume it.",
+    "fallback": "3D is unavailable; the same spherical relation and site readouts remain interactive below.",
+    "fallbackTitle": "Open the ice-edge section and site A",
+    "reflect": "Same 100 uniformly incident portions: reflected",
+    "absorbed": "Absorbed",
+    "lightNote": "This reuses one surface-reflection budget without real solar angles, latitude-dependent sunlight, seasons or clouds. Reflectivity is not a direct prediction of temperature or the next glaciation. Surface colors are not pixel-by-pixel reflectivity measurements.",
+    "regionTitle": "A’s sea and uplands: two sources of ice",
+    "regionIntro": "Sea ice freezes from seawater. Upland glaciers begin with snowfall, compaction and recrystallization. They share this hypothetical region, but are not one parcel of seawater freezing and sliding uphill into a valley. Global cover links only to the sea-ice indication below, not the upland glacier mass budget.",
+    "seaBranch": "Seawater → sea ice",
+    "landBranch": "Snowfall → firn → land glacier",
+    "iceSea": "A’s sea lies within the illustrated cover",
+    "waterSea": "A’s sea lies outside the illustrated cover",
+    "budgetClock": "Below is an independent upland-glacier budget; the global stage is paused. High ground may retain glaciers when the coast has open water. Losing mass does not mean ice flows uphill: this display only smooths mass observations and solves no ice velocity.",
+    "evidenceTitle": "Different samples at A preserve different clues",
+    "evidenceIntro": "P1–P5 are distinct teaching samples from the same hypothetical region. Changing samples is explicit. They are not cores, photos or Cryogenian objects measured from the global model. A’s selected cover is observation context, not a slider that generates real geological evidence.",
+    "sampleSelect": "Select a sample",
+    "sampleProgress": "Sample process / observation reveal",
+    "samplePlay": "Play sample observation",
+    "samplePause": "Pause sample observation",
+    "sampleReset": "Return to the sample start",
+    "sampleNote": "A separate twelve-second display has no calibrated time or micrometer scale; fixed details retain identity. Sea ice retains some brine and snow pores shrink. Other samples only reveal observations; they do not replay actual lithification or dating.",
+    "samples": {
+      "seaice": {
+        "name": "P1 Sea ice: grains and brine channels",
+        "clue": "As ice crystals form, most salt does not enter the pure-ice lattice. Some concentrated brine drains while some remains in pores and channels. Blue encodes brine and pale areas ice.",
+        "test": "Compare start and endpoint while tracking fixed pores and exported marks below, rather than removing every bit of salt.",
+        "limit": "Grains, channels and brine fractions are original structure illustrations without actual salinity or freezing rates. P1 is no measurement of sea-ice age or salinity."
+      },
+      "snow": {
+        "name": "P2 Upland snow: pores and firn",
+        "clue": "Fresh snow has air spaces between grains. Burial, compaction and recrystallization alter the structure; pores shrink and some eventually close. Its water source is snowfall on land.",
+        "test": "Track pores at fixed positions and separate when air becomes enclosed from when the surrounding snow fell.",
+        "limit": "Sea-ice P1 does not turn into snow P2; these are different samples, not one conserved container. Real pore-closure depths and age differences vary by site."
+      },
+      "sediment": {
+        "name": "P3 A sediment section: mixed clasts",
+        "clue": "Glaciers transport and deposit a mixture of grain sizes. Meltwater can subsequently sort, remove or redeposit material.",
+        "test": "Compare fine matrix, larger clasts, layers and contacts with scratches, paleomagnetic evidence and dates.",
+        "limit": "Poor sorting alone does not uniquely diagnose glaciation. This hypothetical section has no locality, age or correlation with a Cryogenian unit."
+      },
+      "scratches": {
+        "name": "P4 Bedrock: scratches",
+        "clue": "Debris carried by moving ice can abrade bedrock, leaving directional scratches and polish. Ice and rock fragments both participate.",
+        "test": "Inspect directions, cross-cutting and rock context, and distinguish fractures, tool marks and other surface processes.",
+        "limit": "Parallel lines alone do not establish glacial origin or a complete history of ice movement."
+      },
+      "core": {
+        "name": "P5 A modern ice core: ice and gas ages",
+        "clue": "Ice layers record snowfall and later changes. Bubbles preserve air when firn pores close; air at one depth is generally younger than its enclosing ice.",
+        "test": "Separate layer position, ice chronology and gas chronology before discussing event order with dating models and other records.",
+        "limit": "This demonstrates modern ice-core methods, not a core preserving Cryogenian air. Ancient Snowball questions chiefly require rock and stratigraphic evidence as well."
+      }
+    },
+    "deepTitle": "Ask further: how do these scales connect, and where do they differ?",
+    "deeper": [
+      {
+        "title": "Why is A inside the ice at 30% coverage?",
+        "text": "Area cannot be read as a linear latitude. Symmetric polar caps obey sin(edge latitude)=1−f. The irregular edge has a zero-mean longitude perturbation, exactly zero at A’s meridian. At 25% the edge there is about 48.59°; at 30%, about 44.43°. Site A at 45°N therefore crosses into cover."
+      },
+      {
+        "title": "What do bright surfaces do to the same incoming light?",
+        "text": "The model divides 100 uniform input portions into reflection and absorption. Increasing cover reflects more at the chosen reflectivity. It illustrates a feedback direction without atmosphere, ocean heat transport, clouds, carbon cycling or temperature, and cannot date a Snowball onset or end."
+      },
+      {
+        "title": "Why need a valley glacier not disappear immediately as global cover retreats?",
+        "text": "Freezing seawater and accumulating upland snow have different sources. Elevation, snowfall, seasons and sustained balance also matter. The global stage has no age, and twelve local rounds are not years. Independent clocks avoid forcing a long climate background and one local budget into the same animation rate."
+      },
+      {
+        "title": "Can one specimen prove that the entire planet was sealed in ice?",
+        "text": "No. Deposits, scratches, ancient-latitude estimates, dating and regional correlation constrain different questions. Evidence for low-latitude open water constrains its own places and times. Open-water area, ice thickness, synchrony and refuges for life remain research questions; the entire Cryogenian is not one uniform shell."
+      }
+    ],
+    "retry": "Retry 3D with this stage"
+  }
+}

@@ -1,0 +1,1973 @@
+{
+  "references": {
+    "early": {
+      "title": "Smithsonian NMNH · History of Life on Earth",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/life-science/early-life-earth-animal-origins",
+      "supports": {
+        "zh": "早期微生物、氧化与动物起源的机构概述；不把网页旧地质界线值当作最新标尺。",
+        "en": "Institutional overview of microbes, oxygenation and animal origins; legacy boundary ages on the page are not used as a current time scale."
+      }
+    },
+    "sulfur": {
+      "title": "Farquhar, Bao & Thiemens (2000) · Atmospheric influence of Earth’s earliest sulfur cycle",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10926533/",
+      "supports": {
+        "zh": "硫同位素作为古大气环境证据，不直接鉴定某种微生物。",
+        "en": "Sulfur isotopes as evidence about the ancient atmosphere, not an identification of a microbial species."
+      }
+    },
+    "mats": {
+      "title": "Noffke et al. (2008) · Microbial mats on Earth’s sandy beaches—today and 3 billion years ago",
+      "url": "https://www.geosociety.org/gsatoday/archive/18/10/pdf/i1052-5173-18-10-4.pdf",
+      "supports": {
+        "zh": "微生物诱导沉积构造的辨识与现代对照。",
+        "en": "Recognition of microbially induced sedimentary structures and modern comparisons."
+      }
+    },
+    "ediacaran": {
+      "title": "NHM · Evidence of the world’s oldest meal may have been discovered",
+      "url": "https://www.nhm.ac.uk/discover/news/2022/november/evidence-worlds-oldest-meal-may-have-been-discovered.html",
+      "supports": {
+        "zh": "白海地区约5.58亿年前Kimberella及周围沉积物的生物标志物。",
+        "en": "Biomarkers in Kimberella and surrounding sediment from the White Sea region, about 558 Ma."
+      }
+    },
+    "ediatrace": {
+      "title": "Ivantsov et al. (2019) · Traces of locomotion of Ediacaran macroorganisms",
+      "url": "https://www.mdpi.com/2076-3263/9/9/395",
+      "supports": {
+        "zh": "身体压痕与活动、摄食遗迹之间的对应及其限制。",
+        "en": "Associations between body impressions and locomotion or feeding traces, with interpretive limits."
+      }
+    },
+    "dickinsonia": {
+      "title": "Bobrovskiy et al. (2018) · Ancient steroids establish the Ediacaran fossil Dickinsonia as one of the earliest animals",
+      "url": "https://doi.org/10.1126/science.aat7228",
+      "supports": {
+        "zh": "特定有机保存化石的甾醇证据；不能据此确定所有埃迪卡拉生物的亲缘。",
+        "en": "Sterol evidence from specific organically preserved fossils; it does not resolve every Ediacaran organism."
+      }
+    },
+    "rom": {
+      "title": "Royal Ontario Museum · The Burgess Shale",
+      "url": "https://burgess-shale.rom.on.ca/",
+      "supports": {
+        "zh": "伯吉斯页岩的群落与特殊保存背景。",
+        "en": "Burgess Shale community and exceptional-preservation context."
+      }
+    },
+    "olenoides": {
+      "title": "Royal Ontario Museum · Olenoides serratus",
+      "url": "https://burgess-shale.rom.on.ca/fossils/olenoides-serratus/",
+      "supports": {
+        "zh": "三叶虫背甲、附肢与功能形态。",
+        "en": "Trilobite dorsal exoskeleton, appendages and functional morphology."
+      }
+    },
+    "anomalocaris": {
+      "title": "Bicknell et al. (2023) · Raptorial appendages of Anomalocaris canadensis are built for soft prey and speed",
+      "url": "https://doi.org/10.1098/rspb.2023.0638",
+      "supports": {
+        "zh": "奇虾附肢生物力学支持软体猎物解释，非直接观察到的食谱。",
+        "en": "Appendage biomechanics supports a soft-prey interpretation, rather than a directly observed menu."
+      }
+    },
+    "rom-anom": {
+      "title": "Royal Ontario Museum · Anomalocaris canadensis",
+      "url": "https://burgess-shale.rom.on.ca/fossils/anomalocaris-canadensis/",
+      "supports": {
+        "zh": "完整标本与身体形态。",
+        "en": "Complete specimens and body morphology."
+      }
+    },
+    "plants": {
+      "title": "University of Michigan Museum of Paleontology · Backyard fossils: plants",
+      "url": "https://umorf.ummp.lsa.umich.edu/wp/mi-backyard-fossils-plants/",
+      "supports": {
+        "zh": "石松类树干叶座纹、节类化石及叶片类群；各器官名称不是自动拼成一个物种。",
+        "en": "Lycopsid leaf-cushion patterns, calamite fossils and foliage groups; organ names do not automatically combine into one species."
+      }
+    },
+    "calamites": {
+      "title": "Kentucky Geological Survey · Fossil of the month: Calamites",
+      "url": "https://www.uky.edu/KGS/fossils/fossil-month-12-2021-calamites.php",
+      "supports": {
+        "zh": "节间、节与分枝痕；常见Calamites标本为髓腔铸型，不是完整外表皮。",
+        "en": "Internodes, nodes and branch scars; many Calamites specimens are pith casts rather than the complete outer epidermis."
+      }
+    },
+    "seedfern": {
+      "title": "NPS · Seed fern fossil",
+      "url": "https://www.nps.gov/articles/seed-fern.htm",
+      "supports": {
+        "zh": "种子蕨外形像蕨，但以种子繁殖；页面标本为二叠纪，仅用于解释形态组。",
+        "en": "Seed ferns resemble ferns but reproduce by seeds; the page’s specimen is Permian and is used to explain the morphological group."
+      }
+    },
+    "coal": {
+      "title": "Nelsen et al. (2016) · Delayed fungal evolution did not cause the Paleozoic peak in coal production",
+      "url": "https://repository.si.edu/handle/10088/28188",
+      "supports": {
+        "zh": "反驳“没有木质素分解者导致煤峰值”的简单解释，强调气候与构造组合。",
+        "en": "Rejects a simple absence-of-lignin-decomposers explanation for the coal peak; climate and tectonic setting matter."
+      }
+    },
+    "forest": {
+      "title": "NHM · How trees changed the world",
+      "url": "https://www.nhm.ac.uk/discover/how-trees-changed-the-world.html",
+      "supports": {
+        "zh": "植物生长、碳储存与地表环境影响的机构概述。",
+        "en": "Institutional explanation of plant growth, carbon storage and effects on surface environments."
+      }
+    },
+    "roots": {
+      "title": "Kenrick & Strullu-Derrien (2014) · The origin and early evolution of roots",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4213089/",
+      "supports": {
+        "zh": "根的化石、结构与多次演化；森林之前已有较小陆生植物。",
+        "en": "Fossil roots, structure and multiple evolutionary origins; smaller land plants preceded forests."
+      }
+    },
+    "pt": {
+      "title": "Penn et al. (2018) · Temperature-dependent hypoxia explains biogeography and severity of end-Permian marine mass extinction",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/30523082/",
+      "supports": {
+        "zh": "升温、供氧与需氧的生理机制模型；不是完整唯一灭绝机制。",
+        "en": "Physiological model of warming, oxygen supply and demand; not a complete or exclusive extinction mechanism."
+      }
+    },
+    "pt-record": {
+      "title": "Clapham et al. (2007) · Prolonged Permian–Triassic ecological crisis recorded by molluscan dominance",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1941817/",
+      "supports": {
+        "zh": "海洋群落结构更替与恢复的时间、地区差别。",
+        "en": "Marine community restructuring and differences among recovery times and places."
+      }
+    },
+    "extinctions": {
+      "title": "NPS · Mass extinctions through geologic time",
+      "url": "https://www.nps.gov/subjects/fossils/mass-extinctions-through-geologic-time.htm",
+      "supports": {
+        "zh": "不同灭绝事件影响不同类群、栖息地和建礁组合。",
+        "en": "Different extinction events affect different groups, habitats and reef-building assemblages."
+      }
+    },
+    "kpg": {
+      "title": "Smithsonian NMNH · Mass extinction—solving the dinosaur mystery",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/paleontology/mass-extinction-solving-dinosaur-mystery",
+      "supports": {
+        "zh": "约6600万年前撞击与古植物学证据，不只非鸟恐龙受影响。",
+        "en": "Impact and paleobotanical evidence around 66 Ma; losses extended beyond non-avian dinosaurs."
+      }
+    },
+    "birds": {
+      "title": "Field et al. (2018) · Early evolution of modern birds structured by global forest collapse at the end-Cretaceous mass extinction",
+      "url": "https://doi.org/10.1016/j.cub.2018.04.062",
+      "supports": {
+        "zh": "鸟类谱系与森林崩溃后的生存选择推断；不是所有鸟都存活。",
+        "en": "Inferred avian survival selectivity associated with forest collapse; not all birds survived."
+      }
+    },
+    "beringia": {
+      "title": "NPS · Pleistocene megafauna in Beringia",
+      "url": "https://www.nps.gov/articles/aps-17-1-4.htm",
+      "supports": {
+        "zh": "猛犸草原的区域镶嵌、化石日期与人类/气候问题。",
+        "en": "Regional mammoth-steppe mosaic, fossil dates and human/climate questions."
+      }
+    },
+    "mammoth": {
+      "title": "MacDonald et al. (2012) · Pattern of extinction of the woolly mammoth in Beringia",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3621396/",
+      "supports": {
+        "zh": "环境变化、人类与不同地区不同时消失的综合证据。",
+        "en": "Evidence on environmental change, people and regionally asynchronous disappearance."
+      }
+    },
+    "taphonomy": {
+      "title": "NPS · How fossils form",
+      "url": "https://www.nps.gov/subjects/fossils/how-fossils-form.htm",
+      "supports": {
+        "zh": "快速埋藏、硬体与不同保存方式；不提供本实验的数值概率。",
+        "en": "Rapid burial, hard parts and preservation pathways; it supplies no numerical probabilities for this experiment."
+      }
+    },
+    "decay": {
+      "title": "NPS · Taphonomy—death & decay",
+      "url": "https://www.nps.gov/subjects/fossils/taphonomy.htm",
+      "supports": {
+        "zh": "从死亡、腐解、搬运到埋藏的筛选。",
+        "en": "Filters between death, decay, transport and burial."
+      }
+    }
+  },
+  "communities": [
+    {
+      "id": "microbial",
+      "title": {
+        "zh": "没有森林的海岸",
+        "en": "A shore without forests"
+      },
+      "age": {
+        "zh": "约27亿年前的代表岸带",
+        "en": "Representative shore, about 2.7 Ga"
+      },
+      "afterAge": {
+        "zh": "大氧化期间，约24–21亿年前",
+        "en": "During oxygenation, about 2.4–2.1 Ga"
+      },
+      "setting": {
+        "zh": "层状微生物席与浅海沉积；没有陆生植物，也没有动物。",
+        "en": "Layered microbial mats and shallow-water sediment; no land plants or animals."
+      },
+      "question": {
+        "zh": "有微生物，就已经有相互依赖的生态系统吗？",
+        "en": "Can microbes alone build an interdependent ecosystem?"
+      },
+      "mechanism": {
+        "zh": "光合作用提供有机物；部分微生物产生氧气。其他微生物分解有机物，氧气又可与还原性物质反应。产氧早于大气中氧持续积累。",
+        "en": "Photosynthesis supplies organic matter; some microbes release oxygen. Other microbes recycle organic matter, while oxygen reacts with reduced substances. Oxygen production preceded sustained atmospheric accumulation."
+      },
+      "change": {
+        "zh": "氧气积累改变浅表环境与代谢机会，也限制一些厌氧微生物；缺氧孔隙和深水仍是栖息地，不是全球微生物同时被毒死。",
+        "en": "Oxygen accumulation changes surface habitats and metabolic opportunities while restricting some anaerobes. Anoxic pores and deeper water remain habitats; microbes were not all poisoned at once."
+      },
+      "uncertainty": {
+        "zh": "最早产氧的时间、具体生产者身份与局部氧“绿洲”的范围仍有讨论。功能组图不能当作27亿年前某个标本的物种鉴定。",
+        "en": "The onset of oxygen production, producer identities and extent of local oxygen oases remain debated. Functional groups are not species identifications of 2.7 Ga specimens."
+      },
+      "boundary": {
+        "zh": "两个宽时间窗的机制对照，不是一块岩石的连续录像。层纹本身也可能有非生物成因，须结合微结构、沉积环境与化学证据。",
+        "en": "A mechanism comparison across broad time windows, not a film of one rock. Layering can also be abiotic; microstructure, setting and chemistry must be combined."
+      },
+      "theme": "sea",
+      "phases": true,
+      "refs": [
+        "early",
+        "sulfur",
+        "mats"
+      ],
+      "nodes": [
+        {
+          "id": "photo",
+          "name": {
+            "zh": "产氧光合功能组",
+            "en": "Oxygenic phototrophs"
+          },
+          "latin": "Functional guild",
+          "icon": "mat",
+          "x": 210,
+          "y": 315,
+          "size": 1.4,
+          "record": {
+            "zh": "叠层构造、微结构和有机碳提供群落线索；并非每条层纹都可归属蓝细菌。",
+            "en": "Laminated structures, microtextures and organic carbon constrain communities; not every lamina identifies cyanobacteria."
+          },
+          "inference": {
+            "zh": "光合席可捕获沉积物并生产有机物；产氧代谢身份需要额外证据。",
+            "en": "Photosynthetic mats can trap sediment and produce organic matter; oxygenic metabolism needs additional evidence."
+          },
+          "uncertainty": {
+            "zh": "颜色、细胞大小和席内物种组合为艺术补全。",
+            "en": "Color, cell size and species composition are artistic additions."
+          },
+          "evidence": [
+            "trace",
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "anaerobe",
+          "name": {
+            "zh": "厌氧微生物功能组",
+            "en": "Anaerobic microbial guilds"
+          },
+          "latin": "Functional guild",
+          "icon": "cells",
+          "x": 460,
+          "y": 390,
+          "size": 1,
+          "record": {
+            "zh": "同位素和矿物反应可约束环境与代谢，但不能画出一份完整微生物名单。",
+            "en": "Isotopes and mineral reactions constrain environments and metabolisms, not a complete microbial census."
+          },
+          "inference": {
+            "zh": "有机物进入席下缺氧孔隙，可供不同厌氧代谢利用。",
+            "en": "Organic matter entering anoxic pores can support multiple anaerobic metabolisms."
+          },
+          "uncertainty": {
+            "zh": "大氧化之后仍有厌氧生境；画面淡化不等于这类生命灭绝。",
+            "en": "Anaerobic habitats persisted after oxygenation; fading does not mean extinction."
+          },
+          "evidence": [
+            "chemistry",
+            "inference"
+          ],
+          "after": "reduced"
+        },
+        {
+          "id": "oxidant",
+          "name": {
+            "zh": "局部氧气与氧化汇",
+            "en": "Oxygen and oxidation sinks"
+          },
+          "latin": "Environmental node",
+          "icon": "oxygen",
+          "x": 460,
+          "y": 170,
+          "size": 1,
+          "record": {
+            "zh": "硫同位素记录帮助约束大气变化；铁等矿物记录氧化还原环境。",
+            "en": "Sulfur isotopes constrain atmospheric changes; iron-bearing minerals record redox environments."
+          },
+          "inference": {
+            "zh": "氧会被呼吸及还原物消耗，故产生氧不等于大气立刻富氧。",
+            "en": "Respiration and reduced material consume oxygen; production does not instantly oxygenate the atmosphere."
+          },
+          "uncertainty": {
+            "zh": "气泡只编码产氧，不是保存下来的古空气或实测氧浓度。",
+            "en": "Bubbles code oxygen production, not preserved ancient air or a measured concentration."
+          },
+          "evidence": [
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "organic",
+          "name": {
+            "zh": "有机物与沉积物",
+            "en": "Organic matter and sediment"
+          },
+          "latin": "Material reservoir",
+          "icon": "detritus",
+          "x": 680,
+          "y": 340,
+          "size": 1,
+          "record": {
+            "zh": "有机碳及沉积纹理记录了材料留存；成岩作用会改写信号。",
+            "en": "Organic carbon and sediment textures record retained material; diagenesis can alter signals."
+          },
+          "inference": {
+            "zh": "埋藏一部分有机碳，使原本可能耗氧的再氧化过程减少。",
+            "en": "Burial of some organic carbon limits its later oxygen-consuming reoxidation."
+          },
+          "uncertainty": {
+            "zh": "图中箭头不是碳或氧通量的定量收支。",
+            "en": "Arrows are not a quantitative carbon or oxygen budget."
+          },
+          "evidence": [
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        }
+      ],
+      "links": [
+        {
+          "from": "photo",
+          "to": "organic",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "制造有机物",
+            "en": "Produces organic matter"
+          },
+          "caveat": {
+            "zh": "功能机制，不是化石中直接看到的搬运箭头。",
+            "en": "A functional mechanism, not a fossilized transport arrow."
+          }
+        },
+        {
+          "from": "organic",
+          "to": "anaerobe",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "有机物供给",
+            "en": "Organic substrate"
+          },
+          "caveat": {
+            "zh": "具体代谢取决于可用电子受体。",
+            "en": "Specific metabolisms depend on available electron acceptors."
+          }
+        },
+        {
+          "from": "photo",
+          "to": "oxidant",
+          "type": "cycle",
+          "support": "chemistry",
+          "label": {
+            "zh": "产氧与反应",
+            "en": "Oxygen production and reaction"
+          },
+          "caveat": {
+            "zh": "地球化学约束环境，不独立证明哪个细胞产氧。",
+            "en": "Geochemistry constrains conditions, not which cell produced oxygen."
+          }
+        }
+      ]
+    },
+    {
+      "id": "ediacaran",
+      "title": {
+        "zh": "微生物席上的大身体",
+        "en": "Large bodies on microbial mats"
+      },
+      "age": {
+        "zh": "白海地区，约5.58亿年前",
+        "en": "White Sea region, about 558 Ma"
+      },
+      "afterAge": {
+        "zh": "",
+        "en": ""
+      },
+      "setting": {
+        "zh": "浅海席底；选取同一地区相近时代的代表形式，未复原某一块化石板。",
+        "en": "Shallow marine matground; representative forms from a similar regional interval, not one fossil slab."
+      },
+      "question": {
+        "zh": "没有骨头的身体，怎样留下进食的线索？",
+        "en": "How can a body without bones leave feeding clues?"
+      },
+      "mechanism": {
+        "zh": "席为大型生物提供底面与潜在食物。Kimberella附近的刮痕与其活动联系，Dickinsonia相关的重复压痕提示移动和席面利用；摄食方式有不同解释。",
+        "en": "Mats offer a substrate and potential food. Scratches associated with Kimberella and repeated impressions linked to Dickinsonia suggest movement and mat use; feeding mechanisms are interpreted in different ways."
+      },
+      "change": {
+        "zh": "这些生物不是恐龙或三叶虫的幼年阶段；晚埃迪卡拉群落本身也随地点和时间变化。",
+        "en": "These organisms are not juvenile dinosaurs or trilobites; late Ediacaran communities varied across places and times."
+      },
+      "uncertainty": {
+        "zh": "Dickinsonia的动物属性获生物标志物支持，但更细亲缘及所有摄食动作未被完整确定。不能把“埃迪卡拉生物群”当作单一谱系。",
+        "en": "Biomarkers support animal affinity for Dickinsonia, but its precise placement and every feeding motion are unresolved. The Ediacaran biota is not a single lineage."
+      },
+      "boundary": {
+        "zh": "身体轮廓与遗迹可核对；颜色、活体厚度、软组织与确切行为是分层推断或艺术补全。",
+        "en": "Body outlines and traces can be checked; color, living thickness, soft tissues and exact behavior involve inference or artistic completion."
+      },
+      "theme": "sea",
+      "phases": false,
+      "refs": [
+        "ediacaran",
+        "ediatrace",
+        "dickinsonia"
+      ],
+      "nodes": [
+        {
+          "id": "dickinsonia",
+          "name": {
+            "zh": "狄更逊水母",
+            "en": "Dickinsonia"
+          },
+          "latin": "Dickinsonia",
+          "icon": "dickinsonia",
+          "x": 260,
+          "y": 330,
+          "size": 1.6,
+          "record": {
+            "zh": "椭圆身体压痕及重复单元可见；某些有机保存标本留下甾醇信号。",
+            "en": "Oval impressions with repeated units are preserved; some organically preserved specimens retain sterol signals."
+          },
+          "inference": {
+            "zh": "相邻压痕被解释为个体移动后留下的席面利用痕迹。",
+            "en": "Associated impressions are interpreted as mat-use traces left during movement."
+          },
+          "uncertainty": {
+            "zh": "中文俗名含“水母”不表示它属于现代水母；嘴、肠道和确切摄食机制不能凭轮廓补定。",
+            "en": "The Chinese common name does not classify it as a modern jellyfish; outline alone cannot establish a mouth, gut or exact feeding mechanism."
+          },
+          "evidence": [
+            "body",
+            "trace",
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "kimberella",
+          "name": {
+            "zh": "金伯拉虫",
+            "en": "Kimberella"
+          },
+          "latin": "Kimberella",
+          "icon": "kimberella",
+          "x": 590,
+          "y": 305,
+          "size": 1.3,
+          "record": {
+            "zh": "身体压痕、附近扇状刮痕与部分有机信号可比较。",
+            "en": "Body impressions, nearby fan-shaped scratches and some organic signals can be compared."
+          },
+          "inference": {
+            "zh": "常解释为可移动、在底面摄食的两侧对称动物；与软体动物关系仍需限定。",
+            "en": "Commonly interpreted as a mobile bilaterian feeding on the substrate; molluscan affinity needs qualification."
+          },
+          "uncertainty": {
+            "zh": "刮食动作和食物组成可由不同证据约束，不能给所有标本安排同一餐。",
+            "en": "Different evidence constrains grazing and diet; it does not assign the same meal to every specimen."
+          },
+          "evidence": [
+            "body",
+            "trace",
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "edi-mat",
+          "name": {
+            "zh": "海底微生物席",
+            "en": "Microbial matground"
+          },
+          "latin": "Mixed microbial community",
+          "icon": "mat",
+          "x": 440,
+          "y": 410,
+          "size": 1.2,
+          "record": {
+            "zh": "皱纹与微生物席相关沉积构造保存底面特征。",
+            "en": "Wrinkles and mat-related sedimentary structures preserve substrate features."
+          },
+          "inference": {
+            "zh": "席可稳定表面并提供有机物，也影响身体压痕的保存。",
+            "en": "Mats can stabilize surfaces, supply organic matter and affect impression preservation."
+          },
+          "uncertainty": {
+            "zh": "现场没有一张原来的绿地毯；绿色仅作识别。",
+            "en": "No original green carpet survives here; green is a visual code."
+          },
+          "evidence": [
+            "trace",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "scratches",
+          "name": {
+            "zh": "重复压痕与刮痕",
+            "en": "Repeated impressions and scratches"
+          },
+          "latin": "Trace record",
+          "icon": "traces",
+          "x": 740,
+          "y": 390,
+          "size": 1.1,
+          "record": {
+            "zh": "没有骨壳的活动也可改变沉积表面。",
+            "en": "Activities without bones or shells can alter sediment surfaces."
+          },
+          "inference": {
+            "zh": "遗迹与身体的空间、形态关系支持行为解释。",
+            "en": "Spatial and morphological associations support behavioral interpretations."
+          },
+          "uncertainty": {
+            "zh": "并非每条痕迹都能找到唯一制造者；不应从一个遗迹倒推出完整动物。",
+            "en": "Not every trace has a unique maker; one trace cannot reconstruct a whole animal."
+          },
+          "evidence": [
+            "trace",
+            "inference"
+          ],
+          "after": "present"
+        }
+      ],
+      "links": [
+        {
+          "from": "edi-mat",
+          "to": "kimberella",
+          "type": "energy",
+          "support": "trace",
+          "label": {
+            "zh": "席面摄食解释",
+            "en": "Mat-feeding interpretation"
+          },
+          "caveat": {
+            "zh": "刮痕与身体关联支持解释，动作仍为复原。",
+            "en": "Associations support the interpretation; motions are reconstructed."
+          }
+        },
+        {
+          "from": "edi-mat",
+          "to": "dickinsonia",
+          "type": "habitat",
+          "support": "trace",
+          "label": {
+            "zh": "底面利用解释",
+            "en": "Substrate-use interpretation"
+          },
+          "caveat": {
+            "zh": "具体摄食机制尚非唯一结论。",
+            "en": "The exact feeding mechanism is not uniquely established."
+          }
+        },
+        {
+          "from": "kimberella",
+          "to": "scratches",
+          "type": "pressure",
+          "support": "trace",
+          "label": {
+            "zh": "改变沉积表面",
+            "en": "Modifies sediment surface"
+          },
+          "caveat": {
+            "zh": "不是亲缘连线。",
+            "en": "This is not an ancestry link."
+          }
+        }
+      ]
+    },
+    {
+      "id": "cambrian",
+      "title": {
+        "zh": "伯吉斯页岩的分工",
+        "en": "Roles in the Burgess Shale sea"
+      },
+      "age": {
+        "zh": "加拿大，约5.08亿年前",
+        "en": "Canada, about 508 Ma"
+      },
+      "afterAge": {
+        "zh": "",
+        "en": ""
+      },
+      "setting": {
+        "zh": "有软体细节的特殊保存窗口；展示游泳者、底栖者、滤食者与潜在食物。",
+        "en": "An exceptional-preservation window with soft anatomy; swimmers, bottom dwellers, suspension feeders and potential food."
+      },
+      "question": {
+        "zh": "壳很多，是否就说明海里原本几乎只有硬壳动物？",
+        "en": "Do abundant shells mean the original sea was mostly shelled animals?"
+      },
+      "mechanism": {
+        "zh": "光合生产者把能量带入食物网，悬浮物供滤食者利用；底栖动物处理食物与沉积物，游泳捕食者利用不同猎物。多种生活方式同时存在。",
+        "en": "Photosynthetic producers supply energy, suspended material feeds suspension feeders, bottom dwellers process food and sediment, and swimming predators exploit prey. These lifestyles coexist."
+      },
+      "change": {
+        "zh": "特殊埋藏让平常容易腐解的附肢、肠道和软体轮廓进入记录，改变我们对寒武纪群落的认识。",
+        "en": "Exceptional burial preserves appendages, guts and soft outlines that often decay, changing our view of Cambrian communities."
+      },
+      "uncertainty": {
+        "zh": "奇虾附肢力学更支持捕捉软体猎物，不能默认它咬碎成年三叶虫。图中软体猎物是功能组，不指定一顿已证实的捕食。",
+        "en": "Anomalocaris appendage mechanics better support soft prey; adult trilobite crushing is not assumed. Soft prey here is a guild, not one demonstrated meal."
+      },
+      "boundary": {
+        "zh": "多标本和功能信息组合的原创群落图，非ROM展柜或原位化石板复制；身体尺寸不按共同标尺，个体数量不代表丰度。",
+        "en": "An original composite from specimens and functional evidence, not a ROM diorama or fossil slab copy; body sizes have no shared scale and counts do not show abundance."
+      },
+      "theme": "sea",
+      "phases": false,
+      "refs": [
+        "rom",
+        "olenoides",
+        "anomalocaris",
+        "rom-anom"
+      ],
+      "nodes": [
+        {
+          "id": "anomalocaris",
+          "name": {
+            "zh": "加拿大奇虾",
+            "en": "Anomalocaris canadensis"
+          },
+          "latin": "Anomalocaris canadensis",
+          "icon": "anomalocaris",
+          "x": 625,
+          "y": 165,
+          "size": 1.75,
+          "record": {
+            "zh": "眼、成对前附肢、身体侧叶和尾扇可由完整标本约束。",
+            "en": "Complete specimens constrain eyes, paired frontal appendages, lateral flaps and a tail fan."
+          },
+          "inference": {
+            "zh": "附肢运动与生物力学模型支持敏捷地抓取软体猎物。",
+            "en": "Appendage kinematics and biomechanics support agile capture of soft prey."
+          },
+          "uncertainty": {
+            "zh": "具体每一种猎物未被列成确证食谱；色彩与游泳姿态是艺术补全。",
+            "en": "No complete verified prey list exists; color and swimming pose are artistic."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "olenoides",
+          "name": {
+            "zh": "锯齿奥莱诺三叶虫",
+            "en": "Olenoides serratus"
+          },
+          "latin": "Olenoides serratus",
+          "icon": "trilobite",
+          "x": 305,
+          "y": 345,
+          "size": 1.3,
+          "record": {
+            "zh": "背甲分成中轴与两侧；某些标本还保留腹面附肢。",
+            "en": "The dorsal exoskeleton has an axial lobe and two lateral lobes; some specimens retain ventral appendages."
+          },
+          "inference": {
+            "zh": "附肢形态帮助推断底栖活动与处理食物的方式。",
+            "en": "Appendages help infer bottom-dwelling activity and food processing."
+          },
+          "uncertainty": {
+            "zh": "三叶不是指只有三个体节；受伤甲壳也不能独立证明是谁攻击。",
+            "en": "Three lobes do not mean three segments; an injured shell alone does not identify its attacker."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "sponge",
+          "name": {
+            "zh": "海绵类滤食者",
+            "en": "Sponge suspension feeders"
+          },
+          "latin": "Burgess Shale sponges",
+          "icon": "sponge",
+          "x": 130,
+          "y": 300,
+          "size": 1.2,
+          "record": {
+            "zh": "海绵身体轮廓与骨针等结构记录了固定底栖者。",
+            "en": "Body outlines and skeletal elements record attached bottom dwellers."
+          },
+          "inference": {
+            "zh": "体内水流与滤食由形态及现生海绵比较支持；不是植物。",
+            "en": "Morphology and living comparisons support water flow and suspension feeding; sponges are animals."
+          },
+          "uncertainty": {
+            "zh": "水流路径只示功能，未对化石物种做流体计算。",
+            "en": "Flow paths show function without a fluid simulation of a fossil species."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "softprey",
+          "name": {
+            "zh": "软体猎物功能组",
+            "en": "Soft-bodied prey guild"
+          },
+          "latin": "Unassigned prey guild",
+          "icon": "worm",
+          "x": 570,
+          "y": 350,
+          "size": 1.2,
+          "record": {
+            "zh": "该化石库保存多类易腐解的蠕虫状动物。",
+            "en": "This deposit preserves several decay-prone worm-like animals."
+          },
+          "inference": {
+            "zh": "用功能组表示捕食机会，而不把某只具体蠕虫指定为奇虾猎物。",
+            "en": "A guild represents prey availability without assigning a particular worm as Anomalocaris prey."
+          },
+          "uncertainty": {
+            "zh": "曲线身体并不意味着所有这些动物彼此近亲。",
+            "en": "A curved worm-like body does not make all such animals close relatives."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "suspension",
+          "name": {
+            "zh": "悬浮有机物与生产者",
+            "en": "Suspended food and producers"
+          },
+          "latin": "Functional resource pool",
+          "icon": "plankton",
+          "x": 380,
+          "y": 145,
+          "size": 1,
+          "record": {
+            "zh": "沉积物、有机信号和生物形态帮助推断资源背景。",
+            "en": "Sediment, organic signals and organismal anatomy constrain the resource background."
+          },
+          "inference": {
+            "zh": "光合生产和悬浮食物为动物群落提供能量来源。",
+            "en": "Photosynthesis and suspended food supply energy to the animal community."
+          },
+          "uncertainty": {
+            "zh": "点状粒子不是某个已鉴定浮游物种，也不按真实浓度计数。",
+            "en": "Dots are not identified plankton species or a measured concentration."
+          },
+          "evidence": [
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        }
+      ],
+      "links": [
+        {
+          "from": "suspension",
+          "to": "sponge",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "悬浮食物 → 滤食者",
+            "en": "Suspended food → suspension feeder"
+          },
+          "caveat": {
+            "zh": "由功能形态推断，不是直接可见古海水流量。",
+            "en": "Inferred from functional anatomy, not measured ancient flow."
+          }
+        },
+        {
+          "from": "softprey",
+          "to": "anomalocaris",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "软体猎物的可能通道",
+            "en": "Possible soft-prey pathway"
+          },
+          "caveat": {
+            "zh": "力学支持这一类食物，不等于已证实该个体捕食。",
+            "en": "Mechanics supports this prey category, not this individual meal."
+          }
+        },
+        {
+          "from": "suspension",
+          "to": "softprey",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "资源进入底栖网",
+            "en": "Resources enter benthic web"
+          },
+          "caveat": {
+            "zh": "概括不同食性，未规定每种蠕虫的食谱。",
+            "en": "Summarizes diverse feeding modes without prescribing every worm’s diet."
+          }
+        },
+        {
+          "from": "olenoides",
+          "to": "softprey",
+          "type": "pressure",
+          "support": "inference",
+          "label": {
+            "zh": "共享底面与食物空间",
+            "en": "Shared substrate and food space"
+          },
+          "caveat": {
+            "zh": "联系表示生态接触可能，不是三叶虫必然捕食这只动物。",
+            "en": "Represents ecological contact, not a required predation event."
+          }
+        }
+      ]
+    },
+    {
+      "id": "coal",
+      "title": {
+        "zh": "煤炭森林的地上与地下",
+        "en": "Above and below a coal forest"
+      },
+      "age": {
+        "zh": "欧美古赤道湿地，约3.1亿年前",
+        "en": "Equatorial Euramerican wetlands, about 310 Ma"
+      },
+      "afterAge": {
+        "zh": "",
+        "en": ""
+      },
+      "setting": {
+        "zh": "欧美古赤道湿地的代表形态组合，并非某个单层的共存清单。河道、泥炭沼泽和较高地面形成镶嵌，石炭纪陆地并非全是沼泽。",
+        "en": "A representative Euramerican equatorial wetland composite, not a co-occurrence census from one bed. Channels, peat mires and higher ground form a mosaic; Carboniferous land was not all swamp."
+      },
+      "question": {
+        "zh": "落下的枝叶，为什么有的回到空气，有的后来成为煤？",
+        "en": "Why do some fallen plants return carbon to the air while others later form coal?"
+      },
+      "mechanism": {
+        "zh": "维管组织和支撑结构使大型植物成为可能，根系改变土壤与水分。生长固定碳；腐解返还一部分，积水、沉积空间和持续埋藏使另一部分长期保存。",
+        "en": "Vascular and support tissues make large plants possible; roots alter soil and water. Growth fixes carbon; decay returns some, while waterlogging, accommodation and burial preserve another fraction."
+      },
+      "change": {
+        "zh": "森林不是植物登陆的第一步。更早的小型陆生植物与根的多次起源早于本景。成煤需要环境和构造条件，不能只说树多就必然成煤。",
+        "en": "Forests are not the first step onto land. Smaller land plants and multiple origins of roots precede this scene. Coal needs environmental and tectonic conditions, not simply many trees."
+      },
+      "uncertainty": {
+        "zh": "器官化石常各有属名，分离叶、根和干能否拼为同一全植物须另有证据；本景是代表形态组合。",
+        "en": "Fossil organs often have separate names; matching detached leaves, roots and stems requires evidence. This is a representative morphological composite."
+      },
+      "boundary": {
+        "zh": "叶座纹、节间和复叶结构有化石依据；树冠姿态、色泽和具体间距为原创补全。石松类不是棕榈，种子蕨不是现代真蕨。",
+        "en": "Leaf cushions, internodes and compound foliage are fossil constrained; crown posture, colors and spacing are authored. Lycopsids are not palms; seed ferns are not modern true ferns."
+      },
+      "theme": "forest",
+      "phases": false,
+      "refs": [
+        "plants",
+        "calamites",
+        "seedfern",
+        "coal",
+        "forest",
+        "roots"
+      ],
+      "nodes": [
+        {
+          "id": "lycopsid",
+          "name": {
+            "zh": "树状石松类",
+            "en": "Arborescent lycopsids"
+          },
+          "latin": "Lepidodendron-type",
+          "icon": "lycopsid",
+          "x": 205,
+          "y": 230,
+          "size": 1.3,
+          "record": {
+            "zh": "干表菱形叶座、叶痕以及根系器官化石可分别观察。",
+            "en": "Diamond-shaped stem leaf cushions, scars and rooting-organ fossils can be examined separately."
+          },
+          "inference": {
+            "zh": "树状习性、微叶和孢子繁殖与现今高大种子树不同。",
+            "en": "Tree habit, microphylls and spore reproduction differ from modern large seed trees."
+          },
+          "uncertainty": {
+            "zh": "叶座并非鳞片；三维模式未对应一件完整实测标本。",
+            "en": "Leaf cushions are not scales; the 3D model does not reproduce one measured whole specimen."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "calamite",
+          "name": {
+            "zh": "树状节类",
+            "en": "Arborescent sphenopsids"
+          },
+          "latin": "Calamites-type",
+          "icon": "calamite",
+          "x": 480,
+          "y": 260,
+          "size": 1.1,
+          "record": {
+            "zh": "节、节间、髓腔铸型和分枝/叶轮化石约束结构。",
+            "en": "Nodes, internodes, pith casts and branch or leaf-whorl fossils constrain structure."
+          },
+          "inference": {
+            "zh": "与现代木贼同属节类，但不能放大一株现代木贼就当成原物。",
+            "en": "Related to modern horsetails, but an enlarged living horsetail is not a fossil reconstruction."
+          },
+          "uncertainty": {
+            "zh": "铸型纵棱不能一律解释为完整外表皮；不同器官的拼合有条件。",
+            "en": "Ribs on a pith cast are not automatically the external epidermis; organ associations are conditional."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "seedfern",
+          "name": {
+            "zh": "种子蕨形态组",
+            "en": "Seed-fern forms"
+          },
+          "latin": "Medullosan-type foliage",
+          "icon": "seedfern",
+          "x": 700,
+          "y": 305,
+          "size": 1.2,
+          "record": {
+            "zh": "复叶、叶脉及种子器官提供不同层次证据。",
+            "en": "Compound foliage, veins and seed organs provide different kinds of evidence."
+          },
+          "inference": {
+            "zh": "蕨状叶并不决定繁殖方式；这类植物以种子繁殖。",
+            "en": "Fern-like leaves do not determine reproduction; these plants reproduced with seeds."
+          },
+          "uncertainty": {
+            "zh": "种子蕨是多支已灭绝种子植物的形态称呼，不是单一自然分支。",
+            "en": "Seed fern is a morphological term spanning multiple extinct seed-plant lineages."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "decomposer",
+          "name": {
+            "zh": "分解者与土壤网",
+            "en": "Decomposers and soil web"
+          },
+          "latin": "Fungi and microbial guilds",
+          "icon": "fungus",
+          "x": 530,
+          "y": 410,
+          "size": 0.95,
+          "record": {
+            "zh": "化石木材的腐解痕迹与真菌结构表明分解作用确实存在。",
+            "en": "Decay in fossil wood and fungal structures show that decomposition was present."
+          },
+          "inference": {
+            "zh": "有机物经分解回到物质循环；积水会限制某些腐解过程。",
+            "en": "Decomposition recycles organic matter; waterlogging restricts some decay processes."
+          },
+          "uncertainty": {
+            "zh": "“当时没有能分解木质素的真菌”不是可靠的成煤总解释。",
+            "en": "An absence of lignin-degrading fungi is not a reliable general explanation for coal."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "peat",
+          "name": {
+            "zh": "泥炭与长期埋藏",
+            "en": "Peat and long-term burial"
+          },
+          "latin": "Carbon reservoir",
+          "icon": "peat",
+          "x": 280,
+          "y": 425,
+          "size": 1.2,
+          "record": {
+            "zh": "泥炭层、煤层、植物残体与沉积层序保存碳库线索。",
+            "en": "Peat, coal, plant remains and stratigraphic sequences record carbon storage."
+          },
+          "inference": {
+            "zh": "合适水位、沉积空间和后续埋藏有助于有机碳长期留存。",
+            "en": "Suitable water tables, accommodation and later burial favor long-term carbon retention."
+          },
+          "uncertainty": {
+            "zh": "泥炭不等于已形成煤；成煤还需后期压实及热演化。",
+            "en": "Peat is not yet coal; compaction and thermal maturation follow."
+          },
+          "evidence": [
+            "body",
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        }
+      ],
+      "links": [
+        {
+          "from": "lycopsid",
+          "to": "peat",
+          "type": "cycle",
+          "support": "body",
+          "label": {
+            "zh": "枯落物进入泥炭",
+            "en": "Litter enters peat"
+          },
+          "caveat": {
+            "zh": "示意一条碳去向，不按化石干重计算。",
+            "en": "One carbon pathway, without a fossil dry-mass calculation."
+          }
+        },
+        {
+          "from": "calamite",
+          "to": "peat",
+          "type": "cycle",
+          "support": "body",
+          "label": {
+            "zh": "植物残体埋藏",
+            "en": "Plant-remain burial"
+          },
+          "caveat": {
+            "zh": "并非每一株植物都保存。",
+            "en": "Not every plant is preserved."
+          }
+        },
+        {
+          "from": "seedfern",
+          "to": "decomposer",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "有机物供分解者",
+            "en": "Organic matter feeds decomposers"
+          },
+          "caveat": {
+            "zh": "一部分被腐解，一部分可埋藏。",
+            "en": "Some decays and some may be buried."
+          }
+        },
+        {
+          "from": "decomposer",
+          "to": "peat",
+          "type": "cycle",
+          "support": "inference",
+          "label": {
+            "zh": "腐解与埋藏的竞争",
+            "en": "Decay versus burial"
+          },
+          "caveat": {
+            "zh": "不是零分解者的世界。",
+            "en": "This is not a world without decomposers."
+          }
+        }
+      ]
+    },
+    {
+      "id": "permian",
+      "title": {
+        "zh": "二叠纪末：生态网的断裂",
+        "en": "End-Permian: a disrupted web"
+      },
+      "age": {
+        "zh": "危机前的浅海，约2.52亿年前",
+        "en": "Pre-crisis shallow sea, about 252 Ma"
+      },
+      "afterAge": {
+        "zh": "危机后的早三叠世代表景",
+        "en": "Representative post-crisis Early Triassic sea"
+      },
+      "setting": {
+        "zh": "特提斯浅海功能组对照，不是某个剖面的数量统计。",
+        "en": "A Tethyan shallow-marine guild comparison, not a census from one section."
+      },
+      "question": {
+        "zh": "同样叫海洋，为什么危机前后的生态联系不同？",
+        "en": "Why can the same marine setting have different ecological links after a crisis?"
+      },
+      "mechanism": {
+        "zh": "大规模火山活动与碳循环扰动造成多重压力。升温使动物需氧增加，也可削弱海水供氧；缺氧、酸化及食物网变化的作用随地区和类群而异。",
+        "en": "Large-scale volcanism and carbon-cycle disruption impose multiple stresses. Warming raises animal oxygen demand and can reduce ocean oxygen supply; hypoxia, acidification and food-web effects vary among regions and groups."
+      },
+      "change": {
+        "zh": "三叶虫和古生代若干珊瑚支系终止；腕足、双壳、海百合等大类群仍有幸存支。危机后一些地区常见少数机会型组合，复杂结构的恢复并不同步。",
+        "en": "Trilobites and several Paleozoic coral lineages end; brachiopods, bivalves and crinoids retain surviving branches. Some post-crisis settings favor a few opportunistic assemblages, and complex structures recover unevenly."
+      },
+      "uncertainty": {
+        "zh": "变淡表示本教学对照中的受损角色，非统一灭绝百分比；保留大类群也不代表原来所有物种幸存。",
+        "en": "Fading marks an impaired role in this teaching comparison, not a universal extinction percentage; a surviving broad group does not mean all its species survived."
+      },
+      "boundary": {
+        "zh": "两景分隔了事件与恢复时间，不能用开关把数百万年的重组看成下一天。二维连线是生态功能，不是家谱。",
+        "en": "The snapshots span crisis and recovery time; a toggle does not make millions of years of restructuring happen the next day. Links show ecological functions, not ancestry."
+      },
+      "theme": "sea",
+      "phases": true,
+      "refs": [
+        "pt",
+        "pt-record",
+        "extinctions"
+      ],
+      "nodes": [
+        {
+          "id": "pt-trilobite",
+          "name": {
+            "zh": "末期三叶虫类",
+            "en": "Latest trilobite lineages"
+          },
+          "latin": "Trilobita",
+          "icon": "trilobite",
+          "x": 180,
+          "y": 365,
+          "size": 1.15,
+          "record": {
+            "zh": "危机前地层仍有三叶虫；二叠纪后没有可信存续记录。",
+            "en": "Pre-crisis strata retain trilobites; no credible post-Permian continuation is known."
+          },
+          "inference": {
+            "zh": "一个大支系在这里终止；其他节肢动物分支继续。",
+            "en": "A major lineage ends while other arthropod branches continue."
+          },
+          "uncertainty": {
+            "zh": "此轮廓代表三叶虫体制，不是伯吉斯页岩Olenoides活到二叠纪。",
+            "en": "The outline represents trilobite architecture, not Burgess Shale Olenoides surviving to the Permian."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "lost"
+        },
+        {
+          "id": "pt-coral",
+          "name": {
+            "zh": "古生代建礁珊瑚",
+            "en": "Paleozoic reef corals"
+          },
+          "latin": "Rugosa / Tabulata",
+          "icon": "coral",
+          "x": 370,
+          "y": 300,
+          "size": 1.2,
+          "record": {
+            "zh": "珊瑚骨骼和礁体记录生境结构；四射与床板珊瑚在危机中消失。",
+            "en": "Skeletons and reef bodies record habitat structure; rugose and tabulate corals disappear in the crisis."
+          },
+          "inference": {
+            "zh": "失去建造者也改变其他生物可使用的空间。",
+            "en": "Losing builders also changes space available to other organisms."
+          },
+          "uncertainty": {
+            "zh": "后来的石珊瑚不是原地换色后的同一群珊瑚。",
+            "en": "Later scleractinians are not the same coral group recolored."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "lost"
+        },
+        {
+          "id": "brachiopod",
+          "name": {
+            "zh": "腕足动物幸存支",
+            "en": "Brachiopod surviving branches"
+          },
+          "latin": "Brachiopoda",
+          "icon": "brachiopod",
+          "x": 535,
+          "y": 365,
+          "size": 1.15,
+          "record": {
+            "zh": "危机前后都有腕足化石，但多样性和组合强烈改变。",
+            "en": "Brachiopod fossils occur on both sides, with major changes in diversity and assemblage."
+          },
+          "inference": {
+            "zh": "固定滤食功能在一些地区受损，恢复不均。",
+            "en": "Attached suspension-feeding roles are impaired in some settings and recover unevenly."
+          },
+          "uncertainty": {
+            "zh": "“幸存”指部分支系，不是同一个个体穿过灭绝。",
+            "en": "Survival concerns some lineages, not one individual passing through extinction."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "reduced"
+        },
+        {
+          "id": "bivalve",
+          "name": {
+            "zh": "双壳动物幸存支",
+            "en": "Bivalve surviving branches"
+          },
+          "latin": "Bivalvia",
+          "icon": "bivalve",
+          "x": 720,
+          "y": 365,
+          "size": 1.15,
+          "record": {
+            "zh": "早三叠世某些层位有双壳动物密集组合；仍有选择性损失。",
+            "en": "Some Early Triassic beds contain dense bivalve assemblages; selective losses still occurred."
+          },
+          "inference": {
+            "zh": "部分机会型类群在扰动环境中占优势，不代表双壳类普遍不受影响。",
+            "en": "Some opportunistic forms dominate disturbed settings; bivalves were not universally unaffected."
+          },
+          "uncertainty": {
+            "zh": "图中同一ID是大类群锚点，前后未声称是同一物种。",
+            "en": "A shared ID anchors a broad group; the two views do not claim identical species."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "pt-food",
+          "name": {
+            "zh": "浮游生产与有机物",
+            "en": "Planktonic production and organics"
+          },
+          "latin": "Resource pool",
+          "icon": "plankton",
+          "x": 420,
+          "y": 130,
+          "size": 1.05,
+          "record": {
+            "zh": "化石和地球化学记录共同约束生产与环境扰动。",
+            "en": "Fossils and geochemistry jointly constrain production and environmental disruption."
+          },
+          "inference": {
+            "zh": "生产和分解变化可影响供氧与食物可用性。",
+            "en": "Changes in production and decay affect oxygen and food availability."
+          },
+          "uncertainty": {
+            "zh": "危机后未把全部海洋画成完全无生命。",
+            "en": "The post-crisis ocean is not shown as lifeless."
+          },
+          "evidence": [
+            "chemistry",
+            "inference"
+          ],
+          "after": "reduced"
+        }
+      ],
+      "links": [
+        {
+          "from": "pt-food",
+          "to": "brachiopod",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "悬浮食物供给",
+            "en": "Suspended food supply"
+          },
+          "caveat": {
+            "zh": "不同腕足类的应答不相同。",
+            "en": "Brachiopod responses differ."
+          }
+        },
+        {
+          "from": "pt-food",
+          "to": "bivalve",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "幸存者的食物通道",
+            "en": "Food pathway for survivors"
+          },
+          "caveat": {
+            "zh": "前后保留功能不表示物种完全相同。",
+            "en": "A retained function does not imply identical species."
+          }
+        },
+        {
+          "from": "pt-coral",
+          "to": "pt-trilobite",
+          "type": "habitat",
+          "support": "body",
+          "label": {
+            "zh": "建造者提供结构",
+            "en": "Builders provide structure"
+          },
+          "caveat": {
+            "zh": "表示浅海空间结构，不指定每只三叶虫住在礁内。",
+            "en": "Represents shallow-water structure, not every trilobite living in a reef."
+          }
+        },
+        {
+          "from": "pt-coral",
+          "to": "brachiopod",
+          "type": "habitat",
+          "support": "body",
+          "label": {
+            "zh": "有结构的底栖空间",
+            "en": "Structured benthic space"
+          },
+          "caveat": {
+            "zh": "消失的是这一代表网络的联系，非所有海底结构。",
+            "en": "This representative link is lost, not every seafloor structure."
+          }
+        }
+      ]
+    },
+    {
+      "id": "kpg",
+      "title": {
+        "zh": "白垩纪末：谁的分支继续？",
+        "en": "End-Cretaceous: which branches continue?"
+      },
+      "age": {
+        "zh": "北美陆地，约6600万年前",
+        "en": "North American land, about 66 Ma"
+      },
+      "afterAge": {
+        "zh": "早古新世的代表组合",
+        "en": "Representative early Paleocene assemblage"
+      },
+      "setting": {
+        "zh": "森林—河流镶嵌中的功能组；跨地区综合，不是一块岩板或同一物种清单。",
+        "en": "Forest-river mosaic guilds; a regional synthesis rather than one slab or an identical species list."
+      },
+      "question": {
+        "zh": "恐龙灭绝了，为什么今天仍然有鸟？",
+        "en": "Why are there birds today after the dinosaur extinction?"
+      },
+      "mechanism": {
+        "zh": "撞击释放物及尘埃等影响光照与初级生产，继而改变食物网；不同栖息地和食性受到的影响不同。地质界线的撞击证据与植物、动物化石须一起解释。",
+        "en": "Impact ejecta and dust affect light and primary production, altering food webs. Habitats and diets differ in vulnerability. Impact evidence at the boundary must be interpreted alongside plant and animal fossils."
+      },
+      "change": {
+        "zh": "非鸟恐龙支系终止；鸟是恐龙内部的一个分支，部分鸟类谱系延续。哺乳动物早在危机之前存在，也有损失，并非灭绝后一夜突然出现。",
+        "en": "Non-avian dinosaur branches end. Birds are a branch within dinosaurs, and some avian lineages continue. Mammals already existed and also suffered losses; they did not appear overnight afterward."
+      },
+      "uncertainty": {
+        "zh": "鸟类生存与地面生活、种子等资源的关系是有证据约束的假说，不是适用于每一只鸟的生存公式。各地区森林恢复不同。",
+        "en": "Links between avian survival, ground dwelling and resources such as seeds are evidence-constrained hypotheses, not a survival formula for every bird. Forest recovery varied regionally."
+      },
+      "boundary": {
+        "zh": "前后按大类群保持身份；幸存标签不表示同一物种或所有成员幸存。淡化不是数量比例，早古新世也不是撞击第二天。",
+        "en": "Identity is retained at broad-group level; a survival label does not imply identical species or all members surviving. Fading is not an abundance ratio, and the early Paleocene is not the day after impact."
+      },
+      "theme": "forest",
+      "phases": true,
+      "refs": [
+        "kpg",
+        "birds",
+        "extinctions"
+      ],
+      "nodes": [
+        {
+          "id": "nonavian",
+          "name": {
+            "zh": "非鸟恐龙",
+            "en": "Non-avian dinosaurs"
+          },
+          "latin": "Dinosauria excluding birds",
+          "icon": "dinosaur",
+          "x": 270,
+          "y": 335,
+          "size": 1.7,
+          "record": {
+            "zh": "骨骼、牙齿、足迹与蛋等证据约束身体与活动。",
+            "en": "Bones, teeth, tracks and eggs constrain bodies and activities."
+          },
+          "inference": {
+            "zh": "此处用一只植食形体代表某些陆地取食通道；非鸟恐龙食性远比这一种多。",
+            "en": "One herbivorous silhouette represents some terrestrial feeding pathways; non-avian diets were much more diverse."
+          },
+          "uncertainty": {
+            "zh": "不是把所有恐龙画成同一种，也不推断具体皮肤色泽。",
+            "en": "Not all dinosaurs shared this form; skin color is not established."
+          },
+          "evidence": [
+            "body",
+            "trace",
+            "inference"
+          ],
+          "after": "lost"
+        },
+        {
+          "id": "bird",
+          "name": {
+            "zh": "鸟类幸存分支",
+            "en": "Surviving avian branches"
+          },
+          "latin": "Avialae / crown-bird survivors",
+          "icon": "bird",
+          "x": 650,
+          "y": 190,
+          "size": 1.15,
+          "record": {
+            "zh": "骨骼化石及谱系比较共同约束鸟类演化。",
+            "en": "Skeletal fossils and phylogenetic comparisons constrain bird evolution."
+          },
+          "inference": {
+            "zh": "鸟属于恐龙；界线附近多种鸟类也消失，少数谱系延续。",
+            "en": "Birds are dinosaurs; many avian groups also disappear near the boundary while some lineages continue."
+          },
+          "uncertainty": {
+            "zh": "图形只是一般鸟形，不把它命名为一只未经证实的幸存物种。",
+            "en": "The image is a generic bird form, not an unverified named survivor species."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "reduced"
+        },
+        {
+          "id": "mammal",
+          "name": {
+            "zh": "小型哺乳动物支系",
+            "en": "Small mammal lineages"
+          },
+          "latin": "Mammalia",
+          "icon": "mammal",
+          "x": 650,
+          "y": 365,
+          "size": 1.1,
+          "record": {
+            "zh": "牙齿与骨骼表明哺乳动物在白垩纪已经多样化。",
+            "en": "Teeth and bones show that mammals were already diverse during the Cretaceous."
+          },
+          "inference": {
+            "zh": "不同食性与栖息地有不同生存机会；早古新世出现新的组合。",
+            "en": "Diets and habitats differ in survival opportunities; new assemblages form in the early Paleocene."
+          },
+          "uncertainty": {
+            "zh": "不是所有哺乳动物都幸存，小身体也不是绝对保护。",
+            "en": "Not all mammals survived; small size was no absolute protection."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "reduced"
+        },
+        {
+          "id": "kpg-plant",
+          "name": {
+            "zh": "森林与种子资源",
+            "en": "Forest and seed resources"
+          },
+          "latin": "Plant guilds",
+          "icon": "broadleaf",
+          "x": 130,
+          "y": 220,
+          "size": 1.3,
+          "record": {
+            "zh": "叶片、木材、孢粉及界线附近植物更替记录植被变化。",
+            "en": "Leaves, wood, pollen and spores record vegetation changes across the boundary."
+          },
+          "inference": {
+            "zh": "生产者受损会影响植食者；某些资源可为幸存者提供机会。",
+            "en": "Damage to producers affects herbivores; some resources can support survivors."
+          },
+          "uncertainty": {
+            "zh": "画面不规定全球所有森林同时以同样方式燃烧或恢复。",
+            "en": "The scene does not prescribe identical burning or recovery for every forest."
+          },
+          "evidence": [
+            "body",
+            "chemistry",
+            "inference"
+          ],
+          "after": "reduced"
+        },
+        {
+          "id": "detritus",
+          "name": {
+            "zh": "河流与碎屑食物通道",
+            "en": "River and detrital pathways"
+          },
+          "latin": "Detrital resource pool",
+          "icon": "detritus",
+          "x": 470,
+          "y": 420,
+          "size": 1.1,
+          "record": {
+            "zh": "沉积环境及相关化石记录水域与陆地不同保存和群落。",
+            "en": "Sedimentary settings and fossils record differing aquatic and terrestrial communities."
+          },
+          "inference": {
+            "zh": "碎屑支持的通道可能缓冲生产下降的部分影响。",
+            "en": "Detrital pathways may buffer some effects of reduced production."
+          },
+          "uncertainty": {
+            "zh": "不是一个保证所有水生动物幸存的避难所按钮。",
+            "en": "This is not a refuge switch guaranteeing every aquatic animal survives."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        }
+      ],
+      "links": [
+        {
+          "from": "kpg-plant",
+          "to": "nonavian",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "植物 → 植食者",
+            "en": "Plants → herbivore"
+          },
+          "caveat": {
+            "zh": "仅代表图中植食功能。",
+            "en": "Represents the illustrated herbivorous role only."
+          }
+        },
+        {
+          "from": "kpg-plant",
+          "to": "bird",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "部分鸟类的资源",
+            "en": "Resources for some birds"
+          },
+          "caveat": {
+            "zh": "不把食籽假说当作全部鸟类的统一解释。",
+            "en": "Seed-based hypotheses do not explain every bird."
+          }
+        },
+        {
+          "from": "detritus",
+          "to": "mammal",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "碎屑网的间接通道",
+            "en": "Indirect detrital pathway"
+          },
+          "caveat": {
+            "zh": "可经无脊椎动物等中间环节，箭头作概括。",
+            "en": "May pass through invertebrate intermediates; the arrow is summarized."
+          }
+        },
+        {
+          "from": "kpg-plant",
+          "to": "detritus",
+          "type": "cycle",
+          "support": "body",
+          "label": {
+            "zh": "凋落物进入水陆网",
+            "en": "Litter enters linked webs"
+          },
+          "caveat": {
+            "zh": "幸存不意味着所有原有联系不变。",
+            "en": "Survival does not mean every original link persists."
+          }
+        }
+      ]
+    },
+    {
+      "id": "steppe",
+      "title": {
+        "zh": "猛犸草原不是现代冻原",
+        "en": "Mammoth steppe is not modern tundra"
+      },
+      "age": {
+        "zh": "晚更新世，约4万–1.2万年前",
+        "en": "Late Pleistocene, about 40–12 ka"
+      },
+      "afterAge": {
+        "zh": "",
+        "en": ""
+      },
+      "setting": {
+        "zh": "欧亚北部与白令地区的区域拼图；冷而偏干，草本、灌丛与湿地镶嵌。",
+        "en": "A regional northern Eurasian and Beringian mosaic; cold, relatively dry herb-rich ground, shrubs and wetlands."
+      },
+      "question": {
+        "zh": "大动物消失后，为什么原来的草原也没有原样保留？",
+        "en": "Why did the old grassland not simply remain after large animals disappeared?"
+      },
+      "mechanism": {
+        "zh": "植被既受温度、水分与土壤控制，也受啃食、踩踏和养分回归影响。变暖、湿润化和植被重组改变食物与活动空间；人类影响须按地区证据讨论。",
+        "en": "Vegetation responds to temperature, water and soil, as well as grazing, trampling and nutrient return. Warming, wetting and vegetation shifts alter food and space; human effects require regional evidence."
+      },
+      "change": {
+        "zh": "不同动物、地区及大陆岛屿的最后记录不同步；猛犸灭绝不是全球同一瞬间。化石末次发现还会早于真实末次存在。",
+        "en": "Last records differ among animals, regions, mainland and islands; mammoths did not vanish globally at once. The last recovered fossil can predate the true last occurrence."
+      },
+      "uncertainty": {
+        "zh": "狩猎、环境变化和相互作用的重要性仍有争论，不能用一个开关决定所有巨兽命运，也不能因缺猎杀遗址就排除任何人类影响。",
+        "en": "The relative roles of hunting, environmental change and their interaction remain debated. One switch cannot determine all megafaunal outcomes; missing kill sites do not exclude every human effect."
+      },
+      "boundary": {
+        "zh": "体型和数量为构图，非等比例或种群统计。图中动物不是从北美白垩纪群落逐只变来，而是另一时空的比较案例。",
+        "en": "Size and counts serve composition, not scale or population statistics. These animals are another place and time, not transformed individuals from the Cretaceous scene."
+      },
+      "theme": "steppe",
+      "phases": false,
+      "refs": [
+        "beringia",
+        "mammoth"
+      ],
+      "nodes": [
+        {
+          "id": "mammoth",
+          "name": {
+            "zh": "猛犸象",
+            "en": "Woolly mammoth"
+          },
+          "latin": "Mammuthus primigenius",
+          "icon": "mammoth",
+          "x": 280,
+          "y": 285,
+          "size": 1.65,
+          "record": {
+            "zh": "骨、牙、冻存遗体与直接定年提供身体和时间线索。",
+            "en": "Bones, teeth, frozen remains and direct dating constrain body and timing."
+          },
+          "inference": {
+            "zh": "牙齿磨耗、同位素及消化道内容物可约束食物；不同地区会变化。",
+            "en": "Wear, isotopes and gut contents constrain diet, with regional variation."
+          },
+          "uncertainty": {
+            "zh": "毛色和每次进食行为不是由一枚牙齿唯一确定。",
+            "en": "One tooth cannot uniquely establish coat color or each feeding act."
+          },
+          "evidence": [
+            "body",
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "horse",
+          "name": {
+            "zh": "更新世马类",
+            "en": "Pleistocene horses"
+          },
+          "latin": "Equus lineages",
+          "icon": "horse",
+          "x": 650,
+          "y": 310,
+          "size": 1.25,
+          "record": {
+            "zh": "骨牙与定年记录不同地区的马类；有些地区后来局部消失。",
+            "en": "Dated bones and teeth record horses with later regional disappearances."
+          },
+          "inference": {
+            "zh": "马与其他大型植食者共同影响地表资源，但食谱和利用范围不完全相同。",
+            "en": "Horses and other large herbivores share resources but differ in diet and range."
+          },
+          "uncertainty": {
+            "zh": "不能把当地灭绝写成整个马类在全球灭绝。",
+            "en": "A regional disappearance is not global extinction of all horses."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "bison",
+          "name": {
+            "zh": "草原野牛类",
+            "en": "Steppe bison lineages"
+          },
+          "latin": "Bison priscus-type",
+          "icon": "bison",
+          "x": 495,
+          "y": 340,
+          "size": 1.2,
+          "record": {
+            "zh": "骨、角与牙齿化石记录古野牛形态及分布。",
+            "en": "Bones, horns and teeth record ancient bison form and distribution."
+          },
+          "inference": {
+            "zh": "啃食、踩踏与排泄将动物和植物、土壤连成反馈。",
+            "en": "Grazing, trampling and nutrient return link animals with plants and soil."
+          },
+          "uncertainty": {
+            "zh": "现代野牛不是一只古野牛不变地活到现在；种群历史与谱系仍需区分。",
+            "en": "A modern bison is not an unchanged ancient individual; population history and lineage need distinction."
+          },
+          "evidence": [
+            "body",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "herbs",
+          "name": {
+            "zh": "禾草、莎草与杂类草",
+            "en": "Grasses, sedges and forbs"
+          },
+          "latin": "Mixed herbaceous vegetation",
+          "icon": "grass",
+          "x": 230,
+          "y": 425,
+          "size": 1.25,
+          "record": {
+            "zh": "花粉、植物大化石和沉积物中的DNA等提供互补植被线索。",
+            "en": "Pollen, plant macrofossils and sedimentary DNA provide complementary vegetation evidence."
+          },
+          "inference": {
+            "zh": "食物并不只有草；不同食草动物选择不同植物部位与季节。",
+            "en": "Food was not only grass; herbivores selected different plant parts and seasons."
+          },
+          "uncertainty": {
+            "zh": "各记录有保存、搬运与采样偏差，不能单凭一种代理重建全部植被。",
+            "en": "Records have preservation, transport and sampling biases; one proxy cannot recover all vegetation."
+          },
+          "evidence": [
+            "body",
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        },
+        {
+          "id": "shrubs",
+          "name": {
+            "zh": "灌丛与土壤水分",
+            "en": "Shrubs and soil moisture"
+          },
+          "latin": "Vegetation-environment node",
+          "icon": "shrub",
+          "x": 740,
+          "y": 410,
+          "size": 1,
+          "record": {
+            "zh": "植物残体与沉积环境帮助约束灌丛、湿地和土壤变化。",
+            "en": "Plant remains and sedimentary context constrain shrubs, wetlands and soil change."
+          },
+          "inference": {
+            "zh": "湿润化与植被改变可减少某些旱生草本生境；区域响应并不一致。",
+            "en": "Wetting and vegetation shifts can reduce some dry-herb habitats; regional responses differ."
+          },
+          "uncertainty": {
+            "zh": "不把植被变化解释成一次气温变化直接杀死所有巨兽。",
+            "en": "Vegetation change is not a single temperature pulse directly killing all megafauna."
+          },
+          "evidence": [
+            "body",
+            "chemistry",
+            "inference"
+          ],
+          "after": "present"
+        }
+      ],
+      "links": [
+        {
+          "from": "herbs",
+          "to": "mammoth",
+          "type": "energy",
+          "support": "body",
+          "label": {
+            "zh": "多样草本供食",
+            "en": "Diverse herbs provide food"
+          },
+          "caveat": {
+            "zh": "具体食物由样本和地点约束。",
+            "en": "Specific foods depend on sample and locality."
+          }
+        },
+        {
+          "from": "herbs",
+          "to": "horse",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "植食通道",
+            "en": "Herbivory pathway"
+          },
+          "caveat": {
+            "zh": "并非全体动物共享完全相同食谱。",
+            "en": "Animals do not all share an identical diet."
+          }
+        },
+        {
+          "from": "herbs",
+          "to": "bison",
+          "type": "energy",
+          "support": "inference",
+          "label": {
+            "zh": "草本资源",
+            "en": "Herbaceous resources"
+          },
+          "caveat": {
+            "zh": "图上数量不表示食物需求量。",
+            "en": "Counts do not show food demand."
+          }
+        },
+        {
+          "from": "mammoth",
+          "to": "herbs",
+          "type": "pressure",
+          "support": "inference",
+          "label": {
+            "zh": "啃食、踩踏与养分回归",
+            "en": "Grazing, trampling and nutrient return"
+          },
+          "caveat": {
+            "zh": "反馈强弱受区域和密度影响，不作定量预测。",
+            "en": "Feedback strength depends on place and density; no numerical prediction is made."
+          }
+        },
+        {
+          "from": "shrubs",
+          "to": "herbs",
+          "type": "pressure",
+          "support": "inference",
+          "label": {
+            "zh": "水分与植被重组",
+            "en": "Moisture and vegetation restructuring"
+          },
+          "caveat": {
+            "zh": "多因素共同改变资源，非单一必然替代。",
+            "en": "Multiple factors change resources; replacement is not inevitable."
+          }
+        }
+      ]
+    }
+  ],
+  "plants": {
+    "lycopsid": {
+      "title": {
+        "zh": "树状石松类：沿树干找叶座",
+        "en": "Lycopsid: follow the leaf cushions"
+      },
+      "observation": {
+        "zh": "转到侧面：菱形叶座沿干表排列；每个叶座上部的小叶痕与中央纹理是观察重点。它们记录叶片曾经连接的位置，不是树皮鳞片。",
+        "en": "Rotate to the side: diamond-shaped cushions follow the stem surface. A smaller upper leaf scar and central detail mark former leaf attachment, rather than bark scales."
+      },
+      "evidence": {
+        "zh": "Lepidodendron型干表化石约束菱形叶座与叶痕；枝端狭长微叶和分枝的组合参考全植物研究。",
+        "en": "Lepidodendron-type stem fossils constrain cushions and scars; narrow distal microphylls and branching are informed by whole-plant studies."
+      },
+      "uncertainty": {
+        "zh": "程序模型强调共同特征，未对应某种完整实物扫描。冠形、绿褐色和叶片疏密属补全；未展示繁殖器官，不能由此判断个体生命阶段。",
+        "en": "The procedural model emphasizes shared features without scanning a complete specimen. Crown form, colors and leaf density are authored; reproductive organs are omitted, so life stage cannot be read from it."
+      },
+      "refs": [
+        "plants",
+        "forest"
+      ]
+    },
+    "calamite": {
+      "title": {
+        "zh": "树状节类：节点不是树皮环",
+        "en": "Calamite: nodes are structural junctions"
+      },
+      "observation": {
+        "zh": "顺着主轴寻找较长节间与一圈圈节点，枝从节点附近轮生。点开形态细节，对比干的连续纵向结构和节点的连接关系。",
+        "en": "Follow long internodes separated by nodes, with branches arranged in whorls near nodes. In the detail view compare longitudinal structure with these junctions."
+      },
+      "evidence": {
+        "zh": "Calamites型化石常是髓腔铸型；节间纵棱、节处分枝痕与相关枝叶化石是不同证据。外部树形不能仅由一个铸型完整推出。",
+        "en": "Calamites fossils are often pith casts. Internode ribs, nodal branch scars and associated foliage are distinct evidence; one cast does not establish the entire external tree."
+      },
+      "uncertainty": {
+        "zh": "三维是有条件的全植物形态复原，不把髓腔铸型当作外表皮。采用温和纵纹、节点及轮生枝展示节类构造，枝叶姿态和颜色为补全。",
+        "en": "The 3D image is a qualified whole-plant reconstruction, not a pith cast mislabeled as epidermis. Restrained longitudinal texture, nodes and branch whorls convey architecture; posture and color are authored."
+      },
+      "refs": [
+        "calamites",
+        "plants"
+      ]
+    },
+    "seedfern": {
+      "title": {
+        "zh": "种子蕨：像蕨的叶，不等于蕨",
+        "en": "Seed fern: a fern-like leaf is not a fern"
+      },
+      "observation": {
+        "zh": "从主叶轴向外看：一级羽片再带多枚小羽片，叶脉从中部向边缘分支。这是可旋转的复叶片段，不是整个森林，也不是现代棕榈叶。",
+        "en": "Follow a main rachis to pinnae bearing multiple pinnules. Veins branch toward the margin. This rotatable compound-frond fragment is neither a whole forest nor a modern palm leaf."
+      },
+      "evidence": {
+        "zh": "medullosan型种子蕨的复叶与脉序约束轮廓；繁殖方式依据独立的种子和生殖器官证据，不能从一片像蕨的叶直接认出。",
+        "en": "Medullosan-type foliage and venation constrain the form. Reproduction relies on separate seed and reproductive-organ evidence; a fern-like leaf alone does not identify it."
+      },
+      "uncertainty": {
+        "zh": "仅展示代表复叶，不在未证实连接处加种子。羽片数、脉数和三维展开角用于解释，不是标本测量或物种鉴定工具。",
+        "en": "Only representative foliage is shown, with no seeds added at unverified attachment sites. Pinna counts, vein counts and opening angles serve explanation rather than measurement or identification."
+      },
+      "refs": [
+        "seedfern",
+        "plants"
+      ]
+    }
+  }
+}

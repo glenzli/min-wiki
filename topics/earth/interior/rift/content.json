@@ -1,0 +1,296 @@
+{
+  "zh": {
+    "title": "沿同一条裂谷，换三种尺度",
+    "intro": "从理想化大陆找到Rift A，再看F1断层和P1材料。换观察尺度保留地质阶段；断层事件另有独立回放。",
+    "scales": {
+      "global": "整体 · 大陆裂解",
+      "region": "局部 · Rift A剖面",
+      "material": "材料 · 跟随P1"
+    },
+    "questions": {
+      "global": "大陆的同一处，怎样开始被拉开？",
+      "region": "地表下陷、断层与岩浆，是同一件事吗？",
+      "material": "同一份地幔材料，哪些留下、哪些改变？"
+    },
+    "scaleNotes": {
+      "global": "理想化大陆，不是现代地图、古地理重建或未来预测；地形起伏与裂开宽度放大。",
+      "region": "Rift A的解释性剖切地形；层厚、地形与位移分别夸大，无共同长度尺。深色下部仍主要为固态地幔。",
+      "material": "P1的20个固定教学标记被放大追踪；不是20颗真实矿物，也不代表真实熔融百分比。"
+    },
+    "branchTitle": "从同一剖面，选择一条观察支线",
+    "branches": {
+      "structure": "看结构与接触",
+      "fault": "F1 · 应变与地震",
+      "magma": "P1 · 部分熔融与上升"
+    },
+    "geology": "大陆伸展 · 漫长地质过程的教学进度",
+    "geologyUnits": "0—100仅是这段代表过程的坐标，不换算成年数。此情景展示持续伸展的一种去向，并非每条裂谷必然分裂成海洋。",
+    "play": "播放地质过程",
+    "pause": "暂停地质过程",
+    "reset": "回到本例起始",
+    "back": "后退一段",
+    "forward": "前进一段",
+    "premises": "改变一个前提，比较不同去向",
+    "motion": "从起始的伸展前提",
+    "extend": "有持续伸展的情景",
+    "still": "无持续伸展条件（对照）",
+    "thermal": "本例P1的上涌路径",
+    "warm": "跨过部分熔融条件",
+    "cool": "未跨过部分熔融条件",
+    "path": "熔体迁移路径",
+    "open": "可向浅部侵入",
+    "sealed": "迁移受限，停留较深",
+    "cooling": "同一批熔体的冷却对照",
+    "slow": "较慢 · 颗粒可长得较大",
+    "fast": "较快 · 细粒与暗色基质",
+    "conditionReset": "前提已改变：保留地质坐标，暂停两条回放并把F1事件归零，作为新的条件对照。已有物质在新前提下重新计算，不是假装现场瞬间倒流。",
+    "motionNote": "“无持续伸展”从本例起始比较，不是暂停按钮，也不抹去真实地球可能已存的应力。暂停请用各自的播放按钮。",
+    "quakeTitle": "F1：选定一段已存应变的示例事件",
+    "quakeIntro": "先暂停漫长地质阶段，再放大这一次局部过程：断层锁固时附近岩石变形，随后快速滑移并释放地震波。启动它不会增加地质阶段，也不会制造熔体。",
+    "event": "这段F1事件的初始条件",
+    "loaded": "有预存弹性应变的示例",
+    "unloaded": "未加载应变的对照",
+    "quakePlay": "播放F1事件",
+    "quakePause": "暂停F1事件",
+    "quakeReset": "重置这段事件",
+    "quakeDisabled": "未加载应变：本对照不产生示例滑移。先选择有预存应变的事件；无伸展情景本身并不能证明地球没有既存应力。",
+    "quakeUnits": "事件坐标与应变条都无物理单位，不对应秒数、应力、震级、危险程度或真实复发周期。画面圈线只编码能量向外传播，不是求解的地震波形。",
+    "quakePhases": {
+      "unloaded": "未加载：没有示例滑移",
+      "locked": "锁固：附近岩石储存弹性应变",
+      "slip": "滑动：上盘沿倾斜断层向下、向盆地内移动",
+      "after": "之后：留下位移，波离开附近区域"
+    },
+    "strain": "示例应变储存",
+    "slip": "示例滑移完成程度",
+    "geologyHeld": "播放F1时，地质阶段停在",
+    "quakeHeld": "地质过程播放时，F1事件保持暂停。切尺度也不自动恢复播放。",
+    "stages": [
+      {
+        "title": "同一大陆与继承的薄弱带",
+        "body": "Rift A始终位于中央标记处。这里选定一条可能被重新利用的薄弱带；真实大陆内部有复杂的古老结构。"
+      },
+      {
+        "title": "伸展与正断层形成下陷盆地",
+        "body": "岩石圈受拉伸而变形。上部脆性岩石可沿正断层错开；下方较热岩石可在更长时间中缓慢变形。"
+      },
+      {
+        "title": "减薄与主要固态地幔上涌",
+        "body": "上方压力下降是P1的一条变化路径。只有本例跨过熔融条件时，少部分标记转成熔体；多数仍留在固态残余中。"
+      },
+      {
+        "title": "熔体可以迁移，也可以停留地下",
+        "body": "有通路时熔体向浅部侵入；迁移受限时停留较深。两个情景都不自动连接到地表喷发，地震回放不是驱动它的开关。"
+      },
+      {
+        "title": "更宽的裂谷与地下冷却记录",
+        "body": "这个代表情景继续伸展；若P1此前形成熔体，冷却会留下新的粒状结构，未跨过熔融条件则仍为固态。真实裂谷可能继续裂解，也可能停止或以后再活化。"
+      }
+    ],
+    "noExtension": "在从起始无持续伸展的对照中，本例不发展裂谷减薄、上涌或熔体；独立F1已加载事件仍可单独观察。",
+    "noMelt": "P1没有跨过本例部分熔融条件：20个标记仍是固态材料。拉张与断层不等于必然有岩浆。",
+    "meltDevelops": "少量P1标记正进入熔体；其余固态残余保留在源区。没有把整个地幔画成红色液体。",
+    "meltRetained": "P1的熔体迁移受限，在更深部停留和冷却；地表可以没有喷发。",
+    "meltRises": "P1熔体沿本例可通行路径侵入浅部，随后在地下冷却；这里没有模拟到达地表的喷发。",
+    "crystalNote": "粒状结构只是玄武质熔体冷却的解释性形态；浅色、深色颗粒不是本图鉴定出的矿物，不是石英晶簇，也不是原子晶格。冷却速度之外，成分、含水量与成核同样重要。",
+    "ledger": "P1标记去向",
+    "residue": "固态残余份",
+    "melt": "熔体份",
+    "crystal": "新结晶份",
+    "total": "固定20个标记，允许同一标记分成残余、熔体与结晶份；下列任意份额在圆整前合计20，不代表实测熔融率。",
+    "track": "追踪同一标记",
+    "tagNote": "选中的标记始终保留编号；在材料尺度中用金色轮廓提示位置。一个教学标记可代表一小份材料，不是分子或单个矿物。",
+    "renderer": "观察方式",
+    "three": "3D场景",
+    "diagram": "可访问剖面图",
+    "camera": "恢复本尺度视角",
+    "retry": "保留状态并重载3D",
+    "loading": "正在准备裂谷场景……",
+    "unavailable": "3D暂不可用；下方剖面、条件对照与材料去向仍可操作。",
+    "cameraHint": "拖动旋转；双指或滚轮缩放；方向键、+ / −、Home也可操作。三个尺度共用一个3D画布，镜头不代表实测距离。",
+    "identity": "同一地点与材料",
+    "site": "Rift A · 理想化裂谷",
+    "fault": "F1 · 正断层",
+    "parcel": "P1 · 地幔材料",
+    "faultLayer": "地壳与可比对的层状标记",
+    "solidMantle": "岩石圈地幔 / 更深处仍主要固态",
+    "intrusion": "地下侵入与冷却",
+    "scaleFallback": "二维对照保持相同地点、阶段和P1去向；透视与层厚仍为教学示意。",
+    "deeper": "继续读机制、证据与边界",
+    "notes": [
+      {
+        "title": "整体到局部，什么保持不变？",
+        "body": "同一Rift A对应同一条大陆薄弱带，局部视图中F1在盆地西侧向盆地倾斜，P1在其下方的地幔源区。切尺度不改变阶段或材料编号。理想大陆的海岸和区域地形均为自制，并非复原东非、某个古大陆或预测未来大陆图。真正的裂谷有迁移、分段、继承结构和中止等多种历史。 本例后期选择盆地已与海域连通的边界条件，在整体和区域中同时显示水面；未计算海水进入、海平面或水量收支。早期和停歇对照均保持陆地盆地。"
+      },
+      {
+        "title": "为什么地震不是每一次拉开就发生？",
+        "body": "地质尺度的相对运动可以通过锁固、蠕滑和许多地震分担。F1回放只选择一段有预存应变的事件：弹性形变、快速正断层滑动与留下的错移。中盘是左侧F1的上盘，沿断层向下并向盆地内移动；波离开后位移仍在。这里不计算破裂起点、摩擦定律或真实波速。"
+      },
+      {
+        "title": "减压熔融不等于突然加热，也不是震熔",
+        "body": "主要固态的地幔上升时，压力下降可使其路径越过固相线，产生一部分熔体；具体结果取决于温度、成分、含水等条件。暖/冷选项只是“本例跨过/未跨过条件”的简写，未设真实温压值。P1支线不消费F1事件进度；地震不会在本模型里把岩石震成岩浆。"
+      },
+      {
+        "title": "无地表火山，也可能有地下岩浆活动",
+        "body": "地震各向异性、速度结构、地表形变、热流和岩石化学可以相互约束。Tanganyika–Rukwa的研究将一些地震学线索解释为深部熔体透镜，说明“没有喷发”并不自动等于“没有地下熔体”。本图不是该地的观测剖面，开通路也不保证喷发。"
+      },
+      {
+        "title": "P1记账与结晶图能说明多少？",
+        "body": "固定20个标记中，本例仅选择4个可以进入熔体，以便追踪残余、迁移与结晶三种去向；4/20不是测得的熔融率。慢冷允许显示较大的颗粒，快冷显示细粒和暗基质。真实结晶包含多种矿物、成核、生长与反应；本图不计算化学配分、热量守恒或矿物晶格，也不能用颜色鉴定岩石。"
+      }
+    ],
+    "sources": "核对来源与原创资产",
+    "asset": "全部裂谷几何、层理与表面纹理由代码原创；无展馆照片、扫描模型或第三方地形素材。原有整球内部剖面的现代地表贴图不用于这幅理想大陆。",
+    "evolution": "这条裂谷的后续条件",
+    "continue": "保持伸展的代表路径",
+    "stall": "早期停止伸展的对照",
+    "stalled": "早期停歇对照：已有的盆地和断层保留，不继续加宽到大陆裂开；本例也没有进入后续部分熔融阶段。"
+  },
+  "en": {
+    "title": "Follow one rift through three scales",
+    "intro": "Find Rift A on an idealized continent, then inspect fault F1 and material P1. Scale changes preserve the geological stage; the fault event has its own replay.",
+    "scales": {
+      "global": "Whole · Continental rifting",
+      "region": "Local · Rift A section",
+      "material": "Material · Follow P1"
+    },
+    "questions": {
+      "global": "How can one part of a continent begin to pull apart?",
+      "region": "Are subsidence, fault slip and magma the same process?",
+      "material": "Which parts of one mantle parcel remain, and which change?"
+    },
+    "scaleNotes": {
+      "global": "An idealized continent, not a modern map, paleogeographic reconstruction or forecast. Relief and opening are enlarged.",
+      "region": "An interpretive cutaway of Rift A. Layer thickness, relief and displacement are separately enlarged, without a shared length scale. The dark material below is predominantly solid mantle.",
+      "material": "Twenty fixed teaching tags from P1 are enlarged for tracking. They are neither twenty real grains nor a measured melt percentage."
+    },
+    "branchTitle": "Choose an observation branch from the same section",
+    "branches": {
+      "structure": "Structure & contacts",
+      "fault": "F1 · Strain & earthquakes",
+      "magma": "P1 · Partial melt & ascent"
+    },
+    "geology": "Continental extension · a long geological teaching sequence",
+    "geologyUnits": "0–100 is a coordinate in this representative process, not years. This case follows one continuing-extension path; not every rift inevitably becomes an ocean.",
+    "play": "Play geological process",
+    "pause": "Pause geological process",
+    "reset": "Return to this case’s start",
+    "back": "Step back",
+    "forward": "Step forward",
+    "premises": "Change one prerequisite and compare outcomes",
+    "motion": "Extension from the case’s beginning",
+    "extend": "Continuing extension",
+    "still": "No continuing extension (control)",
+    "thermal": "P1’s upwelling path in this case",
+    "warm": "Crosses partial-melting conditions",
+    "cool": "Does not cross partial-melting conditions",
+    "path": "Melt transport pathway",
+    "open": "Can intrude shallower crust",
+    "sealed": "Restricted; remains deeper",
+    "cooling": "Cooling comparison for the same melt",
+    "slow": "Slower · larger grains can grow",
+    "fast": "Faster · fine grains and dark groundmass",
+    "conditionReset": "Prerequisites changed: the geological coordinate is retained, both replays pause and F1 resets for a new comparison. Material is recomputed under the new premise, rather than presented as an instantaneous real-world reversal.",
+    "motionNote": "No continuing extension is a control from the case’s start, not a pause button or proof that real Earth has no stored stress. Use each replay’s pause control to stop it.",
+    "quakeTitle": "F1: a selected event with stored strain",
+    "quakeIntro": "Hold the long geological stage, then inspect this local event: nearby rock deforms while the fault is locked, followed by rapid slip and outward seismic energy. Starting it neither advances geological time nor produces melt.",
+    "event": "Initial condition of this F1 event",
+    "loaded": "Example with stored elastic strain",
+    "unloaded": "Unloaded control",
+    "quakePlay": "Play F1 event",
+    "quakePause": "Pause F1 event",
+    "quakeReset": "Reset this event",
+    "quakeDisabled": "Unloaded control: this example produces no slip. Select an event with stored strain first. No continuing extension alone does not establish that Earth has no stored stress.",
+    "quakeUnits": "The event coordinate and strain bar have no physical units, seconds, stress, magnitude, hazard level or real recurrence interval. Expanding lines encode outward energy rather than solved seismic waveforms.",
+    "quakePhases": {
+      "unloaded": "Unloaded: no example slip",
+      "locked": "Locked: nearby rock stores elastic strain",
+      "slip": "Slip: hanging wall moves down-dip and into the basin",
+      "after": "After: displacement remains while waves leave the area"
+    },
+    "strain": "Illustrative strain storage",
+    "slip": "Illustrative slip completion",
+    "geologyHeld": "During F1 replay, geological stage is held at",
+    "quakeHeld": "F1 pauses during geological playback. Changing scales never automatically resumes either replay.",
+    "stages": [
+      {
+        "title": "One continent and an inherited weakness",
+        "body": "Rift A remains at the central marker. This case selects a weakness that may be reused; real continents contain complex older structures."
+      },
+      {
+        "title": "Extension and normal faults lower a basin",
+        "body": "The lithosphere stretches. Brittle upper rock may move along normal faults, while hotter material below deforms slowly over much longer periods."
+      },
+      {
+        "title": "Thinning and predominantly solid mantle upwelling",
+        "body": "Pressure falls along one possible P1 path. Only the crossing-conditions case produces a small molten portion; most tags remain in the solid residue."
+      },
+      {
+        "title": "Melt may migrate or stay underground",
+        "body": "An open path allows shallower intrusion; restricted transport retains melt deeper. Neither case automatically connects to an eruption, and fault replay is not its trigger."
+      },
+      {
+        "title": "A wider rift and records of underground cooling",
+        "body": "This representative case continues to extend. If P1 previously produced melt, cooling develops a new granular texture; otherwise it remains solid. Real rifts may continue to breakup, cease activity or reactivate later."
+      }
+    ],
+    "noExtension": "With no continuing extension from the start, this case develops no rift thinning, upwelling or melt. The independent preloaded F1 event remains available for comparison.",
+    "noMelt": "P1 has not crossed this case’s melting conditions: all twenty tags remain solid. Extension and faulting do not guarantee magma.",
+    "meltDevelops": "A small subset of P1 tags enters melt; the solid residue stays at its source. The whole mantle is never rendered as red liquid.",
+    "meltRetained": "P1 melt has restricted transport and cools deeper underground. The surface can remain without an eruption.",
+    "meltRises": "P1 melt follows the permitted path into shallower crust and cools underground. No eruption reaching the surface is simulated here.",
+    "crystalNote": "The granular texture interprets cooling of basaltic melt; pale and dark grains are not identified minerals, a quartz cluster or an atomic lattice. Composition, water and nucleation matter alongside cooling rate.",
+    "ledger": "P1 tag destinations",
+    "residue": "Solid residue portions",
+    "melt": "Melt portions",
+    "crystal": "Crystallized portions",
+    "total": "Twenty fixed tags may split among residue, melt and crystallized portions. These arbitrary portions total twenty before rounding, not a measured melt fraction.",
+    "track": "Track the same tag",
+    "tagNote": "A selected tag keeps its number and receives a gold outline in the material view. One teaching tag represents some material, not a molecule or individual mineral.",
+    "renderer": "Observation mode",
+    "three": "3D scene",
+    "diagram": "Accessible section",
+    "camera": "Reset this scale’s camera",
+    "retry": "Reload 3D with saved state",
+    "loading": "Preparing the rift scene…",
+    "unavailable": "3D is unavailable; the section, prerequisite comparisons and material ledger remain usable.",
+    "cameraHint": "Drag to rotate; pinch or wheel to zoom. Arrow keys, + / − and Home also work. Three scales share one 3D canvas; the camera does not measure distance.",
+    "identity": "One site and one material history",
+    "site": "Rift A · idealized rift",
+    "fault": "F1 · normal fault",
+    "parcel": "P1 · mantle parcel",
+    "faultLayer": "Crust and correlatable layered markers",
+    "solidMantle": "Lithospheric mantle / predominantly solid below",
+    "intrusion": "Underground intrusion & cooling",
+    "scaleFallback": "The 2D counterpart preserves the site, stage and P1 destinations; perspective and layer thickness remain illustrative.",
+    "deeper": "Read mechanisms, evidence and limits",
+    "notes": [
+      {
+        "title": "What stays the same from whole to local?",
+        "body": "Rift A names the same continental weakness. F1 on the basin’s western side dips inward, and P1 starts in mantle below it. Scale changes preserve stage and tag identity. Both coasts and regional terrain are authored rather than reconstructions of East Africa, a former continent or a future map. Real rifts migrate, segment, reuse inherited structures and sometimes cease activity. The late continuing case specifies connection to the sea, shown in both whole and regional views. Water entry, sea level and water budgets are not solved. Early and stalled cases remain terrestrial basins."
+      },
+      {
+        "title": "Why is an earthquake not every increment of extension?",
+        "body": "Geological motion can be shared among locking, creep and many earthquakes. F1 selects one preloaded event: elastic deformation, rapid normal-fault slip and retained offset. The central block is F1’s hanging wall, moving down-dip and into the basin; displacement remains after waves pass. Rupture initiation, friction laws and actual wave speeds are not solved."
+      },
+      {
+        "title": "Decompression melting is neither sudden heating nor shaking rock into melt",
+        "body": "As predominantly solid mantle rises, falling pressure can move its path across the solidus and generate a partial melt. Temperature, composition and water affect the outcome. Warm/cool is shorthand for crossing or not crossing the conditions in this case, without actual temperature or pressure values. P1 does not consume F1 event progress, so fault slip never turns rock into magma here."
+      },
+      {
+        "title": "Underground magmatism can occur without a surface volcano",
+        "body": "Seismic anisotropy, velocity structure, surface deformation, heat flow and rock chemistry supply different constraints. Work at Tanganyika–Rukwa interprets some seismic evidence as deep melt lenses: no eruption does not automatically mean no subsurface melt. This diagram is not an observed section of that region, and a transport path does not guarantee eruption."
+      },
+      {
+        "title": "What does the P1 ledger and grain texture establish?",
+        "body": "Of twenty fixed tags, four are selected as melt-capable so residue, migration and crystallization remain traceable; four out of twenty is not a measured melt fraction. Slower cooling permits larger illustrative grains, while faster cooling shows finer grains and dark groundmass. Real crystallization involves multiple minerals, nucleation, growth and reaction. Chemical partitioning, heat conservation and atomic lattices are not solved, and colors cannot identify a rock."
+      }
+    ],
+    "sources": "Check sources and original assets",
+    "asset": "Rift geometry, layered textures and surfaces are original code-generated assets, with no exhibition photographs, scans or third-party terrain. The modern day map in the existing interior cutaway is not used on this idealized continent.",
+    "evolution": "Subsequent conditions at this rift",
+    "continue": "Representative continuing-extension path",
+    "stall": "Extension ceases early (control)",
+    "stalled": "Early cessation: the existing basin and faults remain, without progressing to continental breakup. This case does not reach its later partial-melting stage."
+  }
+}

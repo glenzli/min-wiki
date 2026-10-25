@@ -79,6 +79,503 @@
       }
     },
     {
+      "id": "earth",
+      "title": {
+        "zh": "地球数字博物馆：从诞生到晶体",
+        "en": "Earth digital museum: from formation to crystals"
+      },
+      "summary": {
+        "zh": "八座可独立探索的展馆，连接45.4亿年历史、地心板块、古生态、岩石晶体矿石、冰期、海洋、空气与生命。",
+        "en": "Eight independently explorable galleries connect 4.54 billion years of history with the deep Earth, ancient ecosystems, rocks, crystals, ores, ice, ocean and air."
+      },
+      "pages": {
+        "zh": "topics/earth/entry.zh.md",
+        "en": "topics/earth/entry.en.md"
+      },
+      "search": {
+        "zh": "地球数字博物馆：从诞生到晶体 八座可独立探索的展馆，连接45.4亿年历史、地心板块、古生态、岩石晶体矿石、冰期、海洋、空气与生命。 地球：一颗还在改变的星球 地球内部 地壳 地幔 地核 岩石圈 地震波 板块 岩石循环 矿物 晶体 矿石 金属 莫氏硬度 宝石 地质时间 定年 大氧化事件 微生物 真核 多细胞 埃迪卡拉 伯吉斯 寒武纪 古植物 森林 灭绝 冰期 雪球地球 冰川 海洋环流 温盐 空气 极光 昼夜 宜居条件 大陆裂解 裂谷 正断层 断层应变 地震回放 减压熔融 海冰 盐水孔道 积雪孔隙",
+        "en": "Earth digital museum: from formation to crystals Eight independently explorable galleries connect 4.54 billion years of history with the deep Earth, ancient ecosystems, rocks, crystals, ores, ice, ocean and air. Earth: a planet still changing Earth interior Crust Mantle Core Lithosphere Seismic waves Plates Rock cycle Minerals Crystals Ores Metals Mohs hardness Gemstones Geologic time Dating Great Oxidation Event Microbes Eukaryotes Multicellular Ediacaran Burgess Cambrian Ancient plants Forests Extinction Ice ages Snowball Earth Glaciers Ocean circulation Temperature Salinity Atmosphere Auroras Day and night Habitability Continental breakup Rift Normal fault Strain Earthquake replay Decompression melting Sea ice Brine channels Snow pores"
+      },
+      "document": {
+        "template": "topics/earth/reader.html",
+        "entry": "topics/earth/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth/cover-960.webp",
+        "alt": {
+          "zh": "地球剖面的编辑插画，不是测量结果、内部照片或当前实验状态。",
+          "en": "Editorial Earth cutaway illustration, not a measurement, interior photograph or current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "地球",
+        "地球内部",
+        "岩石圈",
+        "板块",
+        "岩石循环",
+        "矿物",
+        "地质时间",
+        "大氧化事件",
+        "海洋环流",
+        "极光",
+        "宜居条件"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth/learning.json",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "visual": "八馆原创3D、机制图与双语正文已逐馆检查；全球冰缘与裂谷跨尺度视图保留位置和阶段，1280及390px实际渲染通过模块验收。",
+        "content": "八座关联展馆含形成演化、古生态、深部证据、岩石矿物矿石、冰期和地球系统，附具体主源、ICS 2026/06年代及中英等价的模型边界。",
+        "interaction": "可重现的独立状态、有限播放/暂停/回拖和单场景生命周期；地质、地震、冰川与样本时钟分开，支持键盘、触控、减少动态和失败回退。",
+        "next": "继续扩充有出处的标本与古生态案例；真实古地理数据、完整动物3D复原与真机性能另行验证，不以当前机制模型冒充。"
+      }
+    },
+    {
+      "id": "earth-interior",
+      "title": {
+        "zh": "地心、地震证据与板块",
+        "en": "Earth interior, seismic evidence and plates"
+      },
+      "summary": {
+        "zh": "旋转3D剖面，沿大陆裂解进入同一裂谷、断层与材料，再用地震波和板块证据追问。",
+        "en": "Rotate a 3D cutaway and follow continental breakup into the same rift, fault and material, alongside seismic and plate evidence."
+      },
+      "pages": {
+        "zh": "topics/earth-interior/entry.zh.md",
+        "en": "topics/earth-interior/entry.en.md"
+      },
+      "search": {
+        "zh": "地心、地震证据与板块 比较真实半径、浅部放大和地震波证据，旋转3D剖面并对照四类板块边界。 地心 地震波 地幔 地核 板块构造 旋转3D剖面，沿大陆裂解进入同一裂谷、断层与材料，再用地震波和板块证据追问。",
+        "en": "Earth interior, seismic evidence and plates Compare radius scales and seismic evidence, rotate a 3D cutaway and contrast four plate boundaries. Deep Earth Seismic waves Mantle Core Plate tectonics Rotate a 3D cutaway and follow continental breakup into the same rift, fault and material, alongside seismic and plate evidence."
+      },
+      "document": {
+        "template": "topics/earth-interior/reader.html",
+        "entry": "topics/earth-interior/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth/cover-960.webp",
+        "alt": {
+          "zh": "地球剖面的编辑插画，不是测量结果、内部照片或当前实验状态。",
+          "en": "Editorial Earth cutaway illustration, not a measurement, interior photograph or current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "地心",
+        "地震波",
+        "地幔",
+        "地核",
+        "板块构造"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth-interior/learning.json",
+      "parentTopic": "earth",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "inherits": "earth"
+      }
+    },
+    {
+      "id": "earth-history",
+      "title": {
+        "zh": "地球历史：45.4亿年的证据",
+        "en": "Earth history: evidence across 4.54 billion years"
+      },
+      "summary": {
+        "zh": "放大真实时间轴，探索形成、生命、氧气、森林、冰期和灭绝留下的线索。",
+        "en": "Zoom a linear timeline through evidence of formation, life, oxygenation, forests, ice ages and extinctions."
+      },
+      "pages": {
+        "zh": "topics/earth-history/entry.zh.md",
+        "en": "topics/earth-history/entry.en.md"
+      },
+      "search": {
+        "zh": "地球历史：45.4亿年的证据 放大真实时间轴，探索形成、生命、氧气、森林、冰期和灭绝留下的线索。 地球历史 大氧化 寒武纪 灭绝 定年",
+        "en": "Earth history: evidence across 4.54 billion years Zoom a linear timeline through evidence of formation, life, oxygenation, forests, ice ages and extinctions. Earth history Oxygenation Cambrian Extinction Dating"
+      },
+      "document": {
+        "template": "topics/earth-history/reader.html",
+        "entry": "topics/earth-history/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth/cover-960.webp",
+        "alt": {
+          "zh": "地球剖面的编辑插画，不是测量结果、内部照片或当前实验状态。",
+          "en": "Editorial Earth cutaway illustration, not a measurement, interior photograph or current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "地球历史",
+        "大氧化",
+        "寒武纪",
+        "灭绝",
+        "定年"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth-history/learning.json",
+      "parentTopic": "earth",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "inherits": "earth"
+      }
+    },
+    {
+      "id": "earth-rocks",
+      "title": {
+        "zh": "岩石馆：同一份物质的不同旅行",
+        "en": "Rock gallery: different journeys of the same matter"
+      },
+      "summary": {
+        "zh": "旋转岩石标本，追踪冷却、风化、沉积、变质与熔融，并保留每次选择的历史。",
+        "en": "Rotate rock specimens and track cooling, weathering, deposition, metamorphism and melting while retaining each choice."
+      },
+      "pages": {
+        "zh": "topics/earth-rocks/entry.zh.md",
+        "en": "topics/earth-rocks/entry.en.md"
+      },
+      "search": {
+        "zh": "岩石馆：同一份物质的不同旅行 旋转岩石标本，追踪冷却、风化、沉积、变质与熔融，并保留每次选择的历史。 岩石 火成岩 沉积岩 变质岩 风化",
+        "en": "Rock gallery: different journeys of the same matter Rotate rock specimens and track cooling, weathering, deposition, metamorphism and melting while retaining each choice. Rocks Igneous Sedimentary Metamorphic Weathering"
+      },
+      "document": {
+        "template": "topics/earth-rocks/reader.html",
+        "entry": "topics/earth-rocks/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth/cover-960.webp",
+        "alt": {
+          "zh": "地球剖面的编辑插画，不是测量结果、内部照片或当前实验状态。",
+          "en": "Editorial Earth cutaway illustration, not a measurement, interior photograph or current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "岩石",
+        "火成岩",
+        "沉积岩",
+        "变质岩",
+        "风化"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth-rocks/learning.json",
+      "parentTopic": "earth",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "inherits": "earth"
+      }
+    },
+    {
+      "id": "earth-minerals",
+      "title": {
+        "zh": "矿物馆：从晶体结构到矿石",
+        "en": "Mineral gallery: from crystal structure to ore"
+      },
+      "summary": {
+        "zh": "观察3D晶体和原子连接，用多种性质寻找证据，再比较矿石品位、回收与代价。",
+        "en": "Explore 3D crystals and atomic connections, combine property evidence and compare ore grade, recovery and costs."
+      },
+      "pages": {
+        "zh": "topics/earth-minerals/entry.zh.md",
+        "en": "topics/earth-minerals/entry.en.md"
+      },
+      "search": {
+        "zh": "矿物馆：从晶体结构到矿石 观察3D晶体和原子连接，用多种性质寻找证据，再比较矿石品位、回收与代价。 矿物 晶体 矿石 莫氏硬度 金属 宝石",
+        "en": "Mineral gallery: from crystal structure to ore Explore 3D crystals and atomic connections, combine property evidence and compare ore grade, recovery and costs. Minerals Crystals Ore Mohs hardness Metals Gemstones"
+      },
+      "document": {
+        "template": "topics/earth-minerals/reader.html",
+        "entry": "topics/earth-minerals/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth-minerals/cover-960.webp",
+        "alt": {
+          "zh": "矿物晶簇的编辑插画，不是已鉴定或扫描的标本，也不表示当前实验状态。",
+          "en": "Editorial mineral-cluster illustration, not an identified or scanned specimen or the current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "矿物",
+        "晶体",
+        "矿石",
+        "莫氏硬度",
+        "金属",
+        "宝石"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth-minerals/learning.json",
+      "parentTopic": "earth",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "inherits": "earth"
+      }
+    },
+    {
+      "id": "earth-climate",
+      "title": {
+        "zh": "冰期与气候馆：冰的记录与收支",
+        "en": "Ice and climate gallery: records and budgets"
+      },
+      "summary": {
+        "zh": "从全球冰缘进入同一区域和微观样本，比较冰期证据、反照、海冰和独立冰川收支。",
+        "en": "Follow the global ice edge into one region and microscopic samples; compare glacial evidence, reflection, sea ice and independent glacier budgets."
+      },
+      "pages": {
+        "zh": "topics/earth-climate/entry.zh.md",
+        "en": "topics/earth-climate/entry.en.md"
+      },
+      "search": {
+        "zh": "冰期与气候馆：冰的记录与收支 比较九组冰期与间冰期线索，改变反射和冰川收支，并对照陆地冰与浮冰。 冰期 雪球地球 冰川 反照率 海平面 从全球冰缘进入同一区域和微观样本，比较冰期证据、反照、海冰和独立冰川收支。",
+        "en": "Ice and climate gallery: records and budgets Compare nine glacial and interglacial clues, vary reflection and glacier budgets, and contrast land ice with floating ice. Ice ages Snowball Earth Glaciers Albedo Sea level Follow the global ice edge into one region and microscopic samples; compare glacial evidence, reflection, sea ice and independent glacier budgets."
+      },
+      "document": {
+        "template": "topics/earth-climate/reader.html",
+        "entry": "topics/earth-climate/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth-climate/cover-960.webp",
+        "alt": {
+          "zh": "冰川山谷的编辑插画，不对应实测冰川、古冰盖重建或当前实验状态。",
+          "en": "Editorial glacier-valley illustration, not a measured glacier, ancient ice-cover reconstruction or current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "冰期",
+        "雪球地球",
+        "冰川",
+        "反照率",
+        "海平面"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth-climate/learning.json",
+      "parentTopic": "earth",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "inherits": "earth"
+      }
+    },
+    {
+      "id": "earth-systems",
+      "title": {
+        "zh": "地球系统馆：海洋、空气与宜居条件",
+        "en": "Earth systems: ocean, air and habitability"
+      },
+      "summary": {
+        "zh": "比较海水温盐、旋转有昼夜的地球，分清极光与太阳风，探索宜居条件的证据和边界。",
+        "en": "Compare seawater temperature and salinity, rotate a day-and-night Earth, distinguish auroras and solar wind, and examine habitability evidence."
+      },
+      "pages": {
+        "zh": "topics/earth-systems/entry.zh.md",
+        "en": "topics/earth-systems/entry.en.md"
+      },
+      "search": {
+        "zh": "地球系统馆：海洋、空气与宜居条件 比较海水温盐、旋转有昼夜的地球，分清极光与太阳风，探索宜居条件的证据和边界。 地球系统 温盐环流 昼夜 极光 宜居性",
+        "en": "Earth systems: ocean, air and habitability Compare seawater temperature and salinity, rotate a day-and-night Earth, distinguish auroras and solar wind, and examine habitability evidence. Earth systems Overturning circulation Day and night Auroras Habitability"
+      },
+      "document": {
+        "template": "topics/earth-systems/reader.html",
+        "entry": "topics/earth-systems/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth/cover-960.webp",
+        "alt": {
+          "zh": "地球剖面的编辑插画，不是测量结果、内部照片或当前实验状态。",
+          "en": "Editorial Earth cutaway illustration, not a measurement, interior photograph or current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "地球系统",
+        "温盐环流",
+        "昼夜",
+        "极光",
+        "宜居性"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth-systems/learning.json",
+      "parentTopic": "earth",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "inherits": "earth"
+      }
+    },
+    {
+      "id": "earth-life",
+      "title": {
+        "zh": "古生命与生态馆：演化、灭绝与证据",
+        "en": "Ancient life: evolution, extinction and evidence"
+      },
+      "summary": {
+        "zh": "走进七组古生态群落，区分化石、推断与复原；操控保存和采样偏差，观察古植物的三维结构。",
+        "en": "Explore seven ancient communities, separate fossils from inference and reconstruction, vary preservation and sampling, and inspect ancient plant structures in 3D."
+      },
+      "pages": {
+        "zh": "topics/earth-life/entry.zh.md",
+        "en": "topics/earth-life/entry.en.md"
+      },
+      "search": {
+        "zh": "古生命与生态馆：演化、灭绝与证据 走进七组古生态群落，区分化石、推断与复原；操控保存和采样偏差，观察古植物的三维结构。 古生命 古生态 化石 演化分支 灭绝 古植物",
+        "en": "Ancient life: evolution, extinction and evidence Explore seven ancient communities, separate fossils from inference and reconstruction, vary preservation and sampling, and inspect ancient plant structures in 3D. Ancient life Paleoecology Fossils Branching evolution Extinction Ancient plants"
+      },
+      "document": {
+        "template": "topics/earth-life/reader.html",
+        "entry": "topics/earth-life/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth-life/cover-960.webp",
+        "alt": {
+          "zh": "依据代表形态制作的编辑复原插画，不是化石照片、已鉴定矿石、实物扫描或当前实验状态。",
+          "en": "Editorial reconstruction based on representative form, not a fossil photograph, identified ore, specimen scan or current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "古生命",
+        "古生态",
+        "化石",
+        "演化分支",
+        "灭绝",
+        "古植物"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth-life/learning.json",
+      "parentTopic": "earth",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "inherits": "earth"
+      }
+    },
+    {
+      "id": "earth-ores",
+      "title": {
+        "zh": "矿石馆：从成矿环境到材料用途",
+        "en": "Ore gallery: from formation to useful materials"
+      },
+      "summary": {
+        "zh": "比较热液矿脉、风化残积和流水砂矿，观察同一份物质的富集、标本结构、用途与条件。",
+        "en": "Compare hydrothermal veins, weathering residues and placers, tracking concentration, specimen structure, uses and conditions in the same material."
+      },
+      "pages": {
+        "zh": "topics/earth-ores/entry.zh.md",
+        "en": "topics/earth-ores/entry.en.md"
+      },
+      "search": {
+        "zh": "矿石馆：从成矿环境到材料用途 比较热液矿脉、风化残积和流水砂矿，观察同一份物质的富集、标本结构、用途与条件。 矿石 成矿 热液矿脉 铝土矿 砂矿 资源",
+        "en": "Ore gallery: from formation to useful materials Compare hydrothermal veins, weathering residues and placers, tracking concentration, specimen structure, uses and conditions in the same material. Ore Mineral deposits Hydrothermal veins Bauxite Placers Resources"
+      },
+      "document": {
+        "template": "topics/earth-ores/reader.html",
+        "entry": "topics/earth-ores/main.ts"
+      },
+      "fallback": {
+        "src": "topics/earth-ores/cover-960.webp",
+        "alt": {
+          "zh": "依据代表形态制作的编辑复原插画，不是化石照片、已鉴定矿石、实物扫描或当前实验状态。",
+          "en": "Editorial reconstruction based on representative form, not a fossil photograph, identified ore, specimen scan or current experiment state."
+        }
+      },
+      "category": "earth",
+      "tags": [
+        "矿石",
+        "成矿",
+        "热液矿脉",
+        "铝土矿",
+        "砂矿",
+        "资源"
+      ],
+      "duration": "互动探索",
+      "modes": [
+        "儿童版",
+        "学术版"
+      ],
+      "theme": "light",
+      "sceneTheme": "light",
+      "status": "published",
+      "updated": "2026-10-25",
+      "learning": "topics/earth-ores/learning.json",
+      "parentTopic": "earth",
+      "review": {
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "inherits": "earth"
+      }
+    },
+    {
       "id": "atmosphere",
       "title": {
         "zh": "大气：包围星球的空气",
