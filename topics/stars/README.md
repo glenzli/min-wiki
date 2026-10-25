@@ -221,3 +221,7 @@ the emitting surface; the compact GPU surface has no feature map. The Canvas own
 No remote texture, post-processing target or worker was added. The existing surface cadence,
 hidden-page pause and teardown limits remain in effect; these are resource bounds, not measured
 hardware performance.
+
+## Observation controls
+
+The question chooser contains the six existing chapters. A separate conditions panel contains chapter-specific branches, reference objects and phase choices; the reading panel owns depth and qualifications. These two panels are mutually exclusive. The same progress slider and playback button remain beside the scene, and the legacy Sun-distance route keeps its direct distance input. Narrow screens reveal an opened panel directly below the toolbar, before the retained scene. View and reading changes preserve stellar progress and conditions; selecting a different orbital experiment retains its explicit original reset semantics. The three-body chapter keeps its own numerical preparation and controls. No shared presentation engine or scientific solver is added here.

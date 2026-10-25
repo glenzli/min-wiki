@@ -47,3 +47,7 @@ Actual topic-author checks and source-preview evidence are recorded in [VALIDATI
 默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。供电开关、回线与复位留在画面旁；感光条件与阈值在设置中保留。
 
 The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.
+
+## Observation controls
+
+The two question buttons remain directly visible, as do the supply switch and lamp-return action. The automatic view's original sensor inputs live in an independent native conditions disclosure; it closes on outside interaction or Escape and returns focus on Escape. Closing it or opening the reading panel preserves all circuit conditions. The reading-depth switch lives with the explanation. Mobile layouts reveal requested explanation above the same diagram, in a bounded scrolling region. No extra playback or free-running clock is introduced.

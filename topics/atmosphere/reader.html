@@ -2,8 +2,8 @@
 <header class="atmo-hero"><p class="eyebrow">从脚边的空气，到其他世界的天空</p><h1>大气：包围星球的空气</h1><p>从地球全景走近同一处地面，再沿高度观察各层现象，比较其他世界的天空。</p></header>
 <nav class="atmo-tabs" aria-label="观察路径"><button type="button" data-view="layers">地球大气</button><button type="button" data-view="worlds">其他天空</button></nav>
 <div class="atmo-options">
- <div id="layer-display" class="atmo-view-choice" role="group" aria-label="观察方式"><button type="button" data-display="structure">展开结构</button><button type="button" data-display="journey">连续接近</button></div>
- <div id="world-controls" class="atmo-world-choice" role="group" aria-label="与地球比较的世界" hidden=""><button type="button" data-comparison-world="venus">金星</button><button type="button" data-comparison-world="mars">火星</button><button type="button" data-comparison-world="titan">土卫六</button><button type="button" data-comparison-world="moon">月球</button><button type="button" data-comparison-world="mercury">水星</button></div>
+ <label id="layer-display" class="atmo-select"><span>观察方式</span><select id="display-choice" aria-label="观察方式"><option value="structure">展开结构</option><option value="journey">连续接近</option></select></label>
+ <label id="world-controls" class="atmo-select" hidden=""><span>与地球比较的世界</span><select id="world-choice" aria-label="与地球比较的世界"><option value="venus">金星</option><option value="mars">火星</option><option value="titan">土卫六</option><option value="moon">月球</option><option value="mercury">水星</option></select></label>
  <div class="atmo-preferences"><div class="modes"><button type="button" data-mode="kids" aria-pressed="true">儿童版</button><button type="button" data-mode="academic" aria-pressed="false">学术版</button></div><label><input type="checkbox" id="labels" checked="">显示标注</label></div>
 </div>
 <section class="atmo-workspace"><div class="atmo-stage" data-reader-stage><div class="atmo-caption"><span id="projection"></span></div><div id="journey-controls"><div class="journey-bookends"><button id="overview">地球全景</button><button id="surface">到达地面</button></div><div id="layer-stops" class="atmo-stops"></div></div>

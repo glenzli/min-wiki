@@ -1,0 +1,666 @@
+{
+  "zh": {
+    "title": "微生物与健康：细菌、病毒和身体的防线",
+    "intro": "先认识微小居民，再追踪一个感染例子，看看身体、清洁和药物各自做什么。",
+    "chapters": {
+      "environment": "01 · 身边的微生物",
+      "bacteria": "02 · 细菌有什么本领",
+      "viruses": "03 · 病毒怎样借用细胞",
+      "infection": "04 · 怎样让人生病",
+      "immunity": "05 · 身体怎样抵抗",
+      "care": "06 · 清洁和药物管哪里"
+    },
+    "ui": {
+      "conditions": "改变条件",
+      "explanation": "讲解",
+      "kids": "儿童版",
+      "academic": "学术版",
+      "play": "播放过程",
+      "pause": "暂停过程",
+      "resume": "继续过程",
+      "replay": "重新观察",
+      "reset": "回到开始",
+      "progress": "观察进度 · 不是现实时间",
+      "next": "下一站",
+      "cutaway": "打开剖面",
+      "exterior": "看完整外表",
+      "flat": "二维结构图",
+      "three": "三维结构",
+      "resetCamera": "重置视角",
+      "gesture": "拖动转动 · 双指缩放 · 方向键也可观察",
+      "flatNote": "二维图解：保留当前对象和观察条件",
+      "loading": "正在准备观察窗口…",
+      "failed": "这个观察窗口未能打开，说明和导航仍可使用。",
+      "retry": "重试当前窗口",
+      "fallback": "用二维图继续",
+      "cancel": "取消准备",
+      "cancelled": "准备已取消，可重试或切换问题。",
+      "part": "观察结构",
+      "form": "细菌外形对照",
+      "process": "观察内容",
+      "virus": "病毒例子",
+      "virusProcess": "观察方式",
+      "case": "当前感染例子",
+      "entry": "屏障对照",
+      "memory": "已有针对它的免疫记忆",
+      "care": "观察哪一种作用",
+      "resistant": "换成耐药细菌对照",
+      "source": "依据与模型边界",
+      "facts": "再想清楚一件事",
+      "related": "接着探索",
+      "handwashing": "到手上看看怎样洗净 →",
+      "cells": "看看身体细胞的分工 →",
+      "common": "颜色和数量用于辨认；结构和过程分别放大，不是显微照片、真实计时或治疗效果预测。",
+      "identity": "当前对象",
+      "noDiagnosis": "同一个位置不只会遇到一种病原体；不能靠这个图或症状判断病因。",
+      "medicines": "药物与消毒用品由大人按医嘱或标签使用；清洁皮肤表面不等于治疗身体内部。",
+      "enter": "沉浸演示",
+      "exit": "退出沉浸 · Esc",
+      "processClose": "拉近当前过程",
+      "processWide": "看整体位置",
+      "target": "当前作用对象",
+      "water": "加热饮水能改变什么？ →"
+    },
+    "forms": {
+      "rod": "杆状 · 展开参考结构",
+      "coccus": "球状 · 外形对照",
+      "spiral": "螺旋状 · 外形对照"
+    },
+    "processes": {
+      "structure": "三维结构与外形",
+      "exchange": "膜怎样选择进出",
+      "division": "一次细胞分裂"
+    },
+    "virusProcesses": {
+      "structure": "先看结构",
+      "cycle": "跟踪复制过程"
+    },
+    "viruses": {
+      "influenza": "流感病毒 · 有包膜",
+      "norovirus": "诺如病毒 · 无包膜",
+      "phage": "噬菌体 · 感染细菌的对照"
+    },
+    "cases": {
+      "airway": "呼吸道 · 流感病毒",
+      "gut": "肠道 · 诺如病毒",
+      "wound": "皮肤破口 · 葡萄球菌"
+    },
+    "entry": {
+      "entered": "越过屏障的例子",
+      "blocked": "停在屏障外的对照"
+    },
+    "methods": {
+      "wash": "肥皂、搓洗与清水",
+      "alcohol": "含酒精手消毒液",
+      "antibiotic": "抗生素 · 抑制细胞壁合成",
+      "antiviral": "抗流感药 · 阻止释放的例子",
+      "symptoms": "缓解发热或疼痛",
+      "vaccine": "疫苗 · 提前准备免疫记忆"
+    },
+    "locations": {
+      "environment": "环境插画 → 一处小环境",
+      "bacteria": "参考细菌 B → 放大结构",
+      "viruses": "独立病毒例子 → 结构或复制",
+      "infection": "人体位置 → 局部组织",
+      "immunity": "同一感染例子 → 身体防线",
+      "care": "作用位置 → 对应目标"
+    },
+    "theory": {
+      "environment": "细菌、古菌、微小真菌和许多原生生物属于微小居民。病毒没有细胞结构，也放在微生物学中研究。正常菌群能参与营养、代谢和定植抵抗；是否致病取决于具体微生物、进入位置与宿主条件，不能按外形或“有菌”作判断。",
+      "bacteria": "参考杆菌 B 展示较厚的肽聚糖细胞壁、选择性细胞膜、无核膜包围的拟核与核糖体。其他细菌可能有外膜，少数无细胞壁。外形对照不沿用 B 的包被细节。分裂需要增加材料并复制、分配遗传信息；资源受限的早期停止只是定性的对照。",
+      "viruses": "病毒含有基因组和蛋白质构件；一部分还有脂质包膜。A 型流感示例有八段 RNA，并在宿主细胞核中进行基因组复制；诺如病毒无包膜，在细胞质相关复制结构中复制。新颗粒由部件组装，不是原颗粒长大后二分裂。噬菌体感染细菌，不能作为人体感染的默认结构。",
+      "infection": "本窗口选择呼吸道流感、肠道诺如与皮肤破口中的葡萄球菌三个例子。病毒必须利用合适的活细胞；细菌可能在局部繁殖，也可能通过毒素、侵入与炎症造成损伤。画面展开的是某些条件成立后的局部过程，不是感染一定发生的承诺，也不把所有症状归为病原体直接破坏。",
+      "immunity": "皮肤、黏液及纤毛等先提供屏障。先天免疫的吞噬细胞可吞入并分解微生物。B 细胞形成的浆细胞产生抗体，抗体主要在细胞外中和或标记目标；细胞毒性 T 细胞还能识别并清除受感染细胞。免疫记忆可以让针对同一目标的反应更快，但不保证完全阻止感染。",
+      "care": "洗手、体表消毒、体内抗微生物药物、症状缓解与疫苗有不同的作用位置和目标。这里的抗生素例子作用于生长中的细菌细胞壁合成；抗流感药例子抑制子代释放，不能推广到所有抗病毒药。耐药对照描述原本不同的微生物条件，不把身体“习惯了药”当作耐药机制。"
+    },
+    "boundaries": {
+      "environment": "环境画中没有鉴定物种，也没有由粒子数推算健康风险。酸奶、土壤与肠道是不同菌群的例子。",
+      "bacteria": "三维颜色、表面纹理、数量和厚度均为教学化；球状与螺旋状只比较外形。B 不是从环境图中鉴定的物种，也不是伤口葡萄球菌或噬菌体宿主 H。",
+      "viruses": "表面蛋白与基因组放大，不按真实分子数重建；窗口各自放大，不能比较屏幕尺寸。复制路线压缩了分子步骤；诺如的细胞靶点与释放方式更复杂。倒放只回看图解。",
+      "infection": "菌株、暴露量、组织状态与免疫条件都会改变结局。本图不模拟感染概率、病程、毒素剂量或症状严重程度；不用于诊断。",
+      "immunity": "先天与适应性免疫可重叠协作，不是按秒切换的四个关卡。没有模拟补体、全部细胞类型或免疫疾病；成功清除只是一个例子，不能推出所有感染都会自行解决。",
+      "care": "效果取决于对象、药物或产品、用法及微生物敏感性；图中的数量和时长不表示疗效。症状好转不等于病原体已清除。疫苗窗口以流感为例，不代表每种病原体都有同样的疫苗。"
+    },
+    "misconceptions": {
+      "environment": "把所有微生物都当成“坏东西”，会忽略正常菌群和生态作用。",
+      "bacteria": "杆、球或螺旋的外形，不能告诉我们它是否致病。",
+      "viruses": "有突起不等于同一种病毒；不是所有病毒都像有“尾巴”的噬菌体。",
+      "infection": "接触、定植、感染和发病有区别；看见微生物不等于生病。",
+      "immunity": "抗体不是会钻进细胞里打病毒的小士兵；清除感染细胞还需要别的机制。",
+      "care": "抗生素不治疗病毒感染；消毒液不是可以吃进身体的药。"
+    },
+    "virusFacts": {
+      "influenza": "外面有脂质包膜与蛋白质；里面是 RNA。放大剖面，看看这些部件在哪。",
+      "norovirus": "它没有脂质包膜，外面是蛋白质衣壳，里面包着 RNA。不能把“破坏包膜”套到所有病毒。",
+      "phage": "这个有尾巴的例子感染细菌。尾纤维帮助附着，不是走路的脚；人体病毒还有很多别的形态。"
+    },
+    "caseFacts": {
+      "airway": "流感病毒在呼吸道里遇到合适细胞，才能利用细胞的条件制造新病毒。局部损伤和身体反应可能一起让人不舒服。",
+      "gut": "诺如病毒可引起胃肠炎。“肚子里的病毒”和流感病毒不是一回事；同样腹泻也可能有别的原因。",
+      "wound": "金黄色葡萄球菌可存在于一些人的皮肤上。本例中，它进入破口后繁殖，并释放能损伤组织的产物；正常存在与这条致病路线不是一回事。"
+    },
+    "virusSteps": [
+      "先接触表面",
+      "进入细胞，释放遗传信息",
+      "借用细胞条件复制信息、制造部件",
+      "把新部件组装成病毒颗粒",
+      "新颗粒离开，可能接触别的细胞",
+      "表面条件不合适，复制过程没有开始"
+    ],
+    "infectionSteps": [
+      "先到达这个位置",
+      "越过屏障，接触组织或细胞",
+      "细菌繁殖，或病毒在细胞里复制",
+      "局部损伤与炎症可能一起出现",
+      "被拦在外面，没有进入后续过程"
+    ],
+    "immuneSteps": [
+      "先看屏障把内外分开",
+      "吞噬细胞吞入并分解部分微生物",
+      "抗体在细胞外结合目标",
+      "病毒感染细胞由 T 细胞等机制处理；细菌可被标记后清除",
+      "屏障外的对照，不需要画出体内复制"
+    ],
+    "careWorks": {
+      "wash": "搓洗帮助松动，清水把一部分微生物带离表面。这里跟踪的是洗走，并不要求它们先被杀死，也不表示皮肤变得无菌。",
+      "alcohol": "在适用对象上，合适的含酒精消毒液可损伤膜和蛋白质，降低感染能力；它不靠把东西冲走。",
+      "antibiotic": "这个敏感细菌正在合成新细胞壁。示例抗生素阻断这一过程；不同抗生素还可能针对其他细菌结构。",
+      "antiviral": "以一类抗流感药为例：细胞表面新产生的病毒难以释放，后续传播受到限制。它不是把所有病毒立刻溶掉。",
+      "symptoms": "药物可以缓解发热或疼痛等身体反应。图中的病原体仍在，不能把舒服一点当作已经消灭病原体。",
+      "vaccine": "这里用流感疫苗作例子：免疫系统提前认识相关抗原，形成记忆。它是提前准备，不是冲掉已经存在的病毒。"
+    },
+    "careNoMatch": {
+      "wash": "",
+      "alcohol": "诺如没有脂质包膜，普通免洗手消毒液对它的效果不能照搬流感例子；肥皂与清水洗手更重要。",
+      "antibiotic": "病毒没有这层细菌细胞壁，找不到图中这个药的靶点。抗生素不治疗病毒感染。",
+      "antiviral": "这个抗流感药示例针对流感病毒的一处过程，不能拿来当作所有病毒或细菌的通用药。",
+      "symptoms": "",
+      "vaccine": "本窗口只演示流感疫苗的免疫训练，不把它套到另一种病原体。"
+    },
+    "resistantFact": "换到耐药对照，这个细菌能抵抗图中这类药物的作用。耐药的是微生物，不是身体“习惯了药”。",
+    "shapeFact": "这里只比较外形。要看细胞壁、DNA 和核糖体，请回到杆状参考结构；外形不能判断菌种或致病性。",
+    "memoryFact": "换成已有匹配记忆的对照，针对它的反应更早出现；图上的早晚不是现实天数，也不保证不会再感染。",
+    "legend": {
+      "barrier": "组织边界",
+      "genome": "遗传信息",
+      "offspring": "新组装的颗粒",
+      "phagocyte": "吞噬细胞",
+      "antibody": "抗体 · 细胞外",
+      "tcell": "T 细胞",
+      "surface": "皮肤或物体表面",
+      "inside": "组织与细胞内部",
+      "training": "免疫训练 · 非即时治疗",
+      "present": "仍然存在",
+      "removed": "随水带走",
+      "wall": "细胞壁",
+      "membrane": "细胞膜 / 包膜",
+      "dna": "DNA",
+      "ribosomes": "核糖体",
+      "capsid": "蛋白质衣壳",
+      "surfaceProtein": "表面蛋白",
+      "toxin": "损伤组织的产物",
+      "outline": "细菌外形",
+      "drug": "药物作用标记",
+      "plasma": "B细胞 → 浆细胞",
+      "antigen": "抗原示意",
+      "hostRibosomes": "宿主细胞的核糖体",
+      "proteinParts": "新蛋白质部件"
+    },
+    "sources": {
+      "cell": {
+        "title": "OpenStax · Prokaryotic cells",
+        "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells"
+      },
+      "growth": {
+        "title": "OpenStax · Microbial growth",
+        "url": "https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow"
+      },
+      "virus": {
+        "title": "NHGRI · Virus",
+        "url": "https://www.genome.gov/genetics-glossary/Virus"
+      },
+      "fluStructure": {
+        "title": "RCSB PDB-101 · Influenza virus",
+        "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/influenza-virus"
+      },
+      "noroStructure": {
+        "title": "CDC · Norovirus classification",
+        "url": "https://www.cdc.gov/norovirus/php/laboratories/index.html"
+      },
+      "infection": {
+        "title": "OpenStax · How pathogens cause disease",
+        "url": "https://openstax.org/books/microbiology/pages/15-2-how-pathogens-cause-disease"
+      },
+      "gut": {
+        "title": "NIDDK · Viral gastroenteritis",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes"
+      },
+      "staph": {
+        "title": "NHS · Staph infections",
+        "url": "https://www.nhs.uk/conditions/staphylococcal-infections/"
+      },
+      "immune": {
+        "title": "OpenStax · Adaptive immunity",
+        "url": "https://openstax.org/books/microbiology/pages/18-1-overview-of-specific-adaptive-immunity"
+      },
+      "Tcells": {
+        "title": "OpenStax · T cells and cellular immunity",
+        "url": "https://openstax.org/books/microbiology/pages/18-3-t-lymphocytes-and-cellular-immunity"
+      },
+      "wash": {
+        "title": "CDC · Hand sanitizer and handwashing",
+        "url": "https://www.cdc.gov/clean-hands/about/hand-sanitizer.html"
+      },
+      "noroClean": {
+        "title": "CDC · Preventing norovirus",
+        "url": "https://www.cdc.gov/norovirus/prevention/index.html"
+      },
+      "antibiotic": {
+        "title": "OpenStax · Antibacterial drug targets",
+        "url": "https://openstax.org/books/microbiology/pages/14-3-mechanisms-of-antibacterial-drugs"
+      },
+      "antibioticUse": {
+        "title": "CDC · Appropriate antibiotic use",
+        "url": "https://www.cdc.gov/antibiotic-use/about/"
+      },
+      "antiviral": {
+        "title": "CDC · Flu antiviral treatment",
+        "url": "https://www.cdc.gov/flu/treatment/antiviral-drugs.html"
+      },
+      "vaccine": {
+        "title": "WHO · How vaccines work",
+        "url": "https://www.who.int/europe/news-room/fact-sheets/item/how-vaccines-work"
+      },
+      "phage": {
+        "title": "RCSB PDB-101 · T4 infection",
+        "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection"
+      },
+      "antiviralMechanism": {
+        "title": "RCSB PDB-101 · Influenza neuraminidase",
+        "url": "https://pdb101.rcsb.org/motm/113"
+      },
+      "fluCycle": {
+        "title": "OpenStax · Respiratory viral infection",
+        "url": "https://openstax.org/books/microbiology/pages/22-3-viral-infections-of-the-respiratory-tract"
+      },
+      "toxins": {
+        "title": "OpenStax · Bacterial and viral virulence factors",
+        "url": "https://openstax.org/books/microbiology/pages/15-3-virulence-factors-of-bacterial-and-viral-pathogens"
+      },
+      "soil": {
+        "title": "USDA NRCS · Soil Biology Primer",
+        "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer"
+      },
+      "skinMicrobiome": {
+        "title": "Grice et al. · Human skin microbiome",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2805064/"
+      },
+      "noroCycle": {
+        "title": "ICTV · Caliciviridae profile",
+        "url": "https://calicivirustypingtool.cdc.gov/PDF/Vinje2019_JGV.pdf"
+      }
+    },
+    "bacteriaClear": "被抗体标记的细菌更容易被吞噬和清除。这里没有让 T 细胞去吞掉细菌。",
+    "barrierFact": "这是停在屏障外的对照；不能由接触直接跳到体内繁殖。",
+    "replicationNoro": "在细胞质中复制遗传信息并制造部件；没有把 RNA 画进细胞核。",
+    "replicationFlu": "流感的 RNA 在细胞核中复制；制造蛋白质还要借助细胞的核糖体。",
+    "sourcesEvidence": "资料支持机制与差别；本图的颜色、数量和播放时长并非来源给出的测量值。",
+    "shapesTitle": "不同外形，不等于不同“好坏”",
+    "rolesTitle": "微小居民，也在做有用的事",
+    "roleYogurt": "一些乳酸菌参与酸奶发酵；这不是对任意细菌的食用判断。",
+    "roleSoil": "土壤中的不同微生物参与分解与养分循环，不能看一幅图就认出菌种。",
+    "roleGut": "肠道菌群参与代谢并与身体相互作用；同一种微生物换了位置或条件，作用也可能改变。",
+    "structureParts": {
+      "wall": "细胞壁在外侧支撑这颗参考细胞；它不是里面那层膜。",
+      "membrane": "壁里面还有一层膜，是细胞与外界交换物质的边界。切换到膜交换图，可以跟踪选定的进出路线。",
+      "dna": "紫色线代表 DNA；这颗细菌没有核膜包围的细胞核，但有遗传信息。",
+      "ribosomes": "金色小结构代表核糖体，帮助制造蛋白质。数量被简化，病毒没有自己的核糖体。"
+    },
+    "careTargets": {
+      "airway": "流感病毒",
+      "gut": "诺如病毒",
+      "wound": "细菌 · 葡萄球菌对照"
+    },
+    "immuneChildren": {
+      "barrier": "不同位置有不同的屏障。接触到微生物，不等于它就能进入组织或合适的细胞。",
+      "innate": "吞噬细胞把对象包进细胞内的小泡，再分解它。被吞入和成功感染细胞，并不是一回事。",
+      "antibody": "抗体在细胞外结合特定目标，能阻挡附着或帮助标记。已进入细胞的病毒，还需要其他防线。",
+      "viralFinalTitle": "T细胞识别并清除受感染细胞",
+      "viralFinal": "受感染的这颗细胞受到清除，旁边的正常细胞保留。清理碎片和组织修复还会继续。",
+      "bacterialFinalTitle": "被标记的细菌更容易被清除",
+      "memoryShort": "已有匹配的记忆，针对它的反应在本例中更早出现。"
+    }
+  },
+  "en": {
+    "title": "Microbes and health: bacteria, viruses and our defenses",
+    "intro": "Meet microscopic neighbors, follow an example infection, and see the different roles of our bodies, cleaning and medicines.",
+    "chapters": {
+      "environment": "01 · Microbes around us",
+      "bacteria": "02 · Inside a bacterium",
+      "viruses": "03 · How viruses use cells",
+      "infection": "04 · How illness develops",
+      "immunity": "05 · How the body responds",
+      "care": "06 · Cleaning and medicines"
+    },
+    "ui": {
+      "conditions": "Conditions",
+      "explanation": "Explanation",
+      "kids": "Story view",
+      "academic": "Scientific view",
+      "play": "Play process",
+      "pause": "Pause process",
+      "resume": "Continue process",
+      "replay": "Replay process",
+      "reset": "Back to start",
+      "progress": "Observation progress · not real time",
+      "next": "Next question",
+      "cutaway": "Open cutaway",
+      "exterior": "Show exterior",
+      "flat": "2D structure",
+      "three": "3D structure",
+      "resetCamera": "Reset view",
+      "gesture": "Drag to rotate · pinch to zoom · or use arrow keys",
+      "flatNote": "2D explanation: the same object and conditions",
+      "loading": "Preparing the observation…",
+      "failed": "This observation could not open. Explanation and navigation remain available.",
+      "retry": "Retry this view",
+      "fallback": "Continue in 2D",
+      "cancel": "Cancel loading",
+      "cancelled": "Loading canceled. Retry or choose another question.",
+      "part": "Structure to inspect",
+      "form": "Bacterial shape comparison",
+      "process": "What to observe",
+      "virus": "Virus example",
+      "virusProcess": "Observation mode",
+      "case": "Example infection",
+      "entry": "Barrier comparison",
+      "memory": "Matching immune memory already present",
+      "care": "Action to inspect",
+      "resistant": "Compare a resistant bacterium",
+      "source": "Evidence and model limits",
+      "facts": "One more distinction",
+      "related": "Explore further",
+      "handwashing": "See how hands are washed →",
+      "cells": "Explore specialized body cells →",
+      "common": "Colors and counts are teaching cues. Structures and processes are enlarged separately, not microscope photographs, biological timing or treatment predictions.",
+      "identity": "Current specimen",
+      "noDiagnosis": "Different pathogens can affect the same site. This picture or symptoms alone cannot identify a cause.",
+      "medicines": "Adults use medicines and disinfectants according to medical advice or labels. Cleaning a surface does not treat an infection inside the body.",
+      "enter": "Immersive view",
+      "exit": "Exit immersion · Esc",
+      "processClose": "Look closer at the process",
+      "processWide": "Show the wider setting",
+      "target": "Current target",
+      "water": "What does heating drinking water change? →"
+    },
+    "forms": {
+      "rod": "Rod · inspect reference structure",
+      "coccus": "Round · shape comparison",
+      "spiral": "Spiral · shape comparison"
+    },
+    "processes": {
+      "structure": "Structure and shapes",
+      "exchange": "Selected membrane exchanges",
+      "division": "One cell division"
+    },
+    "virusProcesses": {
+      "structure": "Inspect structure",
+      "cycle": "Follow replication"
+    },
+    "viruses": {
+      "influenza": "Influenza · enveloped",
+      "norovirus": "Norovirus · non-enveloped",
+      "phage": "Phage · a bacterial-virus contrast"
+    },
+    "cases": {
+      "airway": "Airway · influenza virus",
+      "gut": "Intestine · norovirus",
+      "wound": "Broken skin · staphylococci"
+    },
+    "entry": {
+      "entered": "An example that passes the barrier",
+      "blocked": "A contrast stopped outside"
+    },
+    "methods": {
+      "wash": "Soap, rubbing and water",
+      "alcohol": "Alcohol-based hand sanitizer",
+      "antibiotic": "Antibiotic · block wall synthesis",
+      "antiviral": "Flu antiviral · a release inhibitor",
+      "symptoms": "Relief of fever or pain",
+      "vaccine": "Vaccine · prepare immune memory"
+    },
+    "locations": {
+      "environment": "Habitat illustration → one microenvironment",
+      "bacteria": "Reference bacterium B → enlarged structure",
+      "viruses": "A distinct virus example → structure or replication",
+      "infection": "Body site → a tissue close-up",
+      "immunity": "The same example infection → body defenses",
+      "care": "Where the action works → its target"
+    },
+    "theory": {
+      "environment": "Microscopic residents include bacteria, archaea, microscopic fungi and many protists. Viruses are noncellular but are studied in microbiology. Normal microbiota contribute to nutrition, metabolism and resistance to colonization. Disease depends on the organism, body site and host conditions, not shape or mere presence.",
+      "bacteria": "Reference rod B has a thick peptidoglycan wall, a selective membrane, a nucleoid without a nuclear membrane and ribosomes. Other bacteria may have an outer membrane; a few lack a wall. Shape comparisons do not inherit B’s detailed envelope. Division requires material growth and genome copying and partitioning. Early arrest under limited resources is a qualitative contrast.",
+      "viruses": "Viruses contain a genome and protein components; some also have a lipid envelope. The influenza A example has eight RNA segments and copies its genome in the host nucleus. Non-enveloped norovirus replicates in cytoplasmic replication structures. New particles assemble from components rather than dividing as cells do. Phages infect bacteria and are not the default model for human infection.",
+      "infection": "The selected examples are airway influenza, intestinal norovirus and staphylococci at broken skin. Viruses require suitable living cells. Bacteria may multiply locally and cause harm through invasion, toxins or inflammation. The view illustrates a local process after specified conditions hold. It does not imply inevitable infection or attribute every symptom to direct microbial damage.",
+      "immunity": "Skin, mucus and cilia provide barriers. Innate phagocytes can engulf and break down microbes. Plasma cells derived from B cells make antibodies that mainly neutralize or mark extracellular targets. Cytotoxic T cells can also recognize and eliminate infected cells. Matching immune memory can accelerate a response without guaranteeing complete protection.",
+      "care": "Washing, surface disinfection, antimicrobial medicines, symptom relief and vaccines have different sites and targets. The antibiotic example blocks wall synthesis in growing bacteria. The flu-antiviral example inhibits offspring release; other antiviral medicines have different targets. Resistance compares different microbial conditions, not a body becoming “used to” a medicine."
+    },
+    "boundaries": {
+      "environment": "No species are identified in the habitat pictures, and particle counts do not estimate health risk. Yogurt, soil and the gut illustrate different communities.",
+      "bacteria": "3D colors, texture, counts and thicknesses are illustrative. Round and spiral specimens compare shape only. B is not identified from the habitat, and is distinct from the wound staphylococcus and phage host H.",
+      "viruses": "Surface proteins and genomes are enlarged, not reconstructed molecule by molecule. Windows use separate magnifications. Replication omits molecular steps; norovirus cell targets and release routes are more complex. Scrubbing backward revisits an illustration.",
+      "infection": "Strain, exposure, tissue condition and immunity can alter outcomes. The view does not calculate infection probability, clinical course, toxin dose or symptom severity, and cannot diagnose illness.",
+      "immunity": "Innate and adaptive responses overlap rather than switching through timed gates. Complement, many cell types and immune disorders are omitted. Successful clearance is one example, not a claim that all infections resolve unaided.",
+      "care": "Effects depend on the organism, medicine or product, use and susceptibility. Counts and timing do not represent efficacy. Symptom relief does not mean pathogen clearance. The vaccine view uses influenza and does not imply an equivalent vaccine for every pathogen."
+    },
+    "misconceptions": {
+      "environment": "Treating all microbes as harmful overlooks normal microbiota and ecological roles.",
+      "bacteria": "Rod, round or spiral shape does not tell us whether a bacterium causes disease.",
+      "viruses": "Surface projections do not make viruses identical. Most familiar human viruses do not resemble a tailed phage.",
+      "infection": "Exposure, colonization, infection and illness differ. Seeing microbes does not establish disease.",
+      "immunity": "Antibodies are not little soldiers entering cells. Infected-cell clearance uses other mechanisms.",
+      "care": "Antibiotics do not treat viral infections. Disinfectants are not medicines to swallow."
+    },
+    "virusFacts": {
+      "influenza": "A lipid envelope and proteins surround the RNA. Open the cutaway to locate the components.",
+      "norovirus": "A protein capsid encloses RNA without a lipid envelope. Envelope disruption is not a universal explanation.",
+      "phage": "This tailed example infects bacteria. Tail fibers help attachment; they are not walking legs. Human viruses have many other shapes."
+    },
+    "caseFacts": {
+      "airway": "Influenza requires suitable airway cells to make new viruses. Local injury and the body’s response can both contribute to illness.",
+      "gut": "Norovirus can cause gastroenteritis. It is not influenza, and diarrhea can also have other causes.",
+      "wound": "Staphylococcus aureus can inhabit some people’s skin. In this example it multiplies after entering broken skin and releases tissue-damaging products. Harmless carriage and this disease pathway differ."
+    },
+    "virusSteps": [
+      "Contact the surface",
+      "Enter and release the genome",
+      "Use cellular conditions to copy information and make parts",
+      "Assemble new virus particles",
+      "Release offspring that may reach other cells",
+      "An unsuitable surface stops replication before entry"
+    ],
+    "infectionSteps": [
+      "First arrive at this site",
+      "Pass the barrier and reach tissue or cells",
+      "Bacteria multiply, or viruses replicate inside cells",
+      "Local injury and inflammation can occur together",
+      "Stopped outside, without the later process"
+    ],
+    "immuneSteps": [
+      "First locate the barrier between outside and inside",
+      "Phagocytes engulf and break down some microbes",
+      "Antibodies bind their targets outside cells",
+      "T-cell mechanisms address infected cells; marked bacteria can be cleared",
+      "A barrier contrast without replication inside"
+    ],
+    "careWorks": {
+      "wash": "Rubbing loosens material and water carries some microbes off the surface. This view follows removal, which does not require prior killing and does not make skin sterile.",
+      "alcohol": "For susceptible targets, an appropriate alcohol-based sanitizer damages membranes and proteins, reducing infectivity without rinsing material away.",
+      "antibiotic": "This susceptible bacterium is making new wall. The example antibiotic blocks that process; other antibiotics have different bacterial targets.",
+      "antiviral": "In this flu-antiviral example, newly formed surface particles have difficulty detaching, limiting onward spread. They are not instantly dissolved.",
+      "symptoms": "Medicines can relieve responses such as fever or pain. The pathogens remain in this view: feeling better does not establish their elimination.",
+      "vaccine": "The influenza-vaccine example presents relevant antigens to prepare immune memory. This is preparation, not rinsing away an existing infection."
+    },
+    "careNoMatch": {
+      "wash": "",
+      "alcohol": "Norovirus has no lipid envelope. Ordinary hand sanitizer cannot be assigned the flu example’s effect; washing with soap and water is especially important.",
+      "antibiotic": "The virus has no bacterial cell wall for this target. Antibiotics do not treat viral infections.",
+      "antiviral": "The flu-antiviral example targets a flu-specific process. It is not a universal medicine for other viruses or bacteria.",
+      "symptoms": "",
+      "vaccine": "This window demonstrates influenza-vaccine training, not protection against a different pathogen."
+    },
+    "resistantFact": "This resistant bacterium can withstand the illustrated class of medicine. Resistance belongs to the microbe, not a body becoming used to medicine.",
+    "shapeFact": "This view compares shape only. Return to the reference rod for wall, DNA and ribosomes. Shape does not identify a species or disease risk.",
+    "memoryFact": "With matching memory, the targeted response appears earlier. The animation does not represent days or guarantee that reinfection cannot occur.",
+    "legend": {
+      "barrier": "Tissue barrier",
+      "genome": "Genetic information",
+      "offspring": "Newly assembled particles",
+      "phagocyte": "Phagocyte",
+      "antibody": "Antibody · extracellular",
+      "tcell": "T cell",
+      "surface": "Skin or object surface",
+      "inside": "Tissue and cells",
+      "training": "Immune preparation · not instant treatment",
+      "present": "Still present",
+      "removed": "Carried away by water",
+      "wall": "Cell wall",
+      "membrane": "Membrane / envelope",
+      "dna": "DNA",
+      "ribosomes": "Ribosomes",
+      "capsid": "Protein capsid",
+      "surfaceProtein": "Surface proteins",
+      "toxin": "Tissue-damaging products",
+      "outline": "Bacterial outline",
+      "drug": "Drug-action symbol",
+      "plasma": "B cell → plasma cell",
+      "antigen": "Antigen illustration",
+      "hostRibosomes": "Host-cell ribosomes",
+      "proteinParts": "New protein components"
+    },
+    "sources": {
+      "cell": {
+        "title": "OpenStax · Prokaryotic cells",
+        "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells"
+      },
+      "growth": {
+        "title": "OpenStax · Microbial growth",
+        "url": "https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow"
+      },
+      "virus": {
+        "title": "NHGRI · Virus",
+        "url": "https://www.genome.gov/genetics-glossary/Virus"
+      },
+      "fluStructure": {
+        "title": "RCSB PDB-101 · Influenza virus",
+        "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/influenza-virus"
+      },
+      "noroStructure": {
+        "title": "CDC · Norovirus classification",
+        "url": "https://www.cdc.gov/norovirus/php/laboratories/index.html"
+      },
+      "infection": {
+        "title": "OpenStax · How pathogens cause disease",
+        "url": "https://openstax.org/books/microbiology/pages/15-2-how-pathogens-cause-disease"
+      },
+      "gut": {
+        "title": "NIDDK · Viral gastroenteritis",
+        "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes"
+      },
+      "staph": {
+        "title": "NHS · Staph infections",
+        "url": "https://www.nhs.uk/conditions/staphylococcal-infections/"
+      },
+      "immune": {
+        "title": "OpenStax · Adaptive immunity",
+        "url": "https://openstax.org/books/microbiology/pages/18-1-overview-of-specific-adaptive-immunity"
+      },
+      "Tcells": {
+        "title": "OpenStax · T cells and cellular immunity",
+        "url": "https://openstax.org/books/microbiology/pages/18-3-t-lymphocytes-and-cellular-immunity"
+      },
+      "wash": {
+        "title": "CDC · Hand sanitizer and handwashing",
+        "url": "https://www.cdc.gov/clean-hands/about/hand-sanitizer.html"
+      },
+      "noroClean": {
+        "title": "CDC · Preventing norovirus",
+        "url": "https://www.cdc.gov/norovirus/prevention/index.html"
+      },
+      "antibiotic": {
+        "title": "OpenStax · Antibacterial drug targets",
+        "url": "https://openstax.org/books/microbiology/pages/14-3-mechanisms-of-antibacterial-drugs"
+      },
+      "antibioticUse": {
+        "title": "CDC · Appropriate antibiotic use",
+        "url": "https://www.cdc.gov/antibiotic-use/about/"
+      },
+      "antiviral": {
+        "title": "CDC · Flu antiviral treatment",
+        "url": "https://www.cdc.gov/flu/treatment/antiviral-drugs.html"
+      },
+      "vaccine": {
+        "title": "WHO · How vaccines work",
+        "url": "https://www.who.int/europe/news-room/fact-sheets/item/how-vaccines-work"
+      },
+      "phage": {
+        "title": "RCSB PDB-101 · T4 infection",
+        "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection"
+      },
+      "antiviralMechanism": {
+        "title": "RCSB PDB-101 · Influenza neuraminidase",
+        "url": "https://pdb101.rcsb.org/motm/113"
+      },
+      "fluCycle": {
+        "title": "OpenStax · Respiratory viral infection",
+        "url": "https://openstax.org/books/microbiology/pages/22-3-viral-infections-of-the-respiratory-tract"
+      },
+      "toxins": {
+        "title": "OpenStax · Bacterial and viral virulence factors",
+        "url": "https://openstax.org/books/microbiology/pages/15-3-virulence-factors-of-bacterial-and-viral-pathogens"
+      },
+      "soil": {
+        "title": "USDA NRCS · Soil Biology Primer",
+        "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer"
+      },
+      "skinMicrobiome": {
+        "title": "Grice et al. · Human skin microbiome",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2805064/"
+      },
+      "noroCycle": {
+        "title": "ICTV · Caliciviridae profile",
+        "url": "https://calicivirustypingtool.cdc.gov/PDF/Vinje2019_JGV.pdf"
+      }
+    },
+    "bacteriaClear": "Antibody-marked bacteria are easier for phagocytes to clear. T cells are not shown swallowing bacteria.",
+    "barrierFact": "This contrast stops at the barrier. Contact does not automatically imply multiplication inside.",
+    "replicationNoro": "Copy genetic information and make parts in the cytoplasm; the RNA does not enter the nucleus in this example.",
+    "replicationFlu": "Influenza RNA is copied in the nucleus; protein production also uses the cell’s ribosomes.",
+    "sourcesEvidence": "Sources support the mechanisms and distinctions. Colors, counts and playback durations are not measured values from those sources.",
+    "shapesTitle": "Different shapes do not classify harm",
+    "rolesTitle": "Microscopic residents also have useful roles",
+    "roleYogurt": "Some lactic-acid bacteria help ferment yogurt. This does not make arbitrary bacteria safe to eat.",
+    "roleSoil": "Different soil microbes contribute to decomposition and nutrient cycles; this illustration cannot identify species.",
+    "roleGut": "Gut microbiota take part in metabolism and interact with the body. Moving to another site or condition can change an organism’s role.",
+    "structureParts": {
+      "wall": "The outer wall supports this reference cell. It is distinct from the membrane beneath it.",
+      "membrane": "A membrane beneath the wall forms a selective boundary. Switch to membrane exchange to follow selected routes across it.",
+      "dna": "Purple strands represent DNA. This bacterium has genetic information without a membrane-enclosed nucleus.",
+      "ribosomes": "Gold structures represent protein-making ribosomes. Their count is simplified; viruses have no ribosomes of their own."
+    },
+    "careTargets": {
+      "airway": "Influenza virus",
+      "gut": "Norovirus",
+      "wound": "Bacterium · staphylococcal contrast"
+    },
+    "immuneChildren": {
+      "barrier": "Different sites have different barriers. Encountering a microbe does not establish entry into tissue or a suitable cell.",
+      "innate": "A phagocyte encloses material in an internal compartment and breaks it down. Being swallowed does not establish a successful infection.",
+      "antibody": "Antibodies bind specific extracellular targets, helping block attachment or mark them. Viruses already inside cells require other defenses.",
+      "viralFinalTitle": "T cells recognize and eliminate infected cells",
+      "viralFinal": "An infected cell is being eliminated while neighboring cells remain. Debris clearance and tissue repair can follow.",
+      "bacterialFinalTitle": "Marked bacteria are easier to clear",
+      "memoryShort": "Matching memory brings the targeted response forward in this example."
+    }
+  }
+}

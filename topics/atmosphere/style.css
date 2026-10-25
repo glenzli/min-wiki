@@ -366,3 +366,28 @@ html[lang^=en] #atmo-observation .height-band{letter-spacing:-.01em}
  #atmo-observation .atmo-view-choice button{flex:1}
  #atmo-observation .atmo-preferences{justify-content:space-between;width:100%;margin-left:0}
 }
+
+/* One observation row; reading depth belongs with the explanation. */
+#atmo-observation>.observation-toolbar{display:flex;flex-wrap:wrap;padding:6px 12px!important;gap:6px}
+#atmo-observation .observation-toolbar .atmo-tabs{flex:0 1 auto}
+#atmo-observation .atmo-select{display:flex;align-items:center;min-width:0;margin:0}
+#atmo-observation .atmo-select>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#atmo-observation .atmo-select select{max-width:100%;min-height:44px;font-size:14px;padding:7px 10px}
+#atmo-observation .atmo-annotations{display:flex;gap:6px;align-items:center;min-height:44px;margin-left:auto;font-size:14px;white-space:nowrap}
+#atmo-observation .atmo-annotations input{width:18px;height:18px}
+#atmo-observation .atmo-inspector>.modes{display:flex;gap:6px;margin:0 0 12px}
+@media(max-width:699px){
+ #atmo-observation>.observation-toolbar{padding-inline:10px!important}
+ #atmo-observation .observation-toolbar .atmo-tabs{flex:1 1 100%}
+ #atmo-observation .observation-toolbar .atmo-tabs button{flex:1}
+ #atmo-observation .atmo-select{flex:1 1 110px}
+ #atmo-observation .atmo-select select{width:100%}
+ #atmo-observation .atmo-annotations{margin-left:0}
+}
+
+@media(max-width:999px){
+ #atmo-observation .atmo-stage{grid-column:1;grid-row:2}
+ #atmo-observation .atmo-inspector{grid-column:1;grid-row:1;max-height:55dvh;overflow:auto;border-bottom:1px solid var(--reader-line)}
+}
+#atmo-observation>.observation-toolbar :is(#layer-display,#world-controls){padding:0;border:0;background:transparent;min-width:0;max-width:100%}
+#atmo-observation>.observation-toolbar :is(#display-choice,#world-choice){min-width:0!important;width:100%;max-width:100%;margin:0;flex:1}

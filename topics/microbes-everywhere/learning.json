@@ -2,86 +2,86 @@
   "version": 1,
   "topicId": "microbes-everywhere",
   "zh": {
-    "question": "微生物到了一个地方，细菌就会分裂、病毒就会复制吗？",
-    "observe": "沿环境 E、参考细胞 B、比较宿主 H 三站观察。保留所选环境，比较 B 的资源条件，再跟随 DNA 与膜的变化；最后检查病毒在表面不匹配和内部防御下为什么停住。",
+    "question": "细菌和病毒有什么不同，它们怎样致病，我们又怎样抵抗？",
+    "observe": "先认识微小居民，再追踪一个感染例子，看看身体、清洁和药物各自做什么。",
     "academic": [
       {
-        "title": "环境广泛分布，不等于每种都能生长",
-        "body": "微生物并非单一谱系，包含细菌、古菌、显微真菌和许多原生生物；病毒不是细胞，也在微生物学中研究。水、尘粒或接触能搬运微生物，但到达、存活、繁殖分别需要不同条件。皮肤部位、土粒孔隙等也有不同微环境。场景 E 展示代表居民，不是物种鉴定；资源选择是对参考细胞 B 的定性实验，不是从环境图推算实际种群增长。"
+        "title": "细菌、常见病毒与身边的微生物",
+        "body": "细菌、古菌、微小真菌和许多原生生物属于微小居民。病毒没有细胞结构，也放在微生物学中研究。正常菌群能参与营养、代谢和定植抵抗；是否致病取决于具体微生物、进入位置与宿主条件，不能按外形或“有菌”作判断。 参考杆菌 B 展示较厚的肽聚糖细胞壁、选择性细胞膜、无核膜包围的拟核与核糖体。其他细菌可能有外膜，少数无细胞壁。外形对照不沿用 B 的包被细节。分裂需要增加材料并复制、分配遗传信息；资源受限的早期停止只是定性的对照。 病毒含有基因组和蛋白质构件；一部分还有脂质包膜。A 型流感示例有八段 RNA，并在宿主细胞核中进行基因组复制；诺如病毒无包膜，在细胞质相关复制结构中复制。新颗粒由部件组装，不是原颗粒长大后二分裂。噬菌体感染细菌，不能作为人体感染的默认结构。"
       },
       {
-        "title": "细菌拥有细胞结构，分裂仍受条件限制",
-        "body": "B 代表一类具有较厚肽聚糖壁、无外膜的细菌。壁提供支撑，膜形成选择性边界；拟核没有核膜，核糖体按 RNA 信息合成蛋白质。二分裂须复制遗传信息、分配并建立隔膜，不能把一份 DNA 剪成两半；真实阶段可重叠、速度随种类与条件变化。资源受限对照停在早期是教学选择，不是所有细菌统一的停滞阶段，也不代表死亡。酸奶、土壤和肠道讲的是不同群体，其作用依赖菌株与情境，不由外形决定。"
+        "title": "从进入组织到身体抵抗",
+        "body": "本窗口选择呼吸道流感、肠道诺如与皮肤破口中的葡萄球菌三个例子。病毒必须利用合适的活细胞；细菌可能在局部繁殖，也可能通过毒素、侵入与炎症造成损伤。画面展开的是某些条件成立后的局部过程，不是感染一定发生的承诺，也不把所有症状归为病原体直接破坏。 皮肤、黏液及纤毛等先提供屏障。先天免疫的吞噬细胞可吞入并分解微生物。B 细胞形成的浆细胞产生抗体，抗体主要在细胞外中和或标记目标；细胞毒性 T 细胞还能识别并清除受感染细胞。免疫记忆可以让针对同一目标的反应更快，但不保证完全阻止感染。"
       },
       {
-        "title": "病毒复制依赖适配宿主，不是另一种细胞分裂",
-        "body": "病毒没有自己的核糖体，不能只凭外界营养独立制造新病毒。本例明确换到有外膜和薄壁的宿主 H，参考 T4 类噬菌体与大肠杆菌样宿主，不能把厚壁 B 当作同一宿主。表面匹配是附着条件之一，内部防御仍可阻断复制。连续模型保留原始 DNA、包装中的部件和同一批子代；边界先打开，子代才释放。这里只演示一种裂解路线，并非所有病毒均裂解、杀死宿主或感染人。"
+        "title": "清洁、治疗与提前保护的目标不同",
+        "body": "洗手、体表消毒、体内抗微生物药物、症状缓解与疫苗有不同的作用位置和目标。这里的抗生素例子作用于生长中的细菌细胞壁合成；抗流感药例子抑制子代释放，不能推广到所有抗病毒药。耐药对照描述原本不同的微生物条件，不把身体“习惯了药”当作耐药机制。"
       }
     ],
-    "misconception": "环境中发现微生物，不证明它正在繁殖；细菌不是病毒；外壳相似或有营养，都不保证某个病毒能够感染并复制。",
-    "boundary": "E 是环境插画；B 与 H 是明确不同的参考对象，不是从 E 鉴定出的同一细胞。颜色、比例、数量、层间距与时间均教学化；资源对照没有统一真实生长速率。不能据此培养、鉴定或判断食品、饮水与健康安全。",
+    "misconception": "把所有微生物都当成“坏东西”，会忽略正常菌群和生态作用。 有突起不等于同一种病毒；不是所有病毒都像有“尾巴”的噬菌体。 接触、定植、感染和发病有区别；看见微生物不等于生病。 抗体不是会钻进细胞里打病毒的小士兵；清除感染细胞还需要别的机制。 抗生素不治疗病毒感染；消毒液不是可以吃进身体的药。",
+    "boundary": "三维颜色、表面纹理、数量和厚度均为教学化；球状与螺旋状只比较外形。B 不是从环境图中鉴定的物种，也不是伤口葡萄球菌或噬菌体宿主 H。 表面蛋白与基因组放大，不按真实分子数重建；窗口各自放大，不能比较屏幕尺寸。复制路线压缩了分子步骤；诺如的细胞靶点与释放方式更复杂。倒放只回看图解。 菌株、暴露量、组织状态与免疫条件都会改变结局。本图不模拟感染概率、病程、毒素剂量或症状严重程度；不用于诊断。 先天与适应性免疫可重叠协作，不是按秒切换的四个关卡。没有模拟补体、全部细胞类型或免疫疾病；成功清除只是一个例子，不能推出所有感染都会自行解决。 效果取决于对象、药物或产品、用法及微生物敏感性；图中的数量和时长不表示疗效。症状好转不等于病原体已清除。疫苗窗口以流感为例，不代表每种病原体都有同样的疫苗。",
     "narration": [
       {
-        "label": "到达这里，还缺什么",
-        "text": "土粒之间、池水里和皮肤表面，都可能有微小居民。空气还能带着孢子或含菌液滴旅行。可是到达新地方，不等于能活下来，更不等于能越长越多。环境不同，适合的居民也不同。这些画不是刚刚采样的照片，我们先把环境留在观察台旁边。",
-        "cue": "在四个环境间比较，靠近同一幅图；保留一处环境作后续参照。"
+        "label": "微小居民不全是坏东西",
+        "text": "皮肤上、肠道里、土粒间，都可能有微小居民。不同微生物能帮助分解、参与代谢，也有一些会在特定条件下致病。发现它们，不等于已经生病。我们先留下一幅环境作参照，再换成一颗参考细菌。细菌有自己的细胞膜、遗传信息和制造蛋白质的工具。条件合适时，它要先复制和分配遗传信息，再形成两个子细胞。",
+        "cue": "环境与有用角色 → 杆菌三维剖面 → 一次分裂；资源不足时比较受阻分支。"
       },
       {
-        "label": "借一颗参考细胞看工具",
-        "text": "现在换成参考细胞 B。它不是从刚才的图里认出的物种，而是帮助观察结构的例子。外面有支撑它的细胞壁，里面一层膜控制一些物质进出。紫色线是 DNA，没有核膜包住它。核糖体能按信息制造蛋白质，病毒却没有这样的工具。",
-        "cue": "依次看壁、膜、DNA和核糖体；膜上播放一次选定进出路线。"
+        "label": "病毒不是缩小的细菌",
+        "text": "流感病毒外面有包膜和蛋白质，诺如病毒没有脂质包膜。它们有遗传信息，却没有自己的核糖体。遇到合适的活细胞，病毒才可能借用细胞的条件，复制信息、制造部件，再组装出新颗粒。流感的新颗粒从细胞表面出芽时得到包膜，不是在里面先变成一颗完整的带膜小球。有尾巴的噬菌体只是感染细菌的一个例子，不是所有病毒的样子。",
+        "cue": "流感与诺如的三维结构 → 二维复制部位 → 出芽与释放；噬菌体保留为独立对照。"
       },
       {
-        "label": "条件支持，才看得到下一步",
-        "text": "让参考细胞走过一次生长过程。细胞先增加材料，遗传信息复制并分开，中间再形成分隔，成为两个子细胞。不是把一份 DNA 随手剪开。换到资源受限的对照，它停在早期。这只表示本次条件不够，不是所有细菌都这样停，也不是宣告它已经死亡。",
-        "cue": "比较支持生长与资源受限，各跑到终态，再返回原条件验证进度保留。"
+        "label": "怎么生病，身体又怎么抵抗",
+        "text": "呼吸道、肠道和皮肤破口，会遇到不同的感染例子。接触不一定变成感染，感染也不一定马上出现症状。病原体进入后，繁殖、组织损伤和身体的炎症反应都可能参与。皮肤、黏液和纤毛先帮忙阻挡；吞噬细胞能吞入并分解一些微生物。抗体主要在细胞外结合目标，病毒已经进入的细胞还可能由 T 细胞等机制识别和清除。已有匹配的免疫记忆能让反应更快，但不是绝对保护。",
+        "cue": "选择身体位置 → 比较进入或被拦住 → 追踪吞噬、细胞外抗体及感染细胞的去向。"
       },
       {
-        "label": "病毒还需要另一道门",
-        "text": "最后明确换到另一类宿主 H，它的外面有外膜和较薄的壁，不是刚才的 B。这个噬菌体只有遇见合适的细胞，才可能把 DNA 送进去，利用细胞的条件制造部件。表面不匹配，进不去；内部防御生效，进去了也不会产生子代。成功的这条路线里，部件组装，边界打开，新的噬菌体才释放。相遇、细胞生长和病毒复制，原来不是一回事。",
-        "cue": "比较三类宿主；在DNA进入、组装和开口释放的中间态停留，返回环境。"
+        "label": "洗走、灭活、抑制与记住",
+        "text": "肥皂、搓洗和清水合作，能把一些微生物带走，不需要先把每一个都杀死。合适的消毒用品作用于体表，效果还要看对象；普通免洗手消毒液不能替代针对诺如病毒的洗手。抗生素针对某些细菌的结构或过程，不能治疗病毒感染；抗病毒药也有各自的目标。缓解发热或疼痛，不等于病原体已经清除。疫苗帮助提前形成免疫准备。药物和清洁用品由大人按医嘱或标签使用，它们不能互相代替。",
+        "cue": "按作用位置比较六种方法，检查不匹配与耐药对照；保留残留物与病原体，不画成瞬间清零。"
       }
     ]
   },
   "en": {
-    "question": "If microbes arrive somewhere, must bacteria divide and viruses replicate?",
-    "observe": "Follow habitat E, reference cell B and comparison host H. Keep the chosen habitat as a reference, compare B's resource conditions, follow DNA and membrane changes, then test why mismatched surfaces or internal defense stop a virus.",
+    "question": "How do bacteria and viruses differ, cause illness and meet our defenses?",
+    "observe": "Meet microscopic neighbors, follow an example infection, and see the different roles of our bodies, cleaning and medicines.",
     "academic": [
       {
-        "title": "Widespread occurrence is not universal growth",
-        "body": "Microbes are not one lineage: they include bacteria, archaea, microscopic fungi and many protists. Viruses are not cells but are studied in microbiology. Water, dust and contact transport microbes, while arrival, survival and reproduction require distinct conditions. Skin sites and soil pores contain different microhabitats. E shows representative residents, not identified species. Resource selection is a qualitative experiment for reference cell B, not a population growth estimate derived from the habitat illustration."
+        "title": "Bacteria, familiar viruses and microbial neighbors",
+        "body": "Microscopic residents include bacteria, archaea, microscopic fungi and many protists. Viruses are noncellular but are studied in microbiology. Normal microbiota contribute to nutrition, metabolism and resistance to colonization. Disease depends on the organism, body site and host conditions, not shape or mere presence. Reference rod B has a thick peptidoglycan wall, a selective membrane, a nucleoid without a nuclear membrane and ribosomes. Other bacteria may have an outer membrane; a few lack a wall. Shape comparisons do not inherit B’s detailed envelope. Division requires material growth and genome copying and partitioning. Early arrest under limited resources is a qualitative contrast. Viruses contain a genome and protein components; some also have a lipid envelope. The influenza A example has eight RNA segments and copies its genome in the host nucleus. Non-enveloped norovirus replicates in cytoplasmic replication structures. New particles assemble from components rather than dividing as cells do. Phages infect bacteria and are not the default model for human infection."
       },
       {
-        "title": "Bacteria have cell machinery, but conditions still constrain division",
-        "body": "B represents one thick-peptidoglycan-walled bacterium without an outer membrane. The wall supports shape, the membrane is selective, the nucleoid lacks a nuclear membrane, and ribosomes use RNA information to make proteins. Binary fission requires copying and partitioning genetic information and forming a division boundary, not cutting one genome in half. Real stages can overlap and growth varies with species and conditions. Early arrest in the resource-limited example is a teaching choice, not a universal stopping stage or a declaration of death. Yogurt, soil and gut examples are distinct communities whose roles depend on strains and context, not shape."
+        "title": "From tissue entry to immune responses",
+        "body": "The selected examples are airway influenza, intestinal norovirus and staphylococci at broken skin. Viruses require suitable living cells. Bacteria may multiply locally and cause harm through invasion, toxins or inflammation. The view illustrates a local process after specified conditions hold. It does not imply inevitable infection or attribute every symptom to direct microbial damage. Skin, mucus and cilia provide barriers. Innate phagocytes can engulf and break down microbes. Plasma cells derived from B cells make antibodies that mainly neutralize or mark extracellular targets. Cytotoxic T cells can also recognize and eliminate infected cells. Matching immune memory can accelerate a response without guaranteeing complete protection."
       },
       {
-        "title": "Viral replication needs a suitable host; it is not cell division",
-        "body": "Viruses lack their own ribosomes and cannot use external nutrients alone to make new viruses independently. The example explicitly switches to host H with an outer membrane and a thin wall, referencing a T4-like phage and an E. coli-like host, not thick-walled B. Surface compatibility is one attachment condition; internal defense can still block replication. The continuous model retains the original DNA, assembly parts and offspring identities. The host opens before offspring leave. This is one lytic route, not a claim that all viruses lyse cells, kill their hosts or infect people."
+        "title": "Cleaning, treatment and preparation have distinct targets",
+        "body": "Washing, surface disinfection, antimicrobial medicines, symptom relief and vaccines have different sites and targets. The antibiotic example blocks wall synthesis in growing bacteria. The flu-antiviral example inhibits offspring release; other antiviral medicines have different targets. Resistance compares different microbial conditions, not a body becoming “used to” a medicine."
       }
     ],
-    "misconception": "Finding microbes does not prove active reproduction. Bacteria are not viruses, and a similar-looking cell or available nutrients do not guarantee infection and replication.",
-    "boundary": "E is a habitat illustration; B and H are explicitly different reference objects, not one cell identified from E. Colours, scale, counts, layer spacing and time are illustrative. The resource comparison has no universal real growth rate and cannot guide culturing, identification or food, water or health-safety judgments.",
+    "misconception": "Treating all microbes as harmful overlooks normal microbiota and ecological roles. Surface projections do not make viruses identical. Most familiar human viruses do not resemble a tailed phage. Exposure, colonization, infection and illness differ. Seeing microbes does not establish disease. Antibodies are not little soldiers entering cells. Infected-cell clearance uses other mechanisms. Antibiotics do not treat viral infections. Disinfectants are not medicines to swallow.",
+    "boundary": "3D colors, texture, counts and thicknesses are illustrative. Round and spiral specimens compare shape only. B is not identified from the habitat, and is distinct from the wound staphylococcus and phage host H. Surface proteins and genomes are enlarged, not reconstructed molecule by molecule. Windows use separate magnifications. Replication omits molecular steps; norovirus cell targets and release routes are more complex. Scrubbing backward revisits an illustration. Strain, exposure, tissue condition and immunity can alter outcomes. The view does not calculate infection probability, clinical course, toxin dose or symptom severity, and cannot diagnose illness. Innate and adaptive responses overlap rather than switching through timed gates. Complement, many cell types and immune disorders are omitted. Successful clearance is one example, not a claim that all infections resolve unaided. Effects depend on the organism, medicine or product, use and susceptibility. Counts and timing do not represent efficacy. Symptom relief does not mean pathogen clearance. The vaccine view uses influenza and does not imply an equivalent vaccine for every pathogen.",
     "narration": [
       {
-        "label": "What is missing after arrival?",
-        "text": "Tiny residents may occur between soil grains, in pond water and on skin. Air can carry spores or bacteria-bearing droplets too. Reaching a new place does not establish survival, let alone making more. Different habitats suit different residents. These illustrations are not photographs of newly collected samples. Keep one habitat beside the observation workspace.",
-        "cue": "Compare the four habitats and zoom within the same illustration; retain one habitat as the reference."
+        "label": "Microscopic neighbors are not all harmful",
+        "text": "Skin, the gut and spaces in soil can contain microscopic residents. Different microbes help decompose material or take part in metabolism; some cause disease under particular conditions. Finding them does not establish illness. Keep one habitat as a reference, then switch to a reference bacterium. It has a membrane, genetic information and protein-making machinery. Under suitable conditions, it copies and partitions that information before separating into two cells.",
+        "cue": "Habitat and useful roles → reference-rod 3D cutaway → one division; compare limited resources."
       },
       {
-        "label": "Borrow a reference cell to inspect its tools",
-        "text": "Now switch to reference cell B. It is not a species identified in the earlier picture; it is an example for studying structure. A wall supports it, and an inner membrane regulates selected exchanges. Purple lines represent DNA without a nuclear membrane. Ribosomes make proteins from information. A virus has no ribosomes of its own.",
-        "cue": "Inspect wall, membrane, DNA and ribosomes; play the selected membrane routes once."
+        "label": "Viruses are not tiny bacteria",
+        "text": "Influenza has an envelope and surface proteins; norovirus has no lipid envelope. They contain genetic information but no ribosomes of their own. A suitable living cell can provide conditions for copying information, making parts and assembling new particles. Influenza offspring acquire an envelope while budding at the cell surface, rather than forming complete enveloped balls inside. A tailed phage is one bacterial-virus example, not the shape of every virus.",
+        "cue": "Influenza/norovirus structures → 2D replication locations → budding and release; phage remains a separate contrast."
       },
       {
-        "label": "Conditions support the next step",
-        "text": "Follow one growth sequence. The cell adds material, copies and separates genetic information, then forms a partition and becomes two daughter cells. One genome is not simply cut in half. In the resource-limited comparison, the sequence stops early. This means conditions are insufficient in this example, not that all bacteria stop at that stage or that this cell has died.",
-        "cue": "Run growth-supporting and limited conditions to their endpoints; return to verify separately retained progress."
+        "label": "Illness and the body’s response",
+        "text": "The airway, intestine and broken skin provide different infection examples. Exposure need not become infection, and infection need not immediately cause symptoms. Multiplication, tissue injury and inflammation can all contribute. Skin, mucus and cilia provide barriers; phagocytes engulf and break down some microbes. Antibodies mainly bind extracellular targets. T-cell mechanisms can also recognize and eliminate infected cells. Matching immune memory can speed a response without guaranteeing complete protection.",
+        "cue": "Select a body site → compare entry with a barrier stop → track phagocytosis, extracellular antibodies and infected-cell clearance."
       },
       {
-        "label": "A virus needs another gate",
-        "text": "Finally, switch explicitly to host H. Its outer membrane and thinner wall differ from B. This phage must encounter a suitable cell before its DNA can enter and use cellular conditions to make parts. A mismatched surface blocks entry; effective internal defense blocks offspring even after entry. In the successful pathway, parts assemble and the boundary opens before new phages escape. Arrival, bacterial growth and viral replication are not the same thing.",
-        "cue": "Compare all three host cases; pause during entry, assembly and release, then return to the habitat."
+        "label": "Remove, inactivate, inhibit and remember",
+        "text": "Soap, rubbing and water can carry some microbes away without killing every one first. Suitable disinfectants act on surfaces and depend on the target; ordinary hand sanitizer does not replace handwashing for norovirus. Antibiotics target bacterial structures or processes, not viral infections. Antiviral medicines also have specific targets. Relief of fever or pain does not establish pathogen clearance. Vaccines prepare immune responses in advance. Adults use medicines and cleaning products according to medical advice or labels; these actions are not interchangeable.",
+        "cue": "Compare six actions by location and target, including mismatches and resistance; retain residual microbes rather than depicting instant eradication."
       }
     ]
   },
@@ -99,27 +99,27 @@
       "url": "https://microbiologysociety.org/why-microbiology-matters/what-is-microbiology/what-are-bacteria.html"
     },
     {
-      "title": "USDA NRCS — Soil Biology Primer",
+      "title": "USDA NRCS · Soil Biology Primer",
       "url": "https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer"
     },
     {
-      "title": "Grice et al. — Topographical and Temporal Diversity of the Human Skin Microbiome",
+      "title": "Grice et al. · Human skin microbiome",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2805064/"
     },
     {
-      "title": "OpenStax — Prokaryotic cell structures",
+      "title": "OpenStax · Prokaryotic cells",
       "url": "https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells"
     },
     {
-      "title": "OpenStax — How microbes grow",
+      "title": "OpenStax · Microbial growth",
       "url": "https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow"
     },
     {
-      "title": "NHGRI — Virus",
+      "title": "NHGRI · Virus",
       "url": "https://www.genome.gov/genetics-glossary/Virus"
     },
     {
-      "title": "RCSB PDB-101 — Bacteriophage T4 infection",
+      "title": "RCSB PDB-101 · T4 infection",
       "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection"
     },
     {
@@ -129,6 +129,74 @@
     {
       "title": "Research — Lactic-acid bacteria in yogurt",
       "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7895560/"
+    },
+    {
+      "title": "RCSB PDB-101 · Influenza virus",
+      "url": "https://pdb101.rcsb.org/sci-art/goodsell-gallery/influenza-virus"
+    },
+    {
+      "title": "CDC · Norovirus classification",
+      "url": "https://www.cdc.gov/norovirus/php/laboratories/index.html"
+    },
+    {
+      "title": "OpenStax · How pathogens cause disease",
+      "url": "https://openstax.org/books/microbiology/pages/15-2-how-pathogens-cause-disease"
+    },
+    {
+      "title": "NIDDK · Viral gastroenteritis",
+      "url": "https://www.niddk.nih.gov/health-information/digestive-diseases/viral-gastroenteritis/symptoms-causes"
+    },
+    {
+      "title": "NHS · Staph infections",
+      "url": "https://www.nhs.uk/conditions/staphylococcal-infections/"
+    },
+    {
+      "title": "OpenStax · Adaptive immunity",
+      "url": "https://openstax.org/books/microbiology/pages/18-1-overview-of-specific-adaptive-immunity"
+    },
+    {
+      "title": "OpenStax · T cells and cellular immunity",
+      "url": "https://openstax.org/books/microbiology/pages/18-3-t-lymphocytes-and-cellular-immunity"
+    },
+    {
+      "title": "CDC · Hand sanitizer and handwashing",
+      "url": "https://www.cdc.gov/clean-hands/about/hand-sanitizer.html"
+    },
+    {
+      "title": "CDC · Preventing norovirus",
+      "url": "https://www.cdc.gov/norovirus/prevention/index.html"
+    },
+    {
+      "title": "OpenStax · Antibacterial drug targets",
+      "url": "https://openstax.org/books/microbiology/pages/14-3-mechanisms-of-antibacterial-drugs"
+    },
+    {
+      "title": "CDC · Appropriate antibiotic use",
+      "url": "https://www.cdc.gov/antibiotic-use/about/"
+    },
+    {
+      "title": "CDC · Flu antiviral treatment",
+      "url": "https://www.cdc.gov/flu/treatment/antiviral-drugs.html"
+    },
+    {
+      "title": "WHO · How vaccines work",
+      "url": "https://www.who.int/europe/news-room/fact-sheets/item/how-vaccines-work"
+    },
+    {
+      "title": "RCSB PDB-101 · Influenza neuraminidase",
+      "url": "https://pdb101.rcsb.org/motm/113"
+    },
+    {
+      "title": "OpenStax · Respiratory viral infection",
+      "url": "https://openstax.org/books/microbiology/pages/22-3-viral-infections-of-the-respiratory-tract"
+    },
+    {
+      "title": "OpenStax · Bacterial and viral virulence factors",
+      "url": "https://openstax.org/books/microbiology/pages/15-3-virulence-factors-of-bacterial-and-viral-pathogens"
+    },
+    {
+      "title": "ICTV · Caliciviridae profile",
+      "url": "https://calicivirustypingtool.cdc.gov/PDF/Vinje2019_JGV.pdf"
     }
   ]
 }

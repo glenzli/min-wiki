@@ -2953,8 +2953,8 @@
       "updated": "2026-09-12",
       "learning": "topics/bacteria/learning.json",
       "review": {
-        "status": "draft",
-        "reviewedOn": "2026-10-18",
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
         "inherits": "microbes-everywhere"
       }
     },
@@ -3006,20 +3006,20 @@
       "updated": "2026-09-12",
       "learning": "topics/viruses/learning.json",
       "review": {
-        "status": "draft",
-        "reviewedOn": "2026-10-18",
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
         "inherits": "microbes-everywhere"
       }
     },
     {
       "id": "microbes-everywhere",
       "title": {
-        "zh": "微生物：细胞、环境与病毒",
-        "en": "Microbes: cells, habitats and viruses"
+        "zh": "微生物与健康：细菌、病毒和身体的防线",
+        "en": "Microbes and health: bacteria, viruses and our defenses"
       },
       "summary": {
-        "zh": "从小环境走进细菌，比较细胞怎样生长，以及病毒为什么离不开合适宿主。",
-        "en": "Explore microbial habitats, bacterial growth and why viruses need suitable host cells."
+        "zh": "认识细菌、流感与诺如病毒，沿身体位置看感染和免疫，再比较洗手、消毒、药物与疫苗的不同作用。",
+        "en": "Explore bacteria, influenza and norovirus, follow infection and immunity at body sites, then compare washing, disinfection, medicines and vaccines."
       },
       "pages": {
         "zh": "topics/microbes-everywhere/entry.zh.md",
@@ -3049,9 +3049,14 @@
         "病毒",
         "微生物为什么几乎无处不在？",
         "二分裂",
-        "生态"
+        "生态",
+        "感染",
+        "免疫",
+        "药物",
+        "洗手",
+        "疫苗"
       ],
-      "duration": "互动探索 / 三条观察路径",
+      "duration": "互动探索 / 六个问题",
       "modes": [
         "儿童版",
         "学术版"
@@ -3059,15 +3064,15 @@
       "theme": "light",
       "sceneTheme": "light",
       "status": "published",
-      "updated": "2026-09-20",
+      "updated": "2026-10-25",
       "learning": "topics/microbes-everywhere/learning.json",
       "review": {
-        "status": "draft",
-        "reviewedOn": "2026-10-18",
-        "visual": "参考细菌与膜剖面较清楚；环境取样细节偏小，病毒与宿主的层次、材质和尺度衔接仍不均衡。",
-        "content": "到达、生长、分裂与病毒复制有清楚的条件差别，并明确换了参考对象。",
-        "interaction": "三站可比较资源不足、宿主不匹配与防御等不发生的结果。",
-        "next": "统一环境—参考细胞—病毒宿主三个尺度的清晰度，精修所选细节并逐支检查不发生的结果。"
+        "status": "complete",
+        "reviewedOn": "2026-10-25",
+        "visual": "参考细胞及流感/诺如等结构采用可旋转三维剖面，致病、免疫与干预采用同一坐标下可拉近的二维过程；着色、放大与非实测边界明确。",
+        "content": "六个问题衔接微生物常识、细菌、常见病毒、身体位置、致病、免疫及清洁药物；保留来源、目标差别和中英文科学限定。",
+        "interaction": "原生问题/条件/讲解入口；支持受阻、无靶点、耐药与记忆对照，并分别保留有效进度；播放暂停、镜头、阅读、语言和历史回退已实测，保留旧参数及二维替代。",
+        "next": "持续更新科学资料；扩展对象时继续保持病例非诊断、动画非疗效预测与明确的对象身份边界。"
       }
     },
     {

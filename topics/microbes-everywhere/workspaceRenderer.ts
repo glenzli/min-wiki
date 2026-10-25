@@ -1,7 +1,7 @@
 import type { WorkspaceState, Chapter } from './workspaceModel';
 import type content from './workspaceContent.json';
 export type Copy = typeof content.en;
-export interface WorkspaceRenderer { render(state: WorkspaceState, animate?: boolean): void; pause(): void; dispose(): void }
+export interface WorkspaceRenderer { render(state: WorkspaceState, animate?: boolean): void; pause(): void; dispose(): void; reset?():void }
 export type RendererFactory = (host: HTMLElement, copy: Copy) => WorkspaceRenderer;
 export const escaped = (value: string): string => value.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
 export function namespaceSvg(markup: string, prefix: string): string {

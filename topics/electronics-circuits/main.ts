@@ -22,10 +22,20 @@ const returnWire = get<HTMLButtonElement>('return-wire');
 const sensorLink = get<HTMLButtonElement>('sensor-link');
 const light = get<HTMLInputElement>('light-level');
 const threshold = get<HTMLInputElement>('threshold');
-mountPresentationFrame({root:'#observation',visual:'.scene-column',transport:'#supply-switch,#return-wire,#reset',choices:'.experiments'});
+const frame=mountPresentationFrame({root:'#observation',visual:'.scene-column',transport:'#supply-switch,#return-wire,#reset'})!;
+const questions=document.querySelector<HTMLElement>('.experiments')!;questions.removeAttribute('data-reader-menu');frame.mode.toolbar.prepend(questions);
+const readingControls=get('reading-controls');readingControls.removeAttribute('data-reader-menu');
 const reading = mountSceneReading(get('observation'), { id: 'circuit-reading', controls: get('reading-controls') });
-// Keep scientific depth next to the controls, while the live child cause remains state-specific.
+// Keep the authored reading and sensor inputs; moving them never resets a circuit.
+frame.notes.prepend(readingControls);
 get('child-explain').after(reading.element);
+const sensorOptions=document.createElement('details');sensorOptions.className='sensor-options';
+const sensorSummary=document.createElement('summary');sensorSummary.textContent=t('改变条件');sensorOptions.append(sensorSummary,get('sensor-controls'));frame.mode.toolbar.insertBefore(sensorOptions,frame.mode.toolbar.querySelector('[data-reader-explanation]')??frame.mode.button);
+const explanationButton=frame.mode.toolbar.querySelector<HTMLButtonElement>('[data-reader-explanation]');if(explanationButton)explanationButton.textContent=t('讲解');
+const menuEvents=new AbortController();
+document.addEventListener('pointerdown',event=>{if(event.target instanceof Node&&!sensorOptions.contains(event.target))sensorOptions.open=false;},{signal:menuEvents.signal});
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&sensorOptions.open){sensorOptions.open=false;sensorSummary.focus();event.preventDefault();}},{signal:menuEvents.signal});
+window.addEventListener('pagehide',event=>{if(!event.persisted)menuEvents.abort();});
 
 function render(): void {
   const observation = observeCircuit(state);
@@ -33,6 +43,7 @@ function render(): void {
   const automatic = state.mode === 'automatic';
   renderCircuit(svg, observation, mobile.matches);
   get('sensor-controls').hidden = !automatic;
+  sensorOptions.hidden = !automatic;if(!automatic)sensorOptions.open=false;
   get('signal-story').hidden = !automatic;
   for (const button of document.querySelectorAll<HTMLButtonElement>('button[data-control]')) button.setAttribute('aria-pressed', String(button.dataset.control === state.mode));
   for (const button of document.querySelectorAll<HTMLButtonElement>('button[data-rule]')) button.setAttribute('aria-pressed', String(button.dataset.rule === state.rule));

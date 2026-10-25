@@ -16,3 +16,30 @@
 @media(min-width:1000px){:root[data-wiki-document] #observation .presentation-visual svg{width:100%;height:100%;max-height:none;flex:1;min-height:0}}
 
 :root[data-wiki-document] #observation .presentation-transport>#reset{width:auto;margin:0}
+
+/* Preserve the two primary circuit actions; disclose only sensor conditions. */
+#observation>.observation-toolbar{display:flex;flex-wrap:wrap;gap:6px;position:relative}
+#observation .observation-toolbar>.experiments{display:flex;flex:1 1 auto;margin:0;gap:6px}
+#observation .observation-toolbar>.experiments button{flex:0 1 auto;min-width:0;min-height:44px;font-size:14px;padding:7px 10px}
+#observation .presentation-notes #reading-controls{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+#observation .sensor-options{position:relative;flex:none}
+#observation .sensor-options>summary{list-style:none;cursor:pointer;min-height:44px;padding:9px 12px;border:1px solid var(--border);border-radius:7px;font-size:14px;line-height:24px}
+#observation .sensor-options>summary::after{content:' ▾'}
+#observation .sensor-options>summary::-webkit-details-marker{display:none}
+#observation .sensor-options[open]>summary{background:var(--tint)}
+#observation #sensor-controls{position:absolute;right:0;top:calc(100% + 8px);width:340px;max-width:calc(100vw - 32px);max-height:60dvh;overflow:auto;z-index:30;padding:18px;background:var(--surface);border:1px solid var(--border);border-radius:9px;box-shadow:0 12px 30px #0003}
+#observation #sensor-controls label,#observation #sensor-controls output{display:block;font-size:14px;margin:10px 0 4px}
+#observation #sensor-controls input[type=range]{width:100%;min-height:36px}
+#observation #sensor-controls button{min-height:44px;font-size:14px}
+#observation #sensor-controls .control-group{margin-block:8px}
+@media(max-width:699px){
+ #observation .observation-toolbar>.experiments{flex:1 1 100%}
+ #observation .observation-toolbar>.experiments button{flex:1;font-size:14px;padding-inline:5px}
+ #observation .sensor-options{position:static}
+ #observation #sensor-controls{top:100%;left:8px;right:8px;width:auto;max-width:none;max-height:55dvh}
+}
+
+@media(max-width:999px){
+ #observation .presentation-body>.presentation-notes{grid-column:1;grid-row:1;max-height:55dvh;overflow:auto}
+ #observation .presentation-body>.presentation-stage{grid-column:1;grid-row:2}
+}

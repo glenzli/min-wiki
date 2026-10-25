@@ -32,8 +32,11 @@ const mechanism=new LayerMechanism(el('layer-mechanism'),text.mechanisms,text.la
 // inline. Common choices remain explicit rather than reopening a disclosure.
 const reading=mountSceneReading(observationRoot,{id:'atmo-science-guide',childTarget:el('story'),controls:document.querySelector<HTMLElement>('.modes')!});
 const observation=mountObservationMode(observationRoot,{enter:t('沉浸演示'),exit:t('退出沉浸 · Esc')},{fit:true,choices:[],panels:[{label:t('解说'),elements:[inspector]}]});
-const observationTitle=document.createElement('strong');observationTitle.className='observation-title';observationTitle.textContent=t('大气：包围星球的空气');observation.toolbar.prepend(observationTitle);
-observation.toolbar.prepend(document.querySelector('.atmo-tabs')!);
+// Relocate the authored controls once: changing a lens never replaces a scene.
+inspector.prepend(document.querySelector('.modes')!);
+const annotationControl=input('labels').closest('label')!;annotationControl.classList.add('atmo-annotations');
+observation.toolbar.prepend(document.querySelector('.atmo-tabs')!,el('layer-display'),el('world-controls'),annotationControl);
+document.querySelector('.atmo-options')!.remove();
 function revealAcademic(){if(reading.mode==='academic'){const control=observation.toolbar.querySelector<HTMLButtonElement>(`button[aria-controls~="${inspector.id}"]`);if(control?.getAttribute('aria-expanded')==='false')control.click();}}
 document.querySelector('.modes')!.addEventListener('click',revealAcademic);revealAcademic();
 let studyKey='';
@@ -60,7 +63,7 @@ function update(save=false){
  const expanded=state.view==='worlds'||state.display==='structure';
  const mechanismParent=expanded?inspector:document.querySelector('.journey-window')!;
  if(el('layer-mechanism').parentElement!==mechanismParent)mechanismParent.append(el('layer-mechanism'));
- document.querySelectorAll<HTMLButtonElement>('button[data-display]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.display===state.display)));el('layer-display').hidden=state.view!=='layers';
+ (el('display-choice') as HTMLSelectElement).value=state.display;el('layer-display').hidden=state.view!=='layers';
  const f=journeyFrame(state.journey),layer=text.layers[f.layer];
  const atLayerStop=Math.abs(f.height-layerStops[f.layer])<.02;
  mechanism.show(state.view==='layers'&&f.phase==='ascent'?f.layer:null,!playing||(holdRemaining>0&&atLayerStop));
@@ -73,7 +76,7 @@ function update(save=false){
  el('transport').hidden=state.view!=='layers';el('render-error').hidden=!!scene||expanded;
  document.querySelectorAll<HTMLButtonElement>('button[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===state.view)));
  el('science').hidden=true;
- document.querySelectorAll<HTMLButtonElement>('[data-comparison-world]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.comparisonWorld===state.world)));
+ (el('world-choice') as HTMLSelectElement).value=state.world;
  input('progress').value=String((expanded?heightPosition(f.height):state.journey)*1000);set('play',expanded?(playing?text.structure.scanPause:text.structure.scanPlay):playing?journeyText.pause:journeyText.play);
  set('reset',expanded?text.structure.overview:t('回到开始'));
  set('scrub-label',expanded?text.structure.scan:t('地球到太空的旅程'));
@@ -117,8 +120,8 @@ document.querySelectorAll<HTMLButtonElement>('button[data-view]').forEach(b=>b.a
 el('next-link').addEventListener('click',e=>{if(state.view==='layers'){e.preventDefault();setView('worlds');}});
 el('play').addEventListener('click',toggle);el('reset').addEventListener('click',()=>{seek(0);if(state.display==='structure')structure.overview();});el('overview').addEventListener('click',()=>seek(0));el('surface').addEventListener('click',()=>seek(APPROACH_END));
 el('progress').addEventListener('input',()=>{const value=Number(input('progress').value)/1000;seek(state.display==='structure'?journeyAtHeight(heightFromPosition(value)):value);});
-document.querySelectorAll<HTMLButtonElement>('button[data-display]').forEach(b=>b.addEventListener('click',()=>{stop();state.display=b.dataset.display as Settings['display'];update(true);}));
-document.querySelectorAll<HTMLButtonElement>('[data-comparison-world]').forEach(b=>b.addEventListener('click',()=>{state.world=b.dataset.comparisonWorld as ComparisonWorld;update(true);}));
+el('display-choice').addEventListener('change',()=>{stop();state.display=(el('display-choice') as HTMLSelectElement).value as Settings['display'];update(true);});
+el('world-choice').addEventListener('change',()=>{state.world=(el('world-choice') as HTMLSelectElement).value as ComparisonWorld;update(true);});
 el('labels').addEventListener('change',()=>update());el('retry').addEventListener('click',createScene);
 el('layer-stops').replaceChildren(...text.layers.map((layer,i)=>{const b=document.createElement('button');b.textContent=layer.name;b.addEventListener('click',()=>seek(journeyAtHeight(layerStops[i])));return b;}));
 window.addEventListener('popstate',()=>{stop();state=parseRoute(location.search);update();});

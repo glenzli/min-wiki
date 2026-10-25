@@ -179,3 +179,7 @@ Venus keeps broad sulfuric-acid cloud decks and dense lower gas; Mars separates 
 The two chapter buttons, active lens or five comparison-world buttons, reading depth and labels remain inline. The same authored controls are mounted once using Reader's observation and reading APIs; no nested choice disclosure or duplicate expanded-view height rail is created. The older journey still exposes its own globe/surface/height navigation. Journey, weather, invisible-cue state and the retained Earth survive navigation; replacing a comparison world disposes that world's resources. Reading depth opens the existing Explanation panel. Both languages keep native keyboard/touch button semantics, with the compact native phenomenon selector retained on phones.
 
 常用操作直接铺开：地球／其他天空、观察方式或比较世界，以及儿童版／学术版与标注。三维结构不重复显示旧旅程的第二套层按钮；连续接近视图仍保留自己的地球全景、地面与高度导览。条件与地球对象保留，更换比较世界时释放旧世界资源；详细解释仍在原解说面板中。
+
+## Observation controls
+
+`main.ts` composes the original Earth/world tabs, one native lens or world selector, labels and explanation in one toolbar. Reading depth stays inside the explanation. The selected world, reference height and retained renderers survive panel and lens changes. On narrow screens the requested explanation opens immediately above the scene in a bounded scroll region; closing it restores the full scene. Each world's feature and weather controls remain owned by `structureView.ts`, rather than imposing Earth layer correspondence.

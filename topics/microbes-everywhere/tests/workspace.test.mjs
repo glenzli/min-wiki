@@ -28,7 +28,7 @@ test('current chapter state survives URL serialization without deleting foreign 
 });
 test('chapters and camera selection preserve the meaningful process state and identities', () => {
   const state = readWorkspace('?chapter=bacteria&process=division&bp=.6&habitat=water');
-  state.chapter = 'viruses'; seekWorkspace(state, 1.67);
+  state.chapter = 'viruses'; state.virus='phage';state.virusProcess='cycle'; seekWorkspace(state, 1.67);
   const original = sampleCycle(state.viruses.compatible, state.host);
   state.view = 'attachment'; assert.deepEqual(sampleCycle(state.viruses.compatible, state.host), original);
   state.chapter = 'environment'; state.closer = true; state.chapter = 'bacteria';
@@ -48,7 +48,7 @@ test('finite playback respects growth limitation and does not claim actual speci
   assert.equal(currentProgress(state), 1); assert.equal(divisionState(currentProgress(state)).copy, 1);
 });
 test('host mismatch and defense have different barriers and cannot create offspring', () => {
-  const state = readWorkspace('?chapter=viruses'); const clock = new WorkspaceClock(); clock.ready = true;
+  const state = readWorkspace('?chapter=viruses&virus=phage&virus-process=cycle'); const clock = new WorkspaceClock(); clock.ready = true;
   for (const host of ['mismatch', 'defended']) {
     state.host = host; clock.start(state); advance(clock, state);
     const result = sampleCycle(currentProgress(state), state.host); assert.ok(result.offspring.every(child => child.birth === 0 && child.release === 0));

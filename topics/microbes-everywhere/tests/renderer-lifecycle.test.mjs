@@ -50,7 +50,7 @@ async function harness(chapter = 'viruses') {
   vm.runInNewContext(code, { exports, virusScene, virusModel, bacteriaScene, bacteriaModel, scheduler: animateValue, console });
   const factory = await exports.loadRenderer(chapter);
   const host = new Element(), renderer = factory(host, copy);
-  const state = readWorkspace(`?chapter=${chapter}`);
+  const state = readWorkspace(`?chapter=${chapter}${chapter==='viruses'?'&virus=phage&virus-process=cycle':''}`);
   renderer.render(state);
   const get = id => { const node = host.querySelector(`#${id}`); assert.ok(node, id); return node; };
   const advance = (animation, fraction) => { if (animation.active) { animation.onUpdate(animation.from + (animation.to - animation.from) * fraction); if (fraction === 1) { animation.active = false; animation.onComplete?.(); } } };

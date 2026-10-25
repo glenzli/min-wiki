@@ -1,65 +1,49 @@
-# 微生物：细胞、环境与病毒 / Microbes: cells, habitats and viruses
+# 微生物与健康 / Microbes and health
 
-This is the unified observation workspace for microbial habitats, bacterial structure/division and host-dependent viral replication. It consumes the existing detailed bacterial and viral renderers directly, not their old UI or an iframe. The real catalog is `wiki.json`; local catalog fragments mirror its title/summary and legacy parent relationships.
+2026-10-25: the existing microbial workspace now follows six questions: microbial neighbors → bacteria → diverse viruses → infection at body sites → immune responses → cleaning and medicines. The introduction does not equate microbes with disease. The default virus example is influenza; norovirus supplies an envelope contrast, and phage is an explicitly separate bacterial-virus example.
 
-## Six design questions / 六项设计
+## Six design decisions
 
-1. **Question:** why do arrival, cell growth and viral replication require different conditions?
-2. **Conditions:** choose soil/water/skin/air; compare resource-supporting/limited cases for reference bacterium B; select its structural part or one division; compare matching, mismatched and defended virus hosts H.
-3. **Observations:** persistent environment reference, selective membrane routes, DNA copying/partitioning, bounded division, continuous viral DNA/assembly/release and stopped-host branches.
-4. **Causality:** a habitat supplies constraints; cells have boundaries and machinery but need conditions; viruses still require suitable living host machinery and can fail after entry.
-5. **Misconceptions:** presence is not growth; not all microbes are bacteria; viruses are not cells; a thick-walled reference is not silently converted into an E. coli-like T4 host; appearance does not establish health risk.
-6. **Evidence/boundary:** all drawings and timing are illustrative. Resource limitation is a qualitative teaching comparison, not a universal species growth rate or field sample. Primary references are linked below and in bilingual learning material.
+1. **Question:** how do bacteria and viruses differ, cause illness and meet different defenses?
+2. **Conditions:** habitat; bacterial shape, structure/exchange/division and resources; virus and structural/process view; example body site and barrier outcome; matching immune memory; intervention, target and an antibacterial-resistance contrast.
+3. **Observation:** retained structures, a continuous genome/assembly/release path, multiplication and tissue injury, extracellular antibody binding versus infected-cell clearance, removal versus inactivation and target-specific inhibition.
+4. **Cause:** entry and compatible cellular conditions precede replication; injury and inflammation are distinct; effectors and interventions consume the same selected case, progress and susceptibility state.
+5. **Misconceptions:** presence is not illness; shape is not pathogenicity; a phage is not a generic human virus; a bacterial envelope is not a viral envelope; antibodies do not enter cells as soldiers; antibiotics do not treat viral infection; symptom relief is not pathogen clearance.
+6. **Evidence/bounds:** primary institutional and textbook sources are linked per scene and in `learning.json`. Colors, counts, geometry and time are explanatory, not micrographs, biological rate estimates, infection probabilities or clinical predictions. No culture protocols, diagnostic classifier or medicine dose is implemented.
 
-E 是环境插画。B 是较厚细胞壁、无外膜的一类参考细菌，不是从 E 鉴定出来的物种。病毒章明确切换到 H：有外膜与薄壁的 T4 类噬菌体宿主对照，参考大肠杆菌样包被。不同宿主选择是机制条件，不由外形或壁厚直接推断。共同工作区保留环境和条件作参照，但 B 的资源开关不驱动 H 的感染结局。
+## Ownership
 
-## Ownership / 所有权
+- `workspaceModel.ts`: validated URL state, bounded remembered progress per comparison and the only user-started finite clock. Structural observation does not admit process playback.
+- `healthModel.ts`: pure qualitative human-virus, disease, immune and intervention states. Influenza genomes copy in the nucleus and acquire an envelope at budding; norovirus copies in cytoplasmic structures. Blocked entry cannot silently generate offspring or tissue injury. Antibodies, T-cell clearance, removal, inactivation, wall-synthesis inhibition, release inhibition, symptom relief and immune preparation remain different effects.
+- `healthContent.json`, `healthReading.ts`: paired scene text, current-case explanation, limits and source mapping. The ordinary and scientific views describe one state; neither creates a separate experiment.
+- `specimen3d.ts`: one retained Three.js structural viewport, procedural illustration materials, cutaway, bounded camera and complete GPU/gesture/resize cleanup. Only the reference rod is given detailed bacterial internal layers; round/spiral specimens compare shape. Each viral example has its own protein/envelope/genome construction and no ribosomes. This owner has no autonomous animation timer.
+- `healthScene2d.ts`: local tissue, viral-cycle, immune and intervention diagrams. Camera close-ups change the viewBox of the same coordinates. The drawing retains organism/offspring identities, distinguishes flu budding from internal component assembly, and keeps immune binding outside cells separate from infected-cell clearance.
+- `healthRenderer.ts`: selects a responsibility-specific factory through the workspace's existing `SceneLease`. At most one structural GPU viewport or one SVG process is mounted; loading, cancellation, supersession, retry and failure remain bounded.
+- `workspace.ts`: composition, one compact question/conditions/explanation toolbar, native controls, URL history, playback, hidden-page pause, bfcache and disposal. Conditions and explanation use the same shared Reader panels; mobile opens the requested panel immediately before the scene.
+- `workspaceRenderer.ts`: retained environment and detailed bacterial/phage SVG factories; it does not mount the former pages. `bacteria/` retains membrane exchange and DNA-before-division mechanics. `viruses/` retains the T4-like host/camera/assembly/lysis model. `scene.ts` retains representative habitat art.
 
-- `workspaceModel.ts`: validated routes, bounded per-resource bacterial/per-host viral states and the single user-started process clock.
-- `workspace.ts`: complete workspace UI/lifecycle, observation reference, controls, failure/cancel/retry, URL history and disposal.
-- `workspaceRenderer.ts`: one live lazy scientific renderer; environment zoom and viral camera interpolation, bacterial structure focus and direct consumption of the existing detailed SVG engines. No old topic controller is imported.
-- `sceneLifecycle.ts`: asynchronous admission and generation-based stale completion rejection.
-- `scene.ts`: original four detailed habitat illustrations; shared between context reference and main observation with separate SVG namespaces.
-- `workspaceContent.json` and `learning.json`: paired mechanism, comparison, assumptions and narration. The current step has separate short child text and fuller academic text, with a mechanism source beside it; the longer academic sections and four narration segments cover the whole journey.
-- `../bacteria/model.ts`, `scene.ts`, `habitats.ts`: retained models, detailed wall/membrane/DNA/ribosome/division and the readable yogurt/soil/gut role illustrations. These remain runtime-consumed; the latter are explicitly different communities, not B moving through habitats.
-- `../viruses/model.ts`, `scene.ts`: retained continuous T4-like process, offspring identities, envelope breach and host failure branches.
-- The old bacteria/viruses `main.ts` and `reader.html` are now minimal compatibility entries. Their obsolete page CSS is removed, not their scientific engines or covers.
+## Identities and scientific limits
 
-Only one main scientific SVG renderer exists at a time; the fixed habitat reference and three static role illustrations are bounded. No idle process timer runs. Changing chapters/conditions, seeking, hiding or leaving pauses current time. Returning does not auto-play. Separate condition/host progress survives in memory; only the currently selected case is encoded in the URL. Language changes reload the page and restore encoded state, not every remembered case. Late imports cannot mount after cancellation, supersession or disposal; preparation can be retried. Reduced-motion preferences remove camera/focus interpolation while retaining the explicit finite scientific sequence.
+Environment E is an illustration, not a specimen identification. B is a thick-walled reference rod without an outer membrane. The wound example uses a potentially pathogenic staphylococcus, distinct from B. Phage host H has an outer membrane/thin wall and is also distinct. Normal microbiota, the human infection examples and these structural references are not silently transformed into one organism.
 
-The desktop structure view keeps the whole reference cell and its selected detail side by side inside the observation stage. The current explanation appears first in the sidebar, so a change of part, division stage or host barrier updates the explanation without losing the picture. The child mode gives one short causal point for that state. Academic mode keeps the full state description, an additional model or mechanism note and its source link; the scientific SVG and experiment state are shared. On narrow screens the structure and detail stack in reading order, and the playback controls remain compact.
+The airway/influenza, intestinal/norovirus and broken-skin/staphylococcal cases are examples, not a one-to-one disease atlas. Exposure, colonization, infection and symptomatic disease differ. The wound route illustrates tissue-damaging products in one pathogenic example; it does not claim all bacteria use that route. Innate and adaptive immunity overlap in reality. The selected successful immune sequence does not imply that all infections resolve unaided, that all virions are removed, or that memory guarantees protection.
 
-## Routes / 路由
+Washing carries some residents away without requiring inactivation; some remain visible. Alcohol-based hand sanitizer is compared on susceptible objects and norovirus without making a universal sterilization claim. The antibiotic example blocks wall synthesis in a growing susceptible bacterium; a pre-existing resistant contrast retains that target's function. Other antibiotics can inhibit other bacterial processes. The antiviral example targets influenza neuraminidase-mediated release and is not a generic antiviral treatment. Fever/pain relief leaves the illustrated pathogens present. Vaccination uses an influenza antigen/memory example rather than treating an ongoing infection or implying a corresponding vaccine for every pathogen.
 
-`/topics/microbes-everywhere/?chapter=environment|bacteria|viruses`
+Adults use medicines and disinfectants according to medical advice or labels. Surface cleaning, internal treatment and advance immune preparation cannot substitute for one another. Existing handwashing and drinking-water topics retain their procedural and heating qualifications; this topic links to them.
 
-- Context: `habitat=soil|water|skin|air`, `resources=ready|limited`, `close=0|1`.
-- B: `part=wall|membrane|dna|ribosomes`, `process=structure|division`, `bp=0..1`, `exchange=0..1`. Limited division is capped at 0.18 before copying, solely as the teaching contrast.
-- H: `host=compatible|mismatch|defended`, `view=whole|attachment|inside`, `p=0..5`, capped by the chosen host.
-- `microbialHref(chapter, search='', base='/', hash='')` in `workspaceModel.ts` preserves query parameters, language, deployment prefix and hash while forcing the legacy route's chapter. `readWorkspace(search)` validates applicable values.
-- Browser back/forward reselects the encoded chapter and current case without background playback. Unknown input falls back safely.
+## Route and lifecycle contract
 
-## Science sources / 科学依据
+The six `chapter` identifiers are stable and chapter changes save the departing process before adding history. Current-case progress can be restored by URL; other visited contrasts are bounded in-memory state, not a promise of a complete multi-case save file. View/cutaway/reading changes preserve scientific conditions and progress. Deliberately selecting a separate comparison reveals its separately remembered history. One process runs to a finite endpoint; structural views have no background process loop.
 
-Reviewed 2026-09-20. These support mechanisms, not the arbitrary resource cutoff, geometric scale, counts or timings.
+Legacy `/bacteria/` and `/viruses/` redirects retain language, base, hash and valid parameters. Specific old virus `host`, `view` or `p` links select the phage case. The unqualified virus chapter now starts with a human-virus structure. `flat=1` selects a usable 2D structural alternative; a failed 3D window provides retry/2D continuation without resetting its selected example. Hide/page exit stop unnecessary work and reject late loads.
 
-- [USDA NRCS — Soil Biology Primer](https://www.nrcs.usda.gov/resources/education-and-teaching-materials/soil-biology-primer): diverse soil organisms, decomposition and roles.
-- [Grice et al. — Human skin microbiome](https://pmc.ncbi.nlm.nih.gov/articles/PMC2805064/): distinct skin microenvironments and communities.
-- [OpenStax — Prokaryotic cell structures](https://openstax.org/books/microbiology/pages/3-3-unique-characteristics-of-prokaryotic-cells): envelopes, nucleoid and ribosomes.
-- [OpenStax — How microbes grow](https://openstax.org/books/microbiology/pages/9-1-how-microbes-grow): fission and condition-dependent growth.
-- [NHGRI — Virus](https://www.genome.gov/genetics-glossary/Virus): noncellular composition and host dependence.
-- [RCSB PDB-101 — T4 infection](https://pdb101.rcsb.org/sci-art/goodsell-gallery/bacteriophage-t4-infection): T4 and E. coli, entry, host machinery and lytic release.
-- [Maffei et al. — BASEL phage collection](https://journals.plos.org/plosbiology/article?id=10.1371/journal.pbio.3001424): host compatibility and defense.
-- Existing viral structure/packaging studies remain in `../viruses/README.md`; yogurt references remain in the learning sources.
+## Checks
 
-## Focused validation / 范围验证
+Focused:
 
-`node --import tsx --test topics/microbes-everywhere/tests/*.test.mjs topics/bacteria/model.test.ts topics/viruses/tests/*.test.mjs`
+```sh
+node --import tsx --test topics/microbes-everywhere/tests/*.test.mjs topics/bacteria/model.test.ts topics/viruses/tests/*.test.mjs
+```
 
-Covers actual models, routes, state retention, resource/host branches, conservative camera state, single-clock lifecycle, stale loading/cancel/retry and bilingual content. Old virus-controller tests now cover the compatibility boundary; their active UI lifecycle contracts moved to the unified workspace tests. Parent integration owns full gates and real packaged desktop/390px bilingual browser checks. Automated passing tests do not establish visual acceptance, actual biological prediction or deployment.
-
-No commit, push or deployment is implied.
-
-## Presentation layout
-
-The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+Final acceptance also uses repository type/i18n/image/entry/editorial gates, repository tests, a complete Reader consumer build, and actual bilingual desktop/390px interaction checks. A passing model test is neither visual acceptance nor clinical validation. No commit, push or deployment is implied.
