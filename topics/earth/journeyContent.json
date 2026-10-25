@@ -1,0 +1,102 @@
+{
+  "zh": {
+    "interior": {
+      "title": "切开地球",
+      "question": "不能挖到地心，怎样知道里面是什么？",
+      "bridge": "先用同一把半径标尺认识内部，再比较地震波与岩石证据。板块带着地表岩石移动，但地幔并不是一锅岩浆。",
+      "next": "这些层不是一开始就有的。回到地球形成时，看看时间怎样改变同一颗星球。"
+    },
+    "history": {
+      "title": "穿过 45.4 亿年",
+      "question": "一颗炽热的新星球，怎样有了海洋和氧气？",
+      "bridge": "刚才看到的地核和地幔，来自早期分异。现在沿真实时间比例看变化，再试试：有生物产氧，空气就一定会积氧吗？",
+      "next": "氧气收支只是生命环境的一部分。走进生命馆，把古老群落、化石保存与植物结构连起来；演化不是一条通向人类的阶梯。"
+    },
+    "life": {
+      "title": "追踪生命与环境",
+      "question": "古老群落留下了什么？哪些线索可能丢失？",
+      "bridge": "沿时间轴找到的位置，进入不同生命场景。分开看身体、痕迹与化学线索，再改变埋藏和采样，观察同一群落为什么留下不同记录。",
+      "next": "生命的痕迹有时进入岩石，也可能被改造或抹去。跟着同一份物质，看看哪些条件保存记录，哪些条件改变它。"
+    },
+    "rocks": {
+      "title": "跟着一块石头",
+      "question": "一块石头，会一直是原来的样子吗？",
+      "bridge": "刚才看到的生命痕迹，有些保存在矿物、层理和化石里。同一份岩石物质可以留在原处，也可以遇到热、水和搬运，走向不同结果。",
+      "next": "从岩石的颗粒继续放大，看看矿物的结构怎样影响性质，再区分矿物、岩石与矿石。"
+    },
+    "minerals": {
+      "title": "从标本到晶格",
+      "question": "同样的原子，为什么能成为不同的矿物？",
+      "bridge": "岩石由一种或多种矿物组成。放大到原子的连接，再综合多种性质找证据，最后看看什么时候一份材料才叫矿石。",
+      "next": "矿物能分散在岩石里，也能在特定条件下集中。进入富集馆，让流体、风化和河水走不同路径，再问这份材料是否真能作为矿石利用。"
+    },
+    "ores": {
+      "title": "追踪矿石富集",
+      "question": "有用的矿物，为什么常集中在某些地方？",
+      "bridge": "分清矿物、岩石与矿石后，比较流体充填裂隙、长期风化与河流分选。观察自然富集、矿物证据和经济条件怎样分别限制判断。",
+      "next": "富集记录需要结合环境来读，冰川与气候的记录也一样。带着证据进入冰期馆，区分古老冰封、反复进退和今天的变化。"
+    },
+    "climate": {
+      "title": "冰与气候的往返",
+      "question": "地球为什么曾被冰覆盖？冰又怎样改变地球？",
+      "bridge": "岩石和冰芯把历史留给我们。先分清不同时期的冰封，再用反射与收支实验观察冰怎样响应环境、影响海洋和地表。",
+      "next": "冰把淡水暂存在陆地，融水又进入海洋。继续比较海水密度、能量来去和地球的宜居条件。"
+    },
+    "systems": {
+      "title": "让地球运转",
+      "question": "海洋、空气、岩石和生命，怎样一起改变地球？",
+      "bridge": "内部热驱动长期岩石过程，太阳驱动许多地表过程。比较海水的温盐条件，再分清昼夜、极光和宜居条件各自的机制。",
+      "next": "回到内部证据，把海水、空气、生命和岩石重新连起来：你能解释其中两者怎样影响彼此吗？"
+    }
+  },
+  "en": {
+    "interior": {
+      "title": "Look inside Earth",
+      "question": "How can we know the inside without digging to the center?",
+      "bridge": "Begin with one radius scale, then compare seismic and rock evidence. Plates carry surface rocks, but the mantle is not an ocean of magma.",
+      "next": "These layers were not always here. Return to Earth's formation to see how time changed the same planet."
+    },
+    "history": {
+      "title": "Cross 4.54 billion years",
+      "question": "How did a hot young planet acquire oceans and oxygen?",
+      "bridge": "The core and mantle we just explored arose through early differentiation. Follow a true time scale, then ask: does oxygen production always mean oxygen builds up in the air?",
+      "next": "Oxygen budgets are one part of the environment of life. Connect ancient communities, fossil preservation and plant structures in the life gallery; evolution is not a ladder leading to humans."
+    },
+    "life": {
+      "title": "Life and changing environments",
+      "question": "What did ancient communities leave, and which clues might be missing?",
+      "bridge": "Enter life scenes at their positions on the timeline. Separate bodies, traces and chemistry, then change burial and sampling to see why the same community leaves different records.",
+      "next": "Traces of life can enter rocks, be transformed or disappear. Follow the same material to compare conditions that preserve records with conditions that change them."
+    },
+    "rocks": {
+      "title": "Follow a rock",
+      "question": "Will a rock always stay the way it is?",
+      "bridge": "Some of the life clues we explored survive in minerals, layers and fossils. The same rock material can stay where it is or meet heat, water and transport, taking different paths.",
+      "next": "Zoom farther into rock grains to see how mineral structure affects properties, then distinguish minerals, rocks and ore."
+    },
+    "minerals": {
+      "title": "From specimens to crystals",
+      "question": "How can the same atoms make different minerals?",
+      "bridge": "Rocks contain one or more minerals. Zoom into atomic connections, combine several properties as evidence, then ask when a material qualifies as ore.",
+      "next": "Minerals may be dispersed through rocks or concentrated under particular conditions. Follow fluids, weathering and rivers in the concentration gallery, then ask whether the material can actually serve as ore."
+    },
+    "ores": {
+      "title": "Follow ore concentration",
+      "question": "Why do useful minerals concentrate in particular places?",
+      "bridge": "After distinguishing minerals, rocks and ore, compare fluids in fractures, prolonged weathering and river sorting. Natural concentration, mineral evidence and economic conditions constrain different claims.",
+      "next": "Concentration records need environmental context, as do records of glaciers and climate. Bring evidence to the ice-age gallery to distinguish ancient freezing, repeated advances and changes today."
+    },
+    "climate": {
+      "title": "Ice and a changing climate",
+      "question": "Why has Earth been icy, and how does ice change Earth?",
+      "bridge": "Rocks and ice cores preserve history. Distinguish glaciations at different times, then use reflection and mass-budget experiments to explore how ice responds to its environment and affects oceans and land.",
+      "next": "Ice stores fresh water on land; meltwater returns to the ocean. Continue with seawater density, energy exchanges and the conditions that support life."
+    },
+    "systems": {
+      "title": "A working planet",
+      "question": "How do ocean, air, rocks and life change Earth together?",
+      "bridge": "Internal heat powers long rock processes; sunlight powers many surface processes. Compare seawater conditions, then distinguish the causes of day and night, auroras and habitability.",
+      "next": "Return to the evidence inside Earth. Connect water, air, life and rocks again: can you explain how two of them affect each other?"
+    }
+  }
+}

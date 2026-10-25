@@ -1,0 +1,424 @@
+{
+  "zh": {
+    "journeyLabel": "地下的线索",
+    "views": {
+      "layers": {
+        "tab": "1 · 地球里面",
+        "title": "脚下的岩石，一直通到地心吗？",
+        "intro": "先用真实半径看整颗地球，再把薄薄的表层放大。按成分分层和按岩石怎样变形分层，是同一颗地球的两种看法。",
+        "bridge": "可是，我们没有钻到地核。下一站用地震波寻找看不见的边界。"
+      },
+      "evidence": {
+        "tab": "2 · 我们怎么知道",
+        "title": "没有挖开地球，怎样知道里面有液体？",
+        "intro": "同一次地震能被世界各地的仪器记录。换一种波，再换一个测站，比较哪些主要波能到、哪些不能直接到。",
+        "bridge": "地震波还告诉我们地幔大体是固体。固体地幔的缓慢变形，怎样与上方的板块联系起来？"
+      },
+      "plates": {
+        "tab": "3 · 板块怎样相遇",
+        "title": "都是岩石板块，为什么结果不一样？",
+        "intro": "板块是岩石圈的一部分，带着地壳和最上部地幔一起运动。选择一种边界，再手动推进，观察前提怎样改变结果。",
+        "bridge": "四种边界各有前提。接下来锁定一条理想化大陆裂谷，把整体、局部断层与材料连起来。"
+      },
+      "rift": {
+        "tab": "4 · 沿裂谷放大",
+        "title": "同一条大陆裂谷，从整体看到材料",
+        "intro": "在理想化大陆锁定Rift A，沿F1断层与P1材料两条支线探索。先选地质阶段，再换观察尺度，细看局部事件与材料去向。",
+        "bridge": "把裂谷里的上部脆性岩石与下部主要固态地幔，放回整颗地球的分层中。"
+      }
+    },
+    "next": "继续追问",
+    "backToLayers": "回到地球剖面",
+    "lens": "看哪一种分层",
+    "composition": "按成分",
+    "mechanical": "按力学性质",
+    "layerLabel": "选择一层，定位到剖面",
+    "depth": "从地表向下的深度",
+    "depthAt": "这个深度在",
+    "atCenter": "地心",
+    "trueScale": "整球：共用真实半径比例",
+    "trueScaleNote": "标记点只定位，不代表洞穴大小。地壳没有为了看清而加厚。",
+    "radius": "半径",
+    "surface": "地表",
+    "center": "地心",
+    "thinZoom": "同一表层 · 独立放大尺",
+    "zoomNote": "纵向 0–300 km 是另一把线性标尺；横向宽度没有定量意义。",
+    "zoomContinental": "大陆示例",
+    "zoomOceanic": "海洋示例",
+    "lithosphereMark": "岩石圈示例底界",
+    "lithosphereVariable": "100 km 仅作示例；真实厚度随温度、年龄和地区变化，没有统一的全球底界。",
+    "outOfZoom": "选中深度在放大尺以外",
+    "depthReadout": "当前深度",
+    "compositionReadout": "成分分层",
+    "mechanicalReadout": "力学解释",
+    "mechanicalShallow": "示例岩石圈内：整体较刚硬",
+    "mechanicalDeep": "岩石圈下的地幔：固态，长时间能缓慢变形",
+    "coreMechanical": "这不是岩石圈；查看当前地核层的物态",
+    "layers": {
+      "crust": {
+        "label": "地壳",
+        "state": "固态岩石 · 最外面很薄的一层",
+        "short": "大陆和海洋下面都有地壳。这里用大陆 30 km、海洋 5 km 作代表，真实厚度变化很大。",
+        "detail": "地壳是按成分划分的。海洋地壳多为玄武岩、辉长岩等镁铁质岩石；大陆地壳成分更复杂，整体通常更富硅。海水不是海洋地壳，沉积层也不是整个地壳。在真实半径图中，这层几乎只是一条细边；放大尺才适合比较它的厚度。"
+      },
+      "mantle": {
+        "label": "地幔",
+        "state": "大体固态 · 地质时间中缓慢变形",
+        "short": "地幔是厚厚的硅酸盐岩石层。它能传递 S 波，不是一锅包住地核的液态岩浆。",
+        "detail": "同一块热岩石，短时间受力可以像固体那样传递弹性波；在高温、高压和很长时间下，矿物晶体能通过蠕变发生形变。少量局部熔融可以产生岩浆，但不代表整个地幔融化。最上部较冷、较刚性的地幔属于岩石圈；它与更深地幔的分界主要是力学性质的变化。"
+      },
+      "outerCore": {
+        "label": "外核",
+        "state": "液态金属 · 主要为铁并含镍和较轻元素",
+        "short": "主要 S 波不能穿过液态外核。P 波能穿过，但进入时波速改变，波路明显折射。",
+        "detail": "外核从约 2,890 km 深处延伸到约 5,150 km 深处。它的液态性质来自全球地震波等多项证据；并不是从地下取出了一杯液体。地核的成分还受地球质量、密度、陨石与高压实验共同约束，较轻元素的确切比例仍在研究。外核导电流体的运动与地球磁场有关，这里没有计算磁场。"
+      },
+      "innerCore": {
+        "label": "内核",
+        "state": "固态金属 · 极高压力下仍能保持固态",
+        "short": "地心附近温度很高，压力也极大。物态由温度、压力和成分共同决定，不能只看谁更热。",
+        "detail": "内核半径约 1,221 km。穿过、折射或反射于内核附近的地震波，以及地球整体振动，为它的存在和固态性质提供约束。外核挡住直接 S 波这一条事实，单独不能证明内核是固体。本图采用球对称平均结构；内核各向异性、细部结构和演化仍是研究问题。"
+      },
+      "lithosphere": {
+        "label": "岩石圈",
+        "state": "地壳 + 最上部较刚硬的地幔",
+        "short": "岩石圈按力学性质划分，板块就是它的分块。它跨过了按成分划分的地壳—地幔边界。",
+        "detail": "“地壳”和“岩石圈”不是两层可以首尾相接的同类材料。前者按成分，后者按岩石怎样响应力。岩石圈下面的软流圈仍大体是固态，较容易在地质时间中变形；它不是让板块漂在上面的全球岩浆海。这里的 100 km 线只帮助看到两个分类怎样重叠，不能用来判断某个真实地点的岩石圈厚度。"
+      }
+    },
+    "layerMechanismTitle": "两种分类，怎样重叠？",
+    "layerMechanism": "把“这是什么材料”和“它怎样响应力”分开想。地壳和地幔讲材料；岩石圈和软流圈讲力学行为。最上部地幔既属于地幔，也可能属于岩石圈，所以切换分层时地球不会换成另一颗。",
+    "layerEvidenceTitle": "能拿在手里的样品，说明了什么？",
+    "layerEvidence": "地表岩石、钻孔和火山带上来的地幔捕虏体提供直接样品；金伯利岩能携带来自深处的岩石和矿物。一个具体包体的来源深度，需要矿物组成与实验来估计，不能把每一块金伯利岩都当成同一深度。铁镍陨石则通常来自别的小天体的金属核；它们帮助比较分异过程与材料，绝不是地球地核的实物样品。",
+    "waveLabel": "比较哪种波",
+    "pWave": "P 波 · 压缩波",
+    "sWave": "S 波 · 剪切波",
+    "station": "测站距震中的角距",
+    "stationNear": "近侧",
+    "stationShadow": "阴影区",
+    "stationFar": "远侧",
+    "earthquake": "地震位置",
+    "receiver": "测站",
+    "pathGuide": "波路为示意 · 不计算走时或波的强弱",
+    "waveArrives": "此位置能收到本对照中的主要波",
+    "waveAbsent": "此位置没有本对照中的直接主要波",
+    "pNear": "60°：P 波经过地幔到达。P 波是压缩扰动，能在固体和液体中传播。",
+    "pShadow": "120°：处在约 103°–140° 的 P 波主波阴影区。核幔边界处的折射改变波路，不是液体挡住了所有 P 波。",
+    "pFar": "160°：能收到穿过地核的 P 类波。液态外核能传递压缩扰动，波进入、离开时会折射。",
+    "sNear": "60°：S 波经过地幔到达。这是地幔能传递剪切扰动、因此大体为固体的重要线索。",
+    "sShadow": "120°：超过约 103°，本对照中的直接 S 波不能穿过液态外核到达。液体不能维持这种剪切扰动。",
+    "sFar": "160°：直接 S 波仍被外核挡住。把波换成 P，看看压缩波会怎样。",
+    "observation": "观察规律",
+    "inference": "由规律作出的推断",
+    "waveInference": "全球测站的到时、缺失、反射和折射共同限制内部模型。S 的缺失与 P 的折射相互支持，指向液态外核；不能只凭某一个测站没收到信号下结论。",
+    "waveMechanismTitle": "一边能“挤”，为什么另一边不能“剪”？",
+    "waveMechanism": "P 波让材料沿传播方向交替压缩和膨胀；液体能被压缩，所以 P 波能通过。S 波让材料垂直传播方向作剪切变形；液态外核不能像固体那样维持这种剪切弹性。图中两种颜色编码的是波的种类，不是岩石真实颜色，也不是波把岩石从震源搬到测站。",
+    "waveLimitsTitle": "“阴影”是不是完全没有任何地震波？",
+    "waveLimits": "不是。这里比较基础教材中的直接主波规律，约 103° 与 140° 是取整边界。真实记录还包括反射、绕射、波型转换、穿过内核的弱相位等；地震深度和三维结构也会改变到时与振幅。图中手绘曲线不是由速度模型追踪得到，不能测量传播距离、波速或地震到达时间。",
+    "waveInnerTitle": "内核是固体，证据还要多走一步",
+    "waveInner": "外核挡住直接 S 波，只说明外核不能传递这种波。科学家还研究穿过内核或在内核边界反射的波、地球整体振动和高压材料性质，才建立固态内核的模型。未知部分包括细尺度结构、温度与成分的精确分布；一个漂亮剖面不能把这些未知变成已拍到的照片。",
+    "boundaryLabel": "边界案例",
+    "relativeMotion": "两块板的相对运动",
+    "moving": "按案例运动",
+    "still": "相对无运动对照",
+    "progress": "教学过程进度",
+    "rewind": "回到开始",
+    "stepBack": "后退一步",
+    "stepForward": "前进一步",
+    "progressUnits": "可回退 · 没有换算成年",
+    "condition": "这个案例的前提",
+    "result": "当前观察",
+    "stillResult": "两板的相对位置没有改变，所以本模型不会新增海底、下沉板片、山脉增高或断层错移。进度值仍被保留，换回运动可继续对照。",
+    "plateA": "板块 A",
+    "plateB": "板块 B",
+    "crustBand": "地壳",
+    "mantleBand": "岩石圈地幔",
+    "underPlate": "下方地幔 · 大体固态，长时间可变形",
+    "newCrust": "新生洋壳",
+    "partialMelt": "局部部分熔融",
+    "fluids": "板片释放流体",
+    "mountains": "缩短并增厚",
+    "marker": "同一条参照线",
+    "sectionLabel": "局部剖面 · 形状、厚度、位移均为示意",
+    "planLabel": "从上往下看 · 箭头在地表面内",
+    "noMelt": "这一案例不自动产生岩浆",
+    "boundaries": {
+      "divergent": {
+        "label": "张裂",
+        "condition": "两块海洋岩石圈板块分开；下方较热地幔能够上涌。",
+        "stages": [
+          "先看两块原有板块和中央边界。",
+          "两板分开，下方地幔上涌；压力降低可使一部分岩石熔融。",
+          "岩浆补充并冷却形成新洋壳；不是地核的液态金属冲到海底。"
+        ],
+        "detail": "这里选取洋中脊案例。地幔上涌时，压力降低能使物质越过熔融条件，这叫减压熔融；形成的岩浆只是部分物质。冷却后成为新洋壳，并随板块离开脊轴。大陆裂谷在特定阶段也会伸展，但不是每一个裂谷都会继续发展成大洋；本图不把那条历史设为必然。"
+      },
+      "subduction": {
+        "label": "俯冲",
+        "condition": "已经建立的海陆汇聚带；较老、较冷的海洋板片向下弯入地幔。",
+        "stages": [
+          "先有汇聚边界和能下沉的海洋岩石圈；本图不解释俯冲最初怎样启动。",
+          "两板靠近，海洋板片沿边界向下进入地幔，接触区可积累应力。",
+          "板片释放的流体可降低上方地幔的熔融条件；部分岩浆可能上升，形成火山弧。"
+        ],
+        "detail": "下沉的是包括地壳与岩石圈地幔的整块板片，不只是一条薄洋壳。密度差、重力与各处阻力共同影响运动。含水矿物随深度变化会释放流体，促进上覆地幔楔部分熔融；不是整块板片一碰地幔就全部熔化，也不是每次汇聚立即喷发。本图只展示长期机制，不预测地震或火山时间。"
+      },
+      "collision": {
+        "label": "大陆碰撞",
+        "condition": "两个携带大陆的板块汇聚；较浮的大陆物质不容易像老洋板片那样持续深沉。",
+        "stages": [
+          "先有两个接近的大陆边缘；这与海洋板片俯冲是不同案例。",
+          "汇聚使大陆岩石缩短、褶皱和叠置，地壳逐渐增厚。",
+          "山地及深部地壳根可以增长；碰撞本身不保证出现一条火山弧。"
+        ],
+        "detail": "大陆碰撞可形成高山，例如喜马拉雅。实际造山还受断层、岩石流变、侵蚀与均衡调整影响，既有地壳根也有复杂深部结构。这里用同一批色带表现缩短增厚，未计算质量守恒、山高、侵蚀或真实应力，不能把图上高度换算成真实山峰高度。"
+      },
+      "transform": {
+        "label": "转换",
+        "condition": "相邻两板主要沿边界水平错动；本图从上往下看。",
+        "stages": [
+          "先看跨越边界的两段同一参照线。",
+          "两板沿边界向相反方向错动，参照线的位置开始错开。",
+          "断层可积累并释放应力而发生地震；纯转换运动不生成或消耗整条洋壳。"
+        ],
+        "detail": "这里的箭头在水平面内，不能把竖向屏幕位移读成一块板沉入地幔。真正的断层常会锁固，再以地震方式突然滑动；本图的平滑手动进度只展示长期净错移，不模拟地震破裂。实际边界可能同时有挤压或拉张，本例刻意保留纯转换对照。"
+      }
+    },
+    "plateDriveTitle": "什么让板块运动？",
+    "plateDrive": "地球内部热量、重力和岩石的缓慢变形共同参与。较冷、较密的下沉板片能拉动其余板块，抬高的洋中脊附近也有重力作用；地幔流动与板块运动互相耦合。不同地区各项驱动力与阻力不一样。不要把所有板块都画成被同一条规则圆形传送带搬运；本图也没有计算全球对流。",
+    "plateStillTitle": "“相对不动”为什么是有用的对照？",
+    "plateStill": "地球上板块仍可整体一起运动，而彼此的相对速度为零。这个对照只关掉本图两板间的相对运动，帮助检验“边界变形从哪里来”。它不表示地球内部冷却停止，也不表示真实地区绝不会有其他断层或地震。四种案例是不同前提，不是同一座地形必须经历的四步。",
+    "deeper": "展开：机制、证据与边界",
+    "sourceTitle": "查看本章主要依据",
+    "sourceNote": "科学剖面和波路是依据资料绘制的教学模型，没有使用参观照片作为发布素材。",
+    "diagramUnavailable": "图形暂时无法显示。下方文字与所有控件仍可使用。",
+    "rendererLabel": "观察方式",
+    "threeView": "三维剖切地球",
+    "sectionView": "二维剖面与标尺",
+    "threeTitle": "同一颗地球 · 真实半径三维剖面",
+    "threeHint": "拖动旋转，滚轮或双指缩放；键盘方向键旋转，± 缩放，Home 复位。",
+    "resetCamera": "复位观察角度",
+    "threeLoading": "正在准备三维地球……",
+    "threeUnavailable": "三维暂不可用，已显示完整二维剖面。可以继续操作，或重试三维。",
+    "retryThree": "重试三维",
+    "threeNote": "切掉的观察楔不是地球上的裂口。各层半径共用真实比例，透视会改变屏幕大小；读深度请看独立标尺。内部纹理表达材料差异，不是地下照片，也不表示真实矿物颗粒或温度颜色。白点只定位，不是洞穴。",
+    "mapCredit": "地表地图：Solar System Scope / INOVE · CC BY 4.0；原文件未改动。",
+    "featureKey": "图中线索",
+    "featureRising": "箭头表示较热地幔及岩浆上行的示意，不是液态地幔海。",
+    "featureFluid": "1 · 从下沉板片释放的流体",
+    "featureMelt": "2 · 上方地幔局部部分熔融",
+    "plateQuakeTitle": "板块一直移动，地震为什么会突然发生？",
+    "plateQuake": "断层面有摩擦，部分区域可以暂时锁固；两侧岩石仍受相对运动影响，发生弹性形变并储存能量。当局部强度被超过，断层快速滑动，释放的一部分能量以地震波向外传播。地震不是两块板每靠近一点就必然发生一次，也不是只有板块边界才可能有地震。本图表现长期形变的方向，没有计算锁固强度、破裂过程或震级。"
+  },
+  "en": {
+    "journeyLabel": "Clues below our feet",
+    "views": {
+      "layers": {
+        "tab": "1 · Inside Earth",
+        "title": "Does the rock under our feet go all the way to the center?",
+        "intro": "First view Earth at one common radius scale, then enlarge its thin outer layers. Composition and mechanical behavior are two ways to describe the same Earth.",
+        "bridge": "But we have never drilled to the core. Next, use earthquake waves to find hidden boundaries."
+      },
+      "evidence": {
+        "tab": "2 · How we know",
+        "title": "How can we find liquid inside Earth without opening it?",
+        "intro": "Instruments around the world record the same earthquake. Change the wave and the station to compare which main waves arrive directly and which do not.",
+        "bridge": "Seismic waves also show that the mantle is mostly solid. How does its slow deformation connect to the plates above?"
+      },
+      "plates": {
+        "tab": "3 · Meeting plates",
+        "title": "Why do rock plates produce different results?",
+        "intro": "Plates are pieces of the lithosphere: crust and rigid uppermost mantle move together. Choose a boundary, then advance it by hand to see how the starting conditions affect the outcome.",
+        "bridge": "Each boundary has its own prerequisites. Next, hold one idealized continental rift fixed while connecting whole, local fault and material scales."
+      },
+      "rift": {
+        "tab": "4 · Zoom into a rift",
+        "title": "One continental rift, from whole to material",
+        "intro": "Locate Rift A on an idealized continent, then follow fault F1 and material P1 as two observation branches. Select the geological stage before changing scale to inspect local events and material destinations.",
+        "bridge": "Place the rift’s brittle upper rocks and predominantly solid mantle back within the whole-Earth structure."
+      }
+    },
+    "next": "Follow the next clue",
+    "backToLayers": "Return to the cutaway",
+    "lens": "Choose a classification",
+    "composition": "Composition",
+    "mechanical": "Mechanical behavior",
+    "layerLabel": "Select a layer to locate it",
+    "depth": "Depth below the surface",
+    "depthAt": "At this depth",
+    "atCenter": "Earth's center",
+    "trueScale": "Whole Earth: one true radius scale",
+    "trueScaleNote": "The dot locates a depth; it is not a cavity. The crust has not been thickened for visibility.",
+    "radius": "Radius",
+    "surface": "Surface",
+    "center": "Center",
+    "thinZoom": "The same outer layers · separate enlarged scale",
+    "zoomNote": "Vertical depth uses a separate linear 0–300 km scale; horizontal width is not quantitative.",
+    "zoomContinental": "Continental example",
+    "zoomOceanic": "Oceanic example",
+    "lithosphereMark": "Example lithosphere base",
+    "lithosphereVariable": "100 km is illustrative. Actual thickness varies with temperature, age, and region; there is no single global base.",
+    "outOfZoom": "Selected depth is beyond this enlarged scale",
+    "depthReadout": "Selected depth",
+    "compositionReadout": "Composition layer",
+    "mechanicalReadout": "Mechanical interpretation",
+    "mechanicalShallow": "Inside the example lithosphere: relatively rigid overall",
+    "mechanicalDeep": "Mantle below the lithosphere: solid, deforming slowly over long times",
+    "coreMechanical": "Outside the lithosphere; see the selected core layer's physical state",
+    "layers": {
+      "crust": {
+        "label": "Crust",
+        "state": "Solid rock · a very thin outer shell",
+        "short": "Crust lies beneath both continents and oceans. Here 30 km of continental crust and 5 km of oceanic crust are examples; actual thickness varies greatly.",
+        "detail": "The crust is a compositional layer. Oceanic crust is mostly mafic rock such as basalt and gabbro; continental crust is more varied and generally richer in silica. Seawater is not oceanic crust, and sediment is not the entire crust. At the whole-Earth radius scale the crust is almost a fine edge; the separate enlarged scale is better for comparing its thickness."
+      },
+      "mantle": {
+        "label": "Mantle",
+        "state": "Mostly solid · deforms slowly over geological time",
+        "short": "The mantle is a thick silicate-rock shell. It transmits S waves; it is not a pot of liquid magma surrounding the core.",
+        "detail": "Hot rock can transmit elastic waves as a solid over short times. At high temperature and pressure over very long times, mineral crystals can deform by creep. Small amounts of local partial melting can make magma without melting the whole mantle. The cool, relatively rigid uppermost mantle belongs to the lithosphere; its boundary with more deformable mantle is mainly a change in mechanical behavior."
+      },
+      "outerCore": {
+        "label": "Outer core",
+        "state": "Liquid metal · mostly iron, with nickel and lighter elements",
+        "short": "Direct main S waves cannot pass through the liquid outer core. P waves can, but changes in wave speed strongly refract their paths.",
+        "detail": "The outer core extends from about 2,890 km to about 5,150 km depth. Its liquid state is inferred from global seismic waves and other evidence, not from a cup of liquid collected underground. Earth's mass, density, meteorites, and high-pressure experiments also constrain core composition; exact proportions of lighter elements remain under study. Motion of its conducting fluid is linked to Earth's magnetic field, which this model does not calculate."
+      },
+      "innerCore": {
+        "label": "Inner core",
+        "state": "Solid metal · remains solid under immense pressure",
+        "short": "The center is extremely hot, with immense pressure. Physical state depends on temperature, pressure, and composition together, not temperature alone.",
+        "detail": "The inner core has a radius of about 1,221 km. Waves passing through, refracting near, or reflecting from it, together with whole-Earth vibrations, constrain its existence and solid state. The absence of direct S waves through the outer core alone cannot prove that the inner core is solid. This diagram uses a spherically averaged structure; inner-core anisotropy, fine structure, and evolution remain research topics."
+      },
+      "lithosphere": {
+        "label": "Lithosphere",
+        "state": "Crust + relatively rigid uppermost mantle",
+        "short": "The lithosphere is a mechanical layer divided into plates. It crosses the compositional boundary between crust and mantle.",
+        "detail": "Crust and lithosphere are not two comparable layers stacked end to end. One is defined by composition; the other by how rock responds to force. The asthenosphere below is still mostly solid but deforms more easily over geological time; it is not a global magma ocean supporting floating plates. The 100 km line only shows how these classifications overlap and cannot give the real lithospheric thickness at a particular location."
+      }
+    },
+    "layerMechanismTitle": "How do the classifications overlap?",
+    "layerMechanism": "Separate 'what material is it?' from 'how does it respond to force?' Crust and mantle describe composition; lithosphere and asthenosphere describe mechanical behavior. Uppermost mantle can belong to both the mantle and lithosphere, so changing the classification does not replace Earth with a different planet.",
+    "layerEvidenceTitle": "What can samples in our hands tell us?",
+    "layerEvidence": "Surface rocks, drill cores, and mantle xenoliths carried up by volcanoes supply direct samples; kimberlite can transport deep rocks and minerals. The source depth of a particular inclusion must be estimated using its minerals and experiments; not every kimberlite represents the same depth. Iron-nickel meteorites usually come from the metallic cores of other small bodies. They help compare differentiation and materials, but are never samples from Earth's core.",
+    "waveLabel": "Choose a wave",
+    "pWave": "P wave · compression",
+    "sWave": "S wave · shear",
+    "station": "Station's angular distance from the epicenter",
+    "stationNear": "Near side",
+    "stationShadow": "Shadow region",
+    "stationFar": "Far side",
+    "earthquake": "Earthquake",
+    "receiver": "Station",
+    "pathGuide": "Illustrative paths · no travel times or amplitudes calculated",
+    "waveArrives": "This station can receive the main wave in this comparison",
+    "waveAbsent": "The direct main wave in this comparison does not reach this station",
+    "pNear": "60°: P waves reach the station through the mantle. A P wave is a compressional disturbance that travels through solids and liquids.",
+    "pShadow": "120°: inside the approximate 103°–140° P-wave main-wave shadow. Refraction at the core–mantle boundary redirects paths; liquid does not block every P wave.",
+    "pFar": "160°: P-type waves transmitted through the core can arrive. The liquid outer core transmits compression, refracting the path at entry and exit.",
+    "sNear": "60°: S waves arrive through the mantle. This is important evidence that the mantle transmits shear and is mostly solid.",
+    "sShadow": "120°: beyond about 103°, the direct S wave in this comparison cannot reach the station through the liquid outer core, which cannot sustain this shear disturbance.",
+    "sFar": "160°: the outer core still blocks direct S waves. Change to P and see what compression waves can do.",
+    "observation": "Observed pattern",
+    "inference": "Inference from the pattern",
+    "waveInference": "Arrival times, missing waves, reflections, and refractions at global stations jointly constrain interior models. Missing S and refracted P waves support a liquid outer core together; one silent station alone is not sufficient evidence.",
+    "waveMechanismTitle": "Why can liquid be compressed but not sustain this shear?",
+    "waveMechanism": "P waves alternately compress and expand material along the direction of travel. Liquids are compressible, so P waves can pass through. S waves deform material sideways, perpendicular to travel; the liquid outer core lacks the shear elasticity of a solid. The colors encode wave type, not real rock colors, and the wave does not carry rock from the earthquake to the station.",
+    "waveLimitsTitle": "Does a shadow mean there are no seismic waves at all?",
+    "waveLimits": "No. This comparison uses the direct main-wave pattern from introductory textbooks, with rounded boundaries near 103° and 140°. Real records also contain reflected, diffracted, converted, and weak inner-core phases. Earthquake depth and three-dimensional structure affect travel times and amplitudes. These hand-drawn curves are not rays traced through a velocity model and cannot measure path length, wave speed, or arrival time.",
+    "waveInnerTitle": "A solid inner core needs further evidence",
+    "waveInner": "Missing direct S waves through the outer core only show that the outer core cannot transmit them. Scientists also use inner-core-transmitted and reflected waves, whole-Earth vibrations, and high-pressure material properties to build a solid-inner-core model. Fine structure and exact temperature and composition distributions remain uncertain; a neat cutaway is not a photograph of those details.",
+    "boundaryLabel": "Boundary case",
+    "relativeMotion": "Relative motion of the two plates",
+    "moving": "Move as in this case",
+    "still": "No relative motion",
+    "progress": "Teaching sequence progress",
+    "rewind": "Return to the start",
+    "stepBack": "Step back",
+    "stepForward": "Step forward",
+    "progressUnits": "Reversible · not converted into years",
+    "condition": "Starting conditions for this case",
+    "result": "Current observation",
+    "stillResult": "The plates' relative positions stay unchanged. This model adds no seafloor, sinking slab, mountain growth, or fault offset. The progress value is retained so switching motion back on restores the comparison.",
+    "plateA": "Plate A",
+    "plateB": "Plate B",
+    "crustBand": "Crust",
+    "mantleBand": "Lithospheric mantle",
+    "underPlate": "Mantle below · mostly solid, deforming over long times",
+    "newCrust": "New oceanic crust",
+    "partialMelt": "Local partial melting",
+    "fluids": "Fluids from the slab",
+    "mountains": "Shortening and thickening",
+    "marker": "The same reference line",
+    "sectionLabel": "Local cross-section · shapes, thicknesses, and offsets are illustrative",
+    "planLabel": "View from above · arrows lie in the surface plane",
+    "noMelt": "This case does not automatically make magma",
+    "boundaries": {
+      "divergent": {
+        "label": "Divergent",
+        "condition": "Two oceanic lithospheric plates separate, with warmer mantle able to rise beneath them.",
+        "stages": [
+          "First identify the original two plates and their central boundary.",
+          "Plates separate and mantle rises. Falling pressure can cause some rock to melt.",
+          "Magma supplies and cools into new oceanic crust; liquid metal is not coming up from the core."
+        ],
+        "detail": "This is a mid-ocean-ridge case. Falling pressure as mantle rises can move it across its melting conditions: decompression melting. Only part of the material melts. Cooled magma becomes new oceanic crust, carried away from the ridge with the plates. Continental rifts can also extend at certain stages, but not every rift becomes an ocean; that history is not inevitable here."
+      },
+      "subduction": {
+        "label": "Subduction",
+        "condition": "An established ocean–continent convergent margin; an older, colder oceanic slab bends down into the mantle.",
+        "stages": [
+          "Start with a convergent margin and oceanic lithosphere able to sink. This model does not explain how subduction first starts.",
+          "Plates converge and the oceanic slab descends along their boundary. Stress can build along their contact.",
+          "Fluids released by the slab can promote partial melting in the mantle above. Some magma may rise to feed a volcanic arc."
+        ],
+        "detail": "The whole slab descends, including its crust and lithospheric mantle, rather than a thin strip of crust alone. Density differences, gravity, and resistance affect movement. Changes in hydrous minerals release fluids and promote partial melting in the overlying mantle wedge. The slab does not instantly melt on contact with mantle, and convergence does not trigger an immediate eruption every time. This diagram shows a long-term mechanism and predicts no earthquake or eruption times."
+      },
+      "collision": {
+        "label": "Continental collision",
+        "condition": "Two continent-bearing plates converge. Buoyant continental material does not sink deeply and continuously as readily as old oceanic slabs.",
+        "stages": [
+          "Begin with two approaching continental margins, a different case from oceanic subduction.",
+          "Convergence shortens, folds, and stacks continental rock, gradually thickening the crust.",
+          "Mountains and a deep crustal root can grow. Collision alone does not guarantee a volcanic arc."
+        ],
+        "detail": "Continental collision can form high mountains such as the Himalayas. Real mountain building also depends on faults, rock rheology, erosion, and isostatic adjustment, with complex deep structure and crustal roots. The same colored bands here show shortening and thickening, but the model does not solve mass balance, mountain height, erosion, or actual stress. Screen height cannot be converted into a real summit height."
+      },
+      "transform": {
+        "label": "Transform",
+        "condition": "Adjacent plates mainly slide horizontally along their boundary. This diagram is a view from above.",
+        "stages": [
+          "Find the two parts of the same reference line across the boundary.",
+          "Plates slide in opposite directions along the boundary and the reference line becomes offset.",
+          "Faults can store and release stress in earthquakes. Pure transform motion creates or consumes no continuous strip of oceanic crust."
+        ],
+        "detail": "The arrows lie in the horizontal plane; vertical screen displacement does not mean a plate sinks into the mantle. Real faults can lock and then slip suddenly in earthquakes. Smooth manual progress here shows long-term net offset, not a simulated earthquake rupture. Actual boundaries can also compress or extend; this case deliberately isolates pure transform motion."
+      }
+    },
+    "plateDriveTitle": "What drives the plates?",
+    "plateDrive": "Internal heat, gravity, and slow rock deformation all contribute. Cold, dense sinking slabs can pull on the rest of their plates; gravity also acts near elevated mid-ocean ridges. Mantle flow and plate motion are coupled. Driving and resisting forces differ by region. A single regular circular conveyor belt cannot explain every plate; this model does not calculate global convection.",
+    "plateStillTitle": "Why compare with no relative motion?",
+    "plateStill": "Plates can move together while their relative velocity is zero. This control only switches off relative motion between the two illustrated plates, helping identify where boundary deformation comes from. It does not stop Earth's internal cooling or rule out other faults and earthquakes in a real region. The four cases have different starting conditions; they are not four inevitable stages of one landscape.",
+    "deeper": "Explore mechanisms, evidence, and limits",
+    "sourceTitle": "Main sources for this chapter",
+    "sourceNote": "The cutaways and wave paths are source-informed teaching models. Visit photographs are not used as published assets.",
+    "diagramUnavailable": "The diagram is unavailable. The explanations and controls below remain usable.",
+    "rendererLabel": "View",
+    "threeView": "3D cutaway Earth",
+    "sectionView": "2D section and scales",
+    "threeTitle": "The same Earth · a true-radius 3D cutaway",
+    "threeHint": "Drag to rotate; scroll or pinch to zoom. Arrow keys rotate, ± zoom, and Home resets.",
+    "resetCamera": "Reset viewing angle",
+    "threeLoading": "Preparing the 3D Earth…",
+    "threeUnavailable": "3D is unavailable, so the complete 2D section is shown. Keep exploring or retry 3D.",
+    "retryThree": "Retry 3D",
+    "threeNote": "The removed viewing wedge is not a crack in Earth. All layer radii share one true scale; perspective affects screen size. Read depth from the separate scale. Interior textures distinguish materials; they are not underground photographs, actual mineral grains, or temperature colors. The white dot is a locator, not a cavity.",
+    "mapCredit": "Surface map: Solar System Scope / INOVE · CC BY 4.0; original file unchanged.",
+    "featureKey": "Clues in the diagram",
+    "featureRising": "The arrow illustrates rising warm mantle and magma, not a liquid mantle ocean.",
+    "featureFluid": "1 · Fluids released from the descending slab",
+    "featureMelt": "2 · Local partial melting in the mantle above",
+    "plateQuakeTitle": "If plates keep moving, why can an earthquake happen suddenly?",
+    "plateQuake": "Friction can temporarily lock parts of a fault. Continued relative motion deforms the rocks elastically and stores energy. When local strength is exceeded, rapid fault slip releases some energy as seismic waves. Every small increment of convergence does not guarantee an earthquake, and earthquakes can also occur within plates. This diagram shows long-term deformation directions, not fault strength, rupture, or earthquake magnitude."
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "topicId": "earth-ores",
+  "version": 1,
+  "zh": {
+    "question": "一条矿脉、一层风化物和一把砂，怎样集中有用成分；发现矿物为什么还不等于发现可开采矿石？",
+    "observe": "主动点击播放，可随时暂停、拖动或回到来源；完整18秒只压缩过程次序，不换算地质年数。减少动态时按10阶段观察。先旋转同一裂隙A的三维代表标本，改变剖切露出显示，追踪脉枝和金属状颗粒的固定位置。回到热液过程，保留36个来源标记，比较裂隙开闭与富、贫金属供给；拖到终点，分别检查石英和金属矿化。换到同一份含铝母岩，比较强弱风化与有效排水，区分含铝标记数量和剩余材料中的比例。砂矿先比较未解离与已解离，再让24颗等代表粒径颗粒经历弱、选择性或强搬运；窗外颗粒仍在账本中。最后逐层读取结构、典型性质和分析证据，并保持一吨原料比较品位、回收率、代币价值和成本。",
+    "academic": [
+      {
+        "title": "热液矿化需要来源、通道与沉淀条件；矿脉不是一条熔融金属河",
+        "body": "热液以水为重要组成，能搬运溶解组分；其来源和变化可与岩浆、变质、沉积及地下水循环有关。流体进入裂隙后，降温、压力变化、混合或与围岩反应等可改变矿物稳定性。石英脉可以伴有硫化物，也可以几乎不带有用金属。本图用28个硅质与8个金属来源标记表示一批材料：通道关闭时都留在来源处；打开但采用贫金属端元时，硅质可进入，所选金属标记仍留在来源处。它们不是完整晶体或分子，数量不对应化学浓度，也没有把金属变成石英。三维A保留同一处裂隙、脉枝和嵌生关系；剖切只改变观察显示，不使矿物生长或模拟采矿。 热液来源批可在运输中逐渐部分沉淀；36批的未开始、运输与部分沉淀、完成统计仍保留全部来源身份。三维固定空间材质场按确定的显示次序显露填充，蓝灰迁移区是过程编码，不是实测流向、流速或晶体生长方程。"
+      },
+      {
+        "title": "残积改变剩余材料的比例；砂矿改变颗粒的位置",
+        "body": "残积演示保留同一份含铝母岩：较强化学风化与有效排出可迁移组分共同作用，含铝物质相对保留，其绝对标记数并不增加。30个任意来源份额包括12个含铝、6个其他较保留及12个较可迁移标记；12/30与12/18只是标记占比，不是Al或Al₂O₃品位。真实风化会形成新矿物，迁移还受母岩、pH、地形和地下水等影响，全球铝土矿并不来自唯一母岩。砂矿则先解离，再比较同代表粒径的6颗锡石与18颗石英：弱流不完成设定分选，选择性搬运使锡石留在观察窗，强流使两类均离窗。实际粒径、形状、湍流、床面与反复搬运会改变结果；较重不代表永远不会移动。两种富集都没有创造新金属，也不共享一只真实过程时钟。"
+      },
+      {
+        "title": "从标本身份到资源判断，需要不同层级的证据与账本",
+        "body": "矿物种关注组成与结构，岩石描述集合体及形成，矿石涉及给定技术经济条件下可提取的有用成分，宝石则涉及用途与品质；它们可以交叠。铝土矿是多矿物材料，不是单一矿物种。颜色、结构、硬度、条痕和密度提供不同线索；矿物数据不能直接代表混合矿石，显微、衍射、化学分析及代表性取样还回答其他问题。一块富集标本不说明整个矿体平均品位。经济演示固定1000 kg原料：所含目标成分=1000×品位%/100，可回收量再乘回收率%/100，代币收入减成本仅比较假设。它不计算真实储量、加工路线、环境合格或许可；剩余原料也不是完整现实尾矿预测，因为水、药剂及其他物料没有加入。土地、水、能量、废物与生态影响需要另外评估，部分硫化物排水的酸化与氧化铝残渣的碱性也不能混为一种化学问题。"
+      }
+    ],
+    "misconception": "白色矿脉不保证含金，金属光泽不保证是黄金，黑砂不保证含锡。石英可以存在而所选金属没有矿化；铝的相对富集不等于生成新的铝；重矿物也会被足够强的流动搬走。漂亮晶洞不是矿床价值的证明，平坦切面不是天然晶面。标记占比、矿物含量、金属品位与氧化物品位不是可随意互换的数，代币账为正也不证明现实中应当开采。",
+    "boundary": "本馆只实做三条代表路径，不覆盖全部矿床类型。36个热液、30个风化和24个砂矿标记分别属于不同材料批次，不能跨案例当成同一份物质；标记追踪来源，不保证旧晶体完整保存。进度与档位无温度、压力、pH、年数、雨量、流速、真实粒径或品位标定，不求反应平衡、流体力学、侵蚀速率或矿床规模。金属贫供给是没有所选金属沉淀的教学端元，不声称所有贫金属流体都完全不含金属。三维形态、脉枝、包裹和纹理均为原创代表模型，无实物扫描、产地、测地或未知标本鉴定保证；剖切为可逆显示，不是生长、清理或开采教程。性质资料为典型矿物参考，不是模型化验；在屏幕内观察，不对未知标本舔尝、磨粉或用酸处理。代币预算不构成投资、储量、环境预测或许可判断。 播放初始暂停，完整18秒与减少动态的10阶段均为展示安排，没有真实地质时间换算。切换路径、观察方式或前提，离屏、后台和退出会停止；恢复进度不会自行继续播放。",
+    "narration": [
+      {
+        "label": "白色的脉里，留下了什么",
+        "text": "石头里的白色线条，可能记录了水带来材料的经历。水要带着合适的材料，有能通过的裂隙，还要遇到让矿物留下来的条件。一条石英脉可以和金属矿物在一起，也可以几乎没有有用金属。把画面的遮挡退开，我们看见同一处矿脉里面的关系；这只是换个角度看，不是在让矿物突然长大。",
+        "cue": "回到来源后主动播放、暂停或拖动36来源批过程，对照开闭通道与富、贫供给。保留三维裂隙A的固定空间填充场与嵌生位置，分别读取石英和金属矿化，再独立来回改变观察剖切。18秒无地质时间换算，减少动态10阶段。"
+      },
+      {
+        "label": "没有添铝，比例也会改变",
+        "text": "换一份含铝的岩石。水和风化让一些成分比较容易离开，另一些相对留下。留下来的含铝材料没有凭空增加，却在剩余材料中占了更大的比例。铝土矿常混着几种矿物，红褐色也常来自铁的成分。看到红土，还不能只凭颜色就认定它能拿来炼铝。",
+        "cue": "在同一30标记剖面比较强弱风化与有效、无效排出；同时显示含铝标记数、剩余总数和窗外材料，注明比例不是化学品位。"
+      },
+      {
+        "label": "重的颗粒，也可能被带走",
+        "text": "矿物要先从母岩里分开，才好比较单颗粒怎样随水移动。在这个一样代表大小的练习里，适中的搬运把石英送得更远，较重的锡石留下来。水流很弱时，分选没有完成；换成很强的搬运，两种颗粒都能离开观察窗。离开观察窗并不等于消失，真实河流还要看颗粒大小、形状和河床。",
+        "cue": "先保持24颗锁在母岩中，再允许解离；逐一比较弱、选择性、强搬运，追踪6锡石与18石英的源区、窗内和窗外去向。"
+      },
+      {
+        "label": "从一块标本，到我们的生活",
+        "text": "铜可以进入导线，铝可以进入包装，锡可以进入焊料。可是找到含它们的矿物，还不等于容易把它们取出来。我们需要更多证据，比较含量、能取回多少和代价，也要想到土地、水、能量与留下的废物。让物品用得更久、修理和回收，是把矿石的故事继续讲到生活里的办法。",
+        "cue": "逐层打开结构、性质与分析证据；固定一吨原料，只改变一项经济条件。保留正代币账不等于储量、许可或环境合格的说明，并连接系统、生命与水。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How can a vein, a weathered layer and a handful of sand concentrate useful material—and why is finding a mineral not yet proof of mineable ore?",
+    "observe": "Start playback explicitly, then pause, scrub or return to source. A full 18-second presentation compresses process order without converting it to geological years; reduced motion uses ten stages. Rotate the representative 3D specimen at fracture A and vary its cutaway display while following fixed vein branches and metallic-looking inclusions. Return to the hydrothermal process and retain 36 source tags while comparing open/closed pathways and rich/poor metal supply; inspect quartz and metal mineralization separately at the endpoint. In the same aluminum-bearing parent material, compare weathering and drainage while distinguishing tag number from proportion. Liberate the 24 equally sized representative placer grains before comparing weak, selective and strong transport; exported grains remain accounted for. Reveal texture, typical properties and analytical evidence, then hold one tonne of feed fixed while changing grade, recovery, token value and cost.",
+    "academic": [
+      {
+        "title": "Hydrothermal mineralization needs supply, access and precipitation conditions, rather than a river of molten metal",
+        "body": "Water-rich fluids transport dissolved components. Their origins and changes can involve magmatic, metamorphic, sedimentary and groundwater processes. Cooling, pressure changes, mixing or reaction with wall rock can change mineral stability after fluid enters fractures. Quartz veins may accompany sulfides or contain little useful metal. This illustration tracks 28 siliceous and eight metal-source tags: a sealed pathway leaves all at source; an open, metal-poor end member allows siliceous material to enter while the selected metal tags remain at source. Tags are not whole crystals or molecules, and their counts do not measure concentration or turn metal into quartz. Fracture A retains the same branches and intergrowth positions in 3D. Cutting away changes visibility, rather than growing minerals or simulating mining. Hydrothermal source batches can partly precipitate during transport. All 36 retain provenance while the ledger distinguishes not started, transport with partial deposition, and completed. A fixed 3D material field reveals filling in a deterministic display order; blue-gray migration is a process code, not measured flow direction, speed or a crystal-growth equation."
+      },
+      {
+        "title": "Residual enrichment changes proportions; a placer changes particle locations",
+        "body": "The residual case starts from one aluminum-bearing parent material. Stronger chemical weathering and effective export of mobile components relatively retain aluminum-bearing material without increasing its absolute tag count. Thirty arbitrary source shares comprise twelve aluminum-bearing, six other relatively retained and twelve relatively mobile tags. Ratios of 12/30 and 12/18 are tag fractions, not Al or Al₂O₃ grades. Real weathering forms new minerals, and mobility also depends on parent material, pH, landscape and groundwater. Bauxites worldwide do not have a single parent rock. The placer first liberates six cassiterite and eighteen quartz grains at the same representative size. Weak flow does not complete the assigned sorting; selective transport retains cassiterite in the window; strong transport exports both kinds. Natural size, shape, turbulence, bed conditions and reworking can change the outcome: heavier does not mean immovable. Neither enrichment creates new metal, and the cases share no calibrated physical clock."
+      },
+      {
+        "title": "Specimen identity and resource judgment need different evidence and budgets",
+        "body": "A mineral species concerns composition and structure; rock describes an aggregate and its formation; ore concerns useful constituents extractable under particular technical and economic conditions; gem concerns use and quality. These criteria overlap. Bauxite is mixed material, not one mineral species. Appearance, texture, hardness, streak and density provide different clues, while microscopy, diffraction, chemistry and representative sampling answer further questions. Mineral data do not directly characterize mixed ore, and one rich specimen cannot establish an entire body's average grade. The teaching budget fixes 1000 kg of feed: contained target = 1000 × grade% / 100; recovered amount then multiplies recovery% / 100. Token revenue minus cost compares assumptions only. It estimates neither real reserves nor processing routes, environmental acceptability or permission. Remaining feed is not a complete real-tailings forecast because water, reagents and other inputs are excluded. Land, water, energy, wastes and ecosystems need separate assessment; possible sulfide drainage acidity and alumina-residue alkalinity are different chemical issues."
+      }
+    ],
+    "misconception": "A white vein does not guarantee gold, metallic luster does not prove gold, and dark sand does not prove tin. Quartz can occur without the selected metal mineralization. Relative aluminum enrichment does not manufacture aluminum, and strong enough flow can move heavy minerals too. A beautiful cavity is no proof of deposit value, and a flat cut is not a natural crystal face. Tag fractions, mineral content, elemental grades and oxide grades are not interchangeable. A positive token balance does not establish that real mining should proceed.",
+    "boundary": "Only three representative paths are implemented. The 36 hydrothermal, 30 weathering and 24 placer tags belong to separate material batches and must not be treated as the same parcel across cases. Tags retain provenance, not necessarily intact old crystals. Progress and categories have no calibrated temperature, pressure, pH, years, rainfall, velocity, actual grain size or grade, and solve no chemical equilibrium, hydrodynamics, erosion rate or deposit extent. Metal-poor is a teaching end member without the selected metal precipitation, not a claim that every metal-poor fluid contains zero metal. Shapes, vein branches, inclusions and textures are original representative 3D models without scans, measured localities, surveying or unknown-specimen identification. The reversible cutaway is no growth, cleaning or mining tutorial. Property data are typical mineral references, not assays of the model. Observe on screen without tasting, powdering or acid-testing unknown material. Tokens provide no investment, reserve, environmental forecast or permission judgment. Playback starts paused. Its full 18 seconds and ten reduced-motion stages are presentation choices without conversion to geological time. Changing paths, views or prerequisites, leaving the viewport, backgrounding or exiting stops it; restoring progress does not resume playback automatically.",
+    "narration": [
+      {
+        "label": "What remained in a pale vein?",
+        "text": "A pale line in rock can record a journey made by water carrying material. The fluid needs suitable ingredients, a fracture it can enter, and conditions that let minerals remain. Quartz can occur alongside metal minerals or with very little useful metal. Removing the picture's cover reveals relationships inside the same vein. We have changed how we look, rather than suddenly making the minerals grow.",
+        "cue": "Return to source, then explicitly play, pause or scrub the 36-source-batch process while comparing access and supply. Retain the fixed filling field and inclusion positions at fracture A, inspect quartz and metal mineralization separately, then vary the independent observation cutaway. The full 18 seconds have no geological-time conversion; reduced motion uses ten stages."
+      },
+      {
+        "label": "A larger share without adding aluminum",
+        "text": "Now follow an aluminum-bearing rock. Weathering and water let some components leave more easily while others remain relatively behind. No new aluminum-bearing material has appeared, yet it makes up a larger share of what remains. Bauxite usually mixes several minerals, and iron compounds often give it a red-brown color. Red soil alone does not tell us that the material is suitable for making aluminum.",
+        "cue": "Compare stronger/weaker weathering and effective/ineffective export in the same 30-tag profile. Show aluminum-bearing count, remaining count and exported material; the fraction is not chemical grade."
+      },
+      {
+        "label": "Heavy grains can move too",
+        "text": "Minerals must first separate from their parent rock before we compare individual grains in water. In this equal-representative-size exercise, selective transport moves quartz farther while denser cassiterite remains. Weak flow has not completed sorting; stronger transport can move both kinds beyond the window. Leaving the observation window does not mean disappearing. Real rivers also depend on grain size, shape and the bed.",
+        "cue": "Keep 24 grains locked in source rock before allowing liberation. Compare weak, selective and strong transport, tracking all six cassiterite and eighteen quartz grains at source, in the window and beyond it."
+      },
+      {
+        "label": "From a specimen to daily life",
+        "text": "Copper can enter wires, aluminum can enter packaging, and tin can enter solder. Finding their minerals does not mean that retrieving them is easy. We need more evidence and must compare content, recoverable amounts and costs, as well as land, water, energy and wastes. Using objects longer, repairing them and recycling continue the ore story into our own lives.",
+        "cue": "Reveal texture, properties and analysis. Hold one tonne fixed and change one economic input at a time. Retain the qualification that positive tokens establish neither reserves, permission nor environmental acceptability, and connect to water, life and Earth systems."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "USGS · EarthWord: Ore—an economic material category",
+      "url": "https://www.usgs.gov/communications-and-publishing/news/earthword-ore"
+    },
+    {
+      "title": "Smithsonian NMNH · Gems and Minerals: Beauties and Building Blocks",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/earth-science/gems-and-minerals-beauties-and-building-blocks"
+    },
+    {
+      "title": "Smithsonian NMNH · Collections Overview: specimen context and research roles",
+      "url": "https://naturalhistory.si.edu/research/mineral-sciences/collections-overview"
+    },
+    {
+      "title": "Museum Wales · Hydrothermal minerals: fluids, fractures and mineral associations",
+      "url": "https://museum.wales/mineralogy-of-wales/hydrothermal-minerals/"
+    },
+    {
+      "title": "Australian Museum · Geological ore deposits: hydrothermal, residual and placer processes",
+      "url": "https://australian.museum/learn/minerals/geological-deposits/geological-ore-deposits/"
+    },
+    {
+      "title": "USGS · Bauxite and Alumina: heterogeneous material and processing",
+      "url": "https://www.usgs.gov/centers/national-minerals-information-center/bauxite-and-alumina-statistics-and-information"
+    },
+    {
+      "title": "USGS · Arkansas bauxite geochemistry: intense weathering of syenite",
+      "url": "https://www.usgs.gov/data/geochemical-analyses-bauxite-and-associated-rocks-arkansas-bauxite-region-central-arkansas"
+    },
+    {
+      "title": "USGS · Tin (2017): cassiterite, primary deposits, placers and material uses",
+      "url": "https://www.usgs.gov/publications/tin"
+    },
+    {
+      "title": "Handbook of Mineralogy · Chalcopyrite: composition and typical properties",
+      "url": "https://www.handbookofmineralogy.org/pdfs/chalcopyrite.pdf"
+    },
+    {
+      "title": "Handbook of Mineralogy · Cassiterite: composition, density and occurrence",
+      "url": "https://www.handbookofmineralogy.org/pdfs/cassiterite.pdf"
+    },
+    {
+      "title": "Handbook of Mineralogy · Quartz: typical properties and associations",
+      "url": "https://www.handbookofmineralogy.org/pdfs/quartz.pdf"
+    },
+    {
+      "title": "USGS · Combining microscopy, XRD and XRF at the Pogo deposit (2025)",
+      "url": "https://www.usgs.gov/publications/combining-scanning-electron-microscopy-x-ray-diffraction-and-x-ray-fluorescence"
+    },
+    {
+      "title": "USGS · Material flows generated by pyromet copper smelting",
+      "url": "https://www.usgs.gov/publications/material-flows-generated-pyromet-copper-smelting"
+    },
+    {
+      "title": "USGS · Mine drainage: water, sulfur-bearing minerals and variable impacts",
+      "url": "https://www.usgs.gov/mission-areas/water-resources/science/mine-drainage"
+    },
+    {
+      "title": "US EPA · Bauxite and alumina production wastes: residues and high pH",
+      "url": "https://www.epa.gov/radiation/tenorm-bauxite-and-alumina-production-wastes"
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "topicId": "earth-rocks",
+  "zh": {
+    "question": "同一批岩石物质，遇到水、搬运、压力和热，会走向哪些不同结果？",
+    "observe": "从同一份花岗岩质物质出发，先试停留，再追踪风化、搬运、固结、埋藏、变质、熔融与冷却的不同分支。回退后改走另一条路，区分“物质来历仍可追踪”和“原来晶体仍完整”。再比较标本与组成矿物，并进入独立矿物馆。",
+    "academic": [
+      {
+        "title": "按形成过程识别三大岩类",
+        "body": "火成岩来自熔体的冷却结晶；碎屑沉积岩可由沉积物埋藏后压实、胶结形成，沉积岩还有生物和化学路径。变质作用主要在固态中发生重结晶、反应与结构变化，不等于先熔化再冷却。片理、层理与晶粒分别提供不同线索。"
+      },
+      {
+        "title": "冷却速度不能替代成分",
+        "body": "同成分熔体的结晶条件会影响颗粒大小。这里以花岗岩质物质比较较慢地下冷却的粗粒花岗岩与较快地表冷却的细粒流纹岩；玄武岩的成分不同，不能把它解释为同一花岗质熔体冷却较快的结果。真实岩石还记录多阶段结晶和其他条件。"
+      },
+      {
+        "title": "矿物、岩石和矿石是不同判断",
+        "body": "矿物具有组成范围与有序内部结构；岩石由矿物或其他地质物质集合而成。矿石强调在一定技术、经济条件下可提取有用成分，可能含多种矿物。铝土矿是岩石和铝的重要矿石，不是一种单矿物。标本照片与颜色提供线索，不能独自保证鉴定。"
+      }
+    ],
+    "misconception": "岩石没有必须按火成—沉积—变质顺序完成的一圈。变质不等于熔化；所有变质岩也不都有片理。Schist是片岩，Tuff是凝灰岩，不能混译。玄武岩和花岗岩并非只差冷却速度，物质标记也不是熔化后依旧完整的矿物球。",
+    "boundary": "本馆是有前置条件与分叉的教学旅行，不预测真实转化速率、温压阈值或矿物反应平衡。固定标记保留物质来源，不声称晶体、原子或完整化学成分在所有自然过程里原样保存。粗细、条带和颗粒为代表示意。标本视图解释典型性质，不保证凭图鉴定所有实物；深入晶体结构与矿石条件请进入矿物馆。",
+    "narration": [
+      {
+        "label": "石头里还能找到什么",
+        "text": "一块花岗岩里，可以有几种不同的矿物。石英、长石和云母，不是因为大小不同才有不同名字。矿物的结构与组成，和整块岩石怎样形成，是两种相连的问题。",
+        "cue": "比较花岗岩标本和石英、长石、云母放大示意，提示颜色不能单独确定身份。"
+      },
+      {
+        "label": "水和风让颗粒换地方",
+        "text": "岩石可以在原地慢慢改变，也可以碎成颗粒，被水、风或重力带走。颗粒在另一处停下，经过埋藏、压实和胶结，才可能变成新的沉积岩。",
+        "cue": "先停在松散坡面颗粒，再观察搬运到盆地和固结；区分风化、搬运与沉积。"
+      },
+      {
+        "label": "在固态改变，还是先熔化",
+        "text": "埋到地下的岩石，有时保持固体却改变矿物和结构；有时遇到能让它熔化的条件。熔体后来冷却，又会结晶成岩石。这两条路有不同的过程。",
+        "cue": "在同一地下状态回退分叉，比较变质和熔融；从同成分熔体比较两种冷却路径。"
+      },
+      {
+        "label": "旅程没有规定好的终点",
+        "text": "同一来源的物质可以停很久，也可以再被抬升、风化或埋藏。我们追踪的是它的来历，不保证每颗原来的晶体都保存下来。记录下一步之前，先问条件是否真的改变。",
+        "cue": "保持同一批标记，比较停留与多条路径，最后链接矿物馆中的结构、性质和证据。"
+      }
+    ]
+  },
+  "en": {
+    "question": "What different outcomes can the same rock material reach through water, transport, pressure and heat?",
+    "observe": "Start with the same granitic material. Try staying, then branch through weathering, transport, lithification, burial, metamorphism, melting and cooling. Step back to choose another route, distinguishing traceable material provenance from intact original crystals. Compare specimens and constituent minerals, then continue to the independent Minerals hall.",
+    "academic": [
+      {
+        "title": "Formation processes distinguish the main rock groups",
+        "body": "Igneous rock crystallizes from cooling melt. Burial, compaction and cementation can form clastic sedimentary rock, while biological and chemical routes form other sedimentary rocks. Metamorphism mainly involves solid-state recrystallization, reactions and structural change, rather than melting followed by cooling. Foliation, bedding and grains provide different kinds of clues."
+      },
+      {
+        "title": "Cooling rate cannot replace composition",
+        "body": "Crystallization conditions affect grain size for a given melt composition. Here granitic material compares coarse granite from slower underground cooling with finer rhyolite from faster surface cooling. Basalt has a different composition and is not simply faster-cooled granitic melt. Real rocks can also record several crystallization stages and other conditions."
+      },
+      {
+        "title": "Minerals, rocks and ores answer different questions",
+        "body": "A mineral has a compositional range and ordered internal structure. A rock aggregates minerals or other geological material. Ore concerns extraction of useful constituents under particular technical and economic conditions and may contain several minerals. Bauxite is a rock and an important aluminium ore, not one mineral. Photographs and color offer clues without certifying identification."
+      }
+    ],
+    "misconception": "Rocks have no compulsory igneous-sedimentary-metamorphic circuit. Metamorphism is not melting, and not all metamorphic rocks are foliated. Schist and tuff are different rocks. Basalt and granite differ in more than cooling rate. Material markers are not intact mineral balls that survive melting.",
+    "boundary": "This branching teaching journey uses prerequisite conditions without predicting natural rates, exact pressure-temperature thresholds or mineral equilibria. Fixed markers track provenance, not unaltered crystals, atoms or complete chemistry through every natural process. Grains and bands are representative illustrations. Specimen views explain typical properties without guaranteeing real-object identification. The Minerals hall develops crystal structure and ore conditions further.",
+    "narration": [
+      {
+        "label": "What else is inside a rock?",
+        "text": "Granite can contain several different minerals. Quartz, feldspar and mica are not named differently just because their pieces differ in size. Mineral structure and composition connect with another question: how did the whole rock form?",
+        "cue": "Compare granite with enlarged quartz, feldspar and mica illustrations; explain that color alone cannot determine identity."
+      },
+      {
+        "label": "Water and wind move particles",
+        "text": "Rock can change slowly in place, or break into particles carried away by water, wind or gravity. After settling elsewhere, burial, compaction and cementation may turn the particles into new sedimentary rock.",
+        "cue": "Stop at loose hillslope particles before showing transport to a basin and lithification. Distinguish weathering, transport and deposition."
+      },
+      {
+        "label": "Change while solid, or melt first",
+        "text": "Buried rock sometimes remains solid while its minerals and structure change. Other conditions can cause melting. When that melt cools, it crystallizes into rock again. These routes involve different processes.",
+        "cue": "Branch from the same buried state into metamorphism or melting, then compare cooling routes for one melt composition."
+      },
+      {
+        "label": "There is no required destination",
+        "text": "Material with the same ancestry can stay for a long time or be uplifted, weathered and buried again. We trace its provenance without promising that every original crystal survives. Before recording the next step, ask whether its conditions really changed.",
+        "cue": "Retain the same material markers, compare staying and branching, and connect to structure, properties and evidence in the Minerals hall."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "USGS · What is the difference between a rock and a mineral?",
+      "url": "https://www.usgs.gov/faqs/what-difference-between-a-rock-and-a-mineral"
+    },
+    {
+      "title": "NPS · Igneous rocks: composition, cooling and textures",
+      "url": "https://www.nps.gov/subjects/geology/igneous.htm"
+    },
+    {
+      "title": "NPS · Sedimentary rocks: clastic, biological and chemical routes",
+      "url": "https://www.nps.gov/subjects/geology/sedimentary.htm"
+    },
+    {
+      "title": "USGS · Metamorphic rocks: change without melting",
+      "url": "https://www.usgs.gov/faqs/what-are-metamorphic-rocks"
+    },
+    {
+      "title": "NPS · Metamorphic rocks: foliated and non-foliated examples",
+      "url": "https://www.nps.gov/subjects/geology/metamorphic.htm"
+    },
+    {
+      "title": "BGS · Rocks and minerals: connected geological processes",
+      "url": "https://www.bgs.ac.uk/discovering-geology/rocks-and-minerals/"
+    },
+    {
+      "title": "BGS · Bauxite is a rock and an ore, not one mineral",
+      "url": "https://www.bgs.ac.uk/discovering-geology/maps-and-resources/critical-raw-materials-resources/modern-life-doesnt-grow-on-trees/critical-minerals-in-infrastructure/"
+    },
+    {
+      "title": "USGS · EarthWord: Ore, an economic material category",
+      "url": "https://www.usgs.gov/communications-and-publishing/news/earthword-ore"
+    }
+  ]
+}

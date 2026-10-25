@@ -1,0 +1,632 @@
+{
+  "zh": {
+    "eyebrow": "跟随同一份物质",
+    "title": "一块石头的旅行",
+    "intro": "眼前的花岗岩可以留在山坡，也可能碎成沙、埋进地下，或在足够条件下熔融。下一步由你选择，岩石没有必须走完的一圈。",
+    "question": "什么条件会让它改变？什么条件会让它留下来？",
+    "journeyTab": "选择岩石的去向",
+    "specimensTab": "拿起标本细看",
+    "stageLabel": "岩石旅行示意：上方是所处环境，下方是同一份物质的放大图。",
+    "illustration": "自绘教学示意；形状、晶粒、深度与过程长度不按真实比例。",
+    "identity": "琥珀色空心标记追踪同一份物质的来源；不是永远不变的晶体。",
+    "origin": "起点：地表花岗岩",
+    "current": "现在的样子",
+    "location": "所处环境",
+    "choose": "给它一个条件",
+    "chooseHint": "这里只列出当前位置能发生的变化。先选择，再拖动观察。",
+    "selected": "本次过程",
+    "noProcess": "先给它一个条件，或就在这里停留。",
+    "progress": "拖动观察这一步",
+    "progressNote": "0–100% 表示这幅示意的展开程度，不是经过了多少年。",
+    "play": "播放当前过程",
+    "pause": "暂停过程",
+    "rewind": "复位这一步",
+    "advance": "前进10%",
+    "playbackNote": "播放压缩展示这一步，不代表真实速率。到终点会暂停；只有点击“走完这一步”才写入旅行历史，不会自动走完一圈。",
+    "playbackReduced": "已启用减少动态：播放按段前进，也可用分步按钮或拖动观察。",
+    "back": "回到上一步",
+    "forward": "沿原路前进",
+    "finish": "走完这一步",
+    "history": "它已经走过的路",
+    "historyHint": "点击任一站回看；再选一个过程，就能从那里改走另一条路。",
+    "atOrigin": "它还在起点。选择风化、埋藏，或保持原状，都能开始一段不同的历史。",
+    "branch": "你正在回看以前的一站。完成新过程时，会从这里另开一条路径。",
+    "limit": "这一段已记录48步。可回到较早一站另走分支，或重新开始。",
+    "reset": "重新开始这段旅行",
+    "deepLabel": "再追问：为什么会这样？",
+    "processConditions": "发生条件",
+    "noTime": "过程可能快，也可能慢；本图没有统一地质时钟。",
+    "surfaceText": "水、风、冰、重力与生物活动，帮助改变地表。",
+    "interiorText": "地球内部的热与板块运动，带来埋藏、抬升和新的温压条件。",
+    "outcrop": "山坡 / 地表",
+    "basin": "河流 → 沉积盆地",
+    "underground": "地下环境",
+    "magnified": "同一份物质 · 放大观察",
+    "rockLabels": {
+      "coarse": "火成岩 · 粗粒花岗岩示例",
+      "fine": "火成岩 · 细粒流纹岩示例",
+      "loose": "松散沉积物 · 还不是岩石",
+      "cemented": "沉积岩 · 胶结的碎屑",
+      "foliated": "变质岩 · 固态重结晶示例",
+      "melt": "熔体 / 岩浆 · 还不是新火成岩"
+    },
+    "settings": {
+      "surface": "已经露出地表",
+      "slope": "山坡上的松散碎屑",
+      "basin": "沉积盆地中的碎屑",
+      "buried": "被覆盖的地下",
+      "deep": "更热的地下环境"
+    },
+    "processes": {
+      "weather": {
+        "label": "原地风化",
+        "condition": "岩石已经露出地表，裂隙、温度变化或水等能影响它。",
+        "child": "裂缝张开，整块岩石变成松散碎屑。它们还留在原来的山坡。",
+        "detail": "风化发生在原地。物理风化把岩石分开；化学风化还会改变矿物。这里跟踪不溶解的固体碎屑，暂不计算溶入水中的物质。",
+        "cue": "看裂缝与颗粒分开"
+      },
+      "transport": {
+        "label": "侵蚀、搬运、沉积",
+        "condition": "已有松散颗粒，并且有流水、风、冰或重力等搬运作用。",
+        "child": "颗粒离开山坡；本图选用流水把它们带到盆地，流动减弱后沉积下来。",
+        "detail": "侵蚀让物质离开原地，搬运改变位置，沉积让它停下来。现实中颗粒会分选、磨圆、散失或再次搬走；本图只跟随选中的一份物质。",
+        "cue": "看物质沿河流移动"
+      },
+      "lithify": {
+        "label": "埋藏、压实、胶结",
+        "condition": "碎屑已经沉积，后来被覆盖；颗粒间有能形成矿物胶结物的水。",
+        "child": "上面的沉积物让颗粒靠近，水中的矿物填在空隙里，把碎屑连成岩石。",
+        "detail": "这一步代表碎屑沉积岩的成岩作用；若以沙粒为主，可以形成砂岩。不是所有沉积岩都靠碎屑压实而成：石灰岩、岩盐等还记录生物和化学过程。胶结物来自周围水，是额外材料；标记只追踪原碎屑。",
+        "cue": "看空隙缩小、胶结出现"
+      },
+      "bury": {
+        "label": "覆盖与埋藏",
+        "condition": "后来的沉积、地壳变形或其他地质过程，把地表岩石带入地下。",
+        "child": "它被埋起来了。位置改变了，但这一步还没有让它熔化或变成另一类岩石。",
+        "detail": "埋藏可以改变温度、压力和流体环境。埋得深并不等于立刻变质或熔融，结果还取决于温度、压力、成分、流体和持续时间。",
+        "cue": "看覆盖层增加"
+      },
+      "heat": {
+        "label": "加热、加压 · 保持固态",
+        "condition": "地下温度、压力或流体环境适合重结晶，岩石整体仍保持固态。",
+        "child": "矿物在固态中重新生长或反应；本例出现定向结构，它成为变质岩。没有一池熔岩。",
+        "detail": "定向应力能使某些片状、长条状矿物排列，产生片理；本例用这种纹理帮助观察。变质不一定需要强定向挤压，也不一定出现条纹：接触变质可主要由热引起，大理岩常无片理。",
+        "cue": "看晶粒重新排列，仍是固体"
+      },
+      "melt": {
+        "label": "达到熔融条件",
+        "condition": "原岩处在合适的温度、压力和含水条件下，一部分或更多物质熔融。",
+        "child": "固态晶粒逐渐进入熔体。现在叫岩浆；等它冷却凝固后，才有新的火成岩。",
+        "detail": "熔融与变质不同。地球上很多岩浆来自部分熔融，常与减压、加入挥发分或传热有关；压力增加本身并不保证熔融。图中把选中的物质全部画成熔体，是便于比较冷却路径的简化。",
+        "cue": "看固态骨架消失、出现熔体"
+      },
+      "slowCool": {
+        "label": "留在地下慢慢冷却",
+        "condition": "同一份富硅熔体留在地下，有较长的晶体生长时间。",
+        "child": "熔体凝固，晶体互相嵌合；在这个同成分示例中，形成粗粒花岗岩。",
+        "detail": "较慢冷却通常使晶体有更多时间长大。花岗岩和流纹岩的成分可以相近、纹理不同；花岗岩与玄武岩则还存在成分差别，不能只用冷却快慢解释。",
+        "cue": "看较大的嵌合晶粒"
+      },
+      "fastCool": {
+        "label": "到地表较快冷却",
+        "condition": "同一份富硅熔体到达近地表或地表，向周围环境较快散热。",
+        "child": "很多晶体来不及长大；本例成为细粒流纹岩。它仍然是同一份物质。",
+        "detail": "冷却速度会影响晶粒，但也受成分、结晶史等因素影响。极快冷却可形成玻璃；有些火山岩同时含大晶体和细粒基质。本图选择均匀细粒端元，不代表所有喷出岩。",
+        "cue": "看细小晶粒构成的基质"
+      },
+      "uplift": {
+        "label": "抬升并剥蚀露出",
+        "condition": "抬升与上覆岩层的剥蚀，逐渐使地下岩石接近并露出地表。",
+        "child": "曾在地下的岩石露出来了。它可以再次风化，也可以长久保持这个样子。",
+        "detail": "岩石出露往往同时需要地壳运动与去掉上覆物质；不是一块岩石自行穿过地面向上跳。出露也不会自动把变质岩改回原岩。",
+        "cue": "看上覆层逐渐被移走"
+      },
+      "stay": {
+        "label": "就在这里停留",
+        "condition": "没有足以触发其他转变的新条件。",
+        "child": "它留在原处，保存现在的纹理。经过时间，并不保证一定变成下一类岩石。",
+        "detail": "岩石循环是一张可能路径的网络，不是每块岩石的固定作息表。实际岩石可长久保存，也可能反复经历同一过程；这里的停留不对应特定年数。",
+        "cue": "看形态和位置都保持"
+      }
+    },
+    "specimenIntro": "先看颗粒怎样结合，再问它从哪里来。下面是有代表性的自绘标本，并非一块石头必经的所有形态。",
+    "specimenSelect": "选择一块标本",
+    "look": "先找这个线索",
+    "formed": "形成经历",
+    "ingredients": "主要成分",
+    "ask": "试着解释",
+    "specimens": {
+      "granite": {
+        "name": "花岗岩",
+        "type": "火成岩 · 侵入岩",
+        "look": "浅色晶粒与深色晶粒彼此嵌合，没有沙粒外面的胶结圈。",
+        "formed": "富硅岩浆在地下冷却结晶，通常能形成肉眼可见的晶粒。",
+        "ingredients": "石英、长石，常有云母等矿物。",
+        "question": "一块岩石为什么能同时有几种颜色？",
+        "detail": "颜色和大小只是线索。实际命名还要看矿物种类、比例与结构；大陆地壳含多种岩石，不能把所有大陆都画成花岗岩。"
+      },
+      "basalt": {
+        "name": "玄武岩",
+        "type": "火成岩 · 喷出岩",
+        "look": "深灰细粒基质，有些标本可有气孔；不是每一块都有孔。",
+        "formed": "较富铁镁的岩浆在近地表或地表冷却；细小晶粒常难以单凭肉眼分清。",
+        "ingredients": "常见斜长石、辉石，可有橄榄石。",
+        "question": "看不到大晶粒，能说明它完全没有晶体吗？",
+        "detail": "玄武岩与花岗岩的差异不只在冷却快慢。比较相近成分的快慢冷却，可用玄武岩与辉长岩；本章旅行则用流纹岩与花岗岩。"
+      },
+      "sandstone": {
+        "name": "砂岩",
+        "type": "沉积岩 · 碎屑岩",
+        "look": "可辨的沙粒边界，粒间有胶结物，常见层理。",
+        "formed": "沙粒被水或风等搬运、沉积，再经成岩作用结合。",
+        "ingredients": "常见石英，也可有长石、岩屑和矿物胶结物。",
+        "question": "颗粒是一起长大的，还是后来被连起来的？",
+        "detail": "同样含石英和长石，花岗岩可以是嵌合晶体，砂岩则是搬运后的颗粒被胶结。成分相似，形成经历仍可不同。"
+      },
+      "limestone": {
+        "name": "石灰岩",
+        "type": "沉积岩 · 碳酸盐岩",
+        "look": "本标本画出贝壳碎片；现实中有些石灰岩很细，看不到化石。",
+        "formed": "许多石灰岩由生物制造的碳酸盐积累，也可以有化学沉淀过程。",
+        "ingredients": "主要常为方解石（碳酸钙）。",
+        "question": "沉积岩一定是山上碎石压成的吗？",
+        "detail": "沉积过程还连接海洋、生物和水中溶解物。本章硅酸盐碎屑旅行并不把花岗岩直接变成石灰岩；这里是另一个成分和来源的标本。"
+      },
+      "slate": {
+        "name": "板岩",
+        "type": "变质岩 · 有板状劈理",
+        "look": "细密、容易沿近乎平行的面劈成薄片，单个矿物通常很小。",
+        "formed": "常由泥质沉积岩在较低程度的变质作用中形成。",
+        "ingredients": "细小的云母等片状矿物，可含石英。",
+        "question": "容易劈开的面，必定是原来的沉积层面吗？",
+        "detail": "板状劈理与变质时的定向应力有关，可能穿过原来的层理。板岩不是冷却凝固的熔岩；片岩的英文是 schist，凝灰岩才是 tuff。"
+      },
+      "marble": {
+        "name": "大理岩",
+        "type": "变质岩 · 常无片理",
+        "look": "方解石等晶粒重新嵌合，本图有浅色晶粒和少量杂质纹脉。",
+        "formed": "石灰岩或白云岩等碳酸盐岩发生固态重结晶。",
+        "ingredients": "常为方解石或白云石。",
+        "question": "没有平行条纹，就一定不是变质岩吗？",
+        "detail": "大理岩说明变质不等于每块岩石都被压出条纹。重结晶会改变原有颗粒、孔隙和化石细节；它不是把石灰岩先熔成液体再冷却。"
+      },
+      "gneiss": {
+        "name": "片麻岩",
+        "type": "变质岩 · 条带状结构",
+        "look": "浅色矿物与深色矿物集中成不同的带；条带可以弯曲。",
+        "formed": "原先的火成岩或沉积岩，在适合的较高程度变质条件下重新组织。",
+        "ingredients": "常含石英、长石及深色矿物，因原岩而异。",
+        "question": "看到条纹，还需要哪些证据才能知道它的身世？",
+        "detail": "花岗岩可成为花岗质片麻岩，但并非所有片麻岩都来自花岗岩，也并非所有变质岩都会经过板岩、片岩、片麻岩的同一顺序。"
+      }
+    },
+    "mineralTitle": "岩石像一道菜，矿物像其中的材料",
+    "mineralText": "矿物有特定的成分与有序内部结构；岩石是地质过程形成的集合体，可以含一种或多种矿物，也可有玻璃等非晶质物质。看见一块大石头，不等于看见一个大晶体。 矿石则是能从中提取有经济价值物质的天然材料，强调利用条件，不是第四类岩石，也不是所有矿物的别名。",
+    "mineralSelect": "放大观察一种矿物",
+    "mineralModel": "晶形与排列为教学示意；图中切面和间距不是原子照片或测量值。",
+    "minerals": {
+      "quartz": {
+        "name": "石英",
+        "habit": "常呈玻璃光泽；有自由生长空间时可以长出有晶面的晶体，在岩石中常被相邻矿物挤住。",
+        "structure": "成分为二氧化硅（SiO₂）。花岗岩中的石英颗粒和砂岩中的石英沙粒，都属于同一种矿物。"
+      },
+      "feldspar": {
+        "name": "长石",
+        "habit": "一个矿物家族，常见白色、灰色或粉色块状颗粒；颜色不能独自确定是哪一种长石。",
+        "structure": "含硅、氧、铝，并可含钾、钠或钙。花岗岩和玄武岩都可以含长石，具体种类与比例不同。"
+      },
+      "mica": {
+        "name": "云母",
+        "habit": "片状矿物家族，容易沿很薄的片分开；深色或浅色闪片都可能是云母。",
+        "structure": "层状内部结构与它的片状特征有关；许多片状矿物定向排列时，可参与形成变质岩的片理。"
+      },
+      "calcite": {
+        "name": "方解石",
+        "habit": "常见于石灰岩和大理岩；本图画菱面体示例，并非每颗方解石都长成完整外形。",
+        "structure": "成分为碳酸钙（CaCO₃）。同一种方解石，既可以记录沉积积累，也可以记录后来的固态重结晶。"
+      }
+    },
+    "coolingTitle": "只改变冷却条件，晶粒会怎样？",
+    "coolingText": "比较相近成分的富硅熔体：地下较慢冷却可形成花岗岩；近地表较快冷却可形成流纹岩。拖动只展开晶粒差异，不是让两块岩石经历相同年数。",
+    "coolingSlider": "拖动观察晶粒生长对照",
+    "slow": "地下较慢冷却 · 粗粒",
+    "fast": "近地表较快冷却 · 细粒",
+    "coolingLimit": "这是纹理的定性对照。实际晶粒还受成分、结晶史等影响；没有用像素换算真实晶粒大小。",
+    "deeper": [
+      {
+        "title": "分三类，是在追问形成方式",
+        "text": "火成岩来自熔体冷却凝固；沉积岩记录沉积与成岩，也可来自生物积累或化学沉淀；变质岩记录原岩保持固态时的变化。岩石名称、矿物成分和形成过程是互相补充的线索。"
+      },
+      {
+        "title": "地表与内部，怎样连起来？",
+        "text": "太阳能驱动的水循环与风、重力作用等帮助风化、侵蚀、搬运和沉积；地球内部的热及板块运动使物质进入不同温压环境，也使岩石抬升出露。风化还受气候、生物和岩性影响。"
+      },
+      {
+        "title": "同一份物质，不是同一颗晶体永远不变",
+        "text": "本图的24个琥珀色追踪标记只表示来源连续。风化会分开物质，变质会改变矿物，熔融会破坏原来的晶体结构；胶结还可能带来新材料。这里没有计算真实质量守恒、流体反应、精确温压或实际年代。"
+      },
+      {
+        "title": "三大岩类，不是一张固定时刻表",
+        "text": "火成岩可以直接变质，也可以先风化；变质岩可以再变质、出露或熔融；岩石也能长时间停留。选择的过程需要合适环境，真实路径常比这张教学网络复杂，而且不保证每块岩石都走一圈。"
+      },
+      {
+        "title": "快慢有多大差别？看带条件的真实案例",
+        "text": "USGS在2019年估算：基拉韦厄2018年约10–15米厚的玄武质熔岩流，完全凝固可能需约8个月至1.5年；20–30米厚的熔岩流可能需约2.5–6年。这是特定熔岩流的冷却估算，不是本图富硅熔体的计时。凝固后，内部还可能很烫。另一个尺度上，NPS用约500–600万年概括科罗拉多河主要切割大峡谷的阶段；峡谷形成史仍有研究和争议，所切穿的岩石比地貌本身古老得多。"
+      }
+    ],
+    "linksTitle": "沿着原因继续探索",
+    "volcano": "火山：岩浆怎样来到近地表？",
+    "water": "水循环：谁在搬运地表的物质？",
+    "sand": "沙子的旅行：一粒沙会去哪里？",
+    "sourcesTitle": "依据与绘图边界",
+    "sourcesNote": "内容依据下列地质机构的具体资料；画面由本专题代码绘制，未使用展览照片或复制展板。完整主张对照见专题 sources.md。",
+    "processEvidence": {
+      "weather": {
+        "time": "可以逐次发生；一次冻融能扩展已有裂缝，形成大量碎屑通常需要反复作用，速率因气候与岩性而异。",
+        "evidence": "沿原岩可对上的裂隙、原地松散颗粒、矿物变色或蚀变；碎裂本身不能说明物质已经搬走。"
+      },
+      "transport": {
+        "time": "一次洪水可以搬运颗粒，沉积物也可多次停留和再搬运；运输距离不是统一计时器。",
+        "evidence": "搬运中的颗粒、粒度变化、磨圆和沉积层；需要结合水流与沉积环境，不能只凭一粒沙反推出唯一来路。"
+      },
+      "lithify": {
+        "time": "没有统一年数。成岩取决于覆盖、孔隙水与矿物反应；图上的一步压缩了许多过程。",
+        "evidence": "显微镜下可观察粒间矿物胶结、孔隙与颗粒接触；层理可记录先后的沉积。"
+      },
+      "bury": {
+        "time": "覆盖可分许多次累积，地壳变形也有不同速率；深度变化和岩类改变并非同一件事。",
+        "evidence": "岩层上下关系、地质构造与埋藏史；今天露出的岩石，也可能曾在地下形成。"
+      },
+      "heat": {
+        "time": "可在局部受热区或广大造山带中发生，持续时间随热源、深度和地质史变化；本图没有设定具体温压或年数。",
+        "evidence": "矿物组合、晶粒重结晶和片理帮助重建温压经历；片理常与应力有关，但条纹不是所有变质岩共有的证据。"
+      },
+      "melt": {
+        "time": "熔融何时开始，取决于成分、温度、压力与含水条件，不能仅用埋藏时间判断。",
+        "evidence": "熔体可在喷发时被观察；地下熔融还需结合岩石结构、成分、实验及地球物理证据推断。"
+      },
+      "slowCool": {
+        "time": "相对于同成分、近地表的较快冷却，通常有更长晶体生长时间；大侵入体与小岩脉的冷却时间也不同。",
+        "evidence": "相互嵌合的晶粒及其大小、矿物比例，结合侵入体与围岩接触关系。"
+      },
+      "fastCool": {
+        "time": "较快是与地下缓慢冷却相对而言；熔岩表面和内部的冷却速度仍会不同。",
+        "evidence": "细粒或玻璃质基质、气孔及熔岩流或火山碎屑的现场关系；有些火山岩包含先长成的大晶体。"
+      },
+      "uplift": {
+        "time": "抬升与剥蚀的快慢随地质环境而异；本图的拖动不是山脉真实运动速度。",
+        "evidence": "出露的地下侵入岩或变质岩、构造与剥蚀面；需组合证据区分岩石抬升和地表降低。"
+      },
+      "stay": {
+        "time": "可保持很长时间，没有倒计时；时间流逝本身不会强制触发下一个岩类。",
+        "evidence": "保存下来的旧矿物、纹理及可定年的信息；“没有画出变化”不等于真实岩石完全没有微小反应。"
+      }
+    },
+    "timeLabel": "时间尺度 · ",
+    "evidenceLabel": "可以寻找的证据 · ",
+    "mineralLink": "走进矿物馆：晶体、矿石与鉴定证据 →",
+    "model3d": "旋转观察三维标本",
+    "model2d": "二维纹理图解",
+    "modelReset": "恢复标本视角",
+    "modelHelp": "拖动旋转；双指或滚轮缩放。键盘方向键旋转，+ / − 缩放，Home 恢复视角。",
+    "modelLimit": "三维标本为原创程序生成的代表性形态与材质，不是扫描实物。晶粒、层理与孔洞用于观察特征，不能据此保证鉴定。",
+    "modelLoading": "正在准备三维标本……",
+    "modelFailed": "三维视图暂不可用，已保留二维标本和全部解释。",
+    "modelRetry": "重试三维标本"
+  },
+  "en": {
+    "eyebrow": "Follow the same material",
+    "title": "A rock's journey",
+    "intro": "This granite can stay on a hillside, break into sand, become buried, or melt if conditions allow. You choose the next step. A rock has no compulsory round trip.",
+    "question": "Which conditions change it? Which let it remain?",
+    "journeyTab": "Choose its next destination",
+    "specimensTab": "Look closely at specimens",
+    "stageLabel": "Rock journey illustration: the setting is above, with an enlarged view of the same material below.",
+    "illustration": "Original teaching illustration; shapes, grains, depths and process lengths are not to scale.",
+    "identity": "Amber outline markers track the origin of the same material; they are not permanently unchanged crystals.",
+    "origin": "Start: granite at the surface",
+    "current": "Its present form",
+    "location": "Its setting",
+    "choose": "Give it a new condition",
+    "chooseHint": "Only processes available in its current setting appear here. Choose one, then drag to investigate.",
+    "selected": "This process",
+    "noProcess": "Choose a condition, or let it remain here.",
+    "progress": "Drag to inspect this step",
+    "progressNote": "0–100% unfolds the illustration. It does not measure years elapsed.",
+    "play": "Play this process",
+    "pause": "Pause process",
+    "rewind": "Rewind this step",
+    "advance": "Advance 10%",
+    "playbackNote": "Playback compresses this step without measuring its actual rate. It pauses at the endpoint; only Complete this step records it in the route. No cycle advances automatically.",
+    "playbackReduced": "Reduced motion is enabled: playback uses discrete stages; you can also step or drag to inspect.",
+    "back": "Go back one step",
+    "forward": "Continue the saved route",
+    "finish": "Complete this step",
+    "history": "The route it has taken",
+    "historyHint": "Select any stop to revisit it. Choose and complete a new process to branch from there.",
+    "atOrigin": "It is still at the start. Weathering, burial or remaining here can each begin a different history.",
+    "branch": "You are revisiting an earlier stop. Completing a new process will create a different route from here.",
+    "limit": "This route has 48 recorded steps. Revisit an earlier stop to branch, or start again.",
+    "reset": "Start this journey again",
+    "deepLabel": "Ask further: why does it happen?",
+    "processConditions": "Conditions needed",
+    "noTime": "Processes can be quick or slow; this illustration has no shared geological clock.",
+    "surfaceText": "Water, wind, ice, gravity and life help reshape the surface.",
+    "interiorText": "Earth's internal heat and plate motion enable burial, uplift and changing temperature and pressure.",
+    "outcrop": "Hillside / surface",
+    "basin": "River → sediment basin",
+    "underground": "Underground setting",
+    "magnified": "The same material · enlarged",
+    "rockLabels": {
+      "coarse": "Igneous · coarse granite example",
+      "fine": "Igneous · fine rhyolite example",
+      "loose": "Loose sediment · not yet rock",
+      "cemented": "Sedimentary · cemented fragments",
+      "foliated": "Metamorphic · solid-state change",
+      "melt": "Melt / magma · not new igneous rock yet"
+    },
+    "settings": {
+      "surface": "Exposed at the surface",
+      "slope": "Loose fragments on a slope",
+      "basin": "Sediment in a depositional basin",
+      "buried": "Covered underground",
+      "deep": "A hotter underground setting"
+    },
+    "processes": {
+      "weather": {
+        "label": "Weather in place",
+        "condition": "Rock is exposed, where cracks, temperature changes or water can affect it.",
+        "child": "Cracks open and the rock breaks into loose fragments. They are still on the same hillside.",
+        "detail": "Weathering happens in place. Physical weathering separates pieces; chemical weathering also changes minerals. Here we follow solid fragments that do not dissolve, without calculating material dissolved in water.",
+        "cue": "Watch cracks open and fragments separate"
+      },
+      "transport": {
+        "label": "Erode, transport and deposit",
+        "condition": "Loose grains exist and flowing water, wind, ice or gravity can move them.",
+        "child": "Grains leave the hillside. This example follows river transport to a basin, where weaker flow allows deposition.",
+        "detail": "Erosion removes material, transport changes its location, and deposition lays it down. Real grains may be sorted, rounded, lost or moved again; this illustration follows only our chosen parcel.",
+        "cue": "Watch the material move along the river"
+      },
+      "lithify": {
+        "label": "Bury, compact and cement",
+        "condition": "Sediment has been deposited and then covered; water can supply minerals that cement the grains.",
+        "child": "Overlying sediment brings grains closer. Minerals from water fill spaces and bind fragments into rock.",
+        "detail": "This represents lithification of a clastic sedimentary rock; sand-sized grains can make sandstone. Other sedimentary rocks, including limestone and rock salt, also record biological or chemical processes. Cement arrives from surrounding water; the markers track the original fragments.",
+        "cue": "Watch pores shrink and cement appear"
+      },
+      "bury": {
+        "label": "Cover and bury",
+        "condition": "Later deposits, crustal deformation or other geological processes carry exposed rock underground.",
+        "child": "It becomes buried. Its location changes, but this step has not melted it or changed its rock group.",
+        "detail": "Burial can change temperature, pressure and fluids. Greater depth does not instantly cause metamorphism or melting: composition, temperature, pressure, fluids and duration all matter.",
+        "cue": "Watch the cover increase"
+      },
+      "heat": {
+        "label": "Heat and pressure · stay solid",
+        "condition": "Underground temperature, pressure or fluids enable recrystallization while the rock remains solid overall.",
+        "child": "Minerals regrow or react in the solid state. This example develops a fabric and becomes metamorphic rock, without a pool of lava.",
+        "detail": "Directed stress can align some platy or elongated minerals and produce foliation, illustrated here. Metamorphism need not involve strong directed squeezing or stripes: contact metamorphism can be driven mainly by heat, and marble is often unfoliated.",
+        "cue": "Watch grains reorganize while remaining solid"
+      },
+      "melt": {
+        "label": "Reach melting conditions",
+        "condition": "Temperature, pressure and water content allow some or more of the original material to melt.",
+        "child": "Solid grains progressively enter a melt. It is magma now; a new igneous rock forms only after cooling and solidification.",
+        "detail": "Melting differs from metamorphism. Many magmas form by partial melting, often related to decompression, added volatiles or heat transfer. Increasing pressure alone does not guarantee melting. Turning the whole selected parcel into melt is a simplification for comparing cooling routes.",
+        "cue": "Watch the solid framework give way to melt"
+      },
+      "slowCool": {
+        "label": "Cool slowly underground",
+        "condition": "The same silicic melt stays underground, giving crystals more time to grow.",
+        "child": "The melt solidifies into interlocking crystals. In this same-composition example, it becomes coarse granite.",
+        "detail": "Slower cooling usually gives crystals more time to grow. Granite and rhyolite can have similar compositions but different textures. Granite and basalt also differ in composition, so cooling rate alone cannot explain that pair.",
+        "cue": "Look for larger, interlocking crystals"
+      },
+      "fastCool": {
+        "label": "Cool faster at the surface",
+        "condition": "The same silicic melt reaches the surface or near-surface and loses heat more quickly.",
+        "child": "Many crystals have little time to grow. This example becomes fine-grained rhyolite, still made from the same material.",
+        "detail": "Grain size depends on cooling as well as composition and crystallization history. Very rapid cooling can form glass; some volcanic rocks have large crystals in a fine matrix. This picture chooses a uniformly fine end member, rather than representing every volcanic rock.",
+        "cue": "Look for the tiny grains in the matrix"
+      },
+      "uplift": {
+        "label": "Uplift and remove the cover",
+        "condition": "Uplift and erosion of overlying material gradually bring buried rock to the surface.",
+        "child": "Rock once underground becomes exposed. It can weather again or retain its present form for a long time.",
+        "detail": "Exposure commonly combines crustal motion and removal of cover. A rock does not jump upwards through the ground by itself. Exposure also does not automatically turn metamorphic rock back into its parent rock.",
+        "cue": "Watch the overlying material being removed"
+      },
+      "stay": {
+        "label": "Remain here",
+        "condition": "No new conditions are sufficient to trigger another transformation.",
+        "child": "It stays in place and retains its texture. Passing time does not guarantee a change to the next rock group.",
+        "detail": "The rock cycle is a network of possible routes, rather than a fixed timetable for every rock. Real rocks may survive for long periods or experience the same process repeatedly. This pause does not represent a particular number of years.",
+        "cue": "Watch its form and setting remain the same"
+      }
+    },
+    "specimenIntro": "Look at how the grains fit together, then ask where they came from. These are original illustrations of representative specimens, rather than compulsory stages of one rock.",
+    "specimenSelect": "Choose a specimen",
+    "look": "Find this clue first",
+    "formed": "How it formed",
+    "ingredients": "Main ingredients",
+    "ask": "Try to explain",
+    "specimens": {
+      "granite": {
+        "name": "Granite",
+        "type": "Igneous · intrusive",
+        "look": "Light and dark grains interlock, without cement rims around sand grains.",
+        "formed": "Silicic magma cools and crystallizes underground, usually producing visible grains.",
+        "ingredients": "Quartz and feldspars, often with mica and other minerals.",
+        "question": "Why can one rock contain several colours?",
+        "detail": "Colour and grain size are clues. Naming also uses mineral types, proportions and structure. Continental crust contains many rock types; continents are not made entirely of granite."
+      },
+      "basalt": {
+        "name": "Basalt",
+        "type": "Igneous · extrusive",
+        "look": "A dark, fine-grained matrix; some specimens have gas holes, but many do not.",
+        "formed": "Iron- and magnesium-rich magma cools at or near the surface; tiny grains can be hard to identify by eye.",
+        "ingredients": "Commonly plagioclase and pyroxene, sometimes olivine.",
+        "question": "Does the absence of visible large grains mean there are no crystals?",
+        "detail": "Basalt and granite differ in more than cooling speed. Basalt and gabbro are a more suitable similar-composition cooling pair. Our journey instead compares rhyolite with granite."
+      },
+      "sandstone": {
+        "name": "Sandstone",
+        "type": "Sedimentary · clastic",
+        "look": "Recognizable sand-grain boundaries with cement between grains, often with bedding.",
+        "formed": "Sand is transported and deposited by water, wind or other agents, then bound during lithification.",
+        "ingredients": "Often quartz, with possible feldspar, rock fragments and mineral cement.",
+        "question": "Did these grains grow together or become joined later?",
+        "detail": "Both granite and sandstone can contain quartz and feldspar. Granite may contain intergrown crystals; sandstone contains transported grains bound by cement. Similar ingredients can record different histories."
+      },
+      "limestone": {
+        "name": "Limestone",
+        "type": "Sedimentary · carbonate",
+        "look": "This specimen has shell fragments. Some real limestones are fine-grained with no visible fossils.",
+        "formed": "Many limestones accumulate biologically made carbonate; chemical precipitation can contribute too.",
+        "ingredients": "Commonly mainly calcite, a form of calcium carbonate.",
+        "question": "Must every sedimentary rock come from broken mountain rocks?",
+        "detail": "Sedimentation also connects oceans, life and dissolved material. The silicic fragment journey does not turn granite directly into limestone; this specimen has a different composition and origin."
+      },
+      "slate": {
+        "name": "Slate",
+        "type": "Metamorphic · slaty cleavage",
+        "look": "Fine-grained rock that splits along nearly parallel surfaces. Individual minerals are usually tiny.",
+        "formed": "Commonly produced by relatively low-grade metamorphism of muddy sedimentary rock.",
+        "ingredients": "Tiny platy minerals including mica, with possible quartz.",
+        "question": "Must its splitting surfaces be the original sedimentary bedding?",
+        "detail": "Slaty cleavage relates to directed stress during metamorphism and can cross original bedding. Slate is not solidified lava. Schist and tuff are different rocks: tuff is made of volcanic fragments."
+      },
+      "marble": {
+        "name": "Marble",
+        "type": "Metamorphic · often unfoliated",
+        "look": "Recrystallized, interlocking carbonate grains; this example has pale crystals and a few impurity veins.",
+        "formed": "Carbonate rocks such as limestone or dolostone recrystallize in the solid state.",
+        "ingredients": "Commonly calcite or dolomite.",
+        "question": "Does having no parallel stripes rule out metamorphism?",
+        "detail": "Marble shows that metamorphism need not make stripes. Recrystallization changes grains, pores and fossil details. It does not require limestone to melt into liquid and cool again."
+      },
+      "gneiss": {
+        "name": "Gneiss",
+        "type": "Metamorphic · mineral bands",
+        "look": "Light and dark minerals concentrate in different bands, which may be folded.",
+        "formed": "Earlier igneous or sedimentary rock reorganizes under suitable higher-grade metamorphic conditions.",
+        "ingredients": "Often quartz, feldspar and darker minerals, depending on its parent rock.",
+        "question": "What other evidence would help explain its stripes and history?",
+        "detail": "Granite can become granitic gneiss, but not all gneiss began as granite. Nor must all metamorphic rocks pass through the same slate–schist–gneiss sequence."
+      }
+    },
+    "mineralTitle": "Rocks combine ingredients; minerals are some of those ingredients",
+    "mineralText": "A mineral has a characteristic composition and an ordered internal structure. A rock is a geological aggregate that can contain one or several minerals, and may include noncrystalline material such as glass. A large rock is not necessarily one large crystal. Ore is natural material from which something of economic value can be extracted. It describes use and viability, rather than a fourth rock group or another name for every mineral.",
+    "mineralSelect": "Enlarge one mineral",
+    "mineralModel": "Crystal forms and arrangements are illustrative; faces and spacing are not atomic photographs or measurements.",
+    "minerals": {
+      "quartz": {
+        "name": "Quartz",
+        "habit": "Often glassy. With free growing space it can develop crystal faces; inside rock, neighbouring grains usually constrain its shape.",
+        "structure": "Silicon dioxide, SiO₂. A quartz grain in granite and a quartz sand grain in sandstone are the same mineral."
+      },
+      "feldspar": {
+        "name": "Feldspar",
+        "habit": "A mineral family, often forming white, grey or pink blocky grains. Colour alone cannot identify the feldspar member.",
+        "structure": "Contains silicon, oxygen and aluminium, with potassium, sodium or calcium. Granite and basalt can both contain feldspar, with different members and proportions."
+      },
+      "mica": {
+        "name": "Mica",
+        "habit": "A family of platy minerals that split into very thin sheets. Both light and dark shiny flakes can be mica.",
+        "structure": "Its layered internal structure relates to its sheet-like habit. Aligned platy minerals can contribute to foliation in metamorphic rock."
+      },
+      "calcite": {
+        "name": "Calcite",
+        "habit": "Common in limestone and marble. A rhombohedral example is shown; not every calcite grain has a complete external crystal form.",
+        "structure": "Calcium carbonate, CaCO₃. The same mineral can record sedimentary accumulation or later solid-state recrystallization."
+      }
+    },
+    "coolingTitle": "What happens if cooling conditions change?",
+    "coolingText": "Compare silicic melts of similar composition: slower underground cooling can form granite, while faster near-surface cooling can form rhyolite. Drag to reveal the grain-size contrast, rather than equal elapsed years.",
+    "coolingSlider": "Drag to compare crystal growth",
+    "slow": "Slower underground cooling · coarse",
+    "fast": "Faster near-surface cooling · fine",
+    "coolingLimit": "This is a qualitative texture comparison. Composition and crystallization history also affect real grains. Pixels do not measure actual grain size.",
+    "deeper": [
+      {
+        "title": "The three groups describe ways of forming",
+        "text": "Igneous rocks solidify from melt. Sedimentary rocks record deposition and lithification, including biological accumulation or chemical precipitation. Metamorphic rocks record changes while the original rock remains solid. Names, ingredients and processes supply complementary clues."
+      },
+      {
+        "title": "How do the surface and interior connect?",
+        "text": "The Sun-powered water cycle, wind and gravity help weather, erode, transport and deposit material. Earth's internal heat and plate motion provide changing underground conditions and can raise rocks towards exposure. Climate, life and rock properties also influence weathering."
+      },
+      {
+        "title": "The same material need not remain the same crystal",
+        "text": "The 24 amber origin markers show continuity only. Weathering separates material, metamorphism changes minerals, melting destroys earlier crystal structure, and cement may add material. This model does not calculate real mass conservation, fluid reactions, exact temperatures, pressures or ages."
+      },
+      {
+        "title": "Rock groups are not a fixed timetable",
+        "text": "Igneous rock can metamorphose directly or weather first. Metamorphic rock may metamorphose again, become exposed or melt. Rock may also remain unchanged for a long time. Each route needs suitable conditions; real histories can be more complex and need not complete a circle."
+      },
+      {
+        "title": "How different are the time scales? Compare qualified real examples",
+        "text": "In 2019, USGS estimated that Kīlauea’s 2018 basaltic lava flows about 10–15 m thick could take roughly 8 months to 1.5 years to solidify; 20–30 m flows could take about 2.5–6 years. These estimates describe particular basaltic flows, not the silicic melt in our illustration. Solidified interiors can remain very hot. On another scale, NPS summarizes major Colorado River incision of Grand Canyon over roughly 5–6 million years. Its history remains an active subject of research and debate, and the rocks cut by the river are much older than the landform."
+      }
+    ],
+    "linksTitle": "Follow the causes further",
+    "volcano": "Volcanoes: how does magma approach the surface?",
+    "water": "Water cycle: what transports surface material?",
+    "sand": "A sand grain's journey: where can it go?",
+    "sourcesTitle": "Evidence and illustration limits",
+    "sourcesNote": "The content follows the specific geological-agency resources below. The illustrations are drawn by this topic's code; exhibition photographs and panels are not reproduced. See the topic's sources.md for the full claim-to-source map.",
+    "processEvidence": {
+      "weather": {
+        "time": "Changes can accumulate: a freeze–thaw event can extend a crack, while abundant debris often needs repeated action. Rates depend on climate and rock properties.",
+        "evidence": "Matching cracks in the parent rock, loose material still in place, and mineral alteration. Breakage alone does not show that transport occurred."
+      },
+      "transport": {
+        "time": "A flood can move grains; sediment may also stop and be reworked many times. Distance is not a universal clock.",
+        "evidence": "Moving grains, size changes, rounding and deposits. Interpret these with the flow and setting: one grain rarely identifies a unique route."
+      },
+      "lithify": {
+        "time": "There is no universal duration. Burial, pore water and mineral reactions matter. One step here compresses many processes.",
+        "evidence": "Microscopy can reveal grain contacts, pores and mineral cement. Bedding may record successive deposition."
+      },
+      "bury": {
+        "time": "Cover can accumulate in many episodes, and crustal deformation has varied rates. Changing depth and changing rock group are separate events.",
+        "evidence": "Stratigraphic order, structures and burial history. A rock exposed today may have formed underground."
+      },
+      "heat": {
+        "time": "Metamorphism can occur near local heat sources or across mountain belts. Duration varies with heat source, depth and history; no exact temperature, pressure or age is assigned here.",
+        "evidence": "Mineral assemblages, recrystallization and fabrics help reconstruct conditions. Foliation can record stress, but stripes are not universal evidence of metamorphism."
+      },
+      "melt": {
+        "time": "The onset depends on composition, temperature, pressure and water, rather than burial duration alone.",
+        "evidence": "Melt can be observed during eruptions. Underground melting is inferred using rock textures, compositions, experiments and geophysical evidence together."
+      },
+      "slowCool": {
+        "time": "Crystals usually have longer to grow than in faster near-surface cooling of similar melt. A large intrusion and a small dyke also cool over different durations.",
+        "evidence": "Interlocking grains, grain sizes and mineral proportions, interpreted with contacts between an intrusion and its surrounding rock."
+      },
+      "fastCool": {
+        "time": "Faster is relative to slower underground cooling. A lava surface and its interior can still cool at different rates.",
+        "evidence": "Fine or glassy matrices, vesicles and field relationships with lava or volcanic fragments. Some volcanic rocks contain crystals that grew earlier."
+      },
+      "uplift": {
+        "time": "Rates of uplift and erosion vary with geological setting. Dragging does not show the actual speed of a mountain.",
+        "evidence": "Exposed intrusive or metamorphic rock, structures and erosion surfaces. Combined evidence separates rock uplift from lowering of the land surface."
+      },
+      "stay": {
+        "time": "It may persist for a long time, without a countdown. Time alone does not force the next rock group.",
+        "evidence": "Preserved minerals, textures and information that can be dated. No illustrated change does not mean absolutely no microscopic reactions in nature."
+      }
+    },
+    "timeLabel": "Time scale · ",
+    "evidenceLabel": "Evidence · ",
+    "mineralLink": "Visit the mineral gallery: crystals, ores and identification evidence →",
+    "model3d": "Rotate the 3D specimen",
+    "model2d": "2D texture illustration",
+    "modelReset": "Reset specimen view",
+    "modelHelp": "Drag to rotate; pinch or use the wheel to zoom. Arrow keys rotate, + / − zoom, and Home resets the view.",
+    "modelLimit": "These original procedural specimens represent characteristic shapes and materials; they are not scans. Grains, bedding and pores illustrate features and cannot guarantee identification.",
+    "modelLoading": "Preparing the 3D specimen…",
+    "modelFailed": "The 3D view is unavailable. The 2D specimen and all explanations remain available.",
+    "modelRetry": "Retry the 3D specimen"
+  }
+}

@@ -1,0 +1,282 @@
+{
+  "zh": {
+    "title": "矿物与晶体馆",
+    "subtitle": "一粒矿物，连接原子怎样排列、岩石怎样形成，以及我们怎样使用地球。",
+    "views": {
+      "structure": {
+        "title": "同样是碳，为什么一个能写字，一个能切磨？",
+        "intro": "钻石和石墨都是碳。关键线索藏在内部：钻石把强连接伸向三个方向；石墨的强连接铺在层内，层与层之间容易相对滑动。",
+        "prompt": "拖动“推一推”。盯住石墨同一层里的六边形：层滑开了，层里的连接还在。",
+        "boundary": "这里用碳的局部连接和层间滑动解释差别。球、线、层间距都不按原子比例；滑块不是实际力或变形计算，也不会把石墨变成钻石。",
+        "deeper": [
+          {
+            "title": "再靠近：四个邻居与三个邻居",
+            "body": "普通钻石中，每个碳原子与四个近邻形成三维强连接；石墨中，每个碳与同一层的三个近邻形成强连接。层间作用比层内连接弱，所以石墨能留下薄片，作为铅笔芯的一部分。这里的钻石小图只突出一个四邻连接单元，不是完整晶胞。"
+          },
+          {
+            "title": "硬，为什么仍可能碎？",
+            "body": "硬度说的是抵抗刮划的能力，韧性说的是抵抗破裂的能力。钻石莫氏硬度为10，仍有解理，受到合适方向的冲击可以裂开。莫氏1至10是相对顺序，不是均匀的刻度：10并不表示硬度是5的两倍。"
+          },
+          {
+            "title": "晶体外形，是内部秩序的完整照片吗？",
+            "body": "矿物的内部结构有规律，但外部不一定长成漂亮多面体：晶体可以很小，也可能受空间、杂质、供料或后来破碎影响。晶面是生长留下的面；解理面是破裂时沿特定方向出现的面，不能把所有平面都叫解理。"
+          },
+          {
+            "title": "从岩体到展柜：露出、清理与切磨各改变什么？",
+            "body": "标本可连着一部分母岩展示，也可在采集后去除部分围岩或清理附着物。专业人员会按矿物稳定性和要保留的科学信息选择处理，方法不能通用。切开、研磨或抛光则可能创造新表面来展示纹带、内部结构或宝石光学，和天然生长晶面不同。不是所有馆藏都被切磨、染色或改变颜色；确切处理史应看标签、记录和检测，不能只由“很亮”来猜。这里的围岩滑块只调整教学显示，保留同一晶簇，不模拟采集工具、清理速度或岩石溶解。"
+          }
+        ]
+      },
+      "growth": {
+        "title": "材料怎样排好队，长成晶体？",
+        "intro": "按播放观察同一组晶体，也可暂停、拖动或逐步查看。晶体生长需要材料、合适条件和重排机会；切换三种环境，比较材料进入晶体、留在溶液或成为玻璃的不同去向。",
+        "prompt": "先播放热液情景：容量降到供给以下之前，会长出晶体吗？降低供给再看终点。随后选熔体比较慢冷与急冷，或选蒸发观察水量怎样改变。",
+        "boundary": "这是可回退的机制预算，不是矿物相图或实验预测。进度没有秒、年或温度单位；熔体只代表一种整体成晶情景，水溶液只代表溶解容量随降温而下降的一种物质。尺寸、成核数和析出量为教学关系。 热液3D仅采用石英代表外形，固定五个主晶体不等于模型的晶核数；通用容量与形态插值不是石英溶解度、晶面速率或晶格计算。播放是有限教学顺序，不给真实时间。熔体和蒸发继续使用二维预算。",
+        "deeper": [
+          {
+            "title": "熔体：成核、生长和玻璃的竞争",
+            "body": "熔体降温后，成晶变得有利，但原子也需要时间移动并进入有序结构。在本示意的可比条件下，慢冷留下较少较大的晶粒，较快冷却出现较多较小晶粒；极快冷却时，大量材料来不及有序排列而成为玻璃。真实大小还受成分、已有晶核、水和历史影响，不能只凭晶粒倒推出唯一冷却速度。"
+          },
+          {
+            "title": "水溶液：过饱和不是“水里有东西”",
+            "body": "溶液在给定条件下能容纳的溶质量有限。超过这个平衡容量叫过饱和，才为净结晶提供驱动力；成核仍可能延迟。本示意保留同一份溶质：热液分支降低容量，蒸发分支减少水量。没有达到条件时，画面会保留溶质，不强行出现晶体。真实热液还受压力、气体逸出、混合与化学反应影响。"
+          },
+          {
+            "title": "自然中去哪里找这些过程？",
+            "body": "花岗岩中的矿物可以从岩浆中结晶；石英等可在岩石裂隙中的热液里生长；石膏与石盐可在蒸发环境中沉淀。变质作用也能让固体中的矿物重新结晶或产生新矿物，并不要求整块岩石先熔化。这里的三个窗口解释不同环境，不是一块标本必须依次走完的路线。"
+          }
+        ]
+      },
+      "evidence": {
+        "title": "不看名字，只拿线索，能缩小范围吗？",
+        "intro": "选一块虚拟标本，逐条打开观察。候选只限这六种典型矿物；留下一个名字也只是这个练习集里的相容，不能保证真实标本的鉴定。",
+        "prompt": "先只看光泽，再加条痕与解理。试试石英和方解石：密度相近，别的线索会怎样？",
+        "boundary": "数值来自典型矿物资料。条痕指粉末颜色，硬度高的标本可能刮伤普通条痕板而不留下有效粉末。此处直接提供资料中的虚拟观测，不让孩子磨粉、舔尝、敲碎或用酸测试未知标本。真实鉴定可能需要显微镜、化学与X射线衍射。",
+        "deeper": [
+          {
+            "title": "五条证据分别在问什么？",
+            "body": "硬度：哪一个能刮伤哪一个？条痕：材料变成细粉时是什么颜色？解理：是否反复沿特定方向裂开？光泽：新鲜表面怎样反光？密度：相同体积有多重？这些不是同一件事。表面颜色会受杂质、包裹体和风化影响，照片还受灯光与显示影响。"
+          },
+          {
+            "title": "典型值，也有观察条件",
+            "body": "石英硬度约7，常见贝壳状断口，没有明显解理；方解石硬度3，有三组不互相垂直的良好解理；石盐有三组近直角解理。石膏主解理很完全，也有其他较弱解理。赤铁矿可呈金属状或土状，本练习选金属状典型；它的红褐条痕比表面颜色更有用。"
+          },
+          {
+            "title": "为什么“只剩一个”仍不够？",
+            "body": "筛选器只会排除与所选典型值冲突的六个候选，未收入的几千种矿物仍在真实世界中。密度比较采用约±0.16 g/cm³的演示误差带，两个区间重叠就保留。它不是测量精度承诺，也没有把相容数换成概率。硬度区间同样保留重叠，不把边界测试装成绝对答案。"
+          }
+        ]
+      },
+      "resources": {
+        "title": "含有金属，为什么还不一定是矿石？",
+        "intro": "矿物是天然物质的种类，岩石是地质材料的集合；矿石描述在特定经济与技术条件下可提取有用物质的材料。这个名字会随条件改变。",
+        "prompt": "保持同一吨原料，只改品位或回收率。再调价格与总成本：收支会改变，原料的矿物种类却没有因此改变。",
+        "boundary": "使用虚构代币，比较每吨处理原料的简化收支；不是现实价格、矿山评估或开采建议。理想分离忽略添加水与药剂等质量，剩余原料不等同于真实尾矿。收支为正也不证明获准开采、环境可接受或具有经济储量。",
+        "deeper": [
+          {
+            "title": "矿物、岩石、矿石、宝石：不是四个互斥抽屉",
+            "body": "石英是矿物；花岗岩通常含石英、长石和云母等矿物；含铜岩石在合适条件下可成为铜矿石。铝土矿是富含多种含铝矿物的岩石材料，不是单一矿物种。宝石强调适合珠宝等用途的材料品质：有些宝石是矿物，有些是岩石或有机材料。漂亮、稀有、含金属和可经济提取，并不自动等同。"
+          },
+          {
+            "title": "从性质走到用途",
+            "body": "石英可提供制玻璃所需的二氧化硅，高纯原料还需严格处理；石膏用于石膏板与建筑材料；赤铁矿是重要含铁矿物；石墨用于铅笔材料、电极和电池负极等。天然原料与最终产品之间常有选矿、提纯、化学反应和制造，不是把标本直接塞进设备。"
+          },
+          {
+            "title": "代价不会消失在收支表里",
+            "body": "采掘与处理会占地、使用水和能量，留下废石或尾矿。部分硫化物接触氧和水可能产生酸性排水并迁移金属，但不是所有矿山都会产生同样污染。设计、监测、修复、产品寿命、再利用与回收都影响代价。低品位通常意味着为相同可用金属处理更多原料，回收也不能在每一次使用后毫无损失地完成。"
+          }
+        ]
+      }
+    },
+    "minerals": {
+      "quartz": {
+        "name": "石英",
+        "habitat": "岩浆、热液；也常保留在砂岩中",
+        "use": "玻璃原料；高纯材料与压电用途"
+      },
+      "calcite": {
+        "name": "方解石",
+        "habitat": "石灰岩、洞穴沉淀、热液与变质岩",
+        "use": "石灰和水泥原料的一部分"
+      },
+      "gypsum": {
+        "name": "石膏",
+        "habitat": "蒸发盐层；也有其他形成方式",
+        "use": "石膏板、灰泥"
+      },
+      "halite": {
+        "name": "石盐",
+        "habitat": "蒸发盐层及相关地质环境",
+        "use": "化工原料、盐类产品"
+      },
+      "pyrite": {
+        "name": "黄铁矿",
+        "habitat": "热液、沉积与多种岩石环境",
+        "use": "硫的潜在原料；需关注酸性排水"
+      },
+      "hematite": {
+        "name": "赤铁矿",
+        "habitat": "沉积、氧化带、变质等环境",
+        "use": "重要含铁矿物、颜料"
+      }
+    },
+    "occurrences": {
+      "vein": {
+        "title": "裂隙热液矿脉",
+        "body": "热流体沿岩石裂隙迁移，条件改变时矿物沉淀，逐渐形成矿脉。若还留有开放空间，晶体可从壁上向空隙中生长；有些矿脉最终被填实。3D中的标记A锚定这个代表性裂隙案例，不说明真实产地。"
+      },
+      "geode": {
+        "title": "晶洞内壁的晶簇",
+        "body": "岩石中的空腔可被流体带来的矿物逐渐衬里，晶体朝空腔内部生长。有些晶洞形成于火山岩空洞，其他环境也能形成空腔。切开岩块可以露出内壁，外部普通不等于内部没有晶体；本剖面是另一种代表情景，不把3D裂隙变成晶洞。"
+      },
+      "pocket": {
+        "title": "伟晶岩中的晶囊",
+        "body": "一些伟晶岩含有晶囊：周围已是粗大矿物，晶体根部连着岩体，朝剩余开放空间的一端可长出完整晶面。伟晶岩不一定都有空晶囊，也不由“大晶体”唯一确定冷却慢；残余熔体、流体与成分共同影响生长。"
+      },
+      "grain": {
+        "title": "嵌在母岩中的晶粒",
+        "body": "许多岩石由相互接触的晶粒组成，它们没有空间把所有天然晶面都长出来。这里画的是另一块代表性岩石，不是同一晶簇被压扁。把周围岩石去掉不会自动让晶粒变成完整尖晶；切片、研磨与显微镜可展示另一类结构证据。"
+      }
+    }
+  },
+  "en": {
+    "title": "Minerals & Crystals Gallery",
+    "subtitle": "A grain of mineral connects atomic arrangement, rock formation and our use of Earth.",
+    "views": {
+      "structure": {
+        "title": "Both are carbon. Why can one write and the other cut?",
+        "intro": "Diamond and graphite are both carbon. Their internal connections differ: strong bonds extend through three dimensions in diamond, whereas graphite has strong bonds within sheets that can slide past one another.",
+        "prompt": "Drag “give it a push.” Follow the same hexagons in graphite: the layers shift while connections within each layer remain.",
+        "boundary": "Local carbon connections and layer sliding explain a difference. Spheres, lines and layer spacing are not to atomic scale. The slider calculates neither force nor deformation and does not turn graphite into diamond.",
+        "deeper": [
+          {
+            "title": "Closer: four neighbors and three neighbors",
+            "body": "In ordinary diamond, each carbon bonds strongly with four near neighbors in a three-dimensional network. In graphite, each bonds strongly with three neighbors in its sheet. Weaker interactions between sheets allow thin flakes to rub off, making graphite useful in pencil cores. The diamond drawing highlights one four-neighbor unit, not an entire unit cell."
+          },
+          {
+            "title": "How can something hard still break?",
+            "body": "Hardness describes resistance to scratching; toughness describes resistance to breaking. Diamond defines Mohs hardness 10 yet has cleavage and can split under impact in suitable directions. Mohs 1–10 ranks relative scratch resistance. Its steps are uneven: 10 does not mean twice the hardness of 5."
+          },
+          {
+            "title": "Is a crystal's outline a complete picture of its inner order?",
+            "body": "Minerals have ordered internal structures, but their exterior need not be a tidy polyhedron. Crystals can be tiny or affected by space, impurities, supply and later breakage. Crystal faces develop during growth; cleavage faces arise when a crystal breaks in particular directions. Not every flat surface is cleavage."
+          },
+          {
+            "title": "From rock to display: exposure, cleaning and cutting change different things",
+            "body": "A specimen may be exhibited with some host rock, or may have surrounding material removed and deposits cleaned after collection. Professionals choose methods according to mineral stability and the scientific information to preserve; no method suits every mineral. Slicing, grinding or polishing can create new surfaces that reveal bands, interiors or gem optics, unlike natural growth faces. Museum specimens are not all cut, dyed or color-altered. Labels, records and examination establish treatment history, not shine alone. The surrounding-rock slider only changes a teaching display while retaining the same cluster; it does not simulate tools, cleaning rates or dissolution."
+          }
+        ]
+      },
+      "growth": {
+        "title": "How does material arrange itself into a crystal?",
+        "intro": "Press Play to follow the same crystals, or pause, scrub and inspect one step at a time. Growth needs material, suitable conditions and time to rearrange. Compare three settings as material joins crystals, stays in solution or becomes glass.",
+        "prompt": "First play the hot-solution case: do crystals grow before capacity falls below supply? Lower supply and inspect the endpoint. Then choose melt to compare slow cooling with quenching, or evaporation to observe changing water volume.",
+        "boundary": "This reversible teaching budget is neither a mineral phase diagram nor an experimental prediction. Progress has no seconds, years or temperature units. Melt represents one bulk crystallization setting; solution represents a substance whose capacity decreases on cooling. Size, nucleus count and yield are illustrative relations. Only the hot-solution 3D uses a representative quartz habit. Its five main crystals are not the model’s nucleus count; generic capacity and shape interpolation are not quartz solubility, face-growth rates or a lattice calculation. Playback is a finite teaching sequence without real elapsed time. Melt and evaporation retain the 2D budget.",
+        "deeper": [
+          {
+            "title": "Melt: competition among nucleation, growth and glass",
+            "body": "Cooling can favor crystallization, but atoms also need time to move into ordered arrangements. Under this illustration's comparable conditions, slow cooling leaves fewer larger grains, faster cooling yields more smaller grains, and extreme quenching traps much of the material as glass. Real grain size also depends on composition, existing nuclei, water and history; it cannot uniquely reveal a cooling rate."
+          },
+          {
+            "title": "Solution: dissolved material is not automatically supersaturated",
+            "body": "A solution has an equilibrium capacity under given conditions. Exceeding it is supersaturation, which drives net crystallization, although nucleation may be delayed. This illustration retains one solute batch: the hydrothermal branch lowers capacity and the evaporation branch removes water. Below the threshold, solute remains dissolved. Real hydrothermal precipitation also involves pressure, escaping gases, mixing and reactions."
+          },
+          {
+            "title": "Where do these processes happen?",
+            "body": "Minerals in granite may crystallize from magma. Quartz and other minerals can grow from hot fluids in fractures. Gypsum and halite can precipitate in evaporating settings. Metamorphism can recrystallize minerals or form new ones within solid rock without wholesale melting. These windows compare settings; they are not a compulsory sequence for one specimen."
+          }
+        ]
+      },
+      "evidence": {
+        "title": "Can clues narrow the possibilities without a name?",
+        "intro": "Choose a virtual specimen and reveal observations one at a time. Candidates are limited to six typical minerals. Even one surviving name means compatibility only within this exercise, not a guaranteed identification of a real sample.",
+        "prompt": "Reveal luster first, then add streak and cleavage. Compare quartz and calcite: with similar densities, what do other clues add?",
+        "boundary": "Values represent typical mineral data. Streak means powder color; a hard specimen may scratch an ordinary streak plate without leaving a valid powder. These are virtual observations. Children should not powder, taste, smash or acid-test unknown samples. Real identification may need microscopy, chemistry and X-ray diffraction.",
+        "deeper": [
+          {
+            "title": "What does each of the five clues ask?",
+            "body": "Hardness asks what scratches what. Streak asks the powder's color. Cleavage asks whether breakage repeatedly follows specific directions. Luster asks how a fresh surface reflects light. Density compares mass for equal volume. These properties differ. Surface color can change with impurities, inclusions and weathering; photographs also depend on lighting and displays."
+          },
+          {
+            "title": "Typical values have observing conditions",
+            "body": "Quartz has hardness about 7, often conchoidal fracture and no obvious cleavage. Calcite has hardness 3 and three good cleavage directions that do not meet at right angles. Halite has three near-right-angle directions. Gypsum has a very good principal cleavage and other weaker directions. Hematite may be metallic or earthy; the exercise uses a metallic example. Its red-brown streak is more useful than surface color."
+          },
+          {
+            "title": "Why is one remaining candidate still insufficient?",
+            "body": "The filter rejects conflicts with selected typical values for six candidates. Thousands of unlisted minerals remain outside it. Density uses illustrative ±0.16 g/cm³ uncertainty bands and retains overlapping bands. This is no promised measurement precision and candidate counts are not probabilities. Hardness intervals likewise retain overlaps instead of claiming certainty at a boundary."
+          }
+        ]
+      },
+      "resources": {
+        "title": "Why isn't every metal-bearing rock an ore?",
+        "intro": "A mineral is a kind of natural substance; a rock is an assemblage of geological material. Ore describes material from which useful substances can be extracted under particular economic and technical conditions. That judgment can change.",
+        "prompt": "Keep the same tonne of feed and change grade or recovery. Then vary price and total cost: the balance changes, although the mineral species have not changed.",
+        "boundary": "Fictional tokens compare simplified income and cost per tonne of treated feed. This is no real price, mine evaluation or extraction advice. Ideal separation excludes added water and reagents; remaining feed is not equivalent to real tailings. A positive balance does not establish permission, environmental acceptability or an economic reserve.",
+        "deeper": [
+          {
+            "title": "Mineral, rock, ore and gem are not four exclusive boxes",
+            "body": "Quartz is a mineral. Granite commonly contains quartz, feldspars and micas. Copper-bearing rock may qualify as ore under suitable conditions. Bauxite is rock material rich in several aluminum-bearing minerals, not a single mineral species. Gem describes material quality suitable for jewelry and similar uses: some gems are minerals, others rocks or organic material. Beauty, rarity, metal content and economic extraction do not automatically coincide."
+          },
+          {
+            "title": "From properties to uses",
+            "body": "Quartz can supply silica for glass, with strict processing for high-purity uses. Gypsum goes into plasterboard and building products; hematite is an important iron-bearing mineral; graphite serves in pencil materials, electrodes and battery anodes. Raw specimens generally require concentration, purification, chemical reactions and manufacturing before becoming products."
+          },
+          {
+            "title": "Costs do not disappear outside the balance sheet",
+            "body": "Extraction and processing occupy land, use water and energy, and leave waste rock or tailings. Some sulfides exposed to oxygen and water can generate acidic drainage and mobilize metals, but mines do not all cause identical pollution. Design, monitoring, restoration, product lifetime, reuse and recycling all matter. Lower grades usually require more feed for the same usable metal; repeated recycling is not perfectly loss-free."
+          }
+        ]
+      }
+    },
+    "minerals": {
+      "quartz": {
+        "name": "Quartz",
+        "habitat": "Magmas, hot fluids; also retained in sandstones",
+        "use": "Glass feedstock; high-purity and piezoelectric uses"
+      },
+      "calcite": {
+        "name": "Calcite",
+        "habitat": "Limestone, caves, hot fluids and metamorphic rocks",
+        "use": "Part of lime and cement feedstocks"
+      },
+      "gypsum": {
+        "name": "Gypsum",
+        "habitat": "Evaporite beds and other formation settings",
+        "use": "Plasterboard and plaster"
+      },
+      "halite": {
+        "name": "Halite",
+        "habitat": "Evaporite beds and related settings",
+        "use": "Chemical feedstock and salt products"
+      },
+      "pyrite": {
+        "name": "Pyrite",
+        "habitat": "Hot fluids, sediments and many rock settings",
+        "use": "Potential sulfur feedstock; acidic-drainage concern"
+      },
+      "hematite": {
+        "name": "Hematite",
+        "habitat": "Sediments, oxidation zones and metamorphic settings",
+        "use": "Important iron-bearing mineral and pigment"
+      }
+    },
+    "occurrences": {
+      "vein": {
+        "title": "A hydrothermal fracture vein",
+        "body": "Hot fluid moves through rock fractures and precipitates minerals as conditions change, building a vein. Where open space remains, crystals can grow from a wall into it; other veins become filled. Marker A in 3D anchors this representative fracture case, without claiming an actual locality."
+      },
+      "geode": {
+        "title": "A cluster lining a geode",
+        "body": "Fluids can progressively line a rock cavity with minerals whose crystals grow inward. Some cavities occur in volcanic rock, while other geological settings also make voids. Opening a rock may reveal its lining: an ordinary exterior need not lack crystals inside. This is a different representative setting, not the 3D fracture turning into a geode."
+      },
+      "pocket": {
+        "title": "An open pocket in pegmatite",
+        "body": "Some pegmatites contain pockets. Coarse minerals surround the space; crystal roots attach to the rock while exposed ends can develop regular faces. Not every pegmatite has open pockets, and large crystals alone do not uniquely establish slow cooling. Residual melt, fluids and chemistry also affect growth."
+      },
+      "grain": {
+        "title": "Interlocking grains in host rock",
+        "body": "Many rocks contain grains that meet their neighbors without space to develop all their natural faces. This represents a different rock, not the same cluster being flattened. Removing surrounding rock does not automatically turn a grain into a complete pointed crystal. Thin sections, polishing and microscopy reveal other kinds of structural evidence."
+      }
+    }
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "version": 1,
+  "topicId": "earth-systems",
+  "zh": {
+    "question": "海水、阳光、磁场、空气与地球内部，怎样共同影响今天的世界？",
+    "observe": "先比较等体积海水A与B，分开和共同改变A的温度与盐度，观察密度和分层差别。再跟随同一赤道站点读昼夜，把太阳光照与带电粒子引发极光分成两条因果线。最后逐项比较距日、大气、引力、内部、月球和磁场的证据与未知。",
+    "academic": [
+      {
+        "title": "密度差把温度与盐分连起来",
+        "body": "在相同参考压力和本实验海水范围内，降温通常增密，增盐通常也增密，两种作用可以加强或抵消。真实海洋的表层与深层交换还依赖风、旋转、地形、混合与上升流。全球传送带是连接示意，不是每一滴水沿同一路线绕行的封闭管道。 密度参照采用历史EOS-80的海面形式及相应温标转换，限于本馆5—25°C、实用盐度30—38的对照；不求解完整海洋状态。"
+      },
+      {
+        "title": "昼夜与极光有不同的机制",
+        "body": "地球自转让固定地点转入、转出日照区；本馆用赤道与春秋分附近几何、24小时教学太阳时解释。极光则涉及太阳风、磁层的能量传递和高层大气粒子碰撞发光；夜空更容易看见，不等于只有夜间发生。磁力线是方向表示，不是实体管道。"
+      },
+      {
+        "title": "相对日照不是温度或宜居分数",
+        "body": "固定太阳光度时，垂直于光束单位面积的入射能量通量与距日距离平方成反比。地表温度还涉及反射、大气、云和海洋反馈等。引力、气体性质、补给、内热、月球和磁场也有相互关系，不能各自当作必需或充分的生命开关。"
+      }
+    ],
+    "misconception": "冷水不一定比任何暖水都密，要一起比较盐度；图上的深水不会仅因到达热带就自动回到海面。极光不是照亮夜空的阳光。距日改变5%、质量减少20%、失去月球或改变磁场，都不能单独给出统一的生存结局。",
+    "boundary": "海水比较采用常压参考密度，分层为手动进度的教学示意，不求解混合、真实下沉速度与全球环流。昼夜采用固定赤道站点，不预报任意城市日出；磁场和极光图层不是空间天气模拟。宜居对照仅对固定太阳光度的距离平方反比日照定量计算，不输出温度或生命概率。各机制不共享同一物理时钟。",
+    "narration": [
+      {
+        "label": "先比同样大的一份水",
+        "text": "两份一样多的海水，可以有不同的质量，也就有不同密度。冷暖和盐分都重要：冷一点的水如果也淡很多，结果还要一起比较。",
+        "cue": "比较等体积A、B，分别改变温度和盐度后再同时改变；寻找接近等密度的对照。"
+      },
+      {
+        "label": "海洋的上下有联系",
+        "text": "风推动许多表层海流。有些地方的海水冷却、变咸，参与深水形成。混合和上升流又帮助深水返回。海洋有很多岔路，不是一根绕地球的水管。",
+        "cue": "读暖表层与冷深层的连接示意，指出北大西洋、南大洋和返回机制，而不承诺唯一闭合轨迹。"
+      },
+      {
+        "label": "黑夜为什么来，极光为什么亮",
+        "text": "地球转动，同一处地面便轮流面向和背向太阳。高空的极光是另一回事：带电粒子把能量传给空气里的粒子，空气发出了光。夜色只是让我们更容易看见它。",
+        "cue": "沿同一地面站读昼夜，再显示磁场和粒子解释层；图层开关不表示删除真实物理条件。"
+      },
+      {
+        "label": "一个如果，还需要许多证据",
+        "text": "离太阳更近，会收到更多阳光，可这还不是地面的温度。空气、海洋、岩石、引力和许多条件一起影响环境。改变一个条件时，先说知道了什么，再说还不能确定什么。",
+        "cue": "比较六项条件的已知与未知；只把距离平方反比读数称作相对日照，不输出宜居评分。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How do seawater, sunlight, magnetic fields, air and the interior shape Earth today?",
+    "observe": "Compare equal-volume seawater samples A and B, changing A's temperature and salinity separately and together to inspect density and layering. Follow one equatorial station through day and night, separating sunlight from the particle processes behind auroras. Then compare evidence and unknowns for orbital distance, atmosphere, gravity, internal activity, the Moon and magnetic fields.",
+    "academic": [
+      {
+        "title": "Density connects temperature and salt",
+        "body": "At the same reference pressure within this seawater experiment's range, cooling and increasing salinity usually increase density. Their effects can reinforce or counteract each other. Real exchange between surface and deep oceans also involves wind, rotation, topography, mixing and upwelling. The global conveyor illustrates connections, rather than a sealed pipe followed by every drop. Reference density uses the surface form of historical EOS-80 with the required temperature-scale conversion, limited here to 5-25 degrees Celsius and practical salinity 30-38, rather than a complete ocean state."
+      },
+      {
+        "title": "Daylight and auroras have different causes",
+        "body": "Rotation carries a fixed site into and out of sunlight. This hall uses equatorial, equinox-like geometry and a 24-hour teaching solar clock. Auroras involve solar-wind and magnetospheric energy transfer followed by light emission through interactions with the upper atmosphere. Darkness improves visibility but is not required for auroras to occur. Field lines indicate direction rather than physical pipes."
+      },
+      {
+        "title": "Relative sunlight is not temperature or a habitability score",
+        "body": "At fixed solar luminosity, incoming energy flux per area perpendicular to the rays varies with inverse distance squared. Surface temperature also depends on reflection, air, clouds and ocean feedbacks. Gravity, gas properties, replenishment, internal heat, the Moon and magnetic fields interact; each is not independently a necessary or sufficient switch for life."
+      }
+    ],
+    "misconception": "Cold water is not denser than every warm sample: compare salinity too. Deep water does not automatically reach the surface upon arriving at the tropics. Auroras are not sunlight illuminating the night sky. A 5% distance change, 20% mass change, missing moon or altered magnetic field cannot alone determine one universal survival outcome.",
+    "boundary": "Seawater uses reference surface density; layering is manually progressed illustration, without solving mixing, sinking speeds or global circulation. A fixed equatorial daylight station does not forecast sunrise for arbitrary cities. Magnetic and auroral layers are not space-weather simulations. Only inverse-square sunlight at fixed solar luminosity is calculated quantitatively; no temperature or probability of life is produced. Mechanisms do not share one physical clock.",
+    "narration": [
+      {
+        "label": "Compare equal volumes of water",
+        "text": "Two equal-sized seawater samples can have different masses and therefore different densities. Temperature and salt both matter. If colder water is also much fresher, compare both changes together.",
+        "cue": "Compare equal-volume A and B; vary temperature and salinity separately and together, including a nearly equal-density case."
+      },
+      {
+        "label": "The surface and deep ocean connect",
+        "text": "Winds drive many surface currents. In some places, cooling and increasing salt contribute to deep-water formation. Mixing and upwelling help water return. The ocean has many branches, rather than one pipe wrapped around Earth.",
+        "cue": "Read surface-deep connections, identifying North Atlantic and Southern Ocean regions and return mechanisms without promising a unique closed trajectory."
+      },
+      {
+        "label": "Why night arrives and auroras shine",
+        "text": "As Earth turns, the same ground faces toward and away from the Sun. Auroras high above have another cause: charged particles transfer energy to particles in the air, which emit light. A dark sky simply makes the glow easier to see.",
+        "cue": "Follow one ground station through daylight, then show field and particle explanations. Hiding a layer does not remove a real physical condition."
+      },
+      {
+        "label": "One what-if needs several kinds of evidence",
+        "text": "Closer to the Sun, Earth receives more sunlight, but that is not yet a surface temperature. Air, oceans, rocks, gravity and other conditions shape the environment together. When one condition changes, explain what is known and what remains uncertain.",
+        "cue": "Compare evidence and unknowns for all six conditions. Label inverse-square readings as relative sunlight, without a habitability score."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA NSSDCA · Earth Fact Sheet: mean radius, core radius, rotation and dry-air composition",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+    },
+    {
+      "title": "NASA · Earth facts: inner core and representative crustal thicknesses",
+      "url": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "title": "NOAA · Thermohaline circulation: temperature, salinity and density",
+      "url": "https://oceanservice.noaa.gov/education/tutorial_currents/05conveyor1.html"
+    },
+    {
+      "title": "NOAA Ocean Today · Ocean currents: winds, tides, mixing and upwelling",
+      "url": "https://oceantoday.noaa.gov/fullmoon-whatareoceancurrents/welcome.html"
+    },
+    {
+      "title": "NASA Space Place · What is an aurora?",
+      "url": "https://spaceplace.nasa.gov/aurora/en/"
+    },
+    {
+      "title": "NASA · What is the greenhouse effect?",
+      "url": "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/"
+    },
+    {
+      "title": "NASA · The habitable zone: possible surface liquid water under suitable conditions",
+      "url": "https://science.nasa.gov/exoplanets/habitable-zone/"
+    },
+    {
+      "title": "ESA Mars Express · Gravity, ultraviolet radiation and atmospheric escape",
+      "url": "https://www.esa.int/About_Us/ESAC/Leaky_atmosphere_linked_to_lightweight_planet"
+    },
+    {
+      "title": "NASA · Venus facts: dense atmosphere without an internally generated global magnetic field",
+      "url": "https://science.nasa.gov/venus/venus-facts/"
+    },
+    {
+      "title": "NASA Earth Observatory · The carbon cycle",
+      "url": "https://science.nasa.gov/earth/earth-observatory/the-carbon-cycle/"
+    },
+    {
+      "title": "NASA · Why orbital cycles cannot explain current rapid warming",
+      "url": "https://science.nasa.gov/science-research/earth-science/why-milankovitch-orbital-cycles-cant-explain-earths-current-warming/"
+    },
+    {
+      "title": "MRI/JMA Technical Report 80 · Chapter 4, surface EOS-80 and temperature-scale footnote",
+      "url": "https://www.mri-jma.go.jp/Publish/Technical/DATA/VOL_80/2.pdf"
+    },
+    {
+      "title": "USGS · Water Density: freshwater maximum near 4 degrees Celsius",
+      "url": "https://www.usgs.gov/water-science-school/science/water-density"
+    },
+    {
+      "title": "NASA NTRS · Rotation of a Moonless Earth: dependence on initial conditions",
+      "url": "https://ntrs.nasa.gov/citations/20140011208"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+.rocks-study {
+  --rocks-ink: var(--earth-ink, #29392f);
+  --rocks-muted: var(--earth-muted, #687269);
+  --rocks-line: var(--earth-line, #d6d8c9);
+  --rocks-paper: var(--earth-paper, #faf8ef);
+  color: var(--rocks-ink);
+  min-width: 0;
+  max-width: 100%;
+  line-height: 1.65;
+}
+.rocks-study *, .rocks-study *::before, .rocks-study *::after { box-sizing: border-box; }
+.rocks-study [hidden] { display: none !important; }
+.rocks-study h3, .rocks-study h4, .rocks-study p { margin: 0; }
+.rocks-study h3 { font-size: clamp(1.35rem, 3vw, 1.9rem); line-height: 1.25; }
+.rocks-study h4 { font-size: 1.03rem; line-height: 1.45; }
+.rocks-study p + p, .rocks-study h4 + p { margin-top: .65rem; }
+.rocks-study .rocks-heading { margin: .25rem 0 1rem; }
+.rocks-study .rocks-heading > p:last-child { max-width: 73ch; margin-top: .7rem; }
+.rocks-study .rocks-eyebrow { font-size: .77rem; letter-spacing: .14em; font-weight: 700; color: var(--rocks-muted); margin-bottom: .5rem; }
+.rocks-study .rocks-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+.rocks-study button, .rocks-study select, .rocks-study summary, .rocks-study input { font: inherit; }
+.rocks-study button, .rocks-study select {
+  color: var(--rocks-ink);
+  background: var(--rocks-paper);
+  border: 1px solid var(--rocks-line);
+  border-radius: .65rem;
+  min-height: 44px;
+  max-width: 100%;
+}
+.rocks-study button { padding: .6rem .85rem; line-height: 1.4; cursor: pointer; text-align: center; white-space: normal; }
+.rocks-study button:hover { border-color: #8f977b; background: color-mix(in srgb, var(--rocks-paper) 90%, #c4cfa4); }
+.rocks-study button[aria-pressed="true"], .rocks-study button[aria-current="step"] { border-color: #6a7858; background: color-mix(in srgb, var(--rocks-paper) 76%, #c1cfa2); box-shadow: inset 0 0 0 1px #6a7858; }
+.rocks-study button:disabled { opacity: .44; cursor: default; }
+.rocks-study :is(button, select, summary, input, a):focus-visible { outline: 3px solid var(--earth-blue, #477b91); outline-offset: 3px; }
+.rocks-study .rocks-question { font-weight: 650; color: var(--earth-green, #45674e); margin: 1rem 0; }
+.rocks-study .rocks-stage {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 75%, #faf6e8 0, #f0eddf 69%, #e8eadc 100%);
+  border: 1px solid var(--rocks-line);
+  border-radius: 1.1rem;
+  min-width: 0;
+}
+.rocks-study canvas { display: block; width: 100%; max-width: 100%; }
+.rocks-study .rocks-webgl-host { width: 100%; aspect-ratio: 16 / 10; min-height: 260px; background: #e8e5da; }
+.rocks-study .rocks-webgl-host canvas { width: 100%; height: 100%; }
+.rocks-study .rocks-model-controls { display: flex; flex-wrap: wrap; gap: .5rem; margin: .9rem 0 .7rem; }
+.rocks-study .rocks-model-controls button { font-size: .82rem; }
+.rocks-study .rocks-stage-caption { color: #4b5144; padding: .35rem 1rem .9rem; text-align: center; font-size: .86rem; font-weight: 650; }
+.rocks-study .rocks-caption { margin: .55rem .1rem 1rem; }
+.rocks-study .earth-note { color: var(--rocks-muted); font-size: .83rem; line-height: 1.65; }
+.rocks-study .rocks-readout { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--rocks-line); margin-bottom: 1rem; }
+.rocks-study .rocks-readout span { display: block; font-size: .75rem; color: var(--rocks-muted); }
+.rocks-study .rocks-readout strong { display: block; font-size: .94rem; font-weight: 600; }
+.rocks-study .rocks-processes { border: 0; margin: 0; padding: 0; min-width: 0; }
+.rocks-study .rocks-processes legend { font-size: 1.05rem; font-weight: 700; padding: 0; }
+.rocks-study .rocks-process-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .55rem; margin: .7rem 0; }
+.rocks-study .rocks-process-grid button { min-height: 54px; }
+.rocks-study .rocks-cause { border-left: 3px solid var(--earth-amber, #b28247); padding: .75rem 1rem; background: color-mix(in srgb, var(--rocks-paper) 83%, #e0ca9c); border-radius: 0 .65rem .65rem 0; margin: 1rem 0; }
+.rocks-study .rocks-cause strong { display: block; font-size: .95rem; }
+.rocks-study .rocks-cause p { margin-top: .3rem; }
+.rocks-study .rocks-slider { margin: 1rem 0 .65rem; }
+.rocks-study .rocks-slider label { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: .35rem; font-size: .91rem; }
+.rocks-study .rocks-slider output { font-variant-numeric: tabular-nums; color: var(--rocks-muted); }
+.rocks-study input[type="range"] { width: 100%; min-width: 0; min-height: 40px; accent-color: var(--earth-green, #557459); cursor: pointer; }
+.rocks-study .rocks-slider input { grid-column: 1 / -1; }
+.rocks-study .rocks-step-controls { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .55rem; }
+.rocks-study .rocks-playback { display: flex; flex-wrap: wrap; gap: .5rem; margin: .9rem 0 .4rem; }
+.rocks-study .rocks-playback button { flex: 1 1 130px; font-size: .86rem; }
+.rocks-study .rocks-playback button[aria-pressed="true"] { background: #53694f; color: #fffdf2; border-color: #53694f; }
+.rocks-study .rocks-playback-note { margin-bottom: .7rem; }
+.rocks-study .rocks-step-controls button { flex: 1 1 150px; }
+.rocks-study .rocks-step-controls .rocks-primary { background: #53694f; color: #fffdf2; border-color: #53694f; font-weight: 650; }
+.rocks-study .rocks-identity { margin: .7rem 0 1rem; padding-left: 1.3rem; position: relative; }
+.rocks-study .rocks-identity::before { content: ''; position: absolute; width: .55rem; height: .55rem; border: 2px solid #ac783e; border-radius: 50%; left: .1rem; top: .45rem; }
+.rocks-study .earth-deeper { border: 1px solid var(--rocks-line); border-radius: .8rem; margin: .9rem 0; overflow: hidden; }
+.rocks-study summary { cursor: pointer; padding: .85rem 1rem; font-size: .94rem; font-weight: 650; min-height: 48px; }
+.rocks-study .earth-deeper > div { padding: 0 1rem 1rem; }
+.rocks-study .earth-deeper[open] summary { border-bottom: 1px solid var(--rocks-line); margin-bottom: 1rem; }
+.rocks-study .rocks-history-section { margin: 1.5rem 0; }
+.rocks-study .rocks-history-section > p { margin-top: .4rem; }
+.rocks-study .rocks-history { display: flex; gap: .5rem; overflow-x: auto; max-width: 100%; margin: .7rem 0; padding: .25rem .15rem .6rem; list-style: none; scroll-snap-type: x proximity; }
+.rocks-study .rocks-history li { display: block; flex: 0 0 188px; scroll-snap-align: start; }
+.rocks-study .rocks-history button { display: flex; align-items: flex-start; gap: .55rem; text-align: left; width: 100%; height: 100%; font-size: .81rem; padding: .6rem; }
+.rocks-study .rocks-history button > span:first-child { display: grid; place-items: center; width: 24px; min-width: 24px; height: 24px; border-radius: 50%; border: 1px solid var(--rocks-line); font-size: .75rem; }
+.rocks-study .rocks-history small { display: block; color: var(--rocks-muted); font-size: .72rem; line-height: 1.45; margin-top: .25rem; }
+.rocks-study .rocks-reset { margin-top: .65rem; font-size: .82rem; background: transparent; }
+.rocks-study .rocks-select { display: grid; gap: .35rem; margin: 1rem 0; font-size: .88rem; }
+.rocks-study select { width: 100%; padding: .55rem .6rem; text-overflow: ellipsis; }
+.rocks-study .rocks-specimen-copy { padding: 1rem 0 .5rem; }
+.rocks-study .rocks-specimen-copy strong { font-weight: 650; }
+.rocks-study .rocks-cooling-labels { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; text-align: center; font-size: .81rem; margin-top: -.7rem; }
+.rocks-study .rocks-more section + section { margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--rocks-line); }
+.rocks-study .rocks-forces { font-size: .88rem; padding-top: .85rem; border-top: 1px solid var(--rocks-line); }
+.rocks-study .rocks-related { margin: 1.2rem 0; }
+.rocks-study .rocks-related a { display: block; margin: .55rem 0; line-height: 1.5; }
+.rocks-study a { color: var(--earth-blue, #416f82); text-underline-offset: .18em; overflow-wrap: anywhere; }
+.rocks-study .rocks-sources ul { margin: .75rem 0 0; padding-left: 1.2rem; font-size: .83rem; }
+.rocks-study .rocks-sources li + li { margin-top: .3rem; }
+@media (max-width: 520px) {
+  .rocks-study .rocks-tabs { display: grid; grid-template-columns: 1fr; }
+  .rocks-study .rocks-process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rocks-study .rocks-process-grid button:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .rocks-study .rocks-readout { grid-template-columns: 1fr; gap: .6rem; }
+  .rocks-study .rocks-step-controls button { flex: 1 1 130px; font-size: .84rem; }
+  .rocks-study .rocks-step-controls .rocks-primary { flex-basis: 100%; }
+  .rocks-study .rocks-stage-caption { font-size: .81rem; }
+  .rocks-study summary { padding: .8rem; }
+  .rocks-study .earth-deeper > div { padding: 0 .8rem .8rem; }
+  .rocks-study .rocks-cooling-labels { font-size: .74rem; gap: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rocks-study *, .rocks-study *::before, .rocks-study *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}

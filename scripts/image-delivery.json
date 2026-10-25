@@ -3,6 +3,136 @@
   "encoder": "sharp 0.35.4 / webp 1.6.0",
   "files": [
     {
+      "source": "topics/earth/cover-v2.jpg",
+      "output": "topics/earth/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "b8e1f71982135f545f76867d29b9f1137a4f24e8a450f46d21143aabd4516442",
+      "sha256": "a0ffc9bc8855a90fbb1205bae0c7283d49c21ca5d9179d174f9acf481b43acc2",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 28012
+    },
+    {
+      "source": "topics/earth/cover-v2.jpg",
+      "output": "topics/earth/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "b8e1f71982135f545f76867d29b9f1137a4f24e8a450f46d21143aabd4516442",
+      "sha256": "c1de79515f1cbb389d237c4766b7431d857672cb561509faadb8017d9fbc9d09",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 99130
+    },
+    {
+      "source": "topics/earth-minerals/cover-v2.jpg",
+      "output": "topics/earth-minerals/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "77b8ceda37790ab626cebec7a458dd05994cf48c39ad12cb5fab53223914edc7",
+      "sha256": "7bf5a4e12c42476eab7c6bd5a8d1e5326ef643e130bf06787fb089b028d80cbc",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 42910
+    },
+    {
+      "source": "topics/earth-minerals/cover-v2.jpg",
+      "output": "topics/earth-minerals/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "77b8ceda37790ab626cebec7a458dd05994cf48c39ad12cb5fab53223914edc7",
+      "sha256": "16cc679239673409b6ff816c79621792d06f3c0fed0fcc2231aae571c846f1af",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 138464
+    },
+    {
+      "source": "topics/earth-climate/cover-v2.jpg",
+      "output": "topics/earth-climate/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "759a273e154e7af62518e414d1762e3c7f6d8292000971b44a33a8923d7b5181",
+      "sha256": "dad045fdfedb7bd601b1f72064242e6b4be8ce28988d8e88e19d1f9b453b96b3",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 58066
+    },
+    {
+      "source": "topics/earth-climate/cover-v2.jpg",
+      "output": "topics/earth-climate/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "759a273e154e7af62518e414d1762e3c7f6d8292000971b44a33a8923d7b5181",
+      "sha256": "c5849491cfa5b3698a703db503efe5f316ed8548eb0ed6d1f9319f60fd9a380b",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 217298
+    },
+    {
+      "source": "topics/earth-life/cover-v2.jpg",
+      "output": "topics/earth-life/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "699c16fa98cea274e36e12cda431c039a0ec8e9c9ad81ccefb5f52bd95797fa6",
+      "sha256": "0db371fc0900edcedec4489b65b0e60ee7a84b33415bda6492111ef935f31a2c",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 64660
+    },
+    {
+      "source": "topics/earth-life/cover-v2.jpg",
+      "output": "topics/earth-life/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "699c16fa98cea274e36e12cda431c039a0ec8e9c9ad81ccefb5f52bd95797fa6",
+      "sha256": "fd9baf179f47c86634999ed65ad286e6e8a7d2678e1ef3284aaf91a2b636f4a5",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 239574
+    },
+    {
+      "source": "topics/earth-ores/cover-v2.jpg",
+      "output": "topics/earth-ores/cover-480.webp",
+      "width": 480,
+      "quality": 84,
+      "sourceSha256": "3651290e34fe469878cb2ab2bd3f3abbc1f25c5d6e20f8cc2106e2dad8710bd0",
+      "sha256": "416f1e2f1e8430ac3074709feaab333ab0d0140ccbdf3a358a8f6da3efaff239",
+      "pixels": [
+        480,
+        320
+      ],
+      "bytes": 54096
+    },
+    {
+      "source": "topics/earth-ores/cover-v2.jpg",
+      "output": "topics/earth-ores/cover-960.webp",
+      "width": 960,
+      "quality": 84,
+      "sourceSha256": "3651290e34fe469878cb2ab2bd3f3abbc1f25c5d6e20f8cc2106e2dad8710bd0",
+      "sha256": "eb116f868c77d91e26d8da4743bd68f021a3fa4dab4ed9dfdeb39df9d79635e4",
+      "pixels": [
+        960,
+        640
+      ],
+      "bytes": 197034
+    },
+    {
       "source": "topics/atmosphere/cover-v2.jpg",
       "output": "topics/atmosphere/cover-480.webp",
       "width": 480,

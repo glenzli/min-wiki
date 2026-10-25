@@ -1,0 +1,252 @@
+{
+  "zh": {
+    "title": "矿石：地球怎样把有用物质集中起来？",
+    "intro": "一条白脉、一层红褐土、一把深色砂：先追踪形成过程，再问里面是什么、怎样取用，以及代价。",
+    "cases": {
+      "vein": {
+        "title": "沿裂隙生长的矿脉",
+        "question": "白色石英脉，为什么不一定含有可用的金属？",
+        "lead": "流体必须带来材料，也要有能进入的通道和使矿物沉淀的条件。石英可以与金属矿物同生，也可以几乎不带金属。",
+        "action": "保留同一条裂隙，先封闭通道，再打开；把金属输入改少。拖到终点，比较白色脉与硫化物是否都出现。",
+        "result": {
+          "blocked": "通道封闭：本次流体材料无法进入这条裂隙。",
+          "supply": "先有材料来源，再有沿裂隙迁移。",
+          "transport": "材料正在迁移；运输中的标记不是已长好的晶体。",
+          "precipitation": "一部分材料已留在裂隙中。石英脉与金属矿化需要分别检查。"
+        },
+        "identity": "A追踪同一条裂隙与被选手标本的位置。点是材料来源标记，不是完整分子、晶体或可直接测出的浓度。",
+        "evidence": {
+          "texture": {
+            "label": "看穿切和包裹关系",
+            "record": "白色脉穿过较暗围岩；金属状颗粒集中在脉内或近脉处。程序手标本中，裂隙、脉枝和颗粒位置保持一致。",
+            "limit": "穿切关系支持相对先后；白色、黄色或发亮本身都不能证明石英、铜矿物、黄金或可开采品位。"
+          },
+          "properties": {
+            "label": "比较典型矿物性质",
+            "record": "所选黄铜矿资料：CuFeS₂，莫氏硬度3.5–4，绿黑条痕，密度4.1–4.3 g/cm³。黄铁矿则可有相近金属色，却有不同组成和性质。",
+            "limit": "这是参考矿物的资料，不是对屏幕模型的化验。矿石常为多矿物集合，不能给整块矿石套一个单矿物硬度或密度。"
+          },
+          "analysis": {
+            "label": "补上成分与规模证据",
+            "record": "显微结构、矿物学、代表性取样和化学分析可以约束有用组分、杂质及分布；连续剖面和多个样本比一块漂亮标本提供更多空间信息。",
+            "limit": "一块富矿标本不能代表整个矿体。模型没有钻孔、储量、真实品位或勘探坐标。"
+          }
+        },
+        "use": "黄铜矿是重要含铜矿物之一；原矿通常要经过破碎、磨矿、选矿及冶炼/精炼等环节，铜才进入导线、设备和合金。石英常是同伴矿物，在这条铜的故事里并不等于目标金属。",
+        "environment": "含硫矿物暴露于氧与水后，在合适条件下可能产生酸性排水并迁移金属；并非所有矿山都发生同样结果。废石、尾矿、水和能量需要具体管理。",
+        "deeper": [
+          {
+            "title": "从哪里来，又为什么留在这里？",
+            "body": "成矿热液可以来自或受岩浆、变质、沉积和地下水循环等过程影响。流体沿裂隙迁移，降温、压力变化、沸腾、混合或与围岩反应都可能改变矿物的稳定性。这里把这些复杂条件合为一个允许沉淀的代表情景，不为所有金属或矿床指定同一温度。 本图承载矿脉的岩石称围岩；它不自动等于提供全部成矿元素的来源岩石。"
+          },
+          {
+            "title": "大晶体、细浸染和白脉，是不同线索",
+            "body": "矿物可填满裂隙，留下空腔，或成为细小浸染颗粒。宏观外形不等于内部结构；一块带晶体的矿脉标本也不等于全部矿体的平均面貌。手标本切面用于看脉内关系，采集、清理、切磨与自然生长面各有不同意义。"
+          }
+        ],
+        "boundary": "36个标记、几何尺寸与沉淀进度都是教学选择；不求流体力学、溶解度、温压史或品位。贫金属情景让金属来源标记留在来源处，而硅质材料仍可进入；不是把金属变成石英。3D手标本是自制代表形态，无扫描、真实长度或产地保证。"
+      },
+      "bauxite": {
+        "title": "风化后留下的富铝材料",
+        "question": "没有增加铝，为什么剩下的材料却相对更富铝？",
+        "lead": "含铝母岩长期化学风化，一些较易迁移组分随水离开；含铝矿物与部分铁、钛等组分相对保留。关键是改变了剩余材料的组成比例。",
+        "action": "把化学风化改弱，或让溶解组分不能有效排出，再看同一批来源标记。铝的标记有没有凭空增加？",
+        "identity": "12个含铝来源标记、6个其他较保留组分和12个较可迁移组分组成同一组示意材料；不是自然岩石的元素含量表，也不表示旧晶体原样保存。",
+        "evidence": {
+          "texture": {
+            "label": "看风化剖面与结构",
+            "record": "从较新鲜母岩到风化物和上部富集层逐层观察。铝土矿可以土状、块状或含豆状/鲕状颗粒；这些不是所有铝土矿都必须出现的形态。",
+            "limit": "红褐色常与铁的氧化物/氢氧化物有关；颜色不是铝含量计，也不能单凭照片把普通红土认成铝土矿。"
+          },
+          "properties": {
+            "label": "先承认它是混合材料",
+            "record": "铝土矿可含三水铝石、一水软铝石、一水硬铝石及铁氧化物、黏土等。它是富含含铝矿物的岩石材料，不是名叫“铝土矿”的单一矿物种。",
+            "limit": "不同矿物、孔隙、水和颗粒会影响手标本性质；一个单值硬度或一张照片不足以给混合矿石定名和定质。"
+          },
+          "analysis": {
+            "label": "用分析区分可用组分与杂质",
+            "record": "矿物组成、铝与硅等化学分析、代表性剖面取样及加工试验，帮助判断原料适合怎样处理。产状和母岩关系提供形成环境线索。",
+            "limit": "本示意的标记比例不是Al、Al₂O₃或可提取氧化铝品位；真实迁移还取决于pH、矿物、地下水与地貌等。"
+          }
+        },
+        "use": "铝土矿通常先制成氧化铝，再经电解等工艺得到金属铝，用于运输、建筑、包装和设备。它不是一铲红土就直接变成铝罐；原料组成与工艺要求会影响可用性。",
+        "environment": "采掘会改变土地与水；氧化铝加工的残渣及其碱性、水管理，和炼铝的能源需求都需要考虑。本图没有处理厂、化学试剂量、排放或生命周期预测。",
+        "deeper": [
+          {
+            "title": "相对富集不等于制造新金属",
+            "body": "以一份含铝母岩为起点，易迁移组分被溶解并带出，余下材料中含铝组分所占比例可以提高。本图保留所有来源标记，包括离开剖面的部分，防止把“消失”误认成不存在。真实风化会形成新矿物，来源标记只追踪物质来源，不承诺每个旧晶体保持身份。"
+          },
+          {
+            "title": "这是一种残积路径，不是所有铝土矿的统一故事",
+            "body": "长时间风化、排水、地形稳定性、母岩和化学条件共同作用；沉积搬运或岩溶环境也能影响一些铝土矿。美国阿肯色州的研究记录了正长岩原地强风化形成铝土矿的实例。本馆用其因果方向建立代表剖面，不推断全球每一处矿床都来自同一岩石或气候。"
+          }
+        ],
+        "boundary": "30个来源标记是机制用的任意份额，不是质量、化学品位或地层厚度。风化与排水档位是对照，没有实际年数、pH、降水或淋滤流量。铁钛等保留组分被单独保留，避免暗示铝土矿是纯含铝矿物。"
+      },
+      "placer": {
+        "title": "流水分选的锡石砂矿",
+        "question": "为什么重矿物有时留下，有时也被带走？",
+        "lead": "先从母岩里解离，再比较同一批、相同代表粒径的颗粒。密度会影响水动力分选，但水流、粒径、形状和河床也很重要。",
+        "action": "先锁住母岩中的颗粒，再允许解离。比较弱水流、选择性搬运与很强水流：观察窗留下谁？窗外的颗粒去了哪里？",
+        "identity": "6颗锡石与18颗石英是固定的教学样本集。深色代表锡石，浅色代表石英；颜色只是追踪编码，不是现场鉴定方法。",
+        "evidence": {
+          "texture": {
+            "label": "看解离、磨圆和层位",
+            "record": "砂矿中的有用矿物可成为松散颗粒，混在砂砾里，在局部河床低洼或适合的沉积位置富集。来源岩石、搬运路径与沉积层位是线索。",
+            "limit": "并非所有黑砂都含锡，磨圆也不说明唯一搬运距离。实际颗粒可能混有许多其他重矿物。"
+          },
+          "properties": {
+            "label": "比较同体积的轻重",
+            "record": "典型锡石SnO₂的密度约6.98–7.01 g/cm³，石英约2.65 g/cm³；锡石莫氏硬度约6–7。此处只隔离相同代表粒径下的密度差。",
+            "limit": "真实大石英与小锡石可能有不同起动、沉降和搬运行为；不能把密度排序直接当所有粒径的水流排序。"
+          },
+          "analysis": {
+            "label": "分选后仍要检查是什么",
+            "record": "显微观察、矿物/化学分析与有代表性的样本，可以区分锡石、其他深色矿物和混入物。选矿还需要确认解离度与实际回收效果。",
+            "limit": "本图没有真实河道、流速阈值或砂矿品位；固定样本的富集不证明河段值得开采。"
+          }
+        },
+        "use": "锡石是重要含锡矿物。选矿将它与大量伴随材料分开，再提取锡，用于焊料、合金和镀层等。重选依靠性质差异，但开采、精选和冶炼是不同步骤。",
+        "environment": "河床或近海砂矿的采掘可能增加悬沙、扰动河床/海底和生态环境。河流过程与保护要求不能由一把砂的实验取代；本图不提供淘采指导或开采位置。",
+        "deeper": [
+          {
+            "title": "先解离，才能按单粒性质分选",
+            "body": "矿物被锁在整块母岩中时，整块碎屑的大小、形状和组合性质影响搬运。风化和侵蚀可以释放较耐久的矿物颗粒，之后才有按单粒性质分选的机会；不是有了水，重矿物就会自动从任何石头里跳出来。"
+          },
+          {
+            "title": "留下来的是相对结果，不是沉不动的重量",
+            "body": "示意的适中水流把较轻颗粒带得更远，锡石在观察窗低处留下；更强水流把两类都送出窗口。弱水流则没有完成分选。自然中粒径、颗粒形状、湍流、黏聚和反复洪水都可能改写结果，砂矿也可以再被侵蚀和搬运。"
+          }
+        ],
+        "boundary": "24颗固定等代表粒径颗粒用插值路径解释对照，不求沉降、临界切应力或河道流场。观察窗只是本图的固定位置；窗外仍记账，不能把离屏当物质消失。没有地理位置、勘探预测或现实品位。"
+      }
+    },
+    "classification": "矿物种由组成与结构区分；岩石按材料组合和形成过程描述；矿石是在给定经济、技术等条件下可提取有用物质的材料；宝石是用途与品质概念。这几把尺可以交叠，不能画成四个互斥箱子。",
+    "scope": "本馆实做三条代表路径，并以形成→赋存/标本→证据→加工/代价相连。它没有覆盖斑岩、矽卡岩、块状硫化物、沉积铁矿、蒸发盐等全部矿床，也不估算全球资源或储量。后续类群沿同样问题链增加，不靠物种卡片堆满页面。"
+  },
+  "en": {
+    "title": "Ores: how does Earth concentrate useful material?",
+    "intro": "A white vein, a red-brown layer and a handful of dark sand: follow formation first, then ask what is present, how to use it and at what cost.",
+    "cases": {
+      "vein": {
+        "title": "A vein along a fracture",
+        "question": "Why doesn't every white quartz vein contain useful metal?",
+        "lead": "Fluid needs a material supply, an accessible pathway and conditions that favor precipitation. Quartz can accompany metal minerals or contain very little metal.",
+        "action": "Keep the same fracture. Seal it, then reopen it; reduce metal input. Scrub to the endpoint and compare whether both quartz and sulfides appear.",
+        "result": {
+          "blocked": "Sealed pathway: this fluid batch cannot enter the fracture.",
+          "supply": "A material source precedes migration along the fracture.",
+          "transport": "Material is moving; travelling markers are not grown crystals.",
+          "precipitation": "Some material has remained in the fracture. Check quartz and metal mineralization separately."
+        },
+        "identity": "A tracks the same fracture and selected hand-specimen site. Dots are source-material tags, not complete molecules, crystals or a measured concentration.",
+        "evidence": {
+          "texture": {
+            "label": "Read cross-cutting and enclosure",
+            "record": "A pale vein cuts darker host rock; metallic grains occur within or near it. The procedural specimen retains the same fracture, branches and grain positions.",
+            "limit": "Cross-cutting supports relative order. White, yellow or shiny surfaces alone prove neither quartz, copper minerals, gold nor economic grade."
+          },
+          "properties": {
+            "label": "Compare typical mineral properties",
+            "record": "Selected chalcopyrite reference: CuFeS₂, Mohs hardness 3.5–4, green-black streak and density 4.1–4.3 g/cm³. Pyrite can look similarly metallic while differing in composition and properties.",
+            "limit": "These are mineral reference data, not an assay of the screen model. Ore commonly contains several minerals; one mineral's hardness or density cannot simply be assigned to the whole rock."
+          },
+          "analysis": {
+            "label": "Add composition and spatial evidence",
+            "record": "Microscopy, mineralogy, representative sampling and chemical analysis constrain useful components, impurities and distribution. Continuous sections and multiple samples give more spatial information than one attractive specimen.",
+            "limit": "A rich specimen does not represent an entire deposit. This model has no drill holes, reserves, real grades or exploration coordinates."
+          }
+        },
+        "use": "Chalcopyrite is an important copper-bearing mineral. Ore commonly passes through crushing, grinding, concentration and smelting/refining before copper enters wires, equipment and alloys. Quartz is often a companion mineral, not the target metal in this copper story.",
+        "environment": "Some sulfur-bearing minerals exposed to oxygen and water can produce acidic drainage and mobilize metals under suitable conditions; mines do not all behave alike. Waste rock, tailings, water and energy need specific management.",
+        "deeper": [
+          {
+            "title": "Where does material come from, and why stay here?",
+            "body": "Hydrothermal fluid can originate from, or be affected by, magmatic, metamorphic, sedimentary and groundwater processes. Cooling, pressure change, boiling, mixing and reaction with wall rock can alter mineral stability. This model combines complex conditions into one representative precipitation setting rather than assigning every metal and deposit a universal temperature. The rock hosting the vein is wall rock; it need not be the source of every ore-forming component."
+          },
+          {
+            "title": "Large crystals, fine grains and white veins are different clues",
+            "body": "Minerals may fill a fracture, retain cavities or form fine disseminated grains. Exterior habit differs from internal structure, and an attractive vein specimen need not resemble the average deposit. A specimen cut face reveals internal relationships; collecting, cleaning, cutting and natural growth faces have different meanings."
+          }
+        ],
+        "boundary": "The 36 tags, dimensions and precipitation progress are teaching choices, without fluid flow, solubility, pressure-temperature history or grade calculations. In the metal-poor case, metal-source tags stay at source while siliceous material can enter: metal does not turn into quartz. The authored 3D specimen is no scan, measured size or proven locality."
+      },
+      "bauxite": {
+        "title": "Aluminum-rich material left by weathering",
+        "question": "How can the remainder become richer in aluminum without adding aluminum?",
+        "lead": "Chemical weathering of aluminum-bearing rock lets relatively mobile components leave with water, while aluminum-bearing minerals and some iron- and titanium-bearing material are relatively retained. The composition of the remainder changes.",
+        "action": "Weaken chemical weathering or prevent effective export of dissolved components. Follow the same tags: do new aluminum tags appear?",
+        "identity": "Twelve aluminum-bearing source tags, six other relatively retained tags and twelve relatively mobile tags form one teaching batch. They are not a natural elemental assay and do not preserve old crystals unchanged.",
+        "evidence": {
+          "texture": {
+            "label": "Read the weathering profile and texture",
+            "record": "Follow fresher parent rock through weathered material to an enriched upper layer. Bauxite may be earthy, massive or contain rounded pisolitic/oolitic grains; not every bauxite shows the same form.",
+            "limit": "Red-brown color often involves iron oxides/hydroxides. It is not an aluminum meter, and a photograph alone cannot distinguish ordinary red soil from bauxite."
+          },
+          "properties": {
+            "label": "Recognize a mixed material",
+            "record": "Bauxite can contain gibbsite, boehmite, diaspore, iron oxides, clays and other material. It is rock material rich in aluminum-bearing minerals, not a single mineral species named bauxite.",
+            "limit": "Mineral mixtures, pores, water and grains affect specimen properties. A single hardness value or photograph cannot determine the identity and quality of mixed ore."
+          },
+          "analysis": {
+            "label": "Separate usable components and impurities analytically",
+            "record": "Mineralogy, aluminum/silica analyses, representative profile sampling and processing trials help assess suitable uses. Field relationships with parent rock give formation clues.",
+            "limit": "Teaching-tag ratios are not Al, Al₂O₃ or extractable alumina grades. Real mobility also depends on pH, minerals, groundwater and landscape conditions."
+          }
+        },
+        "use": "Bauxite is generally refined into alumina, then used in electrolytic and other processing to produce aluminum for transport, construction, packaging and equipment. A shovel of red soil does not directly become a can; feed composition and processing requirements matter.",
+        "environment": "Extraction changes land and water. Alumina-processing residues, their alkalinity and water management, and aluminum smelting's energy requirements need consideration. This diagram models no plant, reagent amounts, emissions or life cycle.",
+        "deeper": [
+          {
+            "title": "Relative enrichment is not making new metal",
+            "body": "Starting with aluminum-bearing parent rock, dissolution and export of mobile components can raise the proportion of relatively retained aluminum-bearing material. Every source tag remains accounted for, including the exported portion. Real weathering forms new minerals; tags retain provenance, not immutable old crystals."
+          },
+          {
+            "title": "One residual path, not every bauxite's history",
+            "body": "Weathering duration, drainage, landscape stability, parent rock and chemistry act together. Sedimentary transport or karst settings also affect some bauxites. USGS work documents intense in-place weathering of syenite in Arkansas. This gallery uses that causal direction as a representative profile, without assigning all deposits the same parent or climate."
+          }
+        ],
+        "boundary": "Thirty source tags are arbitrary teaching shares, not masses, assays or bed thicknesses. Weathering and drainage settings have no years, pH, rainfall or leaching-flow calibration. Other retained material is kept separate, avoiding the implication that bauxite is a pure aluminum mineral."
+      },
+      "placer": {
+        "title": "Cassiterite sorted by running water",
+        "question": "Why can a heavy mineral remain in one case and move away in another?",
+        "lead": "First liberate minerals from host rock, then compare one batch at the same representative grain size. Density affects hydraulic sorting, alongside flow, size, shape and the bed.",
+        "action": "Lock grains in their source rock, then allow liberation. Compare weak flow, selective transport and strong flow: who remains in the observation window, and where do exported grains go?",
+        "identity": "Six cassiterite and eighteen quartz grains form one fixed teaching set. Dark means cassiterite and light means quartz; colors are tracking codes, not field-identification rules.",
+        "evidence": {
+          "texture": {
+            "label": "Read liberation, rounding and layer context",
+            "record": "Useful placer minerals may occur as loose grains in sand and gravel, concentrated in local bed depressions or suitable depositional positions. Source rocks, transport pathways and sediment layers are clues.",
+            "limit": "Not every dark sand contains tin. Rounding does not establish a unique travel distance, and real samples can contain many other heavy minerals."
+          },
+          "properties": {
+            "label": "Compare mass at equal volume",
+            "record": "Typical cassiterite SnO₂ density is about 6.98–7.01 g/cm³, versus quartz at about 2.65 g/cm³; cassiterite's Mohs hardness is about 6–7. This comparison isolates density at the same representative grain size.",
+            "limit": "Large quartz and small cassiterite can behave differently in entrainment, settling and transport. Density ranking alone is not a hydraulic ranking for every size."
+          },
+          "analysis": {
+            "label": "After sorting, still ask what the grains are",
+            "record": "Microscopy, mineral/chemical analysis and representative samples distinguish cassiterite from other dark minerals and contaminants. Processing also needs measured liberation and recovery performance.",
+            "limit": "No real channel, velocity threshold or placer grade is computed. Enrichment of this fixed set does not prove that a reach can be mined economically."
+          }
+        },
+        "use": "Cassiterite is an important tin mineral. Concentration separates it from much accompanying material before tin extraction for solders, alloys and coatings. Gravity separation uses property differences; mining, concentration and smelting remain distinct steps.",
+        "environment": "Riverbed or offshore placer extraction may increase suspended sediment and disturb beds and ecosystems. A handful-of-sand experiment does not replace river-process evidence or protection requirements. This gallery gives no panning instructions or mining locations.",
+        "deeper": [
+          {
+            "title": "Liberation comes before single-grain sorting",
+            "body": "When minerals remain locked in source rock, the whole fragment's size, shape and composition affect transport. Weathering and erosion can release durable grains, creating an opportunity for sorting individual minerals. Water alone does not make heavy minerals jump out of any rock."
+          },
+          {
+            "title": "Remaining is relative, not an inability to move",
+            "body": "In the selective case, lighter grains travel farther and cassiterite remains in the bed-window depression. Stronger flow sends both kinds beyond the window; weak flow has not sorted them. Size, shape, turbulence, cohesion and repeated floods can change real outcomes, and placers can be eroded and transported again."
+          }
+        ],
+        "boundary": "Twenty-four fixed, equally sized representative grains use interpolated paths rather than settling, critical-shear or flow calculations. The window is a fixed diagram location and exported material stays accounted for. There are no real coordinates, exploration predictions or grades."
+      }
+    },
+    "classification": "Mineral species distinguish composition and structure; rocks describe assemblages and formation; ore concerns useful material extractable under particular economic and technical conditions; gem describes use and quality. These criteria overlap rather than forming four exclusive boxes.",
+    "scope": "Three representative paths connect formation, occurrence/specimens, evidence, processing and costs. This is not coverage of every porphyry, skarn, massive sulfide, sedimentary iron or evaporite deposit, nor an estimate of global resources or reserves. Future groups can extend the same question chain rather than filling a page with species cards."
+  }
+}

@@ -1,0 +1,170 @@
+{
+  "version": 1,
+  "topicId": "earth-climate",
+  "references": [
+    {
+      "title": "ICS · Cryogenian Stratigraphy",
+      "url": "https://cryogenian.stratigraphy.org/"
+    },
+    {
+      "title": "Hoffman et al. (2017) · Snowball Earth climate dynamics and Cryogenian geology",
+      "url": "https://doi.org/10.1126/sciadv.1600983"
+    },
+    {
+      "title": "Kopp et al. (2005) · Paleoproterozoic glaciation hypothesis",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16061801/"
+    },
+    {
+      "title": "NPS · Mass extinctions through geologic time",
+      "url": "https://www.nps.gov/subjects/fossils/mass-extinctions-through-geologic-time.htm"
+    },
+    {
+      "title": "USGS · Far-field imprint of the late Paleozoic Ice Age",
+      "url": "https://www.usgs.gov/publications/far-field-imprint-late-paleozoic-ice-age-its-demise-and-onset-a-dust-house-climate"
+    },
+    {
+      "title": "British Antarctic Survey · Dawn of the Antarctic ice sheets",
+      "url": "https://www.bas.ac.uk/news/the-dawn-of-the-antarctic-ice-sheets/"
+    },
+    {
+      "title": "ICS · Quaternary major divisions",
+      "url": "https://quaternary.stratigraphy.org/major-divisions"
+    },
+    {
+      "title": "NOAA · Why is the Arctic so sensitive?",
+      "url": "https://www.pmel.noaa.gov/arctic-zone/essay_serreze.html"
+    },
+    {
+      "title": "NPS · Effects of changing climate on Kahiltna Glacier",
+      "url": "https://www.nps.gov/articles/aps-v12-i2-c5.htm"
+    },
+    {
+      "title": "NASA JPL · Land ice versus sea ice",
+      "url": "https://www.jpl.nasa.gov/edu/resources/lesson-plan/whats-causing-sea-level-rise-land-ice-vs-sea-ice/"
+    },
+    {
+      "title": "NASA · Orbital cycles and Earth's climate",
+      "url": "https://science.nasa.gov/science-research/earth-science/milankovitch-orbital-cycles-and-their-role-in-earths-climate/"
+    },
+    {
+      "title": "NASA · Why orbital cycles cannot explain current warming",
+      "url": "https://science.nasa.gov/science-research/earth-science/why-milankovitch-orbital-cycles-cant-explain-earths-current-warming/"
+    },
+    {
+      "title": "Clark et al. (2009) · The Last Glacial Maximum",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/19661421/"
+    },
+    {
+      "title": "NSIDC · A core of climate history",
+      "url": "https://nsidc.org/learn/ask-scientist/core-climate-history"
+    },
+    {
+      "title": "Parrenin et al. (2013) · Gas and ice relative chronologies",
+      "url": "https://doi.org/10.1126/science.1226368"
+    },
+    {
+      "title": "NSIDC · Science of ice shelves",
+      "url": "https://nsidc.org/learn/parts-cryosphere/ice-shelves/science-ice-shelves"
+    },
+    {
+      "title": "NSIDC · Sea ice formation, grains and brine",
+      "url": "https://nsidc.org/learn/parts-cryosphere/sea-ice/science-sea-ice"
+    },
+    {
+      "title": "NSIDC · Snow, firn and glacier motion",
+      "url": "https://nsidc.org/learn/parts-cryosphere/glaciers/science-glaciers"
+    },
+    {
+      "title": "NPS · Glacial Till and Glacial Flour",
+      "url": "https://www.nps.gov/articles/glacialtillandglacialflour.htm"
+    },
+    {
+      "title": "NPS · Glacial Striations",
+      "url": "https://www.nps.gov/articles/glacialstriations.htm"
+    }
+  ],
+  "zh": {
+    "question": "冰与气候：从远古冰封到今天的冰川：不是只有一次冰河时代。先比较不同年代的线索，再把时间尺放大；有些区间互相包含，有些相隔十多亿年。",
+    "observe": "先在原创理想地球上暂停、播放或拖动冰缘，保留同一45°N位置A；切到区域比较海水冻结与高地积雪两支线，再换P1海冰、P2积雪、P3沉积、P4擦痕或P5现代冰芯。全球面积与局部12轮冰量独立，样本不是由滑块测得的真物。 不是只有一次冰河时代。先比较不同年代的线索，再把时间尺放大；有些区间互相包含，有些相隔十多亿年。 保持照到同一片地表的阳光不变，只改变有多少面积被明亮的冰雪覆盖。看看同样的 100 份阳光，分别去了哪里。 冰川像一份水的存款：下雪补充，融化和其他消融过程取走。冷的地方也可能因补给少而退冰。先保持一项不变，比较另一项。",
+    "academic": [
+      {
+        "title": "冰期留下的证据",
+        "body": "轨道变化改变不同季节与纬度的日照分配，冰、二氧化碳和海洋反馈放大响应；不是地球简单地离太阳越来越远。 海洋沉积物、冰芯、冰碛和冰川磨痕记录不同时间尺度；冰芯气泡保存过去空气，冰的同位素帮助推断环境。 不同周期的主导节律与区域响应会变化。轨道节律不能解释当今由人为温室气体增加驱动的快速全球变暖。 本馆精选主要事件与背景，不穷尽所有地区、所有冰期名称。气候背景、地层单位、冰川事件、间冰期不是同一级别。"
+      },
+      {
+        "title": "冰怎样改变日照",
+        "body": "深色水面在本实验中固定反射 10%。冰雪可设 50–90%；这些是选定的教学表面值，不是全球平均反照率。 这是正反馈：放大原来的变化，“正”不代表好。反向也成立：增冰可能增加反射，放大冷却。气候还会向外辐射热量，并受温室气体、云、海洋热储存与输送影响；所以这个反射预算不能直接输出地表温度、结冰阈值或下次冰期日期。 理想球面的冰缘不能按覆盖百分比线性换成纬度；双极帽满足sin(边缘纬度)=1−f，不规则经度变化的均值为0，A经线处为0。同一A的冰缘内外与区域海冰提示、100份光预算消费同一覆盖值。球面材质不是古地理，均匀光预算没有真实太阳角度、季节或云量。"
+      },
+      {
+        "title": "冰川的收支与海洋",
+        "body": "积累包括降雪等增加冰川质量的过程，消融包括融化、升华、崩解等损失。这里把它们合成两个可控量。真实冰川向下流动，末端位置对气候有滞后；冰量减少不意味着冰突然停止流动。长时间持续负收支比一次天气事件更能说明变化。 真实海平面还受海水热膨胀、盐分、海流、重力场和陆地升降影响。浮冰的密度与盐度效应使直接贡献并非严格数学零；浮冰架减少还可削弱对陆地冰流的阻挡，间接增加海平面。这里分开的是两种主要机制，不能读成“海冰消失没有影响”。"
+      }
+    ],
+    "misconception": "成冰纪冰封、第四纪冰期、最近冰盛期和全新世不是同一件事。间冰期仍有大陆冰盖；正反馈并不代表有益；海冰融化近似不直接抬升海面，不意味着海冰消失没有影响。自然变化曾发生也不表示现代快速变暖由轨道节律造成。",
+    "boundary": "每条轴在自己的范围内按时间等比例。小于一个像素的短区间用圆点定位，圆点大小不表示持续时间；空白也不证明当时完全无冰。下面的序号与历史线索一一对应。 深色水面在本实验中固定反射 10%。冰雪可设 50–90%；这些是选定的教学表面值，不是全球平均反照率。 同一条假想冰川；固定初始 60 份水当量。形状只表示冰量增减，未计算真实冰流、坡度与厚度。回合不等于年，实际消融不超过可用冰量。 同一水当量、简化为淡水条件。浮冰原先已排开同重的水，融化后直接效应近似为零；陆地冰融水进入海洋增加水量。图中水位放大，不对应真实米数。 这是正反馈：放大原来的变化，“正”不代表好。反向也成立：增冰可能增加反射，放大冷却。气候还会向外辐射热量，并受温室气体、云、海洋热储存与输送影响；所以这个反射预算不能直接输出地表温度、结冰阈值或下次冰期日期。 新工作台为原创理想化海陆与冰缘，不重建某次古冰盖或整个720–635Ma连续全冰。全球18秒、局部12轮与样本12秒各是独立展示，互斥播放、切尺度暂停，不换算真实时间。海冰来自海水，陆冰来自积雪，P1/P2明确换样；P3/P4/P5只显露观察，不生成地层或测年。现代冰芯不是成冰纪空气样本。",
+    "narration": [
+      {
+        "label": "冰期留下的证据",
+        "text": "成冰纪的一次漫长冰封。地球低纬地区也留下冰川证据，推动了“雪球地球”的研究。 在长期冰室背景下，大冰盖多次长大、缩小。我们生活在其中较暖的间冰期，而不是地球已经没有冰。",
+        "cue": "比较25亿年与最近15万年时间窗；不同轴注明范围。 先在全球找到同一A，再切区域与P1/P2；各尺度暂停后继续，海冰与高地冰川分两支线，不混接水源。"
+      },
+      {
+        "label": "冰怎样改变日照",
+        "text": "保持照到同一片地表的阳光不变，只改变有多少面积被明亮的冰雪覆盖。看看同样的 100 份阳光，分别去了哪里。 这是正反馈：放大原来的变化，“正”不代表好。反向也成立：增冰可能增加反射，放大冷却。气候还会向外辐射热量，并受温室气体、云、海洋热储存与输送影响；所以这个反射预算不能直接输出地表温度、结冰阈值或下次冰期日期。",
+        "cue": "固定入射100份；对照少冰和多冰，追踪反射与吸收。"
+      },
+      {
+        "label": "冰川的收支与海洋",
+        "text": "冰川像一份水的存款：下雪补充，融化和其他消融过程取走。冷的地方也可能因补给少而退冰。先保持一项不变，比较另一项。 积累包括降雪等增加冰川质量的过程，消融包括融化、升华、崩解等损失。这里把它们合成两个可控量。真实冰川向下流动，末端位置对气候有滞后；冰量减少不意味着冰突然停止流动。长时间持续负收支比一次天气事件更能说明变化。",
+        "cue": "分别对照增长、平衡、退缩，再回退相同回合。"
+      },
+      {
+        "label": "同样多的冰，放在陆地还是已经浮在水里？",
+        "text": "同一水当量、简化为淡水条件。浮冰原先已排开同重的水，融化后直接效应近似为零；陆地冰融水进入海洋增加水量。图中水位放大，不对应真实米数。 真实海平面还受海水热膨胀、盐分、海流、重力场和陆地升降影响。浮冰的密度与盐度效应使直接贡献并非严格数学零；浮冰架减少还可削弱对陆地冰流的阻挡，间接增加海平面。这里分开的是两种主要机制，不能读成“海冰消失没有影响”。",
+        "cue": "相同水当量比较陆地与浮冰，水位变化说明为放大。"
+      }
+    ]
+  },
+  "en": {
+    "question": "Ice and climate: from ancient glaciations to glaciers today: There was more than one ice age. Compare evidence at different ages, then zoom the time scale. Some intervals contain others; some lie over a billion years apart.",
+    "observe": "Pause, play or scrub the original ideal globe while retaining site A at 45°N. Enter its region to distinguish freezing seawater from upland snow, then explicitly change among P1 sea ice, P2 snow, P3 sediment, P4 scratches and P5 modern ice-core methods. Global area and twelve local mass rounds are independent; sliders do not measure real samples. There was more than one ice age. Compare evidence at different ages, then zoom the time scale. Some intervals contain others; some lie over a billion years apart. Keep sunlight on the same surface patch fixed. Change only the fraction covered by bright ice and snow, and follow the same 100 portions of sunlight. A glacier stores water: snowfall adds to it; melt and other ablation remove it. Even a cold place can lose ice if supply is small. Hold one condition fixed and change the other.",
+    "academic": [
+      {
+        "title": "Evidence of glaciations",
+        "body": "Orbital changes redistribute seasonal and latitudinal sunlight, with ice, carbon dioxide and ocean feedbacks amplifying responses. Earth does not simply move ever farther from the Sun. Marine sediments, ice cores, moraines and glacial scratches record different time scales. Bubbles preserve past air; ice isotopes help infer environments. Dominant rhythms and regional responses vary. Orbital cycles cannot explain today's rapid global warming driven by increasing human-produced greenhouse gases. This gallery selects major events and backgrounds; it does not list every regional glaciation. Climate backgrounds, stratigraphic units, glacial events and interglacials are different levels of description."
+      },
+      {
+        "title": "Ice changes sunlight",
+        "body": "Dark water reflects a fixed 10% here. Ice and snow can reflect 50–90%. These are chosen teaching surface values, not global mean planetary albedo. Positive feedback amplifies an initial change; positive does not mean beneficial. The reverse can amplify cooling as ice grows and reflection increases. Climate also radiates heat outward and responds to greenhouse gases, clouds, ocean storage and transport. This reflection budget cannot output surface temperature, freezing thresholds or the date of another glaciation. Coverage is not a linear latitude: symmetric reference-sphere caps obey sin(edge latitude)=1−f. Irregular longitude perturbations average to zero and vanish at A’s meridian. The same cover value supplies site membership, regional sea-ice context and the 100-portion light budget. Surface art is no paleogeography, and uniform input omits real solar angles, seasons and clouds."
+      },
+      {
+        "title": "Ice budgets and oceans",
+        "body": "Accumulation adds glacier mass through snowfall and other processes; ablation removes it through melting, sublimation, calving and more. Here they are reduced to two controlled quantities. Real glaciers flow downhill, and terminus positions lag climate. Losing mass does not mean ice stops moving. Persistent negative balance is more informative than one weather event. Real sea level also responds to thermal expansion, salinity, currents, gravity and land motion. Density and salinity corrections make floating ice's direct effect different from exact mathematical zero. Losing floating ice shelves can also reduce restraint on land-ice flow and raise sea level indirectly. We separate two main mechanisms; sea-ice loss is not harmless."
+      }
+    ],
+    "misconception": "Cryogenian glaciations, Quaternary cycles, the most recent glacial maximum and the Holocene are not one event. Interglacials retain continental ice. Positive feedback does not mean beneficial. Floating ice has approximately no direct sea-level effect, but its loss still matters. Past natural change does not make orbital cycles the cause of rapid modern warming.",
+    "boundary": "Each axis is linear within its own range. Intervals narrower than one pixel use a location dot whose size is not duration. Blank space does not prove an absence of ice. Numbers match the historical clues below. Dark water reflects a fixed 10% here. Ice and snow can reflect 50–90%. These are chosen teaching surface values, not global mean planetary albedo. The same hypothetical glacier starts with 60 water-equivalent units. Shape only indicates ice amount, without solving flow, slope or thickness. Rounds are not years, and loss cannot exceed available ice. Equal water-equivalent masses in a freshwater approximation. Floating ice already displaced its own weight of water, so its direct melt effect is approximately zero. Land ice adds water to the ocean. Water-level changes are exaggerated and are not real meters. Positive feedback amplifies an initial change; positive does not mean beneficial. The reverse can amplify cooling as ice grows and reflection increases. Climate also radiates heat outward and responds to greenhouse gases, clouds, ocean storage and transport. This reflection budget cannot output surface temperature, freezing thresholds or the date of another glaciation. The workbench uses original ideal land and ice edges, not a specific ancient ice sheet or identical complete cover throughout 720–635 Ma. Global eighteen-second, local twelve-round and sample twelve-second observations are separate, mutually exclusive presentations that pause on scale change without physical-time conversion. Sea ice originates in seawater and land ice in snow; P1/P2 explicitly change samples. P3/P4/P5 reveal observations without generating strata or dates. Modern ice cores are not Cryogenian air samples.",
+    "narration": [
+      {
+        "label": "Evidence of glaciations",
+        "text": "A long Cryogenian glaciation. Glacial evidence from low latitudes helped motivate research into Snowball Earth. Large ice sheets repeatedly grew and shrank within a long-term icehouse. We live in a warmer interglacial, not on an Earth without ice.",
+        "cue": "Compare the 2.5-billion-year and 150,000-year windows, marking their distinct scales. First locate the same A globally, then enter its region and P1/P2. Pause between scales and retain separate seawater and upland-snow branches."
+      },
+      {
+        "label": "Ice changes sunlight",
+        "text": "Keep sunlight on the same surface patch fixed. Change only the fraction covered by bright ice and snow, and follow the same 100 portions of sunlight. Positive feedback amplifies an initial change; positive does not mean beneficial. The reverse can amplify cooling as ice grows and reflection increases. Climate also radiates heat outward and responds to greenhouse gases, clouds, ocean storage and transport. This reflection budget cannot output surface temperature, freezing thresholds or the date of another glaciation.",
+        "cue": "Hold input at 100 portions, compare less and more ice, and follow reflection and absorption."
+      },
+      {
+        "label": "Ice budgets and oceans",
+        "text": "A glacier stores water: snowfall adds to it; melt and other ablation remove it. Even a cold place can lose ice if supply is small. Hold one condition fixed and change the other. Accumulation adds glacier mass through snowfall and other processes; ablation removes it through melting, sublimation, calving and more. Here they are reduced to two controlled quantities. Real glaciers flow downhill, and terminus positions lag climate. Losing mass does not mean ice stops moving. Persistent negative balance is more informative than one weather event.",
+        "cue": "Compare growth, balance and retreat, then seek back to the same round."
+      },
+      {
+        "label": "Put equal ice mass on land or already afloat: what changes?",
+        "text": "Equal water-equivalent masses in a freshwater approximation. Floating ice already displaced its own weight of water, so its direct melt effect is approximately zero. Land ice adds water to the ocean. Water-level changes are exaggerated and are not real meters. Real sea level also responds to thermal expansion, salinity, currents, gravity and land motion. Density and salinity corrections make floating ice's direct effect different from exact mathematical zero. Losing floating ice shelves can also reduce restraint on land-ice flow and raise sea level indirectly. We separate two main mechanisms; sea-ice loss is not harmless.",
+        "cue": "Compare equal water-equivalent ice masses on land and afloat, marking exaggerated levels."
+      }
+    ]
+  }
+}

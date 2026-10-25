@@ -1,0 +1,154 @@
+{
+  "version": 1,
+  "topicId": "earth-interior",
+  "zh": {
+    "question": "没有人到过地心，怎样知道地壳、地幔和地核是什么样？",
+    "observe": "先把全地球剖面的共比例半径与浅部独立放大尺对照，区分地壳和岩石圈；再切换P波、S波及接收位置，比较直接主波的到达与阴影。最后比较张裂、海洋板片俯冲、大陆碰撞、转换和相对运动很小的边界。 再锁定理想化Rift A，保持同一阶段从大陆整体进入F1断层与P1材料；比较持续伸展、早期停歇、无持续伸展，以及不产生熔体和熔体停留地下的条件。",
+    "academic": [
+      {
+        "title": "两种分层，不能混成一层",
+        "body": "地壳、地幔和地核主要按组成区分；岩石圈按力学行为划分，包括地壳和最上部较刚性的地幔。地幔大体是固体，却可在地质时间内缓慢变形。外核为液态、内核为固态。高温不是熔化的唯一条件，压力和成分也重要。"
+      },
+      {
+        "title": "共同半径与另外一把放大尺",
+        "body": "模型采用6371 km参考半径、3485 km地核半径和1221 km内核半径。对应核幔边界深度约2890 km，内外核边界约5150 km。海洋壳5 km和大陆壳30 km只作代表。浅部放大尺独立显示薄层；约100 km岩石圈不是全球统一厚度。"
+      },
+      {
+        "title": "深部结论由多种证据共同约束",
+        "body": "P波可穿过固体与液体，S波不能作为普通剪切波穿过液态外核。基础模型中，约103°以外缺少直接穿过外核的S波，P波在约103°—140°有主要阴影区；这不排除弱信号和转换相位。地幔包体是真实材料，来源深度需要推断。铁陨石通常来自其他分异天体的金属部分，并非地球地核取样。 裂谷中的地表形变、断层记录、地震速度与各向异性、热流和岩石化学又各有不同证据边界。F1的已加载应变事件与P1的减压熔融是同一地区的两条支线，互不驱动；无地表喷发也不能自动排除地下熔体。"
+      }
+    ],
+    "misconception": "地壳不等于整个岩石圈，板块也不是浮在一锅岩浆上的薄片。大陆包含多种岩石，不是整块花岗岩。地震波阴影不表示那里完全没有震动；铁陨石不能充当地球地核的直接样本。 大陆伸展不等于每一小步必有地震，地震也不是把岩石震成岩浆。没有火山不等于没有地下岩浆活动；裂谷不都必然发展成海洋。",
+    "boundary": "全地球圆圈共用半径尺，浅部放大另有深度尺，颜色不是内部实拍。代表地壳和岩石圈厚度不能用于任意地点。地震波仅解释基础主波与阴影，不计算真实走时、波速和完整相位；板块形变为代表情景，手动进度不是实际年数，也不预测地震或喷发。 Rift A、F1与P1是自制的理想化解释对象，非现代地图、古地理复原或未来预测。三尺度分别夸大形态，无共同长度尺。地质与局部事件回放独立且互斥，演示时长不是真实过程时长。20个P1教学标记可分相，其任意份额仅在本记账中合计20，非真实熔融百分比或矿物鉴定。",
+    "narration": [
+      {
+        "label": "先找薄薄的外壳",
+        "text": "我们脚下的岩石很硬，但整颗地球不是一个实心石球。最外面的地壳很薄，下面有厚厚的地幔，再往里是金属地核。要比较它们有多厚，先用同一把尺。",
+        "cue": "比较共比例剖面与独立浅部放大尺，不把放大层厚和整球直接相比。"
+      },
+      {
+        "label": "固体也能慢慢变形",
+        "text": "地幔大部分是固体。地震波经过时，它像固体那样回应；经过非常漫长的时间，又能慢慢变形。板块包括地壳和最上面一部分地幔，不只是地壳。",
+        "cue": "在浅部放大图中同时标出地壳、最上部地幔与岩石圈。"
+      },
+      {
+        "label": "让地震波带来线索",
+        "text": "地震会发出不同的波。有的能穿过液体，有的不能以原来的剪切方式穿过。许多地方的记录放在一起，帮助科学家研究看不见的内部。岩石样本是另一种线索，却不能回答所有问题。",
+        "cue": "切换P、S波和接收点，指出阴影涉及特定直接主波；比较地幔包体与铁陨石的证据身份。"
+      },
+      {
+        "label": "沿同一条裂谷放大",
+        "text": "大陆可以慢慢被拉伸，断层两边的岩石也会改变位置。我们沿同一个地点往下看：一边观察岩石怎样先存下变形，再快速滑动；另一边追踪主要固态的地幔材料，怎样在合适条件下只有一部分熔化，留在地下冷却。两条支线有关联，却不是地震把岩石震成岩浆。",
+        "cue": "锁定Rift A的阶段，在整体、区域和P1材料之间切换。先暂停地质进度再播放F1，保留错移；比较未加载、未熔融、早期停歇和地下侵入。20标记按任意份额分相，不画成真实熔融率。"
+      }
+    ]
+  },
+  "en": {
+    "question": "How can we investigate the crust, mantle and core without visiting the center?",
+    "observe": "Compare the common-radius cutaway with the independently enlarged shallow-depth ruler, distinguishing crust from lithosphere. Change P or S waves and receiver locations to compare principal direct arrivals with shadows. Then compare divergence, oceanic subduction, continental collision, transform motion and little relative motion. Then hold idealized Rift A and its stage fixed while moving from the continent to fault F1 and material P1. Compare continuing extension, early cessation, no continuing extension, no partial melt and melt retained underground.",
+    "academic": [
+      {
+        "title": "Two ways to define layers",
+        "body": "Crust, mantle and core mainly distinguish composition. The mechanically defined lithosphere includes the crust and relatively rigid uppermost mantle. Most mantle material is solid but can deform slowly over geological time. The outer core is liquid and the inner core solid. Temperature alone does not determine melting: pressure and composition matter too."
+      },
+      {
+        "title": "One radius scale and a separate enlargement",
+        "body": "The model adopts a 6371 km Earth radius, 3485 km core radius and 1221 km inner-core radius, giving rounded boundary depths of about 2890 and 5150 km. Oceanic crust at 5 km and continental crust at 30 km are representatives. A separate shallow-depth ruler reveals thin layers; roughly 100 km of lithosphere is not a universal thickness."
+      },
+      {
+        "title": "Several lines of evidence constrain the deep interior",
+        "body": "P waves can cross solids and liquids; ordinary S shear waves cannot cross the liquid outer core. A basic model lacks direct core-crossing S waves beyond roughly 103 degrees and has a principal P shadow at about 103-140 degrees. This does not exclude weak or converted phases. Mantle xenoliths are real material whose source depths are inferred. Iron meteorites usually sample metallic parts of other differentiated bodies, not Earth's core. In a rift, deformation, fault records, seismic velocities and anisotropy, heat flow and rock chemistry provide different constraints. F1’s preloaded event and P1’s decompression melting are two branches at one site, without one driving the other. No surface eruption does not automatically exclude underground melt."
+      }
+    ],
+    "misconception": "Crust is not the whole lithosphere, and plates are not thin sheets floating on a magma ocean. Continents contain many rock types, not just granite. A seismic shadow does not mean no ground motion. Iron meteorites are not direct samples of Earth's core. Extension does not require an earthquake at every increment, and an earthquake does not shake rock into magma. No volcano does not prove no subsurface magmatism; not every rift becomes an ocean.",
+    "boundary": "Whole-Earth circles share one radius scale; the shallow enlargement has a separate depth ruler. Colors are not interior photographs. Representative crustal and lithospheric thicknesses do not describe every site. Seismic paths explain basic principal waves and shadows, without calculating real travel times, speeds or complete phases. Plate deformation is illustrative; manual progress is neither years nor a hazard forecast. Rift A, F1 and P1 are authored idealized explanatory objects, not a modern map, paleogeographic reconstruction or forecast. Shapes are separately enlarged across scales, without a shared length ruler. Geological and local-event replays are independent and mutually exclusive; their presentation durations are not real process durations. Twenty P1 tags may split into phases whose arbitrary portions total twenty within this ledger, without representing a measured melt fraction or mineral identification.",
+    "narration": [
+      {
+        "label": "Find the thin outer shell",
+        "text": "The rock under our feet feels hard, but Earth is not one solid stone ball. Its outer crust is thin. Beneath it are a thick mantle and a metallic core. Compare their thicknesses with one shared ruler first.",
+        "cue": "Compare the common-scale cutaway with the separate shallow enlargement; do not compare their apparent thicknesses directly."
+      },
+      {
+        "label": "Solid material can slowly deform",
+        "text": "Most of the mantle is solid. During an earthquake wave it responds as a solid, yet over an enormous span of time it can slowly deform. A tectonic plate includes crust and some uppermost mantle, rather than crust alone.",
+        "cue": "Identify crust, uppermost mantle and lithosphere together in the shallow enlargement."
+      },
+      {
+        "label": "Waves bring clues from the interior",
+        "text": "Earthquakes send out different waves. Some cross liquids; others cannot cross in their original shearing form. Records from many locations help scientists investigate the hidden interior. Rock samples provide another clue, but cannot answer every question.",
+        "cue": "Switch P and S waves and receivers. Qualify shadows as principal direct-wave results, and compare mantle xenoliths with iron meteorites."
+      },
+      {
+        "label": "Zoom into the same rift",
+        "text": "A continent can slowly stretch while rocks move across faults. Follow the same place downward. One branch shows rock storing deformation before rapid slip. Another follows mostly solid mantle material: only part melts under suitable conditions, and it can cool underground. The branches are related, but an earthquake does not shake the rocks into magma.",
+        "cue": "Hold the stage at Rift A while changing whole, regional and P1-material scales. Pause geology before replaying F1 and retain its offset. Compare unloaded, no-melt, early-cessation and underground-intrusion cases. Twenty tags split into arbitrary portions rather than a measured melt fraction."
+      }
+    ]
+  },
+  "references": [
+    {
+      "title": "NASA NSSDCA · Earth Fact Sheet: mean radius, core radius, rotation and dry-air composition",
+      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
+    },
+    {
+      "title": "NASA · Earth facts: inner core and representative crustal thicknesses",
+      "url": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "title": "USGS · Are tectonic plates floating on magma?",
+      "url": "https://www.usgs.gov/faqs/are-tectonic-plates-floating-magma"
+    },
+    {
+      "title": "USGS · Inside the Earth: compositional layers and lithosphere",
+      "url": "https://pubs.usgs.gov/gip/dynamic/inside.html"
+    },
+    {
+      "title": "IRIS / EarthScope · Seismic Shadow Zone: Basic Introduction",
+      "url": "https://www.iris.edu/hq/inclass/animation/seismic_shadow_zone_basic_introduction"
+    },
+    {
+      "title": "USGS · Understanding plate motions",
+      "url": "https://pubs.usgs.gov/gip/dynamic/understanding.html"
+    },
+    {
+      "title": "McCallum & Eggler (1976), Science · Upper-mantle peridotite carried in kimberlite",
+      "url": "https://www.usgs.gov/publications/diamonds-upper-mantle-peridotite-nodule-kimberlite-southern-wyoming"
+    },
+    {
+      "title": "NASA JPL · Iron meteorites and differentiated asteroid cores",
+      "url": "https://www.jpl.nasa.gov/news/curiosity-mars-rover-checks-odd-looking-iron-meteorite/"
+    },
+    {
+      "title": "NPS · Igneous rocks: composition, cooling and textures",
+      "url": "https://www.nps.gov/subjects/geology/igneous.htm"
+    },
+    {
+      "title": "BGS · Rocks and minerals: connected geological processes",
+      "url": "https://www.bgs.ac.uk/discovering-geology/rocks-and-minerals/"
+    },
+    {
+      "title": "USGS · Elastic rebound: stored strain and rapid fault slip",
+      "url": "https://www.usgs.gov/media/videos/elastic-rebound"
+    },
+    {
+      "title": "EarthScope / IRIS · Rift-related normal faulting in Mozambique",
+      "url": "https://web-archive-2022.iris.edu/hq/science_highlights/damaging_quakes_in_the_east_african_rift_zone_moderate_quakes_cause_great_damage_in_small_african_villages_mozambique_experiences_damaging_rift_related_earthquakes"
+    },
+    {
+      "title": "McKenzie & Bickle (1988), Journal of Petrology · Extension, upwelling and partial melt",
+      "url": "https://academic.oup.com/petrology/article-abstract/29/3/625/1432023"
+    },
+    {
+      "title": "Brune et al. (2023), Nature Reviews Earth & Environment · Continental rift initiation and evolution",
+      "url": "https://www.nature.com/articles/s43017-023-00391-3"
+    },
+    {
+      "title": "Ajala et al. (2024), Communications Earth & Environment · Blind magmatism in a nonvolcanic rift",
+      "url": "https://www.nature.com/articles/s43247-024-01244-7"
+    },
+    {
+      "title": "USGS · Components of igneous rocks: cooling and grain textures",
+      "url": "https://www.usgs.gov/media/images/components-igneous-rocks"
+    }
+  ]
+}
