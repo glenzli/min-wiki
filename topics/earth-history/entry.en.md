@@ -1,4 +1,6 @@
-This hall follows the history of the same planet. Read the whole time scale before enlarging intervals, connecting rock records, living processes and environmental change through evidence.
+Follow the same planet through a three-scale history journey, then examine the full linear ruler and material evidence connecting rock records, life and environmental change.
+
+The 3D history journey begins with inferences about Earth’s formation and follows differentiation, the Moon-formation hypothesis, early water and life evidence, environmental and ecological changes, and the present. Whole-Earth, local-environment and enlarged material-evidence views preserve the same historical selection. The full linear rulers and oxygen ledger remain available. Ancient coastlines, local examples and enlarged evidence are qualified teaching reconstructions, not a measured continuous paleogeographic film.
 
 [Earth museum](../earth/entry.en.md) · [Interior](../earth-interior/entry.en.md) · [History](../earth-history/entry.en.md) · [Life](../earth-life/entry.en.md) · [Rocks](../earth-rocks/entry.en.md) · [Minerals](../earth-minerals/entry.en.md) · [Ore deposits](../earth-ores/entry.en.md) · [Climate](../earth-climate/entry.en.md) · [Systems](../earth-systems/entry.en.md)
 

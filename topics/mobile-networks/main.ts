@@ -82,5 +82,6 @@ if(presentation){
  const progressLabel=document.querySelector<HTMLLabelElement>('label[for="progress"]');
  progressLabel?.append(input('progress'));
  const caption=el('status');caption.dataset.readerCaption='';
- presentation.stage.insertBefore(caption,presentation.stage.querySelector('.presentation-transport'));
+ const transport=presentation.stage.querySelector('.presentation-transport');
+ if(transport)transport.before(caption);else presentation.stage.append(caption);
 }

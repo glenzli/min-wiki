@@ -23,7 +23,7 @@ export class ComparisonJourney {
  private surfaceButton=make('button');private surfaceTime=0;private surfaceFrame=0;private surfaceLast=0;private surfacePaint=0;private surfacePlaying=!matchMedia('(prefers-reduced-motion: reduce)').matches;
  private maps:HTMLImageElement[]=[];private planetMaps=new Map<number,{canvas:HTMLCanvasElement;image:ImageData;source:ImageData;phase:number}>();private stellarMaps=new Map<number,{canvas:HTMLCanvasElement;image:ImageData;phase:number}>();private membership=new MembershipScene();
  constructor(private root:HTMLElement,language:string,private changed:(pair:number,home:number)=>void,private navigate:(chapter:Chapter)=>void){
-  this.words=language==='en'?content.en:content.zh;const w=this.words;
+  this.homePath.dataset.readerMenu='chapters';this.homeAside.dataset.readerMenu='chapters';this.words=language==='en'?content.en:content.zh;const w=this.words;
   this.ctx=this.canvas.getContext('2d')!;this.canvas.className='comparison-canvas';this.canvas.setAttribute('role','img');
   this.pairs.setAttribute('aria-label',w.choosePair);w.pairs.forEach((name,i)=>{const option=make('option',name);option.value=String(i);this.pairs.append(option);});
   this.pairs.onchange=()=>this.animate(Number(this.pairs.value));
@@ -45,7 +45,7 @@ export class ComparisonJourney {
   this.onward.onclick=()=>this.navigate(this.chapter==='compare'?'homes':'galaxies');
   this.source.textContent=w.source;this.source.target='_blank';this.source.rel='noreferrer';
   const controls=make('div','','comparison-transport');controls.append(this.previous,label,this.next,this.surfaceButton);
-  const copy=make('div','','comparison-copy');this.estimate.append(make('summary',w.estimateDetails),this.estimateText);copy.append(this.note,this.estimate,this.source,this.onward);
+  const copy=make('div','','comparison-copy');copy.dataset.readerSupport='';this.estimate.append(make('summary',w.estimateDetails),this.estimateText);copy.append(this.note,this.estimate,this.source,this.onward);
   const credit=make('a',w.credit,'comparison-credit');credit.href='https://www.solarsystemscope.com/textures/';credit.target='_blank';credit.rel='noreferrer';
   copy.append(credit);root.append(heading,this.canvas,this.cards,controls,this.homeTransport,this.homeCues,this.boundary,copy);
   this.observer=new ResizeObserver(()=>this.paint());this.observer.observe(this.canvas);

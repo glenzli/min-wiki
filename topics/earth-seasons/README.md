@@ -1,5 +1,9 @@
 # 为什么会有白天黑夜与四季更迭
 
+`earth/conditions/` now composes this topic's solar geometry, city data, daylight equation and existing `EarthSimulation` in a separate static-condition lens. Its 0–98° what-if range does not change this standalone page's original control ranges or scientific ownership. The consumer sets a named place, orbital reference position and matching local-noon rotation before drawing; it does not infer climate from illumination. An incoming `if=1` link offers a visible return to the retained Earth experiment after the presentation frame mounts.
+
+`EarthSimulation.showEarthLatitudeReferences(false)` keeps the equator and axis while hiding fixed modern-Earth tropic/polar circles for that hypothetical consumer. Marker options `selectedCityOnly` and `subsolarMarkerVisible` let it show one selected place without a second, easily confused subsolar ring. The standalone page's defaults remain unchanged. The consumer uses `selectCity` to retain the correct surface highlight.
+
 页面先从“中国晨昏”观察进入：夏至清晨的模型北京时间 04:30，同屏比较哈尔滨、北京、深圳、乌鲁木齐与成都。固定朝北的地球镜头跟着地面，看晨昏线经过城市；切换节气保留此刻的参考时钟，选择城市和观察视角不改变日照状态。“带着这座城市，比较地轴倾角”将地点、公转位置、倾角与当日进度交给原有对照实验，再可返回三维全球与公转视图。两个实验各自的播放时钟保持独立，交接会暂停并保留所选状态。城市点按屏幕尺寸保持小型标记，选中处只显示细光圈；标记不是城市范围或真实大小。
 
 `physics/dayNightClock.ts` 将东经 120° 地方太阳时近似为 UTC+8 时钟，省略均时差。城市坐标取近似值；日出读数按五分钟取整，以点太阳中心高度 0° 为几何边界，不是当地日出预报。民用曙暮光标记采用 −6° 到 0°；更低的太阳仍可能产生其他曙暮光，地图颜色不表示测得的天空亮度。时钟、地图、晨昏线、城市状态和日出读数均消费原有 `solarGeometry.ts`，没有第二个动画时钟。

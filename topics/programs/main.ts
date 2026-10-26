@@ -10,9 +10,9 @@ import { createProgram, stepProgram, playProgram, pauseProgram, tickProgram, res
 translateDocument(t);
 const el = <T extends HTMLElement = HTMLElement>(id: string) => document.getElementById(id)! as T;
 const lab = document.querySelector<HTMLElement>('.program-lab')!;
-const presentation=mountPresentationFrame({root:lab,visual:'.workspace',paired:true,transport:'#status,#input-panel,#debug-panel',choices:'.chapters'});
+const presentation=mountPresentationFrame({root:lab,visual:'.workspace',paired:true,choices:'.chapters'});
 if(presentation){
- for(const node of lab.querySelectorAll('.scene-caption,#branch-preview,#child-note,.instruction-column>p.small'))presentation.notes.append(node);
+ for(const node of lab.querySelectorAll('#branch-preview,#child-note,.instruction-column>p.small,#input-panel>p.small:last-child,#debug-panel>p.small'))presentation.notes.append(node);
 }
 const reading = mountSceneReading(lab, { id: 'program-study', childTarget: el('child-note') });
 const states: Record<Scenario, ProgramState> = { sequence: createProgram('sequence'), condition: createProgram('condition'), debug: createProgram('debug') };
@@ -56,8 +56,17 @@ function renderCards(s: ProgramState) {
     if (index === s.pc && !ended) item.setAttribute('aria-current', 'step'); else item.removeAttribute('aria-current');
     item.querySelector('.card-marker')!.textContent = s.status === 'error' && index === s.pc - 1 ? '!' : index < s.pc ? '✓' : index === s.pc && !ended ? '→' : String(index + 1);
   });
+  // Only the card list scrolls; execution never pulls the scene or page away.
+  const list=el('instruction-cards'),current=list.querySelector<HTMLElement>('[aria-current="step"],.failed');
+  if(current&&list.scrollHeight>list.clientHeight){
+    const offset=current.getBoundingClientRect().top-list.getBoundingClientRect().top-list.clientTop+list.scrollTop;
+    if(offset<list.scrollTop)list.scrollTop=offset;
+    else if(offset+current.offsetHeight>list.scrollTop+list.clientHeight)list.scrollTop=offset+current.offsetHeight-list.clientHeight;
+  }
 }
 function render() {
+  const run = el<HTMLButtonElement>('run'), pause = el<HTMLButtonElement>('pause');
+  const focusedAction = [el<HTMLButtonElement>('step'), run, pause].find(button => button === document.activeElement);
   const s = current(); scene.draw(s); renderCards(s);
   lab.dataset.scenario = scenario; lab.dataset.status = s.status; lab.dataset.executed = String(s.executed);
   document.querySelectorAll<HTMLButtonElement>('[data-scenario]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.scenario === scenario)));
@@ -67,6 +76,9 @@ function render() {
   const ended = s.status === 'finished' || s.status === 'error';
   el<HTMLButtonElement>('step').disabled = ended; el<HTMLButtonElement>('run').disabled = ended || s.status === 'running'; el<HTMLButtonElement>('pause').disabled = s.status !== 'running';
   el('run').textContent = s.status === 'paused' ? t('继续执行') : t('连续执行');
+  // One visible playback action keeps the original controls and handlers intact.
+  run.hidden = s.status === 'running'; pause.hidden = s.status !== 'running';
+  if (focusedAction && (focusedAction.hidden || focusedAction.disabled)) (ended ? el<HTMLButtonElement>('reset') : s.status === 'running' ? pause : run).focus({ preventScroll: true });
   const status = statusText(s); if (el('status').textContent !== status) el('status').textContent = status;
   el('command-count').textContent = t('{{count}} 张卡', { count: s.instructions.length });
   el('sensor-status').textContent = s.sensor === null ? t('还没执行判断卡：传感器读数尚未读取。') : s.sensor ? t('判断时读到：有箱子。已经选择旁边的小路。') : t('判断时读到：没有箱子。已经选择直路。');

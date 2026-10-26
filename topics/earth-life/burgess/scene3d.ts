@@ -15,6 +15,10 @@ export function createBurgessScene(host: HTMLElement, options: { label: string; 
     stage.group.add(asset.group);
     stage.scene.fog = new THREE.Fog('#0b2025', 11, 24);
     stage.renderer.toneMappingExposure = .98;
+    // Museum-style inspection fill follows the observer, including under the body.
+    // It is a viewing aid, not a reconstruction of Cambrian light or tissue emission.
+    const inspectionFill = new THREE.DirectionalLight('#d2e0d8', .55);
+    stage.scene.add(inspectionFill, inspectionFill.target);
     // An unobtrusive original silt surface supplies spatial reference, not a fossil site map.
     const floorGeometry = new THREE.PlaneGeometry(24, 24, mobile ? 30 : 56, mobile ? 20 : 36);
     floorGeometry.rotateX(-Math.PI / 2);
@@ -42,14 +46,34 @@ export function createBurgessScene(host: HTMLElement, options: { label: string; 
     let rulerSuppressed = false;
     const projectRuler = () => {
       stage.camera.updateMatrixWorld();
+      inspectionFill.position.copy(stage.camera.position); inspectionFill.target.position.copy(stage.controls.target);
+      inspectionFill.intensity = stage.camera.position.y < stage.controls.target.y ? 2.2 : .55;
       const v = labelPosition.clone().project(stage.camera);
       label.style.left = `${(v.x + 1) * host.clientWidth / 2}px`; label.style.top = `${(1 - v.y) * host.clientHeight / 2}px`;
       label.hidden = rulerSuppressed || v.z < -1 || v.z > 1 || Math.abs(v.x) > 1 || Math.abs(v.y) > 1;
       stage.canvas.dataset.burgessCameraPosition = stage.camera.position.toArray().map(n => n.toFixed(4)).join(',');
     };
     stage.controls.addEventListener('change', projectRuler);
-    const resize = new ResizeObserver(projectRuler); resize.observe(host);
     let state: BurgessState | undefined, disposed = false;
+    // The nominal inspection offsets use the vertical field of view. Narrow
+    // stages retain that angular coverage along their shorter horizontal axis.
+    const viewportFit = () => host.clientWidth > 1 && host.clientHeight > 1 ? Math.max(1, host.clientHeight / host.clientWidth) : 1;
+    let viewportScale = viewportFit();
+    function syncViewingDepth() {
+      if (stage.scene.fog instanceof THREE.Fog) { stage.scene.fog.near = 11 * viewportScale; stage.scene.fog.far = 24 * viewportScale; }
+      stage.canvas.dataset.burgessViewportScale = viewportScale.toFixed(5);
+    }
+    const resize = new ResizeObserver(() => {
+      if (disposed || host.clientWidth < 2 || host.clientHeight < 2) return;
+      const nextScale = viewportFit(), ratio = nextScale / viewportScale;
+      if (Math.abs(ratio - 1) > 1e-6) {
+        const offset = stage.camera.position.clone().sub(stage.controls.target).multiplyScalar(ratio);
+        stage.controls.minDistance *= ratio; stage.controls.maxDistance *= ratio;
+        stage.camera.position.copy(stage.controls.target).add(offset);
+        viewportScale = nextScale; syncViewingDepth(); stage.controls.update(); stage.requestRender();
+      }
+      projectRuler();
+    }); resize.observe(host);
     function applyCamera(next: BurgessState) {
       const scale = asset.group.scale.x;
       const targets: Record<BurgessState['part'], [number, number, number]> = {
@@ -61,8 +85,9 @@ export function createBurgessScene(host: HTMLElement, options: { label: string; 
       };
       const factor = { whole: 1, shield: .59, head: .57, limbs: .62, tail: .64 }[next.part];
       const target = new THREE.Vector3(...targets[next.part]);
-      stage.controls.target.copy(target); stage.controls.minDistance = next.part === 'whole' ? 4.5 : 2.9;
-      stage.camera.position.copy(target).add(new THREE.Vector3(...offsets[next.camera]).multiplyScalar(factor)); stage.controls.update();
+      viewportScale = viewportFit(); syncViewingDepth();
+      stage.controls.target.copy(target); stage.controls.minDistance = (next.part === 'whole' ? 4.5 : 2.9) * viewportScale; stage.controls.maxDistance = 16 * viewportScale;
+      stage.camera.position.copy(target).add(new THREE.Vector3(...offsets[next.camera]).multiplyScalar(factor * viewportScale)); stage.controls.update();
       // The ventral inspection deliberately removes the illustrative floor from view.
       rulerSuppressed = next.camera === 'ventral'; floor.visible = !rulerSuppressed; ruler.visible = !rulerSuppressed; label.hidden = rulerSuppressed;
       projectRuler();

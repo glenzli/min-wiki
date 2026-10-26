@@ -48,7 +48,7 @@ function materialTexture(kind: InteriorLayer, size: number): THREE.CanvasTexture
     const u = x / size, v = y / size;
     const grain = Math.sin(x * 29.31 + y * 63.73) * Math.sin(x * 13.79 - y * 17.19);
     const broad = Math.sin(u * Math.PI * 14 + Math.sin(v * Math.PI * 7) * .7) * .5 + Math.sin(v * Math.PI * 18 + u * 5) * .3;
-    const fine = kind === 'mantle' || kind === 'crust' ? grain * 14 + broad * 14 : grain * 5 + broad * 7;
+    const fine = kind === 'mantle' || kind === 'crust' ? grain * 11 + broad * 2.2 : grain * 4 + broad * 1.6;
     const i = (y * size + x) * 4;
     image.data[i] = Math.max(0, Math.min(255, base[0] + fine));
     image.data[i + 1] = Math.max(0, Math.min(255, base[1] + fine * .8));
@@ -89,7 +89,7 @@ export function mountInteriorScene(host: HTMLElement, initial: InteriorState, co
   for (const [layer, inside, outside] of shells) {
     const texture = materialTexture(layer, textureSize);
     const metallic = layer === 'innerCore' || layer === 'outerCore';
-    const faceMaterial = new THREE.MeshStandardMaterial({ map: texture, roughness: metallic ? .43 : .92, metalness: metallic ? .32 : 0, side: THREE.DoubleSide });
+    const faceMaterial = new THREE.MeshStandardMaterial({ map: texture, bumpMap:texture,bumpScale:metallic?.0025:.008,roughness: metallic ? .35 : .94, metalness: metallic ? .58 : 0, side: THREE.DoubleSide });
     const sphereMaterial = faceMaterial.clone();
     if (layer === 'crust') {
       sphereMaterial.roughness = .83; sphereMaterial.color.set('#ffffff');

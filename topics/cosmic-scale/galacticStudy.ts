@@ -11,7 +11,7 @@ export class GalacticStudy {
   private words: typeof content.ui.en;
   private state: GalacticState;
   private scene?: GalacticScene;
-  private stage = make('div');
+  private stage = make('div', '', 'galactic-stage');
   private title = make('h2');
   private choices = make('select');
   private yaw = make('input');
@@ -29,6 +29,7 @@ export class GalacticStudy {
   private renderedCase = '';
   private drag?: { id: number; x: number; y: number };
   constructor(private root: HTMLElement, private language: string, initial: GalacticState, private changed: (state: GalacticState, checkpoint: boolean) => void, onward: () => void) {
+    this.copy.dataset.readerSupport='';
     this.state = { ...initial }; this.words = language === 'en' ? content.ui.en : content.ui.zh; const w = this.words;
     const text = (value: { zh: string; en: string }) => language === 'en' ? value.en : value.zh;
     const heading = make('div', '', 'galactic-heading'), choices = make('div', '', 'galactic-choices'); this.title.textContent = w.heading;

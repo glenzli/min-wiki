@@ -151,3 +151,5 @@ scale and playback limits are authored once in `learning.json` and projected int
 full entry. The original `limits` ID still receives each chapter's unchanged caution.
 Reader markers identify the outer visual, short caption and playback row; scientific
 models and controls retain their existing state and events.
+
+The native observation shell declares a main scene, essential playback/readout cluster and optional explanation/settings. Encounter and zoom views fit the available stage; the paired ruler comparison retains natural reading flow. Short landscape windows can place essential controls beside the same retained renderer. No chapter state, physical model or scene lease is replaced by resizing.

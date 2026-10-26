@@ -40,8 +40,12 @@ const observation = mountObservationMode(workspace, { enter: t('沉浸演示'), 
 ] });
 const title = el('chapter-title'); title.classList.add('observation-title'); observation.toolbar.prepend(title);
 observation.toolbar.insertBefore(el('scale-views'), observation.toolbar.children[1] ?? null);
+function updateLayout() {
+  workspace.querySelector<HTMLElement>('.layout')!.dataset.readerLayout = chapterId === 'scale' && workspace.dataset.scaleView === 'pair' ? 'flow' : 'stage';
+}
 document.querySelectorAll<HTMLButtonElement>('button[data-scale-view]').forEach(button => button.addEventListener('click', () => {
   workspace.dataset.scaleView = button.dataset.scaleView;
+  updateLayout();
   document.querySelectorAll('button[data-scale-view]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
 }));
 const href = (id: ChapterId) => languageHref(chapterHref(id, location.search));
@@ -110,6 +114,7 @@ async function selectChapter(id: ChapterId, push = false) {
   chapterId = id;
   document.body.dataset.chapter = id;
   workspace.dataset.activeChapter = id;
+  updateLayout();
   el('scale-views').hidden = id !== 'scale';
   if (push) history.pushState(null, '', href(id));
   (el('view') as HTMLSelectElement).value = views[id];

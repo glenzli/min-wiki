@@ -36,17 +36,20 @@ export function createOreScene(host:HTMLElement,options:{label:string;camera:str
   `+shader.fragmentShader;
   shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
    vec3 p=vOrePosition;float center=.14*sin(p.y*1.8)+.085*sin(p.z*2.1+p.y*.8);
-   float width=.13+.035*sin(p.y*2.7+p.z*3.1);float mainVein=1.0-smoothstep(width-.008,width+.008,abs(p.x-center));
-   float branchCenter=center+.45*(p.y+.16);float branch=(1.0-smoothstep(.035,.065,abs(p.x-branchCenter)))*smoothstep(-.8,-.2,p.y)*(1.0-smoothstep(.6,1.1,p.y));
+   // Small fixed contact irregularities stay attached to the same rock through
+   // rotation and cutting; they do not encode grade, crystal size or chronology.
+   float contact=.026*(onoise(p*17.0)-.5)+.012*(onoise(p*43.0)-.5);
+   float width=.13+.035*sin(p.y*2.7+p.z*3.1);float mainVein=1.0-smoothstep(width-.01,width+.01,abs(p.x-center+contact));
+   float branchCenter=center+.45*(p.y+.16);float branch=(1.0-smoothstep(.035,.065,abs(p.x-branchCenter+contact*.7)))*smoothstep(-.8,-.2,p.y)*(1.0-smoothstep(.6,1.1,p.y));
    float fine=onoise(p*78.0),medium=onoise(p*14.0),broad=onoise(p*3.3);
    // A fixed field orders the authored fill reveal. It is not a measured growth
    // direction, a phase-equilibrium calculation or a pore-flow solution.
    float fillOrder=.12+.7*clamp((p.y+1.5)/3.0,0.0,1.0)+.16*onoise(p*4.1);
    float fill=oreQuartz>=.9999?1.0:smoothstep(fillOrder-.08,fillOrder+.08,oreQuartz);
    float veinMask=max(mainVein,branch)*fill;
-   vec3 host=mix(vec3(.12,.145,.15),vec3(.31,.34,.31),broad)*(.73+.34*fine);host+=vec3(.11,.065,.015)*smoothstep(.58,.8,medium);
+   vec3 host=mix(vec3(.17,.195,.19),vec3(.28,.3,.27),broad)*(.8+.28*fine);host+=vec3(.055,.032,.008)*smoothstep(.58,.8,medium);
    float bands=.5+.5*sin((p.x-center)*90.0+onoise(p*21.0)*2.0);
-   vec3 quartz=mix(vec3(.62,.66,.62),vec3(.9,.91,.84),.45*medium+.4*bands+.15*fine);
+   vec3 quartz=mix(vec3(.6,.65,.61),vec3(.9,.91,.84),.44*medium+.24*bands+.32*fine);
    vec3 cell=floor(p*6.0);vec3 jitter=vec3(ohash(cell),ohash(cell+11.0),ohash(cell+29.0))*.5+.25;
    float grain=length(fract(p*6.0)-jitter);float metalReveal=smoothstep(.08+ohash(cell+17.0)*.8,.18+ohash(cell+17.0)*.8,oreSulfide);
    float metalPatch=(1.0-smoothstep(.38,.49,grain))*step(.57,ohash(cell+43.0))*veinMask*metalReveal;
@@ -60,9 +63,15 @@ export function createOreScene(host:HTMLElement,options:{label:string;camera:str
   shader.fragmentShader=shader.fragmentShader.replace('#include <roughnessmap_fragment>','#include <roughnessmap_fragment>\nroughnessFactor=mix(mix(.89,.26,veinMask),.16,metalPatch);');
   shader.fragmentShader=shader.fragmentShader.replace('#include <metalnessmap_fragment>','#include <metalnessmap_fragment>\nmetalnessFactor=mix(.025,.76,metalPatch);');
   // Fine spatial relief is independent of camera, progress and cutting depth.
-  shader.fragmentShader=shader.fragmentShader.replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\nnormal=normalize(normal+vec3(dFdx(fine)*.15,dFdy(fine)*.15,0.0)*(1.0-veinMask*.75));');
+  shader.fragmentShader=shader.fragmentShader.replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>
+    float reliefHeight=fine*.0035+veinMask*(.0015+medium*.004)+metalPatch*.002;
+    vec3 q0=dFdx(-vViewPosition),q1=dFdy(-vViewPosition);
+    vec3 n0=cross(q1,normal),n1=cross(normal,q0);
+    float determinant=dot(q0,n0);
+    vec3 gradient=sign(determinant)*(dFdx(reliefHeight)*n0+dFdy(reliefHeight)*n1);
+    normal=normalize(abs(determinant)*normal-gradient);`);
  };
- material.customProgramCacheKey=()=> 'authored-ore-vein-solid-v2';
+ material.customProgramCacheKey=()=> 'authored-ore-vein-solid-v3';
  const specimen=new THREE.Mesh(geometry,material);specimen.rotation.set(.02,-.1,-.16);group.add(specimen);
  const mount=new THREE.Mesh(new THREE.CylinderGeometry(1.85,1.9,.12,64),new THREE.MeshStandardMaterial({color:'#20363e',roughness:.7,metalness:.1}));mount.rotation.x=Math.PI/2;mount.position.z=-.84;group.add(mount);
  const marker=new THREE.Mesh(new THREE.TorusGeometry(.13,.015,6,32),new THREE.MeshBasicMaterial({color:'#edbd66',transparent:true,opacity:.92,depthTest:false}));marker.renderOrder=6;specimen.add(marker);

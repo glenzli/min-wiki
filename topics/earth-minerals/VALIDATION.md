@@ -99,3 +99,47 @@ Linux本地Chromium headless，`/usr/bin/chromium`，Three.js r170，Playwright�
 - `/tmp/mineral-growth-browser/zh-mobile-fallback.png`
 
 科学限制仍明确：18秒为教学展示长度，不是自然晶体生长时间；半径/高度插值不预测真实晶面动力学，五个主要晶体不表示模型晶核数；通用容量不是石英溶解度，蓝点不是原子或实测流动；回退是确定快照，不是真实溶解过程。所有形态及光学继续是程序创作，不是扫描、鉴定证据或精确晶格。
+
+## 本轮原生预览全场景精修 · 2026-10-25
+
+本节为本轮证据，不复用上方Linux harness数量冒充重测。基线`705f68bb`，局部未提交修改。实际使用macOS上的Codex原生IAB，`cua_repl`操作共享Reader预览`http://127.0.0.1:55291/encyclopedia/`，临时tab2，测得1280×720、DPR1.5。没有修改共享视口；390px矩阵、最终完整构建和全仓门禁由父任务负责，尚不能据本节宣称移动端或发布验收。保持草稿，未提交、推送或部署。
+
+### 改动及逐场景观察
+
+- `structure / carbon`：检查3D钻石/石墨、层滑移0/100、二维连接对照。仅提高深色石墨球棒的可见度，邻接关系与层位移模型不变。
+- `structure / quartz`：检查露出展品和自然位置，根部A为同一`-0.17,-1.12,0`；围壁改为接到基底的厚实体和开放观察口，固定晶体及母岩不移位。显示遮罩进入不透明阶段，避免后绘制的后壁盖住前方晶面。最终英文截图已实际检查可见晶体前面、基底接触和围壁。
+- 赋存四情景`vein/geode/pocket/grain`：逐一检查裂隙A连接、洞壁向内生长、晶囊接触及嵌晶粒；均为独立代表剖面，不是把同一晶簇变成另一环境。天然面/切磨面两种说明也逐一观察。
+- `growth`：改为展品先出现，播放/拖动仍靠近画面，对象、环境、阶段跳转和次要条件默认折叠。检查热液0/65/100，以及65→100→0→65：A–E、五组根部和析晶份额`0.30406243910751324`恢复一致，保留1canvas；离开结构/生长厅后0canvas。没有增加科学状态键。
+- 检查低供给热液终点无净析晶、同一母岩仍可见；慢冷熔体终点100份晶体/0玻璃/0熔体，急冷4份晶体/96玻璃/0熔体；蒸发仍为20%水量。修正蒸发图水柱以前与读数不一致的映射，最终高度43.6相对初始218为20%；符号晶粒布局限制在当前溶液显示区，并近图声明其位置、大小为示意。
+- `evidence`：六种虚拟标本全部实际观察，自制晶面明暗、横纹、板片或颗粒集合体加强区别；图形没有加入过滤证据。石英只开密度保留2/6相容；五证据全开时赤铁矿1/6，记录保持典型硬度5–6、红褐条痕和比较带限定。切到证据厅0canvas。
+- `resources`：保留二维材料账；默认8kg、-26代币。品位5%时40kg、230代币；只把价值改为2后仍40kg而余额-10。英文切换保留前述实验、证据、相机和预算选择，桌面没有横向溢出。
+
+热液主动播放已实际开始、进度推进；共享浏览器切到其他场景时停在中间态，符合隐藏即停。最终英文再次明确点播放到66.5%，再点暂停保留66.8%，`aria-pressed=false`，1canvas和A–E/根部A保持；当前tab捕获console error为0。此轮不冒充又完整计时了一次18秒终点，也没有重做旧harness的故障注入、真实后台或真机性能。既有有限播放/释放代码保持，最终资源及组合路由复核由父任务完成。
+
+### 本轮自动检查与范围
+
+`node --import tsx --test topics/earth-minerals/tests/*.test.mjs topics/earth-ores/tests/*.test.mjs`：21/21，其中本馆11/11；测试覆盖保留的模型、几何和状态契约，并非扫描鉴定或自然生长证明。最后一轮`npm run typecheck`、`npm run check:i18n`（83 namespace、7522 source messages）及限定两馆的`git diff --check`通过。未自行运行全站构建。
+
+最终自然位置帧：16,558 triangles、33 uploaded geometries、6 textures、DPR1.5；碳网络观察帧52,284 triangles。只是该帧Renderer计数，不据此声称完整GPU内存或固定FPS。源码身份：`scene.ts` SHA256 `c3dd00b3550dad8554c721586b0708dcdeac20df483b8bb872d4e50f12c192bb`，`study.ts` `6c51441b4a093c6ab12c0cdeda36fda40b1edaba63b7feb2685990f1f879b4d0`。
+
+### 给父任务的390px中英矩阵
+
+独立路线`/encyclopedia/topics/earth-minerals/`，每行加`lang=zh`与`lang=en`各查一次。下表只列区别参数；完整有效默认值由模块补齐，参数前缀均为`earth.minerals.`。
+
+| 观察 | 查询条件 |
+| --- | --- |
+| 碳结构/层滑移 | `view=structure&representation=carbon&shear=100` |
+| 自然/露出晶簇 | `view=structure&representation=quartz&exposure=0`，再比较`exposure=100` |
+| 四赋存/表面来源 | 同上，`occurrence=vein/geode/pocket/grain`逐个选择；`finish=natural/cut` |
+| 热液中间态 | `view=growth&environment=hydrothermal&progress=65&rate=30&supply=70` |
+| 无净析晶 | `view=growth&environment=hydrothermal&progress=100&supply=0` |
+| 慢冷/急冷 | `view=growth&environment=melt&progress=100&rate=0`及`rate=100` |
+| 蒸发终点 | `view=growth&environment=evaporation&progress=100&supply=70&rate=30` |
+| 证据六标本 | `view=evidence&specimen=quartz/calcite/gypsum/halite/pyrite/hematite`逐个选择，比较无证据与全部五证据 |
+| 预算与长英文 | `view=resources&grade=5&recovery=80&price=2&cost=90` |
+
+### 当前画面证据与限制
+
+本轮共用截图目录`/tmp/earth-minerals-ores-refine-20261025/`。本馆关键文件：`minerals-carbon-final-en.jpg`、`minerals-carbon-2d-final-en.jpg`、`minerals-quartz-natural-final-en.jpg`、`minerals-quartz-display.jpg`、`minerals-occurrence-{vein,geode,pocket,grain}.jpg`、`minerals-finish-{natural,cut}.jpg`、`minerals-growth-{0,65,100,no-crystals,melt-slow,melt-glass}.jpg`、`minerals-growth-65-final-en.jpg`、`minerals-evaporation-final-en.jpg`、`minerals-evidence-{quartz,calcite,gypsum,halite,pyrite,hematite,all-clues}.jpg`和`minerals-resource-en.jpg`。带`final`的文件包含最后一轮围岩/水柱修正；早期同名阶段图不替代它们。
+
+不需要新增生成图片。程序材质、面形和标本比例仍为代表性创作；哈希围岩遮罩有可见细颗粒显示纹理，不是实物孔隙或风化颗粒。没有增加真实晶面角、光学路径、晶体尺寸、矿物鉴定或实地采集保证。新手机证据布局尚待父任务实际核对，故不据桌面结果升级稿件成熟度。

@@ -92,7 +92,7 @@ select(chapter);mountReadingMode('details:not(.references):not(.plant-case-menu)
 
 foldPresentationContext('.cycle-panel');
 const readingControl=document.querySelector('.reading-mode')!;const oldMenu=readingControl.closest('.reading-mode-disclosure');caseMenu.querySelector('.plant-case-options')!.append(readingControl);oldMenu?.remove();
-caseMenu.addEventListener('keydown',event=>{if(event.key==='Escape'){event.preventDefault();event.stopPropagation();caseMenu.open=false;el('case-menu-title').focus();}});
+caseMenu.addEventListener('keydown',event=>{if(event.key==='Escape'&&caseMenu.open&&!event.defaultPrevented){event.preventDefault();event.stopPropagation();caseMenu.open=false;el('case-menu-title').focus();}});
 const mapDisclosure=document.querySelector<HTMLElement>('.cycle-panel')!.parentElement!;
 document.querySelector('.cycle-bridge')!.after(mapDisclosure);
 

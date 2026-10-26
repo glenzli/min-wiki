@@ -40,17 +40,13 @@
 .experience .view-controls button { min-height:36px; background:var(--surface); color:var(--secondary); border-color:var(--border); }
 .experience .view-controls button[aria-pressed="true"] { background:var(--tint); border-color:var(--accent); color:var(--ink); }
 .experience[data-observation="china"] #stage-buttons { display:none; }
-@media(min-width:1000px) {
-  html.presentation-page[data-topic-ui] .experience.presentation-frame { height:clamp(800px,calc(100dvh - 155px),960px); }
-  html.presentation-page[data-topic-ui] #daylight-lesson.presentation-frame { height:clamp(520px,calc(100dvh - 160px),720px); }
-}
 @media(max-width:680px) {
   .daynight-heading { flex-wrap:wrap; gap:6px; padding:8px 0; }
   .daynight-heading h2 { font-size:20px; }
   .reference-clock { flex-basis:100%; justify-content:space-between; }
   .reference-clock strong { font-size:34px; }
   .experience .view-controls { padding:0; justify-content:flex-start; }
-  .experience[data-observation="china"] .space-scene { height:360px; min-height:360px; }
+  .experience[data-observation="china"] .space-scene { height:var(--reader-stage-size); min-height:0; }
   .regional-label { font-size:12px; }
   .regional-legend { padding:0; gap:6px 12px; }
 }

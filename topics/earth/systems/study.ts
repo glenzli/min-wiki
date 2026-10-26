@@ -3,6 +3,8 @@ import './style.css';
 import { languageHref } from '../../../src/platform/i18n.ts';
 import type { StudyContext, StudyInstance } from '../studyContract.ts';
 import type { EarthView } from './earthScene.ts';
+import {mountWaterScene} from './waterScene';
+import {createFinitePlayback,type FinitePlayback} from '../finitePlayback';
 import {
   conditionKeys, observations, parseState, relativeSunlight, serializeState,
   skyFrame, waterFrame, waterPresets, type ConditionKey, type Observation, type WaterPreset,
@@ -40,18 +42,22 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   let state = parseState(context.initialState), disposed = false;
   const legacyObservation=state.observation!=='water';
   let earthView: EarthView | null = null, sceneGeneration = 0;
+  let waterView:ReturnType<typeof mountWaterScene>|undefined,waterPlayback:FinitePlayback|undefined;
   const root = host.ownerDocument.createElement('section');
-  root.className = 'earth-module systems-study';
+  root.className = 'earth-module systems-study'; root.dataset.readerWorkbench = '';
   const events = new AbortController();
   const el = <T extends Element = HTMLElement>(selector: string) => root.querySelector<T>(selector)!;
   const setText = (selector: string, value: string) => { const node = root.querySelector(selector); if (node) node.textContent = value; };
   const emit = () => { if (!disposed) context.onStateChange(serializeState(state)); };
   const clock = () => `${String(Math.floor(state.skyHour % 24)).padStart(2, '0')}:${state.skyHour % 1 ? '30' : '00'}`;
-  const range = (key: string, label: string, min: number, max: number, step: number) => `<label class="systems-slider"><span>${escapeText(label)} <output data-value="${key}"></output></span><input type="range" data-control="${key}" min="${min}" max="${max}" step="${step}" aria-label="${escapeText(label)}"></label>`;
+  const range = (key: string, label: string, min: number, max: number, step: number) => {
+    const output = `<output data-value="${key}"></output>`, input = `<input type="range" data-control="${key}" min="${min}" max="${max}" step="${step}" aria-label="${escapeText(label)}">`;
+    return key === 'waterProgress' ? `<label class="systems-slider" data-reader-scrub><span>${escapeText(label)}</span>${input}${output}</label>` : `<label class="systems-slider"><span>${escapeText(label)} ${output}</span>${input}</label>`;
+  };
   const sourceList = (observation: Observation) => `<div class="systems-sources"><p>${escapeText(c.sources)}</p><ul>${refs[observation].map(([label,url]) => `<li><a href="${escapeText(url)}" target="_blank" rel="noopener noreferrer">${escapeText(label)}</a></li>`).join('')}</ul></div>`;
   const svg = (viewBox: string, label: string, body: string) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${viewBox}" role="img" aria-label="${escapeText(label)}">${body}</svg>`;
 
-  root.innerHTML = `<nav class="systems-observations earth-controls" aria-label="${escapeText(c.title)}"><label>${escapeText(w('当前观察','Current observation'))}<select data-control="observation">${(legacyObservation?observations:['water'] as Observation[]).map(key => `<option value="${key}">${escapeText(c.navigation[key])}</option>`).join('')}</select></label></nav><div data-observation-body></div><footer class="systems-footer"><button type="button" data-action="previous">← ${escapeText(c.previous)}</button><button type="button" data-action="next">${escapeText(c.next)} →</button></footer>`;
+  root.innerHTML = `<nav class="systems-observations earth-controls" aria-label="${escapeText(c.title)}" data-reader-controls><label>${escapeText(w('当前观察','Current observation'))}<select data-control="observation">${(legacyObservation?observations:['water'] as Observation[]).map(key => `<option value="${key}">${escapeText(c.navigation[key])}</option>`).join('')}</select></label></nav><div data-observation-body></div><footer class="systems-footer" data-reader-actions><button type="button" data-action="previous">← ${escapeText(c.previous)}</button><button type="button" data-action="next">${escapeText(c.next)} →</button></footer>`;
   host.replaceChildren(root);
   if(legacyObservation){const notice=document.createElement('p');notice.className='earth-note';notice.textContent=w('这是此前保存的天空或宜居观察。相应问题也可以在大气、昼夜与四季等独立专题中继续。','This is a previously saved sky or habitability observation. Continue these questions in their independent atmosphere or day/night studies.');root.prepend(notice);}
   if(!legacyObservation){
@@ -74,15 +80,17 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
 
   function waterMarkup() {
     const t = c.water;
-    return `<header class="systems-heading"><h3 class="earth-section-title">${escapeText(t.question)}</h3><p>${escapeText(t.hint)}</p></header>
-      <div class="systems-water-workspace"><div><div class="earth-stage systems-water-stage" data-water-stage></div><div class="systems-water-result earth-readout" data-water-result role="status" aria-live="polite"></div></div>
-      <div class="systems-water-controls"><p class="systems-reference"><strong>${escapeText(t.a)}</strong><br>${escapeText(t.reference)}</p><div class="earth-controls">${range('waterTemp',t.temperature,5,25,1)}${range('waterSalt',t.salinity,30,38,.5)}</div>
-      <details class="systems-parameter-note"><summary>${escapeText(t.salinity)}</summary><p class="earth-note">${escapeText(t.saltNote)}</p></details>
-      <fieldset class="systems-presets"><legend>${escapeText(t.presets)}</legend><div class="earth-controls">${Object.keys(waterPresets).map(key => `<button type="button" data-preset="${key}" aria-pressed="false">${escapeText(t[key as WaterPreset])}</button>`).join('')}</div></fieldset>
-      <div class="systems-density-readout"><span>${escapeText(t.density)}</span><strong data-density-a></strong><strong data-density-b></strong><span>${escapeText(t.difference)} <output data-density-difference></output></span></div></div></div>
-      <div class="earth-controls systems-progress">${range('waterProgress',t.progress,0,1,.01)}<button type="button" data-action="water-start">${escapeText(t.start)}</button><button type="button" data-action="water-finish">${escapeText(t.finish)}</button></div>
-      <p class="earth-note">${escapeText(t.progressNote)}</p>
-      <section class="systems-global"><h3 class="earth-section-title">${escapeText(t.globalTitle)}</h3><p>${escapeText(t.globalIntro)}</p><div class="earth-stage systems-global-stage">${globalOcean()}</div><ol class="systems-global-legend"><li><span class="systems-key systems-surface-key"></span>${escapeText(t.surface)}</li><li><span class="systems-key systems-deep-key"></span>${escapeText(t.deep)}</li><li><span class="systems-key systems-return-key"></span>${escapeText(t.return)}</li></ol><p class="earth-note">${escapeText(t.globalNote)}</p></section>
+    return `<header class="systems-heading" data-reader-prose><h3 class="earth-section-title">${escapeText(t.question)}</h3></header>
+      <div class="systems-water-workspace" data-earth-presentation><div class="earth-stage systems-water-stage" data-water-stage data-reader-stage data-earth-visual data-reader-fit="available"></div>
+        <div class="earth-controls systems-progress" data-reader-transport data-earth-transport><div data-reader-actions><button type="button" data-action="water-play" aria-pressed="false">${escapeText(t.play)}</button><button type="button" data-action="water-start">${escapeText(t.start)}</button><button type="button" data-action="water-finish">${escapeText(t.finish)}</button></div>${range('waterProgress',t.progress,0,1,.01)}</div>
+        <div class="systems-water-result earth-readout" data-water-result role="status" aria-live="polite" data-reader-readout></div>
+        <div class="systems-water-controls" data-reader-controls><div class="earth-controls">${range('waterTemp',t.temperature,5,25,1)}${range('waterSalt',t.salinity,30,38,.5)}</div><p class="systems-reference" data-reader-caption>${escapeText(t.reference)}</p></div>
+      </div><p class="systems-introduction" data-reader-prose>${escapeText(t.hint)}</p>
+      <details class="systems-comparison earth-deeper" data-reader-prose><summary>${escapeText(t.comparisonDetails)}</summary>
+        <fieldset class="systems-presets"><legend>${escapeText(t.presets)}</legend><div class="earth-controls">${Object.keys(waterPresets).map(key => `<button type="button" data-preset="${key}" aria-pressed="false">${escapeText(t[key as WaterPreset])}</button>`).join('')}</div></fieldset>
+        <div class="systems-density-readout" data-reader-readout><span>${escapeText(t.density)}</span><strong data-density-a></strong><strong data-density-b></strong><span>${escapeText(t.difference)} <output data-density-difference></output></span></div><p class="earth-note">${escapeText(t.saltNote)}</p></details>
+      <p class="earth-note systems-section-note" data-reader-caption>${escapeText(t.sectionNote)}</p><p class="earth-note">${escapeText(t.progressNote)}</p>
+      <details class="systems-global earth-deeper"><summary>${escapeText(t.globalTitle)}</summary><p>${escapeText(t.globalIntro)}</p><div class="earth-stage systems-global-stage" data-reader-stage>${globalOcean()}</div><ol class="systems-global-legend" data-reader-legend><li><span class="systems-key systems-surface-key"></span>${escapeText(t.surface)}</li><li><span class="systems-key systems-deep-key"></span>${escapeText(t.deep)}</li><li><span class="systems-key systems-return-key"></span>${escapeText(t.return)}</li></ol><p class="earth-note">${escapeText(t.globalNote)}</p></details>
       <details class="earth-deeper"><summary>${escapeText(c.more)}</summary><h4>${escapeText(t.deepTitle)}</h4><p>${escapeText(t.deepText)}</p><p>${escapeText(t.model)}</p>${sourceList('water')}</details><p class="systems-bridge">${escapeText(t.bridge)}</p>`;
   }
 
@@ -99,14 +107,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
 
   function updateWater() {
     const f = waterFrame(state), t = c.water;
-    const symbols = f.parcels.map(parcel => `<g class="systems-parcel-${parcel.id.toLowerCase()}">${parcel.tracers.map(p => parcel.id === 'A'
-      ? `<circle cx="${p.x.toFixed(2)}" cy="${p.y.toFixed(2)}" r="5.5"/>`
-      : `<path d="M${p.x.toFixed(2)} ${(p.y-6).toFixed(2)}l6 6-6 6-6-6Z"/>`).join('')}<rect class="systems-parcel-label-bg" x="${parcel.x-21}" y="${parcel.y-17}" width="42" height="34" rx="12"/><text class="systems-parcel-label" x="${parcel.x}" y="${parcel.y+8}">${parcel.id}</text></g>`).join('');
-    const topClass = f.tendency === 'sink' ? 'systems-parcel-b' : 'systems-parcel-a';
-    const bottomClass = f.tendency === 'sink' ? 'systems-parcel-a' : 'systems-parcel-b';
-    el('[data-water-stage]').innerHTML = svg('0 0 600 340',t.diagram, `<path class="systems-water-tank" d="M80 62V288Q80 300 94 300H506Q520 300 520 288V62"/>
-      <g opacity="${f.tendency === 'neutral' ? 0 : (.09*f.progress).toFixed(3)}"><rect class="${topClass}" x="82" y="72" width="436" height="108"/><rect class="${bottomClass}" x="82" y="180" width="436" height="116"/></g>
-      <path class="systems-waterline" d="M82 72H518"/><path class="systems-layerline" opacity="${f.progress}" d="M84 180H516"/>${symbols}<text class="systems-level-label" x="40" y="110">${escapeText(t.top)}</text><text class="systems-level-label" x="40" y="275">${escapeText(t.bottom)}</text>`);
+    waterView?.update(f);
     setText('[data-water-result]',t[f.tendency]);
     setText('[data-density-a]',`A · ${f.densityA.toFixed(1)} kg/m³`);
     setText('[data-density-b]',`B · ${f.densityB.toFixed(1)} kg/m³`);
@@ -123,7 +124,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
 
   function skyMarkup() {
     const t = c.sky;
-    return `<header class="systems-heading"><h3 class="earth-section-title">${escapeText(t.question)}</h3><p>${escapeText(t.hint)}</p></header>
+    return `<header class="systems-heading" data-reader-prose><h3 class="earth-section-title">${escapeText(t.question)}</h3></header>
       <div class="systems-sky-grid"><figure><figcaption>${escapeText(t.daynightTitle)}</figcaption><div class="earth-stage systems-earth-three" data-earth-three></div><p class="earth-note" data-three-status role="status">${escapeText(w('正在准备地球图像…','Preparing the Earth view…'))}</p><button type="button" data-action="three-retry" hidden>${escapeText(w('重试三维图','Retry the 3D view'))}</button><div class="earth-controls">${range('skyHour',t.hour,0,24,.5)}</div><div class="systems-clock-stops">${[0,6,12,18].map((hour,i) => `<button type="button" data-hour="${hour}">${escapeText([t.zero,t.six,t.twelve,t.eighteen][i])}</button>`).join('')}</div><p class="earth-readout" data-daynight-result role="status" aria-live="polite"></p><p class="earth-note">${escapeText(w('EQ-A 是固定赤道站点；此处使用太阳时，不是当地民用时钟。','EQ-A is a fixed equatorial site. This is solar time, not a local civil clock.'))}</p><div class="systems-earth-camera"><p class="earth-note">${escapeText(w('拖动改变观察方向，双指／滚轮缩放；键盘方向键旋转，± 缩放，Home 还原视角。相机移动不会改变太阳时。','Drag to orbit; pinch or scroll to zoom. Arrow keys rotate, ± zoom, and Home resets the view. Moving the camera does not change solar time.'))}</p><button type="button" data-action="camera-reset">${escapeText(w('还原视角','Reset view'))}</button></div><details class="systems-polar-view" data-polar-view><summary>${escapeText(w('从北极上空核对昼夜（也可作为二维视图）','Check day and night from the North Pole · 2D view'))}</summary><div class="earth-stage systems-sky-stage" data-daynight-stage></div><p class="earth-note">${escapeText(t.timeNote)}</p></details></figure>
       <figure><figcaption>${escapeText(t.spaceTitle)}</figcaption><div class="earth-stage systems-space-stage" data-space-stage></div><p class="earth-note">${escapeText(t.scale)}</p><fieldset class="systems-layer-controls"><legend>${escapeText(t.layers)}</legend><div>${(['skyWind','skyField','skyAurora'] as const).map((key,i) => `<label><input type="checkbox" data-control="${key}"><span class="systems-layer-dot systems-layer-${i}"></span>${escapeText([t.wind,t.field,t.aurora][i])}</label>`).join('')}</div></fieldset><p class="earth-note">${escapeText(t.layerNote)}</p></figure></div>
       <p class="earth-note">${escapeText(w('三维图采用赤道直射日照的情景；轴在画面中竖直只是坐标选择，没有把真实地轴倾角改成零。静态地表与云纹理：Solar System Scope / INOVE，CC BY 4.0；不代表今天的云。站点与大气边缘为辨认而增强，层厚不可测量。','The 3D case has equatorial sunlight. A vertical axis is a coordinate choice, not a claim of zero real obliquity. Static Earth and cloud maps: Solar System Scope / INOVE, CC BY 4.0; not today’s clouds. The site marker and atmospheric rim are enhanced for visibility, not measurable layer thicknesses.'))}</p>
@@ -187,7 +188,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
 
   function conditionsMarkup() {
     const t = c.conditions;
-    return `<header class="systems-heading"><h3 class="earth-section-title">${escapeText(t.question)}</h3><p>${escapeText(t.hint)}</p></header><p class="systems-thread">${escapeText(t.thread)}</p>
+    return `<header class="systems-heading" data-reader-prose><h3 class="earth-section-title">${escapeText(t.question)}</h3></header><p class="systems-thread">${escapeText(t.thread)}</p>
       <label class="systems-condition-select">${escapeText(t.choose)}<select data-control="condition">${conditionKeys.map(key => `<option value="${key}">${escapeText(t[key].name)}</option>`).join('')}</select></label><div data-condition-body></div>
       <p class="systems-closing">${escapeText(t.closing)}</p>${cycleMarkup()}<details class="earth-deeper"><summary>${escapeText(c.sources)}</summary>${sourceList('conditions')}</details>`;
   }
@@ -225,12 +226,20 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   }
 
   function renderObservation() {
+    waterPlayback?.dispose();waterPlayback=undefined;waterView=undefined;
     disposeEarth();
     el('[data-observation-body]').innerHTML = state.observation === 'water' ? waterMarkup() : state.observation === 'sky' ? skyMarkup() : conditionsMarkup();
     for (const button of root.querySelectorAll<HTMLButtonElement>('.systems-observations [data-observation]')) button.setAttribute('aria-pressed',String(button.dataset.observation === state.observation));
     if(legacyObservation)el<HTMLButtonElement>('[data-action="previous"]').hidden = state.observation === 'water';
     if(legacyObservation)el<HTMLButtonElement>('[data-action="next"]').hidden = state.observation === 'conditions';
-    if (state.observation === 'water') updateWater();
+    if (state.observation === 'water') {
+      waterView=mountWaterScene(el<HTMLElement>('[data-water-stage]'),c.water);updateWater();
+      waterPlayback=createFinitePlayback({element:el<HTMLElement>('.systems-water-workspace'),id:'water-density-order',durationMs:7000,frameIntervalMs:100,reducedMotionSteps:10,visibilityTarget:el('[data-water-stage]'),
+        readProgress:()=>state.waterProgress,
+        writeProgress:fraction=>{state={...state,waterProgress:Math.round(fraction*100)/100};updateWater();emit();},
+        onPlayingChange:playing=>{const button=el<HTMLButtonElement>('[data-action="water-play"]');button.textContent=playing?c.water.pause:c.water.play;button.setAttribute('aria-pressed',String(playing));el('[data-water-result]').setAttribute('aria-live',playing?'off':'polite');},
+      });
+    }
     else if (state.observation === 'sky') { updateSky();prepareEarth(); }
     else renderCondition();
   }
@@ -247,8 +256,9 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     if (!(input instanceof HTMLInputElement) || input.type !== 'range') return;
     const key = input.dataset.control;
     if (!key) return;
+    if(state.observation==='water')waterPlayback?.pause();
     state = parseState({ ...serializeState(state), [key]: input.value });
-    if (state.observation === 'water') updateWater();
+    if (state.observation === 'water') {updateWater();waterPlayback?.sync();}
     else if (state.observation === 'sky') updateSky();
     else if (state.condition === 'orbit') updateOrbit();
     emit();
@@ -278,13 +288,14 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
       location.reload();
     }
     else if (button.dataset.preset && button.dataset.preset in waterPresets) {
-      state = {...state,...waterPresets[button.dataset.preset as WaterPreset]}; updateWater(); emit();
+      waterPlayback?.pause();state = {...state,...waterPresets[button.dataset.preset as WaterPreset]}; updateWater();waterPlayback?.sync(); emit();
     } else if (button.dataset.hour !== undefined) {
       state = parseState({...serializeState(state),skyHour:button.dataset.hour}); updateSky(); emit();
     } else if (button.dataset.distance !== undefined) {
       state = parseState({...serializeState(state),orbitDistance:button.dataset.distance}); updateOrbit(); emit();
+    } else if(button.dataset.action==='water-play'){waterPlayback?.toggle();
     } else if (button.dataset.action === 'water-start' || button.dataset.action === 'water-finish') {
-      state = {...state,waterProgress:button.dataset.action === 'water-start' ? 0 : 1}; updateWater(); emit();
+      waterPlayback?.setProgress(button.dataset.action==='water-start'?0:1);
     } else if (button.dataset.action === 'next' || button.dataset.action === 'previous') {
       const index = observations.indexOf(state.observation) + (button.dataset.action === 'next' ? 1 : -1);
       if (observations[index]) selectObservation(observations[index]);
@@ -295,7 +306,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   emit();
   return {
     // No scientific clock or ambient animation runs automatically.
-    pause() { earthView?.pause(); },
-    dispose() { if (disposed) return; disposed = true; disposeEarth(); events.abort(); root.remove(); },
+    pause() { waterPlayback?.pause();earthView?.pause(); },
+    dispose() { if (disposed) return; disposed = true; waterPlayback?.dispose();waterView=undefined;disposeEarth(); events.abort(); root.remove(); },
   };
 }

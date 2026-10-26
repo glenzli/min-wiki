@@ -28,7 +28,7 @@ function cellPath(cell:typeof seaCells[number],amount:number,round:boolean){
 }
 export function evidenceDrawing(mode:ClimateState['evidenceMode'],progress:number) {
   const t=Math.max(0,Math.min(1,progress/100));let drawing='';
-  const frame='<path d="M30 25H604L628 46V303H54L30 282Z" fill="#a4a7a0"/><path d="M30 25H604V282H30Z" fill="#dfe7e4"/>';
+  const frame='<defs><radialGradient id="sample-ice"><stop stop-color="#f6fbf7"/><stop offset=".63" stop-color="#e0eceb"/><stop offset="1" stop-color="#a3c1cc"/></radialGradient><radialGradient id="sample-stone"><stop stop-color="#c9c5af"/><stop offset=".62" stop-color="#858d80"/><stop offset="1" stop-color="#525f59"/></radialGradient><linearGradient id="sample-core"><stop stop-color="#83adbc"/><stop offset=".25" stop-color="#d5e9ea"/><stop offset=".65" stop-color="#bfdce2"/><stop offset="1" stop-color="#75a2b4"/></linearGradient><clipPath id="sample-slice"><path d="M30 25H604V282H30Z"/></clipPath></defs><path d="M30 25H604L628 46V303H54L30 282Z" fill="#8c9995"/><path d="M30 25H604V282H30Z" fill="#dfe7e4"/>';
   if(mode==='seaice'){
     drawing='<path d="M30 25H604V282H30Z" fill="#42788c"/>';
     for(const cell of seaCells){
@@ -46,7 +46,7 @@ export function evidenceDrawing(mode:ClimateState['evidenceMode'],progress:numbe
     drawing='<path d="M30 25H604V282H30Z" fill="#5c8392"/>';
     for(const cell of snowCells){
       const id=cell.id,corner=cell.points[1];
-      drawing+=`<path data-material-id="A-P2-grain-${id}" d="${cellPath(cell,.65+.35*t,true)}" fill="${['#e7eeea','#cfdee0','#deece8','#eef5ed'][id%4]}" stroke="#f5fcf5" stroke-width="1.5"/>`;
+      drawing+=`<path data-material-id="A-P2-grain-${id}" d="${cellPath(cell,.65+.35*t,true)}" fill="url(#sample-ice)" stroke="#d4e5e5" stroke-width=".7"/>`;
       if(id%3===0)drawing+=`<ellipse data-material-id="A-P2-air-${id}" cx="${corner.x*.83+cell.center.x*.17}" cy="${corner.y*.83+cell.center.y*.17}" rx="${10*(1-t)+2}" ry="${7*(1-t)+1.8}" fill="#608799" stroke="#b3d0d7" stroke-width="1"/>`;
     }
     drawing+=speckle('#f7fff126');
@@ -54,17 +54,18 @@ export function evidenceDrawing(mode:ClimateState['evidenceMode'],progress:numbe
     drawing='<path d="M30 25H604V282H30Z" fill="#a69b81"/><path d="M30 55Q200 71 604 55V102Q350 123 30 99Z" fill="#c5b99c"/><path d="M30 107Q210 123 604 106V130H30Z" fill="#8b826d"/>';
     for(let i=0;i<120;i++){
       const x=47+noise(i*3)*536,y=143+noise(i*3+1)*122,r=i%11===0?13+noise(i)*14:1+noise(i*3+2)*5;
-      drawing+=`<ellipse data-material-id="A-P3-clast-${i}" cx="${x}" cy="${y}" rx="${r}" ry="${r*(.45+noise(i+4)*.4)}" transform="rotate(${noise(i+7)*120} ${x} ${y})" fill="${['#777d75','#d3c7af','#5d6864','#b9b6a5'][i%4]}" stroke="#6e715f" stroke-width=".6"/>`;
+      const outline=Array.from({length:11},(_,j)=>{const a=j/11*Math.PI*2,scale=.82+noise(i*19+j*7)*.28;return `${j?'L':'M'}${x+Math.cos(a)*r*scale} ${y+Math.sin(a)*r*scale*(.5+noise(i+4)*.32)}`;}).join(' ')+'Z';
+      drawing+=`<path data-material-id="A-P3-clast-${i}" d="${outline}" fill="${i%3?'url(#sample-stone)':'#bdb49b'}" stroke="#666f5e" stroke-width=".6" clip-path="url(#sample-slice)"/>`;
     }
     drawing+=speckle('#575b4138');
   }else if(mode==='scratches'){
-    drawing='<path d="M30 25H604V282H30Z" fill="#9da8a3"/>'+speckle('#36443c4a');
+    drawing='<path d="M30 25H604V282H30Z" fill="url(#sample-stone)"/>'+speckle('#36443c4a');
     for(let i=0;i<49;i++){
       const y=35+i*4.9,dx=noise(i+5)*55;
       drawing+=`<path data-material-id="A-P4-groove-${i}" d="M${45+dx} ${y}Q310 ${y+25} ${570-dx/2} ${y+42}" stroke="${i%4?'#71837d':'#d8e0d7'}" opacity="${.3+.7*t}" stroke-width="${i%7===0?3.1:.8}" fill="none"/>`;
     }
   }else{
-    drawing='<path d="M235 37Q320 7 405 37V265Q320 299 235 265Z" fill="#b9d4da" stroke="#7298a5" stroke-width="2"/>';
+    drawing='<path d="M235 37Q320 7 405 37V265Q320 299 235 265Z" fill="url(#sample-core)" stroke="#7298a5" stroke-width="2"/>';
     for(let i=0;i<40;i++){
       const y=43+i*5.5;
       drawing+=`<path data-material-id="A-P5-layer-${i}" d="M238 ${y}Q319 ${y+20+noise(i)*4} 402 ${y}" fill="none" stroke="${i%6?'#e6f1ec':'#789caa'}" stroke-width="${i%6?1:3}"/>`;

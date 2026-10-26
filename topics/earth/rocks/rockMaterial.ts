@@ -3,6 +3,7 @@ import type {SpecimenId} from './model';
 const ids: Record<SpecimenId, number> = { granite: 0, basalt: 1, sandstone: 2, limestone: 3, slate: 4, marble: 5, gneiss: 6 };
 const shaderFunctions = /* glsl */`
 varying vec3 vRockPoint;
+varying vec3 vRockStructure;
 uniform float uRockKind;
 uniform float uRockTo;
 uniform float uRockBlend;
@@ -30,6 +31,9 @@ vec3 rockCell(vec3 p) {
   return vec3(identity,sqrt(nearest),max(0.0,sqrt(second)-sqrt(nearest)));
 }
 vec3 rockColour(vec3 p,float kind) {
+  // Display-only added cement: separate from the retained source batches and
+  // from a whole sandstone specimen. No cement mineral or volume is predicted.
+  if(kind>7.5)return mix(vec3(.4,.34,.24),vec3(.6,.53,.39),rockNoise(p*68.0))*(.92+.08*rockNoise(p*260.0));
   if(kind>6.5)return mix(vec3(.51,.39,.34),vec3(.79,.7,.64),rockNoise(p*80.0))*(.9+.1*rockNoise(p*230.0));
   float grit=rockNoise(p*115.0), cloud=rockNoise(p*7.5), fine=rockNoise(p*310.0);
   if(kind<0.5) {
@@ -48,11 +52,15 @@ vec3 rockColour(vec3 p,float kind) {
     return mix(base,vec3(.45,.47,.4),lath*.52)*(1.0-pore*.72);
   }
   if(kind<2.5) {
-    vec3 c=rockCell(p*45.0);
+    vec3 c=rockCell(p*20.0);
     float bed=sin((p.y+sin(p.z*4.0)*.022)*30.0);
-    vec3 base=mix(vec3(.53,.31,.15),vec3(.75,.57,.35),c.x*.65+grit*.28);
-    base*=.86+.14*bed;
-    return mix(base,vec3(.37,.27,.16),1.0-smoothstep(.003,.05,c.z))*(.92+fine*.17);
+    float radius=.36+.13*c.x;
+    float grain=1.0-smoothstep(radius-.025,radius+.035,c.y);
+    vec3 body=mix(vec3(.58,.37,.2),vec3(.83,.67,.44),c.x*.65+grit*.28);
+    body*=.9+.1*bed;
+    vec3 cement=mix(vec3(.43,.34,.23),vec3(.58,.46,.3),cloud*.6+fine*.25);
+    float pore=(1.0-grain)*smoothstep(.73,.86,rockNoise(p*95.0));
+    return mix(cement,body,grain)*(1.0-pore*.37)*(.94+fine*.12);
   }
   if(kind<3.5) {
     vec3 c=rockCell(p*9.0);
@@ -73,18 +81,19 @@ vec3 rockColour(vec3 p,float kind) {
     base=mix(base,vec3(.37,.43,.42),1.0-smoothstep(.015,.085,vein));
     return base*(.9+.1*smoothstep(.002,.04,c.z));
   }
-  float folded=p.y*31.0+sin(p.x*4.5+p.z*2.0)*2.3+sin(p.z*6.0)*.8+rockNoise(p*5.0)*1.4;
+  float folded=p.y*24.0+sin(p.x*3.0+p.z*1.5)*1.6+sin(p.z*6.0)*.8+rockNoise(p*2.4)*4.7;
   vec3 grain=rockCell(p*27.0);
   float band=smoothstep(-.4,.3,sin(folded+grain.x*.5));
-  vec3 base=mix(vec3(.12,.18,.16),vec3(.67,.64,.53),band);
+  vec3 base=mix(vec3(.17,.22,.2),vec3(.59,.57,.48),band);
   return base*(.75+.23*grain.x+.2*grit)+vec3(fine*.025);
 }
 float rockHeight(vec3 p,float kind) {
+  if(kind>7.5)return rockNoise(p*105.0)*.0012;
   if(kind>6.5)return rockNoise(p*140.0)*.0018;
   float fine=rockNoise(p*140.0)*.0007+rockNoise(p*48.0)*.001;
   if(kind<.5) return fine+rockCell(p*14.0).z*.009;
   if(kind<1.5) return fine-smoothstep(.76,.87,rockNoise(p*33.0))*.014;
-  if(kind<2.5) return fine+rockCell(p*45.0).z*.009;
+  if(kind<2.5) {vec3 c=rockCell(p*20.0);return fine+(1.0-smoothstep(.335+.13*c.x,.395+.13*c.x,c.y))*.0035;}
   if(kind<3.5) return fine*.6;
   if(kind<4.5) return fine*.4+sin(p.y*400.0)*.0007;
   if(kind<5.5) return fine*.35+rockCell(p*22.0).z*.003;
@@ -92,24 +101,28 @@ float rockHeight(vec3 p,float kind) {
 }
 `;
 
-export function rockMaterial(specimen: SpecimenId): MeshStandardMaterial {
+export function rockMaterial(specimen: SpecimenId,coordinates:'local'|'origin'|'world'='local'): MeshStandardMaterial {
   const material = new MeshStandardMaterial({ color: 0xffffff, roughness: specimen === 'marble' ? .51 : specimen === 'slate' ? .68 : .86, metalness: 0 });
   material.userData.from={value:ids[specimen]};material.userData.to={value:ids[specimen]};material.userData.blend={value:0};
   material.onBeforeCompile = shader => {
     shader.uniforms.uRockKind=material.userData.from;shader.uniforms.uRockTo=material.userData.to;shader.uniforms.uRockBlend=material.userData.blend;
-    shader.vertexShader = `varying vec3 vRockPoint;\n${shader.vertexShader}`.replace('#include <begin_vertex>', '#include <begin_vertex>\nvRockPoint = position;');
+    const world='(modelMatrix*vec4(position,1.0)).xyz';
+    shader.vertexShader = `${coordinates==='origin'?'attribute vec3 rockOrigin;\n':''}varying vec3 vRockPoint;\nvarying vec3 vRockStructure;\n${shader.vertexShader}`.replace('#include <begin_vertex>', `#include <begin_vertex>\nvRockPoint = ${coordinates==='origin'?'rockOrigin':coordinates==='world'?world:'position'};\nvRockStructure=${coordinates==='local'?'position':world};`);
     shader.fragmentShader = shaderFunctions + shader.fragmentShader;
-    shader.fragmentShader = shader.fragmentShader.replace('#include <color_fragment>', '#include <color_fragment>\ndiffuseColor.rgb *= mix(rockColour(vRockPoint,uRockKind),rockColour(vRockPoint,uRockTo),uRockBlend);');
+    shader.fragmentShader = shader.fragmentShader.replace('#include <color_fragment>', `#include <color_fragment>
+      vec3 pointFrom=uRockKind>5.5&&uRockKind<6.5?vRockStructure:vRockPoint;
+      vec3 pointTo=uRockTo>5.5&&uRockTo<6.5?vRockStructure:vRockPoint;
+      diffuseColor.rgb *= mix(rockColour(pointFrom,uRockKind),rockColour(pointTo,uRockTo),uRockBlend);`);
     shader.fragmentShader = shader.fragmentShader.replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
       vec3 q0 = dFdx(-vViewPosition), q1 = dFdy(-vViewPosition);
-      float bump = mix(rockHeight(vRockPoint,uRockKind),rockHeight(vRockPoint,uRockTo),uRockBlend);
+      float bump = mix(rockHeight(pointFrom,uRockKind),rockHeight(pointTo,uRockTo),uRockBlend);
       vec3 n0 = cross(q1, normal), n1 = cross(normal, q0);
       float determinant = dot(q0, n0);
       vec3 gradient = sign(determinant) * (dFdx(bump)*n0 + dFdy(bump)*n1);
       normal = normalize(abs(determinant)*normal - gradient);
     `);
   };
-  material.customProgramCacheKey = () => `earth-rock-${specimen}-1`;
+  material.customProgramCacheKey = () => `earth-rock-${specimen}-${coordinates}-3`;
   return material;
 }
 

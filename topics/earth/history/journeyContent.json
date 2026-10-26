@@ -1,0 +1,643 @@
+{
+  "version": 1,
+  "sources": {
+    "dating": {
+      "title": "NIST — How Do You Know the Age of Fossils and Other Old Things?",
+      "url": "https://www.nist.gov/how-do-you-measure-it/how-do-you-know-age-fossils-and-other-old-things",
+      "access": "Official explanation opened; radiometric-clock and 4.54 Ga context."
+    },
+    "disk": {
+      "title": "ESO/ALMA — Revolutionary ALMA Image Reveals Planetary Genesis",
+      "url": "https://www.eso.org/public/news/eso1436/",
+      "access": "Observatory research release opened; HL Tauri disk observations, not an image of the early Solar System."
+    },
+    "separation": {
+      "title": "AMNH — Formation of Our Solar System",
+      "url": "https://www.amnh.org/exhibitions/permanent/the-universe/planets/formation-of-our-solar-system",
+      "access": "Official indexed account checked; direct page retrieval was mostly navigation."
+    },
+    "moon": {
+      "title": "NASA — Moon Formation",
+      "url": "https://science.nasa.gov/moon/formation/",
+      "access": "Official sample-based formation account opened; formation conditions remain unresolved."
+    },
+    "moonModels": {
+      "title": "NASA — Where Did Our Moon Come From?",
+      "url": "https://www.nasa.gov/general/where-did-our-moon-come-from-we-asked-a-nasa-scientist-episode-29/",
+      "access": "NASA scientist account opened; distinguishes historical alternatives from the current impact framework."
+    },
+    "water": {
+      "title": "Wilde et al. (2001) — Evidence from detrital zircons for continental crust and oceans",
+      "url": "https://www.nature.com/articles/35051550",
+      "access": "Original abstract and figure descriptions opened; subscription full text not used."
+    },
+    "life": {
+      "title": "Djokic et al. (2017) — Earliest signs of life on land preserved in ca. 3.5 Ga hot spring deposits",
+      "url": "https://www.nature.com/articles/ncomms15263",
+      "access": "Original indexed abstract checked via PMC search result; publisher authentication and PMC CAPTCHA blocked direct full-text access."
+    },
+    "oxygen": {
+      "title": "Gumsley et al. (2017) — Timing and tempo of the Great Oxidation Event",
+      "url": "https://www.pnas.org/doi/10.1073/pnas.1608824114",
+      "access": "Original significance, abstract and relevant geological discussion opened."
+    },
+    "oxygenBudget": {
+      "title": "Ozaki et al. (2019) — Anoxygenic photosynthesis and delayed atmospheric oxygenation",
+      "url": "https://www.nature.com/articles/s41467-019-10872-z",
+      "access": "Original open-access abstract and introduction opened."
+    },
+    "iron": {
+      "title": "NASA Astrobiology — The Biology Behind Banded Iron Formations",
+      "url": "https://astrobiology.nasa.gov/news/the-biology-behind-banded-iron-formations/",
+      "access": "NASA-supported research account opened; includes oxygen-independent iron oxidation."
+    },
+    "cryogenian": {
+      "title": "ICS Subcommission on Cryogenian Stratigraphy",
+      "url": "https://cryogenian.stratigraphy.org/",
+      "access": "Official stratigraphic context opened; not a continuous ice-coverage record."
+    },
+    "snowballRecord": {
+      "title": "Lechte et al. (2019) — Subglacial meltwater supported aerobic marine habitats during Snowball Earth",
+      "url": "https://doi.org/10.1073/pnas.1909165116",
+      "access": "Original indexed abstract and introduction checked; direct publisher retrieval returned 403."
+    },
+    "snowball": {
+      "title": "NASA GISS — Snowball Earth Might Have Been Slushy",
+      "url": "https://www.giss.nasa.gov/research/features/201508_slushball/",
+      "access": "Archived research account opened; used only for coverage uncertainty and model comparison, not its outdated period dates or durations."
+    },
+    "cambrian": {
+      "title": "Smithsonian — The Cambrian Explosion of Life with Karma Nanglu",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/paleontology/cambrian-explosion-life-paleontologist-karma-nanglu",
+      "access": "Museum researcher account opened; original fossil comparisons, not exact dates for the procedural scene."
+    },
+    "burgess": {
+      "title": "Royal Ontario Museum — Waptia fossil and brood-care research",
+      "url": "https://www.rom.on.ca/news-releases/burgess-shale-fossil-site-reveals-oldest-evidence-brood-care",
+      "access": "Research-team release opened; fossil community age is distinct from the Cambrian boundary; oldest superlative not adopted."
+    },
+    "cairo": {
+      "title": "Cardiff research team — Cairo fossil forest",
+      "url": "https://www.cardiff.ac.uk/news/view/1739669-scientists-uncover-worlds-oldest-forest",
+      "access": "Research-team release opened; in-place roots and paleosols checked; oldest headline not adopted."
+    },
+    "permian": {
+      "title": "Penn et al. (2018) — Temperature-dependent hypoxia and end-Permian extinction",
+      "url": "https://www.science.org/doi/10.1126/science.aat1327",
+      "access": "Original publisher returned 403; claims checked against the authors institution release linked as permianTeam."
+    },
+    "permianTeam": {
+      "title": "University of Washington — End-Permian ocean warming and oxygen research",
+      "url": "https://www.washington.edu/news/2018/12/06/biggest-extinction-in-earths-history-caused-by-global-warming-leaving-ocean-animals-gasping-for-breath/",
+      "access": "Research-team institutional account opened; no fixed extinction percentage or complete recovery timetable adopted."
+    },
+    "kpg": {
+      "title": "Hull et al. (2020) — On impact and volcanism across the K–Pg boundary",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/31949074/",
+      "access": "Direct PubMed body unavailable; NASA research account linked as kpgTeam used for the stated timing/model comparison."
+    },
+    "kpgTeam": {
+      "title": "NASA Astrobiology — Impacts and Volcanism at the End-Cretaceous",
+      "url": "https://astrobiology.nasa.gov/news/impacts-and-volcanism-at-the-end-cretaceous/",
+      "access": "NASA-supported research account opened; differentiates impact timing from volcanic background."
+    },
+    "earth": {
+      "title": "NASA — Facts About Earth",
+      "url": "https://science.nasa.gov/earth/facts/",
+      "access": "Official present-Earth and formation context opened; not used to label the mantle as a liquid ocean or assign exact ancient geography."
+    },
+    "zirconShape": {
+      "title": "Handbook of Mineralogy — Zircon",
+      "url": "https://www.handbookofmineralogy.org/pdfs/zircon.pdf",
+      "access": "Mineralogical reference PDF opened; tetragonal prismatic habit and variable real appearances, not an observed Jack Hills specimen."
+    },
+    "zirconZones": {
+      "title": "Bjerga et al. (2022) — Radiation damage allows identification of truly inherited zircon",
+      "url": "https://www.nature.com/articles/s43247-022-00372-2",
+      "access": "Original open-access paper opened; qualitative growth-zone examples, not calibrated isotope or luminescence intensities."
+    },
+    "glacialStriations": {
+      "title": "National Park Service — Glacial Striations",
+      "url": "https://www.nps.gov/articles/glacialstriations.htm",
+      "access": "Official process explanation opened; rock and sediment in basal ice can abrade bedrock. Modern examples are not dated Cryogenian localities."
+    },
+    "till": {
+      "title": "USGS Open-File Report 2004-1216 — Glacial deposits",
+      "url": "https://pubs.usgs.gov/of/2004/1216/text.html",
+      "access": "Micro-scene collaborator reported a direct check of unsorted heterogeneous till; this task independently attempted the page and received 403. No additional quantitative claim used."
+    },
+    "kpgFossils": {
+      "title": "Smithsonian — Mass Extinction: Solving the Dinosaur Mystery",
+      "url": "https://naturalhistory.si.edu/education/teaching-resources/paleontology/mass-extinction-solving-dinosaur-mystery",
+      "access": "Museum researcher account opened; fossil evidence and recovery, rather than all life disappearing."
+    },
+    "magmaOceans": {
+      "title": "Elkins-Tanton (2011) — Formation of early water oceans on rocky planets",
+      "url": "https://arxiv.org/abs/1011.2710",
+      "access": "Original model paper and full text checked in this refinement; melt crystallization, outgassing and water retention depend on model conditions. No global ancient melt fraction or atmosphere appearance is adopted."
+    },
+    "metalMixing": {
+      "title": "Deguen, Landeau and Olson (2014) — Turbulent metal–silicate mixing, fragmentation, and equilibration in magma oceans",
+      "url": "https://arxiv.org/abs/1402.1666",
+      "access": "Original experimental paper and full text checked in this refinement; entrainment and fragmentation inform variable illustrative metal parcels, not a calculated core formation history."
+    }
+  },
+  "zh": {
+    "title": "从形成推断到今天：同一颗地球的证据旅程",
+    "intro": "先看整球的定性变化，再接近一个合理的局部例子，最后检查材料留下的线索。三种观察层次共用当前年代与事件，不能互相替代证据。",
+    "views": {
+      "globe": "整球重建",
+      "local": "局部环境",
+      "evidence": "材料与微观"
+    },
+    "viewQualifications": {
+      "globe": "整球为定性教学重建；古海陆与冰雾不是实测复原。地月距离和小天体尺寸经过展示缩放。",
+      "local": "与当前阶段相关的合理局部例子，不是从球面标记地点实测或精确复原的场景。",
+      "evidence": "放大的教学模型，非样品照片或扫描；矿物、细胞、生物和层理不共用真实比例。真实证据需结合来源中的测量与地质背景。"
+    },
+    "scienceClasses": {
+      "observation": "观测线索",
+      "inference": "基于证据的推断",
+      "hypothesis": "有待检验的形成假说"
+    },
+    "playbackQualification": "先停留观察，再加速跨时；进度不是地质速率。完整线性年代尺可展开查看。",
+    "cueQualification": "核心、熔融、水、陆、冰、雾、植被与撞击提示均为独立的0—1绘图强度，不是实测百分比、浓度、概率或守恒预算。",
+    "continuity": "切换观察层次保留同一年代、事件与选中的展示位置；回退只是重新取样，不把推断改成古代录像。",
+    "stages": {
+      "formation": {
+        "label": "盘中的物质，怎样聚成地球？",
+        "question": "一颗行星能从分散的小颗粒开始吗？",
+        "seeing": "观察尘粒、小天体与长大的原始地球；接近表面，比较粗糙冷壳、暴露熔体和其中缓慢变化的热纹理。",
+        "local": "近景放大同一颗原始地球表面的冷壳与熔体高低差；冷壳不等于现代板块，流纹也没有标定真实速度。",
+        "evidence": "陨石中的矿物与放射性时钟、其他年轻恒星周围的盘，分别约束早期材料和行星形成模型。",
+        "qualification": "形成过程是基于证据的推断；45.4亿年是沿用的近似地球年龄，不是吸积完成的精确时刻。尘粒、距离与播放速度不等比例。 热熔体与暂时冷却表皮展示形成过程中的一种片段，不代表早期地球每个时刻的统一外观或实测熔融比例。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "dating",
+          "disk",
+          "separation",
+          "magmaOceans"
+        ]
+      },
+      "separation": {
+        "label": "受热以后，内部怎样重新分配？",
+        "question": "金属与岩石会一直均匀混在一起吗？",
+        "seeing": "在同一颗热的原始地球中观察金属富集区域与外部硅酸盐的分离。",
+        "local": "局部剖面展示大小不一的金属团拉长、分散并向内富集，中央富集区随展示过程增强；这不是拍到的古地核或完整流体计算。",
+        "evidence": "不同陨石保存金属与硅酸盐材料；它们帮助比较行星分异，并不是从地球地核取出的样品。",
+        "qualification": "约45亿年的路标不表示分异在一天内完成，也不表示今天固态内核在那时形成；颜色与层厚不代表测量。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "separation",
+          "dating",
+          "moon",
+          "metalMixing"
+        ]
+      },
+      "moon": {
+        "label": "一次大碰撞，能解释月球的来历吗？",
+        "question": "月岩给形成假说设置了哪些条件？",
+        "seeing": "先观察撞击体接触原始地球，再看碎屑向外分布、轨道物质逐渐聚集；喷出物与月球不会在接触前提前出现。",
+        "local": "近景只是大碰撞框架的一种教学构型；物体比例、轨道与时间都未作动力学求解。",
+        "evidence": "月球样品的组成与高温历史、地月材料比较和轨道条件共同检验模型；放大的颗粒不是撞击诊断测量。",
+        "qualification": "大碰撞是当前主要的月球形成假说；具体时间、初始条件和物质混合仍有研究空间。它与分异共用约45亿年路标，不是同一个事件。 碰撞体、盘与地月间距没有共用真实比例；动作时长不是实际形成时间。",
+        "scienceClass": "hypothesis",
+        "sourceIds": [
+          "moon",
+          "moonModels",
+          "dating"
+        ]
+      },
+      "water": {
+        "label": "冷却后的世界，哪里留下水的线索？",
+        "question": "一粒晶体怎样记录已经消失的环境？",
+        "seeing": "观察冷却、表层岩石与水的教学转变；海陆块形状只帮助读图。",
+        "local": "近景代表岩石与液态水接触的一种可能环境，不是44亿年前某个海岸的复原。",
+        "evidence": "Jack Hills古老锆石的年龄、化学和氧同位素支持源物质曾与液态水相互作用；生长分区被放大示意。",
+        "qualification": "这是间接的水相互作用证据，不是全球海洋地图、海水覆盖比例或生命检测；锆石彩带不是实测同位素读数。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "water",
+          "dating",
+          "zirconShape",
+          "zirconZones"
+        ]
+      },
+      "life": {
+        "label": "微小生命，怎样留下可保存的痕迹？",
+        "question": "最早保存下来的记录，等于生命的生日吗？",
+        "seeing": "从整球转到水边的微生物环境，寻找生命活动与岩石记录之间的联系。",
+        "local": "层状微生物席是合理的局部例子，不代表所有早期海岸或一个已知物种。",
+        "evidence": "约35亿年前的岩石中有微生物活动线索；研究结合沉积环境、结构与化学，检验非生物替代解释。",
+        "qualification": "记录表明生命到那时已经存在，不确定它何时起源；不能把每个早期叠层石都指定为产氧蓝细菌。细胞与层理为不同比例的教学模型。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "life",
+          "oxygenBudget"
+        ]
+      },
+      "oxygen": {
+        "label": "有氧产生，为什么空气未必立刻变有氧？",
+        "question": "来源与消耗怎样共同决定能否留存氧？",
+        "seeing": "把产氧、消耗与长期留存联系起来；全球颜色变化只是提示，不是氧浓度曲线。",
+        "local": "近景以含铁水体中的沉积过程展示一条可能途径；下方独立氧收支实验可比较相反结果。",
+        "evidence": "岩石年代、硫同位素等记录约束大氧化；铁矿层帮助研究氧化还原，但部分铁氧化也可不依赖氧气。",
+        "qualification": "约24—21亿年的背景包含波动；不是所有氧汇同时耗尽的全球开关，铁矿层也不是唯一的大气氧计。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "oxygen",
+          "oxygenBudget",
+          "iron"
+        ]
+      },
+      "cryogenian": {
+        "label": "冰的线索，为什么会出现在古低纬度？",
+        "question": "全球推断需要把哪些地方的记录放在一起？",
+        "seeing": "观察广泛冰覆的一个示意状态，并把它与地质记录的问题相联系。",
+        "local": "近景展示冰与基岩、碎屑接触的合理例子；不声称是特定古大陆或纬度的复原。",
+        "evidence": "冰成沉积、搬运或擦痕线索与古地磁、年代共同支持低纬冰川推断；放大的碎屑组合不是一份真实样品扫描。",
+        "qualification": "约7.2—6.35亿年的成冰纪包含分开的冰期，不是持续85百万年的同一冰盖；完全海冰覆盖、开水区和生存环境需由证据与模型比较。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "cryogenian",
+          "snowballRecord",
+          "snowball",
+          "glacialStriations",
+          "till"
+        ]
+      },
+      "cambrian": {
+        "label": "动物的身体与行为，怎样改变海底？",
+        "question": "保存更容易，会怎样改变我们看到的化石记录？",
+        "seeing": "整球提供寒武纪背景，近景观察海底动物、活动痕迹和沉积物之间的关系。",
+        "local": "这是一组有依据的代表性海底形态，不是约5.39亿年前同一天、同一地点的群落复原。",
+        "evidence": "化石形态与活动痕迹是观测线索；伯吉斯页岩等保存窗口记录的是寒武纪内的具体群落，不能等同于纪的开端。",
+        "qualification": "动物并非在一天内一起出现，硬体与软体保存机会也不同；展示的双侧化石印痕为教学重建，不是标本扫描。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "cambrian",
+          "burgess"
+        ]
+      },
+      "forests": {
+        "label": "根系进入土壤，怎样改变环境？",
+        "question": "地下保存的根，能告诉我们多少地上的森林？",
+        "seeing": "观察植物、土壤与水的联系；植被提示强调局部生态变化，不代表全球森林覆盖率。",
+        "local": "近景借助泥盆纪森林证据展示根与土壤的空间关系；不把这一站改画成后来的石炭纪煤沼。",
+        "evidence": "Cairo约3.86亿年前的古土壤和原位根网是直接记录；树冠与组织形态还需要其他化石和比较重建。",
+        "qualification": "这里不宣称最古老森林，也不让森林必然变煤；埋藏、沉积与保存条件很重要。根与组织通道是放大的教学模型。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "cairo",
+          "dating"
+        ]
+      },
+      "permian": {
+        "label": "环境压力怎样成为生态危机？",
+        "question": "更暖、含氧更少的海水，会给动物带来什么双重困难？",
+        "seeing": "同一颗地球进入约2.52亿年前的危机背景；变化不等于全部生命瞬间消失。",
+        "local": "近景比较受压力的海洋环境与仍存在的生命，作为生态后果的定性例子。",
+        "evidence": "化石变化、岩石年代和环境指标与模拟互相检验；研究支持海洋变暖与缺氧对许多需氧动物造成压力。",
+        "qualification": "这是多种压力相互作用的重建，不是单一烟雾开关或固定死亡比例；不同地区和生态功能的恢复不同步。化石为示意。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "permian",
+          "permianTeam",
+          "dating"
+        ]
+      },
+      "cretaceous": {
+        "label": "一次撞击，为什么能影响远处的生命？",
+        "question": "阳光与食物网之间怎样传递影响？",
+        "seeing": "观察约6600万年前撞击及大气扰动的教学过程，继续追踪幸存生命。",
+        "local": "近景强调沉降材料与环境联系，不把局部撞击坑当作所有生态变化发生的地点。",
+        "evidence": "撞击坑、界线材料与化石变化相互约束；微观颗粒仅提示研究对象，不冒充诊断性冲击变形或元素测量。",
+        "qualification": "撞击有多种对应证据；同时期火山活动并不自动获得同等因果权重。消失的是非鸟类恐龙等许多群体，鸟类支系继续存活。",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "kpg",
+          "kpgTeam",
+          "kpgFossils"
+        ]
+      },
+      "today": {
+        "label": "今天，我们怎样读懂仍在变化的地球？",
+        "question": "眼前的过程，能帮助解释古老记录的哪些部分？",
+        "seeing": "观察岩石、水、冰与生命在同一世界中的联系，再回看前面的证据。",
+        "local": "近景代表现代土壤与水接触的一个例子；相似过程帮助比较，不意味着古今环境完全相同。",
+        "evidence": "现代岩石、生命活动与物质交换可以直接观察；这里的表面和微观对象仍是教学构造。",
+        "qualification": "程序生成的海陆仍是示意，不能当作卫星图或精确地图；地球历史不是通向人类的预设阶梯，也不是本模型对未来的预测。",
+        "scienceClass": "observation",
+        "sourceIds": [
+          "earth",
+          "dating"
+        ]
+      }
+    },
+    "links": [
+      {
+        "topicId": "earth-interior",
+        "label": "地球内部与板块运动"
+      },
+      {
+        "topicId": "earth-life",
+        "label": "古生命与化石"
+      },
+      {
+        "topicId": "earth-climate",
+        "label": "冰川与冰期"
+      },
+      {
+        "topicId": "earth-rocks",
+        "label": "岩石怎样形成和改变"
+      },
+      {
+        "topicId": "earth-minerals",
+        "label": "矿物与晶体"
+      },
+      {
+        "topicId": "earth-ores",
+        "label": "矿石怎样变成材料"
+      },
+      {
+        "topicId": "earth-systems",
+        "label": "海洋与洋流"
+      }
+    ],
+    "ui": {
+      "journey": "历史旅程",
+      "scale": "观察尺度",
+      "reset": "复位视角",
+      "retry": "重试三维场景",
+      "play": "播放旅程",
+      "pause": "暂停旅程",
+      "older": "上一站",
+      "younger": "下一站",
+      "progress": "浏览进度",
+      "evidence": "画面的依据与边界",
+      "related": "继续探索相关专题",
+      "relatedIntro": "这里串起历史；下面的专题分别深入内部结构、生命、冰川和材料等机制。",
+      "unavailable": "三维暂时不可用，已保留示意与证据。",
+      "loading": "正在准备地球的历史场景……",
+      "today": "今天",
+      "approx": "约 {value}{unit}前",
+      "billion": "亿年",
+      "million": "百万年",
+      "tenThousand": "万年",
+      "years": "年",
+      "mapCredit": "可选现代地表底图：Solar System Scope / INOVE · CC BY 4.0",
+      "moving": "正在前往下一个时代",
+      "transition": "这里是在两个代表观察段之间切换，并非当前年代的实测古地理影片。"
+    },
+    "playbackDetails": "播放为相邻代表阶段分配相同展示时长：每段先保持该路标年代停留观察，再加速跨到下一阶段；进度不是地质速率。两条约45亿年路标保留不同身份，局部动作不按百万年标定。完整年代尺仍为线性。"
+  },
+  "en": {
+    "title": "From formation inferences to today: one Earth, several kinds of evidence",
+    "intro": "Inspect a qualitative globe, approach a plausible local example, then examine clues in materials. All three lenses share the selected age and event; one lens cannot substitute for another kind of evidence.",
+    "views": {
+      "globe": "Globe reconstruction",
+      "local": "Local environment",
+      "evidence": "Materials and microstructure"
+    },
+    "viewQualifications": {
+      "globe": "A qualitative teaching reconstruction, not measured ancient geography or ice/haze coverage. Earth–Moon spacing and small-body sizes are rescaled for display.",
+      "local": "A plausible example related to this stage, rather than a measured or precisely reconstructed place selected on the globe.",
+      "evidence": "Enlarged teaching models, not sample photographs or scans. Minerals, cells, organisms and layers use different scales; actual evidence requires source measurements and geological context."
+    },
+    "scienceClasses": {
+      "observation": "Observed clues",
+      "inference": "Evidence-based inference",
+      "hypothesis": "Testable formation hypothesis"
+    },
+    "playbackQualification": "Pause for observation, then an accelerated transition. The slider marks browsing position rather than a geological rate.",
+    "cueQualification": "Core, melt, water, land, ice, haze, vegetation and impact cues are independent 0–1 drawing intensities, not measured percentages, concentrations, probabilities or conservation budgets.",
+    "continuity": "Changing lens retains the same age, event and selected presentation position. Seeking backward resamples a model rather than turning inference into ancient footage.",
+    "stages": {
+      "formation": {
+        "label": "How did material in a disk build Earth?",
+        "question": "Can a planet begin with scattered small particles?",
+        "seeing": "Follow dust, small bodies and a growing proto-Earth; approach the surface to compare rough cooled skin, exposed melt and slowly changing hot material.",
+        "local": "The close view enlarges relief between cooled skin and melt on the same proto-Earth. These rafts are not modern tectonic plates, and flow textures have no calibrated speed.",
+        "evidence": "Meteorite minerals and radiometric clocks constrain early material history; observed disks around other young stars test planet-building models.",
+        "qualification": "Formation is an evidence-based inference. The retained 4.54 Ga estimate is not an exact accretion-completion date; particle sizes, distances and playback speed are not to scale. Exposed melt and temporarily cooled skin illustrate one part of the formation story, not a uniform appearance at every early time or a measured molten fraction.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "dating",
+          "disk",
+          "separation",
+          "magmaOceans"
+        ]
+      },
+      "separation": {
+        "label": "How did heating redistribute the interior?",
+        "question": "Must metal and rock remain evenly mixed?",
+        "seeing": "Within the same hot proto-Earth, compare an inward concentration of metal with surrounding silicates.",
+        "local": "The cutaway shows differently sized metal parcels elongating, dispersing and collecting inward as the central enriched region grows. It is neither footage of an ancient core nor a fluid-dynamics calculation.",
+        "evidence": "Meteorites preserve metal and silicate materials that help compare differentiation; they are not samples retrieved from Earth’s core.",
+        "qualification": "The approximate 4.5 Ga marker does not date a one-day process or the formation of today’s solid inner core. Colors and layer widths are illustrative.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "separation",
+          "dating",
+          "moon",
+          "metalMixing"
+        ]
+      },
+      "moon": {
+        "label": "Can a giant collision explain the Moon?",
+        "question": "Which conditions must a model satisfy to match lunar rocks?",
+        "seeing": "Watch contact with proto-Earth before ejecta spreads and orbital material gathers; ejecta and the lunar aggregate do not appear before contact.",
+        "local": "The close view is one teaching configuration within the giant-impact framework, without solved trajectories, scale ratios or physical timing.",
+        "evidence": "Lunar composition and high-temperature history, Earth–Moon material comparisons and orbital constraints test models; enlarged grains supply no diagnostic impact measurements.",
+        "qualification": "A giant impact is the leading lunar-origin hypothesis; timing, initial conditions and mixing remain under study. It shares an approximate 4.5 Ga marker with differentiation while remaining a separate event. Impactor, disc and Earth–Moon spacing do not share a physical scale; display duration is not actual formation time.",
+        "scienceClass": "hypothesis",
+        "sourceIds": [
+          "moon",
+          "moonModels",
+          "dating"
+        ]
+      },
+      "water": {
+        "label": "Where did a cooling world leave clues to water?",
+        "question": "How can a crystal preserve evidence of a vanished environment?",
+        "seeing": "Follow an illustrative change from hot surfaces toward crust and water; land shapes only help read the scene.",
+        "local": "The local view is a plausible example of rock–water contact, not a reconstructed 4.4 Ga coastline.",
+        "evidence": "Ages, chemistry and oxygen isotopes in ancient Jack Hills zircons support liquid-water interaction in source material; growth zones are enlarged schematically.",
+        "qualification": "This is indirect water-interaction evidence, not a global ocean map, measured water coverage or life detection. Colored zircon zones are not isotope readings.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "water",
+          "dating",
+          "zirconShape",
+          "zirconZones"
+        ]
+      },
+      "life": {
+        "label": "How did tiny life leave lasting traces?",
+        "question": "Is the earliest surviving record the birthday of life?",
+        "seeing": "Move from the globe to a waterside microbial setting and connect activity with possible rock records.",
+        "local": "The layered mat is a plausible local example, not every early shoreline or an identified ancient species.",
+        "evidence": "Rocks around 3.5 Ga preserve microbial clues; researchers combine setting, structures and chemistry to test nonbiological alternatives.",
+        "qualification": "Life was present by this record; its origin is not dated here. Not every early stromatolite identifies oxygen-producing cyanobacteria. Cells and layering use different enlarged teaching scales.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "life",
+          "oxygenBudget"
+        ]
+      },
+      "oxygen": {
+        "label": "Why need oxygen production not oxygenate the air immediately?",
+        "question": "How do sources and consumption together control retention?",
+        "seeing": "Connect production, consumption and long-term retention; globe colors are cues, not an oxygen-concentration curve.",
+        "local": "An iron-bearing water setting illustrates one deposition route. The separate oxygen ledger below permits genuinely different outcomes.",
+        "evidence": "Rock ages, sulfur isotopes and other records constrain oxygenation. Iron formations inform redox history, but some iron oxidation can occur without oxygen.",
+        "qualification": "The broad 2.4–2.1 Ga context includes fluctuations. There was no global switch when every sink ran out, and iron formations are not unique atmospheric oxygen gauges.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "oxygen",
+          "oxygenBudget",
+          "iron"
+        ]
+      },
+      "cryogenian": {
+        "label": "Why are glacial clues found at ancient low latitudes?",
+        "question": "Which separate records must be combined for a global inference?",
+        "seeing": "Inspect one illustrative state of widespread ice and relate it to questions asked of the geological record.",
+        "local": "A local ice–bedrock–debris contact is plausible, without claiming a particular reconstructed ancient continent or latitude.",
+        "evidence": "Glacial sediments, transport or abrasion clues, paleomagnetism and ages jointly support low-latitude glaciation. Enlarged debris is not a real sample scan.",
+        "qualification": "The roughly 720–635 Ma Cryogenian contains separate glaciations, rather than one unbroken 85-million-year ice sheet. Complete sea ice, open water and habitats require record–model comparisons.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "cryogenian",
+          "snowballRecord",
+          "snowball",
+          "glacialStriations",
+          "till"
+        ]
+      },
+      "cambrian": {
+        "label": "How did animal bodies and behavior change the seabed?",
+        "question": "How might easier preservation change the fossil record we see?",
+        "seeing": "The globe supplies Cambrian context; a close view relates animals and activity traces to sediment.",
+        "local": "These evidence-informed representative forms do not reconstruct one community at one place exactly 539 Ma ago.",
+        "evidence": "Fossil shapes and activity traces are observations. Preservation windows such as the Burgess Shale sample particular communities within the Cambrian, rather than its beginning.",
+        "qualification": "Animals did not all appear on one day, and hard and soft parts preserve differently. The bilateral impression is a teaching reconstruction, not a specimen scan.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "cambrian",
+          "burgess"
+        ]
+      },
+      "forests": {
+        "label": "How did roots entering soil change environments?",
+        "question": "How much of a forest above ground can roots below ground reveal?",
+        "seeing": "Connect vegetation, soil and water. The vegetation cue emphasizes local ecological change, not measured global forest cover.",
+        "local": "A Devonian example explores root–soil relationships without turning this stop into a later Carboniferous coal swamp.",
+        "evidence": "Cairo’s roughly 386 Ma paleosols and in-place root networks are direct records. Canopies and tissue forms require other fossils and comparative reconstruction.",
+        "qualification": "No oldest-forest claim is made, and a forest does not inevitably become coal: deposition, burial and preservation matter. Roots and tissue channels are enlarged teaching models.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "cairo",
+          "dating"
+        ]
+      },
+      "permian": {
+        "label": "How can environmental pressure become an ecological crisis?",
+        "question": "What combined difficulties does warmer, less oxygenated water create for animals?",
+        "seeing": "The same planet enters the roughly 252 Ma crisis context without making all life disappear instantly.",
+        "local": "A stressed marine setting retains living forms as a qualitative example of ecological consequences.",
+        "evidence": "Fossil changes, rock ages, environmental indicators and models constrain one another; research supports warming and oxygen loss as stresses for many oxygen-dependent marine animals.",
+        "qualification": "This reconstruction combines pressures rather than a single haze switch or fixed death percentage. Regional and functional recovery differed; the fossil is illustrative.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "permian",
+          "permianTeam",
+          "dating"
+        ]
+      },
+      "cretaceous": {
+        "label": "How could an impact affect distant life?",
+        "question": "How can reduced sunlight affect a food web?",
+        "seeing": "Follow the roughly 66 Ma impact and an illustrative atmospheric disturbance, while retaining surviving life.",
+        "local": "A close view connects deposited material and environmental change without placing every ecological consequence inside the crater.",
+        "evidence": "Crater evidence, boundary materials and fossil changes constrain interpretation. Enlarged grains merely indicate research objects, without diagnostic shock deformation or elemental measurements.",
+        "qualification": "Several corresponding records support impact; contemporary volcanism does not automatically receive equal causal weight. Many groups, including non-avian dinosaurs, vanished while bird lineages survived.",
+        "scienceClass": "inference",
+        "sourceIds": [
+          "kpg",
+          "kpgTeam",
+          "kpgFossils"
+        ]
+      },
+      "today": {
+        "label": "How can we read a world that is still changing?",
+        "question": "Which parts of an ancient record can present processes help explain?",
+        "seeing": "Connect rocks, water, ice and life in one world, then revisit the earlier evidence.",
+        "local": "One modern soil–water contact illustrates comparison through similar processes, without making past and present environments identical.",
+        "evidence": "Modern rocks, biological activity and material exchange can be observed directly; the displayed surface and microscopic objects are still teaching constructions.",
+        "qualification": "Procedural land shapes are illustrative, not a satellite image or accurate map. Earth’s history is no prearranged ladder to humans, and this model does not predict its future.",
+        "scienceClass": "observation",
+        "sourceIds": [
+          "earth",
+          "dating"
+        ]
+      }
+    },
+    "links": [
+      {
+        "topicId": "earth-interior",
+        "label": "Inside Earth and moving plates"
+      },
+      {
+        "topicId": "earth-life",
+        "label": "Ancient life and fossils"
+      },
+      {
+        "topicId": "earth-climate",
+        "label": "Glaciers and ice ages"
+      },
+      {
+        "topicId": "earth-rocks",
+        "label": "How rocks form and change"
+      },
+      {
+        "topicId": "earth-minerals",
+        "label": "Minerals and crystals"
+      },
+      {
+        "topicId": "earth-ores",
+        "label": "From ores to materials"
+      },
+      {
+        "topicId": "earth-systems",
+        "label": "Oceans and currents"
+      }
+    ],
+    "ui": {
+      "journey": "Earth’s journey",
+      "scale": "Observation scale",
+      "reset": "Reset view",
+      "retry": "Retry the 3D scene",
+      "play": "Play journey",
+      "pause": "Pause journey",
+      "older": "Previous stop",
+      "younger": "Next stop",
+      "progress": "Journey position",
+      "evidence": "Evidence and limits of this view",
+      "related": "Explore related topics",
+      "relatedIntro": "This journey connects history; these topics examine the separate mechanisms of internal structure, life, glaciers and materials.",
+      "unavailable": "3D is temporarily unavailable; the teaching view and evidence remain available.",
+      "loading": "Preparing Earth’s history scene…",
+      "today": "Today",
+      "approx": "About {value} {unit} ago",
+      "billion": "billion years",
+      "million": "million years",
+      "tenThousand": "ten thousand years",
+      "years": "years",
+      "mapCredit": "Optional modern surface map: Solar System Scope / INOVE · CC BY 4.0",
+      "moving": "Moving to the next era",
+      "transition": "This view bridges two representative observation stops; it is not a measured paleogeographic film of this date."
+    },
+    "playbackDetails": "Playback gives adjacent representative intervals equal display time: each first holds its named age for observation, followed by accelerated change toward the next stage, rather than a geological rate. The two approximate 4.5 Ga markers retain separate identities; local motion is not calibrated in millions of years. The full geological ruler remains linear."
+  }
+}

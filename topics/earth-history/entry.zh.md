@@ -1,4 +1,6 @@
-这一馆沿同一颗地球的历史展开。先读总时间尺，再选择放大；把岩石记录、生命活动和环境变化连成有证据的故事。
+沿同一颗地球的三维历史旅程观察，再用完整年代尺与材料证据检验；把岩石记录、生命活动和环境变化连成有依据的故事。
+
+三维历史旅程从地球形成的推断开始，经过内部物质分配、月球形成假说、早期水与生命证据、环境与生态变化，直到今天。可以在整球、局部环境和放大的材料证据之间切换；原来的完整线性时间尺和氧收支实验仍可展开使用。古海陆、局部地貌与放大材料是有明确限定的教学重建，不能当作实测的连续古地理影片。
 
 [返回地球总馆](../earth/entry.zh.md) · [内部](../earth-interior/entry.zh.md) · [历史](../earth-history/entry.zh.md) · [生命](../earth-life/entry.zh.md) · [岩石](../earth-rocks/entry.zh.md) · [矿物](../earth-minerals/entry.zh.md) · [矿床](../earth-ores/entry.zh.md) · [冰期](../earth-climate/entry.zh.md) · [系统](../earth-systems/entry.zh.md)
 

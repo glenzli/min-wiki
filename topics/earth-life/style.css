@@ -1,22 +1,25 @@
 .life-study { --life-olive: #657b4e; --life-warm: #b19664; }
-.life-study .life-workbenches { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+.life-study .life-workbenches { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
 .life-study .life-workbenches button { flex: 1 1 145px; }
 .life-study .life-heading { font-size: clamp(20px,2.5vw,28px); line-height: 1.45; margin: 4px 0 8px; letter-spacing: -.025em; }
 .life-study .life-eyebrow { font-size: 11px; color: var(--earth-muted); letter-spacing: .07em; margin: 0 0 5px; }
 .life-study .life-community-heading > p:last-child { color: var(--earth-muted); font-size: 13px; margin: 0 0 12px; }
-.life-study .life-choices { border-block: 1px solid var(--earth-line); padding: 9px 0; margin-bottom: 14px; font-size: 13px; }
-.life-study .life-choices summary { min-height: 30px; cursor: pointer; }
+.life-study .life-choices { border-block-start: 1px solid var(--earth-line); padding: 5px 0; margin-bottom: 10px; font-size: 13px; }
+.life-study .life-choices summary { min-height: 44px; cursor: pointer; display: list-item; padding: 10px 2px; line-height: 1.55; }
 .life-study .life-choices strong { font-weight: 550; }
+.life-study .life-choices .earth-controls { padding: 10px 0 12px; }
+.life-study .life-observation { font-size: 13px; color: var(--earth-muted); margin: 0 0 10px; }
+.life-study .life-plant-choices .earth-controls label { flex: 1 1 220px; }
+.life-study .life-phase-controls { margin: 0 0 12px; }
+.life-study .life-community-stage > svg { aspect-ratio: 9 / 5; height: auto; }
 .life-study .life-figure { margin: 0; min-width: 0; }
-.life-study .life-field-grid { display: grid; grid-template-columns: minmax(0,1.95fr) minmax(220px,1fr); gap: 22px; align-items: start; }
+.life-study .life-field-grid { display: grid; grid-template-columns: minmax(0,2.9fr) minmax(260px,1fr); gap: 22px; align-items: start; }
 .life-study .life-field-grid > div { min-width: 0; }
 .life-study .life-community-stage { background: #1c3a3f; }
 .life-study .life-community-stage > svg { display: block; width: 100%; }
 .life-study .life-focus-ring { fill: none; stroke: #e2d7a7; stroke-width: 1.8; stroke-dasharray: 3 6; opacity: .8; }
 .life-study .life-organism { cursor: pointer; }
-.life-study .life-caption { color: var(--earth-muted); font-size: 11px; line-height: 1.75; margin: 7px 1px 12px; }
-.life-study .life-node-controls { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 12px; }
-.life-study .life-node-controls button { font-size: 12px; padding: 6px 9px; min-height: 38px; flex: 1 1 160px; text-align: start; }
+.life-study .life-node-controls button { flex: 1 1 160px; text-align: start; }
 .life-study .life-node-controls button > span { font-variant-numeric: tabular-nums; font-size: 11px; opacity: .65; margin-right: 4px; }
 .life-study .life-lens-readout { font-size: 13px; margin-bottom: 15px; }
 .life-study .life-evidence { border-top: 3px solid var(--life-olive); padding-top: 13px; }
@@ -40,20 +43,15 @@
 .life-study .life-tree ul { list-style: none; padding-left: 20px; border-left: 1px solid #9da98c; margin: 9px 0 14px 5px; }
 .life-study .life-tree li { margin-block: 7px; }
 .life-study .life-filter-controls label { flex-basis: 220px; }
-.life-study .life-fossil-player { margin: 12px 0 18px; padding: 12px 14px; border: 1px solid var(--earth-line); border-radius: 12px; background: color-mix(in srgb,var(--life-olive) 4%,var(--earth-paper)); }
-.life-study .life-playback-actions { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
-.life-study .life-playback-actions button { font-size: 12px; }
+.life-study .life-fossil-player { display: grid; gap: 8px; }
 .life-study .life-playback-actions [data-playback-toggle] { background: color-mix(in srgb,var(--life-olive) 14%,var(--earth-paper)); border-color: var(--life-olive); font-weight: 650; min-width: 150px; }
-.life-study .life-progress-label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0 12px; margin-top: 12px; align-items: center; }
-.life-study .life-progress-label output { color: var(--earth-muted); font-size: 11px; font-variant-numeric: tabular-nums; }
-.life-study .life-progress-label input { flex-basis: 100%; }
 .life-study .life-fossil-stops { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 5px; }
-.life-study .life-fossil-stops button { padding: 6px 5px; font-size: 12px; min-height: 44px; line-height: 1.4; overflow-wrap: anywhere; }
+.life-study .life-fossil-stops button { line-height: 1.4; overflow-wrap: anywhere; }
 .life-study .life-fossil-stops small { display: block; font-size: 10px; opacity: .65; font-variant-numeric: tabular-nums; }
 .life-study .life-fossil-current { font-size: 13px; padding: 0 2px; margin: 14px 0; }
-.life-study .life-fossil-key { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--earth-muted); font-size: 11px; margin-bottom: 12px; }
 .life-study .life-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
-.life-study .life-fossil-grid { display: grid; grid-template-columns: minmax(0,1.7fr) minmax(200px,1fr); gap: 24px; align-items: start; }
+.life-study .life-fossil-grid { display: grid; grid-template-columns: minmax(0,2.8fr) minmax(250px,1fr); gap: 24px; align-items: start; }
+.life-study .life-fossil-stage > svg { display: block; width: 100%; height: auto; }
 .life-study .life-filter-result strong { font-size: 36px; display: block; font-variant-numeric: tabular-nums; line-height: 1.4; }
 .life-study .life-filter-result span { font-size: 14px; }
 .life-study .life-filter-result p { font-size: 11px; color: var(--earth-muted); }
@@ -62,7 +60,7 @@
 .life-study .life-filter-ledger dd { margin: 0; font-weight: 650; }
 .life-study .life-presets { display: flex; flex-wrap: wrap; gap: 7px; }
 .life-study .life-three-wrap { position: relative; border: 1px solid var(--earth-line); border-radius: 13px; overflow: hidden; }
-.life-study .life-three-host { width: 100%; height: min(580px,65vw); min-height: 400px; background: #12231e; }
+.life-study .life-three-host { width: 100%; height:var(--reader-stage-size); min-height:0; background: #12231e; }
 .life-study .life-three-host canvas { width: 100%; height: 100%; display: block; }
 .life-study .life-three-status { position: absolute; inset: 15px 18px auto; padding: 10px 14px; color: #e9e4cf; background: #26382e; border-radius: 8px; font-size: 13px; pointer-events: none; }
 .life-study .life-plant-evidence { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 22px; margin-top: 20px; }
@@ -70,5 +68,4 @@
 .life-study .life-plant-evidence p { font-size: 13px; }
 .life-study .life-flat-plant { max-width: 500px; margin: 15px auto; }
 @media(max-width:960px) { .life-study .life-field-grid { grid-template-columns: minmax(0,1fr); } .life-study .life-evidence dl { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; } .life-study .life-evidence { margin-top: 2px; } }
-@media(max-width:650px) { .life-study .life-workbenches { gap: 6px; } .life-study .life-workbenches button { flex-basis: 95px; font-size: 12px; } .life-study .life-evidence dl,.life-study .life-relationships,.life-study .life-plant-evidence,.life-study .life-fossil-grid { grid-template-columns: minmax(0,1fr); gap: 8px; } .life-study .life-node-controls button { flex-basis: 135px; } .life-study .life-three-host { min-height: 390px; } .life-study .life-filter-controls label { flex-basis: 100%; } .life-study .life-tree { padding: 12px; font-size: 12px; } .life-study .life-tree ul { padding-left: 12px; } }
-@media(max-width:650px) { .life-study .life-fossil-player { padding: 11px 10px; } .life-study .life-playback-actions { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); } .life-study .life-playback-actions [data-playback-toggle] { grid-column: 1 / -1; } .life-study .life-fossil-stops button { font-size: 11px; } }
+@media(max-width:650px) { .life-study .life-workbenches { gap: 6px; } .life-study .life-workbenches button { flex-basis: 95px; font-size: 12px; } .life-study .life-evidence dl,.life-study .life-relationships,.life-study .life-plant-evidence,.life-study .life-fossil-grid { grid-template-columns: minmax(0,1fr); gap: 8px; } .life-study .life-node-controls button { flex-basis: 135px; } .life-study .life-three-host { min-height:0; height:var(--reader-stage-size);} .life-study .life-filter-controls label { flex-basis: 100%; } .life-study .life-tree { padding: 12px; font-size: 12px; } .life-study .life-tree ul { padding-left: 12px; } }

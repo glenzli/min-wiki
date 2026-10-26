@@ -1,6 +1,6 @@
 # Earth systems study
 
-地球总馆的末章，沿 `water → sky → conditions` 追踪能量、物质与环境条件。每页可直接进入并保存其余观察状态；它不是对真实地球未来的预测器。
+默认只围绕海水温盐、密度与大洋联系展开；旧链接仍可打开明确标识的天空或条件观察。它不是对真实海洋或地球未来的预测器。
 
 The independent topic now opens only the water comparison and circulation question. New navigation connects sky and habitability questions to other topics. Explicit old `sky` / `conditions` URLs keep their original bounded observations and are labelled as previously saved views; they are not offered as a default ocean sequence. No view predicts the future of the real Earth.
 
@@ -19,13 +19,14 @@ The condition lenses are orbit, greenhouse effect, mass/gravity, internal heat/r
 ## Ownership
 
 - `model.ts`: strict state codec; EOS-80 surface density with ITS-90 → IPTS-68 conversion; stable water-body/tracer geometry; equatorial solar geometry; camera-coordinate codec; inverse-square irradiance.
-- `study.ts`: host-scoped DOM, controls, complete state callbacks, bilingual observation flow, original explanatory SVGs, lazy scene activation and fallback.
+- `study.ts`: host-scoped DOM, controls, complete state callbacks, bilingual observation flow, finite user-started water playback, original mechanism diagrams, lazy legacy activation and fallback.
+- `waterScene.ts`: retained fixed-view SVG water bodies, origin marks and shared boundary, consuming `waterFrame` without a second model or clock.
 - `earthScene.ts`: one shared `threeStage` instance when sky is active; textured Earth/clouds, fixed Sun, retained site, manually controlled camera and resource lifetime. It removes the shared exhibition lights before adding its own solar illumination.
 - `content.json`: matching Chinese/English scientific explanations.
 - `style.css`: styles scoped to `.systems-study`.
 - `sources.md`: sources, claims, qualifications and assets.
 
-`mountStudy(host, context)` implements `StudyInstance`. It emits the full normalized state on mount and on each supported user change. It queries only its own root and creates no global IDs. `dispose()` invalidates pending dynamic imports, removes event listeners and disposes an active 3D view. Late texture callbacks dispose their textures after leaving. Scientific playback, ambient animation and audio never start automatically. Shared rendering uses requested frames and observes visibility/intersection; `pause()` stops pending stage work. The SVG fallback retains the same site and time when WebGL, a texture or the dynamic import is unavailable.
+`mountStudy(host, context)` implements `StudyInstance`. It emits the full normalized state on mount and on each supported user change. It queries only its own root and creates no global IDs. `dispose()` invalidates pending dynamic imports, removes event listeners and disposes an active 3D view. Late texture callbacks dispose their textures after leaving. Water separation uses the shared finite presentation driver only after a click; condition edits, scrubbing and host pause stop it. Scientific playback, ambient animation and audio never start automatically. Shared rendering uses requested frames and observes visibility/intersection; `pause()` stops pending stage work. The SVG fallback retains the same site and time when WebGL, a texture or the dynamic import is unavailable.
 
 ## State
 
@@ -81,3 +82,5 @@ Local harness water readiness measured 101–137 ms in the final four-case run; 
 Additional actual browser checks passed late-import cancellation, aborted surface-texture fallback, dynamic-import fallback, forced `WEBGL_lose_context`, and retry after texture/context loss while retaining the selected solar hour. Both fallback and restored 3D remained operable. There were no unhandled page exceptions. Evidence: `/tmp/earth-systems-browser/report.json`, `lifecycle-report.json`, `retry-report.json`, and the Chinese/English screenshots in that directory. Temporary harness files are not publication assets.
 
 The root integrator still owns the complete production build, real Reader entry/alias URLs, Back/Forward and language/base-path routing, and integration-level hidden/bfcache checks. Unit and harness tests do not establish empirical scientific calibration. No commit, push or deployment is performed by this subtask.
+
+The current native-Reader continuous-water refinement and explicit legacy checks are recorded in [REFINEMENT-20261025.md](REFINEMENT-20261025.md). Earlier harness numbers above belong to their stated older source, not the new water illustration.

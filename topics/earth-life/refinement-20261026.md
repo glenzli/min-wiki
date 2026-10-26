@@ -1,0 +1,9 @@
+# Bounded trace and Reader refinement · 2026-10-26
+
+The existing Ediacaran trace node now depicts shallow repeated impressions and paired fan-shaped scratches against an original mat-surface patch, rather than generic strokes. The caption explicitly identifies an enlarged evidence montage, not a mapped fossil slab or assignment of every trace to a unique maker. Organism identities, community relationships, phase rules, twelve fossil tokens, Waptia anatomy, plant geometry, saved keys and clocks are unchanged.
+
+The root and Waptia sub-workbench opt into Reader presentation regions. Existing controls, scrubs, readouts, captions and evidence text remain connected to the same handlers. The fossil scrub shows a compact percentage while `aria-valuetext`, selected stage buttons and readout preserve the stage meaning. Local rounded player shells and duplicate control font/spacing rules were removed where Reader now owns them.
+
+Validation: 23 life model/anatomy/geometry tests passed within the 47-test owner run; TypeScript and bilingual extraction passed. Actual Chinese Reader Ediacaran trace view at 1280 × 720 was inspected, with proof at `/tmp/earth-ui-evidence-20261026/life-trace-zh-desktop.png`. The parent owns final bilingual/mobile and packaged-consumer checks. No expanded life acceptance or performance claim is made.
+
+The existing primary [Ivantsov et al. (2019)](https://www.mdpi.com/2076-3263/9/9/395) text was retrieved through search after direct open returned 429. Its introduction and sections 1.1–1.2 distinguish paired Kimberichnus fans and chains of Epibaion impressions from the paper's separate locomotion ridges. The drawing asserts none of the paper's more specific feeding, mucus or anatomy interpretations. It copies no specimen image. No commit, push or deployment.

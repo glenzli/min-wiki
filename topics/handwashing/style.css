@@ -25,7 +25,7 @@ figcaption { color: var(--secondary); font-size: 12px; margin: 15px 0 0; text-al
 .lab { border: 1px solid var(--border); background: var(--surface); border-radius: 25px; overflow: hidden; }
 .lab-heading { padding: 26px 28px 12px; display: flex; gap: 15px; justify-content: space-between; align-items: center; }
 .lab-heading h2 { font-size: 27px; }
-.practice-badge { background: var(--soft-green); color: #44464a; font-size: 12px; padding: 8px 12px; border-radius: 30px; flex-shrink: 0; }
+.practice-badge { background: transparent; color: var(--ink); font-size: 12px; padding: 8px 12px; border-radius: 30px; flex-shrink: 0; }
 .stage-list { margin: 0; padding: 0 28px 25px; list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; counter-reset: step; }
 .stage-list li { font-size: 13px; line-height: 1.5; padding: 8px 4px; border-bottom: 2px solid var(--border); color: var(--secondary); }
 .stage-list li::before { counter-increment: step; content: counter(step) ' '; font-family: Georgia, serif; margin-right: 6px; }
@@ -83,7 +83,7 @@ html[data-reading-mode=academic] .comparison-academic { display: block; }
 .action-row { display: flex; justify-content: space-between; gap: 22px; align-items: center; margin-top: 15px; }
 .action-row p { font-size: 15px; flex: 1; min-height: 54px; }
 .action-row>div { display: flex; gap: 8px; flex-wrap: wrap; }
-.screen-note { padding: 17px 28px; margin: 0; border-top: 1px solid var(--border); background: color-mix(in srgb, var(--accent) 6%, var(--surface)); font-size: 13px; color: var(--secondary); }
+.screen-note { padding: 17px 28px; margin: 0; border-top: 1px solid var(--border); background: transparent; font-size: 13px; color: var(--secondary); }
 .learn-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 36px; margin: 35px 0 55px; }
 .learn-grid h2 { font-size: 23px; }
 .learn-grid p { font-size: 15px; color: var(--secondary); }
@@ -109,6 +109,6 @@ summary { cursor: pointer; font-size: 17px; font-weight: 600; }
 
 /* Desktop presentation: retain topic geometry inside the selected scene. */
 @media(min-width:1000px){
-html.presentation-page[data-topic-ui] {& body>main>header.hero { display:block; min-height:0; } .presentation-frame .hand-map,.presentation-frame .micro-scene { flex:1; height:0; min-height:0; } .presentation-frame .micro-panel .micro-label { margin:6px; }}
+html.presentation-page[data-topic-ui] {& body>main>header.hero { display:block; min-height:auto; } .presentation-frame .hand-map,.presentation-frame .micro-scene { flex:1; height:auto; min-height:auto; } .presentation-frame .micro-panel .micro-label { margin:6px; }}
 }
-@media(min-width:1000px){html.presentation-page[data-topic-ui] body>main>header.hero{display:flex;gap:8px 16px}html.presentation-page .hero .jump{display:none}html.presentation-page .presentation-frame .panel-caption{min-height:0;padding:8px 12px;font-size:12px;line-height:1.5}html.presentation-page .presentation-frame .micro-label{padding:8px 12px;min-height:0}.presentation-frame .presentation-transport .action-row{padding:0;min-height:0}.presentation-frame .presentation-transport .action-row p{margin:4px 0;min-height:0}}
+@media(min-width:1000px){html.presentation-page[data-topic-ui] body>main>header.hero{display:flex;gap:8px 16px}html.presentation-page .hero .jump{display:none}html.presentation-page .presentation-frame .panel-caption{min-height:auto;padding:8px 12px;font-size:12px;line-height:1.5}html.presentation-page .presentation-frame .micro-label{padding:8px 12px;min-height:0}.presentation-frame .presentation-transport .action-row{padding:0;min-height:0}.presentation-frame .presentation-transport .action-row p{margin:4px 0;min-height:0}}

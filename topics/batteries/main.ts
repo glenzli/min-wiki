@@ -133,6 +133,6 @@ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(b=>b.addEven
 
 foldPresentationContext('.journey-intro');
 document.querySelector<HTMLElement>('.presentation-context>summary')!.textContent=byId('chapter-question').textContent;
-mountPresentationFrame({ root: '#lab', visual: '.specimen-pair', paired: true, transport: '.play-controls', choices: '#lab-lenses' });
+mountPresentationFrame({ root: '#lab', visual: '.specimen-pair', paired: true, transport: '[data-reader-transport]' , choices: '#lab-lenses' });
 mountPresentationFrame({ root: '#family', visual: '#family-art' });
 mountPresentationFrame({ root: '#pack', visual: '.specimen-pair', paired: true });

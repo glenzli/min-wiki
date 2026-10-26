@@ -316,8 +316,9 @@
     "process3d": "三维近看",
     "process2d": "二维关系",
     "processLabel": "同一份岩石物质的局部放大：裂隙、碎片、孔隙与纹理随所选过程改变。",
-    "localNote": "这里跟着同一份材料近看。裂分块用于追踪来源批次，不是固定矿物晶粒；局部大小和显示秒数不代表真实尺度或速率。",
-    "processFailure": "三维局部暂时不可用，已保留同一进度的位置示意；可重试三维。"
+    "localNote": "这里跟着同一份材料近看。三维裂分块追踪来源批次，不是固定矿物晶粒，也不是实际砂粒大小。加入的胶结基质单独显示；局部形状和七个显示秒不代表真实尺度、速率或化学反应。",
+    "processFailure": "三维局部暂时不可用，已保留同一进度的位置示意；可重试三维。",
+    "choosePlaceholder": "选择一种变化"
   },
   "en": {
     "eyebrow": "Follow the same material",
@@ -636,7 +637,8 @@
     "process3d": "3D close-up",
     "process2d": "2D setting",
     "processLabel": "A local close-up of the same rock material: fractures, fragments, pores and texture respond to the selected process.",
-    "localNote": "This window follows one material parcel. Partitions track origin batches, not fixed mineral grains; size and display seconds do not represent physical scales or rates.",
-    "processFailure": "The 3D close-up is unavailable. The setting diagram retains the same progress; you can retry 3D."
+    "localNote": "This close-up follows one material parcel. Volumetric batches track origin, not fixed crystals or actual sand-grain sizes. Added cement matrix is shown separately; local geometry and seven display seconds do not model real scales, rates or chemical reactions.",
+    "processFailure": "The 3D close-up is unavailable. The setting diagram retains the same progress; you can retry 3D.",
+    "choosePlaceholder": "Choose a process"
   }
 }

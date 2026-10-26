@@ -94,7 +94,8 @@
         "text": "不能。局部沉积、擦痕、古纬度推断、定年和地区对比回答不同问题。低纬开放海水的证据也只约束相应地点与时间；开水面积、冰厚、事件同步与生命避难所仍有研究，不能把全部成冰纪画成同样的冰壳。"
       }
     ],
-    "retry": "保留阶段并重试3D"
+    "retry": "保留阶段并重试3D",
+    "observeMore": "观察说明与样本来源"
   },
   "en": {
     "tab": "Follow ice to a sample",
@@ -191,6 +192,7 @@
         "text": "No. Deposits, scratches, ancient-latitude estimates, dating and regional correlation constrain different questions. Evidence for low-latitude open water constrains its own places and times. Open-water area, ice thickness, synchrony and refuges for life remain research questions; the entire Cryogenian is not one uniform shell."
       }
     ],
-    "retry": "Retry 3D with this stage"
+    "retry": "Retry 3D with this stage",
+    "observeMore": "Observation and sample provenance"
   }
 }

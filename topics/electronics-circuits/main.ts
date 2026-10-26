@@ -23,7 +23,7 @@ const sensorLink = get<HTMLButtonElement>('sensor-link');
 const light = get<HTMLInputElement>('light-level');
 const threshold = get<HTMLInputElement>('threshold');
 const frame=mountPresentationFrame({root:'#observation',visual:'.scene-column',transport:'#supply-switch,#return-wire,#reset'})!;
-const questions=document.querySelector<HTMLElement>('.experiments')!;questions.removeAttribute('data-reader-menu');frame.mode.toolbar.prepend(questions);
+const questions=document.querySelector<HTMLElement>('.experiments')!;frame.mode.toolbar.prepend(questions);
 const readingControls=get('reading-controls');readingControls.removeAttribute('data-reader-menu');
 const reading = mountSceneReading(get('observation'), { id: 'circuit-reading', controls: get('reading-controls') });
 // Keep the authored reading and sensor inputs; moving them never resets a circuit.

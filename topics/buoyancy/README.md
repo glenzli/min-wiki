@@ -33,3 +33,5 @@
 - [OpenStax 14.4：阿基米德原理与浮力](https://openstax.org/books/university-physics-volume-1/pages/14-4-archimedes-principle-and-buoyancy)
 - [OpenStax 14.1：密度与压强](https://openstax.org/books/university-physics-volume-1/pages/14-1-fluids-density-and-pressure)
 - [Feynman I.1：分子的运动与相互作用](https://www.feynmanlectures.caltech.edu/I_01.html)
+
+Reader selects the retained shore stage directly. Playback, scrub, condition choices and cargo actions are genuine controls that share Reader’s collapse behavior; compact buttons wrap at their content width. The scientific caption, current mass comparison, cargo count/unit and pause qualification remain outside those control groups, including the original conditional cargo owner. The scrub receives a full row in a narrow control column. Camera choices remain available in the explanation/settings panel. Layout changes do not rebuild the shore scene or its finite clock.

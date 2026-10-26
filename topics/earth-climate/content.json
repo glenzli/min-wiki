@@ -155,7 +155,8 @@
     "meltwater": "产生的融水",
     "tracerNote": "T1/T2/T3是方向示意：同一回合轴向前时沿下谷移动，前缘仍由冰量单独决定；平衡冰量时标记也会前进。位移与时间未标定，不求真实速度或侵蚀。回拖只复看同一教学快照。",
     "tracerUnknown": "† 未追算去向；幽影仅保留身份，位置不表示后续真实轨迹或融水",
-    "conditions": "改变降雪与冰量损失"
+    "conditions": "改变降雪与冰量损失",
+    "observeShort": "观察问题"
   },
   "en": {
     "title": "Ice and climate: from ancient glaciations to glaciers today",
@@ -313,7 +314,8 @@
     "meltwater": "Meltwater produced",
     "tracerNote": "T1/T2/T3 illustrate direction: increasing the same round moves them down-valley while ice amount independently controls the front. They advance even at balanced mass. Displacement and time are uncalibrated, without solving velocity or erosion. Scrubbing revisits the same teaching snapshots.",
     "tracerUnknown": "† Fate not followed; ghosts retain identities without representing later real trajectories or meltwater",
-    "conditions": "Change snowfall and ice loss"
+    "conditions": "Change snowfall and ice loss",
+    "observeShort": "Question"
   },
   "references": [
     {

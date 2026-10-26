@@ -40,12 +40,12 @@ export function createMineralScene(host:HTMLElement, options:{label:string;camer
   function network(target:THREE.Group, data:Network, scale:number,center:Point3,atomMaterial:THREE.Material,bondMaterial:THREE.Material,highlight=-1){
     const points=data.points.map(p=>new THREE.Vector3(...p).sub(new THREE.Vector3(...center)).multiplyScalar(scale));
     const atoms=new THREE.InstancedMesh(sphere,atomMaterial,points.length),mat=new THREE.Matrix4();
-    for(let i=0;i<points.length;i++){mat.makeTranslation(...points[i].toArray());atoms.setMatrixAt(i,mat);atoms.setColorAt(i,new THREE.Color(i===highlight?'#ffb636':atomMaterial===blue?'#73a8bb':'#40515c'));} atoms.instanceMatrix.needsUpdate=true;target.add(atoms);
+    for(let i=0;i<points.length;i++){mat.makeTranslation(...points[i].toArray());atoms.setMatrixAt(i,mat);atoms.setColorAt(i,new THREE.Color(i===highlight?'#ffb636':atomMaterial===blue?'#73a8bb':'#5d7781'));} atoms.instanceMatrix.needsUpdate=true;target.add(atoms);
     const sticks=new THREE.InstancedMesh(cylinder,bondMaterial,data.edges.length),axis=new THREE.Vector3(0,1,0);
     for(let i=0;i<data.edges.length;i++){
       const [a,b]=data.edges[i],start=points[a],end=points[b],direction=end.clone().sub(start);
       const transform=new THREE.Matrix4().compose(start.clone().add(end).multiplyScalar(.5),new THREE.Quaternion().setFromUnitVectors(axis,direction.clone().normalize()),new THREE.Vector3(1,direction.length(),1));
-      sticks.setMatrixAt(i,transform);sticks.setColorAt(i,new THREE.Color(a===highlight||b===highlight?'#ffb12f':bondMaterial===bonds?'#416d7b':'#40515c'));
+      sticks.setMatrixAt(i,transform);sticks.setColorAt(i,new THREE.Color(a===highlight||b===highlight?'#ffb12f':bondMaterial===bonds?'#416d7b':'#536e78'));
     }sticks.instanceMatrix.needsUpdate=true;target.add(sticks);
   }
   const diamond=new THREE.Group();diamond.position.set(-1.9,.05,0);diamond.rotation.set(.08,-.15,.08);carbon.add(diamond);
@@ -142,12 +142,17 @@ export function createMineralScene(host:HTMLElement, options:{label:string;camer
   }
   rockContext.putImageData(rockPixels,0,0);
   const rockMap=new THREE.CanvasTexture(rockCanvas);rockMap.colorSpace=THREE.SRGBColorSpace;rockMap.anisotropy=Math.min(4,renderer.capabilities.getMaxAnisotropy());
+  function matrixHeight(x:number,z:number){
+    const angle=Math.atan2(z/1.1,x/1.42),outline=1+.09*Math.sin(angle*3+.4)+.065*Math.sin(angle*7+1.2)+.025*Math.sin(angle*13);
+    const f=Math.hypot(x/1.42,z/1.1)/outline;
+    return .16+(fbm(x*3+12,z*3+5)-.5)*.25+.04*Math.sin(x*19+z*14)-Math.pow(f,5)*.26;
+  }
   const rings=detail?20:13,sectors=detail?96:64,rockPositions:number[]=[],rockUV:number[]=[],rockIndices:number[]=[];
   for(let ring=0;ring<=rings;ring++)for(let j=0;j<=sectors;j++){
     const angle=j/sectors*Math.PI*2,f=ring/rings;
     const outline=1+.09*Math.sin(angle*3+.4)+.065*Math.sin(angle*7+1.2)+.025*Math.sin(angle*13);
     const x=Math.cos(angle)*1.42*f*outline,z=Math.sin(angle)*1.1*f*outline;
-    const elevation=.16+(fbm(x*3+12,z*3+5)-.5)*.25+.04*Math.sin(x*19+z*14)-Math.pow(f,5)*.26;
+    const elevation=matrixHeight(x,z);
     rockPositions.push(x,elevation,z);rockUV.push(.5+x/3.4,.5+z/2.9);
     if(ring<rings&&j<sectors){const a=ring*(sectors+1)+j,b=a+sectors+1;rockIndices.push(a,a+1,b,a+1,b+1,b);}
   }
@@ -161,13 +166,30 @@ export function createMineralScene(host:HTMLElement, options:{label:string;camer
     }
   }
   const rockGeometry=new THREE.BufferGeometry();rockGeometry.setAttribute('position',new THREE.Float32BufferAttribute(rockPositions,3));rockGeometry.setAttribute('uv',new THREE.Float32BufferAttribute(rockUV,2));rockGeometry.setIndex(rockIndices);rockGeometry.computeVertexNormals();
-  const matrix=new THREE.Mesh(rockGeometry,new THREE.MeshStandardMaterial({map:rockMap,bumpMap:rockMap,bumpScale:.035,roughness:.91,metalness:.015,side:THREE.DoubleSide}));sample.add(matrix);
+  const rootContacts=QUARTZ_CLUSTER.map(crystal=>new THREE.Vector3(crystal.base[0],crystal.base[2],crystal.radius));
+  const matrixMaterial=new THREE.MeshStandardMaterial({map:rockMap,bumpMap:rockMap,bumpScale:.035,roughness:.91,metalness:.015,side:THREE.DoubleSide});
+  // Local contact shading joins the visible roots to this retained matrix.
+  // It follows displayed crystal size, so an empty growth start has no ghost roots.
+  matrixMaterial.onBeforeCompile=shader=>{
+    shader.uniforms.mineralRootContacts={value:rootContacts};
+    shader.vertexShader='varying vec3 vMatrixPoint;\n'+shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvMatrixPoint=position;');
+    shader.fragmentShader='varying vec3 vMatrixPoint; uniform vec3 mineralRootContacts[5];\n'+shader.fragmentShader;
+    shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>',`#include <color_fragment>
+      float contactShade=0.0;
+      for(int i=0;i<5;i++){
+        vec3 root=mineralRootContacts[i];
+        float ring=length(vMatrixPoint.xz-root.xy)/max(.001,root.z);
+        contactShade=max(contactShade,(1.0-smoothstep(.66,1.42,ring))*step(.002,root.z));
+      }
+      diffuseColor.rgb*=1.0-contactShade*.23;`);
+  };
+  const matrix=new THREE.Mesh(rockGeometry,matrixMaterial);sample.add(matrix);
   // Small attached quartz druse links the large prisms to their mineral-bearing host.
   const drusePrototype=crystal(.1,.29),druse=new THREE.InstancedMesh(drusePrototype.geometry,[crystalMat,facetMat],22);
   // The prototype's decorative children are not part of the instanced druse.
   drusePrototype.children.forEach(child=>{const mesh=child as THREE.LineSegments;mesh.geometry.dispose();(mesh.material as THREE.Material).dispose();});
   const druseTransform=new THREE.Object3D(),druseBases:THREE.Matrix4[]=[];
-  for(let i=0;i<22;i++){const angle=i*2.399963,rad=.48+random()*.65;druseTransform.position.set(Math.cos(angle)*rad,.14,Math.sin(angle)*rad*.8);druseTransform.rotation.set((random()-.5)*.5,random()*Math.PI,(random()-.5)*.5);const scale=.6+random()*.8;druseTransform.scale.set(scale,scale,scale);druseTransform.updateMatrix();druseBases.push(druseTransform.matrix.clone());druse.setMatrixAt(i,druseTransform.matrix);}druse.instanceMatrix.setUsage(THREE.DynamicDrawUsage);druse.instanceMatrix.needsUpdate=true;sample.add(druse);
+  for(let i=0;i<22;i++){const angle=i*2.399963,rad=.48+random()*.65,x=Math.cos(angle)*rad,z=Math.sin(angle)*rad*.8;druseTransform.position.set(x,matrixHeight(x,z)-.018,z);druseTransform.rotation.set((random()-.5)*.5,random()*Math.PI,(random()-.5)*.5);const scale=.6+random()*.8;druseTransform.scale.set(scale,scale,scale);druseTransform.updateMatrix();druseBases.push(druseTransform.matrix.clone());druse.setMatrixAt(i,druseTransform.matrix);}druse.instanceMatrix.setUsage(THREE.DynamicDrawUsage);druse.instanceMatrix.needsUpdate=true;sample.add(druse);
   // These sparse, deliberately enlarged marks indicate transport towards faces.
   // They are not atoms, fluid-inclusion analyses or a calculated flow field.
   const transportPositions=new Float32Array(36*3),transportGeometry=new THREE.BufferGeometry();
@@ -176,10 +198,24 @@ export function createMineralScene(host:HTMLElement, options:{label:string;camer
   // The same cluster in an open hydrothermal fracture. Surrounding rock is only
   // a reversible display mask: no crystal is moved, resized or magically cut.
   const surround=new THREE.Group();quartz.add(surround);
-  const wallMaterial=new THREE.MeshStandardMaterial({map:rockMap,bumpMap:rockMap,bumpScale:.03,roughness:.94,metalness:0,side:THREE.DoubleSide,transparent:true,opacity:0,depthWrite:false});
-  const backWall=new THREE.Mesh(rockGeometry,wallMaterial);backWall.rotation.x=Math.PI/2;backWall.scale.set(1.35,1.2,1.25);backWall.position.set(0,.3,-1.38);surround.add(backWall);
-  const leftWall=new THREE.Mesh(rockGeometry,wallMaterial);leftWall.rotation.z=-Math.PI/2;leftWall.scale.set(1.28,1.5,.85);leftWall.position.set(-1.62,.25,-.5);surround.add(leftWall);
-  const rightWall=new THREE.Mesh(rockGeometry,wallMaterial);rightWall.rotation.z=Math.PI/2;rightWall.scale.set(1.25,1.5,.7);rightWall.position.set(1.73,.25,-.95);surround.add(rightWall);
+  const wallMaterial=new THREE.MeshStandardMaterial({map:rockMap,bumpMap:rockMap,bumpScale:.03,roughness:.94,metalness:0,side:THREE.DoubleSide,alphaHash:true,opacity:0,depthWrite:true});
+  // Connected, thick fracture walls rise from the same basal rock. Their front
+  // edges are opened for observation; these are authored volumes, not excavated
+  // geometry or a reconstruction of the specimen's original geological site.
+  function fractureWall(width:number,depth:number,x:number,z:number,back=false){
+    const geometry=new THREE.BoxGeometry(width,1,depth,detail?7:4,detail?10:6,detail?12:7),positions=geometry.getAttribute('position');
+    for(let i=0;i<positions.count;i++){
+      const px=positions.getX(i)+x,pz=positions.getZ(i)+z,f=positions.getY(i)+.5;
+      const top=back?.45+.07*Math.sin(px*4):1.7-2.45*THREE.MathUtils.smoothstep(pz,-.85,.85);
+      const edgeNoise=.035*Math.sin(px*11+pz*7)+.025*Math.sin(px*19-pz*13);
+      positions.setXYZ(i,px+edgeNoise,-1.73+f*(top+1.73)+edgeNoise*.7,pz+edgeNoise*.6);
+    }
+    geometry.computeVertexNormals();const wall=new THREE.Mesh(geometry,wallMaterial);
+    // The hashed display mask stays in the opaque pass, before transmissive
+    // quartz. A later transparent pass would paint rear rock over front facets.
+    wall.renderOrder=-1;surround.add(wall);
+  }
+  fractureWall(3.55,.58,0,-1.48,true);fractureWall(.64,2.75,-1.62,-.34);fractureWall(.64,2.75,1.62,-.34);
   const anchorPosition=exposureAt(100).anchor;
   const anchor=new THREE.Mesh(new THREE.TorusGeometry(.155,.018,6,32),new THREE.MeshBasicMaterial({color:'#f2bb5e',depthTest:false,transparent:true,opacity:.85}));anchor.rotation.x=Math.PI/2;anchor.position.set(...anchorPosition);anchor.renderOrder=8;quartz.add(anchor);
   const floor=new THREE.Mesh(new THREE.CylinderGeometry(1.8,1.86,.14,80),new THREE.MeshStandardMaterial({color:'#233a43',roughness:.6,metalness:.16}));floor.position.y=-1.8;quartz.add(floor);
@@ -192,7 +228,8 @@ export function createMineralScene(host:HTMLElement, options:{label:string;camer
     if(representation!==next){stage.camera.position.multiplyScalar(next==='quartz'?.72:1/.72);stage.controls.update();storeCamera();}
     representation=next;scene.background=next==='quartz'?backdrop:new THREE.Color('#0d1d26');renderer.toneMappingExposure=next==='quartz'?.92:.75;carbon.visible=next==='carbon';quartz.visible=next==='quartz';
     for(let i=0;i<layers.length;i++)layers[i].position.x=1.9+(i%2)*.39+graphiteOffset(shear,i)/70;
-    const mask=exposureAt(exposure);surround.visible=mask.surroundOpacity>.005;wallMaterial.opacity=mask.surroundOpacity;wallMaterial.depthWrite=mask.surroundOpacity>.95;
+    const mask=exposureAt(exposure);surround.visible=mask.surroundOpacity>.005;wallMaterial.opacity=mask.surroundOpacity*.68;
+    for(const edge of crystalEdges)(edge.material as THREE.LineBasicMaterial).opacity=surround.visible?.12:growthMode?.07:.018;
     stage.canvas.dataset.mineralExposure=String(exposure);stage.canvas.dataset.mineralAnchor=anchorPosition.join(',');
     stage.canvas.dataset.mineralRepresentation=representation;stage.setPaused(false);stage.requestRender();
   }
@@ -205,6 +242,7 @@ export function createMineralScene(host:HTMLElement, options:{label:string;camer
     if(disposed)return;
     if(growthMode){
       for(const root of crystalRoots){root.scale.set(1,1,1);root.visible=true;}
+      for(let i=0;i<rootContacts.length;i++)rootContacts[i].z=QUARTZ_CLUSTER[i].radius;
       for(const edge of crystalEdges)(edge.material as THREE.LineBasicMaterial).opacity=.018;
       scaleDruse(1,1);transport.visible=false;growthMode=false;
     }
@@ -217,6 +255,7 @@ export function createMineralScene(host:HTMLElement, options:{label:string;camer
     for(let i=0;i<crystalRoots.length;i++){
       const crystal=frame.crystals[i];crystalRoots[i].visible=crystal.visible;
       crystalRoots[i].scale.set(crystal.radiusScale,crystal.heightScale,crystal.radiusScale);
+      rootContacts[i].z=QUARTZ_CLUSTER[i].radius*crystal.radiusScale;
       (crystalEdges[i].material as THREE.LineBasicMaterial).opacity=.07;
     }
     scaleDruse(frame.crystals[0].radiusScale,frame.crystals[0].heightScale);

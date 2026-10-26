@@ -58,3 +58,13 @@ Reader 首页提供缩略图和列表总览，分类与关键词可以组合筛�
 `@glenzli/wiki-reader/animation2d` 提供有限的 `create2DMotion` 与 SVG 工具。Reader 拥有依赖、时间线取样和释放机制；内容调用 `seek(milliseconds)`，保留自身模型、科学条件、时钟、插画轨迹与器官连接。创建不自动播放，拖动不触发科学回调，周期动作也读取同一专题时间。条目卸载调用 `dispose()`；减少动态的选择仍由条目按过程语义处理。
 
 植物首批消费：`beeMotion.ts` 将振翅改为非对称上下行和投影变化；`petalMotion.ts` 将卷曲定义为连续轮廓关键帧；`leafMotion.ts` 保留叶柄/叶脉锚点，展开叶片轮廓，避免主要依靠纵向缩放。它们消费既有生长进度，未将条件变化或果实生成交给动画库。首页与静态阅读不导入引擎；其他条目继续使用原有渲染器，后续按需求迁移。
+
+Earth native entry fragments inherit their common display variables from `.earth-single-gallery` as well as the guide `.earth-project`. Scientific models remain topic-owned. The interior plate and ray-path clocks are finite presentation phases with old-link defaults and independent plate/planet cameras; material, terrain and state ownership are recorded in the topic README.
+
+Reader 的可选 `workbench.css` 区域让专题组合观察栏、通栏画面、播放/进度、图注、图例、读数与说明。采用 `data-reader-workbench` 后，这些区域共享默认留白与可换行控件；专题可用变量、自己的选择器或局部 `data-reader-ui="custom"` 调整，不强制侧栏、字段或科学回调。原 `data-reader-toolbar` 的目标 ID 含义不变。本地联调使用 `WIKI_READER_ROOT` 指向独立 Reader 源码；这不表示已发布依赖或安装插件。
+
+响应式组合通过 `data-reader-layout="stage|compare|flow"` 选择；`data-reader-main` 聚合场景与必要操作，`data-reader-support` 只放可选说明。`data-reader-essential` 保留实验条件、关键读数和必要限定；它们不能仅因外观像侧栏就进入默认折叠区。Canvas 可用 `data-reader-fit="available"` 选择空间预算，SVG 默认保留作者比例；断点依据实际容器宽度并兼顾低高度横屏。长说明正常滚动，不把主画面压成细条。专题仍可自定义布局。设计与验收见 [Reader 可组合布局](reader-responsive-layout-20261026.md)。
+
+Earth studies 在所属模板上声明 `data-earth-presentation`、`data-earth-visual`、`data-earth-transport` 和 `data-earth-choices`。`singleGallery.ts` 调用 `galleryPresentation.ts`，后者仅挂载并释放公共展示句柄，观察懒加载区域的加入与移除；不按章节名称分派科学行为，不复制渲染器或实验状态。隐藏状态应标在完整的所属区域上，避免把隐藏分支的子控件抽到主画面。
+
+地球历史的 `journeyModel.ts` 把原有年代/事件投影为十二个代表观察段，`journeyStudy.ts` 管理有限播放和三种观察尺度，`journeyScene3d.ts` 在一个渲染器内组合保留的地球、附着局部与懒加载证据模型。原线性年代尺、28 条线索与独立氧实验继续消费原状态。局部动作的观察停留和加速跨时代段不具有地质速率含义；来源与限定保留在双语内容和静态正文中。

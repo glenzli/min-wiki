@@ -1,6 +1,8 @@
-# Earth exploration guide
+# Earth conditions and exploration guide
 
-The Earth entry is a lightweight question map. It does not create scientific scenes, clocks or an eight-gallery player. `guideContent.json` owns paired navigation copy; `guideRoute.ts` redirects explicit old `chapter` URLs to the matching independent study while preserving base, locale, static mode, validated study query fields and anchor. A plain guide URL stays on the guide.
+The Earth entry now begins with `conditions/`: a bilingual distance → actual Venus/Mars → atmospheric energy balance → Earth journey. Its second track compares axial tilt at one location, inspects real Uranus, and returns to Earth. `conditions/model.ts` owns the bounded grey energy balance and composes the existing Seasons daylight geometry. `conditions/route.ts` owns bounded URL snapshots and local-topic handoffs. `view.ts` owns the controls, retained planetary observation instance, user-started activity/descent and page lifetime. `tiltView.ts` lazily consumes the existing Seasons renderer with static scientific conditions and bounded camera settling. See [its scientific and state contract](conditions/README.md).
+
+The eight-topic question map remains in a separate disclosure, with no eight-gallery scientific clock. `guideContent.json` owns paired navigation copy; `guideRoute.ts` still redirects explicit old `chapter` URLs to the matching independent study while preserving base, locale, static mode, validated study query fields and anchor. A plain guide URL begins at the conditions journey.
 
 Eight independently discoverable draft studies own their questions and review status: interior/plates, deep time, ancient life/fossils, rocks, minerals/crystals, ores/materials, glaciers/ice ages and oceans/currents. No entry inherits the guide’s editorial status. Draft means accessible work in progress, not deletion.
 
@@ -9,3 +11,7 @@ Eight independently discoverable draft studies own their questions and review st
 Ocean’s default question is temperature/salinity and circulation. Explicit old sky/habitability links retain their legacy observation; new navigation links to atmosphere, seasons or the guide rather than presenting those as an ocean sequence.
 
 The current refinement first improves glacier and rock samples. It does not certify all eight studies as finished. Original sources, asset provenance and scientific qualifications stay with each owner. No commit, push or deployment is implied by local preview work.
+
+`galleryPresentation.ts` is a presentation-only adapter used and disposed by `singleGallery.ts`. Each study declares its own `data-earth-presentation`, `data-earth-visual`, `data-earth-transport` and `data-earth-choices` regions. The adapter binds those regions to Reader, observes late HTML mounts such as Burgess, and releases their presentation handles on removal/remount. It has no chapter registry, scientific selection, renderer, model or clock. Complete conditional panel roots stay together; ruler/SVG studies keep natural geometry while actual Canvas hosts explicitly fit available space. The source declarations remain with their topic owners.
+
+The independent gallery’s original return-navigation node joins the active frame’s existing observation-choice menu, or its existing explanation panel when there are no choices. Native hidden/disclosure changes can move that same node to the next active frame; it stays inside the single-gallery root so URL-state updates still reach its anchor. Disposal restores its original position before the study is removed. Loading, failure and views without a visible frame keep the original fallback navigation.

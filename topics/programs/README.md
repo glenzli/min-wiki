@@ -45,11 +45,15 @@ Parent integration owns final full `npm run check`, built-production browser evi
 
 ## Reader layout · 2026-10-18
 
-默认优先显示演示与必要操作；章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。完整指令卡与小车同屏，执行按钮紧随小车；运行结果留在状态栏。输入与分支证据继续按原情境显示，次要说明按需展开。
+默认优先显示小车与指令证据；窄或低高窗口由 Reader 收起操作，用户可随时展开。章节、讲解方式和次要条件通过 Reader 的折叠菜单或「解说与设置」打开。保留原有控件、绘图实例与实验状态。完整指令卡与小车同屏，展开后的执行按钮紧随小车；运行结果留在状态栏。输入与分支证据继续按原情境显示，次要说明按需展开。
 
-The default Reader layout prioritizes the scene and essential actions. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.
+The default Reader layout prioritizes the cart and instruction evidence. Narrow or short windows collapse real controls behind Reader’s operation entry. Chapter, reading-depth and secondary-condition menus start closed. Original controls, rendering instances and experiment state are retained; live evidence remains available through the scene, status and explanation panel.
 ## Material refinement · 2026-10-19
 
 小车保留可追踪的教学玩具外形，橡胶轮、金属外壳、固定件和传感器玻璃使用克制的材质区分。所有细节位于原有 `robot-body` 中，仍由同一指令状态驱动；不增加拟人表情、传感能力、运动规则或物理精度。
 
 Rubber, casing, fasteners and sensor-glass details share the original cart transform. These are illustration details, not additional simulated hardware or improved sensor capability. Grid coordinates, parcel identity, branch input and instruction execution are unchanged.
+
+Responsive Reader composition keeps the cart and executable cards together when their actual container is wide enough, including short landscape windows. The compact action row exposes either the original run or pause button and captures keyboard focus before controls become disabled or hidden. Reset uses a 44px icon with its full original accessible label and title, keeping it in the same compact row; handlers and interpreter semantics are unchanged. Reader may collapse the real controls, while instruction cards, status and scientific qualifications remain visible. The scene consumes the shared available-size budget, and only the card list scrolls to its current instruction. Width changes retain the same interpreter, cart, parcel and instruction nodes.
+
+The instruction evidence uses a content-bounded rail (`clamp(12rem, 26%, 17rem)`) when the paired layout fits, and returns to normal stacked flow in a narrow container. Instructions are reading rows, not buttons: their 14px text can wrap naturally, while the original sequence numbers, next arrow, executed check and failure mark retain state meaning. A shallow current-row background and short left mark replace enclosing card borders; the rail owns a single 10px right-edge inset. Below the full-width scene, actions, status and captions share a 12px inline inset; status keeps its text without a decorative left rule.

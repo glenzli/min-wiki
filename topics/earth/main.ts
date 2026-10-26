@@ -3,12 +3,14 @@ import {language,languageHref} from '../../src/platform/i18n.ts';
 import {legacyGalleryURL} from './guideRoute.ts';
 import {CHAPTERS,GALLERY_IDS,readEarthRoute,earthRouteURL} from './journey.ts';
 import words from './guideContent.json';
+import {mountConditions} from './conditions/view.ts';
 
 const legacy=legacyGalleryURL(location.href);
 if(legacy)location.replace(legacy.href);
 else {
   const c=words[language==='en'?'en':'zh'];
   const root=document.querySelector<HTMLElement>('.earth-guide')!;
+  mountConditions(root.querySelector<HTMLElement>('[data-earth-conditions]')!);
   root.querySelector('[data-guide-title]')!.textContent=c.title;
   root.querySelector('[data-guide-intro]')!.textContent=c.intro;
   root.querySelector('[data-guide-start]')!.textContent=c.start;

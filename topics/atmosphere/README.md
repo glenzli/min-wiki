@@ -1,5 +1,7 @@
 # 大气：包围星球的空气 / Atmospheres
 
+The Earth conditions journey can enter the existing Earth/selected-world comparison with a bounded experiment snapshot. A visible return link restores that experiment, including its distance, infrared teaching control and planetary observations. The new grey energy-balance experiment is owned by `earth/conditions/`; this topic still owns atmospheric profiles and phenomena and does not acquire a planetary climate solver. The handoff does not couple its phenomenon or observation clocks to Earth.
+
 Two views: an expanded 3D Earth atmosphere (with the original continuous Earth-to-space journey as a second observation lens), and Earth beside one of five independently structured worlds. The separate parcel experiment has been removed. Natural scene activity is separate from the user-started height journey and can be paused; reduced-motion preference starts it paused. Users can scrub or directly enlarge a layer. No sound starts automatically.
 
 ## Learning design

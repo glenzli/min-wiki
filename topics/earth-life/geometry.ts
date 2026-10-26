@@ -7,7 +7,11 @@ class Surface {
   positions: number[] = []; colors: number[] = [];
   constructor(readonly color: THREE.Color) {}
   tri(a: V, b: V, c: V, tone = 1) {
-    for (const point of [a, b, c]) { this.positions.push(...point); this.colors.push(this.color.r * tone, this.color.g * tone, this.color.b * tone); }
+    for (const point of [a, b, c]) {
+      // Small object-bound pigment variation stays fixed under rotation and rebuilding.
+      const pigment = tone * (.975 + .016 * Math.sin(point[0] * 19 + point[1] * 13 + point[2] * 7) + .009 * Math.sin(point[0] * 83 - point[1] * 37 + point[2] * 61));
+      this.positions.push(...point); this.colors.push(this.color.r * pigment, this.color.g * pigment, this.color.b * pigment);
+    }
   }
   quad(a: V, b: V, c: V, d: V, tone = 1) { this.tri(a, b, c, tone); this.tri(a, c, d, tone); }
   mesh(double = false) {
@@ -80,7 +84,7 @@ function cushions(surface: Surface, scar: Surface, height: number, radius: numbe
   }
 }
 function buildLycopsid(detail: boolean, mobile: boolean) {
-  const bark = new Surface(new THREE.Color('#675f3b')), relief = new Surface(new THREE.Color('#a3a16a')),
+  const bark = new Surface(new THREE.Color('#675f3b')), relief = new Surface(new THREE.Color('#8d8d5e')),
     scar = new Surface(new THREE.Color('#3d4c30')), leaf = new Surface(new THREE.Color('#668345'));
   const height = detail ? 3.8 : 3.1, radius = detail ? .71 : .24;
   tube(bark, t => [0, t * height, 0], t => radius * (1 - t * .22), detail ? 28 : 22, mobile ? 24 : 32, .012);

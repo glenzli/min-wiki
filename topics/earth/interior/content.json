@@ -171,11 +171,11 @@
           "汇聚使大陆岩石缩短、褶皱和叠置，地壳逐渐增厚。",
           "山地及深部地壳根可以增长；碰撞本身不保证出现一条火山弧。"
         ],
-        "detail": "大陆碰撞可形成高山，例如喜马拉雅。实际造山还受断层、岩石流变、侵蚀与均衡调整影响，既有地壳根也有复杂深部结构。这里用同一批色带表现缩短增厚，未计算质量守恒、山高、侵蚀或真实应力，不能把图上高度换算成真实山峰高度。"
+        "detail": "大陆碰撞可形成高山，例如喜马拉雅。实际造山还受断层、岩石流变、侵蚀与均衡调整影响，既有地壳根也有复杂深部结构。这里用保留身份的岩体和参照层位表现缩短增厚，未计算质量守恒、山高、侵蚀或真实应力，不能把图上高度换算成真实山峰高度。"
       },
       "transform": {
         "label": "转换",
-        "condition": "相邻两板主要沿边界水平错动；本图从上往下看。",
+        "condition": "相邻两板主要沿边界水平错动；观察同一参照河道的两段。",
         "stages": [
           "先看跨越边界的两段同一参照线。",
           "两板沿边界向相反方向错动，参照线的位置开始错开。",
@@ -208,7 +208,25 @@
     "featureFluid": "1 · 从下沉板片释放的流体",
     "featureMelt": "2 · 上方地幔局部部分熔融",
     "plateQuakeTitle": "板块一直移动，地震为什么会突然发生？",
-    "plateQuake": "断层面有摩擦，部分区域可以暂时锁固；两侧岩石仍受相对运动影响，发生弹性形变并储存能量。当局部强度被超过，断层快速滑动，释放的一部分能量以地震波向外传播。地震不是两块板每靠近一点就必然发生一次，也不是只有板块边界才可能有地震。本图表现长期形变的方向，没有计算锁固强度、破裂过程或震级。"
+    "plateQuake": "断层面有摩擦，部分区域可以暂时锁固；两侧岩石仍受相对运动影响，发生弹性形变并储存能量。当局部强度被超过，断层快速滑动，释放的一部分能量以地震波向外传播。地震不是两块板每靠近一点就必然发生一次，也不是只有板块边界才可能有地震。本图表现长期形变的方向，没有计算锁固强度、破裂过程或震级。",
+    "observe": "观察问题",
+    "layerShort": "定位一层",
+    "options": "观察设置",
+    "plateTitle": "板块地形与三维剖面",
+    "plateNote": "地形和侧面切口为教学重建；厚度、山高和进度没有定量标尺。下方主要是固态地幔，橙色只标局部熔融与岩浆。",
+    "plateHint": "拖动旋转 · 双指缩放；前侧切面显示地下连续结构。",
+    "playPlates": "播放变化",
+    "pausePlates": "暂停变化",
+    "traceWave": "沿波路观察",
+    "pauseWave": "暂停观察",
+    "waveTraceProgress": "波路展开",
+    "traceNote": "光点只帮助追踪示意波路，不表示实测波形、到时或传播速度。",
+    "plateLeft": "板块 A",
+    "plateRight": "板块 B",
+    "plateBase": "主要固态地幔",
+    "view3d": "三维观察",
+    "view2d": "二维关系",
+    "shallowCaption": "表层放大 · 独立深度尺"
   },
   "en": {
     "journeyLabel": "Clues below our feet",
@@ -382,11 +400,11 @@
           "Convergence shortens, folds, and stacks continental rock, gradually thickening the crust.",
           "Mountains and a deep crustal root can grow. Collision alone does not guarantee a volcanic arc."
         ],
-        "detail": "Continental collision can form high mountains such as the Himalayas. Real mountain building also depends on faults, rock rheology, erosion, and isostatic adjustment, with complex deep structure and crustal roots. The same colored bands here show shortening and thickening, but the model does not solve mass balance, mountain height, erosion, or actual stress. Screen height cannot be converted into a real summit height."
+        "detail": "Continental collision can form high mountains such as the Himalayas. Real mountain building also depends on faults, rock rheology, erosion, and isostatic adjustment, with complex deep structure and crustal roots. Retained rock bodies and reference beds show shortening and thickening, but the model does not solve mass balance, mountain height, erosion, or actual stress. Screen height cannot be converted into a real summit height."
       },
       "transform": {
         "label": "Transform",
-        "condition": "Adjacent plates mainly slide horizontally along their boundary. This diagram is a view from above.",
+        "condition": "Adjacent plates mainly slide horizontally. Compare two parts of the same reference channel.",
         "stages": [
           "Find the two parts of the same reference line across the boundary.",
           "Plates slide in opposite directions along the boundary and the reference line becomes offset.",
@@ -419,6 +437,24 @@
     "featureFluid": "1 · Fluids released from the descending slab",
     "featureMelt": "2 · Local partial melting in the mantle above",
     "plateQuakeTitle": "If plates keep moving, why can an earthquake happen suddenly?",
-    "plateQuake": "Friction can temporarily lock parts of a fault. Continued relative motion deforms the rocks elastically and stores energy. When local strength is exceeded, rapid fault slip releases some energy as seismic waves. Every small increment of convergence does not guarantee an earthquake, and earthquakes can also occur within plates. This diagram shows long-term deformation directions, not fault strength, rupture, or earthquake magnitude."
+    "plateQuake": "Friction can temporarily lock parts of a fault. Continued relative motion deforms the rocks elastically and stores energy. When local strength is exceeded, rapid fault slip releases some energy as seismic waves. Every small increment of convergence does not guarantee an earthquake, and earthquakes can also occur within plates. This diagram shows long-term deformation directions, not fault strength, rupture, or earthquake magnitude.",
+    "observe": "Question",
+    "layerShort": "Locate a layer",
+    "options": "View options",
+    "plateTitle": "Plate terrain and a 3D section",
+    "plateNote": "Terrain and cut faces are teaching reconstructions. Thickness, mountain height and progress are uncalibrated. Mantle is mostly solid; orange marks only local melt and magma.",
+    "plateHint": "Drag to rotate · pinch to zoom. The front section reveals connected underground structures.",
+    "playPlates": "Play the change",
+    "pausePlates": "Pause the change",
+    "traceWave": "Trace the wave paths",
+    "pauseWave": "Pause tracing",
+    "waveTraceProgress": "Path reveal",
+    "traceNote": "Moving dots trace illustrative paths. They are not measured waveforms, arrival times or propagation speeds.",
+    "plateLeft": "Plate A",
+    "plateRight": "Plate B",
+    "plateBase": "Mostly solid mantle",
+    "view3d": "3D view",
+    "view2d": "2D relationships",
+    "shallowCaption": "Shallow enlargement · separate depth scale"
   }
 }

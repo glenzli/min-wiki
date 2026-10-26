@@ -101,6 +101,12 @@ update();
 
 // The journey coordinates selection and presentation; each experiment owns its own clock.
 const workspace=el('plant-workspace');
+workspace.dataset.readerWorkbench='';workspace.dataset.readerLayout='stage';
+const mimosaMain=workspace.querySelector<HTMLElement>('#mimosa-study .theater')!;
+mimosaMain.dataset.readerMain='';mimosaMain.parentElement!.dataset.readerLayout='stage';
+const mimosaVisual=mimosaMain.querySelector<HTMLElement>('.scene-wrap')!;mimosaVisual.dataset.readerStage='';mimosaVisual.dataset.readerFit='available';
+const mimosaEssential=document.createElement('div');mimosaEssential.dataset.readerEssential='';mimosaEssential.className='mimosa-essential';
+mimosaEssential.append(mimosaMain.querySelector('.controls')!,mimosaMain.querySelector('.timeline')!);mimosaMain.append(mimosaEssential);
 const comparison=mountMovementComparison(workspace,value=>choosePlant(value,true));
 const inspector=workspace.querySelector<HTMLElement>('.inspector')!;
 inspector.prepend(workspace.querySelector('.story')!);

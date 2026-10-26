@@ -12,6 +12,8 @@ import { overviewStudy, structureStudy, layerStudies, worldStudies } from './stu
 import './style.css';
 
 translateDocument(t);
+import {mountConditionsEntry} from '../earth/conditions/entry.ts';
+mountConditionsEntry(document.querySelector<HTMLElement>('.atmo-workspace')?.parentElement??null);
 const text=language==='en'?translations.en:translations.zh,journeyText=text.journey;
 const el=(id:string)=>document.getElementById(id)!;
 const input=(id:string)=>el(id) as HTMLInputElement;
@@ -20,6 +22,8 @@ let state=parseRoute(location.search),playing=false,frame=0,last=0,lastUI=0,hold
 let scene:AtmosphereScene|undefined;
 function createScene(){try{scene=new AtmosphereScene(el('atmo-canvas') as HTMLCanvasElement,text);el('render-error').hidden=true;draw();}catch(error){el('render-error').hidden=false;console.error(error);}}
 const workspace=document.querySelector<HTMLElement>('.atmo-workspace')!,inspector=document.querySelector<HTMLElement>('.atmo-inspector')!,stage=document.querySelector<HTMLElement>('.atmo-stage')!;
+// The Reader supplies the current title; the authored introduction stays in its explanation panel.
+inspector.prepend(document.querySelector<HTMLElement>('.atmo-hero')!);
 const observationRoot=document.createElement('section');observationRoot.id='atmo-observation';observationRoot.setAttribute('aria-label',t('大气观察'));
 workspace.before(observationRoot);observationRoot.append(document.querySelector('.atmo-tabs')!,document.querySelector('.atmo-options')!,workspace);
 inspector.append(document.querySelector('.atmo-story')!);
@@ -28,14 +32,22 @@ inspector.append(el('atmo-profiles'));
 const profiles=new AtmosphereProfiles(el('atmo-profiles'),text);
 const structure=new AtmosphereStructureView(el('atmo-structure'),text,worldNotes,layer=>seek(journeyAtHeight(layerStops[layer])));
 const mechanism=new LayerMechanism(el('layer-mechanism'),text.mechanisms,text.layers,()=>{if(!playing)draw();});
+observationRoot.dataset.readerWorkbench='';observationRoot.dataset.readerLayout='stage';workspace.dataset.readerLayout='stage';
+stage.removeAttribute('data-reader-stage');stage.dataset.readerMain='';inspector.dataset.readerSupport='';
+const atmosphereVisual=document.createElement('div');atmosphereVisual.className='atmo-visual';atmosphereVisual.dataset.readerStage='';atmosphereVisual.dataset.readerFit='natural';
+const journeyVisual=el('journey-visual');journeyVisual.dataset.readerStage='';journeyVisual.dataset.readerFit='available';
+atmosphereVisual.append(journeyVisual,el('atmo-structure'));
+const atmosphereEssential=document.createElement('div');atmosphereEssential.className='atmo-essential';atmosphereEssential.dataset.readerEssential='';
+atmosphereEssential.append(stage.querySelector('.atmo-caption')!,el('journey-controls'),el('journey-clue'),el('transport'),el('render-error'));
+stage.append(atmosphereVisual,atmosphereEssential);
 // Mount reading before the observation toolbar so its authored switch stays
 // inline. Common choices remain explicit rather than reopening a disclosure.
 const reading=mountSceneReading(observationRoot,{id:'atmo-science-guide',childTarget:el('story'),controls:document.querySelector<HTMLElement>('.modes')!});
-const observation=mountObservationMode(observationRoot,{enter:t('沉浸演示'),exit:t('退出沉浸 · Esc')},{fit:true,choices:[],panels:[{label:t('解说'),elements:[inspector]}]});
+const observation=mountObservationMode(observationRoot,{enter:t('沉浸演示'),exit:t('退出沉浸 · Esc')},{fit:true,choices:[document.querySelector<HTMLElement>('.atmo-tabs')!,el('layer-display'),el('world-controls')],panels:[{label:t('解说'),elements:[inspector]}]});
 // Relocate the authored controls once: changing a lens never replaces a scene.
 inspector.prepend(document.querySelector('.modes')!);
 const annotationControl=input('labels').closest('label')!;annotationControl.classList.add('atmo-annotations');
-observation.toolbar.prepend(document.querySelector('.atmo-tabs')!,el('layer-display'),el('world-controls'),annotationControl);
+observation.toolbar.prepend(annotationControl);
 document.querySelector('.atmo-options')!.remove();
 function revealAcademic(){if(reading.mode==='academic'){const control=observation.toolbar.querySelector<HTMLButtonElement>(`button[aria-controls~="${inspector.id}"]`);if(control?.getAttribute('aria-expanded')==='false')control.click();}}
 document.querySelector('.modes')!.addEventListener('click',revealAcademic);revealAcademic();

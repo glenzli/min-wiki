@@ -7,7 +7,7 @@
 .lightning-project button{cursor:pointer}.lightning-project button:disabled{cursor:default;opacity:.45}
 .lightning-project button[aria-pressed=true]{border-color:var(--ink);background:var(--tint);font-weight:600}
 .lightning-project button:focus-visible,.lightning-project select:focus-visible,.lightning-project input:focus-visible,.lightning-project canvas:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-#lightning-observation{border:1px solid var(--border);border-radius:12px;padding:8px;background:var(--surface)}
+#lightning-observation{padding:8px;background:transparent;}
 #lightning-observation>.observation-toolbar{padding:0 0 8px;gap:8px}
 #lightning-observation .observation-toolbar button{font-size:13px;white-space:normal}
 .lightning-choices{display:grid;gap:14px;min-width:0;padding:12px}
@@ -18,14 +18,14 @@
 .lightning-choices input[type=range]{width:100%;min-width:0;min-height:30px;accent-color:var(--ink)}
 .lightning-choices .label-choice{display:flex;align-items:center;gap:8px;min-height:44px}
 .label-choice input{width:18px;height:18px;accent-color:var(--ink)}
-.lightning-workspace{display:grid;grid-template-columns:minmax(0,1fr) 286px;gap:12px;min-width:0;min-height:0}
+.lightning-workspace{gap:12px;min-width:0;}
 .lightning-workspace:has(.inspector.observation-panel-hidden){grid-template-columns:minmax(0,1fr)}
-.theater{min-width:0;min-height:0;overflow:hidden;border-radius:8px;background:var(--surface);display:flex;flex-direction:column}
+.theater{min-width:0;overflow:hidden;background:transparent;}
 .stage-heading{display:flex;align-items:baseline;justify-content:space-between;gap:14px;padding:8px 12px;border-bottom:1px solid var(--border);min-height:44px}
 .stage-heading h2{font-size:16px;font-weight:600;line-height:1.5;margin:0;min-width:0}
 .stage-heading>span{color:var(--secondary);font-size:12px;line-height:1.5;flex:none}
-.viewport{height:520px;position:relative;background:#142737;overflow:hidden;min-height:0;isolation:isolate}
-.viewport>#scene,.viewport>#cloud-view,.viewport #cloud-scene,.viewport #cloud-fallback{position:absolute;inset:0;display:block;width:100%;height:100%;min-width:0;min-height:0}
+.viewport{position:relative;background:#142737;overflow:hidden;isolation:isolate;height:var(--reader-stage-size);min-height:0;}
+.viewport>#scene,.viewport>#cloud-view,.viewport #cloud-scene,.viewport #cloud-fallback{position:absolute;inset:0;display:block;width:100%;height:100%;min-width:0;}
 .viewport>#scene{touch-action:pan-y}.viewport #cloud-scene{touch-action:pan-y;cursor:grab}.viewport #cloud-scene:active{cursor:grabbing}
 .scene-error{position:absolute;left:10%;right:10%;top:40%;padding:16px;background:#1a2b39;color:#edf2f3;z-index:2}
 .scene-caption{padding:8px 12px;color:var(--secondary);border-bottom:1px solid var(--border);font-size:13px;line-height:1.55}
@@ -44,7 +44,7 @@
 .rate{display:flex;align-items:center;gap:6px;color:var(--secondary);font-size:12px}.rate select{font-size:12px;padding:7px}
 .steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:0 12px 8px}
 .steps button{font-size:12px;line-height:1.4;padding:7px 5px;text-align:center;min-width:0}
-.inspector{min-width:0;min-height:0;border:1px solid var(--border);border-radius:8px;padding:16px;overflow:auto}
+.inspector{min-width:0;min-height:0;padding:16px;overflow:auto;background:transparent;box-shadow:var(--reader-support-divider,none);}
 .inspector .eyebrow{font-size:11px;color:var(--secondary);margin:0 0 5px}
 .inspector h3{font-size:17px;line-height:1.5;margin:0 0 12px}.inspector p{font-size:13px;line-height:1.8;margin:9px 0}
 .inspector .watch{padding-top:10px;border-top:1px solid var(--border);color:var(--secondary)}
@@ -53,24 +53,24 @@
 .lightning-project .scene-reading-study{padding-inline:0}.lightning-project .scene-reading-study p{font-size:13px}.lightning-project .scene-reading-columns{display:block}
 .related{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:22px}.related a{font-size:13px;color:var(--ink)}
 @media(min-width:1000px){
- #lightning-observation{height:max(680px,calc(100dvh - var(--observation-top,160px)));display:flex;flex-direction:column}
- #lightning-observation .lightning-workspace{flex:1;overflow:hidden}
- #lightning-observation .viewport{height:auto;flex:1;min-height:0}
+ #lightning-observation{display:flex;flex-direction:column;background:transparent;}
+ #lightning-observation .lightning-workspace{overflow:hidden}
+ #lightning-observation .viewport{flex:1;height:var(--reader-stage-size);min-height:0;}
  #lightning-observation .inspector{height:100%}
  #lightning-observation.observation-expanded{min-height:0;height:100dvh}
 }
 @media(max-width:999px){
- .lightning-workspace{grid-template-columns:1fr}.viewport{height:480px}.stage-heading{display:block}.stage-heading>span{display:block;margin-top:2px;font-size:11px}
- .inspector{overflow:visible}.controls .scrub{min-width:0;flex-basis:calc(100% - 90px);order:1}.rate{order:2}.playback-buttons{width:100%}
+ .lightning-workspace{}.viewport{height:var(--reader-stage-size);min-height:0;}.stage-heading{display:block}.stage-heading>span{display:block;margin-top:2px;font-size:11px}
+ .inspector{overflow:visible;background:transparent;box-shadow:var(--reader-support-divider,none);}.controls .scrub{min-width:0;flex-basis:calc(100% - 90px);order:1}.rate{order:2}.playback-buttons{width:100%}
  .playback-buttons button{flex:1}
 }
 @media(max-width:540px){
- #lightning-observation{padding:4px;border-radius:9px}.viewport{height:410px}.stage-heading{padding:8px 10px}.stage-heading h2{font-size:15px}
+ #lightning-observation{padding:4px;background:transparent;}.viewport{height:var(--reader-stage-size);min-height:0;}.stage-heading{padding:8px 10px}.stage-heading h2{font-size:15px}
  .scene-caption{padding:8px 10px;font-size:12px}.legend{padding:6px 10px;font-size:11px;gap:4px 12px}.cloud-help{max-width:calc(100% - 20px);font-size:11px}
  .controls{padding:8px 10px;gap:7px}.playback-buttons{gap:5px}.playback-buttons button{padding:7px 4px;font-size:11px;min-width:0}#play{min-width:80px}
  .steps{padding:0 10px 9px;gap:4px}.steps button{font-size:11px;padding:5px 3px;overflow-wrap:normal}
  .scrub{column-gap:6px}.scrub output{font-size:11px}.rate{font-size:11px}.rate select{font-size:12px}
- .lightning-choices{width:min(100%,350px)}.inspector{padding:14px}
+ .lightning-choices{width:min(100%,350px)}.inspector{padding:14px;background:transparent;box-shadow:var(--reader-support-divider,none);}
 }
 @media(prefers-reduced-motion:reduce){.lightning-project *{scroll-behavior:auto!important}}
 
@@ -81,3 +81,9 @@
 #lightning-observation .legend{padding-block:4px;font-size:11px}
 #lightning-observation>.observation-toolbar{padding:4px 8px;min-height:52px}
 @media(max-width:999px){#lightning-observation .scene-caption{display:block}#lightning-observation .scene-caption #arrival{margin-top:4px}#lightning-observation .lightning-title{flex-basis:100%}}
+
+#lightning-observation .viewport{height:var(--reader-stage-size);min-height:0;max-height:none}
+#lightning-observation .viewport>canvas,#lightning-observation #cloud-view,#lightning-observation #cloud-scene{height:100%;min-height:0;max-height:none}
+#lightning-observation .lightning-essential{min-width:0}
+#lightning-observation .lightning-essential .controls{display:flex;flex-wrap:wrap}
+#lightning-observation .lightning-essential .controls>label{flex:1 1 100%;min-width:0}

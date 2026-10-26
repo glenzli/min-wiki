@@ -101,3 +101,45 @@ Linux Chromium headless（`/usr/bin/chromium`），Three.js r170，Playwright，
 场景填充只更新uniform；切面没变便不更新几何，过程中没有新纹理请求或重复材质/几何创建。内容最多15Hz更新；记录的renderer frame含环境预处理，不以它推算真机FPS。已复跑全仓`typecheck`、`check:i18n`与本馆10个模型测试通过；最终Reader生产路由/根URL限频和全馆门禁仍由父任务统一验收。
 
 新增已实际打开的画面：`playback-vein-source.png`、`playback-vein-transport.png`、`playback-vein-deposit.png`、`playback-vein-complete.png`、`playback-mobile-stepped-en.png`、`playback-fallback-mobile-zh.png`、`playback-bauxite-complete.png`、`playback-placer-complete.png`（均在`/tmp/earth-ores-browser/`）。
+
+## 本轮原生预览全场景精修 · 2026-10-25
+
+本节为基线`705f68bb`上的新一轮本地改动证据，区别于上方Linux harness记录。用macOS上的Codex IAB和`cua_repl`实际打开共享原生Reader预览`http://127.0.0.1:55291/encyclopedia/`，临时tab2，1280×720、DPR1.5；没有设置或重置共享视口。390px中英矩阵、全站构建和最终集成门禁由父任务承担。本馆保持草稿；没有commit/push/deploy。
+
+### 逐场景与本轮改动
+
+- **热液矿脉**：实际检查3D外表、原默认切面65和新切面100；切面操作保持成矿进度100。贫金属时quartz1/sulfide0；封闭时两者0。形成剖面保留36个来源ID；60%时36批迁移/部分沉淀，批内硅质/金属份额与原模型相符。形成视图0canvas，标本视图1canvas，3D科学场和几何本轮没有改写。
+- **风化残积**：检查未富集母岩/风化物与终点代表性豆状集合体，更新自制厚度、颗粒、同心环和基质明暗。形成剖面有效排出后仍12含铝标记，12已移出+18剩余=30；受限排出或弱风化均0移出、30剩余。60%中间态保留30ID，6移出+24剩余。插画不把豆状外观说成真实生成预测或所有铝土矿的必备外观。
+- **流水砂矿**：检查参考颗粒排列、锁在母岩的参考排列、形成剖面、三种水流终点。修复旧标本缓存未消费`liberation`的问题：同一24节点的母岩显示0→1，24个局部覆盖同步改变，p0–p23保持；不通过重建颗粒假装解离。标本附近新增说明其包含已出窗颗粒，属于完整来源参考集，不是回收精矿。
+- 未解离的形成剖面颗粒仍留在母岩；解离后弱水流没有出窗，选择性情景6重颗粒在窗口/18出窗，强水流24出窗/0留窗。所有情景始终6锡石+18石英；图内颜色和棱面不用于真实矿物鉴定。
+- **证据及用途**：三路径各打开结构、性质和分析三窗口，逐一核读共9条动态记录与限定；矿脉/风化/砂矿各自的使用路径、代价和分类说明保留。定量预算继续2D/文字，独立于上方标记：5%品位/80%回收时40kg、230代币；仅价值改2后仍40kg而-10代币。
+- 默认近图用一句限定，完整画面意义、操作及科学边界保留在新增折叠说明内，播放和进度仍在画面附近。英文切换保留vein60/bauxite60/placer100、cut100、三种证据与预算选择，桌面无横向溢出。
+
+实际从砂矿标本点击播放，返回形成视图并从终点重播到1.5%，`aria-pressed=true`；再次点击暂停，`false`且保留1.5%，0canvas。未重新宣称完成一次18秒完整计时或故障注入。当前tab捕获的console error为0。三路径进度和相机/观察切面仍彼此独立；播放器及3D释放实现保持既有合同。
+
+### 自动检查与范围
+
+`node --import tsx --test topics/earth-minerals/tests/*.test.mjs topics/earth-ores/tests/*.test.mjs`：21/21，其中本馆10/10；证明保留的条件化模型、来源身份与预算契约，不证明真实矿体。最后一轮`npm run typecheck`、`npm run check:i18n`（83 namespace、7522 source messages）、限定两馆的`git diff --check`通过。全站构建留给父任务，无重复广泛构建。
+
+矿脉桌面帧9,280 triangles、3 geometries、1 texture、DPR1.5；与旧模型预算一致，只报告当前帧，不声称真机FPS或完整GPU内存。当前UI源码`study.ts` SHA256为`d833047a4b1693fb414af93f289e14cc257bbfef792bf247f709b6d1b3627222`。
+
+### 给父任务的390px中英矩阵
+
+独立路线`/encyclopedia/topics/earth-ores/`，每行加`lang=zh`与`lang=en`。所有下列键加`earth.ores.`前缀；其他有效默认值由模块补齐。
+
+| 观察 | 查询条件 |
+| --- | --- |
+| 3D矿脉切面 | `process=vein&view=specimen&veinProgress=100&cut=0`及`cut=100` |
+| 贫金属/封闭 | 同上，分别`fluid=poor`、`fracture=sealed` |
+| 矿脉过程 | `process=vein&view=process&veinProgress=60`，再0/100对照 |
+| 风化两观察方式 | `process=bauxite&view=process&bauxiteProgress=100`，再`view=specimen` |
+| 风化不富集 | 同上，分别`drainage=closed`、`weathering=weak`，标本图仍应显示未显著富集的代表原料 |
+| 砂矿标本/母岩 | `process=placer&view=specimen&placerProgress=100&liberation=free`，切`liberation=locked` |
+| 砂矿三水流 | `process=placer&view=process&placerProgress=100&flow=weak/sorting/strong`逐个选择 |
+| 证据/经济 | 任一路径`evidence=texture,properties,analysis&grade=5&recovery=80&price=2&cost=90`，打开证据/经济折叠区 |
+
+### 画面与剩余边界
+
+全部本轮截图在`/tmp/earth-minerals-ores-refine-20261025/`：`ores-vein-{cut,exterior,deep-cut,poor,process-blocked,process-middle}.jpg`、`ores-bauxite-{parent,pisolitic,process-enriched,process-closed}.jpg`、`ores-placer-{free,locked,free-en,process-locked,process-weak,process-sorting,process-strong}.jpg`。
+
+没有新增生成图片或外部纹理需求。新材料明暗与厚度仍为自制代表插画，颗粒没有真实尺寸、磨圆距离或化验精度。留存/出窗与经济账继续属于独立教学模型；不据视觉精修提升资源/储量、环境可接受性或开采许可判断。手机实际布局及最终组合路由等待父任务验收。

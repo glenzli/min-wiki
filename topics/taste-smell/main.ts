@@ -50,4 +50,4 @@ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>butt
 render();
 
 
-mountPresentationFrame({"root": ".lab", "visual": ".taste-pair", "transport": ".play-controls", "paired": true});
+mountPresentationFrame({"root": ".lab", "visual": ".taste-pair", "transport": "[data-reader-transport]", "paired": true});

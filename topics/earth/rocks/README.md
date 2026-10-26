@@ -1,6 +1,6 @@
 # A rock's journey / 一块石头的旅行
 
-This gallery is mounted by `topics/earth/main.ts` through `mountStudy(host, context)`. Its owned paths are only `rocks/**`; global navigation, URL writing, the study contract and the shared Three.js stage are parent-owned.
+The native `topics/earth-rocks/main.ts` entry mounts this scientific owner through `earth/singleGallery.ts` and `mountStudy(host, context)`; the former Earth chapter redirects to it. The owner keeps model, materials, geometry and renderer local; global navigation, URL writing, the study contract and shared Three.js stage are parent-owned.
 
 The core question is which conditions can change one parcel of rock material, and which let it remain. A granite-like silicic parcel begins exposed at the surface. Weathering separates material in place; transport/deposition moves it into a basin; lithification adds a separate cement context. Existing rock must be buried before the model offers underground metamorphism or melting. Metamorphism remains solid. Cooling returns melt to igneous rock; the comparable silicic pair is granite/rhyolite, not granite/basalt. Uplift/exhumation permits renewed surface processes. Every state also permits a stay; no compulsory cycle or completion score exists.
 
@@ -36,7 +36,7 @@ The 24 material-origin markers are never claimed to be conserved mineral crystal
 - The process uses the shared presentation-only `finitePlayback.ts` driver. Explicit play/pause, rewind, 10% advance and scrub consume the existing `frameStates`; no scientific clock or new material model is introduced. Playback is transient and never restored as active.
 - Continuous writes are requested no faster than 80 ms desktop / 125 ms narrow or coarse-pointer. Reduced motion uses ten discrete stages. The process picture is the visibility target; leaving the view, host pause, backgrounding, scrolling the picture away and disposal stop playback. No automatic resumption or looping occurs. Final pause/end emits a complete state.
 - Native progress output is silenced during playback and announces a final value when paused; controls retain keyboard focus and visible pressed state.
-- No 3D import or WebGL context is requested until the specimen view is opened in 3D mode. It is retained paused during local 2D/journey viewing, and destroyed when the owning study is disposed.
+- The default 3D journey lazily imports `process3d.ts`. Switching to the hand specimens or explicit 2D view disposes the outgoing 3D viewer; the selected view has at most one context. Scientific state survives those changes. A late import cannot create an invisible context, and study disposal destroys the active viewer.
 - Geometry tier: 12,500 specimen triangles desktop, 4,500 for narrow/coarse-pointer devices; the contact ellipse adds 64. Two geometries and zero image textures are resident.
 - Shared stage limits DPR to 1.35 for narrow/coarse-pointer devices and 1.5 for desktop; rendering is requested only after changes. Intersection, visibility, page pause and explicit re-entry are handled without a free-running loop.
 - Shape/material replacement disposes previous resources. `dispose()` aborts all study listeners, disconnects its resize observer, invalidates late imports, clears Canvas surfaces and destroys the shared stage/context. A late import after a view switch does not create an invisible context.
@@ -46,4 +46,8 @@ See [VALIDATION.md](VALIDATION.md) for actual tests, browser evidence and the li
 
 ## Independent topic refinement
 
-The 2026-10-25 local sample adds `parcelFrame.ts` and `process3d.ts`: fixed origin batches open into fragments, travel within a local observation window, close pores during cementation and join committed model endpoints. `rockMaterial.ts` is shared with the hand-specimen view. Partitions are explanatory batches, not immutable real crystals; the 3D process is a local close-up, not a measured terrain, chemistry or mass solver. The 2D position diagram remains an explicit fallback.
+The 2026-10-25 local sample uses `parcelFrame.ts`, `parcelGeometry.ts` and `process3d.ts`: full-volume origin batches open into fragments, move from slope to a retained basin arrangement, and compact into a separately displayed cement matrix. All process endpoints meet the committed history. `rockMaterial.ts` is shared with the hand-specimen view. Partitions are explanatory batches, not immutable real crystals; the 3D process is a local close-up, not a measured terrain, chemistry or mass solver. The 2D position diagram remains an explicit fallback.
+
+The complete scene-by-scene local refinement record is [REFINEMENT-20261025.md](REFINEMENT-20261025.md). Its current evidence supersedes older renderer/layout assumptions in validation notes; those notes remain a historical record.
+
+本轮接触/材质细节与Reader区域接入见[2026-10-26局部精修记录](REFINEMENT-20261026.md)。共享Reader新界面的最终验收由父整合记录提供。

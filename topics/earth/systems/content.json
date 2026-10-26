@@ -2,15 +2,19 @@
   "zh": {
     "title": "一颗正在运转的家园",
     "intro": "阳光送来能量，海水搬运热量，岩石与大气也在改变。沿着同一条线索，看看地球怎样为生命提供条件。",
-    "navigation": {"water": "1 · 海水怎样搬运热量", "sky": "2 · 光照与太空中的来客", "conditions": "3 · 如果改变一个条件"},
+    "navigation": {
+      "water": "1 · 海水怎样搬运热量",
+      "sky": "2 · 光照与太空中的来客",
+      "conditions": "3 · 如果改变一个条件"
+    },
     "next": "继续观察",
     "previous": "上一个问题",
     "more": "深入：机制、证据与模型边界",
     "sources": "查核资料",
     "water": {
       "question": "冷水一定沉下去吗？还要看看盐分。",
-      "hint": "保留同样的 A、B 两份海水，只改变 A 的温度和盐度。先猜谁更密，再拖动观察位置。",
-      "diagram": "同两份海水的密度与相对分层示意。A 为圆形标记，B 为菱形标记。",
+      "hint": "改变 A 的温度和盐度，再播放分层。B 保持 15°C、SP 34。冷而较淡的海水也可能更轻。",
+      "diagram": "固定剖面中的两份连续海水。A 由暖棕圆点追踪，B 由浅色菱形追踪；同一组标记随密度关系作可逆的几何重排，不是流体动力学解。",
       "a": "A · 你改变的海水",
       "b": "B · 固定参照海水",
       "reference": "B 始终是 15°C、盐度 SP 34；比较时体积相同、压力相同。",
@@ -25,16 +29,16 @@
       "coldFreshened": "冷、较淡",
       "warmSalty": "暖、较咸",
       "matched": "和 B 一样",
-      "progress": "手动展开相对分层",
+      "progress": "展开密度关系",
       "start": "并排比较",
       "finish": "看看分层",
-      "progressNote": "位置只示意密度顺序；滑块没有秒数，不代表真实速度。圆点和菱形追踪同两份水，不是分子。",
+      "progressNote": "播放只在七个显示秒内展开相对位置，可暂停、回退；不是实际流场或速度。圆点和菱形追踪同两份水，不是分子，也不模拟热盐扩散。",
       "rise": "A 更轻，倾向停留在 B 上方。试着让 A 变冷：盐分较少时，它也可能仍然更轻。",
       "sink": "A 更密，倾向下沉到 B 下方。冷却与增盐可以共同增加海水的密度。",
       "neutral": "A、B 的密度在当前显示精度内接近；这里不画出明确的密度分层。",
       "top": "上方",
       "bottom": "下方",
-      "globalTitle": "从两份水，想到相连的大洋",
+      "globalTitle": "为什么全球海流不只是一条传送带？",
       "globalIntro": "局部密度差能使水下沉，却不能独自解释全球海流。沿着箭头找出表层、深层和返回表层的不同途径。",
       "globalDiagram": "相连大洋的机制示意：表层风驱环流、部分高纬海域下沉、深层多分支交换以及风与混合帮助水返回上层。",
       "atlantic": "大西洋",
@@ -46,10 +50,14 @@
       "return": "返回上层：风驱上升与混合",
       "branch": "分支、回旋、交换",
       "globalNote": "自绘机制图，不是实时海流、精确航线或速度预测；大洋并非只有一条“传送带”。",
-      "bridge": "热量怎样从一处到另一处？海洋只是其中一条线索。接着看看阳光怎样照亮同一颗地球。",
+      "bridge": "局部密度差只是海流的一部分。还可以继续观察大气、昼夜或地球上的其他相连问题。",
       "deepTitle": "相同体积，为什么质量不同？",
       "deepText": "密度是单位体积的质量。在这里的海水范围内，降温通常使密度增加，增盐也使密度增加。两种作用可能加强，也可能抵消。真实水柱还受压力、混合、风和地形影响；少量淡水的低温反常不在这组控制范围内。",
-      "model": "读数采用 EOS-80 的表面压力状态方程，输入范围为 5–25°C、SP 30–38，显示至 0.1 kg/m³。它是有限的教学比较；现代海洋学采用 TEOS-10。示意位置不由流体动力学求解，也不模拟热盐扩散；密度差小于 0.05 kg/m³ 时归入显示分辨率带。"
+      "model": "读数采用 EOS-80 的表面压力状态方程，输入范围为 5–25°C、SP 30–38，显示至 0.1 kg/m³。它是有限的教学比较；现代海洋学采用 TEOS-10。示意位置不由流体动力学求解，也不模拟热盐扩散；密度差小于 0.05 kg/m³ 时归入显示分辨率带。",
+      "play": "播放分层",
+      "pause": "暂停分层",
+      "comparisonDetails": "对照条件与密度读数",
+      "sectionNote": "固定剖面 · 颜色和符号追踪来源；虚线不是隔板，也不表示真实水色或温度。"
     },
     "sky": {
       "question": "同一颗地球：昼夜为什么变，极光又为什么亮？",
@@ -107,7 +115,11 @@
       "orbit": {
         "name": "日距与能量",
         "ask": "如果地球离太阳近 5%，海洋就一定蒸发光吗？",
-        "chain": ["改变日距", "改变入射能量", "气候系统共同响应"],
+        "chain": [
+          "改变日距",
+          "改变入射能量",
+          "气候系统共同响应"
+        ],
         "robust": "同一太阳下，距离变为 0.95 AU，单位面积接收的日照约增加 10.8%。",
         "unknown": "仅凭这一步，不能算出升温多少或所有海洋是否蒸发。还需要云、冰的反射率，大气温室作用，海洋热量储存与输送，以及持续时间。",
         "evidence": "光向外传播时分布到越来越大的面积；日照随距离平方的倒数变化。气候对能量变化的响应还包含反馈。",
@@ -116,7 +128,11 @@
       "atmosphere": {
         "name": "大气与保温",
         "ask": "如果温室作用较弱，白天地球还会接到阳光吗？",
-        "chain": ["阳光被吸收", "地表发出热辐射", "温室气体吸收并再发射"],
+        "chain": [
+          "阳光被吸收",
+          "地表发出热辐射",
+          "温室气体吸收并再发射"
+        ],
         "robust": "阳光仍能送来能量。在其他条件相同的比较中，较弱的温室作用会使地表较冷；保温作用日夜都存在。",
         "unknown": "不能用“大气有或无”一个开关算温度。气体成分、压力、云和水汽都会改变能量收支；自然温室效应也不等于越强越好。",
         "evidence": "NASA 的能量收支与温室效应资料区分入射阳光和向外的热辐射；水汽还会随温度变化形成反馈。",
@@ -125,7 +141,11 @@
       "gravity": {
         "name": "质量与引力",
         "ask": "如果质量少 20%，地球会很快失去水吗？",
-        "chain": ["质量与半径", "引力束缚", "受热粒子可能逃逸"],
+        "chain": [
+          "质量与半径",
+          "引力束缚",
+          "受热粒子可能逃逸"
+        ],
         "robust": "若暂时保持半径不变，质量减小会削弱表面引力。引力影响大气粒子逃离所需的能量。",
         "unknown": "“少 20%”本身不能给出失水速度。还须说明半径、大气成分与温度、太阳紫外辐射、补给和地质历史。改变质量也未必能保持半径不变。",
         "evidence": "ESA 的火星与金星比较显示，引力和太阳紫外辐射共同影响离子逃逸；不能把两颗行星的差别都归到磁场。",
@@ -134,7 +154,11 @@
       "interior": {
         "name": "内热与岩石循环",
         "ask": "如果地球内部逐渐冷却，明天就会失去海洋吗？",
-        "chain": ["形成余热与放射性热", "岩石运动与火山", "长期物质交换"],
+        "chain": [
+          "形成余热与放射性热",
+          "岩石运动与火山",
+          "长期物质交换"
+        ],
         "robust": "内热参与驱动板块运动和火山活动。岩石、海洋和大气之间的物质交换影响长期环境。",
         "unknown": "不能从内热减少直接推出明天的气温或海洋消失时间。岩石圈演化涉及漫长时间，也没有在这里证明板块构造是所有生命的必要条件。",
         "evidence": "USGS 区分地球形成时留下的热与放射性衰变供热；火山直接释放的热远小于太阳输入，岩石循环还有长期碳交换。",
@@ -143,7 +167,11 @@
       "moon": {
         "name": "月球与长期变化",
         "ask": "如果没有月球，地球就一定不能住吗？",
-        "chain": ["月球的引力作用", "潮汐与自转轴演化", "环境长期变化"],
+        "chain": [
+          "月球的引力作用",
+          "潮汐与自转轴演化",
+          "环境长期变化"
+        ],
         "robust": "月球参与造成潮汐，并约束地球自转轴倾角的长期变化。",
         "unknown": "不能据此判定所有无月行星都不宜居。无月地球的倾角演化还取决于初始自转与其他行星扰动；研究中的不同设定会得到不同变化范围。",
         "evidence": "NASA 的地球资料介绍月球对轴倾角的作用；NASA 收录的无月地球数值研究检验了多种初始条件。它们不是把月球突然删除后的实验记录。",
@@ -152,7 +180,11 @@
       "magnetic": {
         "name": "磁场与太空环境",
         "ask": "如果没有全球内禀磁场，大气就会被剥光吗？",
-        "chain": ["太阳风与紫外辐射", "磁层／电离层耦合", "大气逃逸与补给"],
+        "chain": [
+          "太阳风与紫外辐射",
+          "磁层／电离层耦合",
+          "大气逃逸与补给"
+        ],
         "robust": "地球磁场改变太阳风带电粒子的路径，也参与极光和部分逃逸过程。",
         "unknown": "磁场不是大气的开关。金星没有类似地球的全球内禀磁场，却保有浓厚大气；引力、紫外加热、成分、补给与历史也要考虑。",
         "evidence": "ESA 对地球、火星和金星的比较显示，磁屏蔽与大气保留并非一对一关系；电离层也能与太阳风形成感应磁层。",
@@ -163,15 +195,19 @@
   "en": {
     "title": "A home that keeps working",
     "intro": "Sunlight brings energy, seawater carries heat, and rocks and air keep changing. Follow one thread to explore the conditions Earth provides for life.",
-    "navigation": {"water": "1 · How water carries heat", "sky": "2 · Sunlight and visitors from space", "conditions": "3 · What if one condition changed?"},
+    "navigation": {
+      "water": "1 · How water carries heat",
+      "sky": "2 · Sunlight and visitors from space",
+      "conditions": "3 · What if one condition changed?"
+    },
     "next": "Keep exploring",
     "previous": "Previous question",
     "more": "Go deeper: mechanisms, evidence and limits",
     "sources": "Check the sources",
     "water": {
       "question": "Does cold water always sink? Check its salt, too.",
-      "hint": "Keep the same two water bodies, A and B. Change only A’s temperature and salinity. Predict which is denser, then move the position slider.",
-      "diagram": "Density and relative layering of the same two water bodies. A uses circles and B uses diamonds.",
+      "hint": "Change A’s temperature and salinity, then play separation. B stays at 15°C and SP 34. Cold, fresher seawater can still be lighter.",
+      "diagram": "Fixed section of two continuous water bodies. Warm-brown circles track A; light diamonds track B. The same marks undergo a reversible geometric rearrangement showing density order, not a fluid-dynamics solution.",
       "a": "A · Water you change",
       "b": "B · Fixed reference water",
       "reference": "B stays at 15°C and practical salinity 34. Compare equal volumes at the same pressure.",
@@ -186,16 +222,16 @@
       "coldFreshened": "Cold, fresher",
       "warmSalty": "Warm, saltier",
       "matched": "Same as B",
-      "progress": "Manually reveal relative layering",
+      "progress": "Reveal density order",
       "start": "Side by side",
       "finish": "See the layers",
-      "progressNote": "Positions show density order only. The slider has no seconds and predicts no speed. Circles and diamonds track the same two water bodies, not molecules.",
+      "progressNote": "Playback reveals relative positions in seven display seconds and supports pause and rewind. It is not a flow field or actual speed. Circles and diamonds track the same water bodies, not molecules; heat and salt diffusion are not simulated.",
       "rise": "A is less dense and tends to remain above B. Try cooling A: with less salt, it can still be less dense.",
       "sink": "A is denser and tends to sink below B. Cooling and added salt can both increase seawater density.",
       "neutral": "A and B have similar densities at this display’s resolution. No distinct density layering is shown here.",
       "top": "Above",
       "bottom": "Below",
-      "globalTitle": "From two water bodies to connected oceans",
+      "globalTitle": "Why are ocean currents more than one conveyor?",
       "globalIntro": "Local density differences can make water sink, but cannot explain global currents alone. Trace the surface, deep and return pathways.",
       "globalDiagram": "Mechanism diagram linking ocean basins: wind-driven surface circulation, sinking in some high-latitude regions, branching deep exchanges, and wind and mixing helping water return upward.",
       "atlantic": "Atlantic",
@@ -207,10 +243,14 @@
       "return": "Return: wind-driven upwelling and mixing",
       "branch": "Branches, gyres, exchanges",
       "globalNote": "An original mechanism diagram, not live currents, exact routes or a speed forecast. The ocean has many pathways, not one conveyor belt.",
-      "bridge": "How does heat move from place to place? Oceans are one part of the answer. Next, follow sunlight across the same Earth.",
+      "bridge": "Local density differences are one part of ocean circulation. Continue with atmosphere, day and night, or other connected Earth questions.",
       "deepTitle": "How can equal volumes have different masses?",
       "deepText": "Density is mass per unit volume. Within this seawater range, cooling generally increases density, and adding salt also increases it. The effects can reinforce or offset each other. Real water columns also involve pressure, mixing, winds and topography. Fresh water’s low-temperature anomaly is outside these controls.",
-      "model": "Readouts use the EOS-80 surface-pressure equation for 5–25°C and practical salinity 30–38, displayed to 0.1 kg/m³. This is a limited teaching comparison; modern oceanography uses TEOS-10. Positions are not a fluid-dynamics solution; heat and salt diffusion are not simulated. Density differences below 0.05 kg/m³ lie in the display-resolution band."
+      "model": "Readouts use the EOS-80 surface-pressure equation for 5–25°C and practical salinity 30–38, displayed to 0.1 kg/m³. This is a limited teaching comparison; modern oceanography uses TEOS-10. Positions are not a fluid-dynamics solution; heat and salt diffusion are not simulated. Density differences below 0.05 kg/m³ lie in the display-resolution band.",
+      "play": "Play separation",
+      "pause": "Pause separation",
+      "comparisonDetails": "Contrasts and density readouts",
+      "sectionNote": "Fixed section · Colors and symbols track origin. The dashed boundary is not a divider or a map of real water color or temperature."
     },
     "sky": {
       "question": "One Earth: why do day and night change, and why do auroras glow?",
@@ -268,7 +308,11 @@
       "orbit": {
         "name": "Distance and energy",
         "ask": "If Earth were 5% closer to the Sun, would all its oceans certainly evaporate?",
-        "chain": ["Distance changes", "Incoming energy changes", "Climate responds together"],
+        "chain": [
+          "Distance changes",
+          "Incoming energy changes",
+          "Climate responds together"
+        ],
         "robust": "For the same Sun, moving to 0.95 AU increases sunlight per unit area by about 10.8%.",
         "unknown": "This step alone cannot tell us the warming or whether every ocean evaporates. We also need cloud and ice reflectivity, greenhouse effects, ocean heat storage and transport, and duration.",
         "evidence": "Light spreads over a larger area as it travels outward; irradiance follows the inverse square of distance. The climate response to changed energy also involves feedbacks.",
@@ -277,7 +321,11 @@
       "atmosphere": {
         "name": "Air and warmth",
         "ask": "With a weaker greenhouse effect, would Earth still receive sunlight?",
-        "chain": ["Sunlight is absorbed", "Surface emits thermal radiation", "Gases absorb and re-emit"],
+        "chain": [
+          "Sunlight is absorbed",
+          "Surface emits thermal radiation",
+          "Gases absorb and re-emit"
+        ],
         "robust": "Sunlight still brings energy. With other conditions held equal, a weaker greenhouse effect means a cooler surface. The effect operates by day and by night.",
         "unknown": "One “air on/off” switch cannot calculate temperature. Composition, pressure, clouds and water vapor all affect the energy balance. A natural greenhouse effect does not mean stronger is always better.",
         "evidence": "NASA’s energy-budget and greenhouse resources distinguish incoming sunlight from outgoing thermal radiation. Water vapor also changes with temperature, creating feedback.",
@@ -286,7 +334,11 @@
       "gravity": {
         "name": "Mass and gravity",
         "ask": "If Earth had 20% less mass, would it quickly lose its water?",
-        "chain": ["Mass and radius", "Gravitational binding", "Heated particles may escape"],
+        "chain": [
+          "Mass and radius",
+          "Gravitational binding",
+          "Heated particles may escape"
+        ],
         "robust": "If radius were held fixed, lower mass would weaken surface gravity. Gravity affects the energy atmospheric particles need to escape.",
         "unknown": "“20% less” alone gives no water-loss rate. Radius, atmospheric composition and temperature, solar ultraviolet radiation, replenishment and history also matter. Changing mass may change radius too.",
         "evidence": "ESA’s Mars–Venus comparison finds that gravity and solar ultraviolet radiation both affect ion escape. Magnetic fields cannot explain every difference between the planets.",
@@ -295,7 +347,11 @@
       "interior": {
         "name": "Interior heat and rocks",
         "ask": "As Earth’s interior cools, will it lose its oceans tomorrow?",
-        "chain": ["Formation and radioactive heat", "Rock motion and volcanoes", "Long-term material exchange"],
+        "chain": [
+          "Formation and radioactive heat",
+          "Rock motion and volcanoes",
+          "Long-term material exchange"
+        ],
         "robust": "Internal heat helps drive plate motion and volcanism. Exchanges among rocks, oceans and air influence the long-term environment.",
         "unknown": "Less internal heat cannot directly give tomorrow’s temperature or a deadline for ocean loss. Rock evolution takes long periods; this does not establish plate tectonics as necessary for all life.",
         "evidence": "USGS distinguishes heat left from formation and heat from radioactive decay. Direct volcanic heat is small beside solar input; rock cycling also involves long-term carbon exchange.",
@@ -304,7 +360,11 @@
       "moon": {
         "name": "The Moon and long-term change",
         "ask": "Without the Moon, would Earth certainly be uninhabitable?",
-        "chain": ["The Moon’s gravity", "Tides and spin-axis evolution", "Long-term environmental change"],
+        "chain": [
+          "The Moon’s gravity",
+          "Tides and spin-axis evolution",
+          "Long-term environmental change"
+        ],
         "robust": "The Moon contributes to tides and constrains long-term variation in Earth’s axial tilt.",
         "unknown": "This does not establish that every moonless planet is uninhabitable. A moonless Earth’s tilt also depends on initial spin and perturbations from other planets. Studies find different ranges under different assumptions.",
         "evidence": "NASA’s Earth resources describe the Moon’s effect on tilt. Numerical moonless-Earth research archived by NASA tests different initial conditions; these are not observations of suddenly removing the Moon.",
@@ -313,7 +373,11 @@
       "magnetic": {
         "name": "Magnetism and space",
         "ask": "Without a global intrinsic magnetic field, must all the air be stripped away?",
-        "chain": ["Solar wind and ultraviolet", "Magnetosphere / ionosphere coupling", "Escape and replenishment"],
+        "chain": [
+          "Solar wind and ultraviolet",
+          "Magnetosphere / ionosphere coupling",
+          "Escape and replenishment"
+        ],
         "robust": "Earth’s field changes charged solar-wind particle paths and participates in auroras and some escape processes.",
         "unknown": "A magnetic field is not an atmosphere switch. Venus has no Earth-like global intrinsic field but retains thick air. Gravity, ultraviolet heating, composition, replenishment and history also matter.",
         "evidence": "ESA’s Earth, Mars and Venus comparisons show that magnetic shielding and atmospheric retention do not have a one-to-one relationship. An ionosphere can also form an induced magnetosphere with the solar wind.",

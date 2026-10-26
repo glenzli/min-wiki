@@ -83,7 +83,7 @@ Rocks have no compulsory igneous-sedimentary-metamorphic circuit. Metamorphism i
 
 ## Model limits
 
-This branching teaching journey uses prerequisite conditions without predicting natural rates, exact pressure-temperature thresholds or mineral equilibria. Fixed markers track provenance, not unaltered crystals, atoms or complete chemistry through every natural process. Grains and bands are representative illustrations. Specimen views explain typical properties without guaranteeing real-object identification. The Minerals hall develops crystal structure and ore conditions further.
+This branching teaching journey uses prerequisite conditions without predicting natural rates, exact pressure-temperature thresholds or mineral equilibria. Fixed markers track provenance, not unaltered crystals, atoms or complete chemistry through every natural process. Grains and bands are representative illustrations. Specimen views explain typical properties without guaranteeing real-object identification. The Minerals hall develops crystal structure and ore conditions further. The 24 volumetric close-up batches are origin groups, not real sand grains. Added cement matrix is separate, and the deposited arrangement persists through later solid-state changes. This does not solve collisions, transport flow or chemical conservation.
 
 ## Sources
 

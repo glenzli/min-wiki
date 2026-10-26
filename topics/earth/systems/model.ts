@@ -84,9 +84,63 @@ export type WaterTendency = 'rise' | 'sink' | 'neutral';
 
 // Stable tracer identities. These are marks for two retained water bodies, not molecules.
 const tracerSeeds = Array.from({ length: 16 }, (_, i) => ({
-  u: ((i * 7) % 16 + .5) / 16,
-  v: ((i * 5) % 16 + .5) / 16,
+  angle:i*2.399963229728653,
+  radius:Math.sqrt((i+.5)/16)*.86,
 }));
+
+type WaterPoint={x:number;y:number};
+function halfWindow(nx:number,ny:number,direction:number){
+  const corners=[{x:-1,y:-1},{x:1,y:-1},{x:1,y:1},{x:-1,y:1}],result:WaterPoint[]=[];
+  for(let i=0;i<4;i++){
+    const a=corners[i],b=corners[(i+1)%4],da=(a.x*nx+a.y*ny)*direction,db=(b.x*nx+b.y*ny)*direction;
+    if(da<=1e-10)result.push(a);
+    if((da<0)!==(db<0)){const t=da/(da-db);result.push({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t});}
+  }
+  return result.filter((p,i)=>!result.slice(0,i).some(q=>Math.hypot(p.x-q.x,p.y-q.y)<1e-8));
+}
+function waterCentroid(points:WaterPoint[]){
+  let area=0,x=0,y=0;
+  for(let i=0;i<points.length;i++){
+    const a=points[i],b=points[(i+1)%points.length],cross=a.x*b.y-b.x*a.y;
+    area+=cross;x+=(a.x+b.x)*cross;y+=(a.y+b.y)*cross;
+  }
+  return{x:x/(3*area),y:y/(3*area)};
+}
+function curvedWindow(points:WaterPoint[],boundary:WaterPoint[],nx:number,ny:number){
+  const result:WaterPoint[]=[];
+  for(let i=0;i<points.length;i++){
+    const a=points[i],b=points[(i+1)%points.length];result.push(a);
+    if(Math.abs(a.x*nx+a.y*ny)<1e-8&&Math.abs(b.x*nx+b.y*ny)<1e-8){
+      const ordered=Math.hypot(a.x-boundary[0].x,a.y-boundary[0].y)<1e-7?boundary:[...boundary].reverse();
+      result.push(...ordered.slice(1,-1));
+    }
+  }
+  return result;
+}
+function markerInWindow(points:WaterPoint[],center:WaterPoint,angle:number,radius:number){
+  const dx=Math.cos(angle),dy=Math.sin(angle);let edge=Infinity;
+  for(let i=0;i<points.length;i++){
+    const a=points[i],b=points[(i+1)%points.length],ex=b.x-a.x,ey=b.y-a.y;
+    const denominator=dx*ey-dy*ex;if(Math.abs(denominator)<1e-10)continue;
+    const distance=((a.x-center.x)*ey-(a.y-center.y)*ex)/denominator;
+    const along=((a.x-center.x)*dy-(a.y-center.y)*dx)/denominator;
+    if(distance>0&&along>=-1e-9&&along<=1+1e-9)edge=Math.min(edge,distance);
+  }
+  return{x:center.x+dx*edge*radius,y:center.y+dy*edge*radius};
+}
+function bendMarker(point:WaterPoint,nx:number,ny:number,ends:WaterPoint[],amplitude:number,id:'A'|'B'){
+  const tx=-ny,ty=nx,s=point.x*tx+point.y*ty,start=ends[0].x*tx+ends[0].y*ty,end=ends[ends.length-1].x*tx+ends[ends.length-1].y*ty;
+  const t=(s-start)/(end-start);if(t<=0||t>=1)return point;
+  let min=-Infinity,max=Infinity;
+  for(const [n,offset]of [[nx,tx*s],[ny,ty*s]]){
+    if(Math.abs(n)<1e-10)continue;
+    const a=(-1-offset)/n,b=(1-offset)/n;min=Math.max(min,Math.min(a,b));max=Math.min(max,Math.max(a,b));
+  }
+  const d=point.x*nx+point.y*ny,far=id==='A'?min:max;
+  const offset=amplitude*Math.sin(t*Math.PI*2)*(1-d/far);
+  return{x:point.x+nx*offset,y:point.y+ny*offset};
+}
+const windowPoint=(p:WaterPoint)=>({x:300+p.x*216,y:186+p.y*110});
 
 export function waterFrame(state: Pick<SystemsState, 'waterTemp' | 'waterSalt' | 'waterProgress'>) {
   const densityA = surfaceDensity(state.waterTemp, state.waterSalt);
@@ -96,19 +150,23 @@ export function waterFrame(state: Pick<SystemsState, 'waterTemp' | 'waterSalt' |
   const tendency: WaterTendency = Math.abs(delta) < .05 ? 'neutral' : delta > 0 ? 'sink' : 'rise';
   const progress = Math.max(0, Math.min(1, state.waterProgress));
   const sign = tendency === 'neutral' ? 0 : tendency === 'sink' ? 1 : -1;
+  // An equal-area, reversible geometric explanation of density order, not a computed flow field.
+  const angle=-sign*progress*Math.PI/2,nx=Math.cos(angle),ny=Math.sin(angle);
+  const aHalf=halfWindow(nx,ny,1),bHalf=halfWindow(nx,ny,-1);
+  const ends=aHalf.filter(p=>Math.abs(p.x*nx+p.y*ny)<1e-8).sort((a,b)=>a.x-b.x||a.y-b.y);
+  const amplitude=.09*Math.sin(Math.PI*progress)*(sign===0?0:1);
+  const boundary=Array.from({length:25},(_,i)=>{
+    const t=i/24,wave=amplitude*Math.sin(t*Math.PI*2);
+    return{x:ends[0].x+(ends[ends.length-1].x-ends[0].x)*t+nx*wave,y:ends[0].y+(ends[ends.length-1].y-ends[0].y)*t+ny*wave};
+  });
   const parcels = (['A', 'B'] as const).map(id => {
-    const direction = id === 'A' ? sign : -sign;
-    const startX = id === 'A' ? 180 : 420;
-    const y = 180 + 66 * direction * progress;
+    const half=id==='A'?aHalf:bHalf,body=curvedWindow(half,boundary,nx,ny),center=waterCentroid(body),screen=windowPoint(center),unbentCenter=waterCentroid(half);
     return {
-      id, x: startX + (sign === 0 ? 0 : (300 - startX) * progress), y,
-      tracers: tracerSeeds.map(({u, v}, i) => ({
-        id: `${id}-${i}`, x: startX + (u - .5) * 104 + (sign === 0 ? 0 : (300 + (u - .5) * 380 - (startX + (u - .5) * 104)) * progress),
-        y: y + (v - .5) * 62,
-      })),
+      id,x:screen.x,y:screen.y,body:body.map(windowPoint),
+      tracers:tracerSeeds.map((seed,i)=>({id:`${id}-${i}`,...windowPoint(bendMarker(markerInWindow(half,unbentCenter,seed.angle+angle,seed.radius),nx,ny,ends,amplitude,id))})),
     };
   });
-  return { densityA, densityB, delta, tendency, progress, parcels };
+  return { densityA, densityB, delta, tendency, progress, parcels,boundary:boundary.map(windowPoint) };
 }
 
 /** Equinox, fixed equatorial site, geometric horizon. Solar time, not civil time.

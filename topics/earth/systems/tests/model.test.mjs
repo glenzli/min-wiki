@@ -53,6 +53,29 @@ test('A/B identities, tracer count and bounds survive forward, backward and rene
   }
 });
 
+test('continuous water regions fill the same section and retain their own markers throughout reversible separation',()=>{
+  const area=points=>Math.abs(points.reduce((sum,a,i)=>{const b=points[(i+1)%points.length];return sum+a.x*b.y-b.x*a.y;},0))/2;
+  const inside=(p,points)=>{
+    let result=false;
+    for(let i=0,j=points.length-1;i<points.length;j=i++){
+      const a=points[i],b=points[j];
+      if((a.y>p.y)!==(b.y>p.y)&&p.x<(b.x-a.x)*(p.y-a.y)/(b.y-a.y)+a.x)result=!result;
+    }return result;
+  };
+  for(const preset of Object.values(waterPresets)){
+    let last;
+    for(let step=0;step<=100;step++){
+      const frame=waterFrame({...defaults,...preset,waterProgress:step/100});
+      for(const [i,parcel]of frame.parcels.entries()){
+        assert.ok(Math.abs(area(parcel.body)-432*110)<1e-6);
+        for(const marker of parcel.tracers)assert.ok(inside(marker,parcel.body),marker.id);
+        if(last)for(let j=0;j<16;j++)assert.ok(Math.hypot(parcel.tracers[j].x-last.parcels[i].tracers[j].x,parcel.tracers[j].y-last.parcels[i].tracers[j].y)<10,'no marker jumps while the partition changes sides');
+      }
+      last=frame;
+    }
+  }
+});
+
 test('solar time follows a retained site, with geometric dawn/dusk independent of magnetic layers', () => {
   assert.equal(skyFrame(0).phase,'night');
   assert.equal(skyFrame(6).phase,'horizon');

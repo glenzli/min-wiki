@@ -16,7 +16,7 @@
 
 海水为什么会分层，又怎样上下交换、搬运热量？
 
-保留等体积A、B两份海水，分别改变A的温度与盐度，再让两种变化共同作用。拖动位置观察，比较密度次序；随后阅读风、混合和上升流的联系。
+保留等体积A、B两份海水，分别改变A的温度与盐度，再让两种变化共同作用。播放或拖动同一剖面，比较相对密度次序；随后展开风、混合和上升流的联系。
 
 ## 密度差把温度与盐分连起来
 
@@ -28,7 +28,7 @@
 
 ## 密度比较能回答什么
 
-本题在同一海面参考压力下比较密度，不能由两个读数直接算出下沉速度、真实深度、全球洋流或气候。位置滑块是可逆的示意坐标；暖冷颜色和圆菱标记帮助跟踪同一份水，不代表分子或实测水团。
+本题在同一海面参考压力下比较密度，不能由两个读数直接算出下沉速度、真实深度、全球洋流或气候。连续水体和圆菱标记帮助追踪同一来源；虚线是解释边界，不是隔板。几何展开可回退，七个显示秒没有真实时间标定。颜色不代表实际温度，标记也不是分子或实测水团。
 
 ## 容易误解的地方
 
@@ -40,20 +40,12 @@
 
 ## 资料来源
 
-- [NASA NSSDCA · Earth Fact Sheet: mean radius, core radius, rotation and dry-air composition](https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html)
-- [NASA · Earth facts: inner core and representative crustal thicknesses](https://science.nasa.gov/earth/facts/)
 - [NOAA · Thermohaline circulation: temperature, salinity and density](https://oceanservice.noaa.gov/education/tutorial_currents/05conveyor1.html)
 - [NOAA Ocean Today · Ocean currents: winds, tides, mixing and upwelling](https://oceantoday.noaa.gov/fullmoon-whatareoceancurrents/welcome.html)
-- [NASA Space Place · What is an aurora?](https://spaceplace.nasa.gov/aurora/en/)
-- [NASA · What is the greenhouse effect?](https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/)
-- [NASA · The habitable zone: possible surface liquid water under suitable conditions](https://science.nasa.gov/exoplanets/habitable-zone/)
-- [ESA Mars Express · Gravity, ultraviolet radiation and atmospheric escape](https://www.esa.int/About_Us/ESAC/Leaky_atmosphere_linked_to_lightweight_planet)
-- [NASA · Venus facts: dense atmosphere without an internally generated global magnetic field](https://science.nasa.gov/venus/venus-facts/)
-- [NASA Earth Observatory · The carbon cycle](https://science.nasa.gov/earth/earth-observatory/the-carbon-cycle/)
-- [NASA · Why orbital cycles cannot explain current rapid warming](https://science.nasa.gov/science-research/earth-science/why-milankovitch-orbital-cycles-cant-explain-earths-current-warming/)
 - [MRI/JMA Technical Report 80 · Chapter 4, surface EOS-80 and temperature-scale footnote](https://www.mri-jma.go.jp/Publish/Technical/DATA/VOL_80/2.pdf)
-- [USGS · Water Density: freshwater maximum near 4 degrees Celsius](https://www.usgs.gov/water-science-school/science/water-density)
-- [NASA NTRS · Rotation of a Moonless Earth: dependence on initial conditions](https://ntrs.nasa.gov/citations/20140011208)
+- [NOAA · Upwelling: wind-driven return of deeper water](https://oceanservice.noaa.gov/facts/upwelling.html)
+- [IOC/SCOR/IAPSO · TEOS-10: modern thermodynamic seawater standard](https://www.teos-10.org/)
+- [Vic et al. · Deep-ocean mixing driven by small-scale internal tides](https://pmc.ncbi.nlm.nih.gov/articles/PMC6506475/)
 
 ## 讲给孩子听 {#narration}
 
@@ -61,15 +53,15 @@
 
 ### 先比同样大的一份水
 
-两份一样多的海水，可以有不同的质量，也就有不同密度。冷暖和盐分都重要：冷一点的水如果也淡很多，结果还要一起比较。
+两份一样大的海水，可以有不同的质量，也就有不同密度。冷暖和盐分都重要：冷一点的水如果也淡很多，结果还要一起比较。
 
-*画面提示: 比较等体积A、B，分别改变温度和盐度后再同时改变；寻找接近等密度的对照。*
+*画面提示: 在连续水体剖面保留A圆点与B菱形，分别改变温度和盐度后再同时改变；播放、暂停并回退，寻找接近等密度的对照。虚线不是隔板。*
 
 ### 海洋的上下有联系
 
 风推动许多表层海流。有些地方的海水冷却、变咸，参与深水形成。混合和上升流又帮助深水返回。海洋有很多岔路，不是一根绕地球的水管。
 
-*画面提示: 读暖表层与冷深层的连接示意，指出北大西洋、南大洋和返回机制，而不承诺唯一闭合轨迹。*
+*画面提示: 展开大洋联系示意，区分风驱表层、部分海域下沉与上升混合的返回机制，不承诺唯一闭合轨迹。*
 
 ### 把两种变化放在一起
 

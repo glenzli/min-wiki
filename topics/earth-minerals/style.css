@@ -12,51 +12,56 @@
 .minerals-study .minerals-map { border-bottom:1px solid var(--earth-line,#d9e0dc); margin-bottom:14px; padding-bottom:8px; }
 .minerals-study .minerals-map summary { cursor:pointer; min-height:36px; color:var(--earth-muted,#5f707b); font-size:13px; }
 .minerals-study .minerals-map summary span { color:var(--earth-ink,#253844); font-weight:650; }
-.minerals-study .minerals-map nav { display:flex; flex-wrap:wrap; gap:8px; margin-top:8px; }
+
+.minerals-study .minerals-map>nav { display:grid; grid-template-columns:minmax(0,1fr); gap:2px; }
+.minerals-study .minerals-map>nav>button { position:relative; display:block; box-sizing:border-box; width:100%; min-width:0; min-height:44px; margin:0; padding:10px 12px 10px 32px; border:0; border-radius:6px; box-shadow:none; background:transparent; color:var(--earth-ink,#253844); font-size:14px; line-height:1.5; text-align:start; white-space:normal; overflow-wrap:anywhere; }
+.minerals-study .minerals-map>nav>button::before { content:''; position:absolute; inset-inline-start:10px; inset-block-start:10px; width:16px; text-align:center; }
+.minerals-study .minerals-map>nav>button[aria-pressed="true"]::before { content:'✓'; }
+.minerals-study .minerals-map>nav>button:is(:hover,[aria-pressed="true"]) { background:var(--reader-soft,var(--surface,#f2f2f2)); }
 .minerals-study .minerals-map small { color:var(--earth-muted,#5f707b); }
 .minerals-study .minerals-map p { color:var(--earth-muted,#5f707b); font-size:12px; }
 .minerals-study .minerals-heading h3 { font-size:clamp(19px,2.5vw,25px); line-height:1.45; margin:0 0 7px; }
 .minerals-study .minerals-heading p { font-size:14px; max-width:90ch; color:var(--earth-muted,#5f707b); margin:0 0 16px; }
 .minerals-study .minerals-pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-.minerals-study .minerals-pair figure,.minerals-study .minerals-stage,.minerals-study .minerals-evidence-layout { border:1px solid var(--earth-line,#d9e0dc); border-radius:13px; background:#f1f1e9; overflow:hidden; }
+.minerals-study .minerals-pair figure { border:1px solid var(--earth-line,#d9e0dc); border-radius:13px; background:#f1f1e9; overflow:hidden; }
 .minerals-study .minerals-pair figure > div { max-width:420px; margin:auto; }
-.minerals-study figcaption { padding:10px 14px 14px; line-height:1.6; font-size:12px; color:var(--earth-muted,#5f707b); }
+.minerals-study figcaption { padding:10px 14px 14px; line-height:1.6; font-size:12px; color:var(--earth-muted,#5f707b); background:var(--earth-paper,#fffefa); }
 .minerals-study figcaption strong,.minerals-study figcaption span { display:block; }
 .minerals-study figcaption strong { font-size:14px; color:var(--earth-ink,#253844); }
 .minerals-study .minerals-stage svg { max-width:810px; margin:auto; }
-.minerals-study .minerals-controls { display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin:12px 0; }
+
 .minerals-study .minerals-controls > label { flex:1 1 220px; min-width:0; }
 .minerals-study label span { display:flex; justify-content:space-between; gap:8px; font-size:13px; }
 .minerals-study output { font-variant-numeric:tabular-nums; color:var(--earth-blue,#247a98); font-weight:650; }
 .minerals-study select { display:block; width:100%; margin-top:5px; }
 .minerals-study .minerals-control-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px 24px; margin-block:12px; }
 .minerals-study .minerals-control-grid > * { min-width:0; }
-.minerals-study .minerals-result { font-size:14px; padding:12px 14px; border-inline-start:3px solid var(--earth-blue,#247a98); background:color-mix(in srgb,var(--earth-blue,#247a98) 6%,var(--earth-paper,#fffefa)); margin:12px 0; border-radius:0 7px 7px 0; }
-.minerals-study .minerals-options { padding:12px 0; border-block:1px solid var(--earth-line,#d9e0dc); }
+.minerals-study .minerals-result { font-size:14px; border-inline-start:3px solid var(--earth-blue,#247a98); background:transparent; border-radius:0; }
+.minerals-study .minerals-options { padding:12px 0; border-block-start:1px solid var(--earth-line,#d9e0dc); }
 .minerals-study summary { cursor:pointer; min-height:32px; font-size:14px; font-weight:600; }
 .minerals-study .minerals-note { font-size:12px; color:var(--earth-muted,#5f707b); }
 .minerals-study .minerals-budget { font-size:12px; color:var(--earth-muted,#5f707b); }
 .minerals-study .minerals-bars { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
 .minerals-study .minerals-bars span { display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px; }
 .minerals-study meter { display:block; width:100%; height:17px; accent-color:var(--earth-amber,#ae6d28); }
-.minerals-study .minerals-evidence-layout { display:grid; grid-template-columns:minmax(180px,.8fr) 1.2fr; }
-.minerals-study .minerals-specimen { max-width:320px; margin:auto; width:100%; }
-.minerals-study .minerals-observations { padding:18px 18px 10px; background:var(--earth-paper,#fffefa); }
+.minerals-study .minerals-evidence-layout { display:grid; grid-template-columns:minmax(180px,.8fr) 1.2fr; border:0; border-radius:0; background:transparent; overflow:hidden; }
+.minerals-study .minerals-specimen { max-width:320px; margin:auto; width:100%; background:#f1f1e9; }
+.minerals-study .minerals-observations { background:transparent; }
 .minerals-study h4 { font-size:15px; line-height:1.5; margin:0 0 8px; }
 .minerals-study dl { margin:0; }
 .minerals-study dl > div { border-bottom:1px solid var(--earth-line,#d9e0dc); padding:6px 0; }
 .minerals-study dt { font-weight:650; font-size:12px; }
 .minerals-study dd { margin:0; color:var(--earth-muted,#5f707b); font-size:12px; }
-.minerals-study .minerals-tests { border:1px solid var(--earth-line,#d9e0dc); border-radius:9px; display:flex; flex-wrap:wrap; gap:4px 18px; padding:10px 12px; margin:12px 0; }
+.minerals-study .minerals-tests { border:0; border-radius:0; display:flex; flex-wrap:wrap; gap:4px 18px; padding:10px 12px; margin:12px 0; }
 .minerals-study .minerals-tests legend { font-size:12px; padding:0 6px; color:var(--earth-muted,#5f707b); }
 .minerals-study .minerals-tests label { display:flex; align-items:center; gap:6px; min-height:44px; cursor:pointer; font-size:13px; }
 .minerals-study .minerals-candidates { list-style:none; padding:0; display:grid; grid-template-columns:1fr 1fr; gap:7px; margin:12px 0; }
-.minerals-study .minerals-candidates li { border:1px solid var(--earth-line,#d9e0dc); border-radius:8px; padding:9px 11px; line-height:1.6; }
+.minerals-study .minerals-candidates li { border:0; border-block-start:1px solid var(--earth-line,#d9e0dc); border-radius:0; padding:9px 11px; line-height:1.6; }
 .minerals-study .minerals-candidates li[data-compatible="true"] { border-inline-start:3px solid var(--earth-green,#36765b); }
 .minerals-study .minerals-candidates li[data-compatible="false"] { background:color-mix(in srgb,var(--earth-muted,#5f707b) 6%,var(--earth-paper,#fffefa)); }
 .minerals-study .minerals-candidates li > div { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; }
 .minerals-study .minerals-candidates :is(small,li > span) { color:var(--earth-muted,#5f707b); font-size:12px; }
-.minerals-study .minerals-equation { padding:8px 14px; border:1px solid var(--earth-line,#d9e0dc); border-radius:9px; font-size:13px; overflow-wrap:anywhere; }
+.minerals-study .minerals-equation { padding:8px 14px; border:0; border-block-start:1px solid var(--earth-line,#d9e0dc); border-radius:0; font-size:13px; overflow-wrap:anywhere; }
 .minerals-study .minerals-equation p { margin:7px 0; }
 .minerals-study .minerals-equation strong { display:block; }
 .minerals-study .minerals-use-list { margin-top:14px; }
@@ -67,7 +72,7 @@
 .minerals-study .minerals-prompt { color:var(--earth-amber,#ae6d28); padding:13px 0; font-weight:600; }
 .minerals-study .minerals-deeper details { border-top:1px solid var(--earth-line,#d9e0dc); padding:12px 0; }
 .minerals-study .minerals-deeper p { max-width:94ch; margin:10px 0 0; font-size:14px; }
-.minerals-study .minerals-boundary { font-size:12px; color:var(--earth-muted,#5f707b); border-block:1px solid var(--earth-line,#d9e0dc); padding:13px 0; }
+.minerals-study .minerals-boundary { font-size:12px; color:var(--earth-muted,#5f707b); border-block-start:1px solid var(--earth-line,#d9e0dc); padding:13px 0; }
 .minerals-study .minerals-connections { display:flex; flex-wrap:wrap; gap:8px 18px; font-size:12px; }
 .minerals-study .minerals-connections a { color:var(--earth-blue,#247a98); text-underline-offset:3px; }
 @media (max-width:600px) {
@@ -80,7 +85,7 @@
  .minerals-study .minerals-control-grid { grid-template-columns:1fr; gap:10px; }
  .minerals-study .minerals-bars { gap:8px; }
  .minerals-study .minerals-evidence-layout { grid-template-columns:minmax(110px,.7fr) 1fr; }
- .minerals-study .minerals-observations { padding:10px; }
+
  .minerals-study .minerals-observations h4 { font-size:13px; }
  .minerals-study .minerals-specimen figcaption { padding:8px; font-size:11px; }
  .minerals-study .minerals-candidates { grid-template-columns:1fr; }
@@ -89,15 +94,15 @@
  .minerals-study .minerals-use-list small { display:inline; }
 }
 @media (prefers-reduced-motion:reduce) { .minerals-study *, .minerals-study *::before, .minerals-study *::after { animation:none!important; transition:none!important; scroll-behavior:auto!important; } }
-.minerals-study .minerals-three-shell { position:relative; background:#0d1d26; border:1px solid var(--earth-line,#d9e0dc); border-radius:14px; overflow:hidden; }
-.minerals-study .minerals-three-host { width:100%; aspect-ratio:16/10; min-height:290px; max-height:600px; }
+.minerals-study .minerals-three-shell { position:relative; background:#0d1d26; overflow:hidden; }
+.minerals-study .minerals-three-host { width:100%; aspect-ratio:auto; min-height:0;  height:var(--reader-stage-size);}
 .minerals-study .minerals-three-host canvas { display:block; width:100%; height:100%; }
 .minerals-study [data-three-status] { color:#d8e3e7; padding:10px 16px; font-size:13px; margin:0; }
-.minerals-study .minerals-3d-caption { font-size:12px; color:var(--earth-muted,#5f707b); margin:10px 0 4px; }
+
 .minerals-study .minerals-flat { padding:10px 0; }
 .minerals-study .minerals-flat > summary { color:var(--earth-muted,#5f707b); font-size:12px; }
 .minerals-study .minerals-flat > div { margin-top:10px; }
-@media(max-width:600px) { .minerals-study .minerals-three-host { min-height:280px; aspect-ratio:1/1; } }
+@media(max-width:600px) { .minerals-study .minerals-three-host { min-height:0; aspect-ratio:auto; height:var(--reader-stage-size);} }
 .minerals-study .minerals-occurrence { margin-top:18px; padding-top:16px; border-top:1px solid var(--earth-line,#d9e0dc); }
 .minerals-study .minerals-occurrence > h4 { font-size:18px; }
 .minerals-study .minerals-occurrence > p { font-size:13px; }
@@ -105,17 +110,17 @@
 .minerals-study .minerals-occurrence .minerals-stage svg { max-width:850px; }
 .minerals-study .minerals-growth-setting { align-items:flex-end; margin-top:0; }
 .minerals-study .minerals-growth-setting > label { flex-basis:340px; }
-.minerals-study .minerals-playback { padding:14px 16px 10px; border:1px solid var(--earth-line,#d9e0dc); border-radius:13px; background:var(--earth-paper,#fffefa); }
-.minerals-study .minerals-playback-buttons { display:flex; flex-wrap:wrap; gap:7px; }
+
+
 .minerals-study .minerals-play-toggle { color:#fffefa; background:var(--earth-blue,#247a98); border-color:var(--earth-blue,#247a98); min-width:112px; font-weight:650; }
-.minerals-study .minerals-progress { display:block; margin-top:12px; }
-.minerals-study .minerals-progress span { align-items:baseline; }
-.minerals-study .minerals-progress output { min-width:4.2em; text-align:end; }
+
+
+.minerals-study .minerals-progress output { text-align:end; }
 .minerals-study .minerals-playback [data-playback-status] { margin:1px 0 0; min-height:1.8em; }
 .minerals-study .minerals-growth-stops { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:7px; margin:10px 0; }
 .minerals-study .minerals-growth-stops button { text-align:start; line-height:1.5; padding:8px 11px; }
 .minerals-study .minerals-growth-stops small { display:block; font-size:11px; color:var(--earth-muted,#5f707b); font-variant-numeric:tabular-nums; }
-.minerals-study .minerals-growth-ledger { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; border:1px solid var(--earth-line,#d9e0dc); border-radius:10px; padding:11px 13px; margin:12px 0; }
+.minerals-study .minerals-growth-ledger { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; }
 .minerals-study .minerals-growth-ledger > div { min-width:0; border-inline-end:1px solid var(--earth-line,#d9e0dc); padding-inline-end:8px; }
 .minerals-study .minerals-growth-ledger > small { grid-column:1/-1; font-size:11px; color:var(--earth-muted,#5f707b); }
 .minerals-study .minerals-growth-ledger > div:last-child { border:0; }
@@ -131,13 +136,25 @@
 .minerals-study .minerals-growth-diagram { margin:12px 0; }
 .minerals-study .minerals-growth-diagram > summary { font-size:12px; color:var(--earth-muted,#5f707b); }
 .minerals-study .minerals-growth-diagram .minerals-stage { margin-top:10px; }
+.minerals-study .minerals-scene-options { margin:0 0 10px; border-bottom:1px solid var(--earth-line,#d9e0dc); }
+.minerals-study .minerals-scene-options > summary { min-height:44px; padding:7px 0; font-size:13px; line-height:1.8; }
+.minerals-study .minerals-scene-options > summary span { color:var(--earth-blue,#247a98); font-weight:500; }
+.minerals-study .minerals-growth-jumps { margin:9px 0; }
+.minerals-study .minerals-growth-jumps > summary { min-height:44px; padding:7px 0; color:var(--earth-muted,#5f707b); font-size:13px; }
+
+.minerals-study .minerals-growth-diagram:not([open]) { margin-block:4px; }
+.minerals-study .minerals-specimen { max-width:360px; }
 @media(max-width:600px) {
- .minerals-study .minerals-playback { padding:12px; }
- .minerals-study .minerals-playback-buttons { gap:6px; }
- .minerals-study .minerals-playback-buttons button { flex:1 1 auto; padding:8px 10px; }
- .minerals-study .minerals-play-toggle { flex-basis:100%; }
+
+
+ .minerals-study .minerals-playback-buttons button { flex:0 1 auto; padding:8px 10px; }
  .minerals-study .minerals-growth-stops { grid-template-columns:repeat(2,minmax(0,1fr)); }
  .minerals-study .minerals-growth-stops button { padding:7px 10px; font-size:12px; }
  .minerals-study .minerals-growth-overlay { inset:auto 8px 8px; justify-content:flex-start; }
  .minerals-study .minerals-growth-overlay span { padding:3px 6px; font-size:10px; }
+ .minerals-study .minerals-evidence-layout { grid-template-columns:1fr; }
+ .minerals-study .minerals-specimen { max-width:300px; }
+
+ .minerals-study .minerals-observations dl { display:grid; grid-template-columns:1fr 1fr; gap:0 14px; }
+ .minerals-study .minerals-observations dl > div:last-child { grid-column:1/-1; }
 }

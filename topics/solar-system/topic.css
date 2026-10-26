@@ -107,12 +107,11 @@ button:disabled {
 
 .mode-switch {
   display: flex;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 999px;
+
+
+
   padding: 3px;
-  gap: 3px;
-}
+  gap: 3px;background:transparent;}
 
 .mode-switch button {
   border: none;
@@ -217,14 +216,13 @@ button:disabled {
 
 /* Model Readout (Academic Mode) */
 .model-readout {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--line);
-  border-radius: 10px;
+
+
+
   padding: 12px 14px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-}
+  gap: 8px;background:transparent;}
 
 .model-readout > span {
   font-size: 11px;
@@ -402,12 +400,11 @@ button:disabled {
 
 .segmented {
   display: flex;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid var(--line);
-  border-radius: 10px;
+
+
+
   padding: 3px;
-  gap: 4px;
-}
+  gap: 4px;background:transparent;}
 
 .segmented button {
   border: none;
@@ -494,15 +491,12 @@ button:disabled {
 .space-scene {
   position: relative;
   width: 100%;
-  height: 520px;
-  min-height: 380px;
+  height:var(--reader-stage-size);
+  min-height:0;
   flex: 1;
   background: #02060f;
-  border-radius: 16px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.8), 0 12px 32px rgba(0, 0, 0, 0.4);
-}
+
+  overflow: hidden;box-shadow:inset 0 0 80px rgba(0, 0, 0, 0.8);}
 
 #canvas-container canvas {
   width: 100% !important;
@@ -684,11 +678,10 @@ button:disabled {
   display: flex;
   align-items: center;
   gap: 16px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  padding: 10px 18px;
-}
+
+
+
+  padding: 10px 18px;background:transparent;}
 
 .play-button {
   background: var(--mint);
@@ -860,7 +853,7 @@ dialog .sources a:hover {
     padding: 0 20px;
   }
   .space-scene {
-    height: 440px;
+    height:var(--reader-stage-size);
   }
 }
 
@@ -877,12 +870,11 @@ dialog .sources a:hover {
     justify-content: space-between;
   }
   .space-scene {
-    height: 340px;
+    height:var(--reader-stage-size);
   }
   .transport {
     flex-wrap: wrap;
-    gap: 10px;
-  }
+    gap: 10px;background:transparent;}
   .scrubber {
     order: 3;
     width: 100%;
@@ -891,7 +883,7 @@ dialog .sources a:hover {
 }
 
 /* Fixed scene height prevents the canvas intrinsic size feeding back into flex layout. */
-.space-scene { flex:none; height:clamp(420px, 55vh, 680px); }
+.space-scene { flex:none; height:var(--reader-stage-size); }
 .experience { grid-template-columns: 360px minmax(0,1fr); }
 .experience > *, .theater, .playback-panel, .tools-bar, .scrubber { min-width: 0; }
 [hidden], body[data-mode="kids"] .academic-only { display: none !important; }
@@ -905,42 +897,40 @@ dialog .sources a:hover {
  .app-shell { padding:0 16px; }
  .page-header { flex-direction:column; align-items:flex-start; height:auto; padding:12px 0; gap:12px; }
  .header-actions { width:100%; }
- .segmented { max-width:100%; }
- .space-scene { height:440px; min-height:440px; flex:none; }
+ .segmented { max-width:100%;background:transparent;}
+ .space-scene { height:var(--reader-stage-size); min-height:0; flex:none; }
  .scene-corner { top:52px; left:8px; right:8px; width:fit-content; max-width:calc(100% - 16px); font-size:10px; }
  .view-controls { left:8px; right:8px; justify-content:flex-end; flex-wrap:wrap; gap:4px; }
  .view-controls button { padding:6px 8px; }
  .planet-card, .city-card { width:calc(100% - 24px); max-width:300px; left:12px; bottom:12px; padding:10px; box-sizing:border-box; }
- .transport { flex-wrap:wrap; gap:10px; }
+ .transport { flex-wrap:wrap; gap:10px;background:transparent;}
  .scrubber { flex-basis:100%; order:3; width:100%; }
  .page-footer { flex-wrap:wrap; gap:8px; }
-}
-
-/* Desktop presentation: retain topic geometry inside the selected scene. */
-@media(min-width:1000px){
-html.presentation-page[data-topic-ui] {& .presentation-frame .space-scene { flex:1; min-height:120px; height:0; } & .presentation-frame .theater { padding:0; gap:8px; } .presentation-frame .scenario-bar { padding:6px 10px; gap:8px; flex-wrap:wrap; } .presentation-frame .route-description { margin:0 10px; font-size:12px; } .presentation-frame .planet-strip { margin:0; padding:0 10px; gap:5px; } .presentation-frame .planet-strip button { padding:7px; } .presentation-frame .presentation-notes .story-panel { padding:0; } .presentation-frame .story-panel h1 { font-size:24px; margin:6px 0; } .presentation-frame .story-divider,.presentation-frame .sidebar-footer { display:none; } .presentation-frame .planet-explorer { display:flex; flex-direction:column; flex:1; min-height:0; padding:0; } .presentation-frame .explorer-layout { flex:1; min-height:0; grid-template-columns:minmax(0,1fr) 240px; } .presentation-frame .explorer-viewport { height:100%; min-height:120px; } .presentation-frame .explorer-notes { overflow:auto; padding:10px; } .presentation-frame .explorer-heading,.presentation-frame .explorer-breadcrumb,.presentation-frame .explorer-views { margin:0; padding:5px 10px; }  .presentation-frame .explorer-hint { font-size:11px; margin:4px 10px; } .presentation-frame .explorer-travel { padding:5px 10px; } .presentation-frame canvas { object-fit:contain; }}
-}
-
-@media(min-width:1000px){html.presentation-page[data-topic-ui] .presentation-frame .explorer-layout{display:flex;flex:1;min-height:0;height:0}html.presentation-page[data-topic-ui] .presentation-frame .explorer-viewport{flex:1;min-height:0;height:100%}html.presentation-page[data-topic-ui] .presentation-frame #explorer-canvas{width:100%;height:100%;min-height:0}html.presentation-page[data-topic-ui] .presentation-frame .explorer-hint{font-size:12px;line-height:1.4;margin:6px 0}html.presentation-page[data-topic-ui] .presentation-frame .explorer-views{display:flex;flex-wrap:wrap;gap:6px}html.presentation-page[data-topic-ui] .presentation-frame .explorer-heading h2{font-size:18px}}
-
-html.presentation-page[data-topic-ui] .presentation-frame:has(#explorer[hidden]) .explorer-external-notes{display:none}
-
-.presentation-frame .space-scene>canvas{width:100%!important;height:100%!important}
-
-@media(min-width:1000px){
-  html.presentation-page[data-topic-ui] .presentation-frame .solar-choices{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:center;gap:14px;padding:7px 12px!important}
-  html.presentation-page[data-topic-ui] .presentation-frame .solar-choices .scenario-bar{padding:0;gap:10px;white-space:nowrap}
-  html.presentation-page[data-topic-ui] .presentation-frame .solar-choices .planet-strip{min-width:0;padding:0;align-self:center}
-  html.presentation-page[data-topic-ui] .presentation-frame .solar-visual{display:flex;flex:1;min-height:0;height:0}
-  html.presentation-page[data-topic-ui] .presentation-frame .solar-visual>.space-scene,
-  html.presentation-page[data-topic-ui] .presentation-frame .solar-visual>.planet-explorer{flex:1;min-height:0;height:100%;border-radius:0}
-  html.presentation-page[data-topic-ui] .presentation-frame .solar-visual>[hidden]{display:none}
-  html.presentation-page[data-topic-ui] .presentation-frame .presentation-notes .playback-panel{display:block;padding:0}
-  html.presentation-page[data-topic-ui] .presentation-frame .presentation-notes .stage-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
-  html.presentation-page[data-topic-ui] .presentation-frame .presentation-notes .stage-buttons button{min-width:0;white-space:normal;text-align:left}
 }
 
 /* The compact Reader menu wraps this page's original wide planet strip. */
 .observation-choice-menu .solar-choices{display:flex!important;flex-direction:column;align-items:stretch;gap:10px;padding:0!important}
 .observation-choice-menu .solar-choices .planet-strip{display:flex;flex-wrap:wrap;overflow:visible;gap:8px}
 .observation-choice-menu .solar-choices .planet-tab{flex:0 1 auto;min-width:44px!important}
+
+/* One available rectangle per renderer; the world shell and ruler keep their
+ * own composition without rebuilding the explorer on responsive changes. */
+.experience.presentation-frame .solar-visual{display:block;flex:none;height:auto;min-height:0}
+.experience.presentation-frame .solar-visual>.space-scene{height:var(--reader-stage-size);min-height:0;flex:none}
+.experience.presentation-frame .planet-explorer{height:auto;min-height:0;margin:0;padding:0;border:0;border-radius:0;overflow:visible;--reader-stage-size:clamp(160px,calc(var(--reader-stage-available,58dvh) - 60px),600px)}
+.experience.presentation-frame .planet-explorer .explorer-layout{display:block;flex:none;height:auto;min-height:0;border:0}
+.experience.presentation-frame .planet-explorer .explorer-viewport{height:var(--reader-stage-size);min-height:0;flex:none}
+.experience.presentation-frame .explorer-breadcrumb{margin:0;padding:4px var(--reader-prose-inset,16px);gap:8px}
+.experience.presentation-frame .explorer-essential{min-width:0}
+.experience.presentation-frame .explorer-essential .explorer-travel{padding:8px var(--reader-prose-inset,16px);flex-wrap:wrap;gap:8px}
+.experience.presentation-frame .explorer-essential .explorer-travel label{flex:1 1 100%;min-width:0}
+.experience.presentation-frame .explorer-essential .explorer-travel input{min-width:0;min-height:44px}
+.experience.presentation-frame .explorer-essential .explorer-scale{position:static;display:block;padding:8px var(--reader-prose-inset,16px);font-size:13px;line-height:1.5;color:var(--secondary);text-shadow:none}
+.experience.presentation-frame .explorer-essential .explorer-hint{padding:8px var(--reader-prose-inset,16px);margin:0;font-size:13px;line-height:1.5}
+.experience.presentation-frame:has(#explorer:not([hidden])) .presentation-stage{display:block}
+.experience.presentation-frame:has(#explorer:not([hidden])) .presentation-essentials{display:none}
+@media(max-height:500px){
+ @container reader-workbench (min-width:38rem){
+  .experience.presentation-frame .planet-explorer .explorer-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,32%);align-items:start;gap:8px}
+ }
+}

@@ -9,7 +9,7 @@ import { drawJourneyExplanation } from './journeyExplanation.ts';
 import './journey.css';
 
 translateDocument(t);
-const presentation = mountPresentationFrame({ root: '.journey-lab', visual: '.journey-visual', transport: '.journey-caption,#journey-transport' });
+mountPresentationFrame({ root: '.journey-lab', visual: '.journey-stage', transport: '#journey-transport', choices: '.journey-stations' });
 const el = (id: string) => document.getElementById(id)!;
 const button = (id: string) => el(id) as HTMLButtonElement;
 const slider = el('journey-progress') as HTMLInputElement;
@@ -144,8 +144,6 @@ button('journey-next').addEventListener('click', () => {
   if (state.chapter === 'metal') { state.object = 'boat'; physicalWaterProgress = 0; selectChapter('water'); }
   else selectChapter(CHAPTERS[(CHAPTERS.indexOf(state.chapter) + 1) % CHAPTERS.length]);
 }, { signal: abort.signal });
-const explanationButton = presentation?.mode.toolbar.querySelector<HTMLElement>('button[aria-controls]');
-if (explanationButton) { el('journey-viewbar').append(explanationButton); presentation!.mode.toolbar.hidden = true; }
 scene = ShoreScene.create(el('shore-host'), () => { el('journey-fallback').hidden = false; diagram(); }, diagram);
 el('journey-fallback').hidden = scene.available;
 choices(); player.select(remembered.shore, CHAPTER_DURATION.shore);

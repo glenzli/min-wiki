@@ -1,5 +1,7 @@
 # 太阳系：太阳、行星与卫星 / Solar system explorer
 
+Earth's conditions journey now links into an actual body's existing site/view with optional saved approach and cutaway positions. The explorer controller validates and applies that bounded snapshot without adding a second terrain or physics owner. Its observation snapshot supplies the latest supported site/view/progress to the return link. A standalone visit offers the Earth question route; an incoming `if=1` visit returns to its retained experiment. This adapter mounts after the presentation frame so it is not discarded with the old shell. Planetary materials, geometry, independent activity and legacy routes remain owned here.
+
 The Reader-era header now takes only the height of its remaining content after control relocation,
 rather than reserving the old 84px header. This returns empty desktop space to the observation stage
 without changing the renderer, planetary materials or independent clocks.
@@ -92,3 +94,5 @@ Validation: focused solar/surface contracts, type/i18n/image gates, one full pro
 ## Presentation layout
 
 The topic opts its existing scene and controls into shared viewport fitting and reversible immersion. Explanation/settings remain available in the adjacent disclosure panel. Multi-chapter studies retain their own state and clocks. Introductory diagrams can be expanded separately, and narrow screens retain document flow.
+
+The orbital and world renderers now each receive one explicit scene allocation. The world shell retains its conditional descent controls, current scale and short qualification next to that scene; the comparison ruler preserves its drawing ratio and keeps world/metric selection and the current ratio visible. Responsive changes retain both explorer clocks and camera state.

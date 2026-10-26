@@ -1,12 +1,12 @@
 01 · Compare equal volumes of water
-[Compare equal-volume A and B; vary temperature and salinity separately and together, including a nearly equal-density case.]
+[Retain A circles and B diamonds in the continuous water section. Vary temperature and salinity separately and together; play, pause and rewind, including a nearly equal-density case. The dashed boundary is not a divider.]
 
 Two equal-sized seawater samples can have different masses and therefore different densities. Temperature and salt both matter. If colder water is also much fresher, compare both changes together.
 
 ---
 
 02 · The surface and deep ocean connect
-[Read surface-deep connections, identifying North Atlantic and Southern Ocean regions and return mechanisms without promising a unique closed trajectory.]
+[Expand the ocean connections diagram. Distinguish wind-driven surface motion, sinking in some regions and return through upwelling and mixing, without promising a unique closed trajectory.]
 
 Winds drive many surface currents. In some places, cooling and increasing salt contribute to deep-water formation. Mixing and upwelling help water return. The ocean has many branches, rather than one pipe wrapped around Earth.
 

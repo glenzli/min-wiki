@@ -32,11 +32,29 @@ function fillLine(line:THREE.Line, positions:[number,number,number][]) {
   const attr=line.geometry.getAttribute('position');positions.forEach((v,i)=>attr.setXYZ(i,...v));attr.needsUpdate=true;line.geometry.computeBoundingSphere();if(line.material instanceof THREE.LineDashedMaterial)line.computeLineDistances();
 }
 
+function parcelRockMaterial(colour:number){
+  const material=new THREE.MeshStandardMaterial({color:colour,roughness:.94,metalness:0});
+  material.onBeforeCompile=shader=>{
+    shader.vertexShader='varying vec3 vParcelPoint;\n'+shader.vertexShader.replace('#include <begin_vertex>','#include <begin_vertex>\nvParcelPoint=position;');
+    shader.fragmentShader='varying vec3 vParcelPoint;\n'+shader.fragmentShader;
+    shader.fragmentShader=shader.fragmentShader.replace('#include <common>',`#include <common>
+      float gh(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}
+      float gn(vec3 p){vec3 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(mix(gh(i),gh(i+vec3(1,0,0)),f.x),mix(gh(i+vec3(0,1,0)),gh(i+vec3(1,1,0)),f.x),f.y),mix(mix(gh(i+vec3(0,0,1)),gh(i+vec3(1,0,1)),f.x),mix(gh(i+vec3(0,1,1)),gh(i+vec3(1,1,1)),f.x),f.y),f.z);}
+      float gg(vec3 p){return gn(p*29.)*.5+gn(p*93.)*.3+gn(p*240.)*.2;}
+    `);
+    shader.fragmentShader=shader.fragmentShader.replace('#include <color_fragment>','#include <color_fragment>\nfloat grain=gg(vParcelPoint);diffuseColor.rgb*=.56+grain*.8;diffuseColor.rgb=mix(diffuseColor.rgb,diffuseColor.rgb*.35,smoothstep(.68,.78,gn(vParcelPoint*85.))*.6);');
+    shader.fragmentShader=shader.fragmentShader.replace('#include <normal_fragment_maps>',`#include <normal_fragment_maps>
+      vec3 q0=dFdx(-vViewPosition),q1=dFdy(-vViewPosition),n0=cross(q1,normal),n1=cross(normal,q0);float det=dot(q0,n0),b=gg(vParcelPoint)*.009;
+      normal=normalize(abs(det)*normal-sign(det)*(dFdx(b)*n0+dFdy(b)*n1));
+    `);
+  };material.customProgramCacheKey=()=> 'rift-origin-batch-grain-1';return material;
+}
+
 export function mountRiftScene(host:HTMLElement, initial:RiftState, copy:SceneCopy):RiftScene {
   let disposed=false,current=initial,scale: RiftScale=initial.scale;
   const narrow=innerWidth<700||matchMedia('(pointer: coarse)').matches;
   const stage=createThreeStage(host,{label:copy.label,cameraPosition:initial.camera[scale]??cameras[scale],target:[0,0,0],minDistance:3,maxDistance:16,background:'#12272e',onUnavailable:()=>copy.onUnavailable()});
-  stage.camera.fov=narrow?40:34;stage.camera.updateProjectionMatrix();stage.renderer.toneMappingExposure=1.08;
+  stage.camera.fov=narrow?40:34;stage.camera.updateProjectionMatrix();stage.renderer.toneMappingExposure=.91;
   stage.controls.minPolarAngle=.3;stage.controls.maxPolarAngle=Math.PI*.81;
   const globalGroup=new THREE.Group(),regionGroup=new THREE.Group(),materialGroup=new THREE.Group();stage.group.add(globalGroup,regionGroup,materialGroup);
   regionGroup.position.y=.47;
@@ -85,9 +103,9 @@ export function mountRiftScene(host:HTMLElement, initial:RiftState, copy:SceneCo
   const cells=materialCells(),fineGeometry=grainGeometry(31),dropGeometry=new THREE.SphereGeometry(1,32,24);
   const tags=Array.from({length:20},(_,i)=>{
     const group=new THREE.Group();group.name=`P1-${String(i+1).padStart(2,'0')}`;group.userData.materialTag=group.name;
-    const material=new THREE.MeshStandardMaterial({color:grainColors[i%5],map:maps.grain,bumpMap:maps.grain,bumpScale:.012,roughness:.85,metalness:.015});
+    const material=parcelRockMaterial(grainColors[i%5]);
     const mesh=new THREE.Mesh(cells[i].geometry,material);group.add(mesh);materialGroup.add(group);
-    const residue=new THREE.Mesh(cells[i].geometry,new THREE.MeshStandardMaterial({color:grainColors[i%5],map:maps.grain,bumpMap:maps.grain,bumpScale:.01,roughness:.88}));group.add(residue);
+    const residue=new THREE.Mesh(cells[i].geometry,parcelRockMaterial(grainColors[i%5]));group.add(residue);
     const outline=new THREE.Mesh(cells[i].geometry,new THREE.MeshBasicMaterial({color:0xf3cf7b,wireframe:true,transparent:true,opacity:.75}));group.add(outline);
     const fine=new THREE.InstancedMesh(fineGeometry,new THREE.MeshStandardMaterial({color:i%2?0xbac0a7:0x5a665d,map:maps.grain,roughness:.86}),8);group.add(fine);
     return{group,mesh,material,outline,fine,residue};

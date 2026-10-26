@@ -8,6 +8,9 @@ import { t } from './i18n.ts';
 import type { Planet } from './data/planetsData.ts';
 import './shell.css';
 translateDocument(t);
+import {mountConditionsEntry} from '../earth/conditions/entry.ts';
+import {readConditions} from '../earth/conditions/route.ts';
+import {WORLD_IDS, VIEWS, type WorldId, type View} from '../earth/conditions/model.ts';
 
 
 import { SolarSimulation } from './physics/solarSimulation.ts';
@@ -69,6 +72,7 @@ function $(id: string): HTMLElement {
 class SolarApp {
   private explorer: ExplorerController;
   private cancelStageMotion = () => {};
+  captureObservation(){return this.explorer?.active?this.explorer.observation():undefined;}
   mode!: string;
   scenario!: string;
   overviewView!: string;
@@ -116,7 +120,11 @@ class SolarApp {
     this.buildStages();
     this.updateUI();
     const initial = readSelection(location.search);
-    if (initial.body) { this.selectPlanet(initial.body); this.explorer.open(initial.body, initial.view); }
+    if (initial.body) {
+      this.selectPlanet(initial.body);
+      const saved=new URLSearchParams(location.search).get('if')==='1'&&WORLD_IDS.includes(initial.body as WorldId)?readConditions(location.search).observations[initial.body as WorldId]:undefined;
+      this.explorer.open(initial.body, initial.view,saved);
+    }
 
     this.animate = this.animate.bind(this);
     this.frame = requestAnimationFrame(this.animate);
@@ -516,7 +524,7 @@ class SolarApp {
 }
 
 // Bootstrap
-new SolarApp();
+const solarApp=new SolarApp();
 
 const theater = document.querySelector<HTMLElement>('.theater')!;
 const solarChoices = document.createElement('div');
@@ -525,6 +533,7 @@ solarChoices.append(theater.querySelector('.scenario-bar')!, theater.querySelect
 theater.prepend(solarChoices);
 const solarVisual = document.createElement('div');
 solarVisual.className = 'solar-visual';
+solarVisual.dataset.readerFit = 'natural';
 const explorer = theater.querySelector('#explorer')!;
 explorer.before(solarVisual);
 solarVisual.append(explorer, theater.querySelector('#canvas-container')!);
@@ -537,6 +546,29 @@ if (solarFrame) {
     explorerNotes.querySelector('.explorer-views')!, explorerNotes.querySelector('#activity-play')!,
   );
   solarFrame.notes.prepend(explorerNotes);
+  // The world shell keeps its own conditional controls together. Their hidden
+  // state still belongs to ExplorerController, including independent travel.
+  const world=explorer as HTMLElement,worldMain=world.querySelector<HTMLElement>('.explorer-layout')!;
+  world.dataset.readerWorkbench='';world.dataset.readerLayout='stage';worldMain.dataset.readerMain='';
+  const worldStage=worldMain.querySelector<HTMLElement>('.explorer-viewport')!;
+  worldStage.dataset.readerStage='';worldStage.dataset.readerFit='available';
+  const worldEssential=document.createElement('div');worldEssential.className='explorer-essential';worldEssential.dataset.readerEssential='';
+  worldEssential.append(world.querySelector('#explorer-travel')!,world.querySelector('#explorer-scale')!,world.querySelector('#explorer-hint')!);
+  worldMain.append(worldEssential);
+  const overview=solarVisual.querySelector<HTMLElement>('#canvas-container')!;
+  overview.dataset.readerFit='available';
 }
 
-mountPresentationFrame({ root: '#world-comparison', visual: 'canvas' });
+// Its ruler has a fixed drawing ratio: preserve circles rather than stretching
+// the numerical canvas to an arbitrary viewport rectangle.
+const comparisonCanvas=document.querySelector<HTMLCanvasElement>('#world-comparison canvas')!;
+const comparisonArt=document.createElement('div');comparisonArt.className='comparison-art';comparisonArt.dataset.readerFit='natural';
+comparisonCanvas.before(comparisonArt);comparisonArt.append(comparisonCanvas);
+mountPresentationFrame({ root: '#world-comparison', visual: '.comparison-art', transport: '.comparison-selectors,.comparison-metrics,.comparison-ratio,.comparison-note' });
+mountConditionsEntry(document.querySelector<HTMLElement>('.experience'),state=>{
+  const o=solarApp.captureObservation();
+  if(o&&WORLD_IDS.includes(o.body as WorldId)&&VIEWS.includes(o.view as View)){
+    state.world=o.body as WorldId;state.observations[state.world]={site:o.site,view:o.view as View,descent:o.descent,section:o.section};
+  }
+  return state;
+});

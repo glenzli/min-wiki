@@ -1,17 +1,17 @@
-.cosmic-workspace{max-width:1120px;margin:auto;padding:32px 24px 70px}.cosmic-workspace header{max-width:810px;margin-bottom:30px}.cosmic-workspace h1{font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:-.05em;margin:.25em 0}.eyebrow{font-size:.75rem;letter-spacing:.13em;color:var(--accent);text-transform:uppercase}.intro{color:var(--secondary);line-height:1.8}.atlas{border:1px solid var(--border);border-radius:25px;overflow:hidden;background:var(--surface)}.scene-heading{display:flex;justify-content:space-between;align-items:center;padding:25px 28px;gap:16px}.scene-heading h2{margin:5px 0;font-size:1.4rem}.cosmic-workspace button{min-height:44px;font:inherit;padding:10px 18px;border-radius:24px;background:var(--surface);border:1px solid var(--border);color:var(--ink);cursor:pointer}.cosmic-workspace button[aria-pressed=true]{color:#15201f;background:#b4cfca;border-color:#b4cfca}#cosmic-canvas{display:block;width:100%;height:auto;background:#080e19}.scale-readout{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.scale-readout div{padding:20px 28px}.scale-readout span{font-size:.8rem;color:var(--secondary);display:block;margin-bottom:8px}.scale-readout output{font-size:1.35rem;font-variant-numeric:tabular-nums}.zoom-control,.galaxy-controls{padding:22px 28px 5px}.zoom-control label,.galaxy-controls label{display:block;color:var(--secondary);font-size:.88rem;margin-bottom:10px}.cosmic-workspace input[type=range]{width:100%;min-height:32px;accent-color:#b4cfca}.stops,.layer-controls{display:flex;flex-wrap:wrap;gap:8px}.stops{padding:10px 28px}.galaxy-controls{border-top:1px solid var(--border);margin-top:18px}.layer-controls{padding:8px 0 18px}.layer-controls button{font-size:.86rem}.explanation{padding:5px 28px 28px;line-height:1.85}.boundary{font-size:.88rem;color:var(--secondary);border-left:2px solid #658c82;padding-left:15px}.next-links{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:24px;line-height:2}.cosmic-workspace a{color:var(--accent)}@media(max-width:600px){.cosmic-workspace{padding:20px 14px 50px}.scene-heading{padding:18px;align-items:flex-start}.scene-heading h2{font-size:1.15rem}.scene-heading button{font-size:.8rem;padding:9px}.scale-readout{grid-template-columns:1fr}.scale-readout div{padding:13px 18px;display:flex;justify-content:space-between;gap:10px;align-items:center}.scale-readout span{margin:0}.scale-readout output{font-size:1rem}.zoom-control,.galaxy-controls{padding:16px 18px 5px}.stops{padding:10px 18px}.stops button{flex:1;font-size:.82rem}.explanation{padding:5px 18px 20px}.next-links{display:grid}}
+.cosmic-workspace{max-width:1120px;margin:auto;padding:32px 24px 70px}.cosmic-workspace header{max-width:810px;margin-bottom:30px}.cosmic-workspace h1{font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:-.05em;margin:.25em 0}.eyebrow{font-size:.75rem;letter-spacing:.13em;color:var(--accent);text-transform:uppercase}.intro{color:var(--secondary);line-height:1.8}.atlas{overflow:hidden;background:transparent;}.scene-heading{display:flex;justify-content:space-between;align-items:center;padding:25px 28px;gap:16px}.scene-heading h2{margin:5px 0;font-size:1.4rem}.cosmic-workspace button{min-height:44px;font:inherit;padding:10px 18px;border-radius:24px;background:var(--surface);border:1px solid var(--border);color:var(--ink);cursor:pointer}.cosmic-workspace button[aria-pressed=true]{color:#15201f;background:#b4cfca;border-color:#b4cfca}#cosmic-canvas{display:block;width:100%;height:100%;background:#080e19}.scale-readout{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.scale-readout div{padding:20px 28px}.scale-readout span{font-size:.8rem;color:var(--secondary);display:block;margin-bottom:8px}.scale-readout output{font-size:1.35rem;font-variant-numeric:tabular-nums}.zoom-control,.galaxy-controls{padding:22px 28px 5px}.zoom-control label,.galaxy-controls label{display:block;color:var(--secondary);font-size:.88rem;margin-bottom:10px}.cosmic-workspace input[type=range]{width:100%;min-height:32px;accent-color:#b4cfca}.stops,.layer-controls{display:flex;flex-wrap:wrap;gap:8px}.stops{padding:10px 28px}.galaxy-controls{border-top:1px solid var(--border);margin-top:18px}.layer-controls{padding:8px 0 18px}.layer-controls button{font-size:.86rem}.explanation{padding:5px 28px 28px;line-height:1.85}.boundary{font-size:.88rem;color:var(--secondary);border-left:2px solid #658c82;padding-left:15px}.next-links{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:24px;line-height:2}.cosmic-workspace a{color:var(--accent)}@media(max-width:600px){.cosmic-workspace{padding:20px 14px 50px}.scene-heading{padding:18px;align-items:flex-start}.scene-heading h2{font-size:1.15rem}.scene-heading button{font-size:.8rem;padding:9px}.scale-readout{grid-template-columns:1fr}.scale-readout div{padding:13px 18px;display:flex;justify-content:space-between;gap:10px;align-items:center}.scale-readout span{margin:0}.scale-readout output{font-size:1rem}.zoom-control,.galaxy-controls{padding:16px 18px 5px}.stops{padding:10px 18px}.stops button{flex:1;font-size:.82rem}.explanation{padding:5px 18px 20px}.next-links{display:grid}}
 .cosmic-workspace [hidden]{display:none!important}
 .cosmic-view{position:relative;background:#030812;min-height:300px}.cosmic-view #cosmic-canvas{width:100%;height:100%;background:transparent}.cosmic-labels{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.scene-note{margin:0;padding:15px 28px;color:var(--secondary);font-size:.78rem;line-height:1.8;border-bottom:1px solid var(--border)}.scene-note a{display:block;font-size:.72rem}
 @media(max-width:600px){.cosmic-workspace .stops{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,120px),1fr));gap:8px}.cosmic-workspace .stops button{flex:none;min-width:0;padding-inline:10px;white-space:nowrap;word-break:keep-all;overflow-wrap:normal}}
 
 .origin-controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:20px 28px;border-bottom:1px solid var(--border)}.origin-controls span{font-size:.8rem;color:var(--secondary);margin-right:auto}.size-memory{display:grid;grid-template-columns:160px 1fr;gap:6px 24px;padding:20px 28px;border-top:1px solid var(--border);background:var(--surface)}.size-memory h3{grid-column:1/-1;font-size:.95rem;margin:0 0 8px}.size-discs{grid-column:1;grid-row:2/5;display:flex;align-items:center;gap:18px}.size-discs>div{display:flex;flex-direction:column;align-items:center;gap:9px}.size-discs i{display:block;flex-shrink:0;border-radius:50%}.size-sun{background:radial-gradient(circle at 35% 30%,#fff0a0,#ffc557 60%,#d77824)}.size-earth{background:#7cd5f2}.size-discs span{font-size:.7rem;white-space:nowrap}.size-memory p{margin:0;font-size:.85rem;line-height:1.7}.size-memory .size-note{font-size:.73rem;color:var(--secondary)}@media(max-width:600px){.origin-controls{padding:16px 18px}.origin-controls span{flex-basis:100%}.origin-controls button{flex:1;font-size:.82rem;padding:10px}.size-memory{padding:18px;grid-template-columns:1fr}.size-discs{grid-row:auto;justify-content:center;padding:8px 0}.size-memory h3{grid-column:auto}}
 
-.journey-chapters{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 20px}.journey-chapters button{flex:1;min-width:180px;text-align:left;border-radius:12px}.comparison-heading{padding:24px 28px 16px}.comparison-heading h2{margin:0 0 18px;font-size:1.4rem}.comparison-buttons{display:flex;gap:8px;flex-wrap:wrap}.comparison-buttons button{font-size:.85rem}.comparison-canvas{display:block;width:100%;height:390px;background:#08111f}.comparison-transport{display:flex;align-items:center;gap:16px;padding:18px 28px;border-bottom:1px solid var(--border)}.comparison-transport label{flex:1;font-size:.8rem;color:var(--secondary)}.comparison-transport input{display:block}.comparison-copy{padding:20px 28px;line-height:1.8}.comparison-copy p{margin:16px 0}.comparison-boundary{font-size:.8rem;color:var(--secondary)}.comparison-copy>a{font-size:.8rem;display:block;margin-bottom:18px}.comparison-readings{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center}.comparison-readings>div{display:flex;flex-direction:column;gap:3px}.comparison-readings strong{font-size:1.2rem}.comparison-readings span{font-size:.8rem;color:var(--secondary)}.comparison-credit{display:block;font-size:.7rem;padding:0 28px 20px}.comparison-transport button:disabled{opacity:.35;cursor:default}@media(max-width:600px){.journey-chapters{gap:8px}.journey-chapters button{min-width:100%;font-size:.85rem}.comparison-heading{padding:20px 18px 14px}.comparison-heading h2{font-size:1.18rem}.comparison-buttons{display:grid;grid-template-columns:1fr 1fr}.comparison-buttons button{font-size:.76rem;padding:8px}.comparison-transport{padding:16px;flex-wrap:wrap;gap:10px}.comparison-transport label{flex-basis:100%;order:-1}.comparison-transport button{flex:1;font-size:.8rem;padding:9px}.comparison-copy{padding:18px}.comparison-readings{gap:10px}.comparison-readings span{font-size:.72rem}.comparison-copy>button{width:100%;font-size:.82rem}.comparison-credit{padding:0 18px 18px}.scene-heading{flex-wrap:wrap}.scene-heading button{white-space:nowrap}}
+.journey-chapters{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 20px}.journey-chapters button{flex:1;min-width:180px;text-align:left;border-radius:12px}.comparison-heading{padding:24px 28px 16px}.comparison-heading h2{margin:0 0 18px;font-size:1.4rem}.comparison-buttons{display:flex;gap:8px;flex-wrap:wrap}.comparison-buttons button{font-size:.85rem}.comparison-canvas{display:block;width:100%;height:100%;background:#08111f}.comparison-transport{display:flex;align-items:center;gap:16px;padding:18px 28px;border-bottom:1px solid var(--border)}.comparison-transport label{flex:1;font-size:.8rem;color:var(--secondary)}.comparison-transport input{display:block}.comparison-copy{padding:20px 28px;line-height:1.8}.comparison-copy p{margin:16px 0}.comparison-boundary{font-size:.8rem;color:var(--secondary)}.comparison-copy>a{font-size:.8rem;display:block;margin-bottom:18px}.comparison-readings{display:grid;grid-template-columns:1fr 1fr;gap:20px;text-align:center}.comparison-readings>div{display:flex;flex-direction:column;gap:3px}.comparison-readings strong{font-size:1.2rem}.comparison-readings span{font-size:.8rem;color:var(--secondary)}.comparison-credit{display:block;font-size:.7rem;padding:0 28px 20px}.comparison-transport button:disabled{opacity:.35;cursor:default}@media(max-width:600px){.journey-chapters{gap:8px}.journey-chapters button{min-width:100%;font-size:.85rem}.comparison-heading{padding:20px 18px 14px}.comparison-heading h2{font-size:1.18rem}.comparison-buttons{display:grid;grid-template-columns:1fr 1fr}.comparison-buttons button{font-size:.76rem;padding:8px}.comparison-transport{padding:16px;flex-wrap:wrap;gap:10px}.comparison-transport label{flex-basis:100%;order:-1}.comparison-transport button{flex:1;font-size:.8rem;padding:9px}.comparison-copy{padding:18px}.comparison-readings{gap:10px}.comparison-readings span{font-size:.72rem}.comparison-copy>button{width:100%;font-size:.82rem}.comparison-credit{padding:0 18px 18px}.scene-heading{flex-wrap:wrap}.scene-heading button{white-space:nowrap}}
 /* The scene and its transport share a viewport-sized workspace, with reading alongside it. */
-#cosmic-observation{position:relative;isolation:isolate;background:var(--page);border:1px solid var(--border);border-radius:16px;padding:10px}
+#cosmic-observation{position:relative;isolation:isolate;padding:10px;background:transparent;}
 #cosmic-observation>.observation-toolbar{padding:0 0 8px;background:var(--page)}
 #cosmic-observation .journey-chapters{margin:8px 0;gap:6px;flex-shrink:0}
 #cosmic-observation .journey-chapters button{min-width:0;padding:8px 12px;font-size:12px;text-align:center;min-height:44px}
-#cosmic-observation .atlas{border-radius:10px;min-height:0}
+#cosmic-observation .atlas{min-height:0}
 #cosmic-observation .comparison-heading{padding:8px 12px}
 #cosmic-observation .comparison-heading h2{font-size:18px;margin:0 0 6px}
 #cosmic-observation .comparison-buttons{gap:6px}
@@ -20,18 +20,18 @@
 #cosmic-observation .comparison-home-transport{justify-content:space-between}
 #cosmic-observation .comparison-home-progress{font-size:12px;color:var(--secondary);font-variant-numeric:tabular-nums;white-space:nowrap}
 #cosmic-observation .comparison-home-cues{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px 12px;border-bottom:1px solid var(--border)}
-#cosmic-observation .comparison-home-cues>div{display:grid;gap:3px;min-width:0;padding:7px 9px;border:1px solid var(--border);border-radius:8px;background:var(--tint)}
+#cosmic-observation .comparison-home-cues>div{display:grid;gap:3px;min-width:0;padding:7px 9px;background:transparent;}
 #cosmic-observation .comparison-home-cues strong{font-size:11px;line-height:1.35}
 #cosmic-observation .comparison-home-cues span{font-size:11px;color:var(--secondary);line-height:1.4}
 #cosmic-observation .comparison-buttons button{font-size:12px;padding:8px 10px}
-#cosmic-observation .comparison-canvas{min-height:140px;height:300px}
+#cosmic-observation .comparison-canvas{height:100%;}
 #cosmic-observation .comparison-readings{padding:6px 12px;gap:10px;min-height:60px}
 #cosmic-observation .comparison-readings strong{font-size:14px}
 #cosmic-observation .comparison-readings span{font-size:11px}
 #cosmic-observation .comparison-transport{padding:6px 12px;gap:10px}
 #cosmic-observation .comparison-transport button{padding:8px 12px;font-size:12px}
 #cosmic-observation .comparison-boundary{padding:6px 12px;font-size:11px;line-height:1.45;margin:0}
-#cosmic-observation .comparison-copy{padding:12px;font-size:13px;overflow:auto;min-height:0}
+#cosmic-observation .comparison-copy{padding:12px;font-size:13px;overflow:auto;min-height:0;position:static;width:auto;max-height:70dvh;background:transparent;box-shadow:var(--reader-support-divider,none);}
 #cosmic-observation .comparison-copy p{margin:0 0 12px}
 #cosmic-observation .comparison-credit{padding:12px 0 0}
 #cosmic-observation .scene-heading{padding:6px 12px}
@@ -46,7 +46,7 @@
 #cosmic-observation .zoom-control label{font-size:11px;margin:0}
 #cosmic-observation .stops{padding:4px 12px 8px;gap:6px}
 #cosmic-observation .stops button{font-size:12px;padding:8px 12px}
-#cosmic-observation .explanation{padding:12px;line-height:1.6;font-size:13px}
+#cosmic-observation .explanation{padding:12px;line-height:1.6;font-size:13px;position:static;width:auto;max-height:70dvh;background:transparent;box-shadow:var(--reader-support-divider,none);}
 #cosmic-observation .explanation .boundary{font-size:11px}
 #cosmic-observation .scene-note{padding:8px 12px;font-size:11px;line-height:1.5}
 .cosmic-settings{position:absolute;z-index:7;right:10px;top:65px;width:min(390px,calc(100% - 20px));max-height:calc(100% - 80px);overflow:auto;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 40px #0008}
@@ -57,33 +57,33 @@
  html[data-topic-ui] .cosmic-workspace>header{margin-bottom:12px}
  html[data-topic-ui] .cosmic-workspace>header h1{font-size:26px;margin:0}
  .cosmic-workspace>header .eyebrow,.cosmic-workspace>header .intro{display:none}
- #cosmic-observation{height:max(680px,calc(100dvh - var(--observation-top,150px)));display:flex;flex-direction:column}
+ #cosmic-observation{display:flex;flex-direction:column;background:transparent;}
  #cosmic-observation .atlas{flex:1;min-height:0}
- #cosmic-observation #comparison-panel{display:grid;grid-template-columns:minmax(0,1fr) 260px;grid-template-rows:auto minmax(140px,1fr) auto auto auto auto}
+ #cosmic-observation #comparison-panel{}
  #cosmic-observation #comparison-panel:has(.comparison-copy.observation-panel-hidden){grid-template-columns:minmax(0,1fr)}
  #comparison-panel>.comparison-heading{grid-column:1;grid-row:1}
- #comparison-panel>.comparison-canvas{grid-column:1;grid-row:2;height:100%;min-height:0}
+ #comparison-panel>.comparison-canvas{grid-column:1;grid-row:2;height:100%;}
  #comparison-panel>.comparison-readings{grid-column:1;grid-row:3}
  #comparison-panel>.comparison-transport{grid-column:1;grid-row:4}
  #comparison-panel>.comparison-home-cues{grid-column:1;grid-row:5}
  #comparison-panel>.comparison-boundary{grid-column:1;grid-row:6}
- #comparison-panel>.comparison-copy{grid-column:2;grid-row:1/7;border-left:1px solid var(--border)}
- #cosmic-observation #zoom-panel{display:flex;flex-direction:column;position:relative}
+ #comparison-panel>.comparison-copy{grid-column:2;grid-row:1/7;}
+ #cosmic-observation #zoom-panel{position:relative}
  #cosmic-observation .cosmic-view{flex:1;height:0;min-height:140px}
- #cosmic-observation .explanation{position:absolute;z-index:5;right:10px;top:58px;bottom:185px;max-height:370px;width:280px;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:auto;box-shadow:0 8px 20px #0006}
+ #cosmic-observation .explanation{overflow:auto;}
  #cosmic-observation .scene-note{display:none}
 }
 #cosmic-observation.observation-expanded{padding:10px 18px;display:flex;flex-direction:column}
 #cosmic-observation.observation-expanded .atlas{flex:1;min-height:0}
 @media(max-width:999px){
  #cosmic-observation.observation-expanded{overflow:auto!important}
- #cosmic-observation.observation-expanded .comparison-copy,#cosmic-observation.observation-expanded .explanation{position:absolute;z-index:6;right:8px;top:130px;bottom:12px;width:min(340px,calc(100% - 16px));background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:auto;box-shadow:0 8px 20px #0008}
+ #cosmic-observation.observation-expanded .comparison-copy,#cosmic-observation.observation-expanded .explanation{overflow:auto;}
  #cosmic-observation.observation-expanded .scene-note{display:none}
- #cosmic-observation.observation-expanded .comparison-canvas{height:clamp(150px,30dvh,390px)}
+ #cosmic-observation.observation-expanded .comparison-canvas{height:100%;}
  #cosmic-observation .journey-chapters button{flex:1;min-width:0;font-size:11px}
  #cosmic-observation .comparison-transport{flex-wrap:wrap}
 }
-@media(max-width:600px){#cosmic-observation{padding:6px}#cosmic-observation.observation-expanded{padding:6px}#cosmic-observation .comparison-buttons{display:flex;flex-wrap:wrap}#cosmic-observation .comparison-buttons button{font-size:11px;padding:6px 9px;flex:1}#cosmic-observation .comparison-heading h2{font-size:16px}#cosmic-observation .stops{display:flex;flex-wrap:wrap}#cosmic-observation .stops button{flex:1;min-width:60px;padding:6px;font-size:11px}#cosmic-observation .scale-readout{grid-template-columns:1fr 1fr}#cosmic-observation .scale-readout div{display:block}#cosmic-observation .scale-readout output{font-size:12px}}
+@media(max-width:600px){#cosmic-observation{padding:6px;background:transparent;}#cosmic-observation.observation-expanded{padding:6px}#cosmic-observation .comparison-buttons{display:flex;flex-wrap:wrap}#cosmic-observation .comparison-buttons button{font-size:11px;padding:6px 9px;flex:1}#cosmic-observation .comparison-heading h2{font-size:16px}#cosmic-observation .stops{display:flex;flex-wrap:wrap}#cosmic-observation .stops button{flex:1;min-width:60px;padding:6px;font-size:11px}#cosmic-observation .scale-readout{grid-template-columns:1fr 1fr}#cosmic-observation .scale-readout div{display:block}#cosmic-observation .scale-readout output{font-size:12px}}
 #cosmic-observation,#cosmic-observation *{box-sizing:border-box}
 #cosmic-observation .comparison-readings{line-height:1.4}
 .comparison-choices{display:flex;flex-wrap:wrap;align-items:center;gap:8px}.comparison-choices select{min-height:44px;min-width:0;max-width:100%;flex:1;padding:8px;font:inherit;font-size:12px;background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:8px}
@@ -109,7 +109,7 @@
 @media(max-width:600px){#cosmic-observation .comparison-home-path .comparison-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));overflow:visible}#cosmic-observation .comparison-home-path .comparison-buttons button{min-width:0;white-space:normal;line-height:1.35}}
 
 /* The scene is primary; chapter/pair selectors live in the retained disclosure. */
-#cosmic-observation{padding:0;border-radius:8px;overflow:visible}
+#cosmic-observation{padding:0;overflow:visible;background:transparent;}
 #cosmic-observation .comparison-heading{padding:8px 14px}
 #cosmic-observation .comparison-heading h2{font-size:17px;margin:0;line-height:1.5}
 #cosmic-observation .comparison-readings{padding:6px 14px;min-height:0}
@@ -117,8 +117,8 @@
 #cosmic-observation .comparison-transport>button{min-height:40px;padding:7px 12px}
 #cosmic-observation .comparison-boundary{font-size:11px;line-height:1.5;padding:5px 14px}
 #cosmic-observation .comparison-transport>button:last-child{font-size:11px}
-@media(min-width:1000px){#cosmic-observation{height:max(520px,calc(100dvh - var(--observation-top,150px)))}#cosmic-observation #comparison-panel{grid-template-columns:minmax(0,1fr)}#cosmic-observation #comparison-panel:has(.comparison-copy:not(.observation-panel-hidden)){grid-template-columns:minmax(0,1fr) 300px}#cosmic-observation .comparison-canvas{min-height:0}#cosmic-observation .cosmic-view{min-height:0}}
-@media(max-width:999px){#cosmic-observation .comparison-canvas{height:clamp(300px,57dvh,600px)}#cosmic-observation .cosmic-view{height:clamp(300px,57dvh,600px)}#cosmic-observation .comparison-transport{flex-wrap:wrap}#cosmic-observation .comparison-transport>label{order:-1;flex:1 0 100%}#cosmic-observation .comparison-transport>button{flex:1}#cosmic-observation .comparison-readings span{font-size:11px}#cosmic-observation .comparison-heading h2{font-size:15px}}
+@media(min-width:1000px){#cosmic-observation{background:transparent;}#cosmic-observation #comparison-panel{}#cosmic-observation #comparison-panel:has(.comparison-copy:not(.observation-panel-hidden)){grid-template-columns:minmax(0,1fr) 300px}#cosmic-observation .comparison-canvas{}#cosmic-observation .cosmic-view{min-height:0}}
+@media(max-width:999px){#cosmic-observation .comparison-canvas{height:100%;}#cosmic-observation .cosmic-view{height:clamp(300px,57dvh,600px)}#cosmic-observation .comparison-transport{flex-wrap:wrap}#cosmic-observation .comparison-transport>label{order:-1;flex:1 0 100%}#cosmic-observation .comparison-transport>button{flex:1}#cosmic-observation .comparison-readings span{font-size:11px}#cosmic-observation .comparison-heading h2{font-size:15px}}
 
 /* Local refinement: readable evidence, restrained framing. */
 #cosmic-observation .comparison-readings strong{font-size:15px;line-height:1.5}
@@ -128,15 +128,15 @@
 #cosmic-observation .observation-toolbar{gap:8px;align-items:center}
 #cosmic-observation .observation-choices button{font-size:14px;line-height:1.5;min-height:44px;word-break:normal}
 
-@media(max-width:699px){#cosmic-observation .comparison-canvas{height:320px;min-height:280px}}
+@media(max-width:699px){#cosmic-observation .comparison-canvas{height:100%;}}
 
 /* This study has an independent, finite resource lifetime; the camera is manual. */
-#cosmic-observation #galaxies-panel{display:flex;flex-direction:column;position:relative;min-height:0}
+#cosmic-observation #galaxies-panel{position:relative;}
 .galactic-heading{padding:10px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
 .galactic-heading h2{font-size:17px;margin:0;line-height:1.5;flex:1}
 .galactic-choices{display:flex;min-width:0;flex:1 1 220px}
 .galactic-choices select{min-height:44px;min-width:0;max-width:100%;width:100%;padding:8px;background:var(--surface);color:var(--ink);font:inherit;font-size:14px;border:1px solid var(--border);border-radius:8px}
-.galactic-stage{position:relative;width:100%;min-height:380px;height:clamp(380px,58dvh,620px);background:#040a14;touch-action:none;cursor:grab;overflow:hidden}
+.galactic-stage{position:relative;width:100%;background:#040a14;touch-action:none;cursor:grab;overflow:hidden;height:var(--reader-stage-size);min-height:0;}
 .galactic-stage:active{cursor:grabbing}.galactic-stage:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
 .galactic-stage canvas{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}
 .galactic-tools{display:flex;align-items:flex-start;gap:8px;padding:6px 14px;position:relative}
@@ -151,20 +151,28 @@
 .galactic-sliders label{font-size:13px;line-height:1.5;color:var(--secondary);min-width:0}
 .galactic-hint,.galactic-coordinate,.galactic-boundary{margin:0;padding:5px 14px;font-size:12px;line-height:1.6;color:var(--secondary)}
 .galactic-boundary{border-top:1px solid var(--border);font-size:13px}
-.galactic-copy{padding:14px;font-size:14px;line-height:1.75;overflow:auto}
+.galactic-copy{padding:14px;font-size:14px;line-height:1.75;overflow:auto;position:static;width:auto;max-height:70dvh;background:transparent;box-shadow:var(--reader-support-divider,none);}
 .galactic-copy p{margin:0 0 12px}.galactic-copy>a{display:block;margin:12px 0;font-size:13px}
 .galactic-copy>button{font-size:13px;border-radius:8px;max-width:100%}
 .galactic-render-status{position:absolute;z-index:3;left:10px;top:8px;padding:3px 6px;font-size:10px;color:#b7c7d2;background:#07101b99;pointer-events:none}
 .galactic-fallback{padding:10px 14px;border-top:1px solid var(--border);font-size:13px;line-height:1.6}
 .galactic-fallback p{margin:0 0 8px}#zoom-retry{margin:8px 14px;font-size:13px;border-radius:8px;align-self:flex-start}
-@media(min-width:1000px){#cosmic-observation #galaxies-panel{display:grid;grid-template-columns:minmax(0,1fr) 300px;grid-template-rows:auto minmax(380px,1fr) auto auto auto auto}#cosmic-observation #galaxies-panel:has(.galactic-copy.observation-panel-hidden){grid-template-columns:minmax(0,1fr)}#galaxies-panel>*{grid-column:1}.galactic-heading{grid-row:1}.galactic-stage{grid-row:2;min-height:380px;height:100%}.galactic-copy{grid-column:2!important;grid-row:1/7;border-left:1px solid var(--border)}}
+@media(min-width:1000px){#cosmic-observation #galaxies-panel{}#cosmic-observation #galaxies-panel:has(.galactic-copy.observation-panel-hidden){grid-template-columns:minmax(0,1fr)}#galaxies-panel>*{grid-column:1}.galactic-heading{grid-row:1}.galactic-stage{grid-row:2;height:var(--reader-stage-size);min-height:0;}.galactic-copy{grid-column:2!important;grid-row:1/7;}}
 @media(max-width:699px){
  .galactic-heading{display:block}.galactic-heading h2{font-size:16px;margin-bottom:6px}
- .galactic-stage{min-height:360px;height:390px}
+ .galactic-stage{height:var(--reader-stage-size);min-height:0;}
  .galactic-tools{flex-wrap:wrap;gap:8px;padding-inline:8px}
  .galactic-presets{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
  #cosmic-observation .galactic-presets button{min-width:0;font-size:13px;line-height:1.5;padding:6px 4px;white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none}
  .galactic-options>summary{font-size:13px;padding:10px 8px}
  .galactic-sliders{gap:10px}.galactic-layers button{flex:1 1 130px}.galactic-hint{font-size:12px}.galactic-copy{padding:14px}
 }
-@media(max-width:999px){#cosmic-observation.observation-expanded .galactic-copy{position:absolute;z-index:6;right:8px;top:90px;bottom:12px;width:min(340px,calc(100% - 16px));background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 20px #0008}}
+@media(max-width:999px){#cosmic-observation.observation-expanded .galactic-copy{}}
+
+#cosmic-observation .cosmic-visual{position:relative;height:var(--reader-stage-size);min-height:0;min-width:0}
+#cosmic-observation .cosmic-visual>canvas{width:100%;height:100%;min-height:0;max-height:none}
+#cosmic-observation .cosmic-main .galactic-stage{height:var(--reader-stage-size);min-height:0;grid-row:auto;grid-column:auto}
+#cosmic-observation .cosmic-essential{min-width:0}
+#cosmic-observation .cosmic-essential .scene-heading{padding:8px 12px;flex-wrap:wrap}
+#cosmic-observation .cosmic-essential .comparison-transport{flex-wrap:wrap}
+#cosmic-observation .cosmic-essential .comparison-transport>label{flex:1 1 100%;min-width:0}

@@ -10,16 +10,16 @@
 .systems-study .systems-heading h3 { margin-top: 14px; }
 .systems-study .systems-heading p { color: var(--earth-muted); font-size: 14px; margin-block: 6px 16px; max-width: 75ch; }
 .systems-study p { overflow-wrap: anywhere; }
-.systems-study .systems-water-workspace { display: grid; grid-template-columns: minmax(0,1.25fr) minmax(260px,1fr); gap: 20px; align-items: start; }
-.systems-study .systems-water-stage { background: color-mix(in srgb, var(--earth-blue) 3%, var(--systems-bg)); }
-.systems-study .systems-water-stage svg { width: 100%; height: auto; display: block; }
-.systems-study .systems-water-result { min-height: 82px; font-size: 14px; margin-top: 12px; }
+.systems-study .systems-water-workspace { display: block; min-width: 0; }
+.systems-study .systems-water-stage { height:var(--reader-stage-size); min-height:0; background: #dce8e0; border-radius: 8px; overflow: hidden; }
+.systems-study .systems-water-stage svg { width: 100%; height: 100%; display: block; }
+.systems-study .systems-water-result { min-height: 0; font-size: 14px; margin-block: 8px; }
 .systems-study .systems-reference { margin: 0 0 8px; font-size: 13px; }
 .systems-study .systems-reference strong { color: var(--systems-a); }
 .systems-study .systems-slider { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .systems-study .systems-slider > span { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
 .systems-study output { font-variant-numeric: tabular-nums; font-weight: 650; white-space: nowrap; }
-.systems-study .systems-water-controls .earth-controls { margin-block: 7px; }
+.systems-study .systems-water-controls > .earth-controls { display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: 8px 24px; margin-block: 7px; }
 .systems-study .systems-parameter-note { margin-block: 5px 14px; font-size: 12px; }
 .systems-study summary { cursor: pointer; min-height: 32px; }
 .systems-study :is(.systems-presets,.systems-layer-controls) { margin: 0; padding: 8px 0 0; border: 0; }
@@ -30,9 +30,14 @@
 .systems-study .systems-density-readout strong { font-size: 15px; font-variant-numeric: tabular-nums; }
 .systems-study .systems-density-readout strong[data-density-a] { color: var(--systems-a); }
 .systems-study .systems-density-readout strong[data-density-b] { color: var(--systems-b); }
-.systems-study .systems-progress { align-items: end; }
-.systems-study .systems-progress > label { flex-basis: 340px; }
-.systems-study .systems-global { border-top: 1px solid var(--earth-line); margin-top: 24px; padding-top: 2px; }
+.systems-study .systems-progress { align-items: center; display: flex; gap: 8px; margin-block: 9px; }
+.systems-study .systems-progress > label { flex: 1 1 260px; }
+.systems-study .systems-progress button { font-size:13px; padding:7px 12px; }
+.systems-study .systems-progress button[aria-pressed="true"] { background:#315f6d; color:#f4f8ed; }
+.systems-study .systems-comparison, .systems-study .systems-global { border-top: 1px solid var(--earth-line); margin-top: 12px; padding: 8px 0; }
+.systems-study .systems-comparison > summary, .systems-study .systems-global > summary { font-size:14px; font-weight:600; }
+.systems-study .systems-comparison .systems-presets { margin-top:8px; }
+.systems-study .systems-section-note { margin-top:9px; }
 .systems-study .systems-global > p { font-size: 14px; }
 .systems-study .systems-global-stage { background: var(--systems-bg); max-width: 850px; }
 .systems-study svg { font-family: inherit; }
@@ -104,12 +109,12 @@
 .systems-study .systems-layer-0 { background: #b18324; }
 .systems-study .systems-layer-1 { background: #3b99b0; }
 .systems-study .systems-layer-2 { background: #39854c; }
-.systems-study .systems-thread { color: var(--earth-muted); font-size: 13px; padding: 10px 0; border-block: 1px solid var(--earth-line); }
+.systems-study .systems-thread { color: var(--earth-muted); font-size: 13px; padding: 10px 0; border-block-start: 1px solid var(--earth-line); }
 .systems-study .systems-condition-select { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; margin-block: 18px; }
 .systems-study .systems-condition-select select { flex: 1 1 230px; width: auto; }
 .systems-study .systems-what-if { font-size: clamp(20px,2.2vw,25px); line-height: 1.55; max-width: 36em; margin-block: 20px 12px; }
 .systems-study .systems-cause-chain { display: flex; gap: 0; padding: 0; list-style: none; margin-block: 15px 22px; }
-.systems-study .systems-cause-chain li { flex: 1; padding: 9px 12px; font-size: 13px; font-weight: 600; border-inline-start: 2px solid var(--earth-blue); background: color-mix(in srgb, var(--earth-blue) 4%, var(--systems-bg)); }
+.systems-study .systems-cause-chain li { flex: 1; padding: 9px 12px; font-size: 13px; font-weight: 600; border-inline-start: 2px solid var(--earth-blue); background: transparent; }
 .systems-study .systems-cause-chain li + li::before { content: '→'; margin-inline-end: 8px; color: var(--earth-muted); }
 .systems-study .systems-orbit-stage { max-width: 720px; background: var(--systems-bg); }
 .systems-study .systems-chart-axis { fill: none; stroke: var(--earth-muted); stroke-width: 1.5; }
@@ -135,13 +140,15 @@
 .systems-study .systems-bridge { color: var(--earth-muted); font-size: 14px; max-width: 80ch; padding-top: 10px; }
 .systems-study .systems-footer { display: flex; flex-wrap: wrap; gap: 8px; justify-content: space-between; margin-top: 16px; }
 @media (max-width: 800px) {
-  .systems-study .systems-water-workspace { grid-template-columns: minmax(0,1fr); gap: 15px; }
   .systems-study .systems-water-controls .earth-controls { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
   .systems-study .systems-presets .earth-controls { display: flex; }
   .systems-study .systems-sky-grid { grid-template-columns: minmax(0,1fr); }
   .systems-study .systems-sky-stage { max-width: 550px; }
 }
 @media (max-width: 480px) {
+  .systems-study .systems-water-stage { height:var(--reader-stage-size); min-height:0; }
+  .systems-study .systems-progress > label { flex-basis:100%; order:-1; }
+  .systems-study .systems-progress button { flex:0 1 auto; }
   .systems-study .systems-water-controls > .earth-controls { grid-template-columns: minmax(0,1fr); }
   .systems-study .systems-cause-chain { flex-direction: column; }
   .systems-study .systems-cause-chain li + li::before { content: '↓'; }

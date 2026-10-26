@@ -1,4 +1,4 @@
-.stellar-workspace{max-width:1120px;margin:auto;padding:32px 24px 70px}.stellar-workspace header{max-width:800px;margin-bottom:30px}.stellar-workspace h1{font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:-.05em;margin:.25em 0}.eyebrow{font-size:.76rem;letter-spacing:.14em;color:var(--accent,#a9c7e8);text-transform:uppercase}.intro{color:var(--secondary);line-height:1.8}.chapter-nav,.controls,.next-links{display:flex;flex-wrap:wrap;gap:10px}.chapter-nav{margin:20px 0}.stellar-workspace button,.stellar-workspace select{font:inherit;min-height:44px;border:1px solid var(--border);border-radius:24px;padding:10px 18px;background:var(--surface);color:var(--ink);cursor:pointer}.stellar-workspace button[aria-pressed=true]{background:#d2b88d;color:#17191e;border-color:#d2b88d}.observatory{border:1px solid var(--border);border-radius:25px;overflow:hidden;background:var(--surface)}.scene-heading{display:flex;justify-content:space-between;align-items:center;padding:25px 28px;gap:16px}.scene-heading h2{margin:5px 0;font-size:1.4rem}.scene-heading p{margin:0}#stellar-canvas{width:100%;height:auto;display:block;background:#070e1c}.scale-note{color:var(--secondary);font-size:.86rem;line-height:1.65;margin:18px 28px}.controls{padding:0 28px 20px;align-items:center}.controls label{display:flex;flex:1 1 230px;flex-direction:column;gap:10px;color:var(--secondary)}.controls input{width:100%;accent-color:#d3b589;min-height:30px}.readouts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.readouts div{background:var(--surface);padding:20px 28px}.readouts span{display:block;color:var(--secondary);font-size:.8rem}.readouts strong{display:block;font-size:1.5rem;margin-top:8px;font-weight:500;font-variant-numeric:tabular-nums}.explanation{padding:10px 28px 28px;line-height:1.85}.boundary{font-size:.88rem;color:var(--secondary);border-left:2px solid #8c795a;padding-left:15px}.next-links{justify-content:space-between;margin-top:24px;line-height:2}.stellar-workspace a{color:var(--accent)}@media(max-width:600px){.stellar-workspace{padding:20px 14px 50px}.scene-heading{padding:18px;align-items:flex-start}.scene-heading h2{font-size:1.2rem}.scene-heading button{font-size:.8rem;padding:9px}.readouts{grid-template-columns:1fr}.readouts div{padding:13px 18px;display:flex;justify-content:space-between;gap:10px;align-items:center}.readouts strong{font-size:1.1rem;margin:0}.controls{padding:0 18px 18px}.explanation{padding:8px 18px 20px}.scale-note{margin:15px 18px}.chapter-nav button{flex:1;font-size:.86rem;padding:10px}.next-links{display:grid}}
+.stellar-workspace{max-width:1120px;margin:auto;padding:32px 24px 70px}.stellar-workspace header{max-width:800px;margin-bottom:30px}.stellar-workspace h1{font-size:clamp(2.2rem,5vw,3.8rem);letter-spacing:-.05em;margin:.25em 0}.eyebrow{font-size:.76rem;letter-spacing:.14em;color:var(--accent,#a9c7e8);text-transform:uppercase}.intro{color:var(--secondary);line-height:1.8}.chapter-nav,.controls,.next-links{display:flex;flex-wrap:wrap;gap:10px}.chapter-nav{margin:20px 0}.stellar-workspace button,.stellar-workspace select{font:inherit;min-height:44px;border:1px solid var(--border);border-radius:24px;padding:10px 18px;background:var(--surface);color:var(--ink);cursor:pointer}.stellar-workspace button[aria-pressed=true]{background:#d2b88d;color:#17191e;border-color:#d2b88d}.observatory{overflow:hidden;background:var(--surface)}.scene-heading{display:flex;justify-content:space-between;align-items:center;padding:25px 28px;gap:16px}.scene-heading h2{margin:5px 0;font-size:1.4rem}.scene-heading p{margin:0}#stellar-canvas{width:100%;height:100%;display:block;background:#070e1c}.scale-note{color:var(--secondary);font-size:.86rem;line-height:1.65;margin:18px 28px}.controls{padding:0 28px 20px;align-items:center}.controls label{display:flex;flex:1 1 230px;flex-direction:column;gap:10px;color:var(--secondary)}.controls input{width:100%;accent-color:#d3b589;min-height:30px}.readouts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}.readouts div{background:var(--surface);padding:20px 28px}.readouts span{display:block;color:var(--secondary);font-size:.8rem}.readouts strong{display:block;font-size:1.5rem;margin-top:8px;font-weight:500;font-variant-numeric:tabular-nums}.explanation{padding:10px 28px 28px;line-height:1.85}.boundary{font-size:.88rem;color:var(--secondary);border-left:2px solid #8c795a;padding-left:15px}.next-links{justify-content:space-between;margin-top:24px;line-height:2}.stellar-workspace a{color:var(--accent)}@media(max-width:600px){.stellar-workspace{padding:20px 14px 50px}.scene-heading{padding:18px;align-items:flex-start}.scene-heading h2{font-size:1.2rem}.scene-heading button{font-size:.8rem;padding:9px}.readouts{grid-template-columns:1fr}.readouts div{padding:13px 18px;display:flex;justify-content:space-between;gap:10px;align-items:center}.readouts strong{font-size:1.1rem;margin:0}.controls{padding:0 18px 18px}.explanation{padding:8px 18px 20px}.scale-note{margin:15px 18px}.chapter-nav button{flex:1;font-size:.86rem;padding:10px}.next-links{display:grid}}
 .stellar-workspace [hidden]{display:none!important}
 .three-canvas{display:block;width:100%;height:420px;background:#07101e}.three-status{padding:0 28px;color:var(--secondary);font-size:.9rem;line-height:1.7;min-height:3em}.three-parameters label{flex-basis:100%;margin-top:8px}.three-parameters output{float:right;color:var(--ink);font-variant-numeric:tabular-nums}.three-playback{padding-top:20px}.three-playback .three-time{flex-basis:100%}.three-playback .three-overlay{flex-direction:row;align-items:center;gap:10px;font-size:.9rem}.three-overlay input{width:20px;min-height:24px}.three-body progress{width:min(220px,100%);accent-color:#d3b589}.three-readouts{grid-template-columns:repeat(2,minmax(0,1fr))}.three-readouts strong{font-size:1rem;line-height:1.7;overflow-wrap:anywhere}.three-body button:disabled{opacity:.45;cursor:default}.three-initial summary{cursor:pointer;min-height:44px;display:list-item;line-height:44px}.three-conditions{display:grid;grid-template-columns:1fr 1fr;gap:24px}.three-conditions pre{font-size:.78rem;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere;padding:10px;border-left:2px solid #8c795a}.three-sources{display:flex;flex-wrap:wrap;gap:10px;font-size:.85rem}@media(max-width:600px){.three-status{padding-inline:18px}.three-conditions,.three-readouts{grid-template-columns:1fr}.three-readouts div{display:block}.three-readouts strong{margin-top:6px;font-size:.9rem}.chapter-nav button{flex:1 1 130px;white-space:nowrap}.three-parameters button{font-size:.9rem}}
 .stellar-layer-key{margin:16px 28px 8px;padding-left:22px;color:var(--secondary);font-size:.9rem;line-height:1.9}.stellar-layer-key li::marker{color:var(--accent);font-weight:600}@media(max-width:600px){.stellar-layer-key{margin-inline:18px}}
@@ -8,13 +8,12 @@
 #stellar-observation,#stellar-observation *{box-sizing:border-box}#stellar-observation{padding:8px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
 #stellar-observation>.observation-toolbar{padding:0 0 8px;background:transparent}
 #stellar-observation .chapter-nav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));margin:4px 0 8px;gap:6px}#stellar-observation .chapter-nav button{min-width:0;font-size:12px;border-radius:9px;padding:7px;line-height:20px;text-wrap:balance}
-#stellar-observation .observatory{border-radius:10px;min-height:0;display:grid;grid-template-columns:minmax(0,1fr) 275px}
 #stellar-observation .observatory:has(.stellar-notes.observation-panel-hidden){grid-template-columns:minmax(0,1fr)}
-#stellar-observation .stellar-stage{min-width:0;min-height:0;display:flex;flex-direction:column}
+#stellar-observation .stellar-stage{min-width:0;}
 #stellar-observation .stellar-notes{min-width:0;min-height:0;overflow:auto;border-left:1px solid var(--border)}
 #stellar-observation .scene-heading{padding:8px 12px;gap:8px}#stellar-observation .scene-heading h2{font-size:16px;margin:3px 0}#stellar-observation .scene-heading .eyebrow{font-size:10px}
 #stellar-observation button{font-size:12px;padding:7px 10px;border-radius:9px}#stellar-observation .scene-heading button{flex-shrink:0}
-#stellar-observation #stellar-canvas,#stellar-observation .three-canvas{width:100%;height:clamp(230px,35dvh,450px);min-height:140px;flex:1;object-fit:contain}
+#stellar-observation #stellar-canvas,#stellar-observation .three-canvas{width:100%;height:100%;flex:1;object-fit:contain}
 #stellar-observation .controls{padding:7px 10px;gap:7px;flex-shrink:0}#stellar-observation .controls label{font-size:12px;gap:2px;flex-basis:170px}#stellar-observation .controls input{min-height:26px;margin:0}
 #stellar-observation .scale-note{margin:6px 10px;font-size:10px;line-height:1.5}#stellar-observation .stellar-stage>#scale-note{order:5}
 #stellar-observation .readouts{display:block}#stellar-observation .readouts div{padding:8px 12px}#stellar-observation .readouts span{font-size:11px}#stellar-observation .readouts strong{font-size:15px;margin-top:3px}
@@ -30,8 +29,8 @@
 #stellar-observation .three-presets button{min-height:36px;white-space:nowrap}
 #stellar-observation .three-playback .three-time{flex-basis:180px}#stellar-observation .three-playback .three-overlay{flex-basis:auto;font-size:11px}
 #stellar-observation .three-conditions{grid-template-columns:1fr;gap:8px}#stellar-observation .three-initial summary{line-height:1.6;min-height:44px;padding:8px 0}
-@media(min-width:1000px){#stellar-observation{height:calc(100dvh - var(--observation-top,160px));min-height:420px;display:flex;flex-direction:column}#stellar-observation .observatory{flex:1;overflow:hidden}#stellar-observation.observation-expanded{min-height:0;padding:12px 18px}#stellar-observation #stellar-canvas,#stellar-observation .three-canvas{height:0}}
-@media(max-width:999px){#stellar-observation .observatory{grid-template-columns:1fr}#stellar-observation .stellar-notes{overflow:visible;border-left:0;border-top:1px solid var(--border)}#stellar-observation .chapter-nav{flex-wrap:wrap}#stellar-observation .chapter-nav button{flex:1 1 40%}#stellar-observation .stellar-stage{flex:none}#stellar-observation .controls{flex-wrap:wrap}.stellar-workspace{padding-inline:12px}}
+@media(min-width:1000px){#stellar-observation{display:flex;flex-direction:column}#stellar-observation .observatory{overflow:hidden}#stellar-observation.observation-expanded{min-height:0;padding:12px 18px}#stellar-observation #stellar-canvas,#stellar-observation .three-canvas{height:100%;}}
+@media(max-width:999px){#stellar-observation .observatory{}#stellar-observation .stellar-notes{overflow:visible;border-left:0;border-top:1px solid var(--border)}#stellar-observation .chapter-nav{flex-wrap:wrap}#stellar-observation .chapter-nav button{flex:1 1 40%}#stellar-observation .stellar-stage{}#stellar-observation .controls{flex-wrap:wrap}.stellar-workspace{padding-inline:12px}}
 @media(max-width:700px){#stellar-observation .three-body .scene-heading{flex-wrap:wrap}#stellar-observation .three-presets{width:100%;justify-content:stretch}#stellar-observation .three-presets button{flex:1}}
 @media(max-width:649px){#stellar-observation:has(.orbit-controls) #stellar-canvas{flex:none}}
 html[data-topic-ui] body>main.stellar-workspace{padding-block:12px 48px}
@@ -47,16 +46,16 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 #stellar-observation .three-encounter{margin:8px 12px;padding:9px 12px;border-left:2px solid #d2b88d;color:var(--ink);font-size:12px;line-height:1.6}
 @media(min-width:1000px){
   #stellar-observation:has(.evolution-controls),#stellar-observation:has(.anatomy-controls){height:auto;min-height:0}
-  #stellar-observation:has(.evolution-controls) .observatory,#stellar-observation:has(.anatomy-controls) .observatory{overflow:visible;flex:none}
-  #stellar-observation:has(.evolution-controls) #stellar-canvas,#stellar-observation:has(.anatomy-controls) #stellar-canvas{height:430px;flex:none}
+  #stellar-observation:has(.evolution-controls) .observatory,#stellar-observation:has(.anatomy-controls) .observatory{overflow:visible;}
+  #stellar-observation:has(.evolution-controls) #stellar-canvas,#stellar-observation:has(.anatomy-controls) #stellar-canvas{height:100%;flex:none}
   #stellar-observation:has(.three-body):not(.observation-expanded){height:auto;min-height:0}
-  #stellar-observation:has(.three-body):not(.observation-expanded) .observatory{overflow:visible;flex:none}
+  #stellar-observation:has(.three-body):not(.observation-expanded) .observatory{overflow:visible;}
   #stellar-observation:has(.three-body):not(.observation-expanded) .three-canvas{height:clamp(260px,42dvh,420px);min-height:260px;flex:none}
 }
 
 /* Nebula and life morphology share one bounded, on-demand 3D viewport. */
 #stellar-observation .stellar-space-stage{min-width:0;min-height:0;flex:1;position:relative;background:#050a14}
-#stellar-observation .stellar-space-canvas{display:block;width:100%;height:clamp(300px,42dvh,440px);outline-offset:-4px;touch-action:none}
+#stellar-observation .stellar-space-canvas{display:block;width:100%;height:100%;outline-offset:-4px;touch-action:none}
 #stellar-observation .stellar-space-canvas:focus-visible{outline:2px solid #d3b589}
 #stellar-observation .stellar-space-status{margin:0;padding:8px 12px;color:#b6c5d6;font-size:11px;line-height:1.5;background:#09111f}
 #stellar-observation .stellar-space-stage>button{margin:8px 12px;background:#172334;color:#eff5ff;border-color:#758398}
@@ -67,12 +66,12 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 #stellar-observation .evolution-controls>select{min-width:0;width:min(100%,380px)}
 #stellar-observation .readouts strong{overflow-wrap:anywhere}
 #stellar-observation:has(.nebula-controls){height:auto;min-height:0}
-#stellar-observation:has(.nebula-controls) .observatory{overflow:visible;flex:none}
-@media(max-width:649px){#stellar-observation .stellar-space-canvas{height:330px}#stellar-observation .nebula-light button{flex-basis:100%}#stellar-observation .controls button{min-height:44px}#stellar-observation .stellar-space-status{font-size:12px}}
+#stellar-observation:has(.nebula-controls) .observatory{overflow:visible;}
+@media(max-width:649px){#stellar-observation .stellar-space-canvas{height:100%;}#stellar-observation .nebula-light button{flex-basis:100%}#stellar-observation .controls button{min-height:44px}#stellar-observation .stellar-space-status{font-size:12px}}
 
 /* Keep the observed object large; secondary choices expand in the same instance. */
 #stellar-observation .stellar-space-stage{flex:none}
-#stellar-observation .stellar-space-canvas{height:clamp(450px,59dvh,570px)}
+#stellar-observation .stellar-space-canvas{height:100%;}
 #stellar-observation .evolution-controls>label{flex:1 1 310px;min-width:200px}
 #stellar-observation .stellar-options{min-width:0;flex:0 1 auto;max-width:100%;color:var(--ink)}
 #stellar-observation .stellar-options>summary{min-height:44px;padding:10px 12px;line-height:22px;border:1px solid var(--border);border-radius:9px;background:var(--surface);font-size:12px;cursor:pointer;overflow-wrap:anywhere}
@@ -87,7 +86,7 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 #stellar-observation .nebula-reference-prompt{flex:1 1 100%;min-width:0;margin:0;color:var(--secondary);font-size:12px;line-height:1.6;overflow-wrap:anywhere}
 #stellar-observation .nebula-reference-prompt a{display:inline-block;color:var(--accent);text-underline-offset:3px}
 @media(max-width:649px){
-  #stellar-observation .stellar-space-canvas{height:330px}
+  #stellar-observation .stellar-space-canvas{height:100%;}
   #stellar-observation .evolution-controls>label{flex-basis:100%}
   #stellar-observation .stellar-options{flex:1 1 100%}
   #stellar-observation .nebula-controls .nebula-light{flex-basis:100%}
@@ -152,10 +151,9 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 
 /* Question, conditions and reading have separate entrances. */
 #stellar-observation>.observation-toolbar>.observation-choices{max-width:none;flex:1 1 180px}
-#stellar-observation .observation-choices>summary>span:first-child{display:none}
 #stellar-observation .observation-choices #chapters{display:grid;grid-template-columns:1fr;margin:0;gap:5px}
 #stellar-observation .observation-choices #chapters button{text-align:left}
-#stellar-observation .observatory{grid-template-columns:minmax(0,1fr)}
+#stellar-observation .observatory{}
 #stellar-observation .observatory:has(.stellar-conditions:not(.observation-panel-hidden)),#stellar-observation .observatory:has(.stellar-notes:not(.observation-panel-hidden)){grid-template-columns:minmax(0,1fr) minmax(260px,320px)}
 #stellar-observation .stellar-conditions{min-width:0;overflow:auto;border-left:1px solid var(--border);padding:8px 4px}
 #stellar-observation .stellar-conditions .controls{display:flex;flex-direction:column;align-items:stretch}
@@ -179,6 +177,14 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 
 #stellar-observation>.observation-toolbar>.observation-choices>summary{font-size:14px!important;min-height:44px!important}
 @media(max-width:999px){
- #stellar-observation .stellar-stage{grid-column:1;grid-row:2}
+ #stellar-observation .stellar-stage{}
  #stellar-observation .stellar-conditions,#stellar-observation .stellar-notes{grid-column:1;grid-row:1;max-height:55dvh;overflow:auto;border-top:0;border-bottom:1px solid var(--border)}
 }
+
+/* Actual renderer allocation is independent from its essential control column. */
+#stellar-observation .stellar-visual{position:relative;height:var(--reader-stage-size);min-height:0;min-width:0;background:#070e1c}
+#stellar-observation .stellar-visual #stellar-canvas{width:100%;height:100%;min-height:0;max-height:none;flex:none}
+#stellar-observation .stellar-essential{min-width:0}
+#stellar-observation .stellar-essential .scene-heading{padding:8px 12px;flex-wrap:wrap}
+#stellar-observation .stellar-essential #scale-note{margin:8px 12px;font-size:13px;line-height:1.5}
+#stellar-observation .three-canvas{height:var(--reader-stage-size);min-height:0;flex:none}

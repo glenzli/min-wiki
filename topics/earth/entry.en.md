@@ -1,6 +1,25 @@
 # Earth exploration map
 
-Begin with a rock, a crystal or a glacier and choose one question. This guide connects independently owned studies, each with its own science, controls, progress and editorial status.
+Begin with “What if Earth were different?” Change one condition, compare real worlds, then bring your observations back to Earth. You can also begin with a rock, a crystal or a glacier in an independent study.
+
+## Distance, real worlds and atmosphere
+
+1. **Closer to or farther from the Sun?** At fixed solar luminosity, twice the distance gives one quarter of the incident sunlight. The experiment uses a fixed-albedo whole-sphere energy balance; it does not predict a city's temperature or landscape.
+2. **Compare actual Venus or Mars.** Approach the same selected site from the globe, then inspect local ground and the interior. Approach moves a camera; it is not free fall. Venusian ground below the clouds is an evidence-based reconstruction; Martian regions retain their seasonal qualifications. Real-world reference data never change with the experiment controls.
+3. **At the same distance, how does heat escape?** A teaching control changes an effective infrared escape factor, not pressure or the concentration of a particular gas. Compare absorption and outgoing energy at a fixed reference temperature: an imbalance gives an initial warming or cooling tendency. Equilibrium temperature belongs only to this simplified model; it does not predict actual Venus, Mars, liquid water or life.
+4. **Return to real Earth.** Keep the distance, atmospheric control and each world's observation site and progress. Distance affects incoming sunlight, while air also affects outgoing heat; actual worlds differ in several conditions at once.
+
+References: [NASA's Earth energy budget](https://science.nasa.gov/earth/earth-observatory/climate-and-earths-energy-budget/), [solar irradiance and effective temperature](https://sunclimate.gsfc.nasa.gov/science), [Venus](https://science.nasa.gov/venus/venus-facts/) and [Mars](https://science.nasa.gov/mars/facts/). Cloud and ice feedbacks, oceans and adjustment time are absent from this zero-dimensional grey model. Fixed albedo is an assumption, not a complete climate explanation.
+
+## What if axial tilt changed?
+
+Keep the same place and orbital position. Compare zero tilt, Earth's reference tilt and a tilt near 98°. In the circular-orbit, point-Sun model, tilt changes subsolar latitude, daylight duration and Sun altitude at local noon; it does not calculate temperature. A zero-tilt pole may remain on the ideal horizon, not have an ordinary twelve-hour day. Real eccentric orbits may vary incoming light during a year even without axial tilt.
+
+Then visit actual [Uranus](https://science.nasa.gov/uranus/facts/), which also differs in distance, composition and orbital period. Close views inspect clouds; they add no solid landing floor or fabricated solid-surface pressure and temperature. Return to the same place on Earth and compare seasons.
+
+## Explore Earth's ground and history further
+
+These independent studies retain their own science, controls, progress and editorial status.
 
 | Your question | Explore |
 | --- | --- |

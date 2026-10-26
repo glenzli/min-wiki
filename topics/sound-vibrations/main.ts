@@ -90,13 +90,13 @@ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>butt
 foldPresentationContext('.causal-bridge');
 const sourceFrame=mountPresentationFrame({ root: '#source-panel .lab', visual: '.scene-wrap', transport: '#play,#stop,#pluck' });
 sourceFrame?.stage.querySelector('.presentation-transport')?.append(arrivalButton);
-const hearingFrame = mountPresentationFrame({ root: '#ear-panel .lab', visual: '.specimen-pair', paired: true, transport: '.play-controls' });
+const hearingFrame = mountPresentationFrame({ root: '#ear-panel .lab', visual: '.specimen-pair', paired: true, transport: '[data-reader-transport]' });
 if (hearingFrame) {
  for (const caption of hearingFrame.stage.querySelectorAll('figcaption')) hearingFrame.notes.append(caption);
  chapterNavigation.append(el('label-toggle'));
  const figures=[...hearingFrame.stage.querySelectorAll<HTMLElement>('.specimen')];
  const lens=document.createElement('button');lens.type='button';lens.className='ear-lens';
- hearingFrame.notes.prepend(lens,el('h-ear-zoom'));
+ hearingFrame.stage.querySelector('[data-reader-essential]')!.prepend(lens,el('h-ear-zoom'));
  let closeup=false;
  function setEarLens(){
   const academic=document.documentElement.dataset.readingMode==='academic';
@@ -109,6 +109,9 @@ if (hearingFrame) {
  setEarLens();
 }
 const comparisonFrame = mountPresentationFrame({ root: '#compare-panel', visual: '.compare-grid', paired: true });
-if (comparisonFrame) comparisonFrame.notes.prepend(el('medium').closest('label')!);
+if (comparisonFrame) {
+ const essential=document.createElement('div');essential.dataset.readerEssential='';
+ essential.append(el('medium').closest('label')!);comparisonFrame.stage.append(essential);
+}
 
 syncPresentation();

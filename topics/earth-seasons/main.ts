@@ -2,6 +2,7 @@ import { mountPresentationFrame } from '../../src/platform/presentation.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { translateDocument } from '../../src/platform/i18n.ts';
 import { t } from './i18n.ts';
+import {mountConditionsEntry} from '../earth/conditions/entry.ts';
 import './shell.css';
 translateDocument(t);
 
@@ -611,8 +612,13 @@ new EarthApp();
 document.querySelector('.theater')!.prepend($('daynight-heading'));
 document.querySelector('.tools-bar')!.append(document.querySelector('.view-controls')!);
 
+document.querySelector<HTMLElement>('.lesson-comparison')!.dataset.readerFit='natural';
 mountPresentationFrame({ root: '#daylight-lesson', visual: '.lesson-comparison', paired: true, transport: '.lesson-action' });
-const earthFrame = mountPresentationFrame({ root: '.experience', visual: '.theater', transport: '.playback-panel', choices: '.scenario-bar,#solstice-strip,#city-strip,.view-controls' });
+$('daynight-heading').dataset.readerEssential='';
+$('bridge-context').dataset.readerCaption='';
+$('route-description').dataset.readerCaption='';
+const earthFrame = mountPresentationFrame({ root: '.experience', visual: '#canvas-container', transport: '.playback-panel', choices: '.scenario-bar,#solstice-strip,#city-strip,.view-controls' });
 // The readout belongs next to the globe; overlaid on the canvas it can hide
 // Earth at one side of the orbit during solstices.
 earthFrame?.notes.prepend($('regional-comparison'), $('city-card'));
+mountConditionsEntry(document.querySelector<HTMLElement>('.experience'));

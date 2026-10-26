@@ -1,5 +1,7 @@
 # Rock gallery validation — 2026-10-25
 
+Current native-Reader process/material refinement: [REFINEMENT-20261025.md](REFINEMENT-20261025.md). The older harness observations below do not validate the newer 3D process renderer.
+
 The later finite-playback revision is recorded in [Animation validation](../../earth-climate/ANIMATION-VALIDATION.md), including actual continuous and reduced-motion browser checks. Earlier screenshots below document the original manual scene and specimen visuals.
 
 Scope: only `topics/earth/rocks/**`. Shared `topics/earth/threeStage.ts` is consumed, not modified by this gallery. Browser checks below use a standalone harness bundling the real `study.ts` and parent Earth CSS, not a mocked renderer. The parent task owns the final Reader production build, routing and full-repository gate.

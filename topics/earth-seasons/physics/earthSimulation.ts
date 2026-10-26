@@ -30,6 +30,8 @@ export class EarthSimulation {
   currentTiltDeg!: number;
   guidesVisible!: boolean;
   selectedCityId!: string;
+  subsolarMarkerVisible = true;
+  selectedCityOnly = false;
   scene!: THREE.Scene;
   camera!: THREE.PerspectiveCamera;
   renderer!: THREE.WebGLRenderer;
@@ -424,7 +426,9 @@ export class EarthSimulation {
 
       const ringGeom = new THREE.BufferGeometry().setFromPoints(pts);
       const ringMat = new THREE.LineBasicMaterial({ color: colorHex, transparent: true, opacity });
-      return new THREE.LineLoop(ringGeom, ringMat);
+      const ring=new THREE.LineLoop(ringGeom, ringMat);
+      ring.userData.latitudeReferenceDeg=latDeg;
+      return ring;
     };
 
     // Equator (0°, gold)
@@ -586,6 +590,12 @@ export class EarthSimulation {
     }
   }
 
+  /** Keep the equator and axis, optionally hide fixed modern-Earth tropics/polar
+   * circles when a consumer explores hypothetical axial tilts. */
+  showEarthLatitudeReferences(show:boolean) {
+    for(const child of this.guidesGroup.children){const latitude=child.userData.latitudeReferenceDeg;if(typeof latitude==='number')child.visible=show||latitude===0;}
+  }
+
   setSolsticeTerm(fractionOfYear: number) {
     this.orbitProgress = fractionOfYear;
   }
@@ -676,7 +686,7 @@ export class EarthSimulation {
     this.earthMaterial.uniforms.uRegionalView.value = regional ? 1 : 0;
     this.terminator.visible = regional;
     this.guidesGroup.visible = this.guidesVisible && !regional;
-    this.subsolarRing.visible = !regional;
+    this.subsolarRing.visible = this.subsolarMarkerVisible && !regional;
     this.cloudsMesh.visible = !regional;
     this.stars.visible = !regional;
 
@@ -698,12 +708,12 @@ export class EarthSimulation {
     // and globe scale change, while label buttons retain their touch target.
     this.camera.getWorldDirection(this.cameraDirection);
     for (const { city, mesh } of this.cityMeshMap.values()) {
-      mesh.visible = !regional || CHINA_CITIES.includes(city);
+      const selected = city.id === this.selectedCityId;
+      mesh.visible = (!this.selectedCityOnly || selected) && (!regional || CHINA_CITIES.includes(city));
       mesh.getWorldPosition(this.markerWorld);
       const depth = this.markerWorld.sub(this.camera.position).dot(this.cameraDirection);
       const localUnitsPerPixel = 2 * Math.max(.1, depth) * Math.tan(THREE.MathUtils.degToRad(this.camera.fov / 2))
         / this.height / this.earthAnchorGroup.scale.x;
-      const selected = city.id === this.selectedCityId;
       mesh.scale.setScalar((selected ? 3.2 : 2.5) * localUnitsPerPixel / mesh.geometry.parameters.radius);
       if (selected) {
         this.earthMaterial.uniforms.uCityHighlightRadius.value = 5.5 * localUnitsPerPixel;

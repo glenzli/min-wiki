@@ -15,7 +15,7 @@ The default inside-Earth view loads a textured, rotatable 3D cutaway on demand. 
 
 ## Persisted state
 
-Every meaningful control change emits all **15 keys**, including one bounded `interiorRift` JSON string for the fourth station. Restoration rejects unknown enums, malformed numbers, out-of-range integers and unsupported station angles. A depth takes precedence over a contradictory selected compositional layer. A layer without an explicit depth selects a representative depth.
+Every meaningful control change emits all **17 keys**, including one bounded `interiorRift` JSON string for the fourth station. The two optional presentation fields added by this local refinement default compatibly for old URLs. Restoration rejects unknown enums, malformed numbers, out-of-range integers and unsupported station angles. A depth takes precedence over a contradictory selected compositional layer. A layer without an explicit depth selects a representative depth.
 
 | Key | Accepted values |
 | --- | --- |
@@ -28,6 +28,8 @@ Every meaningful control change emits all **15 keys**, including one bounded `in
 | `interiorBoundary` | `divergent`, `subduction`, `collision`, `transform` |
 | `interiorMotion` | `moving`, `still` |
 | `interiorProgress` | Integer 0–100, a teaching coordinate without elapsed-year calibration |
+| `interiorWaveProgress` | Integer 0–100, path-reveal phase; old URLs default to a fully revealed path |
+| `interiorPlateCamera` | Bounded finite three-vector JSON, independently retained from the planet camera |
 | `interiorExplain` | `0`, `1` |
 | `interiorRenderer` | `three`, `section` |
 | `interiorYaw` | Integer −180–180 degrees |
@@ -35,7 +37,9 @@ Every meaningful control change emits all **15 keys**, including one bounded `in
 | `interiorZoom` | Integer 60–160; 100 is the reference camera distance |
 | `interiorRift` | Canonical JSON described below; accepted input length at most 2048 characters |
 
-Camera state is saved at gesture end or keyboard key-up. Geometry is retained while controls change and while visiting another station within this module. There is at most one live WebGL stage; pause hides/stops drawing and disposal aborts module listeners, removes the root and invokes the shared geometry/material/texture/context release. There is no continuous animation loop. Context or texture failure switches to a complete usable 2D view with a working retry button. Late texture loads check disposal before changing the scene.
+Camera state is saved at gesture end or keyboard key-up. Geometry is retained while conditions/progress change; changing stations releases the previous GPU scene and restores its bounded state on return. There is at most one live WebGL stage; pause stops drawing and finite presentation clocks, and disposal aborts listeners, removes the root and releases geometry/material/texture/context resources. Context or texture failure switches to a usable 2D view with retry. Late texture loads/imports check disposal and generation before mounting.
+
+`plates/geometry.ts` owns retained closed plate volumes and shared contacts, `plates/material.ts` their stable material-coordinate appearance, and `plates/scene3d.ts` the single plate scene. The plate renderer consumes the original `plateFrame` prerequisite/no-motion semantics. A separate finite path-reveal clock consumes the original `waveObservation`; it is not a wave-speed or arrival-time solver. See [the refinement boundary and checks](refinement-20261025.md).
 
 The last paragraph describes the original cutaway station. Entering `rift` now releases that cutaway stage before requesting its own scene. Leaving the rift disposes its scene and two finite clocks; returning restores the canonical nested state. The three rift scales reuse one canvas/context rather than retaining three renderers. There is no idle rift animation; explicit finite playback uses the shared presentation clock, with stepped reduced-motion behavior and offscreen/background pause.
 

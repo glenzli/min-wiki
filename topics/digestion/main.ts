@@ -50,4 +50,4 @@ window.addEventListener('pagehide',()=>{stop();cancelNutrient();cancelView();can
 window.addEventListener('pageshow',()=>{camera();render();});
 routeNote();render();camera();mountReadingMode('.advanced');
 
-mountPresentationFrame({"root": ".lab", "visual": ".specimen-pair", "transport": ".play-controls", "paired": true});
+mountPresentationFrame({"root": ".lab", "visual": ".specimen-pair", "transport": "[data-reader-transport]", "paired": true});

@@ -13,9 +13,21 @@ test('every permitted step joins its committed endpoint without replacing the ma
     assert.ok(availableProcesses(currentRock(state)).includes(id));
     const final={...chooseProcess(state,id),progress:100};const before=parcelFrame(final);state=finishStep(final);const after=parcelFrame(state);
     assert.equal(before.materialId,after.materialId);
-    for(const key of ['loose','molten','cement','banded'])assert.equal(before[key],after[key]);
-    for(let i=0;i<24;i++)for(const key of ['x','y','z','rotation','scale'])assert.ok(Math.abs(before.cells[i][key]-after.cells[i][key])<1e-12,`${id}/${i}/${key}`);
+    for(const key of ['loose','molten','cement','banded','matrix','water','flow'])assert.equal(before[key],after[key]);
+    for(let i=0;i<24;i++)for(const key of ['x','y','z','rotation','scale','settled','lift'])assert.ok(Math.abs(before.cells[i][key]-after.cells[i][key])<1e-12,`${id}/${i}/${key}`);
   }
+});
+test('transport retains a different deposited position, and lithification packs rather than reassembles the original stone',()=>{
+  const weathered=finishStep({...chooseProcess(parseRockState({}),'weather'),progress:100});
+  const slope=parcelFrame(weathered),transport=chooseProcess(weathered,'transport'),preview=parcelFrame({...transport,progress:63});
+  assert.deepEqual(preview,parcelFrame({...transport,progress:63}));
+  const deposited=finishStep({...transport,progress:100}),basin=parcelFrame(deposited);
+  assert.ok(basin.cells.every((p,i)=>p.x>slope.cells[i].x+.6));
+  const cemented=finishStep({...chooseProcess(deposited,'lithify'),progress:100}),packed=parcelFrame(cemented);
+  assert.equal(packed.matrix,1);assert.ok(packed.cells.every(p=>p.settled===1));
+  assert.ok(packed.cells.every((p,i)=>Math.abs(p.x-basin.cells[i].x)<.2));
+  const heated=finishStep({...chooseProcess(cemented,'heat'),progress:100});
+  assert.deepEqual(parcelFrame(heated).cells,packed.cells);assert.equal(parcelFrame(heated).matrix,1);
 });
 test('weathering opens a retained parcel, while staying leaves its pose unchanged at every fraction',()=>{
   const initial=parseRockState({}),weather=chooseProcess(initial,'weather');

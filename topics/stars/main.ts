@@ -34,6 +34,13 @@ const transport=document.createElement('div');transport.className='stellar-trans
 const conditions=document.createElement('aside');conditions.className='stellar-conditions';conditions.append(el('controls'));
 stage.append(observatory.querySelector('.scene-heading')!,el('stellar-canvas'),el('canvas-fallback'),el('scale-note'),transport);
 notes.append(layerKey,surfaceNote,el('readouts'),observatory.querySelector('.explanation')!);observatory.append(stage,conditions,notes);
+observationRoot.dataset.readerWorkbench='';observationRoot.dataset.readerLayout='stage';
+observatory.removeAttribute('data-reader-stage');observatory.dataset.readerLayout='stage';stage.dataset.readerMain='';
+conditions.dataset.readerSupport='';notes.dataset.readerSupport='';transport.dataset.readerTransport='';
+const stellarVisual=document.createElement('div');stellarVisual.className='stellar-visual';stellarVisual.dataset.readerStage='';stellarVisual.dataset.readerFit='available';
+stellarVisual.append(el('stellar-canvas'),el('canvas-fallback'));
+const stellarEssential=document.createElement('div');stellarEssential.className='stellar-essential';stellarEssential.dataset.readerEssential='';
+stellarEssential.append(stage.querySelector('.scene-heading')!,el('scale-note'),transport);stage.replaceChildren(stellarVisual,stellarEssential);
 const observation=mountObservationMode(observationRoot,{enter:u('immersive'),exit:u('exitImmersive')},{fit:true,choices:[el('chapters')],panels:[{label:t('改变条件'),elements:[conditions],open:false},{label:t('讲解'),elements:[notes,threeBody.notes]}]});
 const conditionButton=observation.toolbar.querySelector<HTMLButtonElement>(`button[aria-controls~="${conditions.id}"]`)!;
 // A single side panel leaves the retained scene at a useful size.

@@ -47,17 +47,22 @@ export class ExplorerController {
     try{this.scene=new ExplorerScene(el<HTMLCanvasElement>('explorer-canvas'));this.scene.onFailure=()=>{el('explorer-error').hidden=false;this.activity=false;this.travel=false;this.update();};}
     catch{el('explorer-error').hidden=false;}
   }
-  open(body:BodyId,view:ExploreView='globe'){
+  open(body:BodyId,view:ExploreView='globe',saved?:{site:string;descent:number;section:number}){
     this.rememberProgress();
-    const params=new URLSearchParams(location.search),siteKey=siteFor(body,params.get('body')===body?params.get('site'):undefined).id;
+    const params=new URLSearchParams(location.search),siteKey=siteFor(body,saved?.site??(params.get('body')===body?params.get('site'):undefined)).id;
     this.siteKey=siteKey;
     this.siteSelect.replaceChildren(...sitesFor(body).map(site=>{const option=document.createElement('option');option.value=site.id;option.textContent=text(site.name);return option;}));
     this.active=true;this.body=body;this.progress=this.viewProgress.get(this.progressKey())??0;this.travel=false;this.selectedMoon='';
+    if(saved){for(const mode of ['descent','section'] as const){const p=saved[mode];this.viewProgress.set(this.progressKey(mode),Number.isFinite(p)?Math.max(0,Math.min(1,p)):0);}}
     el('explorer').hidden=false;document.body.classList.add('exploring');this.ensureScene();this.switchView(canView(body,view)?view:'globe');
   }
   close(){this.rememberProgress();this.active=false;this.travel=false;el('explorer').hidden=true;document.body.classList.remove('exploring');this.writeUrl();}
   setAcademic(value:boolean){this.academic=value;if(this.active)this.update();}
   toggleActivity(){this.activity=!this.activity;this.update();}
+  observation(){
+    const position=(view:'descent'|'section')=>this.view===view?this.progress:this.viewProgress.get(this.progressKey(view))??0;
+    return {body:this.body,view:this.view,site:this.siteKey,descent:position('descent'),section:position('section')};
+  }
   suspend(value:boolean){this.suspended=value;}
   private writeUrl(){const url=new URL(location.href);if(this.active){url.searchParams.set('body',this.body);url.searchParams.set('view',this.view);url.searchParams.set('site',this.siteKey);}else{url.searchParams.delete('body');url.searchParams.delete('view');url.searchParams.delete('site');}history.replaceState(null,'',url);}
   private progressKey(view=this.view){return `${this.body}:${view}${view==='descent'?':'+this.siteKey:''}`;}

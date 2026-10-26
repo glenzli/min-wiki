@@ -71,8 +71,8 @@
 .references li{font-size:14px;line-height:1.8;margin:7px 0}.references a{color:var(--accent)}
 /* The stage consumes the actual fitted Reader height. No nested width-derived ratio on desktop. */
 @media(min-width:1000px){
- :root[data-wiki-document] .flight-visual{flex:1;min-height:0;height:0}
- :root[data-wiki-document] .flight-visual .scene-stage{flex:1;min-height:0;height:0}
+ :root[data-wiki-document] .flight-visual{min-height:0;height:var(--reader-stage-size)}
+ :root[data-wiki-document] .flight-visual .scene-stage{flex:1;min-height:0;height:auto}
  :root[data-wiki-document] .flight-visual .flight-panel{flex:1;min-height:0;height:100%}
  :root[data-wiki-document] .flight-visual .flight-panel>svg{height:100%;min-height:0}
  :root[data-wiki-document] .flight-lab .presentation-transport{gap:6px;padding-block:9px}
@@ -82,14 +82,14 @@
  :root[data-wiki-document] .flight-lab .flight-playback-row .seek{margin-left:10px}
 }
 @media(max-width:999px){
- .flight-visual .scene-stage{flex:none;aspect-ratio:1.48;height:auto;width:100%}
+ .flight-visual .scene-stage{flex:1;aspect-ratio:auto;min-height:0;width:100%}
  .flight-visual .flight-panel{position:absolute;inset:0;height:100%}
  .flight-inspector{padding:0}
  .flight-conditions{max-width:560px}
  .story-grid{gap:16px}
 }
 @media(max-width:600px){
- .flight-visual .scene-stage{aspect-ratio:1.22}
+ .flight-visual .scene-stage{aspect-ratio:auto}
  .flight-visual .scene-caption{padding:9px 14px;font-size:11px;line-height:1.6}
  .scene-action{left:10px;top:10px;font-size:12px!important;min-height:40px!important;padding:6px 10px!important}
  .camera-hint{left:11px;bottom:10px;font-size:10px;padding:3px 7px}

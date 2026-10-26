@@ -58,7 +58,8 @@ export function iceShape(mass: number): IceShape {
 }
 
 export function glacierPoint(shape: IceShape, u: number, v: number): { x: number; y: number; z: number; bed: number } {
-  const z = lerp(shape.start, shape.end, u) - v * v * smooth(.83, 1, u) * .13;
+  const margin = v*v*(.48+.055*Math.sin(v*11)+.025*Math.sin(v*23));
+  const z = lerp(shape.start, shape.end, u) - smooth(.8, 1, u) * margin;
   const head = .24 + .76 * smooth(0, .14, u);
   const snout = 1 - smooth(.77, 1, u) * .32;
   const width = valleyWidth(z) * (.83 + Math.sqrt(shape.fraction) * .29) * head * snout;

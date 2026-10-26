@@ -3,7 +3,7 @@
   "topicId": "earth-systems",
   "zh": {
     "question": "海水为什么会分层，又怎样上下交换、搬运热量？",
-    "observe": "保留等体积A、B两份海水，分别改变A的温度与盐度，再让两种变化共同作用。拖动位置观察，比较密度次序；随后阅读风、混合和上升流的联系。",
+    "observe": "保留等体积A、B两份海水，分别改变A的温度与盐度，再让两种变化共同作用。播放或拖动同一剖面，比较相对密度次序；随后展开风、混合和上升流的联系。",
     "academic": [
       {
         "title": "密度差把温度与盐分连起来",
@@ -15,7 +15,7 @@
       },
       {
         "title": "密度比较能回答什么",
-        "body": "本题在同一海面参考压力下比较密度，不能由两个读数直接算出下沉速度、真实深度、全球洋流或气候。位置滑块是可逆的示意坐标；暖冷颜色和圆菱标记帮助跟踪同一份水，不代表分子或实测水团。"
+        "body": "本题在同一海面参考压力下比较密度，不能由两个读数直接算出下沉速度、真实深度、全球洋流或气候。连续水体和圆菱标记帮助追踪同一来源；虚线是解释边界，不是隔板。几何展开可回退，七个显示秒没有真实时间标定。颜色不代表实际温度，标记也不是分子或实测水团。"
       }
     ],
     "misconception": "冷水不一定比任何暖水都密，盐分也要比较。海水抵达热带不会自动上浮；海洋也没有每一滴水必须走完的一圈。",
@@ -23,13 +23,13 @@
     "narration": [
       {
         "label": "先比同样大的一份水",
-        "text": "两份一样多的海水，可以有不同的质量，也就有不同密度。冷暖和盐分都重要：冷一点的水如果也淡很多，结果还要一起比较。",
-        "cue": "比较等体积A、B，分别改变温度和盐度后再同时改变；寻找接近等密度的对照。"
+        "text": "两份一样大的海水，可以有不同的质量，也就有不同密度。冷暖和盐分都重要：冷一点的水如果也淡很多，结果还要一起比较。",
+        "cue": "在连续水体剖面保留A圆点与B菱形，分别改变温度和盐度后再同时改变；播放、暂停并回退，寻找接近等密度的对照。虚线不是隔板。"
       },
       {
         "label": "海洋的上下有联系",
         "text": "风推动许多表层海流。有些地方的海水冷却、变咸，参与深水形成。混合和上升流又帮助深水返回。海洋有很多岔路，不是一根绕地球的水管。",
-        "cue": "读暖表层与冷深层的连接示意，指出北大西洋、南大洋和返回机制，而不承诺唯一闭合轨迹。"
+        "cue": "展开大洋联系示意，区分风驱表层、部分海域下沉与上升混合的返回机制，不承诺唯一闭合轨迹。"
       },
       {
         "label": "把两种变化放在一起",
@@ -45,7 +45,7 @@
   },
   "en": {
     "question": "Why does seawater form layers, and how does it exchange water and heat?",
-    "observe": "Retain equal-volume samples A and B. Change A’s temperature and salinity separately and together, then inspect their relative positions and density order. Connect the comparison with wind, mixing and upwelling.",
+    "observe": "Retain equal-volume samples A and B. Change A’s temperature and salinity separately and together, then play or scrub the same section to inspect density order. Expand the explanation of wind, mixing and upwelling.",
     "academic": [
       {
         "title": "Density connects temperature and salt",
@@ -57,7 +57,7 @@
       },
       {
         "title": "What the density comparison establishes",
-        "body": "This study compares density at the same surface reference pressure. Two density readouts do not calculate sinking speed, actual depth, global currents or climate. The reversible position control and colored markers track the same samples; they are not molecules or measured ocean water masses."
+        "body": "This study compares density at the same surface reference pressure. Two readouts do not calculate sinking speed, actual depth, global currents or climate. Continuous water regions and circle/diamond marks track origin; the dashed boundary is an explanation cue, not a divider. The geometry is reversible and seven display seconds have no physical time calibration. Colors do not encode actual temperature; marks are not molecules or measured ocean water masses."
       }
     ],
     "misconception": "Cold water is not necessarily denser than every warm sample: compare salinity too. Water does not automatically rise on reaching the tropics, and no parcel must complete one universal ocean circuit.",
@@ -66,12 +66,12 @@
       {
         "label": "Compare equal volumes of water",
         "text": "Two equal-sized seawater samples can have different masses and therefore different densities. Temperature and salt both matter. If colder water is also much fresher, compare both changes together.",
-        "cue": "Compare equal-volume A and B; vary temperature and salinity separately and together, including a nearly equal-density case."
+        "cue": "Retain A circles and B diamonds in the continuous water section. Vary temperature and salinity separately and together; play, pause and rewind, including a nearly equal-density case. The dashed boundary is not a divider."
       },
       {
         "label": "The surface and deep ocean connect",
         "text": "Winds drive many surface currents. In some places, cooling and increasing salt contribute to deep-water formation. Mixing and upwelling help water return. The ocean has many branches, rather than one pipe wrapped around Earth.",
-        "cue": "Read surface-deep connections, identifying North Atlantic and Southern Ocean regions and return mechanisms without promising a unique closed trajectory."
+        "cue": "Expand the ocean connections diagram. Distinguish wind-driven surface motion, sinking in some regions and return through upwelling and mixing, without promising a unique closed trajectory."
       },
       {
         "label": "Combine two changes",
@@ -87,14 +87,6 @@
   },
   "references": [
     {
-      "title": "NASA NSSDCA · Earth Fact Sheet: mean radius, core radius, rotation and dry-air composition",
-      "url": "https://nssdc.gsfc.nasa.gov/planetary/factsheet/earthfact.html"
-    },
-    {
-      "title": "NASA · Earth facts: inner core and representative crustal thicknesses",
-      "url": "https://science.nasa.gov/earth/facts/"
-    },
-    {
       "title": "NOAA · Thermohaline circulation: temperature, salinity and density",
       "url": "https://oceanservice.noaa.gov/education/tutorial_currents/05conveyor1.html"
     },
@@ -103,44 +95,20 @@
       "url": "https://oceantoday.noaa.gov/fullmoon-whatareoceancurrents/welcome.html"
     },
     {
-      "title": "NASA Space Place · What is an aurora?",
-      "url": "https://spaceplace.nasa.gov/aurora/en/"
-    },
-    {
-      "title": "NASA · What is the greenhouse effect?",
-      "url": "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/"
-    },
-    {
-      "title": "NASA · The habitable zone: possible surface liquid water under suitable conditions",
-      "url": "https://science.nasa.gov/exoplanets/habitable-zone/"
-    },
-    {
-      "title": "ESA Mars Express · Gravity, ultraviolet radiation and atmospheric escape",
-      "url": "https://www.esa.int/About_Us/ESAC/Leaky_atmosphere_linked_to_lightweight_planet"
-    },
-    {
-      "title": "NASA · Venus facts: dense atmosphere without an internally generated global magnetic field",
-      "url": "https://science.nasa.gov/venus/venus-facts/"
-    },
-    {
-      "title": "NASA Earth Observatory · The carbon cycle",
-      "url": "https://science.nasa.gov/earth/earth-observatory/the-carbon-cycle/"
-    },
-    {
-      "title": "NASA · Why orbital cycles cannot explain current rapid warming",
-      "url": "https://science.nasa.gov/science-research/earth-science/why-milankovitch-orbital-cycles-cant-explain-earths-current-warming/"
-    },
-    {
       "title": "MRI/JMA Technical Report 80 · Chapter 4, surface EOS-80 and temperature-scale footnote",
       "url": "https://www.mri-jma.go.jp/Publish/Technical/DATA/VOL_80/2.pdf"
     },
     {
-      "title": "USGS · Water Density: freshwater maximum near 4 degrees Celsius",
-      "url": "https://www.usgs.gov/water-science-school/science/water-density"
+      "title": "NOAA · Upwelling: wind-driven return of deeper water",
+      "url": "https://oceanservice.noaa.gov/facts/upwelling.html"
     },
     {
-      "title": "NASA NTRS · Rotation of a Moonless Earth: dependence on initial conditions",
-      "url": "https://ntrs.nasa.gov/citations/20140011208"
+      "title": "IOC/SCOR/IAPSO · TEOS-10: modern thermodynamic seawater standard",
+      "url": "https://www.teos-10.org/"
+    },
+    {
+      "title": "Vic et al. · Deep-ocean mixing driven by small-scale internal tides",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6506475/"
     }
   ]
 }

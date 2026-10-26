@@ -15,7 +15,7 @@ const range=el('progress') as HTMLInputElement;
 const process=el('process') as HTMLSelectElement;
 process.add(new Option(t('敞口杯到冷盖：追踪这份水'),'route'),1);
 const pathNav=document.createElement('nav');
-pathNav.className='scene-paths';pathNav.setAttribute('aria-label',t('选择观察路径'));
+pathNav.className='scene-paths';pathNav.dataset.readerMenu='chapters';pathNav.setAttribute('aria-label',t('选择观察路径'));
 for(const [value,label] of [['experiment',t('冰水与热量')],['route',t('从水面到冷盖')],['melt',t('单独看局部')]] as const){
  const button=document.createElement('button');button.type='button';button.dataset.path=value;button.textContent=label;pathNav.append(button);
 }

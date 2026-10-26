@@ -23,6 +23,8 @@ export type InteriorState = {
   interiorBoundary: Boundary;
   interiorMotion: 'moving' | 'still';
   interiorProgress: number;
+  interiorWaveProgress: number;
+  interiorPlateCamera: string;
   interiorExplain: boolean;
   interiorRenderer: 'three' | 'section';
   interiorYaw: number;
@@ -41,6 +43,8 @@ export const DEFAULT_STATE: Readonly<InteriorState> = Object.freeze({
   interiorBoundary: 'divergent',
   interiorMotion: 'moving',
   interiorProgress: 0,
+  interiorWaveProgress: 100,
+  interiorPlateCamera: '',
   interiorExplain: false,
   interiorRenderer: 'three',
   interiorYaw: -45,
@@ -60,6 +64,13 @@ function boundedInteger(value: string | undefined, fallback: number, min: number
   if (value === undefined || !/^-?(0|[1-9]\d*)$/.test(value)) return fallback;
   const n = Number(value);
   return Number.isSafeInteger(n) && n >= min && n <= max ? n : fallback;
+}
+
+export function parsePlateCamera(value?: string): [number,number,number] | undefined {
+  if(!value||value.length>100)return;
+  try{const p:unknown=JSON.parse(value);if(!Array.isArray(p)||p.length!==3||!p.every(n=>typeof n==='number'&&Number.isFinite(n)))return;
+    const r=Math.hypot(...p);if(r<6||r>31)return;return p.map(n=>Math.round(n*10000)/10000) as [number,number,number];
+  }catch{return;}
 }
 
 /** Accept only the documented key/value grammar; reject partial numeric strings. */
@@ -82,6 +93,8 @@ export function restoreState(input: Record<string, string>): InteriorState {
     interiorBoundary: oneOf(input.interiorBoundary, ['divergent', 'subduction', 'collision', 'transform'] as const, DEFAULT_STATE.interiorBoundary),
     interiorMotion: oneOf(input.interiorMotion, ['moving', 'still'] as const, DEFAULT_STATE.interiorMotion),
     interiorProgress: strictInteger(input.interiorProgress, DEFAULT_STATE.interiorProgress, 100),
+    interiorWaveProgress: strictInteger(input.interiorWaveProgress, DEFAULT_STATE.interiorWaveProgress, 100),
+    interiorPlateCamera: JSON.stringify(parsePlateCamera(input.interiorPlateCamera)) ?? '',
     interiorExplain: input.interiorExplain === '1',
     interiorRenderer: oneOf(input.interiorRenderer, ['three', 'section'] as const, DEFAULT_STATE.interiorRenderer),
     interiorYaw: boundedInteger(input.interiorYaw, DEFAULT_STATE.interiorYaw, -180, 180),

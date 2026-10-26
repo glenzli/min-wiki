@@ -14,7 +14,7 @@
 .earth-module.history-study *,
 .earth-module.history-study *::before,
 .earth-module.history-study *::after { box-sizing: border-box; }
-.earth-module.history-study p { margin: .65rem 0 1rem; }
+.earth-module.history-study p:not([data-reader-caption]) { margin: .65rem 0 1rem; }
 .earth-module.history-study h2 { margin: 0 0 .7rem; font-size: clamp(1.35rem, 3vw, 1.8rem); line-height: 1.35; }
 .earth-module.history-study h3 { margin: .25rem 0 1rem; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1.35; }
 .earth-module.history-study h4 { margin: 1.2rem 0 .3rem; font-size: 1rem; }
@@ -38,15 +38,15 @@
 .earth-module.history-study button:disabled { opacity: .45; cursor: default; }
 .earth-module.history-study :is(button, select, input, summary, a):focus-visible { outline: 3px solid var(--history-blue); outline-offset: 3px; }
 .earth-module.history-study .earth-note { font-size: .88rem; color: var(--earth-muted, #5d6660); line-height: 1.65; }
-.earth-module.history-study .earth-controls { display: flex; flex-wrap: wrap; gap: .7rem; align-items: end; }
+.earth-module.history-study .earth-controls { align-items: end; }
 .earth-module.history-study .earth-controls label { min-width: 0; }
 .earth-module.history-study .earth-controls label > span { display: block; font-size: .87rem; margin-bottom: .3rem; }
-.earth-module.history-study .earth-stage { border: 1px solid var(--earth-line, #d2d2c9); background: var(--earth-paper, #fcfaf5); border-radius: 1rem; }
+.earth-module.history-study .earth-stage { background: var(--earth-paper, #fcfaf5); }
 .earth-module.history-study .earth-readout { font-variant-numeric: tabular-nums; }
-.earth-module.history-study .history-intro { margin-bottom: 2rem; }
+.earth-module.history-study .history-intro { margin-bottom: 1rem; }
 .earth-module.history-study .history-intro p { margin: 0; max-width: 60rem; }
 .earth-module.history-study .history-eyebrow { color: var(--earth-muted, #5d6660); font-size: .85rem; letter-spacing: .04em; margin-bottom: .35rem !important; }
-.earth-module.history-study .history-time-stage { padding: clamp(1rem, 3vw, 1.6rem); overflow: hidden; }
+.earth-module.history-study .history-time-stage { padding: clamp(.85rem, 2vw, 1.2rem); overflow: hidden; }
 .earth-module.history-study .history-axis-heading { font-weight: 650; margin-bottom: .4rem; font-size: .93rem; }
 .earth-module.history-study .history-overview,
 .earth-module.history-study .history-window-axis { touch-action: none; cursor: crosshair; }
@@ -90,7 +90,7 @@
 .earth-module.history-study .history-window-controls label { flex: 1 1 280px; }
 .earth-module.history-study .history-window-controls select { width: 100%; }
 .earth-module.history-study .history-window-controls p { flex: 1 1 220px; margin: .4rem 0; }
-.earth-module.history-study .history-event-navigation { margin: 1.6rem 0; }
+.earth-module.history-study .history-event-navigation { margin: .8rem 0; }
 .earth-module.history-study .history-event-navigation label { flex: 1 1 280px; }
 .earth-module.history-study .history-event-select { width: 100%; text-overflow: ellipsis; }
 .earth-module.history-study .history-story { border-left: 3px solid var(--history-teal); padding: 0 0 0 clamp(1rem, 3vw, 1.8rem); }
@@ -99,17 +99,17 @@
 .earth-module.history-study .history-event-lead { font-size: 1.08rem; line-height: 1.7; }
 .earth-module.history-study .history-event-links { margin: 1rem 0; }
 .earth-module.history-study .history-crosslink { font-size: .88rem; background: transparent; }
-.earth-module.history-study .earth-deeper { margin: 1rem 0; border-top: 1px solid var(--earth-line, #d2d2c9); border-bottom: 1px solid var(--earth-line, #d2d2c9); }
+.earth-module.history-study .earth-deeper { margin: 1rem 0; border-top: 1px solid var(--earth-line, #d2d2c9); }
 .earth-module.history-study .earth-deeper summary { padding: .8rem .1rem; min-height: 44px; cursor: pointer; line-height: 1.5; font-weight: 600; }
 .earth-module.history-study .history-details-body { padding: .1rem 0 1rem; font-size: .93rem; }
 .earth-module.history-study .history-sources { display: grid; gap: .4rem; margin: 1rem 0 0; font-size: .83rem; }
 .earth-module.history-study .history-event-sources { display: grid; gap: .4rem; }
 .earth-module.history-study a { color: var(--history-blue); overflow-wrap: anywhere; text-decoration-thickness: 1px; text-underline-offset: .18em; }
-.earth-module.history-study .history-question { background: color-mix(in srgb, var(--history-ochre) 10%, var(--earth-paper, #fcfaf5)); padding: .8rem 1rem; border-radius: .7rem; margin: 1.2rem 0; font-size: .93rem; }
+.earth-module.history-study .history-question { background: transparent; padding: .8rem 1rem; border-radius: 0; margin: 1.2rem 0; font-size: .93rem; }
 .earth-module.history-study .history-question strong { font-size: .8rem; letter-spacing: .02em; }
 .earth-module.history-study .history-question p { margin: .25rem 0 0; }
 .earth-module.history-study .history-oxygen-lab,
-.earth-module.history-study .history-rock-record { margin-top: 3.4rem; border-top: 1px solid var(--earth-line, #d2d2c9); padding-top: 2rem; }
+.earth-module.history-study .history-rock-record { margin-top: 2.4rem; border-top: 1px solid var(--earth-line, #d2d2c9); padding-top: 2rem; }
 .earth-module.history-study .history-model-boundary { border-left: 2px solid var(--history-ochre); padding-left: .9rem; }
 .earth-module.history-study .history-presets { margin: 1.4rem 0; }
 .earth-module.history-study .history-budget-controls { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 1.2rem; margin: 1rem 0; }
@@ -126,7 +126,7 @@
 .earth-module.history-study .history-recycle-cell strong { color: var(--history-ochre); }
 .earth-module.history-study .history-geology-cell strong { color: var(--history-rust); }
 .earth-module.history-study .history-stock-cell strong { color: var(--history-blue); }
-.earth-module.history-study .history-result { padding: .8rem 1rem; border-radius: .6rem; background: color-mix(in srgb, var(--history-blue) 7%, var(--earth-paper, #fcfaf5)); font-size: .98rem; }
+.earth-module.history-study .history-result { padding: .8rem 1rem; border-radius: 0; background: transparent; font-size: .98rem; }
 .earth-module.history-study .history-turn-controls { margin-top: 1rem; }
 .earth-module.history-study .history-budget-figure { margin: 2rem 0 1.5rem; }
 .earth-module.history-study .history-budget-figure figcaption { font-weight: 600; line-height: 1.5; margin: 0 0 .65rem; }
@@ -151,11 +151,11 @@
 .earth-module.history-study .history-chart-x span:first-child { left: 5%; }
 .earth-module.history-study .history-chart-x span:nth-child(2) { left: 52.222222%; }
 .earth-module.history-study .history-chart-x span:last-child { left: 99.444444%; transform: translateX(-100%); }
-.earth-module.history-study .history-rock-figure { margin: 1.4rem 0; padding: 1.2rem; }
+.earth-module.history-study .history-rock-figure { margin: 1.4rem 0; }
 .earth-module.history-study .history-rock-process { display: flex; gap: .6rem; justify-content: space-between; font-size: .82rem; color: var(--earth-muted, #5d6660); }
 .earth-module.history-study .history-rock-process span { flex: 1; }
 .earth-module.history-study .history-rock-process span + span::before { content: '→'; margin-inline-end: .5rem; }
-.earth-module.history-study .history-rock-figure svg { display: block; width: 100%; height: auto; margin: 1.1rem 0; max-height: 190px; }
+.earth-module.history-study .history-rock-figure svg { display: block; width: 100%; height: auto; margin: 1.1rem 0; max-height: 360px; }
 .earth-module.history-study .history-iron-fill,
 .earth-module.history-study .history-iron { fill: #8a4d39; background: #8a4d39; }
 .earth-module.history-study .history-silica-fill,
@@ -168,6 +168,22 @@
 .earth-module.history-study .history-boundaries th,
 .earth-module.history-study .history-boundaries td { text-align: start; padding: .5rem .35rem; border-bottom: 1px solid var(--earth-line, #d2d2c9); }
 .earth-module.history-study .history-boundaries td { font-variant-numeric: tabular-nums; }
+
+.earth-module.history-study .history-time-grid { display: grid; grid-template-columns: minmax(0,1.8fr) minmax(280px,1fr); gap: 24px; align-items: start; }
+.earth-module.history-study .history-ruler-workspace { min-width: 0; }
+.earth-module.history-study .history-options { border-block-start: 1px solid var(--earth-line, #d2d2c9); margin: .65rem 0; }
+.earth-module.history-study .history-options > summary { min-height: 44px; padding: .65rem .15rem; cursor: pointer; font-size: .88rem; line-height: 1.5; }
+.earth-module.history-study .history-options > summary span { color: var(--earth-muted, #5d6660); font-variant-numeric: tabular-nums; }
+.earth-module.history-study .history-budget-options > .earth-controls { margin-inline: .15rem; }
+.earth-module.history-study .history-allocation-figure { margin: 1rem 0; }
+.earth-module.history-study .history-allocation-figure figcaption { font-weight: 600; font-size: 1rem; }
+.earth-module.history-study .history-allocation svg { display: block; height: 48px; width: 100%; margin: .5rem 0; }
+.earth-module.history-study .history-allocation-key { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; font-size: .8rem; }
+.earth-module.history-study .history-allocation-key span { display: inline-flex; align-items: center; gap: .4rem; }
+.earth-module.history-study .history-allocation-key i { width: .8rem; height: .6rem; display: inline-block; }
+.earth-module.history-study .history-allocation-key strong { font-variant-numeric: tabular-nums; }
+@media (max-width: 1000px) { .earth-module.history-study .history-time-grid { grid-template-columns: minmax(0,1fr); gap: 18px; } }
+
 @media (max-width: 600px) {
   .earth-module.history-study .history-budget-controls { grid-template-columns: 1fr; gap: .55rem; }
   .earth-module.history-study .history-budget-controls label > span { min-height: 0; }
@@ -182,9 +198,43 @@
   .earth-module.history-study .history-story { padding-left: .9rem; }
   .earth-module.history-study .history-rock-process { flex-direction: column; gap: .35rem; }
   .earth-module.history-study .history-rock-process span + span::before { content: '↓'; }
-  .earth-module.history-study .history-presets button { width: 100%; }
+  .earth-module.history-study .history-presets button { width: auto; }
   .earth-module.history-study .history-chart-legend { flex-direction: column; }
 }
 @media (prefers-reduced-motion: reduce) {
   .earth-module.history-study *, .earth-module.history-study *::before, .earth-module.history-study *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+/* History owns its scientific composition; Reader supplies the outer region insets. */
+.history-study .history-journey-toolbar { align-items: flex-end; }
+.history-study .history-journey-toolbar > label { display: grid; gap: 4px; flex: 0 1 330px; min-width: 0; max-width: 100%; font-size: 12px; }
+.history-study .history-journey-toolbar > label + label { flex-basis: 190px; }
+.history-study .history-journey-toolbar select { width: 100%; }
+.history-study .history-journey-toolbar > button { margin-inline-start: auto; }
+.history-study .history-journey-stage { position: relative; height:var(--reader-stage-size); min-height:0; background: #101c25; overflow: hidden; }
+.history-study .history-journey-host, .history-study .history-journey-fallback { position: absolute; inset: 0; height: 100%; min-height: 0; aspect-ratio: auto; border-radius: 0; }
+.history-study .history-journey-host canvas, .history-study .history-journey-fallback svg { display: block; width: 100%; height: 100%; }
+.history-study .history-journey-badge { position: absolute; top: 16px; left: 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 7px; max-width: calc(100% - 40px); color: #f0ede4; font-size: 12px; pointer-events: none; }
+.history-study .history-journey-badge > span { padding: 5px 8px; border: 1px solid #c7dde247; border-radius: 5px; background: #172b35d9; }
+.history-study .history-journey-loading:not(:empty) { position: absolute; bottom: 16px; left: 20px; max-width: calc(100% - 40px); padding: 7px 10px; background: #182a32e6; color: #e5ecee; border-radius: 5px; font-size: 13px; }
+.history-study .history-journey-retry { position: absolute; bottom: 68px; left: 20px; }
+.history-study .history-journey-reading h2 { font-size: 19px; line-height: 1.5; margin: 0 0 6px; }
+.history-study .history-journey-reading p { max-width: 88ch; margin: 5px 0; }
+.history-study .history-journey-reading p:empty { display: none; }
+.history-study .history-journey-sources { display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 13px; padding-block: 8px; }
+.history-study .history-journey-sources a { overflow-wrap: anywhere; }
+.history-study .history-extended { border-top: 1px solid var(--earth-line); }
+.history-study .history-extended > summary { font-weight: 600; }
+.history-study .history-extended .history-intro { padding-block-start: 8px; }
+@media (max-width: 650px) {
+  .history-study .history-journey-stage { height:var(--reader-stage-size); min-height:0;  }
+  .history-study .history-journey-toolbar > label { flex: 1 1 100%; }
+  .history-study .history-journey-toolbar > label + label { flex: 1 1 180px; }
+  .history-study .history-journey-badge { left: 16px; max-width: calc(100% - 32px); }
+  .history-study .history-journey-reading h2 { font-size: 17px; }
+}
+
+/* Normal windows retain room for local evidence; short landscape spends its
+   actual budget beside playback without changing the retained scene. */
+.history-study .history-journey{--reader-stage-min:26rem}
+@media(max-width:650px){.history-study .history-journey{--reader-stage-min:23rem}}
+@media(max-height:500px){.history-study .history-journey{--reader-stage-min:9rem}}

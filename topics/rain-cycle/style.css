@@ -41,7 +41,7 @@
 .water-explorer .water-story h2{font-size:20px;line-height:1.45;margin:6px 0 10px}
 .water-explorer .water-story h3{font-size:14px;margin:16px 0 4px;color:var(--secondary)}
 .water-explorer .water-story p{font-size:14px;line-height:1.8}
-.water-explorer .water-story #watch{color:#34766f;font-weight:600}
+.water-explorer .water-story #watch{color:var(--ink);font-weight:600}
 .water-explorer .water-story button{margin:6px 6px 6px 0}
 .water-explorer .water-settings label:not(.check){display:block;font-size:13px;font-weight:600;margin:16px 0 5px}
 .water-explorer .water-settings h2{font-size:17px;margin:20px 0 8px}
@@ -59,7 +59,7 @@
 .water-explorer .water-detail summary{font-size:14px;font-weight:600;cursor:pointer}
 .water-explorer .water-detail p{font-size:13px;line-height:1.8;color:var(--secondary)}
 html[data-reading-mode=kids] .water-explorer .water-academic,html[data-reading-mode=kids] .water-explorer .cloud-academic,html[data-reading-mode=academic] .water-explorer .cloud-kids{display:none}
-.water-explorer .cloud-study,.water-explorer .pore-study{margin:22px 0;min-width:0;border:1px solid var(--border);border-radius:12px;background:var(--surface)}
+.water-explorer .cloud-study,.water-explorer .pore-study{margin:22px 0;min-width:0;background:transparent;border-block-start:1px solid var(--border)}
 .water-explorer .cloud-study:not(.presentation-frame),.water-explorer .pore-study{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:22px;padding:22px}
 .water-explorer .cloud-study h2,.water-explorer .pore-study h2{font-size:21px;line-height:1.45;margin:6px 0 10px}
 .water-explorer .cloud-study p,.water-explorer .pore-study p{font-size:14px;line-height:1.8;color:var(--secondary)}
@@ -69,8 +69,8 @@ html[data-reading-mode=kids] .water-explorer .water-academic,html[data-reading-m
 .water-explorer .cloud-terms{font-size:11px!important}
 .water-explorer #pore-section{display:block;width:100%;height:auto;max-width:540px;justify-self:center}
 .water-explorer .pore-counts{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;font-size:13px;line-height:1.6}
-.water-explorer .pore-counts dd{font-size:18px;font-variant-numeric:tabular-nums;margin:0;color:#34766f}
-.water-explorer .ice-study{border:1px solid var(--border);border-radius:12px;padding:20px;margin:22px 0;background:var(--surface)}
+.water-explorer .pore-counts dd{font-size:18px;font-variant-numeric:tabular-nums;margin:0;color:var(--ink)}
+.water-explorer .ice-study{padding:20px;margin:22px 0;background:transparent;border-block-start:1px solid var(--border)}
 .water-explorer .ice-study h2{font-size:21px;line-height:1.4}
 .water-explorer .ice-study p{font-size:14px;line-height:1.8;color:var(--secondary)}
 .water-explorer .ice-study label{display:block;font-size:13px;line-height:1.7;margin-top:16px}
@@ -87,20 +87,14 @@ html[data-reading-mode=kids] .water-explorer .water-academic,html[data-reading-m
 .water-explorer .observation-title{font-size:14px;font-weight:650;margin-right:auto}
 .water-explorer .reading-mode-disclosure,.water-explorer .reading-mode-hint{display:none}
 @media(min-width:1000px){
- :root[data-wiki-document] .water-explorer .lab.presentation-frame{height:max(500px,calc(100dvh - var(--observation-top,120px)));min-height:0}
- :root[data-wiki-document] .water-explorer .lab .presentation-visual{height:0;min-height:0;flex:1;align-self:stretch;aspect-ratio:auto}
- :root[data-wiki-document] .water-explorer .lab .presentation-stage{min-height:0;overflow:hidden}
  :root[data-wiki-document] .water-explorer .lab .presentation-transport{padding:8px 16px}
- :root[data-wiki-document] .water-explorer .cloud-study.presentation-frame{height:min(600px,80dvh);min-height:460px}
  .water-explorer .cloud-study .presentation-visual{justify-content:center;background:#e1ebe5}
  .water-explorer .long-study .presentation-frame .glacier-workspace{display:block}
  .water-explorer .long-study .presentation-frame .gw-controls{display:block}
  .water-explorer .long-study .presentation-frame .gw-control{margin-bottom:12px}
- .water-explorer .long-study .presentation-frame .gw-scene svg{width:100%;height:100%;min-height:0}
+ .water-explorer .long-study .presentation-frame .gw-scene svg{width:100%;height:auto;min-height:0}
 }
 @media(max-width:999px){
- .water-explorer .lab .basin-stage{height:min(62dvh,550px);min-height:360px;max-height:none;flex:none}
- .water-explorer .lab .presentation-stage{overflow:hidden}
  .water-explorer .stage-controls{grid-template-columns:minmax(0,1fr) auto;gap:6px 10px}
  :root#document-host .water-explorer .lab :is(.stage-controls,.presentation-transport:has(>#play)){grid-template-columns:minmax(0,1fr) auto;gap:6px 10px}
  .water-explorer .lab .presentation-transport #play{grid-row:1;grid-column:1;justify-self:start;min-width:0}
@@ -118,9 +112,9 @@ html[data-reading-mode=kids] .water-explorer .water-academic,html[data-reading-m
  .water-explorer .observation-title{display:none}
  .water-explorer .ice-study{padding:16px}
  .water-explorer .study-bridge{padding:12px 14px}
- .water-explorer .presentation-frame.observation-expanded .basin-stage{flex:1;height:0;min-height:220px}
  .water-explorer .presentation-frame.observation-expanded #basin-canvas{max-height:none!important}
 }
 @media(max-width:600px){
- :root[data-wiki-document] .water-explorer .lab:not(.observation-expanded) .basin-stage{height:clamp(300px,96vw,440px);min-height:0}
 }
+
+.water-explorer .lab .basin-stage{height:var(--reader-stage-size,clamp(220px,55dvh,600px));min-height:0;flex:none}

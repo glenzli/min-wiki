@@ -62,4 +62,4 @@ document.querySelectorAll<HTMLButtonElement>('[data-mode]').forEach(button=>butt
 render();
 
 
-mountPresentationFrame({"root": ".lab", "visual": ".specimen", "transport": ".play-controls"});
+mountPresentationFrame({"root": ".lab", "visual": ".specimen", "transport": "[data-reader-transport]"});

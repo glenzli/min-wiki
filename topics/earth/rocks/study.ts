@@ -34,51 +34,52 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   let viewerTicket = 0;
   const root = document.createElement('section');
   root.className = 'earth-module rocks-study';
+  root.setAttribute('data-reader-workbench',''); root.dataset.earthPresentation='';
   root.innerHTML = `
     <header class="rocks-heading">
       <p class="rocks-eyebrow">${escape(words.eyebrow)}</p>
       <h3 class="earth-section-title">${escape(words.title)}</h3>
       <p>${escape(words.intro)}</p>
     </header>
-    <div class="earth-controls rocks-tabs" role="group" aria-label="${escape(words.title)}">
+    <div class="earth-controls rocks-tabs" data-reader-actions data-earth-choices data-reader-menu="chapters" role="group" aria-label="${escape(words.title)}">
       <button type="button" data-view="journey">${escape(words.journeyTab)}</button>
       <button type="button" data-view="specimens">${escape(words.specimensTab)}</button>
     </div>
     <p class="rocks-question">${escape(words.question)}</p>
-    <label class="rocks-select" data-specimen-select hidden><span>${escape(words.specimenSelect)}</span><select data-specimen>${SPECIMEN_IDS.map(id => `<option value="${id}">${escape(words.specimens[id].name)} · ${escape(words.specimens[id].type)}</option>`).join('')}</select></label>
-    <label class="rocks-select rocks-process-choice" data-process-choice-row><span>${escape(words.choose)}</span><select data-process-choice></select></label><div class="earth-stage rocks-stage">
+    <label class="rocks-select" data-reader-controls data-earth-choices data-specimen-select hidden><span>${escape(words.specimenSelect)}</span><select data-specimen>${SPECIMEN_IDS.map(id => `<option value="${id}">${escape(words.specimens[id].name)} · ${escape(words.specimens[id].type)}</option>`).join('')}</select></label>
+    <label class="rocks-select rocks-process-choice" data-reader-controls data-earth-choices data-process-choice-row><span>${escape(words.choose)}</span><select data-process-choice></select></label><div class="earth-stage rocks-stage" data-reader-stage data-earth-visual data-reader-fit="available">
       <div class="rocks-webgl-host rocks-process-host" data-process-host hidden></div>
       <div class="rocks-webgl-host" data-webgl-host hidden></div>
       <canvas data-scene role="img" aria-label="${escape(words.stageLabel)}"></canvas>
-      <div class="rocks-stage-caption" data-stage-caption></div>
+      <div class="rocks-stage-caption" data-reader-caption data-stage-caption></div>
     </div>
-    <p class="earth-note" data-process-status role="status" hidden></p><p class="earth-note rocks-caption">${escape(words.illustration)}</p>
-    <div data-journey-panel>
-      <div class="earth-controls rocks-playback">
+    <p class="earth-note" data-process-status role="status" hidden></p><p class="earth-note rocks-caption" data-reader-caption>${escape(words.illustration)}</p>
+    <div data-journey-panel data-earth-transport>
+      <div class="earth-controls rocks-playback" data-reader-transport>
         <button type="button" data-playback-toggle aria-pressed="false">${escape(words.play)}</button>
         <button type="button" data-playback-reset>${escape(words.rewind)}</button>
         <button type="button" data-playback-next>${escape(words.advance)}</button>
       </div>
-      <div class="rocks-slider"><label><span>${escape(words.progress)}</span><output data-progress-output></output><input data-progress data-playback-scrub type="range" min="0" max="100" step="1"></label></div>
+      <div class="rocks-slider" data-reader-controls><label data-reader-scrub><span>${escape(words.progress)}</span><input data-progress data-playback-scrub type="range" min="0" max="100" step="1"><output data-progress-output></output></label></div>
       <p class="earth-note rocks-playback-note">${escape(words.playbackNote)}</p>
       <p class="earth-note" data-reduced-note hidden>${escape(words.playbackReduced)}</p>
-      <div class="earth-readout rocks-readout">
+      <div class="earth-readout rocks-readout" data-reader-readout>
         <div><span>${escape(words.current)}</span><strong data-form></strong></div>
         <div><span>${escape(words.location)}</span><strong data-setting></strong></div>
       </div>
       <fieldset class="rocks-processes"><legend>${escape(words.choose)}</legend>
         <p class="earth-note">${escape(words.chooseHint)}</p>
-        <div class="earth-controls rocks-process-grid" data-processes></div>
+        <div class="earth-controls rocks-process-grid" data-reader-actions data-processes></div>
       </fieldset>
-      <div class="rocks-cause" aria-live="polite" aria-atomic="true"><strong data-process-title></strong><p data-process-description></p></div>
-      <div class="earth-controls rocks-step-controls">
+      <div class="rocks-cause" data-reader-readout aria-live="polite" aria-atomic="true"><strong data-process-title></strong><p data-process-description></p></div>
+      <div class="earth-controls rocks-step-controls" data-reader-controls>
         <button type="button" data-back>${escape(words.back)}</button>
         <button type="button" data-redo>${escape(words.forward)}</button>
         <button type="button" class="rocks-primary" data-finish>${escape(words.finish)}</button>
       </div>
       <p class="earth-note">${escape(words.progressNote)}</p>
-      <p class="earth-note rocks-identity">${escape(words.identity)}</p>
-      <details class="earth-deeper rocks-process-detail"><summary>${escape(words.deepLabel)}</summary>
+      <p class="earth-note rocks-identity" data-reader-prose>${escape(words.identity)}</p>
+      <details class="earth-deeper rocks-process-detail" data-reader-prose><summary>${escape(words.deepLabel)}</summary>
         <div><h4>${escape(words.processConditions)}</h4><p data-condition></p><p data-process-detail></p>
           <p><strong data-time-label></strong><span data-time></span></p><p><strong data-evidence-label></strong><span data-evidence></span></p>
           <p class="earth-note">${escape(words.noTime)}</p></div>
@@ -89,7 +90,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
       </section>
     </div>
     <section data-specimens-panel>
-      <div class="earth-controls rocks-model-controls" role="group" aria-label="${escape(words.specimenSelect)}">
+      <div class="earth-controls rocks-model-controls" data-reader-actions role="group" aria-label="${escape(words.specimenSelect)}">
         <button type="button" data-renderer="3d">${escape(words.model3d)}</button>
         <button type="button" data-renderer="2d">${escape(words.model2d)}</button>
         <button type="button" data-model-reset>${escape(words.modelReset)}</button>
@@ -99,14 +100,14 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
       <p class="earth-note" data-model-help>${escape(words.modelHelp)}</p>
       <p class="earth-note">${escape(words.modelLimit)}</p>
       <p>${escape(words.specimenIntro)}</p>
-      <div class="rocks-specimen-copy" aria-live="polite"><h4 data-specimen-title></h4>
+      <div class="rocks-specimen-copy" data-reader-prose aria-live="polite"><h4 data-specimen-title></h4>
         <p><strong>${escape(words.look)} · </strong><span data-specimen-look></span></p>
         <p><strong>${escape(words.formed)} · </strong><span data-specimen-formed></span></p>
         <p><strong>${escape(words.ingredients)} · </strong><span data-specimen-ingredients></span></p>
         <p class="rocks-question" data-specimen-question></p><p data-specimen-detail></p>
       </div>
     </section>
-    <details class="earth-deeper rocks-minerals">
+    <details class="earth-deeper rocks-minerals" data-reader-prose>
       <summary>${escape(words.mineralTitle)}</summary>
       <div><p>${escape(words.mineralText)}</p>
         <label class="rocks-select"><span>${escape(words.mineralSelect)}</span><select data-mineral>${MINERAL_IDS.map(id => `<option value="${id}">${escape(words.minerals[id].name)}</option>`).join('')}</select></label>
@@ -115,7 +116,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
         <a href="/topics/earth-minerals/" data-mineral-link></a>
       </div>
     </details>
-    <details class="earth-deeper rocks-cooling">
+    <details class="earth-deeper rocks-cooling" data-reader-prose>
       <summary>${escape(words.coolingTitle)}</summary>
       <div><p>${escape(words.coolingText)}</p>
         <canvas data-cooling-scene role="img" aria-label="${escape(words.coolingText)}"></canvas>
@@ -124,16 +125,16 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
         <p class="earth-note">${escape(words.coolingLimit)}</p>
       </div>
     </details>
-    <details class="earth-deeper rocks-more"><summary>${escape(words.deepLabel)}</summary><div>
+    <details class="earth-deeper rocks-more" data-reader-prose><summary>${escape(words.deepLabel)}</summary><div>
       ${words.deeper.map(item => `<section><h4>${escape(item.title)}</h4><p>${escape(item.text)}</p></section>`).join('')}
       <p class="rocks-forces">${escape(words.surfaceText)}<br>${escape(words.interiorText)}</p>
     </div></details>
-    <nav class="rocks-related" aria-label="${escape(words.linksTitle)}"><h4>${escape(words.linksTitle)}</h4>
+    <nav class="rocks-related" data-reader-prose aria-label="${escape(words.linksTitle)}"><h4>${escape(words.linksTitle)}</h4>
       <a href="/topics/volcano-eruption/">${escape(words.volcano)}</a>
       <a href="/topics/rain-cycle/">${escape(words.water)}</a>
       <a href="/topics/sand-journey/">${escape(words.sand)}</a>
     </nav>
-    <details class="earth-deeper rocks-sources"><summary>${escape(words.sourcesTitle)}</summary><div><p>${escape(words.sourcesNote)}</p>
+    <details class="earth-deeper rocks-sources" data-reader-prose><summary>${escape(words.sourcesTitle)}</summary><div><p>${escape(words.sourcesNote)}</p>
       <ul>${SOURCES.map(([label, href]) => `<li><a href="${href}" target="_blank" rel="noreferrer">${label}</a></li>`).join('')}</ul>
     </div></details>`;
   host.replaceChildren(root);
@@ -142,7 +143,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     if (!element) throw new Error(`Missing rocks element: ${selector}`);
     return element;
   };
-  const modelControls=get<HTMLElement>('.rocks-model-controls'),toolbar=document.createElement('div');toolbar.className='rocks-toolbar';const tabs=get<HTMLElement>('.rocks-tabs');tabs.before(toolbar);toolbar.append(tabs,modelControls);
+  const modelControls=get<HTMLElement>('.rocks-model-controls'),toolbar=document.createElement('div');toolbar.className='rocks-toolbar';toolbar.setAttribute('data-reader-controls','');const tabs=get<HTMLElement>('.rocks-tabs');tabs.before(toolbar);toolbar.append(tabs,modelControls);
   const mainCanvas = get<HTMLCanvasElement>('[data-scene]');
   const mineralCanvas = get<HTMLCanvasElement>('[data-mineral-scene]');
   const coolingCanvas = get<HTMLCanvasElement>('[data-cooling-scene]');
@@ -240,7 +241,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
     const processHost = get<HTMLElement>('[data-processes]');
     const allowed = availableProcesses(rock);
     const choice=get<HTMLSelectElement>('[data-process-choice]');
-    choice.replaceChildren(...[null,...allowed].map(id=>{const o=document.createElement('option');o.value=id??'';o.textContent=id?words.processes[id].label:words.chooseHint;return o;}));choice.value=session.process??'';
+    choice.replaceChildren(...[null,...allowed].map(id=>{const o=document.createElement('option');o.value=id??'';o.textContent=id?words.processes[id].label:words.choosePlaceholder;return o;}));choice.value=session.process??'';
     get<HTMLElement>('.rocks-processes').hidden=true;
     const existing = [...processHost.querySelectorAll<HTMLButtonElement>('button')];
     if (existing.map(button => button.dataset.process).join(',') !== allowed.join(',')) {
@@ -287,7 +288,7 @@ export function mountStudy(host: HTMLElement, context: StudyContext): StudyInsta
   function renderProgress() {
     const frame=frameStates(session),shown=session.process&&session.progress===100?frame.to:frame.from;
     mainCanvas.setAttribute('aria-label',sceneDescription(session,words));
-    text('[data-stage-caption]',session.view==='journey'?words.rockLabels[shown.texture]:`${words.specimens[session.specimen].name} · ${words.specimens[session.specimen].type}`);
+    text('[data-stage-caption]',session.view==='journey'?`${words.rockLabels[shown.texture]} · ${words.settings[shown.setting]}`:`${words.specimens[session.specimen].name} · ${words.specimens[session.specimen].type}`);
     text('[data-form]',words.rockLabels[shown.texture]);text('[data-setting]',words.settings[shown.setting]);
     progress.value=String(session.progress);progress.disabled=!session.process;
     text('[data-progress-output]',`${session.progress}%`);

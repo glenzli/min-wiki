@@ -46,6 +46,11 @@ export function mountMicrobialWorkspace(host:HTMLElement):()=>void{
  <p class="micro-related" data-reader-prose><a href="${e(languageHref('/topics/handwashing/'))}">${e(c.ui.handwashing)}</a><a href="${e(languageHref('/topics/cells/'))}">${e(c.ui.cells)}</a><a href="${e(languageHref('/topics/tap-water/'))}">${e(c.ui.water)}</a></p>`;
  const get=<T extends HTMLElement=HTMLElement>(id:string)=>host.querySelector<T>(`#${id}`)!;
  const root=get('micro-observation'),stage=get('micro-renderer'),conditions=get('micro-conditions'),notes=get('micro-notes');
+ root.dataset.readerWorkbench='';root.dataset.readerLayout='stage';conditions.dataset.readerSupport='';notes.dataset.readerSupport='';
+ const main=root.querySelector<HTMLElement>('.micro-stage')!;main.removeAttribute('data-reader-stage');main.dataset.readerMain='';main.parentElement!.dataset.readerLayout='stage';
+ const visual=document.createElement('div');visual.className='micro-visual';visual.dataset.readerStage='';visual.dataset.readerFit='available';
+ visual.append(stage,get('micro-loading'));
+ const essential=document.createElement('div');essential.className='micro-essential';essential.dataset.readerEssential='';essential.append(...main.childNodes);main.append(visual,essential);
  const abort=new AbortController(),events={signal:abort.signal};
  const observation=mountObservationMode(root,{enter:c.ui.enter,exit:c.ui.exit},{fit:true,choices:[host.querySelector<HTMLElement>('.micro-chapters')!],panels:[{label:c.ui.conditions,elements:[conditions],open:false},{label:c.ui.explanation,elements:[notes]}]});
  const reading=mountSceneReading(root,{id:'micro-reading',childTarget:get('micro-state-kids'),controls:host.querySelector<HTMLElement>('.micro-modes')!});

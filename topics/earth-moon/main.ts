@@ -10,7 +10,7 @@ import { TopicScene } from './scene.ts';
 import './style.css';
 translateDocument(t);
 
-mountPresentationFrame({root:'.explorer',visual:'.viewport',transport:'.theater>.controls',choices:'#steps'});
+const presentation=mountPresentationFrame({root:'.explorer',visual:'.viewport',transport:'.theater>.controls',choices:'#steps'});
 const el = (id: string) => document.getElementById(id)!;
 const value = (id: string) => (el(id) as HTMLInputElement | HTMLSelectElement).value;
 const number = (id: string) => Number(value(id));
@@ -20,6 +20,10 @@ let progress = 0, playing = false, academic = false, frame = 0, last = 0;
 let scene: TopicScene | undefined;
 try { scene = new TopicScene(el('scene') as HTMLCanvasElement); }
 catch (error) { el('scene-error').hidden = false; console.error(error); }
+// These statements explain the image; they do not anchor a point in the scene.
+// Keep them outside the observer's controls and the retained lunar disk.
+const moonEssential=presentation?.stage.querySelector('[data-reader-essential]');
+if(moonEssential)for(const note of document.querySelectorAll('.viewport>.scene-note,.viewport>.scene-caption'))moonEssential.append(note);
 let cancelStageMotion = () => {};
 for (const type of ['click', 'input', 'keydown']) document.addEventListener(type, () => cancelStageMotion(), { capture: true });
 function seekStage(target: number) {
