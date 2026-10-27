@@ -2,6 +2,10 @@ import * as THREE from 'three';
 import { anchorForScale, cameraFrameScale, AU_KM, LIGHT_YEAR_KM as LY, EARTH_RADIUS_KM, SUN_CENTER_DISTANCE_KM, scaleState, ruler, viewPoint, viewTilt, smooth, SUN_RADIUS_KM, type Origin } from './model.ts';
 import { GalaxyVolume } from './galaxy.ts';
 import { MacroScene } from './macroScene.ts';
+import { CosmicWebVolume, type CosmicWebKind } from './cosmicWeb3d.ts';
+import { spatialWebFrame, spatialWebPose, virgoOpacity } from './cosmicSpaceModel.ts';
+import { createSolarPhotosphereMaterial,createSolarHalo,setSolarPhotospherePhase } from './solarPhotosphere3d.ts';
+import { SOLAR_SURFACE_STYLE } from './solarSurfaceModel.ts';
 import data from './content.json';
 import earthMap from '../solar-system/assets/2k_earth_daymap.webp';
 import cloudMap from '../solar-system/assets/2k_earth_clouds.webp';
@@ -32,10 +36,13 @@ export class CosmicScene {
   private earth=new THREE.Group();
   private moon:THREE.Mesh;
   private sun:THREE.Mesh;
+  private sunHalo:ReturnType<typeof createSolarHalo>;
   private planets:THREE.Mesh[]=[];
   private orbits:THREE.LineLoop[]=[];
   private moonOrbit:THREE.LineLoop;
   private galaxies:GalaxyVolume[]=[];
+  private webs=new Map<CosmicWebKind,CosmicWebVolume>();
+  private cluster?:THREE.Points<THREE.BufferGeometry,THREE.ShaderMaterial>;
   private macro=new MacroScene();
   private dark:THREE.Mesh;
   private neighborhood:THREE.Points;
@@ -62,9 +69,8 @@ export class CosmicScene {
       fragmentShader:'varying vec3 n;varying vec3 v;void main(){float rim=pow(1.-abs(dot(normalize(n),normalize(v))),3.);gl_FragColor=vec4(.12,.45,1.,rim*.5);}'}));
     atmosphere.scale.setScalar(1.025);this.earth.add(atmosphere);this.world.add(this.earth);
     this.moon=new THREE.Mesh(this.sphere,new THREE.MeshStandardMaterial({map:load(moonMap),roughness:1}));this.world.add(this.moon);
-    this.sun=new THREE.Mesh(this.sphere,new THREE.ShaderMaterial({
-      vertexShader:'varying vec3 p;varying vec3 n;void main(){p=position;n=normalMatrix*normal;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-      fragmentShader:'varying vec3 p;varying vec3 n;void main(){vec3 q=floor(p*220.);float g=fract(sin(dot(q,vec3(12.9898,78.233,37.719)))*43758.5453);float limb=.65+.35*abs(normalize(n).z);gl_FragColor=vec4(vec3(1.,.65,.25)*(.85+.15*g)*limb,1.);}'}));this.world.add(this.sun);
+    this.sun=new THREE.Mesh(this.sphere,createSolarPhotosphereMaterial());this.world.add(this.sun);
+    this.sunHalo=createSolarHalo();this.world.add(this.sunHalo);
     ORBITS.forEach((_,i)=>{const planet=new THREE.Mesh(this.sphere,new THREE.MeshStandardMaterial({color:COLORS[i],roughness:1}));this.planets.push(planet);this.world.add(planet);this.orbits.push(this.makeOrbit('#668caa'));});
     this.moonOrbit=this.makeOrbit('#91b9bf');
     this.dark=new THREE.Mesh(new THREE.SphereGeometry(1,32,20),new THREE.MeshBasicMaterial({color:'#80b6cf',wireframe:true,transparent:true,opacity:.045,depthWrite:false}));this.world.add(this.dark);
@@ -100,6 +106,22 @@ export class CosmicScene {
     geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));
     const line=new THREE.LineLoop(geometry,new THREE.LineBasicMaterial({vertexColors:true,transparent:true,opacity:.55,depthWrite:false}));this.world.add(line);return line;
   }
+  private makeCluster(){
+    const positions:number[]=[],colors:number[]=[];
+    for(let i=0;i<750;i++){
+      const r=Math.pow(random(i*7+49001),.8),a=random(i*7+49002)*Math.PI*2,z=random(i*7+49003)*2-1,q=Math.sqrt(1-z*z);
+      positions.push(r*q*Math.cos(a),r*q*Math.sin(a)*.78,r*z*.62);
+      const color=new THREE.Color(i%9===0?'#e9cda8':'#a8bfd4').multiplyScalar(.45+.55*random(i*7+49004));colors.push(color.r,color.g,color.b);
+    }
+    const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));
+    const material=new THREE.ShaderMaterial({transparent:true,vertexColors:true,depthWrite:false,blending:THREE.AdditiveBlending,
+      uniforms:{size:{value:2.1},alpha:{value:0}},
+      vertexShader:'uniform float size;varying vec3 tint;void main(){tint=color;gl_PointSize=size;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+      fragmentShader:'uniform float alpha;varying vec3 tint;void main(){float r=length(gl_PointCoord-.5)*2.;if(r>1.)discard;gl_FragColor=vec4(tint,exp(-r*r*5.)*alpha);}'
+    });
+    this.cluster=new THREE.Points(geometry,material);this.world.add(this.cluster);
+  }
+  setSolarPhase(phase:number){setSolarPhotospherePhase(this.sun.material as THREE.ShaderMaterial,phase);}
   draw(progress:number,tilt:number,layers:Layers,origin:Origin="earth"){
     this.last=[progress,tilt,{...layers},origin];if(this.disposed||this.lost||document.hidden)return;
     const width=this.wrapper.clientWidth;if(!width)return;
@@ -118,6 +140,7 @@ export class CosmicScene {
       object.position.set(...p);object.scale.setScalar(r);
     };
     body(this.earth,0,0,EARTH_RADIUS_KM);body(this.sun,-AU_KM,0,SUN_RADIUS_KM);body(this.moon,384400*.8,384400*.6,1737.4);
+    body(this.sunHalo,-AU_KM,0,SUN_RADIUS_KM*SOLAR_SURFACE_STYLE.haloOuter);this.sunHalo.visible&&=this.sun.visible;
     const orbit=(object:THREE.LineLoop,center:number,radius:number)=>{
       const r=radius/half;object.visible=r>.008&&r<20;object.position.set(...point(center));object.scale.setScalar(r);object.rotation.x=angle;
       (object.material as THREE.LineBasicMaterial).opacity=.55*smooth((r-.008)/.025)*(1-smooth((r-8)/12));
@@ -143,6 +166,23 @@ export class CosmicScene {
       if(g.root.visible)g.update(r*width/2,dpr,fade,i===0?layers:{disk:true,bulge:true,halo:false});
     });
     this.dark.visible=layers.dark&&scaleState(progress).galaxy;this.dark.position.set(...point(-SUN_CENTER_DISTANCE_KM));this.dark.scale.setScalar(200000*LY/half);
+    const nominalHalfLy=scaleState(progress).halfWidth/LY;
+    for(const level of spatialWebFrame(nominalHalfLy)){
+      let web=this.webs.get(level.kind);
+      if(!web&&level.opacity>.005){web=new CosmicWebVolume(level.kind);this.webs.set(level.kind,web);this.world.add(web.root);}
+      if(!web)continue;
+      const pose=spatialWebPose(progress,width,height,tilt,origin,level.radiusLy);
+      web.root.position.set(...pose.center);web.root.scale.set(...pose.scale);web.root.rotation.x=pose.pitch;
+      web.update(Math.abs(pose.scale[0])*width/2,dpr,level.opacity);
+    }
+    const clusterAlpha=virgoOpacity(nominalHalfLy);
+    if(clusterAlpha>.005&&!this.cluster)this.makeCluster();
+    if(this.cluster){
+      this.cluster.visible=clusterAlpha>.005;this.cluster.position.set(...point(50e6*LY,20e6*LY));
+      // Readable structural glyph, not an enlarged physical cluster diameter.
+      this.cluster.scale.setScalar(27/width*2);this.cluster.rotation.x=angle;
+      this.cluster.material.uniforms.size!.value=2.1*dpr;this.cluster.material.uniforms.alpha!.value=clusterAlpha*.65;
+    }
     this.renderer.render(this.world,this.camera);
     // Constant-screen-size locators are intentionally separate from physical bodies.
     const labels:{value:string;x:number;y:number}[]=[];
@@ -151,8 +191,7 @@ export class CosmicScene {
       if(x<5||x>width-5||y<5||y>height-50)return;c.strokeStyle=color;c.lineWidth=1;c.beginPath();
       if(cross){c.moveTo(x-6,y);c.lineTo(x+6,y);c.moveTo(x,y-6);c.lineTo(x,y+6);}else c.arc(x,y,3,0,Math.PI*2);c.stroke();
     };
-    const macroCenter=scaleState(progress,origin).centerX;
-    this.macro.draw(c,width,height,half/LY,scaleState(progress).halfWidth/LY,(x,y)=>[width/2+(x*1e6*LY-macroCenter)/half*width/2,height/2-y*1e6*LY/half*width/2],label,this.text);
+    this.macro.draw(c,width,height,half/LY,nominalHalfLy,(x,y)=>screen(x*1e6*LY,y*1e6*LY),label,this.text);
     const ep=screen(0),sp=screen(-AU_KM),anchor=origin==='earth'?ep:sp;
     const bodyPixels=(origin==='earth'?EARTH_RADIUS_KM:SUN_RADIUS_KM)/half*width/2;
     if(bodyPixels<5){
@@ -204,6 +243,7 @@ export class CosmicScene {
   dispose(){
     if(this.disposed)return;this.disposed=true;this.observer.disconnect();this.canvas.removeEventListener('webglcontextlost',this.contextLost);this.canvas.removeEventListener('webglcontextrestored',this.contextRestored);
     this.galaxies.forEach(g=>g.dispose());
+    for(const web of this.webs.values()){this.world.remove(web.root);web.dispose();}this.webs.clear();
     const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();
     this.world.traverse(object=>{const mesh=object as THREE.Mesh;if(mesh.geometry)geometries.add(mesh.geometry);if(mesh.material)for(const m of Array.isArray(mesh.material)?mesh.material:[mesh.material])materials.add(m);});
     geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());this.textures.forEach(t=>t.dispose());

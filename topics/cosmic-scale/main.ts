@@ -12,7 +12,6 @@ import comparisonWords from './comparisonContent.json';
 import { pairStudy, homeStudy, zoomStudy, galaxyStudy } from './study.ts';
 import { GalacticStudy } from './galacticStudy.ts';
 import { readGalacticState, saveGalacticState } from './galacticModel.ts';
-import galacticContent from './galacticContent.json';
 import './style.css';
 translateDocument(t);
 const text=(v:{zh:string;en:string})=>language==='en'?v.en:v.zh;
@@ -36,12 +35,13 @@ for(const origin of ['earth','sun'] as const){const b=document.createElement('bu
 el('size-memory').remove();
 const words=language==='en'?comparisonWords.en:comparisonWords.zh;
 const comparison=new ComparisonJourney(el('comparison-panel'),language,(pair,home)=>{exploration.pair=pair;exploration.home=home;saveRoute();syncStudy();},setChapter);
-galaxies=new GalacticStudy(el('galaxies-panel'),language,galacticState,(next,checkpoint)=>{galacticState=next;if(checkpoint)saveRoute();syncStudy();},()=>setChapter('zoom'));
+galaxies=new GalacticStudy(el('galaxies-panel'),language,galacticState,(next,checkpoint)=>{galacticState=next;if(checkpoint)saveRoute();syncStudy();},enterZoom);
+function enterZoom(restart:boolean){if(restart){stop();flight.seek(originStart(state.origin));state.progress=flight.progress;previous=-1;}setChapter('zoom');}
 const retryZoom=document.createElement('button');retryZoom.id='zoom-retry';retryZoom.hidden=true;retryZoom.textContent=text(data.ui.retryView);retryZoom.onclick=()=>{stop();scene?.dispose();scene=undefined;zoomAttempted=false;el('cosmic-canvas').hidden=false;update();};el('canvas-fallback').after(retryZoom);
 const zoomSettings=document.createElement('aside');zoomSettings.className='cosmic-settings';zoomSettings.id='cosmic-settings';
 zoomSettings.append(el('origin-controls'),el('galaxy-controls'));el('cosmic-observation').append(zoomSettings);
 el('cosmic-observation').dataset.readerWorkbench='';el('cosmic-observation').dataset.readerLayout='stage';
-// These are three retained observations, each with its own actual drawing area.
+// Each retained drawing has its own actual observation area.
 function composeObservation(panel:HTMLElement,visual:HTMLElement,essentialSelectors:string) {
  panel.removeAttribute('data-reader-stage');panel.dataset.readerLayout='stage';
  const main=document.createElement('div');main.className='cosmic-main';main.dataset.readerMain='';
@@ -51,7 +51,7 @@ function composeObservation(panel:HTMLElement,visual:HTMLElement,essentialSelect
  const essentials=document.createElement('div');essentials.className='cosmic-essential';essentials.dataset.readerEssential='';
  essentials.append(...panel.querySelectorAll(essentialSelectors));main.append(drawing,essentials);panel.prepend(main);
 }
-composeObservation(el('comparison-panel'),document.querySelector<HTMLElement>('.comparison-canvas')!,'.comparison-heading,.comparison-readings,.comparison-transport,.comparison-home-cues,.comparison-boundary');
+composeObservation(el('comparison-panel'),comparison.visual,'.comparison-heading,.comparison-readings,.comparison-ratio-task,.comparison-transport,.membership-hint,.comparison-home-cues,.comparison-boundary');
 const galaxyStage=el('galaxies-panel').querySelector<HTMLElement>('.galactic-stage')!;
 composeObservation(el('galaxies-panel'),galaxyStage,'.galactic-heading,.galactic-options,.galactic-hint,.galactic-coordinate,.galactic-boundary');
 composeObservation(el('zoom-panel'),el('cosmic-canvas'),'.scene-heading,.scale-readout,.zoom-control,#stops,#canvas-fallback,#zoom-retry');
@@ -96,14 +96,14 @@ function syncStudy(){
   reading.setChildTarget(exploration.chapter==='zoom'?el('explain'):exploration.chapter==='galaxies'?galaxies!.childTarget:comparisonNote);
   reading.set(exploration.chapter==='compare'?pairStudy(Math.round(exploration.pair)):exploration.chapter==='homes'?homeStudy(exploration.home):exploration.chapter==='galaxies'?galaxyStudy(galacticState.selected):zoomStudy(stage,state.origin));
 }
-for(const [i,chapter] of (['compare','homes','galaxies','zoom'] as const).entries()){const b=document.createElement('button');b.textContent=chapter==='galaxies'?text({zh:galacticContent.ui.zh.chapter,en:galacticContent.ui.en.chapter}):words.chapters[i>2?2:i]!;b.dataset.chapter=chapter;b.onclick=()=>setChapter(chapter);el('journey-chapters').append(b);}
+for(const [i,chapter] of (['compare','homes','galaxies','zoom'] as const).entries()){const b=document.createElement('button');b.textContent=words.chapters[i]!;b.dataset.chapter=chapter;b.onclick=()=>setChapter(chapter);el('journey-chapters').append(b);}
 function update(sync=false){
   if(disposed)return;
   el('cosmic-observation').dataset.chapter=exploration.chapter;
   el('zoom-panel').hidden=exploration.chapter!=='zoom';
   document.querySelectorAll('[data-chapter]').forEach(b=>b.setAttribute('aria-pressed',String((b as HTMLElement).dataset.chapter===exploration.chapter)));
   comparison.show(exploration.chapter,exploration.pair,exploration.home);
-  galaxies?.show(exploration.chapter==='galaxies',galacticState);
+  galaxies?.show(exploration.chapter==='galaxies',galacticState,state.progress>originStart(state.origin)+1e-6);
   if(!flight.running){el('travel').textContent=text(data.ui[state.progress>=1?'restart':'play']);el('travel').setAttribute('aria-pressed','false');}
   const stage=stageFor(state.progress),content=stage===0&&state.origin==='sun'?data.sunStart:data.stages[stage]!;
   el<HTMLInputElement>('scale').min=String(originStart(state.origin));el('anchor').textContent=text(data.ui[anchorForScale(state.progress,state.origin)]);
@@ -112,7 +112,7 @@ function update(sync=false){
   showWidth(halfWidthKm(state.progress)*2);
   if(stage!==previous){previous=stage;const routePosition=zoomRoute.indexOf(stage as typeof zoomRoute[number]);el('stage-number').textContent=routePosition>=0?String(routePosition+1).padStart(2,'0')+' / '+String(zoomRoute.length).padStart(2,'0'):`${text(data.ui.alongWay)} · ${text(data.stages[stage]!.name)}`;el('stage-title').textContent=text(content.title);el('boundary').textContent=text(content.boundary);el<HTMLAnchorElement>('source').href=content.source;document.querySelectorAll<HTMLButtonElement>('[data-stop]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.stop)===stage)));}
   syncStudy();
-  el('galaxy-controls').hidden=!scaleState(state.progress).galaxy||halfWidthKm(state.progress)>10e6*LIGHT_YEAR_KM;if(exploration.chapter==='zoom'){ensureScene();scene?.draw(state.progress,state.tilt,layers,state.origin);}
+  el('galaxy-controls').hidden=!scaleState(state.progress).galaxy||halfWidthKm(state.progress)>10e6*LIGHT_YEAR_KM;if(exploration.chapter==='zoom'){ensureScene();scene?.setSolarPhase(comparison.solarPhase);scene?.draw(state.progress,state.tilt,layers,state.origin);}
   if(sync)saveRoute();
 }
 function tick(now:number){

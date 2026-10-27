@@ -1,4 +1,5 @@
 import type { World } from './model.ts';
+import type { MechanismFrame } from './layerMechanism.ts';
 import { expandedHeight, structureGround, structureNoise, structureProfiles } from './structureModel.ts';
 
 export type WeatherCase = 'dry' | 'cloud' | 'rain';
@@ -66,6 +67,30 @@ export const cloudExamples:Readonly<Record<World,readonly CloudExample[]>>={
   ],
   moon:[],mercury:[],
 };
+/** A local wet/dry explanation, separate from the advecting weather examples.
+ * The parcel and its eventual cloud share one retained anchor at every scene
+ * time. The supplied mechanism progress owns ascent and condensation only. */
+export function weatherMechanismSample(frame:MechanismFrame|null){
+  const active=frame?.layer===0,progress=active?Math.max(0,Math.min(1,frame.progress)):0;
+  const rise=!active||frame.step===0?0:frame.step===1?progress:1;
+  const cloud=cloudExamples.earth[2];
+  return {active,x:cloud.x,z:cloud.z,km:.15+rise*(cloud.km-.15),rise,
+    cloudOpacity:active&&frame.step===2?progress:0};
+}
+/** Step-sampled energy guides. They do not compute heating, temperature,
+ * chemistry or auroral power. Scene activity keeps its independent time. */
+export function energyMechanismSample(frame:MechanismFrame|null,layer:1|3){
+  const active=frame?.layer===layer,step=active?frame.step:0,p=active?Math.max(0,Math.min(1,frame.progress)):0;
+  return {active,
+    uvFront:active&&step===0?p:1,
+    uvAbsorption:!active?1:step===0?0:step===1?smooth(0,.65,p):1,
+    ozoneHeat:active?(step===1?smooth(0,.7,p):step===2?1:0):0,
+    transport:!active?1:step===2?smooth(0,.6,p):0,
+    solarFront:active&&step===0?p:0,
+    thermalMotion:active?(step===1?p:step===2?1:0):0,
+    particleArrival:active&&step===2?Math.min(1,p/.48):0,
+    aurora:!active?1:step===2?smooth(.48,.9,p):0};
+}
 const cloudHeights=Object.fromEntries(Object.entries(cloudExamples).map(([world,examples])=>[world,new Float64Array(examples.map(example=>expandedHeight(world as World,example.km)))])) as Record<World,Float64Array>;
 const cloudMin=(world:World)=>world==='venus'?-4.8:-3.3;
 const cloudMax=(world:World)=>world==='venus'?4.8:3.0;

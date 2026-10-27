@@ -1,10 +1,24 @@
 {
   "zh": {
+    "membershipStage": "可转动的结构地址示意",
+    "membershipDrag": "拖动或用方向键转动 · 可俯视、平视；布局不作测距",
+    "membership3d": "空间结构示意",
+    "membershipFallback": "简化二维图 · 三维画面暂不可用",
+    "membershipRetry": "重试空间画面",
+    "membershipReset": "重置视角",
+    "membershipTop": "俯视",
+    "membershipEdge": "平视",
+    "membershipAngles": "观察角度",
+    "ratioQuestion": "先估：{{large}}约是{{small}}的几倍宽？",
+    "checkRatio": "同尺核验",
+    "estimateAgain": "再估一估",
+    "ratioResult": "{{large}} / {{small}} 直径 ≈ {{ratio}}；金色每一整格为一个{{small}}直径。",
     "goGalaxies": "再转动星系，看看它们的空间结构 →",
     "chapters": [
       "01 · 比一比谁更大",
       "02 · 看看住在哪里",
-      "03 · 真正拉远看看"
+      "03 · 观察星系结构",
+      "04 · 真正拉远看看"
     ],
     "names": [
       "地球",
@@ -86,22 +100,22 @@
       "保留刚才的银河，再找到仙女座、三角座和周围的小星系。大麦哲伦云、小麦哲伦云等约 50 个矮星系也属于本星系群；图上的小点只抽样示意，并非完整清单。",
       "这是并排对照，不是从本星系群放大就会进入室女座星系团。两者是不同的邻近结构；星系团通常比星系群拥有更多星系。",
       "在拉尼亚凯亚的流向重建中，本星系群位于外围，室女座星系团等群与团也在这一广大区域。这个范围依据星系运动推断，并不是一层坚固边界；整体通常不受自身引力束缚。",
-      "单独放大宇宙网的一个示意片段：群与团分布在丝线和结点附近，中间有相对稀疏的空洞。宇宙网是分布形态，不是套在拉尼亚凯亚外面的一层发光绳网。",
-      "这幅画面用圆圈表示从我们这里可观测的范围，圆内的丝线、结点和相对稀疏的空洞与连续拉远终点共用一套示意网，并不是把上一幅拉尼亚凯亚图裁成圆形。拉尼亚凯亚约 5.2 亿光年的跨度不到约 930 亿光年观测范围直径的 1%；中心记号因此被放大为定位符。光传播时宇宙也在膨胀；虚线是观测视界，不是宇宙外墙。"
+      "转动宇宙网的一个立体示意片段：群与团沿有厚度的丝状区域聚集，中间有相对稀疏的空洞。宇宙网是分布形态，不是套在拉尼亚凯亚外面的一层发光绳网。",
+      "这幅画面用虚线圆提示从我们这里可观测的范围，内部点群和空洞与连续拉远终点共用一套立体统计分布。转动可以看见前后结构，圆圈只作观测参照，并不是实体球壳。拉尼亚凯亚约 5.2 亿光年的跨度不到约 930 亿光年观测范围直径的 1%；中心记号因此被放大为定位符。光传播时宇宙也在膨胀；虚线是观测视界，不是宇宙外墙。"
     ],
     "homeBoundary": [
-      "归属示意 · 行星大小差异压缩，但保留大小顺序；轨道和间隔不按比例，太阳系不是实心球。",
+      "归属示意 · 行星大小差异压缩，轨道和间隔不按比例。太阳采用增强观察的暖金着色，颗粒与暗斑为示意，不是实时太阳图像或颗粒尺寸标尺。",
       "银河外观为结构重建，并非从银河外拍摄的完整照片；标记、旋臂与盘面不用于测量。",
       "成员示意 · 三个大星系与少量矮星系标记不是完整普查；形状、方向、大小和间隔均不按比例。",
       "并排对照示意 · 两侧不是同一比例；星系点数不是成员总数，位置不可测量；淡蓝色热气体是 X 射线结构示意。",
-      "大尺度结构示意 · 虚线是模型推断的流向区域，不是精确边界；连线不是实体，也不能据此测量实际位置。",
-      "局部纹理示意 · 丝线、结点与空洞不对应真实天区位置，亮点不表示实际星系数，也不能用画面推算拉尼亚凯亚的直径。",
-      "可观测范围示意 · 圆圈表示约略的今天距离量级，内部细网的线条、结点与疏密仅为统计分布示意，并非全天实测地图或实际数量；中心定位符不是拉尼亚凯亚的直径，虚线不是宇宙的物理边缘。"
+      "大尺度结构示意 · 虚线提示模型推断的流向区域，不是精确边界；点群表示空间疏密，位置、数量和形状不能用于测量。",
+      "局部空间分布示意 · 丝状点群、结点与空洞不对应真实天区位置，亮点不表示实际星系数，也不能用画面推算拉尼亚凯亚的直径。",
+      "可观测范围示意 · 虚线圆提示约略的今天距离量级，内部点群、结点与空洞仅为立体统计分布，并非全天实测地图或实际数量；中心定位符不是拉尼亚凯亚的直径，虚线不是实体外壳或宇宙边缘。"
     ],
     "homeAnchor": [
-      "黄色中心：太阳；蓝绿色：地球",
+      "黄色标记：太阳与地球",
       "黄色：太阳系所在区域",
-      "黄色外框：刚才的银河",
+      "黄色标记：刚才的银河",
       "黄色标记：本星系群",
       "黄色标记：本星系群所在区域",
       "黄色标记：我们所在的局部区域",
@@ -114,7 +128,7 @@
       [{"label":"本星系群","detail":"成员相对分散，黄色标记是我们的位置。"},{"label":"室女座星系团","detail":"星系更密；淡蓝色热气体为 X 射线示意。"}],
       [{"label":"本星系群","detail":"在拉尼亚凯亚的外围。"},{"label":"更大区域","detail":"包含许多群与团，整体通常不受引力束缚。"}],
       [{"label":"丝线与结点","detail":"星系分布更密集。"},{"label":"宇宙空洞","detail":"只是相对稀疏，并非绝对空无一物。"}],
-      [{"label":"圆内细网","detail":"丝线与结点遍及视野，位置、数量和疏密均为示意。"},{"label":"中心与边界","detail":"中心定位符放大；虚线距此今天约 465 亿光年，并非宇宙边缘。"}]
+      [{"label":"立体分布","detail":"转动看前后点群；位置、数量和疏密均为示意。"},{"label":"中心与边界","detail":"中心定位符放大；虚线距此今天约 465 亿光年，并非宇宙边缘。"}]
     ],
     "homeSources": [
       "https://science.nasa.gov/solar-system/solar-system-facts/",
@@ -136,8 +150,8 @@
     "diameter": "直径约",
     "source": "科学依据 ↗",
     "compareAlt": "同一比例的天体直径对比，拖动时同一天体连续缩小",
-    "homeAlt": "我们所在的结构路径及独立局部对照；结构图不按比例，观测范围内的细网为统计示意",
-    "credit": "地球与木星地图：Solar System Scope · CC BY 4.0",
+    "homeAlt": "我们所在的结构路径及独立局部对照；结构布局不按比例，观测范围内的点群为立体统计示意",
+    "credit": "行星表面地图：Solar System Scope · CC BY 4.0",
     "choosePair": "选择比较的一组",
     "solarView": "放进太阳系比一比",
     "pairView": "回到并排比较",
@@ -168,11 +182,25 @@
     "pauseSurface": "暂停表面 · 示意"
   },
   "en": {
+    "membershipStage": "Rotatable structural address illustration",
+    "membershipDrag": "Drag or use arrow keys to turn · top and edge-on views; layout is not a distance map",
+    "membership3d": "Spatial structure illustration",
+    "membershipFallback": "Simplified 2D view · 3D is currently unavailable",
+    "membershipRetry": "Retry the spatial view",
+    "membershipReset": "Reset view",
+    "membershipTop": "Top view",
+    "membershipEdge": "Edge-on",
+    "membershipAngles": "Viewing angle",
+    "ratioQuestion": "Estimate: how many {{small}} diameters match {{large}}?",
+    "checkRatio": "Check on one ruler",
+    "estimateAgain": "Estimate again",
+    "ratioResult": "{{large}} / {{small}} diameter ≈ {{ratio}}; each full gold interval is one {{small}} diameter.",
     "goGalaxies": "Rotate galaxies to inspect their spatial structure →",
     "chapters": [
       "01 · Compare sizes",
       "02 · Where do they belong?",
-      "03 · Zoom out for real"
+      "03 · Explore galaxy structure",
+      "04 · Zoom out for real"
     ],
     "names": [
       "Earth",
@@ -222,8 +250,8 @@
     "next": "Meet a larger body",
     "goHomes": "Where do these bodies belong? →",
     "goZoom": "Keep the reference and zoom out to the observable region →",
-    "homePrevious": "← Previous stop",
-    "homeNext": "Next stop →",
+    "homePrevious": "← Previous",
+    "homeNext": "Next →",
     "homeProgress": "Stop {{current}} / {{total}}",
     "homeSideProgress": "Side view · main stop {{current}} / {{total}}",
     "homeReturn": "← Back to {{name}}",
@@ -254,22 +282,22 @@
       "Keep track of the Milky Way, then find Andromeda, Triangulum and smaller neighbors. Around 50 dwarf galaxies, including the Large and Small Magellanic Clouds, also belong to the Local Group. The small points are a sample, not a census.",
       "This is a side-by-side comparison: zooming out from the Local Group does not take us inside the Virgo Cluster. They are different nearby structures; clusters generally contain more galaxies than groups.",
       "In the Laniakea flow reconstruction, the Local Group lies near the edge, while the Virgo Cluster and other groups and clusters share the wider region. Its extent is inferred from galaxy motions, not a hard shell; the region is generally not bound as a whole.",
-      "Look closely at one illustrative patch of the cosmic web: groups and clusters gather near filaments and knots, with comparatively sparse voids between. The web describes a distribution, not a glowing layer surrounding Laniakea.",
-      "This circle marks the region observable from here. Its filaments, knots and comparatively sparse voids use the same illustrative web as the end of the continuous zoom, rather than cropping the previous Laniakea drawing. Laniakea's roughly 520-million-light-year span is under 1% of the roughly 93-billion-light-year observable diameter, so its center marker is enlarged to stay visible. Space expanded as light traveled; the dashed horizon is an observing limit, not an outer wall."
+      "Turn one illustrative spatial patch of the cosmic web: groups and clusters gather along filaments with depth, with comparatively sparse voids between. The web describes a distribution, not a glowing layer surrounding Laniakea.",
+      "The dashed circle suggests the region observable from here. Point clouds and voids share the statistical volume used at the end of the continuous zoom. Turn it to see depth; the circle is an observing reference, not a material shell. Laniakea's roughly 520-million-light-year span is under 1% of the roughly 93-billion-light-year observable diameter, so its center marker is enlarged to stay visible. Space expanded as light traveled; the dashed horizon is an observing limit, not an outer wall."
     ],
     "homeBoundary": [
-      "Membership illustration · Planet size differences are compressed but their order is retained. Orbits and spacing are not to scale; the Solar System is not a solid ball.",
+      "Membership illustration · Planet size differences are compressed; orbits and spacing are not to scale. The Sun uses enhanced golden colouring; granules and spots are illustrative, not a live image or a granule-size measurement.",
       "The external Milky Way view reconstructs structure; it is not a complete photograph taken from outside. Markers, arms and disk are not measurements.",
       "Membership illustration · Three large galaxies and a few dwarf markers are not a complete census. Shapes, directions, sizes and spacing are not to scale.",
       "Side-by-side illustration · The panels do not share a scale. Point counts are not censuses and positions cannot be measured. Pale blue hot gas illustrates X-ray structure, not visible color.",
-      "Large-scale structure diagram · The dashed flow region is inferred from a model, not a precise boundary; lines are not physical ropes, and positions cannot be measured here.",
-      "Local texture diagram · Filaments, knots and voids do not map real sky positions; bright points are not actual galaxy counts or a ruler for Laniakea's size.",
-      "Observable-region diagram · The circle suggests an approximate present-day distance scale. Its fine web, knots and density are statistical illustration, not an all-sky survey or real counts. The central marker is not Laniakea's diameter, and the dashed horizon is no physical edge."
+      "Large-scale structure illustration · The dashed flow region is model-inferred, not a precise boundary. Point clouds suggest spatial density; positions, counts and shapes are not measurements.",
+      "Local spatial illustration · Filamentary point clouds, knots and voids do not map real sky positions; bright points are not actual galaxy counts or a ruler for Laniakea's size.",
+      "Observable-region illustration · The dashed circle suggests an approximate present-day distance scale. Its point clouds, knots and voids are a statistical volume, not an all-sky survey or real counts. The central marker is not Laniakea's diameter; the horizon is neither a material shell nor a physical edge."
     ],
     "homeAnchor": [
-      "Yellow centre: Sun; blue-green: Earth",
+      "Gold locators: Sun and Earth",
       "Yellow: our Solar System’s region",
-      "Yellow outline: the same Milky Way",
+      "Yellow marker: the same Milky Way",
       "Yellow marker: the Local Group",
       "Yellow marker: our Local Group’s region",
       "Yellow marker: our local region",
@@ -282,7 +310,7 @@
       [{"label":"Local Group","detail":"Members are more spread out; yellow locates us."},{"label":"Virgo Cluster","detail":"Denser galaxies; pale blue hot gas is an X-ray illustration."}],
       [{"label":"Local Group","detail":"It lies near Laniakea’s outer edge."},{"label":"Wider region","detail":"Many groups and clusters, generally not bound as one."}],
       [{"label":"Filaments and knots","detail":"Galaxies are more concentrated here."},{"label":"Cosmic voids","detail":"Comparatively sparse, not completely empty."}],
-      [{"label":"Fine web inside","detail":"Filaments and knots fill the view; positions, numbers and density are illustrative."},{"label":"Center and horizon","detail":"The center marker is enlarged; the dashed horizon is about 46.5 billion present-day light-years away, not an outer wall."}]
+      [{"label":"Spatial distribution","detail":"Turn to see depth; positions, counts and density are illustrative."},{"label":"Center and horizon","detail":"The center marker is enlarged; the dashed horizon is about 46.5 billion present-day light-years away, not an outer wall."}]
     ],
     "homeSources": [
       "https://science.nasa.gov/solar-system/solar-system-facts/",
@@ -304,8 +332,8 @@
     "diameter": "Approx. diameter",
     "source": "Science source ↗",
     "compareAlt": "Body diameters on one common scale; retained bodies shrink continuously as you drag",
-    "homeAlt": "Our structural address with separate local comparisons; structure diagrams are not to scale and the web inside the observing range is statistical illustration",
-    "credit": "Earth and Jupiter maps: Solar System Scope · CC BY 4.0",
+    "homeAlt": "Our structural address with separate local comparisons; layouts are not to scale and point clouds inside the observing range form a statistical spatial illustration",
+    "credit": "Planet surface maps: Solar System Scope · CC BY 4.0",
     "choosePair": "Choose a comparison",
     "solarView": "Compare with planetary orbits",
     "pairView": "Back to side-by-side",

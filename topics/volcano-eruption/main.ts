@@ -9,7 +9,7 @@ import { UNITS, chapterForStudy, defaultCase, initialStudyProgress, landformFrom
 import { STUDY_CONTENT, UNIT_CONTENT, BUILDING_STEPS, STYLES_STEPS, HEAT_STEPS } from './studyContent.ts';
 import { CASE_CONTENT, KIDS_STORIES, OCEAN_STEPS, LAKE_STEPS } from './projectContent.ts';
 import { magmaState } from './magmaSystem.ts';
-import { MECHANISM_STEPS, mechanismStory, mechanismKidStory, mechanismStatus } from './mechanismContent.ts';
+import { MECHANISM_STEPS, mechanismStory, mechanismKidStory, mechanismStatus, mechanismLabel, mechanismCue } from './mechanismContent.ts';
 import { ecologyState, type Habitat } from './ecologyModel.ts';
 import { LIFE_STEPS, ecologyStory, ecologyClue, LIFE_WATCH, OMURO_NOTE } from './ecologyContent.ts';
 import { soilMarkup } from './ecologyScene.ts';
@@ -145,6 +145,7 @@ function stageAndSteps() {
 function draw() {
   const cue = el('process-note'), stage = stageAndSteps().stage;
   cue.hidden = !(activeScene()?.is3D ?? false); cue.textContent = STUDY_CONTENT[study].cue;
+  if (study === 'mechanism') cue.textContent = mechanismCue(magmaState(time(), settings()));
   if (study === 'heat') {
     const spring = hydrothermalFrame(progress, heatSettings());
     cue.textContent = view === 'section'
@@ -208,7 +209,8 @@ function storyText(stage: number, academic: boolean) {
 }
 function update() {
   const { stage, steps } = stageAndSteps(), academic = document.documentElement.dataset.readingMode === 'academic';
-  const label = study === 'styles' && !magmaState(time(), settings()).connected ? t('停在地下 · 没有喷发')
+  const label = study === 'mechanism' ? mechanismLabel(magmaState(time(), settings()))
+    : study === 'styles' && !magmaState(time(), settings()).connected ? t('停在地下 · 没有喷发')
     : study === 'heat' && number('heat-water') === 0 ? t('热岩石还在 · 没有水补给')
     : oceanLifeVisible() ? select('environment') === 'deep' ? t('冷却岩面上的生命') : select('ocean-supply') === 'limited' ? t('还没有可定居的陆地') : t('新岛上的初生植物')
     : study === 'ecology' && stage === 3 && select('habitat') !== 'wet' ? t('植物能留下多少？') : steps[stage];

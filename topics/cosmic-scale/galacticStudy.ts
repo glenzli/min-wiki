@@ -14,6 +14,8 @@ export class GalacticStudy {
   private stage = make('div', '', 'galactic-stage');
   private title = make('h2');
   private choices = make('select');
+  // The Reader relocates this original group; visibility must follow the chapter itself.
+  private choiceGroup = make('div', '', 'galactic-choices');
   private yaw = make('input');
   private pitch = make('input');
   private yawLabel?: HTMLLabelElement;
@@ -23,20 +25,21 @@ export class GalacticStudy {
   private coordinate = make('p', '', 'galactic-coordinate');
   private status = make('span', '', 'galactic-render-status');
   private source = make('a');
+  private resumeZoom = make('button');
   private active = false;
   private frame = 0;
   private disposed = false;
   private renderedCase = '';
   private drag?: { id: number; x: number; y: number };
-  constructor(private root: HTMLElement, private language: string, initial: GalacticState, private changed: (state: GalacticState, checkpoint: boolean) => void, onward: () => void) {
+  constructor(private root: HTMLElement, private language: string, initial: GalacticState, private changed: (state: GalacticState, checkpoint: boolean) => void, onward: (restart:boolean) => void) {
     this.copy.dataset.readerSupport='';
     this.state = { ...initial }; this.words = language === 'en' ? content.ui.en : content.ui.zh; const w = this.words;
     const text = (value: { zh: string; en: string }) => language === 'en' ? value.en : value.zh;
-    const heading = make('div', '', 'galactic-heading'), choices = make('div', '', 'galactic-choices'); this.title.textContent = w.heading;
+    const heading = make('div', '', 'galactic-heading'); this.title.textContent = w.heading;
     this.choices.setAttribute('aria-label', w.choose);
     for (const selected of galacticCases) { const option = make('option', text(content.cases[selected].name)); option.value = selected; this.choices.append(option); }
     this.choices.onchange = () => { this.cancelDraw(); this.state.selected = this.choices.value as GalacticState['selected']; this.sync(true); };
-    choices.append(this.choices); heading.append(this.title, choices); root.append(heading);
+    this.choiceGroup.append(this.choices); heading.append(this.title, this.choiceGroup); root.append(heading);
     this.stage.tabIndex = 0; this.stage.setAttribute('role', 'group'); this.stage.setAttribute('aria-label', w.heading); this.stage.setAttribute('aria-describedby', 'galactic-gesture-hint');
     const hint = make('p', w.drag, 'galactic-hint'); hint.id = 'galactic-gesture-hint'; this.stage.append(this.status); root.append(this.stage);
     const presets = make('nav', '', 'galactic-presets'); presets.setAttribute('aria-label', w.pitch);
@@ -49,10 +52,10 @@ export class GalacticStudy {
       input.onchange = () => this.changed({ ...this.state }, true);
     }
     for (const part of ['disk', 'bulge', 'halo', 'guides'] as const) { const button = make('button', w[part]); button.dataset.part = part; button.onclick = () => { this.state[part] = !this.state[part]; this.sync(true); }; this.layers.append(button); }
-    this.source.textContent = w.source; this.source.target = '_blank'; this.source.rel = 'noreferrer'; const next = make('button', w.onward); next.onclick = onward;
+    this.source.textContent = w.source; this.source.target = '_blank'; this.source.rel = 'noreferrer'; const next = make('button', w.onward); next.onclick = () => onward(true);this.resumeZoom.textContent=w.continueZoom;this.resumeZoom.onclick=()=>onward(false);this.resumeZoom.hidden=true;
     const options = make('details', '', 'galactic-options'), optionBody = make('div', '', 'galactic-option-body'); optionBody.append(sliders, this.layers, this.coordinate); options.append(make('summary', w.options), optionBody);
     const tools = make('div', '', 'galactic-tools'); tools.append(presets, options);
-    const summary = make('p', w.shortBoundary, 'galactic-boundary'); this.copy.append(this.childTarget, this.source, next);
+    const summary = make('p', w.shortBoundary, 'galactic-boundary'); this.copy.append(this.childTarget, this.source, make('p',w.zoomHandoff), next,this.resumeZoom);
     const retry = make('button', w.retry); retry.onclick = () => this.scene?.retry(); this.failure.append(make('p', w.fallback), retry); this.failure.hidden = true;
     root.append(tools, hint, summary, this.failure, this.copy);
     this.stage.addEventListener('pointerdown', this.pointerDown); this.stage.addEventListener('pointermove', this.pointerMove); this.stage.addEventListener('pointerup', this.pointerEnd); this.stage.addEventListener('pointercancel', this.pointerEnd); this.stage.addEventListener('lostpointercapture', this.pointerEnd); this.stage.addEventListener('keydown', this.keyDown);
@@ -86,7 +89,7 @@ export class GalacticStudy {
     this.layers.querySelectorAll<HTMLButtonElement>('[data-part]').forEach(button => { const part = button.dataset.part as 'disk' | 'bulge' | 'halo' | 'guides'; button.setAttribute('aria-pressed', String(this.state[part])); button.hidden = part !== 'guides' && this.state.selected !== 'milky-way' && this.state.selected !== 'spiral'; });
     this.changed({ ...this.state }, checkpoint); this.schedule();
   }
-  show(active: boolean, state: GalacticState) { this.state = { ...state }; this.active = active; this.root.hidden = !active; if (!active) { this.cancelDraw(); this.drag = undefined; this.scene?.setActive(false); return; } this.sync(false); }
+  show(active: boolean, state: GalacticState, canResume=false) { this.state = { ...state }; this.active = active; this.root.hidden = !active; this.choiceGroup.hidden = !active;this.resumeZoom.hidden=!canResume; if (!active) { this.cancelDraw(); this.drag = undefined; this.scene?.setActive(false); return; } this.sync(false); }
   pause() { this.cancelDraw(); this.drag = undefined; this.scene?.setActive(false); }
   dispose() { if (this.disposed) return; this.disposed = true; this.pause(); this.scene?.dispose(); this.stage.removeEventListener('pointerdown', this.pointerDown); this.stage.removeEventListener('pointermove', this.pointerMove); this.stage.removeEventListener('pointerup', this.pointerEnd); this.stage.removeEventListener('pointercancel', this.pointerEnd); this.stage.removeEventListener('lostpointercapture', this.pointerEnd); this.stage.removeEventListener('keydown', this.keyDown); }
 }

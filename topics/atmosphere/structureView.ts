@@ -147,7 +147,11 @@ export class AtmosphereStructureView {
    const aurora=controls.querySelector<HTMLInputElement>('[data-condition="aurora"]');if(aurora)aurora.checked=conditions.aurora;
    const meteor=controls.querySelector<HTMLSelectElement>('[data-condition="meteor"]');if(meteor)meteor.value=conditions.meteorOutcome;
    const visible=world==='earth'&&id==='weather'?words.weatherVisible[conditions.weather]:copy.visible;
-   const message=`<p>${esc(visible)}</p>`;
+   const frame=world==='earth'&&this.clues&&this.labels?this.mechanism:null;
+   const cue=frame?.layer===0&&id==='weather'?(conditions.weather==='dry'?words.mechanismCues.dryWeather:words.mechanismCues.weather[frame.step])
+     :frame?.layer===1&&id==='ozone'?words.mechanismCues.ozone[frame.step]
+       :frame?.layer===3&&id==='aurora'?(frame.step===2&&!conditions.aurora?words.mechanismCues.noAurora:words.mechanismCues.thermosphere[frame.step]):'';
+   const message=`<p>${esc(visible)}</p>`+(cue?`<p class="structure-mechanism-cue"><strong>${esc(words.mechanismCues.label)}</strong>${esc(cue)}</p>`:'');
    const caption=section.querySelector<HTMLElement>('.structure-selected')!;if(caption.innerHTML!==message)caption.innerHTML=message;
   }
   const active:World[]=this.state?.view==='worlds'?['earth',this.state.world]:['earth'];
@@ -193,7 +197,9 @@ export class AtmosphereStructureView {
    const target=orbit.focus?new THREE.Vector3(focus.x,focus.y,focus.z):new THREE.Vector3(0,(displayHeight(world)-.85)/2,0);
    this.camera.left=-span*w/h;this.camera.right=span*w/h;this.camera.top=span;this.camera.bottom=-span;this.camera.near=.1;this.camera.far=60;
    this.camera.position.set(Math.sin(orbit.yaw)*14,Math.sin(orbit.pitch)*14,Math.cos(orbit.yaw)*14).add(target);this.camera.lookAt(target);this.camera.updateProjectionMatrix();
-   const mechanism=this.mechanism?.step===2&&this.mechanism.progress===1?null:this.mechanism;
+   // A completed explanation retains its evidence; it does not restart the
+   // local mechanism or replace it with the independent scene activity.
+   const mechanism=this.mechanism;
    model.update(this.selected.get(world)??null,this.phase,mechanism,world==='earth'&&!orbit.focus&&this.state.view==='layers'&&journeyFrame(this.state.journey).phase==='ascent'?journeyFrame(this.state.journey).height:null,{...this.getConditions(world),clues:this.clues&&this.labels,composition:world==='earth'&&this.composition,detail:orbit.focus});model.beforeRender(this.camera);
    this.renderer.setViewport(x,y,w,h);this.renderer.setScissor(x,y,w,h);this.renderer.render(model.scene,this.camera);
   }

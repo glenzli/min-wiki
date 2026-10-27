@@ -4,6 +4,7 @@ import { BlackHoleOptics } from '../../../src/visuals/blackHoleOptics.ts';
 import { t } from '../i18n.ts';
 import { createCanvas, releaseCanvas } from '../types.ts';
 import type { ChapterDefinition, ChapterScene, ChapterState, ViewOptions } from '../types.ts';
+import { anatomyGuideState, lightPathFigure } from '../anatomyGuide.ts';
 
 const parts = [
   { value: 'overview', label: t('整体观察'), title: t('黑暗中央，明亮周围'),
@@ -30,7 +31,7 @@ const parts = [
     body: t('盘后方的光在黑洞附近转弯，也能来到我们眼前，于是亮带好像绕到了上方和下方。换个方向看，弯曲的样子也会改变。'),
     science: t('弯曲的光路让远侧盘面形成畸变的像。此演示使用有限范围的无自旋光线积分，不含黑洞自旋、背景星光透镜或完整辐射输运。'),
     formula: 'rph = 3GM/c² = 1.5 rₛ', terms: t('rph 是无自旋黑洞的不稳定圆形光子轨道半径；它与投影中的阴影半径不同。此处没有画出实体光壳。'),
-    prompt: t('先看黑洞近景，再选择从上方看；最后试试自由转动。') },
+    prompt: t('先对照金色盘面与拱起亮带，再在二维侧剖面里跟着 A 的光路看。换成上方视角，盘真的竖起来了吗？') },
 ];
 
 class AnatomyScene implements ChapterScene {
@@ -42,6 +43,10 @@ class AnatomyScene implements ChapterScene {
   private hole = new BlackHoleOptics(.5);
   private geometryView = new THREE.Group();
   private shadowRing: THREE.LineLoop;
+  private diskGuide = new THREE.Group();
+  private sourcePoint = new THREE.Group();
+  private drawing=document.createElement('div');
+  private lightPath=lightPathFigure({title:t('二维侧剖面 · 独立视角，不按比例'),geometry:t('盘仍在同一平面'),image:t('光像 A′'),source:t('发光点 A'),observer:t('观察者'),note:t('金色 A 与 A′ 对应同一发光点及其像。此图说明光路，不跟随主图镜头或量取尺寸。'),description:t('二维光路示意：同一盘面发光点 A 的光绕过黑洞，到达观察者，形成不同方向的光像 A′。')});
   private labels: HTMLSpanElement[] = [];
   private lastView = '';
   private target = new THREE.Vector3();
@@ -50,7 +55,8 @@ class AnatomyScene implements ChapterScene {
   private previousTime = performance.now();
   private lastProgress = -1;
   constructor(private host: HTMLElement) {
-    this.renderer = new THREE.WebGLRenderer({ canvas: createCanvas(host), antialias: true });
+    host.classList.add('anatomy-layout');this.drawing.className='anatomy-drawing';this.drawing.setAttribute('aria-label',host.getAttribute('aria-label')??'');host.append(this.drawing,this.lightPath);
+    this.renderer = new THREE.WebGLRenderer({ canvas: createCanvas(this.drawing), antialias: true });
     this.renderer.setClearColor(0x030812);
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -65,26 +71,32 @@ class AnatomyScene implements ChapterScene {
     this.geometryView.add(sphere, grid);
     const points = Array.from({ length: 192 }, (_, i) => new THREE.Vector3(Math.cos(i / 192 * Math.PI * 2) * .5, Math.sin(i / 192 * Math.PI * 2) * .5, 0));
     this.shadowRing = new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points), new THREE.LineDashedMaterial({ color: 0xb7c9d2, dashSize: .018, gapSize: .014, transparent: true, opacity: .65 }));
-    this.shadowRing.computeLineDistances(); this.geometryView.add(this.shadowRing);
+    this.shadowRing.computeLineDistances();this.shadowRing.renderOrder=14;(this.shadowRing.material as THREE.LineDashedMaterial).depthTest=false;this.scene.add(this.shadowRing,this.diskGuide,this.sourcePoint);this.sourcePoint.renderOrder=15;
+    const rs=this.hole.shadowRadius/2.6,material=new THREE.LineBasicMaterial({color:0xffe2a0,transparent:true,opacity:.7,depthTest:false});
+    this.sourcePoint.position.set(0,6*rs,0);
+    const sourceMarker=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(Array.from({length:33},(_,i)=>new THREE.Vector3(Math.cos(i/32*Math.PI*2)*.04,Math.sin(i/32*Math.PI*2)*.04,0))),material);sourceMarker.renderOrder=15;this.sourcePoint.add(sourceMarker);
+    for(const radius of [3*rs,11*rs]){const points=Array.from({length:129},(_,i)=>new THREE.Vector3(Math.cos(i/128*Math.PI*2)*radius,Math.sin(i/128*Math.PI*2)*radius,0));const ring=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(points),material);ring.renderOrder=14;this.diskGuide.add(ring);}
+    for(let i=0;i<4;i++){const a=i*Math.PI/2,line=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(Math.cos(a)*3*rs,Math.sin(a)*3*rs,0),new THREE.Vector3(Math.cos(a)*11*rs,Math.sin(a)*11*rs,0)]),material);line.renderOrder=14;this.diskGuide.add(line);}
     const stars = new Float32Array(450 * 3);
     for (let i = 0; i < 450; i++) { const a = i * 2.39996, z = Math.sin(i * 74.717); stars.set([Math.cos(a) * Math.sqrt(1 - z * z) * 55, Math.sin(a) * Math.sqrt(1 - z * z) * 55, z * 55], i * 3); }
     this.scene.add(new THREE.Points(new THREE.BufferGeometry().setAttribute('position', new THREE.BufferAttribute(stars, 3)), new THREE.PointsMaterial({ size: .07, color: 0x697f9a, transparent: true, opacity: .5 })));
-    for (let i = 0; i < 2; i++) { const label = document.createElement('span'); label.className = 'scene-label anatomy-label'; host.append(label); this.labels.push(label); }
-    this.observer = new ResizeObserver(() => this.resize()); this.observer.observe(host); this.resize();
+    for (let i = 0; i < 2; i++) { const label = document.createElement('span'); label.className = 'scene-label anatomy-label';this.drawing.append(label); this.labels.push(label); }
+    this.observer = new ResizeObserver(() => this.resize()); this.observer.observe(this.drawing); this.resize();
   }
   private resize() {
-    const width = this.host.clientWidth, height = this.host.clientHeight;
+    const width = this.drawing.clientWidth, height = this.drawing.clientHeight;
     this.camera.aspect = width / Math.max(1, height); this.camera.updateProjectionMatrix();
     this.renderer.setSize(width, height, false); this.moving = true; this.lastView = '';
   }
   draw(state: ChapterState, options: ViewOptions) {
-    const geometry = state.part === 'horizon';
+    const guide=anatomyGuideState(state.part,options.guides),geometry=guide.geometry;
+    if(this.lightPath.hidden===guide.path){this.lightPath.hidden=!guide.path;this.resize();}
     const key = options.view + ':' + state.part + ':' + options.guides + ':' + options.annotations;
     if (key !== this.lastView) { this.lastView = key; this.moving = true; }
     if (!this.moving && state.progress === this.lastProgress) return;
     this.lastProgress = state.progress;
     this.hole.visible = !geometry; this.geometryView.visible = geometry;
-    this.shadowRing.visible = options.guides;
+    this.shadowRing.visible = guide.shadow;this.diskGuide.visible=guide.disk;this.sourcePoint.visible=guide.source;
     this.controls.enabled = options.view === 'free';
     const now = performance.now(), dt = Math.min(.1, (now - this.previousTime) / 1000); this.previousTime = now;
     if (options.view !== 'free') {
@@ -98,18 +110,21 @@ class AnatomyScene implements ChapterScene {
     } else this.moving = false;
     this.controls.update(); this.camera.updateMatrixWorld();
     this.shadowRing.quaternion.copy(this.camera.quaternion);
+    this.sourcePoint.quaternion.copy(this.camera.quaternion);
     this.hole.setAccretion(state.progress * 32, .85);
     this.renderer.render(this.scene, this.camera);
-    this.labels[0].textContent = geometry ? t('事件视界 · 几何示意') : t('黑洞阴影');
-    this.labels[1].textContent = geometry ? t('外圈：阴影参考尺度') : t('发光的吸积盘');
-    this.labels.forEach((label, i) => { label.hidden = !options.annotations || (geometry && i === 1 && !options.guides); label.style.left = (i === 0 ? 27 : 73) + '%'; label.style.top = '83%'; });
+    this.labels[0].textContent = geometry ? t('事件视界 · 几何示意') : guide.disk?t('金线：盘面几何参考'):state.part==='shadow'?t('阴影参考轮廓'):t('黑洞阴影');
+    this.labels[1].textContent = geometry ? t('外圈：阴影参考尺度') : guide.source?t('A · 同一发光点的几何位置'):t('发光的吸积盘');
+    this.labels.forEach((label, i) => { label.hidden = !options.annotations || (geometry && i === 1 && !options.guides);label.classList.toggle('anatomy-selected',state.part!=='overview'&&(i===0||guide.source)); label.style.left = (i === 0 ? 28 : 71) + '%'; label.style.top = (i===0?'13%':'88%'); });
+    if(guide.source){const position=this.sourcePoint.position.clone().project(this.camera);this.labels[1].style.left=`${Math.max(25,Math.min(75,(position.x+1)*50))}%`;this.labels[1].style.top=`${Math.max(12,Math.min(88,(1-position.y)*50+10))}%`;}
   }
   status() { return 'ready' as const; }
   retry() {}
+  readout(state:ChapterState){return state.part==='lensing'?t('金线标出平的盘面几何参考；拱起亮带是弯光形成的像。A 是示意发光位置，不是主图光像上的测量点。'):state.part==='disk'?t('金色参考线区分盘的平面位置与弯曲光像；可在设置中开关。'):state.part==='shadow'?t('虚线只提示理想阴影的参考尺度，不是物质外壳；实际暗区还受发光盘影响。'):'';}
   dispose() {
     this.observer.disconnect(); this.controls.dispose();
     this.scene.traverse(object => { if (object instanceof THREE.Mesh || object instanceof THREE.Line || object instanceof THREE.Points) { object.geometry.dispose(); for (const material of Array.isArray(object.material) ? object.material : [object.material]) material.dispose(); } });
-    this.renderer.dispose(); releaseCanvas(this.host);
+    this.renderer.dispose(); releaseCanvas(this.host);this.host.classList.remove('anatomy-layout');
   }
 }
 

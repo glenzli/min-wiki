@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { STUDIES, UNITS, studyRoute, sceneProgress, chapterForStudy, studyRenderer, defaultCase, nextStudy, initialStudyProgress } from '../studyModel.ts';
-import { landState } from '../projectModel.ts';
+import { landState, constructionState } from '../projectModel.ts';
 import { omuroFrame } from '../omuroJourney.ts';
 import { magmaState } from '../magmaSystem.ts';
 import { PRESETS } from '../model.ts';
@@ -19,6 +19,21 @@ test('registered Markdown anchors enter the same question and preserve explicit 
   for(const study of STUDIES)for(const lang of ['zh','en']) assert.equal(studyRoute(`?lang=${lang}`,`#study-${study}-${lang}`).study,study);
   assert.equal(studyRoute('?study=lake','#study-mechanism-zh').study,'lake');
   assert.equal(studyRoute('?study=../../escape','#unrelated').study,'mechanism');
+});
+test('first mountain-building play begins before intrusion, uplift and retained deposits', () => {
+  for (const kind of ['shield', 'composite', 'scoria']) {
+    const entry = studyRoute(`?study=building&case=${kind}`);
+    const clock = sceneProgress(entry.study, entry.volcano, entry.progress);
+    assert.equal(entry.progress, 0);
+    assert.equal(landState(clock).growth, 0);
+    assert.equal(constructionState(clock).intrusionFront, 0);
+    assert.equal(constructionState(clock).uplift, 0);
+  }
+  const resume = studyRoute('?study=building&case=composite&progress=.58');
+  assert.equal(resume.progress, .58, 'an explicit observation URL retains its experiment');
+  const later = sceneProgress('building', 'composite', .12);
+  assert.ok(constructionState(later).uplift > 0);
+  assert.ok(landState(later).growth > 0);
 });
 test('legacy entries retain their scientific observation under the new question navigation', () => {
   assert.equal(studyRoute('?case=lake').study,'lake'); assert.equal(studyRoute('?case=submarine').study,'submarine');

@@ -1,6 +1,17 @@
 import { t } from './i18n.ts';
 import type { MagmaState } from './magmaSystem.ts';
 export const MECHANISM_STEPS = [t('深部补给'), t('储存与增压'), t('裂隙中上升'), t('通达地表'), t('供给减弱'), t('留下的岩石')];
+/** A late unconnected episode has an observed negative result. Earlier states
+ * are still in progress, so their labels must not predict that same outcome. */
+export function mechanismLabel(state: MagmaState) {
+  return !state.connected && state.stage >= 4 ? t('留在地下 · 本次未喷发') : MECHANISM_STEPS[state.stage];
+}
+export function mechanismCue(state: MagmaState) {
+  return !state.connected && state.stage >= 4
+    ? t('岩浆留在地下；山体原先就存在，这一次没有新的地表喷出物。')
+    : state.connected ? t('通道已经贯通；新熔岩和碎屑留在原有山体表面。')
+      : t('先看地下通道：贯通之前，原有山体不会添加这次的喷出物。');
+}
 export function mechanismStory(state: MagmaState) {
   if (state.stage === 0) return t('深部岩石发生部分熔融，熔体汇集后沿裂隙上升。画面下边缘是从更深处进入的补给；这里没有画出整个地幔，也不是地核把熔岩送上来。');
   if (state.stage === 1) return t('新的岩浆进入已有储存区，改变局部压力并挤压周围岩石。储存区包含熔体和晶体，有不同深度的透镜状岩床与连通部分，并非一个装满液体的圆球。');

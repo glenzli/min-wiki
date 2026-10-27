@@ -735,5 +735,9 @@
   "镜头：{{view}}": "Camera: {{view}}",
   "当前二维示意只提供剖面；可重试三维画面。": "The current 2D illustration provides a cutaway only. You can retry the 3D scene.",
   "镜头": "Camera",
-  "播放": "Play"
+  "播放": "Play",
+  "留在地下 · 本次未喷发": "Remains underground · no eruption this time",
+  "岩浆留在地下；山体原先就存在，这一次没有新的地表喷出物。": "Magma stays underground. The mountain was already here; this episode adds no new material at the surface.",
+  "通道已经贯通；新熔岩和碎屑留在原有山体表面。": "The pathway has reached the surface. New lava and fragments remain on the existing mountain.",
+  "先看地下通道：贯通之前，原有山体不会添加这次的喷出物。": "Follow the underground pathway first: this episode adds no material to the existing mountain until the pathway reaches the surface."
 }

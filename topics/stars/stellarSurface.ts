@@ -11,12 +11,12 @@ const MAX_MAPS = 12;
 /** Canvas projects the shared spherical field, palette and morphology settings.
  * The topic owns cadence and its bounded LRU; no scientific clock lives here. */
 export class StellarSurface {
-  private maps = new Map<string, { canvas: HTMLCanvasElement; image: ImageData; phase: number }>();
+  private maps = new Map<string, { canvas: HTMLCanvasElement; image: ImageData; phase: number; angle:number }>();
   private fields = new Map<number, PhotosphereField>();
   private sample = new Float64Array(3);
 
   draw(c: CanvasRenderingContext2D, x: number, y: number, r: number, color: string, time = 0,
-    limbVariation = 0, activeRegion = 0, suppliedProfile: StellarProfile | 'photosphere' = 'photosphere', emission = 1, glare = 1) {
+    limbVariation = 0, activeRegion = 0, suppliedProfile: StellarProfile | 'photosphere' = 'photosphere', emission = 1, glare = 1, rotation?:number) {
     if (r < .8) {
       c.strokeStyle = color; c.lineWidth = 1; c.beginPath(); c.moveTo(x - 5, y); c.lineTo(x + 5, y); c.moveTo(x, y - 5); c.lineTo(x, y + 5); c.stroke(); return;
     }
@@ -31,7 +31,7 @@ export class StellarSurface {
     let map = this.maps.get(key);
     if (!map) {
       const canvas = document.createElement('canvas'); canvas.width = canvas.height = size;
-      map = { canvas, image: canvas.getContext('2d')!.createImageData(size, size), phase: NaN };
+      map = { canvas, image: canvas.getContext('2d')!.createImageData(size, size), phase: NaN, angle:NaN };
       if (this.maps.size >= MAX_MAPS) {
         const oldest = this.maps.entries().next().value!;
         oldest[1].canvas.width = oldest[1].canvas.height = 0; this.maps.delete(oldest[0]);
@@ -39,9 +39,10 @@ export class StellarSurface {
     } else this.maps.delete(key);
     this.maps.set(key, map);
     const phase = compact ? 0 : Math.floor((Number.isFinite(time) ? time : 0) * 8) / 8;
-    if (map.phase !== phase) {
-      map.phase = phase;
-      const pixels = map.image.data, angle = phase * .055, cos = Math.cos(angle), sin = Math.sin(angle);
+    const angle=rotation!==undefined&&Number.isFinite(rotation)?rotation:phase*.055;
+    if (map.phase !== phase || map.angle!==angle) {
+      map.phase = phase;map.angle=angle;
+      const pixels = map.image.data, cos = Math.cos(angle), sin = Math.sin(angle);
       const cool = palette.cool.toArray(), hot = palette.hot.toArray(), directions = stellarSpotDirections(profile);
       const seed = profile === 'red-dwarf' ? 77149 : 11293;
       if (!compact && !this.fields.has(seed)) this.fields.set(seed, createPhotosphereField(seed));

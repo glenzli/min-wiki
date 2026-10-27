@@ -1,5 +1,7 @@
 export const CHAPTERS = ['anatomy', 'star', 'planet', 'companion', 'scale'] as const;
 export type ChapterId = typeof CHAPTERS[number];
+export const ANATOMY_PARTS=['overview','horizon','shadow','disk','lensing'] as const;
+export function readAnatomyPart(search:string){const part=new URLSearchParams(search).get('part');return ANATOMY_PARTS.includes(part as typeof ANATOMY_PARTS[number])?part as typeof ANATOMY_PARTS[number]:'overview';}
 export const LEGACY_CHAPTERS = { 'black-hole': 'star', 'planet-black-hole': 'planet', 'galactic-center': 'companion' } as const;
 export function readChapter(search: string): ChapterId {
   const value = new URLSearchParams(search).get('chapter');

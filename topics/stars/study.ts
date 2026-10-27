@@ -140,9 +140,9 @@ export const anatomyStudies: readonly SceneStudy[] = [
     sources: [sun, { title: 'NASA · Layers of the Sun', url: 'https://science.nasa.gov/blogs/the-sun-spot/2023/09/26/layers-of-the-sun/' }],
   },
   {
-    child: w('能量从核心向外走，有的区域主要靠辐射，有的区域主要靠热物质上下流动。', 'Energy moves out from the core: radiation dominates in one region and hot material circulates in another.'),
+    child: w('先找辐射区的折线和亮点，再找对流区暖色上升、蓝色返回的路径。右图把热物质的升降接到光球的亮颗粒与暗间隙。', 'Find bent paths and light dots in the radiative zone, then warm rising material and its blue return in the convection zone. The right view links that circulation to bright photospheric granules and dark lanes.'),
     title: w('辐射区与对流区：传热方式的更替', 'Radiative and convective zones: changing transport'),
-    theory: w('辐射扩散和对流都是能量输送方式。透明度、温度梯度与物质状态决定哪种输送更有效；箭头表示机制，单个光子不会笔直穿越层界。', 'Radiative diffusion and convection both transport energy. Opacity, temperature gradients and material state determine which dominates. Arrows encode a mechanism; an individual photon does not travel straight across these zones.'),
+    theory: w('辐射区的折线和亮点编码反复吸收、再发射；它们不是某一光子的实测路线。外侧暖色上升和蓝色返回编码热等离子体输送、冷却与回流，接到光球的颗粒和暗间隙。透明度、温度梯度与物质状态决定哪种传能更有效。', 'Bent paths and light dots encode repeated absorption and re-emission, not one measured photon path. Warm outward motion and the blue return encode plasma heat transport, cooling and circulation, linked to photospheric granules and dark lanes. Opacity, temperature gradients and material state determine which transport mechanism dominates.'),
     evidence: w('日震学通过表面振荡推断太阳内部声速与层界，和辐射—对流模型比较。', 'Helioseismology infers interior sound speed and boundaries from surface oscillations, testing radiative–convective models.'),
     limits: w('没有解辐射转移或流体对流；图形是结构剖面而不是实际流线。', 'The view does not solve radiative transfer or convective fluid flow; its shapes are a structural cutaway, not measured streamlines.'),
     sources: [sun, { title: 'NASA · Layers of the Sun', url: 'https://science.nasa.gov/blogs/the-sun-spot/2023/09/26/layers-of-the-sun/' }],
@@ -158,7 +158,7 @@ export const anatomyStudies: readonly SceneStudy[] = [
     sources: [{ title: 'NASA · Layers of the Sun', url: 'https://science.nasa.gov/blogs/the-sun-spot/2023/09/26/layers-of-the-sun/' }],
   },
   {
-    child: w('太阳黑子看着较暗，是因为那里比周围光球较冷。它们与复杂磁场有关，不是太阳表面的洞。', 'Sunspots look darker because they are cooler than nearby photosphere. They are linked to strong magnetic fields, not holes in the Sun.'),
+    child: w('左侧 A 和右图指向同一对黑子。它们比周围光球较冷，与强磁场影响局部传热有关，不是太阳表面的洞。', 'Circle A and the right view identify the same sunspot pair. They are cooler than nearby photosphere because strong fields alter local heat transport; they are not holes in the Sun.'),
     title: w('黑子：磁场如何改变局部亮度', 'Sunspots: magnetic fields and local brightness'),
     theory: w('集中磁场会影响局部对流输热，令区域相对较冷、较暗。黑子与活动区相关，但有黑子并不意味着每一刻都发生耀斑。', 'Concentrated magnetic fields alter local convective heat transport, making an area relatively cooler and darker. Spots mark active regions but do not guarantee a flare at every moment.'),
     evidence: w('磁像仪、连续光照片与时间序列联合追踪磁场和黑子的变化。', 'Magnetograms, continuum images and time series jointly trace fields and spot changes.'),
@@ -166,11 +166,11 @@ export const anatomyStudies: readonly SceneStudy[] = [
     sources: [magnetic, { title: 'NASA · Solar flares FAQ', url: 'https://science.nasa.gov/blogs/solar-cycle-25/2022/06/10/solar-flares-faqs/' }],
   },
   {
-    child: w('磁场扭曲后有时会突然重新连接，短时间释放大量能量，出现耀斑。耀斑不是恒星平时发光的燃料。', 'Twisted magnetic fields can suddenly reconnect and release energy as a flare. A flare is not the fuel behind ordinary starlight.'),
+    child: w('仍在 A 选区：先看磁连接，再看重联后的短时亮光。亮光衰减后，新连接留下；拖动可对照前后，耀斑不是平时发光的燃料。', 'Stay in region A: compare field connections, then the brief flash after reconnection. The flash fades while new connections remain. Seek to compare before and after; a flare is not the fuel of ordinary starlight.'),
     title: w('耀斑：短时磁能释放', 'Flares: short-lived magnetic-energy release'),
     theory: w('耀斑关联活动区中的磁重联：磁场拓扑变化可把储存的磁能转为粒子加速、加热和辐射。其时间尺度与核心聚变维持长期光度完全不同。', 'Flares involve magnetic reconnection in active regions: changing field topology converts stored magnetic energy into particle acceleration, heating and radiation. Their timescale differs sharply from core fusion sustaining long-term luminosity.'),
     evidence: w('多波段太阳观测把磁场变化、亮度爆发和高能粒子联系起来。', 'Multiwavelength observations connect magnetic change, bright bursts and energetic particles.'),
-    limits: w('亮弧长度、爆发时刻和颜色不是按一次真实耀斑标定。', 'Arc length, timing and color are not calibrated to a particular observed flare.'),
+    limits: w('连接变化是有限的拓扑机制示意，不是磁流体求解；一次事件结束后不循环。亮弧长度、颜色、亮度和观察进度未按真实耀斑标定，暂停与拖动不改变恒星演化时间。', 'The finite change of connections is a topology sketch, not a magnetohydrodynamic solution, and the event does not loop. Arc length, color, brightness and observation progress are uncalibrated; pausing or seeking does not change stellar-evolution time.'),
     sources: [magnetic],
   },
   {

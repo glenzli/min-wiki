@@ -17,7 +17,7 @@ export function defaultCase(study: Study): VolcanoCase {
   return study === 'submarine' ? 'submarine' : study === 'lake' ? 'lake' : study === 'ecology' ? 'scoria' : 'composite';
 }
 export function initialStudyProgress(study: Study) {
-  return study === 'styles' ? .62 : study === 'building' ? .58 : study === 'ecology' ? .72 : study === 'heat' ? 1 : .08;
+  return study === 'styles' ? .62 : study === 'building' ? 0 : study === 'ecology' ? .72 : study === 'heat' ? 1 : .08;
 }
 export function sceneProgress(study: Study, volcano: VolcanoCase, progress: number) {
   const p = bounded(progress);

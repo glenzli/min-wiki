@@ -130,13 +130,16 @@ test('hiding explanation removes invisible cues while visible natural phenomena 
 test('optional downward UV rays fade through the absorbing region without glowing balls or expanding flashes',()=>{
   const world=new AtmosphereStructureWorld('earth');
   world.update('ozone',.6,null,25,defaultPhenomena);
-  const group=world.scene.getObjectByName('ozone-absorption-rays')!;assert.equal(group.children.length,5);
-  const ray=world.scene.getObjectByName('attenuating-uv-ray-0') as THREE.LineSegments<THREE.BufferGeometry,THREE.ShaderMaterial>;
+  const group=world.scene.getObjectByName('ozone-absorption-rays')!;assert.equal(group.children.length,6);
+  const ray=world.scene.getObjectByName('attenuating-uv-ray-0') as THREE.Mesh<THREE.BufferGeometry,THREE.ShaderMaterial>;
   const p=ray.geometry.getAttribute('position'),a=ray.geometry.getAttribute('aOpacity'),original=Array.from(a.array);
-  for(let i=0;i<p.count-1;i++)assert.ok(p.getY(i)>=p.getY(i+1));
-  assert.ok(p.getY(p.count-1)>expandedHeight('earth',22)-1e-6);
+  for(let i=0;i<p.count;i+=4){
+    assert.ok((p.getY(i)+p.getY(i+1))/2>=(p.getY(i+2)+p.getY(i+3))/2);
+    assert.ok(Math.hypot(p.getX(i)-p.getX(i+1),p.getY(i)-p.getY(i+1))>.029);
+  }
+  assert.ok((p.getY(p.count-2)+p.getY(p.count-1))/2>expandedHeight('earth',22)-1e-6);
   assert.ok(a.getX(0)>.2&&a.getX(a.count-1)===0);
-  assert.ok(group.children.every(o=>o instanceof THREE.LineSegments));
+  assert.ok(group.children.every(o=>o instanceof THREE.Mesh&&o.userData.explanatoryGuide&&o.material instanceof THREE.ShaderMaterial&&o.material.blending===THREE.NormalBlending));
   const positions=p.array;
   world.update('ozone',3.4,null,25,defaultPhenomena);
   assert.equal(ray.geometry.getAttribute('position').array,positions);assert.notDeepEqual(Array.from(a.array),original);

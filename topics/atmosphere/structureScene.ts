@@ -6,7 +6,7 @@ import { displayHeight, expandedAltitude, expandedAltitudeGLSL, expandedHeight, 
 import { earthCompositionCue } from './compositionModel.ts';
 import { StructureGround3D } from './structureGround3d.ts';
 import { StructurePhenomena } from './phenomena3d.ts';
-import { cloudExamples, cloudSample, defaultPhenomena, type CloudExample, type CloudSample, type PhenomenonOptions } from './phenomenaModel.ts';
+import { cloudExamples, cloudSample, defaultPhenomena, weatherMechanismSample, type CloudExample, type CloudSample, type PhenomenonOptions } from './phenomenaModel.ts';
 
 const vertex=`varying vec3 vP;void main(){vP=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`;
 const skyFragment=`varying vec3 vP;uniform vec3 uLow;uniform float uNight;uniform float uHeight;void main(){float fade=smoothstep(.1,uHeight,vP.y);vec3 color=mix(uLow,vec3(.0025,.006,.011),fade);color=mix(color,vec3(.0018,.0032,.009),uNight);gl_FragColor=vec4(color,1.);
@@ -131,7 +131,8 @@ export class AtmosphereStructureWorld {
  update(selected:string|null,seconds:number,mechanism:MechanismFrame|null,observerHeight:number|null,options:PhenomenonOptions=defaultPhenomena){
   if(this.disposed)return;
   const feature=structureProfiles[this.world].features.find(f=>f.id===selected);
-  const polarNight=this.world==='earth'&&selected==='aurora',martianTwilight=this.world==='mars'&&selected==='co2-ice';
+  const sunlightExample=options.clues&&mechanism?.layer===3&&mechanism.step<2;
+  const polarNight=this.world==='earth'&&selected==='aurora'&&!sunlightExample,martianTwilight=this.world==='mars'&&selected==='co2-ice';
   if(this.sky)this.sky.material.uniforms.uNight.value=polarNight?1:martianTwilight?.94:0;
   // CO2 twilight clouds remain sunlit after the low sky and ground darken.
   // Their independent volume lighting is not an all-day bright-cloud claim.
@@ -147,13 +148,15 @@ export class AtmosphereStructureWorld {
   if(this.observer){this.observer.visible=observerHeight!==null&&options.clues;this.observer.position.set(0,expandedHeight('earth',observerHeight??0),2.19);}
   for(let i=0;i<this.clouds.length;i++){
    const c=this.clouds[i],sample=cloudSample(this.world,i,seconds,c.sample);
+   const local=this.world==='earth'&&i===2?weatherMechanismSample(mechanism):null;
+   if(local){sample.x=local.x;sample.y=expandedHeight('earth',cloudExamples.earth[2].km);sample.z=local.z;sample.opacity=local.cloudOpacity;}
    c.volume.mesh.position.set(sample.x,sample.y,sample.z);c.volume.setTime(seconds*c.example.evolutionRate);
    // Shape evolves inside retained coordinates; the cloud does not inflate
    // or rock as one rigid object. Each world's transport has its own rate.
    let opacity=c.example.opacity*sample.opacity;
    if(this.world==='earth'){
     if(options.weather==='dry'||options.detail&&selected!=='weather')opacity=0;
-    else if(i===2)opacity=mechanism?.layer===0&&mechanism.step===2?opacity*mechanism.progress:0;
+    else if(i===2)opacity=options.clues&&local?.active?opacity:0;
     else if(i===0&&options.weather==='rain')opacity=Math.min(1,opacity*1.04);
    }
    // These Martian cases are alternatives, not two compulsory simultaneous

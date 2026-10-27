@@ -185,3 +185,15 @@ The two chapter buttons, active lens or five comparison-world buttons, reading d
 ## Observation controls
 
 `main.ts` composes the original Earth/world tabs, one native lens or world selector, labels and explanation in one toolbar. Reading depth stays inside the explanation. The selected world, reference height and retained renderers survive panel and lens changes. On narrow screens the requested explanation opens immediately above the scene in a bounded scroll region; closing it restores the full scene. Each world's feature and weather controls remain owned by `structureView.ts`, rather than imposing Earth layer correspondence.
+
+## Reader comparison layout · 2026-10-27
+
+The two independently authored world windows share a grid at sufficient scene width and stack when that actual container is narrower than 700px, including when optional explanation consumes room on a wide screen. The same retained scissored renderer reads the resulting window bounds; no gas profile, phenomenon selection, camera or comparison state is rebuilt by this layout change.
+
+## Causal explanation continuity · 2026-10-27
+
+The expanded Earth now retains a local moist/drier parcel comparison and its cloud at one shared anchor. Only the explanation progress drives this parcel's ascent and condensation; background weather continues on its existing supplied scene time. The clear-sky alternative shows the drier path without adding the local cloud. Replaying a step after waiting does not move the cloud away from the parcel. The completed explanation remains inspectable, including when its reading panel is closed.
+
+Ozone steps now distinguish incoming UV guides, downward attenuation with short non-directed local energy marks, and the later transport example. Thermosphere steps separately show energetic sunlight in a daylight example, motion-energy cues on a few sparse illustrative particles, and then charged-particle arrival before auroral emission in a separate polar-night example. The earlier energy-transfer guides retain their completed state in the last step; they do not imply cooling when the auroral pathway is introduced. The particle-input alternative still suppresses aurora without suppressing the sunlight-heating explanation. These cues and their bilingual short captions use the existing invisible-process switch and labels; no new timer, temperature scale, chemistry solver or atmospheric state is introduced. Cloud density and auroral folds retain their independent natural activity. The academic display formula describes Earth's piecewise logarithmic height mapping and the other worlds' single intervals.
+
+展开图中的湿气块与局部成云示例共用同一位置，重看步骤时不会因为背景天气已播放一段时间而彼此漂离；晴空选项只保留较干路径。臭氧的进入、吸收传能与输送，以及热层的日光加热、稀疏粒子运动能量和另一路极光输入，随原有三步解说变化。日光加热采用日间例子，最后另看极区夜空；已传能的线索保留，不暗示转看极光时空气先降温。短线、颗粒和示意色均为可关闭的解释线索，不代表实测温度、浓度、流速或新增加的天气求解；背景活动时钟不重置。学术版公式同步说明地球按区间展开的高度映射。

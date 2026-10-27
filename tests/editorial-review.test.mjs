@@ -15,7 +15,10 @@ test('all entries have reasoned editorial maturity without losing their publishe
     assert.equal(plan.complete.includes(entry.id),plan.complete.includes(entry.parentTopic));
   }
   // Discovery is an independent choice: an unlisted entry can be a complete manuscript.
-  assert.ok(wiki.entries.some(entry=>entry.listed===false&&plan.complete.includes(entry.id)));
+  const fixture=structuredClone(wiki),unlisted=fixture.entries.find(entry=>entry.listed===false&&!entry.parentTopic);
+  assert.ok(unlisted);unlisted.review.status='complete';
+  for(const child of fixture.entries.filter(entry=>entry.parentTopic===unlisted.id))child.review.status='complete';
+  assert.ok(reviewPlan(fixture).owners.complete.includes(unlisted.id));
   assert.ok(wiki.entries.some(entry=>entry.listed!==false&&plan.draft.includes(entry.id)));
 });
 

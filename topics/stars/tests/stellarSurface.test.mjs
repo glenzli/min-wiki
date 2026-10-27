@@ -66,3 +66,9 @@ test('continuous cooling and palette changes keep at most twelve cached Canvas m
   assert.ok(maps.slice(0,12).every(canvas=>canvas.width===0&&canvas.height===0));
   painter.dispose();assert.ok(maps.every(canvas=>canvas.width===0&&canvas.height===0));
 }));
+
+test('a held anatomy orientation retains its own map when another view uses the same surface time',()=>withSurface(({painter,c,maps})=>{
+ painter.draw(c,0,0,80,'#ffe5b1',4,0,1,'solar',1,1,0);const held=maps[0].image.data.slice();
+ painter.draw(c,0,0,80,'#ffe5b1',4,0,1,'solar',1,1,.7);assert.equal(maps.length,1);assert.notDeepEqual(maps[0].image.data,held);
+ painter.draw(c,0,0,80,'#ffe5b1',4,0,1,'solar',1,1,0);assert.deepEqual(maps[0].image.data,held);assert.equal(maps[0].puts,3);
+}));

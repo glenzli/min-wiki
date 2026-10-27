@@ -7,6 +7,7 @@ The main journey now has six question chapters: nebular light and matter, four r
 - `model.ts`: validated chapter/query input, observer distance, circular binary and hierarchical triple coordinates. The precise solar observation functions remain owned by `../sun-star/model.ts`.
 - `evolutionModel.ts`: four rounded age/radius/fuel anchor paths (low-mass, solar, massive, very massive), continuous interpolation, a monotone nonlinear recognition-view radius, and persistent Mercury/Venus engulfment state. `formationScene.ts` keeps the same cloud parcels, disk, central source and outflow tied to one position as formation advances. `evolutionScene.ts` keeps the mature left outline on its physical ruler, varies the right-hand enlarged star with model radius, and retains a dashed former envelope at the compact-remnant stages. `evolutionContent.json` owns bilingual phase explanations and science sources.
 - `anatomyScene.ts` and `anatomyContent.json`: one Sun exterior/cutaway connected to a local photosphere and outer-atmosphere view. Fine, softly contrasted granules are strongest near the visible surface. Sunspots and magnetic loops appear in the magnetic/flare steps; the wind step shows outward flow without keeping that active-region pair on screen. These are mechanism drawings, not measured tracks or sizes.
+- `solarMechanisms.ts`: the selected spherical spot pair and its whole/local projection, layer-bounded radiation/convection keys, and one finite reconnection event. The anatomy observation holds its solar orientation while the existing surface clock changes detail. No stellar-evolution time, physical transport speed or MHD solution is owned here.
 - `content.json`: bilingual labels, representative stellar properties, schematic layer profiles and qualifications.
 - `scene.ts`: Sun-relative linear size comparisons and labeled magnification inset. `orbitSystems.ts` owns three curated star/planet hierarchies; `orbitScene.ts` draws their full-system paths and the separate A-star planet detail for the triple.
 - `stellarSurface.ts`: topic-local emissive photosphere drawing shared by comparison, orbit and numerical scenes. Deterministic spherical granulation and limb darkening use bounded canvases keyed by palette, size and active-region state, updated at most 8 Hz; projected dark spots are enabled for the anatomy magnetic/flare steps. There is no random-per-frame texture or directional billiard-ball lighting. Enhanced colors and solar-inspired detail are illustrative, not observed maps of other star types.
@@ -227,3 +228,37 @@ hardware performance.
 The question chooser contains the six existing chapters. A separate conditions panel contains chapter-specific branches, reference objects and phase choices; the reading panel owns depth and qualifications. These two panels are mutually exclusive. The same progress slider and playback button remain beside the scene, and the legacy Sun-distance route keeps its direct distance input. Narrow screens reveal an opened panel directly below the toolbar, before the retained scene. View and reading changes preserve stellar progress and conditions; selecting a different orbital experiment retains its explicit original reset semantics. The three-body chapter keeps its own numerical preparation and controls. No shared presentation engine or scientific solver is added here.
 
 The ordinary observatory is an open section: its existing region padding and panel/playback separators remain, while the extra enclosing border and rounded corners are removed. Shared Reader owns menu-label visibility; the topic does not hide its full label. Scene allocation, scientific state, renderers and clocks remain with their existing owners.
+
+## Reader chapter choices · 2026-10-27
+
+The six original chapter buttons are mounted once, explicitly marked as chapter choices and display their full numbered bilingual names. State changes update their pressed state without replacing the controls. Reader can therefore show the current chapter, close a confirmed selection, support arrow-key traversal and return focus without changing stellar progress, scientific branches or renderers.
+
+The retained 3D canvas and its status now share the actual Reader stage allocation. The canvas follows the remaining height rather than keeping an intrinsic height taller than its wrapper, so responsive framing does not crop the bottom of the observation.
+
+On narrow stages the existing 2D anatomy, radius comparison and orbital layouts choose an authored tall canvas. The renderer marks that allocation as natural flow; other views keep fitted height. Both stacked panels and orbit diagrams therefore remain visible without changing their geometry or numerical scale.
+
+## Linked solar mechanisms · 2026-10-27
+
+The anatomy view now circles region A around the actual spherical spot pair consumed by the
+whole-Sun surface, then projects that same pair into the local mechanism drawing. The observation
+holds the solar orientation so the selected region stays visible; granulation still consumes the
+existing independent illustration time. Local depth, shape and enlargement remain schematic.
+The shared stellar portrait owner is unchanged.
+
+Bent radiation-transfer keys stay inside the radiative annulus. Paired warm outward and cool
+return paths stay inside the convective annulus, and the local view links the same mechanism to
+bright photospheric arrivals and darker return lanes. Colors encode roles rather than measured
+temperatures. No individual photon trajectory, transport speed or convection-cell size is inferred.
+
+The flare uses a single 12-observation-second event: stored energy, changing connections, brief
+release, fading, then a changed field without a remaining flash. It consumes elapsed time from
+the existing surface callback only while that mechanism is visible, stops at its endpoint, and
+does not loop or advance stellar evolution, prescribed orbital phase or numerical three-body time.
+Pause motion freezes it; a dedicated seek control allows comparison with reduced motion, and
+Replay explicitly starts another viewing of the same event. `flare=0..12` restores its position.
+Changing reading depth, layout or chapter preserves the current event rather than restarting it.
+The connections are a bounded topology illustration, not a magnetic-field solver or a fitted flare.
+
+Focused verification covers selected-region identity, layer confinement and paired return paths,
+finite-event determinism/endpoints, pause/visibility gating, URL restoration and renderer consumption.
+The parent task owns whole-repository checks and actual bilingual desktop/phone visual acceptance.

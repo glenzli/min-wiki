@@ -176,3 +176,39 @@
 #cosmic-observation .cosmic-essential .scene-heading{padding:8px 12px;flex-wrap:wrap}
 #cosmic-observation .cosmic-essential .comparison-transport{flex-wrap:wrap}
 #cosmic-observation .cosmic-essential .comparison-transport>label{flex:1 1 100%;min-width:0}
+
+/* The physical-zoom renderer inserts its retained wrapper inside the allocated stage. */
+#cosmic-observation .cosmic-visual .cosmic-view{height:100%;min-height:0;flex:none}
+#cosmic-observation .cosmic-visual .cosmic-view #cosmic-canvas{width:100%;height:100%;min-height:0}
+
+#cosmic-observation .comparison-ratio-task{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;padding:5px 14px;font-size:13px;line-height:1.5}
+#cosmic-observation .comparison-ratio-task>span:first-child{flex:1 1 220px}
+#cosmic-observation .comparison-ratio-task>span:last-child{flex:1 1 100%;color:var(--secondary)}
+#cosmic-observation .comparison-ratio-task button{font-size:13px;border-radius:8px;padding:7px 12px;min-height:44px}
+.galactic-copy>button+button{margin-inline-start:8px}
+
+/* The quantitative canvas and one lazy membership context retain the same Reader stage. */
+#cosmic-observation .comparison-visual{position:relative;height:var(--reader-stage-size);min-height:0;min-width:0;background:#030812;overflow:hidden}
+#cosmic-observation .comparison-visual>.comparison-canvas{display:block;width:100%;height:100%;min-height:0}
+#cosmic-observation .comparison-visual.membership-active{touch-action:none;cursor:grab}
+#cosmic-observation .comparison-visual.membership-active:active{cursor:grabbing}
+#cosmic-observation .comparison-visual:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.membership-layer{position:absolute;inset:0;z-index:1;pointer-events:none;background:#030812}
+.membership-layer canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+.membership-labels{z-index:1}
+.membership-status{position:absolute;z-index:2;left:8px;top:6px;display:flex;align-items:center;gap:8px;max-width:calc(100% - 16px);color:#b7cbd8;background:#07111ed9;padding:3px 6px;font-size:12px;line-height:1.4;pointer-events:none}
+#cosmic-observation .membership-status button{pointer-events:auto;font-size:12px;min-height:36px;padding:5px 8px;border-radius:6px}
+.membership-hint{margin:0;padding:5px 14px;color:var(--secondary);font-size:13px;line-height:1.5}
+#cosmic-observation .comparison-home-transport{flex-wrap:wrap}
+#cosmic-observation .comparison-home-transport>button{font-size:13px}
+#cosmic-observation .membership-views{display:flex;align-items:center;gap:6px;margin-inline-start:auto}
+#cosmic-observation .membership-views>button{min-height:44px;padding:7px 10px;font-size:12px;white-space:nowrap;overflow-wrap:normal;word-break:normal}
+
+/* Keep transport labels readable instead of splitting English words vertically. */
+@media(max-width:600px){
+ #cosmic-observation .comparison-home-transport>button{flex:0 0 auto;white-space:nowrap;overflow-wrap:normal;word-break:normal;font-size:12px;padding:8px}
+ #cosmic-observation .comparison-home-progress{flex:1;min-width:48px;text-align:center;white-space:nowrap}
+ #cosmic-observation .membership-views{flex:1 1 100%;justify-content:flex-end}
+ #cosmic-observation #stops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ #cosmic-observation #stops>button{min-width:0;white-space:normal;overflow-wrap:normal;word-break:normal;font-size:12px;padding:7px 8px;line-height:1.4}
+}

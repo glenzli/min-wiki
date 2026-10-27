@@ -103,7 +103,7 @@
       "name": {"zh": "室女座星系团", "en": "Virgo Cluster"},
       "title": {"zh": "本星系群之外还有邻居", "en": "A neighboring cluster comes into view"},
       "body": {"zh": "镜头继续后退，本星系群缩成位置标记；约 5400 万光年外的室女座星系团进入画面。它是邻近的另一个结构，并不包含本星系群。", "en": "As the Local Group shrinks to a location marker, the Virgo Cluster appears about 54 million light-years away. It is a separate neighboring structure, not a container for the Local Group."},
-      "boundary": {"zh": "距离为取整量级，方向只是教学排布；星系团光点与淡蓝色热气体为结构示意，不能用标尺量它们的直径或数成员。", "en": "The distance is rounded and the direction is illustrative. Cluster points and pale blue hot gas are structural symbols; their diameters and member counts cannot be measured here."},
+      "boundary": {"zh": "距离为取整量级，方向只是教学排布；星系团点群是放大显示的立体定位符，不能用标尺量它的直径或数真实成员。", "en": "The distance is rounded and the direction is illustrative. The cluster point cloud is a magnified spatial locator; its diameter and real member count cannot be measured here."},
       "source": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-60/"
     },
     {
@@ -117,14 +117,14 @@
       "name": {"zh": "宇宙网", "en": "Cosmic web"},
       "title": {"zh": "更多结构沿丝状区域分布", "en": "More structures trace filaments"},
       "body": {"zh": "同一镜头继续拉远，视野各处都出现星系群和星系团的丝状分布示意，之间有相对稀疏的空洞。画面逐渐从少数有距离依据的地标，转为展示大尺度分布形态。", "en": "As the same camera moves outward, an illustrative filamentary distribution of groups and clusters fills the view, with comparatively sparse voids between them. The view shifts from a few distance-anchored landmarks to a large-scale pattern."},
-      "boundary": {"zh": "丝线、结点和小光点是固定在连续镜头中的示意纹理，并非实测星系位置、实体绳索或可用标尺测量的宽度；这里不计算光行回溯时间。", "en": "Filaments, knots and points form a stable illustration in the continuous camera. They are not surveyed galaxy positions, physical ropes or widths measurable with the ruler; lookback time is not calculated."},
+      "boundary": {"zh": "星系沿有厚度的丝状区域聚集，空洞内也有少量星系。点群是稳定的统计空间示意，不是实测星系位置或实体绳索；拉远时只切换显示细节，不能量取示意丝状区域的宽度，也不计算光行回溯时间。", "en": "Galaxies concentrate along filaments with depth, with a few also in voids. Stable point clouds illustrate a statistical spatial distribution, not surveyed galaxy positions or physical ropes. Zooming changes displayed detail; illustrative filament widths are not measurements and lookback time is not calculated."},
       "source": "https://science.nasa.gov/universe/galaxies/large-scale-structures/"
     },
     {
       "name": {"zh": "可观测范围", "en": "Observable region"},
       "title": {"zh": "观测边界不是宇宙的墙", "en": "Our observing horizon is not a wall"},
       "body": {"zh": "拉远到终点时，视野容得下直径至少约 930 亿光年的可观测范围。圆心只是我们的观测位置；圆外还有什么，不能从这张图推断。光在旅途中经历空间膨胀，所以今天的距离不能直接当作光传播的年数。", "en": "At the end of the outward journey, the view holds the observable region, at least about 93 billion light-years across. Its center marks our observing location, not the center of all space. Space expanded while light traveled, so today's distance is not the number of years that light traveled."},
-      "boundary": {"zh": "虚线圆按约 465 亿光年半径画出观测范围，不是宇宙边缘。近处丝线逐渐过渡到与结构路径终点相同的示意网；线、结点与细点并非全天实测星系图。黄色中心定位符表示我们所在的拉尼亚凯亚区域，不是其直径；这里不模拟膨胀或回溯时间。", "en": "The dashed circle sketches an observing range with an approximate 46.5-billion-light-year radius, not a physical edge. Nearby filaments transition into the same illustrative web used at the end of the structural address; its links, knots and fine points are not a measured all-sky galaxy map. The yellow central locator marks our Laniakea region, not its diameter. Expansion and lookback time are not simulated."},
+      "boundary": {"zh": "虚线圆按约 465 亿光年半径画出观测范围，不是宇宙边缘。近处的分布逐渐过渡到与结构路径终点相同的立体统计示意；点群和空洞并非全天实测星系图，体积边缘也没有实体外壳。黄色中心定位符表示我们所在的拉尼亚凯亚区域，不是其直径；这里不模拟膨胀或回溯时间。", "en": "The dashed circle sketches an observing range with an approximate 46.5-billion-light-year radius, not a physical edge. Nearby distributions transition into the same statistical volume used at the end of the structural address. Its point clouds and voids are not a measured all-sky galaxy map, and its edge has no material shell. The yellow central locator marks our Laniakea region, not its diameter. Expansion and lookback time are not simulated."},
       "source": "https://www.esa.int/kids/en/learn/Our_Universe/Story_of_the_Universe/The_Universe"
     }
   ],
@@ -170,8 +170,8 @@
       "en": "Moon"
     },
     "sceneNote": {
-      "zh": "镜头连续拉远；球体、轨道和星盘使用同一距离标尺。远处丝线与光点是分布示意，空心圆与十字只定位，不代表大小。",
-      "en": "One continuous zoom, with spheres, orbits and galactic disks sharing a distance ruler. Distant filaments and points illustrate distribution; open circles and crosses locate objects, not their sizes."
+      "zh": "镜头连续拉远；球体、轨道和星盘使用同一距离标尺。远处点群是立体分布示意，空心圆与十字只定位，不代表大小。",
+      "en": "One continuous zoom, with spheres, orbits and galactic disks sharing a distance ruler. Distant point clouds illustrate spatial distribution; open circles and crosses locate objects, not their sizes."
     },
     "credit": {
       "zh": "地球、云层与月球地图：Solar System Scope · CC BY 4.0",
@@ -295,8 +295,8 @@
       "en": "Remember this stellar disk, then move outward as planetary orbits enter the view. The Sun is about 1.39 million km across, roughly 109 Earth diameters, yet small compared with planetary orbital distances."
     },
     "boundary": {
-      "zh": "太阳圆盘与距离使用同一千米标尺，表面颜色和颗粒为示意。地球仍在约一个天文单位之外，没有被搬到太阳旁边。",
-      "en": "The solar disk and distances use one kilometer ruler; surface colors and granules are illustrative. Earth remains about one AU away, not moved beside the Sun."
+      "zh": "太阳圆盘与距离使用同一千米标尺。暖金着色、临边昏暗、颗粒与暗斑为增强观察的光球示意，不是实时太阳图像或温度测量；地球仍在约一个天文单位之外。",
+      "en": "The solar disk and distances use one kilometer ruler. The golden colouring, limb darkening, granules and spots form an enhanced illustrative photosphere, not a live solar image or temperature measurement. Earth remains about one AU away."
     },
     "source": "https://science.nasa.gov/sun/facts/"
   }

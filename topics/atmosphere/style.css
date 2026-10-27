@@ -280,6 +280,8 @@ html[lang^=en] #atmo-observation .height-band{letter-spacing:-.01em}
 #atmo-observation .structure-selected{min-height:0;padding-block:10px}
 #atmo-observation .structure-selected p{margin:0;line-height:1.65;font-size:12px}
 #atmo-observation .structure-selected p+p{margin-top:5px;color:#adbfc8}
+#atmo-observation .structure-selected .structure-mechanism-cue{color:#d5e0e4;max-width:70ch}
+#atmo-observation .structure-mechanism-cue strong{font-size:11px;color:#c4d3da;line-height:1.5}
 #atmo-observation .structure-selected strong{font-weight:650;font-size:11px;display:inline-block;margin-right:9px;color:#e0e8ea}
 #atmo-observation .structure-world>footer{opacity:.8;font-size:10px}
 #atmo-observation .structure-tools>span{font-size:10px}
@@ -400,3 +402,11 @@ html[lang^=en] #atmo-observation .height-band{letter-spacing:-.01em}
 #atmo-observation .atmo-essential{min-width:0}
 #atmo-observation .atmo-essential .atmo-stops{display:flex;flex-wrap:wrap}
 #atmo-observation .atmo-essential .atmo-stops button{flex:1 1 100px}
+
+/* Keep independent world windows together when the actual scene has room. */
+#atmo-observation .structure-scenes{container:atmo-worlds / inline-size}
+#atmo-observation .structure-panels{display:grid;grid-template-columns:minmax(0,1fr);align-items:start}
+#atmo-observation .structure-panels.is-pair{grid-template-columns:repeat(2,minmax(0,1fr))}
+@container atmo-worlds (max-width:699px){
+ #atmo-observation .structure-panels.is-pair{grid-template-columns:minmax(0,1fr)}
+}

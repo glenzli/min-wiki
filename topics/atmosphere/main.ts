@@ -59,7 +59,7 @@ function draw(){
  const expanded=state.view==='worlds'||state.display==='structure';
  el('atmo-canvas').hidden=expanded;
  if(!expanded){if(!scene)createScene();else scene.draw(state,input('labels').checked,mechanism.current());}
- structure.draw(state,input('labels').checked,inspector.classList.contains('observation-panel-hidden')?null:mechanism.current(),expanded);
+ structure.draw(state,input('labels').checked,mechanism.current(),expanded);
  profiles.draw(state,input('labels').checked);
 }
 const rail=el('height-rail');

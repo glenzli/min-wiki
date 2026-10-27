@@ -1,6 +1,7 @@
 import content from './comparisonContent.json';
 import {drawObservableWeb} from './observableWeb.ts';
 import {drawPlanetGlyph} from './planetGlyph.ts';
+import {paintSolarDisk,SOLAR_SURFACE_STYLE,solarSurfacePhase} from './solarSurfaceModel.ts';
 
 type Words = typeof content.zh;
 type Point = readonly [number, number];
@@ -16,10 +17,12 @@ const filaments: readonly (readonly [Point,Point,Point,Point])[] = [
 const knots: readonly (readonly [number,number,number])[] = [[.17,.27,2],[.29,.47,4],[.42,.24,2],[.58,.39,5],[.81,.27,3],[.25,.75,2],[.75,.67,4]];
 const noise=(a:number,b:number,c=0)=>{let h=Math.imul(a+101,374761393)^Math.imul(b+73,668265263)^Math.imul(c+17,1274126177);h=Math.imul(h^(h>>>13),1274126177);return((h^(h>>>16))>>>0)/4294967295;};
 
-/** Bounded, deterministic structural illustrations for the non-metric membership chapter. */
+/** Explicit CPU fallback for the non-metric structural address; no WebGL lifetime is hidden here. */
 export class MembershipScene {
  private galaxyMaps=new Map<number,HTMLCanvasElement>();
- dispose(){this.galaxyMaps.clear();}
+ private sun?:{canvas:HTMLCanvasElement;image:ImageData;phase:number};
+ dispose(){this.galaxyMaps.clear();if(this.sun)this.sun.canvas.width=this.sun.canvas.height=0;this.sun=undefined;}
+ private solarMap(phase:number){phase=solarSurfacePhase(phase);if(!this.sun){const canvas=document.createElement('canvas');canvas.width=canvas.height=320;this.sun={canvas,image:canvas.getContext('2d')!.createImageData(320,320),phase:NaN};}if(this.sun.phase!==phase){paintSolarDisk(this.sun.image.data,320,phase);this.sun.canvas.getContext('2d')!.putImageData(this.sun.image,0,0);this.sun.phase=phase;}return this.sun.canvas;}
 
  private galaxyMap(kind:number){
   const cached=this.galaxyMaps.get(kind);if(cached)return cached;
@@ -74,13 +77,13 @@ export class MembershipScene {
   for(const [i,p] of knots.entries())this.group(c,x(p[0]),y(p[1]),(8+p[2]*2)*scale,i+40,8+p[2]*5);
  }
 
- draw(c:CanvasRenderingContext2D,width:number,height:number,home:number,w:Words){
+ draw(c:CanvasRenderingContext2D,width:number,height:number,home:number,w:Words,phase=0){
   const cx=width/2,cy=height*.46,span=Math.min(width*.38,height*.7);c.save();c.font=`${width<460?11:12}px system-ui`;c.textAlign='center';c.lineWidth=1;
   const back=c.createRadialGradient(cx,cy,0,cx,cy,Math.max(width,height)*.55);back.addColorStop(0,'#20364b42');back.addColorStop(1,'#07101c00');c.fillStyle=back;c.fillRect(0,0,width,height);
   if(home===0){
    const inner=Math.max(64,span/8);
    for(let i=0;i<8;i++){const r=inner+(span-inner)*i/7;c.strokeStyle=i===2?'#89b9d299':'#819cad66';c.beginPath();c.ellipse(cx,cy,r,r*.38,0,0,7);c.stroke();const a=(i+1)*1.4;drawPlanetGlyph(c,cx+Math.cos(a)*r,cy+Math.sin(a)*r*.38,i,8.5);}
-   const sun=c.createRadialGradient(cx-5,cy-5,0,cx,cy,19);sun.addColorStop(0,'#ffedab');sun.addColorStop(.7,'#ffbb60');sun.addColorStop(1,'#bd6420');c.fillStyle=sun;c.beginPath();c.arc(cx,cy,18,0,7);c.fill();
+   const s=SOLAR_SURFACE_STYLE,r=18,halo=c.createRadialGradient(cx,cy,r*s.haloInner,cx,cy,r*s.haloOuter);for(const [stop,alpha]of s.haloStops)halo.addColorStop(stop,`rgba(${s.haloColour.join(',')},${alpha})`);c.fillStyle=halo;c.fillRect(cx-r*s.haloOuter,cy-r*s.haloOuter,r*2*s.haloOuter,r*2*s.haloOuter);c.drawImage(this.solarMap(phase),cx-r,cy-r,r*2,r*2);
   }
   if(home===1){
    this.galaxy(c,cx,cy,span,0);const x=cx+span*.53,y=cy+span*.13;this.marker(c,x,y);this.tag(c,w.homeNames[0]!,x,cy+span*.53,width);

@@ -584,6 +584,26 @@
         "rain": "云随风移动，雨滴从云里显现、向下斜落，到达海面与坡地。"
       },
       "shortScale": "高度与现象分别放大；窗口厚度不能直接比较，现象是不同条件的例子。",
+      "mechanismCues": {
+        "label": "局部机制线索 · 非实测",
+        "weather": [
+          "暖色网格追踪水汽较多的气块，淡蓝网格表示较干的路径；背景云雨仍是独立天气示例。",
+          "同一气块向上、膨胀并冷却；观察它的位置和网格大小，不把它当成一颗水滴。",
+          "云在刚才湿气块的位置显现，较干路径没有这朵云；白云是小水滴或冰晶，水汽本身透明。"
+        ],
+        "dryWeather": "当前晴空例子只追踪较干路径：空气可以上升、冷却，但没有形成这朵云。",
+        "ozone": [
+          "先跟随淡紫色示意线进入臭氧较集中的区域；紫外线本身不可见。",
+          "线向下逐渐变淡，短的无定向暖色线表示能量交给空气，不表示强烈上升气流。",
+          "上部通常较暖，强烈上下翻动不易持续；水平细线仍显示空气可以输送。"
+        ],
+        "thermosphere": [
+          "先看高能日光的能量进入稀薄空气；淡金线是不可见辐射的解释符号。",
+          "少量放大粒子的短线表示运动能量增加；粒子温度高不等于有大量热传给物体。",
+          "转看极区夜空的另一条路径：带电粒子先进入高空，气体随后发光；这不是高温自动变成极光。"
+        ],
+        "noAurora": "这次关掉了极区带电粒子输入：日光仍可加热稀薄空气，但没有这一路径产生的极光。"
+      },
       "composition": "成分分布示意",
       "compositionEarth": "地球 · 示意色",
       "compositionWater": "水汽：低层较多",
@@ -1180,6 +1200,26 @@
         "rain": "Clouds move with the wind. Drops emerge within them, then fall at a slant to the water and hillside."
       },
       "shortScale": "Height and phenomena are enlarged separately. Window thicknesses are not comparable; phenomena represent different conditions.",
+      "mechanismCues": {
+        "label": "Local mechanism guides · not measurements",
+        "weather": [
+          "The warm wireframe follows a moister air parcel; pale blue marks the drier path. Background clouds and rain remain independent weather examples.",
+          "The same parcel rises, expands and cools. Follow its position and wireframe size; it is not a water droplet.",
+          "Cloud appears at the moist parcel's position; the drier path makes no such cloud. White clouds contain droplets or ice, while vapour is transparent."
+        ],
+        "dryWeather": "This clear-sky case follows only the drier path: air can rise and cool without forming this cloud.",
+        "ozone": [
+          "Follow the violet guide into the ozone-rich region first. Ultraviolet radiation itself is invisible.",
+          "The ray fades downward; short, non-directed warm marks show energy transferred to air, not vigorous rising currents.",
+          "The upper region is usually warmer, limiting vigorous overturning. Fine horizontal guides still show that air can be transported."
+        ],
+        "thermosphere": [
+          "First follow energetic sunlight entering sparse air. Pale gold guides stand for invisible radiation.",
+          "Short trails on a few enlarged particles indicate greater motion energy. High particle temperature does not mean a large heat transfer to an object.",
+          "Now view a different pathway in polar night: charged particles arrive first, then gas emits light. High temperature does not automatically create aurora."
+        ],
+        "noAurora": "Polar charged-particle input is off. Sunlight can still heat sparse air, but this auroral pathway produces no light."
+      },
       "composition": "Show composition",
       "compositionEarth": "Earth · false colour",
       "compositionWater": "Water vapour: mostly lower air",

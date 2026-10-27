@@ -3,7 +3,7 @@ import { translateDocument, languageHref } from '../../src/platform/i18n.ts';
 import { mountTopicLearning } from '../../src/platform/learning/mount.ts';
 import { animateValue } from '../../src/visuals/transition.ts';
 import { t } from './i18n.ts';
-import { CHAPTERS, readChapter, chapterHref } from './routes.ts';
+import { CHAPTERS, readChapter, chapterHref, readAnatomyPart } from './routes.ts';
 import type { ChapterId } from './routes.ts';
 import { SceneSlot } from './session.ts';
 import type { ChapterState, ChapterScene, ChapterDefinition, ViewOptions } from './types.ts';
@@ -21,7 +21,7 @@ const loaders = {
   scale: () => import('./chapters/scale.ts').then(module => module.chapter),
 };
 const states: Record<ChapterId, ChapterState> = {
-  anatomy: { progress: 0, scenario: '', planet: 'rocky', part: 'overview' },
+  anatomy: { progress: 0, scenario: '', planet: 'rocky', part: readAnatomyPart(location.search) },
   star: { progress: 0, scenario: 'flyby', planet: 'rocky', part: '' },
   planet: { progress: 0, scenario: 'safe', planet: 'rocky', part: '' },
   companion: { progress: 0, scenario: 'overflow', planet: 'rocky', part: '' },
@@ -92,6 +92,7 @@ function buildControls() {
         cancelStage(); playing = false;
         if (definition?.change) definition.change(state, choice.key, item.value);
         else { if (choice.key === 'planet') state.planet = item.value as 'rocky' | 'gas'; else state[choice.key] = item.value; if (choice.key === 'scenario') state.progress = 0; }
+        if(chapterId==='anatomy'&&choice.key==='part'){const url=new URL(location.href);url.searchParams.set('part',state.part);history.replaceState(null,'',url);}
         buildControls(); slot.current?.draw(state, options()); update();
       });
       group.append(button);
@@ -155,7 +156,7 @@ function navigate(event: MouseEvent, id: ChapterId) {
 }
 document.querySelectorAll<HTMLAnchorElement>('[data-chapter]').forEach(link => link.addEventListener('click', event => navigate(event, link.dataset.chapter as ChapterId)));
 for (const id of ['previous-chapter', 'next-chapter', 'back-to-anatomy']) el(id).addEventListener('click', event => navigate(event as MouseEvent, readChapter(new URL((event.currentTarget as HTMLAnchorElement).href).search)));
-window.addEventListener('popstate', () => { void selectChapter(readChapter(location.search)); });
+window.addEventListener('popstate', () => { const next=readChapter(location.search);if(next==='anatomy')states.anatomy.part=readAnatomyPart(location.search);void selectChapter(next); });
 document.querySelectorAll<HTMLButtonElement>('button[data-mode]').forEach(button => button.addEventListener('click', () => {
   academic = button.dataset.mode === 'academic';
   document.querySelectorAll('button[data-mode]').forEach(item => item.setAttribute('aria-pressed', String(item === button))); update();

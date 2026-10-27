@@ -3,12 +3,19 @@ import type { World } from './model.ts';
 import type { MechanismFrame } from './layerMechanism.ts';
 import { expandedAltitudeGLSL, expandedHeight, structureNoise } from './structureModel.ts';
 import { FamiliarAtmosphereReferences } from './familiarReferences3d.ts';
-import { auroraPoint, defaultPhenomena, makeRainSample, meteorPoint, meteorSample, rainSample, windSample, type PhenomenonOptions } from './phenomenaModel.ts';
+import { auroraPoint, defaultPhenomena, energyMechanismSample, makeRainSample, meteorPoint, meteorSample, rainSample, weatherMechanismSample, windSample, type PhenomenonOptions } from './phenomenaModel.ts';
 
 const lineVertex=`attribute float aOpacity;varying float vOpacity;void main(){vOpacity=aOpacity;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`;
 const lineFragment=`uniform vec3 uColor;varying float vOpacity;void main(){gl_FragColor=vec4(uColor,vOpacity);#include <tonemapping_fragment>
 #include <colorspace_fragment>
 }`.replace(';#include',';\n#include');
+const guideVertex=`attribute float aOpacity;attribute float aAcross;varying float vOpacity;varying float vAcross;void main(){vOpacity=aOpacity;vAcross=aAcross;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`;
+const guideFragment=`uniform vec3 uColor;varying float vOpacity;varying float vAcross;void main(){float edge=smoothstep(.58,.92,abs(vAcross));gl_FragColor=vec4(mix(uColor,vec3(.025,.045,.065),edge*.92),vOpacity);
+#include <tonemapping_fragment>
+#include <colorspace_fragment>
+}`;
+type GuideBands=THREE.Mesh<THREE.BufferGeometry,THREE.ShaderMaterial>;
+const UV_SEGMENTS=8,SOLAR_SEGMENTS=12;
 const splashVertex=`attribute float aOpacity;varying float vOpacity;void main(){vOpacity=aOpacity;gl_PointSize=3.;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`;
 const splashFragment=`uniform vec3 uColor;varying float vOpacity;void main(){float r=length(gl_PointCoord-.5);if(r>.5||vOpacity<.001)discard;gl_FragColor=vec4(uColor,vOpacity*(1.-smoothstep(.1,.5,r)));
 #include <tonemapping_fragment>
@@ -71,7 +78,13 @@ export class StructurePhenomena {
   private referenceSatellite?: THREE.Object3D;
   private parcels: THREE.Mesh<THREE.SphereGeometry,THREE.MeshStandardMaterial>[] = [];
   private ultraviolet = new THREE.Group();
-  private ultravioletRays: THREE.LineSegments<THREE.BufferGeometry,THREE.ShaderMaterial>[] = [];
+  private ultravioletRays: GuideBands[] = [];
+  private ultravioletHeads?:GuideBands;
+  private ozoneHeat?: GuideBands;
+  private stratosphereTransport?:GuideBands;
+  private solarRays?: GuideBands;
+  private thermalTrails?: GuideBands;
+  private thermalParticles:THREE.Mesh<THREE.SphereGeometry,THREE.MeshBasicMaterial>[]=[];
   private magnetic = new THREE.Group();
   private electrons: Array<{particle:THREE.Mesh<THREE.SphereGeometry,THREE.MeshBasicMaterial>;curve:THREE.QuadraticBezierCurve3}> = [];
   private exosphere = new THREE.Group();
@@ -101,6 +114,22 @@ export class StructurePhenomena {
     const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(count*6),3));geometry.setAttribute('aOpacity',new THREE.BufferAttribute(new Float32Array(count*2),1));
     const material=new THREE.ShaderMaterial({vertexShader:lineVertex,fragmentShader:lineFragment,uniforms:{uColor:{value:new THREE.Color(color)}},transparent:true,depthWrite:false});
     const object=this.keep(new THREE.LineSegments(geometry,material));object.name=name;object.frustumCulled=false;object.renderOrder=6;this.group.add(object);return object;
+  }
+  /** Width-bearing interpretation marks, not luminous matter. A narrow dark
+   * edge keeps them legible on pale gas; order 12 places them after air (8).
+   * Depth testing still respects solid ground. No screen-space glow is used. */
+  private bands(count:number,color:string,name:string):GuideBands{
+    const geometry=new THREE.BufferGeometry(),across=new Float32Array(count*4),indices=new Uint16Array(count*6);
+    for(let i=0;i<count;i++){across.set([-1,1,-1,1],i*4);const n=i*4;indices.set([n,n+1,n+2,n+1,n+3,n+2],i*6);}
+    geometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(count*12),3));geometry.setAttribute('aOpacity',new THREE.BufferAttribute(new Float32Array(count*4),1));geometry.setAttribute('aAcross',new THREE.BufferAttribute(across,1));geometry.setIndex(new THREE.BufferAttribute(indices,1));
+    const material=new THREE.ShaderMaterial({vertexShader:guideVertex,fragmentShader:guideFragment,uniforms:{uColor:{value:new THREE.Color(color)}},transparent:true,side:THREE.DoubleSide,depthWrite:false});
+    const object=this.keep(new THREE.Mesh(geometry,material));object.name=name;object.frustumCulled=false;object.renderOrder=12;object.userData.explanatoryGuide=true;this.group.add(object);return object;
+  }
+  private band(object:GuideBands,index:number,ax:number,ay:number,az:number,bx:number,by:number,bz:number,a=0,b=a,width=.030){
+    const dx=bx-ax,dy=by-ay,length=Math.max(.00001,Math.hypot(dx,dy)),nx=-dy/length*width*.5,ny=dx/length*width*.5;
+    const p=object.geometry.getAttribute('position'),alpha=object.geometry.getAttribute('aOpacity'),n=index*4;
+    p.setXYZ(n,ax+nx,ay+ny,az);p.setXYZ(n+1,ax-nx,ay-ny,az);p.setXYZ(n+2,bx+nx,by+ny,bz);p.setXYZ(n+3,bx-nx,by-ny,bz);
+    alpha.setX(n,a);alpha.setX(n+1,a);alpha.setX(n+2,b);alpha.setX(n+3,b);
   }
   private makeRain(){
     this.rain=this.lines(216,'#d4e3ea',this.world==='titan'?'occasional-methane-rain':'cloud-grown-rain');
@@ -143,14 +172,30 @@ export class StructurePhenomena {
     // opacity through the absorbing region, never an expanding luminous ball.
     for(let i=0;i<5;i++){
       const x=-1.7+i*.79,end=expandedHeight('earth',22+structureNoise(i+41)*10),start=expandedHeight('earth',48);
-      const line=this.lines(40,'#ceb9de','attenuating-uv-ray-'+i),p=line.geometry.getAttribute('position');
-      for(let j=0;j<40;j++)for(let k=0;k<2;k++){const t=(j+k)/40;p.setXYZ(j*2+k,x+.25*(1-t),start+(end-start)*t,.88);}
+      const line=this.bands(UV_SEGMENTS,'#e6cbff','attenuating-uv-ray-'+i);
+      for(let j=0;j<UV_SEGMENTS;j++){const a=j/UV_SEGMENTS,b=(j+1)/UV_SEGMENTS;this.band(line,j,x+.25*(1-a),start+(end-start)*a,.88,x+.25*(1-b),start+(end-start)*b,.88);}
       this.ultraviolet.add(line);this.ultravioletRays.push(line);
     }
+    this.ultravioletHeads=this.bands(10,'#e6cbff','incoming-uv-direction-guides');this.ultraviolet.add(this.ultravioletHeads);
+    // Short non-directed marks encode local energy transfer, not warm gas
+    // rising through the stable stratosphere. All buffers are retained.
+    this.ozoneHeat=this.bands(15,'#ffd28a','ozone-local-energy-transfer');
+    const marks=[[-.14,.02,-.015,.075],[.035,-.085,.17,-.055],[-.005,.16,.045,.265]];
+    for(let i=0;i<5;i++)for(let j=0;j<3;j++){
+      const x=-1.7+i*.79,y=expandedHeight('earth',22+structureNoise(i+41)*10),[ax,ay,bx,by]=marks[j];
+      this.band(this.ozoneHeat,i*3+j,x+ax,y+ay,.88,x+bx,y+by,.88,0,0,.036);
+    }
+    this.stratosphereTransport=this.bands(12,'#d1effb','stratosphere-horizontal-transport');
+    this.solarRays=this.bands(3*SOLAR_SEGMENTS,'#ffe0a0','thermosphere-solar-energy-guide');
+    for(let i=0;i<3;i++)for(let j=0;j<SOLAR_SEGMENTS;j++){
+      const a=j/SOLAR_SEGMENTS,b=(j+1)/SOLAR_SEGMENTS;this.band(this.solarRays,i*SOLAR_SEGMENTS+j,-1.6+i*1.6+.40*(1-a),expandedHeight('earth',550-280*a),.20,-1.6+i*1.6+.40*(1-b),expandedHeight('earth',550-280*b),.20);
+    }
+    this.thermalTrails=this.bands(6,'#def2fa','thermosphere-particle-energy-guide');
+    for(let i=0;i<6;i++){const particle=this.bead(.045,'#e6f4f6');particle.material.opacity=.95;particle.renderOrder=13;particle.name='thermal-motion-example-'+i;this.thermalParticles.push(particle);this.group.add(particle);}
     this.magnetic.name='enlarged-magnetic-particle-paths';this.group.add(this.magnetic);
     for(let i=0;i<5;i++){
       const x=-2.25+i*1.12,curve=new THREE.QuadraticBezierCurve3(new THREE.Vector3(x+.7,expandedHeight('earth',600),-.25),new THREE.Vector3(x-.25,expandedHeight('earth',280),-.45),new THREE.Vector3(x,expandedHeight('earth',135),-.55));
-      const line=this.keep(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(32)),new THREE.LineDashedMaterial({color:'#a9bfd5',dashSize:.055,gapSize:.065,transparent:true,opacity:.28,depthWrite:false})));line.computeLineDistances();this.magnetic.add(line);const particle=this.bead(.028,'#bcd6ef');this.magnetic.add(particle);this.electrons.push({particle,curve});
+      const line=this.keep(new THREE.Line(new THREE.BufferGeometry().setFromPoints(curve.getPoints(32)),new THREE.LineDashedMaterial({color:'#c7deed',dashSize:.075,gapSize:.065,transparent:true,opacity:.65,depthWrite:false})));line.renderOrder=12;line.computeLineDistances();this.magnetic.add(line);const particle=this.bead(.038,'#deedf5');particle.renderOrder=13;this.magnetic.add(particle);this.electrons.push({particle,curve});
     }
     this.exosphere.name='enlarged-bound-and-escape-paths';this.group.add(this.exosphere);
     for(const [i,curve]of [this.retainedCurve,this.escapeCurve].entries()){
@@ -165,13 +210,14 @@ export class StructurePhenomena {
     // the retained phenomena in one continuous column of air; this is framing,
     // not a claim that a phenomenon cannot cross a thermal reference boundary.
     const overview=!options.detail;
+    const ozone=energyMechanismSample(options.clues?mechanism:null,1),thermal=energyMechanismSample(options.clues?mechanism:null,3);
     if(this.referenceAirplane)this.referenceAirplane.visible=overview||selected==='ozone';
     if(this.referenceSatellite)this.referenceSatellite.visible=overview||selected==='escape';
     if(this.meteor)this.meteor.visible=overview||selected==='meteor';
     if(this.wind){
-      const upper=this.world==='earth'&&selected==='ozone',show=this.world==='earth'?(selected==='weather'||upper):this.world==='mars'?selected==='dust':selected==='acid-cloud';this.wind.visible=options.clues&&show;
+      const upper=this.world==='earth'&&selected==='ozone',show=this.world==='earth'?selected==='weather':this.world==='mars'?selected==='dust':selected==='acid-cloud';this.wind.visible=options.clues&&show;
       const p=this.wind.geometry.getAttribute('position') as THREE.BufferAttribute,a=this.wind.geometry.getAttribute('aOpacity') as THREE.BufferAttribute;
-      if(this.wind.visible){for(let i=0;i<p.count/2;i++){const q=windSample(i,seconds,upper,this.windScratch);let y=q.y;if(this.world==='venus')y=expandedHeight(this.world,57)+(q.y-.6)*.12;if(this.world==='mars')y=q.y*.45;const len=.13*q.alpha;p.setXYZ(i*2,q.x,y,q.z);p.setXYZ(i*2+1,q.x+len,y+.008,q.z);a.setX(i*2,q.alpha*.10);a.setX(i*2+1,q.alpha*.65);}p.needsUpdate=a.needsUpdate=true;}
+      if(this.wind.visible){for(let i=0;i<p.count/2;i++){const q=windSample(i,seconds,upper,this.windScratch);let y=q.y;if(this.world==='venus')y=expandedHeight(this.world,57)+(q.y-.6)*.12;if(this.world==='mars')y=q.y*.45;const len=.13*q.alpha,strength=upper?ozone.transport:1;p.setXYZ(i*2,q.x,y,q.z);p.setXYZ(i*2+1,q.x+len,y+.008,q.z);a.setX(i*2,q.alpha*.10*strength);a.setX(i*2+1,q.alpha*.65*strength);}p.needsUpdate=a.needsUpdate=true;}
     }
     if(this.rain&&this.splash){
       const on=this.world==='earth'?options.weather==='rain'&&(overview||selected==='weather'):selected==='methane-cloud'&&options.weather==='rain';this.rain.visible=this.splash.visible=on;
@@ -195,22 +241,51 @@ export class StructurePhenomena {
       for(const [i,fragment]of this.fragments.entries()){const split=Math.max(0,(progress-.60)/.4),offset=(i-1.5)*.075*split;fragment.visible=options.meteorOutcome==='fragment'&&split>0;fragment.position.set(point.x+offset,point.y-split*(.08+i*.05),point.z+offset*.4);fragment.material.opacity=Math.sin(split*Math.PI)*.8;}
     }
     for(const [curtain,mesh]of this.curtains.entries()){
-      mesh.visible=options.aurora&&(overview||selected==='aurora');mesh.material.uniforms.uTime.value=seconds%4096;
+      const strength=selected==='aurora'?thermal.aurora:1;
+      mesh.visible=options.aurora&&strength>.001&&(overview||selected==='aurora');mesh.material.uniforms.uTime.value=seconds%4096;mesh.material.uniforms.uStrength.value=(curtain?.48:1.25)*strength;
       if(!mesh.visible)continue;
       const p=mesh.geometry.getAttribute('position') as THREE.BufferAttribute;
       for(let i=0;i<=96;i++)for(let j=0;j<=16;j++){const q=auroraPoint(i/96,j/16,seconds,curtain,this.auroraScratch);p.setXYZ(i*17+j,q.x,q.y,q.z);}p.needsUpdate=true;
     }
+    const weather=weatherMechanismSample(mechanism);
     for(const [i,parcel]of this.parcels.entries()){
-      parcel.visible=options.clues&&mechanism?.layer===0&&selected==='weather';const rise=mechanism?.step===0?0:mechanism?.step===1?mechanism.progress:1;
-      parcel.position.set(i?2.6:.65,expandedHeight('earth',.15+rise*2.85),i?.65:1);parcel.scale.setScalar(1+rise*.6);parcel.material.color.set(i?'#9cb9c1':'#e4c292').lerp(this.parcelCooling,rise);
+      parcel.visible=options.clues&&weather.active&&selected==='weather'&&(i===1||options.weather!=='dry');
+      parcel.position.set(weather.x+(i?1.95:0),expandedHeight('earth',weather.km),i?.65:weather.z);parcel.scale.setScalar(1+weather.rise*.6);parcel.material.color.set(i?'#9cb9c1':'#e4c292').lerp(this.parcelCooling,weather.rise);
     }
     this.ultraviolet.visible=selected==='ozone'&&options.clues;
     if(this.ultraviolet.visible)for(const [i,ray]of this.ultravioletRays.entries()){
       const a=ray.geometry.getAttribute('aOpacity') as THREE.BufferAttribute;
-      for(let j=0;j<a.count;j++){const t=(Math.floor(j/2)+j%2)/40,fade=1-THREE.MathUtils.smoothstep(t,.25,1),flow=.78+.22*Math.sin(t*18-seconds*2.4+i*.7);a.setX(j,.45*fade*flow);}
+      for(let j=0;j<a.count;j++){const t=(Math.floor(j/4)+(j%4>=2?1:0))/UV_SEGMENTS,fade=1-THREE.MathUtils.smoothstep(t,.25,1)*ozone.uvAbsorption,front=1-THREE.MathUtils.smoothstep(t,ozone.uvFront,ozone.uvFront+.035),flow=.94+.06*Math.sin(t*18-seconds*2.4+i*.7);a.setX(j,.94*fade*flow*front);}
       a.needsUpdate=true;
     }
-    this.magnetic.visible=selected==='aurora'&&options.clues&&options.aurora;if(this.magnetic.visible)for(const [i,e]of this.electrons.entries())e.curve.getPoint((seconds*.3+i*.17)%1,e.particle.position);
+    if(this.ultravioletHeads){
+      this.ultravioletHeads.visible=this.ultraviolet.visible&&ozone.uvFront>.02&&ozone.uvAbsorption<.98;
+      for(let i=0;i<5;i++){const end=expandedHeight('earth',22+structureNoise(i+41)*10),start=expandedHeight('earth',48),t=ozone.uvFront,x=-1.7+i*.79+.25*(1-t),y=start+(end-start)*t,alpha=.94*(1-ozone.uvAbsorption);
+        this.band(this.ultravioletHeads,i*2,x-.065,y+.13,.88,x,y,.88,alpha,alpha);this.band(this.ultravioletHeads,i*2+1,x+.095,y+.10,.88,x,y,.88,alpha,alpha);
+      }this.ultravioletHeads.geometry.getAttribute('position').needsUpdate=true;this.ultravioletHeads.geometry.getAttribute('aOpacity').needsUpdate=true;
+    }
+    if(this.ozoneHeat){this.ozoneHeat.visible=selected==='ozone'&&options.clues&&ozone.ozoneHeat>.001;const a=this.ozoneHeat.geometry.getAttribute('aOpacity');for(let i=0;i<a.count;i++)a.setX(i,ozone.ozoneHeat*.94);a.needsUpdate=true;}
+    if(this.stratosphereTransport){
+      this.stratosphereTransport.visible=selected==='ozone'&&options.clues&&ozone.transport>.001;
+      for(let i=0;i<4;i++){
+        const f=(seconds*.035+i*.25+.1)%1,x=-3.3+f*6.1,y=expandedHeight('earth',24)+(i%2?-.10:.09),alpha=ozone.transport*.92*Math.min(1,f/.06,(1-f)/.06),tip=x+.50;
+        this.band(this.stratosphereTransport,i*3,x,y,.90,tip,y,.90,alpha,alpha);
+        this.band(this.stratosphereTransport,i*3+1,tip-.12,y+.075,.90,tip,y,.90,alpha,alpha);
+        this.band(this.stratosphereTransport,i*3+2,tip-.12,y-.075,.90,tip,y,.90,alpha,alpha);
+      }this.stratosphereTransport.geometry.getAttribute('position').needsUpdate=true;this.stratosphereTransport.geometry.getAttribute('aOpacity').needsUpdate=true;
+    }
+    if(this.solarRays){this.solarRays.visible=selected==='aurora'&&options.clues&&thermal.active&&thermal.solarFront>0;const a=this.solarRays.geometry.getAttribute('aOpacity');for(let i=0;i<a.count;i++){const t=(Math.floor(i/4)%SOLAR_SEGMENTS+(i%4>=2?1:0))/SOLAR_SEGMENTS;a.setX(i,.94*(1-THREE.MathUtils.smoothstep(t,thermal.solarFront,thermal.solarFront+.035)));}a.needsUpdate=true;}
+    if(this.thermalTrails){
+      this.thermalTrails.visible=selected==='aurora'&&options.clues&&thermal.active&&thermal.thermalMotion>.001;
+      const p=this.thermalTrails.geometry.getAttribute('position'),a=this.thermalTrails.geometry.getAttribute('aOpacity');
+      for(const [i,particle]of this.thermalParticles.entries()){
+        const x=-1.9+i*.76,y=expandedHeight('earth',225+i%3*42),dx=(i%2?1:-1)*.28*thermal.thermalMotion,dy=(i%3-1)*.12*thermal.thermalMotion;
+        this.band(this.thermalTrails,i,x,y,.24,x+dx,y+dy,.24,.22,.94);
+        particle.visible=this.thermalTrails.visible;particle.position.set(x+dx,y+dy,.24);
+      }p.needsUpdate=a.needsUpdate=true;
+    }
+    this.magnetic.visible=selected==='aurora'&&options.clues&&options.aurora&&(!thermal.active||thermal.particleArrival>0);
+    if(this.magnetic.visible)for(const [i,e]of this.electrons.entries())e.curve.getPoint(thermal.active?thermal.particleArrival:(seconds*.3+i*.17)%1,e.particle.position);
     this.exosphere.visible=selected==='escape'&&options.clues;
     if(this.exosphere.visible&&this.exosphereParticles.length){const manual=mechanism?.layer===4,step=mechanism?.step??0,p=mechanism?.progress??0;this.retainedCurve.getPoint(manual?step===0?0:step===1?p:1:(seconds*.16)%1,this.exosphereParticles[0].position);this.exosphereParticles[1].visible=!manual||step===2;this.escapeCurve.getPoint(manual?step===2?p:0:(seconds*.12+.2)%1,this.exosphereParticles[1].position);}
   }

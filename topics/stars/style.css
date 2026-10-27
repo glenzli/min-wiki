@@ -96,7 +96,7 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 
 /* Compact topic controls; retain the large scene and the Reader's neutral palette. */
 #stellar-observation{--reader-control-height:32px;--reader-control-size:12px;--reader-control-radius:7px;--reader-control-gap:6px}
-#stellar-observation :is(#chapters,#controls,.observation-toolbar) :is(button,select,summary){min-height:44px!important;padding:7px 9px!important;line-height:20px!important;font-size:14px!important}
+#stellar-observation :is(#chapters,#controls,.observation-toolbar) :is(button,select,summary):not([data-reader-menu-item]){min-height:44px!important;padding:7px 9px!important;line-height:20px!important;font-size:14px!important}
 #stellar-observation>.observation-toolbar{min-height:0;gap:6px;padding:6px 12px!important;align-items:center}
 #stellar-observation>.observation-toolbar>.observation-title{display:none}
 #stellar-observation>.observation-toolbar>.observation-choices{margin-right:auto;max-width:calc(100% - 230px);min-width:0}
@@ -122,7 +122,7 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 .stellar-workspace>.next-links>a{min-height:30px;padding:4px 8px;font-size:12px;line-height:20px}
 @media(max-width:649px){
   #stellar-observation{--reader-control-height:44px}
-  #stellar-observation :is(#chapters,#controls,.observation-toolbar) :is(button,select,summary){min-height:44px!important;padding-block:8px!important}
+  #stellar-observation :is(#chapters,#controls,.observation-toolbar) :is(button,select,summary):not([data-reader-menu-item]){min-height:44px!important;padding-block:8px!important}
   #stellar-observation>.observation-toolbar{display:flex;flex-wrap:wrap;gap:5px;padding:6px 10px!important}
   #stellar-observation>.observation-toolbar>.observation-choices{flex:1 1 145px;width:auto;max-width:none;margin:0}
   #stellar-observation .observation-choices>summary{min-height:44px;flex-wrap:nowrap;gap:7px;padding:8px 9px;font-size:12px}
@@ -152,7 +152,7 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 /* Question, conditions and reading have separate entrances. */
 #stellar-observation>.observation-toolbar>.observation-choices{max-width:none;flex:1 1 180px}
 #stellar-observation .observation-choices #chapters{display:grid;grid-template-columns:1fr;margin:0;gap:5px}
-#stellar-observation .observation-choices #chapters button{text-align:left}
+#stellar-observation .observation-choices #chapters button{text-align:left;padding:10px 12px 10px 32px}
 #stellar-observation .observatory{}
 #stellar-observation .observatory:has(.stellar-conditions:not(.observation-panel-hidden)),#stellar-observation .observatory:has(.stellar-notes:not(.observation-panel-hidden)){grid-template-columns:minmax(0,1fr) minmax(260px,320px)}
 #stellar-observation .stellar-conditions{min-width:0;overflow:auto;border-left:1px solid var(--border);padding:8px 4px}
@@ -188,3 +188,10 @@ html[data-topic-ui] body>main.stellar-workspace>header h1{font-size:26px;margin:
 #stellar-observation .stellar-essential .scene-heading{padding:8px 12px;flex-wrap:wrap}
 #stellar-observation .stellar-essential #scale-note{margin:8px 12px;font-size:13px;line-height:1.5}
 #stellar-observation .three-canvas{height:var(--reader-stage-size);min-height:0;flex:none}
+
+/* The retained 3D canvas and its status share the Reader stage allocation. */
+#stellar-observation .stellar-visual .stellar-space-stage{display:flex;flex-direction:column;height:100%;min-height:0}
+#stellar-observation .stellar-visual .stellar-space-canvas{height:0;min-height:0;flex:1}
+#stellar-observation .stellar-visual .stellar-space-status{flex:none}
+
+#stellar-observation .stellar-visual[data-reader-fit="natural"]{height:auto}

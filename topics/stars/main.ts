@@ -9,6 +9,7 @@ import nebulaWords from './nebulaContent.json';
 import {NEBULA_REFERENCES,ILLUMINATIONS} from './nebulaModel.ts';
 import {evolutionState,evolutionPosition,solarTransition,PHASES,PHASE_PROGRESS,type Track} from './evolutionModel.ts';
 import {advanceEvolution,type EvolutionDirection} from './evolutionPlayback.ts';
+import {advanceSolarFlare,FLARE_DURATION,solarFlare} from './solarMechanisms.ts';
 import {stellarSpaceFrame} from './spaceModel.ts';
 import { readState, distanceAU, solarObservation, chapterFrom } from './model.ts';
 import {ORBIT_CASES} from './orbitSystems.ts';
@@ -41,6 +42,11 @@ const stellarVisual=document.createElement('div');stellarVisual.className='stell
 stellarVisual.append(el('stellar-canvas'),el('canvas-fallback'));
 const stellarEssential=document.createElement('div');stellarEssential.className='stellar-essential';stellarEssential.dataset.readerEssential='';
 stellarEssential.append(stage.querySelector('.scene-heading')!,el('scale-note'),transport);stage.replaceChildren(stellarVisual,stellarEssential);
+// Retain the chapter controls so Reader can close the chooser and restore focus to its summary.
+for(const chapter of data.chapters){
+  const choice=button(text(chapter.name),chapterFrom(state.chapter)===chapter.id,()=>{stop();state.chapter=chapterFrom(chapter.id);writeUrl();update();});
+  choice.dataset.chapter=chapter.id;el('chapters').append(choice);
+}
 const observation=mountObservationMode(observationRoot,{enter:u('immersive'),exit:u('exitImmersive')},{fit:true,choices:[el('chapters')],panels:[{label:t('改变条件'),elements:[conditions],open:false},{label:t('讲解'),elements:[notes,threeBody.notes]}]});
 const conditionButton=observation.toolbar.querySelector<HTMLButtonElement>(`button[aria-controls~="${conditions.id}"]`)!;
 // A single side panel leaves the retained scene at a useful size.
@@ -55,11 +61,16 @@ const motion=matchMedia('(prefers-reduced-motion: reduce)');let surfacePlaying=!
 let playing=false,last=0,frame=0,evolutionReadoutAt=0,disposed=false,scene:StellarScene|undefined;
 let evolutionDirection:EvolutionDirection=1;
 function surfaceLabel(){surfaceButton.textContent=surfacePlaying?t('暂停动态'):t('继续动态');surfaceButton.setAttribute('aria-label',u(surfacePlaying?'pauseSurface':'playSurface'));surfaceButton.title=u(surfacePlaying?'pauseSurface':'playSurface');surfaceButton.setAttribute('aria-pressed',String(surfacePlaying));}
-function surfaceTick(now:number){surfaceFrame=0;if(!surfacePlaying||state.chapter==='nebulae'||document.hidden||disposed)return;state.surfaceTime+=Math.min(.1,(now-surfaceLast)/1000);surfaceLast=now;if(now-surfacePaint>=125){surfacePaint=now;if(state.chapter==='three-body')threeBody.setSurfaceTime(state.surfaceTime);else draw();}surfaceFrame=requestAnimationFrame(surfaceTick);}
+function surfaceTick(now:number){
+ surfaceFrame=0;if(!surfacePlaying||state.chapter==='nebulae'||document.hidden||disposed)return;
+ const elapsed=Math.min(.1,(now-surfaceLast)/1000);state.surfaceTime+=elapsed;
+ state.flareTime=advanceSolarFlare(state.flareTime,elapsed,state.chapter==='anatomy'&&state.anatomyFocus===4);
+ surfaceLast=now;if(now-surfacePaint>=125){surfacePaint=now;if(state.chapter==='three-body')threeBody.setSurfaceTime(state.surfaceTime);else {updateAnatomyFlare();draw();}}surfaceFrame=requestAnimationFrame(surfaceTick);
+}
 function setSurface(active:boolean){surfacePlaying=active;cancelAnimationFrame(surfaceFrame);surfaceFrame=0;surfaceLabel();if(active&&!document.hidden&&!disposed){surfaceLast=performance.now();surfaceFrame=requestAnimationFrame(surfaceTick);}}
-surfaceButton.onclick=()=>setSurface(!surfacePlaying);surfaceLabel();
+surfaceButton.onclick=()=>{setSurface(!surfacePlaying);writeUrl();};surfaceLabel();
 try{scene=new StellarScene(el<HTMLCanvasElement>('stellar-canvas'),text);}catch{el('canvas-fallback').hidden=false;el('stellar-canvas').hidden=true;}
-function writeUrl(){const url=new URL(location.href);url.searchParams.set('chapter',state.chapter);url.searchParams.set('distance',state.distance.toFixed(3));url.searchParams.set('type',String(state.type));url.searchParams.set('orbit',state.orbitCase);url.searchParams.delete('system');url.searchParams.set('track',state.evolutionTrack);url.searchParams.set('evolution',state.evolutionProgress.toFixed(5));url.searchParams.set('focus',String(state.anatomyFocus));url.searchParams.set('nebula',state.nebulaKind);url.searchParams.set('cloud',state.nebulaReference);url.searchParams.set('light',state.illumination);if(state.spaceView)url.searchParams.delete('view');else url.searchParams.set('view','comparison');if(state.cutaway)url.searchParams.set('cutaway','1');else url.searchParams.delete('cutaway');history.replaceState(null,'',url);}
+function writeUrl(){const url=new URL(location.href);url.searchParams.set('chapter',state.chapter);url.searchParams.set('distance',state.distance.toFixed(3));url.searchParams.set('type',String(state.type));url.searchParams.set('orbit',state.orbitCase);url.searchParams.delete('system');url.searchParams.set('track',state.evolutionTrack);url.searchParams.set('evolution',state.evolutionProgress.toFixed(5));url.searchParams.set('focus',String(state.anatomyFocus));if(state.flareTime>0)url.searchParams.set('flare',state.flareTime.toFixed(3));else url.searchParams.delete('flare');url.searchParams.set('nebula',state.nebulaKind);url.searchParams.set('cloud',state.nebulaReference);url.searchParams.set('light',state.illumination);if(state.spaceView)url.searchParams.delete('view');else url.searchParams.set('view','comparison');if(state.cutaway)url.searchParams.set('cutaway','1');else url.searchParams.delete('cutaway');history.replaceState(null,'',url);}
 function draw(){if(state.chapter!=='three-body')scene?.draw(state);}
 function evolutionShellVisible(){return stellarSpaceFrame({chapter:'evolution',track:state.evolutionTrack,progress:state.evolutionProgress,nebula:'nursery',illumination:'emission'}).shellOpacity>.01;}
 function evolutionPlayLabel(){return evolutionWords.ui[evolutionDirection===-1?(state.evolutionProgress<=0?'reverseRestart':'reversePlay'):state.evolutionProgress>=1?'restart':'play'];}
@@ -73,6 +84,13 @@ function tick(now:number){frame=0;if(!playing||disposed||document.hidden)return;
 function button(label:string,selected:boolean,onClick:()=>void){const b=document.createElement('button');b.textContent=label;b.setAttribute('aria-pressed',String(selected));b.onclick=onClick;return b;}
 function slider(label:string,value:number,min:number,max:number,callback:(v:number)=>void,id?:string){const l=document.createElement('label');l.append(label);const input=document.createElement('input');input.type='range';input.min=String(min);input.max=String(max);input.step='any';input.value=String(value);if(id)input.id=id;input.oninput=()=>{callback(Number(input.value));writeUrl();updateReadout();draw();};l.append(input);return l;}
 const evolveText=(value:{zh:string;en:string})=>text(value);
+function updateAnatomyFlare(){
+ if(state.chapter!=='anatomy'||state.anatomyFocus!==4)return;
+ const frame=solarFlare(state.flareTime),words=anatomyWords.ui.flareStages[frame.stage];
+ const progress=document.getElementById('flare-progress') as HTMLInputElement|null;
+ if(progress){progress.value=String(state.flareTime);progress.setAttribute('aria-valuetext',text(words));}
+ const status=document.getElementById('flare-status');if(status&&(status.dataset.stage!==frame.stage||status.dataset.complete!==String(frame.ended))){status.dataset.stage=frame.stage;status.dataset.complete=String(frame.ended);status.textContent=text(words);writeUrl();}
+}
 function ageLabel(age:number){const locale=language==='en'?'en':'zh',n=(v:number)=>v.toLocaleString(locale==='en'?'en-US':'zh-CN',{maximumSignificantDigits:3}),e=evolutionWords.ui;
   if(locale==='zh')return age>=1e8?`${n(age/1e8)} ${e.elapsed.zh}`:age>=1e4?`${n(age/1e4)} ${e.tenThousand.zh}`:`${n(age)} ${e.years.zh}`;
   return age>=1e9?`${n(age/1e9)} ${e.elapsed.en}`:age>=1e6?`${n(age/1e6)} ${e.million.en}`:`${n(age)} ${e.years.en}`;
@@ -93,10 +111,7 @@ function updateReadout(){
   el('readouts').replaceChildren(...rows.map(([label,value])=>{const div=document.createElement('div'),span=document.createElement('span'),strong=document.createElement('strong');span.textContent=label;strong.textContent=value;div.append(span,strong);return div;}));
 }
 function update(){
-  const chapter=chapterFrom(state.chapter);observationRoot.dataset.chapter=chapter;conditionButton.hidden=chapter==='sun'||chapter==='three-body';if(conditionButton.hidden&&conditionButton.getAttribute('aria-expanded')==='true')conditionButton.click();el('chapters').replaceChildren(...data.chapters.map(ch=>{
-    const choice=button(text(ch.shortName),chapter===ch.id,()=>{stop();state.chapter=chapterFrom(ch.id);writeUrl();update();el('chapters').querySelector<HTMLButtonElement>(`[data-chapter="${ch.id}"]`)?.focus({preventScroll:true});});
-    choice.dataset.chapter=ch.id;choice.title=text(ch.name);choice.setAttribute('aria-label',text(ch.name));return choice;
-  }));
+  const chapter=chapterFrom(state.chapter);observationRoot.dataset.chapter=chapter;conditionButton.hidden=chapter==='sun'||chapter==='three-body';if(conditionButton.hidden&&conditionButton.getAttribute('aria-expanded')==='true')conditionButton.click();el('chapters').querySelectorAll<HTMLButtonElement>('[data-chapter]').forEach(choice=>choice.setAttribute('aria-pressed',String(choice.dataset.chapter===chapter)));
   surfaceButton.hidden=chapter==='nebulae';if(chapter==='nebulae'){cancelAnimationFrame(surfaceFrame);surfaceFrame=0;}else if(surfacePlaying&&!surfaceFrame&&!document.hidden&&!disposed){surfaceLast=performance.now();surfaceFrame=requestAnimationFrame(surfaceTick);}
   reading.setChildTarget(chapter==='three-body'?threeIntro:el('explain'));
   threeDetail.hidden=chapter!=='three-body';
@@ -149,8 +164,14 @@ function update(){
   }
   if(chapter==='anatomy'){
     const ui=anatomyWords.ui;controls.classList.add('anatomy-controls');for(const [i,feature]of anatomyWords.features.entries())controls.append(button(evolveText(feature.name),state.anatomyFocus===i,()=>{state.anatomyFocus=i;writeUrl();update();}));
+    if(state.anatomyFocus===4){
+      const seek=slider(text(ui.flareProgress),state.flareTime,0,FLARE_DURATION,value=>{setSurface(false);state.flareTime=value;updateAnatomyFlare();},'flare-progress');
+      const replay=button(text(ui.replayFlare),false,()=>{state.flareTime=0;updateAnatomyFlare();writeUrl();draw();setSurface(true);});
+      const status=document.createElement('p');status.id='flare-status';status.className='scale-note';status.setAttribute('role','status');
+      const note=document.createElement('p');note.className='scale-note';note.textContent=text(ui.flareNote);transport.append(replay,seek,status,note);
+    }
     const focus=anatomyWords.features[state.anatomyFocus]!;el('scene-title').textContent=evolveText(ui.title);el('context').textContent=evolveText(focus.name);el('scale-note').textContent=evolveText(ui.scale);
-    el('explain-title').textContent=evolveText(focus.name);el('explain').textContent=evolveText(focus.body);el('boundary').textContent=evolveText(focus.boundary);el<HTMLAnchorElement>('source').href=focus.source;reading.set(anatomyStudies[state.anatomyFocus]!);updateReadout();draw();return;
+    el('explain-title').textContent=evolveText(focus.name);el('explain').textContent=evolveText(focus.body);el('boundary').textContent=evolveText(focus.boundary);el<HTMLAnchorElement>('source').href=focus.source;reading.set(anatomyStudies[state.anatomyFocus]!);updateAnatomyFlare();updateReadout();draw();return;
   }
   el('scene-title').textContent=u(chapter==='sun'?'sunTitle':chapter==='types'?'typesTitle':'orbitsTitle');
   el('context').textContent=chapter==='types'?text(data.types[state.type]!.name):chapter==='orbits'?text(data.orbitCases[state.orbitCase].name):u('sunContext');

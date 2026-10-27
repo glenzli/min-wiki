@@ -153,3 +153,13 @@ Reader markers identify the outer visual, short caption and playback row; scient
 models and controls retain their existing state and events.
 
 The native observation shell declares a main scene, essential playback/readout cluster and optional explanation/settings. Encounter and zoom views fit the available stage; the paired ruler comparison retains natural reading flow. Short landscape windows can place essential controls beside the same retained renderer. No chapter state, physical model or scene lease is replaced by resizing.
+
+## Anatomy geometry and light-path explanation · 2026-10-27
+
+The anatomy selection now exposes its corresponding reference: the horizon retains its separate geometry, the shadow selection shows a dashed ideal reference outline, and disk/lensing selections add gold guides in the same flat disk plane used by the retained optics. The optical image remains active. Disk guides use that illustration's 3–11 horizon-radius emissive domain, not the separate scale chapter's arbitrary comparison disk; they are labelled geometry, not a newly measured accretion-disk extent.
+
+Lensing also shows one fixed emitter-position locator A, which remains at the same world coordinate when the camera turns. It is an open geometric marker, not light observed through the shadow. `anatomyGuide.ts` owns a short, explicitly unscaled 2D side-section: one gold source A, bent paths, an observer, and same-colour apparent-image symbols A′. This qualitative side-section has its own stated view and does not track or measure pixels in the main camera. It is not an additional ray solver. Changing the selected part or showing/hiding guides preserves the original optical object and playback progress; leaving anatomy disposes the guide and renderer together.
+
+Scientific interpretation follows the existing [NASA anatomy](https://science.nasa.gov/universe/black-holes/anatomy/) and [warped light-image explanation](https://www.nasa.gov/universe/nasa-visualization-shows-a-black-holes-warped-world/). The wind tracer candidate and atomic encounter models are unchanged in this step.
+
+Direct anatomy links accept `?chapter=anatomy&part=overview|horizon|shadow|disk|lensing`. Unsupported or missing parts retain the overview default. Selecting a part updates that parameter without resetting progress; ordinary chapter selection retains the in-memory state. These links allow each representation to be reviewed directly in either language.

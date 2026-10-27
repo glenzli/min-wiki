@@ -112,3 +112,13 @@
  .black-hole-workspace .black-hole-essential .controls .scrub{flex-basis:100%}
  .black-hole-workspace .steps button{flex:1 1 100%;text-align:start}
 }
+
+/* Anatomy keeps its ray-rendered image beside a distinct qualitative explanation. */
+#scene-host.anatomy-layout{display:flex;min-width:0;min-height:0}
+.anatomy-drawing{position:relative;flex:1;min-width:0;min-height:0;overflow:hidden}
+.anatomy-light-path{flex:0 0 34%;min-width:250px;max-width:360px;margin:0;padding:12px;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:6px;border-inline-start:1px solid #304556;background:#091522;color:#dce8ef}
+.anatomy-light-path figcaption{font-size:13px;line-height:1.5;color:#ffe2a0}
+.anatomy-light-path svg{display:block;width:100%;height:100%;min-height:0;font:13px system-ui}
+.anatomy-light-path p{font-size:12px;line-height:1.5;margin:0;color:#b7cbd9}
+#black-hole-workspace .anatomy-selected{color:#ffe2a0;box-shadow:inset 0 -1px #ffe2a080}
+@media(max-width:699px){#scene-host.anatomy-layout{flex-direction:column}.anatomy-light-path{position:relative;flex:0 0 178px;min-width:0;max-width:none;padding:6px 10px;border-inline-start:0;border-top:1px solid #304556;grid-template-rows:auto minmax(0,1fr)}.anatomy-light-path figcaption{font-size:12px}.anatomy-light-path svg{font-size:15px}.anatomy-light-path p{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}

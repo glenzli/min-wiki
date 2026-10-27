@@ -12,7 +12,7 @@ import type {Illumination,NebulaKind,NebulaReference} from './nebulaModel.ts';
 import nebulaWords from './nebulaContent.json';
 import data from './content.json';
 type Words=(v:{zh:string;en:string})=>string;
-export interface ViewState {chapter:string;distance:number;type:number;section:boolean;orbitCase:OrbitCase;time:number;surfaceTime:number;evolutionTrack:Track;evolutionProgress:number;anatomyFocus:number;nebulaKind:NebulaKind;nebulaReference:NebulaReference;illumination:Illumination;spaceView:boolean;cutaway:boolean}
+export interface ViewState {chapter:string;distance:number;type:number;section:boolean;orbitCase:OrbitCase;time:number;surfaceTime:number;evolutionTrack:Track;evolutionProgress:number;anatomyFocus:number;flareTime:number;nebulaKind:NebulaKind;nebulaReference:NebulaReference;illumination:Illumination;spaceView:boolean;cutaway:boolean}
 const rand=(n:number)=>{const v=Math.sin(n*127.13+8.37)*43758.5453;return v-Math.floor(v);};
 export class StellarScene {
   private ctx:CanvasRenderingContext2D;
@@ -36,21 +36,25 @@ export class StellarScene {
   }
   draw(s:ViewState){this.lastState=s;
     const spaceInput=s.chapter==='nebulae'||s.chapter==='evolution'&&s.spaceView?{chapter:s.chapter as 'nebulae'|'evolution',track:s.evolutionTrack,progress:s.evolutionProgress,nebula:s.nebulaKind,reference:s.nebulaReference,illumination:s.illumination}:undefined;
+    const visual=this.canvas.closest<HTMLElement>('[data-reader-stage]');
+    if(spaceInput&&visual&&visual.dataset.readerFit!=='available')visual.dataset.readerFit='available';
     if(this.space.draw(spaceInput,s.surfaceTime,s.cutaway))return;
     const width=this.canvas.clientWidth,newChapter=s.chapter==='evolution'||s.chapter==='anatomy',stacked=newChapter&&width<650,mobileOrbit=s.chapter==='orbits'&&width<650;
+    // Stacked authored panels keep their actual height instead of being cropped to one fitted stage.
+    const fit=stacked||mobileOrbit?'natural':'available';if(visual&&visual.dataset.readerFit!==fit)visual.dataset.readerFit=fit;
     this.canvas.style.height=stacked?`${Math.ceil(width*560/520*2)}px`:mobileOrbit?`${Math.ceil(width*(s.orbitCase==='hierarchical'?780:565)/520)}px`:'';const height=this.canvas.clientHeight;if(!width||!height)return;const dpr=Math.min(devicePixelRatio||1,2),c=this.ctx;
     if(this.canvas.width!==Math.round(width*dpr)||this.canvas.height!==Math.round(height*dpr)){this.canvas.width=Math.round(width*dpr);this.canvas.height=Math.round(height*dpr);}
     if(stacked){c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#070e1c';c.fillRect(0,0,width,height);const panelHeight=width*560/520,scale=width/520;
       for(let panel=0;panel<2;panel++){c.save();c.beginPath();c.rect(0,panel*panelHeight,width,panelHeight);c.clip();c.translate(-panel*520*scale,panel*panelHeight);c.scale(scale,scale);
         if(s.chapter==='evolution')drawEvolution(c,s.evolutionTrack,s.evolutionProgress,s.surfaceTime,this.text,this.surface,18);
-        else drawAnatomy(c,s.anatomyFocus,s.surfaceTime,this.text,this.surface,18);c.restore();}
+        else drawAnatomy(c,s.anatomyFocus,s.surfaceTime,this.text,this.surface,18,s.flareTime);c.restore();}
       return;}
     if(mobileOrbit){c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#070e1c';c.fillRect(0,0,width,height);c.scale(width/520,width/520);drawOrbitSystem(c,s.orbitCase,s.time,s.surfaceTime,this.text,this.surface,true);return;}
     c.setTransform(dpr,0,0,dpr,0,0);c.fillStyle='#070e1c';c.fillRect(0,0,width,height);this.viewScale=Math.min(width/1040,height/560);c.translate((width-1040*this.viewScale)/2,(height-560*this.viewScale)/2);c.scale(this.viewScale,this.viewScale);
     for(let i=0;i<100;i++){c.globalAlpha=.12+rand(i+1)*.38;c.fillStyle='#c4d4ed';c.beginPath();c.arc(rand(i+11)*1040,rand(i+421)*560,.3+rand(i+20),0,7);c.fill();}c.globalAlpha=1;
     if(s.chapter==='nebulae')drawNebula(c,spaceInput!,s.cutaway);
     else if(s.chapter==='evolution')drawEvolution(c,s.evolutionTrack,s.evolutionProgress,s.surfaceTime,this.text,this.surface,this.fontSize(16));
-    else if(s.chapter==='anatomy')drawAnatomy(c,s.anatomyFocus,s.surfaceTime,this.text,this.surface,this.fontSize(16));
+    else if(s.chapter==='anatomy')drawAnatomy(c,s.anatomyFocus,s.surfaceTime,this.text,this.surface,this.fontSize(16),s.flareTime);
     else if(s.chapter==='sun'){
       c.strokeStyle='#283344';c.beginPath();c.moveTo(520,65);c.lineTo(520,470);c.stroke();
       this.star(260,270,142,'#ffe5b1',s.surfaceTime);const r=142*solarObservation(distanceAU(s.distance)).angularDiameterDegrees/solarObservation(1).angularDiameterDegrees;
