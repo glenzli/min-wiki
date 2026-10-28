@@ -2,24 +2,24 @@
   "version": 1,
   "topicId": "cosmic-scale",
   "zh": {
-    "question": "同一把尺下天体差多少？同一座星系转个方向又会看到什么？",
-    "observe": "先在共同线性标尺上比较天体直径，再沿太阳系、银河系、本星系群、拉尼亚凯亚和可观测范围找结构归属。进入星系结构观察，把同一银河从正面转到侧面，追踪盘内的太阳定位环，分别检查盘、中央核球与棒、稀疏恒星晕；再比较旋涡、椭圆、不规则星系，以及星团与星系群的不同层次。案例切换不是演化进度。最后沿同一物理标尺从地球或太阳连续拉远，区分距离锚点、物理轮廓和示意纹理。",
+    "question": "怎样把头顶的银河、星座与三维宇宙连起来？同一把尺又能看出什么？",
+    "observe": "先按问题选择：天体有多大、行星怎样成一家、星系是什么样、夜空为什么这样、我们住在宇宙哪里，或一直拉远会看到什么。小选项直接放在各自画面旁；先照「试一试」操作，再打开这一幕的看图讲解或深入原理。先在共同线性标尺上比较天体直径，再沿太阳系、银河系、本星系群、拉尼亚凯亚和可观测范围找结构归属。进入星系结构观察，把同一银河从正面转到侧面，追踪盘内的太阳定位环，分别检查盘、中央核球与棒、稀疏恒星晕；再比较旋涡、椭圆、不规则星系，以及星团与星系群的不同层次。案例切换不是演化进度。最后沿同一物理标尺从地球或太阳连续拉远，区分距离锚点、物理轮廓和示意纹理。 在第三章从盘内看银河光带，再保留太阳和视线移到盘外；选择猎户座，比较同一组恒星从地球与侧面看时的图案。选择仙女座方向，把银河前景星和远处M31分开，再与M87的平滑恒星体对照。用共同AU尺比较TRAPPIST-1七颗行星和水星轨道，近景播放同一段20天。 地面夜空与空间中的沿盘面观察用按钮独立切换。先对照太阳系八颗行星和TRAPPIST-1七颗已知行星的完整阵容，再比较银河系和M87的整体体积。行星全貌为展开布局，轨道距离另用共同AU尺比较。",
     "academic": [
       {
         "title": "同一长度单位跨越多个量级",
-        "body": "模型始终以 km 保存距离，滑杆控制视野宽度的对数而不是把每个天体的半径分别取对数。同一帧内的几何投影保持线性。km、AU 和光年是不同大小的长度单位；超小天体转换为定位符，定位符与真实直径明确分开。大犬座 VY 使用 2012 年约 1420 个太阳半径的光球估计；St2-18 由 2012 年光度与温度推得约 2150 个太阳半径，依赖不确定的距离与星团归属。它们是估计案例，不是最大恒星排行榜。"
+        "body": "模型始终以 km 保存距离，滑杆控制视野宽度的对数而不是把每个天体的半径分别取对数。同一帧内的几何投影保持线性。km、AU 和光年是不同大小的长度单位；超小天体转换为定位符，定位符与真实直径明确分开。大犬座 VY 使用 2012 年约 1420 个太阳半径的光球估计；St2-18 由 2012 年光度与温度推得约 2150 个太阳半径，依赖不确定的距离与星团归属。它们是估计案例，不是最大恒星排行榜。 TRAPPIST-1轨道与水星轨道使用共同线性AU尺；近景只改变取景范围。七颗行星共享演示天数和选定轨道周期，圆轨道、相位、放大定位球和假想表面不代表完整多体计算或观测地图。 完整行星阵容的展开布局不作距离比较；太阳系各行星周期由既有AU轨道半径按圆轨道开普勒近似计算。"
       },
       {
         "title": "银河系的空间结构",
-        "body": "银河系是棒旋星系，包括扁平恒星盘、中央核球与棒、较稀疏恒星晕和气体等成分。太阳位于盘内，距中心约二万六千光年；本场景取盘半径约五万光年作结构参照。改变视角只改变投影，不重新分布恒星：正面便于找旋臂，侧面便于比较盘与晕的厚度。旋涡、椭圆和不规则是形态案例，不是所有星系必经的演化序列。星团是恒星集合，能作为星系的组成部分；星系群的成员则是多座星系。不能靠亮点数量或圆不圆作统一分类。暗物质晕由引力效应间接推断；本章的可见星点晕只代表恒星晕。中心黑洞主导邻近区域，并不把整个银河变成巨大的太阳系。"
+        "body": "银河系是棒旋星系，包括扁平恒星盘、中央核球与棒、较稀疏恒星晕和气体等成分。太阳位于盘内，距中心约二万六千光年；本场景取盘半径约五万光年作结构参照。改变视角只改变投影，不重新分布恒星：正面便于找旋臂，侧面便于比较盘与晕的厚度。旋涡、椭圆和不规则是形态案例，不是所有星系必经的演化序列。星团是恒星集合，能作为星系的组成部分；星系群的成员则是多座星系。不能靠亮点数量或圆不圆作统一分类。暗物质晕由引力效应间接推断；本章的可见星点晕只代表恒星晕。中心黑洞主导邻近区域，并不把整个银河变成巨大的太阳系。 银河光带来自盘内观察；不同视线穿过的星光和尘埃不同。星座是天空区域与投影图案，不是物理层级中的一座星系。猎户座七颗亮星使用J2000方向和2007年Hipparcos视差倒数示例；亮星和多星的距离有研究差异，误差条只对应视差形式误差，不含所有系统误差。部分恒星可能同属星协，认星连线本身不证明物理连接。M31与M87为真实对象案例，三维点群仍是结构重建示意。"
       },
       {
         "title": "地图是有边界的重建",
-        "body": "银河系的外观模型根据内部观测重建，而不是从外面拍摄的完整照片。本星系群不仅有银河、仙女座和三角座星系，还包含大、小麦哲伦云等约 50 个矮星系。室女座星系团是另一个邻近结构，不包含本星系群；按拉尼亚凯亚的流向重建，两者都处于这一广大区域，但边界取决于观测和模型，超星系团整体通常不受自身引力束缚。宇宙网是大尺度分布形态，不是容纳拉尼亚凯亚的独立外壳。结构路径图不按比例；可观测范围画面与连续镜头终点共用一套统计示意网，中心定位符并非超星系团直径。远处丝线、结点与小光点不是个别星系的实测位置或大小，不能凭画面测量。最远端的长度表示今天的空间距离量级，不等于光走过的年数；本图不模拟宇宙膨胀或光行回溯时间。"
+        "body": "银河系的外观模型根据内部观测重建，而不是从外面拍摄的完整照片。本星系群不仅有银河、仙女座和三角座星系，还包含大、小麦哲伦云等许多矮星系。室女座星系团是另一个邻近结构，不包含本星系群；按拉尼亚凯亚的流向重建，两者都处于这一广大区域，但边界取决于观测和模型，超星系团整体通常不受自身引力束缚。宇宙网是大尺度分布形态，不是容纳拉尼亚凯亚的独立外壳。结构路径图不按比例；可观测范围画面与连续镜头终点共用一套统计示意网，中心定位符并非超星系团直径。远处丝线、结点与小光点不是个别星系的实测位置或大小，不能凭画面测量。最远端的长度表示今天的空间距离量级，不等于光走过的年数；本图不模拟宇宙膨胀或光行回溯时间。"
       }
     ],
-    "misconception": "光年是距离；太阳系、星团、星系和星系群是不同层次。星系转到侧面不会变成另一种星系；形态类别也不是必然的演化顺序。可观测范围以观察者为参照，不说明地球是宇宙物理中心，视界不是宇宙边墙。",
-    "boundary": "地球表面、星点分布与星系外观为结构插画。所有十字和空心小圈都表示位置，不是被放大的真实尺寸。星系方向为示意，银河晕范围非精确边界，本星系群的小星系点只是抽样，不是成员普查。天体对比只比较直径，不表示质量或实际间隔；大角星采用约 25.4 个太阳半径的估计。结构图不按尺寸和距离比例；连续镜头的大尺度丝线和光点也不能用标尺测量。可观测视界不是整个宇宙的物理边缘。 新增星系观察使用稳定的教学点群与三维空间，点数和亮度不是实测恒星数；各案例和星团放大图独立取景，没有共同尺寸标尺。本星系群可旋转图只说明成员归属，位置、尺寸和方向不可量取。正面与侧面使用同一组几何，不计算星系演化或恒星轨道。",
+    "misconception": "光年是距离；太阳系、星团、星系和星系群是不同层次。星系转到侧面不会变成另一种星系；形态类别也不是必然的演化顺序。可观测范围以观察者为参照，不说明地球是宇宙物理中心，视界不是宇宙边墙。 天上的仙女座区域不等于仙女座星系；看起来相邻的恒星不一定同样远。TRAPPIST-1与太阳系同属行星系统，M31与银河系同属星系。",
+    "boundary": "地球表面、星点分布与星系外观为结构插画。所有十字和空心小圈都表示位置，不是被放大的真实尺寸。星系方向为示意，银河晕范围非精确边界，本星系群的小星系点只是抽样，不是成员普查。天体对比只比较直径，不表示质量或实际间隔；大角星采用约 25.4 个太阳半径的估计。结构图不按尺寸和距离比例；连续镜头的大尺度丝线和光点也不能用标尺测量。可观测视界不是整个宇宙的物理边缘。 新增星系观察使用稳定的教学点群与三维空间，点数和亮度不是实测恒星数；各案例和星团放大图独立取景，没有共同尺寸标尺。本星系群可旋转图只说明成员归属，位置、尺寸和方向不可量取。正面与侧面使用同一组几何，不计算星系演化或恒星轨道。 夜空新增命名恒星使用目录方向，与原有统计星点明确区分。未命名背景、银河光带强弱与尘埃细节为增强结构投影，非此时此地的完整星图；M31光斑为方向定位而放大。猎户座距离为明确年代的有误差输入，不模拟恒星移动。 地面夜空与空间镜头为独立模式，不把地平线混入空间中的镜头移动。完整行星对照包括中央恒星与主要行星；卫星、小天体与更远处储库不在本次阵容中。银河系与M87分别完整取景，不共用大小标尺。",
     "narration": [
       {
         "label": "把两位放在一起比",
@@ -33,8 +33,8 @@
       },
       {
         "label": "转个方向看银河",
-        "text": "先找出银河里的太阳定位环。正面看，星光连成旋臂；转到侧面，同一片星光变成薄盘，中央鼓起，周围还有稀疏的恒星晕。太阳始终留在盘内。再看看平滑的椭圆星系和不对称的不规则星系，这些是不同案例，不是一座星系按顺序变形。星团则是星系里的一群恒星，不能把它当成缩小的星系。",
-        "cue": "进入星系结构章，选择正面、侧面并拖动旋转；关闭与重新打开盘、核球和恒星晕，最后比较星团的归属图与独立放大图。"
+        "text": "先找出银河里的太阳定位环。正面看，星光连成旋臂；转到侧面，同一片星光变成薄盘，中央鼓起，周围还有稀疏的恒星晕。太阳始终留在盘内。再看看平滑的椭圆星系和不对称的不规则星系，这些是不同案例，不是一座星系按顺序变形。星团则是星系里的一群恒星，不能把它当成缩小的星系。 抬头看到的银河光带，正是我们住在这个薄盘里看到的星光。沿盘看和朝盘外看，会有什么不同？再看看猎户座，同样几颗星，移到侧面就显出远近。仙女座方向的小光斑则是一整座遥远星系，和前面的亮星不是同一层东西。别的行星系统也有不同布局：TRAPPIST-1的七颗行星，轨道都比水星的更紧凑。 把太阳和八颗行星，与TRAPPIST-1和七颗已知行星并排看全貌：有的行星系统有巨行星，有的已知行星挤得很近。再并排转动银河系和M87，看薄盘与较圆的恒星体有什么不同。",
+        "cue": "进入星系结构章，选择正面、侧面并拖动旋转；关闭与重新打开盘、核球和恒星晕，最后比较星团的归属图与独立放大图。 再选银河光带、猎户座与TRAPPIST-1案例，保留太阳或恒星身份，移动观察位置、点选读数，并播放共同20天。"
       },
       {
         "label": "银河之外",
@@ -44,24 +44,24 @@
     ]
   },
   "en": {
-    "question": "How do bodies compare on one ruler, and what does turning a galaxy reveal?",
-    "observe": "Compare body diameters on one linear ruler, then follow the structural address from the Solar System through the Milky Way, Local Group, Laniakea and observable region. In the galaxy study, turn the same Milky Way from face-on to edge-on, track the Sun locator in the disk, and inspect the disk, central bulge and bar, and sparse stellar halo. Compare spiral, elliptical and irregular forms, then distinguish star clusters from galaxy groups. Changing cases is not an evolutionary clock. Finally zoom continuously from Earth or the Sun, distinguishing distance anchors, physical outlines and illustrative texture.",
+    "question": "How do our night sky and 3D universe connect, and what does one common ruler reveal?",
+    "observe": "Choose a question: body sizes, planetary families, galaxy structure, our sky, our cosmic address, or continuous zoom-out. Cases sit beside their own drawing. Follow Try this, then open the current picture explanation or its principles. Compare body diameters on one linear ruler, then follow the structural address from the Solar System through the Milky Way, Local Group, Laniakea and observable region. In the galaxy study, turn the same Milky Way from face-on to edge-on, track the Sun locator in the disk, and inspect the disk, central bulge and bar, and sparse stellar halo. Compare spiral, elliptical and irregular forms, then distinguish star clusters from galaxy groups. Changing cases is not an evolutionary clock. Finally zoom continuously from Earth or the Sun, distinguishing distance anchors, physical outlines and illustrative texture. In chapter 03, look along the Galactic disk, then move outside while retaining the Sun and sightline. Compare the same Orion stars from Earth and the side. Separate Milky Way foreground stars from distant M31, then contrast its form with M87. Compare TRAPPIST-1 with Mercury on one AU ruler and play a shared 20-day close-up. Explicit buttons separate the ground sky from the along-disk spatial view. First compare the complete eight-planet Solar System and seven known TRAPPIST-1 planets, then the whole Milky Way and M87 volumes. Whole-system orbits are spread for readability; the separate common-AU view compares orbital distances.",
     "academic": [
       {
         "title": "One length system across many orders of magnitude",
-        "body": "Distances remain in kilometers. The slider changes the logarithm of view width; it does not separately take logarithms of body radii. Geometry within each frame remains a linear projection. Kilometers, AU and light-years are all length units. Subpixel bodies switch to explicit position symbols rather than silently enlarged disks. VY Canis Majoris uses a 2012 photospheric estimate of about 1420 solar radii. St2-18 uses about 2150 solar radii inferred from 2012 luminosity and temperature values, conditional on uncertain distance and cluster membership. These are estimated examples, not a largest-star ranking."
+        "body": "Distances remain in kilometers. The slider changes the logarithm of view width; it does not separately take logarithms of body radii. Geometry within each frame remains a linear projection. Kilometers, AU and light-years are all length units. Subpixel bodies switch to explicit position symbols rather than silently enlarged disks. VY Canis Majoris uses a 2012 photospheric estimate of about 1420 solar radii. St2-18 uses about 2150 solar radii inferred from 2012 luminosity and temperature values, conditional on uncertain distance and cluster membership. These are estimated examples, not a largest-star ranking. TRAPPIST-1 and Mercury share a linear AU orbital scale; close-up only changes framing. Seven planets share elapsed days and selected periods. Circular orbits, authored phases, enlarged locators and hypothetical surfaces are not a many-body solution or observed maps. The spread whole-system layout is not a distance comparison. Solar planet periods use a circular Kepler approximation from the existing AU orbital radii."
       },
       {
         "title": "The structure of the Milky Way",
-        "body": "The Milky Way is a barred spiral with a flattened stellar disk, central bulge and bar, sparse stellar halo, gas and other components. The Sun lies in the disk about 26,000 light-years from the centre; a rounded 50,000-light-year disk radius provides a structural reference here. Changing the view changes projection rather than reshuffling stars: face-on reveals arms, while edge-on compares disk and halo depth. Spiral, elliptical and irregular are morphological cases, not a compulsory evolutionary sequence. Star clusters are stellar collections that can belong to a galaxy; galaxy groups contain multiple galaxies. Dot counts and roundness do not define a universal classification. Dark matter is inferred from gravity; the visible halo dots in this chapter represent the stellar halo only. The central black hole governs nearby orbits, not the whole galaxy as a giant Solar System."
+        "body": "The Milky Way is a barred spiral with a flattened stellar disk, central bulge and bar, sparse stellar halo, gas and other components. The Sun lies in the disk about 26,000 light-years from the centre; a rounded 50,000-light-year disk radius provides a structural reference here. Changing the view changes projection rather than reshuffling stars: face-on reveals arms, while edge-on compares disk and halo depth. Spiral, elliptical and irregular are morphological cases, not a compulsory evolutionary sequence. Star clusters are stellar collections that can belong to a galaxy; galaxy groups contain multiple galaxies. Dot counts and roundness do not define a universal classification. Dark matter is inferred from gravity; the visible halo dots in this chapter represent the stellar halo only. The central black hole governs nearby orbits, not the whole galaxy as a giant Solar System. The sky band is an inside-disk view. Constellations are sky regions and projected patterns, not galaxies. Orion uses J2000 directions and selected reciprocal 2007 Hipparcos parallaxes. Bright and multiple-star distances differ between studies; bars show only formal parallax errors. Some stars can share associations; pattern lines alone establish no physical link. M31 and M87 are real examples, while their point volumes remain structural illustrations."
       },
       {
         "title": "A reconstruction with defined limits",
-        "body": "The external Milky Way view is reconstructed from observations made inside it, not photographed from outside. Beyond the Milky Way, the Local Group includes Andromeda, Triangulum and around 50 dwarf galaxies such as the Magellanic Clouds. The Virgo Cluster is a separate nearby structure, not a container for the Local Group. In a Laniakea flow reconstruction both occupy the wider region, but its boundary depends on observations and the model, and the supercluster is generally not bound as a whole. The cosmic web is a pattern of large-scale distribution, not a separate shell around Laniakea. Address diagrams are not to scale; the observable-region view and the continuous camera's endpoint share one statistical illustration, and the central locator is not the supercluster's diameter. Distant filaments, knots and points are not measured positions or sizes of individual galaxies and cannot be measured from the picture. The far-end length is an approximate present-day spatial distance, not light-travel time; expansion and lookback time are not simulated."
+        "body": "The external Milky Way view is reconstructed from observations made inside it, not photographed from outside. Beyond the Milky Way, the Local Group includes Andromeda, Triangulum and many dwarf galaxies such as the Magellanic Clouds. The Virgo Cluster is a separate nearby structure, not a container for the Local Group. In a Laniakea flow reconstruction both occupy the wider region, but its boundary depends on observations and the model, and the supercluster is generally not bound as a whole. The cosmic web is a pattern of large-scale distribution, not a separate shell around Laniakea. Address diagrams are not to scale; the observable-region view and the continuous camera's endpoint share one statistical illustration, and the central locator is not the supercluster's diameter. Distant filaments, knots and points are not measured positions or sizes of individual galaxies and cannot be measured from the picture. The far-end length is an approximate present-day spatial distance, not light-travel time; expansion and lookback time are not simulated."
       }
     ],
-    "misconception": "A light-year is a distance. Solar systems, star clusters, galaxies and galaxy groups are different levels. An edge-on view does not change a galaxy’s category, and morphology is not a compulsory evolutionary sequence. An observer-centred observable region does not make Earth the physical centre of the universe; its horizon is not a wall.",
-    "boundary": "Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the small-galaxy marks are a sample, not a Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Structure diagrams have no size or distance scale, and filaments and points in the continuous long-range camera cannot be measured with its ruler. The observable horizon is not the physical edge of the whole universe. The galaxy study uses stable teaching populations in 3D, not measured star counts or photometry. Cases and cluster close-ups are framed independently, without a common size ruler. The rotatable Local Group illustration shows membership; its positions, sizes and directions are not measurable. Face-on and edge-on views use the same geometry, without computing galaxy evolution or stellar orbits.",
+    "misconception": "A light-year is a distance. Solar systems, star clusters, galaxies and galaxy groups are different levels. An edge-on view does not change a galaxy’s category, and morphology is not a compulsory evolutionary sequence. An observer-centred observable region does not make Earth the physical centre of the universe; its horizon is not a wall. The Andromeda sky region is not the Andromeda galaxy. Nearby-looking stars need not be equally distant. TRAPPIST-1 and the Solar System are planetary systems; M31 and the Milky Way are galaxies.",
+    "boundary": "Earth’s surface, individual point distribution and external galaxy appearance are illustrations. Crosshairs and tiny open circles show locations, not inflated physical sizes. Directions are schematic, halo limits are not precise boundaries, and the small-galaxy marks are a sample, not a Local Group census. Body comparisons show diameters, not masses or separations; Arcturus uses an estimated 25.4 solar radii. Structure diagrams have no size or distance scale, and filaments and points in the continuous long-range camera cannot be measured with its ruler. The observable horizon is not the physical edge of the whole universe. The galaxy study uses stable teaching populations in 3D, not measured star counts or photometry. Cases and cluster close-ups are framed independently, without a common size ruler. The rotatable Local Group illustration shows membership; its positions, sizes and directions are not measurable. Face-on and edge-on views use the same geometry, without computing galaxy evolution or stellar orbits. Newly named sky stars use catalogue directions, distinct from statistical background points. Diffuse light, dust and unnamed points are enhanced structural projections, not a complete live local sky chart. M31’s directional patch is enlarged. Orion distances are explicitly dated, uncertain inputs, without stellar motion. Ground sky and spatial cameras are separate modes; the horizon does not blend into spatial travel. The whole planetary comparison includes each central star and its major planets, excluding moons, small bodies and more distant reservoirs. The Milky Way and M87 are framed as whole objects without a shared size ruler.",
     "narration": [
       {
         "label": "Put two bodies side by side",
@@ -75,8 +75,8 @@
       },
       {
         "label": "Turn the Milky Way around",
-        "text": "Find the Sun locator in the Milky Way. Face-on, starlight traces arms; turn edge-on and the same stars reveal a thin disk, a central bulge and a sparse stellar halo. The Sun stays in the disk. Compare a smooth elliptical galaxy and an asymmetric irregular galaxy. These are different examples, not stages of one galaxy changing shape. A star cluster is a collection of stars within a galaxy, not simply a miniature galaxy.",
-        "cue": "Open galaxy structure, choose face-on and edge-on, then drag to rotate. Toggle the disk, bulge and stellar halo; compare the cluster membership context with its independent close-up."
+        "text": "Find the Sun locator in the Milky Way. Face-on, starlight traces arms; turn edge-on and the same stars reveal a thin disk, a central bulge and a sparse stellar halo. The Sun stays in the disk. Compare a smooth elliptical galaxy and an asymmetric irregular galaxy. These are different examples, not stages of one galaxy changing shape. A star cluster is a collection of stars within a galaxy, not simply a miniature galaxy. Our sky’s Milky Way band is starlight seen from inside this disk. Compare looking along and away from it. The same Orion stars reveal different depths from the side. A little smudge in Andromeda’s direction is a whole distant galaxy, beyond the foreground stars. Other planetary systems have different layouts too: TRAPPIST-1’s seven orbits are all more compact than Mercury’s. See the Sun and all eight planets beside TRAPPIST-1 and its seven known planets: one has giant planets, while the other known family is tightly packed. Turn the whole Milky Way and M87 side by side to compare a thin disk with a rounder stellar body.",
+        "cue": "Open galaxy structure, choose face-on and edge-on, then drag to rotate. Toggle the disk, bulge and stellar halo; compare the cluster membership context with its independent close-up. Then choose the Milky Way band, Orion and TRAPPIST-1, retain object identities, move the observer, select readouts and play a shared 20 days."
       },
       {
         "label": "Beyond our galaxy",
@@ -153,6 +153,38 @@
     {
       "title": "ESA Gaia · Guide to our galaxy",
       "url": "https://www.esa.int/Science_Exploration/Space_Science/Gaia/Guide_to_our_galaxy"
+    },
+    {
+      "title": "NASA · A Milky Way Band",
+      "url": "https://science.nasa.gov/image-article/apod-2005-june-5-a-milky-way-band/"
+    },
+    {
+      "title": "NASA · Andromeda halo and sky appearance",
+      "url": "https://science.nasa.gov/missions/hubble/hubble-maps-giant-halo-around-andromeda-galaxy/"
+    },
+    {
+      "title": "NASA StarChild · What are constellations?",
+      "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/questions/question9.html"
+    },
+    {
+      "title": "CDS · Hipparcos new reduction (van Leeuwen 2007)",
+      "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/I/311"
+    },
+    {
+      "title": "Shenar et al. 2015 · Mintaka distance caveat",
+      "url": "https://doi.org/10.1088/0004-637X/809/2/135"
+    },
+    {
+      "title": "NASA · TRAPPIST-1 system",
+      "url": "https://science.nasa.gov/mission/webb/science-overview/science-explainers/what-is-webb-revealing-about-the-trappist-1-system/"
+    },
+    {
+      "title": "NASA Exoplanet Archive · TRAPPIST-1, Agol et al. 2021",
+      "url": "https://exoplanetarchive.ipac.caltech.edu/overview/TRAPPIST-1"
+    },
+    {
+      "title": "NASA Hubble · M87",
+      "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-87/"
     }
   ]
 }

@@ -20,7 +20,7 @@
       "source": "查看科学依据 ↗",
       "onward": "从所选起点开始新旅程 →",
       "continueZoom": "继续上次的拉远 →",
-      "zoomHandoff": "下一章改用物理标尺。新旅程从所选的地球或太阳近景开始，进入后按播放；继续上次会保留已经到达的尺度。",
+      "zoomHandoff": "想比较真实距离，可进入「一直拉远」。新旅程从所选的地球或太阳近景开始；继续上次则保留已经到达的尺度。",
       "sun": "太阳在盘内 · 距中心约 2.6 万光年",
       "center": "中央核球与棒",
       "diskLabel": "薄的恒星盘",
@@ -43,7 +43,16 @@
       "viewA": "方向 A",
       "viewB": "方向 B",
       "turn": "转动观察方向",
-      "elevation": "绕横轴改变观察方向"
+      "elevation": "绕横轴改变观察方向",
+      "orionRegion": "猎户座这七颗星 · 太阳附近",
+      "m87": "M87 · 椭圆星系",
+      "comparisonBoundary": "两座星系完整取景 · 不共用尺寸标尺",
+      "compareWhole": "完整星系对照 →",
+      "singleMilky": "单看银河系",
+      "singleM87": "单看M87",
+      "pairFace": "正面看银河",
+      "pairEdge": "侧面看银河",
+      "comparisonHint": "试试侧面：银河的薄盘变窄，M87仍有较厚的恒星体积。拖动可以继续转动两座星系。"
     },
     "en": {
       "chapter": "Explore galaxy structure",
@@ -65,7 +74,7 @@
       "source": "Read the science source ↗",
       "onward": "Start a new journey at the chosen origin →",
       "continueZoom": "Resume the previous zoom →",
-      "zoomHandoff": "The next chapter uses a physical ruler. A new journey opens at the chosen Earth or Sun close-up, ready to play. Resuming keeps the scale you reached earlier.",
+      "zoomHandoff": "For physical distances, open the zoom-out question. A new journey starts at the chosen Earth or Sun; resuming keeps the scale reached earlier.",
       "sun": "Sun in the disk · about 26,000 ly from centre",
       "center": "Central bulge and bar",
       "diskLabel": "Thin stellar disk",
@@ -88,7 +97,16 @@
       "viewA": "View A",
       "viewB": "View B",
       "turn": "Turn the viewing direction",
-      "elevation": "Change the viewing elevation"
+      "elevation": "Change the viewing elevation",
+      "orionRegion": "These seven Orion stars · near the Sun",
+      "m87": "M87 · elliptical galaxy",
+      "comparisonBoundary": "Two whole-galaxy views · no shared size ruler",
+      "compareWhole": "Compare whole galaxies →",
+      "singleMilky": "Milky Way on its own",
+      "singleM87": "M87 on its own",
+      "pairFace": "Milky Way face-on",
+      "pairEdge": "Milky Way edge-on",
+      "comparisonHint": "Try edge-on: the Milky Way disk narrows while M87 keeps a thicker stellar volume. Drag to turn both galaxies."
     }
   },
   "cases": {
@@ -114,8 +132,8 @@
         "en": "From inside the Milky Way, astronomers reconstruct its appearance using stellar distances, motions and observations at different wavelengths. This external view is not a photograph taken outside our galaxy."
       },
       "limits": {
-        "zh": "盘半径取约 5 万光年作结构参照，太阳定位取其 0.52；臂、棒、晕与厚度为教学几何。金环不表示太阳直径。这里显示恒星晕，不显示推断的暗物质晕，也不模拟恒星轨道。",
-        "en": "A rounded 50,000-light-year disk radius makes the solar locator radius 0.52. Arms, bar, halo and thickness are teaching geometry. The gold ring is not the Sun’s diameter. This shows a stellar halo, not an inferred dark-matter halo, and does not simulate stellar orbits."
+        "zh": "盘半径取约 5 万光年作结构参照，太阳定位取其 0.52；臂、棒、晕与厚度为教学几何。金环不表示太阳直径。这里显示恒星晕，不显示推断的暗物质晕，也不模拟恒星轨道。 从猎户座定位返回时，青色点另用目录方向和指定距离估计标出那七颗亮星；不把它们混同于统计背景点。",
+        "en": "A rounded 50,000-light-year disk radius makes the solar locator radius 0.52. Arms, bar, halo and thickness are teaching geometry. The gold ring is not the Sun’s diameter. This shows a stellar halo, not an inferred dark-matter halo, and does not simulate stellar orbits. After locating Orion, cyan marks use catalogue directions and the selected distance estimates for those seven stars, distinct from statistical background samples."
       },
       "sources": [
         {
@@ -126,30 +144,34 @@
     },
     "spiral": {
       "name": {
-        "zh": "旋涡星系：盘还是球？",
-        "en": "Spiral: disk or ball?"
+        "zh": "仙女座星系M31：另一座旋涡星系",
+        "en": "Andromeda M31: another spiral galaxy"
       },
       "child": {
-        "zh": "正面容易看见旋臂，侧面却像一道薄薄的星光带。画面没有换成另一座星系，是你绕到它旁边了。",
-        "en": "Face-on, you can find the spiral arms. Edge-on, the same galaxy looks like a thin band of starlight. You moved around it; it did not become another galaxy."
+        "zh": "天空中的小光斑，实际是一整座星系。先从地球附近找到M31，再转动这幅旋涡结构重建，看盘、中央亮区和尘埃带。",
+        "en": "A faint sky smudge is an entire galaxy. First locate M31 from near Earth, then turn this spiral reconstruction to inspect its disk, bright centre and dust lanes."
       },
       "title": {
-        "zh": "旋臂与观察角度",
-        "en": "Spiral arms and viewing angle"
+        "zh": "从仙女座方向的小光斑，到一整座星系",
+        "en": "From a smudge in Andromeda’s direction to a whole galaxy"
       },
       "theory": {
         "zh": "旋涡星系有盘、旋臂和中央成分。臂中的年轻亮星及恒星形成区能突出旋臂，但臂间也有恒星。倾斜角会改变投影形状；看不见旋臂并不能单独证明它没有盘。",
         "en": "Spiral galaxies contain a disk, arms and a central component. Young bright stars and star-forming regions can emphasize the arms, but stars also occupy the spaces between them. Inclination changes the projected shape; hidden arms alone do not demonstrate the absence of a disk."
       },
       "evidence": {
-        "zh": "天文学家用图像、光谱和运动信息比较结构。不同波段对恒星、气体与尘埃敏感的程度不同。",
-        "en": "Astronomers compare structure using images, spectra and motions. Different wavelengths reveal stars, gas and dust with different sensitivities."
+        "zh": "M31距离约250万光年，在合适的暗夜条件下可见为模糊光斑。仙女座是天空区域；前景恒星属于银河系，M31则在远处。这里的可旋转外观是结构示意，不是测得每颗恒星深度的实景。",
+        "en": "M31 is about 2.5 million light-years away and appears as a faint smudge under suitable dark skies. Andromeda names a sky region: foreground stars belong to our Milky Way and M31 lies beyond. This rotatable appearance is a structural illustration, not measured depths for every star."
       },
       "limits": {
-        "zh": "这是代表性棒旋结构，不是某个实测星系。颜色只区分成分；旋臂不是固体辐条，本场景不计算旋臂形成或恒星绕行。",
-        "en": "This is a representative barred spiral, not a measured galaxy. Colours distinguish components. Arms are not solid spokes; this scene computes neither arm formation nor stellar orbits."
+        "zh": "保留旧spiral链接。旋臂、棒、厚度和星点使用代表几何，不能当成M31的精确三维地图；真实天空视图只对应其目录方向。案例各自取景，不能从显示大小比较银河系和M31。",
+        "en": "Legacy spiral links remain valid. Arms, bar, thickness and star samples are representative geometry, not an exact 3D M31 map; the sky view uses its catalogued direction. Independent framing cannot compare the physical sizes of M31 and the Milky Way."
       },
       "sources": [
+        {
+          "title": "NASA · Andromeda sky appearance",
+          "url": "https://science.nasa.gov/missions/hubble/hubble-maps-giant-halo-around-andromeda-galaxy/"
+        },
         {
           "title": "NASA · Types of galaxies",
           "url": "https://science.nasa.gov/universe/galaxies/types/"
@@ -158,12 +180,12 @@
     },
     "elliptical": {
       "name": {
-        "zh": "椭圆星系：不是空心椭圆",
-        "en": "Elliptical: a volume of stars"
+        "zh": "M87：没有明显旋臂的星系",
+        "en": "M87: a galaxy without prominent arms"
       },
       "child": {
-        "zh": "转动这个平滑的星光体，找找它有没有像旋涡星系那样的薄盘和旋臂。画面中的星光填在一个有厚度的空间里，不只落在椭圆边线上。",
-        "en": "Rotate this smooth stellar body. Can you find a spiral galaxy’s thin disk and arms? Starlight fills a volume; it does not sit only on an oval outline."
+        "zh": "M87也属于星系这一层级，却没有银河系那样明显的旋臂。转动它的平滑恒星体，看看星光怎样填满有厚度的空间。",
+        "en": "M87 is a galaxy too, with no prominent Milky-Way-like spiral arms. Turn its smooth stellar body and see starlight filling a volume."
       },
       "title": {
         "zh": "椭圆形是投影，不是空心轮廓",
@@ -174,14 +196,18 @@
         "en": "Elliptical galaxies usually have smoother light distributions, from nearly round to elongated, without prominent spiral arms. Older stars often dominate, with relatively little cold gas or recent star formation. Shape alone is not an age measurement for every galaxy."
       },
       "evidence": {
-        "zh": "形态是观测分类；恒星年龄、气体和运动还需要光谱等信息。",
-        "en": "Morphology is an observational classification. Stellar ages, gas and motions require additional evidence such as spectra."
+        "zh": "M87是室女座星系团中的巨椭圆星系。观测图像显示平滑的恒星光分布；这里用体积分布解释其形态，不重建未知的逐星三维位置。",
+        "en": "M87 is a giant elliptical in the Virgo Cluster. Images reveal a smooth stellar light distribution; this volume explains its morphology without claiming unknown individual 3D stellar positions."
       },
       "limits": {
-        "zh": "本例用中心较密的三轴体表现厚度，不重建任何具体星系。旋涡、椭圆与不规则是并列案例，不是一条所有星系必经的演化顺序。",
-        "en": "A centrally concentrated triaxial volume illustrates depth, without reconstructing a particular galaxy. Spiral, elliptical and irregular are alternative examples, not a compulsory evolutionary sequence."
+        "zh": "这是受M87形态启发的中心较密三轴体，不是精确实测模型，也不与银河系共用大小尺。旋涡、椭圆与不规则是并列案例，不是所有星系必经的演化顺序。",
+        "en": "This centrally concentrated triaxial illustration is inspired by M87’s morphology, not an exact measured reconstruction or a common-size comparison with the Milky Way. Spiral, elliptical and irregular are alternative examples, not a compulsory evolutionary sequence."
       },
       "sources": [
+        {
+          "title": "NASA Hubble · M87",
+          "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-87/"
+        },
         {
           "title": "NASA · Types of galaxies",
           "url": "https://science.nasa.gov/universe/galaxies/types/"
@@ -289,6 +315,162 @@
         {
           "title": "NASA · Andromeda Galaxy",
           "url": "https://www.nasa.gov/universe/galaxies/andromeda-galaxy/"
+        }
+      ]
+    },
+    "sky": {
+      "name": {
+        "zh": "银河光带：从里面到外面",
+        "en": "Milky Way band: inside to outside"
+      },
+      "child": {
+        "zh": "我们住在银河的薄盘里。沿盘面看，许多星光叠成光带；把视线转向盘外，再拉到外面看，太阳仍是同一个金色定位环。",
+        "en": "We live inside the Galactic disk. Along the disk, starlight builds into a band. Look out of the disk, then move outside: the gold ring keeps the same Sun."
+      },
+      "title": {
+        "zh": "天上的银河，就是我们身处其中的银河系",
+        "en": "The sky band belongs to the galaxy we live inside"
+      },
+      "theory": {
+        "zh": "盘内不同方向穿过的恒星分布和尘埃不同。沿盘面会积累较多星光，离开盘面通常较少；尘埃遮挡形成暗带。选择仙女座方向，可在银河前景星的后面定位约250万光年外的M31，它不是银河的一颗恒星。",
+        "en": "Different directions from inside the disk cross different stellar populations and dust. Looking along the disk accumulates more starlight; looking away usually crosses less. Dust obscuration creates dark lanes. In the Andromeda direction, M31 lies about 2.5 million light-years beyond Milky Way foreground stars; it is not one of our galaxy’s stars."
+      },
+      "evidence": {
+        "zh": "银河光带、恒星测距与多波段巡天支持盘内解释。已命名前景星使用J2000方向，M31使用目录方向；银河弥散光与外观来自同一结构模型，不是实拍。",
+        "en": "The Milky Way band, stellar distances and multiwavelength surveys support the inside-disk explanation. Named foreground stars and M31 use catalogued J2000 directions. Diffuse Galactic light and the external view come from the same structural model, not a photograph."
+      },
+      "limits": {
+        "zh": "这是选定朝向的增强教学视野，不是某个地点和时刻的观星预报。未命名星点、尘埃和弥散星光是稳定示意；亮度不作测光。镜头移动不是飞船航行，M31仅用方向标记表示，不与本银河盘共用距离比例。",
+        "en": "This enhanced teaching view has a chosen direction, not a sky forecast for a place and time. Unnamed star points, dust and diffuse light are stable illustrations, not calibrated photometry. Observer travel is not a spacecraft flight. M31 is a directional marker and does not share the Galactic disk’s distance scale."
+      },
+      "sources": [
+        {
+          "title": "NASA · A Milky Way Band",
+          "url": "https://science.nasa.gov/image-article/apod-2005-june-5-a-milky-way-band/"
+        },
+        {
+          "title": "NASA · Andromeda halo and sky appearance",
+          "url": "https://science.nasa.gov/missions/hubble/hubble-maps-giant-halo-around-andromeda-galaxy/"
+        }
+      ]
+    },
+    "orion": {
+      "name": {
+        "zh": "猎户座：星星真的挨在一起吗？",
+        "en": "Orion: are its stars really neighbours?"
+      },
+      "child": {
+        "zh": "先找腰带上的三颗星，再把观察位置移到侧面。同样的七个恒星定位点有远有近；回到地球附近，熟悉的图案又出现了。",
+        "en": "Find the three belt stars, then move the observer sideways. The same seven star locators lie at different depths. Return near Earth and the familiar pattern reappears."
+      },
+      "title": {
+        "zh": "星座图案是视线的投影",
+        "en": "A constellation pattern is a projection along our sightlines"
+      },
+      "theory": {
+        "zh": "用目录赤经、赤纬确定方向，再用一个有出处的距离估计构造三维位置。星体保持原位，改变观察者就会改变图案。星座是天空区域，连线是认图辅助；其中部分恒星可能属于同一星协，不能一概说彼此毫无关系。",
+        "en": "Catalogue right ascension and declination set direction; one sourced distance estimate supplies depth. Stars keep their positions while the observer changes the pattern. Constellations are sky regions and connecting lines are recognition aids. Some stars can share an association, so not all are physically unrelated."
+      },
+      "evidence": {
+        "zh": "七颗亮星的方向和视差采用CDS索引的2007年Hipparcos重处理值。距离用视差倒数换算，并显示视差正负一个形式误差对应的非对称距离区间。这是一组明确年代的比较输入，不是最新距离定论。",
+        "en": "Directions and parallaxes for seven bright stars use the CDS-indexed 2007 Hipparcos reduction. Reciprocal parallax supplies a selected distance, with an asymmetric interval from parallax plus/minus one formal error. These are explicitly dated comparison inputs, not a latest distance consensus."
+      },
+      "limits": {
+        "zh": "亮星表面变化、多星结构会影响测距，参宿四和腰带多星的其他研究可给出不同距离。范围条不包括所有系统误差，也不是完整概率后验。点是放大的定位符，不是恒星直径；没有计算自行、轨道或相对论航行。",
+        "en": "Bright-star surface variability and multiplicity affect astrometry; other studies give different distances for Betelgeuse and belt systems. Bars omit possible systematic errors and are not full posterior intervals. Dots are enlarged locators, not stellar diameters. Proper motion, stellar orbits and relativistic travel are not computed."
+      },
+      "sources": [
+        {
+          "title": "NASA StarChild · What are constellations?",
+          "url": "https://starchild.gsfc.nasa.gov/docs/StarChild/questions/question9.html"
+        },
+        {
+          "title": "CDS · Hipparcos new reduction (van Leeuwen 2007)",
+          "url": "https://cdsarc.cds.unistra.fr/viz-bin/cat/I/311"
+        },
+        {
+          "title": "Shenar et al. 2015 · Mintaka distance caveat",
+          "url": "https://doi.org/10.1088/0004-637X/809/2/135"
+        }
+      ]
+    },
+    "trappist-1": {
+      "name": {
+        "zh": "太阳系与TRAPPIST-1：完整行星系统",
+        "en": "Solar System and TRAPPIST-1: whole planetary systems"
+      },
+      "child": {
+        "zh": "先看两套行星系统的全貌：太阳与八颗行星，红矮星TRAPPIST-1与七颗已知行星。点选成员、转动或播放，再切换共同AU尺，比较轨道到底有多紧凑。",
+        "en": "Start with both planetary families: our Sun and eight planets, and red dwarf TRAPPIST-1 with seven known planets. Select members, turn or play, then switch to a common AU ruler to compare orbital compactness."
+      },
+      "title": {
+        "zh": "同一层级，不同的行星系统布局",
+        "en": "Same system level, different orbital layouts"
+      },
+      "theory": {
+        "zh": "TRAPPIST-1是一颗红矮星，周围已知七颗大小接近地球的岩质行星。轨道半长轴和周期采用Agol等2021年的选定估计。近似圆轨道共面显示，所有行星共享同一AU换算和同一演示天数，内侧通常更快。",
+        "en": "TRAPPIST-1 is a red dwarf with seven known roughly Earth-sized rocky planets. Selected semimajor axes and periods follow Agol et al. 2021. Approximate circular coplanar orbits share one AU conversion and one elapsed-day clock; inner planets generally go around faster."
+      },
+      "evidence": {
+        "zh": "凌日与凌日时间变化约束行星周期、半径和系统参数。共同尺展示轨道尺度，不把行星画面圆盘当成真实大小；放大后的表面是帮助辨认的假想岩石外观。",
+        "en": "Transits and transit-timing variations constrain periods, radii and system parameters. The common ruler measures orbital scales, not the enlarged body symbols. Close-up rocky appearances are hypothetical recognition illustrations."
+      },
+      "limits": {
+        "zh": "未求解多体引力、偏心率、共振或真实历元。近景更换取景范围但不改变轨道半径；水星轨道超出近景时有提示。没有已知表面照片，不据此判断海洋、大气或生命。恒星物理与双星机制仍由恒星专题讲解。 全貌为可读性将两套轨道分别展开，不用于量距；太阳系圆轨道周期按选用的半长轴和开普勒关系近似。太阳系图谱复用已有署名资源，TRAPPIST-1表面仍是假想外观。",
+        "en": "This does not solve many-body gravity, eccentricity or resonances, or use a measured orbital epoch. Close-up changes framing, not orbital radii; Mercury is marked as outside the view. No observed surface maps are available, and the drawing establishes no oceans, atmospheres or life. Stellar physics and binary mechanisms remain in the stars topic. Whole views spread both orbital layouts for readability without a distance ruler. Solar circular-orbit periods are approximated from selected semimajor axes and Kepler’s relation. Solar maps reuse attributed assets; TRAPPIST-1 surfaces remain hypothetical."
+      },
+      "sources": [
+        {
+          "title": "NASA · TRAPPIST-1 system",
+          "url": "https://science.nasa.gov/mission/webb/science-overview/science-explainers/what-is-webb-revealing-about-the-trappist-1-system/"
+        },
+        {
+          "title": "NASA Exoplanet Archive · TRAPPIST-1, Agol et al. 2021",
+          "url": "https://exoplanetarchive.ipac.caltech.edu/overview/TRAPPIST-1"
+        },
+        {
+          "title": "NASA · Solar System facts",
+          "url": "https://science.nasa.gov/solar-system/solar-system-facts/"
+        }
+      ]
+    },
+    "galaxy-comparison": {
+      "name": {
+        "zh": "银河系与M87：完整星系对照",
+        "en": "Milky Way and M87: whole galaxies"
+      },
+      "child": {
+        "zh": "两座星系分别看全貌。把银河转到侧面，薄盘明显变窄；M87的恒星分布仍有较厚的体积。也可单独进入任意一座继续看。",
+        "en": "See both galaxies as whole objects. Turn the Milky Way edge-on: its disk narrows, while M87 keeps a thicker stellar volume. Open either galaxy on its own to explore further."
+      },
+      "title": {
+        "zh": "相同层级，明显不同的恒星分布",
+        "en": "The same object level, different stellar structures"
+      },
+      "theory": {
+        "zh": "银河系是有棒旋涡星系，恒星盘、中央核球与棒、恒星晕共同组成整体。M87是巨椭圆星系，观测光分布较平滑，没有明显的旋臂。对照的是整体结构，不是两个局部切片。",
+        "en": "The barred-spiral Milky Way combines a stellar disk, central bulge and bar, and stellar halo. Giant elliptical M87 has a smoother observed light distribution without prominent arms. This compares whole structures, not local cutouts."
+      },
+      "evidence": {
+        "zh": "银河结构依据多种观测推断；M87的观测图像呈现平滑的恒星光体。这里复用单独案例的确定性体积分布样本，分别完整取景，不声称逐颗恒星的真实位置。",
+        "en": "Multiple observations constrain Galactic structure; images of M87 show a smooth stellar light body. These whole views reuse deterministic samples from the individual cases, without claiming measured individual stellar locations."
+      },
+      "limits": {
+        "zh": "并排位置只是阅读布局，各自取景，不可由画面量取大小、距离或恒星数。M87中心黑洞和喷流不是这里的比较对象，形态也不表示所有星系必经的演化顺序。",
+        "en": "Side-by-side positions are a reading layout with independent framing, not a shared size, distance or star-count ruler. M87’s central black hole and jet are outside this comparison; morphologies are not a compulsory evolutionary sequence."
+      },
+      "sources": [
+        {
+          "title": "NASA Hubble · M87",
+          "url": "https://science.nasa.gov/mission/hubble/science/explore-the-night-sky/hubble-messier-catalog/messier-87/"
+        },
+        {
+          "title": "NASA · Types of galaxies",
+          "url": "https://science.nasa.gov/universe/galaxies/types/"
+        },
+        {
+          "title": "ESA · Guide to our galaxy",
+          "url": "https://www.esa.int/Science_Exploration/Space_Science/Gaia/Guide_to_our_galaxy"
         }
       ]
     }

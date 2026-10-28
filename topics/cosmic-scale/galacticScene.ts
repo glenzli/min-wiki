@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { GALACTIC_CACHE_LIMIT, SOLAR_POSITION, galacticObjects, type GalacticCase, type GalacticObject, type GalacticState, type StellarCloud } from './galacticModel.ts';
 import content from './galacticContent.json';
+import {viewZoom} from './viewNavigation.ts';
+import catalogue from './skyCatalogue.json';
+import {galacticStarPosition,parallaxDistance} from './skyModel.ts';
 
 type Words = typeof content.ui.en;
 type Population = { cloud: StellarCloud; mesh: THREE.Points; owner: THREE.Group };
@@ -49,6 +52,7 @@ export class GalacticScene {
     this.prepareRenderer(); if (this.active && this.last) this.draw(this.last);
   }
   setActive(active: boolean) { this.active = active; }
+  get failed() {return !this.renderer||this.lost;}
   private entry(selected: GalacticCase) {
     const cached = this.cache.get(selected);
     if (cached) { this.cache.delete(selected); this.cache.set(selected, cached); return cached; }
@@ -75,12 +79,14 @@ export class GalacticScene {
     const width = this.host.clientWidth, height = this.host.clientHeight; if (!width || !height) return;
     const dpr = Math.min(2, devicePixelRatio || 1), aspect = width / height;
     // Reference visibility must not change magnification or reset the observer's view.
-    const extent = 1.38;
-    const half = extent * Math.max(1, aspect);
+    const pair=state.selected==='galaxy-comparison',portrait=aspect<1.25;
+    const extent = pair?(portrait?1.6:1.05):1.38;
+    const half = pair?Math.max(portrait?.95:2.18,extent*aspect)/viewZoom(state.zoom):extent * Math.max(1, aspect) / viewZoom(state.zoom);
     this.camera.left = -half; this.camera.right = half; this.camera.top = half / aspect; this.camera.bottom = -half / aspect; this.camera.updateProjectionMatrix();
     const current = this.entry(state.selected);
     for (const entry of this.cache.values()) entry.root.visible = entry === current;
-    current.root.rotation.set(state.pitch, 0, state.yaw);
+    current.root.rotation.set(pair?0:state.pitch, 0, pair?0:state.yaw);
+    if(pair)current.root.children.forEach((owner,i)=>{owner.position.set(portrait?0:i?1.08:-1.08,portrait?i?-.77:.77:0,0);owner.scale.setScalar(portrait?.52:.64);owner.rotation.set(state.pitch,0,state.yaw);});
     for (const p of current.populations) {
       p.mesh.visible = state.selected !== 'milky-way' && state.selected !== 'spiral' || p.cloud.part === 'population' || (p.cloud.part === 'dust' ? state.disk : state[p.cloud.part]);
       const material = p.mesh.material as THREE.ShaderMaterial;
@@ -121,7 +127,21 @@ export class GalacticScene {
       c.strokeStyle = color; c.lineWidth = 1; c.setLineDash(dashed ? [4, 5] : []); c.beginPath(); points.forEach((p, i) => { const [x, y] = this.project(p, owner, width, height); if (!i) c.moveTo(x, y); else c.lineTo(x, y); }); c.stroke(); c.setLineDash([]);
     };
     const ring = (p: [number, number], radius = 7) => { c.strokeStyle = '#ffe3a0'; c.lineWidth = 1.7; c.beginPath(); c.arc(...p, radius, 0, Math.PI * 2); c.stroke(); c.fillStyle = '#ffe3a0'; c.beginPath(); c.arc(...p, 2, 0, Math.PI * 2); c.fill(); };
+    if(state.selected==='galaxy-comparison'){
+      entry.root.children.forEach((owner,i)=>{const center=this.project([0,0,0],owner,width,height),r=owner.scale.x/(this.camera.top-this.camera.bottom)*height;
+        label(i?w.m87:w.milky,[center[0],center[1]-r-23],10);
+        if(i===0){const p=this.project(SOLAR_POSITION,owner,width,height);ring(p);label(w.sunLabel,[center[0]+r*.68,center[1]+r*.72],9,p);}
+      });
+      label(w.comparisonBoundary,[width/2,height-20],8);
+    }
     if (state.selected === 'milky-way') { const p = this.project(SOLAR_POSITION, root, width, height); ring(p); label(w.sunLabel, [width * .77, height * .14], 10, p); }
+    if(state.selected==='milky-way'&&state.sky.locateOrion){
+      const positions=catalogue.orion.map(star=>this.project(galacticStarPosition(star.ra,star.dec,parallaxDistance(star.parallax,star.error).ly),root,width,height));
+      const center:[number,number]=[positions.reduce((n,p)=>n+p[0],0)/positions.length,positions.reduce((n,p)=>n+p[1],0)/positions.length];
+      c.fillStyle='#96ddea';for(const p of positions){c.beginPath();c.arc(...p,2,0,Math.PI*2);c.fill();}
+      c.strokeStyle='#96ddea';c.setLineDash([3,4]);c.beginPath();c.arc(...center,Math.max(12,...positions.map(p=>Math.hypot(p[0]-center[0],p[1]-center[1])+5)),0,Math.PI*2);c.stroke();c.setLineDash([]);
+      label(w.orionRegion,[width*.72,height*.82],11,center);
+    }
     if (state.guides && (state.selected === 'milky-way' || state.selected === 'spiral')) {
       if (state.disk) {
         line(Array.from({ length: 101 }, (_, i) => [Math.cos(i * Math.PI / 50), Math.sin(i * Math.PI / 50), 0]), root, '#a2cee779', true);

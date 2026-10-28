@@ -299,5 +299,49 @@
       "en": "The solar disk and distances use one kilometer ruler. The golden colouring, limb darkening, granules and spots form an enhanced illustrative photosphere, not a live solar image or temperature measurement. Earth remains about one AU away."
     },
     "source": "https://science.nasa.gov/sun/facts/"
+  },
+  "navigation": {
+    "zh": {
+      "zoomIn": "放大观察",
+      "zoomOut": "缩小观察",
+      "resetZoom": "重置缩放",
+      "zoomLabel": "观察缩放",
+      "viewHint": "拖动旋转 · 滚轮或双指缩放 · 布局不作测距",
+      "physicalHint": "滚轮或双指调节同一把尺；也可拖动下方进度",
+      "subpixelEarth": "地球圆盘已小于 1 像素",
+      "subpixelSun": "太阳圆盘已小于 1 像素",
+      "positionKey": "金色标记只定位，不代表大小",
+      "bodiesTitle": "天体与轨道",
+      "bodiesDetail": "圆盘逐渐缩成位置符号；天体仍在原处。",
+      "interstellarTitle": "恒星之间，空间很空旷",
+    "interstellarDetail": "太阳系缩成标记；邻近恒星用空心圈定位，圈不代表大小。",
+    "starsTitle": "现在的亮点：恒星",
+      "starsDetail": "恒星圆盘已看不清；亮点示意分布，不是实测星图。",
+      "galaxyTitle": "现在看：许多恒星组成星系",
+      "galaxyDetail": "亮纹来自大量恒星；金色标记带着我们的位置继续走。",
+      "webTitle": "现在的亮点：星系分布",
+      "webDetail": "已不再是单颗恒星；密集处和稀疏处示意宇宙大结构。"
+    },
+    "en": {
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "resetZoom": "Reset magnification",
+      "zoomLabel": "View magnification",
+      "viewHint": "Drag to rotate · wheel or pinch to zoom · layout is not a distance map",
+      "physicalHint": "Wheel or pinch changes the same ruler; the slider also works",
+      "subpixelEarth": "Earth’s disk is now smaller than 1 pixel",
+      "subpixelSun": "The Sun’s disk is now smaller than 1 pixel",
+      "positionKey": "Gold locators show position, not size",
+      "bodiesTitle": "Planets and orbits",
+      "bodiesDetail": "Disks shrink into position symbols; the bodies remain in place.",
+      "interstellarTitle": "The space between stars is mostly empty",
+    "interstellarDetail": "The Solar System is now a locator. Open circles mark nearby stars, not their sizes.",
+    "starsTitle": "The bright points now represent stars",
+      "starsDetail": "Stellar disks are unresolved. Points illustrate a distribution, not a surveyed star map.",
+      "galaxyTitle": "Many stars make up a galaxy",
+      "galaxyDetail": "The luminous structure contains many stars. Gold keeps track of our location.",
+      "webTitle": "Points now illustrate galaxy distributions",
+      "webDetail": "These are no longer individual stars. Dense and sparse regions sketch large-scale structure."
+    }
   }
 }

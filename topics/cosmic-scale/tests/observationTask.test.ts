@@ -5,6 +5,8 @@ import vm from 'node:vm';
 import ts from 'typescript';
 import {bodies,lastPair,diameterComparison,comparisonFrame} from '../comparisonModel.ts';
 import {originStart} from '../model.ts';
+import {readGalacticState} from '../galacticModel.ts';
+import {readCaseMemory,rememberCase,isSceneChapter} from '../explorationNavigation.ts';
 import content from '../comparisonContent.json';
 
 test('diameter trials use the canonical bodies and the renderer’s linear ratio at both viewport sizes',()=>{
@@ -26,7 +28,8 @@ test('new-journey action resets only the physical progress; resume and ordinary 
  const code=ts.transpileModule(functions,{compilerOptions:{target:ts.ScriptTarget.ES2022}}).outputText;
  for(const origin of ['earth','sun'] as const){
   const state={origin,progress:.86},exploration={chapter:'galaxies',pair:3,home:4},flight={progress:.86,seek(value:number){this.progress=value;}};
-  const context=vm.createContext({state,exploration,flight,originStart,previous:7,chapterFocusFrame:0,stop(){},comparison:{stop(){}},update(){},cancelAnimationFrame(){},releaseChapterFocus(){},requestAnimationFrame(){return 1;}});
+  const galacticState=readGalacticState(''),caseMemory=readCaseMemory(new URLSearchParams(),galacticState.selected);
+  const context=vm.createContext({state,exploration,flight,galacticState,caseMemory,rememberCase,isSceneChapter,originStart,previous:7,chapterFocusFrame:0,stop(){},comparison:{stop(){}},physicalInput:{cancel(){}},update(){},cancelAnimationFrame(){},releaseChapterFocus(){},requestAnimationFrame(){return 1;}});
   vm.runInContext(code,context);vm.runInContext('enterZoom(false)',context);assert.equal(state.progress,.86);assert.equal(state.origin,origin);
   vm.runInContext("setChapter('galaxies')",context);assert.equal(state.progress,.86);assert.equal(exploration.pair,3);assert.equal(exploration.home,4);
   vm.runInContext('enterZoom(true)',context);assert.equal(state.progress,originStart(origin));assert.equal(flight.progress,state.progress);assert.equal(exploration.chapter,'zoom');assert.equal(context.previous,-1);

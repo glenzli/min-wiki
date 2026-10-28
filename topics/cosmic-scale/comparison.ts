@@ -1,4 +1,5 @@
 import content from './comparisonContent.json';
+import navigationWords from './content.json';
 import {bodies,lastPair,homeRoute,homeSideViews,homeContext,homeRoutePosition,stepHomeRoute,comparisonFrame,stellarOrbitFrame,stellarEstimateSources,diameterComparison,type Chapter} from './comparisonModel.ts';
 import {clamp,smooth} from './model.ts';
 import earthMap from '../solar-system/assets/2k_earth_daymap.webp';
@@ -18,9 +19,11 @@ export class ComparisonJourney {
  private title=make('h2');private note=make('p');private boundary=make('p','','comparison-boundary');private cards=make('div','','comparison-readings');
  private slider=make('input');private pairs=make('select');private homes=make('nav','','comparison-buttons');private sideViews=make('nav','','comparison-side-buttons');
  private homePath=make('div','','comparison-home-path');private homeAside=make('div','','comparison-home-aside');
+ readonly caseNavigation=make('div','','comparison-case-navigation');
  private solarButton=make('button');private solar=false;private estimate=make('details');private estimateText=make('p');
  private previous=make('button');private next=make('button');private onward=make('button');private source=make('a');
  private homePrevious=make('button');private homeNext=make('button');private homeProgress=make('span');private homeTransport=make('div','','comparison-transport comparison-home-transport');
+ private fullReference=make('button');
  private homeCues=make('div','','comparison-home-cues');
  private childSummary?:()=>string;
  private membershipGpu?:Membership3D;private membershipModule?:typeof import('./membership3d.ts');private membershipLoading=false;private membershipFailed=false;
@@ -29,10 +32,10 @@ export class ComparisonJourney {
  private ratioTask=make('div','','comparison-ratio-task');private ratioQuestion=make('span');private ratioButton=make('button');private ratioResult=make('span');private checkedPairs=new Set<number>();
  private surfaceButton=make('button');private surfaceTime=0;private surfaceFrame=0;private surfaceLast=0;private surfacePaint=0;private surfacePlaying=!matchMedia('(prefers-reduced-motion: reduce)').matches;
  private maps:HTMLImageElement[]=[];private planetMaps=new Map<number,{canvas:HTMLCanvasElement;image:ImageData;source:ImageData;phase:number}>();private stellarMaps=new Map<number,{canvas:HTMLCanvasElement;image:ImageData;phase:number}>();private membership=new MembershipScene();
- constructor(private root:HTMLElement,language:string,private changed:(pair:number,home:number)=>void,private navigate:(chapter:Chapter)=>void){
-  this.homePath.dataset.readerMenu='chapters';this.homeAside.dataset.readerMenu='chapters';this.words=language==='en'?content.en:content.zh;const w=this.words;
+ constructor(private root:HTMLElement,language:string,private changed:(pair:number,home:number)=>void,private navigate:(chapter:Chapter,target?:'trappist-1'|'galaxy-comparison')=>void){
+  this.words=language==='en'?content.en:content.zh;const w=this.words;this.caseNavigation.dataset.readerActions='';this.homes.dataset.readerControls='';this.sideViews.dataset.readerControls='';
   this.ctx=this.canvas.getContext('2d')!;this.canvas.className='comparison-canvas';this.canvas.setAttribute('role','img');
-  this.visual.tabIndex=0;this.visual.setAttribute('role','group');this.visual.append(this.canvas,this.membershipStatus);this.membershipStatus.setAttribute('role','status');this.membershipStatus.append(this.membershipStatusText,this.membershipRetry);this.membershipRetry.textContent=w.membershipRetry;this.membershipRetry.onclick=()=>{if(this.membershipGpu)this.membershipGpu.retry();else{this.membershipFailed=false;this.ensureMembership();}this.paint();};this.membershipHint.id='membership-view-hint';this.membershipHint.textContent=w.membershipDrag;
+  this.visual.tabIndex=0;this.visual.setAttribute('role','group');this.visual.append(this.canvas,this.membershipStatus);this.membershipStatus.setAttribute('role','status');this.membershipStatus.append(this.membershipStatusText,this.membershipRetry);this.membershipRetry.textContent=w.membershipRetry;this.membershipRetry.onclick=()=>{if(this.membershipGpu)this.membershipGpu.retry();else{this.membershipFailed=false;this.ensureMembership();}this.paint();};this.membershipHint.id='membership-view-hint';this.membershipHint.textContent=(language==='en'?navigationWords.navigation.en:navigationWords.navigation.zh).viewHint;
   this.pairs.setAttribute('aria-label',w.choosePair);w.pairs.forEach((name,i)=>{const option=make('option',name);option.value=String(i);this.pairs.append(option);});
   this.pairs.onchange=()=>this.animate(Number(this.pairs.value));
   this.solarButton.onclick=()=>{const selected=this.destination??Math.round(this.pair);this.stop();this.solar=!this.solar;if(this.solar){this.pair=selected;this.changed(this.pair,this.home);}this.paint();};
@@ -41,7 +44,7 @@ export class ComparisonJourney {
   homeSideViews.forEach((i,n)=>{const b=make('button',w.homeSideNames[n]!);b.onclick=()=>{this.home=i;this.changed(this.pair,this.home);this.paint();};this.sideViews.append(b);});
   this.homePath.append(make('p',w.homeRouteLabel),this.homes);
   this.homeAside.append(make('p',w.homeSideLabel),this.sideViews);
-  const heading=make('div','','comparison-heading'),choices=make('div','','comparison-choices');choices.append(this.pairs,this.solarButton);this.surfaceButton.onclick=()=>this.setSurface(!this.surfacePlaying);heading.append(this.title,choices,this.homePath,this.homeAside);
+  const heading=make('div','','comparison-heading'),choices=make('div','','comparison-choices');choices.dataset.readerActions='';choices.dataset.readerControls='';choices.append(this.pairs,this.solarButton);this.surfaceButton.onclick=()=>this.setSurface(!this.surfacePlaying);heading.append(this.title);this.caseNavigation.append(choices,this.homePath,this.homeAside);
   const label=make('label',w.scrub);this.slider.type='range';this.slider.min='0';this.slider.max=String(lastPair);this.slider.step='any';this.slider.setAttribute('aria-label',w.scrub);label.append(this.slider);
   this.slider.oninput=()=>{this.stop();this.pair=Number(this.slider.value);this.changed(this.pair,this.home);this.paint();};
   this.previous.textContent=w.previous;this.previous.onclick=()=>this.animate(Math.max(0,Math.ceil(this.pair)-1));
@@ -52,13 +55,14 @@ export class ComparisonJourney {
   this.homeProgress.className='comparison-home-progress';this.homeReset.textContent=w.membershipReset;this.homeReset.onclick=()=>this.membershipGpu?.reset();
   this.homeTop.textContent=w.membershipTop;this.homeTop.onclick=()=>this.membershipGpu?.setView('top');this.homeEdge.textContent=w.membershipEdge;this.homeEdge.onclick=()=>this.membershipGpu?.setView('edge');
   this.homeViews.setAttribute('role','group');this.homeViews.setAttribute('aria-label',w.membershipAngles);this.homeViews.append(this.homeTop,this.homeEdge,this.homeReset);this.homeTransport.append(this.homePrevious,this.homeProgress,this.homeNext,this.homeViews);
-  this.onward.onclick=()=>this.navigate(this.chapter==='compare'?'homes':'galaxies');
+  this.fullReference.onclick=()=>this.navigate('galaxies',this.home===0?'trappist-1':'galaxy-comparison');this.homeTransport.append(this.fullReference);
+  this.onward.onclick=()=>this.navigate(this.chapter==='compare'?'systems':'zoom');
   this.source.textContent=w.source;this.source.target='_blank';this.source.rel='noreferrer';
   const controls=make('div','','comparison-transport');controls.append(this.previous,label,this.next,this.surfaceButton);
   this.ratioResult.setAttribute('aria-live','polite');this.ratioButton.onclick=()=>{const index=Math.round(this.pair);if(this.checkedPairs.has(index))this.checkedPairs.delete(index);else this.checkedPairs.add(index);this.paint();};this.ratioTask.append(this.ratioQuestion,this.ratioButton,this.ratioResult);
   const copy=make('div','','comparison-copy');copy.dataset.readerSupport='';this.estimate.append(make('summary',w.estimateDetails),this.estimateText);copy.append(this.note,this.estimate,this.source,this.onward);
   const credit=make('a',w.credit,'comparison-credit');credit.href='https://www.solarsystemscope.com/textures/';credit.target='_blank';credit.rel='noreferrer';
-  copy.append(credit);root.append(heading,this.visual,this.cards,this.ratioTask,controls,this.homeTransport,this.membershipHint,this.homeCues,this.boundary,copy);
+  copy.append(credit);root.append(heading,this.caseNavigation,this.visual,this.cards,this.ratioTask,controls,this.homeTransport,this.membershipHint,this.homeCues,this.boundary,copy);
   this.observer=new ResizeObserver(()=>this.paint());this.observer.observe(this.canvas);
   for(const url of [earthMap,jupiterMap]){const image=new Image();image.onload=()=>{if(!this.disposed)this.paint();};image.src=url;this.maps.push(image);}
   this.setSurface(this.surfacePlaying);
@@ -69,7 +73,7 @@ export class ComparisonJourney {
  pauseSurface(){this.setSurface(false);}
  private ensureMembership(){
   if(this.membershipGpu||this.membershipLoading||this.membershipFailed||this.chapter!=='homes'||document.hidden||this.disposed)return;
-  if(this.membershipModule){this.membershipLoading=true;this.membershipGpu=new this.membershipModule.Membership3D(this.visual,this.words,this.words===content.en?'en':'zh',failed=>{this.membershipFailed=failed;this.membershipStatusText.textContent=failed?this.words.membershipFallback:this.words.membership3d;this.membershipRetry.hidden=!failed;for(const button of [this.homeTop,this.homeEdge,this.homeReset])button.disabled=failed;if(failed)this.paint();});this.membershipLoading=false;this.membershipGpu.setSolarPhase(this.solarPhase);this.membershipGpu.setActive(true);this.membershipGpu.show(this.home);return;}
+  if(this.membershipModule){this.membershipLoading=true;this.membershipGpu=new this.membershipModule.Membership3D(this.visual,this.words,this.words===content.en?'en':'zh',failed=>{this.membershipFailed=failed;this.membershipStatusText.textContent=failed?this.words.membershipFallback:this.words.membership3d;this.membershipRetry.hidden=!failed;for(const button of [this.homeTop,this.homeEdge,this.homeReset])button.disabled=failed;if(failed)this.paint();},this.homeViews);this.membershipLoading=false;this.membershipGpu.setSolarPhase(this.solarPhase);this.membershipGpu.setActive(true);this.membershipGpu.show(this.home);return;}
   this.membershipLoading=true;void import('./membership3d.ts').then(module=>{if(this.disposed)return;this.membershipModule=module;this.membershipLoading=false;this.ensureMembership();this.paint();}).catch(()=>{if(this.disposed)return;this.membershipLoading=false;this.membershipFailed=true;this.paint();});
  }
  private setSurface(active:boolean){this.surfacePlaying=active;cancelAnimationFrame(this.surfaceFrame);this.surfaceFrame=0;this.surfaceButton.textContent=active?this.words.pauseSurface:this.words.playSurface;this.surfaceButton.setAttribute('aria-pressed',String(active));if(active&&!this.disposed&&!document.hidden){this.surfaceLast=performance.now();this.surfaceFrame=requestAnimationFrame(now=>this.tickSurface(now));}}
@@ -141,6 +145,7 @@ export class ComparisonJourney {
   if(!surfaceOnly){
   this.surfaceButton.hidden=!comparing;
   this.homeTransport.hidden=comparing;
+  this.fullReference.hidden=comparing||this.home>1;this.fullReference.textContent=this.home===0?w.otherSystems:w.otherGalaxies;
   this.homeCues.hidden=comparing;
   this.membershipStatus.hidden=comparing;this.membershipHint.hidden=comparing;this.visual.classList.toggle('membership-active',!comparing);this.visual.setAttribute('aria-label',comparing?w.compareAlt:`${w.homeNames[this.home]}. ${w.membershipStage}`);if(comparing)this.visual.removeAttribute('aria-describedby');else this.visual.setAttribute('aria-describedby',this.membershipHint.id);
   this.membershipStatusText.textContent=this.membershipFailed?w.membershipFallback:w.membership3d+(this.membershipLoading?'…':'');this.membershipRetry.hidden=!this.membershipFailed;for(const button of [this.homeTop,this.homeEdge,this.homeReset])button.disabled=!this.membershipGpu?.ready;
@@ -150,7 +155,7 @@ export class ComparisonJourney {
   this.title.textContent=comparing?w.pairTitles[index]!:w.homeTitles[this.home]!;
   this.note.textContent=this.childSummary?.()??(comparing?w.pairNotes[index]!+(solar?' '+w.orbitIntro:''):w.homeNotes[this.home]!);this.boundary.textContent=solar?w.orbitBoundary:comparing?w.boundary:w.homeBoundary[this.home]!;
   this.estimate.hidden=!comparing||index<5&&!solar;this.estimateText.textContent=[index>=5?w.estimateNotes[index-5]:'',solar?w.orbitDetails:''].filter(Boolean).join(' ');
-  this.onward.textContent=comparing?w.goHomes:w.goGalaxies;this.source.href=comparing?(stellarEstimateSources[bodies[index+1]!.id]??'https://science.nasa.gov/sun/facts/'):w.homeSources[this.home]!;
+  this.onward.textContent=comparing?w.goSystems:w.goZoom;this.source.href=comparing?(stellarEstimateSources[bodies[index+1]!.id]??'https://science.nasa.gov/sun/facts/'):w.homeSources[this.home]!;
   this.slider.value=String(this.pair);this.previous.disabled=this.pair<=0;this.next.disabled=this.pair>=lastPair;
   this.pairs.setAttribute('aria-label',solar?w.chooseStar:w.choosePair);
   [...this.pairs.options].forEach((option,i)=>{option.textContent=solar?w.names[i+1]!:w.pairs[i]!;option.disabled=solar&&i===0;option.hidden=solar&&i===0;});

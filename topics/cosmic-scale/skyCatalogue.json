@@ -1,0 +1,173 @@
+{
+  "epoch": "J2000 / ICRS",
+  "astrometry": "Hipparcos new reduction (van Leeuwen 2007), as indexed by CDS SIMBAD; selected reciprocal-parallax illustration, not latest distance consensus",
+  "source": "https://cdsarc.cds.unistra.fr/viz-bin/cat/I/311",
+  "orion": [
+    {
+      "id": "betelgeuse",
+      "hip": 27989,
+      "name": {
+        "zh": "参宿四",
+        "en": "Betelgeuse"
+      },
+      "ra": 88.792939,
+      "dec": 7.407064,
+      "parallax": 6.55,
+      "error": 0.83,
+      "magnitude": 0.42,
+      "color": "#ffd1a6"
+    },
+    {
+      "id": "bellatrix",
+      "hip": 25336,
+      "name": {
+        "zh": "参宿五",
+        "en": "Bellatrix"
+      },
+      "ra": 81.282764,
+      "dec": 6.349703,
+      "parallax": 12.92,
+      "error": 0.52,
+      "magnitude": 1.64,
+      "color": "#d1e4ff"
+    },
+    {
+      "id": "alnitak",
+      "hip": 26727,
+      "name": {
+        "zh": "参宿一",
+        "en": "Alnitak"
+      },
+      "ra": 85.189694,
+      "dec": -1.942574,
+      "parallax": 4.43,
+      "error": 0.64,
+      "magnitude": 1.77,
+      "color": "#c5ddff"
+    },
+    {
+      "id": "alnilam",
+      "hip": 26311,
+      "name": {
+        "zh": "参宿二",
+        "en": "Alnilam"
+      },
+      "ra": 84.053389,
+      "dec": -1.201919,
+      "parallax": 1.65,
+      "error": 0.45,
+      "magnitude": 1.69,
+      "color": "#d5e6ff"
+    },
+    {
+      "id": "mintaka",
+      "hip": 25930,
+      "name": {
+        "zh": "参宿三",
+        "en": "Mintaka"
+      },
+      "ra": 83.001667,
+      "dec": -0.299095,
+      "parallax": 4.71,
+      "error": 0.58,
+      "magnitude": 2.41,
+      "color": "#d5e6ff"
+    },
+    {
+      "id": "saiph",
+      "hip": 27366,
+      "name": {
+        "zh": "参宿六",
+        "en": "Saiph"
+      },
+      "ra": 86.93912,
+      "dec": -9.669605,
+      "parallax": 5.04,
+      "error": 0.22,
+      "magnitude": 2.06,
+      "color": "#d5e6ff"
+    },
+    {
+      "id": "rigel",
+      "hip": 24436,
+      "name": {
+        "zh": "参宿七",
+        "en": "Rigel"
+      },
+      "ra": 78.634467,
+      "dec": -8.201638,
+      "parallax": 3.78,
+      "error": 0.34,
+      "magnitude": 0.13,
+      "color": "#d5e6ff"
+    }
+  ],
+  "orionLines": [
+    [
+      0,
+      1
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      1,
+      4
+    ],
+    [
+      2,
+      3
+    ],
+    [
+      3,
+      4
+    ],
+    [
+      2,
+      5
+    ],
+    [
+      4,
+      6
+    ],
+    [
+      5,
+      6
+    ]
+  ],
+  "andromedaForeground": [
+    {
+      "name": {
+        "zh": "壁宿二",
+        "en": "Alpheratz"
+      },
+      "ra": 2.096916,
+      "dec": 29.090431
+    },
+    {
+      "name": {
+        "zh": "奎宿九",
+        "en": "Mirach"
+      },
+      "ra": 17.433013,
+      "dec": 35.620558
+    },
+    {
+      "name": {
+        "zh": "奎宿八",
+        "en": "μ And"
+      },
+      "ra": 14.187906,
+      "dec": 38.499344
+    },
+    {
+      "name": {
+        "zh": "奎宿七",
+        "en": "ν And"
+      },
+      "ra": 12.453459,
+      "dec": 41.078955
+    }
+  ]
+}

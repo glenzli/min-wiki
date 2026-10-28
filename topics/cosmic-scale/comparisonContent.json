@@ -15,10 +15,12 @@
     "ratioResult": "{{large}} / {{small}} 直径 ≈ {{ratio}}；金色每一整格为一个{{small}}直径。",
     "goGalaxies": "再转动星系，看看它们的空间结构 →",
     "chapters": [
-      "01 · 比一比谁更大",
-      "02 · 看看住在哪里",
-      "03 · 观察星系结构",
-      "04 · 真正拉远看看"
+      "01 · 天体有多大？",
+      "02 · 行星怎样成一家？",
+      "03 · 星系是什么样？",
+      "04 · 夜空为什么这样？",
+      "05 · 我们住在宇宙哪里？",
+      "06 · 一直拉远会看到什么？"
     ],
     "names": [
       "地球",
@@ -64,8 +66,8 @@
     ],
     "boundary": "圆盘直径使用同一比例；间隔只为比较。地球与木星的球面自转、恒星表面活动均为缩时示意，转速和细节未经观测标定；贴图不是实时天气，辉光不计入直径。",
     "scrub": "拖动，把更大的请进来",
-    "previous": "回看上一组",
-    "next": "看看更大的",
+    "previous": "上一组",
+    "next": "更大一组",
     "goHomes": "这些天体住在哪里？ →",
     "goZoom": "带着参照，连续拉远到可观测范围 →",
     "homePrevious": "← 上一站",
@@ -75,7 +77,10 @@
     "homeReturn": "← 回到{{name}}",
     "homeRouteLabel": "我们所在的结构路径 · 示意图不按比例",
     "homeSideLabel": "换个局部镜头看 · 不计入拉远主线",
-    "homeSideNames": ["对照本星系群与室女座星系团", "放大看看宇宙网"],
+    "homeSideNames": [
+      "对照本星系群与室女座星系团",
+      "放大看看宇宙网"
+    ],
     "homeNames": [
       "太阳系",
       "银河系",
@@ -122,13 +127,76 @@
       "黄色中心：定位符，不是超星系团直径"
     ],
     "homeCues": [
-      [{"label":"中心恒星","detail":"太阳把行星聚在同一个系统里。"},{"label":"多条轨道","detail":"路径与行星位置为示意。"}],
-      [{"label":"银河的盘","detail":"旋臂、中央亮区和暗尘带各有结构。"},{"label":"参考尺度","detail":"恒星盘直径约 10 万光年。"}],
-      [{"label":"三座较大星系","detail":"银河、仙女座与三角座。"},{"label":"许多小成员","detail":"含大、小麦哲伦云；小光斑只抽样。"}],
-      [{"label":"本星系群","detail":"成员相对分散，黄色标记是我们的位置。"},{"label":"室女座星系团","detail":"星系更密；淡蓝色热气体为 X 射线示意。"}],
-      [{"label":"本星系群","detail":"在拉尼亚凯亚的外围。"},{"label":"更大区域","detail":"包含许多群与团，整体通常不受引力束缚。"}],
-      [{"label":"丝线与结点","detail":"星系分布更密集。"},{"label":"宇宙空洞","detail":"只是相对稀疏，并非绝对空无一物。"}],
-      [{"label":"立体分布","detail":"转动看前后点群；位置、数量和疏密均为示意。"},{"label":"中心与边界","detail":"中心定位符放大；虚线距此今天约 465 亿光年，并非宇宙边缘。"}]
+      [
+        {
+          "label": "中心恒星",
+          "detail": "太阳把行星聚在同一个系统里。"
+        },
+        {
+          "label": "多条轨道",
+          "detail": "路径与行星位置为示意。"
+        }
+      ],
+      [
+        {
+          "label": "银河的盘",
+          "detail": "旋臂、中央亮区和暗尘带各有结构。"
+        },
+        {
+          "label": "参考尺度",
+          "detail": "恒星盘直径约 10 万光年。"
+        }
+      ],
+      [
+        {
+          "label": "三座较大星系",
+          "detail": "银河、仙女座与三角座。"
+        },
+        {
+          "label": "许多小成员",
+          "detail": "含大、小麦哲伦云；小光斑只抽样。"
+        }
+      ],
+      [
+        {
+          "label": "本星系群",
+          "detail": "成员相对分散，黄色标记是我们的位置。"
+        },
+        {
+          "label": "室女座星系团",
+          "detail": "星系更密；淡蓝色热气体为 X 射线示意。"
+        }
+      ],
+      [
+        {
+          "label": "本星系群",
+          "detail": "在拉尼亚凯亚的外围。"
+        },
+        {
+          "label": "更大区域",
+          "detail": "包含许多群与团，整体通常不受引力束缚。"
+        }
+      ],
+      [
+        {
+          "label": "丝线与结点",
+          "detail": "星系分布更密集。"
+        },
+        {
+          "label": "宇宙空洞",
+          "detail": "只是相对稀疏，并非绝对空无一物。"
+        }
+      ],
+      [
+        {
+          "label": "立体分布",
+          "detail": "转动看前后点群；位置、数量和疏密均为示意。"
+        },
+        {
+          "label": "中心与边界",
+          "detail": "中心定位符放大；虚线距此今天约 465 亿光年，并非宇宙边缘。"
+        }
+      ]
     ],
     "homeSources": [
       "https://science.nasa.gov/solar-system/solar-system-facts/",
@@ -153,8 +221,8 @@
     "homeAlt": "我们所在的结构路径及独立局部对照；结构布局不按比例，观测范围内的点群为立体统计示意",
     "credit": "行星表面地图：Solar System Scope · CC BY 4.0",
     "choosePair": "选择比较的一组",
-    "solarView": "放进太阳系比一比",
-    "pairView": "回到并排比较",
+    "solarView": "轨道对照",
+    "pairView": "并排对照",
     "estimated": "估计大小",
     "orbitBoundary": "假想放在太阳的位置 · 轮廓与轨道同一比例；彩色十字只标行星位置，辨认图例不共用标尺 · 画到土星",
     "orbitIntro": "用熟悉的行星轨道当尺子，看看这颗恒星能伸到哪里。轨道叠加只是帮助比较大小，不是在演示吞噬过程。",
@@ -179,7 +247,10 @@
     "surfaceEstimate": "半径估计 · 非最大排名",
     "chooseStar": "换一颗恒星",
     "playSurface": "播放表面 · 示意",
-    "pauseSurface": "暂停表面 · 示意"
+    "pauseSurface": "暂停表面 · 示意",
+    "otherSystems": "对照另一套完整行星系统 →",
+    "otherGalaxies": "对照另一座完整星系 →",
+    "goSystems": "再看行星怎样成一家 →"
   },
   "en": {
     "membershipStage": "Rotatable structural address illustration",
@@ -197,10 +268,12 @@
     "ratioResult": "{{large}} / {{small}} diameter ≈ {{ratio}}; each full gold interval is one {{small}} diameter.",
     "goGalaxies": "Rotate galaxies to inspect their spatial structure →",
     "chapters": [
-      "01 · Compare sizes",
-      "02 · Where do they belong?",
-      "03 · Explore galaxy structure",
-      "04 · Zoom out for real"
+      "01 · How big are celestial bodies?",
+      "02 · How do planets form a family?",
+      "03 · What are galaxies like?",
+      "04 · Why does our sky look this way?",
+      "05 · Where do we live in the universe?",
+      "06 · What appears as we zoom out?"
     ],
     "names": [
       "Earth",
@@ -246,8 +319,8 @@
     ],
     "boundary": "Disk diameters share one scale; spacing is for comparison. Earth and Jupiter's spherical rotation and stellar surface activity use accelerated illustrative time; rates and details are not calibrated. The maps are not live weather, and glow is excluded from diameter.",
     "scrub": "Drag to bring in a larger body",
-    "previous": "Previous pair",
-    "next": "Meet a larger body",
+    "previous": "Previous",
+    "next": "Next size",
     "goHomes": "Where do these bodies belong? →",
     "goZoom": "Keep the reference and zoom out to the observable region →",
     "homePrevious": "← Previous",
@@ -257,7 +330,10 @@
     "homeReturn": "← Back to {{name}}",
     "homeRouteLabel": "Our structural address · diagrams are not to scale",
     "homeSideLabel": "Local close-ups and comparisons · outside the outward route",
-    "homeSideNames": ["Compare Local Group with Virgo Cluster", "Look closer at the cosmic web"],
+    "homeSideNames": [
+      "Compare Local Group with Virgo Cluster",
+      "Look closer at the cosmic web"
+    ],
     "homeNames": [
       "Solar System",
       "Milky Way",
@@ -304,13 +380,76 @@
       "Yellow center: a location marker, not supercluster diameter"
     ],
     "homeCues": [
-      [{"label":"Central star","detail":"The Sun holds the planets in one system."},{"label":"Many orbits","detail":"Paths and planet positions are illustrative."}],
-      [{"label":"Galactic disk","detail":"Arms, central light and dark dust have distinct structure."},{"label":"Reference span","detail":"The stellar disk is roughly 100,000 light-years across."}],
-      [{"label":"Three larger galaxies","detail":"Milky Way, Andromeda and Triangulum."},{"label":"Many small members","detail":"Including the Magellanic Clouds; glows are a sample."}],
-      [{"label":"Local Group","detail":"Members are more spread out; yellow locates us."},{"label":"Virgo Cluster","detail":"Denser galaxies; pale blue hot gas is an X-ray illustration."}],
-      [{"label":"Local Group","detail":"It lies near Laniakea’s outer edge."},{"label":"Wider region","detail":"Many groups and clusters, generally not bound as one."}],
-      [{"label":"Filaments and knots","detail":"Galaxies are more concentrated here."},{"label":"Cosmic voids","detail":"Comparatively sparse, not completely empty."}],
-      [{"label":"Spatial distribution","detail":"Turn to see depth; positions, counts and density are illustrative."},{"label":"Center and horizon","detail":"The center marker is enlarged; the dashed horizon is about 46.5 billion present-day light-years away, not an outer wall."}]
+      [
+        {
+          "label": "Central star",
+          "detail": "The Sun holds the planets in one system."
+        },
+        {
+          "label": "Many orbits",
+          "detail": "Paths and planet positions are illustrative."
+        }
+      ],
+      [
+        {
+          "label": "Galactic disk",
+          "detail": "Arms, central light and dark dust have distinct structure."
+        },
+        {
+          "label": "Reference span",
+          "detail": "The stellar disk is roughly 100,000 light-years across."
+        }
+      ],
+      [
+        {
+          "label": "Three larger galaxies",
+          "detail": "Milky Way, Andromeda and Triangulum."
+        },
+        {
+          "label": "Many small members",
+          "detail": "Including the Magellanic Clouds; glows are a sample."
+        }
+      ],
+      [
+        {
+          "label": "Local Group",
+          "detail": "Members are more spread out; yellow locates us."
+        },
+        {
+          "label": "Virgo Cluster",
+          "detail": "Denser galaxies; pale blue hot gas is an X-ray illustration."
+        }
+      ],
+      [
+        {
+          "label": "Local Group",
+          "detail": "It lies near Laniakea’s outer edge."
+        },
+        {
+          "label": "Wider region",
+          "detail": "Many groups and clusters, generally not bound as one."
+        }
+      ],
+      [
+        {
+          "label": "Filaments and knots",
+          "detail": "Galaxies are more concentrated here."
+        },
+        {
+          "label": "Cosmic voids",
+          "detail": "Comparatively sparse, not completely empty."
+        }
+      ],
+      [
+        {
+          "label": "Spatial distribution",
+          "detail": "Turn to see depth; positions, counts and density are illustrative."
+        },
+        {
+          "label": "Center and horizon",
+          "detail": "The center marker is enlarged; the dashed horizon is about 46.5 billion present-day light-years away, not an outer wall."
+        }
+      ]
     ],
     "homeSources": [
       "https://science.nasa.gov/solar-system/solar-system-facts/",
@@ -335,8 +474,8 @@
     "homeAlt": "Our structural address with separate local comparisons; layouts are not to scale and point clouds inside the observing range form a statistical spatial illustration",
     "credit": "Planet surface maps: Solar System Scope · CC BY 4.0",
     "choosePair": "Choose a comparison",
-    "solarView": "Compare with planetary orbits",
-    "pairView": "Back to side-by-side",
+    "solarView": "Compare orbits",
+    "pairView": "Side by side",
     "estimated": "Estimated size",
     "orbitBoundary": "Imagined at the Sun’s position · outline and orbits share one scale; coloured crosses locate planets. Legend icons use a separate scale · out to Saturn",
     "orbitIntro": "Use familiar planetary orbits as a ruler. How far would the star reach? The orbit overlay compares sizes; it does not simulate planets being swallowed.",
@@ -361,6 +500,9 @@
     "surfaceEstimate": "Radius estimate · not a ranking",
     "chooseStar": "Choose a star",
     "playSurface": "Play surface · illustrated",
-    "pauseSurface": "Pause surface · illustrated"
+    "pauseSurface": "Pause surface · illustrated",
+    "otherSystems": "Compare another whole planetary system →",
+    "otherGalaxies": "Compare another whole galaxy →",
+    "goSystems": "See how planets form a family →"
   }
 }

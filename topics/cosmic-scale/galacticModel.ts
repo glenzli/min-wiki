@@ -1,13 +1,14 @@
+import {viewZoom} from './viewNavigation.ts';
+import {readSkyState, saveSkyState, isSkyCase, SKY_SUN, type SkyState} from './skyModel.ts';
 /** Stable teaching coordinates. They describe spatial structure, never a star catalogue. */
-export const galacticCases = ['milky-way', 'spiral', 'elliptical', 'irregular', 'star-cluster', 'local-group'] as const;
+export const galacticCases = ['milky-way', 'galaxy-comparison', 'trappist-1', 'sky', 'orion', 'spiral', 'elliptical', 'irregular', 'star-cluster', 'local-group'] as const;
 export type GalacticCase = typeof galacticCases[number];
 export type GalacticPart = 'disk' | 'bulge' | 'halo' | 'dust' | 'population';
-export type GalacticState = { selected: GalacticCase; yaw: number; pitch: number; disk: boolean; bulge: boolean; halo: boolean; guides: boolean };
+export type GalacticState = { selected: GalacticCase; yaw: number; pitch: number; zoom:number; disk: boolean; bulge: boolean; halo: boolean; guides: boolean; sky: SkyState };
 export type StellarCloud = { part: GalacticPart; positions: Float32Array; colors: Float32Array; size: number; opacity: number; mist?: boolean };
 export type GalacticObject = { id: string; center: readonly [number, number, number]; scale: number; inclination: number; clouds: StellarCloud[] };
-export const MILKY_DISK_RADIUS_LY = 50_000;
-export const SOLAR_RADIUS_LY = 26_000;
-export const SOLAR_POSITION = [SOLAR_RADIUS_LY / MILKY_DISK_RADIUS_LY, 0, 0] as const;
+export {MILKY_DISK_RADIUS_LY,SOLAR_RADIUS_LY} from './skyModel.ts';
+export const SOLAR_POSITION = SKY_SUN;
 export const MAX_POINTS_PER_CASE = 19_000;
 export const GALACTIC_CACHE_LIMIT = 2;
 const clamp = (n: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, n));
@@ -17,10 +18,12 @@ export function readGalacticState(query: string): GalacticState {
   const p = new URLSearchParams(query), selected = p.get('galaxy');
   return { selected: galacticCases.includes(selected as GalacticCase) ? selected as GalacticCase : 'milky-way',
     yaw: clamp(finite(p.get('galaxyYaw'), -.22), -Math.PI, Math.PI), pitch: clamp(finite(p.get('galaxyPitch'), .92), 0, Math.PI / 2),
-    disk: p.get('galaxyDisk') !== '0', bulge: p.get('galaxyBulge') !== '0', halo: p.get('galaxyHalo') !== '0', guides: p.get('galaxyGuides') === '1' };
+    zoom:viewZoom(finite(p.get('galaxyZoom'),1)),disk: p.get('galaxyDisk') !== '0', bulge: p.get('galaxyBulge') !== '0', halo: p.get('galaxyHalo') !== '0', guides: p.get('galaxyGuides') === '1', sky: readSkyState(p) };
 }
 export function saveGalacticState(p: URLSearchParams, s: GalacticState) {
   p.set('galaxy', s.selected); p.set('galaxyYaw', s.yaw.toFixed(4)); p.set('galaxyPitch', s.pitch.toFixed(4));
+  p.set('galaxyZoom',viewZoom(s.zoom).toFixed(4));
+  saveSkyState(p,s.sky);
   for (const part of ['disk', 'bulge', 'halo', 'guides'] as const) p.set(`galaxy${part[0]!.toUpperCase()}${part.slice(1)}`, s[part] ? '1' : '0');
 }
 /** No clock or automatic rotation: view controls only move the observer. */
@@ -39,7 +42,7 @@ function cloud(part: GalacticPart, count: number, seed: number, shape: 'spiral' 
       x = k[0] + r * q * Math.cos(a); y = k[1] + r * q * Math.sin(a) * .75; z = k[2] + r * h * .5;
     } else if (shape === 'elliptical' || shape === 'cluster' || part === 'halo' || part === 'bulge') {
       const r = (part === 'bulge' ? .27 : part === 'halo' ? 1.45 : 1) * Math.pow(u, shape === 'cluster' ? 1.25 : .85);
-      const axes = part === 'bulge' ? [1.6, .72, .6] : part === 'halo' ? [1, 1, .84] : shape === 'elliptical' ? [1, .72, .60] : [1, 1, .96];
+      const axes = part === 'bulge' ? [1.6, .72, .6] : part === 'halo' ? [1, 1, .84] : shape === 'elliptical' ? [1, .93, .88] : [1, 1, .96];
       x = r * q * Math.cos(a) * axes[0]!; y = r * q * Math.sin(a) * axes[1]!; z = r * h * axes[2]!;
     } else {
       // Centre-weighted disk with broad inter-arm population, narrow arm overdensities and clumps.
@@ -62,6 +65,16 @@ const spiralClouds = (seed: number, factor = 1) => {
   return [glow, cloud('disk', Math.round(11_000 * factor), seed), cloud('dust', Math.round(2_000 * factor), seed + 1), cloud('bulge', Math.round(3_000 * factor), seed + 2), cloud('halo', Math.round(1_200 * factor), seed + 3)];
 };
 export function galacticObjects(selected: GalacticCase): GalacticObject[] {
+  if (isSkyCase(selected)) return [];
+  if(selected==='galaxy-comparison')return (['milky-way','elliptical'] as const).map((kind,index)=>{
+    const original=galacticObjects(kind)[0]!;
+    const clouds=original.clouds.map(c=>{
+      const count=Math.ceil(c.positions.length/6),positions=new Float32Array(count*3),colors=new Float32Array(count*3);
+      for(let i=0;i<count;i++){positions.set(c.positions.subarray(i*6,i*6+3),i*3);colors.set(c.colors.subarray(i*6,i*6+3),i*3);}
+      return {...c,positions,colors,opacity:Math.min(1,c.opacity*1.35)};
+    });
+    return {...original,id:kind,center:[index?1.08:-1.08,0,0] as const,scale:.64,clouds};
+  });
   if (selected === 'local-group') return [
     { id: 'milky-way', center: [-.72, -.28, -.12], scale: .14, inclination: .30, clouds: spiralClouds(3, .30) },
     { id: 'andromeda', center: [.70, .23, .16], scale: .22, inclination: 1.1, clouds: spiralClouds(7, .32) },
@@ -72,7 +85,12 @@ export function galacticObjects(selected: GalacticCase): GalacticObject[] {
     { id: 'cluster-context', center: [-.72, 0, 0], scale: .52, inclination: .35, clouds: spiralClouds(3, .30) },
     { id: 'cluster-detail', center: [.68, 0, .04], scale: .56, inclination: 0, clouds: [cloud('population', 9_500, 27, 'cluster')] },
   ];
+  if(selected==='elliptical'){
+    const glow=cloud('population',4200,19,'elliptical');glow.size=120;glow.opacity=.0038;glow.mist=true;
+    const stars=cloud('population',14500,17,'elliptical');stars.size=1.5;stars.opacity=.28;
+    return [{id:selected,center:[0,0,0],scale:1,inclination:0,clouds:[stars,glow]}];
+  }
   return [{ id: selected, center: [0, 0, 0], scale: 1, inclination: 0,
-    clouds: selected === 'elliptical' ? [cloud('population', 14_500, 17, 'elliptical')] : selected === 'irregular' ? [cloud('population', 13_000, 23, 'irregular')] : spiralClouds(selected === 'milky-way' ? 3 : 41) }];
+    clouds: selected === 'irregular' ? [cloud('population', 13_000, 23, 'irregular')] : spiralClouds(selected === 'milky-way' ? 3 : 41) }];
 }
 export function galacticPointCount(objects: readonly GalacticObject[]) { return objects.reduce((sum, o) => sum + o.clouds.reduce((n, c) => n + c.positions.length / 3, 0), 0); }

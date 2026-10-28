@@ -5,6 +5,7 @@ import {createSolarPhotosphereMaterial,createSolarHalo,setSolarPhotospherePhase}
 import {SOLAR_SURFACE_STYLE,solarSurfacePhase} from './solarSurfaceModel.ts';
 import content from './comparisonContent.json';
 import cosmicContent from './content.json';
+import {MagnificationInput,ViewZoomControls,viewZoom} from './viewNavigation.ts';
 import {membershipView,membershipPreset,turnMembershipView,membershipSolar,membershipSunRadius,membershipSolarAnchor,membershipGroup,membershipCloud,membershipFrame,placeMembershipLabels,MEMBERSHIP_CACHE_LIMIT,type MembershipPoint,type MembershipPreset} from './membershipModel.ts';
 import mercuryMap from '../solar-system/assets/2k_mercury.webp';
 import venusMap from '../solar-system/assets/2k_venus_atmosphere.webp';
@@ -27,10 +28,15 @@ export class Membership3D {
  private renderer?:THREE.WebGLRenderer;private observer:ResizeObserver;private sphere=new THREE.SphereGeometry(1,40,28);private textures=new Map<number,THREE.Texture>();
  private entries=new Map<number,Entry>();private views=Array.from({length:7},membershipView);private home=0;private active=false;private lost=false;private disposed=false;private frame=0;private drag?:{id:number;x:number;y:number};
  private solarPhase=0;
- constructor(private host:HTMLElement,private words:Words,private language:string,private failure:(failed:boolean)=>void){
+ private zooms=Array(7).fill(1) as number[];private magnification:MagnificationInput;private zoomControls:ViewZoomControls;
+ constructor(private host:HTMLElement,private words:Words,private language:string,private failure:(failed:boolean)=>void,zoomHost:HTMLElement=host){
   this.layer.className='membership-layer';this.layer.hidden=true;this.layer.setAttribute('aria-hidden','true');this.canvas.className='membership-gpu';this.overlay.className='membership-labels';this.layer.append(this.canvas,this.overlay);host.append(this.layer);this.context=this.overlay.getContext('2d')!;
   this.camera.position.z=8;const light=new THREE.DirectionalLight('#fff0dc',2.1);light.position.set(-3,2,5);this.world.add(light,new THREE.AmbientLight('#8ba3bd',.6));
   this.prepareRenderer();this.observer=new ResizeObserver(()=>this.requestDraw());this.observer.observe(host);
+  const change=(factor:number)=>{const before=this.zooms[this.home]!;this.zooms[this.home]=viewZoom(before*factor);this.zoomControls.update(this.zooms[this.home]!,this.ready);if(before===this.zooms[this.home])return false;this.requestDraw();return true;};
+  this.magnification=new MagnificationInput(host,()=>this.active&&this.ready&&!document.hidden,change);
+  const navigation=language==='en'?cosmicContent.navigation.en:cosmicContent.navigation.zh;
+  this.zoomControls=new ViewZoomControls(navigation,change,()=>{this.zooms[this.home]=1;this.zoomControls.update(1,this.ready);this.requestDraw();});zoomHost.append(this.zoomControls.element);
   host.addEventListener('pointerdown',this.pointerDown);host.addEventListener('pointermove',this.pointerMove);host.addEventListener('pointerup',this.pointerEnd);host.addEventListener('pointercancel',this.pointerEnd);host.addEventListener('lostpointercapture',this.pointerEnd);host.addEventListener('keydown',this.keyDown);
  }
  get ready(){return !!this.renderer&&!this.lost&&!this.disposed;}
@@ -39,18 +45,18 @@ export class Membership3D {
   try{this.renderer=new THREE.WebGLRenderer({canvas:this.canvas,antialias:true,alpha:false,powerPreference:'low-power'});this.renderer.setClearColor('#030812');this.renderer.outputColorSpace=THREE.SRGBColorSpace;this.renderer.toneMapping=THREE.ACESFilmicToneMapping;this.renderer.toneMappingExposure=1.05;this.lost=false;this.failure(false);}
   catch{this.renderer=undefined;this.lost=true;this.layer.hidden=true;this.failure(true);}
  }
- private contextLost=(event:Event)=>{event.preventDefault();this.lost=true;this.layer.hidden=true;this.cancel();this.failure(true);};
- private contextRestored=()=>{if(this.disposed)return;this.lost=false;this.failure(false);this.requestDraw();};
+ private contextLost=(event:Event)=>{event.preventDefault();this.lost=true;this.layer.hidden=true;this.cancel();this.magnification.cancel();this.zoomControls.update(this.zooms[this.home]!,false);this.failure(true);};
+ private contextRestored=()=>{if(this.disposed)return;this.lost=false;this.zoomControls.update(this.zooms[this.home]!,true);this.failure(false);this.requestDraw();};
  private cancel(){cancelAnimationFrame(this.frame);this.frame=0;}
  private requestDraw(){if(this.frame||!this.active||!this.ready||document.hidden)return;this.frame=requestAnimationFrame(()=>{this.frame=0;this.draw();});}
  private releaseDrag(){if(this.drag&&this.host.hasPointerCapture(this.drag.id))this.host.releasePointerCapture(this.drag.id);this.drag=undefined;}
- setActive(active:boolean){this.active=active;if(!active){this.cancel();this.releaseDrag();this.layer.hidden=true;return;}this.requestDraw();}
- show(home:number){const changed=this.home!==home;if(changed)this.releaseDrag();this.home=home;if(changed||!this.entries.has(home))this.requestDraw();}
- reset(){this.views[this.home]=membershipView();this.requestDraw();}
+ setActive(active:boolean){this.active=active;this.zoomControls.update(this.zooms[this.home]!,this.ready);if(!active){this.cancel();this.releaseDrag();this.magnification.cancel();this.layer.hidden=true;return;}this.requestDraw();}
+ show(home:number){const changed=this.home!==home;if(changed){this.releaseDrag();this.magnification.cancel();}this.home=home;this.zoomControls.update(this.zooms[home]!,this.ready);if(changed||!this.entries.has(home))this.requestDraw();}
+ reset(){this.views[this.home]=membershipView();this.zooms[this.home]=1;this.zoomControls.update(1,this.ready);this.requestDraw();}
  setView(preset:MembershipPreset){this.releaseDrag();this.views[this.home]=membershipPreset(preset);this.requestDraw();}
  setSolarPhase(value:number){const phase=solarSurfacePhase(value);if(phase===this.solarPhase)return;this.solarPhase=phase;for(const entry of this.entries.values())for(const material of entry.materials)if(material instanceof THREE.ShaderMaterial&&material.userData.illustrativePhotosphere)setSolarPhotospherePhase(material,phase);this.requestDraw();}
- private pointerDown=(event:PointerEvent)=>{if(!this.active||!this.ready||event.button!==0||(event.target as HTMLElement)?.closest?.('button'))return;event.preventDefault();this.drag={id:event.pointerId,x:event.clientX,y:event.clientY};this.host.setPointerCapture(event.pointerId);};
- private pointerMove=(event:PointerEvent)=>{if(!this.drag||this.drag.id!==event.pointerId||!this.active)return;this.views[this.home]=turnMembershipView(this.views[this.home]!, (event.clientX-this.drag.x)*.004,(event.clientY-this.drag.y)*.004);this.drag.x=event.clientX;this.drag.y=event.clientY;this.requestDraw();};
+ private pointerDown=(event:PointerEvent)=>{if(this.magnification.pinching){this.drag=undefined;return;}if(!this.active||!this.ready||event.button!==0||(event.target as HTMLElement)?.closest?.('button'))return;event.preventDefault();this.drag={id:event.pointerId,x:event.clientX,y:event.clientY};this.host.setPointerCapture(event.pointerId);};
+ private pointerMove=(event:PointerEvent)=>{if(this.magnification.pinching){this.drag=undefined;return;}if(!this.drag||this.drag.id!==event.pointerId||!this.active)return;this.views[this.home]=turnMembershipView(this.views[this.home]!, (event.clientX-this.drag.x)*.004,(event.clientY-this.drag.y)*.004);this.drag.x=event.clientX;this.drag.y=event.clientY;this.requestDraw();};
  private pointerEnd=(event:PointerEvent)=>{if(this.drag?.id!==event.pointerId)return;this.drag=undefined;if(this.host.hasPointerCapture(event.pointerId))this.host.releasePointerCapture(event.pointerId);};
  private keyDown=(event:KeyboardEvent)=>{const delta:Record<string,[number,number]>={ArrowLeft:[-.05,0],ArrowRight:[.05,0],ArrowUp:[0,-.05],ArrowDown:[0,.05]},step=delta[event.key];if(!step||!this.active||!this.ready||event.target!==this.host)return;event.preventDefault();this.views[this.home]=turnMembershipView(this.views[this.home]!,...step);this.requestDraw();};
  private texture(index:number){
@@ -105,7 +111,7 @@ export class Membership3D {
  private entry(home:number){const cached=this.entries.get(home);if(cached){this.entries.delete(home);this.entries.set(home,cached);return cached;}while(this.entries.size>=MEMBERSHIP_CACHE_LIMIT){const key=this.entries.keys().next().value!;this.release(this.entries.get(key)!);this.entries.delete(key);}const entry=this.makeEntry(home);this.entries.set(home,entry);return entry;}
  private draw(){
   if(!this.active||!this.ready||document.hidden)return;const width=this.host.clientWidth,height=this.host.clientHeight;if(!width||!height)return;
-  const dpr=Math.min(2,devicePixelRatio||1),view=this.views[this.home]!,frame=membershipFrame(this.home,width,height,view),entry=this.entry(this.home);
+  const dpr=Math.min(2,devicePixelRatio||1),view=this.views[this.home]!,base=membershipFrame(this.home,width,height,view),zoom=this.zooms[this.home]!,frame={halfX:base.halfX/zoom,halfY:base.halfY/zoom},entry=this.entry(this.home);
   this.camera.left=-frame.halfX;this.camera.right=frame.halfX;this.camera.top=frame.halfY;this.camera.bottom=-frame.halfY;this.camera.updateProjectionMatrix();
   for(const current of this.entries.values())current.root.visible=current===entry;entry.root.rotation.set(view.pitch,view.yaw,0);if(entry.boundary)entry.boundary.quaternion.copy(entry.root.quaternion).invert();
   // Reference orbits are not luminous objects. Fade their collapsed strokes
@@ -123,7 +129,7 @@ export class Membership3D {
   const boxes=placeMembershipLabels(labels,width,height);for(const box of boxes){const label=labels.find(label=>label.id===box.id)!;c.strokeStyle=label.gold?'#ffe1a0b0':'#abc4d080';c.lineWidth=1;c.beginPath();c.moveTo(label.x,label.y);c.lineTo(box.left+box.width/2,box.top+box.height/2);c.stroke();if(label.gold){c.beginPath();c.arc(label.x,label.y,6,0,Math.PI*2);c.stroke();}c.fillStyle='#07111ee8';c.fillRect(box.left,box.top,box.width,box.height);c.fillStyle=label.gold?'#ffe1a0':'#dae7ee';c.textAlign='left';label.lines.forEach((text,index)=>c.fillText(text,box.left+6,box.top+16+index*16));}
   c.fillStyle='#e6d2a6';c.textAlign='center';c.font='12px system-ui';c.fillText(this.words.homeAnchor[this.home]!,width/2,height-12,width-16);
  }
- retry(){if(this.disposed)return;this.cancel();this.canvas.removeEventListener('webglcontextlost',this.contextLost);this.canvas.removeEventListener('webglcontextrestored',this.contextRestored);this.renderer?.dispose();this.renderer?.forceContextLoss();const next=document.createElement('canvas');next.className='membership-gpu';this.canvas.replaceWith(next);this.canvas=next;this.prepareRenderer();this.requestDraw();}
+ retry(){if(this.disposed)return;this.cancel();this.canvas.removeEventListener('webglcontextlost',this.contextLost);this.canvas.removeEventListener('webglcontextrestored',this.contextRestored);this.renderer?.dispose();this.renderer?.forceContextLoss();const next=document.createElement('canvas');next.className='membership-gpu';this.canvas.replaceWith(next);this.canvas=next;this.prepareRenderer();this.zoomControls.update(this.zooms[this.home]!,this.ready);this.requestDraw();}
  private release(entry:Entry){this.world.remove(entry.root);entry.galaxies.forEach(galaxy=>galaxy.volume.dispose());entry.web?.dispose();entry.geometries.forEach(geometry=>geometry.dispose());entry.materials.forEach(material=>material.dispose());entry.root.clear();}
- dispose(){if(this.disposed)return;this.disposed=true;this.cancel();this.releaseDrag();this.observer.disconnect();this.host.removeEventListener('pointerdown',this.pointerDown);this.host.removeEventListener('pointermove',this.pointerMove);this.host.removeEventListener('pointerup',this.pointerEnd);this.host.removeEventListener('pointercancel',this.pointerEnd);this.host.removeEventListener('lostpointercapture',this.pointerEnd);this.host.removeEventListener('keydown',this.keyDown);this.canvas.removeEventListener('webglcontextlost',this.contextLost);this.canvas.removeEventListener('webglcontextrestored',this.contextRestored);for(const entry of this.entries.values())this.release(entry);this.entries.clear();this.textures.forEach(texture=>texture.dispose());this.textures.clear();this.sphere.dispose();this.renderer?.dispose();this.renderer?.forceContextLoss();this.layer.remove();}
+ dispose(){if(this.disposed)return;this.disposed=true;this.cancel();this.releaseDrag();this.magnification.dispose();this.zoomControls.dispose();this.observer.disconnect();this.host.removeEventListener('pointerdown',this.pointerDown);this.host.removeEventListener('pointermove',this.pointerMove);this.host.removeEventListener('pointerup',this.pointerEnd);this.host.removeEventListener('pointercancel',this.pointerEnd);this.host.removeEventListener('lostpointercapture',this.pointerEnd);this.host.removeEventListener('keydown',this.keyDown);this.canvas.removeEventListener('webglcontextlost',this.contextLost);this.canvas.removeEventListener('webglcontextrestored',this.contextRestored);for(const entry of this.entries.values())this.release(entry);this.entries.clear();this.textures.forEach(texture=>texture.dispose());this.textures.clear();this.sphere.dispose();this.renderer?.dispose();this.renderer?.forceContextLoss();this.layer.remove();}
 }

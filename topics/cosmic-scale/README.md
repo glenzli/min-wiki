@@ -1,6 +1,6 @@
 # 星系与宇宙尺度 / Galaxies and cosmic scales
 
-The learning journey begins with diameter comparisons, follows a five-stop structural address (Solar System → Milky Way → Local Group → Laniakea → observable region), inspects galaxies in a manual 3D structure study, and then opens the retained continuous physical zoom. A Local Group–Virgo Cluster comparison and a close view of the cosmic web sit beside the address path. The comparison and structure views are not physical orbital layouts or distance maps; only the final observable circle indicates an approximate horizon span, while its texture remains illustrative.
+The reader follows six questions: body sizes, complete planetary systems, galaxy structures, the night sky, our structural cosmic address, and continuous physical zoom. Each question keeps its own cases beside the drawing, with an immediate Try this cue and the original Reader explanation/depth controls. Shared geometry and meaningful experiment state survive question changes. The structural address and whole-object layouts remain distinct from the physical distance ruler.
 
 
 One continuous length-coordinate journey starts at a selectable Earth or Sun close-up and connects the Solar System, selected nearby stars, the Milky Way, representative Local Group members, Laniakea and the observable horizon. The Virgo Cluster and illustrative cosmic web appear along the way but are no longer selectable main waypoints. Scale changes do not reset the location anchor. Milky Way structure can be rotated face-on to edge-on and its components independently inspected.
@@ -178,3 +178,121 @@ yaw and pitch π/2, so the actual orbital plane projects horizontally; it is not
 The top preset admits the full circular orbit into the camera. View changes retain object locations,
 spherical radii and chapter choices. These observer directions remain local to the structural address;
 they do not reinterpret the saved 03 galaxy view parameters or the 04 physical scale.
+
+## Bounded observation zoom and scale reading · 2026-10-28
+
+The structural address (02) and galaxy study (03) now support 75–180% observer magnification through
+wheel, two-pointer pinch, focused +/− keys and compact buttons; 100% restores framing. The same retained
+samples, body radii and annotation anchors are projected by the adjusted orthographic camera. 02
+remembers magnification separately for each of its seven views during the document lifetime; 03
+stores `galaxyZoom` with its existing observer state. Legacy links default to 100%. Reference switches
+and angle presets keep magnification. The existing 02 reset-view action resets both direction and zoom.
+
+`viewNavigation.ts` owns bounded magnification input and compact controls, with no renderer, animation
+clock or scientific model. Each viewer retains its own mutation authority, draw coalescing and lifetime.
+Pinching suppresses one-pointer rotation; hidden views cancel captured pointers, and disposal removes
+listeners and controls. The physical chapter uses the same ratio input to seek its original logarithmic
+progress instead of adding a second visual-only zoom. Thus disks, distances and ruler continue sharing
+the same projection; outward motion stops at the original horizon, and inward motion at the selected
+Earth/Sun close-up.
+
+`scaleReading.ts` derives compact interpretation cues from the actual framed width. The legend
+distinguishes physical disks, empty interstellar space, representative star points, stars making up a
+galaxy, and statistical galaxy distributions. It explicitly reports when the selected origin's physical
+disk falls below one CSS pixel; gold locators retain the existing position meaning rather than enlarging
+that disk. No new census, simulated motion, resolution-independent body size or measured cosmic map
+is claimed. See [the validation record](../../docs/cosmic-zoom-clarity-20261028.md).
+
+## Our sky and concrete systems · 2026-10-28
+
+The six questions give planetary systems and the night sky their own entry points. The retained
+structure cases connect why the sky's Milky Way is a band, whether Orion's stars really lie together,
+and how another planetary system compares with the Solar System. Legacy `spiral` and `elliptical` links retain their
+morphological meanings and now introduce M31 and M87 through qualified structural illustrations.
+These are real examples, not measured individual-star 3D maps or a common galaxy-size comparison.
+
+`skyCatalogue.json` records J2000/ICRS directions and selected van Leeuwen (2007) Hipparcos parallaxes
+for Orion's seven familiar bright stars, as indexed by CDS SIMBAD. `skyModel.ts` owns the ICRS-to-Galactic
+rotation, retained observer paths, reciprocal-parallax intervals and bounded route state. Distances
+are explicitly dated estimates; formal errors omit possible systematics. Betelgeuse and belt multiples
+have different estimates in other studies, especially [Mintaka](https://doi.org/10.1088/0004-637X/809/2/135).
+The scene must not imply that all constellation stars are unrelated: some may share associations.
+
+The Milky Way bridge uses the same deterministic structural population and the same 0.52 disk-radius
+Sun anchor as the external study. A direction change compares along-disk and out-of-disk views; finite
+observer travel leaves the stars fixed. The M31 direction and named foreground stars use catalogue
+coordinates, while the enlarged diffuse patch is a locator. Unnamed background stars, dust and diffuse
+light remain illustrative, not a live sky chart, photometry or a measured panorama. The M31 structure
+and its sky direction link both ways without changing chapter or existing physical-ruler state.
+
+Out-of-disk viewing retains the same fixed stellar population. Its readable halo-point contrast is
+illustrative, not calibrated apparent magnitude. Observer travel backs away along the selected
+sightline before curving outside, with a nonparallel pole-view up vector and narrow-screen framing
+that keeps the solar anchor visible. See [the pole-view regression record](../../docs/cosmic-pole-view-20261028.md).
+Ground sky and spatial viewing are explicit, independent modes (`skyView=ground|space`). The ground
+button presents an illustrative horizon at the Sun's location; selecting along-disk, out-of-disk or
+M31 switches to the spatial camera. Ground mode retains spatial progress but hides its playback and
+does not blend the horizon into travel. Both modes use the same fixed stellar population. The
+user-started spatial journey takes 6.5 seconds of bounded visible frame time. The ground is not
+mapped terrain, and the sky is neither a photograph nor a local sky forecast. Legacy links without
+`skyView` open the spatial mode.
+
+`planetarySystems.ts` separately owns selected rounded TRAPPIST-1 semimajor axes and periods from
+Agol et al. (2021), via the NASA Exoplanet Archive. It reuses the existing Solar System AU radii and
+planet radii from `model.ts`, with circular Kepler-approximation periods. The default whole-system
+view shows the Sun with all eight planets beside TRAPPIST-1 with its seven known planets. This
+explicitly spread layout is not a distance ruler. All fifteen planets can be selected; one supplied
+0–20 day clock retains their identities across whole, common-AU and solo-TRAPPIST views. The latter
+two use linear physical orbital radii. Enlarged body symbols and hypothetical TRAPPIST surfaces are
+not diameters or observed maps. The circular coplanar motion is not a many-body, resonance or
+measured-epoch solution. Whole-system here means the central star and major planets, not moons,
+small-body populations or distant reservoirs. Solar maps reuse the attributed Solar System Scope
+assets in an eight-texture cache, released with the scene. Detailed stellar/binary physics stays in
+`topics/stars/`, and planetary-surface exploration stays in `topics/solar-system/`.
+
+`galaxy-comparison` shows whole Milky Way and M87 stellar volumes side by side (stacked on narrow
+screens), reusing samples from their individual cases. Rotation changes each view around its own
+centre. Face-on/edge-on controls expose the Milky Way disk's thickness beside M87's rounder volume;
+either galaxy can be opened separately. Their independent framing is not a common size or star-count
+ruler. Chapter 02's Solar System and Milky Way stops link directly to these two whole comparisons.
+
+`skyScene.ts` owns one demand-rendered GPU viewer, the projection-equivalent Canvas fallback and a
+two-entry resource cache; `skyStudy.ts` owns selection, point picking, finite observer/orbital playback,
+visibility/reduced-motion handling and disposal. Their route state is retained with galaxy choices;
+neither clock advances the physical zoom or stellar evolution. See [the scoped design and validation
+record](../../docs/cosmic-sky-learning-20261028.md).
+The explicit ground/space separation and whole-object comparisons are documented in
+[the whole-comparison record](../../docs/cosmic-whole-comparisons-20261028.md).
+
+
+## Six-question navigation · 2026-10-28
+
+`explorationNavigation.ts` owns the six question identities (`compare`, `systems`, `galaxies`, `sky`,
+`homes`, `zoom`), their scene-family partition and retained structure/night selections. Old mixed
+`mode=galaxies&galaxy=trappist-1|sky|orion` links open the identical object under its appropriate
+question. Existing diameter, address, camera and physical-ruler parameters retain their meanings.
+`structureCase` and `nightCase` retain each family's selection through a reload or language change.
+
+The Reader question menu contains only the six numbered questions. Diameter and address choices
+stay beside their existing comparison drawing; galaxy and night-sky cases use direct, family-filtered
+buttons instead of a second dropdown. Each drawing has one Reader `data-reader-control-row`, combining local cases and the original explanation action with its short cue. The root declares
+`data-reader-density="compact"`, `data-reader-toggle-anchor="stage"` and `data-reader-header="auto"`;
+Reader retains the entry banner, current question, local controls and cue in an adaptive one/two-row
+header. Desktop titles, selected questions and cues remain complete single-line text; whole groups
+wrap rather than truncating labels. A long case strip can occupy the second row. The complete
+structural address path and its side branches remain beside the drawing's essential readings,
+instead of filling the page header. Reader also supplies the collapsed handle's actual-stage
+position. Only pure choice/action groups carry
+`data-reader-controls`; mixed containers do not hide their observation text. Native dropdown arrows
+use Reader's shared lane, with no topic padding/arrow workaround.
+Button clusters declare `data-reader-actions="single-line"`: labels keep a normal target height,
+and complete buttons wrap between rows on phones. The ratio/orbit actions use concise bilingual
+names; scientific qualifications and the illustrated-surface label remain present.
+The original reading-depth group stays at the top of the active explanation. `explorationGuide.ts`
+owns the caption/control placement and finite narrow-screen reveal/return focus. It has no caption-height
+observer or copied handle-offset CSS. Existing panel state, listeners and scientific content are reused;
+there is no second explanation engine or renderer.
+`explorationContent.json` owns the short bilingual labels and case-specific action cues. Scientific
+models and reading material remain with their existing topic owners. Earlier four-chapter layout
+notes above describe the previous UI; this section supersedes that navigation. See
+[the scoped navigation record](../../docs/cosmic-navigation-20261028.md).

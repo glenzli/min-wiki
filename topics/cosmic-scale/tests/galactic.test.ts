@@ -8,6 +8,7 @@ import { galacticCases, galacticObjects, galacticPointCount, readGalacticState, 
 import { readExploration } from '../comparisonModel.ts';
 import { galaxyStudy } from '../study.ts';
 import content from '../galacticContent.json';
+import {viewZoom} from '../viewNavigation.ts';
 
 test('new galaxy routes retain all old comparison, address and zoom meanings', () => {
   assert.equal(readExploration('?mode=galaxies&galaxy=elliptical&scale=.7').chapter, 'galaxies');
@@ -55,7 +56,7 @@ test('every case has equivalent bilingual questions, evidence, limitations and p
   for (const selected of galacticCases) {
     const study = galaxyStudy(selected);
     for (const field of ['child', 'title', 'theory', 'evidence', 'limits'] as const) for (const language of ['zh', 'en'] as const) assert.ok(study[field]![language].trim().length > (field === 'title' ? 2 : 10), `${selected}.${field}.${language}`);
-    assert.ok(study.sources.every(source => /^https:\/\/(science\.nasa\.gov|www\.nasa\.gov|www\.esa\.int)\//.test(source.url)));
+    assert.ok(study.sources.every(source => /^https:\/\/(science\.nasa\.gov|www\.nasa\.gov|www\.esa\.int|starchild\.gsfc\.nasa\.gov|cdsarc\.cds\.unistra\.fr|doi\.org|exoplanetarchive\.ipac\.caltech\.edu)\//.test(source.url)));
   }
   assert.match(galaxyStudy('elliptical').limits.en, /not a compulsory evolutionary sequence/);
   assert.match(galaxyStudy('star-cluster').limits.en, /No universal star-count threshold/);
@@ -80,16 +81,25 @@ test('production scene cache, hidden rendering, GPU failure, retry and disposal 
   class Renderer { setClearColor() {} setPixelRatio() {} setSize() {} render() { renders++; } dispose() { releases++; } forceContextLoss() {} }
   const document = { hidden: false, createElement: () => new Canvas() }, failures: boolean[] = [];
   const context = vm.createContext({ THREE: { ...THREE, WebGLRenderer: Renderer }, document, devicePixelRatio: 3,
-    ResizeObserver: class { observe() {} disconnect() { disconnects++; } }, GALACTIC_CACHE_LIMIT, SOLAR_POSITION, galacticObjects });
+    ResizeObserver: class { observe() {} disconnect() { disconnects++; } }, GALACTIC_CACHE_LIMIT, SOLAR_POSITION, galacticObjects,viewZoom });
   vm.runInContext(code, context);
   const host = {classList:{add(){}},append(){},clientWidth:800,clientHeight:500};
   const scene = new (context as any).GalacticScene(host, content.ui.en, (failed: boolean) => failures.push(failed));
   scene.setActive(true); const state = readGalacticState(''); scene.draw(state);
   const first = scene.cache.get('milky-way'); let disposed = 0; first.populations.forEach((p: any) => p.mesh.geometry.addEventListener('dispose', () => disposed++));
   scene.draw({...state, pitch:0}); assert.equal(scene.cache.get('milky-way'), first);
-  const framing = [scene.camera.left,scene.camera.top]; scene.draw({...state,guides:!state.guides,halo:false}); assert.deepEqual([scene.camera.left,scene.camera.top],framing);
+  const framing = [scene.camera.left,scene.camera.top];scene.draw({...state,zoom:1.5});assert.ok(Math.abs(scene.camera.left-framing[0]/1.5)<1e-12);assert.equal(scene.cache.get('milky-way'),first);scene.draw(state); scene.draw({...state,guides:!state.guides,halo:false}); assert.deepEqual([scene.camera.left,scene.camera.top],framing);
   for (const selected of galacticCases.slice(1)) { scene.draw({...state, selected}); assert.ok(scene.cache.size <= GALACTIC_CACHE_LIMIT); }
   assert.equal(disposed, 5); assert.ok(!scene.cache.has('milky-way'));
+  for(const [width,height] of [[800,500],[390,600],[1200,520]])for(const pitch of [0,.92,Math.PI/2]){
+    host.clientWidth=width!;host.clientHeight=height!;scene.draw({...state,selected:'galaxy-comparison',zoom:1,pitch,yaw:.4});
+    const pair=scene.cache.get('galaxy-comparison');assert.equal(pair.objects.length,2);
+    for(const population of pair.populations)for(let i=0;i<population.cloud.positions.length;i+=171){
+      const p=new THREE.Vector3(...population.cloud.positions.slice(i,i+3)).applyMatrix4(population.owner.matrixWorld).project(scene.camera);
+      assert.ok(Math.abs(p.x)<1&&Math.abs(p.y)<1,'both whole stellar volumes fit the default paired frame');
+    }
+  }
+  host.clientWidth=800;host.clientHeight=500;
   for (const pitch of [0, .7, Math.PI / 2]) {
     scene.draw({...state, selected:'star-cluster', yaw:.65, pitch});
     const entry = scene.cache.get('star-cluster'), contextOwner = entry.populations[0].owner, detailOwner = entry.populations.find((p: any) => p.owner !== contextOwner).owner;

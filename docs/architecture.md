@@ -47,7 +47,7 @@ Reader 首页提供缩略图和列表总览，分类与关键词可以组合筛�
 
 阅读文字、模型限定、资料折叠区和章节／延伸导航通过 `data-reader-prose` 标记。Reader 统一提供左右留白与模块间距；标记不放在主画布、SVG 或实验工作区上。嵌套阅读块避免重复留白，进入侧边讲解面板的文字采用面板自己的内边距。学习说明组件使用同一留白基准，不再依赖已移除的整站外层 padding。
 
-常规控件由 Reader 统一为最小 44px 高、14px 字号、8px 间距和圆角；多行文字和图片选项允许自然增高。画面、短图注、播放栏和阅读区共用桌面最多 20px、手机 16px 的留白基准。自有绘图容器可标记 `data-reader-stage` 去除重复的外框与圆角，播放栏和短图注分别用 `data-reader-transport`、`data-reader-caption` 声明；科学图形的边界和 `data-scene-hit-target` 点击几何保持专题所有。Reader 的界面色使用自身前缀变量，避免与专题的同名深色场景变量冲突。
+常规控件由 Reader 统一为自适应尺寸：宽于 760px、支持悬停的精确指针环境默认 36px 高、13px 控件字号；窄屏或触控环境保留 44px 目标和 14px 字号。统一使用 6px 圆角、轻边框与选中底色；多行文字和图片选项允许自然增高。正文与科学标注不随控件缩小。画面、短图注、播放栏和阅读区共用桌面最多 20px、手机 16px 的留白基准。自有绘图容器可标记 `data-reader-stage` 去除重复的外框与圆角，播放栏和短图注分别用 `data-reader-transport`、`data-reader-caption` 声明；科学图形的边界和 `data-scene-hit-target` 点击几何保持专题所有。Reader 的界面色使用自身前缀变量，避免与专题的同名深色场景变量冲突。
 
 模型限定按当前画面安排：直接影响读图的一句话仍在图旁；当前章节的详细限制放入解说中的默认折叠区，并保留资料入口；跨章节通用边界放入完整正文。黑洞的 `#limits` 仍由原控制器更新，只调整位置，不复制或改写科学条件。手机双菜单工具栏在同一区域内换行，避免用难辨认的省略文字代替菜单名称。
 
@@ -62,6 +62,8 @@ Reader 首页提供缩略图和列表总览，分类与关键词可以组合筛�
 Earth native entry fragments inherit their common display variables from `.earth-single-gallery` as well as the guide `.earth-project`. Scientific models remain topic-owned. The interior plate and ray-path clocks are finite presentation phases with old-link defaults and independent plate/planet cameras; material, terrain and state ownership are recorded in the topic README.
 
 Reader 的可选 `workbench.css` 区域让专题组合观察栏、通栏画面、播放/进度、图注、图例、读数与说明。采用 `data-reader-workbench` 后，这些区域共享默认留白与可换行控件；专题可用变量、自己的选择器或局部 `data-reader-ui="custom"` 调整，不强制侧栏、字段或科学回调。原 `data-reader-toolbar` 的目标 ID 含义不变。本地联调使用 `WIKI_READER_ROOT` 指向独立 Reader 源码；这不表示已发布依赖或安装插件。
+
+紧凑观察栏使用 Reader 的 `data-reader-density="compact"` 与 `data-reader-control-row`：同一行组合本地选择、短提示和讲解入口，仅由外层提供一份内距，空间不足时按实际宽度换行，按钮沿用公共的桌面 36px／触控 44px 自适应目标。纯操作子组标 `data-reader-controls`，提示标 `data-reader-caption`，不把混合信息组整体收起。可见提示位于画面上方时，根区声明 `data-reader-toggle-anchor="stage"`，由 Reader 跟随当前可见的自有画面定位操作入口并释放观察器；专题不再复制高度补偿。普通原生下拉框的箭头通道由 Reader 默认提供（边缘 14px、文字末端 36px），多选列表和已有自定义退出规则保留。专题仍可覆盖工作台变量或在特殊控件上使用自定义样式退出；本地声明不表示已发布 Reader 依赖。
 
 响应式组合通过 `data-reader-layout="stage|compare|flow"` 选择；`data-reader-main` 聚合场景与必要操作，`data-reader-support` 只放可选说明。`data-reader-essential` 保留实验条件、关键读数和必要限定；它们不能仅因外观像侧栏就进入默认折叠区。Canvas 可用 `data-reader-fit="available"` 选择空间预算，SVG 默认保留作者比例；断点依据实际容器宽度并兼顾低高度横屏。长说明正常滚动，不把主画面压成细条。专题仍可自定义布局。设计与验收见 [Reader 可组合布局](reader-responsive-layout-20261026.md)。
 

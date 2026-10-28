@@ -5,6 +5,7 @@ import { zoomStudy, homeStudy } from '../study.ts';
 import {readFileSync} from 'node:fs';
 import vm from 'node:vm';
 import ts from 'typescript';
+import {isSceneChapter} from '../explorationNavigation.ts';
 
 test('both close-up origins explain the object that actually occupies the physical ruler',()=>{
   for(const origin of ['earth','sun'] as const){
@@ -37,7 +38,7 @@ test('the production reading cache refreshes when the close-up origin changes wi
   const sync=parsed.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text==='syncStudy');assert.ok(sync);
   const code=ts.transpileModule('let studyKey="";'+sync.getText(parsed),{compilerOptions:{target:ts.ScriptTarget.ES2022}}).outputText;
   const state={origin:'earth',progress:originStart('earth')},studies:ReturnType<typeof zoomStudy>[]=[];
-  const context=vm.createContext({state,stageFor,zoomStudy,exploration:{chapter:'zoom'},comparisonNote:{},el:()=>({}),
+  const context=vm.createContext({state,stageFor,zoomStudy,isSceneChapter,guide:undefined,exploration:{chapter:'zoom'},comparisonNote:{},el:()=>({}),
     reading:{setChildTarget(){},set(study:ReturnType<typeof zoomStudy>){studies.push(study);}}});
   vm.runInContext(code,context);vm.runInContext('syncStudy()',context);assert.equal(studies.length,1);
   state.origin='sun';state.progress=originStart('sun');vm.runInContext('syncStudy()',context);

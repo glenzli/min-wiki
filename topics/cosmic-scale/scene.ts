@@ -196,7 +196,7 @@ export class CosmicScene {
     const bodyPixels=(origin==='earth'?EARTH_RADIUS_KM:SUN_RADIUS_KM)/half*width/2;
     if(bodyPixels<5){
       const regionBlend=smooth((Math.log10(half/LY)-10.1)/.6);
-      if(regionBlend<1){c.save();c.globalAlpha=1-regionBlend;marker(...anchor,true);c.restore();}
+      if(regionBlend<1){c.save();c.globalAlpha=1-regionBlend;marker(...anchor,true,'#ffe29a');c.restore();}
       if(regionBlend>.01&&anchor[0]>8&&anchor[0]<width-8&&anchor[1]>8&&anchor[1]<height-50){
         c.save();c.globalAlpha=regionBlend;c.strokeStyle='#ffe29aaa';c.lineWidth=1.5;c.beginPath();c.arc(...anchor,8,0,Math.PI*2);c.stroke();c.fillStyle='#ffe29a';c.beginPath();c.arc(...anchor,2.3,0,Math.PI*2);c.fill();c.restore();
       }

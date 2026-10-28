@@ -204,11 +204,84 @@
 #cosmic-observation .membership-views{display:flex;align-items:center;gap:6px;margin-inline-start:auto}
 #cosmic-observation .membership-views>button{min-height:44px;padding:7px 10px;font-size:12px;white-space:nowrap;overflow-wrap:normal;word-break:normal}
 
+/* Small observer controls; magnification never changes a structural object's geometry. */
+#cosmic-observation .membership-views{flex-wrap:wrap}
+#cosmic-observation .view-zoom-controls{display:inline-flex;align-items:center;gap:3px;flex:0 0 auto}
+#cosmic-observation .view-zoom-controls button{min-width:44px;min-height:44px;padding:7px 8px;font-size:13px;white-space:nowrap;border-radius:8px}
+#cosmic-observation .view-zoom-controls button:nth-child(2){min-width:80px;font-variant-numeric:tabular-nums}
+#cosmic-observation #cosmic-canvas{touch-action:none}
+#cosmic-observation #cosmic-canvas:focus-visible{outline:2px solid #ffe29a;outline-offset:-3px}
+.scale-reading-guide{margin:0;padding:5px 12px 8px;color:var(--secondary);font-size:12px;line-height:1.5}
+.scale-reading-guide strong,.scale-reading-guide span,.scale-reading-guide small{display:block}
+.scale-reading-guide strong{font-size:13px;color:var(--ink)}
+.scale-reading-guide small{margin-top:3px;font-size:11px;color:var(--secondary)}
+.physical-gesture-hint{display:block;color:var(--secondary);font-size:11px;line-height:1.4}
+@media(max-width:600px){.scale-reading-guide{font-size:12px;padding:5px 12px 8px}.scale-reading-guide strong{font-size:13px}}
+
 /* Keep transport labels readable instead of splitting English words vertically. */
 @media(max-width:600px){
  #cosmic-observation .comparison-home-transport>button{flex:0 0 auto;white-space:nowrap;overflow-wrap:normal;word-break:normal;font-size:12px;padding:8px}
  #cosmic-observation .comparison-home-progress{flex:1;min-width:48px;text-align:center;white-space:nowrap}
- #cosmic-observation .membership-views{flex:1 1 100%;justify-content:flex-end}
+ #cosmic-observation .membership-views{flex:1 1 100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+ #cosmic-observation .membership-views .view-zoom-controls{grid-column:1/-1;justify-self:end}
  #cosmic-observation #stops{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
  #cosmic-observation #stops>button{min-width:0;white-space:normal;overflow-wrap:normal;word-break:normal;font-size:12px;padding:7px 8px;line-height:1.4}
+}
+
+/* Sky and structural views occupy the same retained Reader stage. */
+.galactic-stage>.galactic-scene-layer,.galactic-stage>.sky-scene-layer{position:absolute;inset:0;width:100%;height:100%;min-height:0;background:#030812}
+.sky-labels{z-index:1}
+.sky-hit-layer{position:absolute;inset:0;z-index:2;pointer-events:none}
+#cosmic-observation .sky-hit-layer>button{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;width:36px;height:36px;min-height:36px;padding:0;background:transparent;border:0;border-radius:50%;color:transparent;box-shadow:none}
+#cosmic-observation .sky-hit-layer>button:hover,#cosmic-observation .sky-hit-layer>button:focus-visible{outline:2px solid #ffe0a1;outline-offset:0;background:#ffe0a10c}
+.sky-controls{padding:6px 14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;min-width:0}
+.sky-directions,.sky-observer-tools,.sky-system-tools,.sky-selection{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;min-width:0}
+.sky-directions{flex:0 1 auto}.sky-observer-tools{flex:1 1 460px}.sky-system-tools{flex:1 1 100%}
+.sky-progress{display:flex;align-items:center;gap:8px;flex:1 1 230px;min-width:0;font-size:12px;color:var(--secondary)}
+.sky-progress input{flex:1;min-width:90px;width:auto!important;margin:0}
+.sky-progress output{min-width:58px;text-align:end;white-space:nowrap;font-variant-numeric:tabular-nums}
+#cosmic-observation .sky-controls button{font-size:13px;border-radius:8px;min-height:44px;padding:7px 11px;white-space:normal;word-break:normal}
+.sky-selection label{display:flex;align-items:center;min-width:0}
+.sky-selection select{font:inherit;font-size:13px;min-height:44px;max-width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:8px;color:var(--ink);background:var(--surface)}
+.sky-cue{flex:1 1 260px;min-width:0;margin:0;font-size:13px;line-height:1.6}
+.sky-detail{flex:1 1 100%;font-size:13px;line-height:1.6;font-variant-numeric:tabular-nums}
+.sky-note{flex:1 1 100%;font-size:11px;line-height:1.5;color:var(--secondary)}
+/* Questions stay in the Reader menu; only the active question's cases sit beside its drawing. */
+#cosmic-observation .galactic-choices{display:flex;flex:0 1 auto;flex-wrap:wrap;align-items:center;gap:4px 8px;min-width:0}
+#cosmic-observation .galactic-choices>button{min-height:44px;padding:6px 9px;font-size:13px;border:0;border-bottom:2px solid transparent;border-radius:0;background:transparent;color:var(--secondary);white-space:normal}
+#cosmic-observation .galactic-choices>button[aria-pressed="true"]{border-bottom-color:var(--ink);color:var(--ink);font-weight:650}
+#cosmic-observation .comparison-case-navigation{min-width:0}
+#cosmic-observation .comparison-case-navigation .comparison-home-path>p{display:none}
+#cosmic-observation .comparison-case-navigation .comparison-home-aside{border:0;margin-top:3px;padding-top:3px}
+#cosmic-observation .cosmic-lesson-guide{display:flex;align-items:center;flex-wrap:wrap;gap:4px 8px;min-width:0;color:var(--secondary);font-size:13px;line-height:1.5}
+#cosmic-observation .cosmic-lesson-guide>span{flex:1 1 170px;min-width:0}
+#cosmic-observation .cosmic-lesson-guide>button{flex:0 0 auto;min-height:44px;padding:7px 11px;font-size:13px}
+#cosmic-observation .cosmic-explanation-tools{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+#cosmic-observation .cosmic-explanation-tools .scene-reading-switch{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0}
+#cosmic-observation .cosmic-explanation-tools button{min-height:44px;padding:6px 11px;font-size:12px}
+@media(min-width:761px){#cosmic-observation .cosmic-return-scene{display:none}}
+@media(max-width:600px){
+ #cosmic-observation .galactic-choices{gap:2px 5px}
+ #cosmic-observation .galactic-choices>button{font-size:12px;padding:6px 7px;flex:0 1 auto}
+ #cosmic-observation .cosmic-lesson-guide{font-size:12px;gap:4px 8px}
+ #cosmic-observation .cosmic-lesson-guide>span{flex-basis:170px}
+ #cosmic-observation .cosmic-lesson-guide>button{font-size:12px;padding:6px 9px}
+}
+@media(min-width:700px) and (max-height:500px){
+ #cosmic-observation .cosmic-main>[data-reader-stage]{grid-row:2}
+ #cosmic-observation .cosmic-main>[data-reader-control-row]{grid-row:1}
+ #cosmic-observation .cosmic-main>.cosmic-essential{grid-row:2}
+}
+#cosmic-observation .cosmic-main:has(.sky-controls:not([hidden]))>.galactic-stage{--reader-stage-size:clamp(260px,calc(100dvh - 330px),520px)}
+#cosmic-observation #galaxies-panel .cosmic-main>.galactic-stage[data-system-whole="1"]{--reader-stage-size:clamp(400px,60dvh,560px)}
+@media(max-width:600px){
+ .sky-controls{padding:6px 12px;gap:6px 10px}
+ .sky-directions{flex:1 1 100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+ #cosmic-observation .sky-directions button{min-width:0;font-size:12px;padding:6px 4px;line-height:1.4}
+ .sky-progress{flex:1 1 100%;flex-wrap:wrap;gap:3px 8px}
+ .sky-progress input{flex:1 1 50%}
+ .sky-cue,.sky-detail{font-size:12px}
+ #cosmic-observation .sky-system-tools button{flex:1 1 100px;font-size:12px}
+ #cosmic-observation .cosmic-main:has(.sky-controls:not([hidden]))>.galactic-stage{--reader-stage-size:clamp(280px,43dvh,400px)}
+ #cosmic-observation #galaxies-panel .cosmic-main>.galactic-stage[data-system-whole="1"],#cosmic-observation #galaxies-panel .cosmic-main>.galactic-stage[data-galaxy-pair="1"]{--reader-stage-size:clamp(520px,72dvh,650px)}
 }

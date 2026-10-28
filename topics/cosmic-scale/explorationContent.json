@@ -1,0 +1,84 @@
+{
+  "zh": {
+    "caseLabel": "本题看什么",
+    "explanation": "讲解这一幕",
+    "readingKids": "看图讲解",
+    "readingAcademic": "深入原理",
+    "tryLabel": "试一试",
+    "cases": {
+      "milky-way": "银河结构",
+      "galaxy-comparison": "银河与M87对照",
+      "trappist-1": "太阳系与TRAPPIST-1",
+      "sky": "银河光带",
+      "orion": "星座的远近",
+      "spiral": "仙女座M31",
+      "elliptical": "单看M87",
+      "irregular": "不规则星系",
+      "star-cluster": "星团与星系",
+      "local-group": "星系怎样成群"
+    },
+    "actions": {
+      "compare": "先估倍数，再核验。",
+      "systems": "先看完整阵容，再用「同尺对照」看轨道有多紧凑；点行星或播放20天。",
+      "galaxies": "先找银河的薄盘，再和M87一起转到侧面，比较厚薄。",
+      "sky": "先看地面夜空，再切换视线；用「星座的远近」观察同一组星。",
+      "homes": "沿太阳系、银河系、星系群到可观测范围，找清我们的结构地址。",
+      "zoom": "按「开始拉远」或拖动距离尺；想从太阳出发，在「设置」里切换。"
+    },
+    "caseActions": {
+      "milky-way": "转到侧面，找找太阳在薄盘里的位置。",
+      "galaxy-comparison": "点「侧面看银河」，比较银河薄盘与M87恒星体的厚度。",
+      "trappist-1": "先看完整阵容，再用「同尺对照」看轨道有多紧凑；点行星或播放20天。",
+      "sky": "先看「地面夜空」，再切换「沿盘面看」；移动镜头看这条光带的来处。",
+      "orion": "点选一颗亮星，再移动观察位置，看同一认星图案怎样显出远近。",
+      "spiral": "转动M31寻找旋臂，再用夜空入口对应它在天空中的方向。",
+      "elliptical": "转到不同方向，看看平滑的恒星体怎样保持厚度。",
+      "irregular": "转动这座不对称的星系，看看星光的空间分布。",
+      "star-cluster": "比较星团的归属位置与独立放大图，分清星团和星系。",
+      "local-group": "找到银河、仙女座和三角座；这里的小标记代表整座星系。"
+    },
+    "question": "问题",
+    "backToScene": "← 回到画面"
+  },
+  "en": {
+    "caseLabel": "What to explore in this question",
+    "explanation": "Explain this scene",
+    "readingKids": "Picture explanation",
+    "readingAcademic": "How it works",
+    "tryLabel": "Try this",
+    "cases": {
+      "milky-way": "Milky Way structure",
+      "galaxy-comparison": "Milky Way vs M87",
+      "trappist-1": "Solar System vs TRAPPIST-1",
+      "sky": "Milky Way band",
+      "orion": "Constellation depths",
+      "spiral": "Andromeda M31",
+      "elliptical": "M87 on its own",
+      "irregular": "Irregular galaxies",
+      "star-cluster": "Clusters and galaxies",
+      "local-group": "Groups of galaxies"
+    },
+    "actions": {
+      "compare": "Estimate, then check.",
+      "systems": "Start with whole families, compare orbits on the same ruler, select planets or play 20 days.",
+      "galaxies": "Find the Milky Way disk, then turn it and M87 edge-on to compare thickness.",
+      "sky": "Start with the ground sky, change sightlines, then explore the same constellation from the side.",
+      "homes": "Follow our structural address from the Solar System through galaxies to the observable region.",
+      "zoom": "Play or scrub the distance scale. To start from the Sun, change the origin in Settings."
+    },
+    "caseActions": {
+      "milky-way": "Turn edge-on and find the Sun inside the thin disk.",
+      "galaxy-comparison": "Choose Milky Way edge-on and compare its thin disk with the thicker M87 volume.",
+      "trappist-1": "Start with whole families, compare orbits on the same ruler, select planets or play 20 days.",
+      "sky": "Start with Earth sky, switch to Along the disk, then move the camera to trace the band to its structure.",
+      "orion": "Select a bright star, then move the observer to reveal depths behind the same sky pattern.",
+      "spiral": "Turn M31 to find its arms, then use the sky link to locate its direction.",
+      "elliptical": "Turn to different directions and see how the smooth stellar body retains thickness.",
+      "irregular": "Turn this asymmetric galaxy to explore the spatial distribution of starlight.",
+      "star-cluster": "Compare the cluster location with its independent close-up and distinguish clusters from galaxies.",
+      "local-group": "Find the Milky Way, Andromeda and Triangulum; small locators here stand for whole galaxies."
+    },
+    "question": "Question",
+    "backToScene": "← Back to the scene"
+  }
+}

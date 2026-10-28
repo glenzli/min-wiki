@@ -1,5 +1,6 @@
 import {clamp,EARTH_RADIUS_KM,SUN_RADIUS_KM,AU_KM,ORBIT_RADII_AU,PLANET_RADII_KM} from './model.ts';
-export type Chapter='compare'|'homes'|'galaxies'|'zoom';
+import {readChapter} from './explorationNavigation.ts';
+export type {Chapter} from './explorationNavigation.ts';
 /** Stable URL identities for structure diagrams; indices 3 and 5 remain valid side-view links. */
 export const homeStops=['solar-system','milky-way','local-group','nearby-clusters','supercluster','cosmic-web','observable-universe'] as const;
 /** A journey through our location, excluding sibling comparisons and a distribution pattern. */
@@ -25,6 +26,6 @@ export function stellarOrbitFrame(bodyIndex:number,width:number,height:number){
 export const lastPair=bodies.length-2;
 /** A length ratio from the same radii consumed by both renderers and familiar references. */
 export function diameterComparison(pair:number){const index=Math.round(clamp(pair,0,lastPair)),small=bodies[index]!,large=bodies[index+1]!;return {small,large,ratio:large.radius/small.radius};}
-export function readExploration(query:string){const p=new URLSearchParams(query),mode=p.get('mode'),pair=Number(p.get('pair')??0);return {chapter:(['compare','homes','galaxies','zoom'].includes(mode??'')?mode:p.has('scale')||p.has('origin')?'zoom':'compare') as Chapter,pair:clamp(p.get('pairVersion')==='2'?pair:pair>=5?lastPair:pair,0,lastPair),home:Math.round(clamp(Number(p.get('home')??0),0,homeStops.length-1))};}
+export function readExploration(query:string){const p=new URLSearchParams(query),pair=Number(p.get('pair')??0);return {chapter:readChapter(p),pair:clamp(p.get('pairVersion')==='2'?pair:pair>=5?lastPair:pair,0,lastPair),home:Math.round(clamp(Number(p.get('home')??0),0,homeStops.length-1))};}
 /** One common linear diameter scale at every intermediate frame. Positions are a comparison layout, not orbital distances. */
 export function comparisonFrame(progress:number,width:number,height=390){const q=clamp(progress,0,lastPair),i=Math.min(lastPair-1,Math.floor(q)),t=q-i,maxRadius=bodies[i+1]!.radius*(bodies[i+2]!.radius/bodies[i+1]!.radius)**t,unit=Math.min(155,width*.23,Math.max(1,height-44)*.47)/maxRadius;return bodies.map((b,j)=>{let x=width*(.25+.49*(j-q));if(j>q+1&&j>0)x=Math.max(x,width*(.25+.49*(j-1-q))+(bodies[j-1]!.radius+b.radius)*unit+width*.04);return {id:b.id,x,radius:b.radius*unit,opacity:clamp(1-Math.max(0,Math.abs(j-q-.5)-.5))};});}
