@@ -8,7 +8,7 @@ import comparisonCopy from '../comparisonContent.json';
 
 test('six questions place every existing scene in exactly one meaningful family',()=>{
   assert.deepEqual(chapters,['compare','systems','galaxies','sky','homes','zoom']);
-  assert.deepEqual(sceneCases.systems,['trappist-1']);assert.deepEqual(sceneCases.sky,['sky','orion']);
+  assert.deepEqual(sceneCases.systems,['trappist-1','kepler-16','cygnus-x1']);assert.deepEqual(sceneCases.sky,['sky','orion']);
   const cases=Object.values(sceneCases).flat();assert.equal(new Set(cases).size,galacticCases.length);
   assert.deepEqual([...cases].sort(),[...galacticCases].sort());
   for(const selected of galacticCases)assert.ok(sceneCases[sceneChapter(selected)].includes(selected));

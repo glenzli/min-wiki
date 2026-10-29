@@ -1,0 +1,174 @@
+{
+  "routes": {
+    "sky": {
+      "zh": "01 · 夜空与银河",
+      "en": "01 · Sky and galaxies"
+    },
+    "inward": {
+      "zh": "02 · 向里找家",
+      "en": "02 · Inward to home"
+    },
+    "outward": {
+      "zh": "03 · 向外看宇宙",
+      "en": "03 · Outward to cosmos"
+    },
+    "flight": {
+      "zh": "04 · 地球到宇宙",
+      "en": "04 · Earth to universe"
+    }
+  },
+  "steps": {
+    "sky:night": {
+      "zh": "地面夜空",
+      "en": "Earth sky"
+    },
+    "sky:stars": {
+      "zh": "星点的远近",
+      "en": "Star depths"
+    },
+    "sky:milky": {
+      "zh": "银河全貌",
+      "en": "Whole Milky Way"
+    },
+    "sky:neighbours": {
+      "zh": "同尺看星系",
+      "en": "Galaxies on one ruler"
+    },
+    "inward:galaxy": {
+      "zh": "银河",
+      "en": "Galaxy"
+    },
+    "inward:nearby": {
+      "zh": "恒星邻域",
+      "en": "Nearby stars"
+    },
+    "inward:solar": {
+      "zh": "太阳系",
+      "en": "Solar System"
+    },
+    "inward:families": {
+      "zh": "比较恒星家庭",
+      "en": "Stellar families"
+    },
+    "inward:moon": {
+      "zh": "地球与月球",
+      "en": "Earth and Moon"
+    },
+    "inward:earth": {
+      "zh": "地球",
+      "en": "Earth"
+    },
+    "inward:sun": {
+      "zh": "太阳近景",
+      "en": "Sun close-up"
+    },
+    "inward:clusters": {
+      "zh": "星团与恒星",
+      "en": "Clusters and stars"
+    },
+    "inward:sizes": {
+      "zh": "天体大小对照",
+      "en": "Body sizes"
+    },
+    "outward:galaxy": {
+      "zh": "银河",
+      "en": "Milky Way"
+    },
+    "outward:group": {
+      "zh": "星系群",
+      "en": "Galaxy group"
+    },
+    "outward:cluster": {
+      "zh": "对照星系团",
+      "en": "Compare a cluster"
+    },
+    "outward:flows": {
+      "zh": "超星系团",
+      "en": "Supercluster"
+    },
+    "outward:web": {
+      "zh": "宇宙网",
+      "en": "Cosmic web"
+    },
+    "outward:observable": {
+      "zh": "可观测范围",
+      "en": "Observable region"
+    },
+    "flight:continuous": {
+      "zh": "连续拉远",
+      "en": "Continuous zoom"
+    }
+  },
+  "ui": {
+    "zh": {
+      "steps": "这一章看什么",
+      "reset": "重置视角",
+      "compare": "同尺对照",
+      "inspect": "单独观察",
+      "otherGalaxy": "比较哪座星系",
+      "family": "选择恒星家庭",
+      "night": "先看星点，再看光带：恒星自己发光，太阳也是恒星。",
+      "stars": "换个位置看同一组恒星；一个亮点可能是没有分开的多星系统。",
+      "milky": "太阳只是银河里的众多恒星之一；转到侧面看薄盘。",
+      "neighbours": "同一把长度尺；星系边缘并不是硬壳，可单独放大看细节。",
+      "inward": "保留地球定位，按真实距离逐步靠近。",
+      "families": "这是不同恒星家庭的对照镜头；我们的太阳系是其中一种。",
+      "outward": "尺度变大时，定位点可能代表整座星系。先分清成员与邻居。",
+      "flight": "把前面学过的位置串起来；拖动距离尺或开始一路拉远。",
+      "inwardPlay": "继续靠近地球",
+      "inwardReset": "从银河再来",
+      "moonTitle": "地球与月球：仍用同一把长度尺",
+      "moonCue": "地球和月球没有被放大；小圈是定位符，不是直径。",
+      "inwardRuler": "从银河靠近地球 · 对数尺度",
+      "related": "对照与近看",
+      "stepChoice": "选择观察位置或相关对照",
+      "returnSolar": "回到太阳系",
+      "sunRuler": "以太阳为中心缩放",
+      "sun": "近看太阳：它也是恒星。回到太阳系全景，再看它的位置。",
+      "clusters": "左侧定位、右侧放大同一个星团；两幅图的取景尺度不同。",
+      "sizes": "比较天体的直径，用「同尺核验」查看大小关系。"
+    },
+    "en": {
+      "steps": "Explore this chapter",
+      "reset": "Reset view",
+      "compare": "Common ruler",
+      "inspect": "Inspect one",
+      "otherGalaxy": "Galaxy to compare",
+      "family": "Choose a stellar family",
+      "night": "Stars shine by themselves; the Sun is also a star. Find points and the Milky Way band.",
+      "stars": "Change viewpoint for the same stars. One light point may hide multiple stars.",
+      "milky": "The Sun is one of many Milky Way stars. Turn edge-on to see the thin disk.",
+      "neighbours": "One length ruler. Galaxies have no hard edges; inspect one for detail.",
+      "inward": "Keep the Earth locator while approaching on the physical distance ruler.",
+      "families": "A comparison window for stellar families; our Solar System is one kind.",
+      "outward": "At larger scales a locator can represent a whole galaxy. Separate members from neighbours.",
+      "flight": "Connect the places you explored. Scrub the ruler or play the whole outward journey.",
+      "inwardPlay": "Continue toward Earth",
+      "inwardReset": "Restart at the Milky Way",
+      "moonTitle": "Earth and Moon: the same length ruler",
+      "moonCue": "Earth and Moon keep their sizes; small rings locate them and do not show diameters.",
+      "inwardRuler": "Approach Earth from the galaxy · logarithmic scale",
+      "related": "Compare and inspect",
+      "stepChoice": "Choose a scale or related view",
+      "returnSolar": "Back to the Solar System",
+      "sunRuler": "Zoom around the Sun",
+      "sun": "See the Sun as a star, then return to the Solar System to locate it.",
+      "clusters": "Locate the cluster on the left and inspect it on the right; the views have different scales.",
+      "sizes": "Compare body diameters, then check the ratio on the common ruler."
+    }
+  },
+  "galaxyNames": {
+    "spiral": {
+      "zh": "仙女座 M31",
+      "en": "Andromeda M31"
+    },
+    "elliptical": {
+      "zh": "椭圆星系 M87",
+      "en": "Elliptical M87"
+    },
+    "irregular": {
+      "zh": "NGC 6822",
+      "en": "NGC 6822"
+    }
+  }
+}

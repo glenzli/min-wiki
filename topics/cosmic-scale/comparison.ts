@@ -13,6 +13,7 @@ type Words=typeof content.zh;
 const make=<K extends keyof HTMLElementTagNameMap>(tag:K,text='',className='')=>{const el=document.createElement(tag);el.textContent=text;el.className=className;return el;};
 /** Owns the finite comparison animation and schematic membership drawings, independent of the physical camera. */
 export class ComparisonJourney {
+ private curated=false;
  readonly visual=make('div','','comparison-visual');
  private words:Words;private canvas=make('canvas');private ctx:CanvasRenderingContext2D;private observer:ResizeObserver;
  private pair=0;private home=0;private chapter:Chapter='compare';private frame=0;private destination:number|null=null;private disposed=false;
@@ -67,7 +68,8 @@ export class ComparisonJourney {
   for(const url of [earthMap,jupiterMap]){const image=new Image();image.onload=()=>{if(!this.disposed)this.paint();};image.src=url;this.maps.push(image);}
   this.setSurface(this.surfacePlaying);
  }
- show(chapter:Chapter,pair:number,home:number){if(this.chapter!==chapter)this.stop();this.chapter=chapter;this.pair=pair;this.home=home;this.root.hidden=chapter!=='compare'&&chapter!=='homes';this.pairs.parentElement!.hidden=chapter!=='compare';this.homePath.hidden=chapter!=='homes';this.homeAside.hidden=chapter!=='homes';if(chapter==='homes')this.membershipGpu?.setSolarPhase(this.solarPhase);this.membershipGpu?.setActive(chapter==='homes'&&!document.hidden);if(chapter!=='compare')this.pauseSurface();this.paint();}
+ show(chapter:Chapter,pair:number,home:number){if(this.chapter!==chapter)this.stop();this.chapter=chapter;this.pair=pair;this.home=home;this.root.hidden=chapter!=='compare'&&chapter!=='homes';this.pairs.parentElement!.hidden=chapter!=='compare';this.homePath.hidden=chapter!=='homes';this.homeAside.hidden=chapter!=='homes';this.caseNavigation.hidden=this.curated&&chapter==='homes';if(chapter==='homes')this.membershipGpu?.setSolarPhase(this.solarPhase);this.membershipGpu?.setActive(chapter==='homes'&&!document.hidden);if(chapter!=='compare')this.pauseSurface();this.paint();}
+ useJourneyNavigation(){this.curated=true;this.homePrevious.hidden=this.homeNext.hidden=this.homeProgress.hidden=this.homeTop.hidden=this.homeEdge.hidden=this.fullReference.hidden=true;}
  setChildSummary(summary:()=>string){this.childSummary=summary;this.paint();}
  get solarPhase(){return solarSurfacePhase(this.surfaceTime);}
  pauseSurface(){this.setSurface(false);}
@@ -145,11 +147,11 @@ export class ComparisonJourney {
   if(!surfaceOnly){
   this.surfaceButton.hidden=!comparing;
   this.homeTransport.hidden=comparing;
-  this.fullReference.hidden=comparing||this.home>1;this.fullReference.textContent=this.home===0?w.otherSystems:w.otherGalaxies;
+  this.fullReference.hidden=this.curated||comparing||this.home>1;this.fullReference.textContent=this.home===0?w.otherSystems:w.otherGalaxies;
   this.homeCues.hidden=comparing;
   this.membershipStatus.hidden=comparing;this.membershipHint.hidden=comparing;this.visual.classList.toggle('membership-active',!comparing);this.visual.setAttribute('aria-label',comparing?w.compareAlt:`${w.homeNames[this.home]}. ${w.membershipStage}`);if(comparing)this.visual.removeAttribute('aria-describedby');else this.visual.setAttribute('aria-describedby',this.membershipHint.id);
   this.membershipStatusText.textContent=this.membershipFailed?w.membershipFallback:w.membership3d+(this.membershipLoading?'…':'');this.membershipRetry.hidden=!this.membershipFailed;for(const button of [this.homeTop,this.homeEdge,this.homeReset])button.disabled=!this.membershipGpu?.ready;
-  this.pairs.parentElement!.hidden=!comparing;this.homePath.hidden=comparing;this.homeAside.hidden=comparing;this.solarButton.hidden=index<1;this.solarButton.textContent=solar?w.pairView:w.solarView;this.solarButton.setAttribute('aria-pressed',String(solar));
+  this.pairs.parentElement!.hidden=!comparing;this.homePath.hidden=this.curated||comparing;this.homeAside.hidden=this.curated||comparing;this.solarButton.hidden=index<1;this.solarButton.textContent=solar?w.pairView:w.solarView;this.solarButton.setAttribute('aria-pressed',String(solar));
   (this.slider.parentElement!.parentElement!).hidden=!comparing;this.slider.parentElement!.hidden=solar;this.cards.hidden=!comparing||!solar&&Math.abs(this.pair-Math.round(this.pair))>1e-5;
   this.canvas.setAttribute('aria-label',solar?`${w.names[index+1]}. ${w.orbitBoundary}`:comparing?w.compareAlt:`${w.homeNames[this.home]}. ${w.homeAlt}`);
   this.title.textContent=comparing?w.pairTitles[index]!:w.homeTitles[this.home]!;
@@ -164,7 +166,7 @@ export class ComparisonJourney {
   [...this.sideViews.children].forEach((b,i)=>b.setAttribute('aria-pressed',String(homeSideViews[i]===this.home)));
   if(!comparing){const selected=this.homes.children[routePosition] as HTMLElement;this.homes.scrollLeft=selected.offsetLeft-this.homes.offsetLeft-(this.homes.clientWidth-selected.clientWidth)/2;}
   this.homePrevious.textContent=side?w.homeReturn.replace('{{name}}',w.homeNames[homeContext(this.home)]!):w.homePrevious;
-  this.homePrevious.disabled=!side&&routePosition===0;this.homeNext.hidden=side;this.homeNext.disabled=routePosition===homeRoute.length-1;
+  this.homePrevious.disabled=!side&&routePosition===0;this.homeNext.hidden=this.curated||side;this.homeNext.disabled=routePosition===homeRoute.length-1;
   this.homeProgress.textContent=(side?w.homeSideProgress:w.homeProgress).replace('{{current}}',String(routePosition+1)).replace('{{total}}',String(homeRoute.length));
   if(!comparing)this.homeCues.replaceChildren(...w.homeCues[this.home]!.map(cue=>{const item=make('div');item.append(make('strong',cue.label),make('span',cue.detail));return item;}));
   this.cards.classList.toggle('orbit-readings',solar);

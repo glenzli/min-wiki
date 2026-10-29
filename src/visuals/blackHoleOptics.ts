@@ -11,17 +11,18 @@ export class BlackHoleOptics extends THREE.Group {
     private rootQuaternion = new THREE.Quaternion();
     private cameraQuaternion = new THREE.Quaternion();
     private cameraPosition = new THREE.Vector3();
+    private cameraDirection = new THREE.Vector3();
     constructor(public shadowRadius: number) {
         super();
         const rs = shadowRadius / 2.6;
         const material = new THREE.ShaderMaterial({
-            uniforms: { uCamera: { value: new THREE.Vector3() }, uInverse: { value: new THREE.Matrix4() }, uRs: { value: rs }, uTime: { value: 0 }, uStrength: { value: 0 }, uEmission: { value: null }, uEmissionExtent: { value: 20 }, uUseEmission: { value: false } },
+            uniforms: { uCamera: { value: new THREE.Vector3() }, uDirection: { value: new THREE.Vector3(0,0,-1) }, uOrthographic: { value: false }, uInverse: { value: new THREE.Matrix4() }, uRs: { value: rs }, uTime: { value: 0 }, uStrength: { value: 0 }, uEmission: { value: null }, uEmissionExtent: { value: 20 }, uUseEmission: { value: false } },
             vertexShader: `varying vec3 vWorld;void main(){vec4 world=modelMatrix*vec4(position,1.0);vWorld=world.xyz;gl_Position=projectionMatrix*viewMatrix*world;}`,
             fragmentShader: `
       precision highp float;
       varying vec3 vWorld;
       uniform sampler2D uEmission;uniform float uEmissionExtent;uniform bool uUseEmission;
-      uniform vec3 uCamera;uniform mat4 uInverse;uniform float uRs;uniform float uTime;uniform float uStrength;
+      uniform vec3 uCamera;uniform vec3 uDirection;uniform bool uOrthographic;uniform mat4 uInverse;uniform float uRs;uniform float uTime;uniform float uStrength;
       vec3 acceleration(vec3 p,float angular2){float r2=dot(p,p);return -1.5*angular2*p/(r2*r2*sqrt(r2));}
       float noise(vec2 p){return .5+.5*sin(p.x*2.1+sin(p.y*3.7)+sin(p.x*.7-p.y*1.2));}
       float hash(vec3 p){return fract(sin(dot(p,vec3(127.1,311.7,74.7)))*43758.5453);}
@@ -31,9 +32,11 @@ export class BlackHoleOptics extends THREE.Group {
           mix(mix(hash(cell+vec3(0,0,1)),hash(cell+vec3(1,0,1)),f.x),mix(hash(cell+vec3(0,1,1)),hash(cell+vec3(1,1,1)),f.x),f.y),f.z);
       }
       void main(){
-        vec3 origin=uCamera/uRs;
         vec3 target=(uInverse*vec4(vWorld,1.0)).xyz/uRs;
-        vec3 direction=normalize(target-origin);
+        vec3 direction=uOrthographic?normalize(uDirection):normalize(target-uCamera/uRs);
+        // Parallel rays start on a finite local plane. A remote orthographic
+        // camera must not introduce perspective or lose impact precision at AU scales.
+        vec3 origin=uOrthographic?target-direction*32.0:uCamera/uRs;
         float projection=dot(origin,direction);
         vec3 impact=cross(origin,direction);
         float discriminant=196.0-dot(impact,impact);
@@ -105,6 +108,9 @@ export class BlackHoleOptics extends THREE.Group {
             this.inverse.copy(this.matrixWorld).invert();
             camera.getWorldPosition(this.cameraPosition).applyMatrix4(this.inverse);
             material.uniforms.uCamera.value.copy(this.cameraPosition);
+            camera.getWorldDirection(this.cameraDirection).transformDirection(this.inverse);
+            material.uniforms.uDirection.value.copy(this.cameraDirection);
+            material.uniforms.uOrthographic.value = Boolean((camera as THREE.OrthographicCamera).isOrthographicCamera);
             material.uniforms.uInverse.value.copy(this.inverse);
             camera.getWorldQuaternion(this.cameraQuaternion);
             this.getWorldQuaternion(this.rootQuaternion).invert();

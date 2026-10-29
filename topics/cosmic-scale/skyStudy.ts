@@ -3,6 +3,7 @@ import catalogue from './skyCatalogue.json';
 import { parallaxDistance, unit, milkyTravelProgress, type SkyCase, type SkyState } from './skyModel.ts';
 import { trappistPlanets, solarPlanets } from './planetarySystems.ts';
 import { SkyScene } from './skyScene.ts';
+import {mountObservationChoices} from '../../src/platform/observationMode.ts';
 
 const make = <K extends keyof HTMLElementTagNameMap>(tag: K, value = '', className = '') => { const node = document.createElement(tag); node.textContent = value; node.className = className; return node; };
 
@@ -10,6 +11,9 @@ const make = <K extends keyof HTMLElementTagNameMap>(tag: K, value = '', classNa
 export class SkyStudy {
   readonly controls = make('div', '', 'sky-controls');
   private directions = make('div', '', 'sky-directions');
+  private sightlines=make('div');
+  private sightlineMenu:ReturnType<typeof mountObservationChoices>;
+  private sightlineToggle:HTMLDetailsElement|null;
   private observerTools = make('div', '', 'sky-observer-tools');
   private systems = make('div', '', 'sky-system-tools');
   private selection = make('div', '', 'sky-selection');
@@ -23,10 +27,8 @@ export class SkyStudy {
   private move = make('button');
   private start = make('button');
   private lines = make('button');
-  private common = make('button');
-  private whole = make('button');
+  private systemView=make('select');
   private ground = make('button');
-  private close = make('button');
   private orbit = make('button');
   private onward = make('button');
   private days = make('output');
@@ -42,6 +44,7 @@ export class SkyStudy {
   private yaw = 0;
   private pitch = .45;
   private drawFrame = 0;
+  private surfaceFrame=0;private surfaceTime=0;private surfaceLast=0;
   private frame = 0;
   private motion: 'camera' | 'orbit' | undefined;
   private from = 0;
@@ -62,10 +65,13 @@ export class SkyStudy {
     this.hitLayer.dataset.readerUi='custom';this.host.append(this.hitLayer);
     for(let i=0;i<15;i++){const button=make('button');button.type='button';button.hidden=true;button.dataset.sceneHitTarget='';button.onclick=()=>{if(this.selected==='orion')this.state.star=i;else this.selectSystemTarget(i);this.publish(true);};this.hitButtons.push(button);this.hitLayer.append(button);}
     this.ground.textContent=w.groundView;this.ground.onclick=()=>{this.stop();this.state.view='ground';this.publish(true);};this.directions.append(this.ground);
+    const sightlineChoices=make('div');
     for (const direction of ['disk', 'pole', 'andromeda'] as const) {
       const button = make('button', w[direction]); button.dataset.direction = direction;
-      button.onclick = () => { this.stop(); this.state.view='space';this.state.direction = direction; this.state.milkyProgress = 0; this.publish(true); }; this.directions.append(button);
+      button.onclick = () => { this.stop(); this.state.view='space';this.state.direction = direction; this.state.milkyProgress = 0;this.publish(true); };if(direction!=='disk')button.dataset.readerChoice='';(direction==='disk'?this.directions:sightlineChoices).append(button);
     }
+    this.sightlineMenu=mountObservationChoices(this.sightlines,[sightlineChoices],{label:w.moreDirections,compactLabel:w.moreDirections});this.sightlineToggle=this.sightlines.querySelector('details');
+    this.directions.append(this.sightlines);
     this.move.textContent = w.travel; this.move.onclick = () => { if (this.motion) { this.stop(true); return; } this.from = this.progress; this.target = this.from > .98 ? 0 : 1; if (this.reduced.matches) { this.progress = this.target; this.publish(true); return; } this.motion = 'camera'; this.elapsed = 0; this.lastTime = performance.now(); this.frame = requestAnimationFrame(this.tick); this.syncControls(); };
     this.start.textContent = w.return; this.start.onclick = () => { this.stop(); this.progress = 0; this.publish(true); };
     this.range.type = 'range'; this.range.min = '0'; this.range.max = '1'; this.range.step = '.001'; this.range.setAttribute('aria-label', w.observer);
@@ -74,14 +80,13 @@ export class SkyStudy {
     this.lines.textContent = w.lines; this.lines.onclick = () => { this.state.lines = !this.state.lines; this.publish(true); };
     this.choice.onchange = () => { if (this.selected === 'orion') this.state.star = Number(this.choice.value); else this.selectSystemTarget(Number(this.choice.value)); this.publish(true); };
     const choiceLabel = make('label'); choiceLabel.append(this.choice); this.selection.append(choiceLabel, this.lines);
-    this.whole.textContent=w.wholeSystems;this.whole.onclick=()=>{this.state.systemWhole=true;this.publish(true);};
-    this.common.textContent = w.common; this.common.onclick = () => { this.state.systemWhole=false;this.state.systemClose = false; this.publish(true); };
-    this.close.textContent = w.close; this.close.onclick = () => { this.state.systemWhole=false;this.state.systemClose = true; this.publish(true); };
+    this.systemView.setAttribute('aria-label',w.systemView);for(const [value,label] of [['whole',w.wholeSystems],['common',w.common],['close',w.close]]){const option=make('option',label);option.value=value!;this.systemView.append(option);}
+    this.systemView.onchange=()=>{this.state.systemWhole=this.systemView.value==='whole';if(!this.state.systemWhole)this.state.systemClose=this.systemView.value==='close';this.publish(true);};
     this.orbit.onclick = () => { if (this.motion) { this.stop(true); return; } if (this.state.systemDays >= 20) this.state.systemDays = 0; this.motion = 'orbit'; this.lastTime = performance.now(); this.frame = requestAnimationFrame(this.tick); this.publish(true); };
     this.dayRange.type = 'range'; this.dayRange.min = '0'; this.dayRange.max = '20'; this.dayRange.step = '.01'; this.dayRange.setAttribute('aria-label', w.elapsed);
     this.dayRange.oninput = () => { this.stop(); this.state.systemDays = Number(this.dayRange.value); this.publish(false); }; this.dayRange.onchange = () => this.publish(true);
     const dayLabel = make('label', w.elapsed, 'sky-progress'); dayLabel.append(this.dayRange, this.days);
-    this.systems.append(this.whole,this.common, this.close, this.orbit, dayLabel);
+    this.systems.append(this.systemView,this.orbit, dayLabel);
     this.onward.textContent = w.m31Button; this.onward.onclick = this.chooseM31;
     this.credit.textContent=w.mapCredit;this.credit.href='https://www.solarsystemscope.com/textures/';this.credit.target='_blank';this.credit.rel='noreferrer';
     this.controls.append(this.directions, this.observerTools, this.systems, this.selection, this.cue, this.detail, this.note, this.onward,this.credit);
@@ -106,7 +111,8 @@ export class SkyStudy {
     this.lines.hidden = system; this.lines.setAttribute('aria-pressed', String(this.state.lines)); this.range.value = String(this.progress);
     this.move.textContent = this.motion === 'camera' ? w.pause : this.selected==='sky' ? this.progress>.98 ? w.travelBack : w.leaveSky : w.travel; this.move.setAttribute('aria-pressed', String(this.motion === 'camera'));
     this.start.disabled = this.progress === 0; this.days.textContent = `${this.state.systemDays.toFixed(1)} ${w.days}`; this.dayRange.value = String(this.state.systemDays);
-    this.whole.setAttribute('aria-pressed',String(this.state.systemWhole));this.common.setAttribute('aria-pressed', String(!this.state.systemWhole&&!this.state.systemClose)); this.close.setAttribute('aria-pressed', String(!this.state.systemWhole&&this.state.systemClose));
+    this.systemView.value=this.state.systemWhole?'whole':this.state.systemClose?'close':'common';
+    if(this.selected!=='sky'&&this.sightlineToggle)this.sightlineToggle.open=false;
     this.orbit.textContent = this.motion === 'orbit' ? w.pauseOrbit : this.state.systemDays >= 20 ? w.restartOrbit : w.playOrbit; this.orbit.setAttribute('aria-pressed', String(this.motion === 'orbit'));
     this.onward.hidden = this.selected !== 'sky' || ground || this.state.direction !== 'andromeda';
     this.ground.setAttribute('aria-pressed',String(ground));this.directions.querySelectorAll<HTMLButtonElement>('[data-direction]').forEach(button => button.setAttribute('aria-pressed', String(!ground&&button.dataset.direction === this.state.direction)));
@@ -154,26 +160,28 @@ export class SkyStudy {
   private pick = (e:MouseEvent)=>{if(!this.active||this.cancelClick||this.selected==='sky'||(e.target as Element)?.closest?.('button'))return;const bounds=this.host.getBoundingClientRect(),selected=this.scene?.pick(e.clientX-bounds.left,e.clientY-bounds.top);if(selected!==undefined){if(this.selected==='orion')this.state.star=selected;else this.selectSystemTarget(selected);this.publish(true);}};
   private cancelPointer = () => { if(this.drag?.moved&&this.selected!=='trappist-1')this.publish(true);this.drag = undefined; };
   private key = (e: KeyboardEvent) => { if (!this.active || this.selected === 'trappist-1' || this.selected==='sky'&&this.state.view==='ground' || e.target !== this.stage || !['ArrowLeft', 'ArrowRight'].includes(e.key)) return; e.preventDefault(); this.stop(); this.progress += e.key === 'ArrowLeft' ? -.06 : .06; this.publish(true); };
-  private reduceMotion = () => { if (this.reduced.matches) this.pause(); };
+  private reduceMotion = () => { if (this.reduced.matches) this.pause();else this.startSurface(); };
+  private startSurface(){if(this.surfaceFrame||!this.active||this.selected!=='trappist-1'||this.disposed||this.hasFailure||document.hidden||this.reduced.matches)return;this.surfaceLast=performance.now();this.surfaceFrame=requestAnimationFrame(this.surfaceTick);}
+  private surfaceTick=(now:number)=>{this.surfaceFrame=0;if(!this.active||this.selected!=='trappist-1'||this.disposed||this.hasFailure||document.hidden||this.reduced.matches)return;if(now-this.surfaceLast>=125){this.surfaceTime+=Math.min(.25,(now-this.surfaceLast)/1000);this.surfaceLast=now;this.requestDraw();}this.surfaceFrame=requestAnimationFrame(this.surfaceTick);};
   private requestDraw() { if (this.drawFrame || !this.active || document.hidden || this.disposed) return; this.drawFrame = requestAnimationFrame(() => { this.drawFrame = 0; this.draw(); }); }
   draw() {
     if (!this.active || this.disposed || document.hidden) return;
     if (!this.scene) this.scene = new SkyScene(this.host, this.words, this.language, failed => { this.hasFailure=failed;this.stop(); this.onFailure(failed); });
-    this.scene.setActive(true); this.scene.draw(this.selected, this.state, this.zoom, this.yaw, this.pitch);
+    this.scene.setActive(true); this.scene.draw(this.selected, this.state, this.zoom, this.yaw, this.pitch,this.surfaceTime);
     const targets=this.scene.targets();
     this.hitButtons.forEach((button,i)=>{const target=targets.find(t=>t.index===i);button.hidden=!target||this.selected==='sky';if(!target)return;button.style.left=`${target.x}px`;button.style.top=`${target.y}px`;button.setAttribute('aria-label',this.selected==='orion'?catalogue.orion[i]!.name[this.language==='en'?'en':'zh']:i<8?solarPlanets[i]!.name[this.language==='en'?'en':'zh']:`TRAPPIST-1 ${trappistPlanets[i-8]!.id}`);button.setAttribute('aria-pressed',String(i===(this.selected==='orion'?this.state.star:this.state.systemOwner==='solar'&&this.state.systemWhole?this.state.solarPlanet:this.state.planet+8)));});
   }
-  retry() { this.scene?.retry(); }
+  retry() { this.scene?.retry();this.startSurface(); }
   show(active: boolean, selected: SkyCase, state: SkyState, zoom: number, yaw: number, pitch: number) {
     if (selected !== this.selected) this.stop();
     this.selected = selected; this.state = { ...state }; this.zoom = zoom; this.yaw = yaw; this.pitch = pitch; this.active = active; this.controls.hidden = !active;
     this.choice.setAttribute('aria-label', this.words[selected === 'orion' ? 'star' : 'planet']);
-    if (!active) this.pause(); else this.syncControls();
+    if (!active) this.pause(); else {this.syncControls();this.startSurface();}
   }
-  pause() { this.stop(); cancelAnimationFrame(this.drawFrame); this.drawFrame = 0; this.drag = undefined; this.scene?.setActive(false); }
-  hide() { this.active = false; this.controls.hidden = true; this.pause(); }
+  pause() { this.stop(); cancelAnimationFrame(this.drawFrame); this.drawFrame = 0;cancelAnimationFrame(this.surfaceFrame);this.surfaceFrame=0; this.drag = undefined; this.scene?.setActive(false); }
+  hide() { this.active = false; this.controls.hidden = true;if(this.sightlineToggle)this.sightlineToggle.open=false; this.pause(); }
   dispose() {
-    if (this.disposed) return; this.disposed = true; this.pause(); this.scene?.dispose();
+    if (this.disposed) return; this.disposed = true; this.pause();this.sightlineMenu.dispose(); this.scene?.dispose();
     this.stage.removeEventListener('pointerdown', this.down); this.stage.removeEventListener('pointermove', this.dragMove); this.stage.removeEventListener('pointerup', this.up); this.stage.removeEventListener('pointercancel', this.cancelPointer); this.stage.removeEventListener('lostpointercapture', this.cancelPointer);this.stage.removeEventListener('click',this.pick); this.stage.removeEventListener('keydown', this.key); this.reduced.removeEventListener('change', this.reduceMotion);this.hitLayer.remove();
   }
 }

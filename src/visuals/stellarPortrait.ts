@@ -19,13 +19,15 @@ export type StellarAppearance = {
   /** Display radiance, independent of radius, opacity and the topic's science clock. */
   emission?: number;
 };
-export type StellarProfile = 'solar' | 'red-giant' | 'red-dwarf' | 'compact';
+export type StellarProfile = 'solar' | 'red-giant' | 'red-dwarf' | 'hot-star' | 'compact';
 export type PhotosphereField = { data: Uint8Array<ArrayBuffer>; size: number };
 
 const PROFILES = {
   solar: { granuleScale: 1.03, contrast: .25, limb: .36, activity: 1, glareWidth: .064, glareStrength: .60 },
   'red-giant': { granuleScale: .13, contrast: .34, limb: .28, activity: .16, glareWidth: .082, glareStrength: .72 },
   'red-dwarf': { granuleScale: .58, contrast: .42, limb: .34, activity: 1, glareWidth: .054, glareStrength: .68 },
+  // A quiet, hot radiative envelope is not a blue copy of solar convection/spotting.
+  'hot-star': { granuleScale: .45, contrast: .035, limb: .25, activity: 0, glareWidth: .072, glareStrength: .78 },
   compact: { granuleScale: .72, contrast: 0, limb: .20, activity: 0, glareWidth: .029, glareStrength: .96 },
 } as const;
 
@@ -47,6 +49,7 @@ export function stellarSurfacePalette(color: THREE.ColorRepresentation, profile:
   if (profile === 'red-dwarf') tint.multiply(new THREE.Color().setRGB(1, .87, .73));
   const cool = tint.clone(), hot = tint.clone();
   if (profile === 'compact') { cool.multiplyScalar(.82); hot.multiplyScalar(1.08); }
+  else if (profile === 'hot-star') { cool.multiplyScalar(.965); hot.multiplyScalar(1.015); }
   else {
     cool.multiply(profile === 'solar' ? new THREE.Color().setRGB(.84, .79, .72) : new THREE.Color().setRGB(.72, .62, .51));
     hot.multiplyScalar(1.08);
@@ -111,7 +114,8 @@ void main() {
   float angle = surfaceTime * .055;
   p = vec3(p.x * cos(angle) + p.z * sin(angle), p.y, p.z * cos(angle) - p.x * sin(angle));
   vec3 field = surfaceField(p);
-  float mu = clamp(dot(normalize(vViewNormal), normalize(vToEye)), 0.0, 1.0);
+  vec3 eye = isOrthographic ? vec3(0.0, 0.0, 1.0) : normalize(vToEye);
+  float mu = clamp(dot(normalize(vViewNormal), eye), 0.0, 1.0);
   // Fine hot upwellings and soft dark gaps are emission contrast, never relief.
   float grain = field.r;
   float heat = smoothstep(.24, .80, grain);
@@ -171,7 +175,8 @@ float noise(vec3 p) {
 void main() {
   if (energy > .5 && vLocalPosition.x > 0.0 && vLocalPosition.z > 0.0) discard;
   vec3 p = normalize(vLocalPosition);
-  float mu = clamp(dot(normalize(vViewNormal), normalize(vToEye)), 0.0, 1.0);
+  vec3 eye = isOrthographic ? vec3(0.0, 0.0, 1.0) : normalize(vToEye);
+  float mu = clamp(dot(normalize(vViewNormal), eye), 0.0, 1.0);
   // Deliberately restrained: no invented craters, crustal map or solar granulation.
   float variation = 1.0 + .014 * (noise(p * 21.0) - .5) + .018 * (noise(p * 5.0) - .5);
   float pole = pow(max(0.0, abs(dot(p, normalize(vec3(.29, .84, .46))))), 12.0);

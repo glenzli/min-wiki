@@ -7,15 +7,17 @@
     "tryLabel": "试一试",
     "cases": {
       "milky-way": "银河结构",
-      "galaxy-comparison": "银河与M87对照",
+      "galaxy-comparison": "同尺看星系",
       "trappist-1": "太阳系与TRAPPIST-1",
       "sky": "银河光带",
       "orion": "星座的远近",
       "spiral": "仙女座M31",
       "elliptical": "单看M87",
-      "irregular": "不规则星系",
+      "irregular": "NGC 6822",
       "star-cluster": "星团与星系",
-      "local-group": "星系怎样成群"
+      "local-group": "星系怎样成群",
+      "kepler-16": "Kepler-16 · 双星与行星",
+      "cygnus-x1": "天鹅座 X-1 · 恒星与黑洞"
     },
     "actions": {
       "compare": "先估倍数，再核验。",
@@ -33,9 +35,11 @@
       "orion": "点选一颗亮星，再移动观察位置，看同一认星图案怎样显出远近。",
       "spiral": "转动M31寻找旋臂，再用夜空入口对应它在天空中的方向。",
       "elliptical": "转到不同方向，看看平滑的恒星体怎样保持厚度。",
-      "irregular": "转动这座不对称的星系，看看星光的空间分布。",
-      "star-cluster": "比较星团的归属位置与独立放大图，分清星团和星系。",
-      "local-group": "找到银河、仙女座和三角座；这里的小标记代表整座星系。"
+      "irregular": "找到弥散星光，再看偏在一旁的亮区。",
+      "star-cluster": "找到银晕星团，对照同一对象的放大图。",
+      "local-group": "找到银河、仙女座和三角座；这里的小标记代表整座星系。",
+      "kepler-16": "追踪双恒星与已知环双星行星。",
+      "cygnus-x1": "区分恒星、黑洞和发光的热气体。"
     },
     "question": "问题",
     "backToScene": "← 回到画面"
@@ -48,15 +52,17 @@
     "tryLabel": "Try this",
     "cases": {
       "milky-way": "Milky Way structure",
-      "galaxy-comparison": "Milky Way vs M87",
+      "galaxy-comparison": "Galaxies on one ruler",
       "trappist-1": "Solar System vs TRAPPIST-1",
       "sky": "Milky Way band",
       "orion": "Constellation depths",
       "spiral": "Andromeda M31",
       "elliptical": "M87 on its own",
-      "irregular": "Irregular galaxies",
+      "irregular": "NGC 6822",
       "star-cluster": "Clusters and galaxies",
-      "local-group": "Groups of galaxies"
+      "local-group": "Groups of galaxies",
+      "kepler-16": "Kepler-16 · two stars",
+      "cygnus-x1": "Cygnus X-1 · star and black hole"
     },
     "actions": {
       "compare": "Estimate, then check.",
@@ -74,9 +80,11 @@
       "orion": "Select a bright star, then move the observer to reveal depths behind the same sky pattern.",
       "spiral": "Turn M31 to find its arms, then use the sky link to locate its direction.",
       "elliptical": "Turn to different directions and see how the smooth stellar body retains thickness.",
-      "irregular": "Turn this asymmetric galaxy to explore the spatial distribution of starlight.",
-      "star-cluster": "Compare the cluster location with its independent close-up and distinguish clusters from galaxies.",
-      "local-group": "Find the Milky Way, Andromeda and Triangulum; small locators here stand for whole galaxies."
+      "irregular": "Find diffuse stars and bright young regions.",
+      "star-cluster": "Locate the halo cluster; compare its close-up.",
+      "local-group": "Find the Milky Way, Andromeda and Triangulum; small locators here stand for whole galaxies.",
+      "kepler-16": "Follow two stars and their known circumbinary planet.",
+      "cygnus-x1": "Distinguish the star, black hole and glowing hot gas."
     },
     "question": "Question",
     "backToScene": "← Back to the scene"

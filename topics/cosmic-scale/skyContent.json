@@ -5,7 +5,7 @@
     "travel": "换个位置看",
     "leaveSky": "拉到银河外",
     "travelBack": "沿原路返回",
-    "earthSky": "地面夜空示意 · 银河光带",
+    "earthSky": "晴朗无月暗夜示意 · 淡淡的银河光带",
     "pause": "暂停移动",
     "return": "回到地球附近",
     "observer": "观察位置 · 移动的是镜头",
@@ -71,8 +71,8 @@
     "orionContextBoundary": "背景为结构示意；青色点是七颗指定亮星的估计位置，定位圈和点均不表示直径。",
     "groundView": "地面夜空",
     "groundHint": "先看地面夜空，再切换「沿盘面看」观察银河结构。",
-    "groundBoundary": "地面夜空与地形为示意，非实拍或实时星图；未命名星点不是实测目录。",
-    "groundCue": "银河是地面夜空中的光带。切换「沿盘面看」，再观察这条视线怎样穿过银河薄盘。",
+    "groundBoundary": "晴朗无月、远离灯光的观感示意；屏幕亮度未作视亮度标定，非实拍或实时星图。",
+    "groundCue": "暗夜中银河像淡淡的灰白薄云，灯光和月光会淹没它。切换「沿盘面看」看空间关系。",
     "wholeSystems": "完整系统对照",
     "wholeCue": "太阳系里有木星、土星这样的巨行星。另一边是红矮星和七颗较小的岩质行星；点选看看，再用同尺对照它们的轨道。",
     "wholeBoundary": "全貌将轨道展开，定位球放大，不用于量距；TRAPPIST-1表面为假想插画。绕行采用圆形轨道近似。",
@@ -81,7 +81,9 @@
     "trappistWhole": "TRAPPIST-1 · 七颗已知行星",
     "wholeLayout": "轨道展开示意 · 不共用距离标尺",
     "wholeHint": "两个完整行星系统，轨道展开便于识别；可转动、点选、播放或切到共同AU尺。",
-    "mapCredit": "太阳系图谱：Solar System Scope · CC BY 4.0"
+    "mapCredit": "太阳系图谱：Solar System Scope · CC BY 4.0",
+    "moreDirections": "换条视线",
+    "systemView": "行星系统观察方式"
   },
   "en": {
     "sky": "Sky view",
@@ -89,7 +91,7 @@
     "travel": "Move the observer",
     "leaveSky": "Move outside the galaxy",
     "travelBack": "Follow the view back",
-    "earthSky": "Illustrative sky from Earth · Milky Way band",
+    "earthSky": "Illustrative clear, moonless dark sky · faint Milky Way",
     "pause": "Pause travel",
     "return": "Return near Earth",
     "observer": "Observer position · the camera moves",
@@ -155,8 +157,8 @@
     "orionContextBoundary": "Background is structural illustration; cyan locators mark seven selected stellar position estimates, not body diameters.",
     "groundView": "Earth sky",
     "groundHint": "Look at the ground-level night sky, then choose Along the disk to examine Galactic structure.",
-    "groundBoundary": "Illustrative night sky and ground, not a photograph or live sky chart; unnamed dots are not surveyed stars.",
-    "groundCue": "The Milky Way appears as a band in the night sky. Choose Along the disk to see how that sightline crosses our Galactic disk.",
+    "groundBoundary": "Illustrative clear, moonless sky away from lights, not a photograph or live sky chart. Display brightness is not calibrated to real night-sky brightness.",
+    "groundCue": "In a dark sky the Milky Way resembles a faint grey-white haze; lights and moonlight wash it out. Choose Along the disk for the spatial explanation.",
     "wholeSystems": "Whole systems",
     "wholeCue": "Our family includes giants such as Jupiter and Saturn. The other contains a red dwarf and seven smaller rocky planets. Select members, then compare their orbits on the same ruler.",
     "wholeBoundary": "Whole views spread the orbits and enlarge body markers, without a distance ruler. TRAPPIST-1 surfaces are hypothetical; motion uses circular-orbit approximations.",
@@ -165,6 +167,8 @@
     "trappistWhole": "TRAPPIST-1 · seven known planets",
     "wholeLayout": "Spread orbital layout · no shared distance scale",
     "wholeHint": "Two complete planetary families with spread orbits. Turn, select members, play or switch to a common AU ruler.",
-    "mapCredit": "Solar maps: Solar System Scope · CC BY 4.0"
+    "mapCredit": "Solar maps: Solar System Scope · CC BY 4.0",
+    "moreDirections": "Other sightlines",
+    "systemView": "Planetary-system view"
   }
 }

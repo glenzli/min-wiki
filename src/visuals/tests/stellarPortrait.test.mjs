@@ -64,6 +64,16 @@ test('granulation is repeatable, mipmapped and bounded; compact remnants have no
   }
 });
 
+test('hot-star appearance keeps a luminous radiative surface without solar spots or a new object',()=>{
+ const portrait=createStellarPortrait('sun',{energySection:false}),body=bodyOf(portrait),map=mapOf(portrait),geometry=body.geometry;
+ portrait.setAppearance({profile:'hot-star',color:'#d0e9ff',activeRegions:0,time:3});
+ assert.equal(bodyOf(portrait),body);assert.equal(body.geometry,geometry);assert.equal(mapOf(portrait),map);assert.equal(body.material.lights,false);
+ assert.equal(body.material.uniforms.spotStrength.value,0);assert.equal(body.material.uniforms.compactSurface.value,0);
+ assert.ok(body.material.uniforms.granuleContrast.value<stellarProfileSettings('solar').contrast/2);
+ assert.equal(body.material.uniforms.surfaceTime.value,3);assert.match(body.material.fragmentShader,/isOrthographic/);
+ const radius=body.geometry.parameters.radius;portrait.setAppearance({time:4});assert.equal(body.geometry.parameters.radius,radius);assert.equal(body.material.uniforms.surfaceTime.value,4);release(portrait);
+});
+
 test('the module releases generated textures once and leaves scene-owned geometry and materials to the caller', () => {
   const portrait = createStellarPortrait('sun'), body = bodyOf(portrait), texture = mapOf(portrait);
   let texturesDisposed = 0, geometryDisposed = 0, materialDisposed = 0;

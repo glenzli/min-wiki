@@ -4,7 +4,7 @@ import { readFileSync } from 'node:fs';
 import vm from 'node:vm';
 import ts from 'typescript';
 import * as THREE from 'three';
-import { galacticCases, galacticObjects, galacticPointCount, readGalacticState, saveGalacticState, turnGalacticView, SOLAR_POSITION, SOLAR_RADIUS_LY, MILKY_DISK_RADIUS_LY, MAX_POINTS_PER_CASE, GALACTIC_CACHE_LIMIT } from '../galacticModel.ts';
+import { galacticCases, galacticObjects, galacticPointCount, readGalacticState, saveGalacticState, turnGalacticView, SOLAR_POSITION, SOLAR_RADIUS_LY, MILKY_DISK_RADIUS_LY, MAX_POINTS_PER_CASE, GALACTIC_CACHE_LIMIT, GALAXY_PAIR_UNIT, CLUSTER_LOCATION, CLUSTER_LOCATOR_SCALE } from '../galacticModel.ts';
 import { readExploration } from '../comparisonModel.ts';
 import { galaxyStudy } from '../study.ts';
 import content from '../galacticContent.json';
@@ -56,11 +56,41 @@ test('every case has equivalent bilingual questions, evidence, limitations and p
   for (const selected of galacticCases) {
     const study = galaxyStudy(selected);
     for (const field of ['child', 'title', 'theory', 'evidence', 'limits'] as const) for (const language of ['zh', 'en'] as const) assert.ok(study[field]![language].trim().length > (field === 'title' ? 2 : 10), `${selected}.${field}.${language}`);
-    assert.ok(study.sources.every(source => /^https:\/\/(science\.nasa\.gov|www\.nasa\.gov|www\.esa\.int|starchild\.gsfc\.nasa\.gov|cdsarc\.cds\.unistra\.fr|doi\.org|exoplanetarchive\.ipac\.caltech\.edu)\//.test(source.url)));
+    assert.ok(study.sources.every(source => /^https:\/\/(science\.nasa\.gov|www\.nasa\.gov|www\.jpl\.nasa\.gov|asd\.gsfc\.nasa\.gov|academic\.oup\.com|home\.nps\.gov|starlight\.oato\.inaf\.it|www\.esa\.int|starchild\.gsfc\.nasa\.gov|cdsarc\.cds\.unistra\.fr|doi\.org|exoplanetarchive\.ipac\.caltech\.edu)\//.test(source.url)));
   }
   assert.match(galaxyStudy('elliptical').limits.en, /not a compulsory evolutionary sequence/);
   assert.match(galaxyStudy('star-cluster').limits.en, /No universal star-count threshold/);
   assert.match(galaxyStudy('local-group').limits.en, /no common physical scale/);
+});
+
+test('the visible halo locator and enlarged cluster retain the same stellar identities', () => {
+  const [context, detail] = galacticObjects('star-cluster');
+  const locator = context!.clouds.at(-1)!, stars = detail!.clouds[0]!;
+  const count = locator.positions.length / 3, total = stars.positions.length / 3;
+  assert.ok(count > 100 && count < total, 'a visible bounded subset exists in the context');
+  assert.ok(CLUSTER_LOCATION[2] > .5, 'the example is in the halo, above the bright disk');
+  for (let i = 0; i < count; i++) {
+    const source = Math.floor(i * total / count) * 3;
+    for (let axis = 0; axis < 3; axis++) {
+      assert.ok(Math.abs((locator.positions[i * 3 + axis]! - CLUSTER_LOCATION[axis]!) / CLUSTER_LOCATOR_SCALE - stars.positions[source + axis]!) < 1e-6);
+      assert.equal(locator.colors[i * 3 + axis], stars.colors[source + axis]);
+    }
+  }
+  assert.equal(context!.inclination, detail!.inclination, 'both samples retain the same orientation');
+});
+
+test('the legacy irregular route selects named NGC 6822 with distinct stellar populations', () => {
+  const [galaxy] = galacticObjects(readGalacticState('?galaxy=irregular').selected);
+  assert.equal(galaxy!.id, 'ngc-6822');
+  const [diffuse, emission, young] = galaxy!.clouds;
+  assert.ok(diffuse!.positions.length > young!.positions.length);
+  assert.ok(emission!.mist && emission!.opacity < .05, 'nebular emission stays behind stellar structure');
+  const mean = (samples: Float32Array, axis: number) => samples.reduce((sum, value, i) => sum + (i % 3 === axis ? value : 0), 0) / (samples.length / 3);
+  assert.ok(mean(young!.positions, 1) > mean(diffuse!.positions, 1) + .08, 'young associations remain asymmetric');
+  for (const lang of ['zh', 'en'] as const) {
+    assert.match(content.cases.irregular.name[lang], /NGC 6822/);
+    assert.ok(galaxyStudy('irregular').sources.some(source => source.url.includes('NGC_6822')));
+  }
 });
 
 test('production scene cache, hidden rendering, GPU failure, retry and disposal are bounded', () => {
@@ -81,7 +111,7 @@ test('production scene cache, hidden rendering, GPU failure, retry and disposal 
   class Renderer { setClearColor() {} setPixelRatio() {} setSize() {} render() { renders++; } dispose() { releases++; } forceContextLoss() {} }
   const document = { hidden: false, createElement: () => new Canvas() }, failures: boolean[] = [];
   const context = vm.createContext({ THREE: { ...THREE, WebGLRenderer: Renderer }, document, devicePixelRatio: 3,
-    ResizeObserver: class { observe() {} disconnect() { disconnects++; } }, GALACTIC_CACHE_LIMIT, SOLAR_POSITION, galacticObjects,viewZoom });
+    ResizeObserver: class { observe() {} disconnect() { disconnects++; } }, GALACTIC_CACHE_LIMIT, GALAXY_PAIR_UNIT, SOLAR_POSITION, CLUSTER_LOCATION, galacticObjects,viewZoom });
   vm.runInContext(code, context);
   const host = {classList:{add(){}},append(){},clientWidth:800,clientHeight:500};
   const scene = new (context as any).GalacticScene(host, content.ui.en, (failed: boolean) => failures.push(failed));
@@ -104,8 +134,11 @@ test('production scene cache, hidden rendering, GPU failure, retry and disposal 
     scene.draw({...state, selected:'star-cluster', yaw:.65, pitch});
     const entry = scene.cache.get('star-cluster'), contextOwner = entry.populations[0].owner, detailOwner = entry.populations.find((p: any) => p.owner !== contextOwner).owner;
     const expected = (point: number[], owner: THREE.Object3D) => { const p = new THREE.Vector3(...point).applyMatrix4(owner.matrixWorld).project(scene.camera); return [(p.x+1)*400, (1-p.y)*250]; };
-    assert.deepEqual(strokes.move, expected([-.75,.60,.75],contextOwner)); assert.deepEqual(strokes.line, expected([0,0,0],detailOwner));
+    assert.deepEqual(strokes.move, expected([...CLUSTER_LOCATION],contextOwner)); assert.deepEqual(strokes.line, expected([0,0,0],detailOwner));
+    assert.equal(contextOwner.position.x,-1.08);assert.equal(detailOwner.position.x,1.08);
   }
+  host.clientWidth=390;host.clientHeight=600;scene.draw({...state,selected:'star-cluster'});
+  const stacked=scene.cache.get('star-cluster');assert.ok(stacked.root.children[0].position.y>stacked.root.children[1].position.y,'portrait context stays above the detail');
   const before = renders; scene.setActive(false); scene.draw(state); assert.equal(renders, before);
   scene.setActive(true); document.hidden = true; const hidden = renders; scene.draw(state); assert.equal(renders, hidden); document.hidden = false;
   scene.contextLost({preventDefault(){}}); assert.equal(failures.at(-1), true); const lost = renders; scene.draw(state); assert.equal(renders, lost);

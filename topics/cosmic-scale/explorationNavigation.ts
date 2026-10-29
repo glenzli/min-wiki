@@ -5,11 +5,11 @@ export const chapters=['compare','systems','galaxies','sky','homes','zoom'] as c
 export type Chapter=typeof chapters[number];
 export type SceneChapter='systems'|'galaxies'|'sky';
 export const sceneCases:Record<SceneChapter,readonly GalacticCase[]>={
-  systems:['trappist-1'],
+  systems:['trappist-1','kepler-16','cygnus-x1'],
   galaxies:['milky-way','galaxy-comparison','spiral','elliptical','irregular','star-cluster','local-group'],
   sky:['sky','orion'],
 };
-export const sceneChapter=(selected:GalacticCase):SceneChapter=>selected==='trappist-1'?'systems':selected==='sky'||selected==='orion'?'sky':'galaxies';
+export const sceneChapter=(selected:GalacticCase):SceneChapter=>selected==='trappist-1'||selected==='kepler-16'||selected==='cygnus-x1'?'systems':selected==='sky'||selected==='orion'?'sky':'galaxies';
 export const isSceneChapter=(chapter:Chapter):chapter is SceneChapter=>chapter==='systems'||chapter==='galaxies'||chapter==='sky';
 
 /** Old mixed galaxy links open the same object under its new question, preserving all other state. */

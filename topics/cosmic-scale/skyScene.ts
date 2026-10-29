@@ -4,7 +4,8 @@ import copy from './skyContent.json';
 import { galacticObjects } from './galacticModel.ts';
 import { SKY_SUN, M31_DIRECTION, add, mul, galacticDirection, milkyObserver, groundObserver, milkyTravelProgress, earthSkyOpacity, orionObserver, orionPosition, parallaxDistance, skyDirection, smooth, type SkyCase, type SkyState, type Vec3, type Observer } from './skyModel.ts';
 import { trappistPlanets, solarPlanets, wholeOrbitRadius, systemPlanetPosition, MERCURY_AU, planetPosition, systemFraming } from './planetarySystems.ts';
-import {createSolarPhotosphereMaterial} from './solarPhotosphere3d.ts';
+import {createSolarPhotosphereMaterial,createSolarHalo,setSolarPhotospherePhase,SOLAR_PHOTOSPHERE_STYLE} from './solarPhotosphere3d.ts';
+import {createStellarPortrait,type StellarPortrait} from '../../src/visuals/stellarPortrait.ts';
 import mercuryMap from '../solar-system/assets/2k_mercury.webp';
 import venusMap from '../solar-system/assets/2k_venus_atmosphere.webp';
 import earthMap from '../solar-system/assets/2k_earth_daymap.webp';
@@ -16,7 +17,7 @@ import neptuneMap from '../solar-system/assets/2k_neptune.webp';
 
 type Words = typeof copy.en;
 type Sample = { position: Vec3; color: string; radius: number; alpha: number };
-type Entry = { root: THREE.Group; samples: Sample[]; planets?: THREE.Mesh[]; systems?: THREE.Group[]; stars?: THREE.Mesh[]; orbits?: THREE.LineLoop[][]; saturn?:THREE.Mesh; layout?:boolean };
+type Entry = { root: THREE.Group; samples: Sample[]; planets?: THREE.Mesh[]; systems?: THREE.Group[]; stars?: THREE.Object3D[]; photosphere?:StellarPortrait; orbits?: THREE.LineLoop[][]; saturn?:THREE.Mesh; layout?:boolean };
 const solarMaps=[mercuryMap,venusMap,earthMap,marsMap,jupiterMap,saturnMap,uranusMap,neptuneMap];
 const V = (p: Vec3) => new THREE.Vector3(...p);
 const rounded = (n: number) => String(Math.round(n / 10) * 10);
@@ -24,8 +25,9 @@ const rounded = (n: number) => String(Math.round(n / 10) * 10);
 /** Stable emissive/absorbing disk reconstruction. It shares the existing Galactic basis and Sun. */
 function milkyLightVolume() {
   const material = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, depthTest: false, side: THREE.BackSide, blending: THREE.AdditiveBlending,
+    uniforms:{groundView:{value:0}},
     vertexShader: 'varying vec3 worldP;void main(){worldP=(modelMatrix*vec4(position,1.)).xyz;gl_Position=projectionMatrix*viewMatrix*vec4(worldP,1.);}',
-    fragmentShader: `varying vec3 worldP;
+    fragmentShader: `varying vec3 worldP;uniform float groundView;
       float detail(vec3 p){return .5+.22*sin(p.x*27.+sin(p.y*19.)*2.)*sin(p.y*31.+p.z*11.)+.12*sin(p.x*71.-p.y*83.+sin(p.y*41.));}
       void main(){
         vec3 ro=cameraPosition,rd=normalize(worldP-ro),inv=1./rd;
@@ -39,11 +41,15 @@ function milkyLightVolume() {
           float edge=1.-smoothstep(.86,1.05,r);
           float disk=exp(-r*2.1)*exp(-abs(p.z)/.038)*edge*(.55+.65*grain);
           float bulge=exp(-dot(p/vec3(.22,.14,.12),p/vec3(.22,.14,.12)));
-          float dust=exp(-abs(p.z)/.006)*edge*(.25+.75*grain)*exp(-r*1.4);
-          vec3 emission=disk*vec3(.45,.54,.66)*2.2+bulge*vec3(1.,.77,.48)*1.1;
-          light+=transmission*emission*stepSize;transmission*=exp(-dust*stepSize*5.5);
+          float warp=groundView*(.004*sin(p.x*16.+sin(p.y*11.))*sin(p.y*9.)+.003*sin(p.x*37.-p.y*23.));
+          float patches=mix(1.,.30+.90*smoothstep(.22,.80,detail(p*.53)),groundView);
+          float dust=exp(-abs(p.z-warp)/mix(.006,.012,groundView))*edge*(.25+.75*grain)*exp(-r*1.4)*patches;
+          vec3 emission=disk*vec3(.45,.54,.66)*2.2+bulge*vec3(1.,.77,.48)*mix(1.1,.38,groundView);
+          light+=transmission*emission*stepSize;transmission*=exp(-dust*stepSize*mix(5.5,24.,groundView));
         }
-        gl_FragColor=vec4(vec3(1.)-exp(-light*2.7),.90);
+        vec3 colour=vec3(1.)-exp(-light*mix(2.7,1.25,groundView));
+        float grey=dot(colour,vec3(.2126,.7152,.0722));
+        gl_FragColor=vec4(mix(colour,vec3(grey),groundView*.86),.90);
       }` });
   const mesh = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), material); mesh.renderOrder = -1; return mesh;
 }
@@ -63,7 +69,7 @@ export class SkyScene {
   private active = false;
   private lost = false;
   private disposed = false;
-  private last?: { selected: SkyCase; state: SkyState; zoom: number; yaw: number; pitch: number };
+  private last?: { selected: SkyCase; state: SkyState; zoom: number; yaw: number; pitch: number; surfaceTime:number };
   private hits: { x: number; y: number; index: number }[] = [];
   private labelBoxes: { x: number; y: number; w: number }[] = [];
   private textures = new Map<number,THREE.Texture>();
@@ -72,7 +78,7 @@ export class SkyScene {
     this.overlay.className = 'sky-labels';
     this.world.add(new THREE.AmbientLight('#9ba9c0', .55));
     this.prepare();
-    this.observer = new ResizeObserver(() => { if (this.active && this.last) this.draw(this.last.selected, this.last.state, this.last.zoom, this.last.yaw, this.last.pitch); });
+    this.observer = new ResizeObserver(() => { if (this.active && this.last) this.redraw(); });
     this.observer.observe(host);
   }
   private prepare() {
@@ -83,7 +89,7 @@ export class SkyScene {
   }
   private contextLost = (e: Event) => { e.preventDefault(); this.lost = true; this.failure(true); this.redraw(); };
   private contextRestored = () => { if (this.disposed) return; this.lost = false; this.failure(false); this.redraw(); };
-  private redraw() { if (this.last) this.draw(this.last.selected, this.last.state, this.last.zoom, this.last.yaw, this.last.pitch); }
+  private redraw() { if (this.last) this.draw(this.last.selected, this.last.state, this.last.zoom, this.last.yaw, this.last.pitch,this.last.surfaceTime); }
   retry() {
     if (this.disposed) return;
     this.canvas.removeEventListener('webglcontextlost', this.contextLost); this.canvas.removeEventListener('webglcontextrestored', this.contextRestored);
@@ -100,10 +106,10 @@ export class SkyScene {
     geometry.setAttribute('aSize', new THREE.Float32BufferAttribute(samples.map(s => s.radius), 1));
     geometry.setAttribute('aAlpha', new THREE.Float32BufferAttribute(samples.map(s => s.alpha), 1));
     const material = new THREE.ShaderMaterial({ transparent: true, depthWrite: false, vertexColors: true, blending: absorb ? THREE.NormalBlending : THREE.AdditiveBlending,
-      uniforms: { dpr: { value: 1 } },
-      vertexShader: 'attribute float aSize;attribute float aAlpha;uniform float dpr;varying vec3 tint;varying float alpha;void main(){tint=color;alpha=aAlpha;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);gl_PointSize=aSize*dpr;}',
+      uniforms: { dpr: { value: 1 },groundView:{value:0} },
+      vertexShader: 'attribute float aSize;attribute float aAlpha;uniform float dpr;uniform float groundView;varying vec3 tint;varying float alpha;void main(){float grey=dot(color,vec3(.2126,.7152,.0722));tint=mix(color,vec3(grey),groundView*.86);float nightGain=aSize>50.?.035:aSize<3.3?.055:.62;alpha=aAlpha*mix(1.,nightGain,groundView);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);gl_PointSize=aSize*dpr*mix(1.,aSize>50.?.56:.8,groundView);}',
       fragmentShader: 'varying vec3 tint;varying float alpha;void main(){float r=length(gl_PointCoord-.5)*2.;if(r>1.)discard;float a=(exp(-r*r*5.)*.55+exp(-r*r*65.)*.8)*(1.-smoothstep(.7,1.,r));gl_FragColor=vec4(tint,a*alpha);}' });
-    const mesh=new THREE.Points(geometry, material);mesh.renderOrder=absorb?2:0;root.add(mesh);
+    const mesh=new THREE.Points(geometry, material);mesh.renderOrder=absorb?2:0;mesh.userData.absorbsSky=absorb;root.add(mesh);
   }
   private texture(index:number){
     const cached=this.textures.get(index);if(cached)return cached;
@@ -134,12 +140,10 @@ export class SkyScene {
       e.planets=[];e.systems=[];e.stars=[];e.orbits=[];
       for(let family=0;family<2;family++){
         const system=new THREE.Group();e.root.add(system);e.systems.push(system);e.orbits.push([]);
-        const starMaterial=family===0?createSolarPhotosphereMaterial():new THREE.ShaderMaterial({
-          uniforms:{tint:{value:new THREE.Color('#ef9e6a')}},
-          vertexShader:'varying vec3 n;varying vec3 p;void main(){p=position;n=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
-          fragmentShader:'uniform vec3 tint;varying vec3 n;varying vec3 p;void main(){float grain=sin(p.x*97.+sin(p.z*49.)*2.)*sin(p.y*83.+sin(p.x*57.))*sin(p.z*71.);float limb=.54+.46*pow(abs(n.z),.5);gl_FragColor=vec4(tint*(limb*(.91+.09*grain)),1.);}'
-        });
-        const star=new THREE.Mesh(new THREE.SphereGeometry(1,40,28),starMaterial);system.add(star);e.stars.push(star);
+        let star:THREE.Object3D;
+        if(family){e.photosphere=createStellarPortrait('red-dwarf',{energySection:false});star=e.photosphere.group;}
+        else{const body=new THREE.Mesh(new THREE.SphereGeometry(1,40,28),createSolarPhotosphereMaterial()),halo=createSolarHalo();halo.scale.setScalar(SOLAR_PHOTOSPHERE_STYLE.haloOuter);body.add(halo);star=body;}
+        system.add(star);e.stars.push(star);
         const light=new THREE.PointLight(family?'#ffbb92':'#fff3d6',2.7,.6,0);light.position.z=.006;system.add(light);
         const count=family?7:8;
         for(let i=0;i<count;i++){
@@ -158,8 +162,8 @@ export class SkyScene {
     this.camera = this.perspective; this.perspective.position.copy(V(observer.eye)); this.perspective.up.copy(V(observer.up)); this.perspective.fov = observer.fov; this.perspective.aspect = aspect; this.perspective.zoom = zoom;
     this.perspective.lookAt(V(observer.target)); this.perspective.updateProjectionMatrix(); this.perspective.updateMatrixWorld();
   }
-  draw(selected: SkyCase, state: SkyState, zoom: number, yaw = 0, pitch = .45) {
-    this.last = { selected, state: { ...state }, zoom, yaw, pitch };
+  draw(selected: SkyCase, state: SkyState, zoom: number, yaw = 0, pitch = .45,surfaceTime=0) {
+    this.last = { selected, state: { ...state }, zoom, yaw, pitch,surfaceTime };
     if (!this.active || this.disposed || document.hidden) return;
     const width = this.host.clientWidth, height = this.host.clientHeight; if (width < 1 || height < 1) return;
     const dpr = Math.min(2, devicePixelRatio || 1), aspect = width / height, e = this.entry(selected);
@@ -178,7 +182,7 @@ export class SkyScene {
       }
       e.systems!.forEach((system,family)=>{
         system.visible=!close||family===1;system.position.set(close?0:portrait?0:family?.52:-.52,close?0:portrait?family?-.50:.50:0,0);system.rotation.set(pitch,0,yaw);
-        e.stars![family]!.scale.setScalar(whole?(family?.032:.042):close?.0029:family?.008:.021);
+        const radius=whole?(family?.032:.042):close?.0029:family?.008:.021;e.stars![family]!.scale.setScalar(radius/(family?.85:1));
         e.orbits![family]!.forEach((orbit,i)=>orbit.visible=whole||family===1||i===0);
       });
       e.planets!.forEach((planet,index)=>{const family=index<8?'solar':'trappist',i=index<8?index:index-8,body=family==='solar'?solarPlanets[i]!:trappistPlanets[i]!;
@@ -186,10 +190,14 @@ export class SkyScene {
         planet.scale.setScalar(whole?(family==='solar'?.013*Math.pow(body.earthRadius,.22):.013*Math.sqrt(body.earthRadius)):(close?.00115:.0034)*Math.sqrt(body.earthRadius));
       });
       const saturn=e.planets![5]!;e.saturn!.visible=whole;e.saturn!.position.copy(saturn.position);e.saturn!.scale.copy(saturn.scale);
+      setSolarPhotospherePhase((e.stars![0] as THREE.Mesh<THREE.SphereGeometry,THREE.ShaderMaterial>).material,surfaceTime);e.photosphere?.setAppearance({time:surfaceTime,activeRegions:.65});
     }
     e.root.updateMatrixWorld(true); this.world.updateMatrixWorld(true);
     for (const canvas of [this.overlay, this.fallback]) if (canvas.width !== Math.round(width * dpr) || canvas.height !== Math.round(height * dpr)) { canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr); }
-    e.root.traverse(object => { if (object instanceof THREE.Points) (object.material as THREE.ShaderMaterial).uniforms.dpr!.value = dpr; });
+    e.root.traverse(object => {
+      if (object instanceof THREE.Points){(object.material as THREE.ShaderMaterial).uniforms.dpr!.value = dpr;object.visible=!(selected==='sky'&&state.view==='ground'&&object.userData.absorbsSky);}
+      if(object instanceof THREE.Points||object instanceof THREE.Mesh){const material=object.material as THREE.ShaderMaterial;if(material.uniforms?.groundView)material.uniforms.groundView.value=selected==='sky'&&state.view==='ground'?1:0;}
+    });
     const gpu = !!this.renderer && !this.lost; this.canvas.hidden = !gpu; this.fallback.hidden = gpu;
     if (gpu) {
       try { this.renderer!.setPixelRatio(dpr); this.renderer!.setSize(width, height, false); this.renderer!.render(this.world, this.camera); }
@@ -205,17 +213,17 @@ export class SkyScene {
   private drawFallback(e: Entry, width: number, height: number, dpr: number) {
     const c = this.fallback.getContext('2d')!; c.setTransform(dpr, 0, 0, dpr, 0, 0); c.fillStyle = '#030812'; c.fillRect(0, 0, width, height);
     c.globalCompositeOperation = 'screen';
-    const step = e.samples.length > 100 ? 3 : 1;
+    const step = e.samples.length > 100 ? 3 : 1,ground=this.last?.selected==='sky'&&this.last.state.view==='ground';
     for (let i = 0; i < e.samples.length; i += step) {
       const s = e.samples[i]!, p = this.project(s.position, width, height); if (!p.visible) continue;
-      c.globalAlpha = s.alpha; c.fillStyle = s.color; c.beginPath(); c.arc(p.x, p.y, s.radius > 50 ? 9 : Math.max(.65, s.radius * .11), 0, Math.PI * 2); c.fill();
+      c.globalAlpha = s.alpha*(ground?s.radius>50?.035:s.radius<3.3?.055:.62:1); c.fillStyle = s.color; c.beginPath(); c.arc(p.x, p.y, (s.radius > 50 ? 9 : Math.max(.65, s.radius * .11))*(ground?.8:1), 0, Math.PI * 2); c.fill();
     }
     c.globalCompositeOperation = 'source-over'; c.globalAlpha = 1;
     if (e.systems) for (const [i, owner] of e.systems.entries()) {
       if(!owner.visible)continue;
       c.strokeStyle='#718da970';for(const orbit of e.orbits![i]!){if(!orbit.visible)continue;const a=orbit.geometry.getAttribute('position');this.line(c,Array.from({length:a.count},(_,j)=>[a.getX(j),a.getY(j),a.getZ(j)] as Vec3),width,height,owner);}
       const bodies=[e.stars![i]!,...(i?e.planets!.slice(8):e.planets!.slice(0,8)).filter(body=>body.visible)];
-      for (const body of bodies) { const p = this.project([0, 0, 0], width, height, body); if (!p.visible) continue; const r = Math.max(2, body.scale.x / (this.orthographic.right - this.orthographic.left) * width), g = c.createRadialGradient(p.x - r * .3, p.y - r * .3, 0, p.x, p.y, r); g.addColorStop(0, body === e.stars![i] ? '#ffe1ab' : '#c1b5a2'); g.addColorStop(1, '#302e2c'); c.fillStyle = g; c.beginPath(); c.arc(p.x, p.y, r, 0, Math.PI * 2); c.fill(); }
+      for (const body of bodies) { const p = this.project([0, 0, 0], width, height, body); if (!p.visible) continue;const star=body===e.stars![i],r=Math.max(2,body.scale.x*(star&&i?.85:1)/(this.orthographic.right-this.orthographic.left)*width);if(star){const halo=c.createRadialGradient(p.x,p.y,r*.95,p.x,p.y,r*1.35);halo.addColorStop(0,i?'#f8a56866':'#ffda8a55');halo.addColorStop(1,'#ffcb7000');c.fillStyle=halo;c.fillRect(p.x-r*1.4,p.y-r*1.4,r*2.8,r*2.8);}const g=c.createRadialGradient(p.x-(star?0:r*.3),p.y-(star?0:r*.3),0,p.x,p.y,r);g.addColorStop(0,star?i?'#ffd7b3':'#ffedbf':'#c1b5a2');g.addColorStop(1,star?i?'#a65530':'#d58d38':'#302e2c');c.fillStyle=g;c.beginPath();c.arc(p.x,p.y,r,0,Math.PI*2);c.fill(); }
     }
   }
   private line(c: CanvasRenderingContext2D, points: readonly Vec3[], width: number, height: number, owner?: THREE.Object3D) {
@@ -311,7 +319,7 @@ export class SkyScene {
   private release(e: Entry) {
     this.world.remove(e.root);
     e.root.traverse(object => { if (object instanceof THREE.Mesh || object instanceof THREE.Points || object instanceof THREE.Line) { object.geometry.dispose(); const materials = Array.isArray(object.material) ? object.material : [object.material]; materials.forEach(m => m.dispose()); } });
-    e.root.clear();
+    e.photosphere?.dispose();e.root.clear();
   }
   dispose() {
     if (this.disposed) return; this.disposed = true; this.active = false; this.observer.disconnect();

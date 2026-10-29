@@ -13,7 +13,8 @@ import skyCopy from '../skyContent.json';
 import { skyDirection, smooth, add, mul, milkyTravelProgress, earthSkyOpacity, groundObserver } from '../skyModel.ts';
 import { M31_DIRECTION as m31Direction } from '../skyModel.ts';
 import { galacticStarPosition,MILKY_DISK_RADIUS_LY } from '../skyModel.ts';
-import {createSolarPhotosphereMaterial} from '../solarPhotosphere3d.ts';
+import {createSolarPhotosphereMaterial,createSolarHalo,setSolarPhotospherePhase,SOLAR_PHOTOSPHERE_STYLE} from '../solarPhotosphere3d.ts';
+import {createStellarPortrait} from '../../../src/visuals/stellarPortrait.ts';
 
 test('sky routes roundtrip independently of legacy galaxy layers, angles and scale choices', () => {
   const old = readGalacticState('?galaxy=spiral&galaxyPitch=1.2&galaxyZoom=1.6');
@@ -120,7 +121,7 @@ test('sky scene retains identities across changes, bounds cache resources and re
   class Canvas {width=0;height=0;hidden=false;setAttribute(){}getContext(){return context2d;}addEventListener(){}removeEventListener(){}replaceWith(){}remove(){}}
   class Renderer {setClearColor(){}setPixelRatio(){}setSize(){}render(){renders++;}dispose(){disposes++;}forceContextLoss(){}}
   const document={hidden:false,createElement:()=>new Canvas()},failures:boolean[]=[];
-  const sandbox=vm.createContext({THREE:{...THREE,WebGLRenderer:Renderer,TextureLoader:class{load(){return new THREE.Texture();}}},createSolarPhotosphereMaterial,catalogue,galacticObjects,SKY_SUN,M31_DIRECTION:m31Direction,milkyObserver,groundObserver,milkyTravelProgress,earthSkyOpacity,orionObserver,orionPosition,parallaxDistance,skyDirection,smooth,add,mul,galacticDirection,trappistPlanets,solarPlanets,wholeOrbitRadius,systemPlanetPosition,MERCURY_AU,planetPosition,systemFraming,...Object.fromEntries(['mercuryMap','venusMap','earthMap','marsMap','jupiterMap','saturnMap','uranusMap','neptuneMap'].map(k=>[k,k])),document,devicePixelRatio:2,ResizeObserver:class{observe(){}disconnect(){disconnects++;}}});
+  const sandbox=vm.createContext({THREE:{...THREE,WebGLRenderer:Renderer,TextureLoader:class{load(){return new THREE.Texture();}}},createSolarPhotosphereMaterial,createSolarHalo,setSolarPhotospherePhase,SOLAR_PHOTOSPHERE_STYLE,createStellarPortrait,catalogue,galacticObjects,SKY_SUN,M31_DIRECTION:m31Direction,milkyObserver,groundObserver,milkyTravelProgress,earthSkyOpacity,orionObserver,orionPosition,parallaxDistance,skyDirection,smooth,add,mul,galacticDirection,trappistPlanets,solarPlanets,wholeOrbitRadius,systemPlanetPosition,MERCURY_AU,planetPosition,systemFraming,...Object.fromEntries(['mercuryMap','venusMap','earthMap','marsMap','jupiterMap','saturnMap','uranusMap','neptuneMap'].map(k=>[k,k])),document,devicePixelRatio:2,ResizeObserver:class{observe(){}disconnect(){disconnects++;}}});
   vm.runInContext(code,sandbox);
   const scene=new (sandbox as any).SceneUnderTest({append(){},clientWidth:900,clientHeight:450},skyCopy.en,'en',(failed:boolean)=>failures.push(failed));
   const state=readSkyState(new URLSearchParams());scene.setActive(true);scene.draw('orion',state,1);
@@ -129,8 +130,17 @@ test('sky scene retains identities across changes, bounds cache resources and re
   scene.draw('orion',{...state,orionProgress:.55,star:4},1.5);assert.equal(scene.entries.get('orion'),entry);assert.deepEqual(entry.samples.map((s:any)=>s.position),positions);
   scene.draw('sky',state,1);const skyEntry=scene.entries.get('sky'),skyPositions=skyEntry.samples.map((s:any)=>s.position);
   scene.draw('sky',{...state,direction:'pole',milkyProgress:.2721},1);assert.equal(scene.entries.get('sky'),skyEntry);assert.deepEqual(skyEntry.samples.map((s:any)=>s.position),skyPositions);
+  scene.draw('sky',{...state,view:'ground',milkyProgress:.72},.75);
+  assert.equal(scene.entries.get('sky'),skyEntry);assert.deepEqual(skyEntry.samples.map((s:any)=>s.position),skyPositions,'night appearance changes neither stellar identity nor spatial coordinates');
+  let groundMaterials=0;
+  skyEntry.root.traverse((object:any)=>{if(object.material?.uniforms?.groundView){groundMaterials++;assert.equal(object.material.uniforms.groundView.value,1);}if(object.userData?.absorbsSky)assert.equal(object.visible,false,'ground absorption comes from the diffuse field, not a string of black point sprites');});assert.equal(groundMaterials,3);
+  scene.draw('sky',{...state,view:'space',direction:'disk'},1);
+  skyEntry.root.traverse((object:any)=>{if(object.material?.uniforms?.groundView)assert.equal(object.material.uniforms.groundView.value,0);if(object.userData?.absorbsSky)assert.equal(object.visible,true);});
   scene.draw('trappist-1',{...state,systemClose:true,systemDays:7},1);assert.equal(scene.entries.size,2);assert.equal(released,1);
   assert.equal(scene.entries.get('trappist-1').stars[0].material.name,'cosmic-solar-photosphere');
+  const system=scene.entries.get('trappist-1'),redBody=system.photosphere.group.getObjectByName('emitting-visible-surface'),redMap=redBody.material.uniforms.photosphere.value;let redReleased=0;redMap.addEventListener('dispose',()=>redReleased++);
+  const bodyPositions=system.planets.map((p:any)=>p.position.toArray());scene.draw('trappist-1',{...state,systemClose:true,systemDays:7},1,0,.45,2);
+  assert.deepEqual(system.planets.map((p:any)=>p.position.toArray()),bodyPositions,'surface-only frames preserve the supplied orbit pose');assert.equal(redBody.material.uniforms.surfaceTime.value,2);assert.equal(system.stars[0].material.uniforms.surfacePhase.value,2);assert.ok(system.stars[0].getObjectByName('solar-soft-glow'));
   assert.equal(scene.entries.get('trappist-1').planets.length,15);assert.equal(scene.textures.size,8);
   scene.draw('trappist-1',{...state,systemWhole:false,systemClose:false},1);assert.equal(scene.entries.get('trappist-1').planets.filter((p:any)=>p.visible).length,8);
   scene.draw('sky',{...state,view:'ground',milkyProgress:.72},1);assert.deepEqual([...scene.camera.position],SKY_SUN);
@@ -138,22 +148,24 @@ test('sky scene retains identities across changes, bounds cache resources and re
   const before=renders;scene.setActive(false);scene.draw('orion',state,1);assert.equal(renders,before);
   scene.setActive(true);document.hidden=true;scene.draw('orion',state,1);assert.equal(renders,before);document.hidden=false;
   scene.contextLost({preventDefault(){}});assert.equal(failures.at(-1),true);const lost=renders;scene.draw('trappist-1',{...state,systemClose:true},1);assert.equal(renders,lost);
-  scene.retry();assert.equal(failures.at(-1),false);assert.ok(renders>lost);scene.dispose();scene.dispose();assert.equal(scene.entries.size,0);assert.equal(disposes,2);assert.equal(disconnects,1);
+  scene.retry();assert.equal(failures.at(-1),false);assert.ok(renders>lost);scene.dispose();scene.dispose();assert.equal(scene.entries.size,0);assert.equal(disposes,2);assert.equal(disconnects,1);assert.equal(redReleased,1);
 });
 
 test('finite observer and orbital playback stops on hide without jumping or resetting retained choices', () => {
   const source=readFileSync(new URL('../skyStudy.ts',import.meta.url),'utf8').replace(/^import .*;\n/gm,'').replace('export class SkyStudy','class SkyStudy');
   const code=ts.transpileModule(source+'\nglobalThis.StudyUnderTest=SkyStudy;', {compilerOptions:{target:ts.ScriptTarget.ES2022}}).outputText;
   const callbacks=new Map<number,(now:number)=>void>();let id=0,draws=0;
-  class Element{dataset:any={};hidden=false;children:Element[]=[];setAttribute(){}append(...nodes:Element[]){this.children.push(...nodes);}addEventListener(){}removeEventListener(){}replaceChildren(){this.children=[];}querySelectorAll(){return this.children.filter(n=>n.dataset.direction);}}
+  class Element{dataset:any={};hidden=false;children:Element[]=[];setAttribute(){}append(...nodes:Element[]){this.children.push(...nodes);}addEventListener(){}removeEventListener(){}replaceChildren(){this.children=[];}querySelector(){return null;}querySelectorAll(){return this.children.filter(n=>n.dataset.direction);}}
   const document={hidden:false,createElement:()=>new Element()},changed:any[]=[];
-  const sandbox=vm.createContext({document,copy:skyCopy,catalogue,trappistPlanets,solarPlanets,milkyTravelProgress,performance:{now:()=>0},matchMedia:()=>({matches:false,addEventListener(){},removeEventListener(){}}),unit:(n:number)=>Math.max(0,Math.min(1,n)),requestAnimationFrame:(f:(now:number)=>void)=>{callbacks.set(++id,f);return id;},cancelAnimationFrame:(i:number)=>callbacks.delete(i)});
+  const sandbox=vm.createContext({document,copy:skyCopy,catalogue,trappistPlanets,solarPlanets,milkyTravelProgress,mountObservationChoices:(host:Element,children:Element[])=>{host.append(...children);return {dispose(){}};},performance:{now:()=>0},matchMedia:()=>({matches:false,addEventListener(){},removeEventListener(){}}),unit:(n:number)=>Math.max(0,Math.min(1,n)),requestAnimationFrame:(f:(now:number)=>void)=>{callbacks.set(++id,f);return id;},cancelAnimationFrame:(i:number)=>callbacks.delete(i)});
   vm.runInContext(code,sandbox);const study=new (sandbox as any).StudyUnderTest(new Element(),new Element(),'en',(state:any,checkpoint:boolean)=>changed.push({state,checkpoint}),()=>{},()=>{},()=>false);
   Object.assign(study,{state:readSkyState(new URLSearchParams()),selected:'orion',active:true,disposed:false,motion:'camera',from:0,target:1,elapsed:0,lastTime:0,frame:0,drawFrame:0,scene:{setActive(){}},syncControls(){},requestDraw(){draws++;}});
   const step=(now:number)=>{const next=[...callbacks.values()];callbacks.clear();next.forEach(f=>f(now));};
   study.tick(16);const initial=study.state.orionProgress;step(100000);assert.ok(study.state.orionProgress-initial<.03,'large wall-clock gap is bounded');
   let now=100000;while(study.motion){now+=16;step(now);}assert.equal(study.state.orionProgress,1);assert.equal(changed.at(-1).checkpoint,true);
-  study.selected='trappist-1';study.motion='orbit';study.lastTime=now;study.tick(now+16);assert.ok(study.state.systemDays>0);const retained=study.state.systemDays;
+  study.selected='trappist-1';study.startSurface();const orbitBefore=study.state.systemDays;step(now+150);assert.ok(study.surfaceTime>0);assert.equal(study.state.systemDays,orbitBefore,'ambient star activity does not play orbital time');
+  study.motion='orbit';study.lastTime=now;study.tick(now+16);assert.ok(study.state.systemDays>0);const retained=study.state.systemDays;
+  study.state.planet=3;for(const view of ['common','close','whole']){study.systemView.value=view;study.systemView.onchange();assert.equal(study.motion,'orbit','changing the framing preserves the independent orbit clock');assert.equal(study.state.systemDays,retained);assert.equal(study.state.planet,3);assert.equal(study.state.systemWhole,view==='whole');if(view!=='whole')assert.equal(study.state.systemClose,view==='close');}
   study.hide();assert.equal(callbacks.size,0);assert.equal(study.motion,undefined);step(now+1000);assert.equal(study.state.systemDays,retained);assert.equal(study.state.orionProgress,1);assert.equal(study.controls.hidden,true);
   const before=draws;study.tick(now+2000);assert.equal(draws,before);
 });

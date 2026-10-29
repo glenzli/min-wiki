@@ -7,6 +7,8 @@ import {bodies,lastPair,diameterComparison,comparisonFrame} from '../comparisonM
 import {originStart} from '../model.ts';
 import {readGalacticState} from '../galacticModel.ts';
 import {readCaseMemory,rememberCase,isSceneChapter} from '../explorationNavigation.ts';
+import {lessonSteps} from '../journeyRoutes.ts';
+import {stops} from '../model.ts';
 import content from '../comparisonContent.json';
 
 test('diameter trials use the canonical bodies and the renderer’s linear ratio at both viewport sizes',()=>{
@@ -22,6 +24,21 @@ test('diameter trials use the canonical bodies and the renderer’s linear ratio
  assert.equal(diameterComparison(-10).small.id,'earth');assert.equal(diameterComparison(100).large.id,'stephenson-2-18');
 });
 
+test('switching lesson routes restores the selected family, elapsed days and camera without resetting another route',()=>{
+ const source=readFileSync(new URL('../main.ts',import.meta.url),'utf8'),ast=ts.createSourceFile('main.ts',source,ts.ScriptTarget.Latest,true);
+ const functions=['rememberRoute','chooseLesson'].map(name=>ast.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text===name)!.getText(ast)).join('\n');
+ const galacticState=readGalacticState('galaxy=kepler-16&keplerDays=54&galaxyZoom=1.5'),state={origin:'earth',progress:.4},exploration={chapter:'systems',pair:3,home:2};
+ const context=vm.createContext({galacticState,state,exploration,lesson:{route:'inward',step:'families'},routeSnapshots:new Map(),visitedLessonSteps:new Set(['inward:families']),structuredClone,rememberCase,caseMemory:readCaseMemory(new URLSearchParams(),galacticState.selected),flight:{progress:.4,seek(value:number){this.progress=value;}},stops,originStart,scene:{},previous:0,stop(){},comparison:{stop(){}},galaxies:{pause(){}},setChapter(chapter:string){context.exploration.chapter=chapter;},travelTo(target:number){context.state.progress=target;},step:lessonSteps.outward[0]});
+ vm.runInContext(ts.transpileModule(functions,{compilerOptions:{target:ts.ScriptTarget.ES2022}}).outputText,context);
+ vm.runInContext("chooseLesson({route:'outward',step:'galaxy'},step,true); galacticState.pitch=1.3; exploration.home=5",context);
+ assert.equal(context.galacticState.selected,'milky-way');
+ context.step=lessonSteps.inward.find(step=>step.id==='families');vm.runInContext("chooseLesson({route:'inward',step:'families'},step,true)",context);
+ assert.equal(context.galacticState.selected,'kepler-16');assert.equal(context.galacticState.familyDays['kepler-16'],54);assert.equal(context.galacticState.zoom,1.5);assert.equal(context.state.progress,.4);assert.equal(context.exploration.home,2);
+ context.step=lessonSteps.outward[0];vm.runInContext("chooseLesson({route:'outward',step:'galaxy'},step,true)",context);assert.equal(context.galacticState.pitch,1.3);assert.equal(context.exploration.home,5);
+ context.step=lessonSteps.inward.find(step=>step.id==='galaxy');vm.runInContext("chooseLesson({route:'inward',step:'galaxy'},step)",context);assert.equal(context.state.progress,stops[3]);
+ context.state.progress=.1;vm.runInContext("chooseLesson({route:'inward',step:'galaxy'},step)",context);assert.equal(context.state.progress,stops[3],'a selected physical stop still recentres after manual magnification');
+});
+
 test('new-journey action resets only the physical progress; resume and ordinary chapters retain it',()=>{
  const source=readFileSync(new URL('../main.ts',import.meta.url),'utf8'),ast=ts.createSourceFile('main.ts',source,ts.ScriptTarget.Latest,true);
  const functions=['enterZoom','setChapter'].map(name=>{const found=ast.statements.find(node=>ts.isFunctionDeclaration(node)&&node.name?.text===name);assert.ok(found);return found.getText(ast);}).join('\n');
@@ -29,7 +46,7 @@ test('new-journey action resets only the physical progress; resume and ordinary 
  for(const origin of ['earth','sun'] as const){
   const state={origin,progress:.86},exploration={chapter:'galaxies',pair:3,home:4},flight={progress:.86,seek(value:number){this.progress=value;}};
   const galacticState=readGalacticState(''),caseMemory=readCaseMemory(new URLSearchParams(),galacticState.selected);
-  const context=vm.createContext({state,exploration,flight,galacticState,caseMemory,rememberCase,isSceneChapter,originStart,previous:7,chapterFocusFrame:0,stop(){},comparison:{stop(){}},physicalInput:{cancel(){}},update(){},cancelAnimationFrame(){},releaseChapterFocus(){},requestAnimationFrame(){return 1;}});
+  const context=vm.createContext({state,exploration,flight,galacticState,caseMemory,rememberCase,isSceneChapter,originStart,rememberRoute(){},previous:7,chapterFocusFrame:0,stop(){},comparison:{stop(){}},physicalInput:{cancel(){}},update(){},cancelAnimationFrame(){},releaseChapterFocus(){},requestAnimationFrame(){return 1;}});
   vm.runInContext(code,context);vm.runInContext('enterZoom(false)',context);assert.equal(state.progress,.86);assert.equal(state.origin,origin);
   vm.runInContext("setChapter('galaxies')",context);assert.equal(state.progress,.86);assert.equal(exploration.pair,3);assert.equal(exploration.home,4);
   vm.runInContext('enterZoom(true)',context);assert.equal(state.progress,originStart(origin));assert.equal(flight.progress,state.progress);assert.equal(exploration.chapter,'zoom');assert.equal(context.previous,-1);

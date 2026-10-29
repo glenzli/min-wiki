@@ -1,25 +1,25 @@
-01 · Put two bodies side by side
-[Choose the three pairs or drag the slider, tracking the same retained body.]
+01 · From sky to galaxies
+[Change from ground sky to the along-disk view; explore named-star distances, the whole Milky Way and common-scale galaxy comparisons.]
 
-Earth looks small beside Jupiter. Bring in the Sun and Jupiter becomes small; bring in Arcturus and even the Sun looks small. We compare diameters on one shared ruler. Placing them together does not mean they are physically close. Now meet enormous stars with catalogue-like names. With the estimates shown here, one placed at the Sun could reach around Saturn’s orbit. First imagine that size; then explore how astronomers estimate it.
-
----
-
-02 · A bigger ball or a bigger family?
-[Open the membership chapter and follow the five-stop address to the observable region; explore Virgo and a local web close-up separately.]
-
-The Sun and its orbiting planets belong to the Solar System. Our Sun is one of many stars in the Milky Way. The Milky Way, Andromeda and many smaller galaxies belong to the Local Group. The Local Group and Virgo Cluster are different neighbors, yet both appear in the reconstructed Laniakea flow region. The cosmic web describes how such structures are distributed; it is not an outer shell.
+Begin with the sky. The Sun is a star, and it is our nearest one. Many night-sky points are distant Milky Way stars; some lights are reflecting planets, or multiple stars we cannot separate. The Milky Way band blends light from many stars. We first look from inside its disk, then outside, to see where the band comes from. Our galaxy has differently shaped neighbours. Comparing their selected sizes needs one length ruler.
 
 ---
 
-03 · Turn the Milky Way around
-[Open galaxy structure, choose face-on and edge-on, then drag to rotate. Toggle the disk, bulge and stellar halo; compare the cluster membership context with its independent close-up. Then choose the Milky Way band, Orion and TRAPPIST-1, retain object identities, move the observer, select readouts and play a shared 20 days.]
+02 · Inward to our home
+[Approach Earth through the inward stops. Separately play Kepler-16 or Cygnus X-1, then return to Earth and Moon.]
 
-Find the Sun locator in the Milky Way. Face-on, starlight traces arms; turn edge-on and the same stars reveal a thin disk, a central bulge and a sparse stellar halo. The Sun stays in the disk. Compare a smooth elliptical galaxy and an asymmetric irregular galaxy. These are different examples, not stages of one galaxy changing shape. A star cluster is a collection of stars within a galaxy, not simply a miniature galaxy. Our sky’s Milky Way band is starlight seen from inside this disk. Compare looking along and away from it. The same Orion stars reveal different depths from the side. A little smudge in Andromeda’s direction is a whole distant galaxy, beyond the foreground stars. Other planetary systems have different layouts too: TRAPPIST-1’s seven orbits are all more compact than Mercury’s. See the Sun and all eight planets beside TRAPPIST-1 and its seven known planets: one has giant planets, while the other known family is tightly packed. Turn the whole Milky Way and M87 side by side to compare a thin disk with a rounder stellar body.
+Locate the Sun in the galaxy and approach nearby stars, the Solar System, Earth and Moon, and finally Earth. A separate comparison window explores different stellar families. Some planets orbit one star, while others travel around two. A star may also have a black-hole companion. Planets reflect starlight; bright gas near a black hole is not light emitted by the black hole itself.
 
 ---
 
-04 · Beyond our galaxy
-[Open continuous zoom, travel from the selected body through the Milky Way, Local Group and Laniakea distance scales to the observable region, and compare the linear ruler with the location labels.]
+03 · Outward to the cosmos
+[Explore the galaxy, group, neighbouring cluster, supercluster, cosmic web and observable region, distinguishing members, neighbours and statistical illustrations.]
 
-Keep the Sun’s place in the Milky Way in mind, then zoom continuously from Earth or the Sun. Fitting distant orbits into the view makes even the Sun’s disk invisible; its locator does not secretly enlarge it. The Milky Way shares the Local Group with many small galaxies, while Virgo is a separate neighbour. Farther out, the cosmic web illustrates a distribution. The final dashed horizon marks what can be observed from our location, not a wall around the universe. Today’s distance is not the light’s travel time.
+Look outward from the Milky Way. Our galaxy and many others belong to the Local Group. The nearby Virgo Cluster is another structure to compare. Associations across still wider regions rely on observations and models. The cosmic web is a large-scale distribution, not a glowing shell. As the scale grows, one locator may stand for an entire galaxy; a drawn point does not always mean one star.
+
+---
+
+04 · Earth to the universe
+[Play the fourth chapter, pause or reverse it, and compare the physical ruler, location anchor and current model limits.]
+
+Finally zoom continuously from Earth. At first we can see its outline; later we need a locator. The Solar System, Milky Way and larger structures enter the view as the length ruler changes. The final dashed reference describes our observing range, not a wall around the whole universe. It does not make Earth the centre of the universe.

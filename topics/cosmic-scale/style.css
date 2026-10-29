@@ -143,8 +143,7 @@
 .galactic-presets,.galactic-layers{display:flex;flex-wrap:wrap;gap:8px;padding:0}
 .galactic-presets{flex:1;flex-wrap:nowrap}
 .galactic-options{flex:0 0 auto;font-size:13px;line-height:1.6}
-.galactic-options>summary{min-height:44px;padding:10px;border:1px solid var(--border);border-radius:8px;cursor:pointer}
-.galactic-option-body{position:absolute;z-index:7;right:14px;bottom:calc(100% - 2px);width:min(440px,calc(100% - 28px));padding:14px;background:var(--surface);border:1px solid var(--border);border-radius:12px;box-shadow:0 8px 24px #0008}
+.galactic-option-body{display:grid;gap:8px;min-width:0}
 .galactic-option-body .galactic-layers{padding:8px 0 0}
 #cosmic-observation .galactic-presets button,#cosmic-observation .galactic-layers button{min-height:44px;font-size:13px;padding:8px 12px;border-radius:8px}
 .galactic-sliders{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:0}
@@ -164,7 +163,6 @@
  .galactic-tools{flex-wrap:wrap;gap:8px;padding-inline:8px}
  .galactic-presets{flex:0 0 100%;min-width:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
  #cosmic-observation .galactic-presets button{min-width:0;font-size:13px;line-height:1.5;padding:6px 4px;white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none}
- .galactic-options>summary{font-size:13px;padding:10px 8px}
  .galactic-sliders{gap:10px}.galactic-layers button{flex:1 1 130px}.galactic-hint{font-size:12px}.galactic-copy{padding:14px}
 }
 @media(max-width:999px){#cosmic-observation.observation-expanded .galactic-copy{}}
@@ -285,3 +283,21 @@
  #cosmic-observation .cosmic-main:has(.sky-controls:not([hidden]))>.galactic-stage{--reader-stage-size:clamp(280px,43dvh,400px)}
  #cosmic-observation #galaxies-panel .cosmic-main>.galactic-stage[data-system-whole="1"],#cosmic-observation #galaxies-panel .cosmic-main>.galactic-stage[data-galaxy-pair="1"]{--reader-stage-size:clamp(520px,72dvh,650px)}
 }
+
+/* The distance route and its contextual comparisons have distinct visual levels. */
+.cosmic-journey-steps,.galactic-detail-choices{display:flex;align-items:center;flex-wrap:wrap;gap:6px;min-width:0}
+.cosmic-journey-steps[hidden],.galactic-detail-choices[hidden]{display:none}
+.cosmic-journey-main,.cosmic-journey-related{display:flex;align-items:center;flex-wrap:wrap;gap:5px;min-width:0}
+.cosmic-journey-related{padding-inline-start:8px;border-inline-start:1px solid var(--border)}
+.cosmic-journey-related[hidden]{display:none}
+.cosmic-journey-related>span{color:var(--secondary);font-size:11px;white-space:nowrap}
+#cosmic-observation .cosmic-journey-related>button{background:transparent;border-color:transparent;font-size:12px}
+#cosmic-observation .cosmic-journey-related>button[aria-pressed="true"]{background:var(--surface);border-color:var(--border)}
+.cosmic-journey-mobile{display:none}
+@media(max-width:760px){.cosmic-journey-steps>.cosmic-journey-main,.cosmic-journey-steps>.cosmic-journey-related{display:none}.cosmic-journey-steps>.cosmic-journey-mobile{display:block;min-width:0;max-width:100%}}
+.stellar-family-controls{display:flex;align-items:center;flex-wrap:wrap;gap:6px 12px;padding:6px 0}
+.stellar-family-controls[hidden]{display:none}
+.stellar-family-controls>label{display:flex;align-items:center;gap:8px;flex:1 1 240px;min-width:0}
+.stellar-family-controls input{flex:1;min-width:100px}.stellar-family-controls p,.stellar-family-controls small{flex-basis:100%;margin:0}.stellar-family-controls small{opacity:.7}
+.sky-system-tools select{min-width:0;max-width:100%}
+@media(max-width:600px){.sky-directions{display:flex;flex-wrap:wrap}}
